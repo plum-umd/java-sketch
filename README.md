@@ -57,6 +57,10 @@ comment out lines 20--21 and 34, and uncomment lines 17--18 and 32
 
 To be explained...
 
+```sh
+$ python -m unittest -v test.test_erroneous
+```
+
 
 ### Scripts
 

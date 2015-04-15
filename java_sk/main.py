@@ -27,9 +27,9 @@ def configure(opt):
   conf["verbose"] = opt.verbose
 
 
-@takes(list_of(str), str, optional(str))
+@takes(list_of(str), optional(str), optional(str))
 @returns(int)
-def main(jsk_paths, out_dir, log_lv=logging.DEBUG):
+def main(jsk_paths, out_dir=res_dir, log_lv=logging.DEBUG):
 
   ## check custom codegen was built
   codegen_jar = os.path.join(root_dir, "codegen", "lib", "codegen.jar")
@@ -40,8 +40,9 @@ def main(jsk_paths, out_dir, log_lv=logging.DEBUG):
   logging.config.fileConfig(os.path.join(pwd, "logging.conf"))
   logging.getLogger().setLevel(log_lv)
 
-  ast = util.toAST(pgr_files)
+  ast = util.toAST(jsk_paths)
   pgr = Program(ast)
+  main_cls = pgr.main_cls
 
   return 0
 
