@@ -2,7 +2,15 @@
 
 a Java front-end for [Sketch][sk], a program synthesis tool
 
-## Parser Generation
+
+## Usage
+
+To use this tool, you should first generate the parser,
+which is explained just below.
+You can skip custom codegen (and the regression test).
+
+
+### Parser Generation
 
 We slightly changed Java grammar to support holes (`??`).
 To read Java Sketch, generate our own parser first:
@@ -14,12 +22,13 @@ or
 $ ./grammar/gen.py
 ```
 
-## Custom Codegen
+
+### Custom Codegen
 
 To capture hole assignments, we will pass to Sketch
 a custom code generator that will be invoked
-at code generation time.
-Pre-built `codegen.jar` is under `codegen/lib/`.
+at code generation time.  Under `codegen/lib/`,
+pre-built `codegen.jar` is provided.
 
 You can build it by yourself if you want to.
 Make sure your environment is set up properly.
@@ -40,7 +49,30 @@ $ cd codegen; ant
 ```
 The build file (`build.xml`) assumes that Sketch is built
 from source.  Otherwise, i.e., using a tar ball,
-comment out lines 20--21 and 34, and uncomment lines 17--18 and 32.
+comment out lines 20--21 and 34, and uncomment lines 17--18 and 32
+(with modifying the version number if necessary).
+
+
+### Test
+
+To be explained...
+
+
+### Scripts
+
+To be explained...
+
+#### main.py
+
+```sh
+$ python -m java_sk.main (input_file | input_dir)+ [option]*
+```
+
+#### meta/program.py
+
+```sh
+$ python -m java_sk.meta.program (input_file | input_dir)+ [option]*
+```
 
 
 [sk]: https://bitbucket.org/gatoatigrado/sketch-frontend/
