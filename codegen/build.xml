@@ -1,0 +1,50 @@
+<project name="codegen" default="all" basedir=".">
+
+  <description>
+    Code generator for Sketch
+  </description>
+
+  <target name="all" depends="compile, mk_jar"/>
+
+  <!-- global properties for this build file -->
+  <property name="source.dir" location="src"/>
+  <property name="build.dir" location="bin"/>
+  <property name="lib.dir" location="lib"/>
+  <property name="codegen.jar" value="${lib.dir}/codegen.jar"/>
+
+  <property environment="env"/>
+<!--
+  <property name="sketch.dir" location="${env.SKETCH_HOME}/.."/>
+  <property name="sketch.jar" value="${sketch.dir}/sketch-1.6.7-noarch.jar"/>
+-->
+  <property name="sketch.dir" location="${env.SKETCH_HOME}"/>
+  <property name="sketch.classes" location="${sketch.dir}/target/classes"/>
+
+  <!-- set up some directories used by this project -->
+  <target name="init" description="setup project directories">
+    <delete dir="${build.dir}"/>
+    <mkdir dir="${build.dir}"/>
+  </target>
+
+  <!-- compile the java code in ${source.dir} into ${build.dir} -->
+  <target name="compile" depends="init" description="compile java sources">
+<!--
+    <javac srcdir="${source.dir}" destdir="${build.dir}" classpath="${sketch.jar}"/>
+-->
+    <javac srcdir="${source.dir}" destdir="${build.dir}" classpath="${sketch.classes}"/>
+  </target>
+
+  <!-- make a jar file that includes all the classes files in ${build.dir} -->
+  <target name="mk_jar" depends="compile" description="make jar file">
+    <jar basedir="${build.dir}" destfile="${codegen.jar}"/>
+  </target>
+
+  <!-- delete the build directory and jar file -->
+  <target name="clean" description="tidy up the workspace">
+    <delete dir="${build.dir}"/>
+<!--
+    <delete file="${codegen.jar}"/>
+-->
+  </target>
+
+</project>
