@@ -25,12 +25,12 @@ You can build it by yourself if you want to.
 Make sure your environment is set up properly.
 If you are using Sketch from source:
 ```
-export SKETCH_HOME=$HOME/project/bitbucket/sketch-frontend
+export SKETCH_HOME=/path/to/sketch-frontend
 export PATH=$PATH:$SKETCH_HOME/target/sketch-1.6.9-noarch-launchers.dir
 ```
 If you are using Sketch tar ball:
 ```
-export SKETCH_HOME=$HOME/Downloads/sketch-1.6.7/sketch-frontend/runtime
+export SKETCH_HOME=/path/to/sketch-frontend/runtime
 export PATH=$PATH:$SKETCH_HOME/..
 ```
 
