@@ -259,7 +259,7 @@ class Clazz(v.BaseNode):
 
   def __eq__(self, other):
     # reflective: c == c
-    return self._name == other.name
+    return repr(self) == repr(other)
 
   def __lt__(self, other):
     # topmost: c < Object
