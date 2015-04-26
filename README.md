@@ -59,6 +59,7 @@ To be explained...
 
 ```sh
 $ python -m unittest -v test.test_erroneous
+$ python -m unittest -v test.test_mini
 ```
 
 
