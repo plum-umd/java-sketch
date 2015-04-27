@@ -1,5 +1,5 @@
 class Testb290 {
-    harness void test (int a, int b) {
+    harness static void test (int a, int b) {
         int x = Foo.foo(a) + Boo_Moo.moo(b) + Boo_Moo.boo(a, b);
         assert x == (a + b + a);
     }
