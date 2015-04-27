@@ -109,7 +109,7 @@ def be_p_run(sk_dir, output_path):
 
 """
   $ python -m java_sk.sketch -p demo [--parallel]
-  $ ./pasket/sketch.py -p demo [...]
+  $ ./java_sk/sketch.py -p demo [...]
 """
 if __name__ == "__main__":
   from optparse import OptionParser
