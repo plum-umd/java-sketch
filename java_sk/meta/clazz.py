@@ -300,6 +300,14 @@ class Clazz(v.BaseNode):
       return util.exists(cmp_anno, mtd.annos)
     return filter(anno_filter, self._mtds)
 
+  # gather methods that have the given modifier
+  @takes("Clazz", unicode)
+  @returns(list_of("Method"))
+  def mtds_w_mod(self, mod):
+    def mod_finder(mtd):
+      return mod in mtd.mods
+    return filter(mod_finder, self._mtds)
+
   @takes("Clazz", callable, optional(callable), optional(anything))
   def in_hierarchy(self, pred, calc=None, default=None):
     if pred(self):

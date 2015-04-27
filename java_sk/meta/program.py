@@ -170,6 +170,13 @@ class Program(v.BaseNode):
     mtdss = map(lambda cls: cls.mtds_w_anno(cmp_anno), self._classes)
     return util.ffilter(util.flatten(mtdss))
 
+  # invoke Clazz.mtds_w_mod for all classes
+  @takes("Program", unicode)
+  @returns(list_of(Method))
+  def mtds_w_mod(self, mod):
+    mtdss = map(lambda cls: cls.mtds_w_mod(mod), self._classes)
+    return util.ffilter(util.flatten(mtdss))
+
   # find methods with @Harness
   # if called with a specific name, will returns the exact method
   @takes("Program", optional(str))
@@ -177,11 +184,18 @@ class Program(v.BaseNode):
   def harness(self, name=None):
     if name:
       h_finder = lambda anno: anno.by_attr({"name": C.A.HARNESS, "f": name})
+      mtds = self.mtds_w_anno(h_finder)
+      if mtds and len(mtds) == 1: return mtds[0]
+      _mtds = self.mtds_w_mod(C.mod.HN)
+      mtds = filter(lambda mtd: mtd.name == name, _mtds)
+      if mtds and len(mtds) == 1: return mtds[0]
+
     else:
       h_finder = lambda anno: anno.by_name(C.A.HARNESS)
-    mtds = self.mtds_w_anno(h_finder)
-    if mtds and name: return mtds[0]
-    else: return mtds
+      mtds = self.mtds_w_anno(h_finder) + self.mtds_w_mod(C.mod.HN)
+      if mtds: return util.rm_dup(mtds)
+
+    raise Exception("can't find @Harness or harness", name)
 
   # find main()
   @property
