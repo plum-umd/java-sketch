@@ -79,6 +79,13 @@ $ python -m java_sk.main (input_file | input_dir)+ [option]*
 $ python -m java_sk.meta.program (input_file | input_dir)+ [option]*
 ```
 
+#### sketch.py
+
+```sh
+$ python -m java_sk.sketch -p demo_name [option]*
+$ ./java_sk/sketch.py -p demo_name [option]*
+```
+
 
 [sk]: https://bitbucket.org/gatoatigrado/sketch-frontend/
 
