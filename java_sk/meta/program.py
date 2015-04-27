@@ -189,13 +189,12 @@ class Program(v.BaseNode):
       _mtds = self.mtds_w_mod(C.mod.HN)
       mtds = filter(lambda mtd: mtd.name == name, _mtds)
       if mtds and len(mtds) == 1: return mtds[0]
+      raise Exception("can't find @Harness or harness", name)
 
     else:
       h_finder = lambda anno: anno.by_name(C.A.HARNESS)
       mtds = self.mtds_w_anno(h_finder) + self.mtds_w_mod(C.mod.HN)
-      if mtds: return util.rm_dup(mtds)
-
-    raise Exception("can't find @Harness or harness", name)
+      return util.rm_dup(mtds)
 
   # find main()
   @property
