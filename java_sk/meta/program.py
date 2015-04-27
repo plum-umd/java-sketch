@@ -246,7 +246,7 @@ class Program(v.BaseNode):
 
 """
 To import lib.*, run as follows:
-  pasket $ python -m java_sk.meta.program
+  $ python -m java_sk.meta.program (input.java | input_folder)+ [option]*
 """
 if __name__ == "__main__":
   from optparse import OptionParser
