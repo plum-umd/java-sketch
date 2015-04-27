@@ -6,6 +6,7 @@ import os
 import sys
 
 from meta.program import Program
+import encoder
 
 from lib.typecheck import *
 
@@ -43,6 +44,10 @@ def main(jsk_paths, out_dir=res_dir, log_lv=logging.DEBUG):
   ast = util.toAST(jsk_paths)
   pgr = Program(ast)
   main_cls = pgr.main_cls
+
+  ## encode the program into sketch files
+  sk_dir = os.path.join(out_dir, '_'.join(["sk", str(main_cls.name)]))
+  encoder.to_sk(pgr, sk_dir)
 
   return 0
 
