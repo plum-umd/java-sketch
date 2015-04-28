@@ -5,13 +5,13 @@ import logging.config
 import os
 import sys
 
-from meta.program import Program
-import encoder
-
 from lib.typecheck import *
 
 import util
+from meta.program import Program
+import encoder
 import sketch
+import decoder
 
 pwd = os.path.dirname(__file__)
 root_dir = os.path.join(pwd, "..")
@@ -97,9 +97,13 @@ def main(jsk_paths, out_dir=res_dir, log_lv=logging.DEBUG):
     # if sketch fails, halt the process here
     if not r: return r
 
-  else: # not running sketch
+  else: # not running Sketch
     logging.info("pass sketch; rather read: {}".format(output_path))
 
+  ## generate Java code
+  java_dir = os.path.join(out_dir, "java")
+  decoder.to_java(java_dir, pgr, output_path)
+  logging.info("synthesis done")
 
   return 0
 
