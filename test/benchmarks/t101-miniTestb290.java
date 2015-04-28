@@ -16,7 +16,10 @@ class Boo_Moo {
         return y;
     }
 
+    static int h1 = ??;
+    static int h2 = ??;
+
     public static int boo (int x, int y) {
-       return ?? * x + ?? * y;
+       return h1 * x + h2 * y;
     }
 }
