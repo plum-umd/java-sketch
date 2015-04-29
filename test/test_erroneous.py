@@ -1,12 +1,12 @@
 import os
-import unittest
 
 import java_sk.main
+from . import TestCommon
 
 pwd = os.path.dirname(__file__)
 benchmarks = os.path.join(pwd, "benchmarks")
 
-class TestErroneous(unittest.TestCase):
+class TestErroneous(TestCommon):
 
   def test_no_main(self):
     f = os.path.join(benchmarks, "t001-no-main.java")
