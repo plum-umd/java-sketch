@@ -39,7 +39,7 @@ def run(sk_dir, output_path, trial=-1):
       logging.info("sketch done: {}".format(output_path))
       res = True
     except subprocess.CalledProcessError:
-      logging.error("wrong modelings")
+      logging.error("semantic errors due to wrong encoding or UNSATISFIABLE")
 
   return (output_path, res)
 

@@ -95,7 +95,7 @@ def main(jsk_paths, out_dir=res_dir, log_lv=logging.DEBUG):
     else:
       _, r = sketch.run(sk_dir, output_path)
     # if sketch fails, halt the process here
-    if not r: return r
+    if not r: return 1
 
   else: # not running Sketch
     logging.info("pass sketch; rather read: {}".format(output_path))

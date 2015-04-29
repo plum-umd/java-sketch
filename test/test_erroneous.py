@@ -24,6 +24,11 @@ class TestErroneous(TestCommon):
     self.assertIn("main()", msg)
     self.assertIn("multiple", msg)
 
+  def test_unsat(self):
+    f = os.path.join(benchmarks, "t003-unsat.java")
+    ret = java_sk.main.main([f])
+    self.assertNotEqual(ret, 0)
+
 
 if __name__ == '__main__':
   unittest.main()
