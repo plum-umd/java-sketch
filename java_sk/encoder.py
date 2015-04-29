@@ -539,7 +539,8 @@ def trans_e(mtd, e):
   if e.kind == C.E.ID:
     if hasattr(e, "ty"): buf.write(trans_ty(e.ty) + ' ')
     fld = None
-    if mtd: fld = find_fld(mtd.clazz.name, e.id)
+    if mtd and e.id not in mtd.param_vars:
+      fld = find_fld(mtd.clazz.name, e.id)
     if fld: # fname -> self.new_fname (unless the field is static)
       new_fname = trans_fname(fld.clazz.name, e.id, fld.is_static)
       if fld.is_static:

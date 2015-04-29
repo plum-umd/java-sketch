@@ -90,6 +90,11 @@ class Method(v.BaseNode):
     return typs
 
   @property
+  def param_vars(self):
+    _, args = util.split(self._params)
+    return args
+
+  @property
   def signature(self):
     params = ", ".join(self.param_typs)
     return "{} {}.{}({})".format(self._typ, self._clazz.name, self._name, params)
