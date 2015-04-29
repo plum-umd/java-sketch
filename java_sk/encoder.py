@@ -573,7 +573,7 @@ def trans_e(mtd, e):
       new_fname = trans_fname(rcv_ty, e.re.id, fld.is_static)
       if fld.is_static:
         # access to the static field inside the same class
-        if mtd and rcv_ty == mtd.clazz.name: buf.write(e.id)
+        if mtd and rcv_ty == mtd.clazz.name: buf.write(e.re.id)
         # o.w., e.g., static constant in an interface, call the accessor
         else: buf.write(new_fname + "()")
       else: buf.write('.'.join([curried(e.le), new_fname]))
