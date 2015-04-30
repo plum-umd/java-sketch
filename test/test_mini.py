@@ -26,6 +26,9 @@ class TestErroneous(TestCommon):
   def test_mini_103(self):
     self.__test(["t103-miniTestb415.java"])
 
+  def test_mini_104(self):
+    self.__test(["t104-miniTestb586.java"])
+
 
 if __name__ == '__main__':
   unittest.main()
