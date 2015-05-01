@@ -30,6 +30,9 @@ class TestJava(TestCommon):
   def test_java_205(self):
     self.__test(["t205-const-interface.java"])
 
+  def test_java_206(self):
+    self.__test(["t206-anonymous.java"])
+
 
 if __name__ == '__main__':
   unittest.main()
