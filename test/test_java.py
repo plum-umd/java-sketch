@@ -27,6 +27,9 @@ class TestJava(TestCommon):
   def test_java_204(self):
     self.__test(["t204-inner-classes.java"])
 
+  def test_java_205(self):
+    self.__test(["t205-const-interface.java"])
+
 
 if __name__ == '__main__':
   unittest.main()
