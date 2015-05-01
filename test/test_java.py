@@ -21,6 +21,9 @@ class TestJava(TestCommon):
   def test_java_202(self):
     self.__test(["t202-interfaces.java"])
 
+  def test_java_203(self):
+    self.__test(["t203-instances.java"])
+
 
 if __name__ == '__main__':
   unittest.main()
