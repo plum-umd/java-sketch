@@ -33,6 +33,9 @@ class TestJava(TestCommon):
   def test_java_206(self):
     self.__test(["t206-anonymous.java"])
 
+  def test_java_207(self):
+    self.__test(["t207-super.java"])
+
 
 if __name__ == '__main__':
   unittest.main()
