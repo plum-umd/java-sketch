@@ -1,13 +1,11 @@
 import os
+import unittest
 
 import java_sk.main
 from . import TestCommon
 
 pwd = os.path.dirname(__file__)
 benchmarks = os.path.join(pwd, "benchmarks")
-
-root_dir = os.path.join(pwd, "..")
-out_dir = os.path.join(root_dir, "result")
 
 class TestMini(TestCommon):
 
