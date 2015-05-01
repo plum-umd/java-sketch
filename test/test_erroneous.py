@@ -25,10 +25,17 @@ class TestErroneous(TestCommon):
     self.assertIn("main()", msg)
     self.assertIn("multiple", msg)
 
-  def test_unsat(self):
-    f = os.path.join(benchmarks, "t003-unsat.java")
-    ret = java_sk.main.main([f])
+  def __test(self, fs):
+    append_b = lambda f: os.path.join(benchmarks, f)
+    _fs = map(append_b, fs)
+    ret = java_sk.main.main(_fs)
     self.assertNotEqual(ret, 0)
+
+  def test_unsat(self):
+    self.__test(["t003-unsat.java"])
+
+  def test_no_return(self):
+    self.__test(["t004-no-return.java"])
 
 
 if __name__ == '__main__':
