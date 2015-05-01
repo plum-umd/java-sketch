@@ -9,7 +9,7 @@ benchmarks = os.path.join(pwd, "benchmarks")
 root_dir = os.path.join(pwd, "..")
 out_dir = os.path.join(root_dir, "result")
 
-class TestErroneous(TestCommon):
+class TestMini(TestCommon):
 
   def __test(self, fs):
     append_b = lambda f: os.path.join(benchmarks, f)
@@ -28,6 +28,9 @@ class TestErroneous(TestCommon):
 
   def test_mini_104(self):
     self.__test(["t104-miniTestb586.java"])
+
+  def test_mini_105(self):
+    self.__test(["t105-miniTestb626.java"])
 
 
 if __name__ == '__main__':
