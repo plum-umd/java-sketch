@@ -45,6 +45,9 @@ class TestJava(TestCommon):
   def test_java_208(self):
     self.__test(["t208-string.java"], True)
 
+  def test_java_209(self):
+    self.__test(["t209-list.java"], True)
+
 
 if __name__ == '__main__':
   unittest.main()
