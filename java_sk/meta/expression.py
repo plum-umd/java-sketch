@@ -108,6 +108,7 @@ class Expression(v.BaseNode):
       except (AttributeError, KeyError):
         if util.is_class_name(v): return v
         elif util.is_str(v): return C.J.STR
+        elif util.is_char(v): return C.J.c
         else:
           fld = None
           if mtd: fld = clazz.find_fld(mtd.clazz.name, v)

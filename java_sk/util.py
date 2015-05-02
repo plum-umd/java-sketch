@@ -215,11 +215,18 @@ def to_shorty_sk(tname):
   else: return u''
 
 
-# check it is quoted
+# check if quoted with double quotation marks
 @takes(unicode)
 @returns(bool)
 def is_str(x):
   return len(x) >= 2 and (x[0] == '"' and x[-1] == '"')
+
+
+# check if quoted with single quotation marks
+@takes(unicode)
+@returns(bool)
+def is_char(x):
+  return len(x) >= 2 and (x[0] == '\'' and x[-1] == '\'')
 
 
 # capitalize the first character only
