@@ -286,6 +286,11 @@ def col_to_struct(cls):
           for (i = 0; lst.elts[i] != null && i < S; i++) {{
             if (lst.elts[i] == elt) {{
               lst.elts[i] = null;
+              int j;
+              for (j = i + 1; lst.elts[j] != null && j < lst.idx; j++) {{
+                lst.elts[j-1] = lst.elts[j];
+              }}
+              lst.idx = (lst.idx - 1) % S;
               return true;
             }}
           }}
@@ -301,8 +306,8 @@ def col_to_struct(cls):
             res = lst.elts[index];
             lst.elts[index] = null;
             int i;
-            for (i = index; lst.elts[i] != null && i < lst.idx; i++) {{
-              lst.elts[i] = lst.elts[i+1];
+            for (i = index + 1; lst.elts[i] != null && i < lst.idx; i++) {{
+              lst.elts[i-1] = lst.elts[i];
             }}
             lst.idx = (lst.idx - 1) % S;
           }}
