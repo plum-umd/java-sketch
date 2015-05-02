@@ -16,7 +16,9 @@ from meta.field import Field
 from meta.statement import Statement
 from meta.expression import Expression, to_expression
 
-
+"""
+Finding hole declarations
+"""
 class HFinder(object):
 
   def __init__(self):
@@ -54,6 +56,9 @@ class HFinder(object):
   def visit(self, node): return node
 
 
+"""
+Replacing holes with solutions
+"""
 class Replacer(object):
 
   def __init__(self, output_path, holes):
@@ -118,6 +123,65 @@ class Replacer(object):
   def visit(self, node): return node
 
 
+"""
+Replacing collections of interface types with actual classes
+"""
+class Collection(object):
+
+  __impl = { \
+    C.J.MAP: C.J.TMAP, \
+    C.J.LST: C.J.LNK, \
+    C.J.LNK: C.J.LNK, \
+    C.J.STK: C.J.STK, \
+    C.J.QUE: C.J.DEQ }
+
+  # autobox type parameters and/or replace interfaces with implementing classes
+  # e.g., List<T> x = new List<T>(); => new ArrayList<T>();
+  # this should *not* be recursive, e.g., Map<K, List<V>> => TreeMap<K, List<V>>
+  @staticmethod
+  def repl_itf(tname, init=True):
+    if not util.is_collection(tname): return tname
+    _ids = util.of_collection(tname)
+    ids = map(util.autoboxing, _ids)
+    collection = ids[0]
+    if init: collection = Collection.__impl[collection]
+    generics = ids[1:] # don't be recursive, like map(repl_itf, ids[1:])
+    return u"{}<{}>".format(collection, ','.join(generics))
+
+
+  @v.on("node")
+  def visit(self, node):
+    """
+    This is the generic method to initialize the dynamic dispatcher
+    """
+
+  @v.when(Program)
+  def visit(self, node): pass
+
+  @v.when(Clazz)
+  def visit(self, node): pass
+
+  @v.when(Field)
+  def visit(self, node):
+    node.typ = Collection.repl_itf(node.typ, False)
+
+  @v.when(Method)
+  def visit(self, node): pass
+
+  @v.when(Statement)
+  def visit(self, node): return [node]
+
+  @v.when(Expression)
+  def visit(self, node):
+    if node.kind == C.E.NEW:
+      if node.e.kind == C.E.CALL:
+        mid = unicode(node.e.f)
+        if util.is_class_name(mid):
+          node.e.f.id = Collection.repl_itf(mid)
+
+    return node
+
+
 # white-list checking
 @takes(unicode, list_of(unicode))
 @returns(bool)
@@ -172,6 +236,10 @@ def to_java(java_dir, pgr, output_path):
   ## replace holes with resolved answers
   replacer = Replacer(output_path, holes)
   pgr.accept(replacer)
+
+  ## replace collections of interface types with actual classes, if any
+  collection_replacer = Collection()
+  pgr.accept(collection_replacer)
 
   ## trimming of the program
   trim(pgr)
