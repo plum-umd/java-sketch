@@ -2,16 +2,22 @@ import os
 import unittest
 
 import java_sk.main
+import java_sk.util
 from . import TestCommon
 
 pwd = os.path.dirname(__file__)
 benchmarks = os.path.join(pwd, "benchmarks")
 
+root_dir = os.path.join(pwd, "..")
+model_dir = os.path.join(root_dir, "model")
+
 class TestJava(TestCommon):
 
-  def __test(self, fs):
+  def __test(self, fs, using_model=False):
     append_b = lambda f: os.path.join(benchmarks, f)
     _fs = map(append_b, fs)
+    if using_model:
+      _fs.extend(java_sk.util.get_files_from_path(model_dir, "java"))
     ret = java_sk.main.main(_fs)
     self.assertEqual(ret, 0)
 
@@ -35,6 +41,9 @@ class TestJava(TestCommon):
 
   def test_java_207(self):
     self.__test(["t207-super.java"])
+
+  def test_java_208(self):
+    self.__test(["t208-string.java"], True)
 
 
 if __name__ == '__main__':
