@@ -48,6 +48,9 @@ class TestJava(TestCommon):
   def test_java_209(self):
     self.__test(["t209-list.java"], True)
 
+  def test_java_210(self):
+    self.__test(["t210-map.java"], True)
+
 
 if __name__ == '__main__':
   unittest.main()
