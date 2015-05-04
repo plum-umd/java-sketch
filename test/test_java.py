@@ -57,6 +57,9 @@ class TestJava(TestCommon):
   def test_java_212(self):
     self.__test(["t212-queue.java"], True)
 
+  def test_java_213(self):
+    self.__test(["t213-overload.java"])
+
 
 if __name__ == '__main__':
   unittest.main()
