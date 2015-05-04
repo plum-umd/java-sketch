@@ -54,6 +54,9 @@ class TestJava(TestCommon):
   def test_java_211(self):
     self.__test(["t211-stack.java"], True)
 
+  def test_java_212(self):
+    self.__test(["t212-queue.java"], True)
+
 
 if __name__ == '__main__':
   unittest.main()
