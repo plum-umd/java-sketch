@@ -8,8 +8,8 @@ class ABC {
 
 class Test {
     harness static void test_obj () {
-		Object a = new Object();
-		Object b = new Object();
+        Object a = new Object();
+        Object b = new Object();
         assert a == a;
         assert b == b;
         assert a != b;

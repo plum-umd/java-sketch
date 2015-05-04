@@ -55,7 +55,7 @@ class ServiceManager {
     Map<String, IService> services;
 
     public ServiceManager() {
-        services = new Map<String, IService>(); // will be replaced
+        services = new Map<String, IService>(); // will be replaced with TreeMap<K,V>
     }
 
     public void register(String name, IService srv) {

@@ -3,7 +3,9 @@ interface ICar {
 }
 
 class ACar implements ICar {
-    public int kind() { return 0; }
+    public int kind() {
+        return 0;
+    }
 }
 
 class Sedan extends ACar {
@@ -11,7 +13,9 @@ class Sedan extends ACar {
 
 class SUV extends ACar {
     @Override
-    public int kind() { return 1; }
+    public int kind() {
+        return 1;
+    }
 }
 
 class Test {
