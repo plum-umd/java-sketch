@@ -541,7 +541,15 @@ def trans_e(mtd, e):
   curried = partial(trans_e, mtd)
   buf = cStringIO.StringIO()
 
-  if e.kind == C.E.ID:
+  if e.kind == C.E.GEN:
+    if e.es:
+      buf.write("{| ")
+      buf.write(" | ".join(map(curried, e.es)))
+      buf.write(" |}")
+    else:
+      buf.write(C.T.HOLE)
+
+  elif e.kind == C.E.ID:
     if hasattr(e, "ty"): buf.write(trans_ty(e.ty) + ' ')
     fld = None
     if mtd and e.id not in mtd.param_vars:
