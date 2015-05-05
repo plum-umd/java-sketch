@@ -50,7 +50,7 @@
  * desugared 'switch' statement
  * hoisted more Sketch features
  *   such as modifiers 'harness' and 'generator',
- *   'assume' statement
+ *   'assume' statement, and regular expression generator
  *
  */
 grammar Java;
@@ -88,6 +88,9 @@ tokens {
   CAST;
 
   HOLE = '??';
+  REG_L = '{|';
+  REG_R = '|}';
+  REGEN;
 }
 
 @lexer::init {
@@ -620,6 +623,15 @@ expressionList
     :   expression (','! expression)*
     ;
 
+regExpression
+    :   REG_L regexList REG_R
+    ->  ^(REGEN regexList)
+    ;
+
+regexList
+    :   expression ('|'! expression)*
+    ;
+
 statementExpression
     :   expression
     ;
@@ -757,6 +769,7 @@ primary
     |   primitiveType ('[' ']')* '.' 'class'
     |   'void' '.' 'class'
     |   HOLE
+    |   regExpression
     ;
 
 annoIdentifier

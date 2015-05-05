@@ -47,9 +47,9 @@ class Expression(v.BaseNode):
       buf.write(C.T.HOLE)
 
     elif self._kind == C.E.GEN:
-      if self.consts:
+      if self.es:
         buf.write("{| ")
-        buf.write(" | ".join(map(str, self.consts)))
+        buf.write(" | ".join(map(str, self.es)))
         buf.write(" |}")
       else:
         buf.write(C.T.HOLE)
@@ -176,7 +176,7 @@ class Expression(v.BaseNode):
   def accept(self, visitor):
     f = op.methodcaller("accept", visitor)
     if self._kind == C.E.GEN:
-      self.consts = map(f, self.consts)
+      self.es = map(f, self.es)
     elif self._kind in [C.E.BOP, C.E.DOT]:
       self.le = f(self.le)
       self.re = f(self.re)
@@ -197,7 +197,7 @@ class Expression(v.BaseNode):
     if pred(self): return True
     f = op.methodcaller("exists", pred)
     if self._kind == C.E.GEN:
-      return util.exists(f, self.consts)
+      return util.exists(f, self.es)
     elif self._kind in [C.E.BOP, C.E.DOT]:
       return f(self.le) or f(self.re)
     elif self._kind == C.E.IDX:
@@ -245,8 +245,8 @@ def gen_E_hole():
 
 @takes(optional(list_of(Expression)))
 @returns(Expression)
-def gen_E_gen(consts=[]):
-  return Expression(C.E.GEN, consts=consts)
+def gen_E_gen(es=[]):
+  return Expression(C.E.GEN, es=es)
 
 
 # x -> E(C, x)
@@ -336,6 +336,11 @@ def parse_e(node, cls=None):
   # ??
   elif kind == C.T.HOLE:
     e = gen_E_hole()
+
+  # {| e* |}
+  elif kind == C.T.REGEN:
+    es = map(curried_e, _nodes)
+    e = gen_E_gen(es)
 
   # (CAST (TYPE (E... ty)) e)
   elif kind == C.T.CAST:

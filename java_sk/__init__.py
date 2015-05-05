@@ -8,7 +8,7 @@ C.T = enum(ANNO="ANNOTATION", \
     DECL="DECL", FLD="FIELD", MTD="METHOD", \
     TYPE="TYPE", NAME="NAME", PARA="PARAMS", ELT="ELEMS", \
     STM="STAT", EXP="EXPR", ARG="ARGV", CAST="CAST", \
-    HOLE=u"??")
+    HOLE=u"??", REG_L=u"{|", REG_R=u"|}", REGEN="REGEN")
 
 # constants regarding Java
 C.J = enum(MAIN=u"main", CLINIT=u"clinit", \
