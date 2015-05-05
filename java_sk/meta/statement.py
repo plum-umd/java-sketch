@@ -16,11 +16,11 @@ from .. import util
 
 from expression import Expression, parse_e, gen_E_id, gen_E_bop
 
-# s ::= e | assert e | return e? | e := e | if e s s?
+# s ::= e | assume e | assert e | return e? | e := e | if e s s?
 #     | while e s | repeat e s # syntactic sugar borrowed from sketch
 #     | for e e s | break | try s (catch e s)* (finally s)?
 #     | s; s # represented as a list
-C.S = enum("EXP", "ASSERT", "RETURN", "ASSIGN", "IF", "WHILE", "REPEAT", "FOR", "BREAK", "TRY")
+C.S = enum("EXP", "ASSUME", "ASSERT", "RETURN", "ASSIGN", "IF", "WHILE", "REPEAT", "FOR", "BREAK", "TRY")
 
 
 class Statement(v.BaseNode):
@@ -39,6 +39,9 @@ class Statement(v.BaseNode):
     buf = cStringIO.StringIO()
     if self._kind == C.S.EXP:
       buf.write(e_printer(self.e) + ';')
+
+    elif self._kind == C.S.ASSUME:
+      buf.write("assume " + e_printer(self.e) + ';')
 
     elif self._kind == C.S.ASSERT:
       buf.write("assert " + e_printer(self.e) + ';')
@@ -144,6 +147,13 @@ def gen_S_e(e):
   return Statement(C.S.EXP, e=e)
 
 
+# e -> S(ASSUME, e)
+@takes(Expression)
+@returns(Statement)
+def gen_S_assume(e):
+  return Statement(C.S.ASSUME, e=e)
+
+
 # e -> S(ASSERT, e)
 @takes(Expression)
 @returns(Statement)
@@ -241,6 +251,11 @@ def parse_s(mtd, node):
       re = curried_e(_nodes[-1])
       s = gen_S_assign(le, re)
     else: s = gen_S_e(curried_e(_node))
+
+  # (S... assume (E... ) ';')
+  elif kind == "assume":
+    e = curried_e(node.getChild(1))
+    s = gen_S_assume(e)
 
   # (S... assert (E... ) ';')
   elif kind == "assert":

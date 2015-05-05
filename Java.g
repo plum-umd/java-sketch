@@ -46,6 +46,12 @@
  * for richer template
  *   modified the grammars about expressions
  *
+ * Jinseong Jeon, Feb 2015 -- May 2015
+ * desugared 'switch' statement
+ * hoisted more Sketch features
+ *   such as modifiers 'harness' and 'generator',
+ *   'assume' statement
+ *
  */
 grammar Java;
 options {
@@ -527,6 +533,8 @@ localVariableDeclaration
 
 statement
     :   block
+    |   'assume' expression (':' expression)? ';'
+    ->  ^(STAT 'assume' expression (':' expression)? ';')
     |   'assert' expression (':' expression)? ';'
     ->  ^(STAT 'assert' expression (':' expression)? ';')
     |   'if' parExpression statement ('else' statement)?
