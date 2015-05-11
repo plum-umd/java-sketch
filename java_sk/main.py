@@ -20,6 +20,7 @@ res_dir = os.path.join(root_dir, "result")
 conf = {
   "encoding": True,
   "sketch": True,
+  "timeout": None,
   "randassign": False,
   "randdegree": None,
   "parallel": False,
@@ -30,6 +31,7 @@ conf = {
 def configure(opt):
   conf["encoding"] = opt.encoding
   conf["sketch"] = opt.sketch
+  conf["timeout"] = opt.timeout
   conf["randassign"] = opt.randassign
   conf["randdegree"] = opt.randdegree
   conf["parallel"] = opt.parallel
@@ -62,7 +64,8 @@ def main(jsk_paths, out_dir=res_dir, log_lv=logging.DEBUG):
     logging.info("pass the encoding phase; rather use previous files")
 
   opts = [] ## sketch options
-  if "verbose" in conf.keys() and conf["verbose"]: opts.extend(["-V", "10"])
+  if conf["verbose"]: opts.extend(["-V", "10"])
+  if conf["timeout"]: opts.extend(["--slv-timeout", str(conf["timeout"])])
   # place to keep sketch's temporary files
   opts.extend(["--fe-tempdir", out_dir])
   opts.append("--fe-keep-tmp")
@@ -119,16 +122,19 @@ if __name__ == "__main__":
     help="proceed the whole process without the encoding phase")
   parser.add_option("--no-sketch",
     action="store_false", dest="sketch", default=True,
-    help="proceed the whole process without running sketch")
+    help="proceed the whole process without running Sketch")
+  parser.add_option("--timeout",
+    action="store", dest="timeout", default=None, type="int",
+    help="Sketch timeout")
   parser.add_option("--randassign",
     action="store_true", dest="randassign", default=False,
-    help="run sketch with the concretization feature (not parallel)")
+    help="run Sketch with the concretization feature (not parallel)")
   parser.add_option("--randdegree",
     action="store", dest="randdegree", default=None, type="int",
-    help="use sketch's concretization feature, along with the given degree")
+    help="use Sketch's concretization feature, along with the given degree")
   parser.add_option("--parallel",
     action="store_true", dest="parallel", default=False,
-    help="run sketch in parallel until it finds a solution")
+    help="run Sketch in parallel until it finds a solution")
   parser.add_option("--p_cpus",
     action="store", dest="p_cpus", default=None, type="int",
     help="the number of cores to use for parallel running")
