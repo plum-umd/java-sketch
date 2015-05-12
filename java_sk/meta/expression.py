@@ -19,8 +19,10 @@ from ..anno import parse_anno
 from . import class_lookup
 import clazz
 
-# e ::= anno | ?? | {| e* |} | c | id | uop e | e bop e | e.e | e[e] | new e | e(e*) | (e)e
-C.E = enum("ANNO", "HOLE", "GEN", "C", "ID", "UOP", "BOP", "DOT", "IDX", "NEW", "CALL", "CAST")
+# e ::= anno | ?? | {| e* |} | c | id
+#     | uop e | e bop e | e.e | e[e]
+#     | new e | e(e*) | (e)e | e instanceof ty
+C.E = enum("ANNO", "HOLE", "GEN", "C", "ID", "UOP", "BOP", "DOT", "IDX", "NEW", "CALL", "CAST", "INS_OF")
 C.uop = ['+', '-', '~', '!', "++", "--"]
 C.bop = ["||", "&&", '|', '^', '&'] \
       + ['+', '-', '*', '/', '%'] \
@@ -65,7 +67,7 @@ class Expression(v.BaseNode):
       buf.write(self.op + ' ' + str(self.e))
 
     elif self._kind == C.E.BOP:
-      buf.write(str(self.le) + ' ' + self.op + ' ' + str(self.re))
+      buf.write(' '.join([str(self.le), self.op, str(self.re)]))
 
     elif self._kind == C.E.DOT:
       buf.write(str(self.le) + '.' + str(self.re))
@@ -82,6 +84,9 @@ class Expression(v.BaseNode):
 
     elif self._kind == C.E.CAST:
       buf.write('(' + str(self.ty) + ')' + str(self.e))
+
+    elif self._kind == C.E.INS_OF:
+      buf.write(' '.join([str(self.e), C.T.INS_OF, str(self.ty)]))
 
     return buf.getvalue()
 
@@ -313,6 +318,13 @@ def gen_E_cast(ty, e):
   return Expression(C.E.CAST, ty=ty, e=e)
 
 
+# e, ty -> E(INS_OF, e, ty)
+@takes(Expression, Expression)
+@returns(Expression)
+def gen_E_ins_of(e, ty):
+  return Expression(C.E.INS_OF, e=e, ty=ty)
+
+
 # parse an expression
 # (EXPRESSION ...)
 @takes(AST, optional("Clazz"))
@@ -349,6 +361,14 @@ def parse_e(node, cls=None):
     ty = curried_e(t_node)
     re = curried_e(e_node)
     e = gen_E_cast(ty, re)
+
+  # (INS_OF e (TYPE (E... ty)))
+  elif kind == C.T.INS_OF:
+    e_node = util.mk_v_node_w_children(_node.getChildren()[:-1])
+    t_node = _node.getChildren()[-1].getChild(0)
+    le = curried_e(e_node)
+    ty = curried_e(t_node)
+    e = gen_E_ins_of(le, ty)
 
   # (bop le re)
   elif kind in C.bop + C.rop and _node.getChildCount() == 2:

@@ -642,6 +642,15 @@ def trans_e(mtd, e):
     # since a family of classes is merged, simply ignore the casting
     buf.write(curried(e.e))
 
+  elif e.kind == C.E.INS_OF:
+    ty = typ_of_e(mtd, e.ty)
+    cls = class_lookup(ty)
+    if cls:
+      buf.write(curried(e.e) + ".__cid == " + str(cls.id))
+    else:
+      logging.debug("unknown type: {}".format(ty))
+      buf.write("0")
+
   else: buf.write(str(e))
   return buf.getvalue()
 

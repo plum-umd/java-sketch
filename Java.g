@@ -86,6 +86,7 @@ tokens {
   ARGV;
   FOR_CTRL;
   CAST;
+  INS_OF = 'instanceof';
 
   HOLE = '??';
   REG_L = '{|';
@@ -695,7 +696,9 @@ equalityOp
     ;
 
 instanceOfExpression
-    :   relationalExpression ('instanceof' type)?
+    :   relationalExpression INS_OF type
+    -> ^(INS_OF relationalExpression ^(TYPE type))
+    |   relationalExpression
     ;
 
 relationalExpression

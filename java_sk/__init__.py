@@ -7,7 +7,7 @@ C.T = enum(ANNO="ANNOTATION", \
     EXT="extends", IMP="implements", THROWS="throws", \
     DECL="DECL", FLD="FIELD", MTD="METHOD", \
     TYPE="TYPE", NAME="NAME", PARA="PARAMS", ELT="ELEMS", \
-    STM="STAT", EXP="EXPR", ARG="ARGV", CAST="CAST", \
+    STM="STAT", EXP="EXPR", ARG="ARGV", CAST="CAST", INS_OF="instanceof", \
     HOLE=u"??", REG_L=u"{|", REG_R=u"|}", REGEN="REGEN")
 
 # constants regarding Java
