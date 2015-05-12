@@ -60,6 +60,9 @@ class TestJava(TestCommon):
   def test_java_213(self):
     self.__test(["t213-overload.java"])
 
+  def test_java_214(self):
+    self.__test(["t214-instanceof.java"], True)
+
 
 if __name__ == '__main__':
   unittest.main()
