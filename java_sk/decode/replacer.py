@@ -2,10 +2,11 @@ import operator as op
 import re
 import logging
 
+import lib.const as C
 import lib.visit as v
 
 from ..meta.program import Program
-from ..meta.clazz import Clazz
+from ..meta.clazz import Clazz, find_fld
 from ..meta.method import Method
 from ..meta.field import Field
 from ..meta.statement import Statement
@@ -20,6 +21,8 @@ class Replacer(object):
   def __init__(self, output_path, holes):
     self._output = output_path
     self._holes = holes
+
+    self._cur_mtd = None
 
     self._sol = {} # { v : n }
 
@@ -70,11 +73,20 @@ class Replacer(object):
         logging.error("unresolved: {}.{}".format(cname, fname))
 
   @v.when(Method)
-  def visit(self, node): pass
+  def visit(self, node):
+    self._cur_mtd = node
 
   @v.when(Statement)
   def visit(self, node): return [node]
 
   @v.when(Expression)
-  def visit(self, node): return node
+  def visit(self, node):
+    if node.kind == C.E.ID:
+      fld = find_fld(self._cur_mtd.clazz.name, node.id)
+      if fld and fld in self._sol:
+        n = self._sol[fld]
+        logging.debug("replaced: {} @ {} with {}".format(node.id, self._cur_mtd.signature, n))
+        return to_expression(unicode(n))
+
+    return node
 
