@@ -11,7 +11,7 @@ import util
 from meta.program import Program
 import encoder
 import sketch
-import decoder
+import decode
 
 pwd = os.path.dirname(__file__)
 root_dir = os.path.join(pwd, "..")
@@ -105,7 +105,7 @@ def main(jsk_paths, out_dir=res_dir, log_lv=logging.DEBUG):
 
   ## generate Java code
   java_dir = os.path.join(out_dir, "java")
-  decoder.to_java(java_dir, pgr, output_path)
+  decode.to_java(java_dir, pgr, output_path)
   logging.info("synthesis done")
 
   return 0
