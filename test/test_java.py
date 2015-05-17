@@ -63,6 +63,9 @@ class TestJava(TestCommon):
   def test_java_214(self):
     self.__test(["t214-instanceof.java"], True)
 
+  def test_java_215(self):
+    self.__test(["t215-optional-exp.java"])
+
 
 if __name__ == '__main__':
   unittest.main()
