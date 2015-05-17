@@ -221,6 +221,15 @@ def col_to_struct(cls):
     buf.write("  ${t}[S] elts;\n}\n")
 
     if C.J.STK in collection:
+      # Stack<T>.peek -> peek_Stack_T
+      buf.write("""
+        ${{t}} {} (${{sname}} stk) {{
+          if (stk.idx == 0) return null;
+          ${{t}} top = stk.elts[stk.idx - 1];
+          return top;
+        }}
+      """.format(trans_mname(cname, u"peek", [])))
+
       # Stack<T>.push -> push_Stack_T
       buf.write("""
         ${{t}} {} (${{sname}} stk, ${{t}} elt) {{
