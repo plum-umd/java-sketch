@@ -9,7 +9,10 @@ from ..meta.program import Program
 
 from hole_finder import HFinder
 from replacer import Replacer
+
 from collection import Collection
+from semantic_checker import SemanticChecker
+
 
 # white-list checking
 @takes(unicode, list_of(unicode))
@@ -66,9 +69,13 @@ def to_java(java_dir, pgr, output_path):
   replacer = Replacer(output_path, holes)
   pgr.accept(replacer)
 
-  ## replace collections of interface types with actual classes, if any
-  collection_replacer = Collection()
-  pgr.accept(collection_replacer)
+  # final semantic checking
+  logging.info("semantics checking")
+  _visitors = []
+  # replace collections of interface types with actual classes, if any
+  _visitors.append(Collection())
+  _visitors.append(SemanticChecker())
+  map(lambda vis: pgr.accept(vis), _visitors)
 
   ## trimming of the program
   trim(pgr)

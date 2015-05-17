@@ -9,6 +9,7 @@ from lib.typecheck import *
 
 import util
 from meta.program import Program
+import rewrite
 import encoder
 import sketch
 import decode
@@ -55,6 +56,9 @@ def main(jsk_paths, out_dir=res_dir, log_lv=logging.DEBUG):
   pgr = Program(ast)
   main_cls = pgr.main_cls
   demo_name = str(main_cls.name)
+
+  ## rewrite field/method holes
+  rewrite.visit(pgr)
 
   ## encode the program into sketch files
   sk_dir = os.path.join(out_dir, '_'.join(["sk", demo_name]))
