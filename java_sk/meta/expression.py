@@ -222,6 +222,11 @@ class Expression(v.BaseNode):
     return self.exists(f)
 
   @property
+  def has_hole(self):
+    f = lambda e: e.kind == C.E.HOLE
+    return self.exits(f)
+
+  @property
   def has_str(self):
     f = lambda e: e.kind == C.E.ID and util.is_str(e.id)
     return self.exists(f)
