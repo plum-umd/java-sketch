@@ -68,8 +68,11 @@ def main(jsk_paths, out_dir=res_dir, log_lv=logging.DEBUG):
     logging.info("pass the encoding phase; rather use previous files")
 
   opts = [] ## sketch options
-  if conf["verbose"]: opts.extend(["-V", "10"])
-  if conf["timeout"]: opts.extend(["--slv-timeout", str(conf["timeout"])])
+  if conf["verbose"]:
+    opts.extend(["-V", "10"])
+  if conf["timeout"]:
+    opts.extend(["--fe-timeout", str(conf["timeout"])])
+    opts.extend(["--slv-timeout", str(conf["timeout"])])
   # place to keep sketch's temporary files
   opts.extend(["--fe-tempdir", out_dir])
   opts.append("--fe-keep-tmp")
