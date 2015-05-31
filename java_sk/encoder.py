@@ -77,6 +77,8 @@ def trans_ty(tname):
   # to avoid primitive types that Sketch doesn't support
   if _tname == C.J.z: r_ty = C.SK.z
   elif _tname in [C.J.b, C.J.s, C.J.j]: r_ty = C.J.i
+  # unboxing primitive Classes, e.g., Character -> char
+  elif _tname in C.autoboxing: r_ty = util.unboxing(_tname)
   # TODO: parameterize len?
   elif _tname in [C.J.c+"[]"]: r_ty = u"{}[51]".format(C.J.c)
   elif _tname in [C.J.B, C.J.S, C.J.J, C.J.I]: r_ty = C.J.i

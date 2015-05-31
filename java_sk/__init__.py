@@ -16,7 +16,7 @@ C.J = enum(MAIN=u"main", CLINIT=u"clinit", \
     NEW="new", THIS=u"this", SUP=u"super", \
     v=u"void", z=u"boolean", b=u"byte", s=u"short", c=u"char", \
     i=u"int", j=u"long", f=u"float", d=u"double", \
-    V=u"Void", Z=u"Boolean", B=u"Byte", S=u"Short", C=u"Char", \
+    V=u"Void", Z=u"Boolean", B=u"Byte", S=u"Short", C=u"Character", \
     I=u"Integer", J=u"Long", F=u"Float", D=u"Dobule", \
     OBJ=u"Object", RUN=u"Runnable", \
     STR=u"String", SB=u"StringBuffer", \

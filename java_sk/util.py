@@ -191,6 +191,17 @@ def autoboxing(tname):
   return tname
 
 
+# unboxking, e.g., Character -> char
+@takes(unicode)
+@returns(unicode)
+def unboxing(tname):
+  if tname in C.autoboxing:
+    for i, v in enumerate(C.autoboxing):
+      if tname == v: return C.primitives[i]
+
+  return tname
+
+
 # short form representation of type name
 @takes(unicode)
 @returns(optional(unicode))
