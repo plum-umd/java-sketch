@@ -66,6 +66,8 @@ class TestJava(TestCommon):
   def test_java_215(self):
     self.__test(["t215-optional-exp.java"])
 
+  def test_java_216(self):
+    self.__test(["t216-iterator.java"], True)
 
 if __name__ == '__main__':
   unittest.main()
