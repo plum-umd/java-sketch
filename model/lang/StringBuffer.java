@@ -9,6 +9,10 @@ public class StringBuffer implements CharSequence {
     _count = str.length();
   }
 
+  public char charAt(int index) {
+    if (0 <= index && index < _count) return _value[index];
+  }
+
   public int length() {
     return _count;
   }
