@@ -16,11 +16,12 @@ from .. import util
 
 from expression import Expression, parse_e, gen_E_id, gen_E_bop
 
-# s ::= e | assume e | assert e | return e? | e := e | if e s s?
-#     | while e s | repeat e s # syntactic sugar borrowed from sketch
+# s ::= e | assume e | assert e | return e? | e := e | if e s s? | while e s
+#     | repeat e s  # syntactic sugar borrowed from sketch
+#     | minrepeat s # syntactic sugar borrowed from sketch
 #     | for e e s | break | try s (catch e s)* (finally s)?
 #     | s; s # represented as a list
-C.S = enum("EXP", "ASSUME", "ASSERT", "RETURN", "ASSIGN", "IF", "WHILE", "REPEAT", "FOR", "BREAK", "TRY")
+C.S = enum("EXP", "ASSUME", "ASSERT", "RETURN", "ASSIGN", "IF", "WHILE", "REPEAT", "MINREPEAT", "FOR", "BREAK", "TRY")
 
 
 class Statement(v.BaseNode):
@@ -71,6 +72,10 @@ class Statement(v.BaseNode):
       b = '\n'.join(map(curried, self.b))
       buf.write("repeat (" + e + ") {\n" + b + "\n}")
 
+    elif self._kind == C.S.MINREPEAT:
+      b = '\n'.join(map(curried, self.b))
+      buf.write("minrepeat {\n" + b + "\n}")
+
     elif self._kind == C.S.FOR:
       e_def = e_printer(self.i)
       e_iter = e_printer(self.init)
@@ -112,6 +117,8 @@ class Statement(v.BaseNode):
     elif self._kind in [C.S.WHILE, C.S.REPEAT]:
       self.e = f(self.e)
       self.b = util.flatten(map(f, self.b))
+    elif self._kind == C.S.MINREPEAT:
+      self.b = util.flatten(map(f, self.b))
     elif self._kind == C.S.FOR:
       self.i = f(self.i)
       self.init = f(self.init)
@@ -127,7 +134,7 @@ class Statement(v.BaseNode):
     f = op.methodcaller("exists", pred)
     if self._kind == C.S.IF:
       return util.exists(f, self.t + self.f)
-    elif self._kind in [C.S.WHILE, C.S.REPEAT, C.S.FOR]:
+    elif self._kind in [C.S.WHILE, C.S.REPEAT, C.S.MINREPEAT, C.S.FOR]:
       return util.exists(f, self.b)
     elif self._kind == C.S.TRY: # TODO: catches
       return util.exists(f, self.b + self.fs)
@@ -195,6 +202,13 @@ def gen_S_while(e, ss):
 @returns(Statement)
 def gen_S_repeat(e, ss):
   return Statement(C.S.REPEAT, e=e, b=ss)
+
+
+# ss -> S(MINREPEAT, ss)
+@takes(list_of(Statement))
+@returns(Statement)
+def gen_S_minrepeat(ss):
+  return Statement(C.S.MINREPEAT, b=ss)
 
 
 # e_def, e_init, ss -> S(FOR, e_def, e_init, ss)
@@ -330,6 +344,12 @@ def parse_s(mtd, node):
     ss = _nodes[2:] # exclude first two nodes: repeat (E... )
     b = map(curried_s, rm_braces(ss))
     s = gen_S_repeat(e, b)
+
+  # (S... minrepeat { (S... ) })
+  elif kind == "minrepeat":
+    ss = _nodes[1:] # exclude the first node: minrepeat
+    b = map(curried_s, rm_braces(ss))
+    s = gen_S_minrepeat(b)
 
   # (S... for (FOR_CTRL typ var : (E... ) ) { (S... ) })
   elif kind == "for":

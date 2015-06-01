@@ -549,6 +549,8 @@ statement
     ->  ^(STAT 'while' parExpression statement)
     |   'repeat' parExpression statement // sketch syntax
     ->  ^(STAT 'repeat' parExpression statement)
+    |   'minrepeat' statement // sketch syntax
+    ->  ^(STAT 'minrepeat' statement)
     |   'do' statement 'while' parExpression ';'
     |   'try' block catches? ('finally' block)?
     ->  ^(STAT 'try' block catches? ^('finally' block)?)

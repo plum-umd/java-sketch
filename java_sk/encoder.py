@@ -691,6 +691,10 @@ def trans_s(mtd, s):
     if e == "??": buf.write("minrepeat {\n" + b + "\n}")
     else: buf.write("repeat (" + e + ") {\n" + b + "\n}")
 
+  elif s.kind == C.S.MINREPEAT:
+    b = '\n'.join(map(curried_s, s.b))
+    buf.write("minrepeat {\n" + b + "\n}")
+
   elif s.kind == C.S.FOR:
     # assume "for" is used for List<T> and LinkedList<T> only
     col = mtd.vars[s.init.id]
