@@ -5,7 +5,7 @@ interface Token{
 */
 
 generator class Automaton {
-    int state = 0;
+    int state;
 /*
     public void transition(Token t) {
         int id = t.getId();
@@ -16,14 +16,13 @@ generator class Automaton {
         }
     }
 
-    public boolean accept(Iterator it) {
+    public void transitions(Iterator it) {
         while (it.hasNext()) {
             transition(it.next());
         }
-        return state == ??;
     }
 
-    public boolean isErroneous() {
+    public boolean accept() {
         return state == ??;
     }
 }
@@ -55,8 +54,10 @@ class CADsR extends Automaton {
     }
 
     public boolean accept(String str) {
+        state = 0;
         CharIterator cit = new CharIterator(str);
-        return accept(cit);
+        transitions(cit);
+        return accept();
     }
 }
 
@@ -65,7 +66,9 @@ class DBConnection {
     class Monitor extends Automaton {
         final static int OPEN = 1;
         final static int CLOSE = 2;
-        public Monitor() { }
+        public Monitor() {
+            state = 0;
+        }
     }
 
     Monitor m;
@@ -74,7 +77,7 @@ class DBConnection {
     }
 
     public boolean isErroneous() {
-        return m.isErroneous();
+        return ! m.accept();
     }
 
     public void open() {
