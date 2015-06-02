@@ -69,6 +69,9 @@ class TestJava(TestCommon):
   def test_java_216(self):
     self.__test(["t216-iterator.java"], True)
 
+  def test_java_217(self):
+    self.__test(["t217-automaton.java"], True)
+
 if __name__ == '__main__':
   unittest.main()
 
