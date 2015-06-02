@@ -12,7 +12,9 @@ You can skip custom codegen (and the regression test).
 
 ### Parser Generation
 
-We slightly changed Java grammar to support holes (`??`).
+We slightly changed Java grammar to support holes (`??`)
+and a couple other syntactic sugars borrowed from [Sketch][sk],
+such as `repeat` and `minrepeat`.
 To read Java Sketch, generate our own parser first:
 ```sh
 $ python -m grammar.gen
@@ -35,7 +37,7 @@ Make sure your environment is set up properly.
 If you are using Sketch from source:
 ```
 export SKETCH_HOME=/path/to/sketch-frontend
-export PATH=$PATH:$SKETCH_HOME/target/sketch-1.6.9-noarch-launchers.dir
+export PATH=$PATH:$SKETCH_HOME/target/sketch-1.6.9-noarch-launchers
 ```
 If you are using Sketch tar ball:
 ```
@@ -55,18 +57,23 @@ comment out lines 20--21 and 34, and uncomment lines 17--18 and 32
 
 ### Test
 
-To be explained...
-
+This tool has three kinds of regression tests:
+erroneous cases, mini benchmarks converted from [Sketch][sk],
+and its own test cases that exercise Java features.
+You can find test cases under `test/benchmarks/` folder
+and run those regression tests as following:
 ```sh
 $ python -m unittest -v test.test_erroneous
 $ python -m unittest -v test.test_mini
 $ python -m unittest -v test.test_java
 ```
 
-
 ### Scripts
 
-To be explained...
+In addition to the main entrance of the tool (`main.py`),
+we provide a couple useful scripts that can
+retrieve basic information from the program (`program.py`)
+or run intermediate sketch files (`sketch.py`).
 
 #### main.py
 
