@@ -23,7 +23,7 @@ generator class Automaton {
         return state == ??;
     }
 
-    public boolean isErrorneous() {
+    public boolean isErroneous() {
         return state == ??;
     }
 }
@@ -73,8 +73,8 @@ class DBConnection {
         m = new Monitor();
     }
 
-    public boolean isErrorneous() {
-        return m.isErrorneous();
+    public boolean isErroneous() {
+        return m.isErroneous();
     }
 
     public void open() {
@@ -114,16 +114,16 @@ class Test {
     harness static void test_DBConnection_good() {
         DBConnection conn = new DBConnection();
         conn.open();
-        assert ! conn.isErrorneous();
+        assert ! conn.isErroneous();
         conn.close();
-        assert ! conn.isErrorneous();
+        assert ! conn.isErroneous();
     }
 
     // bad: close without opening
     harness static void test_DBConnection_bad1() {
         DBConnection conn = new DBConnection();
         conn.close();
-        assert conn.isErrorneous();
+        assert conn.isErroneous();
     }
 
     // bad: opening more than once
@@ -131,7 +131,7 @@ class Test {
         DBConnection conn = new DBConnection();
         conn.open();
         conn.open();
-        assert conn.isErrorneous();
+        assert conn.isErroneous();
     }
 
 }

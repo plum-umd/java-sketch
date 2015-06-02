@@ -67,6 +67,17 @@ $ python -m unittest -v test.test_erroneous
 $ python -m unittest -v test.test_mini
 $ python -m unittest -v test.test_java
 ```
+or
+```sh
+$ python -m test.test_erroneous
+$ python -m test.test_mini
+$ python -m test.test_java
+```
+
+Note that `test_erroneous` has intentionally erroneous cases,
+so do not be alarmed to see eye-catching error reports.
+As long as the final report of the testing module is `OK`,
+then it is indeed okay.
 
 ### Scripts
 
