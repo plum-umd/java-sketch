@@ -1035,7 +1035,7 @@ def to_sk(pgr, sk_dir):
   # update global constants
   # TODO: conservative analysis of possible length of collections
   # TODO: counting .add() calls or something?
-  magic_S = 5
+  magic_S = 6
 
   global _const
   _const = u"""

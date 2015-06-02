@@ -70,7 +70,7 @@ class Replacer(object):
         node.init = to_expression(unicode(n))
         logging.debug("replaced: {}.{} = {}".format(cname, fname, n))
       else: # solution not found?
-        logging.error("unresolved: {}.{}".format(cname, fname))
+        logging.debug("unresolved: {}.{}".format(cname, fname))
 
   @v.when(Method)
   def visit(self, node):

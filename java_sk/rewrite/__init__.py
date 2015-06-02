@@ -5,6 +5,7 @@ from lib.typecheck import *
 from ..meta.program import Program
 
 from desugar import Desugar
+from generator import CGenerator
 from e_hole import EHole
 from semantic_checker import SemanticChecker
 
@@ -16,6 +17,11 @@ def visit(pgr):
   logging.info("rewriting syntax sugar")
   desugar = Desugar()
   pgr.accept(desugar)
+
+  # specializing class-level generator
+  logging.info("specializing class-level generator")
+  cgen = CGenerator()
+  pgr.accept(cgen)
 
   # rewriters
   rws = {}

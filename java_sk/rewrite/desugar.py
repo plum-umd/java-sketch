@@ -4,7 +4,6 @@ import lib.const as C
 import lib.visit as v
 
 from .. import util
-from ..meta import class_lookup
 from ..meta.program import Program
 from ..meta.clazz import Clazz
 from ..meta.method import Method
