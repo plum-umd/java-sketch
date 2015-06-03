@@ -1,4 +1,5 @@
 import cStringIO
+import math
 import os
 import copy as cp
 from itertools import chain, ifilter, ifilterfalse
@@ -1035,7 +1036,7 @@ def to_sk(pgr, sk_dir):
   # update global constants
   # TODO: conservative analysis of possible length of collections
   # TODO: counting .add() calls or something?
-  magic_S = 6
+  magic_S = 7
 
   global _const
   _const = u"""
@@ -1063,6 +1064,10 @@ def to_sk(pgr, sk_dir):
 
   # main.sk that imports all the other sketch files
   buf = cStringIO.StringIO()
+
+  # --bnd-cbits: the number of bits for integer holes
+  bits = max(5, int(math.ceil(math.log(len(methods()), 2))))
+  buf.write("pragma options \"--bnd-cbits {}\";\n".format(bits))
 
   # --bnd-unroll-amnt: the unroll amount for loops
   unroll_amnt = None # use a default value if not set

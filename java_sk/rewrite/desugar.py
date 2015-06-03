@@ -40,7 +40,7 @@ class Desugar(object):
     if node.kind == C.S.MINREPEAT:
       b = '\n'.join(map(str, node.b))
       body = u""
-      for i in xrange(5): # TODO: parameterize
+      for i in xrange(9): # TODO: parameterize
         body += u"""
           if (??) {{ {} }}
         """.format(b)
