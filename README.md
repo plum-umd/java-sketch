@@ -3,6 +3,79 @@
 a Java front-end for [Sketch][sk], a program synthesis tool
 
 
+## Requirement
+
+Since this tool is a front-end for [Sketch][sk],
+you need to install it and set up the environment.
+
+* Tar ball
+
+One way to build Sketch is to use an easy-to-install tar ball:
+[sketch-1.6.9.tgz][sk-169].
+Inside the tar ball, all Java files in sketch-frontend are already compiled,
+so all you need to do is building sketch-backend.
+Make sure that you have `gcc`, `g++`, `bison`, and `flex`.
+(You may need to install `autoconf`, `automake`, and `libtool`, too.)
+Then, build the beck-end as follows:
+```sh
+.../ $ tar xvfz sketch-1.6.9.tgz
+.../ $ cd sketch-1.6.9/sketch-backend
+.../sketch-1.6.9/sketch-backend $ chmod +x ./configure
+.../sketch-1.6.9/sketch-backend $ ./configure
+.../sketch-1.6.9/sketch-backend $ make clean; make
+```
+
+* From source
+
+In case you are interested, here is a harder way to build Sketch.
+```sh
+.../ $ hg clone https://bitbucket.org/gatoatigrado/sketch-frontend
+.../ $ hg clone https://bitbucket.org/gatoatigrado/sketch-backend
+```
+Make sure that you have `java`, `javac`, and `mvn` for sketch-frontend;
+`gcc`, `g++`, `bison`, and `flex` for sketch-backend.
+(You may need to install `autoconf`, `automake`, and `libtool`, too.)
+Then, build Sketch as follows:
+```sh
+.../ $ cd sketch-frontend
+.../sketch-frontend $ make assemble-noarch
+```
+```sh
+.../ $ cd sketch-backend
+.../sketch-backend $ ./autogen.sh
+.../sketch-backend $ chmod +x ./configure
+.../sketch-backend $ ./configure
+.../sketch-backend $ make clean; make
+```
+
+You can run a simple test case to make sure the build is correct:
+```sh
+.../ $ cd sketch-frontend
+.../sketch-frontend $ make run-local-seq EXEC_ARGS="src/test/sk/seq/miniTest1.sk"
+```
+
+One possible issue you may encounter while building sketch-frontend is
+the inconsistent Java version in Maven, e.g., Maven refers to Java 1.6
+while the main Java you're using is 1.7 or higher.  In that case, set up
+`$JAVA_HOME` properly.
+
+
+* Environment setup
+
+To use `sketch` from anywhere,
+we recommend you to set up your environment accordingly.
+For the tar ball users:
+```sh
+export SKETCH_HOME=/path/to/sketch-1.6.9/sketch-frontend/runtime
+export PATH=$PATH:$SKETCH_HOME/..
+```
+For the source users:
+```sh
+export SKETCH_HOME=/path/to/sketch-frontend
+export PATH=$PATH:$SKETCH_HOME/target/sketch-1.6.9-noarch-launchers
+```
+
+
 ## Usage
 
 To use this tool, you should first generate the parser,
@@ -33,7 +106,7 @@ at code generation time.  Under `codegen/lib/`,
 pre-built `codegen.jar` is provided.
 
 You can build it by yourself if you want to.
-Make sure your environment is set up properly.
+Again, make sure your environment is set up properly.
 If you are using Sketch from source:
 ```
 export SKETCH_HOME=/path/to/sketch-frontend
@@ -107,4 +180,5 @@ $ ./java_sk/sketch.py -p demo_name [option]*
 
 
 [sk]: https://bitbucket.org/gatoatigrado/sketch-frontend/
+[sk-169]: http://people.csail.mit.edu/jsjeon/adaptive-concretization/sketch-1.6.9.tgz
 
