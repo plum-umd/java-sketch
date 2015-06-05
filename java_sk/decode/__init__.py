@@ -7,7 +7,7 @@ import lib.const as C
 from .. import util
 from ..meta.program import Program
 
-from finder import HFinder
+from finder import HFinder, GFinder
 from replacer import HReplacer
 
 from collection import Collection
@@ -64,6 +64,11 @@ def to_java(java_dir, pgr, output_path):
   hfinder = HFinder()
   pgr.accept(hfinder)
   holes = hfinder.holes
+
+  ## find generators
+  gfinder = GFinder()
+  pgr.accept(gfinder)
+  gens = gfinder.gens
 
   ## replace holes with resolved answers
   hreplacer = HReplacer(output_path, holes)
