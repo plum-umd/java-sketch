@@ -16,7 +16,7 @@ from ..meta.expression import Expression, to_expression
 """
 Replacing holes with solutions
 """
-class Replacer(object):
+class HReplacer(object):
 
   def __init__(self, output_path, holes):
     self._output = output_path

@@ -7,8 +7,8 @@ import lib.const as C
 from .. import util
 from ..meta.program import Program
 
-from hole_finder import HFinder
-from replacer import Replacer
+from finder import HFinder
+from replacer import HReplacer
 
 from collection import Collection
 from semantic_checker import SemanticChecker
@@ -66,8 +66,8 @@ def to_java(java_dir, pgr, output_path):
   holes = hfinder.holes
 
   ## replace holes with resolved answers
-  replacer = Replacer(output_path, holes)
-  pgr.accept(replacer)
+  hreplacer = HReplacer(output_path, holes)
+  pgr.accept(hreplacer)
 
   # final semantic checking
   logging.info("semantics checking")
