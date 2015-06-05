@@ -6,7 +6,7 @@ from ..meta.program import Program
 
 from desugar import Desugar
 from generator import CGenerator
-from e_hole import EHole
+from hole import EHole
 from semantic_checker import SemanticChecker
 
 @takes(Program)
