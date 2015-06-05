@@ -8,7 +8,7 @@ from .. import util
 from ..meta.program import Program
 
 from finder import HFinder, GFinder
-from replacer import HReplacer
+from replacer import HReplacer, GReplacer
 
 from collection import Collection
 from semantic_checker import SemanticChecker
@@ -65,14 +65,20 @@ def to_java(java_dir, pgr, output_path):
   pgr.accept(hfinder)
   holes = hfinder.holes
 
+  ## replace holes with resolved answers
+  logging.info("replacing holes")
+  hreplacer = HReplacer(output_path, holes)
+  pgr.accept(hreplacer)
+
   ## find generators
   gfinder = GFinder()
   pgr.accept(gfinder)
   gens = gfinder.gens
 
-  ## replace holes with resolved answers
-  hreplacer = HReplacer(output_path, holes)
-  pgr.accept(hreplacer)
+  ## replace generators with resolved answers
+  logging.info("replacing generators")
+  greplacer = GReplacer(output_path, gens)
+  pgr.accept(greplacer)
 
   # final semantic checking
   logging.info("semantics checking")
