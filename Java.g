@@ -632,7 +632,7 @@ regExpression
     ;
 
 regexList
-    :   expression ('|'! expression)*
+    :   expression (','! expression)*
     ;
 
 statementExpression

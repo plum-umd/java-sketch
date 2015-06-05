@@ -22,7 +22,7 @@ class Test {
         c.next = b;
 
         Node d = new Node(4);
-        d.next = {| c | b |};
+        d.next = {| c , b |};
 
         Node iter = d.next;
         iter = iter.next;
