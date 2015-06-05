@@ -84,3 +84,137 @@ class EHole(object):
 
     return node
 
+
+"""
+class A {
+    ty1 fld1; // fid 1
+    ty2 fld2; // fid 2
+}
+class B {
+    ty3 fld3; // fid 3
+    ty4 fld4; // fid 4
+    ... foo(A a) {
+        ...
+        this.?? = a.??;
+    }
+}
+
+  =>
+
+class B {
+    ...
+    static int fld_H1 = {| 1 | 2 |};
+    static int fld_H2 = {| 3 | 4 |};
+    ... foo(A a) { ...
+
+        // read
+        Object fld_h1;
+        if (fld_H1 == 1) { fld_h1 = a.fld1; }
+        else if (fld_H1 == 2) { fld_h1 = a.fld2; }
+
+        // write
+        if (fld_H2 == 3) { this.fld3 = fld_h1; }
+        else if (fld_H2 == 4) { this.fld4 = fld_h2; }
+    }
+}
+"""
+class FHole(object):
+
+  def __init__(self): pass
+
+  @v.on("node")
+  def visit(self, node):
+    """
+    This is the generic method to initialize the dynamic dispatcher
+    """
+
+  @v.when(Program)
+  def visit(self, node): pass
+
+  @v.when(Clazz)
+  def visit(self, node): pass
+
+  @v.when(Field)
+  def visit(self, node): pass
+
+  @v.when(Method)
+  def visit(self, node): pass
+
+  @v.when(Statement)
+  def visit(self, node): return [node]
+
+  @v.when(Expression)
+  def visit(self, node): return node
+
+
+"""
+class A {
+    int foo() { ... } // mid 1
+    int bar() { ... } // mid 2
+}
+class B {
+    B moo() { ... }   // mid 3
+    B baa() { ... }   // mid 4
+    void baz(int arg) { ... } // mid 5
+}
+class Test {
+    ... f {
+        A a; ...
+        int x = a.??(); // (1)
+        B b; ...
+        B y = b.??(); // (2)
+        b.??(x); // (3)
+    }
+}
+
+  =>
+
+class Test {
+    static int mtd_H1 = {| 1 | 2 |};
+    static int mtd_H2 = {| 3 | 4 |};
+    static int mtd_H3 = {| 5 |}; // due to signature
+    ... f {
+        ...
+        int r_mtd_h1; // (1)
+        if (mtd_H1 == 1) { r_mtd_h1 = a.foo(); }
+        else if (mtd_H1 == 2) { r_mtd_h1 = a.bar(); }
+        int x = r_mtd_h1;
+
+        B r_mtd_h2; // (2)
+        if (mtd_H2 == 3) { r_mtd_h2 = b.moo(); }
+        else if (mtd_H2 == 4) { r_mtd_h2 = b.baa(); }
+        B y = r_mtd_h2;
+
+        // (3)
+        if (mtd_H3 == 5) { b.baz(); }
+    }
+}
+"""
+class MHole(object):
+
+  def __init__(self): pass
+
+  @v.on("node")
+  def visit(self, node):
+    """
+    This is the generic method to initialize the dynamic dispatcher
+    """
+
+  @v.when(Program)
+  def visit(self, node): pass
+
+  @v.when(Clazz)
+  def visit(self, node): pass
+
+  @v.when(Field)
+  def visit(self, node): pass
+
+  @v.when(Method)
+  def visit(self, node): pass
+
+  @v.when(Statement)
+  def visit(self, node): return [node]
+
+  @v.when(Expression)
+  def visit(self, node): return node
+
