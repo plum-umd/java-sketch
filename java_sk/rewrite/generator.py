@@ -13,6 +13,24 @@ from ..meta.field import Field
 from ..meta.statement import Statement
 from ..meta.expression import Expression
 
+"""
+generator class Automaton { body_of_Automaton }
+
+class RegularLanguage extends Automaton { ... }
+class DBConnection {
+    class Monitor extends Automaton { ... }
+}
+
+  =>
+
+class Automaton1 { copy_of_body_of_Automaton }
+class Automaton2 { copy_of_body_of_Automaton }
+
+class RegularLanague extends Automaton1 { ... }
+class DBConnection {
+    class Monitor extends Automaton2 { ... }
+}
+"""
 class CGenerator(object):
 
   # to avoid name conflict, use fresh counter as suffix
