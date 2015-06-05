@@ -40,7 +40,7 @@ class EHole(object):
 
   def __init__(self):
     self._cur_mtd = None
-    self._cur_s = None
+    self._visiting_s = False
 
   @v.on("node")
   def visit(self, node):
@@ -58,21 +58,21 @@ class EHole(object):
   def visit(self, node):
     # to avoid introducing another hole variable
     # reset the context statement
-    self._cur_s = None
+    self._visiting_s = False
 
   @v.when(Method)
   def visit(self, node):
     self._cur_mtd = node
+    if node.body:
+      self._visiting_s = True
 
   @v.when(Statement)
-  def visit(self, node):
-    self._cur_s = node
-    return [node]
+  def visit(self, node): return [node]
 
   @v.when(Expression)
   def visit(self, node):
     # in case of visiting field initializing Expression
-    if not self._cur_s: return node
+    if not self._visiting_s: return node
 
     if node.kind == C.E.HOLE:
       cls = self._cur_mtd.clazz
