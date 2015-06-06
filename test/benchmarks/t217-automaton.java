@@ -5,12 +5,14 @@ interface Token{
 */
 
 generator class Automaton {
-    private int state = 0;
+    private int state = ??;
+    static int num_state = ??;
 /*
     public void transition(Token t) {
         int id = t.getId();
 */
     public void transition(int id) {
+        assert 0 <= state && state < num_state;
         minrepeat {
             if (state == ?? && id == ??) { state = ??; return; }
         }
