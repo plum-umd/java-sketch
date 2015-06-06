@@ -5,7 +5,7 @@ interface Token{
 */
 
 generator class Automaton {
-    int state;
+    private int state = 0;
 /*
     public void transition(Token t) {
         int id = t.getId();
@@ -23,7 +23,7 @@ generator class Automaton {
     }
 
     public boolean accept() {
-        return state == ??;
+        return state <= ??;
     }
 }
 
@@ -55,7 +55,6 @@ class CADsR extends Automaton {
     }
 
     public boolean accept(String str) {
-        state = 0;
         CharIterator cit = new CharIterator(str);
         transitions(cit);
         return accept();
@@ -66,10 +65,18 @@ class DBConnection {
 
     class Monitor extends Automaton {
         final static int OPEN = 1;
+/*
+        final static Token OPEN = new Token() {
+            public int getId() { return 1; }
+        };
+*/
         final static int CLOSE = 2;
-        public Monitor() {
-            state = 0;
-        }
+/*
+        final static Token CLOSE = new Token() {
+            public int getId() { return 2; }
+        };
+*/
+        public Monitor() { }
     }
 
     Monitor m;
@@ -82,27 +89,16 @@ class DBConnection {
     }
 
     public void open() {
-/*
-        Token t = new Token() {
-            public int getId() { return Monitor.OPEN; }
-        };
-        m.transition(t);
-*/
         m.transition(Monitor.OPEN);
     }
 
     public void close() {
-/*
-        Token t = new Token() {
-            public int getId() { return Monitor.CLOSE; }
-        };
-        m.transition(t);
-*/
         m.transition(Monitor.CLOSE);
     }
 }
 
 class Test {
+
     // Lisp-style identifier: c(a|d)+r
     harness static void test_CADsR() {
         CADsR a = new CADsR();
@@ -164,9 +160,11 @@ class Test {
         assert ! conn.isErroneous();
     }
 
-    // bad: close without opening
+    // bad: closing more than once
     harness static void test_DBConnection_bad1() {
         DBConnection conn = new DBConnection();
+        conn.open();
+        conn.close();
         conn.close();
         assert conn.isErroneous();
     }
