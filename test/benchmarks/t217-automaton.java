@@ -163,7 +163,7 @@ class TestCADsR {
         //assert ! a.accept("cdd");
         assert a.accept("cdr");
     }
-/*
+
     // length 4
     harness static void example_4() {
         CADsR a = new CADsR();
@@ -181,7 +181,7 @@ class TestCADsR {
         //assert ! a.accept("cddd");
         assert a.accept("cddr");
     }
-*/
+
 }
 
 class TestDBConnection {
