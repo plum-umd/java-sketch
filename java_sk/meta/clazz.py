@@ -527,9 +527,11 @@ def __find_mtd(cname, f):
 
   # try to concretize a call to interface
   if (cls.is_itf or cls.is_abstract) and cls.subs:
+    mtds = []
     for sub in cls.subs:
-      mtds = __find_mtd(sub.name, f)
-      if mtds: return mtds
+      __mtds = __find_mtd(sub.name, f)
+      mtds.extend(__mtds)
+    if mtds: return util.rm_dup(mtds)
 
   # try the current class and super classes in the hierarchy
   if cls.is_class:
