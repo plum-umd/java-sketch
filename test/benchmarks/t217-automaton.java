@@ -5,8 +5,12 @@ interface Token{
 */
 
 generator class Automaton {
-    private int state = ??;
+    private int state;
     static int num_state = ??;
+    public Automaton() {
+        state = ??;
+    }
+
 /*
     public void transition(Token t) {
         int id = t.getId();
@@ -30,7 +34,9 @@ generator class Automaton {
 }
 
 class CADsR extends Automaton {
-    public CADsR() { }
+    public CADsR() {
+        super();
+    }
 
     class CharIterator implements Iterator {
         private final String str;
@@ -57,6 +63,7 @@ class CADsR extends Automaton {
     }
 
     public boolean accept(String str) {
+        state = ??; // reset
         CharIterator cit = new CharIterator(str);
         transitions(cit);
         return accept();
@@ -78,7 +85,9 @@ class DBConnection {
             public int getId() { return 2; }
         };
 */
-        public Monitor() { }
+        public Monitor() {
+            super();
+        }
     }
 
     Monitor m;
@@ -99,18 +108,27 @@ class DBConnection {
     }
 }
 
-class Test {
+// Lisp-style identifier: c(a|d)+r
+class TestCADsR {
 
-    // Lisp-style identifier: c(a|d)+r
-    harness static void test_CADsR() {
+    // length 0
+    harness static void example_0() {
         CADsR a = new CADsR();
-        // length 1
+        assert ! a.accept();
+    }
+
+    // length 1
+    harness static void example_1() {
+        CADsR a = new CADsR();
         assert ! a.accept("a");
         assert ! a.accept("c");
         assert ! a.accept("d");
         assert ! a.accept("r");
+    }
 
-        // length 2
+    // length 2
+    harness static void example_2() {
+        CADsR a = new CADsR();
         assert ! a.accept("aa");
         assert ! a.accept("ac");
         assert ! a.accept("ad");
@@ -127,55 +145,64 @@ class Test {
         assert ! a.accept("rc");
         assert ! a.accept("rd");
         assert ! a.accept("rr");
-        assert ! a.accept("cr");
+    }
+
+    // length 3
+    harness static void example_3() {
+        CADsR a = new CADsR();
 
         // length 3
-        assert ! a.accept("caa");
-        assert ! a.accept("cad");
+        //assert ! a.accept("caa");
+        //assert ! a.accept("cad");
         assert a.accept("car");
-        assert ! a.accept("cda");
-        assert ! a.accept("cdd");
+        //assert ! a.accept("cda");
+        //assert ! a.accept("cdd");
         assert a.accept("cdr");
-
-        // length 4
+    }
 /*
-        assert ! a.accept("caaa");
-        assert ! a.accept("caad");
+    // length 4
+    harness static void example_4() {
+        CADsR a = new CADsR();
+
+        //assert ! a.accept("caaa");
+        //assert ! a.accept("caad");
         assert a.accept("caar");
-        assert ! a.accept("cada");
-        assert ! a.accept("cadd");
+        //assert ! a.accept("cada");
+        //assert ! a.accept("cadd");
         assert a.accept("cadr");
-        assert ! a.accept("cdaa");
-        assert ! a.accept("cdad");
+        //assert ! a.accept("cdaa");
+        //assert ! a.accept("cdad");
         assert a.accept("cdar");
-        assert ! a.accept("cdda");
-        assert ! a.accept("cddd");
+        //assert ! a.accept("cdda");
+        //assert ! a.accept("cddd");
         assert a.accept("cddr");
+    }
 */
-    }
+}
 
-    harness static void test_DBConnection_good() {
+class TestDBConnection {
+    harness static void scenario_good() {
         DBConnection conn = new DBConnection();
         conn.open();
         assert ! conn.isErroneous();
         conn.close();
         assert ! conn.isErroneous();
-    }
-
-    // bad: closing more than once
-    harness static void test_DBConnection_bad1() {
-        DBConnection conn = new DBConnection();
-        conn.open();
-        conn.close();
-        conn.close();
-        assert conn.isErroneous();
     }
 
     // bad: opening more than once
-    harness static void test_DBConnection_bad2() {
+    harness static void scenario_bad1() {
         DBConnection conn = new DBConnection();
         conn.open();
         conn.open();
+        assert conn.isErroneous();
+    }
+
+    // bad: closing more than once
+    harness static void scenario_bad2() {
+        DBConnection conn = new DBConnection();
+        conn.open();
+        conn.close();
+        conn.close();
         assert conn.isErroneous();
     }
 
