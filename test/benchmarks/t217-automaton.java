@@ -6,9 +6,13 @@ interface Token{
 
 generator class Automaton {
     private int state;
-    static int num_state = ??;
     public Automaton() {
         state = ??;
+    }
+
+    static int num_state = ??;
+    harness static void min_num_state() {
+        minimize(num_state);
     }
 
 /*
@@ -183,6 +187,7 @@ class TestCADsR {
 class TestDBConnection {
     harness static void scenario_good() {
         DBConnection conn = new DBConnection();
+        assert ! conn.isErroneous();
         conn.open();
         assert ! conn.isErroneous();
         conn.close();
