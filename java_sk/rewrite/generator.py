@@ -63,7 +63,13 @@ class CGenerator(object):
     if sup not in self._cgens: return
 
     specialized_cls_name = u"{}{}".format(node.sup, CGenerator.fresh_cnt())
+    # deep copy
     specialized_cls = copy.deepcopy(sup)
+    # rename <init>s
+    for init in specialized_cls.inits:
+      init.name = specialized_cls_name
+      init.typ = specialized_cls_name
+    # rename the class
     specialized_cls.name = specialized_cls_name
     register_class(specialized_cls)
     self._pgr.add_classes([specialized_cls])

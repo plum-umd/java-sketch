@@ -68,9 +68,17 @@ class Method(v.BaseNode):
   def typ(self):
     return self._typ
 
+  @typ.setter
+  def typ(self, v):
+    self._typ = v
+
   @property
   def name(self):
     return self._name
+
+  @name.setter
+  def name(self, v):
+    self._name = v
 
   @property
   def is_init(self):
