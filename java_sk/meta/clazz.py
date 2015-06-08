@@ -556,12 +556,10 @@ def find_mtds_by_name(cname, mname):
 
 # find the method by the given class name, method name, and parameter types
 @takes(unicode, unicode, list_of(unicode))
-@returns(optional("Method"))
-def find_mtd_by_sig(cname, mname, sig):
+@returns(list_of("Method"))
+def find_mtds_by_sig(cname, mname, sig):
   f = lambda cls: util.ffilter([cls.mtd_by_sig(mname, sig)])
-  mtds = __find_mtd(cname, f)
-  if 1 == len(mtds): return mtds[0]
-  else: return None
+  return __find_mtd(cname, f)
 
 
 # find the base class of the family in which the given class is involved

@@ -155,8 +155,11 @@ class Expression(v.BaseNode):
         else: # rcv.mid
           rcv_ty = curried(self.f.le)
           mname = self.f.re.id
-          mtd_callee = clazz.find_mtd_by_sig(rcv_ty, mname, arg_typs)
-          return mtd_callee.typ
+          mtd_callees = clazz.find_mtds_by_sig(rcv_ty, mname, arg_typs)
+          if mtd_callees:
+            # TODO: check all found types are compatible or return least upper bound?
+            return mtd_callees[0].typ
+          else: raise Exception("unresolved call: {}".format(str(self)))
       else: # mid
         mname = self.f.id
         if mname in C.typ_arrays:
@@ -167,10 +170,13 @@ class Expression(v.BaseNode):
           return mtd.clazz.sup
         else:
           if mname == C.J.SUP: # super(...)
-            mtd_callee = clazz.find_mtd_by_sig(mtd.clazz.sup, mtd.name, mtd.param_typs)
+            mtd_callees = clazz.find_mtds_by_sig(mtd.clazz.sup, mtd.name, mtd.param_typs)
           else: # member methods
-            mtd_callee = clazz.find_mtd_by_sig(mtd.clazz.name, mname, arg_typs)
-          return mtd_callee.typ
+            mtd_callees = clazz.find_mtds_by_sig(mtd.clazz.name, mname, arg_typs)
+          if mtd_callees:
+            # TODO: check all found types are compatible or return least upper bound?
+            return mtd_callees[0].typ
+          else: raise Exception("unresolved call: {}".format(str(self)))
 
     elif self.kind == C.E.CAST:
       return curried(self.ty)
