@@ -162,21 +162,12 @@ _default_values = {
   C.J.z: C.J.FALSE,
   u"default": C.J.N
 }
-@takes(str, unicode, unicode)
+@takes(unicode)
 @returns(unicode)
-def default_value(cmd, ty, vname):
-  if cmd == "android":
-    if ty in C.primitives:
-      if ty == C.J.z:
-        v = u"SymUtil.new_sym_bit(\"{}\")".format(vname)
-      else:
-        v = u"SymUtil.new_sym_int(\"{}\")".format(vname)
-    else:
-      v = u"SymUtil.new_sym(\"{}\", \"{}\")".format(vname, ty)
-  else:
-    if ty in _default_values:
-      v = _default_values[ty]
-    else: v = _default_values[u"default"]
+def default_value(ty):
+  if ty in _default_values:
+    v = _default_values[ty]
+  else: v = _default_values[u"default"]
   return v
 
 
