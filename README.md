@@ -1,12 +1,21 @@
-# Java Sketch
+# JSketch
 
-a Java front-end for [Sketch][sk], a program synthesis tool
+Sketch-based synthesis, epitomized by [Sketch][sk], lets developers
+synthesize software starting from a _partial program_, also called a
+_sketch_ or _template_.  JSketch is a tool that brings sketch-based
+synthesis to Java. JSketch's input is a partial Java program that may
+include _holes_, which are unknown constants, _expression generators_,
+which range over sets of expressions, and _class generators_, which are
+partial classes.  JSketch then translates the synthesis problem into
+a [Sketch][sk] problem; this translation is complex becuase [Sketch][sk]
+is not object-oriented.  Finally, JSketch synthesizes an executable Java
+program by interpreting the output of [Sketch][sk].
 
 
 ## Requirement
 
 Since this tool is a front-end for [Sketch][sk],
-you need to install it and set up the environment.
+you need to install [Sketch][sk] and set up the environment.
 
 * Tar ball
 
@@ -88,7 +97,7 @@ You can skip custom codegen (and the regression test).
 We slightly changed Java grammar to support holes (`??`)
 and a couple other syntactic sugars borrowed from [Sketch][sk],
 such as `repeat` and `minrepeat`.
-To read Java Sketch, generate our own parser first:
+To read JSketch, generate our own parser first:
 ```sh
 $ python -m grammar.gen
 ```
@@ -206,6 +215,18 @@ in module `encoder`.
 $ python -m java_sk.sketch -p demo_name [option]*
 $ ./java_sk/sketch.py -p demo_name [option]*
 ```
+
+
+## Limitations
+
+As Java is a very large language, this tool currently only supports
+a core subset of Java.  Unsupported features include:
+packages, access control, exceptions, and concurrency.
+
+Additionally, JSketch assumes the input sketch is type correct,
+meaning the standard parts of the program are type correct, holes
+are used either as integers or booleans, and expression generators
+are type correct.
 
 
 [sk]: https://bitbucket.org/gatoatigrado/sketch-frontend/
