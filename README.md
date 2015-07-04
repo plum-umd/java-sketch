@@ -12,6 +12,17 @@ is not object-oriented.  Finally, JSketch synthesizes an executable Java
 program by interpreting the output of [Sketch][sk].
 
 
+## Publications
+
+* [JSketch: Sketching for Java][fse15]
+  Jinseong Jeon, Xiaokang Qiu, Jeffrey S. Foster, and Armando Solar-Lezama.
+  In _10th Joint Meeting of the European Software Engineering Conference and
+  the ACM SIGSOFT Symposium on the Foundations of Software Engineering
+  (ESEC/FSE '15)_, Sep 2015, to appear.
+
+[fse15]: http://dx.doi.org/to_be_updated
+
+
 ## Requirement
 
 Since this tool is a front-end for [Sketch][sk],
@@ -87,17 +98,21 @@ export PATH=$PATH:$SKETCH_HOME/target/sketch-1.6.9-noarch-launchers
 
 ## Usage
 
-To use this tool, you should first generate the parser,
+To use this tool, you should generate the parser first,
 which is explained just below.
-You can skip custom codegen (and the regression test).
-
+(Parser and Lexer are automatically generated from a grammar file,
+hence not maintained in the repository.)
+You can skip custom codegen (and the regression test)
+and move to script usages.
 
 ### Parser Generation
 
-We slightly changed Java grammar to support holes (`??`)
-and a couple other syntactic sugars borrowed from [Sketch][sk],
+We slightly changed Java grammar to support holes (written `??`),
+generators in an expression-level (written {| e* |}) and
+in a class-level (written `generator class ...`), as well as
+a couple other syntactic sugars borrowed from [Sketch][sk],
 such as `repeat` and `minrepeat`.
-To read JSketch, generate our own parser first:
+To read JSketch, again, you should generate our own parser first:
 ```sh
 $ python -m grammar.gen
 ```
@@ -172,7 +187,7 @@ or run intermediate sketch files (`sketch.py`).
 
 #### jsk.sh
 
-This is the main script that runs Java Sketch.
+This is the main script that runs JSketch.
 ```sh
 $ ./jsk.sh (input_file | input_dir)+ [options]*
 ```
