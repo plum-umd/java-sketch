@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="JSketch : a Java front-end for Sketch synthesis tool">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>JSketch</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/plum-umd/java-sketch">View on GitHub</a>
+
+          <h1 id="project_title">JSketch</h1>
+          <h2 id="project_tagline">a Java front-end for Sketch synthesis tool</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/plum-umd/java-sketch/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/plum-umd/java-sketch/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="jsketch" class="anchor" href="#jsketch" aria-hidden="true"><span class="octicon octicon-link"></span></a>JSketch</h1>
+
+<p>Sketch-based synthesis, epitomized by <a href="https://bitbucket.org/gatoatigrado/sketch-frontend/">Sketch</a>, lets developers
+synthesize software starting from a <em>partial program</em>, also called a
+<em>sketch</em> or <em>template</em>.  JSketch is a tool that brings sketch-based
+synthesis to Java. JSketch's input is a partial Java program that may
+include <em>holes</em>, which are unknown constants, <em>expression generators</em>,
+which range over sets of expressions, and <em>class generators</em>, which are
+partial classes.  JSketch then translates the synthesis problem into
+a <a href="https://bitbucket.org/gatoatigrado/sketch-frontend/">Sketch</a> problem; this translation is complex becuase <a href="https://bitbucket.org/gatoatigrado/sketch-frontend/">Sketch</a>
+is not object-oriented.  Finally, JSketch synthesizes an executable Java
+program by interpreting the output of <a href="https://bitbucket.org/gatoatigrado/sketch-frontend/">Sketch</a>.</p>
+
+<h2>
+<a id="publications" class="anchor" href="#publications" aria-hidden="true"><span class="octicon octicon-link"></span></a>Publications</h2>
+
+<ul>
+<li>
+<a href="http://dx.doi.org/to_be_updated">JSketch: Sketching for Java</a>.
+Jinseong Jeon, Xiaokang Qiu, Jeffrey S. Foster, and Armando Solar-Lezama.
+In <em>10th Joint Meeting of the European Software Engineering Conference and
+the ACM SIGSOFT Symposium on the Foundations of Software Engineering
+(ESEC/FSE '15)</em>, Sep 2015, to appear.</li>
+</ul>
+
+<h2>
+<a id="overview" class="anchor" href="#overview" aria-hidden="true"><span class="octicon octicon-link"></span></a>Overview</h2>
+
+<p>The input to JSketch is an ordinary Java program that may also contain unknowns
+to be synthesized. There are two kinds of unknowns: <em>holes</em>, written <code>??</code>,
+represent unknown integers and booleans, and <em>generators</em>, written <code>{| e∗ |}</code>,
+range over a list of expressions. For example, consider the following Java sketch,
+similar to an example from the <a href="https://bitbucket.org/gatoatigrado/sketch-frontend/">Sketch</a> manual:</p>
+
+<pre><code>class SimpleMath {
+    static int mult2(int x) {
+        return ?? * {| x , 0 |};
+    }
+}
+</code></pre>
+
+<p>Here we have provided a template for the implementation of method <code>mult2</code>: The method
+returns the product of a hole and either parameter x or 0. Notice that even this very
+simple sketch has 2^33 possible instantiations
+(32 bits of the hole and one bit for the choice of x or 0).</p>
+
+<p>To specify the solution we would like to synthesize, we provide a <em>harness</em> containing
+assertions about the <code>mult2</code> method:</p>
+
+<pre><code>class TestSimpleMath {
+    harness static void test() {
+        assert SimpleMath.mult2(3) == 6;
+    }
+}
+</code></pre>
+
+<p>Now we can run JSketch on the sketch and harness.</p>
+
+<pre><code>$ ./jsk.sh SimpleMath.java Test.java
+</code></pre>
+
+<p>The result is a valid Java source file in which holes and generators have been replaced
+with the appropriate code.</p>
+
+<pre><code>$ cat result/java/SimpleMath.java
+class SimpleMath { ...
+static public int mult2 (int x) {
+return 2 * x;
+} }
+</code></pre>
+
+<p>For more complex examples, view this project on github <a href="https://github.com/plum-umd/java-sketch">here</a>
+and see regression test suites under <code>test/</code> directory.</p>
+
+<h2>
+<a id="limitations" class="anchor" href="#limitations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Limitations</h2>
+
+<p>As Java is a very large language, this tool currently only supports
+a core subset of Java.  Unsupported features include:
+packages, access control, exceptions, and concurrency.</p>
+
+<p>Additionally, JSketch assumes the input sketch is type correct,
+meaning the standard parts of the program are type correct, holes
+are used either as integers or booleans, and expression generators
+are type correct.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">JSketch maintained by <a href="https://github.com/plum-umd">plum-umd</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
