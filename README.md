@@ -14,13 +14,13 @@ program by interpreting the output of [Sketch][sk].
 
 ## Publications
 
-* [JSketch: Sketching for Java][fse15]
+* [JSketch: Sketching for Java][fse15].
   Jinseong Jeon, Xiaokang Qiu, Jeffrey S. Foster, and Armando Solar-Lezama.
   In _10th Joint Meeting of the European Software Engineering Conference and
   the ACM SIGSOFT Symposium on the Foundations of Software Engineering
   (ESEC/FSE '15)_, Sep 2015, to appear.
 
-[fse15]: http://dx.doi.org/to_be_updated
+[fse15]: http://dx.doi.org/10.1145/2786805.2803189
 
 
 ## Requirement
