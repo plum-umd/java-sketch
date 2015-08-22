@@ -105,6 +105,9 @@ class Program(v.BaseNode):
     clss = util.flatten_classes(self._classes, "inners")
     map(op.methodcaller("accept", visitor), clss)
 
+  def jsonify(self):
+    return [ cls.jsonify() for cls in self._classes ]
+
   # to make the template type-consistent
   #   collect all the types in the template
   #   build class hierarchy
@@ -252,6 +255,9 @@ if __name__ == "__main__":
   from optparse import OptionParser
   usage = "usage: python -m java_sk.meta.program (input.java | input_folder)+ [option]*"
   parser = OptionParser(usage=usage)
+  parser.add_option("--json",
+    action="store_true", dest="json", default=False,
+    help="print AST in a json format")
   parser.add_option("--hierarchy",
     action="store_true", dest="hierarchy", default=False,
     help="print inheritance hierarchy")
@@ -280,6 +286,10 @@ if __name__ == "__main__":
   ast = util.toAST(pgr_files)
   pgr = Program(ast)
 
+  if opt.json:
+    import json
+    print json.dumps(pgr.jsonify(), indent=2)
+
   if opt.hierarchy:
 
     def toStringTree(cls, depth=0):
@@ -306,6 +316,6 @@ if __name__ == "__main__":
     for mtd in methods():
       print mtd.signature
 
-  if not sum([opt.hierarchy, opt.method]):
+  if not sum([opt.json, opt.hierarchy, opt.method]):
     print str(pgr)
 

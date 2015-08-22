@@ -114,6 +114,13 @@ class Field(v.BaseNode):
     visitor.visit(self)
     if self._init: self._init = self._init.accept(visitor)
 
+  def jsonify(self):
+    m = {}
+    if self._mods: m["mods"] = self._mods
+    m["type"] = self._typ
+    m["name"] = self._name
+    return m
+
 
 # (DECL (ANNOTATION ...)* modifier* ((FIELD|METHOD) ...))
 # (FIELD (TYPE Id) (NAME Id (= (E... ))?))
