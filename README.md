@@ -18,7 +18,7 @@ program by interpreting the output of [Sketch][sk].
   Jinseong Jeon, Xiaokang Qiu, Jeffrey S. Foster, and Armando Solar-Lezama.
   In _10th Joint Meeting of the European Software Engineering Conference and
   the ACM SIGSOFT Symposium on the Foundations of Software Engineering
-  (ESEC/FSE '15)_, Sep 2015, to appear.
+  (ESEC/FSE '15)_, Sep 2015.
 
 [fse15]: http://dx.doi.org/10.1145/2786805.2803189
 
@@ -31,18 +31,18 @@ you need to install [Sketch][sk] and set up the environment.
 * Tar ball
 
 One way to build Sketch is to use an easy-to-install tar ball:
-[sketch-1.6.9.tgz][sk-169].
+[sketch-1.7.0.tgz][sk-170].
 Inside the tar ball, all Java files in sketch-frontend are already compiled,
 so all you need to do is building sketch-backend.
 Make sure that you have `gcc`, `g++`, `bison`, and `flex`.
 (You may need to install `autoconf`, `automake`, and `libtool`, too.)
 Then, build the beck-end as follows:
 ```sh
-.../ $ tar xvfz sketch-1.6.9.tgz
-.../ $ cd sketch-1.6.9/sketch-backend
-.../sketch-1.6.9/sketch-backend $ chmod +x ./configure
-.../sketch-1.6.9/sketch-backend $ ./configure
-.../sketch-1.6.9/sketch-backend $ make clean; make
+.../ $ tar xvfz sketch-1.7.0.tgz
+.../ $ cd sketch-1.7.-/sketch-backend
+.../sketch-1.7.0/sketch-backend $ chmod +x ./configure
+.../sketch-1.7.0/sketch-backend $ ./configure
+.../sketch-1.7.0/sketch-backend $ make clean; make
 ```
 
 * From source
@@ -86,13 +86,13 @@ To use `sketch` from anywhere,
 we recommend you to set up your environment accordingly.
 For the tar ball users:
 ```sh
-export SKETCH_HOME=/path/to/sketch-1.6.9/sketch-frontend/runtime
+export SKETCH_HOME=/path/to/sketch-1.7.0/sketch-frontend/runtime
 export PATH=$PATH:$SKETCH_HOME/..
 ```
 For the source users:
 ```sh
 export SKETCH_HOME=/path/to/sketch-frontend
-export PATH=$PATH:$SKETCH_HOME/target/sketch-1.6.9-noarch-launchers
+export PATH=$PATH:$SKETCH_HOME/target/sketch-1.7.0-noarch-launchers
 ```
 
 
@@ -134,7 +134,7 @@ Again, make sure your environment is set up properly.
 If you are using Sketch from source:
 ```
 export SKETCH_HOME=/path/to/sketch-frontend
-export PATH=$PATH:$SKETCH_HOME/target/sketch-1.6.9-noarch-launchers
+export PATH=$PATH:$SKETCH_HOME/target/sketch-1.7.0-noarch-launchers
 ```
 If you are using Sketch tar ball:
 ```
@@ -245,5 +245,5 @@ are type correct.
 
 
 [sk]: https://bitbucket.org/gatoatigrado/sketch-frontend/
-[sk-169]: http://people.csail.mit.edu/jsjeon/adaptive-concretization/sketch-1.6.9.tgz
+[sk-170]: http://people.csail.mit.edu/jsjeon/adaptive-concretization/sketch-1.7.0.tgz
 
