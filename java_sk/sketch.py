@@ -127,6 +127,9 @@ if __name__ == "__main__":
   parser.add_option("--p_cpus",
     action="store", dest="p_cpus", default=None, type="int",
     help="the number of cores to use for parallel running")
+  parser.add_option("--ntimes",
+    action="store", dest="ntimes", default=None, type="int",
+    help="number of rounds on a single sketch-backend invocation")
   parser.add_option("-v", "--verbose",
     action="store_true", dest="verbose", default=False,
     help="print intermediate messages verbosely")
@@ -163,6 +166,8 @@ if __name__ == "__main__":
     _opts.extend(["--bnd-dag-size", "16000000"]) # 16M ~> 8G memory
     if opt.p_cpus:
       _opts.extend(["--slv-p-cpus", str(opt.p_cpus)])
+    if opt.ntimes:
+      _opts.extend(["--slv-ntimes", str(opt.ntimes)])
 
   # custom codegen
   _opts.extend(["--fe-custom-codegen", codegen_jar])

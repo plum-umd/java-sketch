@@ -26,6 +26,7 @@ conf = {
   "randdegree": None,
   "parallel": False,
   "p_cpus": None,
+  "ntimes": None,
   "verbose": False
 }
 
@@ -37,6 +38,7 @@ def configure(opt):
   conf["randdegree"] = opt.randdegree
   conf["parallel"] = opt.parallel
   conf["p_cpus"] = opt.p_cpus
+  conf["ntimes"] = opt.ntimes
   conf["verbose"] = opt.verbose
 
 
@@ -97,6 +99,8 @@ def main(jsk_paths, out_dir=res_dir, log_lv=logging.DEBUG):
       opts.append("--slv-parallel")
       if conf["p_cpus"]:
         opts.extend(["--slv-p-cpus", str(conf["p_cpus"])])
+      if conf["ntimes"]:
+        opts.extend(["--slv-ntimes", str(conf["ntimes"])])
       if conf["randdegree"]: # assume FIXED strategy
         opts.extend(["--slv-randdegree", str(conf["randdegree"])])
       else: # adaptive concretization
@@ -145,6 +149,9 @@ if __name__ == "__main__":
   parser.add_option("--p_cpus",
     action="store", dest="p_cpus", default=None, type="int",
     help="the number of cores to use for parallel running")
+  parser.add_option("--ntimes",
+    action="store", dest="ntimes", default=None, type="int",
+    help="number of rounds on a single sketch-backend invocation")
   parser.add_option("-v", "--verbose",
     action="store_true", dest="verbose", default=False,
     help="print intermediate messages verbosely")
