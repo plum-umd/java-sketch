@@ -14,9 +14,9 @@ import lib.const as C
 import lib.visit as v
 
 from .. import util
-from ..anno import parse_anno
 
 from . import fields_reset, methods_reset, classes_reset, fields, methods, classes, class_lookup
+from anno import parse_anno
 import statement as st
 from field import Field
 from method import Method

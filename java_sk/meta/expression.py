@@ -14,9 +14,9 @@ from lib.enum import enum
 import lib.visit as v
 
 from .. import util
-from ..anno import parse_anno
 
 from . import class_lookup
+from anno import parse_anno
 import clazz
 
 # e ::= anno | ?? | {| e* |} | c | id

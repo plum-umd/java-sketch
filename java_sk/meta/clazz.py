@@ -12,9 +12,9 @@ import lib.const as C
 import lib.visit as v
 
 from .. import util
-from ..anno import parse_anno
 
 from . import class_nonce, register_class, class_lookup
+from anno import parse_anno
 import expression as exp
 import statement as st
 import field

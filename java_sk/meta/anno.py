@@ -6,7 +6,7 @@ from lib.typecheck import *
 import lib.const as C
 from lib.enum import enum
 
-import util
+from .. import util
 
 C.A = enum(OVERRIDE="Override", SUPWARN="SuppressWarnings", \
   HARNESS="Harness")
