@@ -2,7 +2,6 @@ import re
 import copy as cp
 import cStringIO
 from itertools import ifilter, ifilterfalse
-import logging
 import operator as op
 
 from antlr3.tree import CommonTree as AST

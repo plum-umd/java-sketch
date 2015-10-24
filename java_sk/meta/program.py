@@ -7,8 +7,6 @@ import operator as op
 import os
 import sys
 
-from antlr3.tree import CommonTree as AST
-
 from lib.typecheck import *
 import lib.const as C
 import lib.visit as v
@@ -18,7 +16,6 @@ from .. import util
 from . import fields_reset, methods_reset, classes_reset, fields, methods, classes, class_lookup
 from anno import parse_anno
 import statement as st
-from field import Field
 from method import Method
 from clazz import Clazz, parse_class, find_base
 
