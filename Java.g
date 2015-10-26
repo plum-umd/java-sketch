@@ -689,13 +689,12 @@ andExpression
 
 eqRelExpression
     :   instanceOfExpression eqRelOp eqRelExpression
-    ->  ^(eqRelyOp ^(EXPR instanceOfExpression) ^(EXPR eqRelExpression))
+    ->  ^(eqRelOp ^(EXPR instanceOfExpression) ^(EXPR eqRelExpression))
     |   instanceOfExpression
     ;
 
 eqRelOp
-    :   ('==' | '!=')
-    |   ('<=' | '>=' | '<' | '>')
+    :   ('==' | '!=' | '<=' | '>=' | '<' | '>')
     ;
 
 instanceOfExpression
@@ -724,7 +723,13 @@ additiveOp
     ;
 
 multiplicativeExpression
-    :   unaryExpression ( ( '*' | '/' | '%' )^ unaryExpression )*
+    :   unaryExpression multiplicativeOp multiplicativeExpression
+    -> ^(multiplicativeOp ^(EXPR unaryExpression) ^(EXPR multiplicativeExpression))
+    |   unaryExpression
+    ;
+
+multiplicativeOp
+    : ('*' | '/' | '%')
     ;
 
 unaryExpression
