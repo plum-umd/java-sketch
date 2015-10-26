@@ -684,33 +684,24 @@ exclusiveOrExpression
     ;
 
 andExpression
-    :   equalityExpression ( '&'^ equalityExpression )*
+    :   eqRelExpression ( '&'^ eqRelExpression )*
     ;
 
-equalityExpression
-    :   instanceOfExpression equalityOp equalityExpression
-    ->  ^(equalityOp ^(EXPR instanceOfExpression) ^(EXPR equalityExpression))
+eqRelExpression
+    :   instanceOfExpression eqRelOp eqRelExpression
+    ->  ^(eqRelyOp ^(EXPR instanceOfExpression) ^(EXPR eqRelExpression))
     |   instanceOfExpression
     ;
 
-equalityOp
+eqRelOp
     :   ('==' | '!=')
+    |   ('<=' | '>=' | '<' | '>')
     ;
 
 instanceOfExpression
-    :   relationalExpression INS_OF type
-    -> ^(INS_OF relationalExpression ^(TYPE type))
-    |   relationalExpression
-    ;
-
-relationalExpression
-    :   shiftExpression relationalOp relationalExpression
-    ->  ^(relationalOp ^(EXPR shiftExpression) ^(EXPR relationalExpression))
+    :   shiftExpression INS_OF type
+    -> ^(INS_OF shiftExpression ^(TYPE type))
     |   shiftExpression
-    ;
-
-relationalOp
-    :   ('<=' | '>=' | '<' | '>')
     ;
 
 shiftExpression
