@@ -694,7 +694,8 @@ eqRelExpression
     ;
 
 eqRelOp
-    :   ('==' | '!=' | '<=' | '>=' | '<' | '>')
+    :   ('==' | '!=' )
+    |   ('<=' | '>=' | '<' | '>')
     ;
 
 instanceOfExpression
@@ -719,7 +720,7 @@ additiveExpression
     ;
 
 additiveOp
-    : ('+' | '-')
+    :   ('+' | '-')
     ;
 
 multiplicativeExpression
@@ -729,7 +730,7 @@ multiplicativeExpression
     ;
 
 multiplicativeOp
-    : ('*' | '/' | '%')
+    :   ('*' | '/' | '%')
     ;
 
 unaryExpression
