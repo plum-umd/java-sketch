@@ -39,10 +39,15 @@ Make sure that you have `gcc`, `g++`, `bison`, and `flex`.
 Then, build the beck-end as follows:
 ```sh
 .../ $ tar xvfz sketch-1.7.0.tgz
-.../ $ cd sketch-1.7.-/sketch-backend
+.../ $ cd sketch-1.7.0/sketch-backend
 .../sketch-1.7.0/sketch-backend $ chmod +x ./configure
 .../sketch-1.7.0/sketch-backend $ ./configure
 .../sketch-1.7.0/sketch-backend $ make clean; make
+```
+You can run a simple test case to make sure the build is correct:
+```sh
+.../ $ cd ../sketch-frontend
+.../sketch-frontend $ ./sketch test/sk/seq/miniTest1.sk
 ```
 
 * From source
