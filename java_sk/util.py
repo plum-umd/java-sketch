@@ -52,6 +52,18 @@ def pure_base(path):
   return os.path.splitext(base)[0]
 
 
+# build folders for the given package name
+# e.g., for x.y, generate x and then y under x if not exist
+@takes(str, unicode)
+@returns(nothing)
+def build_pkg_folders(java_dir, pkg):
+  p = java_dir
+  for elt in pkg.split('.'):
+    p = os.path.join(p, elt)
+    if not os.path.exists(p):
+      os.makedirs(p)
+
+
 """
 regarding Java features
 """

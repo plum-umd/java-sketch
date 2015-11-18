@@ -33,18 +33,6 @@ def trim(pgr):
       pgr.classes.remove(cls)
 
 
-# build folders for the given package name
-# e.g., for x.y, generate x and then y under x if not exist
-@takes(str, unicode)
-@returns(nothing)
-def build_pkg_folders(java_dir, pkg):
-  p = java_dir
-  for elt in pkg.split('.'):
-    p = os.path.join(p, elt)
-    if not os.path.exists(p):
-      os.makedirs(p)
-
-
 # find appropriate import statements, generally
 @takes(str, unicode, list_of(unicode))
 @returns(list_of(unicode))
@@ -116,7 +104,7 @@ def dump(dst_dir, pgr, msg=None):
     ## generate folders according to package hierarchy
     fname = cls.name + ".java"
     if cls.pkg:
-      build_pkg_folders(dst_dir, cls.pkg)
+      util.build_pkg_folders(dst_dir, cls.pkg)
       folders = [dst_dir] + cls.pkg.split('.') + [fname]
       java_path = os.path.join(*folders)
     else: java_path = os.path.join(dst_dir, fname)
