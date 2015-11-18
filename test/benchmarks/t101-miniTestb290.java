@@ -16,10 +16,8 @@ class Boo_Moo {
         return y;
     }
 
-    static int h1 = ??;
-    static int h2 = ??;
-
     public static int boo (int x, int y) {
-       return h1 * x + h2 * y;
+       //return ?? * x + ?? * y;       // original test code in Sketch
+       return {| x + y , x , y , 0 |}; // all possible combinations in regex
     }
 }
