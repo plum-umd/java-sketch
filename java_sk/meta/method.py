@@ -57,12 +57,20 @@ class Method(v.BaseNode):
     return self._mods
 
   @property
+  def is_private(self):
+    return C.mod.PR in self._mods
+
+  @property
   def is_static(self):
     return C.mod.ST in self._mods
 
   @property
   def is_abstract(self):
     return C.mod.AB in self._mods
+
+  @property
+  def is_generator(self):
+    return C.mod.GN in self._mods
 
   @property
   def typ(self):

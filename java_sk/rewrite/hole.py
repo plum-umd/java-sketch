@@ -71,8 +71,10 @@ class EHole(object):
 
   @v.when(Expression)
   def visit(self, node):
-    # in case of visiting field initializing Expression
+    # avoid editing field initializing Expression
     if not self._visiting_s: return node
+    # avoid editing hole(s) in a method-level generator
+    if self._cur_mtd.is_generator: return node
 
     if node.kind == C.E.HOLE:
       cls = self._cur_mtd.clazz
