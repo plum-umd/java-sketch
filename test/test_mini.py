@@ -42,6 +42,9 @@ class TestMini(TestCommon):
   def test_mini_109(self):
     self.__test(["t109-mult2.java"])
 
+  def test_mini_110(self):
+    self.__test(["t110-miniTestb156.java"])
+
 
 if __name__ == '__main__':
   unittest.main()
