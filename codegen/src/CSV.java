@@ -73,4 +73,10 @@ public class CSV extends FEReplacer {
     return super.visitStmtAssign(stmt);
   }
 
+  @Override
+  public Object visitStmtVarDecl(StmtVarDecl stmt) {
+    printInfo(stmt);
+    return super.visitStmtVarDecl(stmt);
+  }
+
 }
