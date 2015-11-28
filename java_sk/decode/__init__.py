@@ -7,8 +7,8 @@ import lib.const as C
 from .. import util
 from ..meta.program import Program
 
-from finder import HFinder, GFinder
-from replacer import HReplacer, GReplacer
+from finder import HFinder, EGFinder
+from replacer import HReplacer, EGReplacer
 
 from collection import Collection
 from semantic_checker import SemanticChecker
@@ -59,14 +59,14 @@ def to_java(java_dir, pgr, output_path):
   pgr.accept(hreplacer)
 
   ## find generators
-  gfinder = GFinder()
+  gfinder = EGFinder()
   pgr.accept(gfinder)
-  gens = gfinder.gens
+  egens = gfinder.egens
 
-  ## replace generators with resolved answers
-  logging.info("replacing generators")
-  greplacer = GReplacer(output_path, gens)
-  pgr.accept(greplacer)
+  ## replace regex generators with resolved answers
+  logging.info("replacing regex generators")
+  egreplacer = EGReplacer(output_path, egens)
+  pgr.accept(egreplacer)
 
   # final semantic checking
   logging.info("semantics checking")

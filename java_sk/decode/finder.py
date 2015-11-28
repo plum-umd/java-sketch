@@ -52,18 +52,18 @@ class HFinder(object):
 
 
 """
-Finding generators {| e* |}
+Finding regex generators {| e* |}
 """
-class GFinder(object):
+class EGFinder(object):
 
   def __init__(self):
-    self._gens = []
+    self._egens = []
 
     self._cur_mtd = None
 
   @property
-  def gens(self):
-    return self._gens
+  def egens(self):
+    return self._egens
 
   @v.on("node")
   def visit(self, node):
@@ -91,7 +91,7 @@ class GFinder(object):
   def visit(self, node):
     if node.kind == C.E.GEN:
       logging.debug("generator@{}: {}".format(self._cur_mtd.name, str(node)))
-      self._gens.append(node)
+      self._egens.append(node)
 
     return node
 

@@ -93,11 +93,11 @@ class HReplacer(object):
 
 
 """
-Replacing generators with solutions
+Replacing regex generators with solutions
 """
-class GReplacer(object):
+class EGReplacer(object):
 
-  def __init__(self, output_path, gens):
+  def __init__(self, output_path, egens):
     self._output = output_path
 
     self._cur_mtd = None
