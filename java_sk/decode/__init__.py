@@ -8,7 +8,7 @@ from .. import util
 from ..meta.program import Program
 
 from finder import HFinder, EGFinder
-from replacer import HReplacer, EGReplacer
+from replacer import HReplacer, EGReplacer, MGReplacer
 
 from collection import Collection
 from semantic_checker import SemanticChecker
@@ -67,6 +67,11 @@ def to_java(java_dir, pgr, output_path):
   logging.info("replacing regex generators")
   egreplacer = EGReplacer(output_path, egens)
   pgr.accept(egreplacer)
+
+  # replace method generators with resolved body
+  logging.info("replace method generators")
+  mgreplacer = MGReplacer(output_path)
+  pgr.accept(mgreplacer)
 
   # final semantic checking
   logging.info("semantics checking")

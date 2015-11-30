@@ -76,5 +76,15 @@ class SemanticChecker(object):
     # if a hole is still there, replace it with any number
     if node.kind == C.E.HOLE: return to_expression(u"0")
 
+    elif node.kind == C.E.ID:
+      # self ~> this
+      if node.id == C.SK.self: return to_expression(C.J.THIS)
+
+      # maybe translated field name, e.g., fld_clazz
+      if '_' in node.id:
+        suffix = node.id.split('_')[-1]
+        if class_lookup(suffix):
+          node.id = u'_'.join(node.id.split('_')[:-1])
+
     return node
 

@@ -184,6 +184,8 @@ class MGenerator(object):
 
     _mods = list(set(mgen_mtd.params) - set([C.mod.GN]))
     specialized_mtd = Method(clazz=mgen_mtd.clazz, name=specialized_mtd_name, mods=_mods, typ=mgen_mtd.typ, params=mgen_mtd.params)
+    # associate the method generator, for easier decoding
+    setattr(specialized_mtd, "generator", mgen_mtd)
 
     # delegate the call
     args = u", ".join(mgen_mtd.param_vars)
