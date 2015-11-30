@@ -177,6 +177,8 @@ class MGenerator(object):
     if u_callee not in self._mgens: return node
     # avoid recursive calls inside a method generator
     if u_callee == self._cur_mtd.name: return node
+    # avoid calls inside a specialized method
+    if hasattr(self._cur_mtd, "generator"): return node
 
     mgen_mtd = self._mgens[u_callee]
     # specialize the method generator
