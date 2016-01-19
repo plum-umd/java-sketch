@@ -270,21 +270,21 @@ interfaceMethodOrFieldDecl
 
 methodDeclaratorRest
     :   formalParameters ('[' ']')*
-        (THROWS^ qualifiedNameList)?
+        throwsExceptions
         (   methodBody
         |   ';'
         )
     ;
 
 voidMethodDeclaratorRest
-    :   formalParameters (THROWS^ qualifiedNameList)?
+    :   formalParameters throwsExceptions
         (   methodBody
         |   ';'
         )
     ;
 
 interfaceMethodDeclaratorRest
-    :   formalParameters ('[' ']')* (THROWS^ qualifiedNameList)? ';'
+    :   formalParameters ('[' ']')* throwsExceptions ';'
     ;
 
 interfaceGenericMethodDecl
@@ -293,14 +293,19 @@ interfaceGenericMethodDecl
     ;
 
 voidInterfaceMethodDeclaratorRest
-    :   formalParameters (THROWS^ qualifiedNameList)? ';'
+    :   formalParameters throwsExceptions ';'
     ;
 
 constructorDeclaratorRest
-    :   formalParameters (THROWS^ qualifiedNameList)?
+    :   formalParameters throwsExceptions
         (   methodBody
         |   ';'
         )
+    ;
+
+throwsExceptions
+    :   (THROWS qualifiedNameList)?
+    ->  ^(THROWS qualifiedNameList)?
     ;
 
 constantDeclarator
