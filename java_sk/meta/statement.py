@@ -298,7 +298,7 @@ def parse_s(mtd, node):
     fs = map(curried_s, f_s)
     s = gen_S_if(e, ts, fs)
 
-  # (S... switch (E cond) { (case (E case1) (S1...)) ... (default Sd) }
+  # (S... switch (E cond) { (case (E case1) { (S1...) } ) ... (default { Sd }) }
   #   => # desugaring at this parsing phase
   # if (cond == case1) { S1 } else if ... else { Sd }
   elif kind == "switch":
@@ -307,12 +307,12 @@ def parse_s(mtd, node):
       label = case_node.getText()
       if label == "case":
         e_case = curried_e(_case_nodes[0])
-        ss_case = map(curried_s, _case_nodes[1:])
+        ss_case = map(curried_s, rm_braces(_case_nodes[1:]))
       elif label == "default":
         e_case = None
-        ss_case = map(curried_s, _case_nodes)
+        ss_case = map(curried_s, rm_braces(_case_nodes))
       else:
-        raise Exception("illegular grammar", node.toStringTree())
+        raise Exception("irregular grammar", node.toStringTree())
       return (label, e_case, ss_case)
 
     e_cond = curried_e(node.getChild(1))
