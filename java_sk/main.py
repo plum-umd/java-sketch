@@ -123,6 +123,10 @@ def main(jsk_paths, out_dir=res_dir, log_lv=logging.DEBUG):
 
 
 if __name__ == "__main__":
+  if len(argv) < 1:
+    parser.error("incorrect number of arguments")
+
+
   from optparse import OptionParser
   parser = OptionParser(usage="usage: %prog (input.java | input_folder)+ [options]*")
   parser.add_option("-o", "--output",
@@ -160,9 +164,6 @@ if __name__ == "__main__":
     help="use models of Java libraries")
 
   (opt, argv) = parser.parse_args()
-
-  if len(argv) < 1:
-    parser.error("incorrect number of arguments")
 
   configure(opt)
 
