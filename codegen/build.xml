@@ -13,12 +13,12 @@
   <property name="codegen.jar" value="${lib.dir}/codegen.jar"/>
 
   <property environment="env"/>
-<!--
+
   <property name="sketch.dir" location="${env.SKETCH_HOME}/.."/>
   <property name="sketch.jar" value="${sketch.dir}/sketch-1.6.7-noarch.jar"/>
--->
-  <property name="sketch.dir" location="${env.SKETCH_HOME}"/>
-  <property name="sketch.classes" location="${sketch.dir}/target/classes"/>
+
+  <!-- <property name="sketch.dir" location="${env.SKETCH_HOME}"/> -->
+  <!-- <property name="sketch.classes" location="${sketch.dir}/target/classes"/> -->
 
   <!-- set up some directories used by this project -->
   <target name="init" description="setup project directories">
@@ -28,10 +28,10 @@
 
   <!-- compile the java code in ${source.dir} into ${build.dir} -->
   <target name="compile" depends="init" description="compile java sources">
-<!--
+
     <javac srcdir="${source.dir}" destdir="${build.dir}" classpath="${sketch.jar}"/>
--->
-    <javac srcdir="${source.dir}" destdir="${build.dir}" classpath="${sketch.classes}"/>
+
+    <!-- <javac srcdir="${source.dir}" destdir="${build.dir}" classpath="${sketch.classes}"/> -->
   </target>
 
   <!-- make a jar file that includes all the classes files in ${build.dir} -->
