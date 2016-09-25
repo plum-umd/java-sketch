@@ -33,6 +33,10 @@ def match(**kwargs):
   return 0
 
 if __name__ == "__main__":
+  if len(argv) < 1:
+    parser.error("incorrect number of arguments")
+
+
   from optparse import OptionParser
   parser = OptionParser(usage="%prog [options]* [-t tmp_path]* (api_path)")
 
@@ -44,7 +48,28 @@ if __name__ == "__main__":
     help="template folder")
   parser.add_option("-v", "--verbose",
     action="store_true", dest="verbose", default=False,
+<<<<<<< HEAD
     help="print p_out messages or in/out sets")
+=======
+    help="print intermediate messages verbosely")
+  parser.add_option("-m", "--model",
+    action="store_true", dest="model", default=False,
+    help="use models of Java libraries")
+
+  (opt, argv) = parser.parse_args()
+
+  configure(opt)
+
+  pgr_files = []
+  if opt.model:
+    model_dir = os.path.join(root_dir, "model")
+    pgr_files.extend(util.get_files_from_path(model_dir, "java"))
+
+  for arg in argv:
+    pgr_files.extend(util.get_files_from_path(arg, "java"))
+
+  sys.exit(main(pgr_files, opt.output))
+>>>>>>> 19ced4a2213b0317dc2ca270e55f2c5a37366747
 
   (OPT, argv) = parser.parse_args()
   
