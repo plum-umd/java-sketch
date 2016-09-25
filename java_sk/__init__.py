@@ -5,6 +5,9 @@ pwd = os.path.dirname(__file__)
 javaAST = os.path.abspath(os.path.join(pwd,'../../javaAST'))
 sys.path.insert(0, javaAST)
 
+T = {1:2}
+TYPES = {u'BYTE':u'byte',u'SHORT':u'short',u'LONG':u'long',u'OBYTE':'Byte',u'OSHORT':u'Short',u'OLONG':u'Long',u'OINT':u'Integer'}
+         
 # from lib.enum import enum
 # import lib.const as C
 

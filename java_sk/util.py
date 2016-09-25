@@ -133,17 +133,15 @@ def clean_dir(path):
 # # sanitize type name
 # # e.g., Demo$1 -> Demo_1, Outer.Inner -> Outer_Inner
 # # ArrayAdapter<?> (-> ArrayAdapter_?) -> ArrayAdapter_Object
-# @takes(unicode)
-# @returns(unicode)
-# def sanitize_ty(tname):
-#   #repl_map = {"$": "_", ".": "_"}
-#   #repl_dic = dict((re.escape(k), v) for k, v in repl_map.iteritems())
-#   #pattern = re.compile(" | ".join(repl_dic.keys()))
-#   #return pattern.sub(lambda m: repl_dic[re.escape(m.group(0))], tname)
-#   _tname = tname.replace('$','_').replace('.','_')
-#   if is_generic(_tname):
-#     _tname = u'_'.join(explode_generics(_tname))
-#   return _tname.replace('?', C.J.OBJ)
+def sanitize_ty(tname):
+  #repl_map = {"$": "_", ".": "_"}
+  #repl_dic = dict((re.escape(k), v) for k, v in repl_map.iteritems())
+  #pattern = re.compile(" | ".join(repl_dic.keys()))
+  #return pattern.sub(lambda m: repl_dic[re.escape(m.group(0))], tname)
+  _tname = tname.replace('$','_').replace('.','_')
+  # if is_generic(_tname):
+  #   _tname = u'_'.join(explode_generics(_tname))
+  return _tname.replace('?', u'Object')
 
 
 # # convert type name to JVM notation
