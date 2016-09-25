@@ -6,16 +6,29 @@ import encoder
 
 import os
 pwd = os.path.dirname(__file__)
+root_dir = os.path.join(pwd, "..")
+res_dir = os.path.join(root_dir, "result")
 
-def match(tmpl, api):
-  tmp_ast = parse(tmpl)
-  # api_ast = parse(api)
-  demo_name = encoder.main_cls(tmp_ast).name
-  print demo_name
-
+def match(**kwargs):
+  # this will be stuff to use when matching 
+  tmpl = kwargs.get('tmpl', None)
+  prg = kwargs.get('prg', None)
+  out_dir = kwargs.get('out_dir', res_dir)
+  if tmpl:
+    tmpl_ast = parse(tmpl)
+    demo_name = encoder.main_cls(tmpl_ast).name
+    print demo_name
+  if prg:
+    prg_ast = parse(prg)
+    demo_name = encoder.main_cls(prg_ast).name
+    print demo_name
+    sk_dir = os.path.join(out_dir, '_'.join(["sk", demo_name]))
+    print sk_dir
+    encoder.to_sk(prg_ast, sk_dir)
+  elif not tmpl and not prg:
+    parser.error("need to pass in some file")
   # TODO: rewrite holes -- ignoring for now
   
-  # encoder.encode(tmp_ast)
 
   return 0
 
@@ -35,7 +48,6 @@ if __name__ == "__main__":
 
   (OPT, argv) = parser.parse_args()
   
-  if not OPT.tmpl: parser.error("incorrect arguments: missing template(s)")
+  if OPT.tmpl: sys.exit(match(tmpl=OPT.tmpl, prg=argv))
   if len(argv) < 1: parser.error("incorrect number of arguments: missing APIs")
-
-  sys.exit(match(OPT.tmpl, argv))
+  sys.exit(match(prg=argv))

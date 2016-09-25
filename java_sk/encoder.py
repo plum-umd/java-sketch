@@ -1,3 +1,6 @@
+import os
+import util
+
 from ast.utils import utils
 from ast.body.methoddeclaration import MethodDeclaration
 from ast.body.typedeclaration import TypeDeclaration as td
@@ -34,3 +37,10 @@ def main_cls(ast):
   elif harness:
     return harness
   else: raise Exception("None of main() and @Harness is found")
+
+def to_sk(prg, sk_dir):
+  # clean up result directory
+  if os.path.isdir(sk_dir): util.clean_dir(sk_dir)
+  else: os.makedirs(sk_dir)
+
+  
