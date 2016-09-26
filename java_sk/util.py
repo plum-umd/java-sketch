@@ -1,5 +1,9 @@
 import os
 import shutil
+from itertools import ifilter
+
+from ast.utils import utils
+from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 
 # import datetime
 # import logging
@@ -21,6 +25,29 @@ def clean_dir(path):
     for d in dirs:
       shutil.rmtree(os.path.join(root, d))
 
+def add_object(ast):
+  clss = []
+  utils.extract_nodes(clss, ClassOrInterfaceDeclaration, ast)
+  obj = ClassOrInterfaceDeclaration({u'name':u'Object',u'parentNode':{u'@r':ast.ati},u'atr':ast.ati,u'@i':0})
+  def obj_subs(n):
+    if not n.extendsList: n.extendsList = [obj]
+  map(obj_subs, clss)
+
+def rm_subs(clss):
+  return filter(lambda c: not c.extendsList, clss)
+
+# # sanitize type name
+# # e.g., Demo$1 -> Demo_1, Outer.Inner -> Outer_Inner
+# # ArrayAdapter<?> (-> ArrayAdapter_?) -> ArrayAdapter_Object
+def sanitize_ty(tname):
+  #repl_map = {"$": "_", ".": "_"}
+  #repl_dic = dict((re.escape(k), v) for k, v in repl_map.iteritems())
+  #pattern = re.compile(" | ".join(repl_dic.keys()))
+  #return pattern.sub(lambda m: repl_dic[re.escape(m.group(0))], tname)
+  _tname = tname.replace('$','_').replace('.','_')
+  # if is_generic(_tname):
+  #   _tname = u'_'.join(explode_generics(_tname))
+  return _tname.replace('?', u'Object')
 
 # # get the *sorted* list of file names in the designated path
 # # template/gui/awt -> [.../AWTEvent.java, .../BorderLayout.java, ...]
@@ -130,18 +157,6 @@ def clean_dir(path):
 #   return tname[0].isupper()
 
 
-# # sanitize type name
-# # e.g., Demo$1 -> Demo_1, Outer.Inner -> Outer_Inner
-# # ArrayAdapter<?> (-> ArrayAdapter_?) -> ArrayAdapter_Object
-def sanitize_ty(tname):
-  #repl_map = {"$": "_", ".": "_"}
-  #repl_dic = dict((re.escape(k), v) for k, v in repl_map.iteritems())
-  #pattern = re.compile(" | ".join(repl_dic.keys()))
-  #return pattern.sub(lambda m: repl_dic[re.escape(m.group(0))], tname)
-  _tname = tname.replace('$','_').replace('.','_')
-  # if is_generic(_tname):
-  #   _tname = u'_'.join(explode_generics(_tname))
-  return _tname.replace('?', u'Object')
 
 
 # # convert type name to JVM notation

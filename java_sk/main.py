@@ -3,32 +3,33 @@ import sys
 
 from parser.parser import parse
 import encoder
+import util
 
 import os
 pwd = os.path.dirname(__file__)
 root_dir = os.path.join(pwd, "..")
 res_dir = os.path.join(root_dir, "result")
 
-def match(**kwargs):
+def translate(**kwargs):
   # this will be stuff to use when matching 
   tmpl = kwargs.get('tmpl', None)
   prg = kwargs.get('prg', None)
   out_dir = kwargs.get('out_dir', res_dir)
   if tmpl:
     tmpl_ast = parse(tmpl)
+    util.add_object(prg)
     demo_name = encoder.main_cls(tmpl_ast).name
     print demo_name
   if prg:
     prg_ast = parse(prg)
+    util.add_object(prg_ast)
     demo_name = encoder.main_cls(prg_ast).name
-    print demo_name
+    print 'demo_name:', demo_name
     sk_dir = os.path.join(out_dir, '_'.join(["sk", demo_name]))
-    print sk_dir
     encoder.to_sk(prg_ast, sk_dir)
   elif not tmpl and not prg:
     parser.error("need to pass in some file")
   # TODO: rewrite holes -- ignoring for now
-  
 
   return 0
 
@@ -54,5 +55,5 @@ if __name__ == "__main__":
 
   (OPT, argv) = parser.parse_args()
   
-  if OPT.tmpl: sys.exit(match(tmpl=OPT.tmpl, prg=argv))
-  sys.exit(match(prg=argv))
+  if OPT.tmpl: sys.exit(translate(tmpl=OPT.tmpl, prg=argv))
+  sys.exit(translate(prg=argv))
