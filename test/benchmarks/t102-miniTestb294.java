@@ -1,7 +1,5 @@
-class F {
+class F extends A {
     int x;
-    int y;
-
     int getX() {
         return this.x;
     }

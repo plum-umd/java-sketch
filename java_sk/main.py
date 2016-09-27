@@ -1,7 +1,10 @@
 #! /usr/bin/env python
 import sys
 
+from ast.utils import utils
+from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 from parser.parser import parse
+
 import encoder
 import util
 
@@ -23,6 +26,7 @@ def translate(**kwargs):
   if prg:
     prg_ast = parse(prg)
     util.add_object(prg_ast)
+    utils.build_subs(prg_ast)
     demo_name = encoder.main_cls(prg_ast).name
     print 'demo_name:', demo_name
     sk_dir = os.path.join(out_dir, '_'.join(["sk", demo_name]))

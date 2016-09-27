@@ -1,6 +1,6 @@
 import os
 import shutil
-from itertools import ifilter
+from itertools import ifilter, ifilterfalse
 
 from ast.utils import utils
 from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
@@ -10,7 +10,6 @@ from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 # import operator as op
 # import re
 # from functools import partial
-# from itertools import chain, islice, ifilter, ifilterfalse
 
 """
 regarding paths and files
@@ -30,8 +29,10 @@ def add_object(ast):
   utils.extract_nodes(clss, ClassOrInterfaceDeclaration, ast)
   obj = ClassOrInterfaceDeclaration({u'name':u'Object',u'parentNode':{u'@r':ast.ati},u'atr':ast.ati,u'@i':0})
   def obj_subs(n):
-    if not n.extendsList: n.extendsList = [obj]
+    if not n.extendsList:
+      n.extendsList = [obj]
   map(obj_subs, clss)
+  ast.types.append(obj)
 
 def rm_subs(clss):
   return filter(lambda c: not c.extendsList, clss)
@@ -48,6 +49,16 @@ def sanitize_ty(tname):
   # if is_generic(_tname):
   #   _tname = u'_'.join(explode_generics(_tname))
   return _tname.replace('?', u'Object')
+
+def repr_fld(fld):
+  return u"{}_{}".format(fld.name, sanitize_ty(fld.parentNode.name))
+
+# ~ List.partition in OCaml
+# divide the given list into two lists:
+# one satisfying the conditoin and the other not satisfying the condition
+# e.g., \x . x > 0, [1, -2, -3, 4] -> [1, 4], [-2, -3]
+def partition(pred, lst):
+  return list(ifilter(pred, lst)), list(ifilterfalse(pred, lst))
 
 # # get the *sorted* list of file names in the designated path
 # # template/gui/awt -> [.../AWTEvent.java, .../BorderLayout.java, ...]
@@ -378,14 +389,6 @@ def sanitize_ty(tname):
 #   raise ListError("Not_found")
 
 
-# # ~ List.partition in OCaml
-# # divide the given list into two lists:
-# # one satisfying the conditoin and the other not satisfying the condition
-# # e.g., \x . x > 0, [1, -2, -3, 4] -> [1, 4], [-2, -3]
-# @takes(callable, list)
-# @returns(tuple_of(list))
-# def partition(pred, lst):
-#   return list(ifilter(pred, lst)), list(ifilterfalse(pred, lst))
 
 
 # # ~ List.split in OCaml
