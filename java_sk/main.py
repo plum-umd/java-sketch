@@ -2,7 +2,6 @@
 import sys
 
 from ast.utils import utils
-from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 from parser.parser import parse
 
 import encoder

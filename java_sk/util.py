@@ -25,8 +25,7 @@ def clean_dir(path):
       shutil.rmtree(os.path.join(root, d))
 
 def add_object(ast):
-  clss = []
-  utils.extract_nodes(clss, ClassOrInterfaceDeclaration, ast)
+  clss = utils.extract_nodes([ClassOrInterfaceDeclaration], ast)
   obj = ClassOrInterfaceDeclaration({u'name':u'Object',u'parentNode':{u'@r':ast.ati},u'atr':ast.ati,u'@i':0})
   def obj_subs(n):
     if not n.extendsList:
@@ -52,6 +51,16 @@ def sanitize_ty(tname):
 
 def repr_fld(fld):
   return u"{}_{}".format(fld.name, sanitize_ty(fld.parentNode.name))
+
+def repr_cls(cls):
+  cname = cls.name
+  # if cls.outer -- dont support inner/outer yet
+  return sanitize_ty(cname)
+
+def repr_mtd(mtd):
+  mname, cname = mtd.name, repr_cls(mtd.parentNode)
+  params = map(sanitize_ty, map(lambda p: p.typee.name, mtd.parameters))
+  return u'_'.join([mname, cname] + params)
 
 # ~ List.partition in OCaml
 # divide the given list into two lists:

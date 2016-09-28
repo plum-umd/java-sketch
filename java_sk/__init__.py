@@ -6,8 +6,9 @@ javaAST = os.path.abspath(os.path.join(pwd,'../../javaAST'))
 sys.path.insert(0, javaAST)
 
 T = {1:2}
-TYPES = {u'BYTE':u'byte',u'SHORT':u'short',u'LONG':u'long',u'OBYTE':'Byte',u'OSHORT':u'Short',u'OLONG':u'Long',u'OINT':u'Integer'}
-         
+JAVA_TYPES = {u'int':u'int',u'byte':u'byte',u'short':u'short',u'long':u'long',
+         u'Byte':'Byte',u'Short':u'Short',u'Long':u'Long',u'Int':u'Integer'}
+SKETCH_TYPES = {u'boolean':u'bit', u'this':'self'}    
 # from lib.enum import enum
 # import lib.const as C
 

@@ -2,20 +2,26 @@ import os
 import util
 import cStringIO
 import copy as cp
-from functools import partial
+from itertools import ifilterfalse
 
-from . import TYPES as T
+from . import JAVA_TYPES as T
+from . import SKETCH_TYPES as ST
 from ast.utils import utils
+from ast.body.parameter import Parameter
 from ast.body.fielddeclaration import FieldDeclaration
 from ast.body.methoddeclaration import MethodDeclaration
+from ast.body.constructordeclaration import ConstructorDeclaration
 from ast.body.typedeclaration import TypeDeclaration as td
 from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 
 # global constants that should be placed at every sketch file
 # Can I get rid of this? Don't care for global vars
 _const = u''
-_flds = {} # { cname.fname : new_fname }
-_s_flds = {} # { cname.fname : accessor }
+# _flds = {} # { cname.fname : new_fname }
+# _s_flds = {} # { cname.fname : accessor }
+
+# Don't really like this...
+# convert the given type name into a newer one
 _ty = {} # { tname : new_tname }
 
 # more globals to check out.
@@ -24,15 +30,13 @@ _const = u"""
 int S = {}; // length of arrays for Java collections
 """.format(magic_S)
 
-CLASS_NUMS = {u'Object':0,u'void':-1}
-    
 def find_main(prg):
   clss = []
-  utils.extract_nodes(clss, ClassOrInterfaceDeclaration, prg)
+  clss = utils.extract_nodes([ClassOrInterfaceDeclaration], prg)
 
   mtds = []
   for c in clss:
-    utils.extract_nodes(mtds, MethodDeclaration, c)
+    mtds = utils.extract_nodes([MethodDeclaration, ConstructorDeclaration], c)
     mtds = filter(lambda m: td.isStatic(m) and m.name == u'main', mtds)
   lenn = len(mtds)
   if lenn > 1:
@@ -42,8 +46,8 @@ def find_main(prg):
 def find_harness(prg):
   # TODO: these can also be specified with annotations -- we don't support those yet
   mtds = []
-  utils.extract_nodes(mtds, MethodDeclaration, prg)
-  mtds = filter(lambda m: td.isHarness(m), mtds)
+  mtds = utils.extract_nodes([MethodDeclaration, ConstructorDeclaration], prg)
+  mtds = filter(td.isHarness, mtds)
   return mtds[0] if mtds else None
 
 def main_cls(prg):
@@ -56,28 +60,83 @@ def main_cls(prg):
     return main
   elif harness:
     return harness
-  else: raise Exception("None of main() and @Harness is found")
+  else: raise Exception("No main(), @Harness, or harness found")
 
 def to_sk(prg, sk_dir):
   # clean up result directory
   if os.path.isdir(sk_dir): util.clean_dir(sk_dir)
   else: os.makedirs(sk_dir)
 
+  # type.sk
   # consist here -- skipping b/c it looks like mostly inheritance stuff
   # which i don't care about yet
   # pgr.consist()
   gen_type_sk(sk_dir, prg)
 
+  # cls.sk
+  cl_sks = []
+  clss = utils.extract_nodes([ClassOrInterfaceDeclaration], prg)
+  for cls in clss:
+    cls_sk = gen_cls_sk(sk_dir, cls)
+    if cls_sk: cl_sks.append(cls_sk)
+
+def gen_cls_sk(sk_dir, cls):
+  mtds = utils.extract_nodes([MethodDeclaration, ConstructorDeclaration], cls)
+  flds = utils.extract_nodes([FieldDeclaration], cls)
+  s_flds = filter(td.isStatic, flds)
+
+  if not cls.interface and not mtds and not s_flds: return None
+  # else: return None # interface or enum...not supported
+
+  cname = util.sanitize_ty(cls.name)
+  buf = cStringIO.StringIO()
+  buf.write("package {};\n".format(cname))
+  buf.write(_const)
+
+  buf.write('\n'.join(map(trans_fld, s_flds)))
+  if s_flds: buf.write('\n')
+
+  # init and clinit stuff being ignored here
+  print 'name:', cls.name, mtds
+  for m in mtds:
+    if m.parentNode.interface: continue
+    buf.write(to_func(m) + os.linesep)
+  print 'cls.name:', buf.getvalue()
+  cls_sk = cname + ".sk"
+  with open(os.path.join(sk_dir, cls_sk), 'w') as f:
+    f.write(buf.getvalue())
+    return cls_sk
+
+def to_func(mtd):
+  buf = cStringIO.StringIO()
+  # if td.isGenerator(mtd): buf.write(C.mod.GN + ' ') # dont have generators yet
+  if td.isHarness(mtd): buf.write(u'harness' + ' ')
+  ret_ty = trans_ty(mtd.typee.name)
+  buf.write(ret_ty + ' ' + trans_mname(mtd) + '(')
+
+  if td.isStatic(mtd): params = mtd.parameters
+  else:
+    self_ty = trans_ty(util.repr_cls(mtd.parentNode))
+    params = [Parameter({u'id':{u'name':u'self'},u'type':{u'@t':u'Type',u'name':self_ty}})] + mtd.parameters
+
+  def trans_params((ty, nm)):
+    return ' '.join([trans_ty(ty), nm])
+  buf.write(', '.join(map(lambda p: trans_params((p.typee.name, p.name)), params)))
+  buf.write(') {\n')
+  buf.write('}\n')
+  
+  return buf.getvalue()
+
 def gen_type_sk(sk_dir, prg):
+  CLASS_NUMS = {u'Object':0,u'void':-1}
+
   buf = cStringIO.StringIO()
   buf.write("package type;\n")
   buf.write(_const)
 
   # populate global dict of types, classes and their ids
-  clss = []
-  utils.extract_nodes(clss, ClassOrInterfaceDeclaration, prg)
+  clss = utils.extract_nodes([ClassOrInterfaceDeclaration], prg)
 
-  # bases is just Object?
   i = 1
   for c in clss:
     if c.name not in CLASS_NUMS.keys():
@@ -85,19 +144,19 @@ def gen_type_sk(sk_dir, prg):
       i = i + 1
   CLASS_NUMS[u'int'] = i
 
+  # bases is just Object?
   bases = util.rm_subs(clss)
   buf.write('\n'.join(filter(None, map(to_struct, bases))))
 
-  mtds = []
-  utils.extract_nodes(mtds, MethodDeclaration, prg)
+  mtds = utils.extract_nodes([MethodDeclaration, ConstructorDeclaration], prg)
   
   # argument number of methods
   arg_num = map(lambda m: str(len(m.parameters)), mtds)
   buf.write("""
-    #define _{0} {{ {1} }}
-    int {0}(int id) {{
-      return _{0}[id];
-    }}
+#define _{0} {{ {1} }}
+int {0}(int id) {{
+  return _{0}[id];
+}}
   """.format('argNum', ", ".join(arg_num)))
 
   # argument types of methods
@@ -105,28 +164,28 @@ def gen_type_sk(sk_dir, prg):
   for m in mtds:
     arg_typs.append('{'+', '.join(map(lambda p: str(CLASS_NUMS[p.typee.name]), m.parameters)) +'}')
   buf.write("""
-    #define _{0} {{ {1} }}
-    int {0}(int id, int idx) {{
-      return _{0}[id][idx];
-    }}
+#define _{0} {{ {1} }}
+int {0}(int id, int idx) {{
+  return _{0}[id][idx];
+}}
   """.format('argType', ", ".join(arg_typs)))
 
   # return type of methods
   ret_typs = map(lambda r: str(CLASS_NUMS[r.typee.name]), mtds)
   buf.write("""
-    #define _{0} {{ {1} }}
-    int {0}(int id) {{
-      return _{0}[id];
-    }}
+#define _{0} {{ {1} }}
+int {0}(int id) {{
+  return _{0}[id];
+}}
   """.format('retType', ", ".join(ret_typs)))
 
   # belonging class of methods
   belongs_to = map(lambda mtd: CLASS_NUMS[mtd.parentNode.name], mtds)
   buf.write("""
-    #define _{0} {{ {1} }}
-    int {0}(int id) {{
-      return _{0}[id];
-    }}
+#define _{0} {{ {1} }}
+int {0}(int id) {{
+  return _{0}[id];
+}}
   """.format(u'belongsTo', ", ".join(map(str, belongs_to))))
 
   # I have no idea why this is necesary...
@@ -144,10 +203,10 @@ def gen_type_sk(sk_dir, prg):
           map(lambda cls_j: str(utils.is_subclass(cls_i, cls_j)).lower(), clss) \
       ) + '}', clss)
   buf.write("""
-    #define _{0} {{ {1} }}
-    bit {0}(int i, int j) {{
-      return _{0}[i][j];
-    }}
+#define _{0} {{ {1} }}
+bit {0}(int i, int j) {{
+  return _{0}[i][j];
+}}
   """.format(u'subcls', ", ".join(subcls)))
   print buf.getvalue()
   with open(os.path.join(sk_dir, "type.sk"), 'w') as f:
@@ -157,43 +216,42 @@ def gen_type_sk(sk_dir, prg):
 
 # only called on base classes. This seems to just be Object?  
 def to_struct(cls):
-    # make mappings from static fields to corresponding accessors
-    flds = []
-    def gen_s_flds_accessors(cls):
-      # when this is called update the list of fields for cls
-      utils.extract_nodes(flds, FieldDeclaration, cls)
-      # s_flds = filter(lambda f: td.isStatic(f) and not td.isPrivate(f), flds)
-      # global _s_flds
-      # for fld in s_flds:
-      #   cname = cls.name
-      #   fid = '.'.join([cname, fld.name])
-      #   fname = utils.repr_fld(fld)
-      #   _s_flds[fid] = fname
-    cname = util.sanitize_ty(cls.name)
-    # global _ty
+  # this is a bit hacky, but it's the only way to access this from inside gen_s
+  flds = [utils.extract_nodes([FieldDeclaration], cls)]
 
-    # if cls.is_itf: # deal with iterfaces later
-    #   gen_s_flds_accessors(cls)
-        # ...
-        # return ''
+  # make mappings from static fields to corresponding accessors
+  def gen_s_flds_accessors(cls):
+    # when this is called update the list of fields for cls
+    flds[0] = utils.extract_nodes([FieldDeclaration], cls)
+    # s_flds = filter(lambda f: td.isStatic(f) and not td.isPrivate(f), flds)
+    # global _s_flds
+    # for fld in s_flds:
+    #   cname = cls.name
+    #   fid = '.'.join([cname, fld.name])
+    #   fname = utils.repr_fld(fld)
+    #   _s_flds[fid] = fname
+  cname = util.sanitize_ty(cls.name)
+  # global _ty
 
-    if not cls.extendsList:
-      cls = to_v_struct(cls)
-    gen_s_flds_accessors(cls)
+  # if cls.is_itf: # deal with iterfaces later
 
-    # for unique class numbering, add an identity mapping
-    # if cname not in _ty: _ty[cname] = cname
-
-    buf = cStringIO.StringIO()
-    buf.write("struct " + cname + " {\n  int hash;\n  ")
-
-    # to avoid static fields, which will be bound to a class-representing package
-    i_flds = filter(lambda f: not td.isStatic(f), flds)
-    buf.write('\n  '.join(map(trans_fld, i_flds)))
-    if i_flds: buf.write('\n')
-    buf.write("}\n")
+  if not cls.extendsList:
+    cls = to_v_struct(cls)
+  gen_s_flds_accessors(cls)
     
-    return buf.getvalue()
+  # for unique class numbering, add an identity mapping
+  # if cname not in _ty: _ty[cname] = cname
+  
+  buf = cStringIO.StringIO()
+  buf.write("struct " + cname + " {\n  int hash;\n  ")
+  
+  # to avoid static fields, which will be bound to a class-representing package
+  i_flds = filter(lambda f: not td.isStatic(f), flds[0])
+  buf.write('\n  '.join(map(trans_fld, i_flds)))
+  if i_flds: buf.write('\n')
+  buf.write("}\n")
+  
+  return buf.getvalue()
 
 def to_v_struct(cls):
   cls_d = {u'name':cls.name}
@@ -205,72 +263,47 @@ def to_v_struct(cls):
             {u'nameOfBoxedType': u'Integer', u'name': u'Int'}}}
   cls_v.childrenNodes.append(FieldDeclaration(fld_d))
 
-  # global _ty, _flds, _s_flds
-  def per_cls(sup_flds, cls):
-    # keep mappings from original subclasses to the representative
-    # so that subclasses can refer to the representative
-    # e.g., for C < B < A, { B : A, C : A }
-    cname = util.sanitize_ty(cls.name)
-    if cname != cls_v.name: # exclude the root of this family
-      _ty[cname] = cls_v.name
-      # if cls.is_inner: # to handle inner class w/ outer class name
-      #   _ty[unicode(repr(cls))] = cls_v.name
-    # for itf in cls.itfs: # interface stuff, don't care yet
-    #   pass
-    # for sup_fld in sup_flds.keys():
-    #   fld = sup_flds[sup_fld]
-    #   fname = util.repr_fld(fld)
-    #   fid = '.'.join([cname, sup_fld])
-    #   if td.isStatic(fld): _s_flds[fid] = fname
-    #   else: _flds[fid] = fname
-
-    cur_flds = cp.deepcopy(sup_flds)
+  def per_cls(cls):
+    if util.sanitize_ty(cls.name) != cls_v.name:
+      _ty[cls.name] = cls_v.name
+    flds = []
+    flds = utils.extract_nodes([FieldDeclaration], cls)
     def cp_fld(fld):
-      cur_flds[fld.name] = fld
-
       fname = util.repr_fld(fld)
       fld_v = cp.deepcopy(fld)
       fld_v.parentNode = cls_v
       fld_v.name = fname
       cls_v.members.append(fld_v)
       cls_v.childrenNodes.append(fld_v)
-
-      # def upd_flds(cname):
-      #   fid = '.'.join([cname, fld.name])
-      #   # if A.f1 exists and B redefines f1, then B.f1 : f1_A
-      #   # except for enum, which can (re)define its own fields
-      #   # e.g., SwingConstands.LEADING vs. GroupLayout.Alignment.LEADING
-      #   # if not cls.is_enum and (fid in _s_flds or fid in _flds): return
-      #   if td.isStatic(fld): _s_flds[fid] = fname
-      #   else: _flds[fid] = fname # { ..., B.f2 : f2_B }
-
-      # upd_flds(cname)
-    flds = []
-    utils.extract_nodes(flds, FieldDeclaration, cls)
     map(cp_fld, flds)
-    map(partial(per_cls, cur_flds), cls.subClasses)
-
-  per_cls({}, cls)
+    map(per_cls, cls.subClasses)
+  per_cls(cls)
 
   return cls_v
 
+# def trans_mname(cname, mtd, arg_typs=[]):
+def trans_mname(mtd):
+  # skipping memoized names and collections
+  # ignore ambiguous or not found
+  return util.repr_mtd(mtd)
+  
 def trans_fld(fld):
   buf = cStringIO.StringIO()
   buf.write(' '.join([trans_ty(fld.typee.name), fld.name]))
-  # let's ignore initialised fields
-  # if fld.is_static and fld.init and \
-  #     not fld.init.has_call and not fld.init.has_str and not fld.is_aliasing:
-    # buf.write(" = " + trans_e(None, fld.init))
+  # ignored initialised fields
   buf.write(';')
   return buf.getvalue()
 
 def trans_ty(tname):
+  # J => JAVA_TYPES, S => SKETCH_TYPES
   # ignoring a lot of 'advanced' type stuff
   _tname = util.sanitize_ty(tname.strip())
   
   global _ty
   r_ty = _tname
-  if _tname in [T[u'BYTE'], T[u'SHORT'], T[u'LONG'], T[u'OBYTE'], T[u'OSHORT'], \
-                T[u'OLONG'], T[u'OINT']]: r_ty = T[u'INT']
+  if _tname in ST: r_ty = ST[_tname]
+  elif _tname in [T[u'byte'], T[u'short'], T[u'long'], T[u'Byte'], T[u'Short'], 
+                T[u'Long'], T[u'Int']]: r_ty = T[u'int']
+  elif _tname in _ty: r_ty = _ty[_tname]
   return r_ty
 
