@@ -69,6 +69,12 @@ def repr_mtd(mtd):
 def partition(pred, lst):
   return list(ifilter(pred, lst)), list(ifilterfalse(pred, lst))
 
+# get the contets of buf, close it, return contents
+def get_and_close(buf):
+  v = buf.getvalue()
+  buf.close()
+  return v
+
 # # get the *sorted* list of file names in the designated path
 # # template/gui/awt -> [.../AWTEvent.java, .../BorderLayout.java, ...]
 # @takes(str, str)

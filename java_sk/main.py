@@ -3,8 +3,8 @@ import sys
 
 from ast.utils import utils
 from parser.parser import parse
+from encoder import Encoder
 
-import encoder
 import util
 
 import os
@@ -20,16 +20,17 @@ def translate(**kwargs):
   if tmpl:
     tmpl_ast = parse(tmpl)
     util.add_object(prg)
-    demo_name = encoder.main_cls(tmpl_ast).name
+    # demo_name = encoder.main_cls(tmpl_ast).name
     print demo_name
   if prg:
     prg_ast = parse(prg)
     util.add_object(prg_ast)
     utils.build_subs(prg_ast)
-    demo_name = encoder.main_cls(prg_ast).name
+    encoder = Encoder(prg_ast)
+    demo_name = encoder.main_cls().name
     print 'demo_name:', demo_name
-    sk_dir = os.path.join(out_dir, '_'.join(["sk", demo_name]))
-    encoder.to_sk(prg_ast, sk_dir)
+    encoder.sk_dir = os.path.join(out_dir, '_'.join(["sk", demo_name]))
+    encoder.to_sk()
   elif not tmpl and not prg:
     parser.error("need to pass in some file")
   # TODO: rewrite holes -- ignoring for now
