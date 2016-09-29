@@ -68,8 +68,7 @@ def to_sk(prg, sk_dir):
   else: os.makedirs(sk_dir)
 
   # type.sk
-  # consist here -- skipping b/c it looks like mostly inheritance stuff
-  # which i don't care about yet
+  # consist builds up some class hierarchies which I think we can do differently
   # pgr.consist()
   gen_type_sk(sk_dir, prg)
 
