@@ -1,11 +1,7 @@
 // class Base {
-//     // public int x;
-//     // static int y;
-//     // public void foo() {
-//     //     this.x = 0;
-//     // }
+//     int x;
 //     void a() {
-// 	int a;
+//     	x = 0;
 //     }
 // }
 
@@ -25,9 +21,16 @@
 // }
 
 class Test {
-    harness static void test (int x) {
-	int a;
+    int a;
+    harness static void test () {
+	// int a;
+	// int y, z;
         // Base b = new Base(x);
         // Ext e = new Ext(x);
     }
 }
+// class A {
+//     void a() {
+// 	int x;
+//     }
+// }

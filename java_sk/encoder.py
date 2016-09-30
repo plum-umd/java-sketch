@@ -110,11 +110,11 @@ class Encoder(object):
       params = [Parameter({u'id':{u'name':u'self'},u'type':{u'@t':u'Type',u'name':self_ty}})] + mtd.parameters
 
     buf.write(', '.join(map(lambda p: self.tltr.trans_params((p.typee.name, p.name)), params)))
-    buf.write(') {\n')
+    buf.write(')')
     self.tltr.mtd = mtd
     body = self.tltr.trans_stmt(mtd.body)
     buf.write(body)
-    buf.write('\n}\n')
+    print buf.getvalue()
     return util.get_and_close(buf)
 
   def gen_type_sk(self):
@@ -250,7 +250,8 @@ bit {0}(int i, int j) {{
     cls_v.childrenNodes.append(FieldDeclaration(fld_d))
 
     def per_cls(cls):
-      if util.sanitize_ty(cls.name) != cls_v.name:
+      cname = util.sanitize_ty(cls.name)
+      if cname != cls_v.name:
         self.tltr.ty[cls.name] = cls_v.name
       flds = []
       flds = utils.extract_nodes([FieldDeclaration], cls)
@@ -261,6 +262,11 @@ bit {0}(int i, int j) {{
         fld_v.name = fname
         cls_v.members.append(fld_v)
         cls_v.childrenNodes.append(fld_v)
+
+        fid = '.'.join([cname, fld.name])
+        if td.isStatic(fld): self.tltr.s_flds[fid] = fname
+        else: self.tltr.flds[fid] = fname # { ..., B.f2 : f2_B }
+
       map(cp_fld, flds)
       map(per_cls, cls.subClasses)
     per_cls(cls)

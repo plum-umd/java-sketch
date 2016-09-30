@@ -3,10 +3,11 @@ import cStringIO
 from .. import util
 
 import visit as v
+
 from ast import Operators as op
 from ast.node import Node
 from ast.compilationunit import CompilationUnit
-from ast.body.typedeclaration import TypeDeclaration
+from ast.body.typedeclaration import TypeDeclaration as td
 from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 from ast.body.fielddeclaration import FieldDeclaration
 from ast.body.variabledeclarator import VariableDeclarator
@@ -28,25 +29,29 @@ from ast.expr.generatorexpr import GeneratorExpr
 from ast.expr.objectcreationexpr import ObjectCreationExpr
 from ast.expr.fieldaccessexpr import FieldAccessExpr
 from ast.expr.thisexpr import ThisExpr
-from ast.type.primitivetype import PrimitiveType
-from ast.type.voidtype import VoidType
-from ast.type.referencetype import ReferenceType
-from ast.type.classorinterfacetype import ClassOrInterfaceType
+from ast.type.type import Type
 
 class Translator(object):
     JAVA_TYPES = {u'int':u'int',u'byte':u'byte',u'short':u'short',u'long':u'long',
                   u'Byte':'Byte',u'Short':u'Short',u'Long':u'Long',u'Int':u'Integer'}
     SKETCH_TYPES = {u'boolean':u'bit', u'this':'self'}
-    def __init__(self):
+    def __init__(self, **kwargs):
         # convert the given type name into a newer one
-        self.ty = {} # { tname : new_tname }
+        self._ty = {}     # { tname : new_tname }
+        self._flds = {}   # { cname.fname : new_fname }
+        self._s_flds = {} # { cname.fname : accessor }
 
         self._JT = self.JAVA_TYPES
         self._ST = self.SKETCH_TYPES
         self._buf = None
         self._mtd = None
         self._clss = None
-        
+
+        # for pretty printing
+        self._indentation = kwargs.get('indentation', "    ")
+        self._level = kwargs.get('level', 0)
+        self._indented = kwargs.get('indented', False)
+
     @v.on("node")
     def visit(self, node):
         """
@@ -55,24 +60,81 @@ class Translator(object):
         """
 
     @v.when(Node)
-    def visit(self, node):
-        print "Unimplemented node:", node
+    def visit(self, n):
+        if not isinstance(n, Type): print "Unimplemented node:", n
+        map(lambda x: x.accept(self), n.childrenNodes)
+
+    @v.when(VariableDeclarator)
+    def visit(self, n):
+        n.idd.accept(self)
+        if n.init:
+            self.printt(' = ')
+            n.init.accept(self)
+
+    @v.when(VariableDeclaratorId)
+    def visit(self, n):
+        print n.vtabb
+        self.printt(n.name)
 
     @v.when(BlockStmt)
-    def visit(self, node): map(lambda c: c.accept(self), node.childrenNodes)
+    def visit(self, n):
+        self.printLn('{')
+        if n.stmts:
+            self.indent()
+            for s in n.stmts:
+                s.accept(self)
+                self.printLn()
+            self.unindent()
+        self.printLn('}')
+
     @v.when(IfStmt)
-    def visit(self, node): map(lambda c: c.accept(self), node.childrenNodes)
+    def visit(self, n): map(lambda c: c.accept(self), n.childrenNodes)
+
     @v.when(ExpressionStmt)
-    def visit(self, node): map(lambda c: c.accept(self), node.childrenNodes)
+    def visit(self, n):
+        n.expr.accept(self)
+        self.printt(';')
+
+    @v.when(NameExpr)
+    def visit(self, n):
+        node = n.vtabb.get(n.name, None)
+        print node, node.name
+        print n.vtabb
+        if type(node) == FieldDeclaration:
+            new_fname = self.trans_fname(node)
+            if td.isStatic(node):
+                # access to the static field inside the same class
+                if node.parentNode == self.mtd.parentNode:
+                    self.printt(node.name)
+                # o.w., e.g., static constant in an interface, call the accessor
+                else: self.printt(new_fname + "()")
+            else: self.printt('.'.join([u'self', new_fname]))
+
     @v.when(VariableDeclarationExpr)
-    def visit(self, node): map(lambda c: c.accept(self), node.childrenNodes)
-    @v.when(PrimitiveType)
-    def visit(self, node): print node.nameOfBoxedType, node.name
+    def visit(self, n):
+        n.typee.accept(self)
+        self.printt(' ')
+        lenn = len(n.varss)
+        for i in xrange(lenn):
+            n.varss[i].accept(self)
+            if i+1 < lenn: self.printt(', ')
+        self.printt(';')
+
+    @v.when(AssignExpr)
+    def visit(self, n):
+        n.target.accept(self)
+        self.printt(' ')
+        self.printt(op[n.op.upper()])
+        self.printt(' ')
+        n.value.accept(self)
+
+    @v.when(Type)
+    def visit(self, n): self.printt(self.trans_ty(n.name))
 
     def trans_stmt(self, s):
-        buf = cStringIO.StringIO()
+        self.buf = cStringIO.StringIO()
         s.accept(self)
-        return util.get_and_close(buf)
+        return util.get_and_close(self.buf)
 
     # def trans_mname(cname, mtd, arg_typs=[]):
     def trans_mname(self, mtd):
@@ -92,6 +154,16 @@ class Translator(object):
         elif _tname in self.ty: r_ty = self.ty[_tname]
         return r_ty
 
+    def trans_fname(self, fld):
+        print fld
+        r_fld = fld.name
+        fid = '.'.join([fld.parentNode.name, fld.name])
+        if td.isStatic(fld) and fid in self.s_flds:
+            r_fld = self.s_flds[fid]
+        elif fid in self.flds:
+            r_fld = self.flds[fid]
+        return r_fld
+
     def trans_fld(self, fld):
         buf = cStringIO.StringIO()
         buf.write(' '.join([self.trans_ty(fld.typee.name), fld.name]))
@@ -101,6 +173,24 @@ class Translator(object):
 
     def trans_params(self, (ty, nm)):
       return ' '.join([self.trans_ty(ty), nm])
+
+    def indent(self): self._level += 1
+    def unindent(self): self._level -= 1
+    
+    def makeIndent(self):
+        for i in xrange(self._level): self._buf.write(self._indentation)
+
+    def printt(self, arg):
+        if not self._indented:
+            self.makeIndent()
+            self.indented = True
+        self.buf.write(arg)
+
+    def printLn(self, arg=None):
+        if arg:
+            self.printt(arg)
+        self.buf.write('\n')
+        self.indented = False
 
     @property
     def mtd(self): return self._mtd
@@ -113,14 +203,34 @@ class Translator(object):
     def buf(self, v): self._buf = v
 
     @property
+    def indented(self): return self._indented
+    @indented.setter
+    def indented(self, v): self._indented = v
+
+    @property
+    def indentation(self): return self._indentation
+    @indentation.setter
+    def indentation(self, v): self._indentation = v
+
+    @property
     def mtd(self): return self._mtd
     @mtd.setter
     def mtd(self, v): self._mtd = v
 
     @property
-    def clss(self): return self._clss
-    @clss.setter
-    def clss(self, v): self._clss = v
+    def ty(self): return self._ty
+    @ty.setter
+    def ty(self, v): self._ty = v
+
+    @property
+    def s_flds(self): return self._s_flds
+    @s_flds.setter
+    def s_flds(self, v): self._s_flds = v
+
+    @property
+    def flds(self): return self._flds
+    @flds.setter
+    def flds(self, v): self._flds = v
 
     @property
     def JT(self): return self._JT
