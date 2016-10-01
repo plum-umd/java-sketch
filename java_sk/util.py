@@ -49,8 +49,8 @@ def sanitize_ty(tname):
   #   _tname = u'_'.join(explode_generics(_tname))
   return _tname.replace('?', u'Object')
 
-def repr_fld(fld):
-  return u"{}_{}".format(fld.name, sanitize_ty(fld.parentNode.name))
+def repr_fld(var):
+  return u"{}_{}".format(var.name, sanitize_ty(var.parentNode.parentNode.name))
 
 def repr_cls(cls):
   cname = cls.name

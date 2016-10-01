@@ -166,7 +166,7 @@ class Translator(object):
 
     def trans_fld(self, fld):
         buf = cStringIO.StringIO()
-        buf.write(' '.join([self.trans_ty(fld.typee.name), fld.name]))
+        buf.write(' '.join([self.trans_ty(fld.typee.name), ', '.join(map(lambda v: v.name, fld.variables))]))
         # ignored initialised fields
         buf.write(';')
         return util.get_and_close(buf)

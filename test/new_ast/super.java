@@ -1,10 +1,15 @@
-// class Base {
-//     int x;
-//     void a() {
-//     	x = 0;
-//     }
-// }
+class A {
+    int f1;
+    int m() {
 
+    }
+}
+
+class B extends A {
+    int f2;
+    int m() {
+    }
+}
 // class Ext extends Base {
 //     int y;
 //     public Ext (int x) {
@@ -21,8 +26,7 @@
 // }
 
 class Test {
-    int a;
-    harness static void test () {
+    harness static void test (int x) {
 	// int a;
 	// int y, z;
         // Base b = new Base(x);

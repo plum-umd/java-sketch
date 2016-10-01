@@ -43,15 +43,14 @@ class Encoder(object):
     return mtds[0] if mtds else None
 
   def main_cls(self):
-    # get the main method and pull it's corresponding class out of the symtab.
+    # get the main method and pull it's corresponding class out of the gsymtab.
     main = self.find_main()
-    main = self.prg.symtab[main.atr] if main else None
+    main = self.prg.gsymtab[main.atr] if main else None
     harness = self.find_harness()
-    harness = self.prg.symtab[harness.atr] if harness else None
-    if main:
-      return main
-    elif harness:
-      return harness
+    harness = self.prg.gsymtab[harness.atr] if harness else None
+
+    if main: return main
+    elif harness: return harness
     else: raise Exception("No main(), @Harness, or harness found")
 
   def to_sk(self):
@@ -59,9 +58,9 @@ class Encoder(object):
     if os.path.isdir(self.sk_dir): util.clean_dir(self.sk_dir)
     else: os.makedirs(self.sk_dir)
 
+    # consist builds up some class hierarchies which happens in main.py
+    # prg.consist()
     # type.sk
-    # consist builds up some class hierarchies which I think we can do differently
-    # pgr.consist()
     self.gen_type_sk()
 
     # cls.sk
@@ -118,15 +117,13 @@ class Encoder(object):
     return util.get_and_close(buf)
 
   def gen_type_sk(self):
-    CLASS_NUMS = {u'Object':0,u'void':-1}
-
     buf = cStringIO.StringIO()
     buf.write("package type;\n")
     buf.write(self._const)
 
     # populate global dict of types, classes and their ids
     clss = utils.extract_nodes([ClassOrInterfaceDeclaration], self.prg)
-
+    CLASS_NUMS = {u'Object':0,u'void':-1}
     i = 1
     for c in clss:
       if c.name not in CLASS_NUMS.keys():
@@ -239,9 +236,12 @@ bit {0}(int i, int j) {{
     buf.write("}\n")
     return util.get_and_close(buf)
 
+  # from the given base class,
+  # generate a virtual struct that encompasses all the class in the hierarchy
   def to_v_struct(self, cls):
     cls_d = {u'name':cls.name}
     cls_v = ClassOrInterfaceDeclaration(cls_d)
+    # add __cid field
     fld_d = {u'variables':
              {u'@e': [{u'@t': u'VariableDeclarator', u'id': {u'name': u'__cid'}}]},
              u'@t': u'FieldDeclaration', u'type':
@@ -256,17 +256,19 @@ bit {0}(int i, int j) {{
       flds = []
       flds = utils.extract_nodes([FieldDeclaration], cls)
       def cp_fld(fld):
-        fname = util.repr_fld(fld)
-        fld_v = cp.deepcopy(fld)
-        fld_v.parentNode = cls_v
-        fld_v.name = fname
-        cls_v.members.append(fld_v)
-        cls_v.childrenNodes.append(fld_v)
-
-        fid = '.'.join([cname, fld.name])
-        if td.isStatic(fld): self.tltr.s_flds[fid] = fname
-        else: self.tltr.flds[fid] = fname # { ..., B.f2 : f2_B }
-
+        # fields can contain multiple declarations so we're going to expand them
+        # to each be their own field with sanitized names and such
+        for v in fld.variables:
+          fld_v = cp.deepcopy(fld)
+          vv = cp.deepcopy(v)
+          vv.name = util.repr_fld(vv)
+          fld_v.variables = [vv]
+          fld_v.parentNode = cls_v
+          cls_v.members.append(fld_v)
+          cls_v.childrenNodes.append(fld_v)
+          fid = '.'.join([cname, vv.name])
+          if td.isStatic(fld): self.tltr.s_flds[fid] = '_'.join(vv.name)
+          else: self.tltr.flds[fid] = vv.name # { ..., B.f2 : f2_B }
       map(cp_fld, flds)
       map(per_cls, cls.subClasses)
     per_cls(cls)
