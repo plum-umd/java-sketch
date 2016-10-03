@@ -50,7 +50,7 @@ def sanitize_ty(tname):
   return _tname.replace('?', u'Object')
 
 def repr_fld(var):
-  return u"{}_{}".format(var.name, sanitize_ty(var.parentNode.parentNode.name))
+  return u"{}_{}".format(var.name, sanitize_ty(var.typee.name))
 
 def repr_cls(cls):
   cname = cls.name
@@ -74,6 +74,9 @@ def get_and_close(buf):
   v = buf.getvalue()
   buf.close()
   return v
+
+# def is_str(x):
+#   return len(x) >= 2 and (x[0] == '"' and x[-1] == '"')
 
 # # get the *sorted* list of file names in the designated path
 # # template/gui/awt -> [.../AWTEvent.java, .../BorderLayout.java, ...]
@@ -261,8 +264,6 @@ def get_and_close(buf):
 # # check if quoted with double quotation marks
 # @takes(unicode)
 # @returns(bool)
-# def is_str(x):
-#   return len(x) >= 2 and (x[0] == '"' and x[-1] == '"')
 
 
 # # check if quoted with single quotation marks

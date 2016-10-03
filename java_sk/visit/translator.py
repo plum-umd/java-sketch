@@ -30,6 +30,10 @@ from ast.expr.objectcreationexpr import ObjectCreationExpr
 from ast.expr.fieldaccessexpr import FieldAccessExpr
 from ast.expr.thisexpr import ThisExpr
 from ast.type.type import Type
+from ast.type.primitivetype import PrimitiveType
+from ast.type.voidtype import VoidType
+from ast.type.referencetype import ReferenceType
+from ast.type.classorinterfacetype import ClassOrInterfaceType
 
 class Translator(object):
     JAVA_TYPES = {u'int':u'int',u'byte':u'byte',u'short':u'short',u'long':u'long',
@@ -61,8 +65,9 @@ class Translator(object):
 
     @v.when(Node)
     def visit(self, n):
-        if not isinstance(n, Type): print "Unimplemented node:", n
-        map(lambda x: x.accept(self), n.childrenNodes)
+        print 'node:', n
+        # if isinstance(n, Type): print 'un:', n
+        # map(lambda x: x.accept(self), n.childrenNodes)
 
     @v.when(VariableDeclarator)
     def visit(self, n):
@@ -73,7 +78,6 @@ class Translator(object):
 
     @v.when(VariableDeclaratorId)
     def visit(self, n):
-        print n.vtabb
         self.printt(n.name)
 
     @v.when(BlockStmt)
@@ -85,11 +89,28 @@ class Translator(object):
                 s.accept(self)
                 self.printLn()
             self.unindent()
-        self.printLn('}')
+        self.printt('}')
 
     @v.when(IfStmt)
-    def visit(self, n): map(lambda c: c.accept(self), n.childrenNodes)
-
+    def visit(self, node):
+        self.printt('if (')
+        node.condition.accept(self)
+        thenBlock = isinstance(node.thenStmt, BlockStmt)
+        self.printt(') ')
+        if not thenBlock: self.indent()
+        node.thenStmt.accept(self)
+        if not thenBlock: self.unindent()
+        if node.elseStmt:
+            self.printLn()
+            elseIf = isinstance(node.elseStmt, IfStmt)
+            elseBlock = isinstance(node.elseStmt, BlockStmt)
+            if elseIf or elseBlock: self.printt('else ')
+            else:
+                self.printLn('else')
+                self.indent()
+            node.elseStmt.accept(self)
+            if not (elseIf or elseBlock): self.unindent()
+                
     @v.when(ExpressionStmt)
     def visit(self, n):
         n.expr.accept(self)
@@ -97,9 +118,9 @@ class Translator(object):
 
     @v.when(NameExpr)
     def visit(self, n):
-        node = n.vtabb.get(n.name, None)
-        print node, node.name
-        print n.vtabb
+        node = n.symtab.get(n.name, None)
+        print 'node:', node, 'node.name:', node.name
+        print 'n.symtab:', n.symtab
         if type(node) == FieldDeclaration:
             new_fname = self.trans_fname(node)
             if td.isStatic(node):
@@ -109,6 +130,14 @@ class Translator(object):
                 # o.w., e.g., static constant in an interface, call the accessor
                 else: self.printt(new_fname + "()")
             else: self.printt('.'.join([u'self', new_fname]))
+        # this and super will be handled differently once i implement them
+        # elif e.id in [C.J.THIS, C.J.SUP]: buf.write(C.SK.self)
+        # string constants will be handled differently too
+        # elif util.is_str(e.name): # constant string, such as "Hello, World"
+            # str_init = trans_mname(C.J.STR, C.J.STR, [u"char[]", C.J.i, C.J.i])
+            # s_hash = hash(e.id) % 256 # hash string value itself
+            # buf.write("{}(new Object(hash={}), {}, 0, {})".format(str_init, s_hash, e.id, len(e.id)))
+        else: self.printt(node.name)
 
     @v.when(VariableDeclarationExpr)
     def visit(self, n):
@@ -118,7 +147,6 @@ class Translator(object):
         for i in xrange(lenn):
             n.varss[i].accept(self)
             if i+1 < lenn: self.printt(', ')
-        self.printt(';')
 
     @v.when(AssignExpr)
     def visit(self, n):
@@ -128,8 +156,50 @@ class Translator(object):
         self.printt(' ')
         n.value.accept(self)
 
-    @v.when(Type)
-    def visit(self, n): self.printt(self.trans_ty(n.name))
+    @v.when(BinaryExpr)
+    def visit(self, node):
+        node.left.accept(self)
+        self.printt(' ')
+        self.printt(op[node.op.upper()])
+        self.printt(' ')
+        node.right.accept(self)
+
+    @v.when(ObjectCreationExpr)
+    def visit(self, n):
+        if n.scope:
+            n.getScope.accept(self);
+            self.printt(".");
+        self.printt("new ");
+        n.typee.accept(self);
+        self.printArguments(n.args)
+    
+    @v.when(ClassOrInterfaceType)
+    def visit(self, n):
+        self.printt(self.trans_ty(n.typee.name))
+
+    @v.when(IntegerLiteralExpr)
+    def visit(self, node):
+        self.printt(node.value)
+
+    @v.when(VoidType)
+    def visit(self, node):
+        self.printt(node.name)
+
+    @v.when(ReferenceType)
+    def visit(self, n):
+        n.typee.accept(self)
+
+    def printCommaList(self, args):
+        if args:
+            lenn = len(args)
+            for i in xrange(lenn):
+                args[i].accept(self)
+                if i+1 < lenn: self.printt(', ')
+
+    def printArguments(self, args):
+        self.printt('(')
+        self.printCommaList(args)
+        self.printt(')')
 
     def trans_stmt(self, s):
         self.buf = cStringIO.StringIO()
@@ -141,12 +211,11 @@ class Translator(object):
         # skipping memoized names and collections
         # ignore ambiguous or not found
         return util.repr_mtd(mtd)
-
+    
     def trans_ty(self, tname):
         # self.JT => JAVA_TYPES, self.ST => SKETCH_TYPES
         # ignoring a lot of 'advanced' type stuff
         _tname = util.sanitize_ty(tname.strip())
-  
         r_ty = _tname
         if _tname in self.ST: r_ty = self.ST[_tname]
         elif _tname in [self.JT[u'byte'], self.JT[u'short'], self.JT[u'long'], self.JT[u'Byte'], self.JT[u'Short'], 
@@ -155,7 +224,6 @@ class Translator(object):
         return r_ty
 
     def trans_fname(self, fld):
-        print fld
         r_fld = fld.name
         fid = '.'.join([fld.parentNode.name, fld.name])
         if td.isStatic(fld) and fid in self.s_flds:
@@ -166,7 +234,7 @@ class Translator(object):
 
     def trans_fld(self, fld):
         buf = cStringIO.StringIO()
-        buf.write(' '.join([self.trans_ty(fld.typee.name), ', '.join(map(lambda v: v.name, fld.variables))]))
+        buf.write(' '.join([self.trans_ty(fld.typee.name), fld.name]))
         # ignored initialised fields
         buf.write(';')
         return util.get_and_close(buf)

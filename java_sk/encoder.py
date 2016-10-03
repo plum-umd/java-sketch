@@ -2,6 +2,7 @@ import os
 import util
 import cStringIO
 import copy as cp
+from itertools import ifilterfalse
 
 from visit.translator import Translator
 
@@ -22,12 +23,25 @@ class Encoder(object):
     self._prg = program
     self._sk_dir = ''
 
+    # populate global dict of types, classes and their ids
+    self._clss = utils.extract_nodes([ClassOrInterfaceDeclaration], self._prg)
+    self._CLASS_NUMS = {u'Object':0,u'void':-1}
+    i = 1
+    for c in self._clss:
+      print c.name
+      if c.name not in self._CLASS_NUMS.keys():
+        self._CLASS_NUMS[c.name] = i
+        i = i + 1
+    self._CLASS_NUMS[u'int'] = i
+    print self._CLASS_NUMS
+    self._mtds = utils.extract_nodes([MethodDeclaration], self._prg)
+    self._cons = utils.extract_nodes([ConstructorDeclaration], self._prg)
+
+    self._primitives = ['int', 'void', 'double', 'byte', 'short', 'long']
+
   def find_main(self):
-    clss = []
-    clss = utils.extract_nodes([ClassOrInterfaceDeclaration], self.prg)
-  
     mtds = []
-    for c in clss:
+    for c in self.clss:
       mtds = utils.extract_nodes([MethodDeclaration, ConstructorDeclaration], c)
       mtds = filter(lambda m: td.isStatic(m) and m.name == u'main', mtds)
       lenn = len(mtds)
@@ -37,9 +51,7 @@ class Encoder(object):
 
   def find_harness(self):
     # TODO: these can also be specified with annotations -- we don't support those yet
-    mtds = []
-    mtds = utils.extract_nodes([MethodDeclaration, ConstructorDeclaration], self.prg)
-    mtds = filter(td.isHarness, mtds)
+    mtds = filter(td.isHarness, self.mtds)
     return mtds[0] if mtds else None
 
   def main_cls(self):
@@ -70,6 +82,32 @@ class Encoder(object):
       cls_sk = self.gen_cls_sk(cls)
       if cls_sk: cl_sks.append(cls_sk)
 
+    self.gen_log_sk()
+
+  def gen_log_sk(self):
+    buf = cStringIO.StringIO()
+    buf.write("package log;\n")
+    buf.write(self._const)
+
+    buf.write("// distinct hash values for runtime objects\n"
+              "int obj_cnt = 0;\n"
+              "int nonce () {\n"
+              "    return obj_cnt++;\n"
+              "}\n\n")
+
+    # factory of Object
+    buf.write(("// factory of Object\n"
+               "Object alloc(int ty) {{\n"
+               "   Object {0} = new Object(hash=nonce(), __cid=ty);\n"
+               "   return {0};\n"
+               "}}\n\n".format(u'self')))
+
+    for k,v in self.CLASS_NUMS.items():
+      if k not in self.primitives:
+        buf.write("int {k} () {{ return {v}; }}\n".format(**locals()))
+
+    print buf.getvalue()
+
   def gen_cls_sk(self, cls):
     mtds = utils.extract_nodes([MethodDeclaration, ConstructorDeclaration], cls)
     flds = utils.extract_nodes([FieldDeclaration], cls)
@@ -84,12 +122,17 @@ class Encoder(object):
     buf.write(self.const)
 
     buf.write('\n'.join(map(self.tltr.trans_fld, s_flds)))
-    if s_flds: buf.write('\n')
+    if s_flds: buf.write('\n\n')
 
     # init and clinit stuff being ignored here
     for m in mtds:
       if m.parentNode.interface: continue
       buf.write(self.to_func(m) + os.linesep)
+
+    for fld in ifilterfalse(td.isPrivate, s_flds):
+      accessor = self.tltr.trans_fname(fld)
+      buf.write("{0} {1}() {{ return {2}; }}\n\n".
+                format(self.tltr.trans_ty(fld.typee.name), accessor, fld.name))
 
     cls_sk = cname + ".sk"
     with open(os.path.join(self.sk_dir, cls_sk), 'w') as f:
@@ -106,10 +149,11 @@ class Encoder(object):
     if td.isStatic(mtd): params = mtd.parameters
     else:
       self_ty = self.tltr.trans_ty(util.repr_cls(mtd.parentNode))
-      params = [Parameter({u'id':{u'name':u'self'},u'type':{u'@t':u'Type',u'name':self_ty}})] + mtd.parameters
+      params = [Parameter({u'id':{u'name':u'self'},
+                           u'type':{u'@t':u'Type',u'name':self_ty}})] + mtd.parameters
 
     buf.write(', '.join(map(lambda p: self.tltr.trans_params((p.typee.name, p.name)), params)))
-    buf.write(')')
+    buf.write(') ')
     self.tltr.mtd = mtd
     body = self.tltr.trans_stmt(mtd.body)
     buf.write(body)
@@ -121,64 +165,47 @@ class Encoder(object):
     buf.write("package type;\n")
     buf.write(self._const)
 
-    # populate global dict of types, classes and their ids
-    clss = utils.extract_nodes([ClassOrInterfaceDeclaration], self.prg)
-    CLASS_NUMS = {u'Object':0,u'void':-1}
-    i = 1
-    for c in clss:
-      if c.name not in CLASS_NUMS.keys():
-        CLASS_NUMS[c.name] = i
-      i = i + 1
-    CLASS_NUMS[u'int'] = i
-
     # bases is just Object?
-    bases = util.rm_subs(clss)
+    bases = util.rm_subs(self._clss)
     buf.write('\n'.join(filter(None, map(self.to_struct, bases))))
 
     mtds = utils.extract_nodes([MethodDeclaration, ConstructorDeclaration], self.prg)
   
     # argument number of methods
     arg_num = map(lambda m: str(len(m.parameters)), mtds)
-    buf.write("""
-#define _{0} {{ {1} }}
-int {0}(int id) {{
-  return _{0}[id];
-}}
-  """.format('argNum', ", ".join(arg_num)))
+    buf.write(("#define _{0} {{ {1} }}\n"
+               "int {0}(int id) {{\n"
+               "return _{0}[id];\n"
+               "}}\n\n".format('argNum', ", ".join(arg_num))))
 
     # argument types of methods
     arg_typs = []
     for m in mtds:
-      arg_typs.append('{'+', '.join(map(lambda p: str(CLASS_NUMS[p.typee.name]), m.parameters)) +'}')
-    buf.write("""
-#define _{0} {{ {1} }}
-int {0}(int id, int idx) {{
-  return _{0}[id][idx];
-}}
-  """.format('argType', ", ".join(arg_typs)))
+      arg_typs.append('{'+', '.join(map(lambda p: str(self.CLASS_NUMS[p.typee.name]),
+                                        m.parameters)) +'}')
+    buf.write(("#define _{0} {{ {1} }}\n"
+               "int {0}(int id, int idx) {{\n"
+               "return _{0}[id][idx];\n"
+               "}}\n\n".format('argType', ", ".join(arg_typs))))
 
-    # return type of methods
-    ret_typs = map(lambda r: str(CLASS_NUMS[r.typee.name]), mtds)
-    buf.write("""
-#define _{0} {{ {1} }}
-int {0}(int id) {{
-  return _{0}[id];
-}}
-  """.format('retType', ", ".join(ret_typs)))
+    # return type of methods 
+    ret_typs = map(lambda r: str(self.CLASS_NUMS[r.typee.name]), mtds)
+    buf.write("#define _{0} {{ {1} }}\n"
+              "int {0}(int id) {{\n"
+              "return _{0}[id];\n"
+              "}}\n\n".format('retType', ", ".join(ret_typs)))
 
     # belonging class of methods
-    belongs_to = map(lambda mtd: CLASS_NUMS[mtd.parentNode.name], mtds)
-    buf.write("""
-#define _{0} {{ {1} }}
-int {0}(int id) {{
-  return _{0}[id];
-}}
-  """.format(u'belongsTo', ", ".join(map(str, belongs_to))))
+    belongs_to = map(lambda mtd: self.CLASS_NUMS[mtd.parentNode.name], mtds)
+    buf.write("#define _{0} {{ {1} }}\n"
+              "int {0}(int id) {{\n"
+              "return _{0}[id];\n"
+              "}}\n\n".format(u'belongsTo', ", ".join(map(str, belongs_to))))
 
     # I have no idea why this is necesary...
     # rearrange the classes
     int_cls = ClassOrInterfaceDeclaration({u'name':u'int'})
-    obj_cls, clss = util.partition(lambda x: x.name == u'Object', clss)
+    obj_cls, clss = util.partition(lambda x: x.name == u'Object', self.clss)
     obj_cls = obj_cls[0]
     obj_cls.subClasses.append(int_cls)
     clss = [obj_cls] + clss
@@ -189,12 +216,10 @@ int {0}(int id) {{
       map(lambda cls_j: str(utils.is_subclass(cls_i, cls_j)).lower(),
           clss)) + '}',
                  clss)
-    buf.write("""
-#define _{0} {{ {1} }}
-bit {0}(int i, int j) {{
-  return _{0}[i][j];
-}}
-  """.format(u'subcls', ", ".join(subcls)))
+    buf.write("#define _{0} {{ {1} }}\n"
+              "bit {0}(int i, int j) {{\n"
+              "return _{0}[i][j];\n"
+              "}}\n\n".format(u'subcls', ", ".join(subcls)))
     with open(os.path.join(self.sk_dir, "type.sk"), 'w') as f:
       f.write(buf.getvalue())
       # logging.info("encoding " + f.name)
@@ -258,17 +283,14 @@ bit {0}(int i, int j) {{
       def cp_fld(fld):
         # fields can contain multiple declarations so we're going to expand them
         # to each be their own field with sanitized names and such
-        for v in fld.variables:
-          fld_v = cp.deepcopy(fld)
-          vv = cp.deepcopy(v)
-          vv.name = util.repr_fld(vv)
-          fld_v.variables = [vv]
-          fld_v.parentNode = cls_v
-          cls_v.members.append(fld_v)
-          cls_v.childrenNodes.append(fld_v)
-          fid = '.'.join([cname, vv.name])
-          if td.isStatic(fld): self.tltr.s_flds[fid] = '_'.join(vv.name)
-          else: self.tltr.flds[fid] = vv.name # { ..., B.f2 : f2_B }
+        fname = util.repr_fld(fld)
+        fld_v = cp.deepcopy(fld)
+        fld_v.parentNode = cls_v
+        cls_v.members.append(fld_v)
+        cls_v.childrenNodes.append(fld_v)
+        fid = '.'.join([cname, fld.name])
+        if td.isStatic(fld): self.tltr.s_flds[fid] = fname
+        else: self.tltr.flds[fid] = fname # { ..., B.f2 : f2_B }
       map(cp_fld, flds)
       map(per_cls, cls.subClasses)
     per_cls(cls)
@@ -289,4 +311,29 @@ bit {0}(int i, int j) {{
   def const(self): return self._const
   @const.setter
   def const(self, v): self._const = v
+
+  @property
+  def clss(self): return self._clss
+  @clss.setter
+  def clss(self, v): self._clss = v
+
+  @property
+  def mtds(self): return self._mtds
+  @mtds.setter
+  def mtds(self, v): self._mtds = v
+
+  @property
+  def cons(self): return self._cons
+  @cons.setter
+  def cons(self, v): self._cons = v
+
+  @property
+  def primitives(self): return self._primitives
+  @primitives.setter
+  def primitives(self, v): self._primitives = v
+
+  @property
+  def CLASS_NUMS(self): return self._CLASS_NUMS
+  @CLASS_NUMS.setter
+  def CLASS_NUMS(self, v): self._CLASS_NUMS = v
 

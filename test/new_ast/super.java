@@ -1,15 +1,15 @@
 class A {
-    int f1;
+    static int f1;
     int m() {
-
+	A.f1 = 0;
     }
 }
 
-class B extends A {
-    int f2;
-    int m() {
-    }
-}
+// class B extends A {
+//     int f2;
+//     int m() {
+//     }
+// }
 // class Ext extends Base {
 //     int y;
 //     public Ext (int x) {
