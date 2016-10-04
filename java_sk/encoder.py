@@ -1,6 +1,7 @@
 import os
 import util
 import cStringIO
+import math
 import copy as cp
 from itertools import ifilterfalse
 
@@ -94,17 +95,17 @@ class Encoder(object):
     buf = cStringIO.StringIO()
     
     # --bnd-cbits: the number of bits for integer holes
-    bits = max(5, int(math.ceil(math.log(len(methods()), 2))))
+    bits = max(5, int(math.ceil(math.log(len(self.mtds), 2))))
     buf.write("pragma options \"--bnd-cbits {}\";\n".format(bits))
     
     # --bnd-unroll-amnt: the unroll amount for loops
     unroll_amnt = None # use a default value if not set
-    unroll_amnt = magic_S # TODO: other criteria?
+    unroll_amnt = self.magic_S # TODO: other criteria?
     if unroll_amnt:
       buf.write("pragma options \"--bnd-unroll-amnt {}\";\n".format(unroll_amnt))
       
       # --bnd-inline-amnt: bounds inlining to n levels of recursion
-      inline_amnt = None # use a default value if not set
+    inline_amnt = None # use a default value if not set
     # setting it 1 means there is no recursion
     if inline_amnt:
       buf.write("pragma options \"--bnd-inline-amnt {}\";\n".format(inline_amnt))
@@ -113,6 +114,9 @@ class Encoder(object):
     sks = ["log.sk", "type.sk"] + cls_sks
     for sk in sks:
       buf.write("include \"{}\";\n".format(sk))
+
+    with open(os.path.join(self.osk_dir, "main.sk"), 'w') as f:
+      f.write(util.get_and_close(buf))
 
   def gen_log_sk(self):
     buf = cStringIO.StringIO()

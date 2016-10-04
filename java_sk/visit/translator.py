@@ -49,7 +49,7 @@ class Translator(object):
         self._ST = self.SKETCH_TYPES
         self._buf = None
         self._mtd = None
-        self._clss = None
+        self._cls = None
 
         # for pretty printing
         self._indentation = kwargs.get('indentation', "    ")
@@ -90,6 +90,14 @@ class Translator(object):
                 self.printLn()
             self.unindent()
         self.printt('}')
+
+    @v.when(ReturnStmt)
+    def visit(self, node):
+        self.printt('return')
+        if node.expr:
+            self.printt(' ')
+            node.expr.accept(self)
+        self.printt(';')
 
     @v.when(IfStmt)
     def visit(self, node):
@@ -155,6 +163,21 @@ class Translator(object):
         self.printt(op[n.op.upper()])
         self.printt(' ')
         n.value.accept(self)
+
+    @v.when(FieldAccessExpr)
+    def visit(self, n):
+        rcv_ty = n.scope.symtab[n.scope.name].typee.name
+        fid = '.'.join([rcv_ty, n.field])
+        if fid in self.s_flds:
+            new_fname = self.s_flds[fid]
+            if self.mtd and rcv_ty == self.cls.name: 
+                self.printt(n.scope.name)
+            else:
+                self.printt(new_fname+'()')
+        elif fid in self.flds:
+            new_fname = self.flds[fid]
+            self.printt('.'.join([n.scope.name, n.field]))
+        else: exit('Field being accessed that isnt known')
 
     @v.when(BinaryExpr)
     def visit(self, node):
@@ -284,7 +307,14 @@ class Translator(object):
     @property
     def mtd(self): return self._mtd
     @mtd.setter
-    def mtd(self, v): self._mtd = v
+    def mtd(self, v):
+        self._mtd = v
+        self._cls = v.parentNode
+
+    @property
+    def cls(self): return self._cls
+    @cls.setter
+    def cls(self, v): self._cls = v
 
     @property
     def ty(self): return self._ty
