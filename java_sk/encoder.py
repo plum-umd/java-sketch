@@ -36,7 +36,7 @@ class Encoder(object):
     self._mtds = utils.extract_nodes([MethodDeclaration], self._prg)
     self._cons = utils.extract_nodes([ConstructorDeclaration], self._prg)
     self._MTD_NUMS = {} 
-    i = 1
+    i = 0
     for m in self._mtds+self._cons:
       if m.name not in self._MTD_NUMS.keys():
         self._MTD_NUMS[m] = i
@@ -106,7 +106,7 @@ class Encoder(object):
                "   return {0};\n"
                "}}\n\n".format(u'self')))
 
-    buf.write("\n// distinct class IDs\n")
+    buf.write("// distinct class IDs\n")
     for k,v in self.CLASS_NUMS.items():
       if k not in self.primitives:
         buf.write("int {k} () {{ return {v}; }}\n".format(**locals()))
@@ -114,9 +114,8 @@ class Encoder(object):
     buf.write("\n// distinct method IDs\n")
     for mtd,idd in self._MTD_NUMS.items():
       mname = util.sanitize_mname(util.repr_mtd(mtd))
-      buf.write("int {mname}_ent () {{ return {v}; }}\n".format(**locals()))
-      buf.write("int {mname}_ext () {{ return -{v}; }}\n".format(**locals()))
-    buf.write('\n')
+      buf.write("int {mname}_ent () {{ return {idd}; }}\n".format(**locals()))
+      buf.write("int {mname}_ext () {{ return -{idd}; }}\n\n".format(**locals()))
     print '\nlog.sk'
     print buf.getvalue()
     with open(os.path.join(self.sk_dir, "log.sk"), 'w') as f:
