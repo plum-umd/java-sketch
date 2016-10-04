@@ -17,8 +17,8 @@ from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 class Encoder(object):
   def __init__(self, program):
     # more globals to check out.
-    magic_S = 7
-    self._const = u"\nint S = {}; // length of arrays for Java collections\n\n".format(magic_S)
+    self._magic_S = 7
+    self._const = u"\nint S = {}; // length of arrays for Java collections\n\n".format(self._magic_S)
     self._tltr = Translator()
     self._prg = program
     self._sk_dir = ''
@@ -80,13 +80,39 @@ class Encoder(object):
     self.gen_type_sk()
 
     # cls.sk
-    cl_sks = []
+    cls_sks = []
     clss = utils.extract_nodes([ClassOrInterfaceDeclaration], self.prg)
     for cls in clss:
       cls_sk = self.gen_cls_sk(cls)
-      if cls_sk: cl_sks.append(cls_sk)
+      if cls_sk: cls_sks.append(cls_sk)
 
     self.gen_log_sk()
+    self.gen_main_sk(cls_sks)
+
+  def gen_main_sk(self, cls_sks):
+    # main.sk that imports all the other sketch files
+    buf = cStringIO.StringIO()
+    
+    # --bnd-cbits: the number of bits for integer holes
+    bits = max(5, int(math.ceil(math.log(len(methods()), 2))))
+    buf.write("pragma options \"--bnd-cbits {}\";\n".format(bits))
+    
+    # --bnd-unroll-amnt: the unroll amount for loops
+    unroll_amnt = None # use a default value if not set
+    unroll_amnt = magic_S # TODO: other criteria?
+    if unroll_amnt:
+      buf.write("pragma options \"--bnd-unroll-amnt {}\";\n".format(unroll_amnt))
+      
+      # --bnd-inline-amnt: bounds inlining to n levels of recursion
+      inline_amnt = None # use a default value if not set
+    # setting it 1 means there is no recursion
+    if inline_amnt:
+      buf.write("pragma options \"--bnd-inline-amnt {}\";\n".format(inline_amnt))
+      buf.write("pragma options \"--bnd-bound-mode CALLSITE\";\n")
+        
+    sks = ["log.sk", "type.sk"] + cls_sks
+    for sk in sks:
+      buf.write("include \"{}\";\n".format(sk))
 
   def gen_log_sk(self):
     buf = cStringIO.StringIO()
@@ -341,6 +367,11 @@ class Encoder(object):
   def cons(self): return self._cons
   @cons.setter
   def cons(self, v): self._cons = v
+
+  @property
+  def magic_S(self): return self._magic_S
+  @magic_S.setter
+  def magic_S(self, v): self._magic_S = v
 
   @property
   def primitives(self): return self._primitives
