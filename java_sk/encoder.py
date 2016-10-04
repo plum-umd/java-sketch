@@ -18,7 +18,7 @@ class Encoder(object):
   def __init__(self, program):
     # more globals to check out.
     magic_S = 7
-    self._const = u"int S = {}; // length of arrays for Java collections\n".format(magic_S)
+    self._const = u"\nint S = {}; // length of arrays for Java collections\n\n".format(magic_S)
     self._tltr = Translator()
     self._prg = program
     self._sk_dir = ''
@@ -28,15 +28,19 @@ class Encoder(object):
     self._CLASS_NUMS = {u'Object':0,u'void':-1}
     i = 1
     for c in self._clss:
-      print c.name
       if c.name not in self._CLASS_NUMS.keys():
         self._CLASS_NUMS[c.name] = i
         i = i + 1
     self._CLASS_NUMS[u'int'] = i
-    print self._CLASS_NUMS
+
     self._mtds = utils.extract_nodes([MethodDeclaration], self._prg)
     self._cons = utils.extract_nodes([ConstructorDeclaration], self._prg)
-
+    self._MTD_NUMS = {} 
+    i = 1
+    for m in self._mtds+self._cons:
+      if m.name not in self._MTD_NUMS.keys():
+        self._MTD_NUMS[m] = i
+        i = i + 1
     self._primitives = ['int', 'void', 'double', 'byte', 'short', 'long']
 
   def find_main(self):
@@ -102,11 +106,21 @@ class Encoder(object):
                "   return {0};\n"
                "}}\n\n".format(u'self')))
 
+    buf.write("\n// distinct class IDs\n")
     for k,v in self.CLASS_NUMS.items():
       if k not in self.primitives:
         buf.write("int {k} () {{ return {v}; }}\n".format(**locals()))
 
+    buf.write("\n// distinct method IDs\n")
+    for mtd,idd in self._MTD_NUMS.items():
+      mname = util.sanitize_mname(util.repr_mtd(mtd))
+      buf.write("int {mname}_ent () {{ return {v}; }}\n".format(**locals()))
+      buf.write("int {mname}_ext () {{ return -{v}; }}\n".format(**locals()))
+    buf.write('\n')
+    print '\nlog.sk'
     print buf.getvalue()
+    with open(os.path.join(self.sk_dir, "log.sk"), 'w') as f:
+      f.write(util.get_and_close(buf))
 
   def gen_cls_sk(self, cls):
     mtds = utils.extract_nodes([MethodDeclaration, ConstructorDeclaration], cls)
@@ -137,7 +151,7 @@ class Encoder(object):
     cls_sk = cname + ".sk"
     with open(os.path.join(self.sk_dir, cls_sk), 'w') as f:
       f.write(util.get_and_close(buf))
-      return cls_sk
+    return cls_sk
 
   def to_func(self, mtd):
     buf = cStringIO.StringIO()
@@ -157,7 +171,6 @@ class Encoder(object):
     self.tltr.mtd = mtd
     body = self.tltr.trans_stmt(mtd.body)
     buf.write(body)
-    print buf.getvalue()
     return util.get_and_close(buf)
 
   def gen_type_sk(self):
@@ -185,21 +198,21 @@ class Encoder(object):
                                         m.parameters)) +'}')
     buf.write(("#define _{0} {{ {1} }}\n"
                "int {0}(int id, int idx) {{\n"
-               "return _{0}[id][idx];\n"
+               "  return _{0}[id][idx];\n"
                "}}\n\n".format('argType', ", ".join(arg_typs))))
 
     # return type of methods 
     ret_typs = map(lambda r: str(self.CLASS_NUMS[r.typee.name]), mtds)
     buf.write("#define _{0} {{ {1} }}\n"
               "int {0}(int id) {{\n"
-              "return _{0}[id];\n"
+              "  return _{0}[id];\n"
               "}}\n\n".format('retType', ", ".join(ret_typs)))
 
     # belonging class of methods
     belongs_to = map(lambda mtd: self.CLASS_NUMS[mtd.parentNode.name], mtds)
     buf.write("#define _{0} {{ {1} }}\n"
               "int {0}(int id) {{\n"
-              "return _{0}[id];\n"
+              " return _{0}[id];\n"
               "}}\n\n".format(u'belongsTo', ", ".join(map(str, belongs_to))))
 
     # I have no idea why this is necesary...
@@ -218,8 +231,10 @@ class Encoder(object):
                  clss)
     buf.write("#define _{0} {{ {1} }}\n"
               "bit {0}(int i, int j) {{\n"
-              "return _{0}[i][j];\n"
+              " return _{0}[i][j];\n"
               "}}\n\n".format(u'subcls', ", ".join(subcls)))
+    # print '\ntype.sk:'
+    # print buf.getvalue()
     with open(os.path.join(self.sk_dir, "type.sk"), 'w') as f:
       f.write(buf.getvalue())
       # logging.info("encoding " + f.name)
@@ -285,6 +300,7 @@ class Encoder(object):
         # to each be their own field with sanitized names and such
         fname = util.repr_fld(fld)
         fld_v = cp.deepcopy(fld)
+        fld_v.name = fname
         fld_v.parentNode = cls_v
         cls_v.members.append(fld_v)
         cls_v.childrenNodes.append(fld_v)

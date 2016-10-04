@@ -65,7 +65,7 @@ class Translator(object):
 
     @v.when(Node)
     def visit(self, n):
-        print 'node:', n
+        print 'unimplemented node:', n
         # if isinstance(n, Type): print 'un:', n
         # map(lambda x: x.accept(self), n.childrenNodes)
 
@@ -119,8 +119,8 @@ class Translator(object):
     @v.when(NameExpr)
     def visit(self, n):
         node = n.symtab.get(n.name, None)
-        print 'node:', node, 'node.name:', node.name
-        print 'n.symtab:', n.symtab
+        # print 'node:', node, 'node.name:', node.name
+        # print 'n.symtab:', n.symtab
         if type(node) == FieldDeclaration:
             new_fname = self.trans_fname(node)
             if td.isStatic(node):
@@ -218,8 +218,9 @@ class Translator(object):
         _tname = util.sanitize_ty(tname.strip())
         r_ty = _tname
         if _tname in self.ST: r_ty = self.ST[_tname]
-        elif _tname in [self.JT[u'byte'], self.JT[u'short'], self.JT[u'long'], self.JT[u'Byte'], self.JT[u'Short'], 
-                  self.JT[u'Long'], self.JT[u'Int']]: r_ty = self.JT[u'int']
+        elif _tname in [self.JT[u'byte'], self.JT[u'short'], self.JT[u'long'], \
+                        self.JT[u'Byte'], self.JT[u'Short'], self.JT[u'Long'], \
+                        self.JT[u'Int']]: r_ty = self.JT[u'int']
         elif _tname in self.ty: r_ty = self.ty[_tname]
         return r_ty
 
