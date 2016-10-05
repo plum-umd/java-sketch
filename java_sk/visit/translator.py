@@ -166,18 +166,17 @@ class Translator(object):
 
     @v.when(FieldAccessExpr)
     def visit(self, n):
+        cls = self.scope_to_cls(n, n.field)
+        fld = cls.symtab[n.field]
         rcv_ty = n.scope.symtab[n.scope.name].typee.name
-        fid = '.'.join([rcv_ty, n.field])
-        if fid in self.s_flds:
-            new_fname = self.s_flds[fid]
+        new_fname = self.trans_fname(fld)
+        if td.isStatic(fld):
             if self.mtd and rcv_ty == self.cls.name: 
-                self.printt(n.scope.name)
+                self.printt(new_fname)
             else:
                 self.printt(new_fname+'()')
-        elif fid in self.flds:
-            new_fname = self.flds[fid]
-            self.printt('.'.join([n.scope.name, n.field]))
-        else: exit('Field being accessed that isnt known')
+        else:
+            self.printt('.'.join([n.scope.name, new_fname]))
 
     @v.when(BinaryExpr)
     def visit(self, node):
@@ -196,6 +195,19 @@ class Translator(object):
         n.typee.accept(self);
         self.printArguments(n.args)
     
+    @v.when(MethodCallExpr)
+    def visit(self, n):
+        if n.scope:
+            cls = self.scope_to_cls(n, n.name)
+            mtd = cls.symtab[n.name]
+            print mtd, n.args
+            arg_typs = [t.typee for t in n.args]
+            print arg_typs
+            # n.scope.accept(self)
+            # self.printt('.')
+        # self.printt(n.name)
+        # self.printArguments(n.args)
+
     @v.when(ClassOrInterfaceType)
     def visit(self, n):
         self.printt(self.trans_ty(n.typee.name))
@@ -203,6 +215,10 @@ class Translator(object):
     @v.when(IntegerLiteralExpr)
     def visit(self, node):
         self.printt(node.value)
+
+    @v.when(PrimitiveType)
+    def visit(self, node):
+        self.printt(node.name)
 
     @v.when(VoidType)
     def visit(self, node):
@@ -283,6 +299,17 @@ class Translator(object):
             self.printt(arg)
         self.buf.write('\n')
         self.indented = False
+        
+    def scope_to_cls(self, node, name):
+        s_tab = node.scope.symtab
+        # static access
+        if name in s_tab: 
+            n = s_tab[node.scope.name]
+        # non-static
+        else: 
+            typ = s_tab[node.scope.typee.name].typee.name
+            n = s_tab[typ]
+        return n
 
     @property
     def mtd(self): return self._mtd
