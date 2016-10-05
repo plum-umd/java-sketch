@@ -168,14 +168,14 @@ class Encoder(object):
     if s_flds: buf.write('\n\n')
 
     # init and clinit stuff being ignored here
-    for m in mtds:
-      if m.parentNode.interface: continue
-      buf.write(self.to_func(m) + os.linesep)
-
     for fld in ifilterfalse(td.isPrivate, s_flds):
       accessor = self.tltr.trans_fname(fld)
       buf.write("{0} {1}() {{ return {2}; }}\n\n".
                 format(self.tltr.trans_ty(fld.typee.name), accessor, fld.name))
+
+    for m in mtds:
+      if m.parentNode.interface: continue
+      buf.write(self.to_func(m) + os.linesep)
 
     cls_sk = cname + ".sk"
     with open(os.path.join(self.sk_dir, cls_sk), 'w') as f:

@@ -5,6 +5,7 @@ from .. import util
 import visit as v
 
 from ast import Operators as op
+from ast.utils import utils
 from ast.node import Node
 from ast.compilationunit import CompilationUnit
 from ast.body.typedeclaration import TypeDeclaration as td
@@ -29,6 +30,7 @@ from ast.expr.generatorexpr import GeneratorExpr
 from ast.expr.objectcreationexpr import ObjectCreationExpr
 from ast.expr.fieldaccessexpr import FieldAccessExpr
 from ast.expr.thisexpr import ThisExpr
+from ast.expr.enclosedexpr import EnclosedExpr
 from ast.type.type import Type
 from ast.type.primitivetype import PrimitiveType
 from ast.type.voidtype import VoidType
@@ -124,6 +126,15 @@ class Translator(object):
         n.expr.accept(self)
         self.printt(';')
 
+    @v.when(AssertStmt)
+    def visit(self, n):
+        self.printt("assert ")
+        n.check.accept(self)
+        if n.msg:
+            self.printt(" : ")
+            n.msg.accept(self)
+        self.printt(";")
+
     @v.when(NameExpr)
     def visit(self, n):
         node = n.symtab.get(n.name, None)
@@ -132,8 +143,8 @@ class Translator(object):
         if type(node) == FieldDeclaration:
             new_fname = self.trans_fname(node)
             if td.isStatic(node):
-                # access to the static field inside the same class
-                if node.parentNode == self.mtd.parentNode:
+                # access to static field inside the same class
+                if utils.get_coid(node).name == self.mtd.parentNode.name:
                     self.printt(node.name)
                 # o.w., e.g., static constant in an interface, call the accessor
                 else: self.printt(new_fname + "()")
@@ -171,8 +182,8 @@ class Translator(object):
         rcv_ty = n.scope.symtab[n.scope.name].typee.name
         new_fname = self.trans_fname(fld)
         if td.isStatic(fld):
-            if self.mtd and rcv_ty == self.cls.name: 
-                self.printt(new_fname)
+            if self.mtd and rcv_ty == self.cls.name:
+                self.printt(n.field)
             else:
                 self.printt(new_fname+'()')
         else:
@@ -189,40 +200,43 @@ class Translator(object):
     @v.when(ObjectCreationExpr)
     def visit(self, n):
         if n.scope:
-            n.getScope.accept(self);
-            self.printt(".");
-        self.printt("new ");
-        n.typee.accept(self);
+            n.getScope.accept(self)
+            self.printt(".")
+        self.printt("new ")
+        n.typee.accept(self)
         self.printArguments(n.args)
     
     @v.when(MethodCallExpr)
     def visit(self, n):
         if n.scope:
-            cls = self.scope_to_cls(n, n.name)
-            mtd = cls.symtab[n.name]
-            print mtd, n.args
-            arg_typs = [t.typee for t in n.args]
-            print arg_typs
-            # n.scope.accept(self)
-            # self.printt('.')
-        # self.printt(n.name)
-        # self.printArguments(n.args)
+            rcv_ty = self.scope_to_cls(n, n.name)
+            callee = rcv_ty.symtab[n.name]
+            self.trans_call(callee, n)
+        else:
+            callee = n.symtab[n.name]
+            self.trans_call(callee, n)
+
+    @v.when(EnclosedExpr)
+    def visit(self, n):
+        self.printt('(')
+        if n.inner: n.inner.accept(self)
+        self.printt(')')
 
     @v.when(ClassOrInterfaceType)
     def visit(self, n):
         self.printt(self.trans_ty(n.typee.name))
 
     @v.when(IntegerLiteralExpr)
-    def visit(self, node):
-        self.printt(node.value)
+    def visit(self, n):
+        self.printt(n.value)
 
     @v.when(PrimitiveType)
-    def visit(self, node):
-        self.printt(node.name)
+    def visit(self, n):
+        self.printt(n.name)
 
     @v.when(VoidType)
-    def visit(self, node):
-        self.printt(node.name)
+    def visit(self, n):
+        self.printt(n.name)
 
     @v.when(ReferenceType)
     def visit(self, n):
@@ -239,6 +253,13 @@ class Translator(object):
         self.printt('(')
         self.printCommaList(args)
         self.printt(')')
+
+    def trans_call(self, callee, callexpr):
+      if not td.isStatic(callee): args = [callexpr.scope] + callexpr.args
+      else: args = callexpr.args
+      mid = self.trans_mname(callee)
+      self.printt(mid)
+      self.printArguments(args)
 
     def trans_stmt(self, s):
         self.buf = cStringIO.StringIO()
@@ -303,10 +324,10 @@ class Translator(object):
     def scope_to_cls(self, node, name):
         s_tab = node.scope.symtab
         # static access
-        if name in s_tab: 
+        if name in s_tab:
             n = s_tab[node.scope.name]
         # non-static
-        else: 
+        else:
             typ = s_tab[node.scope.typee.name].typee.name
             n = s_tab[typ]
         return n
