@@ -78,8 +78,9 @@ def main(jsk_paths, out_dir=res_dir, log_lv=logging.DEBUG):
   # place to keep sketch's temporary files
   opts.extend(["--fe-tempdir", out_dir])
   opts.append("--fe-keep-tmp")
-  # custom codegen
 
+  # custom codegen
+  opts.extend(["--fe-custom-codegen", codegen_jar])
 
   ## run Sketch
   output_path = os.path.join(out_dir, "output", "{}.txt".format(demo_name))

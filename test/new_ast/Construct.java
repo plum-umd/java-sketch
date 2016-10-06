@@ -1,6 +1,5 @@
 class F {
     int x;
-    // F() { }
     void m() {
 	x = 0;
     }
@@ -8,6 +7,12 @@ class F {
 
 class Construct {
     harness static void test(int v) {
-	F t = new F();
+	F f1 = new F();
+	F f2 = new F();
+
+	f1.m();
+	f2.m();
+
+	assert 0 == 1;
     }
 }

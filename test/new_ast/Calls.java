@@ -18,5 +18,7 @@ class Calls {
 	int v0 = A.m0();
 	A a = new A();
 	int v1 = a.m1();
+
+	assert v1 == A.x;
     }
 }

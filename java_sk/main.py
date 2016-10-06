@@ -4,10 +4,11 @@ import sys
 from ast.utils import utils
 from parser.parser import parse
 from encoder import Encoder
+import sketch
 
 import util
-
 import os
+
 pwd = os.path.dirname(__file__)
 root_dir = os.path.join(pwd, "..")
 res_dir = os.path.join(root_dir, "result")
@@ -17,7 +18,11 @@ def translate(kwargs={}):
   tmpl = kwargs.get('tmpl', None)
   prg = kwargs.get('prg', None)
   out = kwargs.get('out_dir') 
+  sk = kwargs.get('sketch') 
   out_dir = out if out else res_dir
+  sk_dir = ''
+  codegen_jar = os.path.join(root_dir, "codegen", "lib", "codegen.jar")
+
   if tmpl: pass
     # tmpl_ast = parse(tmpl)
     # util.add_object(prg)
@@ -29,9 +34,32 @@ def translate(kwargs={}):
     utils.build_subs(prg_ast)
     encoder = Encoder(prg_ast)
     demo_name = encoder.main_cls().name
-    encoder.sk_dir = os.path.join(out_dir, '_'.join(["sk", demo_name]))
+    sk_dir = os.path.join(out_dir, '_'.join(["sk", demo_name]))
+    encoder.sk_dir = sk_dir
     print 'demo_name:', demo_name, encoder.sk_dir
     encoder.to_sk()
+
+  # Sketch options
+  opts = []
+  # place to keep sketch's temporary files
+  opts.extend(["--fe-tempdir", out_dir])
+  opts.append("--fe-keep-tmp")
+
+  # custom codegen
+  opts.extend(["--fe-custom-codegen", codegen_jar])
+
+  #run Sketch
+  output_path = os.path.join(out_dir, "output", "{}.txt".format(demo_name))
+  if sk:
+    if os.path.exists(output_path): os.remove(output_path)
+    sketch.set_default_option(opts)
+
+    print sk_dir, output_path
+    _, r = sketch.run(sk_dir, output_path)
+
+    # if sketch fails, halt the process here
+    if not r: return 1
+
   elif not tmpl and not prg:
     parser.error("need to pass in some file")
   # TODO: rewrite holes -- ignoring for now
@@ -57,6 +85,10 @@ if __name__ == "__main__":
   parser.add_option("-o", "--out_dir",
     dest="out_dir", default=None,
     help="use models of Java libraries")
+  parser.add_option("--no-sketch",
+    action="store_false", dest="sketch", default=True,
+    help="proceed the whole process without running Sketch")
+
   (OPT, argv) = parser.parse_args()
   OPT.prg = argv
 

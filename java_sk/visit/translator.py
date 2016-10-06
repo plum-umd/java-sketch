@@ -255,11 +255,12 @@ class Translator(object):
         self.printt(')')
 
     def trans_call(self, callee, callexpr):
-      if not td.isStatic(callee): args = [callexpr.scope] + callexpr.args
-      else: args = callexpr.args
-      mid = self.trans_mname(callee)
-      self.printt(mid)
-      self.printArguments(args)
+        if not td.isStatic(callee) and callexpr.scope: 
+            args = [callexpr.scope] + callexpr.args
+        else: args = callexpr.args
+        mid = self.trans_mname(callee)
+        self.printt(mid)
+        self.printArguments(args)
 
     def trans_stmt(self, s):
         self.buf = cStringIO.StringIO()
