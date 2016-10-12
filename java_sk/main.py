@@ -85,4 +85,4 @@ if __name__ == "__main__":
   OPT.prg = argv
 
   if OPT.tmpl: sys.exit(translate(**vars(OPT)))
-  sys.exit(translate(vars(OPT)))
+  sys.exit(translate(**vars(OPT)))
