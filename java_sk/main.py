@@ -32,6 +32,7 @@ def translate(**kwargs):
   prg_ast = parse(prg)
   util.add_object(prg_ast)
   utils.build_subs(prg_ast)
+
   encoder = Encoder(prg_ast)
   demo_name = encoder.main_cls().name
   sk_dir = os.path.join(out_dir, '_'.join(["sk", demo_name]))

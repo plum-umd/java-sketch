@@ -63,7 +63,7 @@ def repr_cls(cls):
 def repr_mtd(mtd):
   mname, cname = mtd.name, repr_cls(mtd.parentNode)
   params = map(sanitize_ty, map(lambda p: p.typee.name, mtd.parameters))
-  return u'_'.join([mname, cname] + params)
+  return u'_'.join([mname, cname] + params) if cname else u'_'.join([mname] + params)
 
 # ~ List.partition in OCaml
 # divide the given list into two lists:

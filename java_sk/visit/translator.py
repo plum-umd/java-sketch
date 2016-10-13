@@ -37,10 +37,14 @@ from ast.type.voidtype import VoidType
 from ast.type.referencetype import ReferenceType
 from ast.type.classorinterfacetype import ClassOrInterfaceType
 
+from .. import builtins
+
 class Translator(object):
     JAVA_TYPES = {u'int':u'int',u'byte':u'byte',u'short':u'short',u'long':u'long',
                   u'Byte':'Byte',u'Short':u'Short',u'Long':u'Long',u'Int':u'Integer'}
     SKETCH_TYPES = {u'boolean':u'bit', u'this':'self'}
+    SKETCH_BUILTIN = builtins
+  
     def __init__(self, **kwargs):
         # convert the given type name into a newer one
         self._ty = {}     # { tname : new_tname }
@@ -138,11 +142,10 @@ class Translator(object):
         self.printt(";")
 
     # expr
+
     @v.when(NameExpr)
     def visit(self, n):
         node = n.symtab.get(n.name, None)
-        # print 'node:', node, 'node.name:', node.name
-        # print 'n.symtab:', n.symtab
         if type(node) == FieldDeclaration:
             new_fname = self.trans_fname(node)
             if td.isStatic(node):
@@ -165,10 +168,7 @@ class Translator(object):
     def visit(self, n):
         n.typee.accept(self)
         self.printt(' ')
-        lenn = len(n.varss)
-        for i in xrange(lenn):
-            n.varss[i].accept(self)
-            if i+1 < lenn: self.printt(', ')
+        self.printCommaList(n.varss)
 
     @v.when(AssignExpr)
     def visit(self, n):
@@ -213,10 +213,12 @@ class Translator(object):
     def visit(self, n):
         if n.scope:
             rcv_ty = self.scope_to_cls(n, n.name)
-            callee = rcv_ty.symtab[n.name]
+            sym = rcv_ty.symtab.get(n.name)
+            callee = sym if sym else self.SKETCH_BUILTIN[n.name]
             self.trans_call(callee, n)
         else:
-            callee = n.symtab[n.name]
+            sym = n.symtab.get(n.name)
+            callee = sym if sym else self.SKETCH_BUILTIN[n.name]
             self.trans_call(callee, n)
 
     @v.when(EnclosedExpr)
@@ -233,7 +235,7 @@ class Translator(object):
     # type
     @v.when(ClassOrInterfaceType)
     def visit(self, n):
-        self.printt(self.trans_ty(n.typee.name))
+        self.printt(self.trans_ty(n.name))
 
     @v.when(IntegerLiteralExpr)
     def visit(self, n):
@@ -264,7 +266,7 @@ class Translator(object):
         self.printt(')')
 
     def trans_call(self, callee, callexpr):
-        if not td.isStatic(callee) and callexpr.scope: 
+        if not td.isStatic(callee) and callexpr.scope:
             args = [callexpr.scope] + callexpr.args
         else: args = callexpr.args
         mid = self.trans_mname(callee)
@@ -288,8 +290,8 @@ class Translator(object):
         _tname = util.sanitize_ty(tname.strip())
         r_ty = _tname
         if _tname in self.ST: r_ty = self.ST[_tname]
-        elif _tname in [self.JT[u'byte'], self.JT[u'short'], self.JT[u'long'], \
-                        self.JT[u'Byte'], self.JT[u'Short'], self.JT[u'Long'], \
+        elif _tname in [self.JT[u'byte'], self.JT[u'short'], self.JT[u'long'],
+                        self.JT[u'Byte'], self.JT[u'Short'], self.JT[u'Long'],
                         self.JT[u'Int']]: r_ty = self.JT[u'int']
         elif _tname in self.ty: r_ty = self.ty[_tname]
         return r_ty

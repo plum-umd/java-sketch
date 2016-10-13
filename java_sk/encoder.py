@@ -3,6 +3,7 @@ import util
 import cStringIO
 import math
 import copy as cp
+import logging
 from itertools import ifilterfalse
 
 from visit.translator import Translator
@@ -78,16 +79,20 @@ class Encoder(object):
     # consist builds up some class hierarchies which happens in main.py
     # prg.consist()
     # type.sk
+    logging.info('generating type.sk')
     self.gen_type_sk()
 
     # cls.sk
+    logging.info('generating cls.sk')
     cls_sks = []
     clss = utils.extract_nodes([ClassOrInterfaceDeclaration], self.prg)
     for cls in clss:
       cls_sk = self.gen_cls_sk(cls)
       if cls_sk: cls_sks.append(cls_sk)
 
+    logging.info('generating log.sk')
     self.gen_log_sk()
+    logging.info('generating main.sk')
     self.gen_main_sk(cls_sks)
 
   def gen_main_sk(self, cls_sks):
@@ -193,6 +198,7 @@ class Encoder(object):
       params = [Parameter({u'id':{u'name':u'self'},
                            u'type':{u'@t':u'Type',u'name':self_ty}})] + mtd.parameters
 
+    # print 'mtd:', mtd.parentNode.name
     buf.write(', '.join(map(lambda p: self.tltr.trans_params((p.typee.name, p.name)), params)))
     buf.write(') ')
     self.tltr.mtd = mtd
