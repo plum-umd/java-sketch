@@ -146,8 +146,6 @@ class Encoder(object):
       mname = util.sanitize_mname(util.repr_mtd(mtd))
       buf.write("int {mname}_ent () {{ return {idd}; }}\n".format(**locals()))
       buf.write("int {mname}_ext () {{ return -{idd}; }}\n\n".format(**locals()))
-    # print '\nlog.sk'
-    # print buf.getvalue()
     with open(os.path.join(self.sk_dir, "log.sk"), 'w') as f:
       f.write(util.get_and_close(buf))
 
@@ -262,8 +260,6 @@ class Encoder(object):
               "bit {0}(int i, int j) {{\n"
               " return _{0}[i][j];\n"
               "}}\n\n".format(u'subcls', ", ".join(subcls)))
-    # print '\ntype.sk:'
-    # print buf.getvalue()
     with open(os.path.join(self.sk_dir, "type.sk"), 'w') as f:
       f.write(buf.getvalue())
       # logging.info("encoding " + f.name)

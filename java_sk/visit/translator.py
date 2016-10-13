@@ -71,6 +71,7 @@ class Translator(object):
         # if isinstance(n, Type): print 'un:', n
         # map(lambda x: x.accept(self), n.childrenNodes)
 
+    # body
     @v.when(VariableDeclarator)
     def visit(self, n):
         n.idd.accept(self)
@@ -82,6 +83,7 @@ class Translator(object):
     def visit(self, n):
         self.printt(n.name)
 
+    # stmt
     @v.when(BlockStmt)
     def visit(self, n):
         self.printLn('{')
@@ -135,6 +137,7 @@ class Translator(object):
             n.msg.accept(self)
         self.printt(";")
 
+    # expr
     @v.when(NameExpr)
     def visit(self, n):
         node = n.symtab.get(n.name, None)
@@ -222,6 +225,12 @@ class Translator(object):
         if n.inner: n.inner.accept(self)
         self.printt(')')
 
+    @v.when(GeneratorExpr)
+    def visit(self, n):
+        if n.isHole: self.printt('??')
+        else: print '\n!!generator not implemented!!\n'
+
+    # type
     @v.when(ClassOrInterfaceType)
     def visit(self, n):
         self.printt(self.trans_ty(n.typee.name))

@@ -1,5 +1,7 @@
 #! /usr/bin/env python
 import sys
+import logging
+import logging.config
 
 from ast.utils import utils
 from parser.parser import parse
@@ -14,13 +16,19 @@ root_dir = os.path.join(pwd, "..")
 res_dir = os.path.join(root_dir, "result")
 
 def translate(**kwargs):
+  ## logging configuration
+  log_lvl = kwargs.get('log_lvl', logging.DEBUG)
+  logging.config.fileConfig(os.path.join(pwd, "logging.conf"))
+  logging.getLogger().setLevel(log_lvl)
+
   prg = kwargs.get('prg', None)
-  out = kwargs.get('out_dir') 
-  sk = kwargs.get('sketch') 
+  out = kwargs.get('out_dir')
+  sk = kwargs.get('sketch')
   out_dir = out if out else res_dir
   sk_dir = ''
   codegen_jar = os.path.join(root_dir, "codegen", "lib", "codegen.jar")
-
+  
+  logging.info('parsing {}'.format(prg))
   prg_ast = parse(prg)
   util.add_object(prg_ast)
   utils.build_subs(prg_ast)
@@ -28,7 +36,7 @@ def translate(**kwargs):
   demo_name = encoder.main_cls().name
   sk_dir = os.path.join(out_dir, '_'.join(["sk", demo_name]))
   encoder.sk_dir = sk_dir
-  print 'demo_name:', demo_name, encoder.sk_dir
+  logging.info('encoding to Sketch')
   encoder.to_sk()
 
   # Sketch options
@@ -46,7 +54,7 @@ def translate(**kwargs):
     if os.path.exists(output_path): os.remove(output_path)
     sketch.set_default_option(opts)
 
-    print sk_dir, output_path
+    logging.info('sk_dir: {}, output_path: {}'.format(sk_dir, output_path))
     _, r = sketch.run(sk_dir, output_path)
 
     # if sketch fails, halt the process here
