@@ -142,7 +142,6 @@ class Translator(object):
         self.printt(";")
 
     # expr
-
     @v.when(NameExpr)
     def visit(self, n):
         node = n.symtab.get(n.name, None)
