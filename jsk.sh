@@ -14,5 +14,5 @@ then
     
     diff -Bwr result/tmp results/output
 else
-    python -m java_sk.main $@
+    python -m java_sk.main -o result $@
 fi
