@@ -105,7 +105,8 @@ class Encoder(object):
     
     # --bnd-unroll-amnt: the unroll amount for loops
     unroll_amnt = None # use a default value if not set
-    unroll_amnt = self.magic_S # TODO: other criteria?
+    # unroll_amnt = self.magic_S # TODO: other criteria?
+    unroll_amnt = 35
     if unroll_amnt:
       buf.write("pragma options \"--bnd-unroll-amnt {}\";\n".format(35))
       

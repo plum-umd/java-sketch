@@ -6,7 +6,6 @@ import visit as v
 
 from ast import Operators as op
 from ast import AssignOperators as assignop
-
 from ast.utils import utils
 from ast.node import Node
 from ast.compilationunit import CompilationUnit
