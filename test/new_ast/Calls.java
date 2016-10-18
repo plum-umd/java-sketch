@@ -1,13 +1,25 @@
-int a(int x) {
-    return ?? - 1;
-}
-int b(int x) {
-    return ?? * 1;
+class Calls {
+    int f0;
+    static int f1;
+    int m0(int x) {
+	return ?? - 1;
+    }
+    void setF0(int x) {
+	f0 = x;
+    }
+    static void setF1(int x) {
+	f1 = x;
+    }
+    harness int test(int x) {
+	setF0(x);
+    }
 }
 
-harness int test(int x) {
-    bit[2] b = 0;
-    // if (assert a(x) == 0);
-    // assert b(x) == 17;
-    return 0;
+class A {
+    void a() {
+	int s = Calls.setF1(5);
+	Calls c = new Calls();
+	c.setF0(s);
+	c.setF0(Calls.f1);
+    }
 }

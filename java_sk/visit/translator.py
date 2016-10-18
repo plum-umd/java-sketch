@@ -1,21 +1,20 @@
 #!/usr/bin/env python
 import cStringIO
+
 from .. import util
+from .. import builtins
 
 import visit as v
 
 from ast import Operators as op
 from ast import AssignOperators as assignop
+from ast.body.typedeclaration import TypeDeclaration as td
+
 from ast.utils import utils
 from ast.node import Node
-from ast.compilationunit import CompilationUnit
-from ast.body.typedeclaration import TypeDeclaration as td
-from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 from ast.body.fielddeclaration import FieldDeclaration
 from ast.body.variabledeclarator import VariableDeclarator
 from ast.body.variabledeclaratorid import VariableDeclaratorId
-from ast.body.methoddeclaration import MethodDeclaration
-from ast.body.parameter import Parameter
 from ast.stmt.blockstmt import BlockStmt
 from ast.stmt.returnstmt import ReturnStmt
 from ast.stmt.ifstmt import IfStmt
@@ -32,21 +31,18 @@ from ast.expr.methodcallexpr import MethodCallExpr
 from ast.expr.generatorexpr import GeneratorExpr
 from ast.expr.objectcreationexpr import ObjectCreationExpr
 from ast.expr.fieldaccessexpr import FieldAccessExpr
-from ast.expr.thisexpr import ThisExpr
 from ast.expr.enclosedexpr import EnclosedExpr
-from ast.type.type import Type
 from ast.type.primitivetype import PrimitiveType
 from ast.type.voidtype import VoidType
 from ast.type.referencetype import ReferenceType
 from ast.type.classorinterfacetype import ClassOrInterfaceType
-
-from .. import builtins
 
 class Translator(object):
     JAVA_TYPES = {u'int':u'int',u'byte':u'byte',u'short':u'short',u'long':u'long',
                   u'Byte':'Byte',u'Short':u'Short',u'Long':u'Long',u'Int':u'Integer'}
     SKETCH_TYPES = {u'boolean':u'bit', u'this':'self'}
     SKETCH_BUILTIN = builtins
+    SELF = NameExpr({u'@t':u'NameExpr',u'name':u'self'})
   
     def __init__(self, **kwargs):
         # convert the given type name into a newer one
@@ -158,13 +154,13 @@ class Translator(object):
     # expr
     @v.when(NameExpr)
     def visit(self, n):
-        n = n.symtab.get(n.name, None)
-        if type(n) == FieldDeclaration:
-            new_fname = self.trans_fname(n)
-            if td.isStatic(n):
+        nd = n.symtab.get(n.name, None)
+        if type(nd) == FieldDeclaration:
+            new_fname = self.trans_fname(nd)
+            if td.isStatic(nd):
                 # access to static field inside the same class
-                if utils.get_coid(n).name == self.mtd.parentN.name:
-                    self.printt(n.name)
+                if utils.get_coid(nd).name == self.mtd.parentNode.name:
+                    self.printt(nd.name)
                 # o.w., e.g., static constant in an interface, call the accessor
                 else: self.printt(new_fname + "()")
             else: self.printt('.'.join([u'self', new_fname]))
@@ -285,9 +281,9 @@ class Translator(object):
         self.printt(')')
 
     def trans_call(self, callee, callexpr):
-        if not td.isStatic(callee) and callexpr.scope:
-            args = [callexpr.scope] + callexpr.args
-        else: args = callexpr.args
+        if td.isStatic(callee) or callee.name in self.SKETCH_BUILTIN: args = callexpr.args
+        elif callexpr.scope: args = [callexpr.scope] + callexpr.args
+        else: args = [self.SELF] + callexpr.args
         mid = self.trans_mname(callee)
         self.printt(mid)
         self.printArguments(args)
