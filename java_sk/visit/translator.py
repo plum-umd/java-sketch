@@ -5,6 +5,8 @@ from .. import util
 import visit as v
 
 from ast import Operators as op
+from ast import AssignOperators as assignop
+
 from ast.utils import utils
 from ast.node import Node
 from ast.compilationunit import CompilationUnit
@@ -18,9 +20,11 @@ from ast.body.parameter import Parameter
 from ast.stmt.blockstmt import BlockStmt
 from ast.stmt.returnstmt import ReturnStmt
 from ast.stmt.ifstmt import IfStmt
+from ast.stmt.forstmt import ForStmt
 from ast.stmt.expressionstmt import ExpressionStmt
 from ast.stmt.assertstmt import AssertStmt
 from ast.expr.variabledeclarationexpr import VariableDeclarationExpr
+from ast.expr.unaryexpr import UnaryExpr
 from ast.expr.binaryexpr import BinaryExpr
 from ast.expr.nameexpr import NameExpr
 from ast.expr.assignexpr import AssignExpr
@@ -100,33 +104,44 @@ class Translator(object):
         self.printt('}')
 
     @v.when(ReturnStmt)
-    def visit(self, node):
+    def visit(self, n):
         self.printt('return')
-        if node.expr:
+        if n.expr:
             self.printt(' ')
-            node.expr.accept(self)
+            n.expr.accept(self)
         self.printt(';')
 
     @v.when(IfStmt)
-    def visit(self, node):
+    def visit(self, n):
         self.printt('if (')
-        node.condition.accept(self)
-        thenBlock = isinstance(node.thenStmt, BlockStmt)
+        n.condition.accept(self)
+        thenBlock = isinstance(n.thenStmt, BlockStmt)
         self.printt(') ')
         if not thenBlock: self.indent()
-        node.thenStmt.accept(self)
+        n.thenStmt.accept(self)
         if not thenBlock: self.unindent()
-        if node.elseStmt:
+        if n.elseStmt:
             self.printLn()
-            elseIf = isinstance(node.elseStmt, IfStmt)
-            elseBlock = isinstance(node.elseStmt, BlockStmt)
+            elseIf = isinstance(n.elseStmt, IfStmt)
+            elseBlock = isinstance(n.elseStmt, BlockStmt)
             if elseIf or elseBlock: self.printt('else ')
             else:
                 self.printLn('else')
                 self.indent()
-            node.elseStmt.accept(self)
+            n.elseStmt.accept(self)
             if not (elseIf or elseBlock): self.unindent()
                 
+    @v.when(ForStmt)
+    def visit(self, n):
+        self.printt('for (')
+        if n.init: self.printCommaList(n.init)
+        self.printt('; ')
+        if n.compare: n.compare.accept(self)
+        self.printt('; ')
+        if n.update: self.printCommaList(n.update)
+        self.printt(') ')
+        n.body.accept(self)
+
     @v.when(ExpressionStmt)
     def visit(self, n):
         n.expr.accept(self)
@@ -144,13 +159,13 @@ class Translator(object):
     # expr
     @v.when(NameExpr)
     def visit(self, n):
-        node = n.symtab.get(n.name, None)
-        if type(node) == FieldDeclaration:
-            new_fname = self.trans_fname(node)
-            if td.isStatic(node):
+        n = n.symtab.get(n.name, None)
+        if type(n) == FieldDeclaration:
+            new_fname = self.trans_fname(n)
+            if td.isStatic(n):
                 # access to static field inside the same class
-                if utils.get_coid(node).name == self.mtd.parentNode.name:
-                    self.printt(node.name)
+                if utils.get_coid(n).name == self.mtd.parentN.name:
+                    self.printt(n.name)
                 # o.w., e.g., static constant in an interface, call the accessor
                 else: self.printt(new_fname + "()")
             else: self.printt('.'.join([u'self', new_fname]))
@@ -161,7 +176,7 @@ class Translator(object):
             # str_init = trans_mname(C.J.STR, C.J.STR, [u"char[]", C.J.i, C.J.i])
             # s_hash = hash(e.id) % 256 # hash string value itself
             # buf.write("{}(new Object(hash={}), {}, 0, {})".format(str_init, s_hash, e.id, len(e.id)))
-        else: self.printt(node.name)
+        else: self.printt(n.name)
 
     @v.when(VariableDeclarationExpr)
     def visit(self, n):
@@ -173,7 +188,7 @@ class Translator(object):
     def visit(self, n):
         n.target.accept(self)
         self.printt(' ')
-        self.printt(op[n.op.upper()])
+        self.printt(assignop[n.op.upper()])
         self.printt(' ')
         n.value.accept(self)
 
@@ -191,13 +206,19 @@ class Translator(object):
         else:
             self.printt('.'.join([n.scope.name, new_fname]))
 
+    @v.when(UnaryExpr)
+    def visit(self, n):
+        self.printt(UnaryExpr.PRE_OPS.get(n.op, ''))
+        n.expr.accept(self)
+        self.printt(UnaryExpr.POST_OPS.get(n.op, ''))
+
     @v.when(BinaryExpr)
-    def visit(self, node):
-        node.left.accept(self)
+    def visit(self, n):
+        n.left.accept(self)
         self.printt(' ')
-        self.printt(op[node.op.upper()])
+        self.printt(op[n.op.upper()])
         self.printt(' ')
-        node.right.accept(self)
+        n.right.accept(self)
 
     @v.when(ObjectCreationExpr)
     def visit(self, n):

@@ -107,7 +107,7 @@ class Encoder(object):
     unroll_amnt = None # use a default value if not set
     unroll_amnt = self.magic_S # TODO: other criteria?
     if unroll_amnt:
-      buf.write("pragma options \"--bnd-unroll-amnt {}\";\n".format(unroll_amnt))
+      buf.write("pragma options \"--bnd-unroll-amnt {}\";\n".format(35))
       
       # --bnd-inline-amnt: bounds inlining to n levels of recursion
     inline_amnt = None # use a default value if not set
