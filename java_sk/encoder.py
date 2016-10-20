@@ -203,6 +203,7 @@ class Encoder(object):
     buf.write(', '.join(map(lambda p: self.tltr.trans_params((p.typee.name, p.name)), params)))
     buf.write(') ')
     self.tltr.mtd = mtd
+    self.tltr.num_mtds = len(self.MTD_NUMS.keys())
     body = self.tltr.trans_stmt(mtd.body)
     buf.write(body)
     return util.get_and_close(buf)
@@ -389,4 +390,9 @@ class Encoder(object):
   def CLASS_NUMS(self): return self._CLASS_NUMS
   @CLASS_NUMS.setter
   def CLASS_NUMS(self, v): self._CLASS_NUMS = v
+
+  @property
+  def MTD_NUMS(self): return self._MTD_NUMS
+  @MTD_NUMS.setter
+  def MTD_NUMS(self, v): self._MTD_NUMS = v
 

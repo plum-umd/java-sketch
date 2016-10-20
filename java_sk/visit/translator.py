@@ -56,6 +56,9 @@ class Translator(object):
         self._mtd = None
         self._cls = None
 
+        # array bounds will be set to this if not specified
+        self._num_mtds = 0
+
         # for pretty printing
         self._indentation = kwargs.get('indentation', "    ")
         self._level = kwargs.get('level', 0)
@@ -267,6 +270,13 @@ class Translator(object):
     @v.when(ReferenceType)
     def visit(self, n):
         n.typee.accept(self)
+        for i in xrange(n.arrayCount):
+            self.printt('[')
+            if n.values:
+                n.values[i].accept(self)
+            else:
+                self.printt(str(self.num_mtds))
+            self.printt(']')
 
     def printCommaList(self, args):
         if args:
@@ -304,11 +314,14 @@ class Translator(object):
         # ignoring a lot of 'advanced' type stuff
         _tname = util.sanitize_ty(tname.strip())
         r_ty = _tname
-        if _tname in self.ST: r_ty = self.ST[_tname]
+        # we've already rewritten this type
+        if _tname in self.ty: r_ty = self.ty[_tname]
+        # this type is a Sketh type
+        elif _tname in self.ST: r_ty = self.ST[_tname]
+        # type translates to Sketch int
         elif _tname in [self.JT[u'byte'], self.JT[u'short'], self.JT[u'long'],
                         self.JT[u'Byte'], self.JT[u'Short'], self.JT[u'Long'],
                         self.JT[u'Int']]: r_ty = self.JT[u'int']
-        elif _tname in self.ty: r_ty = self.ty[_tname]
         return r_ty
 
     def trans_fname(self, fld):
@@ -415,4 +428,9 @@ class Translator(object):
     def ST(self): return self._ST
     @ST.setter
     def ST(self, v): self._ST = v
+
+    @property
+    def num_mtds(self): return self._num_mtds
+    @num_mtds.setter
+    def num_mtds(self, v): self._num_mtds = v
 
