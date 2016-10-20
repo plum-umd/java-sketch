@@ -31,6 +31,7 @@ from ast.expr.methodcallexpr import MethodCallExpr
 from ast.expr.generatorexpr import GeneratorExpr
 from ast.expr.objectcreationexpr import ObjectCreationExpr
 from ast.expr.fieldaccessexpr import FieldAccessExpr
+from ast.expr.arrayaccessexpr import ArrayAccessExpr
 from ast.expr.enclosedexpr import EnclosedExpr
 from ast.type.primitivetype import PrimitiveType
 from ast.type.voidtype import VoidType
@@ -249,6 +250,13 @@ class Translator(object):
     def visit(self, n):
         if n.isHole: self.printt('??')
         else: print '\n!!generator not implemented!!\n'
+
+    @v.when(ArrayAccessExpr)
+    def visit(self, n):
+        n.name.accept(self)
+        self.printt('[')
+        n.index.accept(self)
+        self.printt(']')
 
     # type
     @v.when(ClassOrInterfaceType)
