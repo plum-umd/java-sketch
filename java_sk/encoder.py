@@ -16,6 +16,8 @@ from ast.body.constructordeclaration import ConstructorDeclaration
 from ast.body.typedeclaration import TypeDeclaration as td
 from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 
+from ast.type.referencetype import ReferenceType
+
 class Encoder(object):
   def __init__(self, program):
     # more globals to check out.
@@ -175,7 +177,7 @@ class Encoder(object):
     for fld in ifilterfalse(td.isPrivate, s_flds):
       accessor = self.tltr.trans_fname(fld)
       buf.write("{0} {1}() {{ return {2}; }}\n\n".
-                format(self.tltr.trans_ty(fld.typee.name), accessor, fld.name))
+                format(self.tltr.trans_ty(fld.typee), accessor, fld.name))
 
     for m in mtds:
       if m.parentNode.interface: continue
@@ -190,17 +192,17 @@ class Encoder(object):
     buf = cStringIO.StringIO()
     # if td.isGenerator(mtd): buf.write(C.mod.GN + ' ') # dont have generators yet
     if td.isHarness(mtd): buf.write(u'harness' + ' ')
-    ret_ty = self.tltr.trans_ty(mtd.typee.name)
+    ret_ty = self.tltr.trans_ty(mtd.typee)
     buf.write(ret_ty + ' ' + self.tltr.trans_mname(mtd) + '(')
 
     if td.isStatic(mtd): params = mtd.parameters
     else:
-      self_ty = self.tltr.trans_ty(util.repr_cls(mtd.parentNode))
+      self_ty = self.tltr.trans_ty(util.repr_cls(mtd.parentNode), didrepr=True)
       params = [Parameter({u'id':{u'name':u'self'},
                            u'type':{u'@t':u'Type',u'name':self_ty}})] + mtd.parameters
 
     # print 'mtd:', mtd.parentNode.name
-    buf.write(', '.join(map(lambda p: self.tltr.trans_params((p.typee.name, p.name)), params)))
+    buf.write(', '.join(map(lambda p: self.tltr.trans_params((p.typee, p.name)), params)))
     buf.write(') ')
     self.tltr.mtd = mtd
     self.tltr.num_mtds = len(self.MTD_NUMS.keys())

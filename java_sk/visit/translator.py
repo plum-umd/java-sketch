@@ -261,7 +261,7 @@ class Translator(object):
     # type
     @v.when(ClassOrInterfaceType)
     def visit(self, n):
-        self.printt(self.trans_ty(n.name))
+        self.printt(self.trans_ty(n))
 
     @v.when(IntegerLiteralExpr)
     def visit(self, n):
@@ -317,13 +317,17 @@ class Translator(object):
         # ignore ambiguous or not found
         return util.repr_mtd(mtd)
     
-    def trans_ty(self, tname):
+    def trans_ty(self, typ, didrepr=False):
         # self.JT => JAVA_TYPES, self.ST => SKETCH_TYPES
         # ignoring a lot of 'advanced' type stuff
-        _tname = util.sanitize_ty(tname.strip())
+        _tname = typ if didrepr else util.sanitize_ty(typ.name.strip())
         r_ty = _tname
+
+        if typ and type(typ) == ReferenceType:
+            if typ.name in self.ty: r_ty = self.ty[typ.name]
+            if typ.values: r_ty += ''.join(["[{}]".format(v.name) for v in typ.values])
         # we've already rewritten this type
-        if _tname in self.ty: r_ty = self.ty[_tname]
+        elif _tname in self.ty: r_ty = self.ty[_tname]
         # this type is a Sketh type
         elif _tname in self.ST: r_ty = self.ST[_tname]
         # type translates to Sketch int
@@ -343,7 +347,7 @@ class Translator(object):
 
     def trans_fld(self, fld):
         buf = cStringIO.StringIO()
-        buf.write(' '.join([self.trans_ty(fld.typee.name), fld.name]))
+        buf.write(' '.join([self.trans_ty(fld.typee), fld.name]))
         # ignored initialised fields
         buf.write(';')
         return util.get_and_close(buf)
