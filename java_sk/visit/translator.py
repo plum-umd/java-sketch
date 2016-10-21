@@ -253,7 +253,7 @@ class Translator(object):
 
     @v.when(ArrayAccessExpr)
     def visit(self, n):
-        n.name.accept(self)
+        n.nameExpr.accept(self)
         self.printt('[')
         n.index.accept(self)
         self.printt(']')
