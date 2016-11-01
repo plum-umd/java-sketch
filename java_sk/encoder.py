@@ -16,8 +16,6 @@ from ast.body.constructordeclaration import ConstructorDeclaration
 from ast.body.typedeclaration import TypeDeclaration as td
 from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 
-from ast.type.referencetype import ReferenceType
-
 class Encoder(object):
   def __init__(self, program):
     # more globals to check out.
@@ -36,10 +34,11 @@ class Encoder(object):
         self._CLASS_NUMS[c.name] = i
         i = i + 1
     self._CLASS_NUMS[u'int'] = i
+    self._CLASS_NUMS[u'double'] = i+1
 
     self._mtds = utils.extract_nodes([MethodDeclaration], self._prg)
     self._cons = utils.extract_nodes([ConstructorDeclaration], self._prg)
-    self._MTD_NUMS = {} 
+    self._MTD_NUMS = {}
     i = 0
     for m in self._mtds+self._cons:
       if m.name not in self._MTD_NUMS.keys():
@@ -164,7 +163,6 @@ class Encoder(object):
 
     if not cls.interface and not mtds and not s_flds: return None
     # else: return None # interface or enum...not supported
-
     cname = util.sanitize_ty(cls.name)
     buf = cStringIO.StringIO()
     buf.write("package {};\n".format(cname))
@@ -277,35 +275,14 @@ class Encoder(object):
 
   # only called on base classes. This seems to just be Object?  
   def to_struct(self, cls):
-    # this is a bit hacky, but it's the only way to access this from inside gen_s
-    flds = [utils.extract_nodes([FieldDeclaration], cls)]
-
-    # make mappings from static fields to corresponding accessors
-    def gen_s_flds_accessors(cls):
-      # when this is called update the list of fields for cls
-      flds[0] = utils.extract_nodes([FieldDeclaration], cls)
-      # s_flds = filter(lambda f: td.isStatic(f) and not td.isPrivate(f), flds)
-      # global _s_flds
-      # for fld in s_flds:
-      #   cname = cls.name
-      #   fid = '.'.join([cname, fld.name])
-      #   fname = utils.repr_fld(fld)
-      #   _s_flds[fid] = fname
     cname = util.sanitize_ty(cls.name)
-
-    # if cls.is_itf: # deal with iterfaces later
-
     if not cls.extendsList: cls = self.to_v_struct(cls)
-    gen_s_flds_accessors(cls)
-    
-    # for unique class numbering, add an identity mapping
-    # if cname not in _ty: _ty[cname] = cname
   
     buf = cStringIO.StringIO()
     buf.write("struct " + cname + " {\n  int hash;\n  ")
   
     # to avoid static fields, which will be bound to a class-representing package
-    i_flds = filter(lambda f: not td.isStatic(f), flds[0])
+    i_flds = filter(lambda f: not td.isStatic(f), filter(lambda m: type(m) == FieldDeclaration, cls.members))
     buf.write('\n  '.join(map(self.tltr.trans_fld, i_flds)))
     if i_flds: buf.write('\n')
     buf.write("}\n")
@@ -328,24 +305,23 @@ class Encoder(object):
       cname = util.sanitize_ty(cls.name)
       if cname != cls_v.name:
         self.tltr.ty[cls.name] = cls_v.name
-      flds = []
-      flds = utils.extract_nodes([FieldDeclaration], cls)
+      flds = filter(lambda m: type(m) == FieldDeclaration, cls.members)
       def cp_fld(fld):
-        # fields can contain multiple declarations so we're going to expand them
-        # to each be their own field with sanitized names and such
-        fname = util.repr_fld(fld)
-        fld_v = cp.deepcopy(fld)
-        fld_v.name = fname
-        fld_v.parentNode = cls_v
-        cls_v.members.append(fld_v)
-        cls_v.childrenNodes.append(fld_v)
-        fid = '.'.join([cname, fld.name])
+        for v in fld.variables:
+          fname = util.repr_fld(v, fld)
+          fld_v = cp.deepcopy(fld)
+          fld_v.variables = [v]
+          fld_v.variables[0].name = fname
+          fld_v.parentNode = cls_v
+          cls_v.members.append(fld_v)
+          cls_v.childrenNodes.append(fld_v)
+          fid = '.'.join([cname, v.name])
+          print 'fid:', fid
         if td.isStatic(fld): self.tltr.s_flds[fid] = fname
         else: self.tltr.flds[fid] = fname # { ..., B.f2 : f2_B }
       map(cp_fld, flds)
       map(per_cls, cls.subClasses)
     per_cls(cls)
-
     return cls_v
 
   @property

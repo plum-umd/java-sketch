@@ -52,8 +52,8 @@ def sanitize_ty(tname):
 def sanitize_mname(mname):
   return mname.replace("[]",'s')
 
-def repr_fld(var):
-  return u"{}_{}".format(var.name, sanitize_ty(var.parentNode.name))
+def repr_fld(var, fld):
+  return u"{}_{}".format(var.name, sanitize_ty(fld.parentNode.name))
 
 def repr_cls(cls):
   cname = cls.name

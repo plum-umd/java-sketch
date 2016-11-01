@@ -12,6 +12,7 @@ from ast.body.typedeclaration import TypeDeclaration as td
 
 from ast.utils import utils
 from ast.node import Node
+from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 from ast.body.fielddeclaration import FieldDeclaration
 from ast.body.variabledeclarator import VariableDeclarator
 from ast.body.variabledeclaratorid import VariableDeclaratorId
@@ -39,7 +40,7 @@ from ast.type.referencetype import ReferenceType
 from ast.type.classorinterfacetype import ClassOrInterfaceType
 
 class Translator(object):
-    JAVA_TYPES = {u'int':u'int',u'byte':u'byte',u'short':u'short',u'long':u'long',
+    JAVA_TYPES = {u'int':u'int',u'byte':u'byte',u'short':u'short',u'long':u'long',u'double':u'double',
                   u'Byte':'Byte',u'Short':u'Short',u'Long':u'Long',u'Int':u'Integer'}
     SKETCH_TYPES = {u'boolean':u'bit', u'this':'self'}
     SKETCH_BUILTIN = builtins
@@ -193,10 +194,11 @@ class Translator(object):
 
     @v.when(FieldAccessExpr)
     def visit(self, n):
-        cls = self.scope_to_cls(n, n.field)
-        fld = cls.symtab[n.field]
+        cls = self.scope_to_cls(n, n.field.name)
+        fld = cls.symtab[n.field.name]
         rcv_ty = n.scope.symtab[n.scope.name].typee.name
-        new_fname = self.trans_fname(fld)
+        new_fname = self.trans_fname(fld, n.field.name, rcv_ty=rcv_ty)
+        print 'fieldaccessexpr: cls: ', cls.name, 'fld:', fld.parentNode.name, 'rcv_ty:', rcv_ty, 'new_fname:', new_fname
         if td.isStatic(fld):
             if self.mtd and rcv_ty == self.cls.name:
                 self.printt(n.field)
@@ -336,9 +338,14 @@ class Translator(object):
                         self.JT[u'Int']]: r_ty = self.JT[u'int']
         return r_ty
 
-    def trans_fname(self, fld):
-        r_fld = fld.name
-        fid = '.'.join([fld.parentNode.name, fld.name])
+    def trans_fname(self, fld, nm, rcv_ty=None):
+        r_fld = nm
+        if rcv_ty:
+            fid = '.'.join([rcv_ty, '_'.join([nm, rcv_ty])])
+        else:
+            pnode = utils.get_coid(fld)
+            fid = '.'.join([pnode.name, nm]) if pnode else r_fld
+        print 'trans_fname: s_flds:', self.s_flds, 'flds:', self.flds, 'fid:', fid, 'rcv_ty:', rcv_ty
         if td.isStatic(fld) and fid in self.s_flds:
             r_fld = self.s_flds[fid]
         elif fid in self.flds:
@@ -347,9 +354,9 @@ class Translator(object):
 
     def trans_fld(self, fld):
         buf = cStringIO.StringIO()
-        buf.write(' '.join([self.trans_ty(fld.typee), fld.name]))
+        for var in fld.variables:
+            buf.write('{} {};'.format(self.trans_ty(fld.typee), self.trans_fname(fld, var.name)))
         # ignored initialised fields
-        buf.write(';')
         return util.get_and_close(buf)
 
     def trans_params(self, (ty, nm)):
@@ -377,7 +384,8 @@ class Translator(object):
         s_tab = node.scope.symtab
         # static access
         if name in s_tab:
-            n = s_tab[node.scope.name]
+            s = s_tab[node.scope.name]
+            n = s if type(s) == ClassOrInterfaceDeclaration else utils.get_coid(s)
         # non-static
         else:
             typ = s_tab[node.scope.typee.name].typee.name
