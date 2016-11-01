@@ -168,15 +168,16 @@ class Encoder(object):
     buf.write("package {};\n".format(cname))
     buf.write(self.const)
 
-    buf.write('\n'.join(map(self.tltr.trans_fld, s_flds)))
-    if s_flds: buf.write('\n\n')
+    buf.write(''.join(map(self.tltr.trans_fld, s_flds)))
+    if s_flds: buf.write('\n')
 
     # init and clinit stuff being ignored here
     for fld in ifilterfalse(td.isPrivate, s_flds):
-      accessor = self.tltr.trans_fname(fld)
-      buf.write("{0} {1}() {{ return {2}; }}\n\n".
-                format(self.tltr.trans_ty(fld.typee), accessor, fld.name))
-
+      for v in fld.variables:
+        accessor = self.tltr.trans_fname(fld, v.name)
+        buf.write("{0} {1}() {{ return {2}; }}\n".
+                  format(self.tltr.trans_ty(fld.typee), accessor, v.name))
+    buf.write('\n')
     for m in mtds:
       if m.parentNode.interface: continue
       buf.write(self.to_func(m) + os.linesep)
@@ -283,7 +284,7 @@ class Encoder(object):
   
     # to avoid static fields, which will be bound to a class-representing package
     i_flds = filter(lambda f: not td.isStatic(f), filter(lambda m: type(m) == FieldDeclaration, cls.members))
-    buf.write('\n  '.join(map(self.tltr.trans_fld, i_flds)))
+    buf.write('  '.join(map(self.tltr.trans_fld, i_flds)))
     if i_flds: buf.write('\n')
     buf.write("}\n")
     return util.get_and_close(buf)
@@ -299,6 +300,7 @@ class Encoder(object):
              u'@t': u'FieldDeclaration', u'type':
              {u'@t': u'PrimitiveType', u'type':
               {u'nameOfBoxedType': u'Integer', u'name': u'Int'}}}
+    cls_v.members.append(FieldDeclaration(fld_d))
     cls_v.childrenNodes.append(FieldDeclaration(fld_d))
 
     def per_cls(cls):
@@ -310,15 +312,14 @@ class Encoder(object):
         for v in fld.variables:
           fname = util.repr_fld(v, fld)
           fld_v = cp.deepcopy(fld)
-          fld_v.variables = [v]
+          fld_v.variables = [cp.deepcopy(v)]
           fld_v.variables[0].name = fname
           fld_v.parentNode = cls_v
           cls_v.members.append(fld_v)
           cls_v.childrenNodes.append(fld_v)
           fid = '.'.join([cname, v.name])
-          print 'fid:', fid
-        if td.isStatic(fld): self.tltr.s_flds[fid] = fname
-        else: self.tltr.flds[fid] = fname # { ..., B.f2 : f2_B }
+          if td.isStatic(fld): self.tltr.s_flds[fid] = fname
+          else: self.tltr.flds[fid] = fname # { ..., B.f2 : f2_B }
       map(cp_fld, flds)
       map(per_cls, cls.subClasses)
     per_cls(cls)

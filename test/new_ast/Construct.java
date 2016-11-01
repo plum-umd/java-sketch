@@ -13,6 +13,6 @@ class Construct {
 	f1.m();
 	f2.m();
 
-	assert 0 == 1;
+	assert f1 != f2;
     }
 }

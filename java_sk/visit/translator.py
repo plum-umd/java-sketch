@@ -161,21 +161,12 @@ class Translator(object):
     def visit(self, n):
         nd = n.symtab.get(n.name, None)
         if type(nd) == FieldDeclaration:
-            new_fname = self.trans_fname(nd)
+            new_fname = self.trans_fname(nd, nd.variables[0].name)
             if td.isStatic(nd):
-                # access to static field inside the same class
                 if utils.get_coid(nd).name == self.mtd.parentNode.name:
-                    self.printt(nd.name)
-                # o.w., e.g., static constant in an interface, call the accessor
+                    self.printt(nd.variables[0].name)
                 else: self.printt(new_fname + "()")
             else: self.printt('.'.join([u'self', new_fname]))
-        # this and super will be handled differently once i implement them
-        # elif e.id in [C.J.THIS, C.J.SUP]: buf.write(C.SK.self)
-        # string constants will be handled differently too
-        # elif util.is_str(e.name): # constant string, such as "Hello, World"
-            # str_init = trans_mname(C.J.STR, C.J.STR, [u"char[]", C.J.i, C.J.i])
-            # s_hash = hash(e.id) % 256 # hash string value itself
-            # buf.write("{}(new Object(hash={}), {}, 0, {})".format(str_init, s_hash, e.id, len(e.id)))
         else: self.printt(n.name)
 
     @v.when(VariableDeclarationExpr)
@@ -198,7 +189,6 @@ class Translator(object):
         fld = cls.symtab[n.field.name]
         rcv_ty = n.scope.symtab[n.scope.name].typee.name
         new_fname = self.trans_fname(fld, n.field.name, rcv_ty=rcv_ty)
-        print 'fieldaccessexpr: cls: ', cls.name, 'fld:', fld.parentNode.name, 'rcv_ty:', rcv_ty, 'new_fname:', new_fname
         if td.isStatic(fld):
             if self.mtd and rcv_ty == self.cls.name:
                 self.printt(n.field)
@@ -339,13 +329,7 @@ class Translator(object):
         return r_ty
 
     def trans_fname(self, fld, nm, rcv_ty=None):
-        r_fld = nm
-        if rcv_ty:
-            fid = '.'.join([rcv_ty, '_'.join([nm, rcv_ty])])
-        else:
-            pnode = utils.get_coid(fld)
-            fid = '.'.join([pnode.name, nm]) if pnode else r_fld
-        print 'trans_fname: s_flds:', self.s_flds, 'flds:', self.flds, 'fid:', fid, 'rcv_ty:', rcv_ty
+        fid = '.'.join([utils.get_coid(fld).name, nm])
         if td.isStatic(fld) and fid in self.s_flds:
             r_fld = self.s_flds[fid]
         elif fid in self.flds:
@@ -355,7 +339,7 @@ class Translator(object):
     def trans_fld(self, fld):
         buf = cStringIO.StringIO()
         for var in fld.variables:
-            buf.write('{} {};'.format(self.trans_ty(fld.typee), self.trans_fname(fld, var.name)))
+            buf.write('{} {};\n'.format(self.trans_ty(fld.typee), var.name))
         # ignored initialised fields
         return util.get_and_close(buf)
 
