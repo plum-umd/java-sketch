@@ -41,7 +41,7 @@ def translate(**kwargs):
   encoder.to_sk()
 
   # Sketch options
-  opts = []
+  opts = kwargs.get('opts', [])
   # place to keep sketch's temporary files
   opts.extend(["--fe-tempdir", out_dir])
   opts.append("--fe-keep-tmp")

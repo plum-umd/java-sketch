@@ -177,7 +177,7 @@ class Encoder(object):
         accessor = self.tltr.trans_fname(fld, v.name)
         buf.write("{0} {1}() {{ return {2}; }}\n".
                   format(self.tltr.trans_ty(fld.typee), accessor, v.name))
-    buf.write('\n')
+    # buf.write('\n')
     for m in mtds:
       if m.parentNode.interface: continue
       buf.write(self.to_func(m) + os.linesep)
