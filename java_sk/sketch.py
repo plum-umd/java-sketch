@@ -1,6 +1,5 @@
 #! /usr/bin/env python
 
-from functools import partial
 import multiprocessing
 import os
 import logging
@@ -30,19 +29,18 @@ def run(sk_dir, output_path, trial=-1):
   if trial >= 0: running = running + " ({})".format(trial+1)
 
   res = False 
-  with open(output_path, 'a') as f:
-    logging.info(running)
-    cmd = ["sketch"] + _opt + [sk]
-    logging.debug(' '.join(cmd))
-    try:
-      subprocess.check_call(cmd, stdout=f)
-      logging.info("sketch done: {}".format(output_path))
-      res = True
-    except subprocess.CalledProcessError:
-      logging.error("semantic errors due to wrong encoding or UNSATISFIABLE")
+  # with open(output_path, 'a') as f:
+  logging.info(running)
+  cmd = ["sketch"] + _opt + [sk]
+  logging.debug(' '.join(cmd))
+  try:
+    subprocess.check_output(cmd)
+    logging.info("sketch done: {}".format(output_path))
+    res = True
+  except subprocess.CalledProcessError as e:
+    logging.error("semantic errors due to wrong encoding or UNSATISFIABLE: {}".format(e.output))
 
   return (output_path, res)
-
 
 # run sketch as a whole, in parallel, until one trial finds a solution
 def p_run(sk_dir, output_path):
