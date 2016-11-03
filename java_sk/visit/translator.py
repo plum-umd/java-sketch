@@ -50,7 +50,6 @@ class Translator(object):
         # convert the given type name into a newer one
         self._ty = {}     # { tname : new_tname }
         self._flds = {}   # { cname.fname : new_fname }
-        self._s_flds = {} # { cname.fname : accessor }
 
         self._JT = self.JAVA_TYPES
         self._ST = self.SKETCH_TYPES
@@ -330,10 +329,7 @@ class Translator(object):
 
     def trans_fname(self, fld, nm, rcv_ty=None):
         fid = '.'.join([utils.get_coid(fld).name, nm])
-        if td.isStatic(fld) and fid in self.s_flds:
-            r_fld = self.s_flds[fid]
-        elif fid in self.flds:
-            r_fld = self.flds[fid]
+        r_fld = self.flds[fid]
         return r_fld
 
     def trans_fld(self, fld):
@@ -412,11 +408,6 @@ class Translator(object):
     def ty(self): return self._ty
     @ty.setter
     def ty(self, v): self._ty = v
-
-    @property
-    def s_flds(self): return self._s_flds
-    @s_flds.setter
-    def s_flds(self, v): self._s_flds = v
 
     @property
     def flds(self): return self._flds

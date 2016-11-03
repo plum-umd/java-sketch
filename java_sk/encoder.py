@@ -5,6 +5,7 @@ import math
 import copy as cp
 import logging
 from itertools import ifilterfalse
+from functools import partial
 
 from visit.translator import Translator
 
@@ -218,7 +219,7 @@ class Encoder(object):
     bases = util.rm_subs(self._clss)
     buf.write('\n'.join(filter(None, map(self.to_struct, bases))))
 
-    mtds = utils.extract_nodes([MethodDeclaration, ConstructorDeclaration], self.prg)
+    mtds = self.mtds + self.cons
   
     # argument number of methods
     arg_num = map(lambda m: str(len(m.parameters)), mtds)
@@ -263,8 +264,7 @@ class Encoder(object):
     clss.append(obj_cls)
     subcls = map(lambda cls_i: '{' + ", ".join(
       map(lambda cls_j: str(utils.is_subclass(cls_i, cls_j)).lower(),
-          clss)) + '}',
-                 clss)
+          clss)) + '}', clss)
     buf.write("#define _{0} {{ {1} }}\n"
               "bit {0}(int i, int j) {{\n"
               " return _{0}[i][j];\n"
@@ -302,11 +302,10 @@ class Encoder(object):
               {u'nameOfBoxedType': u'Integer', u'name': u'Int'}}}
     cls_v.members.append(FieldDeclaration(fld_d))
     cls_v.childrenNodes.append(FieldDeclaration(fld_d))
-
+    
     def per_cls(cls):
       cname = util.sanitize_ty(cls.name)
-      if cname != cls_v.name:
-        self.tltr.ty[cls.name] = cls_v.name
+      if cname != cls_v.name: self.tltr.ty[cls.name] = cls_v.name
       flds = filter(lambda m: type(m) == FieldDeclaration, cls.members)
       def cp_fld(fld):
         for v in fld.variables:
@@ -318,8 +317,7 @@ class Encoder(object):
           cls_v.members.append(fld_v)
           cls_v.childrenNodes.append(fld_v)
           fid = '.'.join([cname, v.name])
-          if td.isStatic(fld): self.tltr.s_flds[fid] = fname
-          else: self.tltr.flds[fid] = fname # { ..., B.f2 : f2_B }
+          self.tltr.flds[fid] = fname # { ..., B.f2 : f2_B }
       map(cp_fld, flds)
       map(per_cls, cls.subClasses)
     per_cls(cls)

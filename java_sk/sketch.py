@@ -29,7 +29,6 @@ def run(sk_dir, output_path, trial=-1):
   if trial >= 0: running = running + " ({})".format(trial+1)
 
   res = False 
-  # with open(output_path, 'a') as f:
   logging.info(running)
   cmd = ["sketch"] + _opt + [sk]
   logging.debug(' '.join(cmd))

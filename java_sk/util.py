@@ -36,18 +36,11 @@ def add_object(ast):
 def rm_subs(clss):
   return filter(lambda c: not c.extendsList, clss)
 
-# # sanitize type name
-# # e.g., Demo$1 -> Demo_1, Outer.Inner -> Outer_Inner
-# # ArrayAdapter<?> (-> ArrayAdapter_?) -> ArrayAdapter_Object
+# sanitize type name
+# e.g., Demo$1 -> Demo_1, Outer.Inner -> Outer_Inner
+# TODO: ArrayAdapter<?> (-> ArrayAdapter_?) -> ArrayAdapter_Object
 def sanitize_ty(tname):
-  #repl_map = {"$": "_", ".": "_"}
-  #repl_dic = dict((re.escape(k), v) for k, v in repl_map.iteritems())
-  #pattern = re.compile(" | ".join(repl_dic.keys()))
-  #return pattern.sub(lambda m: repl_dic[re.escape(m.group(0))], tname)
-  _tname = tname.replace('$','_').replace('.','_')
-  # if is_generic(_tname):
-  #   _tname = u'_'.join(explode_generics(_tname))
-  return _tname.replace('?', u'Object')
+  return tname.replace('$','_').replace('.','_').replace('?', u'Object')
 
 def sanitize_mname(mname):
   return mname.replace("[]",'s')
@@ -78,7 +71,19 @@ def get_and_close(buf):
   buf.close()
   return v
 
-# def is_str(x):
+# flatten class declarations or hierarchy
+# "inners": class A { class Inner { class InnerMost }} -> [A, Inner, InnerMost]
+# "subs": ActA, ActB, ... < Act < Cxt -> [Cxt, Act, ActA, ActB, ...]
+def flatten_classes(cls):
+  lst = [cls]
+  def flatten(c):
+    for s in c.subClasses:
+      lst.append(s)
+      flatten(s)
+  flatten(cls)
+  return lst
+
+  # def is_str(x):
 #   return len(x) >= 2 and (x[0] == '"' and x[-1] == '"')
 
 # # get the *sorted* list of file names in the designated path
