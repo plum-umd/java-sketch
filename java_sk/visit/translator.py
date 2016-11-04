@@ -2,7 +2,6 @@
 import cStringIO
 
 from .. import util
-from .. import builtins
 
 import visit as v
 
@@ -12,7 +11,6 @@ from ast.body.typedeclaration import TypeDeclaration as td
 
 from ast.utils import utils
 from ast.node import Node
-from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 from ast.body.fielddeclaration import FieldDeclaration
 from ast.body.variabledeclarator import VariableDeclarator
 from ast.body.variabledeclaratorid import VariableDeclaratorId
@@ -40,19 +38,17 @@ from ast.type.referencetype import ReferenceType
 from ast.type.classorinterfacetype import ClassOrInterfaceType
 
 class Translator(object):
-    JAVA_TYPES = {u'int':u'int',u'byte':u'byte',u'short':u'short',u'long':u'long',u'double':u'double',
-                  u'Byte':'Byte',u'Short':u'Short',u'Long':u'Long',u'Int':u'Integer'}
-    SKETCH_TYPES = {u'boolean':u'bit', u'this':'self'}
-    SKETCH_BUILTIN = builtins
     SELF = NameExpr({u'@t':u'NameExpr',u'name':u'self'})
-  
     def __init__(self, **kwargs):
         # convert the given type name into a newer one
         self._ty = {}     # { tname : new_tname }
         self._flds = {}   # { cname.fname : new_fname }
 
-        self._JT = self.JAVA_TYPES
-        self._ST = self.SKETCH_TYPES
+        from . import JAVA_TYPES
+        from . import SKETCH_TYPES
+        self._JT = JAVA_TYPES
+        self._ST = SKETCH_TYPES
+
         self._buf = None
         self._mtd = None
         self._cls = None
@@ -184,17 +180,10 @@ class Translator(object):
 
     @v.when(FieldAccessExpr)
     def visit(self, n):
-        cls = self.scope_to_cls(n, n.field.name)
+        cls = self.scope_to_cls(n)
         fld = cls.symtab[n.field.name]
-        rcv_ty = n.scope.symtab[n.scope.name].typee.name
-        new_fname = self.trans_fname(fld, n.field.name, rcv_ty=rcv_ty)
-        if td.isStatic(fld):
-            if self.mtd and rcv_ty == self.cls.name:
-                self.printt(n.field)
-            else:
-                self.printt(new_fname+'()')
-        else:
-            self.printt('.'.join([n.scope.name, new_fname]))
+        new_fname = self.trans_fname(fld, n.field.name)
+        self.printt('.'.join([n.scope.name, new_fname]))
 
     @v.when(UnaryExpr)
     def visit(self, n):
@@ -221,15 +210,10 @@ class Translator(object):
     
     @v.when(MethodCallExpr)
     def visit(self, n):
-        if n.scope:
-            rcv_ty = self.scope_to_cls(n, n.name)
-            sym = rcv_ty.symtab.get(n.name)
-            callee = sym if sym else self.SKETCH_BUILTIN[n.name]
-            self.trans_call(callee, n)
-        else:
-            sym = n.symtab.get(n.name)
-            callee = sym if sym else self.SKETCH_BUILTIN[n.name]
-            self.trans_call(callee, n)
+        rcv_ty = self.scope_to_cls(n)
+        callee = rcv_ty.symtab.get(n.name)
+        if not callee: callee = self.find_in_parent(rcv_ty, n.name)
+        self.trans_call(callee, n)
 
     @v.when(EnclosedExpr)
     def visit(self, n):
@@ -290,12 +274,16 @@ class Translator(object):
         self.printt(')')
 
     def trans_call(self, callee, callexpr):
-        if td.isStatic(callee) or callee.name in self.SKETCH_BUILTIN: args = callexpr.args
-        elif callexpr.scope: args = [callexpr.scope] + callexpr.args
-        else: args = [self.SELF] + callexpr.args
-        mid = self.trans_mname(callee)
+        args = callexpr.args
+        if not td.isStatic(callee):
+            args = [NameExpr({u'@t':u'NameExpr',u'name':callexpr.scope.name})] + callexpr.args
+        mid = '@'.join([self.trans_mname(callexpr, True), callee.parentNode.typee.name])
         self.printt(mid)
         self.printArguments(args)
+        # if td.isStatic(callee) or callee.name in self.SKETCH_BUILTIN: args = callexpr.args
+        # elif callexpr.scope: args = [callexpr.scope] + callexpr.args
+        # else: args = [self.SELF] + callexpr.args
+        # self.printt(mid)
 
     def trans_stmt(self, s):
         self.buf = cStringIO.StringIO()
@@ -303,10 +291,10 @@ class Translator(object):
         return util.get_and_close(self.buf)
 
     # def trans_mname(cname, mtd, arg_typs=[]):
-    def trans_mname(self, mtd):
+    def trans_mname(self, mtd, call=False):
         # skipping memoized names and collections
         # ignore ambiguous or not found
-        return util.repr_mtd(mtd)
+        return util.repr_mtd(mtd, call)
     
     def trans_ty(self, typ, didrepr=False):
         # self.JT => JAVA_TYPES, self.ST => SKETCH_TYPES
@@ -327,7 +315,7 @@ class Translator(object):
                         self.JT[u'Int']]: r_ty = self.JT[u'int']
         return r_ty
 
-    def trans_fname(self, fld, nm, rcv_ty=None):
+    def trans_fname(self, fld, nm):
         fid = '.'.join([utils.get_coid(fld).name, nm])
         r_fld = self.flds[fid]
         return r_fld
@@ -360,18 +348,21 @@ class Translator(object):
         self.buf.write('\n')
         self.indented = False
         
-    def scope_to_cls(self, node, name):
+    def scope_to_cls(self, node):
         s_tab = node.scope.symtab
-        # static access
-        if name in s_tab:
-            s = s_tab[node.scope.name]
-            n = s if type(s) == ClassOrInterfaceDeclaration else utils.get_coid(s)
-        # non-static
-        else:
-            typ = s_tab[node.scope.typee.name].typee.name
-            n = s_tab[typ]
-        return n
+        typ = s_tab[node.scope.name].typee.name
+        cls = s_tab[typ]
+        return cls
 
+    # givent a type, check all parent classes for name
+    def find_in_parent(self, rcv_ty, name):
+        if name in rcv_ty.symtab: return rcv_ty.symtab[name]
+        else:
+            c = []
+            for e in rcv_ty.extendsList:
+                c = self.find_in_parent(rcv_ty.symtab[e.name], name)
+                if c: return c
+        
     @property
     def mtd(self): return self._mtd
     @mtd.setter

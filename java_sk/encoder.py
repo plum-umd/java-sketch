@@ -5,7 +5,8 @@ import math
 import copy as cp
 import logging
 from itertools import ifilterfalse
-from functools import partial
+
+from . import builtins
 
 from visit.translator import Translator
 
@@ -24,6 +25,7 @@ class Encoder(object):
     self._const = u"\nint S = {}; // length of arrays for Java collections\n\n".format(self._magic_S)
     self._tltr = Translator()
     self._prg = program
+    self._prg.symtab.update(builtins)
     self._sk_dir = ''
 
     # populate global dict of types, classes and their ids
@@ -149,11 +151,11 @@ class Encoder(object):
       if k not in self.primitives:
         buf.write("int {k} () {{ return {v}; }}\n".format(**locals()))
 
-    buf.write("\n// distinct method IDs\n")
-    for mtd,idd in self._MTD_NUMS.items():
-      mname = util.sanitize_mname(util.repr_mtd(mtd))
-      buf.write("int {mname}_ent () {{ return {idd}; }}\n".format(**locals()))
-      buf.write("int {mname}_ext () {{ return -{idd}; }}\n\n".format(**locals()))
+    # buf.write("\n// distinct method IDs\n")
+    # for mtd,idd in self._MTD_NUMS.items():
+    #   mname = util.sanitize_mname(self.tltr.trans_mname(mtd))
+    #   buf.write("int {mname}_ent () {{ return {idd}; }}\n".format(**locals()))
+    #   buf.write("int {mname}_ext () {{ return -{idd}; }}\n\n".format(**locals()))
     with open(os.path.join(self.sk_dir, "log.sk"), 'w') as f:
       f.write(util.get_and_close(buf))
 
@@ -170,7 +172,7 @@ class Encoder(object):
     buf.write(self.const)
 
     buf.write(''.join(map(self.tltr.trans_fld, s_flds)))
-    if s_flds: buf.write('\n')
+    # if s_flds: buf.write('\n')
 
     # init and clinit stuff being ignored here
     for fld in ifilterfalse(td.isPrivate, s_flds):
@@ -178,7 +180,7 @@ class Encoder(object):
         accessor = self.tltr.trans_fname(fld, v.name)
         buf.write("{0} {1}() {{ return {2}; }}\n".
                   format(self.tltr.trans_ty(fld.typee), accessor, v.name))
-    # buf.write('\n')
+    buf.write('\n')
     for m in mtds:
       if m.parentNode.interface: continue
       buf.write(self.to_func(m) + os.linesep)
@@ -194,6 +196,7 @@ class Encoder(object):
     if td.isHarness(mtd): buf.write(u'harness' + ' ')
     ret_ty = self.tltr.trans_ty(mtd.typee)
     buf.write(ret_ty + ' ' + self.tltr.trans_mname(mtd) + '(')
+    # buf.write(ret_ty + ' ' + self.tltr.trans_mname(mtd) + '(')
 
     if td.isStatic(mtd): params = mtd.parameters
     else:

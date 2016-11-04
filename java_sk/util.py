@@ -5,11 +5,7 @@ from itertools import ifilter, ifilterfalse
 from ast.utils import utils
 from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 
-# import datetime
-# import logging
-# import operator as op
-# import re
-# from functools import partial
+from visit import JAVA_TYPES
 
 """
 regarding paths and files
@@ -53,10 +49,19 @@ def repr_cls(cls):
   # if cls.outer -- dont support inner/outer yet
   return sanitize_ty(cname)
 
-def repr_mtd(mtd):
-  mname, cname = mtd.name, repr_cls(mtd.parentNode)
-  params = map(sanitize_ty, map(lambda p: p.typee.name, mtd.parameters))
-  return u'_'.join([mname, cname] + params) if cname else u'_'.join([mname] + params)
+def repr_mtd(mtd, call=False):
+  if call:  # mtd here is actualls a MethodCallExpr
+    typs = []
+    for a in mtd.args:
+      if a.typee not in JAVA_TYPES:
+        typs.append(mtd.symtab[a.typee.name].typee.name)
+      else:
+        typs.append(a.typee)
+    return '_'.join([mtd.name] + typs)
+  else:
+    mname, cname = mtd.name, repr_cls(mtd.parentNode)
+    params = map(sanitize_ty, map(lambda p: p.typee.name, mtd.parameters))
+    return u'_'.join([mname] + params) if cname else u'_'.join([mname] + params)
 
 # ~ List.partition in OCaml
 # divide the given list into two lists:
