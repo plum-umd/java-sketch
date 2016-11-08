@@ -23,7 +23,6 @@ class Encoder(object):
     # more globals to check out.
     self._magic_S = 7
     self._const = u"\nint S = {}; // length of arrays for Java collections\n\n".format(self._magic_S)
-    self._tltr = Translator()
     self._prg = program
     self._prg.symtab.update(builtins)
     self._sk_dir = ''
@@ -48,6 +47,8 @@ class Encoder(object):
         self._MTD_NUMS[m] = i
         i = i + 1
     self._primitives = ['int', 'void', 'double', 'byte', 'short', 'long']
+
+    self._tltr = Translator(cnums=self._CLASS_NUMS, mnums=self._MTD_NUMS)
 
   def find_main(self):
     mtds = []
