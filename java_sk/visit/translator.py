@@ -39,16 +39,10 @@ from ast.type.classorinterfacetype import ClassOrInterfaceType
 
 class Translator(object):
     SELF = NameExpr({u'@t':u'NameExpr',u'name':u'self'})
-    __cid = {u'@t': u'AssignExpr', u'op': {u'name': u'assign'},
-             u'target': {u'name': u'__cid', u'@t': u'NameExpr'},
-             u'value': {u'value': u'', u'@t': u'IntegerLiteralExpr'}}
-    
     def __init__(self, **kwargs):
         # convert the given type name into a newer one
         self._ty = {}     # { tname : new_tname }
         self._flds = {}   # { cname.fname : new_fname }
-        self._cnums = kwargs.get(u'cnums')
-        self._mnums = kwargs.get(u'mnums')
 
         from . import JAVA_TYPES
         from . import SKETCH_TYPES
@@ -212,9 +206,6 @@ class Translator(object):
             self.printt(".")
         self.printt("new ")
         n.typee.accept(self)
-        cid = self.__cid
-        cid[u'value'][u'value'] = str(self._cnums[n.typee.name])
-        n.args = [AssignExpr(cid)] + n.args
         self.printArguments(n.args)
     
     @v.when(MethodCallExpr)
