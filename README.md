@@ -156,40 +156,6 @@ from source.  Otherwise, i.e., using a tar ball,
 comment out lines 20--21 and 34, and uncomment lines 17--18 and 32
 (with modifying the version number if necessary).
 
-
-### Test
-
-This tool has three kinds of regression tests:
-erroneous cases, mini benchmarks converted from [Sketch][sk],
-and its own test cases that exercise Java features.
-You can find test cases under `test/benchmarks/` folder
-and run those regression tests as following:
-```sh
-$ python -m unittest -v test.test_erroneous
-$ python -m unittest -v test.test_mini
-$ python -m unittest -v test.test_java
-```
-or
-```sh
-$ python -m test.test_erroneous
-$ python -m test.test_mini
-$ python -m test.test_java
-```
-
-Note that `test_erroneous` has intentionally erroneous cases,
-so do not be alarmed to see eye-catching error reports.
-As long as the final report of the testing module is `OK`,
-then it is indeed okay.
-
-
-### Scripts
-
-In addition to the main entrance of the tool (`jsk.sh` or `main.py`),
-we provide a couple useful scripts that can
-retrieve basic information from the program (`program.py`)
-or run intermediate sketch files (`sketch.py`).
-
-
 #### jsk.sh
 
 This is the main script that runs JSketch.
@@ -198,39 +164,19 @@ $ ./jsk.sh (input_file | input_dir)+ [options]*
 ```
 For example,
 ```sh
-$ ./jsk.sh test/benchmarks/t101-miniTestb290.java
-$ ./jsk.sh test/benchmarks/t210-map.java --model
-```
-where `--model` option indicates that example requires
-a model of Java libraries.
-
-
-#### main.py
-
-Actually, `jsk.sh` is a wrapper for module `java_sk.main`,
-which can be invoked directly:
-```sh
-$ python -m java_sk.main (input_file | input_dir)+ [option]*
+$ ./jsk.sh test/new_ast/Construct.java
 ```
 
+This will dump the files it creates into `result/sk_Construct/`.
 
-#### meta/program.py
-
-This module is used to debug our own parser when adding new features.
-You can see the class hierarchy or method declarations in the template.
-```sh
-$ python -m java_sk.meta.program (input_file | input_dir)+ [option]*
-```
-
-
-#### sketch.py
+#### sketch.py (This hasn't been changed in the new branch, but also hasn't been tested.)
 
 This module is used to debug translated sketches;
 we can maintain a snapshot of the translation process
 and run a debug-loop: editing it manually, invoking Sketch, and
 repeating this process again and again until we find stable sketches.
 Based on manual edits, we can revise the translation process
-in module `encoder`.
+in module `encoder`. 
 ```sh
 $ python -m java_sk.sketch -p demo_name [option]*
 $ ./java_sk/sketch.py -p demo_name [option]*
