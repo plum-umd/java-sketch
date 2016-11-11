@@ -171,16 +171,17 @@ class Encoder(object):
     buf.write("package {};\n".format(cname))
     buf.write(self.const)
 
-    buf.write(''.join(map(self.tltr.trans_fld, s_flds)))
+    # buf.write(''.join(map(self.tltr.trans_fld, s_flds)))
     # if s_flds: buf.write('\n')
 
-    # init and clinit stuff being ignored here
     for fld in ifilterfalse(td.isPrivate, s_flds):
+      buf.write(self.tltr.trans_fld(fld))
       for v in fld.variables:
-        accessor = self.tltr.trans_fname(fld, v.name)
-        buf.write("{0} {1}() {{ return {2}; }}\n".
-                  format(self.tltr.trans_ty(fld.typee), accessor, v.name))
+        typ = self.tltr.trans_ty(fld.typee)
+        buf.write("{0} {1}_g() {{ return {1}; }}\n".format(typ, v.name))
+        buf.write("{0} {1}_s({0} {1}_s) {{ {1} = {1}_s; }}\n".format(typ, v.name))
     buf.write('\n')
+
     for m in mtds:
       if m.parentNode.interface: continue
       buf.write(self.to_func(m) + os.linesep)
