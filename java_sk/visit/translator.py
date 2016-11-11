@@ -335,6 +335,8 @@ class Translator(object):
         v = s_tab[node.scope.name]
         if isinstance(v, td): return v
         typ = s_tab[node.scope.name].typee.name
+        print 'node:', node.name, 'typ:', typ, 'scope:', node.scope.name
+        print s_tab
         cls = s_tab[typ]
         return cls
 
