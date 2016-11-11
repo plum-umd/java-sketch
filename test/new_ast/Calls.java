@@ -1,45 +1,53 @@
 class Calls {
-    harness void test(int x) {
-	// static call
-	int r0 = B.sb(1, x);
-	B b = new B();
-	// call with method name from different class
-	b.pb();
-	assert b.bb() == 2;
-
-	int r1 = A.sb(5, x);
+    // harness void test(int x) {
+    public static harness void main(int x) {
 	A a = new A();
-	a.pb();
-
-	assert b.f == 0;
-	assert r0 == 1 + x;
-
-	assert a.f == 1;
-	assert a.ab() == 3;
-	// method overloading
-	assert a.ab(x) == x;
+	int r1 = A.sb(5, x);
 	assert r1 == 5 + x;
+	a.pb(x);
+	assert a.f == x + 1;
+	// method overloading
+	assert a.ab() == 3;
+	assert a.ab(x) == x;
+
+
+	B b = new B();
+	// static call
+	assert B.sb(1, x) == 1 + x;
+	// pb in overridden in B
+	b.pb(x);
+	assert b.f == x;
+	assert b.bb() == 2;
 
 	C c = new C();
 	// check if subclass method is called
+	c.pb(x);
+	assert c.f1 == x;
 	c.pb();
 	assert c.f == 1;
 	// method only in super class
 	assert c.bb() == 2;
-	// static method from super class
-	assert c.sb(x, x) == 2*x;
+	// static methods
+	assert B.sb(x, x) == x+x;
+	assert c.sb(x, x) == x+x;
+	assert C.sb(x, x) == 2*x;
 	c.bf();
 	assert c.f == 1;
+
+	B bc = new C();
+	bc.pb(x + 1);
+	assert bc.f1 == x + 1;
+	assert bc.bb() == 2;
     }
 }
-
+    
 class A {
     int f;
     static int sb(int a, int b) {
 	return a + b;
     }
-    void pb() {
-	f = 1;
+    void pb(int x) {
+	f = x + 1;
     }
     int ab() {
 	return 3;
@@ -51,23 +59,25 @@ class A {
 
 class B {
     int f;
+    int f2;
     static int sb(int a, int b) {
     	return a + b;
     }
-    void pb() {
-    	f = 0;
+    void pb() { f = 1; }
+    void pb(int x) {
+    	f = x;
     }
     int bb() {
-	return 2;
+    	return 2;
     }
     void bf() {
-	f = 0;
+    	f = 1;
     }
 }
 
 class C extends B {
-    int f;
-    void pb() {
-	f = 1;
+    int f1;
+    void pb(int x) {
+    	f1 = x;
     }
 }

@@ -32,6 +32,7 @@ from ast.expr.objectcreationexpr import ObjectCreationExpr
 from ast.expr.fieldaccessexpr import FieldAccessExpr
 from ast.expr.arrayaccessexpr import ArrayAccessExpr
 from ast.expr.enclosedexpr import EnclosedExpr
+from ast.expr.conditionalexpr import ConditionalExpr
 from ast.type.primitivetype import PrimitiveType
 from ast.type.voidtype import VoidType
 from ast.type.referencetype import ReferenceType
@@ -39,10 +40,16 @@ from ast.type.classorinterfacetype import ClassOrInterfaceType
 
 class Translator(object):
     SELF = NameExpr({u'@t':u'NameExpr',u'name':u'self'})
+    __cid = {u'@t': u'AssignExpr', u'op': {u'name': u'assign'},
+             u'target': {u'name': u'__cid', u'@t': u'NameExpr'},
+             u'value': {u'value': u'', u'@t': u'IntegerLiteralExpr'}}
+
     def __init__(self, **kwargs):
         # convert the given type name into a newer one
         self._ty = {}     # { tname : new_tname }
         self._flds = {}   # { cname.fname : new_fname }
+        self._cnums = kwargs.get('cnums')
+        self._mnums = kwargs.get('mnums')
 
         from . import JAVA_TYPES
         from . import SKETCH_TYPES
@@ -140,7 +147,7 @@ class Translator(object):
     @v.when(ExpressionStmt)
     def visit(self, n):
         n.expr.accept(self)
-        self.printt(';')
+        if type(n.expr) != MethodCallExpr: self.printt(';')
 
     @v.when(AssertStmt)
     def visit(self, n):
@@ -181,7 +188,16 @@ class Translator(object):
     @v.when(FieldAccessExpr)
     def visit(self, n):
         cls = self.scope_to_cls(n)
-        fld = cls.symtab[n.field.name]
+        fld = None
+        if n.field.name in cls.symtab:
+            fld = cls.symtab[n.field.name]
+        else:
+            sups = cls.supers()
+            for c in sups:
+                if n.field.name in c.symtab:
+                    fld = c.symtab[n.field.name]
+                    break
+        if not fld: exit('fld {} not found in class {} or super classes.'.format(n.field.name, cls.name))
         new_fname = self.trans_fname(fld, n.field.name)
         self.printt('.'.join([n.scope.name, new_fname]))
 
@@ -206,14 +222,17 @@ class Translator(object):
             self.printt(".")
         self.printt("new ")
         n.typee.accept(self)
+        cid = self.__cid
+        cid[u'value'][u'value'] = str(self._cnums[n.typee.name])
+        n.args = [AssignExpr(cid)] + n.args
         self.printArguments(n.args)
     
     @v.when(MethodCallExpr)
     def visit(self, n):
         rcv_ty = self.scope_to_cls(n)
-        callee = rcv_ty.symtab.get(n.name)
-        if not callee: callee = self.find_in_parent(rcv_ty, n.name)
-        self.trans_call(callee, n)
+        mdec = rcv_ty.symtab.get(str(n))
+        if not mdec: mdec = self.find_in_parent(rcv_ty, n.name)
+        self.trans_call(rcv_ty, mdec, n)
 
     @v.when(EnclosedExpr)
     def visit(self, n):
@@ -232,6 +251,17 @@ class Translator(object):
         self.printt('[')
         n.index.accept(self)
         self.printt(']')
+
+    @v.when(ConditionalExpr)
+    def visit(self, n, dis=False):
+        n.condition.accept(self)
+        self.printt(' ? ')
+        if dis:
+            pass
+        else:
+            n.thenExpr.accept(self)
+        self.printt(' : ')
+        n.elseExpr.accept(self)
 
     # type
     @v.when(ClassOrInterfaceType)
@@ -261,45 +291,15 @@ class Translator(object):
                 self.printt(str(self.num_mtds))
             self.printt(']')
 
-    def printCommaList(self, args):
-        if args:
-            lenn = len(args)
-            for i in xrange(lenn):
-                args[i].accept(self)
-                if i+1 < lenn: self.printt(', ')
-
-    def printArguments(self, args):
-        self.printt('(')
-        self.printCommaList(args)
-        self.printt(')')
-
-    def trans_call(self, callee, callexpr):
-        args = callexpr.args
-        if not td.isStatic(callee):
-            args = [NameExpr({u'@t':u'NameExpr',u'name':callexpr.scope.name})] + callexpr.args
-        mid = '@'.join([self.trans_mname(callexpr, True), callee.parentNode.typee.name])
-        self.printt(mid)
-        self.printArguments(args)
-        # if td.isStatic(callee) or callee.name in self.SKETCH_BUILTIN: args = callexpr.args
-        # elif callexpr.scope: args = [callexpr.scope] + callexpr.args
-        # else: args = [self.SELF] + callexpr.args
-        # self.printt(mid)
-
     def trans_stmt(self, s):
         self.buf = cStringIO.StringIO()
         s.accept(self)
         return util.get_and_close(self.buf)
-
-    # def trans_mname(cname, mtd, arg_typs=[]):
-    def trans_mname(self, mtd, call=False):
-        # skipping memoized names and collections
-        # ignore ambiguous or not found
-        return util.repr_mtd(mtd, call)
     
     def trans_ty(self, typ, didrepr=False):
         # self.JT => JAVA_TYPES, self.ST => SKETCH_TYPES
         # ignoring a lot of 'advanced' type stuff
-        _tname = typ if didrepr else util.sanitize_ty(typ.name.strip())
+        _tname = typ if didrepr else typ.sanitize_ty(typ.name.strip())
         r_ty = _tname
 
         if typ and type(typ) == ReferenceType:
@@ -330,6 +330,128 @@ class Translator(object):
     def trans_params(self, (ty, nm)):
       return ' '.join([self.trans_ty(ty), nm])
 
+    def scope_to_cls(self, node):
+        s_tab = node.scope.symtab
+        v = s_tab[node.scope.name]
+        if isinstance(v, td): return v
+        typ = s_tab[node.scope.name].typee.name
+        cls = s_tab[typ]
+        return cls
+
+    def trans_call(self, rcv_ty, mdec, callexpr):
+        args = callexpr.args
+        mname = str(callexpr)
+        if not td.isStatic(mdec):
+            args = [NameExpr({u'@t':u'NameExpr',u'name':callexpr.scope.name})] + callexpr.args
+        else:
+            self.printt('@'.join([mname, mdec.parentNode.name]))
+            self.printArguments(args)
+            return
+        clss, call = [rcv_ty] + rcv_ty.supers(), []
+        for c in clss:
+            md = c.symtab.get(str(callexpr))
+            if (md and str(md) != mname) or not md:
+                mdec, mname = md, str(callexpr)
+                md = self.find_in_parent(rcv_ty, str(callexpr))
+            call.append(md.parentNode)
+        t = 'IfStmt' if type(mdec.typee) == VoidType else 'ConditionalExpr'
+        conexprs = [self.make_dispatch(callexpr, mname, args, c, t) for c in zip(call, clss)]
+        def combine(l, r):
+            if t == 'ConditionalExpr': l.elseExpr = r
+            else: l.elseStmt = r
+            return l
+        conexprs = reduce(combine, conexprs)
+        if t == 'ConditionalExpr': self.printt('(')
+        self.print_dispatch(conexprs)
+        if t == 'ConditionalExpr': self.printt(')')
+
+    def print_dispatch(self, c):
+        # we need to do this b/c the elseExpr's are going to have MethodCallExpr which
+        # get handled differently
+        if type(c) == ConditionalExpr:
+            c.condition.accept(self)
+            self.printt(' ? ')
+            self.printt('{}'.format(c.thenExpr.name))
+            self.printArguments(c.thenExpr.args)
+            self.printt(' : ')
+            if type(c.elseExpr) == IntegerLiteralExpr:
+                self.printt(c.elseExpr.value)
+            else:
+                self.print_dispatch(c.elseExpr)
+        else:
+            self.printt('if (')
+            c.condition.accept(self)
+            self.printt(') { ')
+            self.printt('{}'.format(c.thenStmt.name))
+            self.printArguments(c.thenStmt.args)
+            self.printt('; }')
+            if type(c.elseStmt) == IntegerLiteralExpr:
+                self.printLn()
+                self.printt('else {{ {}; }}'.format(c.elseStmt.value))
+            else:
+                self.printLn()
+                self.printt('else ')
+                self.print_dispatch(c.elseStmt)
+
+    def make_dispatch(self, callexpr, mname, args, parent, typee):
+        d = {
+            "@t": "",
+            "condition": {
+                "@t": "BinaryExpr",
+                "op": {
+                    "name": "equals"
+                },
+                "left": {
+                    "@t": "NameExpr",
+                    "name": "",
+                },
+                "right": {
+                    "@t": "IntegerLiteralExpr",
+                    "value": "",
+                },
+            },
+            "thenExpr": {
+                "@t": "MethodCallExpr",
+                "scope": {
+                    "@t": "NameExpr",
+                    "name": "",
+                },
+                "name": {
+                    "name": "",
+                },
+                "args": {},
+            },
+            "elseExpr": {
+                "@t": "IntegerLiteralExpr",
+                "value": "0",
+            },
+        }
+        d['@t'] = typee
+        d['condition']['left']['name'] = '.'.join([callexpr.scope.name, '__cid'])
+        d['condition']['right']['value'] = str(self._cnums[parent[1].name])
+        if typee == 'ConditionalExpr':
+            d['thenExpr']['scope']['name'] = callexpr.scope.name
+            d['thenExpr']['name'] = '@'.join([mname, parent[0].name])
+            dis = ConditionalExpr(d)
+            dis.thenExpr.args = args
+        else:
+            d['thenStmt'] = d.pop('thenExpr')
+            d['elseStmt'] = d.pop('elseExpr')
+            d['thenStmt']['scope']['name'] = callexpr.scope.name
+            d['thenStmt']['name'] = '@'.join([mname, parent[0].name])
+            dis = IfStmt(d)
+            dis.thenStmt.args = args
+        return dis
+        
+    # givent a type, check all parent classes for name
+    def find_in_parent(self, rcv_ty, name):
+        if name in rcv_ty.symtab: return rcv_ty.symtab[name]
+        else:
+            c = []
+            for e in rcv_ty.extendsList:
+                c = self.find_in_parent(rcv_ty.symtab[e.name], name)
+                if c: return c
+
     def indent(self): self._level += 1
     def unindent(self): self._level -= 1
     
@@ -348,20 +470,17 @@ class Translator(object):
         self.buf.write('\n')
         self.indented = False
         
-    def scope_to_cls(self, node):
-        s_tab = node.scope.symtab
-        typ = s_tab[node.scope.name].typee.name
-        cls = s_tab[typ]
-        return cls
+    def printCommaList(self, args):
+        if args:
+            lenn = len(args)
+            for i in xrange(lenn):
+                args[i].accept(self)
+                if i+1 < lenn: self.printt(', ')
 
-    # givent a type, check all parent classes for name
-    def find_in_parent(self, rcv_ty, name):
-        if name in rcv_ty.symtab: return rcv_ty.symtab[name]
-        else:
-            c = []
-            for e in rcv_ty.extendsList:
-                c = self.find_in_parent(rcv_ty.symtab[e.name], name)
-                if c: return c
+    def printArguments(self, args):
+        self.printt('(')
+        self.printCommaList(args)
+        self.printt(')')
         
     @property
     def mtd(self): return self._mtd

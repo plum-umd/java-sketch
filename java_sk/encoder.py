@@ -23,7 +23,6 @@ class Encoder(object):
     # more globals to check out.
     self._magic_S = 7
     self._const = u"\nint S = {}; // length of arrays for Java collections\n\n".format(self._magic_S)
-    self._tltr = Translator()
     self._prg = program
     self._prg.symtab.update(builtins)
     self._sk_dir = ''
@@ -48,6 +47,7 @@ class Encoder(object):
         self._MTD_NUMS[m] = i
         i = i + 1
     self._primitives = ['int', 'void', 'double', 'byte', 'short', 'long']
+    self._tltr = Translator(cnums=self._CLASS_NUMS, mnums=self._MTD_NUMS)
 
   def find_main(self):
     mtds = []
@@ -166,7 +166,7 @@ class Encoder(object):
 
     if not cls.interface and not mtds and not s_flds: return None
     # else: return None # interface or enum...not supported
-    cname = util.sanitize_ty(cls.name)
+    cname = cls.sanitize_ty(cls.name)
     buf = cStringIO.StringIO()
     buf.write("package {};\n".format(cname))
     buf.write(self.const)
@@ -195,8 +195,7 @@ class Encoder(object):
     # if td.isGenerator(mtd): buf.write(C.mod.GN + ' ') # dont have generators yet
     if td.isHarness(mtd): buf.write(u'harness' + ' ')
     ret_ty = self.tltr.trans_ty(mtd.typee)
-    buf.write(ret_ty + ' ' + self.tltr.trans_mname(mtd) + '(')
-    # buf.write(ret_ty + ' ' + self.tltr.trans_mname(mtd) + '(')
+    buf.write(ret_ty + ' ' + str(mtd) + '(')
 
     if td.isStatic(mtd): params = mtd.parameters
     else:
@@ -279,7 +278,7 @@ class Encoder(object):
 
   # only called on base classes. This seems to just be Object?  
   def to_struct(self, cls):
-    cname = util.sanitize_ty(cls.name)
+    cname = cls.sanitize_ty(cls.name)
     if not cls.extendsList: cls = self.to_v_struct(cls)
   
     buf = cStringIO.StringIO()
@@ -307,7 +306,7 @@ class Encoder(object):
     cls_v.childrenNodes.append(FieldDeclaration(fld_d))
     
     def per_cls(cls):
-      cname = util.sanitize_ty(cls.name)
+      cname = cls.sanitize_ty(cls.name)
       if cname != cls_v.name: self.tltr.ty[cls.name] = cls_v.name
       flds = filter(lambda m: type(m) == FieldDeclaration, cls.members)
       def cp_fld(fld):
