@@ -162,6 +162,7 @@ class Translator(object):
     @v.when(NameExpr)
     def visit(self, n):
         nd = n.symtab.get(n.name, None)
+        nd = n.symtab.get(n.name, None)
         if type(nd) == FieldDeclaration:
             new_fname = self.trans_fname(nd, nd.variables[0].name)
             if td.isStatic(nd):
@@ -170,7 +171,7 @@ class Translator(object):
                 else: self.printt(new_fname + "()")
             else: self.printt('.'.join([u'self', new_fname]))
         else: self.printt(n.name)
-
+            
     @v.when(VariableDeclarationExpr)
     def visit(self, n):
         n.typee.accept(self)
@@ -180,6 +181,8 @@ class Translator(object):
     @v.when(AssignExpr)
     def visit(self, n):
         n.target.accept(self)
+        if type(n.target) == FieldAccessExpr and td.isStatic(self.find_fld(n.target)):
+            return
         self.printt(' ')
         self.printt(assignop[n.op.upper()])
         self.printt(' ')
@@ -187,19 +190,19 @@ class Translator(object):
 
     @v.when(FieldAccessExpr)
     def visit(self, n):
-        cls = self.scope_to_cls(n)
-        fld = None
-        if n.field.name in cls.symtab:
-            fld = cls.symtab[n.field.name]
+        fld = self.find_fld(n)
+        if td.isStatic(fld):
+            if utils.get_coid(fld).name == self.mtd.parentNode.name:
+                self.printt(fld.variables[0].name)
+            elif type(n.parentNode) == AssignExpr:
+                self.printt('{}_s@{}('.format(fld.variables[0].name, fld.parentNode.name))
+                n.parentNode.value.accept(self)
+                self.printt(')')
+            else:
+                self.printt('{}_g@{}()'.format(fld.variables[0].name, fld.parentNode.name))
         else:
-            sups = cls.supers()
-            for c in sups:
-                if n.field.name in c.symtab:
-                    fld = c.symtab[n.field.name]
-                    break
-        if not fld: exit('fld {} not found in class {} or super classes.'.format(n.field.name, cls.name))
-        new_fname = self.trans_fname(fld, n.field.name)
-        self.printt('.'.join([n.scope.name, new_fname]))
+            new_fname = self.trans_fname(fld, n.field.name)
+            self.printt('.'.join([n.scope.name, new_fname]))
 
     @v.when(UnaryExpr)
     def visit(self, n):
@@ -335,8 +338,6 @@ class Translator(object):
         v = s_tab[node.scope.name]
         if isinstance(v, td): return v
         typ = s_tab[node.scope.name].typee.name
-        print 'node:', node.name, 'typ:', typ, 'scope:', node.scope.name
-        print s_tab
         cls = s_tab[typ]
         return cls
 
@@ -454,6 +455,21 @@ class Translator(object):
                 c = self.find_in_parent(rcv_ty.symtab[e.name], name)
                 if c: return c
 
+    def find_fld(self, n):
+        cls = self.scope_to_cls(n)
+        fld = None
+        sups = cls.supers()
+        if n.field.name in cls.symtab:
+            fld = cls.symtab[n.field.name]
+        else:
+            sups = cls.supers()
+            for c in sups:
+                if n.field.name in c.symtab:
+                    fld = c.symtab[n.field.name]
+                    break
+        if not fld: exit('fld {} not found in class {} or super classes.'.format(n.field.name, cls.name))
+        return fld
+        
     def indent(self): self._level += 1
     def unindent(self): self._level -= 1
     

@@ -179,7 +179,7 @@ class Encoder(object):
       for v in fld.variables:
         typ = self.tltr.trans_ty(fld.typee)
         buf.write("{0} {1}_g() {{ return {1}; }}\n".format(typ, v.name))
-        buf.write("{0} {1}_s({0} {1}_s) {{ {1} = {1}_s; }}\n".format(typ, v.name))
+        buf.write("void {1}_s({0} {1}_s) {{ {1} = {1}_s; }}\n".format(typ, v.name))
     buf.write('\n')
 
     for m in mtds:
