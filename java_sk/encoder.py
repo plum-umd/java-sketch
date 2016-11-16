@@ -25,8 +25,6 @@ from ast.stmt.returnstmt import ReturnStmt
 class Encoder(object):
   def __init__(self, program):
     # more globals to check out.
-    self._magic_S = 7
-    self._const = u"\nint S = {}; // length of arrays for Java collections\n\n".format(self._magic_S)
     self._prg = program
     self._prg.symtab.update(builtins)
     self._sk_dir = ''
@@ -87,8 +85,8 @@ class Encoder(object):
     # consist builds up some class hierarchies which happens in main.py
     # prg.consist()
     # type.sk
-    logging.info('generating type.sk')
-    self.gen_type_sk()
+    logging.info('generating meta.sk')
+    self.gen_meta_sk()
 
     # cls.sk
     logging.info('generating cls.sk')
@@ -98,10 +96,9 @@ class Encoder(object):
       cls_sk = self.gen_cls_sk(cls)
       if cls_sk: cls_sks.append(cls_sk)
 
-    logging.info('generating log.sk')
-    self.gen_log_sk()
     logging.info('generating main.sk')
     self.gen_main_sk(cls_sks)
+    exit()
 
   def gen_main_sk(self, cls_sks):
     # main.sk that imports all the other sketch files
@@ -113,7 +110,6 @@ class Encoder(object):
     
     # --bnd-unroll-amnt: the unroll amount for loops
     unroll_amnt = None # use a default value if not set
-    # unroll_amnt = self.magic_S # TODO: other criteria?
     unroll_amnt = 35
     if unroll_amnt:
       buf.write("pragma options \"--bnd-unroll-amnt {}\";\n".format(35))
@@ -125,42 +121,28 @@ class Encoder(object):
       buf.write("pragma options \"--bnd-inline-amnt {}\";\n".format(inline_amnt))
       buf.write("pragma options \"--bnd-bound-mode CALLSITE\";\n")
 
-    sks = ["log.sk", "type.sk"] + cls_sks
+    sks = ["meta.sk"] + cls_sks
     for sk in sks:
       buf.write("include \"{}\";\n".format(sk))
 
     with open(os.path.join(self.sk_dir, "main.sk"), 'w') as f:
       f.write(util.get_and_close(buf))
 
-  def gen_log_sk(self):
+  def gen_meta_sk(self):
     buf = cStringIO.StringIO()
-    buf.write("package log;\n")
-    buf.write(self._const)
+    buf.write("package meta;\n\n")
 
-    buf.write("// distinct hash values for runtime objects\n"
-              "int obj_cnt = 0;\n"
-              "int nonce () {\n"
-              "    return obj_cnt++;\n"
-              "}\n\n")
-
-    # factory of Object
-    buf.write(("// factory of Object\n"
-               "Object alloc(int ty) {{\n"
-               "   Object {0} = new Object(hash=nonce(), __cid=ty);\n"
-               "   return {0};\n"
-               "}}\n\n".format(u'self')))
-
+    # bases is just Object?
+    bases = util.rm_subs(self._clss)
+    buf.write('\n'.join(filter(None, map(self.to_struct, bases))))
+    buf.write('\n')
+    
     buf.write("// distinct class IDs\n")
     for k,v in self.CLASS_NUMS.items():
       if k not in self.primitives:
-        buf.write("int {k} () {{ return {v}; }}\n".format(**locals()))
+        buf.write("int {k}() {{ return {v}; }}\n".format(**locals()))
 
-    # buf.write("\n// distinct method IDs\n")
-    # for mtd,idd in self._MTD_NUMS.items():
-    #   mname = util.sanitize_mname(self.tltr.trans_mname(mtd))
-    #   buf.write("int {mname}_ent () {{ return {idd}; }}\n".format(**locals()))
-    #   buf.write("int {mname}_ext () {{ return -{idd}; }}\n\n".format(**locals()))
-    with open(os.path.join(self.sk_dir, "log.sk"), 'w') as f:
+    with open(os.path.join(self.sk_dir, "meta.sk"), 'w') as f:
       f.write(util.get_and_close(buf))
 
   def gen_cls_sk(self, cls):
@@ -173,7 +155,6 @@ class Encoder(object):
     cname = cls.sanitize_ty(cls.name)
     buf = cStringIO.StringIO()
     buf.write("package {};\n".format(cname))
-    buf.write(self.const)
 
     # buf.write(''.join(map(self.tltr.trans_fld, s_flds)))
     # if s_flds: buf.write('\n')
@@ -229,71 +210,7 @@ class Encoder(object):
     body = self.tltr.trans_stmt(mtd.body) if mtd.body else ''
     buf.write(body)
     return util.get_and_close(buf)
-
-  def gen_type_sk(self):
-    buf = cStringIO.StringIO()
-    buf.write("package type;\n")
-    buf.write(self._const)
-
-    # bases is just Object?
-    bases = util.rm_subs(self._clss)
-    buf.write('\n'.join(filter(None, map(self.to_struct, bases))))
-
-    mtds = self.mtds + self.cons
-
-    # argument number of methods
-    arg_num = map(lambda m: str(len(m.parameters)), mtds)
-    buf.write(("#define _{0} {{ {1} }}\n"
-               "int {0}(int id) {{\n"
-               "return _{0}[id];\n"
-               "}}\n\n".format('argNum', ", ".join(arg_num))))
-
-    # argument types of methods
-    arg_typs = []
-    for m in mtds:
-      arg_typs.append('{'+', '.join(map(lambda p: str(self.CLASS_NUMS[p.typee.name]),
-                                        m.parameters)) +'}')
-    buf.write(("#define _{0} {{ {1} }}\n"
-               "int {0}(int id, int idx) {{\n"
-               "  return _{0}[id][idx];\n"
-               "}}\n\n".format('argType', ", ".join(arg_typs))))
-
-    # return type of methods
-    ret_typs = map(lambda r: str(self.CLASS_NUMS[r.typee.name]), mtds)
-    buf.write("#define _{0} {{ {1} }}\n"
-              "int {0}(int id) {{\n"
-              "  return _{0}[id];\n"
-              "}}\n\n".format('retType', ", ".join(ret_typs)))
-
-    # belonging class of methods
-    belongs_to = map(lambda mtd: self.CLASS_NUMS[mtd.parentNode.name], mtds)
-    buf.write("#define _{0} {{ {1} }}\n"
-              "int {0}(int id) {{\n"
-              " return _{0}[id];\n"
-              "}}\n\n".format(u'belongsTo', ", ".join(map(str, belongs_to))))
-
-    # I have no idea why this is necesary...
-    # rearrange the classes
-    int_cls = ClassOrInterfaceDeclaration({u'name':u'int'})
-    obj_cls, clss = util.partition(lambda x: x.name == u'Object', self.clss)
-    obj_cls = obj_cls[0]
-    obj_cls.subClasses.append(int_cls)
-    clss = [obj_cls] + clss
-    clss.append(int_cls)
-    clss.append(int_cls)
-    clss.append(obj_cls)
-    subcls = map(lambda cls_i: '{' + ", ".join(
-      map(lambda cls_j: str(utils.is_subclass(cls_i, cls_j)).lower(),
-          clss)) + '}', clss)
-    buf.write("#define _{0} {{ {1} }}\n"
-              "bit {0}(int i, int j) {{\n"
-              " return _{0}[i][j];\n"
-              "}}\n\n".format(u'subcls', ", ".join(subcls)))
-    with open(os.path.join(self.sk_dir, "type.sk"), 'w') as f:
-      f.write(buf.getvalue())
-      # logging.info("encoding " + f.name)
-    buf.close()
-
+    
   # only called on base classes. This seems to just be Object?  
   def to_struct(self, cls):
     cname = cls.sanitize_ty(cls.name)
@@ -354,11 +271,6 @@ class Encoder(object):
   def tltr(self, v): self._tltr = v
 
   @property
-  def const(self): return self._const
-  @const.setter
-  def const(self, v): self._const = v
-
-  @property
   def clss(self): return self._clss
   @clss.setter
   def clss(self, v): self._clss = v
@@ -367,16 +279,6 @@ class Encoder(object):
   def mtds(self): return self._mtds
   @mtds.setter
   def mtds(self, v): self._mtds = v
-
-  @property
-  def cons(self): return self._cons
-  @cons.setter
-  def cons(self, v): self._cons = v
-
-  @property
-  def magic_S(self): return self._magic_S
-  @magic_S.setter
-  def magic_S(self, v): self._magic_S = v
 
   @property
   def primitives(self): return self._primitives
