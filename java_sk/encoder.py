@@ -17,6 +17,10 @@ from ast.body.methoddeclaration import MethodDeclaration
 from ast.body.constructordeclaration import ConstructorDeclaration
 from ast.body.typedeclaration import TypeDeclaration as td
 from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
+from ast.body.parameter import Parameter
+
+from ast.stmt.expressionstmt import ExpressionStmt
+from ast.stmt.returnstmt import ReturnStmt
 
 class Encoder(object):
   def __init__(self, program):
@@ -114,13 +118,13 @@ class Encoder(object):
     if unroll_amnt:
       buf.write("pragma options \"--bnd-unroll-amnt {}\";\n".format(35))
       
-      # --bnd-inline-amnt: bounds inlining to n levels of recursion
+    # --bnd-inline-amnt: bounds inlining to n levels of recursion
     inline_amnt = None # use a default value if not set
     # setting it 1 means there is no recursion
     if inline_amnt:
       buf.write("pragma options \"--bnd-inline-amnt {}\";\n".format(inline_amnt))
       buf.write("pragma options \"--bnd-bound-mode CALLSITE\";\n")
-        
+
     sks = ["log.sk", "type.sk"] + cls_sks
     for sk in sks:
       buf.write("include \"{}\";\n".format(sk))
@@ -196,9 +200,19 @@ class Encoder(object):
     # if td.isGenerator(mtd): buf.write(C.mod.GN + ' ') # dont have generators yet
     if td.isHarness(mtd): buf.write(u'harness' + ' ')
     ret_ty = self.tltr.trans_ty(mtd.typee)
+    if type(mtd) == ConstructorDeclaration:
+      p = Parameter({u'id':{u'name':u'__cid'},
+           u'type': {u'@t':u'PrimitiveType', u'type': {u'name': u'int'}}})
+      mtd.parameters = [p] + mtd.parameters
+      typ = {u'@t': u'ClassOrInterfaceType', u'name': u'Object'}
+      dec = {u'id': {u'name': u'self'}, u'init': {u'@t': u'ObjectCreationExpr', u'type': typ}}
+      init = ExpressionStmt({u'expr': {u'@t':u'VariableDeclarationExpr',
+                                       u'type': typ,
+                                       u'vars': {u'@e': [dec]}}})
+      mtd.body.stmts = [init] + mtd.body.stmts
     buf.write(ret_ty + ' ' + str(mtd) + '(')
 
-    if td.isStatic(mtd): params = mtd.parameters
+    if td.isStatic(mtd) or type(mtd) == ConstructorDeclaration: params = mtd.parameters
     else:
       self_ty = self.tltr.trans_ty(util.repr_cls(mtd.parentNode), didrepr=True)
       params = [Parameter({u'id':{u'name':u'self'},
@@ -209,7 +223,10 @@ class Encoder(object):
     buf.write(') ')
     self.tltr.mtd = mtd
     self.tltr.num_mtds = len(self.MTD_NUMS.keys())
-    body = self.tltr.trans_stmt(mtd.body)
+    if type(mtd) == ConstructorDeclaration:
+      mtd.body.stmts.append(ReturnStmt({u'expr':{u'@t':u'NameExpr',u'name':u'self'}}))
+
+    body = self.tltr.trans_stmt(mtd.body) if mtd.body else ''
     buf.write(body)
     return util.get_and_close(buf)
 
@@ -223,7 +240,7 @@ class Encoder(object):
     buf.write('\n'.join(filter(None, map(self.to_struct, bases))))
 
     mtds = self.mtds + self.cons
-  
+
     # argument number of methods
     arg_num = map(lambda m: str(len(m.parameters)), mtds)
     buf.write(("#define _{0} {{ {1} }}\n"
@@ -241,7 +258,7 @@ class Encoder(object):
                "  return _{0}[id][idx];\n"
                "}}\n\n".format('argType', ", ".join(arg_typs))))
 
-    # return type of methods 
+    # return type of methods
     ret_typs = map(lambda r: str(self.CLASS_NUMS[r.typee.name]), mtds)
     buf.write("#define _{0} {{ {1} }}\n"
               "int {0}(int id) {{\n"

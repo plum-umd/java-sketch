@@ -18,6 +18,7 @@ from ast.stmt.blockstmt import BlockStmt
 from ast.stmt.returnstmt import ReturnStmt
 from ast.stmt.ifstmt import IfStmt
 from ast.stmt.forstmt import ForStmt
+from ast.stmt.emptystmt import EmptyStmt
 from ast.stmt.expressionstmt import ExpressionStmt
 from ast.stmt.assertstmt import AssertStmt
 from ast.expr.variabledeclarationexpr import VariableDeclarationExpr
@@ -30,9 +31,12 @@ from ast.expr.methodcallexpr import MethodCallExpr
 from ast.expr.generatorexpr import GeneratorExpr
 from ast.expr.objectcreationexpr import ObjectCreationExpr
 from ast.expr.fieldaccessexpr import FieldAccessExpr
+from ast.expr.arraycreationexpr import ArrayCreationExpr
+from ast.expr.arrayinitializerexpr import ArrayInitializerExpr
 from ast.expr.arrayaccessexpr import ArrayAccessExpr
 from ast.expr.enclosedexpr import EnclosedExpr
 from ast.expr.conditionalexpr import ConditionalExpr
+from ast.expr.thisexpr import ThisExpr
 from ast.type.primitivetype import PrimitiveType
 from ast.type.voidtype import VoidType
 from ast.type.referencetype import ReferenceType
@@ -40,10 +44,10 @@ from ast.type.classorinterfacetype import ClassOrInterfaceType
 
 class Translator(object):
     SELF = NameExpr({u'@t':u'NameExpr',u'name':u'self'})
-    __cid = {u'@t': u'AssignExpr', u'op': {u'name': u'assign'},
-             u'target': {u'name': u'__cid', u'@t': u'NameExpr'},
-             u'value': {u'value': u'', u'@t': u'IntegerLiteralExpr'}}
-
+    _cid = {u'@t': u'AssignExpr', u'op': {u'name': u'assign'},
+            u'target': {u'name': u'__cid', u'@t': u'NameExpr'},
+            u'value': {u'value': u'', u'@t': u'IntegerLiteralExpr'}}
+    ARRAY_SIZE = 50
     def __init__(self, **kwargs):
         # convert the given type name into a newer one
         self._ty = {}     # { tname : new_tname }
@@ -136,11 +140,11 @@ class Translator(object):
     @v.when(ForStmt)
     def visit(self, n):
         self.printt('for (')
-        if n.init: self.printCommaList(n.init)
+        if n.init: self.printSepList(n.init)
         self.printt('; ')
         if n.compare: n.compare.accept(self)
         self.printt('; ')
-        if n.update: self.printCommaList(n.update)
+        if n.update: self.printSepList(n.update)
         self.printt(') ')
         n.body.accept(self)
 
@@ -157,6 +161,9 @@ class Translator(object):
             self.printt(" : ")
             n.msg.accept(self)
         self.printt(";")
+
+    @v.when(EmptyStmt)
+    def visit(self, n): pass
 
     # expr
     @v.when(NameExpr)
@@ -176,12 +183,13 @@ class Translator(object):
     def visit(self, n):
         n.typee.accept(self)
         self.printt(' ')
-        self.printCommaList(n.varss)
+        self.printSepList(n.varss)
 
     @v.when(AssignExpr)
     def visit(self, n):
         n.target.accept(self)
-        if type(n.target) == FieldAccessExpr and td.isStatic(self.find_fld(n.target)):
+        if type(n.target) == FieldAccessExpr and type(n.target.scope) != ThisExpr and \
+           td.isStatic(self.find_fld(n.target)):
             return
         self.printt(' ')
         self.printt(assignop[n.op.upper()])
@@ -190,6 +198,9 @@ class Translator(object):
 
     @v.when(FieldAccessExpr)
     def visit(self, n):
+        if type(n.scope) == ThisExpr:
+            self.printt('.'.join(['self', self.trans_fname(n.scope, n.name)]))
+            return
         fld = self.find_fld(n)
         if td.isStatic(fld):
             if utils.get_coid(fld).name == self.mtd.parentNode.name:
@@ -202,7 +213,8 @@ class Translator(object):
                 self.printt('{}_g@{}()'.format(fld.variables[0].name, fld.parentNode.name))
         else:
             new_fname = self.trans_fname(fld, n.field.name)
-            self.printt('.'.join([n.scope.name, new_fname]))
+            n.scope.accept(self)
+            self.printt('.{}'.format(new_fname))
 
     @v.when(UnaryExpr)
     def visit(self, n):
@@ -223,13 +235,45 @@ class Translator(object):
         if n.scope:
             n.getScope.accept(self)
             self.printt(".")
-        self.printt("new ")
-        n.typee.accept(self)
-        cid = self.__cid
-        cid[u'value'][u'value'] = str(self._cnums[n.typee.name])
-        n.args = [AssignExpr(cid)] + n.args
-        self.printArguments(n.args)
-    
+        if n.args:
+            typs = []
+            args = [IntegerLiteralExpr({u'value':str(self._cnums[n.typee.name])})] + n.args
+            for a in args:
+                if type(a) == FieldAccessExpr:
+                    tname = self.find_fld(a).typee.name
+                elif not a.typee:
+                    tname = n.symtab[a.name].typee.name
+                else:
+                    tname = a.typee.name
+                typs.append(tname)
+                    
+            self.printt('@'.join(['_'.join([n.typee.name] + typs), n.typee.name]))
+        else:
+            cid = self._cid
+            cid[u'value'][u'value'] = str(self._cnums[n.typee.name])
+            args = [AssignExpr(cid)] + n.args
+            self.printt("new ")
+            n.typee.accept(self)
+        self.printArguments(args)
+        
+    @v.when(ArrayCreationExpr)
+    def visit(self, n):
+        for c in xrange(n.arrayCount):
+            n.initializer.accept(self)
+
+    @v.when(ArrayInitializerExpr)
+    def visit(self, n):
+        self.printt('{')
+        self.printSepList(n.values)
+        self.printt('}')
+
+    @v.when(ArrayAccessExpr)
+    def visit(self, n):
+        n.nameExpr.accept(self)
+        self.printt('[')
+        n.index.accept(self)
+        self.printt(']')
+
     @v.when(MethodCallExpr)
     def visit(self, n):
         rcv_ty = self.scope_to_cls(n)
@@ -246,14 +290,10 @@ class Translator(object):
     @v.when(GeneratorExpr)
     def visit(self, n):
         if n.isHole: self.printt('??')
-        else: print '\n!!generator not implemented!!\n'
-
-    @v.when(ArrayAccessExpr)
-    def visit(self, n):
-        n.nameExpr.accept(self)
-        self.printt('[')
-        n.index.accept(self)
-        self.printt(']')
+        else:
+            self.printt('{| ')
+            self.printSepList(n.exprs, ' | ')
+            self.printt(' |}')
 
     @v.when(ConditionalExpr)
     def visit(self, n, dis=False):
@@ -304,13 +344,13 @@ class Translator(object):
         # ignoring a lot of 'advanced' type stuff
         _tname = typ if didrepr else typ.sanitize_ty(typ.name.strip())
         r_ty = _tname
-
         if typ and type(typ) == ReferenceType:
             if typ.name in self.ty: r_ty = self.ty[typ.name]
             if typ.values: r_ty += ''.join(["[{}]".format(v.name) for v in typ.values])
+            else: r_ty += ''.join(['[{}]'.format(self.ARRAY_SIZE) for i in xrange(typ.arrayCount)])
         # we've already rewritten this type
         elif _tname in self.ty: r_ty = self.ty[_tname]
-        # this type is a Sketh type
+        # this type is a Sketch type
         elif _tname in self.ST: r_ty = self.ST[_tname]
         # type translates to Sketch int
         elif _tname in [self.JT[u'byte'], self.JT[u'short'], self.JT[u'long'],
@@ -331,11 +371,12 @@ class Translator(object):
         return util.get_and_close(buf)
 
     def trans_params(self, (ty, nm)):
-      return ' '.join([self.trans_ty(ty), nm])
+        return ' '.join([self.trans_ty(ty), nm])
 
     def scope_to_cls(self, node):
         s_tab = node.scope.symtab
-        v = s_tab[node.scope.name]
+        v = s_tab[node.scope.nameExpr.Name] if type(node) == ArrayAccessExpr else \
+            s_tab[node.scope.name]
         if isinstance(v, td): return v
         typ = s_tab[node.scope.name].typee.name
         cls = s_tab[typ]
@@ -465,6 +506,7 @@ class Translator(object):
             sups = cls.supers()
             for c in sups:
                 if n.field.name in c.symtab:
+                    cls = c
                     fld = c.symtab[n.field.name]
                     break
         if not fld: exit('fld {} not found in class {} or super classes.'.format(n.field.name, cls.name))
@@ -488,16 +530,16 @@ class Translator(object):
         self.buf.write('\n')
         self.indented = False
         
-    def printCommaList(self, args):
+    def printSepList(self, args, sep=','):
         if args:
             lenn = len(args)
             for i in xrange(lenn):
                 args[i].accept(self)
-                if i+1 < lenn: self.printt(', ')
+                if i+1 < lenn: self.printt('{} '.format(sep))
 
     def printArguments(self, args):
         self.printt('(')
-        self.printCommaList(args)
+        self.printSepList(args)
         self.printt(')')
         
     @property

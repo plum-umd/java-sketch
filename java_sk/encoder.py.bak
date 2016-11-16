@@ -72,7 +72,9 @@ def trans_ty(tname):
   _tname = util.sanitize_ty(tname.strip())
   array_regex = r"([^ \[\]]+)((\[\])+)"
   m = re.match(array_regex, _tname)
-
+  if m:
+    print _tname
+    print m
   global _ty
   r_ty = _tname
   # to avoid primitive types that Sketch doesn't support
