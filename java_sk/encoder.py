@@ -8,7 +8,7 @@ from itertools import ifilterfalse
 
 from . import builtins
 
-from visit.translator import Translator
+from .translator import Translator
 
 from ast.utils import utils
 from ast.body.parameter import Parameter
@@ -98,7 +98,6 @@ class Encoder(object):
 
     logging.info('generating main.sk')
     self.gen_main_sk(cls_sks)
-    exit()
 
   def gen_main_sk(self, cls_sks):
     # main.sk that imports all the other sketch files

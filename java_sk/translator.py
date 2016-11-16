@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import cStringIO
 
-from .. import util
+from . import util
 
 import visit as v
 

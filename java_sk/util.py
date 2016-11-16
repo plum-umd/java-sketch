@@ -5,8 +5,6 @@ from itertools import ifilter, ifilterfalse
 from ast.utils import utils
 from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 
-from visit import JAVA_TYPES
-
 """
 regarding paths and files
 """
