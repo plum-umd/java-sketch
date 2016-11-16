@@ -7,10 +7,11 @@ import visit as v
 
 from ast import Operators as op
 from ast import AssignOperators as assignop
-from ast.body.typedeclaration import TypeDeclaration as td
 
 from ast.utils import utils
 from ast.node import Node
+
+from ast.body.typedeclaration import TypeDeclaration as td
 from ast.body.fielddeclaration import FieldDeclaration
 from ast.body.variabledeclarator import VariableDeclarator
 from ast.body.variabledeclaratorid import VariableDeclaratorId
@@ -21,6 +22,9 @@ from ast.stmt.forstmt import ForStmt
 from ast.stmt.emptystmt import EmptyStmt
 from ast.stmt.expressionstmt import ExpressionStmt
 from ast.stmt.assertstmt import AssertStmt
+from ast.stmt.switchstmt import SwitchStmt
+from ast.stmt.switchentrystmt import SwitchEntryStmt
+
 from ast.expr.variabledeclarationexpr import VariableDeclarationExpr
 from ast.expr.unaryexpr import UnaryExpr
 from ast.expr.binaryexpr import BinaryExpr
@@ -37,6 +41,7 @@ from ast.expr.arrayaccessexpr import ArrayAccessExpr
 from ast.expr.enclosedexpr import EnclosedExpr
 from ast.expr.conditionalexpr import ConditionalExpr
 from ast.expr.thisexpr import ThisExpr
+
 from ast.type.primitivetype import PrimitiveType
 from ast.type.voidtype import VoidType
 from ast.type.referencetype import ReferenceType
@@ -162,6 +167,24 @@ class Translator(object):
             n.msg.accept(self)
         self.printt(";")
 
+    @v.when(SwitchStmt)
+    def visit(self, n):
+        for e in xrange(len(n.entries)):
+            self.printt('if (') if e == 0 else self.printt('else if (')
+            n.selector.accept(self)
+            self.printt(' == ')
+            n.entries[e].label.accept(self)
+            self.printLn(') {')
+            self.indent()
+            for s in n.entries[e].stmts: s.accept(self)
+            self.unindent()
+            self.printLn()
+            self.printLn('}')
+        
+    @v.when(SwitchEntryStmt)
+    def visit(self, n):
+        pass
+        
     @v.when(EmptyStmt)
     def visit(self, n): pass
 
