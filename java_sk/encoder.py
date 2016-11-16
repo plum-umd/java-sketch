@@ -85,6 +85,9 @@ class Encoder(object):
     # consist builds up some class hierarchies which happens in main.py
     # prg.consist()
     # type.sk
+    logging.info('generating Object.sk')
+    self.gen_object_sk()
+
     logging.info('generating meta.sk')
     self.gen_meta_sk()
 
@@ -120,22 +123,25 @@ class Encoder(object):
       buf.write("pragma options \"--bnd-inline-amnt {}\";\n".format(inline_amnt))
       buf.write("pragma options \"--bnd-bound-mode CALLSITE\";\n")
 
-    sks = ["meta.sk"] + cls_sks
+    sks = ['meta.sk', 'Object.sk'] + cls_sks
     for sk in sks:
       buf.write("include \"{}\";\n".format(sk))
 
     with open(os.path.join(self.sk_dir, "main.sk"), 'w') as f:
       f.write(util.get_and_close(buf))
 
+  def gen_object_sk(self):
+    buf = cStringIO.StringIO()
+    buf.write("package Object;\n\n")
+
+    bases = util.rm_subs(self._clss)
+    buf.write('\n'.join(filter(None, map(self.to_struct, bases))))
+    with open(os.path.join(self.sk_dir, "Object.sk"), 'w') as f:
+      f.write(util.get_and_close(buf))
+
   def gen_meta_sk(self):
     buf = cStringIO.StringIO()
     buf.write("package meta;\n\n")
-
-    # bases is just Object?
-    bases = util.rm_subs(self._clss)
-    buf.write('\n'.join(filter(None, map(self.to_struct, bases))))
-    buf.write('\n')
-    
     buf.write("// distinct class IDs\n")
     for k,v in self.CLASS_NUMS.items():
       if k not in self.primitives:

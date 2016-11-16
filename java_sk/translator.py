@@ -237,7 +237,7 @@ class Translator(object):
             self.printt(".")
         if n.args:
             typs = []
-            args = [IntegerLiteralExpr({u'value':str(self._cnums[n.typee.name])})] + n.args
+            args = [IntegerLiteralExpr({u'value':'{}()'.format(n.typee.name)})] + n.args
             for a in args:
                 if type(a) == FieldAccessExpr:
                     tname = self.find_fld(a).typee.name
@@ -250,7 +250,7 @@ class Translator(object):
             self.printt('@'.join(['_'.join([n.typee.name] + typs), n.typee.name]))
         else:
             cid = self._cid
-            cid[u'value'][u'value'] = str(self._cnums[n.typee.name])
+            cid[u'value'][u'value'] = '{}()'.format(n.typee.name)
             args = [AssignExpr(cid)] + n.args
             self.printt("new ")
             n.typee.accept(self)
@@ -472,7 +472,7 @@ class Translator(object):
         }
         d['@t'] = typee
         d['condition']['left']['name'] = '.'.join([callexpr.scope.name, '__cid'])
-        d['condition']['right']['value'] = str(self._cnums[parent[1].name])
+        d['condition']['right']['value'] = '{}()'.format(parent[1].name)
         if typee == 'ConditionalExpr':
             d['thenExpr']['scope']['name'] = callexpr.scope.name
             d['thenExpr']['name'] = '@'.join([mname, parent[0].name])
