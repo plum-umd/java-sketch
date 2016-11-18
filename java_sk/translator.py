@@ -12,9 +12,13 @@ from ast.utils import utils
 from ast.node import Node
 
 from ast.body.typedeclaration import TypeDeclaration as td
+from ast.body.constructordeclaration import ConstructorDeclaration
+from ast.body.methoddeclaration import MethodDeclaration
+from ast.body.parameter import Parameter
 from ast.body.fielddeclaration import FieldDeclaration
 from ast.body.variabledeclarator import VariableDeclarator
 from ast.body.variabledeclaratorid import VariableDeclaratorId
+
 from ast.stmt.blockstmt import BlockStmt
 from ast.stmt.returnstmt import ReturnStmt
 from ast.stmt.ifstmt import IfStmt
@@ -91,6 +95,58 @@ class Translator(object):
         # map(lambda x: x.accept(self), n.childrenNodes)
 
     # body
+    @v.when(ConstructorDeclaration)
+    def visit(self, n):
+        p = Parameter({u'id':{u'name':u'cid'},
+                       u'type':{u'@t':u'ClassOrInterfaceType',u'name':u'int'}})
+        n.parameters = [p] + n.parameters
+
+        self.printt('void {}'.format(str(n)))
+        self.printt('(')
+        self.printSepList(n.parameters)
+        self.printt(')')
+
+        for i in xrange(n.arrayCount): self.printt('[]')
+        if n.throws:
+            self.printt(' throws ')
+            self.printCommaList(n.throws)
+            
+        if not n.body: self.printt(';')
+        else:
+            self.printt(' ')
+            n.body.stmts = [u'Object self = new Object(__cid = cid);'] + n.body.stmts + [u'return self;']
+            n.body.accept(self)
+        self.printLn()
+
+    @v.when(MethodDeclaration)
+    def visit(self, n):
+        n.typee.accept(self)
+        self.printt(' ')
+        self.printt(str(n))
+        self.printt('(')
+
+        if not td.isStatic(n) and not td.isHarness(n):
+            ty = self.trans_ty(str(n.parentNode), didrepr=True)
+            self.printt('{} self'.format(ty))
+            if n.parameters: self.printt(', ')
+        self.printSepList(n.parameters)
+        self.printt(')')
+
+        for i in xrange(n.arrayCount): self.printt('[]')
+        if n.throws:
+            self.printt(' throws ')
+            self.printCommaList(n.throws)
+            
+        if not n.body: self.printt(';')
+        else:
+            self.printt(' ')
+            n.body.accept(self)
+        self.printLn()
+
+    @v.when(Parameter)
+    def visit(self, n):
+        self.buf.write(' '.join([self.trans_ty(n.typee), n.name]))
+
     @v.when(VariableDeclarator)
     def visit(self, n):
         n.idd.accept(self)
@@ -109,8 +165,11 @@ class Translator(object):
         if n.stmts:
             self.indent()
             for s in n.stmts:
-                s.accept(self)
-                self.printLn()
+                if type(s) == str or type(s) == unicode:
+                    self.printLn(s)
+                else:
+                    s.accept(self)
+                    self.printLn()
             self.unindent()
         self.printt('}')
 
@@ -221,23 +280,22 @@ class Translator(object):
 
     @v.when(FieldAccessExpr)
     def visit(self, n):
-        if type(n.scope) == ThisExpr:
-            self.printt('.'.join(['self', self.trans_fname(n.scope, n.name)]))
-            return
         fld = self.find_fld(n)
+        def fld_access():
+            n.scope.accept(self)
+            new_fname = self.trans_fname(fld, n.field.name)
+            self.printt('.{}'.format(new_fname))
         if td.isStatic(fld):
             if utils.get_coid(fld).name == self.mtd.parentNode.name:
                 self.printt(fld.variables[0].name)
-            elif type(n.parentNode) == AssignExpr:
+            elif type(n.parentNode) == AssignExpr and n == n.parentNode.target:
                 self.printt('{}_s@{}('.format(fld.variables[0].name, fld.parentNode.name))
                 n.parentNode.value.accept(self)
                 self.printt(')')
             else:
                 self.printt('{}_g@{}()'.format(fld.variables[0].name, fld.parentNode.name))
         else:
-            new_fname = self.trans_fname(fld, n.field.name)
-            n.scope.accept(self)
-            self.printt('.{}'.format(new_fname))
+            fld_access()
 
     @v.when(UnaryExpr)
     def visit(self, n):
@@ -255,12 +313,12 @@ class Translator(object):
 
     @v.when(ObjectCreationExpr)
     def visit(self, n):
+        args = [IntegerLiteralExpr({u'value':'{}()'.format(n.typee.name)})] + n.args
         if n.scope:
             n.getScope.accept(self)
             self.printt(".")
         if n.args:
             typs = []
-            args = [IntegerLiteralExpr({u'value':'{}()'.format(n.typee.name)})] + n.args
             for a in args:
                 if type(a) == FieldAccessExpr:
                     tname = self.find_fld(a).typee.name
@@ -270,13 +328,9 @@ class Translator(object):
                     tname = a.typee.name
                 typs.append(tname)
                     
-            self.printt('@'.join(['_'.join([n.typee.name] + typs), n.typee.name]))
+            self.printt('_'.join([n.typee.name] + typs))
         else:
-            cid = self._cid
-            cid[u'value'][u'value'] = '{}()'.format(n.typee.name)
-            args = [AssignExpr(cid)] + n.args
-            self.printt("new ")
-            n.typee.accept(self)
+            self.printt('{}_int'.format(n.typee.name))
         self.printArguments(args)
         
     @v.when(ArrayCreationExpr)
@@ -319,15 +373,19 @@ class Translator(object):
             self.printt(' |}')
 
     @v.when(ConditionalExpr)
-    def visit(self, n, dis=False):
+    def visit(self, n):
         n.condition.accept(self)
         self.printt(' ? ')
-        if dis:
-            pass
-        else:
-            n.thenExpr.accept(self)
+        n.thenExpr.accept(self)
         self.printt(' : ')
         n.elseExpr.accept(self)
+
+    @v.when(ThisExpr)
+    def visit(self, n):
+        if n.classExpr:
+            n.classExpr.accept(self)
+            self.printt('.')
+        self.printt('self')
 
     # type
     @v.when(ClassOrInterfaceType)
@@ -357,7 +415,7 @@ class Translator(object):
                 self.printt(str(self.num_mtds))
             self.printt(']')
 
-    def trans_stmt(self, s):
+    def trans(self, s):
         self.buf = cStringIO.StringIO()
         s.accept(self)
         return util.get_and_close(self.buf)
@@ -397,6 +455,7 @@ class Translator(object):
         return ' '.join([self.trans_ty(ty), nm])
 
     def scope_to_cls(self, node):
+        if type(node.scope) == ThisExpr: return utils.get_coid(node.scope)
         s_tab = node.scope.symtab
         v = s_tab[node.scope.nameExpr.Name] if type(node) == ArrayAccessExpr else \
             s_tab[node.scope.name]

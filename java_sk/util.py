@@ -51,15 +51,3 @@ def get_and_close(buf):
   v = buf.getvalue()
   buf.close()
   return v
-
-# flatten class declarations or hierarchy
-# "inners": class A { class Inner { class InnerMost }} -> [A, Inner, InnerMost]
-# "subs": ActA, ActB, ... < Act < Cxt -> [Cxt, Act, ActA, ActB, ...]
-def flatten_classes(cls):
-  lst = [cls]
-  def flatten(c):
-    for s in c.subClasses:
-      lst.append(s)
-      flatten(s)
-  flatten(cls)
-  return lst
