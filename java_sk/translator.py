@@ -251,13 +251,9 @@ class Translator(object):
     @v.when(NameExpr)
     def visit(self, n):
         nd = n.symtab.get(n.name, None)
-        nd = n.symtab.get(n.name, None)
         if type(nd) == FieldDeclaration:
             new_fname = self.trans_fname(nd, nd.variables[0].name)
-            if td.isStatic(nd):
-                if utils.get_coid(nd).name == self.mtd.parentNode.name:
-                    self.printt(nd.variables[0].name)
-                else: self.printt(new_fname + "()")
+            if td.isStatic(nd): self.printt(new_fname + "()")
             else: self.printt('.'.join([u'self', new_fname]))
         else: self.printt(n.name)
             
@@ -286,7 +282,7 @@ class Translator(object):
             new_fname = self.trans_fname(fld, n.field.name)
             self.printt('.{}'.format(new_fname))
         if td.isStatic(fld):
-            if utils.get_coid(fld).name == self.mtd.parentNode.name:
+            if n.scope.name == utils.get_coid(n).name:
                 self.printt(fld.variables[0].name)
             elif type(n.parentNode) == AssignExpr and n == n.parentNode.target:
                 self.printt('{}_s@{}('.format(fld.variables[0].name, fld.parentNode.name))
@@ -472,6 +468,7 @@ class Translator(object):
         else:
             self.printt('@'.join([mname, mdec.parentNode.name]))
             self.printArguments(args)
+            self.printt(';')
             return
         clss, call = [rcv_ty] + rcv_ty.supers(), []
         for c in clss:
