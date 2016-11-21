@@ -121,6 +121,7 @@ class Translator(object):
 
     @v.when(MethodDeclaration)
     def visit(self, n):
+        if td.isHarness(n): self.printt('harness ')
         n.typee.accept(self)
         self.printt(' ')
         self.printt(str(n))
