@@ -22,9 +22,8 @@ def translate(**kwargs):
   logging.getLogger().setLevel(log_lvl)
 
   prg = kwargs.get('prg', None)
-  out = kwargs.get('out_dir')
-  sk = kwargs.get('sketch')
-  out_dir = out if out else res_dir
+  out_dir = kwargs.get('out_dir', res_dir)
+  sk = kwargs.get('sketch', True)
   sk_dir = ''
   codegen_jar = os.path.join(root_dir, "codegen", "lib", "codegen.jar")
   
@@ -59,7 +58,10 @@ def translate(**kwargs):
     _, r = sketch.run(sk_dir, output_path)
 
     # if sketch fails, halt the process here
-    if not r: return 1
+    if not r:
+      print 'returning 1'
+      return 1
+    print 'return 0'
 
   elif not prg:
     parser.error("need to pass in some file")
@@ -67,6 +69,9 @@ def translate(**kwargs):
 
   return 0
 
+def main(prg):
+  return translate(prg=prg)
+  
 if __name__ == "__main__":
   if len(sys.argv) < 1:
     sys.exit("incorrect number of arguments")

@@ -1,13 +1,13 @@
 class Tree {
     public final static int LEAF = 1;
-    // public final static int BRANCH = 2;
+    public final static int BRANCH = 2;
 
     public int kind;
     int value;
 
-    // public Tree (int value) {
-    //     this.value = value;
-    // }
+    public Tree (int value) {
+        this.value = value;
+    }
 }
 
 class Leaf extends Tree {
@@ -39,7 +39,8 @@ class Testb586 {
 
     harness static void test () {
         Leaf l1 = new Leaf(5);
-        // Leaf l2 = new Leaf(4);
+	assert l1.value == 1;
+        Leaf l2 = new Leaf(4);
         // Branch b = new Branch(2);
         // b.left = l1;
         // b.right = l2;

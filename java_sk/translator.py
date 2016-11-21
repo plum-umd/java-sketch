@@ -45,6 +45,7 @@ from ast.expr.arrayaccessexpr import ArrayAccessExpr
 from ast.expr.enclosedexpr import EnclosedExpr
 from ast.expr.conditionalexpr import ConditionalExpr
 from ast.expr.thisexpr import ThisExpr
+from ast.expr.superexpr import SuperExpr
 
 from ast.type.primitivetype import PrimitiveType
 from ast.type.voidtype import VoidType
@@ -382,6 +383,13 @@ class Translator(object):
             n.classExpr.accept(self)
             self.printt('.')
         self.printt('self')
+
+    # @v.when(SuperExpr)
+    # def visit(self, node):
+    #     if node.classExpr:
+    #         node.classExpr.accept(self)
+    #         self.printt('.')
+    #     self.printt('super')
 
     # type
     @v.when(ClassOrInterfaceType)
