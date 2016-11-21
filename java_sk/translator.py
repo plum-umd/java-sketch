@@ -102,7 +102,7 @@ class Translator(object):
                        u'type':{u'@t':u'ClassOrInterfaceType',u'name':u'int'}})
         n.parameters = [p] + n.parameters
 
-        self.printt('void {}'.format(str(n)))
+        self.printt('Object {}'.format(str(n)))
         self.printt('(')
         self.printSepList(n.parameters)
         self.printt(')')
@@ -255,7 +255,7 @@ class Translator(object):
         nd = n.symtab.get(n.name, None)
         if type(nd) == FieldDeclaration:
             new_fname = self.trans_fname(nd, nd.variables[0].name)
-            if td.isStatic(nd): self.printt(new_fname + "()")
+            if td.isStatic(nd): self.printt(nd.variables[0].name)
             else: self.printt('.'.join([u'self', new_fname]))
         else: self.printt(n.name)
             
