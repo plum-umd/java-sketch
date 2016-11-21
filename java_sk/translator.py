@@ -476,7 +476,7 @@ class Translator(object):
         else:
             self.printt('@'.join([mname, mdec.parentNode.name]))
             self.printArguments(args)
-            self.printt(';')
+            if type(callexpr.parentNode) == ExpressionStmt: self.printt(';')
             return
         clss, call = [rcv_ty] + rcv_ty.supers(), []
         for c in clss:
@@ -574,7 +574,7 @@ class Translator(object):
             dis.thenStmt.args = args
         return dis
         
-    # givent a type, check all parent classes for name
+    # given a type, check all parent classes for name
     def find_in_parent(self, rcv_ty, name):
         if name in rcv_ty.symtab: return rcv_ty.symtab[name]
         else:

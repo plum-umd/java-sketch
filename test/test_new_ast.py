@@ -12,7 +12,6 @@ class TestJava(TestCommon):
     def __test(self, fs):
         _fs = map(lambda f: os.path.join(tests, f), fs)
         ret = java_sk.main.main(_fs)
-        print 'ret:', ret
         self.assertEqual(ret, 0)
         
     def test_Array(self):

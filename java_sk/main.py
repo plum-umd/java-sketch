@@ -58,10 +58,7 @@ def translate(**kwargs):
     _, r = sketch.run(sk_dir, output_path)
 
     # if sketch fails, halt the process here
-    if not r:
-      print 'returning 1'
-      return 1
-    print 'return 0'
+    if not r: return 1
 
   elif not prg:
     parser.error("need to pass in some file")
