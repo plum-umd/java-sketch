@@ -45,7 +45,7 @@ class Calls {
 	int r1 = A.sb(5, x);
 	assert r1 == 5 + x;
 	a.pb(x);
-	// assert a.f == x + 1;
+	assert a.f == x + 1;
 	// method overloading
 	assert a.ab() == 3;
 	assert a.ab(x) == x;

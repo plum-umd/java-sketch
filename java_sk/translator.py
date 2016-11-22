@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import cStringIO
+import itertools
 
 from . import util
 
@@ -47,6 +48,7 @@ from ast.expr.enclosedexpr import EnclosedExpr
 from ast.expr.conditionalexpr import ConditionalExpr
 from ast.expr.thisexpr import ThisExpr
 from ast.expr.superexpr import SuperExpr
+from ast.expr.castexpr import CastExpr
 
 from ast.type.primitivetype import PrimitiveType
 from ast.type.voidtype import VoidType
@@ -259,10 +261,10 @@ class Translator(object):
             if not sups: exit('Calling super with  with no super class: {}'.format(cls.name))
             def ty(a):
                 return a.typee.name if type(a) != NameExpr else n.symtab[a.name].typee.name
-            arg_typs = '_'.join([u'int'] + map(ty, n.args))
+            arg_typs = '_'.join([u'Object'] + map(ty, n.args))
             self.printt('_'.join([sups[0].name, arg_typs]))
             self.printt('@{}'.format(sups[0].name))
-        self.printt(u'(self.__cid')
+        self.printt(u'(self')
         if n.args: self.printt(', ')
         self.printSepList(n.args)
         self.printt(');')
@@ -374,9 +376,9 @@ class Translator(object):
 
     @v.when(MethodCallExpr)
     def visit(self, n):
-        rcv_ty = self.scope_to_cls(n)
+        rcv_ty = self.scope_to_cls(n) if n.scope else utils.get_coid(n)
         mdec = rcv_ty.symtab.get(str(n))
-        if not mdec: mdec = self.find_in_parent(rcv_ty, n.name)
+        if not mdec: mdec = self.mdec_from_callexpr(rcv_ty, n)
         self.trans_call(rcv_ty, mdec, n)
 
     @v.when(EnclosedExpr)
@@ -414,6 +416,10 @@ class Translator(object):
             n.classExpr.accept(self)
             self.printt('.')
         self.printt('super')
+
+    @v.when(CastExpr)
+    def visit(self, n):
+        n.expr.accept(self)
 
     # type
     @v.when(ClassOrInterfaceType)
@@ -482,13 +488,17 @@ class Translator(object):
     def trans_params(self, (ty, nm)):
         return ' '.join([self.trans_ty(ty), nm])
 
-    def scope_to_cls(self, node):
-        if type(node.scope) == ThisExpr: return utils.get_coid(node.scope)
-        s_tab = node.scope.symtab
-        v = s_tab[node.scope.nameExpr.Name] if type(node) == ArrayAccessExpr else \
-            s_tab[node.scope.name]
+    def scope_to_cls(self, n):
+        if type(n) == CastExpr:
+            return n.symtab[n.typee.name]
+        if type(n.scope) == EnclosedExpr:
+            return self.scope_to_cls(n.scope.inner)
+        if type(n.scope) == ThisExpr: return utils.get_coid(n.scope)
+        s_tab = n.scope.symtab
+        v = s_tab[n.scope.nameExpr.Name] if type(n) == ArrayAccessExpr else \
+            s_tab[n.scope.name]
         if isinstance(v, td): return v
-        typ = s_tab[node.scope.name].typee.name
+        typ = s_tab[n.scope.name].typee.name
         cls = s_tab[typ]
         return cls
 
@@ -502,15 +512,15 @@ class Translator(object):
             self.printArguments(args)
             if type(callexpr.parentNode) == ExpressionStmt: self.printt(';')
             return
-        clss, call = [rcv_ty] + rcv_ty.supers(), []
+        clss, call = [rcv_ty] + filter(lambda c: not c.interface, rcv_ty.supers()), []
         for c in clss:
             md = c.symtab.get(str(callexpr))
             if (md and str(md) != mname) or not md:
-                mdec, mname = md, str(callexpr)
-                md = self.find_in_parent(rcv_ty, str(callexpr))
-            call.append(md.parentNode)
+                mname = str(callexpr)
+                md = self.mdec_from_callexpr(rcv_ty, callexpr)
+            call.append(md)
         t = 'IfStmt' if type(mdec.typee) == VoidType else 'ConditionalExpr'
-        conexprs = [self.make_dispatch(callexpr, mname, args, c, t) for c in zip(call, clss)]
+        conexprs = [self.make_dispatch(callexpr, args, c, t) for c in zip(call, clss)]
         def combine(l, r):
             if t == 'ConditionalExpr': l.elseExpr = r
             else: l.elseStmt = r
@@ -548,7 +558,7 @@ class Translator(object):
                 self.printt('else ')
                 self.print_dispatch(c.elseStmt)
 
-    def make_dispatch(self, callexpr, mname, args, parent, typee):
+    def make_dispatch(self, callexpr, args, mdec_cls, typee):
         d = {
             "@t": "",
             "condition": {
@@ -583,27 +593,47 @@ class Translator(object):
         }
         d['@t'] = typee
         d['condition']['left']['name'] = '.'.join([callexpr.scope.name, '__cid'])
-        d['condition']['right']['value'] = '{}()'.format(parent[1].name)
+        d['condition']['right']['value'] = '{}()'.format(mdec_cls[1].name)
         if typee == 'ConditionalExpr':
             d['thenExpr']['scope']['name'] = callexpr.scope.name
-            d['thenExpr']['name'] = '@'.join([mname, parent[0].name])
+            d['thenExpr']['name'] = '@'.join([str(mdec_cls[0]), mdec_cls[0].parentNode.name])
             dis = ConditionalExpr(d)
             dis.thenExpr.args = args
         else:
             d['thenStmt'] = d.pop('thenExpr')
             d['elseStmt'] = d.pop('elseExpr')
             d['thenStmt']['scope']['name'] = callexpr.scope.name
-            d['thenStmt']['name'] = '@'.join([mname, parent[0].name])
+            d['thenStmt']['name'] = '@'.join([str(mdec_cls[0]), mdec_cls[0].parentNode.name])
             dis = IfStmt(d)
             dis.thenStmt.args = args
         return dis
         
+    def mdec_from_callexpr(self, rcv_ty, n):
+        atypes = n.arg_typs()
+        # TODO: if we can't find the method in any parent classes it might have been defined
+        # with a different signature
+        def permute_args(typs):
+            candidates = []
+            for i in xrange(len(n.args)):
+                if type(n.args[i]) == NameExpr:
+                    typ = n.args[i].symtab[n.args[i].name].typee
+                    cls = n.args[i].symtab[typ.name]
+                    candidates.append(map(lambda s: s.name, cls.supers()))
+            return ['_'.join(s) for s in itertools.product(*candidates)]
+        pargs = ['_'.join([n.name, a]) for a in permute_args(atypes)]
+        for p in pargs:
+            mdec = self.find_in_parent(rcv_ty, p)
+            if mdec: return mdec
+        exit('Cant find {} in {}'.format(str(n), rcv_ty))
+            
     # given a type, check all parent classes for name
     def find_in_parent(self, rcv_ty, name):
         if name in rcv_ty.symtab: return rcv_ty.symtab[name]
         else:
             c = []
             for e in rcv_ty.extendsList:
+                print rcv_ty.symtab
+                if e.name == u'Object': return None
                 c = self.find_in_parent(rcv_ty.symtab[e.name], name)
                 if c: return c
 
