@@ -28,6 +28,7 @@ from ast.stmt.expressionstmt import ExpressionStmt
 from ast.stmt.assertstmt import AssertStmt
 from ast.stmt.switchstmt import SwitchStmt
 from ast.stmt.switchentrystmt import SwitchEntryStmt
+from ast.stmt.explicitconstructorinvocationstmt import ExplicitConstructorInvocationStmt
 
 from ast.expr.variabledeclarationexpr import VariableDeclarationExpr
 from ast.expr.unaryexpr import UnaryExpr
@@ -98,8 +99,8 @@ class Translator(object):
     # body
     @v.when(ConstructorDeclaration)
     def visit(self, n):
-        p = Parameter({u'id':{u'name':u'cid'},
-                       u'type':{u'@t':u'ClassOrInterfaceType',u'name':u'int'}})
+        p = Parameter({u'id':{u'name':u'self'},
+                       u'type':{u'@t':u'ClassOrInterfaceType',u'name':u'Object'}})
         n.parameters = [p] + n.parameters
 
         self.printt('Object {}'.format(str(n)))
@@ -114,8 +115,7 @@ class Translator(object):
             
         if not n.body: self.printt(';')
         else:
-            self.printt(' ')
-            n.body.stmts = [u'Object self = new Object(__cid = cid);'] + n.body.stmts + [u'return self;']
+            n.body.stmts = n.body.stmts + [u'return self;']
             n.body.accept(self)
         self.printLn()
 
@@ -246,6 +246,27 @@ class Translator(object):
     def visit(self, n):
         pass
         
+    @v.when(ExplicitConstructorInvocationStmt)
+    def visit(self, n):
+        if n.isThis:
+            self.printt('self')
+        else:
+            if n.expr:
+                n.expr.accept(self)
+                self.printt('.')
+            cls = utils.get_coid(n)
+            sups = cls.supers()
+            if not sups: exit('Calling super with  with no super class: {}'.format(cls.name))
+            def ty(a):
+                return a.typee.name if type(a) != NameExpr else n.symtab[a.name].typee.name
+            arg_typs = '_'.join([u'int'] + map(ty, n.args))
+            self.printt('_'.join([sups[0].name, arg_typs]))
+            self.printt('@{}'.format(sups[0].name))
+        self.printt(u'(self.__cid')
+        if n.args: self.printt(', ')
+        self.printSepList(n.args)
+        self.printt(');')
+
     @v.when(EmptyStmt)
     def visit(self, n): pass
 
@@ -311,13 +332,12 @@ class Translator(object):
 
     @v.when(ObjectCreationExpr)
     def visit(self, n):
-        args = [IntegerLiteralExpr({u'value':'{}()'.format(n.typee.name)})] + n.args
         if n.scope:
             n.getScope.accept(self)
             self.printt(".")
         if n.args:
             typs = []
-            for a in args:
+            for a in n.args:
                 if type(a) == FieldAccessExpr:
                     tname = self.find_fld(a).typee.name
                 elif not a.typee:
@@ -326,10 +346,13 @@ class Translator(object):
                     tname = a.typee.name
                 typs.append(tname)
                     
-            self.printt('_'.join([n.typee.name] + typs))
+            self.printt('_'.join([n.typee.name] + [u'Object'] + typs))
         else:
-            self.printt('{}_int'.format(n.typee.name))
-        self.printArguments(args)
+            self.printt('{}_Object'.format(n.typee.name))
+        self.printt('((new Object(__cid={}()))'.format(n.typee.name))
+        if n.args: self.printt(', ')
+        self.printSepList(n.args)
+        self.printt(')')
         
     @v.when(ArrayCreationExpr)
     def visit(self, n):
@@ -385,12 +408,12 @@ class Translator(object):
             self.printt('.')
         self.printt('self')
 
-    # @v.when(SuperExpr)
-    # def visit(self, node):
-    #     if node.classExpr:
-    #         node.classExpr.accept(self)
-    #         self.printt('.')
-    #     self.printt('super')
+    @v.when(SuperExpr)
+    def visit(self, n):
+        if n.classExpr:
+            n.classExpr.accept(self)
+            self.printt('.')
+        self.printt('super')
 
     # type
     @v.when(ClassOrInterfaceType)

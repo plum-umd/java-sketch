@@ -168,8 +168,7 @@ class Encoder(object):
 
         if cls not in self.bases and cls.name != self.harness.parentNode.name and \
            not filter(lambda c: len(c.parameters) == 0, cons):
-            buf.write("Object {0}_int(int cid) {{\n"
-                      "    Object self = new Object(__cid = cid);\n"
+            buf.write("Object {0}_Object(Object self) {{\n"
                       "    return self;\n"
                       "}}\n\n".format(str(cls)))
                         
