@@ -123,7 +123,9 @@ class Translator(object):
 
     @v.when(MethodDeclaration)
     def visit(self, n):
-        if td.isHarness(n): self.printt('harness ')
+        if td.isHarness(n):
+            self.printt('harness ')
+            n.body.stmts = [u'Object self = new Object(__cid=0);'] + n.body.stmts
         n.typee.accept(self)
         self.printt(' ')
         self.printt(str(n))
@@ -377,8 +379,7 @@ class Translator(object):
     @v.when(MethodCallExpr)
     def visit(self, n):
         rcv_ty = self.scope_to_cls(n) if n.scope else utils.get_coid(n)
-        mdec = rcv_ty.symtab.get(str(n))
-        if not mdec: mdec = self.mdec_from_callexpr(rcv_ty, n)
+        mdec = self.mdec_from_callexpr(rcv_ty, n)
         self.trans_call(rcv_ty, mdec, n)
 
     @v.when(EnclosedExpr)
@@ -481,7 +482,11 @@ class Translator(object):
     def trans_fld(self, fld):
         buf = cStringIO.StringIO()
         for var in fld.variables:
-            buf.write('{} {};\n'.format(self.trans_ty(fld.typee), var.name))
+            init = ''
+            if var.init:
+                init = ' = '
+                init += self.trans(var.init)
+            buf.write('{} {}{};\n'.format(self.trans_ty(fld.typee), var.name, init))
         # ignored initialised fields
         return util.get_and_close(buf)
 
@@ -503,6 +508,13 @@ class Translator(object):
         return cls
 
     def trans_call(self, rcv_ty, mdec, callexpr):
+        if not callexpr.scope:
+            mdec = self.mdec_from_callexpr(utils.get_coid(callexpr), callexpr)
+            self.printt('{}@{}'.format(str(mdec), mdec.parentNode.name))
+            nm = [] if td.isStatic(mdec) else [NameExpr({u'@t':u'NameExpr',u'name':u'self'})]
+            self.printArguments(nm + callexpr.args)
+            # self.printt(';')
+            return
         args = callexpr.args
         mname = str(callexpr)
         if not td.isStatic(mdec):
@@ -609,6 +621,8 @@ class Translator(object):
         return dis
         
     def mdec_from_callexpr(self, rcv_ty, n):
+        mdec = rcv_ty.symtab.get(str(n))
+        if mdec: return mdec
         atypes = n.arg_typs()
         # TODO: if we can't find the method in any parent classes it might have been defined
         # with a different signature

@@ -29,8 +29,8 @@ class Encoder(object):
         
         # populate global dict of types, classes and their ids
         self._clss = utils.extract_nodes([ClassOrInterfaceDeclaration], self._prg)
-        self._CLASS_NUMS = {u'Object':0,u'void':-1}
-        i = 1
+        self._CLASS_NUMS = {u'Object':1}
+        i = 2
         for c in self._clss:
             if c.name not in self._CLASS_NUMS.keys():
                 self._CLASS_NUMS[c.name] = i
