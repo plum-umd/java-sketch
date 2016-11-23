@@ -62,7 +62,6 @@ def translate(**kwargs):
 
   elif not prg:
     parser.error("need to pass in some file")
-  # TODO: rewrite holes -- ignoring for now
 
   return 0
 

@@ -16,6 +16,7 @@ from ast.body.methoddeclaration import MethodDeclaration
 from ast.body.constructordeclaration import ConstructorDeclaration
 from ast.body.typedeclaration import TypeDeclaration as td
 from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
+from ast.expr.generatorexpr import GeneratorExpr
 
 class Encoder(object):
     def __init__(self, program):
@@ -109,7 +110,6 @@ class Encoder(object):
         buf.write("pragma options \"--bnd-cbits {}\";\n".format(bits))
         
         # --bnd-unroll-amnt: the unroll amount for loops
-        unroll_amnt = None # use a default value if not set
         unroll_amnt = 35
         if unroll_amnt:
             buf.write("pragma options \"--bnd-unroll-amnt {}\";\n".format(35))
@@ -130,6 +130,7 @@ class Encoder(object):
     def gen_meta_sk(self):
         buf = cStringIO.StringIO()
         buf.write("package meta;\n\n")
+
         buf.write("// distinct class IDs\n")
         for k,v in self.CLASS_NUMS.items():
             if k not in self.primitives:
@@ -161,6 +162,7 @@ class Encoder(object):
         for fld in ifilterfalse(td.isPrivate, s_flds):
             buf.write(self.tltr.trans_fld(fld))
             for v in fld.variables:
+                if v.init and type(v.init) == GeneratorExpr: continue
                 typ = self.tltr.trans_ty(fld.typee)
                 buf.write("{0} {1}_g() {{ return {1}; }}\n".format(typ, v.name))
                 buf.write("void {1}_s({0} {1}_s) {{ {1} = {1}_s; }}\n".format(typ, v.name))
