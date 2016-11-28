@@ -280,8 +280,7 @@ class Translator(object):
             if not sups: exit('Calling super with  with no super class: {}'.format(cls.name))
             def ty(a):
                 return a.typee.name if type(a) != NameExpr else n.symtab[a.name].typee.name
-            arg_typs = '_'.join([u'Object'] + map(ty, n.args))
-            self.printt('_'.join([sups[0].name, arg_typs]))
+            self.printt('_'.join([sups[0].name, sups[0].name] + map(ty, n.args)))
             self.printt('@{}'.format(sups[0].name))
         self.printt(u'(self')
         if n.args: self.printt(', ')
