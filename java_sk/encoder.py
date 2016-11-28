@@ -47,8 +47,8 @@ class Encoder(object):
             if m.name not in self._MTD_NUMS.keys():
                 self._MTD_NUMS[m] = i
                 i = i + 1
-                self._primitives = ['int', 'void', 'double', 'byte', 'short', 'long']
-                self._tltr = Translator(cnums=self._CLASS_NUMS, mnums=self._MTD_NUMS)
+        p = ['int', 'void', 'double', 'byte', 'short', 'long']
+        self._tltr = Translator(cnums=self._CLASS_NUMS, mnums=self._MTD_NUMS, prims=p)
 
     def find_main(self):
         mtds = []
@@ -133,7 +133,7 @@ class Encoder(object):
 
         buf.write("// distinct class IDs\n")
         for k,v in self.CLASS_NUMS.items():
-            if k not in self.primitives:
+            if k not in self.tltr.primitives:
                 buf.write("int {k}() {{ return {v}; }}\n".format(**locals()))
         with open(os.path.join(self.sk_dir, "meta.sk"), 'w') as f:
             f.write(util.get_and_close(buf))
@@ -170,7 +170,7 @@ class Encoder(object):
 
         if cls not in self.bases and cls.name != self.harness.parentNode.name and \
            not filter(lambda c: len(c.parameters) == 0, cons):
-            buf.write("Object {0}_Object(Object self) {{\n"
+            buf.write("Object {0}_{0}(Object self) {{\n"
                       "    return self;\n"
                       "}}\n\n".format(str(cls)))
                         
@@ -264,11 +264,6 @@ class Encoder(object):
     def bases(self): return self._bases
     @bases.setter
     def bases(self, v): self._bases = v
-    
-    @property
-    def primitives(self): return self._primitives
-    @primitives.setter
-    def primitives(self, v): self._primitives = v
     
     @property
     def CLASS_NUMS(self): return self._CLASS_NUMS

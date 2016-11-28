@@ -52,6 +52,7 @@ from ast.expr.thisexpr import ThisExpr
 from ast.expr.superexpr import SuperExpr
 from ast.expr.castexpr import CastExpr
 from ast.expr.booleanliteralexpr import BooleanLiteralExpr
+from ast.expr.nullliteralexpr import NullLiteralExpr
 
 from ast.type.primitivetype import PrimitiveType
 from ast.type.voidtype import VoidType
@@ -70,6 +71,7 @@ class Translator(object):
         self._flds = {}   # { cname.fname : new_fname }
         self._cnums = kwargs.get('cnums')
         self._mnums = kwargs.get('mnums')
+        self._primitives = kwargs.get('prims', [])
 
         from . import JAVA_TYPES
         from . import SKETCH_TYPES
@@ -104,12 +106,12 @@ class Translator(object):
     # body
     @v.when(ConstructorDeclaration)
     def visit(self, n):
+        self.printt('Object {}'.format(str(n)))
+        self.printt('(')
         p = Parameter({u'id':{u'name':u'self'},
                        u'type':{u'@t':u'ClassOrInterfaceType',u'name':u'Object'}})
         n.parameters = [p] + n.parameters
 
-        self.printt('Object {}'.format(str(n)))
-        self.printt('(')
         self.printSepList(n.parameters)
         self.printt(')')
 
@@ -126,6 +128,7 @@ class Translator(object):
 
     @v.when(MethodDeclaration)
     def visit(self, n):
+        self.printMods(n)
         if td.isHarness(n):
             self.printt('harness ')
             n.body.stmts = [u'Object self = new Object(__cid=0);'] + n.body.stmts
@@ -225,7 +228,7 @@ class Translator(object):
     def visit(self, n):
         self.printt('minrepeat ')
         n.body.accept(self)
-        
+
     @v.when(ExpressionStmt)
     def visit(self, n):
         n.expr.accept(self)
@@ -364,9 +367,9 @@ class Translator(object):
                     tname = a.typee.name
                 typs.append(tname)
                     
-            self.printt('_'.join([n.typee.name] + [u'Object'] + typs))
+            self.printt('_'.join([n.typee.name, n.typee.name] + typs))
         else:
-            self.printt('{}_Object'.format(n.typee.name))
+            self.printt('{0}_{0}'.format(n.typee.name))
         self.printt('((new Object(__cid={}()))'.format(n.typee.name))
         if n.args: self.printt(', ')
         self.printSepList(n.args)
@@ -439,6 +442,10 @@ class Translator(object):
     @v.when(BooleanLiteralExpr)
     def visit(self, n):
         self.printt(n.value)
+
+    @v.when(NullLiteralExpr)
+    def visit(self, n):
+        self.printt('null')
 
     # type
     @v.when(ClassOrInterfaceType)
@@ -570,7 +577,9 @@ class Translator(object):
             self.printArguments(c.thenExpr.args)
             self.printt(' : ')
             if type(c.elseExpr) == IntegerLiteralExpr:
-                self.printt(c.elseExpr.value)
+                self.printt('0')
+            elif type(c.elseExpr) == ClassOrInterfaceType:
+                self.printt('null')
             else:
                 self.print_dispatch(c.elseExpr)
         else:
@@ -582,7 +591,7 @@ class Translator(object):
             self.printt('; }')
             if type(c.elseStmt) == IntegerLiteralExpr:
                 self.printLn()
-                self.printt('else {{ {}; }}'.format(c.elseStmt.value))
+                self.printt('else {{ 0; }}'.format(c.elseStmt.value))
             else:
                 self.printLn()
                 self.printt('else ')
@@ -629,6 +638,8 @@ class Translator(object):
             d['thenExpr']['name'] = '@'.join([str(mdec_cls[0]), mdec_cls[0].parentNode.name])
             dis = ConditionalExpr(d)
             dis.thenExpr.args = args
+            if mdec_cls[0].typee.name not in self.primitives:
+                dis.elseExpr = ClassOrInterfaceType({u'@t':u'ClassOrInterfaceType', u'name':u''})
         else:
             d['thenStmt'] = d.pop('thenExpr')
             d['elseStmt'] = d.pop('elseExpr')
@@ -664,7 +675,6 @@ class Translator(object):
         else:
             c = []
             for e in rcv_ty.extendsList:
-                print rcv_ty.symtab
                 if e.name == u'Object': return None
                 c = self.find_in_parent(rcv_ty.symtab[e.name], name)
                 if c: return c
@@ -715,6 +725,9 @@ class Translator(object):
         self.printSepList(args)
         self.printt(')')
         
+    def printMods(self, mods):
+        if td.isGenerator(mods): self.printt('generator ')
+
     @property
     def mtd(self): return self._mtd
     @mtd.setter
@@ -771,4 +784,9 @@ class Translator(object):
     def num_mtds(self): return self._num_mtds
     @num_mtds.setter
     def num_mtds(self, v): self._num_mtds = v
+
+    @property
+    def primitives(self): return self._primitives
+    @primitives.setter
+    def primitives(self, v): self._primitives = v
 
