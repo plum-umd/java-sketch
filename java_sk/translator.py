@@ -27,6 +27,7 @@ from ast.stmt.forstmt import ForStmt
 from ast.stmt.emptystmt import EmptyStmt
 from ast.stmt.expressionstmt import ExpressionStmt
 from ast.stmt.assertstmt import AssertStmt
+from ast.stmt.assumestmt import AssumeStmt
 from ast.stmt.switchstmt import SwitchStmt
 from ast.stmt.switchentrystmt import SwitchEntryStmt
 from ast.stmt.explicitconstructorinvocationstmt import ExplicitConstructorInvocationStmt
@@ -49,6 +50,7 @@ from ast.expr.conditionalexpr import ConditionalExpr
 from ast.expr.thisexpr import ThisExpr
 from ast.expr.superexpr import SuperExpr
 from ast.expr.castexpr import CastExpr
+from ast.expr.booleanliteralexpr import BooleanLiteralExpr
 
 from ast.type.primitivetype import PrimitiveType
 from ast.type.voidtype import VoidType
@@ -230,6 +232,12 @@ class Translator(object):
         if n.msg:
             self.printt(" : ")
             n.msg.accept(self)
+        self.printt(";")
+
+    @v.when(AssumeStmt)
+    def visit(self, n):
+        self.printt("assume ")
+        n.expr.accept(self)
         self.printt(";")
 
     @v.when(SwitchStmt)
@@ -421,6 +429,10 @@ class Translator(object):
     @v.when(CastExpr)
     def visit(self, n):
         n.expr.accept(self)
+
+    @v.when(BooleanLiteralExpr)
+    def visit(self, n):
+        self.printt(n.value)
 
     # type
     @v.when(ClassOrInterfaceType)
