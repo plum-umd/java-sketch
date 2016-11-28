@@ -24,6 +24,7 @@ def add_object(ast):
   def obj_subs(n):
     if not n.extendsList:
       n.extendsList = [obj]
+      obj.subClasses.append(n)
   map(obj_subs, clss)
   ast.types.append(obj)
 
