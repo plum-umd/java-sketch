@@ -24,6 +24,7 @@ from ast.stmt.blockstmt import BlockStmt
 from ast.stmt.returnstmt import ReturnStmt
 from ast.stmt.ifstmt import IfStmt
 from ast.stmt.forstmt import ForStmt
+from ast.stmt.minrepeatstmt import MinrepeatStmt
 from ast.stmt.emptystmt import EmptyStmt
 from ast.stmt.expressionstmt import ExpressionStmt
 from ast.stmt.assertstmt import AssertStmt
@@ -220,6 +221,11 @@ class Translator(object):
         self.printt(') ')
         n.body.accept(self)
 
+    @v.when(MinrepeatStmt)
+    def visit(self, n):
+        self.printt('minrepeat ')
+        n.body.accept(self)
+        
     @v.when(ExpressionStmt)
     def visit(self, n):
         n.expr.accept(self)
