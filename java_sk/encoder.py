@@ -53,12 +53,12 @@ class Encoder(object):
     def find_main(self):
         mtds = []
         for c in self.clss:
-            mtds = utils.extract_nodes([MethodDeclaration, ConstructorDeclaration], c)
-            mtds = filter(lambda m: td.isStatic(m) and m.name == u'main', mtds)
-            lenn = len(mtds)
-            if lenn > 1:
-                raise Exception("multiple main()s", mtds)
-                return mtds[0] if lenn == 1 else None
+            m = utils.extract_nodes([MethodDeclaration, ConstructorDeclaration], c)
+            mtds.extend(filter(lambda m: td.isStatic(m) and m.name == u'main', m))
+        lenn = len(mtds)
+        if lenn > 1:
+            raise Exception("multiple main()s", map(lambda m: m.parentNode.name, mtds))
+            return mtds[0] if lenn == 1 else None
 
     def find_harness(self):
         # TODO: these can also be specified with annotations -- we don't support those yet
@@ -74,7 +74,7 @@ class Encoder(object):
         harness = self.prg.gsymtab[harness.atr] if harness else None
         if main: return main
         elif harness: return harness
-        else: raise Exception("No main(), @Harness, or harness found")
+        else: raise Exception("No main(), @Harness, or harness found, None")
 
     def to_sk(self):
         # clean up result directory
