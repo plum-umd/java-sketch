@@ -533,11 +533,10 @@ class Translator(object):
 
     def trans_call(self, rcv_ty, mdec, callexpr):
         if not callexpr.scope:
-            mdec = self.mdec_from_callexpr(utils.get_coid(callexpr), callexpr)
+            if not mdec: mdec = self.mdec_from_callexpr(utils.get_coid(callexpr), callexpr)
             self.printt('{}@{}'.format(str(mdec), mdec.parentNode.name))
             nm = [] if td.isStatic(mdec) else [NameExpr({u'@t':u'NameExpr',u'name':u'self'})]
             self.printArguments(nm + callexpr.args)
-            # self.printt(';')
             return
         args = callexpr.args
         mname = str(callexpr)
@@ -553,8 +552,11 @@ class Translator(object):
             md = c.symtab.get(str(callexpr))
             if (md and str(md) != mname) or not md:
                 mname = str(callexpr)
-                md = self.mdec_from_callexpr(rcv_ty, callexpr)
-            call.append(md)
+                try:
+                    md = self.mdec_from_callexpr(c, callexpr)
+                except:
+                    md = None
+            if md: call.append(md)
         t = 'IfStmt' if type(mdec.typee) == VoidType else 'ConditionalExpr'
         conexprs = [self.make_dispatch(callexpr, args, c, t) for c in zip(call, clss)]
         def combine(l, r):
@@ -651,6 +653,9 @@ class Translator(object):
     def mdec_from_callexpr(self, rcv_ty, n):
         mdec = rcv_ty.symtab.get(str(n))
         if mdec: return mdec
+        else:
+            mdec = self.find_in_parent(rcv_ty, str(n))
+            if mdec: return mdec
         atypes = n.arg_typs()
         # TODO: if we can't find the method in any parent classes it might have been defined
         # with a different signature
@@ -661,12 +666,12 @@ class Translator(object):
                     typ = n.args[i].symtab[n.args[i].name].typee
                     cls = n.args[i].symtab[typ.name]
                     candidates.append(map(lambda s: s.name, cls.supers()))
-            return ['_'.join(s) for s in itertools.product(*candidates)]
+            return ['_'.join(s) for s in itertools.product(*candidates) if s]
         pargs = ['_'.join([n.name, a]) for a in permute_args(atypes)]
         for p in pargs:
             mdec = self.find_in_parent(rcv_ty, p)
             if mdec: return mdec
-        exit('Cant find {} in {}'.format(str(n), rcv_ty))
+        raise Exception('Cant find {} in {}'.format(str(n), rcv_ty))
             
     # given a type, check all parent classes for name
     def find_in_parent(self, rcv_ty, name):
