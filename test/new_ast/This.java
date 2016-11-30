@@ -1,19 +1,18 @@
 class This {
-    harness static void mn(int x) {
-	// A a = new A();
-	// a.setX(x);
-	// assert a.x == x;
-	B a = new B();
-	a.setX(x);
-	assert a.x == x;
+    harness static void mn(int z) {
+	A a = new A();
+	a.setX(z);
+	assert a.x == z;
+	B b = new B();
+	b.setX(z);
+	assert b.x == z;
     }
 }
-
 
 class A {
     int x;
     void setX(int x) {
-	this.x = x;
+    	this.x = x;
     }
 }
 

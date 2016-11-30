@@ -23,6 +23,9 @@ class TestJava(TestCommon):
     def test_Calls(self):
         self.__test(["Calls.java"])
 
+    def test_Calls(self):
+        self.__test(["ClassField.java"])
+
     def test_Construct(self):
         self.__test(["Construct.java"])
 

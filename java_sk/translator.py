@@ -310,7 +310,7 @@ class Translator(object):
     def visit(self, n):
         n.target.accept(self)
         if type(n.target) == FieldAccessExpr and type(n.target.scope) != ThisExpr and \
-           td.isStatic(self.find_fld(n.target)):
+           td.isStatic(utils.find_fld(n.target)):
             return
         self.printt(' ')
         self.printt(assignop[n.op.upper()])
@@ -319,7 +319,7 @@ class Translator(object):
 
     @v.when(FieldAccessExpr)
     def visit(self, n):
-        fld = self.find_fld(n)
+        fld = utils.find_fld(n)
         def fld_access():
             n.scope.accept(self)
             new_fname = self.trans_fname(fld, n.field.name)
@@ -359,7 +359,7 @@ class Translator(object):
             typs = []
             for a in n.args:
                 if type(a) == FieldAccessExpr:
-                    tname = self.find_fld(a).typee.name
+                    tname = utils.find_fld(a).typee.name
                 elif not a.typee:
                     tname = n.symtab[a.name].typee.name
                 else:
@@ -394,7 +394,7 @@ class Translator(object):
 
     @v.when(MethodCallExpr)
     def visit(self, n):
-        rcv_ty = self.scope_to_cls(n) if n.scope else utils.get_coid(n)
+        rcv_ty = utils.scope_to_cls(n) if n.scope else utils.get_coid(n)
         mdec = self.mdec_from_callexpr(rcv_ty, n)
         self.trans_call(rcv_ty, mdec, n)
 
@@ -516,20 +516,6 @@ class Translator(object):
 
     def trans_params(self, (ty, nm)):
         return ' '.join([self.trans_ty(ty), nm])
-
-    def scope_to_cls(self, n):
-        if type(n) == CastExpr:
-            return n.symtab[n.typee.name]
-        if type(n.scope) == EnclosedExpr:
-            return self.scope_to_cls(n.scope.inner)
-        if type(n.scope) == ThisExpr: return utils.get_coid(n.scope)
-        s_tab = n.scope.symtab
-        v = s_tab[n.scope.nameExpr.Name] if type(n) == ArrayAccessExpr else \
-            s_tab[n.scope.name]
-        if isinstance(v, td): return v
-        typ = s_tab[n.scope.name].typee.name
-        cls = s_tab[typ]
-        return cls
 
     def trans_call(self, rcv_ty, mdec, callexpr):
         if not callexpr.scope:
@@ -682,22 +668,6 @@ class Translator(object):
                 if e.name == u'Object': return None
                 c = self.find_in_parent(rcv_ty.symtab[e.name], name)
                 if c: return c
-
-    def find_fld(self, n):
-        cls = self.scope_to_cls(n)
-        fld = None
-        sups = cls.supers()
-        if n.field.name in cls.symtab:
-            fld = cls.symtab[n.field.name]
-        else:
-            sups = cls.supers()
-            for c in sups:
-                if n.field.name in c.symtab:
-                    cls = c
-                    fld = c.symtab[n.field.name]
-                    break
-        if not fld: exit('fld {} not found in class {} or super classes.'.format(n.field.name, cls.name))
-        return fld
         
     def indent(self): self._level += 1
     def unindent(self): self._level -= 1
@@ -793,4 +763,3 @@ class Translator(object):
     def primitives(self): return self._primitives
     @primitives.setter
     def primitives(self, v): self._primitives = v
-
