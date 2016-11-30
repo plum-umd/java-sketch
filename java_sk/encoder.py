@@ -25,6 +25,7 @@ class Encoder(object):
         self._prg.symtab.update(builtins)
         self._sk_dir = ''
 
+        self._mcls = None
         self._harness = None
         self._bases = []
         
@@ -72,9 +73,9 @@ class Encoder(object):
         main = self.prg.gsymtab[main.atr] if main else None
         harness = self.find_harness()
         harness = self.prg.gsymtab[harness.atr] if harness else None
-        if main: return main
-        elif harness: return harness
-        else: raise Exception("No main(), @Harness, or harness found, None")
+        if not main and not harness:
+            raise Exception("No main(), @Harness, or harness found, None")
+        self.mcls = main if main else harness
 
     def to_sk(self):
         # clean up result directory
@@ -144,6 +145,8 @@ class Encoder(object):
 
         self.bases = util.rm_subs(self.clss)
         buf.write('\n'.join(filter(None, map(self.to_struct, self.bases))))
+        buf.write('\n')
+        buf.write('Object Object_Object(Object self){\n return self;\n}\n')
         with open(os.path.join(self.sk_dir, "Object.sk"), 'w') as f:
             f.write(util.get_and_close(buf))
 
@@ -162,7 +165,7 @@ class Encoder(object):
         for fld in ifilterfalse(td.isPrivate, s_flds):
             buf.write(self.tltr.trans_fld(fld))
             for v in fld.variables:
-                if v.init and type(v.init) == GeneratorExpr: continue
+                if cls == self.mcls and v.init and type(v.init) == GeneratorExpr: continue
                 typ = self.tltr.trans_ty(fld.typee)
                 buf.write("{0} {1}_g() {{ return {1}; }}\n".format(typ, v.name))
                 buf.write("void {1}_s({0} {1}_s) {{ {1} = {1}_s; }}\n".format(typ, v.name))

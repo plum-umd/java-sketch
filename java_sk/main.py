@@ -3,7 +3,6 @@ import sys
 import logging
 import logging.config
 
-from ast.utils import utils
 from parser.parser import parse
 from encoder import Encoder
 import sketch
@@ -32,7 +31,8 @@ def translate(**kwargs):
   util.add_object(prg_ast)
 
   encoder = Encoder(prg_ast)
-  demo_name = encoder.main_cls().name
+  encoder.main_cls()
+  demo_name = str(encoder.mcls)
   sk_dir = os.path.join(out_dir, '_'.join(["sk", demo_name]))
   encoder.sk_dir = sk_dir
   logging.info('encoding to Sketch')
