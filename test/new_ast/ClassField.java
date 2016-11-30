@@ -14,7 +14,7 @@ class ClassField {
 	// b.a = new A();
 	// b.a.x = 1;
 	C c = new C();
-	cA.b = new B();
+	c.b = new B();
 	c.b.a = new A();
 	c.b.a.x = 1;
     }
