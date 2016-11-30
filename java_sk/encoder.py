@@ -178,7 +178,7 @@ class Encoder(object):
                       "}}\n\n".format(str(cls)))
                         
         for m in mtds + cons:
-            if m.parentNode.interface: continue
+            if hasattr(m, 'interface') and m.parentNode.interface: continue
             buf.write(self.to_func(m) + os.linesep)
 
         cls_sk = cname + ".sk"

@@ -134,15 +134,19 @@ class Translator(object):
             n.body.stmts = [u'Object self = new Object(__cid=0);'] + n.body.stmts
         n.typee.accept(self)
         self.printt(' ')
-        self.printt(str(n))
+        def anon_nm(a):
+            if type(a.parentNode) == AssignExpr: return a.parentNode.target.name
+            else: return anon_nm(a.parentNode)
+        if type(n.parentNode) == ObjectCreationExpr: self.printt('_'.join([str(n), anon_nm(n)]))
+        else: self.printt(str(n))
         self.printt('(')
 
         if not td.isStatic(n) and not td.isHarness(n):
-            ty = self.trans_ty(str(n.parentNode), didrepr=True)
+            ty = self.trans_ty(str(utils.get_coid(n)), didrepr=True)
             self.printt('{} self'.format(ty))
             if n.parameters: self.printt(', ')
         self.printSepList(n.parameters)
-        self.printt(')')
+        self.printt(') ')
 
         for i in xrange(n.arrayCount): self.printt('[]')
         if n.throws:
@@ -232,7 +236,7 @@ class Translator(object):
     @v.when(ExpressionStmt)
     def visit(self, n):
         n.expr.accept(self)
-        if type(n.expr) != MethodCallExpr: self.printt(';')
+        self.printt(';')
 
     @v.when(AssertStmt)
     def visit(self, n):
@@ -328,11 +332,11 @@ class Translator(object):
             if n.scope.name == utils.get_coid(n).name:
                 self.printt(fld.variables[0].name)
             elif type(n.parentNode) == AssignExpr and n == n.parentNode.target:
-                self.printt('{}_s@{}('.format(fld.variables[0].name, fld.parentNode.name))
+                self.printt('{}_s@{}('.format(fld.variables[0].name, str(utils.get_coid(fld))))
                 n.parentNode.value.accept(self)
                 self.printt(')')
             else:
-                self.printt('{}_g@{}()'.format(fld.variables[0].name, fld.parentNode.name))
+                self.printt('{}_g@{}()'.format(fld.variables[0].name, str(utils.get_coid(fld))))
         else:
             fld_access()
 
@@ -520,7 +524,7 @@ class Translator(object):
     def trans_call(self, rcv_ty, mdec, callexpr):
         if not callexpr.scope:
             if not mdec: mdec = self.mdec_from_callexpr(utils.get_coid(callexpr), callexpr)
-            self.printt('{}@{}'.format(str(mdec), mdec.parentNode.name))
+            self.printt('{}@{}'.format(str(mdec), str(utils.get_coid(mdec))))
             nm = [] if td.isStatic(mdec) else [NameExpr({u'@t':u'NameExpr',u'name':u'self'})]
             self.printArguments(nm + callexpr.args)
             return
@@ -529,7 +533,7 @@ class Translator(object):
         if not td.isStatic(mdec):
             args = [NameExpr({u'@t':u'NameExpr',u'name':callexpr.scope.name})] + callexpr.args
         else:
-            self.printt('@'.join([mname, mdec.parentNode.name]))
+            self.printt('@'.join([mname, str(utils.get_coid(mdec))]))
             self.printArguments(args)
             if type(callexpr.parentNode) == ExpressionStmt: self.printt(';')
             return
@@ -622,7 +626,8 @@ class Translator(object):
         d['condition']['right']['value'] = '{}()'.format(mdec_cls[1].name)
         if typee == 'ConditionalExpr':
             d['thenExpr']['scope']['name'] = callexpr.scope.name
-            d['thenExpr']['name'] = '@'.join([str(mdec_cls[0]), mdec_cls[0].parentNode.name])
+            d['thenExpr']['name'] = '@'.join([str(mdec_cls[0]),
+                                              str(utils.get_coid(mdec_cls[0]))])
             dis = ConditionalExpr(d)
             dis.thenExpr.args = args
             if mdec_cls[0].typee.name not in self.primitives:
@@ -631,7 +636,8 @@ class Translator(object):
             d['thenStmt'] = d.pop('thenExpr')
             d['elseStmt'] = d.pop('elseExpr')
             d['thenStmt']['scope']['name'] = callexpr.scope.name
-            d['thenStmt']['name'] = '@'.join([str(mdec_cls[0]), mdec_cls[0].parentNode.name])
+            d['thenStmt']['name'] = '@'.join([str(mdec_cls[0]),
+                                              str(utils.get_coid(mdec_cls[0]))])
             dis = IfStmt(d)
             dis.thenStmt.args = args
         return dis
@@ -727,7 +733,7 @@ class Translator(object):
     @mtd.setter
     def mtd(self, v):
         self._mtd = v
-        self._cls = v.parentNode
+        self._cls = utils.get_coid(v)
 
     @property
     def cls(self): return self._cls
