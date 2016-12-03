@@ -47,8 +47,17 @@ class TestJava(TestCommon):
     def test_Inners(self):
         self.__test(["Inners.java"])
         
+    def test_LocalCalls(self):
+        self.__test(["LocalCalls.java"])
+        
+    def test_NonLocalCalls(self):
+        self.__test(["NonLocalCalls.java"])
+        
     def test_Static(self):
         self.__test(["Static.java"])
+        
+    def test_SuperCalls(self):
+        self.__test(["SuperCalls.java"])
         
     def test_Switch(self):
         self.__test(["Switch.java"])

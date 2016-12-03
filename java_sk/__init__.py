@@ -10,9 +10,20 @@ from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 from ast.body.methoddeclaration import MethodDeclaration
 
 
-JAVA_TYPES = {u'int':u'int',u'byte':u'byte',u'short':u'short',u'long':u'long',u'double':u'double',
-            u'Byte':'Byte',u'Short':u'Short',u'Long':u'Long',u'Int':u'Integer'}
-SKETCH_TYPES = {u'boolean':u'bit', u'this':'self'}
+CONVERSION_TYPES = {u'boolean':u'bit',
+                    u'this':u'self',
+                    u'byte':u'char',
+                    u'short':u'char',
+                    u'int':u'int',
+                    u'long':u'double',
+                    u'float':u'float',
+                    u'double':u'double',
+                    u'Byte':'char',
+                    u'Short':u'char',
+                    u'Integer':u'int',
+                    u'Long':u'long',
+                    u'Float':u'float',
+                    u'Double':u'double'}
 
 sk_d = {u'@t': u'ClassOrInterfaceDeclaration', u'name': u''}
 sk_cls = ClassOrInterfaceDeclaration(sk_d)

@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 import cStringIO
-import itertools
 
 from . import util
 
 import visit as v
+
+from functools import partial
 
 from ast import Operators as op
 from ast import AssignOperators as assignop
@@ -13,6 +14,7 @@ from ast.utils import utils
 from ast.node import Node
 
 from ast.body.typedeclaration import TypeDeclaration as td
+from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 from ast.body.constructordeclaration import ConstructorDeclaration
 from ast.body.methoddeclaration import MethodDeclaration
 from ast.body.parameter import Parameter
@@ -38,7 +40,6 @@ from ast.expr.unaryexpr import UnaryExpr
 from ast.expr.binaryexpr import BinaryExpr
 from ast.expr.nameexpr import NameExpr
 from ast.expr.assignexpr import AssignExpr
-from ast.expr.integerliteralexpr import IntegerLiteralExpr
 from ast.expr.methodcallexpr import MethodCallExpr
 from ast.expr.generatorexpr import GeneratorExpr
 from ast.expr.objectcreationexpr import ObjectCreationExpr
@@ -52,12 +53,16 @@ from ast.expr.thisexpr import ThisExpr
 from ast.expr.superexpr import SuperExpr
 from ast.expr.castexpr import CastExpr
 from ast.expr.booleanliteralexpr import BooleanLiteralExpr
+from ast.expr.integerliteralexpr import IntegerLiteralExpr
+from ast.expr.doubleliteralexpr import DoubleLiteralExpr
 from ast.expr.nullliteralexpr import NullLiteralExpr
 
 from ast.type.primitivetype import PrimitiveType
 from ast.type.voidtype import VoidType
 from ast.type.referencetype import ReferenceType
 from ast.type.classorinterfacetype import ClassOrInterfaceType
+
+from . import CONVERSION_TYPES
 
 class Translator(object):
     SELF = NameExpr({u'@t':u'NameExpr',u'name':u'self'})
@@ -73,10 +78,6 @@ class Translator(object):
         self._mnums = kwargs.get('mnums')
         self._primitives = kwargs.get('prims', [])
 
-        from . import JAVA_TYPES
-        from . import SKETCH_TYPES
-        self._JT = JAVA_TYPES
-        self._ST = SKETCH_TYPES
 
         self._buf = None
         self._mtd = None
@@ -128,16 +129,15 @@ class Translator(object):
 
     @v.when(MethodDeclaration)
     def visit(self, n):
+        if utils.get_coid(n).interface: return
         self.printMods(n)
         if td.isHarness(n):
             self.printt('harness ')
             n.body.stmts = [u'Object self = new Object(__cid=0);'] + n.body.stmts
         n.typee.accept(self)
         self.printt(' ')
-        def anon_nm(a):
-            if type(a.parentNode) == AssignExpr: return a.parentNode.target.name
-            else: return anon_nm(a.parentNode)
-        if type(n.parentNode) == ObjectCreationExpr: self.printt('_'.join([str(n), anon_nm(n)]))
+        if type(n.parentNode) == ObjectCreationExpr:
+            self.printt('_'.join([str(n), utils.anon_nm(n).name]))
         else: self.printt(str(n))
         self.printt('(')
 
@@ -398,9 +398,7 @@ class Translator(object):
 
     @v.when(MethodCallExpr)
     def visit(self, n):
-        rcv_ty = utils.scope_to_cls(n) if n.scope else utils.get_coid(n)
-        mdec = self.mdec_from_callexpr(rcv_ty, n)
-        self.trans_call(rcv_ty, mdec, n)
+        self.trans_call(n)
 
     @v.when(EnclosedExpr)
     def visit(self, n):
@@ -446,6 +444,14 @@ class Translator(object):
     def visit(self, n):
         self.printt(n.value)
 
+    @v.when(IntegerLiteralExpr)
+    def visit(self, n):
+        self.printt(n.value)
+
+    @v.when(DoubleLiteralExpr)
+    def visit(self, n):
+        self.printt(n.value)
+        
     @v.when(NullLiteralExpr)
     def visit(self, n):
         self.printt('null')
@@ -455,13 +461,9 @@ class Translator(object):
     def visit(self, n):
         self.printt(self.trans_ty(n))
 
-    @v.when(IntegerLiteralExpr)
-    def visit(self, n):
-        self.printt(n.value)
-
     @v.when(PrimitiveType)
     def visit(self, n):
-        self.printt(n.name)
+        self.printt(self.trans_ty(n))
 
     @v.when(VoidType)
     def visit(self, n):
@@ -494,12 +496,8 @@ class Translator(object):
             else: r_ty += ''.join(['[{}]'.format(self.ARRAY_SIZE) for i in xrange(typ.arrayCount)])
         # we've already rewritten this type
         elif _tname in self.ty: r_ty = self.ty[_tname]
-        # this type is a Sketch type
-        elif _tname in self.ST: r_ty = self.ST[_tname]
-        # type translates to Sketch int
-        elif _tname in [self.JT[u'byte'], self.JT[u'short'], self.JT[u'long'],
-                        self.JT[u'Byte'], self.JT[u'Short'], self.JT[u'Long'],
-                        self.JT[u'Int']]: r_ty = self.JT[u'int']
+        # Java types to Sketch types
+        elif _tname in CONVERSION_TYPES: r_ty = CONVERSION_TYPES[_tname]
         return r_ty
 
     def trans_fname(self, fld, nm):
@@ -521,42 +519,165 @@ class Translator(object):
     def trans_params(self, (ty, nm)):
         return ' '.join([self.trans_ty(ty), nm])
 
-    def trans_call(self, rcv_ty, mdec, callexpr):
+    def trans_call(self, callexpr):
+        print 'calling:', callexpr
+        # 15.12.1 Compile-Time Step 1: Determine Class or Interface to Search
         if not callexpr.scope:
-            if not mdec: mdec = self.mdec_from_callexpr(utils.get_coid(callexpr), callexpr)
-            self.printt('{}@{}'.format(str(mdec), str(utils.get_coid(mdec))))
-            nm = [] if td.isStatic(mdec) else [NameExpr({u'@t':u'NameExpr',u'name':u'self'})]
-            self.printArguments(nm + callexpr.args)
-            return
-        args = callexpr.args
-        mname = str(callexpr)
-        if not td.isStatic(mdec):
-            args = [NameExpr({u'@t':u'NameExpr',u'name':callexpr.scope.name})] + callexpr.args
+            cls = utils.get_coid(callexpr)
         else:
-            self.printt('@'.join([mname, str(utils.get_coid(mdec))]))
-            self.printArguments(args)
-            if type(callexpr.parentNode) == ExpressionStmt: self.printt(';')
-            return
-        clss, call = [rcv_ty] + filter(lambda c: not c.interface, rcv_ty.supers()), []
-        for c in clss:
-            md = c.symtab.get(str(callexpr))
-            if (md and str(md) != mname) or not md:
-                mname = str(callexpr)
-                try:
-                    md = self.mdec_from_callexpr(c, callexpr)
-                except:
-                    md = None
-            if md: call.append(md)
-        t = 'IfStmt' if type(mdec.typee) == VoidType else 'ConditionalExpr'
-        conexprs = [self.make_dispatch(callexpr, args, c, t) for c in zip(call, clss)]
-        def combine(l, r):
-            if t == 'ConditionalExpr': l.elseExpr = r
-            else: l.elseStmt = r
-            return l
-        conexprs = reduce(combine, conexprs)
-        if t == 'ConditionalExpr': self.printt('(')
-        self.print_dispatch(conexprs)
-        if t == 'ConditionalExpr': self.printt(')')
+            scope = utils.scope_to_obj(callexpr)
+            # TypeName . [TypeArguments] Identifier
+            if type(scope) == ClassOrInterfaceDeclaration: cls = scope
+            # ExpressionName . [TypeArguments] Identifier
+            # Primary . [TypeArguments] Identifier
+            else: cls = callexpr.symtab.get(scope.typee.name)
+            # TODO: more possibilities
+        print 'searching in cls:', cls
+        # Compile-Time Step 2: Determine Method Signature
+        # 15.12.2.1. Identify Potentially Applicable Methods
+        pots = self.identify_potentials(callexpr, cls, [])
+        print 'potentitals:', map(lambda m: str(m), pots)
+
+        # 15.12.2.2. Phase 1: Identify Matching Arity Methods Applicable by Strict Invocation
+        strict_mtds = self.identify_strict(callexpr, pots)
+        print 'strict_applicable:', map(lambda m: str(m), strict_mtds)
+
+        # 15.12.2.3. Phase 2: Identify Matching Arity Methods Applicable by Loose Invocation
+        loose_mtds = self.identify_loose(callexpr, pots)
+        print 'loose_applicable:', map(lambda m: str(m), loose_mtds)
+
+        # 15.12.2.4. Phase 3: Identify Methods Applicable by Variable Arity Invocation
+        # TODO: this
+
+        if not strict_mtds + loose_mtds:
+            raise Exception('Unable to find applicable method for {} in {}'.format(str(callexpr), str(cls)))
+
+        # 15.12.2.5. Choosing the Most Specific Method
+        mtd = self.most_specific(strict_mtds + loose_mtds)
+        print 'most_specific:', str(mtd)
+        
+        # 15.12.2.6. Method Invocation Type
+        print '**END CALL***\n'
+
+    def identify_potentials(self, callexpr, cls, mtds):
+        mtds = []
+        for key,val in cls.symtab.items():
+            if type(val) != MethodDeclaration: continue
+            nm = key[:key.find('_') if key.find('_') >= 0 else len(key)]
+            if callexpr.name == nm and len(callexpr.args) == len(val.parameters): mtds.append(val)
+        return mtds
+
+    def identify_strict(self, callexpr, mtds):
+        pots = []
+        arg_typs = callexpr.arg_typs()
+        for m in mtds:
+            param_typs = m.param_typs()
+            if self.match_strict(arg_typs, param_typs): pots.append(m)
+        return pots
+                
+    def match_strict(self, arg_typs, param_typs):
+        for atyp,ptyp in zip(arg_typs, param_typs):
+            return self.identity_conversion(atyp,ptyp) or \
+                self.primitive_widening(atyp,ptyp) or \
+                self.reference_widening(atyp,ptyp)
+        # if there are no arguments
+        return True
+                
+    def identify_loose(self, callexpr, mtds):
+        pots = []
+        arg_typs = callexpr.arg_typs()
+        for m in mtds:
+            param_typs = m.param_typs()
+            if self.match_loose(arg_typs, param_typs): pots.append(m)
+        return pots
+        
+    def match_loose(self, arg_typs, param_typs):
+        # TODO: Spec says if the result is a raw type, do an unchecked conversion. Does this already happen?
+        for atyp,ptyp in zip(arg_typs, param_typs):
+            # going to ignore, identity and windenings b/c they should be caught with strict
+            # TODO: spec says boxing then reference_widening, dont know what that means
+            if self.boxing_conversion(atyp, ptyp): return True
+            elif self.unboxing_conversion(atyp, ptyp):
+                if self.primitive_widening(utils.unbox[atyp.name], ptyp): return True
+                else: return True
+            else: return False
+        # if there are no arguments
+        return True
+
+    def most_specific(self, mtds):
+        def most(candidate, others):
+            ctypes = candidate.param_typs()
+            for i in range(len(others)):
+                # if the parameters of the candidate aren't less specific than all the parameters of other
+                if not all(map(lambda t: utils.is_subtype(t[0], t[1]),
+                               zip(ctypes, others[i].param_typs()))):
+                    return False
+            return True
+        for mi in xrange(len(mtds)):
+            if most(mtds[mi], mtds[:mi] + mtds[mi+1:]): return mtds[mi]
+        return []
+            
+    # Conversions
+    def identity_conversion(self, typ1, typ2):
+        return True if typ1.name == typ2.name else False
+        
+    def primitive_widening(self, typ1, typ2):
+        t1 = typ1 if type(typ1) == unicode else typ1.name
+        t2 = typ2 if type(typ2) == unicode else typ2.name
+        return True if t1 in utils.widen and t2 in utils.widen[t1] else False
+
+    def reference_widening(self, typ1, typ2):
+        if not typ1 or not typ2: return False
+        return utils.is_subtype(typ1, typ2)
+
+    def boxing_conversion(self, typ1, typ2): # TODO: reference widening here
+        return typ1.name in utils.box and utils.box[typ1.name] == typ2.name
+
+    def unboxing_conversion(self, typ1, typ2):
+        if typ1.name in utils.unbox:
+            return utils.unbox[typ1.name] == typ2.name or \
+                self.primitive_widening(utils.unbox[typ1.name], typ2.name)
+        else: return False
+
+        # # no scope means this method is in the same class (I think...)
+        # if not callexpr.scope:
+        #     mdec = callexpr.symtab.get(mname)
+        #     self.printt(str(mdec))
+        #     # add self argument if not static
+        #     nm = [] if td.isStatic(mdec) else [NameExpr({u'@t':u'NameExpr',u'name':u'self'})]
+        #     self.printArguments(nm + callexpr.args)
+        #     return
+        # obj = utils.scope_to_obj(callexpr)
+        # # if the scope is a class then this is a static call
+        # if type(obj) == ClassOrInterfaceDeclaration:
+        #     mdec = obj.symtab.get(mname)
+        #     self.printt('{}@{}'.format(str(mdec), str(obj)))
+        #     self.printArguments(callexpr.args)
+        #     return
+        # # since this isn't a static call we need to add self to the arguments
+        # args = [NameExpr({u'@t':u'NameExpr',u'name':callexpr.scope.name})] + callexpr.args
+        # cls = callexpr.symtab.get(obj.typee.name)
+        # print 'mname:', mname, 'cls:', cls.subClasses
+        # mdec = cls.symtab.get(mname)
+        # t = 'IfStmt' if type(mdec.typee) == VoidType else 'ConditionalExpr'
+        # clss = filter(lambda c: not c.interface, utils.all_subClasses(cls) + [cls])
+        # print 'clss:', map(lambda c: str(c), clss)
+        # conexprs = [self.make_dispatch(callexpr, args, mname, c, t) for c in clss]
+        # # conexprs = [c for c in conexprs if c]
+        # # mdec = cls.symtab.get(mname)
+        # # t = 'IfStmt' if type(mdec.typee) == VoidType else 'ConditionalExpr'
+        # # conexprs = [self.make_dispatch(callexpr, args, mname, c, t) for c in [cls] + cls.supers()]
+        # # conexprs = [c for c in conexprs if c]
+
+        # # need to foldr then reverse
+        # def combine(l, r):
+        #     if t == 'ConditionalExpr': r.elseExpr = l
+        #     else: r.elseStmt = l
+        #     return r
+        # conexprs = reduce(combine, reversed(conexprs))
+        # if t == 'ConditionalExpr': self.printt('(')
+        # self.print_dispatch(conexprs)
+        # if t == 'ConditionalExpr': self.printt(')')
 
     def print_dispatch(self, c):
         # we need to do this b/c the elseExpr's are going to have MethodCallExpr which
@@ -588,7 +709,7 @@ class Translator(object):
                 self.printt('else ')
                 self.print_dispatch(c.elseStmt)
 
-    def make_dispatch(self, callexpr, args, mdec_cls, typee):
+    def make_dispatch(self, callexpr, args, mname, cls, rtype):
         d = {
             "@t": "",
             "condition": {
@@ -621,49 +742,44 @@ class Translator(object):
                 "value": "0",
             },
         }
-        d['@t'] = typee
+        mdec = cls.symtab.get(mname)
+        if not mdec: return None
+        d['@t'] = rtype
         d['condition']['left']['name'] = '.'.join([callexpr.scope.name, '__cid'])
-        d['condition']['right']['value'] = '{}()'.format(mdec_cls[1].name)
-        if typee == 'ConditionalExpr':
+        d['condition']['right']['value'] = '{}()'.format(str(cls))
+        if rtype == 'ConditionalExpr':
             d['thenExpr']['scope']['name'] = callexpr.scope.name
-            d['thenExpr']['name'] = '@'.join([str(mdec_cls[0]),
-                                              str(utils.get_coid(mdec_cls[0]))])
+            d['thenExpr']['name'] = '@'.join([str(mdec), str(cls)])
             dis = ConditionalExpr(d)
             dis.thenExpr.args = args
-            if mdec_cls[0].typee.name not in self.primitives:
+            if type(mdec.typee) != PrimitiveType:
                 dis.elseExpr = ClassOrInterfaceType({u'@t':u'ClassOrInterfaceType', u'name':u''})
         else:
             d['thenStmt'] = d.pop('thenExpr')
             d['elseStmt'] = d.pop('elseExpr')
             d['thenStmt']['scope']['name'] = callexpr.scope.name
-            d['thenStmt']['name'] = '@'.join([str(mdec_cls[0]),
-                                              str(utils.get_coid(mdec_cls[0]))])
+            d['thenStmt']['name'] = '@'.join([str(mdec), str(utils.get_coid(mdec))])
             dis = IfStmt(d)
             dis.thenStmt.args = args
         return dis
         
-    def mdec_from_callexpr(self, rcv_ty, n):
-        mdec = rcv_ty.symtab.get(str(n))
-        if mdec: return mdec
-        else:
-            mdec = self.find_in_parent(rcv_ty, str(n))
-            if mdec: return mdec
-        atypes = n.arg_typs()
-        # TODO: if we can't find the method in any parent classes it might have been defined
-        # with a different signature
-        def permute_args(typs):
-            candidates = []
-            for i in xrange(len(n.args)):
-                if type(n.args[i]) == NameExpr:
-                    typ = n.args[i].symtab[n.args[i].name].typee
-                    cls = n.args[i].symtab[typ.name]
-                    candidates.append(map(lambda s: s.name, cls.supers()))
-            return ['_'.join(s) for s in itertools.product(*candidates) if s]
-        pargs = ['_'.join([n.name, a]) for a in permute_args(atypes)]
-        for p in pargs:
-            mdec = self.find_in_parent(rcv_ty, p)
-            if mdec: return mdec
-        raise Exception('Cant find {} in {}'.format(str(n), rcv_ty))
+    # def mdec_from_callexpr(self, callexpr):
+    #     atypes = callexpr.arg_typs()
+    #     # TODO: if we can't find the method in any parent classes it might have been defined
+    #     # with a different signature
+    #     def permute_args(typs):
+    #         candidates = []
+    #         for i in xrange(len(n.args)):
+    #             if type(n.args[i]) == NameExpr:
+    #                 typ = n.args[i].symtab[n.args[i].name].typee
+    #                 cls = n.args[i].symtab[typ.name]
+    #                 candidates.append(map(lambda s: s.name, cls.supers()))
+    #         return ['_'.join(s) for s in itertools.product(*candidates) if s]
+    #     pargs = ['_'.join([n.name, a]) for a in permute_args(atypes)]
+    #     for p in pargs:
+    #         mdec = self.find_in_parent(rcv, p)
+    #         if mdec and not utils.get_coid(n).interface: return mdec
+    #     raise Exception('Cant find {} in {}'.format(str(n), rcv))
             
     # given a type, check all parent classes for name
     def find_in_parent(self, rcv_ty, name):
@@ -751,21 +867,6 @@ class Translator(object):
     def flds(self, v): self._flds = v
 
     @property
-    def JT(self): return self._JT
-    @JT.setter
-    def JT(self, v): self._JT = v
-
-    @property
-    def ST(self): return self._ST
-    @ST.setter
-    def ST(self, v): self._ST = v
-
-    @property
     def num_mtds(self): return self._num_mtds
     @num_mtds.setter
     def num_mtds(self, v): self._num_mtds = v
-
-    @property
-    def primitives(self): return self._primitives
-    @primitives.setter
-    def primitives(self, v): self._primitives = v

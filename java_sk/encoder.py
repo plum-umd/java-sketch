@@ -7,6 +7,7 @@ import logging
 from itertools import ifilterfalse
 
 from . import builtins
+# from . import narrow
 
 from .translator import Translator
 
@@ -48,8 +49,7 @@ class Encoder(object):
             if m.name not in self._MTD_NUMS.keys():
                 self._MTD_NUMS[m] = i
                 i = i + 1
-        p = ['int', 'void', 'double', 'byte', 'short', 'long']
-        self._tltr = Translator(cnums=self._CLASS_NUMS, mnums=self._MTD_NUMS, prims=p)
+        self._tltr = Translator(cnums=self._CLASS_NUMS, mnums=self._MTD_NUMS)
 
     def find_main(self):
         mtds = []
@@ -59,7 +59,7 @@ class Encoder(object):
         lenn = len(mtds)
         if lenn > 1:
             raise Exception("multiple main()s", map(lambda m: m.parentNode.name, mtds))
-            return mtds[0] if lenn == 1 else None
+        return mtds[0] if lenn == 1 else None
 
     def find_harness(self):
         # TODO: these can also be specified with annotations -- we don't support those yet
@@ -134,7 +134,7 @@ class Encoder(object):
 
         buf.write("// distinct class IDs\n")
         for k,v in self.CLASS_NUMS.items():
-            if k not in self.tltr.primitives:
+            if k not in utils.narrow:
                 buf.write("int {k}() {{ return {v}; }}\n".format(**locals()))
         with open(os.path.join(self.sk_dir, "meta.sk"), 'w') as f:
             f.write(util.get_and_close(buf))
