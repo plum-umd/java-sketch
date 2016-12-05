@@ -536,6 +536,7 @@ class Translator(object):
         # Compile-Time Step 2: Determine Method Signature
         # 15.12.2.1. Identify Potentially Applicable Methods
         pots = self.identify_potentials(callexpr, cls, [])
+        if not pots: raise Exception('No potential methods for {} found in {}.'.format(str(callexpr), str(cls)))
         print 'potentitals:', map(lambda m: str(m), pots)
 
         # 15.12.2.2. Phase 1: Identify Matching Arity Methods Applicable by Strict Invocation
@@ -557,14 +558,21 @@ class Translator(object):
         print 'most_specific:', str(mtd)
         
         # 15.12.2.6. Method Invocation Type
+        # TODO: ignoring this for now. Type will just be type of method
+
+        # 15.12.4. Run-Time Evaluation of Method Invocation
+        # 15.12.4.1. Compute Target Reference (If Necessary)
+        if td.isStatic(mtd):
+            self.printt('{}@{}'.format(str(mtd), str(utils.get_coid(mtd))))
+            self.printArguments(callexpr.args)
+                        
         print '**END CALL***\n'
 
     def identify_potentials(self, callexpr, cls, mtds):
         mtds = []
         for key,val in cls.symtab.items():
             if type(val) != MethodDeclaration: continue
-            nm = key[:key.find('_') if key.find('_') >= 0 else len(key)]
-            if callexpr.name == nm and len(callexpr.args) == len(val.parameters): mtds.append(val)
+            if callexpr.name == val.name: mtds.append(val)
         return mtds
 
     def identify_strict(self, callexpr, mtds):
