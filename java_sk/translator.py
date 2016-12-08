@@ -368,7 +368,6 @@ class Translator(object):
             typs = []
             for a in n.args:
                 if type(a) == FieldAccessExpr:
-                    raise Exception("handle this")
                     tname = utils.find_fld(a).typee.name
                 elif not a.typee:
                     tname = n.symtab[a.name].typee.name
@@ -513,7 +512,7 @@ class Translator(object):
         logging.debug('found field: {}'.format(new_fname))
         if td.isStatic(fld):
             if n.scope.name == utils.get_coid(n).name:
-                self.printt(new_fname)
+                self.printt(fld.variables[0].name)
             elif type(n.parentNode) == AssignExpr and n == n.parentNode.target:
                 self.printt('{}_s@{}('.format(fld.variables[0].name, str(utils.get_coid(fld))))
                 n.parentNode.value.accept(self)
