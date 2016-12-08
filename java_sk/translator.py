@@ -548,7 +548,7 @@ class Translator(object):
         return ' '.join([self.trans_ty(ty), nm])
 
     def trans_call(self, callexpr):
-        logging.debug('calling: {}'.format(callexpr))
+        logging.debug('calling: {} from {}'.format(callexpr, utils.get_coid(callexpr)))
         # 15.12.1 Compile-Time Step 1: Determine Class or Interface to Search
         if not callexpr.scope:
             cls = utils.get_coid(callexpr)
@@ -568,7 +568,7 @@ class Translator(object):
                 # Primary . [TypeArguments] Identifier
                 else: cls = callexpr.symtab.get(scope.typee.name)
             # TODO: more possibilities
-
+        logging.debug('searching in class: {}'.format(cls))
         # Compile-Time Step 2: Determine Method Signature
         # 15.12.2.1. Identify Potentially Applicable Methods
         pots = self.identify_potentials(callexpr, cls, [])
@@ -611,9 +611,15 @@ class Translator(object):
             self.printt(str(mtd))
             self.printArguments([NameExpr({u'name':u'self'})] + callexpr.args)
         else:
-            clss = filter(lambda c: not c.interface, [cls] + utils.all_subClasses(cls))
-            conexprs = []
             args = [NameExpr({u'name':scope.name})] + callexpr.args
+            if type(callexpr.scope) == SuperExpr:
+                self.printt('{}@{}'.format(str(mtd), str(cls)))
+                self.printArguments(args)
+                logging.debug('**END CALL***\n')
+                return
+            clss = filter(lambda c: not c.interface, [cls] + utils.all_subClasses(cls))
+            logging.debug('subclasses: {}'.format(map(lambda c: str(c), clss)))
+            conexprs = []
             for c in reversed(clss): # start from bottom of hierarchy
                 (cls, mdec) = self.find_mtd(c, str(mtd))
                 if cls:
