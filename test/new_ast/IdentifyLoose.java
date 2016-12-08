@@ -44,14 +44,15 @@ class Box {
     }
 }
 
-class IdentifyLooseLocal {
+class IdentifyLoose {
     void m(byte a) { } 
     void m(char a) { } 
     void m(long a) { } 
     void m(float a) { } 
     void m(double a) { } 
     harness void main() {
-	int i = 0;
-	m(i); // m_long
+	// TODO: going to require type cast
+	// int i = 0;
+	// m(i); // m_long
     }
 }

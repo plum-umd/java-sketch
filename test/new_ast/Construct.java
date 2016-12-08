@@ -5,8 +5,15 @@ class F {
     }
 }
 
+class A {
+    int x;
+    A(int x) { this.x = x; }
+}
+
 class Construct {
     harness static void test(int v) {
+	A a = new A(1);
+	
 	F f1 = new F();
 	F f2 = new F();
 

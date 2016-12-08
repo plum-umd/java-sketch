@@ -10,9 +10,9 @@ class C {
 
 class ClassField {
     harness static void test () {
-	// B b = new B();
-	// b.a = new A();
-	// b.a.x = 1;
+	B b = new B();
+	b.a = new A();
+	b.a.x = 1;
 	C c = new C();
 	c.b = new B();
 	c.b.a = new A();

@@ -7,7 +7,6 @@ import logging
 from itertools import ifilterfalse
 
 from . import builtins
-# from . import narrow
 
 from .translator import Translator
 
@@ -36,7 +35,7 @@ class Encoder(object):
         i = 2
         for c in self._clss:
             if c.name not in self._CLASS_NUMS.keys():
-                self._CLASS_NUMS[c.name] = i
+                self._CLASS_NUMS[str(c)] = i
                 i = i + 1
                 self._CLASS_NUMS[u'int'] = i
                 self._CLASS_NUMS[u'double'] = i+1
@@ -46,7 +45,7 @@ class Encoder(object):
         self._MTD_NUMS = {}
         i = 0
         for m in self._mtds+self._cons:
-            if m.name not in self._MTD_NUMS.keys():
+            if str(m) not in self._MTD_NUMS.keys():
                 self._MTD_NUMS[m] = i
                 i = i + 1
         self._tltr = Translator(cnums=self._CLASS_NUMS, mnums=self._MTD_NUMS)
@@ -55,10 +54,10 @@ class Encoder(object):
         mtds = []
         for c in self.clss:
             m = utils.extract_nodes([MethodDeclaration, ConstructorDeclaration], c)
-            mtds.extend(filter(lambda m: td.isStatic(m) and m.name == u'main', m))
+            mtds.extend(filter(lambda m: td.isStatic(m) and str(m) == u'main', m))
         lenn = len(mtds)
         if lenn > 1:
-            raise Exception("multiple main()s", map(lambda m: m.parentNode.name, mtds))
+            raise Exception("multiple main()s", map(lambda m: str(m.parentNode), mtds))
         return mtds[0] if lenn == 1 else None
 
     def find_harness(self):
@@ -151,16 +150,21 @@ class Encoder(object):
             f.write(util.get_and_close(buf))
 
     def gen_cls_sk(self, cls):
-        mtds = utils.extract_nodes([MethodDeclaration], cls)
-        cons = utils.extract_nodes([ConstructorDeclaration], cls)
-        flds = utils.extract_nodes([FieldDeclaration], cls)
-        s_flds = filter(td.isStatic, flds)
-
         if cls in self.bases: return None
+
+        mtds = utils.extract_nodes([MethodDeclaration], cls, recurse=False)
+        cons = utils.extract_nodes([ConstructorDeclaration], cls, recurse=False)
+        flds = utils.extract_nodes([FieldDeclaration], cls, recurse=False)
+        s_flds = filter(td.isStatic, flds)
         
-        cname = cls.sanitize_ty(cls.name)
+        cname = str(cls)
         buf = cStringIO.StringIO()
         buf.write("package {};\n\n".format(cname))
+
+        # these represent this$N
+        etypes = cls.enclosing_types()
+        if etypes:
+            buf.write('Object self{};\n\n'.format(len(etypes)-1))
 
         for fld in ifilterfalse(td.isPrivate, s_flds):
             buf.write(self.tltr.trans_fld(fld))
@@ -171,11 +175,20 @@ class Encoder(object):
                 buf.write("void {1}_s({0} {1}_s) {{ {1} = {1}_s; }}\n".format(typ, v.name))
                 buf.write('\n')
 
-        if cls not in self.bases and cls.name != self.harness.parentNode.name and \
+        if cls not in self.bases and str(cls) != str(self.harness.parentNode) and \
            not filter(lambda c: len(c.parameters) == 0, cons):
-            buf.write("Object {0}_{0}(Object self) {{\n"
-                      "    return self;\n"
-                      "}}\n\n".format(str(cls)))
+            if etypes:
+                i = len(etypes)-1
+                init = 'self{0} = self_{0};'.format(i)
+                buf.write("Object {0}_{0}_{1}(Object self, Object self_{2}) {{\n"
+                          "    {3}\n"
+                          "    return self;\n"
+                          "}}\n\n".format(str(cls), '_'.join(map(lambda t: t.decname, etypes)), i, init))
+
+            else:
+                buf.write("Object {0}_{0}(Object self) {{\n"
+                          "    return self;\n"
+                          "}}\n\n".format(str(cls)))
                         
         for m in mtds + cons:
             if hasattr(m, 'interface') and m.parentNode.interface: continue
@@ -193,7 +206,7 @@ class Encoder(object):
 
     # only called on base classes. This seems to just be Object?
     def to_struct(self, cls):
-        cname = cls.sanitize_ty(cls.name)
+        cname = str(cls)
         if not cls.extendsList: cls = self.to_v_struct(cls)
               
         buf = cStringIO.StringIO()
@@ -208,7 +221,7 @@ class Encoder(object):
     # from the given base class,
     # generate a virtual struct that encompasses all the class in the hierarchy
     def to_v_struct(self, cls):
-        cls_d = {u'name':cls.name}
+        cls_d = {u'name':str(cls)}
         cls_v = ClassOrInterfaceDeclaration(cls_d)
         # add __cid field
         fld_d = {u'variables':
@@ -219,8 +232,8 @@ class Encoder(object):
         cls_v.members.append(FieldDeclaration(fld_d))
         cls_v.childrenNodes.append(FieldDeclaration(fld_d))
         def per_cls(cls):
-            cname = cls.sanitize_ty(cls.name)
-            if cname != cls_v.name: self.tltr.ty[cls.name] = cls_v.name
+            cname = str(cls)
+            if cname != str(cls_v): self.tltr.ty[str(cls)] = str(cls_v)
             flds = filter(lambda m: type(m) == FieldDeclaration, cls.members)
             def cp_fld(fld):
                 for v in fld.variables:

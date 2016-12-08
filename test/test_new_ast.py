@@ -23,6 +23,9 @@ class TestJava(TestCommon):
     def test_Calls(self):
         self.__test(["Calls.java"])
 
+    def test_CallTypes(self):
+        self.__test(["CallTypes.java"])
+
     def test_ClassField(self):
         self.__test(["ClassField.java"])
 
@@ -41,23 +44,47 @@ class TestJava(TestCommon):
     def test_Hole(self):
         self.__test(["Hole.java"])
         
+    def test_IdentifyLoose(self):
+        self.__test(["IdentifyLoose.java"])
+        
+    def test_IdentifyStrict(self):
+        self.__test(["IdentifyStrict.java"])
+        
     def test_Iface(self):
         self.__test(["Iface.java"])
         
-    def test_Inners(self):
-        self.__test(["Inners.java"])
+    def test_IfaceTypes(self):
+        self.__test(["IfaceTypes.java"])
         
-    def test_LocalCalls(self):
-        self.__test(["LocalCalls.java"])
+    def test_LocalStaticCalls(self):
+        self.__test(["LocalStaticCalls.java"])
+        
+    def test_NestedClasses(self):
+        self.__test(["NestedClasses.java"])
         
     def test_NonLocalCalls(self):
         self.__test(["NonLocalCalls.java"])
         
+    def test_Override(self):
+        self.__test(["Override.java"])
+        
+    def test_SimpleArray(self):
+        self.__test(["SimpleArray.java"])
+        
+    def test_StaticCalls(self):
+        self.__test(["StaticCalls.java"])
+        
     def test_Static(self):
         self.__test(["Static.java"])
         
+    def test_SubclassParamCalls(self):
+        self.__test(["SubclassParamCalls.java"])
+
     def test_SuperCalls(self):
         self.__test(["SuperCalls.java"])
+
+    def test_Super(self):
+        self.__test(["Super.java"])
         
     def test_Switch(self):
         self.__test(["Switch.java"])

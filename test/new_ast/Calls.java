@@ -76,7 +76,6 @@ class Calls {
 
     	B bc = new C();
     	bc.pb(x + 1);
-    	assert bc.f1 == x + 1;
     	assert bc.bb() == 2;
     }
 }

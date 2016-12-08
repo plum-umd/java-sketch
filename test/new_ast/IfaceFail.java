@@ -21,13 +21,8 @@ class Iface {
     harness void main() {
 	I a = new A();
 	I b = new B();
-	I c = new C();
-	I d = new D();
 
-	assert a.m() == 1;
-	assert b.m() == 2;
-	assert c.m() == 3;
-	assert d.m() == 4;
+	assert b.m(a) == 5;
     }
     
 }

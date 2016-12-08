@@ -159,6 +159,12 @@ class Translator(object):
             n.body.accept(self)
         self.printLn()
 
+    @v.when(FieldDeclaration)
+    def visit(self, n):
+        new_fname = self.trans_fname(n, n.variables[0].name)
+        if td.isStatic(n): self.printt(n.variables[0].name)
+        else: self.printt('.'.join([u'self', new_fname]))
+    
     @v.when(Parameter)
     def visit(self, n):
         self.buf.write(' '.join([self.trans_ty(n.typee), n.name]))
@@ -297,11 +303,22 @@ class Translator(object):
     # expr
     @v.when(NameExpr)
     def visit(self, n):
-        nd = n.symtab.get(n.name, None)
-        if type(nd) == FieldDeclaration:
-            new_fname = self.trans_fname(nd, nd.variables[0].name)
-            if td.isStatic(nd): self.printt(nd.variables[0].name)
-            else: self.printt('.'.join([u'self', new_fname]))
+        obj = utils.node_to_obj(n)
+        if type(obj) == FieldDeclaration:
+            new_fname = self.trans_fname(obj, obj.variables[0].name)
+            if td.isStatic(obj):
+                self.printt(obj.variables[0].name)
+                return
+            this = utils.get_coid(n)
+            etypes = map(lambda c: str(c), this.enclosing_types())
+            if etypes:
+                # this is the index of the class where the field lives
+                i = etypes.index(str(utils.get_coid(obj)))
+                slf = '.'.join(map(lambda i: 'self{}'.format(i), range(len(etypes)-1,i-1,-1)))
+            
+            else:
+                slf = 'self'
+            self.printt('.'.join([slf, new_fname]))
         else: self.printt(n.name)
             
     @v.when(VariableDeclarationExpr)
@@ -312,33 +329,23 @@ class Translator(object):
 
     @v.when(AssignExpr)
     def visit(self, n):
-        n.target.accept(self)
-        if type(n.target) == FieldAccessExpr and type(n.target.scope) != ThisExpr and \
-           td.isStatic(utils.find_fld(n.target)):
-            return
-        self.printt(' ')
-        self.printt(assignop[n.op.upper()])
-        self.printt(' ')
-        n.value.accept(self)
-
+        if type(n.target) == FieldAccessExpr:
+            v = self.trans_faccess(n.target)
+            if v:
+                self.printt(' ')
+                self.printt(assignop[n.op.upper()])
+                self.printt(' ')
+                n.value.accept(self)
+        else:
+            n.target.accept(self)
+            self.printt(' ')
+            self.printt(assignop[n.op.upper()])
+            self.printt(' ')
+            n.value.accept(self)
+            
     @v.when(FieldAccessExpr)
     def visit(self, n):
-        fld = utils.find_fld(n)
-        def fld_access():
-            n.scope.accept(self)
-            new_fname = self.trans_fname(fld, n.field.name)
-            self.printt('.{}'.format(new_fname))
-        if td.isStatic(fld):
-            if n.scope.name == utils.get_coid(n).name:
-                self.printt(fld.variables[0].name)
-            elif type(n.parentNode) == AssignExpr and n == n.parentNode.target:
-                self.printt('{}_s@{}('.format(fld.variables[0].name, str(utils.get_coid(fld))))
-                n.parentNode.value.accept(self)
-                self.printt(')')
-            else:
-                self.printt('{}_g@{}()'.format(fld.variables[0].name, str(utils.get_coid(fld))))
-        else:
-            fld_access()
+        self.trans_faccess(n)
 
     @v.when(UnaryExpr)
     def visit(self, n):
@@ -363,6 +370,7 @@ class Translator(object):
             typs = []
             for a in n.args:
                 if type(a) == FieldAccessExpr:
+                    raise Exception("handle this")
                     tname = utils.find_fld(a).typee.name
                 elif not a.typee:
                     tname = n.symtab[a.name].typee.name
@@ -500,8 +508,31 @@ class Translator(object):
         elif _tname in CONVERSION_TYPES: r_ty = CONVERSION_TYPES[_tname]
         return r_ty
 
+    def trans_faccess(self, n):
+        print 'accessing {}.{}'.format(n.scope.name, n.field.name)
+        fld = utils.find_fld(n)
+        new_fname = self.trans_fname(fld, n.field.name)
+        print 'found field:', new_fname
+        if td.isStatic(fld):
+            if n.scope.name == utils.get_coid(n).name:
+                self.printt(new_fname)
+            elif type(n.parentNode) == AssignExpr and n == n.parentNode.target:
+                self.printt('{}_s@{}('.format(fld.variables[0].name, str(utils.get_coid(fld))))
+                n.parentNode.value.accept(self)
+                self.printt(')')
+                return False
+            else:
+                self.printt('{}_g@{}()'.format(fld.variables[0].name, str(utils.get_coid(fld))))
+        else:
+            print 'non-static field - type(n.scope):', type(n.scope)
+            n.scope.accept(self)
+            self.printt('.{}'.format(new_fname))
+
+        print '***END FIELD ACCESS***\n'
+        return True
+        
     def trans_fname(self, fld, nm):
-        fid = '.'.join([utils.get_coid(fld).name, nm])
+        fid = '.'.join([str(utils.get_coid(fld)), nm])
         r_fld = self.flds[fid]
         return r_fld
 
@@ -525,14 +556,22 @@ class Translator(object):
         if not callexpr.scope:
             cls = utils.get_coid(callexpr)
         else:
-            scope = utils.scope_to_obj(callexpr)
-            # TypeName . [TypeArguments] Identifier
-            if type(scope) == ClassOrInterfaceDeclaration: cls = scope
-            # ExpressionName . [TypeArguments] Identifier
-            # Primary . [TypeArguments] Identifier
-            else: cls = callexpr.symtab.get(scope.typee.name)
+            if type(callexpr.scope) == SuperExpr:
+                # super . [TypeArguments] Identifier ( [ArgumentList] )
+                sups = utils.get_coid(callexpr).supers()
+                if not sups:
+                    raise Exception('Calling super with no super class {} in {}'.format(callexpr, utils.get_coid(callexpr)))
+                cls = sups[0]
+                scope = NameExpr({u'name':u'self'})
+            else:
+                scope = utils.node_to_obj(callexpr.scope)
+                # TypeName . [TypeArguments] Identifier
+                if type(scope) == ClassOrInterfaceDeclaration: cls = scope
+                # ExpressionName . [TypeArguments] Identifier
+                # Primary . [TypeArguments] Identifier
+                else: cls = callexpr.symtab.get(scope.typee.name)
             # TODO: more possibilities
-        print 'searching in cls:', cls
+
         # Compile-Time Step 2: Determine Method Signature
         # 15.12.2.1. Identify Potentially Applicable Methods
         pots = self.identify_potentials(callexpr, cls, [])
@@ -555,16 +594,43 @@ class Translator(object):
 
         # 15.12.2.5. Choosing the Most Specific Method
         mtd = self.most_specific(strict_mtds + loose_mtds)
-        print 'most_specific:', str(mtd)
         
         # 15.12.2.6. Method Invocation Type
         # TODO: ignoring this for now. Type will just be type of method
 
+        # TODO: super?
+        if cls.interface: invocation_mode = 'interface'
+        else: invocation_mode = 'static' if td.isStatic(mtd) else 'virtual'
+
+        print 'most_specific - name: {}, qualifying type: {}, invocation_mode: {}'. \
+            format(str(mtd), type(mtd.typee), invocation_mode)
+
         # 15.12.4. Run-Time Evaluation of Method Invocation
         # 15.12.4.1. Compute Target Reference (If Necessary)
-        if td.isStatic(mtd):
+        if invocation_mode == 'static':
             self.printt('{}@{}'.format(str(mtd), str(utils.get_coid(mtd))))
             self.printArguments(callexpr.args)
+        elif not callexpr.scope:
+            self.printt(str(mtd))
+            self.printArguments([NameExpr({u'name':u'self'})] + callexpr.args)
+        else:
+            clss = filter(lambda c: not c.interface, [cls] + utils.all_subClasses(cls))
+            conexprs = []
+            args = [NameExpr({u'name':scope.name})] + callexpr.args
+            for c in reversed(clss): # start from bottom of hierarchy
+                (cls, mdec) = self.find_mtd(c, str(mtd))
+                if cls:
+                    conexprs.append(self.make_dispatch(scope, c, mdec, args))
+                else: raise Exception('Non-static mode, no mtd {} in {}'.format(str(mtd), str(cls)))
+            # need to foldr then reverse
+            def combine(l, r):
+                if type(mtd.typee) != VoidType: r.elseExpr = l
+                else: r.elseStmt = l
+                return r
+            conexprs = reduce(combine, reversed(conexprs))
+            if type(mtd.typee) != VoidType: self.printt('(')
+            self.print_dispatch(conexprs)
+            if type(mtd.typee) != VoidType: self.printt(')')
                         
         print '**END CALL***\n'
 
@@ -572,7 +638,8 @@ class Translator(object):
         mtds = []
         for key,val in cls.symtab.items():
             if type(val) != MethodDeclaration: continue
-            if callexpr.name == val.name: mtds.append(val)
+            if callexpr.name == val.name and len(callexpr.args) == len(val.parameters):
+                mtds.append(val)
         return mtds
 
     def identify_strict(self, callexpr, mtds):
@@ -594,6 +661,7 @@ class Translator(object):
     def identify_loose(self, callexpr, mtds):
         pots = []
         arg_typs = callexpr.arg_typs()
+
         for m in mtds:
             param_typs = m.param_typs()
             if self.match_loose(arg_typs, param_typs): pots.append(m)
@@ -647,46 +715,15 @@ class Translator(object):
                 self.primitive_widening(utils.unbox[typ1.name], typ2.name)
         else: return False
 
-        # # no scope means this method is in the same class (I think...)
-        # if not callexpr.scope:
-        #     mdec = callexpr.symtab.get(mname)
-        #     self.printt(str(mdec))
-        #     # add self argument if not static
-        #     nm = [] if td.isStatic(mdec) else [NameExpr({u'@t':u'NameExpr',u'name':u'self'})]
-        #     self.printArguments(nm + callexpr.args)
-        #     return
-        # obj = utils.scope_to_obj(callexpr)
-        # # if the scope is a class then this is a static call
-        # if type(obj) == ClassOrInterfaceDeclaration:
-        #     mdec = obj.symtab.get(mname)
-        #     self.printt('{}@{}'.format(str(mdec), str(obj)))
-        #     self.printArguments(callexpr.args)
-        #     return
-        # # since this isn't a static call we need to add self to the arguments
-        # args = [NameExpr({u'@t':u'NameExpr',u'name':callexpr.scope.name})] + callexpr.args
-        # cls = callexpr.symtab.get(obj.typee.name)
-        # print 'mname:', mname, 'cls:', cls.subClasses
-        # mdec = cls.symtab.get(mname)
-        # t = 'IfStmt' if type(mdec.typee) == VoidType else 'ConditionalExpr'
-        # clss = filter(lambda c: not c.interface, utils.all_subClasses(cls) + [cls])
-        # print 'clss:', map(lambda c: str(c), clss)
-        # conexprs = [self.make_dispatch(callexpr, args, mname, c, t) for c in clss]
-        # # conexprs = [c for c in conexprs if c]
-        # # mdec = cls.symtab.get(mname)
-        # # t = 'IfStmt' if type(mdec.typee) == VoidType else 'ConditionalExpr'
-        # # conexprs = [self.make_dispatch(callexpr, args, mname, c, t) for c in [cls] + cls.supers()]
-        # # conexprs = [c for c in conexprs if c]
-
-        # # need to foldr then reverse
-        # def combine(l, r):
-        #     if t == 'ConditionalExpr': r.elseExpr = l
-        #     else: r.elseStmt = l
-        #     return r
-        # conexprs = reduce(combine, reversed(conexprs))
-        # if t == 'ConditionalExpr': self.printt('(')
-        # self.print_dispatch(conexprs)
-        # if t == 'ConditionalExpr': self.printt(')')
-
+    # dynamic dispatch
+    def find_mtd(self, cls, dscriptor):
+        # check current class for method
+        m = cls.symtab.get(dscriptor)
+        s = filter(lambda c: not c.interface, cls.supers())
+        if m: return (cls, m) # found it!
+        elif s: return self.find_mtd(s[0], dscriptor) # nope, check superclasses
+        else: return (None, None) # doesn't exist
+    
     def print_dispatch(self, c):
         # we need to do this b/c the elseExpr's are going to have MethodCallExpr which
         # get handled differently
@@ -717,7 +754,7 @@ class Translator(object):
                 self.printt('else ')
                 self.print_dispatch(c.elseStmt)
 
-    def make_dispatch(self, callexpr, args, mname, cls, rtype):
+    def make_dispatch(self, scope, S, mdec, args):
         d = {
             "@t": "",
             "condition": {
@@ -750,14 +787,11 @@ class Translator(object):
                 "value": "0",
             },
         }
-        mdec = cls.symtab.get(mname)
-        if not mdec: return None
-        d['@t'] = rtype
-        d['condition']['left']['name'] = '.'.join([callexpr.scope.name, '__cid'])
-        d['condition']['right']['value'] = '{}()'.format(str(cls))
-        if rtype == 'ConditionalExpr':
-            d['thenExpr']['scope']['name'] = callexpr.scope.name
-            d['thenExpr']['name'] = '@'.join([str(mdec), str(cls)])
+        d['condition']['left']['name'] = '.'.join([scope.name, '__cid'])
+        d['condition']['right']['value'] = '{}()'.format(str(S))
+        if type(mdec.typee) != VoidType:
+            d['thenExpr']['scope']['name'] = scope.name
+            d['thenExpr']['name'] = '@'.join([str(mdec), str(utils.get_coid(mdec))])
             dis = ConditionalExpr(d)
             dis.thenExpr.args = args
             if type(mdec.typee) != PrimitiveType:
@@ -765,40 +799,12 @@ class Translator(object):
         else:
             d['thenStmt'] = d.pop('thenExpr')
             d['elseStmt'] = d.pop('elseExpr')
-            d['thenStmt']['scope']['name'] = callexpr.scope.name
+            d['thenStmt']['scope']['name'] = scope.name
             d['thenStmt']['name'] = '@'.join([str(mdec), str(utils.get_coid(mdec))])
             dis = IfStmt(d)
             dis.thenStmt.args = args
         return dis
-        
-    # def mdec_from_callexpr(self, callexpr):
-    #     atypes = callexpr.arg_typs()
-    #     # TODO: if we can't find the method in any parent classes it might have been defined
-    #     # with a different signature
-    #     def permute_args(typs):
-    #         candidates = []
-    #         for i in xrange(len(n.args)):
-    #             if type(n.args[i]) == NameExpr:
-    #                 typ = n.args[i].symtab[n.args[i].name].typee
-    #                 cls = n.args[i].symtab[typ.name]
-    #                 candidates.append(map(lambda s: s.name, cls.supers()))
-    #         return ['_'.join(s) for s in itertools.product(*candidates) if s]
-    #     pargs = ['_'.join([n.name, a]) for a in permute_args(atypes)]
-    #     for p in pargs:
-    #         mdec = self.find_in_parent(rcv, p)
-    #         if mdec and not utils.get_coid(n).interface: return mdec
-    #     raise Exception('Cant find {} in {}'.format(str(n), rcv))
-            
-    # given a type, check all parent classes for name
-    def find_in_parent(self, rcv_ty, name):
-        if name in rcv_ty.symtab: return rcv_ty.symtab[name]
-        else:
-            c = []
-            for e in rcv_ty.extendsList:
-                if e.name == u'Object': return None
-                c = self.find_in_parent(rcv_ty.symtab[e.name], name)
-                if c: return c
-        
+                    
     def indent(self): self._level += 1
     def unindent(self): self._level -= 1
     
