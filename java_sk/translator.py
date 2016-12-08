@@ -1,11 +1,10 @@
 #!/usr/bin/env python
 import cStringIO
+import logging
 
 from . import util
 
 import visit as v
-
-from functools import partial
 
 from ast import Operators as op
 from ast import AssignOperators as assignop
@@ -100,7 +99,7 @@ class Translator(object):
 
     @v.when(Node)
     def visit(self, n):
-        print 'unimplemented node:', n
+        logging.error('unimplemented node: {}'.format(n))
         # if isinstance(n, Type): print 'un:', n
         # map(lambda x: x.accept(self), n.childrenNodes)
 
@@ -222,7 +221,7 @@ class Translator(object):
                 self.indent()
             n.elseStmt.accept(self)
             if not (elseIf or elseBlock): self.unindent()
-                
+
     @v.when(ForStmt)
     def visit(self, n):
         self.printt('for (')
@@ -272,11 +271,11 @@ class Translator(object):
             self.unindent()
             self.printLn()
             self.printLn('}')
-        
+
     @v.when(SwitchEntryStmt)
     def visit(self, n):
         pass
-        
+
     @v.when(ExplicitConstructorInvocationStmt)
     def visit(self, n):
         if n.isThis:
@@ -315,7 +314,6 @@ class Translator(object):
                 # this is the index of the class where the field lives
                 i = etypes.index(str(utils.get_coid(obj)))
                 slf = '.'.join(map(lambda i: 'self{}'.format(i), range(len(etypes)-1,i-1,-1)))
-            
             else:
                 slf = 'self'
             self.printt('.'.join([slf, new_fname]))
@@ -509,10 +507,10 @@ class Translator(object):
         return r_ty
 
     def trans_faccess(self, n):
-        print 'accessing {}.{}'.format(n.scope.name, n.field.name)
+        logging.debug('accessing {}.{}'.format(n.scope.name, n.field.name))
         fld = utils.find_fld(n)
         new_fname = self.trans_fname(fld, n.field.name)
-        print 'found field:', new_fname
+        logging.debug('found field: {}'.format(new_fname))
         if td.isStatic(fld):
             if n.scope.name == utils.get_coid(n).name:
                 self.printt(new_fname)
@@ -524,11 +522,11 @@ class Translator(object):
             else:
                 self.printt('{}_g@{}()'.format(fld.variables[0].name, str(utils.get_coid(fld))))
         else:
-            print 'non-static field - type(n.scope):', type(n.scope)
+            logging.debug('non-static field - type(n.scope): {}'.format(type(n.scope)))
             n.scope.accept(self)
             self.printt('.{}'.format(new_fname))
 
-        print '***END FIELD ACCESS***\n'
+        logging.debug('***END FIELD ACCESS***\n')
         return True
         
     def trans_fname(self, fld, nm):
@@ -551,7 +549,7 @@ class Translator(object):
         return ' '.join([self.trans_ty(ty), nm])
 
     def trans_call(self, callexpr):
-        print 'calling:', callexpr
+        logging.debug('calling: {}'.format(callexpr))
         # 15.12.1 Compile-Time Step 1: Determine Class or Interface to Search
         if not callexpr.scope:
             cls = utils.get_coid(callexpr)
@@ -576,15 +574,15 @@ class Translator(object):
         # 15.12.2.1. Identify Potentially Applicable Methods
         pots = self.identify_potentials(callexpr, cls, [])
         if not pots: raise Exception('No potential methods for {} found in {}.'.format(str(callexpr), str(cls)))
-        print 'potentitals:', map(lambda m: str(m), pots)
+        logging.debug('potentitals: {}'.format(map(lambda m: str(m), pots)))
 
         # 15.12.2.2. Phase 1: Identify Matching Arity Methods Applicable by Strict Invocation
         strict_mtds = self.identify_strict(callexpr, pots)
-        print 'strict_applicable:', map(lambda m: str(m), strict_mtds)
+        logging.debug('strict_applicable: {}'.format(map(lambda m: str(m), strict_mtds)))
 
         # 15.12.2.3. Phase 2: Identify Matching Arity Methods Applicable by Loose Invocation
         loose_mtds = self.identify_loose(callexpr, pots)
-        print 'loose_applicable:', map(lambda m: str(m), loose_mtds)
+        logging.debug('loose_applicable: {}'.format(map(lambda m: str(m), loose_mtds)))
 
         # 15.12.2.4. Phase 3: Identify Methods Applicable by Variable Arity Invocation
         # TODO: this
@@ -602,8 +600,8 @@ class Translator(object):
         if cls.interface: invocation_mode = 'interface'
         else: invocation_mode = 'static' if td.isStatic(mtd) else 'virtual'
 
-        print 'most_specific - name: {}, qualifying type: {}, invocation_mode: {}'. \
-            format(str(mtd), type(mtd.typee), invocation_mode)
+        logging.debug('most_specific - name: {}, qualifying type: {}, invocation_mode: {}'. \
+            format(str(mtd), type(mtd.typee), invocation_mode))
 
         # 15.12.4. Run-Time Evaluation of Method Invocation
         # 15.12.4.1. Compute Target Reference (If Necessary)
@@ -632,7 +630,7 @@ class Translator(object):
             self.print_dispatch(conexprs)
             if type(mtd.typee) != VoidType: self.printt(')')
                         
-        print '**END CALL***\n'
+        logging.debug('**END CALL***\n')
 
     def identify_potentials(self, callexpr, cls, mtds):
         mtds = []
