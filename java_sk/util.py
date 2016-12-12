@@ -5,6 +5,8 @@ from itertools import ifilter, ifilterfalse
 from ast.utils import utils
 from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 
+import glob2
+
 """
 regarding paths and files
 """
@@ -52,3 +54,13 @@ def get_and_close(buf):
   v = buf.getvalue()
   buf.close()
   return v
+
+# get the *sorted* list of file names in the designated path
+# template/gui/awt -> [.../AWTEvent.java, .../BorderLayout.java, ...]
+def get_files_from_path(path, ext):
+  if os.path.isfile(path):
+    return [path]
+  else: # i.e., folder
+    files = glob2.glob(os.path.join(path, "**/*.{}".format(ext)))
+  return sorted(files) # to guarantee the order of files read
+  

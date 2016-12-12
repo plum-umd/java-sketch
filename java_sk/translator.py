@@ -158,11 +158,11 @@ class Translator(object):
             n.body.accept(self)
         self.printLn()
 
-    @v.when(FieldDeclaration)
-    def visit(self, n):
-        new_fname = self.trans_fname(n, n.variables[0].name)
-        if td.isStatic(n): self.printt(n.variables[0].name)
-        else: self.printt('.'.join([u'self', new_fname]))
+    # @v.when(FieldDeclaration)
+    # def visit(self, n):
+    #     new_fname = self.trans_fname(n, n.variables[0].name)
+    #     if td.isStatic(n): self.printt(n.variables[0].name)
+    #     else: self.printt('.'.join([u'self', new_fname]))
     
     @v.when(Parameter)
     def visit(self, n):
