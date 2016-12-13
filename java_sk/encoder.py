@@ -190,7 +190,7 @@ class Encoder(object):
                           "    return self;\n"
                           "}}\n\n".format(str(cls)))
                         
-        for m in mtds + cons:
+        for m in cons + mtds:
             if hasattr(m, 'interface') and m.parentNode.interface: continue
             buf.write(self.to_func(m) + os.linesep)
 
