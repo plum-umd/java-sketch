@@ -132,9 +132,12 @@ class Encoder(object):
         buf.write("package meta;\n\n")
 
         buf.write("// distinct class IDs\n")
-        for k,v in self.CLASS_NUMS.items():
+        items = sorted(self.CLASS_NUMS.items())
+        lens = map(lambda i: len(i[0]), items)
+        m = max(lens)
+        for k,v in items:
             if k not in utils.narrow:
-                buf.write("int {k}() {{ return {v}; }}\n".format(**locals()))
+                buf.write("int {k}() {s} {{ return {v}; }}\n".format(k=k, v=v, s=' '*(m-len(k))))
         with open(os.path.join(self.sk_dir, "meta.sk"), 'w') as f:
             f.write(util.get_and_close(buf))
 
@@ -210,11 +213,17 @@ class Encoder(object):
         if not cls.extendsList: cls = self.to_v_struct(cls)
               
         buf = cStringIO.StringIO()
-        buf.write("struct " + cname + " {\n  int hash;\n  ")
               
         # to avoid static fields, which will be bound to a class-representing package
         i_flds = filter(lambda f: not td.isStatic(f), filter(lambda m: type(m) == FieldDeclaration, cls.members))
-        buf.write('  '.join(map(self.tltr.trans_fld, i_flds)))
+        # pretty print
+        flds = [(u'int', u'hash', u'')] + util.flatten(map(self.tltr.trans_fld, i_flds))
+        lens = map(lambda f: len(f[0]), flds)
+        m = max(lens) + 1
+        buf.write("struct " + cname + " {{\n  int {} hash;\n".format(' '*(m-len('hash'))))
+        for f in flds:
+            buf.write('  {} {}{}{};\n'.format(f[0],' '*(m-len(f[0])), f[1], f[2]))
+        # buf.write('  '.join(map(self.tltr.trans_fld, i_flds)))
         buf.write("}\n")
         return util.get_and_close(buf)
 
