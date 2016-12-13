@@ -24,14 +24,14 @@ def add_object(ast):
   clss = utils.extract_nodes([ClassOrInterfaceDeclaration], ast)
   obj = ClassOrInterfaceDeclaration({u'name':u'Object',u'parentNode':{u'@r':ast.ati},u'atr':ast.ati,u'@i':0})
   def obj_subs(n):
-    if not n.extendsList:
+    if not n.extendsList and not n.implementsList:
       n.extendsList = [obj]
       obj.subClasses.append(n)
   map(obj_subs, clss)
   ast.types.append(obj)
 
 def rm_subs(clss):
-  return filter(lambda c: not c.extendsList, clss)
+  return filter(lambda c: not c.extendsList and not c.implementsList, clss)
 
 def sanitize_mname(mname):
   return mname.replace("[]",'s')
@@ -64,3 +64,4 @@ def get_files_from_path(path, ext):
     files = glob2.glob(os.path.join(path, "**/*.{}".format(ext)))
   return sorted(files) # to guarantee the order of files read
   
+def flatten(lst): return [j for i in lst for j in i]

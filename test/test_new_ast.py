@@ -14,6 +14,9 @@ class TestJava(TestCommon):
         ret = java_sk.main.main(_fs)
         self.assertEqual(ret, 0)
         
+    def test_Args(self):
+        self.__test(["Args.java"])
+
     def test_Array(self):
         self.__test(["Array.java"])
 
@@ -92,6 +95,9 @@ class TestJava(TestCommon):
     def test_This(self):
         self.__test(["This.java"])
         
+    def test_ThisCalls(self):
+        self.__test(["ThisCalls.java"])
+
 if __name__ == '__main__':
   unittest.main()
 

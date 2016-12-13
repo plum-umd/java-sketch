@@ -170,7 +170,8 @@ class Encoder(object):
             buf.write('Object self{};\n\n'.format(len(etypes)-1))
 
         for fld in ifilterfalse(td.isPrivate, s_flds):
-            buf.write(self.tltr.trans_fld(fld))
+            for f in self.tltr.trans_fld(fld):
+                buf.write('{} {}{};\n'.format(f[0], f[1], f[2]))
             for v in fld.variables:
                 if cls == self.mcls and v.init and type(v.init) == GeneratorExpr: continue
                 typ = self.tltr.trans_ty(fld.typee)
@@ -220,7 +221,7 @@ class Encoder(object):
         flds = [(u'int', u'hash', u'')] + util.flatten(map(self.tltr.trans_fld, i_flds))
         lens = map(lambda f: len(f[0]), flds)
         m = max(lens) + 1
-        buf.write("struct " + cname + " {{\n  int {} hash;\n".format(' '*(m-len('hash'))))
+        buf.write("struct " + cname + " {\n")
         for f in flds:
             buf.write('  {} {}{}{};\n'.format(f[0],' '*(m-len(f[0])), f[1], f[2]))
         # buf.write('  '.join(map(self.tltr.trans_fld, i_flds)))
@@ -256,8 +257,7 @@ class Encoder(object):
                     fid = '.'.join([cname, v.name])
                     self.tltr.flds[fid] = fname # { ..., B.f2 : f2_B }
             map(cp_fld, flds)
-            map(per_cls, cls.subClasses)
-        per_cls(cls)
+        map(per_cls, utils.all_subClasses(cls))
         return cls_v
 
     @property

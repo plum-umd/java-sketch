@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import cStringIO
 import logging
+import copy
 
 from . import util
 
@@ -55,6 +56,8 @@ from ast.expr.booleanliteralexpr import BooleanLiteralExpr
 from ast.expr.integerliteralexpr import IntegerLiteralExpr
 from ast.expr.doubleliteralexpr import DoubleLiteralExpr
 from ast.expr.nullliteralexpr import NullLiteralExpr
+from ast.expr.charliteralexpr import CharLiteralExpr
+from ast.expr.stringliteralexpr import StringLiteralExpr
 
 from ast.type.primitivetype import PrimitiveType
 from ast.type.voidtype import VoidType
@@ -86,7 +89,7 @@ class Translator(object):
         self._num_mtds = 0
 
         # for pretty printing
-        self._indentation = kwargs.get('indentation', "    ")
+        self._indentation = kwargs.get('indentation', "  ")
         self._level = kwargs.get('level', 0)
         self._indented = kwargs.get('indented', False)
 
@@ -158,12 +161,6 @@ class Translator(object):
             n.body.accept(self)
         self.printLn()
 
-    # @v.when(FieldDeclaration)
-    # def visit(self, n):
-    #     new_fname = self.trans_fname(n, n.variables[0].name)
-    #     if td.isStatic(n): self.printt(n.variables[0].name)
-    #     else: self.printt('.'.join([u'self', new_fname]))
-    
     @v.when(Parameter)
     def visit(self, n):
         self.buf.write(' '.join([self.trans_ty(n.typee), n.name]))
@@ -461,6 +458,16 @@ class Translator(object):
     def visit(self, n):
         self.printt('null')
 
+    @v.when(StringLiteralExpr)
+    def visit(self, n):
+        self.printt('String_String_char_int_int(new Object(__cid=String()), "{}", 0, {})'.format(n.value, len(n.value)))
+
+    @v.when(CharLiteralExpr)
+    def visit(self, n):
+        self.printt("'")
+        self.printt(n.value)
+        self.printt("'")
+
     # type
     @v.when(ClassOrInterfaceType)
     def visit(self, n):
@@ -534,21 +541,24 @@ class Translator(object):
         return r_fld
 
     def trans_fld(self, fld):
-        buf = cStringIO.StringIO()
+        # buf = cStringIO.StringIO()
+        f = []
         for var in fld.variables:
             init = ''
             if var.init:
                 init = ' = '
                 init += self.trans(var.init)
-            buf.write('{} {}{};\n'.format(self.trans_ty(fld.typee), var.name, init))
+            f.append((self.trans_ty(fld.typee), var.name, init))
+            # buf.write('{} {}{};\n'.format(self.trans_ty(fld.typee), var.name, init))
         # ignored initialised fields
-        return util.get_and_close(buf)
+        return f
+        # return util.get_and_close(buf)
 
     def trans_params(self, (ty, nm)):
         return ' '.join([self.trans_ty(ty), nm])
 
     def trans_call(self, callexpr):
-        logging.debug('calling: {} from {}'.format(callexpr, utils.get_coid(callexpr)))
+        logging.debug('calling: {} from {}'.format(str(callexpr), utils.get_coid(callexpr)))
         # 15.12.1 Compile-Time Step 1: Determine Class or Interface to Search
         if not callexpr.scope:
             cls = utils.get_coid(callexpr)
@@ -611,19 +621,29 @@ class Translator(object):
             self.printt(str(mtd))
             self.printArguments([NameExpr({u'name':u'self'})] + callexpr.args)
         else:
-            args = [NameExpr({u'name':scope.name})] + callexpr.args
             if type(callexpr.scope) == SuperExpr:
                 self.printt('{}@{}'.format(str(mtd), str(cls)))
-                self.printArguments(args)
+                self.printArguments([NameExpr({u'name':u'self'})] + callexpr.args)
                 logging.debug('**END CALL***\n')
                 return
             clss = filter(lambda c: not c.interface, [cls] + utils.all_subClasses(cls))
             logging.debug('subclasses: {}'.format(map(lambda c: str(c), clss)))
+
+            tltr = copy.copy(self)
+            tltr.indentation = ''
+
+            tltr.buf = cStringIO.StringIO()
+            scp = tltr.trans(callexpr.scope)
+            args = [NameExpr({u'name':scp})] + callexpr.args
+
+            tltr.buf = cStringIO.StringIO()
+            scp = tltr.trans(callexpr.scope)
+
             conexprs = []
             for c in reversed(clss): # start from bottom of hierarchy
                 (cls, mdec) = self.find_mtd(c, str(mtd))
                 if cls:
-                    conexprs.append(self.make_dispatch(scope, c, mdec, args))
+                    conexprs.append(self.make_dispatch(scp, c, mdec, args))
                 else: raise Exception('Non-static mode, no mtd {} in {}'.format(str(mtd), str(cls)))
             # need to foldr then reverse
             def combine(l, r):
@@ -790,10 +810,10 @@ class Translator(object):
                 "value": "0",
             },
         }
-        d['condition']['left']['name'] = '.'.join([scope.name, '__cid'])
+        d['condition']['left']['name'] = '.'.join([scope, '__cid'])
         d['condition']['right']['value'] = '{}()'.format(str(S))
         if type(mdec.typee) != VoidType:
-            d['thenExpr']['scope']['name'] = scope.name
+            d['thenExpr']['scope']['name'] = scope
             d['thenExpr']['name'] = '@'.join([str(mdec), str(utils.get_coid(mdec))])
             dis = ConditionalExpr(d)
             dis.thenExpr.args = args
@@ -802,7 +822,7 @@ class Translator(object):
         else:
             d['thenStmt'] = d.pop('thenExpr')
             d['elseStmt'] = d.pop('elseExpr')
-            d['thenStmt']['scope']['name'] = scope.name
+            d['thenStmt']['scope']['name'] = scope
             d['thenStmt']['name'] = '@'.join([str(mdec), str(utils.get_coid(mdec))])
             dis = IfStmt(d)
             dis.thenStmt.args = args
@@ -882,8 +902,3 @@ class Translator(object):
     def flds(self): return self._flds
     @flds.setter
     def flds(self, v): self._flds = v
-
-    @property
-    def num_mtds(self): return self._num_mtds
-    @num_mtds.setter
-    def num_mtds(self, v): self._num_mtds = v
