@@ -22,26 +22,26 @@ class TestJava(TestCommon):
     ret = java_sk.main.main(_fs)
     self.assertEqual(ret, 0)
 
-  # def test_java_201(self):
-  #   self.__test(["t201-override.java"])
+  def test_java_201(self):
+    self.__test(["t201-override.java"])
 
-  # def test_java_202(self):
-  #   self.__test(["t202-interfaces.java"])
+  def test_java_202(self):
+    self.__test(["t202-interfaces.java"])
 
-  # def test_java_203(self):
-  #   self.__test(["t203-instances.java"])
+  def test_java_203(self):
+    self.__test(["t203-instances.java"])
 
-  # def test_java_204(self):
-  #   self.__test(["t204-inner-classes.java"])
+  def test_java_204(self):
+    self.__test(["t204-inner-classes.java"])
 
-  # def test_java_205(self):
-  #   self.__test(["t205-const-interface.java"])
+  def test_java_205(self):
+    self.__test(["t205-const-interface.java"])
 
-  # def test_java_206(self):
-  #   self.__test(["t206-anonymous.java"])
+  def test_java_206(self):
+    self.__test(["t206-anonymous.java"])
 
-  # def test_java_207(self):
-  #   self.__test(["t207-super.java"])
+  def test_java_207(self):
+    self.__test(["t207-super.java"])
 
   def test_java_208(self):
     self.__test(["t208-string.java"], True)

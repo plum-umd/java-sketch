@@ -187,7 +187,7 @@ class Encoder(object):
                 buf.write("Object {0}_{0}_{1}(Object self, Object self_{2}) {{\n"
                           "    {3}\n"
                           "    return self;\n"
-                          "}}\n\n".format(str(cls), '_'.join(map(lambda t: t.decname, etypes)), i, init))
+                          "}}\n\n".format(str(cls), '_'.join(map(lambda t: t.fullname, etypes)), i, init))
 
             else:
                 buf.write("Object {0}_{0}(Object self) {{\n"
