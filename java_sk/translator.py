@@ -26,6 +26,7 @@ from ast.stmt.blockstmt import BlockStmt
 from ast.stmt.returnstmt import ReturnStmt
 from ast.stmt.ifstmt import IfStmt
 from ast.stmt.forstmt import ForStmt
+from ast.stmt.whilestmt import WhileStmt
 from ast.stmt.minrepeatstmt import MinrepeatStmt
 from ast.stmt.emptystmt import EmptyStmt
 from ast.stmt.expressionstmt import ExpressionStmt
@@ -228,6 +229,13 @@ class Translator(object):
         if n.compare: n.compare.accept(self)
         self.printt('; ')
         if n.update: self.printSepList(n.update)
+        self.printt(') ')
+        n.body.accept(self)
+
+    @v.when(WhileStmt)
+    def visit(self, n):
+        self.printt('while (')
+        if n.condition: n.condition.accept(self)
         self.printt(') ')
         n.body.accept(self)
 
@@ -561,7 +569,7 @@ class Translator(object):
         f = []
         for var in fld.variables:
             init = ''
-            if var.init:
+            if td.isStatic(fld) and var.init:
                 init = ' = '
                 init += self.trans(var.init)
             f.append((self.trans_ty(fld.typee), var.name, init))
@@ -833,7 +841,7 @@ class Translator(object):
             d['thenExpr']['name'] = '@'.join([str(mdec), str(utils.get_coid(mdec))])
             dis = ConditionalExpr(d)
             dis.thenExpr.args = args
-            if type(mdec.typee) != PrimitiveType:
+            if type(mdec.typee) != PrimitiveType and mdec.typee.name not in utils.unbox:
                 dis.elseExpr = ClassOrInterfaceType({u'@t':u'ClassOrInterfaceType', u'name':u''})
         else:
             d['thenStmt'] = d.pop('thenExpr')
