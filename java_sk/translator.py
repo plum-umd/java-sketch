@@ -58,6 +58,7 @@ from ast.expr.doubleliteralexpr import DoubleLiteralExpr
 from ast.expr.nullliteralexpr import NullLiteralExpr
 from ast.expr.charliteralexpr import CharLiteralExpr
 from ast.expr.stringliteralexpr import StringLiteralExpr
+from ast.expr.instanceofexpr import InstanceOfExpr
 
 from ast.type.primitivetype import PrimitiveType
 from ast.type.voidtype import VoidType
@@ -468,6 +469,21 @@ class Translator(object):
         self.printt(n.value)
         self.printt("'")
 
+    @v.when(InstanceOfExpr)
+    def visit(self, n):
+        cls = n.symtab.get(n.typee.name)
+        n.expr.accept(self)
+        self.printt('.__cid == {}()'.format(str(cls)))
+        
+        def subclss(allsubs):
+            if not allsubs: return
+            self.printt(' || ')
+            n.expr.accept(self)
+            self.printt('.__cd == {}()'.format(str(allsubs[0])))
+            subclss(allsubs[1:])
+
+        subclss(utils.all_subClasses(cls))
+            
     # type
     @v.when(ClassOrInterfaceType)
     def visit(self, n):
