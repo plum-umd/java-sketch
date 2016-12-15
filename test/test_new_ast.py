@@ -62,6 +62,9 @@ class TestJava(TestCommon):
     def test_LocalStaticCalls(self):
         self.__test(["LocalStaticCalls.java"])
         
+    def test_MultiField(self):
+        self.__test(["MultiField.java"])
+        
     def test_NestedClasses(self):
         self.__test(["NestedClasses.java"])
         
@@ -80,6 +83,9 @@ class TestJava(TestCommon):
     def test_Static(self):
         self.__test(["Static.java"])
         
+    def test_Subclass(self):
+        self.__test(["Subclass.java"])
+
     def test_SubclassParamCalls(self):
         self.__test(["SubclassParamCalls.java"])
 
@@ -92,11 +98,11 @@ class TestJava(TestCommon):
     def test_Switch(self):
         self.__test(["Switch.java"])
         
-    def test_This(self):
-        self.__test(["This.java"])
-        
     def test_ThisCalls(self):
         self.__test(["ThisCalls.java"])
+        
+    def test_This(self):
+        self.__test(["This.java"])
 
 if __name__ == '__main__':
   unittest.main()
