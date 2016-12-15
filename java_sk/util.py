@@ -25,7 +25,6 @@ def add_object(ast):
   obj = ClassOrInterfaceDeclaration({u'name':u'Object',u'parentNode':{u'@r':ast.ati},u'atr':ast.ati,u'@i':0})
   def obj_subs(n):
     if not n.extendsList:
-    # if not n.extendsList and not n.implementsList:
       n.extendsList = [obj]
       obj.subClasses.append(n)
   map(obj_subs, clss)
