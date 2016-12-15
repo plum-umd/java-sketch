@@ -24,7 +24,8 @@ def add_object(ast):
   clss = utils.extract_nodes([ClassOrInterfaceDeclaration], ast)
   obj = ClassOrInterfaceDeclaration({u'name':u'Object',u'parentNode':{u'@r':ast.ati},u'atr':ast.ati,u'@i':0})
   def obj_subs(n):
-    if not n.extendsList and not n.implementsList:
+    if not n.extendsList:
+    # if not n.extendsList and not n.implementsList:
       n.extendsList = [obj]
       obj.subClasses.append(n)
   map(obj_subs, clss)
@@ -35,12 +36,6 @@ def rm_subs(clss):
 
 def sanitize_mname(mname):
   return mname.replace("[]",'s')
-
-def repr_fld(var, fld):
-  return u"{}_{}".format(var.name, fld.sanitize_ty(fld.parentNode.name))
-
-def repr_cls(cls):
-  return cls.sanitize_ty(cls.name)
 
 # ~ List.partition in OCaml
 # divide the given list into two lists:
