@@ -34,7 +34,7 @@ class Encoder(object):
         self._CLASS_NUMS = {u'Object':1}
         i = 2
         for c in self._clss:
-            if c.name not in self._CLASS_NUMS.keys():
+            if str(c) not in self._CLASS_NUMS.keys():
                 self._CLASS_NUMS[str(c)] = i
                 i = i + 1
                 self._CLASS_NUMS[u'int'] = i
@@ -53,18 +53,19 @@ class Encoder(object):
     def find_main(self):
         mtds = []
         for c in self.clss:
-            m = utils.extract_nodes([MethodDeclaration, ConstructorDeclaration], c)
-            mtds.extend(filter(lambda m: td.isStatic(m) and str(m) == u'main', m))
+            m = utils.extract_nodes([MethodDeclaration], c)
+            mtds.extend(filter(lambda m: m.name == u'main', m))
+            # do we care if main is static?
+            # mtds.extend(filter(lambda m: td.isStatic(m) and m.name == u'main', m))
         lenn = len(mtds)
         if lenn > 1:
-            raise Exception("multiple main()s", map(lambda m: str(m.parentNode), mtds))
+            raise Exception("multiple main()s", map(lambda m: str(utils.get_coid(m)), mtds))
         return mtds[0] if lenn == 1 else None
 
     def find_harness(self):
         # TODO: these can also be specified with annotations -- we don't support those yet
         mtds = filter(td.isHarness, self.mtds)
-        self.harness = mtds[0] if mtds else None
-        return self.harness
+        return mtds[0] if mtds else None
       
     def main_cls(self):
         # get the main method and pull it's corresponding class out of the gsymtab.
@@ -75,6 +76,7 @@ class Encoder(object):
         if not main and not harness:
             raise Exception("No main(), @Harness, or harness found, None")
         self.mcls = main if main else harness
+        self._harness = self.mcls
 
     def to_sk(self):
         # clean up result directory
@@ -164,23 +166,22 @@ class Encoder(object):
         buf = cStringIO.StringIO()
         buf.write("package {};\n\n".format(cname))
 
-        # these represent this$N
-        etypes = cls.enclosing_types()
-        if etypes:
-            buf.write('Object self{};\n\n'.format(len(etypes)-1))
-
         for fld in ifilterfalse(td.isPrivate, s_flds):
-            for f in self.tltr.trans_fld(fld):
-                buf.write('{} {}{};\n'.format(f[0], f[1], f[2]))
-            for v in fld.variables:
-                if cls == self.mcls and v.init and type(v.init) == GeneratorExpr: continue
-                typ = self.tltr.trans_ty(fld.typee)
-                buf.write("{0} {1}_g() {{ return {1}; }}\n".format(typ, v.name))
-                buf.write("void {1}_s({0} {1}_s) {{ {1} = {1}_s; }}\n".format(typ, v.name))
-                buf.write('\n')
+            f = self.tltr.trans_fld(fld)
+            buf.write('{} {}{};\n'.format(f[0], f[1], f[2]))
+            if cls == self.mcls and fld.variable.init and type(fld.variable.init) == GeneratorExpr: continue
+            typ = self.tltr.trans_ty(fld.typee)
+            buf.write("{0} {1}_g() {{ return {1}; }}\n".format(typ, fld.name))
+            buf.write("void {1}_s({0} {1}_s) {{ {1} = {1}_s; }}\n".format(typ, fld.name))
+            buf.write('\n')
 
-        if cls not in self.bases and str(cls) != str(self.harness.parentNode) and \
+        # not a base class, not the harness class, and doesn't override the base constructor
+        if cls not in self.bases and str(cls) != str(self.harness) and \
            not filter(lambda c: len(c.parameters) == 0, cons):
+            # these represent this$N (inner classes)
+            etypes = cls.enclosing_types()
+            if etypes:
+                buf.write('Object self{};\n\n'.format(len(etypes)-1))
             if etypes:
                 i = len(etypes)-1
                 init = 'self{0} = self_{0};'.format(i)
@@ -218,7 +219,7 @@ class Encoder(object):
         # to avoid static fields, which will be bound to a class-representing package
         i_flds = filter(lambda f: not td.isStatic(f), filter(lambda m: type(m) == FieldDeclaration, cls.members))
         # pretty print
-        flds = [(u'int', u'hash', u'')] + util.flatten(map(self.tltr.trans_fld, i_flds))
+        flds = [(u'int', u'hash', u'')] + map(self.tltr.trans_fld, i_flds)
         lens = map(lambda f: len(f[0]), flds)
         m = max(lens) + 1
         buf.write("struct " + cname + " {\n")
@@ -239,23 +240,21 @@ class Encoder(object):
                  u'@t': u'FieldDeclaration', u'type':
                  {u'@t': u'PrimitiveType', u'type':
                   {u'nameOfBoxedType': u'Integer', u'name': u'Int'}}}
-        cls_v.members.append(FieldDeclaration(fld_d))
-        cls_v.childrenNodes.append(FieldDeclaration(fld_d))
+        fd = FieldDeclaration(fld_d)
+        self.tltr.flds['__cid'] = '__cid'
+        cls_v.members.append(fd)
+        cls_v.childrenNodes.append(fd)
         def per_cls(cls):
             cname = str(cls)
             if cname != str(cls_v): self.tltr.ty[str(cls)] = str(cls_v)
             flds = filter(lambda m: type(m) == FieldDeclaration, cls.members)
             def cp_fld(fld):
-                for v in fld.variables:
-                    fname = util.repr_fld(v, fld)
-                    fld_v = cp.deepcopy(fld)
-                    fld_v.variables = [cp.deepcopy(v)]
-                    fld_v.variables[0].name = fname
-                    fld_v.parentNode = cls_v
-                    cls_v.members.append(fld_v)
-                    cls_v.childrenNodes.append(fld_v)
-                    fid = '.'.join([cname, v.name])
-                    self.tltr.flds[fid] = fname # { ..., B.f2 : f2_B }
+                fld_v = cp.deepcopy(fld)
+                fld_v.parentNode = cls
+                cls_v.members.append(fld_v)
+                cls_v.childrenNodes.append(fld_v)
+                nm = fld.name if td.isStatic(fld) else str(fld)
+                self.tltr.flds['.'.join([str(cls), fld.name])] = nm
             map(cp_fld, flds)
         map(per_cls, utils.all_subClasses(cls))
         return cls_v

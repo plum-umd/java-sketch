@@ -77,7 +77,7 @@ class Translator(object):
     def __init__(self, **kwargs):
         # convert the given type name into a newer one
         self._ty = {}     # { tname : new_tname }
-        self._flds = {}   # { cname.fname : new_fname }
+        self._flds = {}   # { Cls.fld : str(fld) }
         self._cnums = kwargs.get('cnums')
         self._mnums = kwargs.get('mnums')
         self._primitives = kwargs.get('prims', [])
@@ -165,7 +165,7 @@ class Translator(object):
 
     @v.when(Parameter)
     def visit(self, n):
-        self.buf.write(' '.join([self.trans_ty(n.typee), n.name]))
+        self.buf.write(' '.join([self.trans_ty(n.typee), str(n.idd)]))
 
     @v.when(VariableDeclarator)
     def visit(self, n):
@@ -176,7 +176,7 @@ class Translator(object):
 
     @v.when(VariableDeclaratorId)
     def visit(self, n):
-        self.printt(n.name)
+        self.printt(str(n))
 
     # stmt
     @v.when(BlockStmt)
@@ -292,11 +292,11 @@ class Translator(object):
                 self.printt('.')
             cls = utils.get_coid(n)
             sups = cls.supers()
-            if not sups: exit('Calling super with  with no super class: {}'.format(cls.name))
+            if not sups: exit('Calling super with  with no super class: {}'.format(str(cls)))
             def ty(a):
                 return a.typee.name if type(a) != NameExpr else n.symtab[a.name].typee.name
-            self.printt('_'.join([sups[0].name, sups[0].name] + map(ty, n.args)))
-            self.printt('@{}'.format(sups[0].name))
+            self.printt('_'.join([str(sups[0]), str(sups[0])] + map(ty, n.args)))
+            self.printt('@{}'.format(str(sups[0])))
         self.printt(u'(self')
         if n.args: self.printt(', ')
         self.printSepList(n.args)
@@ -310,19 +310,18 @@ class Translator(object):
     def visit(self, n):
         obj = utils.node_to_obj(n)
         if type(obj) == FieldDeclaration:
-            new_fname = self.trans_fname(obj, obj.variables[0].name)
             if td.isStatic(obj):
-                self.printt(obj.variables[0].name)
+                self.printt(obj.name)
                 return
             this = utils.get_coid(n)
-            etypes = map(lambda c: str(c), this.enclosing_types())
+            etypes = map(str, this.enclosing_types())
             if etypes:
                 # this is the index of the class where the field lives
                 i = etypes.index(str(utils.get_coid(obj)))
                 slf = '.'.join(map(lambda i: 'self{}'.format(i), range(len(etypes)-1,i-1,-1)))
             else:
                 slf = 'self'
-            self.printt('.'.join([slf, new_fname]))
+            self.printt('.'.join([slf, str(obj)]))
         else: self.printt(n.name)
             
     @v.when(VariableDeclarationExpr)
@@ -539,44 +538,33 @@ class Translator(object):
     def trans_faccess(self, n):
         logging.debug('accessing {}.{}'.format(n.scope.name, n.field.name))
         fld = utils.find_fld(n)
-        new_fname = self.trans_fname(fld, n.field.name)
-        logging.debug('found field: {}'.format(new_fname))
+        logging.debug('found field: {}'.format(str(fld)))
         if td.isStatic(fld):
             if n.scope.name == utils.get_coid(n).name:
-                self.printt(fld.variables[0].name)
+                self.printt(fld.name)
             elif type(n.parentNode) == AssignExpr and n == n.parentNode.target:
-                self.printt('{}_s@{}('.format(fld.variables[0].name, str(utils.get_coid(fld))))
+                self.printt('{}_s@{}('.format(fld.name, str(utils.get_coid(fld))))
                 n.parentNode.value.accept(self)
                 self.printt(')')
                 return False
             else:
-                self.printt('{}_g@{}()'.format(fld.variables[0].name, str(utils.get_coid(fld))))
+                self.printt('{}_g@{}()'.format(fld.name, str(utils.get_coid(fld))))
         else:
             logging.debug('non-static field - type(n.scope): {}'.format(type(n.scope)))
             n.scope.accept(self)
-            self.printt('.{}'.format(new_fname))
+            self.printt('.{}'.format(str(fld)))
 
         logging.debug('***END FIELD ACCESS***\n')
         return True
-        
-    def trans_fname(self, fld, nm):
-        fid = '.'.join([str(utils.get_coid(fld)), nm])
-        r_fld = self.flds[fid]
-        return r_fld
 
     def trans_fld(self, fld):
-        # buf = cStringIO.StringIO()
-        f = []
-        for var in fld.variables:
-            init = ''
-            if td.isStatic(fld) and var.init:
-                init = ' = '
-                init += self.trans(var.init)
-            f.append((self.trans_ty(fld.typee), var.name, init))
-            # buf.write('{} {}{};\n'.format(self.trans_ty(fld.typee), var.name, init))
-        # ignored initialised fields
-        return f
-        # return util.get_and_close(buf)
+        init = ''
+        nm = str(fld)
+        if td.isStatic(fld):
+            nm = fld.name
+            if fld.variable.init:
+                init = ' = ' + self.trans(fld.variable.init)
+        return (self.trans_ty(fld.typee), nm, init)
 
     def trans_params(self, (ty, nm)):
         return ' '.join([self.trans_ty(ty), nm])
@@ -600,7 +588,10 @@ class Translator(object):
                 if type(scope) == ClassOrInterfaceDeclaration: cls = scope
                 # ExpressionName . [TypeArguments] Identifier
                 # Primary . [TypeArguments] Identifier
-                else: cls = callexpr.symtab.get(scope.typee.name)
+                else:
+                    # print 'scope:', scope, scope.typee, scope.typee.name
+                    # print callexpr.symtab
+                    cls = callexpr.symtab.get(scope.typee.name)
             # TODO: more possibilities
         logging.debug('searching in class: {}'.format(cls))
         # Compile-Time Step 2: Determine Method Signature
