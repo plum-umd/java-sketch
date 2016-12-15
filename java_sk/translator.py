@@ -27,6 +27,7 @@ from ast.stmt.returnstmt import ReturnStmt
 from ast.stmt.ifstmt import IfStmt
 from ast.stmt.forstmt import ForStmt
 from ast.stmt.whilestmt import WhileStmt
+from ast.stmt.continuestmt import ContinueStmt
 from ast.stmt.minrepeatstmt import MinrepeatStmt
 from ast.stmt.emptystmt import EmptyStmt
 from ast.stmt.expressionstmt import ExpressionStmt
@@ -155,7 +156,7 @@ class Translator(object):
         for i in xrange(n.arrayCount): self.printt('[]')
         if n.throws:
             self.printt(' throws ')
-            self.printCommaList(n.throws)
+            self.printSepList(n.throws)
             
         if not n.body: self.printt(';')
         else:
@@ -301,6 +302,13 @@ class Translator(object):
         if n.args: self.printt(', ')
         self.printSepList(n.args)
         self.printt(');')
+
+    @v.when(ContinueStmt)
+    def visit(self, n):
+        self.printt("continue")
+        if n.idd:
+            self.printt(' {}'.format(n.idd))
+        self.printt(";")
 
     @v.when(EmptyStmt)
     def visit(self, n): pass
@@ -593,7 +601,11 @@ class Translator(object):
                     # print callexpr.symtab
                     cls = callexpr.symtab.get(scope.typee.name)
             # TODO: more possibilities
+        
         logging.debug('searching in class: {}'.format(cls))
+        if not cls:
+            logging.debug('***uninterpreted function: {}'.format(callexpr))
+            return
         # Compile-Time Step 2: Determine Method Signature
         # 15.12.2.1. Identify Potentially Applicable Methods
         pots = self.identify_potentials(callexpr, cls, [])
