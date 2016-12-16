@@ -383,7 +383,11 @@ class Translator(object):
                 if type(a) == FieldAccessExpr:
                     tname = utils.find_fld(a).typee.name
                 elif not a.typee:
-                    tname = n.symtab[a.name].typee.name
+                    t = n.symtab.get(a.name)
+                    if t:
+                        tname = t.typee.name
+                    else:
+                        print 'ObjectCreationExpr:a:{}:{}'.format(a,a.beginLine)
                 else:
                     tname = a.typee.name
                 typs.append(tname)
@@ -592,6 +596,7 @@ class Translator(object):
                 scope = NameExpr({u'name':u'self'})
             else:
                 scope = utils.node_to_obj(callexpr.scope)
+                if not scope: return
                 # TypeName . [TypeArguments] Identifier
                 if type(scope) == ClassOrInterfaceDeclaration: cls = scope
                 # ExpressionName . [TypeArguments] Identifier
