@@ -17,7 +17,7 @@ log_lvls = {'0':logging.NOTSET, '10':logging.DEBUG, '20':logging.INFO, '30':logg
             '40':logging.ERROR, '50':logging.CRITICAL}
 def translate(**kwargs):
   ## logging configuration
-  log_lvl = log_lvls.get(kwargs.get('log_lvl', 10))
+  log_lvl = log_lvls.get(kwargs.get('log_lvl', '10'))
   logging.config.fileConfig(os.path.join(pwd, "logging.conf"))
   logging.getLogger().setLevel(log_lvl)
 
@@ -79,7 +79,7 @@ if __name__ == "__main__":
     action="append", dest="tmpl", default=[],
     help="template folder")
   parser.add_option("-l", "--log_lvl",
-    action="store", dest="log_lvl", default=10,
+    action="store", dest="log_lvl", default='10',
     help="level of logging")
   parser.add_option("-v", "--verbose",
     action="store_true", dest="verbose", default=False,
