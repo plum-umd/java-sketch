@@ -1,0 +1,180 @@
+node: <class 'ast.compilationunit.CompilationUnit'> name: None 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.classorinterfacedeclaration.ClassOrInterfaceDeclaration'> name: A 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.methoddeclaration.MethodDeclaration'> name: getStart 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.type.voidtype.VoidType'> name: void 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.parameter.Parameter'> name: x 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.variabledeclaratorid.VariableDeclaratorId'> name: x 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.type.primitivetype.PrimitiveType'> name: int 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.variabledeclarator.VariableDeclarator'> name: x 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.parameter.Parameter'> name: y 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.variabledeclaratorid.VariableDeclaratorId'> name: y 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.type.primitivetype.PrimitiveType'> name: int 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.variabledeclarator.VariableDeclarator'> name: y 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.stmt.blockstmt.BlockStmt'> name: None 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.stmt.ifstmt.IfStmt'> name: None 
+	in: set([(u'x', 23), (u'y', 20)]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.binaryexpr.BinaryExpr'> name: None 
+	in: set([(u'x', 23), (u'y', 20)]) 
+	out: set([(u'x', 23), (u'y', 20)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.nameexpr.NameExpr'> name: x 
+	in: set([(u'x', 23), (u'y', 20)]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.nameexpr.NameExpr'> name: y 
+	in: set([(u'x', 23), (u'y', 20)]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.stmt.blockstmt.BlockStmt'> name: None 
+	in: set([(u'x', 23), (u'y', 20)]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.stmt.returnstmt.ReturnStmt'> name: None 
+	in: set([(u'y', 20), (u'x', 23)]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.nameexpr.NameExpr'> name: x 
+	in: set([(u'y', 20), (u'x', 23)]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.stmt.ifstmt.IfStmt'> name: None 
+	in: set([(u'x', 23), (u'y', 20)]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.binaryexpr.BinaryExpr'> name: None 
+	in: set([(u'x', 23), (u'y', 20)]) 
+	out: set([(u'x', 23), (u'y', 20)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.nameexpr.NameExpr'> name: y 
+	in: set([(u'x', 23), (u'y', 20)]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.nameexpr.NameExpr'> name: x 
+	in: set([(u'x', 23), (u'y', 20)]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.stmt.blockstmt.BlockStmt'> name: None 
+	in: set([(u'x', 23), (u'y', 20)]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.stmt.returnstmt.ReturnStmt'> name: None 
+	in: set([(u'y', 20), (u'x', 23)]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.nullliteralexpr.NullLiteralExpr'> name: None 
+	in: set([(u'y', 20), (u'x', 23)]) 
+	out: set([(u'y', 20), (u'x', 23)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.stmt.blockstmt.BlockStmt'> name: None 
+	in: set([(u'x', 23), (u'y', 20)]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.stmt.returnstmt.ReturnStmt'> name: None 
+	in: set([(u'y', 20), (u'x', 23)]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.nameexpr.NameExpr'> name: y 
+	in: set([(u'y', 20), (u'x', 23)]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+

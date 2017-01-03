@@ -1,0 +1,90 @@
+node: <class 'ast.compilationunit.CompilationUnit'> name: None 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.classorinterfacedeclaration.ClassOrInterfaceDeclaration'> name: C 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.methoddeclaration.MethodDeclaration'> name: m 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.type.primitivetype.PrimitiveType'> name: int 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.parameter.Parameter'> name: a 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.variabledeclaratorid.VariableDeclaratorId'> name: a 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.type.primitivetype.PrimitiveType'> name: int 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.variabledeclarator.VariableDeclarator'> name: a 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.stmt.blockstmt.BlockStmt'> name: None 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.stmt.expressionstmt.ExpressionStmt'> name: None 
+	in: set([(u'a', 9)]) 
+	out: set([(u'a', 7)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.assignexpr.AssignExpr'> name: None 
+	in: set([(u'a', 9)]) 
+	out: set([(u'a', 7)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.nameexpr.NameExpr'> name: a 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.integerliteralexpr.IntegerLiteralExpr'> name: 6 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.stmt.returnstmt.ReturnStmt'> name: None 
+	in: set([(u'a', 7)]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.nameexpr.NameExpr'> name: a 
+	in: set([(u'a', 7)]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
