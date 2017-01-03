@@ -19,14 +19,13 @@ from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 from ast.expr.generatorexpr import GeneratorExpr
 
 class Encoder(object):
-    def __init__(self, program):
+    def __init__(self, program, out_dir):
         # more globals to check out.
         self._prg = program
         self._prg.symtab.update(builtins)
+        self._out_dir = out_dir
         self._sk_dir = ''
-
         self._mcls = None
-        self._harness = None
         self._bases = []
         
         # populate global dict of types, classes and their ids
@@ -48,7 +47,11 @@ class Encoder(object):
             if str(m) not in self._MTD_NUMS.keys():
                 self._MTD_NUMS[m] = i
                 i = i + 1
-        self._tltr = Translator(cnums=self._CLASS_NUMS, mnums=self._MTD_NUMS)
+
+        # finds main/harness and populates some book keeping stuff
+        self.main_cls()
+        # create a translator object, this will do the JSketch -> Sketch
+        self._tltr = Translator(cnums=self._CLASS_NUMS, mnums=self._MTD_NUMS, sk_dir=self.sk_dir)
 
     def find_main(self):
         mtds = []
@@ -75,8 +78,10 @@ class Encoder(object):
         harness = self.prg.gsymtab[harness.atr] if harness else None
         if not main and not harness:
             raise Exception("No main(), @Harness, or harness found, None")
+        
         self.mcls = main if main else harness
-        self._harness = self.mcls
+        self.demo_name = str(self.mcls)
+        self.sk_dir = os.path.join(self.out_dir, '_'.join(["sk", self.demo_name]))
 
     def to_sk(self):
         # clean up result directory
@@ -140,6 +145,7 @@ class Encoder(object):
         for k,v in items:
             if k not in utils.narrow:
                 buf.write("int {k}() {s} {{ return {v}; }}\n".format(k=k, v=v, s=' '*(m-len(k))))
+        buf.write('\n// Uninterpreted functions\n')
         with open(os.path.join(self.sk_dir, "meta.sk"), 'w') as f:
             f.write(util.get_and_close(buf))
 
@@ -176,7 +182,7 @@ class Encoder(object):
             buf.write('\n')
 
         # not a base class, not the harness class, and doesn't override the base constructor
-        if cls not in self.bases and str(cls) != str(self.harness) and \
+        if cls not in self.bases and str(cls) != str(self.mcls) and \
            not filter(lambda c: len(c.parameters) == 0, cons):
             # these represent this$N (inner classes)
             etypes = cls.enclosing_types()
@@ -280,14 +286,19 @@ class Encoder(object):
     def mtds(self, v): self._mtds = v
 
     @property
-    def harness(self): return self._harness
-    @harness.setter
-    def harness(self, v): self._harness = v
-
-    @property
     def bases(self): return self._bases
     @bases.setter
     def bases(self, v): self._bases = v
+
+    @property
+    def out_dir(self): return self._out_dir
+    @out_dir.setter
+    def out_dir(self, v): self._out_dir = v
+
+    @property
+    def sk_dir(self): return self._sk_dir
+    @sk_dir.setter
+    def sk_dir(self, v): self._sk_dir = v
     
     @property
     def CLASS_NUMS(self): return self._CLASS_NUMS

@@ -2,6 +2,7 @@
 import cStringIO
 import logging
 import copy
+import os
 
 from . import util
 
@@ -81,8 +82,7 @@ class Translator(object):
         self._flds = {}   # { Cls.fld : str(fld) }
         self._cnums = kwargs.get('cnums')
         self._mnums = kwargs.get('mnums')
-        self._primitives = kwargs.get('prims', [])
-
+        self._sk_dir = kwargs.get('sk_dir')
 
         self._buf = None
         self._mtd = None
@@ -147,16 +147,13 @@ class Translator(object):
         self.printt('(')
 
         if not td.isStatic(n) and not td.isHarness(n):
-            ty = self.trans_ty(str(utils.get_coid(n)), didrepr=True)
+            ty = self.trans_ty(utils.get_coid(n))
             self.printt('{} self'.format(ty))
             if n.parameters: self.printt(', ')
         self.printSepList(n.parameters)
         self.printt(') ')
 
         for i in xrange(n.arrayCount): self.printt('[]')
-        if n.throws:
-            self.printt(' throws ')
-            self.printSepList(n.throws)
             
         if not n.body: self.printt(';')
         else:
@@ -532,13 +529,17 @@ class Translator(object):
         s.accept(self)
         return util.get_and_close(self.buf)
     
-    def trans_ty(self, typ, didrepr=False):
+    def trans_ty(self, typ):
         # self.JT => JAVA_TYPES, self.ST => SKETCH_TYPES
         # ignoring a lot of 'advanced' type stuff
-        _tname = typ if didrepr else typ.sanitize_ty(typ.name.strip())
+        _tname = typ.sanitize_ty(typ.name.strip())
         r_ty = _tname
         if typ and type(typ) == ReferenceType:
             if typ.name in self.ty: r_ty = self.ty[typ.name]
+            # Unknown type, cast as Object for now
+            elif typ.name in CONVERSION_TYPES: r_ty = CONVERSION_TYPES[_tname]
+            else: r_ty = u'Object'
+
             if typ.values: r_ty += ''.join(["[{}]".format(v.name) for v in typ.values])
             else: r_ty += ''.join(['[{}]'.format(self.ARRAY_SIZE) for i in xrange(typ.arrayCount)])
         # we've already rewritten this type
@@ -582,6 +583,10 @@ class Translator(object):
         return ' '.join([self.trans_ty(ty), nm])
 
     def trans_call(self, callexpr):
+        tltr = copy.copy(self)
+        tltr.indentation = ''
+            
+        
         logging.debug('calling: {} from {}'.format(str(callexpr), utils.get_coid(callexpr)))
         # 15.12.1 Compile-Time Step 1: Determine Class or Interface to Search
         if not callexpr.scope:
@@ -607,14 +612,36 @@ class Translator(object):
                     cls = callexpr.symtab.get(scope.typee.name)
             # TODO: more possibilities
         
+        def uninterpreted():
+            if callexpr.scope:
+                tltr.buf = cStringIO.StringIO()
+                scp = tltr.trans(callexpr.scope)
+                callexpr.args = [NameExpr({u'name':scp})] + callexpr.args
+            atyps = callexpr.arg_typs()
+            # add fun declaration as uninterpreted
+            with open(os.path.join(self.sk_dir, 'meta.sk'), 'a') as f:
+                f.write('{} {}('.format(str(callexpr.typee), callexpr.name))
+                for i in range(len(atyps)-1):
+                    f.write('{} {}, '.format(str(atyps[i]), 'p'+str(i)))
+                if len(atyps) > 0: f.write('{} {}'.format(str(atyps[-1].typee), 'p'+str(len(atyps)-1)))
+                f.write(');\n')
+                    
+            self.printt(callexpr.name)
+            self.printArguments(callexpr.args)
+            
         logging.debug('searching in class: {}'.format(cls))
         if not cls:
-            logging.debug('***uninterpreted function: {}'.format(callexpr))
+            uninterpreted()
             return
+            
+
         # Compile-Time Step 2: Determine Method Signature
         # 15.12.2.1. Identify Potentially Applicable Methods
         pots = self.identify_potentials(callexpr, cls, [])
-        if not pots: raise Exception('No potential methods for {} found in {}.'.format(str(callexpr), str(cls)))
+        if not pots:
+            uninterpreted()
+            return
+
         logging.debug('potentitals: {}'.format(map(lambda m: str(m), pots)))
 
         # 15.12.2.2. Phase 1: Identify Matching Arity Methods Applicable by Strict Invocation
@@ -660,9 +687,6 @@ class Translator(object):
                 return
             clss = filter(lambda c: not c.interface, [cls] + utils.all_subClasses(cls))
             logging.debug('subclasses: {}'.format(map(lambda c: str(c), clss)))
-
-            tltr = copy.copy(self)
-            tltr.indentation = ''
 
             tltr.buf = cStringIO.StringIO()
             scp = tltr.trans(callexpr.scope)
@@ -912,6 +936,11 @@ class Translator(object):
     def indentation(self): return self._indentation
     @indentation.setter
     def indentation(self, v): self._indentation = v
+
+    @property
+    def sk_dir(self): return self._sk_dir
+    @sk_dir.setter
+    def sk_dir(self, v): self._sk_dir = v
 
     @property
     def mtd(self): return self._mtd

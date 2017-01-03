@@ -3,8 +3,8 @@ import os
 
 pwd = os.path.dirname(__file__)
 
-javaAST = os.path.abspath(os.path.join(pwd,'../../javaAST'))
-sys.path.insert(0, javaAST)
+ast = os.path.abspath(os.path.join(pwd,'../parser'))
+sys.path.insert(0, ast)
 
 from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 from ast.body.methoddeclaration import MethodDeclaration
@@ -12,6 +12,7 @@ from ast.body.methoddeclaration import MethodDeclaration
 
 CONVERSION_TYPES = {u'boolean':u'bit',
                     u'this':u'self',
+                    u'char':u'char',
                     u'byte':u'char',
                     u'short':u'char',
                     u'int':u'int',

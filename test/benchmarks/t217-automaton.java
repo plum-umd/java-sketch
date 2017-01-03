@@ -1,18 +1,21 @@
+import java.util.Iterator;
+
 /*
 interface Token{
     public int getId();
 }
 */
 
-generator class Automaton {
-    private int state;
+class Automaton {
+// generator class Automaton {
+    int state;
     public Automaton() {
-        state = ??;
+        state = 0;
     }
 
-    static int num_state = ??;
-    harness static void min_num_state() {
-        minimize(num_state);
+    static int num_state = 0;
+     static void min_num_state() {
+        // minimize(num_state);
     }
 
 /*
@@ -21,19 +24,19 @@ generator class Automaton {
 */
     public void transition(int id) {
         assert 0 <= state && state < num_state;
-        minrepeat {
-            if (state == ?? && id == ??) { state = ??; return; }
-        }
+        // minrepeat {
+        //     if (state == 0 && id == 0) { state = 0; return; }
+        // }
     }
 
-    public void transitions(Iterator it) {
+    public void transition(Iterator it) {
         while (it.hasNext()) {
             transition(it.next());
         }
     }
 
     public boolean accept() {
-        return state <= ??;
+        return state <= 0;
     }
 }
 
@@ -55,7 +58,7 @@ class CADsR extends Automaton {
             return pos < str.length();
         }
 
-        public int next() {
+        public Integer next() {
             Character c = str.charAt(pos);
             pos = pos + 1;
             return (int)c;
@@ -67,7 +70,7 @@ class CADsR extends Automaton {
     }
 
     public boolean accept(String str) {
-        state = ??; // reset
+        state = 0; // reset
         CharIterator cit = new CharIterator(str);
         transitions(cit);
         return accept();
@@ -116,13 +119,13 @@ class DBConnection {
 class TestCADsR {
 
     // length 0
-    harness static void example_0() {
+     static void example_0() {
         CADsR a = new CADsR();
         assert ! a.accept();
     }
 
     // length 1
-    harness static void example_1() {
+     static void example_1() {
         CADsR a = new CADsR();
         assert ! a.accept("a");
         assert ! a.accept("c");
@@ -131,7 +134,7 @@ class TestCADsR {
     }
 
     // length 2
-    harness static void example_2() {
+     static void example_2() {
         CADsR a = new CADsR();
         assert ! a.accept("aa");
         assert ! a.accept("ac");
@@ -152,7 +155,7 @@ class TestCADsR {
     }
 
     // length 3
-    harness static void example_3() {
+     static void example_3() {
         CADsR a = new CADsR();
 
         // length 3
@@ -165,7 +168,7 @@ class TestCADsR {
     }
 
     // length 4
-    harness static void example_4() {
+     static void example_4() {
         CADsR a = new CADsR();
 
         //assert ! a.accept("caaa");
@@ -185,7 +188,7 @@ class TestCADsR {
 }
 
 class TestDBConnection {
-    harness static void scenario_good() {
+     static void scenario_good() {
         DBConnection conn = new DBConnection();
         assert ! conn.isErroneous();
         conn.open();
@@ -195,7 +198,7 @@ class TestDBConnection {
     }
 
     // bad: opening more than once
-    harness static void scenario_bad1() {
+     static void scenario_bad1() {
         DBConnection conn = new DBConnection();
         conn.open();
         conn.open();
@@ -203,7 +206,7 @@ class TestDBConnection {
     }
 
     // bad: closing more than once
-    harness static void scenario_bad2() {
+     static void scenario_bad2() {
         DBConnection conn = new DBConnection();
         conn.open();
         conn.close();
