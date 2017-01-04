@@ -2,6 +2,7 @@
 
 import cStringIO
 import visit as v
+
 from .. import Operators as op
 from .. import AssignOperators as assignop
 
@@ -421,6 +422,14 @@ class SourcePrinter(object):
         self.printJavaComment(n.comment)
         self.printt(n.name)
 
+    @v.when(QualifiedNameExpr)
+    def visit(self, n):
+        self.printJavaComment(n.comment)
+
+        n.qualifier.accept(self)
+        self.printt('.')
+        self.printt(n.name)
+        
     @v.when(VariableDeclarationExpr)
     def visit(self, n):
         self.printJavaComment(n.comment)
@@ -573,14 +582,6 @@ class SourcePrinter(object):
     def visit(self, n):
         self.printJavaComment(n.comment)
         self.printt(n.value)
-
-    @v.when(QualifiedNameExpr)
-    def visit(self, n):
-        self.printJavaComment(n.comment)
-
-        n.qualifier.accept(self)
-        self.printt('.')
-        self.printt(n.name)
 
     @v.when(ConditionalExpr)
     def visit(self, n):
