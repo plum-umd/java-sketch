@@ -1,14 +1,16 @@
 #!/usr/bin/env python
 
-from .nameexpr import NameExpr
-
 from . import _import
+
+from .nameexpr import NameExpr
 
 class QualifiedNameExpr(NameExpr):
     def __init__(self, kwargs={}):
         super(QualifiedNameExpr, self).__init__(kwargs)
         locs = _import()
-        self._qualifier = locs[u'NameExpr'](kwargs.get(u'qualifier', {}))
+
+        qualifier = kwargs.get(u'qualifier', {})
+        self._qualifier = locs[qualifier[u'@t']](qualifier) if u'@t' in qualifier else locs[u'NameExpr'](qualifier)
         
     @property
     def qualifier(self): return self._qualifier

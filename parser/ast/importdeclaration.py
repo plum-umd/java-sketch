@@ -14,7 +14,7 @@ class ImportDeclaration(Node):
         name = kwargs.get(u'name', {})
         self._name = locs[name[u'@t']](name) if name else None
         # boolean static_;
-        self.static = kwargs.get(u'static', False)
+        self.static = kwargs.get(u'static_', False)
         # boolean asterisk;
         self.asterisk = kwargs.get(u'asterisk', False)
         # boolean isEmptyImportDeclaration;

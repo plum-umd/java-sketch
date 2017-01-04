@@ -5,6 +5,7 @@ def _import():
     from ..body.variabledeclarator import VariableDeclarator
 
     from .nameexpr import NameExpr
+    from .qualifiednameexpr import QualifiedNameExpr
     from .unaryexpr import UnaryExpr
     from .binaryexpr import BinaryExpr
     from .assignexpr import AssignExpr
