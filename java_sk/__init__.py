@@ -9,6 +9,7 @@ sys.path.insert(0, ast)
 from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 from ast.body.methoddeclaration import MethodDeclaration
 
+def convert(ch): return CONVERSION_TYPES[DESCRIPTOR_TYPES[ch]]
 
 CONVERSION_TYPES = {u'boolean':u'bit',
                     u'this':u'self',
@@ -26,6 +27,17 @@ CONVERSION_TYPES = {u'boolean':u'bit',
                     u'Long':u'long',
                     u'Float':u'float',
                     u'Double':u'double'}
+
+DESCRIPTOR_TYPES = {u'B': u'byte', # signed byte
+                    u'C': u'char', # Unicode character code point in the Basic Multilingual Plane, encoded with UTF-16
+                    u'D': u'double', # double-precision floating-point value
+                    u'F': u'float', # single-precision floating-point value
+                    u'I': u'int', # integer
+                    u'J': u'long', # long integer
+                    u'L': u'ClassName', # ;referencean instance of class ClassName
+                    u'S': u'short', # signed short
+                    u'Z': u'boolean', # true or false
+                    u'[': u'reference'} # one array dimension
 
 sk_d = {u'@t': u'ClassOrInterfaceDeclaration', u'name': u''}
 sk_cls = ClassOrInterfaceDeclaration(sk_d)
