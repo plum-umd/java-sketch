@@ -11,7 +11,8 @@ from ast.body.methoddeclaration import MethodDeclaration
 
 def convert(ch): return CONVERSION_TYPES[DESCRIPTOR_TYPES[ch]]
 
-CONVERSION_TYPES = {u'boolean':u'bit',
+CONVERSION_TYPES = {u'bit':u'bit',
+                    u'boolean':u'bit',
                     u'this':u'self',
                     u'char':u'char',
                     u'byte':u'char',
@@ -19,14 +20,15 @@ CONVERSION_TYPES = {u'boolean':u'bit',
                     u'int':u'int',
                     u'long':u'double',
                     u'float':u'float',
-                    u'double':u'double',
-                    u'Byte':'char',
-                    u'Character':'char',
-                    u'Short':u'char',
-                    u'Integer':u'int',
-                    u'Long':u'long',
-                    u'Float':u'float',
-                    u'Double':u'double'}
+                    u'double':u'double'}
+
+                    # u'Byte':'char',
+                    # u'Character':'char',
+                    # u'Short':u'char',
+                    # u'Integer':u'int',
+                    # u'Long':u'long',
+                    # u'Float':u'float',
+                    # u'Double':u'double'}
 
 DESCRIPTOR_TYPES = {u'B': u'byte', # signed byte
                     u'C': u'char', # Unicode character code point in the Basic Multilingual Plane, encoded with UTF-16

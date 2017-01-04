@@ -391,8 +391,8 @@ class Translator(object):
                     
             self.printt('_'.join([n.typee.name, n.typee.name] + typs))
         else:
-            self.printt('{0}_{0}'.format(n.typee.name))
-        self.printt('((new Object(__cid={}()))'.format(n.typee.name))
+            self.printt('{0}_{0}'.format(self.trans_ty(n.typee, False)))
+        self.printt('((new Object(__cid={}()))'.format(self.trans_ty(n.typee, False)))
         if n.args: self.printt(', ')
         self.printSepList(n.args)
         self.printt(')')
@@ -529,23 +529,23 @@ class Translator(object):
         s.accept(self)
         return util.get_and_close(self.buf)
     
-    def trans_ty(self, typ):
-        # self.JT => JAVA_TYPES, self.ST => SKETCH_TYPES
-        # ignoring a lot of 'advanced' type stuff
+    def trans_ty(self, typ, convert=True):
         _tname = typ.sanitize_ty(typ.name.strip())
         r_ty = _tname
         if typ and type(typ) == ReferenceType:
-            if typ.name in self.ty: r_ty = self.ty[typ.name]
+            if typ.name in self.ty: r_ty = self.ty[typ.name] if convert else typ.name
             # Unknown type, cast as Object for now
             elif typ.name in CONVERSION_TYPES: r_ty = CONVERSION_TYPES[_tname]
             else: r_ty = u'Object'
-
+        
             if typ.values: r_ty += ''.join(["[{}]".format(v.name) for v in typ.values])
             else: r_ty += ''.join(['[{}]'.format(self.ARRAY_SIZE) for i in xrange(typ.arrayCount)])
         # we've already rewritten this type
-        elif _tname in self.ty: r_ty = self.ty[_tname]
+        elif _tname in self.ty: r_ty = self.ty[_tname] if convert else r_ty
         # Java types to Sketch types
         elif _tname in CONVERSION_TYPES: r_ty = CONVERSION_TYPES[_tname]
+        # Unknown type, cast as Object for now
+        else: r_ty = u'Object'
         return r_ty
 
     def trans_faccess(self, n):
