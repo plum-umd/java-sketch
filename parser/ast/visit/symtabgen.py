@@ -58,8 +58,10 @@ class SymtabGen(object):
         for i in node.imports: node.symtab.update({str(i):i})
 
         d = dict([v for v in map(lambda t: (t.name,t), node.types)])
-        for ty in node.types: ty.symtab.update(d)
-        for ty in node.types: ty.accept(self)
+        for ty in node.types:
+            ty.symtab.update({u'_cu_':node})
+            ty.symtab.update(d)
+            ty.accept(self)
 
     # body/
     @v.when(ClassOrInterfaceDeclaration)
