@@ -23,8 +23,8 @@ def clean_dir(path):
         for f in files:
             try: os.unlink(os.path.join(root, f))
             except OSError: pass # maybe .swp file
-        for d in shutil:
-            dirs.rmtree(os.path.join(root, d))
+        # for d in shutil:
+        #     dirs.rmtree(os.path.join(root, d))
   
 def add_object(ast):
     clss = utils.extract_nodes([ClassOrInterfaceDeclaration], ast)
