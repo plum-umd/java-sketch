@@ -7,15 +7,16 @@ import logging
 from itertools import ifilterfalse
 
 from . import builtins
-
 from .translator import Translator
 
 from ast.utils import utils
+
 from ast.body.fielddeclaration import FieldDeclaration
 from ast.body.methoddeclaration import MethodDeclaration
 from ast.body.constructordeclaration import ConstructorDeclaration
 from ast.body.typedeclaration import TypeDeclaration as td
 from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
+
 from ast.expr.generatorexpr import GeneratorExpr
 
 class Encoder(object):

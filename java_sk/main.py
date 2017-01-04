@@ -1,14 +1,14 @@
 #! /usr/bin/env python
+import os
 import sys
 import logging
 import logging.config
 
-from parser.parser import parse
-from encoder import Encoder
 import sketch
-
 import util
-import os
+from encoder import Encoder
+
+from parser.parser import parse
 
 pwd = os.path.dirname(__file__)
 root_dir = os.path.join(pwd, "..")
@@ -64,6 +64,11 @@ def main(prg):
     return translate(prg=prg)
   
 if __name__ == "__main__":
+    # print 'booleanValue:'
+    # descriptors = util.get_mtd_types('java/lang/Byte', 'parseByte', 2)
+    # print
+    # descriptors = util.get_mtd_types('java/lang/Byte', 'compare', 2)
+    # exit()
     if len(sys.argv) < 1:
       sys.exit("incorrect number of arguments")
   
