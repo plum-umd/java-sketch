@@ -16,3 +16,6 @@ class QualifiedNameExpr(NameExpr):
     def qualifier(self): return self._qualifier
     @qualifier.setter
     def qualifier(self, v): self._qualifier = v
+
+    def __str__(self):
+        return '{}.{}'.format(str(self.qualifier), self.name)

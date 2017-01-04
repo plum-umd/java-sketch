@@ -34,3 +34,5 @@ class ImportDeclaration(Node):
     def isEmptyDeclaration(self): return self._isEmptyDeclaration
     @isEmptyDeclaration.setter
     def isEmptyDeclaration(self, v): self._isEmptyDeclaration = v
+
+    def __str__(self): return str(self.name)
