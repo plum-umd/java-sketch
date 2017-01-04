@@ -1,16 +1,20 @@
 import visit as v
+
 from ..utils import utils
 from ..node import Node
 from ..compilationunit import CompilationUnit
+
 from ..body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 from ..body.fielddeclaration import FieldDeclaration
 from ..body.variabledeclarator import VariableDeclarator
 from ..body.variabledeclaratorid import VariableDeclaratorId
 from ..body.methoddeclaration import MethodDeclaration
 from ..body.constructordeclaration import ConstructorDeclaration
+
 from ..stmt.blockstmt import BlockStmt
 from ..stmt.ifstmt import IfStmt
 from ..stmt.expressionstmt import ExpressionStmt
+
 from ..expr.variabledeclarationexpr import VariableDeclarationExpr
 from ..expr.binaryexpr import BinaryExpr
 from ..expr.nameexpr import NameExpr
@@ -18,6 +22,7 @@ from ..expr.integerliteralexpr import IntegerLiteralExpr
 from ..expr.methodcallexpr import MethodCallExpr
 from ..expr.fieldaccessexpr import FieldAccessExpr
 from ..expr.objectcreationexpr import ObjectCreationExpr
+
 from ..type.primitivetype import PrimitiveType
 from ..type.voidtype import VoidType
 
@@ -50,6 +55,8 @@ class SymtabGen(object):
     def visit(self, node):
         # The scope of a top level type is all type declarations in the package in
         # which the top level type is declared.
+        for i in node.imports: node.symtab.update({str(i):i})
+
         d = dict([v for v in map(lambda t: (t.name,t), node.types)])
         for ty in node.types: ty.symtab.update(d)
         for ty in node.types: ty.accept(self)
