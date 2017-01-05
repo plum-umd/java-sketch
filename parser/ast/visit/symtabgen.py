@@ -1,8 +1,10 @@
 import visit as v
 
+from .. import JAVA_LANG
 from ..utils import utils
 from ..node import Node
 from ..compilationunit import CompilationUnit
+from ..importdeclaration import ImportDeclaration
 
 from ..body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 from ..body.fielddeclaration import FieldDeclaration
@@ -15,9 +17,9 @@ from ..stmt.blockstmt import BlockStmt
 from ..stmt.ifstmt import IfStmt
 from ..stmt.expressionstmt import ExpressionStmt
 
+from ..expr.nameexpr import NameExpr
 from ..expr.variabledeclarationexpr import VariableDeclarationExpr
 from ..expr.binaryexpr import BinaryExpr
-from ..expr.nameexpr import NameExpr
 from ..expr.integerliteralexpr import IntegerLiteralExpr
 from ..expr.methodcallexpr import MethodCallExpr
 from ..expr.fieldaccessexpr import FieldAccessExpr
@@ -55,6 +57,18 @@ class SymtabGen(object):
     def visit(self, node):
         # The scope of a top level type is all type declarations in the package in
         # which the top level type is declared.
+        for i in JAVA_LANG: # add in java.lang which is import by default
+            nm = i.split('.')
+            qn = {
+                u'@t': u'QualifiedNameExpr',
+                u'name': nm[-1],
+                u'qualifier': {
+                    u'@t': u'QualifiedNameExpr',
+                    u'name': u'lang',
+                    u'qualifier': {
+                        u'name': u'java',},},
+            }
+            node.symtab.update({i:ImportDeclaration({u'@t':u'ImportDeclaration',u'name':qn})})
         for i in node.imports: node.symtab.update({str(i):i})
 
         d = dict([v for v in map(lambda t: (t.name,t), node.types)])
