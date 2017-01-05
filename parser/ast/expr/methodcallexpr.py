@@ -6,8 +6,6 @@ from .expression import Expression
 from .fieldaccessexpr import FieldAccessExpr
 
 from ..utils import utils
-from ..stmt.statement import Statement
-from ..type.voidtype import VoidType
 
 class MethodCallExpr(Expression):
     def __init__(self, kwargs={}):
@@ -19,12 +17,12 @@ class MethodCallExpr(Expression):
         self._scope = locs[scope[u'@t']](scope) if scope else None
 
         # List<Type> typeArgs;
-        
+
         # Expression args
         args = kwargs.get(u'args', {})
         self._args = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
                          args.get(u'@e', [])) if args else []
-        
+
     @property
     def scope(self): return self._scope
     @scope.setter
@@ -38,20 +36,25 @@ class MethodCallExpr(Expression):
     # this is going to be weird. traverse tree until a type or expressionstmt is found
     @property
     def typee(self):
-        def get_typ(n):
-            if n.typee: return n.typee
-            if isinstance(n, Statement): return VoidType()
-            if n.parentNode: return get_typ(n.parentNode)
-            else: return VoidType()
-        return get_typ(self.parentNode)
-      
+        obj = utils.node_to_obj(self.scope) if self.scope else self
+        sym = obj.symtab
+        # first look for this methed in the current scope
+        mtd = sym.get(self.name)
+        if not mtd: pass
+        #     sym = sym.get('_cu').symtab
+        #     for key, val in sym.items():
+        #         if isinstance(val, ImportDeclaration):
+        #             nm = key.split('.')
+        #             if self.name == nm[-1]:
+        else: return mtd.typee
+
     @typee.setter
     def typee(self, v): self._typee = v
-    
+
     def sig(self):
         atyps = ','.join(map(str, self.arg_typs())) if self.args else ''
         return '{} {}({});'.format(str(self.typee), str(self), atyps)
-  
+
     def arg_typs(self):
         typs = []
         for a in self.args:
@@ -60,17 +63,14 @@ class MethodCallExpr(Expression):
                 if not fld: return None
                 typ = fld.typee
             elif type(a) == MethodCallExpr:
-                scope = utils.find_fld(a) if a.scope else a
-                if not scope: return None
-                typ = scope.symtab.get(a.name)
-                return typ.typee if typ else self.typee
+                typ = a.typee
             elif not a.typee:
                 typ = self.symtab[a.name].typee
             else:
                 typ = a.typee
             typs.append(typ)
         return typs
-        
+
     def __str__(self):
         a = self.arg_typs()
         if a:

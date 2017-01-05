@@ -10,7 +10,7 @@ Modifiers = {
     # don't think there are any with these values
     u'OP':0x8000,   # optional
     u'HN':0x10000,   # harness
-    u'GN':0x20000   # generator
+    u'GN':0x20000,   # generator
 }
 
 Operators = {
@@ -47,7 +47,7 @@ AssignOperators = {
     u'RUNSIGNEDSHIFT':u'>>>=',
     u'AND':u'&=',
     u'XOR':u'^=',
-    u'OR':u'|='
+    u'OR':u'|=',
 }
 
 field = {
@@ -71,16 +71,82 @@ field = {
     },
 }
 
+JAVA_LANG = [
+    # interfaces
+    u'java.lang.Appendable',
+    u'java.lang.AutoCloseable',
+    u'java.lang.CharSequence',
+    u'java.lang.Cloneable',
+    u'java.lang.Comparable',
+    u'java.lang.Iterable',
+    u'java.lang.Readable',
+    u'java.lang.Runnable',
+    # u'java.lang.Thread$UncaughtExceptionHandler',
+
+    # classes
+    u'java.lang.Boolean',
+    u'java.lang.Byte',
+    u'java.lang.Character',
+    # u'java.lang.Character$Subset',
+    # u'java.lang.Character$UnicodeBlock'
+    u'java.lang.Class',
+    u'java.lang.ClassLoader',
+    u'java.lang.ClassValue',
+    u'java.lang.Compiler',
+    u'java.lang.Double',
+    u'java.lang.Enum',
+    u'java.lang.Float',
+    u'java.lang.InheritableThreadLocal',
+    u'java.lang.Integer',
+    u'java.lang.Long',
+    u'java.lang.Math',
+    u'java.lang.Number',
+    u'java.lang.Object',
+    u'java.lang.Package',
+    u'java.lang.Process',
+    u'java.lang.ProcessBuilder',
+    # u'java.lang.ProcessBuilder$Redirect',
+    u'java.lang.Runtime',
+    u'java.lang.RuntimePermission',
+    u'java.lang.SecurityManager',
+    u'java.lang.Short',
+    u'java.lang.StackTraceElement',
+    u'java.lang.StrictMath',
+    u'java.lang.String',
+    u'java.lang.StringBuffer',
+    u'java.lang.StringBuilder',
+    u'java.lang.System',
+    u'java.lang.Thread',
+    u'java.lang.ThreadGroup',
+    u'java.lang.ThreadLocal',
+    u'java.lang.Throwable',
+    u'java.lang.Void',
+]
+
+DESCRIPTOR_TYPES = {
+    u'B': u'byte',   # signed byte
+    u'C': u'char',   # Unicode character code point in the Basic Multilingual Plane, encoded with UTF-16
+    u'D': u'double', # double-precision floating-point value
+    u'F': u'float',  # single-precision floating-point value
+    u'I': u'int',    # integer
+    u'J': u'long',   # long integer
+    u'L': u'ClassName', # ;referencean instance of class ClassName
+    u'S': u'short',  # signed short
+    u'V': u'void',   # void
+    u'Z': u'boolean', # true or false
+    u'[': u'reference', # one array dimension
+} 
+
 def _import():
     from .importdeclaration import ImportDeclaration
 
-    from body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
+    from .body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 
-    from expr.nameexpr import NameExpr
-    from expr.qualifiednameexpr import QualifiedNameExpr
+    from .expr.nameexpr import NameExpr
+    from .expr.qualifiednameexpr import QualifiedNameExpr
 
-    from comments.javadoccomment import JavadocComment
-    from comments.linecomment import LineComment
-    from comments.blockcomment import BlockComment
+    from .comments.javadoccomment import JavadocComment
+    from .comments.linecomment import LineComment
+    from .comments.blockcomment import BlockComment
 
     return locals()
