@@ -13,6 +13,11 @@ class ClassOrInterfaceType(Type):
       # self._typeArguments = kwargs.get('typeArguments')
 
   @property
+  def typee(self): return self
+  @typee.setter
+  def typee(self, v): pass
+
+  @property
   def scope(self): return self._scope
   @scope.setter
   def scope(self, v): self._scope = v
