@@ -1,5 +1,10 @@
 # This is a bit silly having utils/utils.py but it's the only way I could
 # make this an importable package.
+
+import os
+import logging
+import subprocess
+
 from functools import partial
 
 from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
@@ -13,7 +18,12 @@ from ast.expr.fieldaccessexpr import FieldAccessExpr
 from ast.expr.arrayaccessexpr import ArrayAccessExpr
 from ast.expr.assignexpr import AssignExpr
 
+from ast.type.classorinterfacetype import ClassOrInterfaceType
+
 from ast.comments.comment import Comment
+
+JAVA_HOME = None
+RT_HAR = None
 
 widen = {u'boolean':[],
          u'byte':[u'char',u'short',u'int',u'long',u'float',u'double'],
@@ -145,6 +155,7 @@ def flatten(lst): return [j for i in lst for j in i]
 
 def node_to_obj(n):
     # helper functions
+    o = None
     def find_obj(obj):
         if n.name in obj.symtab: return obj.symtab.get(n.name)
         else:
@@ -162,8 +173,12 @@ def node_to_obj(n):
     else: o = find_obj(n)
 
     if not o:
-        print 'Cant find {}.{}:{}'.format(str(n.name),get_coid(n),n.beginLine)
-        return None
+        print 'node_to_obj() -- Cant find {}.{}:{}'.format(str(n.name),get_coid(n),n.beginLine)
+        # n might be a static reference to an imported class
+        for k, v in n.symtab.get(u'_cu_').symtab.items():
+            nm = k.split('.')[-1]
+            if n.name == nm: o = ClassOrInterfaceType({
+                    u'@t': u'ClassOrInterfaceType', u'name': nm,},)
         # raise Exception('Cant find {}.{}:{}'.format(str(n.name),get_coid(n),n.beginLine))
     return o
 
@@ -220,3 +235,70 @@ def anon_nm(a):
 def rm_comments(node):
     node.childrenNodes = filter(lambda n: not isinstance(n, Comment), node.childrenNodes)
 
+
+def unpack_class_file(nm):
+    global JAVA_HOME, RT_JAR
+
+    if not JAVA_HOME:
+        JAVA_HOME = os.environ['JAVA_HOME']
+        if not JAVA_HOME: raise Exception('Unable to find $JAVA_HOME')
+        RT_JAR = os.path.join(JAVA_HOME, 'jre','lib', 'rt.jar')
+
+    # extract class file from jar
+    cmd = ['jar', 'xf', RT_JAR, nm]
+    logging.debug(' '.join(cmd))
+    try:
+        subprocess.check_output(cmd)
+    except subprocess.CalledProcessError as e:
+        logging.error('Unable to extract "{}" from RT_JAR "{}": {}'.format(nm, RT_JAR, e.output))
+
+def get_descriptors(nm):
+    unpack_class_file(nm)
+    # Disassemble class file to get method types
+    cmd = ['javap', '-s', nm]
+    logging.debug(' '.join(cmd))
+    try:
+        cls = subprocess.check_output(cmd)
+    except subprocess.CalledProcessError as e:
+        logging.error('Unable to dissassemble "{}": {}'.format(nm, e.output))
+
+    # only need method stuff (inside brackets)
+    cls = cls[cls.find('{')+2:cls.rfind('}')]
+    cls = [x.strip() for x in cls.split('\n') if x]
+
+    # this is a cool bit of sorcery to pair method types with their descriptors
+    cls = zip(*[iter(cls)]*2)
+    return cls
+
+def get_mtd_types(path, name, num_params):
+    # [(method signature, JVM descriptor)]
+    print 'path:', path, 'method name:', name, 'num_params:', num_params
+    descriptors = get_descriptors(path)
+    candidates = [d[1][d[1].find(':')+2:] for d in descriptors if name+'(' in d[0]]
+    print 'candidates:', candidates
+    ptypes = []
+    def filter_by_params(c):
+        params = c[c.find('(')+1:c.rfind(')')]
+        if len(params) == 0 and num_params == 0:
+            semi = c.find(';')
+            if semi >= 0: ptypes.append(list(c[c.rfind('/')+1:semi]))
+            else: ptypes.append(list(c[-1]))
+            return True
+        i = 0
+        typs = []
+        while i < len(params):
+            ch = params[i]
+            if ch == 'L':
+                semi = params.find(';', i)
+                typs.append(params[params.rfind('/', i)+1:semi])
+                i = semi + 1
+            else:
+                typs.append(ch)
+                i += 1
+            print 'typs:', typs
+        if len(typs) == num_params:
+            ptypes.append(list(typs + [c[-1]]))
+            return True
+        return False
+    print 'filtered:', filter(filter_by_params, candidates)
+    return ptypes
