@@ -8,6 +8,6 @@ class DoubleLiteralExpr(StringLiteralExpr):
         super(DoubleLiteralExpr, self).__init__(kwargs)
 
     @property
-    def typee(self): PrimitiveType({u'type': {u'name': u'double'}})
+    def typee(self): return PrimitiveType({u'type': {u'name': u'double'}})
     @typee.setter
     def typee(self, v): pass
