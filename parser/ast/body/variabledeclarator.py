@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 from ..node import Node
-from ..type.type import Type
 from . import _import
 
 class VariableDeclarator(Node):
