@@ -72,6 +72,7 @@ class MethodDeclaration(BodyDeclaration):
     def throws(self, v): self._throws = v
   
     def param_typs(self): return map(lambda p: p.typee, self.parameters)
+    def param_names(self): return map(lambda p: p.name, self.parameters)
   
     def __str__(self):
         params = map(self.sanitize_ty, map(lambda p: p.typee.name, self.parameters))
