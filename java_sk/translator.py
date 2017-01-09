@@ -5,6 +5,7 @@ import copy
 import os
 
 from . import util
+from . import convert
 
 import visit as v
 
@@ -13,6 +14,7 @@ from ast import AssignOperators as assignop
 
 from ast.utils import utils
 from ast.node import Node
+from ast.importdeclaration import ImportDeclaration
 
 from ast.body.typedeclaration import TypeDeclaration as td
 from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
@@ -89,7 +91,7 @@ class Translator(object):
         self._cls = None
 
         # array bounds will be set to this if not specified
-        self._num_mtds = 0
+        self._num_mtds = 1
 
         # for pretty printing
         self._indentation = kwargs.get('indentation', "  ")
@@ -125,7 +127,7 @@ class Translator(object):
         if n.throws:
             self.printt(' throws ')
             self.printCommaList(n.throws)
-            
+
         if not n.body: self.printt(';')
         else:
             n.body.stmts = n.body.stmts + [u'return self;']
@@ -151,10 +153,10 @@ class Translator(object):
             self.printt('{} self'.format(ty))
             if n.parameters: self.printt(', ')
         self.printSepList(n.parameters)
-        self.printt(') ')
+        self.printt(')')
 
         for i in xrange(n.arrayCount): self.printt('[]')
-            
+
         if not n.body: self.printt(';')
         else:
             self.printt(' ')
@@ -167,10 +169,38 @@ class Translator(object):
 
     @v.when(VariableDeclarator)
     def visit(self, n):
-        n.idd.accept(self)
+        # print 'VariableDeclarator'
         if n.init:
-            self.printt(' = ')
-            n.init.accept(self)
+            if isinstance(n.init, ArrayCreationExpr):
+                if not isinstance(n.typee, ReferenceType):
+                    self.create_array(n.init)
+                self.printt(' ')
+                n.idd.accept(self)
+                if n.init.initializer:
+                    self.printt(' = ')
+                    n.init.initializer.accept(self)
+            else:
+                self.printt(' ')
+                n.idd.accept(self)
+                self.printt(' = ')
+                n.init.accept(self)
+        else:
+            self.printt(' ')
+            n.idd.accept(self)
+
+    def create_array(self, n):
+        # n.typee.accept(self)
+        # print 'create:', n.arrayCount
+        if n.dimensions:
+            for d in n.dimensions:
+                self.printt('[')
+                d.accept(self)
+                self.printt(']')
+            for c in xrange(n.arrayCount):
+                self.printt('[]')
+        else:
+            for c in xrange(n.arrayCount): self.printt('[]')
+            # n.initializer.accept(self)
 
     @v.when(VariableDeclaratorId)
     def visit(self, n):
@@ -328,15 +358,18 @@ class Translator(object):
                 slf = 'self'
             self.printt('.'.join([slf, str(obj)]))
         else: self.printt(n.name)
-            
+
     @v.when(VariableDeclarationExpr)
     def visit(self, n):
+        # print 'VariableDeclarationExpr'
         n.typee.accept(self)
-        self.printt(' ')
+        # self.printt(' ')
         self.printSepList(n.varss)
 
     @v.when(AssignExpr)
     def visit(self, n):
+        # print 'AssignExpr'
+        if isinstance(n.value, ArrayCreationExpr): return
         if type(n.target) == FieldAccessExpr:
             v = self.trans_faccess(n.target)
             if v:
@@ -350,7 +383,7 @@ class Translator(object):
             self.printt(assignop[n.op.upper()])
             self.printt(' ')
             n.value.accept(self)
-            
+
     @v.when(FieldAccessExpr)
     def visit(self, n):
         self.trans_faccess(n)
@@ -371,6 +404,7 @@ class Translator(object):
 
     @v.when(ObjectCreationExpr)
     def visit(self, n):
+        # print 'ObjectCreationExpr:', n
         if n.scope:
             n.getScope.accept(self)
             self.printt(".")
@@ -388,19 +422,32 @@ class Translator(object):
                 else:
                     tname = a.typee.name
                 typs.append(tname)
-                    
+
             self.printt('_'.join([n.typee.name, n.typee.name] + typs))
         else:
             self.printt('{0}_{0}'.format(self.trans_ty(n.typee, False)))
-        self.printt('((new Object(__cid={}()))'.format(self.trans_ty(n.typee, False)))
+        self.printt('(new Object(__cid={}())'.format(self.trans_ty(n.typee, False)))
         if n.args: self.printt(', ')
         self.printSepList(n.args)
         self.printt(')')
-        
+
     @v.when(ArrayCreationExpr)
     def visit(self, n):
-        for c in xrange(n.arrayCount):
-            n.initializer.accept(self)
+        print 'arraycreationexpr'
+        pass
+        # n.typee.accept(self)
+        # if n.dimensions:
+        #     for d in n.dimensions:
+        #         self.printt('[')
+        #         d.accept(self)
+        #         self.printt(']')
+        #     for c in xrange(n.arrayCount):
+        #         self.printt('[]')
+        # else:
+        #     for c in xrange(n.arrayCount):
+        #         self.printt('[]')
+        #     self.printt(' ')
+        #     n.initializer.accept(self)
 
     @v.when(ArrayInitializerExpr)
     def visit(self, n):
@@ -470,7 +517,7 @@ class Translator(object):
     @v.when(DoubleLiteralExpr)
     def visit(self, n):
         self.printt(n.value)
-        
+
     @v.when(NullLiteralExpr)
     def visit(self, n):
         self.printt('null')
@@ -490,7 +537,7 @@ class Translator(object):
         cls = n.symtab.get(n.typee.name)
         n.expr.accept(self)
         self.printt('.__cid == {}()'.format(str(cls)))
-        
+
         def subclss(allsubs):
             if not allsubs: return
             self.printt(' || ')
@@ -499,7 +546,7 @@ class Translator(object):
             subclss(allsubs[1:])
 
         subclss(utils.all_subClasses(cls))
-            
+
     # type
     @v.when(ClassOrInterfaceType)
     def visit(self, n):
@@ -515,29 +562,28 @@ class Translator(object):
 
     @v.when(ReferenceType)
     def visit(self, n):
+        # print 'ReferenceType -- arrayCount: {}'.format(n.arrayCount)
         n.typee.accept(self)
         for i in xrange(n.arrayCount):
             self.printt('[')
-            if n.values:
-                n.values[i].accept(self)
-            else:
-                self.printt(str(self.num_mtds))
+            if n.values: n.values[i].accept(self)
+            else: self.printt(str(self.num_mtds))
             self.printt(']')
 
     def trans(self, s):
         self.buf = cStringIO.StringIO()
         s.accept(self)
         return util.get_and_close(self.buf)
-    
+
     def trans_ty(self, typ, convert=True):
-        _tname = typ.sanitize_ty(typ.name.strip())
+        _tname = typ.sanitize_ty(typ.name.strip()) if not isinstance(typ, unicode) and not isinstance(typ, str) else typ
         r_ty = _tname
         if typ and type(typ) == ReferenceType:
             if typ.name in self.ty: r_ty = self.ty[typ.name] if convert else typ.name
             # Unknown type, cast as Object for now
             elif typ.name in CONVERSION_TYPES: r_ty = CONVERSION_TYPES[_tname]
             else: r_ty = u'Object'
-        
+
             if typ.values: r_ty += ''.join(["[{}]".format(v.name) for v in typ.values])
             else: r_ty += ''.join(['[{}]'.format(self.ARRAY_SIZE) for i in xrange(typ.arrayCount)])
         # we've already rewritten this type
@@ -585,8 +631,7 @@ class Translator(object):
     def trans_call(self, callexpr):
         tltr = copy.copy(self)
         tltr.indentation = ''
-            
-        
+
         logging.debug('calling: {} from {}'.format(str(callexpr), utils.get_coid(callexpr)))
         # 15.12.1 Compile-Time Step 1: Determine Class or Interface to Search
         if not callexpr.scope:
@@ -596,7 +641,8 @@ class Translator(object):
                 # super . [TypeArguments] Identifier ( [ArgumentList] )
                 sups = utils.get_coid(callexpr).supers()
                 if not sups:
-                    raise Exception('Calling super with no super class {} in {}'.format(callexpr, utils.get_coid(callexpr)))
+                    raise Exception('Calling super with no super class {} in {}'.format(
+                        callexpr, utils.get_coid(callexpr)))
                 cls = sups[0]
                 scope = NameExpr({u'name':u'self'})
             else:
@@ -609,31 +655,56 @@ class Translator(object):
                 else:
                     # print 'scope:', scope, scope.typee, scope.typee.name
                     # print callexpr.symtab
-                    cls = callexpr.symtab.get(scope.typee.name)
+                    cls = callexpr.symtab.get(scope.typee.name) \
+                          if not isinstance(scope, ClassOrInterfaceType) else None
             # TODO: more possibilities
-        
+
         def uninterpreted():
-            if callexpr.scope:
-                tltr.buf = cStringIO.StringIO()
-                scp = tltr.trans(callexpr.scope)
+            if not callexpr.scope:
+                raise Exception('Uninterpreted function with no scope? {}'.format(callexpr))
+            scope = utils.node_to_obj(callexpr.scope)
+            typ = scope.typee
+            print 'scope:', scope, scope.typee, typ
+            cu = callexpr.symtab[u'_cu_'].symtab
+            ftypes = []
+            for key, val in cu.items():
+                if isinstance(val, ImportDeclaration):
+                    nm = key.split('.')
+                    if str(typ) == nm[-1]:
+                        types = utils.get_mtd_types(os.path.join(*nm), callexpr.name, len(callexpr.args))
+                        if not types: raise Exception('Somethign went wrong: {} {}'.format(key, callexpr.name))
+                        ftypes.extend(types)
+            print 'ftypes:', ftypes
+            if not ftypes: raise Exception('Somethign went wrong (ftypes): {}'.format(callexpr.name))
+
+            # write call
+            tltr.buf = cStringIO.StringIO()
+            scp = tltr.trans(callexpr.scope)
+            if not isinstance(scope, ClassOrInterfaceType):
                 callexpr.args = [NameExpr({u'name':scp})] + callexpr.args
-            atyps = callexpr.arg_typs()
-            # add fun declaration as uninterpreted
-            with open(os.path.join(self.sk_dir, 'meta.sk'), 'a') as f:
-                f.write('{} {}('.format(str(callexpr.typee), callexpr.name))
-                for i in range(len(atyps)-1):
-                    f.write('{} {}, '.format(str(atyps[i]), 'p'+str(i)))
-                if len(atyps) > 0: f.write('{} {}'.format(str(atyps[-1].typee), 'p'+str(len(atyps)-1)))
-                f.write(');\n')
-                    
             self.printt(callexpr.name)
             self.printArguments(callexpr.args)
-            
+
+            # write uninterpreted function signature
+            # add fun declaration as uninterpreted
+            with open(os.path.join(self.sk_dir, 'meta.sk'), 'a') as f:
+                print 'wrinting ftypes', ftypes
+                for fun in ftypes:
+                    fun = map(convert, fun)
+                    print 'fun:', fun
+                    f.write('{} {}('.format(self.trans_ty(fun.pop()), callexpr.name))
+                    if not isinstance(scope, ClassOrInterfaceType):
+                        f.write('{} p0'.format(self.trans_ty(scope.typee)))
+                        if len(fun) > 0: f.write(', ')
+                    for i in range(len(fun)-1):
+                        f.write('{} {}, '.format(self.trans_ty(fun[i]), 'p'+str(i+1)))
+                    if len(fun) > 0: f.write('{} {}'.format(self.trans_ty(fun[-1]), 'p'+str(len(fun))))
+                f.write(');\n')
+
         logging.debug('searching in class: {}'.format(cls))
         if not cls:
             uninterpreted()
             return
-            
 
         # Compile-Time Step 2: Determine Method Signature
         # 15.12.2.1. Identify Potentially Applicable Methods
@@ -660,7 +731,7 @@ class Translator(object):
 
         # 15.12.2.5. Choosing the Most Specific Method
         mtd = self.most_specific(strict_mtds + loose_mtds)
-        
+
         # 15.12.2.6. Method Invocation Type
         # TODO: ignoring this for now. Type will just be type of method
 
@@ -710,7 +781,7 @@ class Translator(object):
             if type(mtd.typee) != VoidType: self.printt('(')
             self.print_dispatch(conexprs)
             if type(mtd.typee) != VoidType: self.printt(')')
-                        
+
         logging.debug('**END CALL***\n')
 
     def identify_potentials(self, callexpr, cls, mtds):
@@ -728,7 +799,7 @@ class Translator(object):
             param_typs = m.param_typs()
             if self.match_strict(arg_typs, param_typs): pots.append(m)
         return pots
-                
+
     def match_strict(self, arg_typs, param_typs):
         for atyp,ptyp in zip(arg_typs, param_typs):
             return self.identity_conversion(atyp,ptyp) or \
@@ -736,7 +807,7 @@ class Translator(object):
                 self.reference_widening(atyp,ptyp)
         # if there are no arguments
         return True
-                
+
     def identify_loose(self, callexpr, mtds):
         pots = []
         arg_typs = callexpr.arg_typs()
@@ -745,7 +816,7 @@ class Translator(object):
             param_typs = m.param_typs()
             if self.match_loose(arg_typs, param_typs): pots.append(m)
         return pots
-        
+
     def match_loose(self, arg_typs, param_typs):
         # TODO: Spec says if the result is a raw type, do an unchecked conversion. Does this already happen?
         for atyp,ptyp in zip(arg_typs, param_typs):
@@ -771,11 +842,11 @@ class Translator(object):
         for mi in xrange(len(mtds)):
             if most(mtds[mi], mtds[:mi] + mtds[mi+1:]): return mtds[mi]
         return []
-            
+
     # Conversions
     def identity_conversion(self, typ1, typ2):
         return True if typ1.name == typ2.name else False
-        
+
     def primitive_widening(self, typ1, typ2):
         t1 = typ1 if type(typ1) == unicode else typ1.name
         t2 = typ2 if type(typ2) == unicode else typ2.name
@@ -802,7 +873,7 @@ class Translator(object):
         if m: return (cls, m) # found it!
         elif s: return self.find_mtd(s[0], dscriptor) # nope, check superclasses
         else: return (None, None) # doesn't exist
-    
+
     def print_dispatch(self, c):
         # we need to do this b/c the elseExpr's are going to have MethodCallExpr which
         # get handled differently
@@ -883,10 +954,10 @@ class Translator(object):
             dis = IfStmt(d)
             dis.thenStmt.args = args
         return dis
-                    
+
     def indent(self): self._level += 1
     def unindent(self): self._level -= 1
-    
+
     def makeIndent(self):
         for i in xrange(self._level): self._buf.write(self._indentation)
 
@@ -901,7 +972,7 @@ class Translator(object):
             self.printt(arg)
         self.buf.write('\n')
         self.indented = False
-        
+
     def printSepList(self, args, sep=','):
         if args:
             lenn = len(args)
@@ -913,7 +984,7 @@ class Translator(object):
         self.printt('(')
         self.printSepList(args)
         self.printt(')')
-        
+
     def printMods(self, mods):
         if td.isGenerator(mods): self.printt('generator ')
 
@@ -941,6 +1012,11 @@ class Translator(object):
     def sk_dir(self): return self._sk_dir
     @sk_dir.setter
     def sk_dir(self, v): self._sk_dir = v
+
+    @property
+    def num_mtds(self): return self._num_mtds
+    @num_mtds.setter
+    def num_mtds(self, v): self._num_mtds = v
 
     @property
     def mtd(self): return self._mtd
