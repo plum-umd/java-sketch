@@ -19,9 +19,8 @@ handling javaparser AST
 """
 def toAST(files, ext):
     prg_files = []
-    for f in files:
-        prg_files.extend(get_files_from_path(f, "java"))
-    if not prg_files: exit('File(s) not found!')
+    for f in files: prg_files.extend(get_files_from_path(f, "java"))
+    if not prg_files: exit('parser.util: File(s) not found!')
     java_in = os.path.abspath(os.path.join(pwd, '../tests/ir_asts/API.java'))
     json_out = os.path.abspath(os.path.join(pwd, '../tests/ir_asts/java.json'))
     api = ""
