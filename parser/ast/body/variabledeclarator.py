@@ -15,7 +15,7 @@ class VariableDeclarator(Node):
             # Expression
             i = kwargs.get('init', None)
             self._init = locs[i[u'@t']](i) if i else None
-            if self._init and not self.typee:
+            if self._init and self.parentNode and not self.typee:
                 self._init.typee = self.parentNode.typee
         
     @property

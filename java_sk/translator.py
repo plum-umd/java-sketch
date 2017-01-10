@@ -6,6 +6,7 @@ import os
 
 from . import util
 from . import convert
+from . import builtins
 
 import visit as v
 
@@ -94,11 +95,11 @@ class Translator(object):
         self._num_mtds = 1
 
         # for pretty printing
-        self._indentation = kwargs.get('indentation', "  ")
+        self._indentation = kwargs.get('indentation', '  ')
         self._level = kwargs.get('level', 0)
         self._indented = kwargs.get('indented', False)
 
-    @v.on("node")
+    @v.on('node')
     def visit(self, node):
         """
         This is the generic method that initializes the
@@ -279,18 +280,18 @@ class Translator(object):
 
     @v.when(AssertStmt)
     def visit(self, n):
-        self.printt("assert ")
+        self.printt('assert ')
         n.check.accept(self)
         if n.msg:
-            self.printt(" : ")
+            self.printt(' : ')
             n.msg.accept(self)
-        self.printt(";")
+        self.printt(';')
 
     @v.when(AssumeStmt)
     def visit(self, n):
-        self.printt("assume ")
+        self.printt('assume ')
         n.expr.accept(self)
-        self.printt(";")
+        self.printt(';')
 
     @v.when(SwitchStmt)
     def visit(self, n):
@@ -332,10 +333,10 @@ class Translator(object):
 
     @v.when(ContinueStmt)
     def visit(self, n):
-        self.printt("continue")
+        self.printt('continue')
         if n.idd:
             self.printt(' {}'.format(n.idd))
-        self.printt(";")
+        self.printt(';')
 
     @v.when(EmptyStmt)
     def visit(self, n): pass
@@ -407,7 +408,7 @@ class Translator(object):
         # print 'ObjectCreationExpr:', n
         if n.scope:
             n.getScope.accept(self)
-            self.printt(".")
+            self.printt('.')
         if n.args:
             typs = []
             for a in n.args:
@@ -631,7 +632,19 @@ class Translator(object):
     def trans_call(self, callexpr):
         tltr = copy.copy(self)
         tltr.indentation = ''
+        def write_call():
+            tltr.buf = cStringIO.StringIO()
+            if callexpr.scope:
+                scp = tltr.trans(callexpr.scope)
+                if not isinstance(scope, ClassOrInterfaceType):
+                    callexpr.args = [NameExpr({u'name':scp})] + callexpr.args
+            self.printt(callexpr.name)
+            self.printArguments(callexpr.args)
 
+        if callexpr.name in builtins:
+            write_call()
+            return
+            
         logging.debug('calling: {} from {}'.format(str(callexpr), utils.get_coid(callexpr)))
         # 15.12.1 Compile-Time Step 1: Determine Class or Interface to Search
         if not callexpr.scope:
@@ -678,12 +691,7 @@ class Translator(object):
             if not ftypes: raise Exception('Somethign went wrong (ftypes): {}'.format(callexpr.name))
 
             # write call
-            tltr.buf = cStringIO.StringIO()
-            scp = tltr.trans(callexpr.scope)
-            if not isinstance(scope, ClassOrInterfaceType):
-                callexpr.args = [NameExpr({u'name':scp})] + callexpr.args
-            self.printt(callexpr.name)
-            self.printArguments(callexpr.args)
+            write_call()
 
             # write uninterpreted function signature
             # add fun declaration as uninterpreted
@@ -763,14 +771,13 @@ class Translator(object):
             scp = tltr.trans(callexpr.scope)
             args = [NameExpr({u'name':scp})] + callexpr.args
 
-            tltr.buf = cStringIO.StringIO()
-            scp = tltr.trans(callexpr.scope)
+            # tltr.buf = cStringIO.StringIO()
+            # scp = tltr.trans(callexpr.scope)
 
             conexprs = []
             for c in reversed(clss): # start from bottom of hierarchy
                 (cls, mdec) = self.find_mtd(c, str(mtd))
-                if cls:
-                    conexprs.append(self.make_dispatch(scp, c, mdec, args))
+                if cls: conexprs.append(self.make_dispatch(scp, c, mdec, args))
                 else: raise Exception('Non-static mode, no mtd {} in {}'.format(str(mtd), str(cls)))
             # need to foldr then reverse
             def combine(l, r):
@@ -883,12 +890,9 @@ class Translator(object):
             self.printt('{}'.format(c.thenExpr.name))
             self.printArguments(c.thenExpr.args)
             self.printt(' : ')
-            if type(c.elseExpr) == IntegerLiteralExpr:
-                self.printt('0')
-            elif type(c.elseExpr) == ClassOrInterfaceType:
-                self.printt('null')
-            else:
-                self.print_dispatch(c.elseExpr)
+            if type(c.elseExpr) == IntegerLiteralExpr: self.printt('0')
+            elif type(c.elseExpr) == ClassOrInterfaceType: self.printt('null')
+            else: self.print_dispatch(c.elseExpr)
         else:
             self.printt('if (')
             c.condition.accept(self)
