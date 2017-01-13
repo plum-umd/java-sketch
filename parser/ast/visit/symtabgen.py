@@ -83,12 +83,12 @@ class SymtabGen(object):
         # The scope of a declaration of a member m declared in or inherited by
         # a class type C is the entire body of C, including any nested type declarations.
         self.new_symtab(node, cp=True)
-        if type(node.parentNode) == ClassOrInterfaceDeclaration:
-            node.parentNode.symtab.update({str(node):node})
-        node.symtab.update({str(node):node})
+        # if type(node.parentNode) == ClassOrInterfaceDeclaration:
+        #     node.parentNode.symtab.update({str(node):node})
+        node.symtab.update({node.name:node})
         [node.symtab.update({n.name:n}) for n in node.extendsList if n.name not in node.symtab]
         [node.symtab.update({n.name:n}) for n in node.implementsList if n.name not in node.symtab]
-        map(lambda n: node.symtab.update({n.name:n} if type(n) == FieldDeclaration else \
+        map(lambda n: node.symtab.update({n.name:n} if type(n) == FieldDeclaration or type(n) == ClassOrInterfaceDeclaration else \
                                          {str(n):n}), node.members)
         map(lambda n: n.accept(self), node.members)
 

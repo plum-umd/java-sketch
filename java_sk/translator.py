@@ -115,14 +115,20 @@ class Translator(object):
     # body
     @v.when(ConstructorDeclaration)
     def visit(self, n):
+        cls = utils.get_coid(n)
+        etypes = cls.enclosing_types()
         self.printt('Object {}'.format(str(n)))
         self.printt('(')
-        p = Parameter({u'id':{u'name':u'self'},
-                       u'type':{u'@t':u'ClassOrInterfaceType',u'name':u'Object'}})
-        n.parameters = [p] + n.parameters
+        p = [Parameter({u'id':{u'name':u'self'},
+                       u'type':{u'@t':u'ClassOrInterfaceType',u'name':u'Object'}})]
+        if cls.isinner():
+            p.append(Parameter({u'id':{u'name':u'self_{}'.format(len(etypes)-1)},
+                                u'type':{u'@t':u'ClassOrInterfaceType',u'name':u'Object'}}))
+
+        n.parameters = p + n.parameters
 
         self.printSepList(n.parameters)
-        self.printt(')')
+        self.printt(') ')
 
         for i in xrange(n.arrayCount): self.printt('[]')
         if n.throws:
@@ -131,6 +137,9 @@ class Translator(object):
 
         if not n.body: self.printt(';')
         else:
+            if cls.isinner():
+                i = len(etypes)-1
+                n.body.stmts = ['self{0} = self_{0};'.format(i)] + n.body.stmts
             n.body.stmts = n.body.stmts + [u'return self;']
             n.body.accept(self)
         self.printLn()
@@ -345,19 +354,25 @@ class Translator(object):
     @v.when(NameExpr)
     def visit(self, n):
         obj = utils.node_to_obj(n)
+        print 'obj:', obj, type(obj), obj.typee
         if type(obj) == FieldDeclaration:
             if td.isStatic(obj):
                 self.printt(obj.name)
                 return
             this = utils.get_coid(n)
-            etypes = map(str, this.enclosing_types())
-            if etypes:
-                # this is the index of the class where the field lives
-                i = etypes.index(str(utils.get_coid(obj)))
-                slf = '.'.join(map(lambda i: 'self{}'.format(i), range(len(etypes)-1,i-1,-1)))
+            obj_cls = utils.get_coid(obj)
+            print 'str(obj):', obj.name
+            print this.symtab
+            if obj.name in this.symtab and this == obj_cls:
+                i = ''
             else:
-                slf = 'self'
-            self.printt('.'.join([slf, str(obj)]))
+                etypes = this.enclosing_types()
+                if etypes:
+                    for (i,j) in zip(xrange(len(etypes)), reversed(etypes)):
+                        if j == obj_cls: break
+                # this is the index of the class where the field lives
+            slf = 'self{}'.format(i)
+            self.printt('{}.{}'.format(slf, str(obj)))
         else: self.printt(n.name)
 
     @v.when(VariableDeclarationExpr)
@@ -405,7 +420,10 @@ class Translator(object):
 
     @v.when(ObjectCreationExpr)
     def visit(self, n):
-        # print 'ObjectCreationExpr:', n
+        print 'ObjectCreationExpr:', n, n.beginLine
+        obj_cls = n.symtab.get(n.typee.name)
+        enclosing_cls = obj_cls.enclosing_types()[-1] if obj_cls.isinner() else None
+        print 'obj_cls:', obj_cls, type(obj_cls)
         if n.scope:
             n.getScope.accept(self)
             self.printt('.')
@@ -424,10 +442,15 @@ class Translator(object):
                     tname = a.typee.name
                 typs.append(tname)
 
-            self.printt('_'.join([n.typee.name, n.typee.name] + typs))
+            ty = self.trans_typ(n.typee)
+            self.printt('_'.join([ty, ty] + typs))
         else:
-            self.printt('{0}_{0}'.format(self.trans_ty(n.typee, False)))
-        self.printt('(new Object(__cid={}())'.format(self.trans_ty(n.typee, False)))
+            print 'n.typee:', n.typee, type(n.typee), self.trans_ty(n.typee)
+            self.printt('{0}_{0}'.format(str(obj_cls)))
+            if enclosing_cls: self.printt('_{}'.format(str(enclosing_cls)))
+
+        self.printt('(new Object(__cid={}())'.format(str(obj_cls)))
+        if obj_cls.isinner(): self.printt(', self')
         if n.args: self.printt(', ')
         self.printSepList(n.args)
         self.printt(')')
@@ -577,22 +600,24 @@ class Translator(object):
         return util.get_and_close(self.buf)
 
     def trans_ty(self, typ, convert=True):
+        print 'trans_ty:', typ, type(typ)
+        print self.ty
         _tname = typ.sanitize_ty(typ.name.strip()) if not isinstance(typ, unicode) and not isinstance(typ, str) else typ
         r_ty = _tname
-        if typ and type(typ) == ReferenceType:
-            if typ.name in self.ty: r_ty = self.ty[typ.name] if convert else typ.name
-            # Unknown type, cast as Object for now
-            elif typ.name in CONVERSION_TYPES: r_ty = CONVERSION_TYPES[_tname]
-            else: r_ty = u'Object'
-
-            if typ.values: r_ty += ''.join(["[{}]".format(v.name) for v in typ.values])
-            else: r_ty += ''.join(['[{}]'.format(self.ARRAY_SIZE) for i in xrange(typ.arrayCount)])
+        if typ and (type(typ) == ClassOrInterfaceType or type(typ) == ReferenceType):
+            cls = typ.symtab.get(typ.name)
+            _tname = str(cls)
+        
         # we've already rewritten this type
-        elif _tname in self.ty: r_ty = self.ty[_tname] if convert else r_ty
+        if _tname in self.ty: r_ty = self.ty[_tname] if convert else r_ty
         # Java types to Sketch types
         elif _tname in CONVERSION_TYPES: r_ty = CONVERSION_TYPES[_tname]
         # Unknown type, cast as Object for now
         else: r_ty = u'Object'
+
+        if typ and type(typ) == ReferenceType:
+            if typ.values: r_ty += ''.join(["[{}]".format(v.name) for v in typ.values])
+            else: r_ty += ''.join(['[{}]'.format(self.ARRAY_SIZE) for i in xrange(typ.arrayCount)])
         return r_ty
 
     def trans_faccess(self, n):
@@ -660,16 +685,17 @@ class Translator(object):
                 scope = NameExpr({u'name':u'self'})
             else:
                 scope = utils.node_to_obj(callexpr.scope)
+                print 'scope1:', scope
                 if not scope: return
                 # TypeName . [TypeArguments] Identifier
                 if type(scope) == ClassOrInterfaceDeclaration: cls = scope
                 # ExpressionName . [TypeArguments] Identifier
                 # Primary . [TypeArguments] Identifier
                 else:
-                    # print 'scope:', scope, scope.typee, scope.typee.name
-                    # print callexpr.symtab
-                    cls = callexpr.symtab.get(scope.typee.name) \
-                          if not isinstance(scope, ClassOrInterfaceType) else None
+                    print 'scope:', scope, scope.typee, scope.typee.name
+                    print 'sym:', callexpr.symtab
+                    cls = scope.symtab.get(scope.typee.name) \
+                        if not isinstance(scope, ClassOrInterfaceType) else None
             # TODO: more possibilities
 
         def uninterpreted():
