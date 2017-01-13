@@ -56,7 +56,7 @@ class ClassOrInterfaceDeclaration(TypeDeclaration):
                 if type(ic) == ClassOrInterfaceType: print 'WARNING: class {} implements unknown type {}'.format(n.name, e.name)
             lst.extend(sups)
             map(get_sups, sups)
-            get_sups(self)
+        get_sups(self)
         return lst
 
     @property

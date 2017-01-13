@@ -354,15 +354,12 @@ class Translator(object):
     @v.when(NameExpr)
     def visit(self, n):
         obj = utils.node_to_obj(n)
-        print 'obj:', obj, type(obj), obj.typee
         if type(obj) == FieldDeclaration:
             if td.isStatic(obj):
                 self.printt(obj.name)
                 return
             this = utils.get_coid(n)
             obj_cls = utils.get_coid(obj)
-            print 'str(obj):', obj.name
-            print this.symtab
             if obj.name in this.symtab and this == obj_cls:
                 i = ''
             else:
@@ -420,10 +417,9 @@ class Translator(object):
 
     @v.when(ObjectCreationExpr)
     def visit(self, n):
-        print 'ObjectCreationExpr:', n, n.beginLine
+        # print 'ObjectCreationExpr:', n, n.beginLine
         obj_cls = n.symtab.get(n.typee.name)
         enclosing_cls = obj_cls.enclosing_types()[-1] if obj_cls.isinner() else None
-        print 'obj_cls:', obj_cls, type(obj_cls)
         if n.scope:
             n.getScope.accept(self)
             self.printt('.')
@@ -442,10 +438,10 @@ class Translator(object):
                     tname = a.typee.name
                 typs.append(tname)
 
-            ty = self.trans_typ(n.typee)
-            self.printt('_'.join([ty, ty] + typs))
+            self.printt('{0}_{0}_'.format(str(obj_cls)))
+            if enclosing_cls: self.printt('{}_'.format(str(enclosing_cls)))
+            self.printt('_'.join(typs))
         else:
-            print 'n.typee:', n.typee, type(n.typee), self.trans_ty(n.typee)
             self.printt('{0}_{0}'.format(str(obj_cls)))
             if enclosing_cls: self.printt('_{}'.format(str(enclosing_cls)))
 
@@ -457,7 +453,7 @@ class Translator(object):
 
     @v.when(ArrayCreationExpr)
     def visit(self, n):
-        print 'arraycreationexpr'
+        # print 'arraycreationexpr'
         pass
         # n.typee.accept(self)
         # if n.dimensions:
@@ -600,8 +596,6 @@ class Translator(object):
         return util.get_and_close(self.buf)
 
     def trans_ty(self, typ, convert=True):
-        print 'trans_ty:', typ, type(typ)
-        print self.ty
         _tname = typ.sanitize_ty(typ.name.strip()) if not isinstance(typ, unicode) and not isinstance(typ, str) else typ
         r_ty = _tname
         if typ and (type(typ) == ClassOrInterfaceType or type(typ) == ReferenceType):
@@ -685,15 +679,12 @@ class Translator(object):
                 scope = NameExpr({u'name':u'self'})
             else:
                 scope = utils.node_to_obj(callexpr.scope)
-                print 'scope1:', scope
                 if not scope: return
                 # TypeName . [TypeArguments] Identifier
                 if type(scope) == ClassOrInterfaceDeclaration: cls = scope
                 # ExpressionName . [TypeArguments] Identifier
                 # Primary . [TypeArguments] Identifier
                 else:
-                    print 'scope:', scope, scope.typee, scope.typee.name
-                    print 'sym:', callexpr.symtab
                     cls = scope.symtab.get(scope.typee.name) \
                         if not isinstance(scope, ClassOrInterfaceType) else None
             # TODO: more possibilities
@@ -703,7 +694,6 @@ class Translator(object):
                 raise Exception('Uninterpreted function with no scope? {}'.format(callexpr))
             scope = utils.node_to_obj(callexpr.scope)
             typ = scope.typee
-            print 'scope:', scope, scope.typee, typ
             cu = callexpr.symtab[u'_cu_'].symtab
             ftypes = []
             for key, val in cu.items():
@@ -713,7 +703,6 @@ class Translator(object):
                         types = utils.get_mtd_types(os.path.join(*nm), callexpr.name, len(callexpr.args))
                         if not types: raise Exception('Somethign went wrong: {} {}'.format(key, callexpr.name))
                         ftypes.extend(types)
-            print 'ftypes:', ftypes
             if not ftypes: raise Exception('Somethign went wrong (ftypes): {}'.format(callexpr.name))
 
             # write call
@@ -722,10 +711,8 @@ class Translator(object):
             # write uninterpreted function signature
             # add fun declaration as uninterpreted
             with open(os.path.join(self.sk_dir, 'meta.sk'), 'a') as f:
-                print 'wrinting ftypes', ftypes
                 for fun in ftypes:
                     fun = map(convert, fun)
-                    print 'fun:', fun
                     f.write('{} {}('.format(self.trans_ty(fun.pop()), callexpr.name))
                     if not isinstance(scope, ClassOrInterfaceType):
                         f.write('{} p0'.format(self.trans_ty(scope.typee)))
