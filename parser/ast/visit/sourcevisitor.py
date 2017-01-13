@@ -181,7 +181,6 @@ class SourcePrinter(object):
 
         self.printMods(n)
 
-        self.printt(' ')
         self.printt(n.name)
         self.printt('(')
 

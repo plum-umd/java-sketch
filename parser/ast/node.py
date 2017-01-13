@@ -230,5 +230,4 @@ class Node(object):
     def gen(self): return set([])
     def kill(self): return set([])
 
-    def sanitize_ty(self, tname):
-        return tname.replace('$','_').replace('.','_').replace('?', u'Object')
+    def sanitize_ty(self, tname): return tname.replace('$','_').replace('.','_').replace('?', u'Object')

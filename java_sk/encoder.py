@@ -115,20 +115,22 @@ class Encoder(object):
       
         # --bnd-cbits: the number of bits for integer holes
         bits = max(5, int(math.ceil(math.log(len(self.mtds), 2))))
-        buf.write("pragma options \"--bnd-cbits {}\";\n".format(bits))
+        buf.write('pragma options "--bnd-cbits {}";\n'.format(bits))
         
         # --bnd-unroll-amnt: the unroll amount for loops
         unroll_amnt = 35
         if unroll_amnt:
-            buf.write("pragma options \"--bnd-unroll-amnt {}\";\n".format(35))
+            buf.write('pragma options "--bnd-unroll-amnt {}";\n'.format(35))
         
         # --bnd-inline-amnt: bounds inlining to n levels of recursion
         inline_amnt = None # use a default value if not set
         # setting it 1 means there is no recursion
         if inline_amnt:
-            buf.write("pragma options \"--bnd-inline-amnt {}\";\n".format(inline_amnt))
-            buf.write("pragma options \"--bnd-bound-mode CALLSITE\";\n")
+            buf.write('pragma options "--bnd-inline-amnt {}";\n'.format(inline_amnt))
+            buf.write('pragma options "--bnd-bound-mode CALLSITE";\n')
 
+        buf.write('pragma options "--fe-fpencoding AS_FIXPOINT";\n')
+        
         sks = ['meta.sk', 'Object.sk'] + cls_sks
         for sk in sks: buf.write("include \"{}\";\n".format(sk))
 
@@ -182,20 +184,19 @@ class Encoder(object):
             buf.write("void {1}_s({0} {1}_s) {{ {1} = {1}_s; }}\n".format(typ, fld.name))
             buf.write('\n')
 
+        etypes = cls.enclosing_types()
+        if etypes: buf.write('Object self{};\n\n'.format(len(etypes)-1))
         # not a base class, not the harness class, and doesn't override the base constructor
         if cls not in self.bases and str(cls) != str(self.mcls) and \
            not filter(lambda c: len(c.parameters) == 0, cons):
             # these represent this$N (inner classes)
-            etypes = cls.enclosing_types()
-            if etypes:
-                buf.write('Object self{};\n\n'.format(len(etypes)-1))
             if etypes:
                 i = len(etypes)-1
                 init = 'self{0} = self_{0};'.format(i)
                 buf.write("Object {0}_{0}_{1}(Object self, Object self_{2}) {{\n"
                           "    {3}\n"
                           "    return self;\n"
-                          "}}\n\n".format(str(cls), '_'.join(map(lambda t: t.fullname, etypes)), i, init))
+                          "}}\n\n".format(str(cls), str(etypes[-1]), i, init))
 
             else:
                 buf.write("Object {0}_{0}(Object self) {{\n"
@@ -248,7 +249,7 @@ class Encoder(object):
                  {u'@t': u'PrimitiveType', u'type':
                   {u'nameOfBoxedType': u'Integer', u'name': u'Int'}}}
         fd = FieldDeclaration(fld_d)
-        self.tltr.flds['__cid'] = '__cid'
+        # self.tltr.flds['__cid'] = '__cid'
         cls_v.members.append(fd)
         cls_v.childrenNodes.append(fd)
         def per_cls(cls):
@@ -260,8 +261,8 @@ class Encoder(object):
                 fld_v.parentNode = cls
                 cls_v.members.append(fld_v)
                 cls_v.childrenNodes.append(fld_v)
-                nm = fld.name if td.isStatic(fld) else str(fld)
-                self.tltr.flds['.'.join([str(cls), fld.name])] = nm
+                # nm = fld.name if td.isStatic(fld) else str(fld)
+                # self.tltr.flds['.'.join([str(cls), fld.name])] = nm
             map(cp_fld, flds)
         map(per_cls, utils.all_subClasses(cls))
         return cls_v
