@@ -886,12 +886,12 @@ class Translator(object):
         else: return False
 
     # dynamic dispatch
-    def find_mtd(self, cls, dscriptor):
+    def find_mtd(self, cls, descriptor):
         # check current class for method
-        m = cls.symtab.get(dscriptor)
+        m = cls.symtab.get(descriptor)
         s = filter(lambda c: not c.interface, cls.supers())
         if m: return (cls, m) # found it!
-        elif s: return self.find_mtd(s[0], dscriptor) # nope, check superclasses
+        elif s: return self.find_mtd(s[0], descriptor) # nope, check superclasses
         else: return (None, None) # doesn't exist
 
     def print_dispatch(self, c):

@@ -43,7 +43,7 @@ def create_logger(log_lvl):
     # create console handler and set level
     h = logging.StreamHandler()
     h.setLevel(log_lvl)
-    formatter = logging.Formatter(fmt='%(asctime)s %(message)s', datefmt='%I:%M:%S') # create formatter
+    formatter = logging.Formatter(fmt='{} %(asctime)s [%(levelname)s] %(pathname)s:%(lineno)d %(message)s', datefmt='%I:%M:%S')
     h.setFormatter(formatter) # add formatter to h
     logger.addHandler(h) # add h to logger
 

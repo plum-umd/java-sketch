@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import logging
+
 from . import _import
 from .typedeclaration import TypeDeclaration
 from ..type.classorinterfacetype import ClassOrInterfaceType
@@ -42,18 +44,20 @@ class ClassOrInterfaceDeclaration(TypeDeclaration):
             for e in n.extendsList: # add items from extendsList to solution
                 if e.name == u'Object': continue # ignore Object
                 sc = n.symtab.get(e.name)
-                if sc: sups.append(sc)
+                if sc:
+                    if type(sc) == ClassOrInterfaceType: logging.warning('class {} extends unknown type {}'.format(n.name, e.name))
+                    else: sups.append(sc)
                 else:
                     print 'ERROR: class {} not in symbol table of {}'.format(e.name, n.name) # library?
                     return
-                if type(sc) == ClassOrInterfaceType: print 'WARNING: class {} extends unknown type {}'.format(n.name, e.name)
             for i in n.implementsList:
                 ic = n.symtab.get(i.name)
-                if ic: sups.append(ic)
+                if ic:
+                    if type(ic) == ClassOrInterfaceType: logging.warning('class {} implements unknown type {}'.format(n.name, e.name))
+                    else: sups.append(ic)
                 else:
                     print 'ERROR: class {} not in symbol table of {}'.format(e.name, n.name) # library?
                     continue
-                if type(ic) == ClassOrInterfaceType: print 'WARNING: class {} implements unknown type {}'.format(n.name, e.name)
             lst.extend(sups)
             map(get_sups, sups)
         get_sups(self)
