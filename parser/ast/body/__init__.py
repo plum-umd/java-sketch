@@ -24,6 +24,8 @@ def _import():
     from ..expr.doubleliteralexpr import DoubleLiteralExpr
     from ..expr.stringliteralexpr import StringLiteralExpr
     from ..expr.longliteralexpr import LongLiteralExpr
+    from ..expr.nullliteralexpr import NullLiteralExpr
+    from ..expr.booleanliteralexpr import BooleanLiteralExpr
     from ..expr.nameexpr import NameExpr
     from ..expr.binaryexpr import BinaryExpr
     from ..expr.assignexpr import AssignExpr
@@ -33,9 +35,11 @@ def _import():
     from ..expr.methodcallexpr import MethodCallExpr
     from ..expr.arraycreationexpr import ArrayCreationExpr
     from ..expr.arrayinitializerexpr import ArrayInitializerExpr
+    from ..expr.arrayaccessexpr import ArrayAccessExpr
     from ..expr.enclosedexpr import EnclosedExpr
     from ..expr.conditionalexpr import ConditionalExpr
     from ..expr.castexpr import CastExpr
+    from ..expr.unaryexpr import UnaryExpr
 
     return locals()
 

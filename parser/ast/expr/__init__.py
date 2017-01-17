@@ -27,6 +27,7 @@ def _import():
     from .doubleliteralexpr import DoubleLiteralExpr
     from .charliteralexpr import CharLiteralExpr
     from .booleanliteralexpr import BooleanLiteralExpr
+    from .longliteralexpr import LongLiteralExpr
 
     from ..type.primitivetype import PrimitiveType
     from ..type.referencetype import ReferenceType
