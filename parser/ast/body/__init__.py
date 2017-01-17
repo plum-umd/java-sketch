@@ -23,6 +23,7 @@ def _import():
     from ..expr.integerliteralexpr import IntegerLiteralExpr
     from ..expr.doubleliteralexpr import DoubleLiteralExpr
     from ..expr.stringliteralexpr import StringLiteralExpr
+    from ..expr.longliteralexpr import LongLiteralExpr
     from ..expr.nameexpr import NameExpr
     from ..expr.binaryexpr import BinaryExpr
     from ..expr.assignexpr import AssignExpr

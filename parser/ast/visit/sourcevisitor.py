@@ -44,6 +44,7 @@ from ..expr.assignexpr import AssignExpr
 from ..expr.integerliteralexpr import IntegerLiteralExpr
 from ..expr.stringliteralexpr import StringLiteralExpr
 from ..expr.doubleliteralexpr import DoubleLiteralExpr
+from ..expr.longliteralexpr import LongLiteralExpr
 from ..expr.charliteralexpr import CharLiteralExpr
 from ..expr.booleanliteralexpr import BooleanLiteralExpr
 from ..expr.methodcallexpr import MethodCallExpr
@@ -578,6 +579,11 @@ class SourcePrinter(object):
         self.printt('null')
 
     @v.when(DoubleLiteralExpr)
+    def visit(self, n):
+        self.printJavaComment(n.comment)
+        self.printt(n.value)
+
+    @v.when(LongLiteralExpr)
     def visit(self, n):
         self.printJavaComment(n.comment)
         self.printt(n.value)
