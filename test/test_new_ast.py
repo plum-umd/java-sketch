@@ -11,7 +11,7 @@ tests = os.path.join(pwd, "new_ast")
 class TestJava(TestCommon):
     def __test(self, fs):
         _fs = map(lambda f: os.path.join(tests, f), fs)
-        ret = java_sk.main.main(_fs)
+        ret = java_sk.main.main(_fs, '30')
         self.assertEqual(ret, 0)
         
     def test_Args(self):
