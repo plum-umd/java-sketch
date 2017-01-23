@@ -68,12 +68,12 @@ class SymtabGen(object):
                     u'qualifier': {
                         u'name': u'java',},},
             }
-            node.symtab.update({i:ImportDeclaration({u'@t':u'ImportDeclaration',u'name':qn})})
+            node.imports.append(ImportDeclaration({u'@t':u'ImportDeclaration',u'name':qn, u'implicit': True}))
         for i in node.imports: node.symtab.update({str(i):i})
-
         d = dict([v for v in map(lambda t: (t.name,t), node.types)])
         for ty in node.types:
             ty.symtab.update({u'_cu_':node})
+            for i in node.imports: ty.symtab.update({str(i).split('.')[-1]:i})
             ty.symtab.update(d)
             ty.accept(self)
 

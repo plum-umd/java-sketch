@@ -96,7 +96,8 @@ class SourcePrinter(object):
         self.printJavaComment(n.comment)
 
         if n.package: n.package.accep(self)
-        for i in n.imports: i.accept(self)
+        for i in n.imports:
+            if not i.implicit: i.accept(self)
         for ty in n.types: ty.accept(self)
         return self._buf.getvalue()
         self._buf.close()

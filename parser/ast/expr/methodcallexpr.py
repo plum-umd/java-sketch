@@ -5,6 +5,9 @@ from . import _import
 from .expression import Expression
 from .fieldaccessexpr import FieldAccessExpr
 
+from ..importdeclaration import ImportDeclaration
+from ..type.classorinterfacetype import ClassOrInterfaceType
+
 from ..utils import utils
 
 class MethodCallExpr(Expression):
@@ -40,12 +43,9 @@ class MethodCallExpr(Expression):
         sym = obj.symtab
         # first look for this methed in the current scope
         mtd = sym.get(self.name)
-        if not mtd: pass
-        #     sym = sym.get('_cu').symtab
-        #     for key, val in sym.items():
-        #         if isinstance(val, ImportDeclaration):
-        #             nm = key.split('.')
-        #             if self.name == nm[-1]:
+        if not mtd:
+            ftypes = utils.mtd_type_from_callexpr(self)
+            return ClassOrInterfaceType({u'@t': u'ClassOrInterfaceType', u'name': unicode(ftypes[0][-1])})
         else: return mtd.typee
 
     @typee.setter

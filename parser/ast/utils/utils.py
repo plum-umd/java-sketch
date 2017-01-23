@@ -7,6 +7,8 @@ import subprocess
 
 from functools import partial
 
+from ast.importdeclaration import ImportDeclaration
+
 from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 from ast.body.variabledeclarator import VariableDeclarator
 
@@ -93,7 +95,7 @@ def dec_in_ast(ast, node):
         if type(c) == VariableDeclarator and c.name == node.name: res = True
         else: res = dec_in_ast(c, node)
         if res: return res
-        
+
 # takes in AST and populates subclass relationships
 def build_subs(ast):
     clss = extract_nodes([ClassOrInterfaceDeclaration], ast)
@@ -132,7 +134,6 @@ def all_subClasses(n):
             acc.update(n.subClasses)
             for s in n.subClasses: a(s)
             return acc
-                
         else:
             return acc
     a(n)
@@ -150,7 +151,7 @@ def find_mtd(mname, cls):
     for s in cls.supers():
         if mname in s.symtab: return s.symtab.get(mname)
     raise Exception('Cant find method {} in cls {}'.format(mname, str(cls)))
-    
+
 def flatten(lst): return [j for i in lst for j in i]
 
 def node_to_obj(n):
@@ -165,7 +166,7 @@ def node_to_obj(n):
                 if n.name in s.symtab: return s.symtab.get(n.name)
             if type(cls.parentNode) == ClassOrInterfaceDeclaration:
                 return find_obj(cls.parentNode)
-    
+
     if type(n) == CastExpr: o = n.symtab[n.typee.name]
     elif type(n) == EnclosedExpr: o = node_to_obj(n.inner)
     elif type(n) == ThisExpr: o = get_coid(n)
@@ -177,8 +178,7 @@ def node_to_obj(n):
         # n might be a static reference to an imported class
         for k, v in n.symtab.get(u'_cu_').symtab.items():
             nm = k.split('.')[-1]
-            if n.name == nm: o = ClassOrInterfaceType({
-                    u'@t': u'ClassOrInterfaceType', u'name': nm,},)
+            if n.name == nm: o = ClassOrInterfaceType({u'@t': u'ClassOrInterfaceType', u'name': nm,},)
         # raise Exception('Cant find {}.{}:{}'.format(str(n.name),get_coid(n),n.beginLine))
     return o
 
@@ -227,7 +227,7 @@ def find_fld(n):
         raise Exception('fld {} not found in class {} or super classes.'.
                         format(n.field.name, cls.name))
     return fld
-    
+
 def anon_nm(a):
     if type(a.parentNode) == AssignExpr: return a.parentNode.target
     else: return anon_nm(a.parentNode)
@@ -281,7 +281,7 @@ def get_mtd_types(path, name, num_params):
         params = c[c.find('(')+1:c.rfind(')')]
         if len(params) == 0 and num_params == 0:
             semi = c.find(';')
-            if semi >= 0: ptypes.append(list(c[c.rfind('/')+1:semi]))
+            if semi >= 0: ptypes.append([c[c.rfind('/')+1:semi]])
             else: ptypes.append(list(c[-1]))
             return True
         i = 0
@@ -301,4 +301,23 @@ def get_mtd_types(path, name, num_params):
             return True
         return False
     print 'filtered:', filter(filter_by_params, candidates)
+    print 'ptypes:', ptypes
     return ptypes
+
+def mtd_type_from_callexpr(callexpr):
+    if not callexpr.scope:
+        raise Exception('Uninterpreted function with no scope? {}'.format(callexpr))
+    scope = node_to_obj(callexpr.scope)
+    typ = scope.typee
+    cu = callexpr.symtab[u'_cu_'].symtab
+    ftypes = []
+    for key, val in cu.items():
+        if isinstance(val, ImportDeclaration):
+            nm = key.split('.')
+            if str(typ) == nm[-1]:
+                types = get_mtd_types(os.path.join(*nm), callexpr.name, len(callexpr.args))
+                if not types:
+                    raise Exception('Somethign went wrong: {} {}'.format(key, callexpr.name))
+                ftypes.extend(types)
+    if not ftypes: raise Exception('Somethign went wrong (ftypes): {}'.format(callexpr.name))
+    return (ftypes, scope)

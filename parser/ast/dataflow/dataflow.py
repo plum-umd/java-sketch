@@ -17,7 +17,6 @@ from ..expr.variabledeclarationexpr import VariableDeclarationExpr
 import copy as cp
 
 from ..visit import visit
-from ..comments.comment import Comment
 
 v = visit
 
@@ -223,13 +222,8 @@ class DataFlow(object):
             if ins:
                 e.childrenNodes[-1].outputs = [map(lambda t: t.name, map(self.get_typ, list(self._rm_dups(ins))))[0]]
         else:
-            # any return from e should be in the out_set
-            returns = utils.extract_nodes([ReturnStmt], e)
-            if returns:
-                if type(returns[0].typee) == NameExpr:
-                    e.childrenNodes[-1].outputs = [self.get_typ(returns[0].typee.lbl).name]
-                else:
-                    e.childrenNodes[-1].outputs = [returns[0].typee]
+            if utils.extract_nodes([ReturnStmt], e):
+                e.childrenNodes[-1].outputs = [unicode(method.typee)]
                     
         # we need all the inputs for all the childrenNodes of e
         # TODO: can we assume we can just smash all the inputs together?

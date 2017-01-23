@@ -4,6 +4,9 @@ import logging
 
 from . import _import
 from .typedeclaration import TypeDeclaration
+
+from ..importdeclaration import ImportDeclaration
+
 from ..type.classorinterfacetype import ClassOrInterfaceType
 
 class ClassOrInterfaceDeclaration(TypeDeclaration):
@@ -40,12 +43,13 @@ class ClassOrInterfaceDeclaration(TypeDeclaration):
         def get_sups(n):
             sups = []
             # COIT's don't have extends or implements lists
-            if type(n) == ClassOrInterfaceType: return
+            if isinstance(n, (ClassOrInterfaceType, ImportDeclaration)): return
             for e in n.extendsList: # add items from extendsList to solution
                 if e.name == u'Object': continue # ignore Object
                 sc = n.symtab.get(e.name)
                 if sc:
-                    if type(sc) == ClassOrInterfaceType: logging.warning('class {} extends unknown type {}'.format(n.name, e.name))
+                    if isinstance(sc, ClassOrInterfaceType):
+                        logging.warning('class {} extends unknown type {}'.format(n.name, e.name))
                     else: sups.append(sc)
                 else:
                     print 'ERROR: class {} not in symbol table of {}'.format(e.name, n.name) # library?
@@ -53,7 +57,8 @@ class ClassOrInterfaceDeclaration(TypeDeclaration):
             for i in n.implementsList:
                 ic = n.symtab.get(i.name)
                 if ic:
-                    if type(ic) == ClassOrInterfaceType: logging.warning('class {} implements unknown type {}'.format(n.name, e.name))
+                    if isinstance(ic, ClassOrInterfaceType):
+                        logging.warning('class {} implements unknown type {}'.format(n.name, e.name))
                     else: sups.append(ic)
                 else:
                     print 'ERROR: class {} not in symbol table of {}'.format(e.name, n.name) # library?

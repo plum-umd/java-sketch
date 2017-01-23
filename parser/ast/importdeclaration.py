@@ -4,21 +4,24 @@ from node import Node
 
 from . import _import
 
+from .type.classorinterfacetype import ClassOrInterfaceType
+
 class ImportDeclaration(Node):
     def __init__(self, kwargs={}):
         super(ImportDeclaration, self).__init__(kwargs)
         
         locs = _import()
-
         # NameExpr name;
         name = kwargs.get(u'name', {})
         self._name = locs[name[u'@t']](name) if name else None
         # boolean static_;
-        self.static = kwargs.get(u'static_', False)
+        self._static = kwargs.get(u'static_', False)
         # boolean asterisk;
-        self.asterisk = kwargs.get(u'asterisk', False)
+        self._asterisk = kwargs.get(u'asterisk', False)
         # boolean isEmptyImportDeclaration;
-        self.isEmptyDeclaration = kwargs.get(u'isEmptyImportDeclarationasterisk', False)
+        self._isEmptyDeclaration = kwargs.get(u'isEmptyImportDeclarationasterisk', False)
+        # boolean implicit;
+        self._implicit = kwargs.get(u'implicit', False)
 
     @property
     def static(self): return self._static
@@ -34,5 +37,17 @@ class ImportDeclaration(Node):
     def isEmptyDeclaration(self): return self._isEmptyDeclaration
     @isEmptyDeclaration.setter
     def isEmptyDeclaration(self, v): self._isEmptyDeclaration = v
+  
+    @property
+    def implicit(self): return self._implicit
+    @implicit.setter
+    def implicit(self, v): self._implicit = v
+
+    @property
+    def typee(self):
+        return ClassOrInterfaceType({u'@t':u'ClassOrInterfaceType',
+                                     u'name':unicode(str(self).split('.')[-1]),})
+    @typee.setter
+    def typee(self, v): self._type = v
 
     def __str__(self): return str(self.name)

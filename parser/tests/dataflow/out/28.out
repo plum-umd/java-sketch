@@ -1,0 +1,114 @@
+node: <class 'ast.compilationunit.CompilationUnit'> name: None 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.classorinterfacedeclaration.ClassOrInterfaceDeclaration'> name: A 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.fielddeclaration.FieldDeclaration'> name: x 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.type.primitivetype.PrimitiveType'> name: double 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.variabledeclarator.VariableDeclarator'> name: x 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.variabledeclaratorid.VariableDeclaratorId'> name: x 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.methoddeclaration.MethodDeclaration'> name: m 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.type.primitivetype.PrimitiveType'> name: int 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.parameter.Parameter'> name: a 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.variabledeclaratorid.VariableDeclaratorId'> name: a 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.type.referencetype.ReferenceType'> name: A 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.type.classorinterfacetype.ClassOrInterfaceType'> name: A 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.variabledeclarator.VariableDeclarator'> name: a 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.stmt.blockstmt.BlockStmt'> name: None 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.stmt.returnstmt.ReturnStmt'> name: None 
+	in: set([(u'a', 9)]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.methodcallexpr.MethodCallExpr'> name: compareTo 
+	in: set([(u'a', 9)]) 
+	out: set([(u'a', 9)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.nameexpr.NameExpr'> name: x 
+	in: set([(u'a', 9)]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.fieldaccessexpr.FieldAccessExpr'> name: x 
+	in: set([(u'a', 9)]) 
+	out: set([(u'a', 9)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.nameexpr.NameExpr'> name: a 
+	in: set([(u'a', 9)]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
