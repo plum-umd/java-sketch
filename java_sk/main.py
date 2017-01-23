@@ -60,8 +60,8 @@ def translate(**kwargs):
  
     return 0
        
-def main(prg):
-    return translate(prg=prg)
+def main(prg, log_lvl='20'):
+    return translate(prg=prg, log_lvl=log_lvl)
   
 if __name__ == "__main__":
     # print 'booleanValue:'
