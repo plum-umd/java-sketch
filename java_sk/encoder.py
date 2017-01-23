@@ -136,7 +136,7 @@ class Encoder(object):
 
         with open(os.path.join(self.sk_dir, "main.sk"), 'w') as f:
             f.write(util.get_and_close(buf))
-            
+
     def gen_meta_sk(self):
         buf = cStringIO.StringIO()
         buf.write("package meta;\n\n")
@@ -170,7 +170,7 @@ class Encoder(object):
         cons = utils.extract_nodes([ConstructorDeclaration], cls, recurse=False)
         flds = utils.extract_nodes([FieldDeclaration], cls, recurse=False)
         s_flds = filter(td.isStatic, flds)
-        
+
         cname = str(cls)
         buf = cStringIO.StringIO()
         buf.write("package {};\n\n".format(cname))
