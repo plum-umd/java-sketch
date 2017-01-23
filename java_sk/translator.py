@@ -150,7 +150,7 @@ class Translator(object):
         self.printMods(n)
         if td.isHarness(n):
             self.printt('harness ')
-            n.body.stmts = [u'Object self = new Object(__cid=0);'] + n.body.stmts
+            n.body.stmts = [u'Object self = Object_Object(new Object(__cid=Object()));'] + n.body.stmts
         n.typee.accept(self)
         self.printt(' ')
         if type(n.parentNode) == ObjectCreationExpr:
@@ -419,7 +419,8 @@ class Translator(object):
     def visit(self, n):
         # print 'ObjectCreationExpr:', n, n.beginLine
         obj_cls = n.symtab.get(n.typee.name)
-        enclosing_cls = obj_cls.enclosing_types()[-1] if obj_cls.isinner() else None
+        enclosing_cls = obj_cls.enclosing_types()[-1] \
+            if type(obj_cls) == ClassOrInterfaceDeclaration and obj_cls.isinner() else None
         if n.scope:
             n.getScope.accept(self)
             self.printt('.')
@@ -433,7 +434,7 @@ class Translator(object):
                     if t:
                         tname = t.typee.name
                     else:
-                        print 'ObjectCreationExpr:a:{}:{}'.format(a,a.beginLine)
+                        print a, type(a)
                 else:
                     tname = a.typee.name
                 typs.append(tname)
@@ -446,7 +447,7 @@ class Translator(object):
             if enclosing_cls: self.printt('_{}'.format(str(enclosing_cls)))
 
         self.printt('(new Object(__cid={}())'.format(str(obj_cls)))
-        if obj_cls.isinner(): self.printt(', self')
+        if enclosing_cls: self.printt(', self')
         if n.args: self.printt(', ')
         self.printSepList(n.args)
         self.printt(')')
@@ -524,6 +525,10 @@ class Translator(object):
 
     @v.when(CastExpr)
     def visit(self, n):
+        if isinstance(n.typee, PrimitiveType):
+            self.printt('(')
+            n.typee.accept(self)
+            self.printt(')')
         n.expr.accept(self)
 
     @v.when(BooleanLiteralExpr)
@@ -664,7 +669,7 @@ class Translator(object):
             write_call()
             return
             
-        logging.debug('calling: {} from {}'.format(str(callexpr), utils.get_coid(callexpr)))
+        logging.info('calling: {} from {}'.format(str(callexpr), utils.get_coid(callexpr)))
         # 15.12.1 Compile-Time Step 1: Determine Class or Interface to Search
         if not callexpr.scope:
             cls = utils.get_coid(callexpr)
@@ -685,34 +690,23 @@ class Translator(object):
                 # ExpressionName . [TypeArguments] Identifier
                 # Primary . [TypeArguments] Identifier
                 else:
-                    cls = scope.symtab.get(scope.typee.name) \
-                        if not isinstance(scope, ClassOrInterfaceType) else None
+                    logging.debug('scope: {} {} {}'.format(scope, scope.typee, type(scope)))
+                    if not isinstance(scope, (ClassOrInterfaceType, ImportDeclaration)):
+                        cls = scope.symtab.get(scope.typee.name)
+                    else:
+                        cls = None
             # TODO: more possibilities
 
         def uninterpreted():
-            if not callexpr.scope:
-                raise Exception('Uninterpreted function with no scope? {}'.format(callexpr))
-            scope = utils.node_to_obj(callexpr.scope)
-            typ = scope.typee
-            cu = callexpr.symtab[u'_cu_'].symtab
-            ftypes = []
-            for key, val in cu.items():
-                if isinstance(val, ImportDeclaration):
-                    nm = key.split('.')
-                    if str(typ) == nm[-1]:
-                        types = utils.get_mtd_types(os.path.join(*nm), callexpr.name, len(callexpr.args))
-                        if not types: raise Exception('Somethign went wrong: {} {}'.format(key, callexpr.name))
-                        ftypes.extend(types)
-            if not ftypes: raise Exception('Somethign went wrong (ftypes): {}'.format(callexpr.name))
-
+            (ftypes, scope) = utils.mtd_type_from_callexpr(callexpr)
             # write call
             write_call()
 
             # write uninterpreted function signature
             # add fun declaration as uninterpreted
             with open(os.path.join(self.sk_dir, 'meta.sk'), 'a') as f:
-                for fun in ftypes:
-                    fun = map(convert, fun)
+                trans_ftypes = set([tuple(map(self.trans_ty, map(convert, c))) for c in ftypes])
+                for fun in [list(d) for d in trans_ftypes]:
                     f.write('{} {}('.format(self.trans_ty(fun.pop()), callexpr.name))
                     if not isinstance(scope, ClassOrInterfaceType):
                         f.write('{} p0'.format(self.trans_ty(scope.typee)))
@@ -720,7 +714,7 @@ class Translator(object):
                     for i in range(len(fun)-1):
                         f.write('{} {}, '.format(self.trans_ty(fun[i]), 'p'+str(i+1)))
                     if len(fun) > 0: f.write('{} {}'.format(self.trans_ty(fun[-1]), 'p'+str(len(fun))))
-                f.write(');\n')
+                    f.write(');\n')
 
         logging.debug('searching in class: {}'.format(cls))
         if not cls:
@@ -889,7 +883,8 @@ class Translator(object):
     def find_mtd(self, cls, descriptor):
         # check current class for method
         m = cls.symtab.get(descriptor)
-        s = filter(lambda c: not c.interface, cls.supers())
+        # remove import declarations and interfaces from super classes
+        s = [c for c in [cs for cs in cls.supers() if not isinstance(cs, ImportDeclaration)] if not c.interface]
         if m: return (cls, m) # found it!
         elif s: return self.find_mtd(s[0], descriptor) # nope, check superclasses
         else: return (None, None) # doesn't exist
@@ -903,8 +898,11 @@ class Translator(object):
             self.printt('{}'.format(c.thenExpr.name))
             self.printArguments(c.thenExpr.args)
             self.printt(' : ')
-            if type(c.elseExpr) == IntegerLiteralExpr: self.printt('0')
-            elif type(c.elseExpr) == ClassOrInterfaceType: self.printt('null')
+            if isinstance(c.elseExpr, IntegerLiteralExpr): self.printt('0')
+            elif isinstance(c.elseExpr, PrimitiveType):
+                if c.elseExpr.name == u'double': self.printt('0.0')
+                if c.elseExpr.name == u'int': self.printt('0')
+            elif isinstance(c.elseExpr, (ClassOrInterfaceType, ReferenceType)): self.printt('null')
             else: self.print_dispatch(c.elseExpr)
         else:
             self.printt('if (')
@@ -954,15 +952,14 @@ class Translator(object):
                 "value": "0",
             },
         }
-        d['condition']['left']['name'] = '.'.join([scope, '__cid'])
+        d['condition']['left']['name'] = '.'.join([str(scope), '__cid'])
         d['condition']['right']['value'] = '{}()'.format(str(S))
         if type(mdec.typee) != VoidType:
             d['thenExpr']['scope']['name'] = scope
             d['thenExpr']['name'] = '@'.join([str(mdec), str(utils.get_coid(mdec))])
             dis = ConditionalExpr(d)
             dis.thenExpr.args = args
-            if type(mdec.typee) != PrimitiveType and mdec.typee.name not in utils.unbox:
-                dis.elseExpr = ClassOrInterfaceType({u'@t':u'ClassOrInterfaceType', u'name':u''})
+            dis.elseExpr = mdec.typee
         else:
             d['thenStmt'] = d.pop('thenExpr')
             d['elseStmt'] = d.pop('elseExpr')
