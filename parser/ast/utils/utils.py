@@ -26,6 +26,8 @@ from ast.comments.comment import Comment
 
 JAVA_HOME = None
 RT_HAR = None
+ACCESS_MODS = ['public', 'private', 'protected', 'final', 'super', 'interface', 'abstract', 'synthetic', \
+               'annotation', 'enum', 'static']
 
 widen = {u'boolean':[],
          u'byte':[u'char',u'short',u'int',u'long',u'float',u'double'],
@@ -221,6 +223,13 @@ def find_fld(n):
     # n's scope might be a class (if static field)
     cls = scope.symtab.get(scope.typee.name) if type(scope) != ClassOrInterfaceDeclaration \
         else scope
+    print 'cls:', cls, 'scope:', scope, type(scope)
+    if not cls: # something went wrong. maybe scope is an import?
+        if isinstance(scope, ImportDeclaration):
+            nm = str(scope.name).split('.')
+            fdescriptors = get_fld_descriptors(os.path.join(*nm))
+            print fdescriptors
+    exit()
     fld = cls.symtab.get(n.name)
 
     if not fld:
@@ -267,24 +276,23 @@ def get_descriptors(nm):
 
     # this is a cool bit of sorcery to pair names with their descriptors
     cls = zip(*[iter(cls)]*2)
-    flds = filter(lambda d: '(' not in d[0], cls)
+    flds = filter(lambda d: '(' not in d[0] and 'static {};' not in d[0], cls)
 
     cls_nm = nm[nm.rfind('/')+1:]
     cons = filter(lambda d: d[0][0] == cls_nm, cls)
 
     mtds = filter(lambda d: '(' in d[0] and d[0][0] != cls_nm, cls)
-    print 'flds:', flds
-    print 'cons:', cons
-    print 'mtds:', mtds
-    
+
     return (flds, cons, mtds)
 
 # for now this is going to return [[fld_type1, fld_name1], ...]
-def get_flds(path):
+def get_fld_descriptors(path):
     (flds, _, _) = get_descriptors(path)
+    # print 'fld_descriptors', flds
     descriptors = []
     for d in flds:
-        nm = d[0].split(' ')[1].strip(';')
+        print 'd:', d
+        nm = filter(lambda n: n not in ACCESS_MODS, d[0].split(' '))[1].strip(';')
         typ = d[1].split(' ')[1].strip('[L;')
         if typ[0] == '[': typ = typ[1:]
         if '/' in typ: typ = typ[typ.rfind('/')+1:]
