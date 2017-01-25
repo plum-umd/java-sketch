@@ -235,7 +235,6 @@ def anon_nm(a):
 def rm_comments(node):
     node.childrenNodes = filter(lambda n: not isinstance(n, Comment), node.childrenNodes)
 
-
 def unpack_class_file(nm):
     global JAVA_HOME, RT_JAR
 
@@ -266,15 +265,34 @@ def get_descriptors(nm):
     cls = cls[cls.find('{')+2:cls.rfind('}')]
     cls = [x.strip() for x in cls.split('\n') if x]
 
-    # this is a cool bit of sorcery to pair method types with their descriptors
+    # this is a cool bit of sorcery to pair names with their descriptors
     cls = zip(*[iter(cls)]*2)
-    return cls
+    flds = filter(lambda d: '(' not in d[0], cls)
+
+    cls_nm = nm[nm.rfind('/')+1:]
+    cons = filter(lambda d: d[0][0] == cls_nm, cls)
+
+    mtds = filter(lambda d: '(' in d[0] and d[0][0] != cls_nm, cls)
+    return (flds, cons, mtds)
+
+# for now this is going to return [[fld_type1, fld_name1], ...]
+def get_flds(path):
+    (flds, _, _) = get_descriptors(path)
+    descriptors = []
+    for d in flds:
+        nm = d[0].split(' ')[1].strip(';')
+        typ = d[1].split(' ')[1].strip('L;')
+        if typ[0] == '[': typ = '['
+        elif '/' in typ: typ = typ[typ.rfind('/')+1:]
+        # if typ[0] == L
+        descriptors.append([typ, nm])
+    return descriptors
 
 def get_mtd_types(path, name, num_params):
     # [(method signature, JVM descriptor)]
     print 'path:', path, 'method name:', name, 'num_params:', num_params
-    descriptors = get_descriptors(path)
-    candidates = [d[1][d[1].find(':')+2:] for d in descriptors if name+'(' in d[0]]
+    (_, _, mtds) = get_descriptors(path)
+    candidates = [d[1][d[1].find(':')+2:] for d in mtds if name+'(' in d[0]]
     print 'candidates:', candidates
     ptypes = []
     def filter_by_params(c):
