@@ -7,7 +7,11 @@ class ClassOrInterfaceType(Type):
     if kwargs:
       super(ClassOrInterfaceType, self).__init__(kwargs)
       # ClassOrInterfaceType
-      self._scope = ClassOrInterfaceType(kwargs.get('scope'))
+      self._scope = None
+      scope = kwargs.get(u'scope')
+      if scope:
+          scope.update({u'@t':u'ClassOrInterfaceType'})
+          self._scope = ClassOrInterfaceType(scope)
       self._any = kwargs.get('any')
       # TypeArguments
       # self._typeArguments = kwargs.get('typeArguments')

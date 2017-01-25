@@ -659,6 +659,10 @@ class SourcePrinter(object):
     @v.when(ClassOrInterfaceType)
     def visit(self, n):
         self.printJavaComment(n.comment)
+
+        if n.scope:
+            n.scope.accept(self)
+            self.printt('.')
         self.printt(n.name)
 
     @v.when(InstanceOfExpr)
