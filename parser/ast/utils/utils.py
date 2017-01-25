@@ -273,6 +273,10 @@ def get_descriptors(nm):
     cons = filter(lambda d: d[0][0] == cls_nm, cls)
 
     mtds = filter(lambda d: '(' in d[0] and d[0][0] != cls_nm, cls)
+    print 'flds:', flds
+    print 'cons:', cons
+    print 'mtds:', mtds
+    
     return (flds, cons, mtds)
 
 # for now this is going to return [[fld_type1, fld_name1], ...]
@@ -281,10 +285,9 @@ def get_flds(path):
     descriptors = []
     for d in flds:
         nm = d[0].split(' ')[1].strip(';')
-        typ = d[1].split(' ')[1].strip('L;')
-        if typ[0] == '[': typ = '['
-        elif '/' in typ: typ = typ[typ.rfind('/')+1:]
-        # if typ[0] == L
+        typ = d[1].split(' ')[1].strip('[L;')
+        if typ[0] == '[': typ = typ[1:]
+        if '/' in typ: typ = typ[typ.rfind('/')+1:]
         descriptors.append([typ, nm])
     return descriptors
 
@@ -298,17 +301,21 @@ def get_mtd_types(path, name, num_params):
     def filter_by_params(c):
         params = c[c.find('(')+1:c.rfind(')')]
         if len(params) == 0 and num_params == 0:
-            semi = c.find(';')
-            if semi >= 0: ptypes.append([c[c.rfind('/')+1:semi]])
-            else: ptypes.append(list(c[-1]))
+            ret = c.strip('();[L')
+            if '/' in ret: ret = ret[ret.rfind('/')+1:]
+            ptypes.append([ret])
             return True
         i = 0
         typs = []
         while i < len(params):
             ch = params[i]
-            if ch == 'L':
+            # deal with arrays later
+            if ch == '[': i += 1
+            elif ch == 'L':
                 semi = params.find(';', i)
-                typs.append(params[params.rfind('/', i)+1:semi])
+                p = params[i:semi].strip('[L')
+                if '/' in p: p = p[p.rfind('/')+1:]
+                typs.append(p)
                 i = semi + 1
             else:
                 typs.append(ch)
