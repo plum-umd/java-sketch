@@ -5,7 +5,6 @@ from ..node import Node
 class VariableDeclaratorId(Node):
   def __init__(self, kwargs={}):
     super(VariableDeclaratorId, self).__init__(kwargs)
-    
     self._arrayCount = kwargs.get(u'arrayCount', 0)
 
   @property
