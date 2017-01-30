@@ -109,6 +109,28 @@ class Encoder(object):
         logging.info('generating main.sk')
         self.gen_main_sk(cls_sks)
 
+        logging.info('writing Object.sk')
+        self.print_obj_struct()
+
+    def print_obj_struct(self):
+        buf = cStringIO.StringIO()
+              
+        # to avoid static fields, which will be bound to a class-representing package
+        i_flds = filter(lambda f: not td.isStatic(f), \
+                        filter(lambda m: type(m) == FieldDeclaration,
+                               self.tltr.obj_struct.members))
+        # pretty print
+        flds = [(u'int', u'hash', u'')] + map(self.tltr.trans_fld, i_flds)
+        lens = map(lambda f: len(f[0]), flds)
+        m = max(lens) + 1
+        buf.write("struct " + str(self.tltr.obj_struct) + " {\n")
+        for f in flds:
+            buf.write('  {} {}{}{};\n'.format(f[0],' '*(m-len(f[0])), f[1], f[2]))
+        # buf.write('  '.join(map(self.tltr.trans_fld, i_flds)))
+        buf.write("}\n")
+        with open(os.path.join(self.sk_dir, "Object.sk"), 'a') as f:
+            f.write(util.get_and_close(buf))
+
     def gen_main_sk(self, cls_sks):
         # main.sk that imports all the other sketch files
         buf = cStringIO.StringIO()
@@ -157,9 +179,8 @@ class Encoder(object):
         buf.write("package Object;\n\n")
 
         self.bases = util.rm_subs(self.clss)
-        buf.write('\n'.join(filter(None, map(self.to_struct, self.bases))))
-        buf.write('\n')
-        buf.write('Object Object_Object(Object self){\n return self;\n}\n')
+        filter(None, map(self.to_struct, self.bases))
+        buf.write('Object Object_Object(Object self){\n return self;\n}\n\n')
         with open(os.path.join(self.sk_dir, "Object.sk"), 'w') as f:
             f.write(util.get_and_close(buf))
 
@@ -219,23 +240,7 @@ class Encoder(object):
 
     # only called on base classes. This seems to just be Object?
     def to_struct(self, cls):
-        cname = str(cls)
-        if not cls.extendsList: cls = self.to_v_struct(cls)
-              
-        buf = cStringIO.StringIO()
-              
-        # to avoid static fields, which will be bound to a class-representing package
-        i_flds = filter(lambda f: not td.isStatic(f), filter(lambda m: type(m) == FieldDeclaration, cls.members))
-        # pretty print
-        flds = [(u'int', u'hash', u'')] + map(self.tltr.trans_fld, i_flds)
-        lens = map(lambda f: len(f[0]), flds)
-        m = max(lens) + 1
-        buf.write("struct " + cname + " {\n")
-        for f in flds:
-            buf.write('  {} {}{}{};\n'.format(f[0],' '*(m-len(f[0])), f[1], f[2]))
-        # buf.write('  '.join(map(self.tltr.trans_fld, i_flds)))
-        buf.write("}\n")
-        return util.get_and_close(buf)
+        if not cls.extendsList: self.tltr.obj_struct = self.to_v_struct(cls)
 
     # from the given base class,
     # generate a virtual struct that encompasses all the class in the hierarchy

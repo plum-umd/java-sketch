@@ -59,7 +59,9 @@ class MethodCallExpr(Expression):
         typs = []
         for a in self.args:
             if type(a) == FieldAccessExpr:
-                fld = utils.find_fld(a)
+                # TODO: if a field from an imported class is only used in a method call
+                # this will fail :(
+                fld = utils.find_fld(a, None)
                 if not fld: return None
                 typ = fld.typee
             elif type(a) == MethodCallExpr:

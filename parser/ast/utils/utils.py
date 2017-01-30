@@ -177,7 +177,8 @@ def node_to_obj(n):
     if type(n) == CastExpr: o = n.symtab[n.typee.name]
     elif type(n) == EnclosedExpr: o = node_to_obj(n.inner)
     elif type(n) == ThisExpr: o = get_coid(n)
-    elif type(n) == FieldAccessExpr: o = find_fld(n)
+    # TODO: None here is wrong, it will fail somewhere...
+    elif type(n) == FieldAccessExpr: o = find_fld(n, None)
     else: o = find_obj(n)
 
     if not o:
@@ -189,7 +190,7 @@ def node_to_obj(n):
         # raise Exception('Cant find {}.{}:{}'.format(str(n.name),get_coid(n),n.beginLine))
     return o
 
-def find_fld(n):
+def find_fld(n, obj_struct):
     def top(s):
         if type(s.scope) == ArrayAccessExpr:
             if type(s.scope.nameExpr) == NameExpr: return n.symtab.get(s.scope.nameExpr.name)
@@ -218,27 +219,23 @@ def find_fld(n):
         return fld
 
     # look up n's scope in symtab
-    # print 'finding field: n.scope.name={}, type(n.scope)={}, n.field.name={}'.format(n.scope.name, type(n.scope), n.field.name)
     scope = node_to_obj(n.scope)
-    # print 'scope type(scope.typee)={}, type(scope)={}, scope.name={}'.format(type(scope.typee), type(scope), scope.name)
     if not scope:
         print 'Cant find {}.{}:{}'.format(n.scope.name, n.name, n.beginLine)
         return None
     # n's scope might be a class (if static field)
     cls = scope.symtab.get(scope.typee.name) if type(scope) != ClassOrInterfaceDeclaration \
         else scope
-    print 'cls:', cls, 'scope:', scope, type(scope)
     if not cls: # something went wrong. maybe scope is an import?
         if isinstance(scope, ImportDeclaration):
             nm = str(scope).split('.')
             fdescriptors = get_fld_descriptors(os.path.join(*nm))
-            print fdescriptors
-            return fld_from_descriptor(fdescriptors, n.field.name, nm[-1])
+            fld = fld_from_descriptor(fdescriptors, n.field.name, nm[-1])
+            obj_struct.members.append(fld)
+            return fld
 
     fld = cls.symtab.get(n.name)
-    print 'fld', fld, type(fld)
     if not fld: # didn't find field in this cls, look in imported supers
-        print cls.symtab
         extends = cls.extendsList
         for e in extends:
             if e.scope and str(e.scope) in cls.symtab:
@@ -246,9 +243,9 @@ def find_fld(n):
                 nm = '{}${}'.format(impdec, e.name)
                 fdescriptors = get_fld_descriptors(os.path.join(*nm.split('.')))
                 print fdescriptors
-                return fld_from_descriptor(fdescriptors, n.field.name, str(cls))
-        pass
-    exit()
+                fld = fld_from_descriptor(fdescriptors, n.field.name, sanitize_ty(nm))
+                obj_struct.members.append(fld)
+                return fld
 
     if not fld:
         raise Exception('fld {} not found in class {} or super classes.'.
@@ -258,7 +255,6 @@ def find_fld(n):
 def fld_from_descriptor(fdescriptors, name, nm):
     d = [d for d in fdescriptors if d[1] == name][0]
     if not d: raise Exception('Couldnt find field {} in import {}.'.format(name, str(scope)))
-    print d
     d[0] = DESCRIPTOR_TYPES[d[0]] if d[0] in DESCRIPTOR_TYPES else d[0]
     # make a field to return
     if d[0] in widen:
@@ -386,3 +382,8 @@ def mtd_type_from_callexpr(callexpr):
                 ftypes.extend(types)
     if not ftypes: raise Exception('Somethign went wrong (ftypes): {}'.format(callexpr.name))
     return (ftypes, scope)
+
+# this is also in ast.node...
+def sanitize_ty(tname):
+    return tname.replace('$','_').replace('.','_').replace('?', u'Object')
+    

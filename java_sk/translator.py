@@ -99,6 +99,9 @@ class Translator(object):
         self._level = kwargs.get('level', 0)
         self._indented = kwargs.get('indented', False)
 
+        # struct Object { ... }
+        self.obj_struct = None
+
     @v.on('node')
     def visit(self, node):
         """
@@ -428,7 +431,7 @@ class Translator(object):
             typs = []
             for a in n.args:
                 if type(a) == FieldAccessExpr:
-                    tname = utils.find_fld(a).typee.name
+                    tname = utils.find_fld(a, self.obj_struct).typee.name
                 elif not a.typee:
                     t = n.symtab.get(a.name)
                     if t:
@@ -621,7 +624,7 @@ class Translator(object):
 
     def trans_faccess(self, n):
         logging.debug('accessing {}.{}'.format(n.scope.name, n.field.name))
-        fld = utils.find_fld(n)
+        fld = utils.find_fld(n, self.obj_struct)
         logging.debug('found field: {}'.format(str(fld)))
         if td.isStatic(fld):
             if n.scope.name == utils.get_coid(n).name:

@@ -18,6 +18,10 @@ log_lvls = {'0':logging.NOTSET, '10':logging.DEBUG, '20':logging.INFO, '30':logg
             '40':logging.ERROR, '50':logging.CRITICAL}
 
 def parse(path, **kwargs):
+    # print 'field_types:', utils.get_fld_descriptors('parser/J')
+    # ftypes = utils.get_mtd_types('parser/J', 'm2', 2)
+    # print 'ftypes:', ftypes
+    # exit()
     ## logging configuration
     create_logger(log_lvls.get(kwargs.get('log_lvl', '10')))
     

@@ -1,9 +1,5 @@
-from . import convert
-
 import os
-import shutil
-import logging
-import subprocess
+
 from itertools import ifilter, ifilterfalse
 
 from ast.utils import utils
