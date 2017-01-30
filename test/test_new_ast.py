@@ -29,6 +29,9 @@ class TestJava(TestCommon):
     def test_CallTypes(self):
         self.__test(["CallTypes.java"])
 
+    def test_Cast(self):
+        self.__test(["Cast.java"])
+
     def test_ClassField(self):
         self.__test(["ClassField.java"])
 
@@ -40,6 +43,12 @@ class TestJava(TestCommon):
 
     def test_Fields(self):
         self.__test(["Fields.java"])
+
+    def test_FieldFromImport(self):
+        self.__test(["FieldFromImport.java"])
+
+    def test_FieldMethod(self):
+        self.__test(["FieldMethod.java"])
         
     def test_Generators(self):
         self.__test(["Generators.java"])
@@ -103,6 +112,9 @@ class TestJava(TestCommon):
         
     def test_This(self):
         self.__test(["This.java"])
+        
+    def test_UninterpretedClass(self):
+        self.__test(["UninterpretedClass.java"])
 
 if __name__ == '__main__':
   unittest.main()
