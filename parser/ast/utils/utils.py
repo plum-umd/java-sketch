@@ -7,9 +7,14 @@ import subprocess
 
 from functools import partial
 
+from .. import Modifiers
+
+from ast import DESCRIPTOR_TYPES
+
 from ast.importdeclaration import ImportDeclaration
 
 from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
+from ast.body.fielddeclaration import FieldDeclaration
 from ast.body.variabledeclarator import VariableDeclarator
 
 from ast.expr.nameexpr import NameExpr
@@ -185,7 +190,6 @@ def node_to_obj(n):
     return o
 
 def find_fld(n):
-    scope = n.scope
     def top(s):
         if type(s.scope) == ArrayAccessExpr:
             if type(s.scope.nameExpr) == NameExpr: return n.symtab.get(s.scope.nameExpr.name)
@@ -198,7 +202,7 @@ def find_fld(n):
             else: return scopes(s.scope.nameExpr, [s.scope.nameExpr.name] + a)
         elif type(s.scope) == NameExpr: return a
         else: return scopes(s.scope, [s.scope.name] + a)
-    if type(n.scope) == FieldAccessExpr or type(n.scope) == ArrayAccessExpr:
+    if isinstance(n.scope, (FieldAccessExpr, ArrayAccessExpr)):
         # top level variable of field access
         v = top(n)
         # print 'v:', v.name
@@ -226,17 +230,47 @@ def find_fld(n):
     print 'cls:', cls, 'scope:', scope, type(scope)
     if not cls: # something went wrong. maybe scope is an import?
         if isinstance(scope, ImportDeclaration):
-            nm = str(scope.name).split('.')
+            nm = str(scope).split('.')
             fdescriptors = get_fld_descriptors(os.path.join(*nm))
             print fdescriptors
-    exit()
+            return fld_from_descriptor(fdescriptors, n.field.name, nm[-1])
+
     fld = cls.symtab.get(n.name)
+    print 'fld', fld, type(fld)
+    if not fld: # didn't find field in this cls, look in imported supers
+        print cls.symtab
+        extends = cls.extendsList
+        for e in extends:
+            if e.scope and str(e.scope) in cls.symtab:
+                impdec = cls.symtab[str(e.scope)]
+                nm = '{}${}'.format(impdec, e.name)
+                fdescriptors = get_fld_descriptors(os.path.join(*nm.split('.')))
+                print fdescriptors
+                return fld_from_descriptor(fdescriptors, n.field.name, str(cls))
+        pass
+    exit()
 
     if not fld:
         raise Exception('fld {} not found in class {} or super classes.'.
                         format(n.field.name, cls.name))
     return fld
 
+def fld_from_descriptor(fdescriptors, name, nm):
+    d = [d for d in fdescriptors if d[1] == name][0]
+    if not d: raise Exception('Couldnt find field {} in import {}.'.format(name, str(scope)))
+    print d
+    d[0] = DESCRIPTOR_TYPES[d[0]] if d[0] in DESCRIPTOR_TYPES else d[0]
+    # make a field to return
+    if d[0] in widen:
+        typ = {u'@t':u'PrimitiveType', u'type':{u'name':d[0]}}
+    else:
+        typ = {u'@t':u'ClassOrInterfaceType', u'type':{u'name':d[0]}}
+    vardec = {u'@t':u'VariableDeclarator',u'id':{u'@t':u'VariableDeclaratorId', u'name':unicode(d[1])}}
+    fd = FieldDeclaration({u'@t':u'FieldDeclaration', u'modifiers':d[2], u'type':typ,
+                           u'variables':{u'@e':[vardec]}})
+    fd.parentNode = ClassOrInterfaceDeclaration({u'@t':u'ClassOrInterfaceDeclaration', u'name':nm})
+    return fd
+    
 def anon_nm(a):
     if type(a.parentNode) == AssignExpr: return a.parentNode.target
     else: return anon_nm(a.parentNode)
@@ -282,7 +316,6 @@ def get_descriptors(nm):
     cons = filter(lambda d: d[0][0] == cls_nm, cls)
 
     mtds = filter(lambda d: '(' in d[0] and d[0][0] != cls_nm, cls)
-
     return (flds, cons, mtds)
 
 # for now this is going to return [[fld_type1, fld_name1], ...]
@@ -291,12 +324,11 @@ def get_fld_descriptors(path):
     # print 'fld_descriptors', flds
     descriptors = []
     for d in flds:
-        print 'd:', d
         nm = filter(lambda n: n not in ACCESS_MODS, d[0].split(' '))[1].strip(';')
         typ = d[1].split(' ')[1].strip('[L;')
         if typ[0] == '[': typ = typ[1:]
         if '/' in typ: typ = typ[typ.rfind('/')+1:]
-        descriptors.append([typ, nm])
+        descriptors.append([typ, nm, Modifiers[u'ST'] if 'static' in d[0] else 0x0])
     return descriptors
 
 def get_mtd_types(path, name, num_params):

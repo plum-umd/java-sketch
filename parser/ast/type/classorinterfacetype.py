@@ -31,4 +31,5 @@ class ClassOrInterfaceType(Type):
     @anyCIT.setter
     def anyCIT(self, v): self._any = v
 
-    def __str__(self): return self.name
+    def __str__(self):
+        return '{}${}'.format(str(self.scope), self.name) if self.scope else self.name
