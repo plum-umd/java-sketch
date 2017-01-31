@@ -242,7 +242,6 @@ def find_fld(n, obj_struct):
                 impdec = cls.symtab[str(e.scope)]
                 nm = '{}${}'.format(impdec, e.name)
                 fdescriptors = get_fld_descriptors(os.path.join(*nm.split('.')))
-                print fdescriptors
                 fld = fld_from_descriptor(fdescriptors, n.field.name, sanitize_ty(nm))
                 obj_struct.members.append(fld)
                 return fld
@@ -329,10 +328,10 @@ def get_fld_descriptors(path):
 
 def get_mtd_types(path, name, num_params):
     # [(method signature, JVM descriptor)]
-    print 'path:', path, 'method name:', name, 'num_params:', num_params
+    # print 'path:', path, 'method name:', name, 'num_params:', num_params
     (_, _, mtds) = get_descriptors(path)
     candidates = [d[1][d[1].find(':')+2:] for d in mtds if name+'(' in d[0]]
-    print 'candidates:', candidates
+    # print 'candidates:', candidates
     ptypes = []
     def filter_by_params(c):
         params = c[c.find('(')+1:c.rfind(')')]
@@ -356,13 +355,13 @@ def get_mtd_types(path, name, num_params):
             else:
                 typs.append(ch)
                 i += 1
-            print 'typs:', typs
+            # print 'typs:', typs
         if len(typs) == num_params:
             ptypes.append(list(typs + [c[-1]]))
             return True
         return False
-    print 'filtered:', filter(filter_by_params, candidates)
-    print 'ptypes:', ptypes
+    # print 'filtered:', filter(filter_by_params, candidates)
+    # print 'ptypes:', ptypes
     return ptypes
 
 def mtd_type_from_callexpr(callexpr):

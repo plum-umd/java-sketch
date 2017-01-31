@@ -184,36 +184,15 @@ class Translator(object):
     def visit(self, n):
         # print 'VariableDeclarator'
         if n.init:
-            if isinstance(n.init, ArrayCreationExpr):
-                if not isinstance(n.typee, ReferenceType):
-                    self.create_array(n.init)
-                self.printt(' ')
-                n.idd.accept(self)
-                if n.init.initializer:
-                    self.printt(' = ')
-                    n.init.initializer.accept(self)
-            else:
-                self.printt(' ')
-                n.idd.accept(self)
-                self.printt(' = ')
-                n.init.accept(self)
+            self.printt(' ')
+            n.idd.accept(self)
+            self.printt(' = ')
+            if isinstance(n.init, ArrayInitializerExpr):
+                self.printt('new Array_{}('.format(self.trans_ty(n.typee)))
+            n.init.accept(self)
         else:
             self.printt(' ')
             n.idd.accept(self)
-
-    def create_array(self, n):
-        # n.typee.accept(self)
-        # print 'create:', n.arrayCount
-        if n.dimensions:
-            for d in n.dimensions:
-                self.printt('[')
-                d.accept(self)
-                self.printt(']')
-            for c in xrange(n.arrayCount):
-                self.printt('[]')
-        else:
-            for c in xrange(n.arrayCount): self.printt('[]')
-            # n.initializer.accept(self)
 
     @v.when(VariableDeclaratorId)
     def visit(self, n):
@@ -385,7 +364,6 @@ class Translator(object):
     @v.when(AssignExpr)
     def visit(self, n):
         # print 'AssignExpr'
-        if isinstance(n.value, ArrayCreationExpr): return
         if type(n.target) == FieldAccessExpr:
             v = self.trans_faccess(n.target)
             if v:
@@ -458,31 +436,29 @@ class Translator(object):
     @v.when(ArrayCreationExpr)
     def visit(self, n):
         # print 'arraycreationexpr'
-        pass
-        # n.typee.accept(self)
-        # if n.dimensions:
-        #     for d in n.dimensions:
-        #         self.printt('[')
-        #         d.accept(self)
-        #         self.printt(']')
-        #     for c in xrange(n.arrayCount):
-        #         self.printt('[]')
-        # else:
-        #     for c in xrange(n.arrayCount):
-        #         self.printt('[]')
-        #     self.printt(' ')
-        #     n.initializer.accept(self)
+        self.printt('new Array_{}('.format(self.trans_ty(n.typee)))
+        if n.dimensions:
+            for d in n.dimensions:
+                self.printt('sz=')
+                d.accept(self)
+            self.printt(')')
+            # for c in xrange(n.arrayCount):
+            #     self.printt('[]')
+        else:
+            n.initializer.accept(self)
 
     @v.when(ArrayInitializerExpr)
     def visit(self, n):
-        self.printt('{')
+        # print 'arrayinitializerexpr'
+        self.printt('sz={}, A={{'.format(len(n.values)))
         self.printSepList(n.values)
-        self.printt('}')
+        self.printt('})')
 
     @v.when(ArrayAccessExpr)
     def visit(self, n):
+        # print 'arrayaccessexpr'
         n.nameExpr.accept(self)
-        self.printt('[')
+        self.printt('.A[')
         n.index.accept(self)
         self.printt(']')
 
@@ -591,12 +567,10 @@ class Translator(object):
     @v.when(ReferenceType)
     def visit(self, n):
         # print 'ReferenceType -- arrayCount: {}'.format(n.arrayCount)
-        n.typee.accept(self)
-        for i in xrange(n.arrayCount):
-            self.printt('[')
-            if n.values: n.values[i].accept(self)
-            else: self.printt(str(self.num_mtds))
-            self.printt(']')
+        if n.arrayCount:
+            self.printt('Array_{}'.format(self.trans_ty(n.typee)))
+        else:
+            n.typee.accept(self)
 
     def trans(self, s):
         self.buf = cStringIO.StringIO()
@@ -604,22 +578,25 @@ class Translator(object):
         return util.get_and_close(self.buf)
 
     def trans_ty(self, typ, convert=True):
-        _tname = typ.sanitize_ty(typ.name.strip()) if not isinstance(typ, unicode) and not isinstance(typ, str) else typ
-        r_ty = _tname
-        if typ and (type(typ) == ClassOrInterfaceType or type(typ) == ReferenceType):
-            cls = typ.symtab.get(typ.name)
-            _tname = str(cls)
-        
+        # tname = str(typ)
+        # _tname = typ.sanitize_ty(typ.name.strip()) if not isinstance(typ, unicode) and not isinstance(typ, str) else typ
+        r_ty = str(typ)
+        # r_ty = _tname
+        # if typ and (type(typ) == ClassOrInterfaceType or type(typ) == ReferenceType):
+        #     cls = typ.symtab.get(typ.name)
+        #     tname = str(cls)
+        #     print '_tname:', _tname
+
         # we've already rewritten this type
-        if _tname in self.ty: r_ty = self.ty[_tname] if convert else r_ty
+        if r_ty in self.ty: r_ty = self.ty[r_ty] if convert else r_ty
         # Java types to Sketch types
-        elif _tname in CONVERSION_TYPES: r_ty = CONVERSION_TYPES[_tname]
+        elif r_ty in CONVERSION_TYPES: r_ty = CONVERSION_TYPES[r_ty]
         # Unknown type, cast as Object for now
         else: r_ty = u'Object'
 
         if typ and type(typ) == ReferenceType:
-            if typ.values: r_ty += ''.join(["[{}]".format(v.name) for v in typ.values])
-            else: r_ty += ''.join(['[{}]'.format(self.ARRAY_SIZE) for i in xrange(typ.arrayCount)])
+            if typ.arrayCount > 0: r_ty = 'Array_{}'.format(r_ty)
+            
         return r_ty
 
     def trans_faccess(self, n):

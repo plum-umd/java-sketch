@@ -4,6 +4,7 @@ class A {
 
 class B {
     A[] alist;
+    int [] x;
 }
 
 class SimpleArray {
