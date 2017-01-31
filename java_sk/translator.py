@@ -188,7 +188,9 @@ class Translator(object):
             n.idd.accept(self)
             self.printt(' = ')
             if isinstance(n.init, ArrayInitializerExpr):
-                self.printt('new Array_{}('.format(self.trans_ty(n.typee)))
+                self.printt('new ')
+                n.typee.accept(self)
+                self.printt('(')
             n.init.accept(self)
         else:
             self.printt(' ')

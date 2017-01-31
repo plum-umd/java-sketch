@@ -16,6 +16,9 @@ class TestJava(TestCommon):
         
     def test_Args(self):
         self.__test(["Args.java"])
+        
+    def test_Array(self):
+        self.__test(["Array.java"])
 
     def test_BinExprArgs(self):
         self.__test(["BinExprArgs.java"])
