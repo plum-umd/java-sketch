@@ -109,8 +109,19 @@ class Encoder(object):
         logging.info('generating main.sk')
         self.gen_main_sk(cls_sks)
 
-        logging.info('writing Object.sk')
+        logging.info('writing struct Object')
         self.print_obj_struct()
+
+        logging.info('generating array.sk')
+        self.gen_array_sk()
+
+    def gen_array_sk(self):
+        types = [u'bit', u'char', u'int', u'float', u'double', u'Object',]
+        array_struct = 'struct Array_{0} {{\n  int sz;\n  {0}[sz] A;\n}}\n\n'
+        with open(os.path.join(self.sk_dir, "array.sk"), 'w') as f:
+            f.write("package array;\n\n")
+            for t in types:
+                f.write(array_struct.format(t))
 
     def print_obj_struct(self):
         buf = cStringIO.StringIO()
@@ -153,7 +164,7 @@ class Encoder(object):
 
         buf.write('pragma options "--fe-fpencoding AS_FIXPOINT";\n')
         
-        sks = ['meta.sk', 'Object.sk'] + cls_sks
+        sks = ['meta.sk', 'Object.sk', 'array.sk'] + cls_sks
         for sk in sks: buf.write("include \"{}\";\n".format(sk))
 
         with open(os.path.join(self.sk_dir, "main.sk"), 'w') as f:
