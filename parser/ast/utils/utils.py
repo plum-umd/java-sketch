@@ -277,8 +277,15 @@ def unpack_class_file(nm):
     global JAVA_HOME, RT_JAR
 
     if not JAVA_HOME:
-        JAVA_HOME = os.environ['JAVA_HOME']
-        if not JAVA_HOME: raise Exception('Unable to find $JAVA_HOME')
+        try:
+            JAVA_HOME = os.environ['JAVA_HOME']
+        except:
+            cmd = ['/usr/libexec/java_home']
+            try:
+                JAVA_HOME = subprocess.check_output(cmd).strip(' \n')
+            except subprocess.CalledProcessError as e:
+                logging.error('Unable to extract "{}" from RT_JAR "{}": {}'.format(nm, RT_JAR, e.output))
+                raise Exception('Unable to set JAVA_HOME')
         RT_JAR = os.path.join(JAVA_HOME, 'jre','lib', 'rt.jar')
 
     # extract class file from jar
