@@ -118,18 +118,22 @@ class Translator(object):
     # body
     @v.when(ConstructorDeclaration)
     def visit(self, n):
-        cls = utils.get_coid(n)
+        cls = n if isinstance(n, ClassOrInterfaceDeclaration) else utils.get_coid(n)
         etypes = cls.enclosing_types()
-        self.printt('Object {}'.format(str(n)))
-        self.printt('(')
+        self.printt('Object {0}_{0}'.format(str(cls)))
+        ptypes = n.param_typs()
+        if cls.isinner(): self.printt('_{}'.format(str(utils.get_coid(cls))))
+        if ptypes: self.printt('_{}'.format('_'.join(map(str, ptypes))))
         p = [Parameter({u'id':{u'name':u'self'},
                        u'type':{u'@t':u'ClassOrInterfaceType',u'name':u'Object'}})]
         if cls.isinner():
             p.append(Parameter({u'id':{u'name':u'self_{}'.format(len(etypes)-1)},
                                 u'type':{u'@t':u'ClassOrInterfaceType',u'name':u'Object'}}))
 
+        
         n.parameters = p + n.parameters
 
+        self.printt('(')
         self.printSepList(n.parameters)
         self.printt(') ')
 
@@ -141,8 +145,7 @@ class Translator(object):
         if not n.body: self.printt(';')
         else:
             if cls.isinner():
-                i = len(etypes)-1
-                n.body.stmts = ['self{0} = self_{0};'.format(i)] + n.body.stmts
+                n.body.stmts = ['self{0} = self_{0};'.format(len(etypes)-1)] + n.body.stmts
             n.body.stmts = n.body.stmts + [u'return self;']
             n.body.accept(self)
         self.printLn()
