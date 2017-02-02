@@ -11,18 +11,6 @@ a [Sketch][sk] problem; this translation is complex becuase [Sketch][sk]
 is not object-oriented.  Finally, JSketch synthesizes an executable Java
 program by interpreting the output of [Sketch][sk].
 
-
-## Publications
-
-* [JSketch: Sketching for Java][fse15].
-  Jinseong Jeon, Xiaokang Qiu, Jeffrey S. Foster, and Armando Solar-Lezama.
-  In _10th Joint Meeting of the European Software Engineering Conference and
-  the ACM SIGSOFT Symposium on the Foundations of Software Engineering
-  (ESEC/FSE '15)_, Sep 2015.
-
-[fse15]: http://dx.doi.org/10.1145/2786805.2803189
-
-
 ## Requirement
 
 Since this tool is a front-end for [Sketch][sk],
@@ -100,7 +88,6 @@ export SKETCH_HOME=/path/to/sketch-frontend
 export PATH=$PATH:$SKETCH_HOME/target/sketch-1.7.0-noarch-launchers
 ```
 
-
 ## Usage
 
 To use this tool, you should generate the parser first,
@@ -111,21 +98,25 @@ You can skip custom codegen (and the regression test)
 and move to script usages.
 
 ### Parser Generation
+Currently working a non-master branch. To clone:
+```sh
+git clone
+git checkout new-ast
+```
+
+### Parser Generation
 
 We slightly changed Java grammar to support holes (written `??`),
 generators in an expression-level (written {| e* |}) and
 in a class-level (written `generator class ...`), as well as
 a couple other syntactic sugars borrowed from [Sketch][sk],
 such as `repeat` and `minrepeat`.
-To read JSketch, again, you should generate our own parser first:
-```sh
-$ python -m grammar.gen
-```
-or
-```sh
-$ ./grammar/gen.py
-```
+To read JSketch, again, you should generate our parser first:
 
+```sh
+cd parser
+make
+```
 
 ### Custom Codegen
 
@@ -182,7 +173,6 @@ $ python -m java_sk.sketch -p demo_name [option]*
 $ ./java_sk/sketch.py -p demo_name [option]*
 ```
 
-
 ## Limitations
 
 As Java is a very large language, this tool currently only supports
@@ -193,7 +183,6 @@ Additionally, JSketch assumes the input sketch is type correct,
 meaning the standard parts of the program are type correct, holes
 are used either as integers or booleans, and expression generators
 are type correct.
-
 
 [sk]: https://bitbucket.org/gatoatigrado/sketch-frontend/
 [sk-170]: http://people.csail.mit.edu/jsjeon/adaptive-concretization/sketch-1.7.0.tgz
