@@ -1,3 +1,5 @@
+***JSketch requires Java 8***
+
 # JSketch
 
 Sketch-based synthesis, epitomized by [Sketch][sk], lets developers
