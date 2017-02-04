@@ -313,11 +313,26 @@ def get_descriptors(nm):
     # this is a cool bit of sorcery to pair names with their descriptors
     cls = zip(*[iter(cls)]*2)
     flds = filter(lambda d: '(' not in d[0] and 'static {};' not in d[0], cls)
+    # print 'flds:', flds
 
+    cls_nm_full = nm.replace('/', '.') # [nm.rfind('/')+1:]
     cls_nm = nm[nm.rfind('/')+1:]
-    cons = filter(lambda d: d[0][0] == cls_nm, cls)
+    # print 'cls:', cls
 
-    mtds = filter(lambda d: '(' in d[0] and d[0][0] != cls_nm, cls)
+    cons = []
+    for d in cls:
+        t = d[0].split(' ')[-1].strip(';')
+        if '(' in t and t[:t.find('(')] == cls_nm or t[:t.find('(')] == cls_nm_full:
+            cons.append(d)
+    # print 'cons:', cons
+
+    mtds = []
+    for d in cls:
+        t = d[0].split(' ')[-1].strip(';')
+        if '(' in t and t[:t.find('(')] != cls_nm and t[:t.find('(')] != cls_nm_full:
+            mtds.append(d)
+    # print 'mtds:', mtds
+
     return (flds, cons, mtds)
 
 # for now this is going to return [[fld_type1, fld_name1], ...]
@@ -338,7 +353,7 @@ def get_mtd_types(path, name, num_params):
     # print 'path:', path, 'method name:', name, 'num_params:', num_params
     (_, _, mtds) = get_descriptors(path)
     candidates = [d[1][d[1].find(':')+2:] for d in mtds if name+'(' in d[0]]
-    # print 'candidates:', candidates
+    print 'candidates:', candidates
     ptypes = []
     def filter_by_params(c):
         params = c[c.find('(')+1:c.rfind(')')]
@@ -367,7 +382,7 @@ def get_mtd_types(path, name, num_params):
             ptypes.append(list(typs + [c[-1]]))
             return True
         return False
-    # print 'filtered:', filter(filter_by_params, candidates)
+    print 'filtered:', filter(filter_by_params, candidates)
     # print 'ptypes:', ptypes
     return ptypes
 

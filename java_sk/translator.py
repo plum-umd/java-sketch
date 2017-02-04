@@ -533,7 +533,7 @@ class Translator(object):
 
     @v.when(StringLiteralExpr)
     def visit(self, n):
-        self.printt('String_String_char_int_int(new Object(__cid=String()), "{}", 0, {})'.format(n.value, len(n.value)))
+        self.printt('String_String_char_int_int(new Object(__cid=String()), new Array_char(sz={1}+1, A="{0}"), 0, {1})'.format(n.value, len(n.value)))
 
     @v.when(CharLiteralExpr)
     def visit(self, n):
@@ -885,8 +885,10 @@ class Translator(object):
             self.printt(' : ')
             if isinstance(c.elseExpr, IntegerLiteralExpr): self.printt('0')
             elif isinstance(c.elseExpr, PrimitiveType):
+                # print 'name:', c.elseExpr.name
                 if c.elseExpr.name == u'double': self.printt('0.0')
                 if c.elseExpr.name == u'int': self.printt('0')
+                if c.elseExpr.name == u'char': self.printt("'\\0'")
             elif isinstance(c.elseExpr, (ClassOrInterfaceType, ReferenceType)): self.printt('null')
             else: self.print_dispatch(c.elseExpr)
         else:

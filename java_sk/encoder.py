@@ -131,7 +131,7 @@ class Encoder(object):
                         filter(lambda m: type(m) == FieldDeclaration,
                                self.tltr.obj_struct.members))
         # pretty print
-        flds = [(u'int', u'hash', u'')] + map(self.tltr.trans_fld, i_flds)
+        flds = map(self.tltr.trans_fld, i_flds)
         lens = map(lambda f: len(f[0]), flds)
         m = max(lens) + 1
         buf.write("struct " + str(self.tltr.obj_struct) + " {\n")
