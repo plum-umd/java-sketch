@@ -48,6 +48,9 @@ public class Jsonify {
 
         typeRewrites.put("com.github.javaparser.ast.CompilationUnit","CompilationUnit");
         typeRewrites.put("com.github.javaparser.ast.ImportDeclaration","ImportDeclaration");
+        typeRewrites.put("com.github.javaparser.ast.ImportDeclaration","ImportDeclaration");
+        typeRewrites.put("com.github.javaparser.ast.TypeParameter","TypeParameter");
+        typeRewrites.put("com.github.javaparser.ast.TypeArguments","TypeArguments");
 
         typeRewrites.put("com.github.javaparser.ast.body.ClassOrInterfaceDeclaration","ClassOrInterfaceDeclaration");
         typeRewrites.put("com.github.javaparser.ast.body.FieldDeclaration","FieldDeclaration");

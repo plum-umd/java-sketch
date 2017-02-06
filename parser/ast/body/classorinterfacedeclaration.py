@@ -5,6 +5,7 @@ import logging
 from . import _import
 from .typedeclaration import TypeDeclaration
 
+from ..typeparameter import TypeParameter
 from ..importdeclaration import ImportDeclaration
 
 from ..type.classorinterfacetype import ClassOrInterfaceType
@@ -15,7 +16,9 @@ class ClassOrInterfaceDeclaration(TypeDeclaration):
 
         self._interface = kwargs.get('interface_', False)
         # List<TypeParameters>
-        # self._typeParameters = kwargs.get('typeParameters', [])
+        typeParameters = kwargs.get(u'typeParameters', {})
+        self._typeParameters = map(lambda x: TypeParameter(x) if u'@t' in x else [],
+                                  typeParameters.get(u'@e', [])) if typeParameters else []
 
         # Can contain more than one item if this is an interface
         # List<ClassOrInterfaceType>

@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 
 from .bodydeclaration import BodyDeclaration
+
 from ..type.classorinterfacetype import ClassOrInterfaceType
+from ..typeparameter import TypeParameter
 
 from . import _import
 
@@ -19,7 +21,12 @@ class ConstructorDeclaration(BodyDeclaration):
         params = kwargs.get(u'parameters', {})
         self._parameters = map(lambda x: locs[x[u'@t']](x),
                                params.get(u'@e', [])) if params else []
-    
+
+        # List<TypeParameter>
+        typeParameters = kwargs.get(u'typeParameters', {})
+        self._typeParameters = map(lambda x: TypeParameter(x) if u'@t' in x else [],
+                                   typeParameters.get(u'@e', [])) if typeParameters else []
+
         # Type (just the class name wrapped in a Type)
         self._type = ClassOrInterfaceType(kwargs.get(u'name',{}))
     
@@ -64,6 +71,11 @@ class ConstructorDeclaration(BodyDeclaration):
     def throws(self): return self._throws
     @throws.setter
     def throws(self, v): self._throws = v
+
+    @property
+    def typeParameters(self): return self._typeParameters
+    @typeParameters.setter
+    def typeParameters(self, v): self._typeParameters = v
   
     def param_typs(self): return map(lambda p: p.typee, self.parameters)
     def param_names(self): return map(lambda p: p.name, self.parameters)

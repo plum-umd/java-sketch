@@ -9,6 +9,7 @@ from .. import AssignOperators as assignop
 from ..node import Node
 from ..compilationunit import CompilationUnit
 from ..importdeclaration import ImportDeclaration
+from ..typeparameter import TypeParameter
 
 from ..body.typedeclaration import TypeDeclaration
 from ..body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
@@ -127,13 +128,18 @@ class SourcePrinter(object):
         if n.interface: self.printt('interface ')
         else: self.printt('class ')
         self.printt(n.name)
+
         # typeParameters
+        self.printTypeParameters(n.typeParameters)
+
         if n.extendsList:
             self.printt(' extends ')
-            self.printCommaList(n.extendsList)
+            self.printSepList(n.extendsList)
+
         if n.implementsList:
             self.printt(' implements ')
-            self.printCommaList(n.implementsList)
+            self.printSepList(n.implementsList)
+
         self.printLn(' {')
         self.indent()
         self.printMembers(n.members)
@@ -158,18 +164,22 @@ class SourcePrinter(object):
         self.printJavaComment(n.comment)
 
         self.printMods(n)
+
+        self.printTypeParameters(n.typeParameters)
+        if n.typeParameters: self.printt(' ')
+
         n.typee.accept(self)
         self.printt(' ')
         self.printt(n.name)
         self.printt('(')
 
-        self.printCommaList(n.parameters)
+        self.printSepList(n.parameters)
         self.printt(')')
 
         for i in xrange(n.arrayCount): self.printt('[]')
         if n.throws:
             self.printt(' throws ')
-            self.printCommaList(n.throws)
+            self.printSepList(n.throws)
             
         if not n.body: self.printt(';')
         else:
@@ -183,16 +193,19 @@ class SourcePrinter(object):
 
         self.printMods(n)
 
+        self.printTypeParameters(n.typeParameters)
+        if n.typeParameters: self.printt(' ')
+
         self.printt(n.name)
         self.printt('(')
 
-        self.printCommaList(n.parameters)
+        self.printSepList(n.parameters)
         self.printt(')')
 
         for i in xrange(n.arrayCount): self.printt('[]')
         if n.throws:
             self.printt(' throws ')
-            self.printCommaList(n.throws)
+            self.printSepList(n.throws)
             
         if not n.body: self.printt(';')
         else:
@@ -276,11 +289,11 @@ class SourcePrinter(object):
         self.printJavaComment(n.comment)
 
         self.printt('for (')
-        if n.init: self.printCommaList(n.init)
+        if n.init: self.printSepList(n.init)
         self.printt('; ')
         if n.compare: n.compare.accept(self)
         self.printt('; ')
-        if n.update: self.printCommaList(n.update)
+        if n.update: self.printSepList(n.update)
         self.printt(') ')
         n.body.accept(self)
 
@@ -437,7 +450,7 @@ class SourcePrinter(object):
 
         n.typee.accept(self)
         self.printt(' ')
-        self.printCommaList(n.varss)
+        self.printSepList(n.varss)
 
     @v.when(UnaryExpr)
     def visit(self, n):
@@ -463,7 +476,7 @@ class SourcePrinter(object):
         if n.isHole: self.printt('??')
         else:
             self.printt('{| ')
-            self.printCommaList(n.exprs)
+            self.printSepList(n.exprs)
             self.printt(' |}')
 
     @v.when(ObjectCreationExpr)
@@ -562,7 +575,7 @@ class SourcePrinter(object):
         self.printJavaComment(n.comment)
 
         self.printt('{')
-        self.printCommaList(n.values)
+        self.printSepList(n.values)
         self.printt('}')
 
     @v.when(ArrayAccessExpr)
@@ -665,6 +678,21 @@ class SourcePrinter(object):
             self.printt('.')
         self.printt(n.name)
 
+        if n.isUsingDiamondOperator():
+            self.printt('<>')
+        else:
+            self.printTypeArgs(n.typeArgs())
+
+    @v.when(TypeParameter)
+    def visit(self, n):
+        self.printJavaComment(n.comment)
+
+        # annotations
+
+        self.printt(n.name)
+        if n.typeBound:
+            self.printSepList(n.typeBound, '&')
+
     @v.when(InstanceOfExpr)
     def visit(self, n):
         self.printJavaComment(n.comment)
@@ -702,16 +730,16 @@ class SourcePrinter(object):
     def printJavaComment(self, javacomment):
         if javacomment: javacomment.accept(self)
 
-    def printCommaList(self, args):
+    def printSepList(self, args, sep=','):
         if args:
             lenn = len(args)
             for i in xrange(lenn):
                 args[i].accept(self)
-                if i+1 < lenn: self.printt(', ')
+                if i+1 < lenn: self.printt('{} '.format(sep))
 
     def printArguments(self, args):
         self.printt('(')
-        self.printCommaList(args)
+        self.printSepList(args)
         self.printt(')')
 
     def printMembers(self, members):
@@ -726,6 +754,15 @@ class SourcePrinter(object):
         if TypeDeclaration.isStatic(mods): self.printt('static ')
         if TypeDeclaration.isFinal(mods): self.printt('final ')
         if TypeDeclaration.isOptional(mods): self.printt('optional ')
+
+    def printTypeArgs(self, args):
+        self.printTypeParameters(args)
+        
+    def printTypeParameters(self, args):
+        if args:
+            self.printt('<')
+            self.printSepList(args)
+            self.printt('>')
         
     def indent(self): self._level += 1
     def unindent(self): self._level -= 1

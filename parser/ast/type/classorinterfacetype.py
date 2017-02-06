@@ -2,6 +2,8 @@
 
 from .type import Type
 
+from ..typearguments import TypeArguments
+
 class ClassOrInterfaceType(Type):
     def __init__(self, kwargs={}):
         if kwargs:
@@ -13,8 +15,12 @@ class ClassOrInterfaceType(Type):
                 scope.update({u'@t':u'ClassOrInterfaceType'})
                 self._scope = ClassOrInterfaceType(scope)
             self._any = kwargs.get('any')
-            # TypeArguments
-            # self._typeArguments = kwargs.get('typeArguments')
+
+            # TypeArguments typeArguments
+            self._typeArguments = TypeArguments(kwargs.get(u'typeArguments', {}))
+            
+            # boolean any = false;
+            self._any = False
 
     @property
     def typee(self): return self
@@ -27,9 +33,20 @@ class ClassOrInterfaceType(Type):
     def scope(self, v): self._scope = v
 
     @property
-    def anyCIT(self): return self._any
-    @anyCIT.setter
-    def anyCIT(self, v): self._any = v
+    def anyy(self): return self._any
+    @anyy.setter
+    def anyy(self, v): self._any = v
+
+    @property
+    def typeArguments(self): return self._typeArguments
+    @typeArguments.setter
+    def typeArguments(self, v): self._typeArguments = v
+
+    def typeArgs(self):
+        return self.typeArguments.typeArguments
+        
+    def isUsingDiamondOperator(self):
+        return self.typeArguments.isUsingDiamondOperator() if self.typeArguments else False
 
     def __str__(self):
         return '{}${}'.format(str(self.scope), self.name) if self.scope else self.name
