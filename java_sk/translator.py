@@ -16,6 +16,7 @@ from ast import AssignOperators as assignop
 from ast.utils import utils
 from ast.node import Node
 from ast.importdeclaration import ImportDeclaration
+from ast.typeparameter import TypeParameter
 
 from ast.body.typedeclaration import TypeDeclaration as td
 from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
@@ -124,13 +125,13 @@ class Translator(object):
         ptypes = n.param_typs()
         if cls.isinner(): self.printt('_{}'.format(str(utils.get_coid(cls))))
         if ptypes: self.printt('_{}'.format('_'.join(map(str, ptypes))))
+        self.printTypeParameters(n.typeParameters)
+
         p = [Parameter({u'id':{u'name':u'self'},
                        u'type':{u'@t':u'ClassOrInterfaceType',u'name':u'Object'}})]
         if cls.isinner():
             p.append(Parameter({u'id':{u'name':u'self_{}'.format(len(etypes)-1)},
                                 u'type':{u'@t':u'ClassOrInterfaceType',u'name':u'Object'}}))
-
-        
         n.parameters = p + n.parameters
 
         self.printt('(')
@@ -162,6 +163,8 @@ class Translator(object):
         if type(n.parentNode) == ObjectCreationExpr:
             self.printt('_'.join([str(n), utils.anon_nm(n).name]))
         else: self.printt(str(n))
+        self.printTypeParameters(n.typeParameters)
+        
         self.printt('(')
 
         if not td.isStatic(n) and not td.isHarness(n):
@@ -405,6 +408,7 @@ class Translator(object):
     def visit(self, n):
         # print 'ObjectCreationExpr:', n, n.beginLine
         obj_cls = n.symtab.get(n.typee.name)
+        if isinstance(obj_cls, ReferenceType): obj_cls = self.trans_ty(obj_cls)
         enclosing_cls = obj_cls.enclosing_types()[-1] \
             if type(obj_cls) == ClassOrInterfaceDeclaration and obj_cls.isinner() else None
         if n.scope:
@@ -560,6 +564,18 @@ class Translator(object):
     @v.when(ClassOrInterfaceType)
     def visit(self, n):
         self.printt(self.trans_ty(n))
+        if n.isUsingDiamondOperator():
+            self.printt('<>')
+        else:
+            self.printTypeArgs(n.typeArgs())
+
+    @v.when(TypeParameter)
+    def visit(self, n):
+        # annotations
+
+        self.printt(self.trans_ty(n.name))
+        if n.typeBound:
+            self.printSepList(n.typeBound, '&')
 
     @v.when(PrimitiveType)
     def visit(self, n):
@@ -978,6 +994,7 @@ class Translator(object):
         if args:
             lenn = len(args)
             for i in xrange(lenn):
+                print 'args:', args[i], type(args[i])
                 args[i].accept(self)
                 if i+1 < lenn: self.printt('{} '.format(sep))
 
@@ -988,6 +1005,15 @@ class Translator(object):
 
     def printMods(self, mods):
         if td.isGenerator(mods): self.printt('generator ')
+
+    def printTypeArgs(self, args):
+        self.printTypeParameters(args)
+        
+    def printTypeParameters(self, args):
+        if args:
+            self.printt('<')
+            self.printSepList(args)
+            self.printt('>')
 
     @property
     def mtd(self): return self._mtd

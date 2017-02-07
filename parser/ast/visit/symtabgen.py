@@ -105,7 +105,9 @@ class SymtabGen(object):
             node.symtab.update({nm:node})
             node.parentNode.symtab.update({str(node):node})
         node.symtab.update({str(node):node})
+        node.symtab.update({str(node.typee):node.typee})
         map(lambda p: p.accept(self), node.parameters)
+        map(lambda t: node.symtab.update({t.name:t}), node.typeParameters)
         map(lambda p: node.symtab.update({p.name:p}), node.parameters)
         if node.body: node.body.accept(self)
 
