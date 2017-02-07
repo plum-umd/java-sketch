@@ -648,7 +648,10 @@ class Translator(object):
         if td.isStatic(fld):
             nm = fld.name
             if fld.variable.init:
-                init = ' = ' + self.trans(fld.variable.init)
+                init = ' = '
+                if isinstance(fld.variable.init, ArrayInitializerExpr):
+                    init += 'new {}('.format(self.trans_ty(fld.typee))
+                init += self.trans(fld.variable.init)
         return (self.trans_ty(fld.typee), nm, init)
 
     def trans_params(self, (ty, nm)):

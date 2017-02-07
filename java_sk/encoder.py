@@ -207,7 +207,7 @@ class Encoder(object):
         buf = cStringIO.StringIO()
         buf.write("package {};\n\n".format(cname))
 
-        for fld in ifilterfalse(td.isPrivate, s_flds):
+        for fld in s_flds:
             f = self.tltr.trans_fld(fld)
             buf.write('{} {}{};\n'.format(f[0], f[1], f[2]))
             if cls == self.mcls and fld.variable.init and type(fld.variable.init) == GeneratorExpr: continue

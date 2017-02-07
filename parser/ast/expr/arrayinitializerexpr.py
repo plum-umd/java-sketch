@@ -9,7 +9,7 @@ class ArrayInitializerExpr(Expression):
     super(ArrayInitializerExpr, self).__init__(kwargs)
     locs = _import()
 
-    #List<Expression> values;
+    # List<Expression> values;
     v = kwargs.get(u'values', {})
     self._values = map(lambda e: locs[e[u'@t']](e) if u'@t' in e else [],
                        v.get(u'@e', [])) if v else []

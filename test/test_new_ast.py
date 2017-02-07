@@ -78,6 +78,9 @@ class TestJava(TestCommon):
         self.__test(["MultiField.java"])
         
     def test_NestedClasses(self):
+        self.__test(["NestedCls.java"])
+        
+    def test_NestedClasses(self):
         self.__test(["NestedClasses.java"])
         
     def test_NonLocalCalls(self):
@@ -85,6 +88,9 @@ class TestJava(TestCommon):
         
     def test_Override(self):
         self.__test(["Override.java"])
+        
+    def test_PolymorphicFunctions(self):
+        self.__test(["PolymorphicFunctions.java"])
         
     def test_SimpleArray(self):
         self.__test(["SimpleArray.java"])
@@ -94,6 +100,9 @@ class TestJava(TestCommon):
         
     def test_Static(self):
         self.__test(["Static.java"])
+        
+    def test_StaticVars(self):
+        self.__test(["StaticVars.java"])
         
     def test_Subclass(self):
         self.__test(["Subclass.java"])
