@@ -761,7 +761,11 @@ class Translator(object):
         # 15.12.4. Run-Time Evaluation of Method Invocation
         # 15.12.4.1. Compute Target Reference (If Necessary)
         if invocation_mode == 'static':
-            self.printt('{}@{}'.format(str(mtd), str(utils.get_coid(mtd))))
+            if (callexpr.scope and isinstance(callexpr.scope, ThisExpr)) or \
+               str(utils.get_coid(callexpr)) == str(utils.get_coid(mtd)):
+                self.printt('{}'.format(str(mtd), str(utils.get_coid(mtd))))
+            else:
+                self.printt('{}@{}'.format(str(mtd), str(utils.get_coid(mtd))))
             self.printArguments(callexpr.args)
         elif not callexpr.scope:
             self.printt(str(mtd))
