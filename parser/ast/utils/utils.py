@@ -223,6 +223,7 @@ def find_fld(n, obj_struct):
     if not scope:
         print 'Cant find {}.{}:{}'.format(n.scope.name, n.name, n.beginLine)
         return None
+
     # n's scope might be a class (if static field)
     cls = scope.symtab.get(scope.typee.name) if type(scope) != ClassOrInterfaceDeclaration \
         else scope

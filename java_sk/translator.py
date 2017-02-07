@@ -625,7 +625,7 @@ class Translator(object):
         fld = utils.find_fld(n, self.obj_struct)
         logging.debug('found field: {}'.format(str(fld)))
         if td.isStatic(fld):
-            if n.scope.name == utils.get_coid(n).name:
+            if isinstance(n.scope, ThisExpr) or n.scope.name == utils.get_coid(n).name:
                 self.printt(fld.name)
             elif type(n.parentNode) == AssignExpr and n == n.parentNode.target:
                 self.printt('{}_s@{}('.format(fld.name, str(utils.get_coid(fld))))
@@ -994,7 +994,6 @@ class Translator(object):
         if args:
             lenn = len(args)
             for i in xrange(lenn):
-                print 'args:', args[i], type(args[i])
                 args[i].accept(self)
                 if i+1 < lenn: self.printt('{} '.format(sep))
 
