@@ -7,6 +7,7 @@ def _import():
     from .returnstmt import ReturnStmt
     from .assertstmt import AssertStmt
     from .forstmt import ForStmt
+    from .foreachstmt import ForeachStmt
     from .whilestmt import WhileStmt
     from .emptystmt import EmptyStmt
     from .continuestmt import ContinueStmt

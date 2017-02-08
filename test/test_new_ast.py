@@ -92,6 +92,9 @@ class TestJava(TestCommon):
     def test_PolymorphicFunctions(self):
         self.__test(["PolymorphicFunctions.java"])
         
+    def test_PolyStuff(self):
+        self.__test(["PolyStuff.java"])
+        
     def test_SimpleArray(self):
         self.__test(["SimpleArray.java"])
         

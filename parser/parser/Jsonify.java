@@ -73,6 +73,7 @@ public class Jsonify {
         typeRewrites.put("com.github.javaparser.ast.stmt.ReturnStmt","ReturnStmt");
         typeRewrites.put("com.github.javaparser.ast.stmt.AssertStmt","AssertStmt");
         typeRewrites.put("com.github.javaparser.ast.stmt.ForStmt","ForStmt");
+        typeRewrites.put("com.github.javaparser.ast.stmt.ForeachStmt","ForeachStmt");
         typeRewrites.put("com.github.javaparser.ast.stmt.WhileStmt","WhileStmt");
         typeRewrites.put("com.github.javaparser.ast.stmt.EmptyStmt","EmptyStmt");
         typeRewrites.put("com.github.javaparser.ast.stmt.ContinueStmt","ContinueStmt");

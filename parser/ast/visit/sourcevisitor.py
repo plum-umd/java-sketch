@@ -25,6 +25,7 @@ from ..stmt.returnstmt import ReturnStmt
 from ..stmt.ifstmt import IfStmt
 from ..stmt.expressionstmt import ExpressionStmt
 from ..stmt.forstmt import ForStmt
+from ..stmt.foreachstmt import ForeachStmt
 from ..stmt.whilestmt import WhileStmt
 from ..stmt.minrepeatstmt import MinrepeatStmt
 from ..stmt.assertstmt import AssertStmt
@@ -283,6 +284,17 @@ class SourcePrinter(object):
                 self.indent()
             n.elseStmt.accept(self)
             if not (elseIf or elseBlock): self.unindent()
+
+    @v.when(ForeachStmt)
+    def visit(self, n):
+        self.printJavaComment(n.comment)
+
+        self.printt('for (')
+        n.var.accept(self)
+        self.printt(' : ')
+        n.iterable.accept(self)
+        self.printt(') ')
+        n.body.accept(self)
 
     @v.when(ForStmt)
     def visit(self, n):

@@ -145,6 +145,8 @@ def _import():
     from .expr.nameexpr import NameExpr
     from .expr.qualifiednameexpr import QualifiedNameExpr
 
+    from .type.referencetype import ReferenceType
+
     from .comments.javadoccomment import JavadocComment
     from .comments.linecomment import LineComment
     from .comments.blockcomment import BlockComment
