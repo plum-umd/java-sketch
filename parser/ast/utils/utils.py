@@ -25,6 +25,7 @@ from ast.expr.fieldaccessexpr import FieldAccessExpr
 from ast.expr.arrayaccessexpr import ArrayAccessExpr
 from ast.expr.assignexpr import AssignExpr
 
+from ast.type.referencetype import ReferenceType
 from ast.type.classorinterfacetype import ClassOrInterfaceType
 
 from ast.comments.comment import Comment
@@ -227,13 +228,16 @@ def find_fld(n, obj_struct):
     # n's scope might be a class (if static field)
     cls = scope.symtab.get(scope.typee.name) if type(scope) != ClassOrInterfaceDeclaration \
         else scope
-    if not cls: # something went wrong. maybe scope is an import?
-        if isinstance(scope, ImportDeclaration):
+
+    if not cls: # something went wrong.
+        if isinstance(scope, ImportDeclaration): # maybe scope is an import?
             nm = str(scope).split('.')
             fdescriptors = get_fld_descriptors(os.path.join(*nm))
             fld = fld_from_descriptor(fdescriptors, n.field.name, nm[-1])
             obj_struct.members.append(fld)
             return fld
+        if isinstance(scope.typee, ReferenceType): # maybe this is built-in field (e.g., array.length)
+            return scope.symtab.get(n.field.name)
 
     fld = cls.symtab.get(n.name)
     if not fld: # didn't find field in this cls, look in imported supers
@@ -354,7 +358,7 @@ def get_mtd_types(path, name, num_params):
     # print 'path:', path, 'method name:', name, 'num_params:', num_params
     (_, _, mtds) = get_descriptors(path)
     candidates = [d[1][d[1].find(':')+2:] for d in mtds if name+'(' in d[0]]
-    print 'candidates:', candidates
+    # print 'candidates:', candidates
     ptypes = []
     def filter_by_params(c):
         params = c[c.find('(')+1:c.rfind(')')]
@@ -383,7 +387,8 @@ def get_mtd_types(path, name, num_params):
             ptypes.append(list(typs + [c[-1]]))
             return True
         return False
-    print 'filtered:', filter(filter_by_params, candidates)
+    filter(filter_by_params, candidates)
+    # print 'filtered:', filter(filter_by_params, candidates)
     # print 'ptypes:', ptypes
     return ptypes
 

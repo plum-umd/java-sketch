@@ -27,6 +27,7 @@ from ..expr.objectcreationexpr import ObjectCreationExpr
 
 from ..type.primitivetype import PrimitiveType
 from ..type.voidtype import VoidType
+from ..type.referencetype import ReferenceType
 
 # https://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.3
 class SymtabGen(object):
@@ -129,6 +130,14 @@ class SymtabGen(object):
     @v.when(VariableDeclarator)
     def visit(self, node):
         self.new_symtab(node)
+        if isinstance(node.typee, ReferenceType) and node.typee.arrayCount > 0:
+            fd = FieldDeclaration({u"@t": u"FieldDeclaration",
+                                   u"variables": {
+                                       u"@e": [{u"@t": u"VariableDeclarator",
+                                                u"id": {u"name": u"length",},},]},
+                                   u"type": {u"@t": u"PrimitiveType",
+                                             u"type": {"name": "Int"},},})
+            node.symtab.update({u'length':fd})
         node.symtab.update({node.name:node})
         map(lambda n: n.accept(self), node.childrenNodes)
 
