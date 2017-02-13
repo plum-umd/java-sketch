@@ -6,6 +6,7 @@ from .bodydeclaration import BodyDeclaration
 class FieldDeclaration(BodyDeclaration):
     def __init__(self, kwargs={}):
         super(FieldDeclaration, self).__init__(kwargs)
+
         self._modifiers = kwargs.get(u'modifiers', 0)
         locs = _import()
 

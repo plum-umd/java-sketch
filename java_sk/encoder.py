@@ -18,6 +18,8 @@ from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 
 from ast.expr.generatorexpr import GeneratorExpr
 
+from ast.type.referencetype import ReferenceType
+
 class Encoder(object):
     def __init__(self, program, out_dir):
         # more globals to check out.
@@ -27,7 +29,7 @@ class Encoder(object):
         self._sk_dir = ''
         self._mcls = None
         self._bases = []
-        
+
         # populate global dict of types, classes and their ids
         self._clss = utils.extract_nodes([ClassOrInterfaceDeclaration], self._prg)
         self._CLASS_NUMS = {u'Object':1}
@@ -69,7 +71,7 @@ class Encoder(object):
         # TODO: these can also be specified with annotations -- we don't support those yet
         mtds = filter(td.isHarness, self.mtds)
         return mtds[0] if mtds else None
-      
+
     def main_cls(self):
         # get the main method and pull it's corresponding class out of the gsymtab.
         main = self.find_main()
@@ -78,7 +80,7 @@ class Encoder(object):
         harness = self.prg.gsymtab[harness.atr] if harness else None
         if not main and not harness:
             raise Exception("No main(), @Harness, or harness found, None")
-        
+
         self.mcls = main if main else harness
         self.demo_name = str(self.mcls)
         self.sk_dir = os.path.join(self.out_dir, '_'.join(["sk", self.demo_name]))
@@ -93,10 +95,10 @@ class Encoder(object):
         # type.sk
         logging.info('generating Object.sk')
         self.gen_object_sk()
-        
+
         logging.info('generating meta.sk')
         self.gen_meta_sk()
-        
+
         # cls.sk
         logging.info('generating cls.sk')
         cls_sks = []
@@ -124,7 +126,7 @@ class Encoder(object):
 
     def print_obj_struct(self):
         buf = cStringIO.StringIO()
-              
+
         # to avoid static fields, which will be bound to a class-representing package
         i_flds = filter(lambda f: not td.isStatic(f), \
                         filter(lambda m: type(m) == FieldDeclaration,
@@ -144,16 +146,16 @@ class Encoder(object):
     def gen_main_sk(self, cls_sks):
         # main.sk that imports all the other sketch files
         buf = cStringIO.StringIO()
-      
+
         # --bnd-cbits: the number of bits for integer holes
         bits = max(5, int(math.ceil(math.log(len(self.mtds), 2))))
         buf.write('pragma options "--bnd-cbits {}";\n'.format(bits))
-        
+
         # --bnd-unroll-amnt: the unroll amount for loops
         unroll_amnt = 35
         if unroll_amnt:
             buf.write('pragma options "--bnd-unroll-amnt {}";\n'.format(35))
-        
+
         # --bnd-inline-amnt: bounds inlining to n levels of recursion
         inline_amnt = None # use a default value if not set
         # setting it 1 means there is no recursion
@@ -162,7 +164,7 @@ class Encoder(object):
             buf.write('pragma options "--bnd-bound-mode CALLSITE";\n')
 
         buf.write('pragma options "--fe-fpencoding AS_FIXPOINT";\n')
-        
+
         sks = ['meta.sk', 'Object.sk', 'array.sk'] + cls_sks
         for sk in sks: buf.write("include \"{}\";\n".format(sk))
 
@@ -211,6 +213,8 @@ class Encoder(object):
             buf.write('{} {}{};\n'.format(f[0], f[1], f[2]))
             if cls == self.mcls and fld.variable.init and type(fld.variable.init) == GeneratorExpr: continue
             typ = self.tltr.trans_ty(fld.typee)
+            if isinstance(fld.typee, ReferenceType) and fld.typee.arrayCount > 0:
+                typ = 'Array_{}'.format(typ)
             buf.write("{0} {1}_g() {{ return {1}; }}\n".format(typ, fld.name))
             buf.write("void {1}_s({0} {1}_s) {{ {1} = {1}_s; }}\n".format(typ, fld.name))
             buf.write('\n')
@@ -228,12 +232,11 @@ class Encoder(object):
                           "    {3}\n"
                           "    return self;\n"
                           "}}\n\n".format(str(cls), str(etypes[-1]), i, init))
-
             else:
                 buf.write("Object {0}_{0}(Object self) {{\n"
                           "    return self;\n"
                           "}}\n\n".format(str(cls)))
-                        
+
         for m in cons + mtds:
             if hasattr(m, 'interface') and m.parentNode.interface: continue
             buf.write(self.to_func(m) + os.linesep)
@@ -291,12 +294,12 @@ class Encoder(object):
     def tltr(self): return self._tltr
     @tltr.setter
     def tltr(self, v): self._tltr = v
-    
+
     @property
     def clss(self): return self._clss
     @clss.setter
     def clss(self, v): self._clss = v
-    
+
     @property
     def mtds(self): return self._mtds
     @mtds.setter
@@ -316,12 +319,12 @@ class Encoder(object):
     def sk_dir(self): return self._sk_dir
     @sk_dir.setter
     def sk_dir(self, v): self._sk_dir = v
-    
+
     @property
     def CLASS_NUMS(self): return self._CLASS_NUMS
     @CLASS_NUMS.setter
     def CLASS_NUMS(self, v): self._CLASS_NUMS = v
-    
+
     @property
     def MTD_NUMS(self): return self._MTD_NUMS
     @MTD_NUMS.setter
