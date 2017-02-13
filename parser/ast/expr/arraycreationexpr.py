@@ -9,23 +9,23 @@ class ArrayCreationExpr(Expression):
     super(ArrayCreationExpr, self).__init__(kwargs)
     locs = _import()
 
-    #Type type;
+    # Type type;
     t = kwargs.get(u'type', {})
     self._type = locs[t[u'@t']](t) if t else None
 
-    #int arrayCount;
+    # int arrayCount;
     self._arrayCount = kwargs.get(u'arrayCount', 0)
     
-    #ArrayInitializerExpr initializer;
+    # ArrayInitializerExpr initializer;
     init = kwargs.get(u'initializer')
     self._initializer = locs[u'ArrayInitializerExpr'](init) if init else None
 
-    #List<Expression> dimensions;
+    # List<Expression> dimensions;
     dim = kwargs.get(u'dimensions', {})
     self._dimensions = map(lambda e: locs[e[u'@t']](e) if u'@t' in e else [],
                            dim.get(u'@e', [])) if dim else []
 
-    #List<List<AnnotationExpr>> arraysAnnotations;
+    # List<List<AnnotationExpr>> arraysAnnotations;
                 
   @property
   def typee(self): return self._type
