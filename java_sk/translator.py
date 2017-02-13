@@ -30,6 +30,7 @@ from ast.body.variabledeclaratorid import VariableDeclaratorId
 from ast.stmt.blockstmt import BlockStmt
 from ast.stmt.returnstmt import ReturnStmt
 from ast.stmt.ifstmt import IfStmt
+from ast.stmt.foreachstmt import ForeachStmt
 from ast.stmt.forstmt import ForStmt
 from ast.stmt.whilestmt import WhileStmt
 from ast.stmt.continuestmt import ContinueStmt
@@ -249,6 +250,14 @@ class Translator(object):
             n.elseStmt.accept(self)
             if not (elseIf or elseBlock): self.unindent()
 
+    # TODO: this needs work
+    @v.when(ForeachStmt)
+    def visit(self, n):
+        self.printt('for (int i = 0; i < ')
+        n.iterable.accept(self)
+        self.printt('.length; ++i) ')
+        n.body.accept(self)
+
     @v.when(ForStmt)
     def visit(self, n):
         self.printt('for (')
@@ -406,8 +415,9 @@ class Translator(object):
 
     @v.when(ObjectCreationExpr)
     def visit(self, n):
-        # print 'ObjectCreationExpr:', n, n.beginLine
         obj_cls = n.symtab.get(n.typee.name)
+        # print 'ObjectCreationExpr:', n, n.beginLine, n.typee.name, type(obj_cls)
+        # print 'type(n.typee):', type(n.typee)
         if isinstance(obj_cls, ReferenceType): obj_cls = self.trans_ty(obj_cls)
         enclosing_cls = obj_cls.enclosing_types()[-1] \
             if type(obj_cls) == ClassOrInterfaceDeclaration and obj_cls.isinner() else None
@@ -448,7 +458,7 @@ class Translator(object):
         self.printt('new Array_{}('.format(self.trans_ty(n.typee)))
         if n.dimensions:
             for d in n.dimensions:
-                self.printt('sz=')
+                self.printt('length=')
                 d.accept(self)
             self.printt(')')
             # for c in xrange(n.arrayCount):
@@ -459,7 +469,7 @@ class Translator(object):
     @v.when(ArrayInitializerExpr)
     def visit(self, n):
         # print 'arrayinitializerexpr'
-        self.printt('sz={}, A={{'.format(len(n.values)))
+        self.printt('length={}, A={{'.format(len(n.values)))
         self.printSepList(n.values)
         self.printt('})')
 
@@ -537,7 +547,7 @@ class Translator(object):
 
     @v.when(StringLiteralExpr)
     def visit(self, n):
-        self.printt('String_String_char_int_int(new Object(__cid=String()), new Array_char(sz={1}+1, A="{0}"), 0, {1})'.format(n.value, len(n.value)))
+        self.printt('String_String_char_int_int(new Object(__cid=String()), new Array_char(length={1}+1, A="{0}"), 0, {1})'.format(n.value, len(n.value)))
 
     @v.when(CharLiteralExpr)
     def visit(self, n):
@@ -599,25 +609,17 @@ class Translator(object):
         return util.get_and_close(self.buf)
 
     def trans_ty(self, typ, convert=True):
-        # tname = str(typ)
-        # _tname = typ.sanitize_ty(typ.name.strip()) if not isinstance(typ, unicode) and not isinstance(typ, str) else typ
-        r_ty = str(typ)
-        # r_ty = _tname
-        # if typ and (type(typ) == ClassOrInterfaceType or type(typ) == ReferenceType):
-        #     cls = typ.symtab.get(typ.name)
-        #     tname = str(cls)
-        #     print '_tname:', _tname
-
+        if typ and isinstance(typ, ClassOrInterfaceType) or isinstance(typ, ReferenceType):
+            cls = typ.symtab.get(typ.name)
+            r_ty = str(cls) if cls else str(typ)
+        else:
+            r_ty = str(typ)
         # we've already rewritten this type
         if r_ty in self.ty: r_ty = self.ty[r_ty] if convert else r_ty
         # Java types to Sketch types
         elif r_ty in CONVERSION_TYPES: r_ty = CONVERSION_TYPES[r_ty]
         # Unknown type, cast as Object for now
         else: r_ty = u'Object'
-
-        if typ and type(typ) == ReferenceType:
-            if typ.arrayCount > 0: r_ty = 'Array_{}'.format(r_ty)
-            
         return r_ty
 
     def trans_faccess(self, n):
@@ -650,9 +652,12 @@ class Translator(object):
             if fld.variable.init:
                 init = ' = '
                 if isinstance(fld.variable.init, ArrayInitializerExpr):
-                    init += 'new {}('.format(self.trans_ty(fld.typee))
+                    init += 'new Array_{}('.format(self.trans_ty(fld.typee))
                 init += self.trans(fld.variable.init)
-        return (self.trans_ty(fld.typee), nm, init)
+        ty = self.trans_ty(fld.typee)
+        if isinstance(fld.typee, ReferenceType) and fld.typee.arrayCount > 0:
+            ty = 'Array_{}'.format(ty)
+        return (ty, nm, init)
 
     def trans_params(self, (ty, nm)):
         return ' '.join([self.trans_ty(ty), nm])
