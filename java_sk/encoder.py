@@ -4,7 +4,6 @@ import cStringIO
 import math
 import copy as cp
 import logging
-from itertools import ifilterfalse
 
 from . import builtins
 from .translator import Translator
@@ -117,7 +116,7 @@ class Encoder(object):
 
     def gen_array_sk(self):
         types = [u'bit', u'char', u'int', u'float', u'double', u'Object',]
-        array_struct = 'struct Array_{0} {{\n  int sz;\n  {0}[sz] A;\n}}\n\n'
+        array_struct = 'struct Array_{0} {{\n  int length;\n  {0}[length] A;\n}}\n\n'
         with open(os.path.join(self.sk_dir, "array.sk"), 'w') as f:
             f.write("package array;\n\n")
             for t in types:
