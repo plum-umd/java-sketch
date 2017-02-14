@@ -136,6 +136,7 @@ DESCRIPTOR_TYPES = {
     u'Z': u'boolean', # true or false
     u'[': u'reference', # one array dimension
 } 
+PRIMITIVES = [u'void', u'bit', u'boolean', u'this', u'char', u'byte', u'short', u'int', u'long', u'float', u'double',]
 
 def _import():
     from .importdeclaration import ImportDeclaration

@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
-from ..node import Node
 from . import _import
+
+from ..node import Node
 
 class VariableDeclarator(Node):
     def __init__(self, kwargs={}):
@@ -11,9 +12,9 @@ class VariableDeclarator(Node):
 
             # VariableDeclaratorId
             self._id = locs[u'VariableDeclaratorId'](kwargs.get(u'id', ''))
-            
+
             typ = kwargs.get(u'type')
-            self._typ = locs[typ[u'@t']] if typ else None
+            self._typ = locs[typ[u'@t']](typ) if typ else None
 
             # Expression
             i = kwargs.get('init', None)
@@ -45,7 +46,7 @@ class VariableDeclarator(Node):
     @property
     def typee(self): return self._typ if self._typ else self.parentNode.typee
     @typee.setter
-    def typee(self, v): self._type = v
+    def typee(self, v): self._typ = v
 
     def gen(self): return set([self.lbl]) if self.init else set([])
 

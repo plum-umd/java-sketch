@@ -11,7 +11,7 @@ class ReferenceType(Type):
 
         typdct = kwargs.get('type')
         self._type = locs[typdct['@t']](typdct)
-    
+
         self._arrayCount = kwargs.get(u'arrayCount', 0)
 
         # List<Expression> values;

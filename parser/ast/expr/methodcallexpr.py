@@ -5,7 +5,6 @@ from . import _import
 from .expression import Expression
 from .fieldaccessexpr import FieldAccessExpr
 
-from ..importdeclaration import ImportDeclaration
 from ..type.classorinterfacetype import ClassOrInterfaceType
 
 from ..utils import utils
