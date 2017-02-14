@@ -1,6 +1,8 @@
 import visit as v
 
 from .. import JAVA_LANG
+from .. import PRIMITIVES
+
 from ..utils import utils
 from ..node import Node
 from ..compilationunit import CompilationUnit
@@ -32,7 +34,6 @@ from ..type.referencetype import ReferenceType
 # https://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.3
 class SymtabGen(object):
     NONSYM = [PrimitiveType, VoidType, IntegerLiteralExpr]
-    # def __init__(self, **kwargs):
 
     @v.on("node")
     def visit(self, node):
@@ -97,6 +98,7 @@ class SymtabGen(object):
     def visit(self, node):
         # The scope of a formal parameter of a method is the entire body of the method
         self.new_symtab(node, cp=True)
+
         node.parentNode.symtab.update({str(node):node})
         if type(node.parentNode) == ObjectCreationExpr:
             target = utils.anon_nm(node)
@@ -106,10 +108,12 @@ class SymtabGen(object):
             node.symtab.update({nm:node})
             node.parentNode.symtab.update({str(node):node})
         node.symtab.update({str(node):node})
-        if str(node.typee) not in node.symtab: node.symtab.update({str(node.typee):node.typee})
+
+        if str(node.typee) not in PRIMITIVES and str(node.typee) not in node.symtab:
+            node.symtab.update({str(node.typee):node.typee})
         map(lambda p: p.accept(self), node.parameters)
+        map(lambda p: p.idd.accept(self), node.parameters)
         map(lambda t: node.symtab.update({t.name:t}), node.typeParameters)
-        map(lambda p: node.symtab.update({p.name:p}), node.parameters)
         if node.body: node.body.accept(self)
 
     @v.when(ConstructorDeclaration)
@@ -139,7 +143,7 @@ class SymtabGen(object):
                                              u"type": {"name": "Int"},},})
             node.symtab.update({u'length':fd})
         node.symtab.update({node.name:node})
-        map(lambda n: n.accept(self), node.childrenNodes)
+        if node.init: node.init.accept(self)
 
     @v.when(VariableDeclaratorId)
     def visit(self, node): self.new_symtab(node)
@@ -185,7 +189,8 @@ class SymtabGen(object):
     @v.when(VariableDeclarationExpr)
     def visit(self, node):
         self.new_symtab(node)
-        map(lambda n: n.accept(self), node.childrenNodes)
+        map(lambda v: v.accept(self), node.childrenNodes)
+        # map(lambda v: v.accept(self), node.varss)
 
     @v.when(BinaryExpr)
     def visit(self, node):

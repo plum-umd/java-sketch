@@ -16,6 +16,7 @@ from ast.importdeclaration import ImportDeclaration
 from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 from ast.body.fielddeclaration import FieldDeclaration
 from ast.body.variabledeclarator import VariableDeclarator
+from ast.body.parameter import Parameter
 
 from ast.expr.nameexpr import NameExpr
 from ast.expr.castexpr import CastExpr
@@ -221,6 +222,8 @@ def find_fld(n, obj_struct):
 
     # look up n's scope in symtab
     scope = node_to_obj(n.scope)
+    if isinstance(scope, Parameter): scope = scope.idd
+
     if not scope:
         print 'Cant find {}.{}:{}'.format(n.scope.name, n.name, n.beginLine)
         return None
@@ -228,7 +231,6 @@ def find_fld(n, obj_struct):
     # n's scope might be a class (if static field)
     cls = scope.symtab.get(scope.typee.name) if type(scope) != ClassOrInterfaceDeclaration \
         else scope
-
     if not cls: # something went wrong.
         if isinstance(scope, ImportDeclaration): # maybe scope is an import?
             nm = str(scope).split('.')
@@ -238,6 +240,7 @@ def find_fld(n, obj_struct):
             return fld
         if isinstance(scope.typee, ReferenceType): # maybe this is built-in field (e.g., array.length)
             return scope.symtab.get(n.field.name)
+        raise Exception('utils:244 - not cls...')
 
     fld = cls.symtab.get(n.name)
     if not fld: # didn't find field in this cls, look in imported supers
