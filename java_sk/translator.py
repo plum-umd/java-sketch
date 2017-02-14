@@ -185,7 +185,8 @@ class Translator(object):
 
     @v.when(Parameter)
     def visit(self, n):
-        self.buf.write(' '.join([self.trans_ty(n.typee), str(n.idd)]))
+        n.typee.accept(self)
+        self.buf.write(' {}'.format(str(n.idd)))
 
     @v.when(VariableDeclarator)
     def visit(self, n):
@@ -253,9 +254,9 @@ class Translator(object):
     # TODO: this needs work
     @v.when(ForeachStmt)
     def visit(self, n):
-        self.printt('for (int i = 0; i < ')
+        self.printt('for (int _i = 0; i < ')
         n.iterable.accept(self)
-        self.printt('.length; ++i) ')
+        self.printt('.length; ++_i) ')
         n.body.accept(self)
 
     @v.when(ForStmt)
@@ -597,7 +598,7 @@ class Translator(object):
 
     @v.when(ReferenceType)
     def visit(self, n):
-        # print 'ReferenceType -- arrayCount: {}'.format(n.arrayCount)
+        # print 'ReferenceType -- type: {} arrayCount: {}'.format(n, n.arrayCount)
         if n.arrayCount:
             self.printt('Array_{}'.format(self.trans_ty(n.typee)))
         else:
@@ -677,7 +678,7 @@ class Translator(object):
         if callexpr.name in builtins:
             write_call()
             return
-            
+
         logging.info('calling: {} from {}'.format(str(callexpr), utils.get_coid(callexpr)))
         # 15.12.1 Compile-Time Step 1: Determine Class or Interface to Search
         if not callexpr.scope:
