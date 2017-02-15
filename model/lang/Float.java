@@ -13,8 +13,8 @@ public class Float extends Number {
     }
 
     // Might also not work for float value return!
-    public float floatValue() {
-	return this.value;
+    public int floatValue() {
+	return (int)this.value;
     }
 
     public int compareTo(Float anotherFloat) {

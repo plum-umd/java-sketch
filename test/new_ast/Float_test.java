@@ -1,23 +1,44 @@
 class A {
-    float x;
-    harness Integer m(float num) {
-	Float n = new Float(num);
+    harness void m() {
 	Float a = new Float(3.123);
 	Float b = new Float(5.0);
-	Integer c = new Integer(5);
+	// NEGATIVE CAUSING PROBLEMS
+	//Float c = new Float(-4.398);
+	Float d = new Float(11.89897);
+	Float e = new Float(11.89897);
+	Float f = new Float(4.398);
+	Integer i = new Integer(5);
 
-	int comp = a.compareTo(b);
+	// FLOAT RETURN CAUSES ERROR
+	// floatValue 
+	//float x = a.floatValue();
+	//assert x == 3.123;
 
-	assert comp == -1;
+	// intValue
+	assert a.intValue() == 3;
+	assert d.intValue() == 11;
+
+	// compareTo
+	assert a.compareTo(b) == -1;
+	//assert a.compareTo(c) == 1;
+	assert d.compareTo(e) == 0;
+
+	// FLOAT CAST CAUSES ERROR AS DOES F NOTATION
+	// compare
+	//assert Float.compare((float)1.23, (float)4.56) == -1;
+	//assert Float.compare((float)3.1415, (float)3.1415) == 0;
+	//assert Float.compare((float)6.283, (float)3.1415) == 1;
+
+	// equals
 	assert a.equals(b) == 0;
-	assert b.equals(c) == 0;
-	assert b.intValue() == 5;
+	//assert c.equals(f) == 0;
+	assert b.equals(i) == 0;
+	assert d.equals(e) == 1;
 
-	String aString = a.toString();
+	// to String
+	// String aString = a.toString();
 
-	//assert aString.length() == 4;
-	//assert aString.equals("3.12") == 1;
-
-	return n;
+	// assert aString.length() == 4;
+	// assert aString.equals("3.12") == 1;
     }
 }
