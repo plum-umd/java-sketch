@@ -624,7 +624,7 @@ class Translator(object):
         return r_ty
 
     def trans_faccess(self, n):
-        logging.debug('accessing {}.{}'.format(n.scope.name, n.field.name))
+        logging.debug('accessing {}.{}:{}'.format(n.scope.name, n.field.name, n.beginLine))
         fld = utils.find_fld(n, self.obj_struct)
         logging.debug('found field: {}'.format(str(fld)))
         if td.isStatic(fld):
@@ -914,10 +914,10 @@ class Translator(object):
             self.printt(' : ')
             if isinstance(c.elseExpr, IntegerLiteralExpr): self.printt('0')
             elif isinstance(c.elseExpr, PrimitiveType):
-                # print 'name:', c.elseExpr.name
-                if c.elseExpr.name == u'double': self.printt('0.0')
-                if c.elseExpr.name == u'int': self.printt('0')
-                if c.elseExpr.name == u'char': self.printt("'\\0'")
+                # print 'c.elseExpr.name:', c.elseExpr.name
+                if c.elseExpr.name == u'double' or c.elseExpr.name == u'float' or c.elseExpr.name == u'long': self.printt('0.0')
+                if c.elseExpr.name == u'int' or c.elseExpr.name == u'boolean' or c.elseExpr.name == u'bit' or c.elseExpr.name == u'short': self.printt('0')
+                if c.elseExpr.name == u'char' or c.elseExpr.name == u'byte': self.printt("'\\0'")
             elif isinstance(c.elseExpr, (ClassOrInterfaceType, ReferenceType)): self.printt('null')
             else: self.print_dispatch(c.elseExpr)
         else:

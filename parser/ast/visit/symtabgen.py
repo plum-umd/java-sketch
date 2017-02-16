@@ -111,9 +111,11 @@ class SymtabGen(object):
 
         if str(node.typee) not in PRIMITIVES and str(node.typee) not in node.symtab:
             node.symtab.update({str(node.typee):node.typee})
-        map(lambda p: p.accept(self), node.parameters)
+        # somethign is weird here. shouldnt have to visit idd and parameters
         map(lambda p: p.idd.accept(self), node.parameters)
+        map(lambda p: p.accept(self), node.parameters)
         map(lambda t: node.symtab.update({t.name:t}), node.typeParameters)
+        map(lambda p: p.idd.symtab.update(node.symtab), node.parameters)
         if node.body: node.body.accept(self)
 
     @v.when(ConstructorDeclaration)
@@ -122,10 +124,11 @@ class SymtabGen(object):
         self.new_symtab(node, cp=True)
         node.parentNode.symtab.update({str(node):node})
         node.symtab.update({str(node):node})
+        map(lambda p: p.idd.accept(self), node.parameters)
         map(lambda p: p.accept(self), node.parameters)
-        map(lambda p: node.symtab.update({p.name:p}), node.parameters)
+        map(lambda p: p.idd.symtab.update(node.symtab), node.parameters)
         if node.body: node.body.accept(self)
-        
+
     @v.when(FieldDeclaration)
     def visit(self, node):
         self.new_symtab(node, cp=True)

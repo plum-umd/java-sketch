@@ -38,6 +38,7 @@ def _import():
     from ..expr.arrayaccessexpr import ArrayAccessExpr
     from ..expr.thisexpr import ThisExpr
     from ..expr.castexpr import CastExpr
+    from ..expr.conditionalexpr import ConditionalExpr
 
     from ..body.parameter import Parameter
 

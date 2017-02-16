@@ -1,4 +1,4 @@
-class A {
+class String_test {
     int x;
     harness void m(int num) {
 	String x = "I am a string";
@@ -15,21 +15,21 @@ class A {
 	// toString
 	String s = x.toString();
 	assert x == s;
-	assert x.equals(s) == 1;
+	assert x.equals(s);
 
 	// equals
-	assert x.equals("I am a string") == 1;
-	assert x.equals("I am a strin") == 0;
-	assert x.equals("I am a String") == 0;
-	assert x.equals("fork") == 0;
-	assert x.equals(y) == 0;
-	assert x.equals(z) == 0;
+	assert x.equals("I am a string");
+	assert !x.equals("I am a strin");
+	assert !x.equals("I am a String");
+	assert !x.equals("fork");
+	assert !x.equals(y);
+	assert !x.equals(z);
 
 	// concat
 	String c = " concat";
 	String con = x.concat(c);
 
-	assert con.equals("I am a string concat") == 1;
+	assert con.equals("I am a string concat");
 
 	// indexOf (chars)
 	assert con.indexOf('I', 0) == 0;

@@ -240,7 +240,7 @@ def find_fld(n, obj_struct):
             return fld
         if isinstance(scope.typee, ReferenceType): # maybe this is built-in field (e.g., array.length)
             return scope.symtab.get(n.field.name)
-        raise Exception('utils:244 - not cls...')
+        raise Exception('utils - not cls...')
 
     fld = cls.symtab.get(n.name)
     if not fld: # didn't find field in this cls, look in imported supers

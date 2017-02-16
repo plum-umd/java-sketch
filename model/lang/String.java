@@ -95,21 +95,21 @@ public class String implements CharSequence {
   }
 
   // Should be boolean but that isn't parsing right!
-  public int equals(Object obj) {
-      int isEqual = 0;
+  public boolean equals(Object obj) {
+      boolean isEqual = false;
 
       if (obj instanceof String) {
-	  isEqual = 1;
+	  isEqual = true;
 	  String s = (String)obj;
 	  
 	  int sLen = s.length();
 	  int tLen = this.length();
 	  
-	  if (sLen != tLen) isEqual = 0;
+	  if (sLen != tLen) isEqual = false;
 	  
-	  for (int i=0; (i < sLen) && (isEqual == 1); i++) {
+	  for (int i=0; (i < sLen) && (isEqual == true); i++) {
 	      if (s._value[i] != this._value[i]) {
-		  isEqual = 0;
+		  isEqual = false;
 	      }
 	  }
       }

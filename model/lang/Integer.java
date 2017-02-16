@@ -30,30 +30,30 @@ public class Integer extends Number {
     }
 
     public static int compare(int x, int y) {
-	int ret = -1;
+	// int ret = -1;
 
-	if (x > y) {
-	    ret = 1;
-	} else if (x == y) {
-	    ret = 0;
-	}
+	// if (x > y) {
+	//     ret = 1;
+	// } else if (x == y) {
+	//     ret = 0;
+	// }
 
-	return ret;
+	// return ret;
 	// TERNARY CAUSING PARSING ERROR?
-        //return (x < y) ? -1 : ((x == y) ? 0 : 1);
+        return (x < y) ? -1 : ((x == y) ? 0 : 1);
     }
 
     // Should take Object eventually 
     // ALSO SEEMS TO BE CAUSING A PARSING ERROR?
     // CHANGING TO INT SO IT CAN WORK!
-    public int equals(Object anotherInt) {
+    public boolean equals(Object anotherInt) {
 	if (anotherInt instanceof Integer) {
 	    Integer x = (Integer) anotherInt;
 	    if (this.value == x.intValue()) {
-		return 1;
+		return true;
 	    }
 	}
-	return 0;
+	return false;
     }
 
     public String toString() {

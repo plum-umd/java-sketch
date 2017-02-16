@@ -12,9 +12,8 @@ public class Float extends Number {
 	this.value = value;
     }
 
-    // Might also not work for float value return!
-    public int floatValue() {
-	return (int)this.value;
+    public float floatValue() {
+	return this.value;
     }
 
     public int compareTo(Float anotherFloat) {
@@ -23,29 +22,27 @@ public class Float extends Number {
 
     // This might need to change, implementation different in source
     public static int compare(float x, float y) {
-	int ret = -1;
+	// int ret = -1;
 
-	if (x > y) {
-	    ret = 1;
-	} else if (x == y) {
-	    ret = 0;
-	}
+	// if (x > y) {
+	//     ret = 1;
+	// } else if (x == y) {
+	//     ret = 0;
+	// }
 
-	return ret;
+	// return ret;
 
-	// TERNARY CAUSING PARSING ERROR?
-        //return (x < y) ? -1 : ((x == y) ? 0 : 1);
+        return (x < y) ? -1 : ((x == y) ? 0 : 1);
     }
 
-    // Should be boolean not int
-    public int equals(Object anotherFloat) {
+    public boolean equals(Object anotherFloat) {
 	if (anotherFloat instanceof Float) {
 	    Float x = (Float) anotherFloat;
 	    if (x.value == this.value) {
-		return 1;
+		return true;
 	    }
 	}
-	return 0;
+	return false;
     }
 
     public int intValue() {
