@@ -25,7 +25,7 @@ class Float_test {
 	float xx = 1.23; float yy = 4.56;
 	assert Float.compare(xx, yy) == -1;
 	// FLOAT CAST CAUSES ERROR AS DOES F NOTATION
-	//assert Float.compare((float)3.1415, (float)3.1415) == 0;
+	assert Float.compare((float)3.1415, (float)3.1415) == 0;
 	//assert Float.compare((float)6.283, (float)3.1415) == 1;
 
 	// equals

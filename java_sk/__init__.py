@@ -1,7 +1,6 @@
 import sys
 import os
 
-
 pwd = os.path.dirname(__file__)
 
 ast = os.path.abspath(os.path.join(pwd,'../parser'))

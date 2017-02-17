@@ -33,8 +33,8 @@ from ast.comments.comment import Comment
 
 JAVA_HOME = None
 RT_HAR = None
-ACCESS_MODS = ['public', 'private', 'protected', 'final', 'super', 'interface', 'abstract', 'synthetic', \
-               'annotation', 'enum', 'static']
+ACCESS_MODS = ['public', 'private', 'protected', 'final', 'super', 'interface', 'abstract', \
+               'synthetic', 'annotation', 'enum', 'static']
 
 widen = {u'boolean':[],
          u'byte':[u'char',u'short',u'int',u'long',u'float',u'double'],
