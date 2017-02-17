@@ -121,6 +121,7 @@ def build_subs(ast):
         for i in c.implementsList: update(c, i)
 
 def is_subtype(t1, t2):
+    if t1.name == t2.name: return True
     if type(t1) != type(t2): return False
     if t2.name == u'Object': return True
     # primitive type

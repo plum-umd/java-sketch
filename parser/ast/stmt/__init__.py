@@ -30,6 +30,7 @@ def _import():
     from ..expr.fieldaccessexpr import FieldAccessExpr
     from ..expr.stringliteralexpr import StringLiteralExpr
     from ..expr.nullliteralexpr import NullLiteralExpr
+    from ..expr.charliteralexpr import CharLiteralExpr
     from ..expr.objectcreationexpr import ObjectCreationExpr
     from ..expr.generatorexpr import GeneratorExpr
     from ..expr.superexpr import SuperExpr

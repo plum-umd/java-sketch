@@ -103,8 +103,7 @@ class Encoder(object):
         logging.info('generating cls.sk')
         cls_sks = []
         clss = utils.extract_nodes([ClassOrInterfaceDeclaration], self.prg)
-        for cls in filter(lambda c: not c.interface, clss):
-            logging.info('encoding: {}'.format(str(cls)))
+        for cls in clss:
             cls_sk = self.gen_cls_sk(cls)
             if cls_sk: cls_sks.append(cls_sk)
 

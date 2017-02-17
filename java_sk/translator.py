@@ -733,7 +733,7 @@ class Translator(object):
 
         # Compile-Time Step 2: Determine Method Signature
         # 15.12.2.1. Identify Potentially Applicable Methods
-        pots = self.identify_potentials(callexpr, cls, [])
+        pots = self.identify_potentials(callexpr, cls)
         if not pots:
             uninterpreted()
             return
@@ -755,7 +755,7 @@ class Translator(object):
             raise Exception('Unable to find applicable method for {} in {}'.format(str(callexpr), str(cls)))
 
         # 15.12.2.5. Choosing the Most Specific Method
-        mtd = self.most_specific(strict_mtds + loose_mtds)
+        mtd = self.most_specific(list(set(strict_mtds + loose_mtds)))
 
         # 15.12.2.6. Method Invocation Type
         # TODO: ignoring this for now. Type will just be type of method
@@ -812,12 +812,15 @@ class Translator(object):
 
         logging.debug('**END CALL***\n')
 
-    def identify_potentials(self, callexpr, cls, mtds):
+    def identify_potentials(self, callexpr, cls):
         mtds = []
         for key,val in cls.symtab.items():
             if type(val) != MethodDeclaration: continue
+            tparam_names = map(lambda t: t.name, val.typeParameters)
             if callexpr.name == val.name and len(callexpr.args) == len(val.parameters):
-                mtds.append(val)
+                if all(map(lambda t: t[1].name in tparam_names or utils.is_subtype(t[0], t[1]),
+                           zip(callexpr.arg_typs(), val.param_typs()))):
+                    mtds.append(val)
         return mtds
 
     def identify_strict(self, callexpr, mtds):
@@ -825,15 +828,17 @@ class Translator(object):
         arg_typs = callexpr.arg_typs()
         for m in mtds:
             param_typs = m.param_typs()
-            if self.match_strict(arg_typs, param_typs): pots.append(m)
+            if self.match_strict(arg_typs, param_typs, m.typeParameters):
+                pots.append(m)
         return pots
 
-    def match_strict(self, arg_typs, param_typs):
+    def match_strict(self, arg_typs, param_typs, typeParameters):
         for atyp,ptyp in zip(arg_typs, param_typs):
-            return self.identity_conversion(atyp,ptyp) or \
-                self.primitive_widening(atyp,ptyp) or \
-                self.reference_widening(atyp,ptyp)
-        # if there are no arguments
+            if ptyp.name in map(lambda p: p.name, param_typs): continue
+            if not (self.identity_conversion(atyp,ptyp) or \
+                    self.primitive_widening(atyp,ptyp) or \
+                    self.reference_widening(atyp,ptyp)):
+                return False
         return True
 
     def identify_loose(self, callexpr, mtds):
@@ -842,34 +847,40 @@ class Translator(object):
 
         for m in mtds:
             param_typs = m.param_typs()
-            if self.match_loose(arg_typs, param_typs): pots.append(m)
+            if self.match_loose(arg_typs, param_typs, m.typeParameters): pots.append(m)
         return pots
 
-    def match_loose(self, arg_typs, param_typs):
+    def match_loose(self, arg_typs, param_typs, typeParameters):
         # TODO: Spec says if the result is a raw type, do an unchecked conversion. Does this already happen?
         for atyp,ptyp in zip(arg_typs, param_typs):
+            if ptyp.name in map(lambda p: p.name, param_typs): continue
             # going to ignore, identity and windenings b/c they should be caught with strict
             # TODO: spec says boxing then reference_widening, dont know what that means
-            if self.boxing_conversion(atyp, ptyp): return True
-            elif self.unboxing_conversion(atyp, ptyp):
-                if self.primitive_widening(utils.unbox[atyp.name], ptyp): return True
-                else: return True
-            else: return False
-        # if there are no arguments
+            if not (self.boxing_conversion(atyp, ptyp) or \
+                    (self.unboxing_conversion(atyp, ptyp) and \
+                     self.primitive_widening(utils.unbox[atyp.name], ptyp))): return False
         return True
 
     def most_specific(self, mtds):
         def most(candidate, others):
             ctypes = candidate.param_typs()
             for i in range(len(others)):
+                # print 'others:', others[i]
+                # print 'ctypes.typee.name:', map(lambda t: t.typee.name, ctypes)
+                # print 'param_typs.name:', map(lambda t: t.name, others[i].param_typs())
+                # print 'others[i].typeParameters:', map(lambda t: t.name, others[i].typeParameters)
                 # if the parameters of the candidate aren't less specific than all the parameters of other
-                if not all(map(lambda t: utils.is_subtype(t[0], t[1]),
+                # print map(lambda t: utils.is_subtype(t[0], t[1]), zip(ctypes, others[i].param_typs()))
+                # print 'first'
+                # print map(lambda t: False if t.name not in map(lambda p: p.name, others[i].typeParameters) else True, ctypes)
+                if not all(map(lambda t: utils.is_subtype(t[0], t[1]), \
+                               # if (t[0].name not in map(lambda p: p.name, others[i].typeParameters)) else True,
                                zip(ctypes, others[i].param_typs()))):
                     return False
             return True
         for mi in xrange(len(mtds)):
             if most(mtds[mi], mtds[:mi] + mtds[mi+1:]): return mtds[mi]
-        return []
+        raise Exception('Unable to find most specific method!')
 
     # Conversions
     def identity_conversion(self, typ1, typ2):

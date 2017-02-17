@@ -13,6 +13,7 @@ public class String implements CharSequence {
 
   public char charAt(int index) {
       if (0 <= index && index < _count) return _value[index];
+      return '\0';
   }
 
   public int length() {
