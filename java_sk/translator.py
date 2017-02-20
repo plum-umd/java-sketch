@@ -104,6 +104,9 @@ class Translator(object):
         # struct Object { ... }
         self.obj_struct = None
 
+        # already written uninterpreted functions
+        self.unfuns = []
+
     @v.on('node')
     def visit(self, node):
         """
@@ -717,6 +720,9 @@ class Translator(object):
             with open(os.path.join(self.sk_dir, 'meta.sk'), 'a') as f:
                 trans_ftypes = set([tuple(map(self.trans_ty, map(convert, c))) for c in ftypes])
                 for fun in [list(d) for d in trans_ftypes]:
+                    sig = '{}.{}.{}'.format(fun[0], fun[1], callexpr.name)
+                    if sig in self.unfuns: continue
+                    self.unfuns.append(sig)
                     f.write('{} {}('.format(self.trans_ty(fun.pop()), callexpr.name))
                     if not isinstance(scope, ClassOrInterfaceType):
                         f.write('{} p0'.format(self.trans_ty(scope.typee)))
