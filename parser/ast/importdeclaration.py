@@ -11,15 +11,20 @@ class ImportDeclaration(Node):
         super(ImportDeclaration, self).__init__(kwargs)
         
         locs = _import()
+
         # NameExpr name;
         name = kwargs.get(u'name', {})
         self._name = locs[name[u'@t']](name) if name else None
+
         # boolean static_;
         self._static = kwargs.get(u'static_', False)
+
         # boolean asterisk;
         self._asterisk = kwargs.get(u'asterisk', False)
+
         # boolean isEmptyImportDeclaration;
         self._isEmptyDeclaration = kwargs.get(u'isEmptyImportDeclarationasterisk', False)
+
         # boolean implicit;
         self._implicit = kwargs.get(u'implicit', False)
 
@@ -49,5 +54,7 @@ class ImportDeclaration(Node):
                                      u'name':unicode(str(self).split('.')[-1]),})
     @typee.setter
     def typee(self, v): self._type = v
+
+    def cname(self): return str(self.typee)
 
     def __str__(self): return str(self.name)

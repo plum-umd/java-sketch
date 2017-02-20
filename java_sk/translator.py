@@ -420,6 +420,7 @@ class Translator(object):
     @v.when(ObjectCreationExpr)
     def visit(self, n):
         obj_cls = n.symtab.get(n.typee.name)
+        if isinstance(obj_cls, ImportDeclaration): obj_cls = obj_cls.cname()
         # print 'ObjectCreationExpr:', n, n.beginLine, n.typee.name, type(obj_cls)
         # print 'type(n.typee):', type(n.typee)
         if isinstance(obj_cls, ReferenceType): obj_cls = self.trans_ty(obj_cls)
