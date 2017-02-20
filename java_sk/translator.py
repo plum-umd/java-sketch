@@ -374,7 +374,7 @@ class Translator(object):
 
     @v.when(VariableDeclarationExpr)
     def visit(self, n):
-        # print 'VariableDeclarationExpr'
+        # print 'VariableDeclarationExpr', n.typee, type(n.typee)
         n.typee.accept(self)
         # self.printt(' ')
         self.printSepList(n.varss)
@@ -575,10 +575,10 @@ class Translator(object):
     @v.when(ClassOrInterfaceType)
     def visit(self, n):
         self.printt(self.trans_ty(n))
-        if n.isUsingDiamondOperator():
-            self.printt('<>')
-        else:
-            self.printTypeArgs(n.typeArgs())
+        # if n.isUsingDiamondOperator():
+        #     self.printt('<>')
+        # else:
+        # self.printTypeArgs(n.typeArgs())
 
     @v.when(TypeParameter)
     def visit(self, n):
