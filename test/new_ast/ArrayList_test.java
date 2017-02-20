@@ -1,20 +1,20 @@
 class ArrayList_test {
     harness void m() {
 	ArrayList<Integer> ints = new ArrayList<Integer>();
-	ArrayList<String> strs = new ArrayList<String>();
-	ArrayList<Object> objs = new ArrayList<Object>();
-	ArrayList<Number> nums = new ArrayList<Number>();
+	// ArrayList<String> strs = new ArrayList<String>();
+	// ArrayList<Object> objs = new ArrayList<Object>();
+	// ArrayList<Number> nums = new ArrayList<Number>();
 	
-	/*
 	// add, add @ index, size, contains, indexOf
 	Integer n1 = new Integer(7);
-	Integer n2 = new Integer(-4);
-	Integer n3 = new Integer(31415);
+	// Integer n2 = new Integer(-4);
+	// Integer n3 = new Integer(31415);
 
-	assert ints.size() == 0;
-	assert !ints.contains(n1);
+	// assert ints.size() == 0;
+	// assert !ints.contains(n1);
 
 	ints.add(n1);
+	/*
 
 	assert ints.size() == 1;
 	assert ints.contains(n1);

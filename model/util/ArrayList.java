@@ -36,7 +36,8 @@ public class ArrayList<E> {
 	}
     }
 
-    public boolean add(E e) {
+    // something is going on here, looks like elementData is null in the translation?
+    public <E> boolean add(E e) {
 	checkAdjustSize();
 	elementData[numElements++] = e;
 	return true;
@@ -170,11 +171,10 @@ public class ArrayList<E> {
     */
 
     // MAX RECURSION
-    /*
+    
     public int size() {
 	return numElements;
     }
-    */
 
     /*
     public Object[] toArray() {
