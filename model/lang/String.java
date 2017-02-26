@@ -1,6 +1,6 @@
 package java.lang;
 
-public class String implements CharSequence {
+public class String extends Object implements CharSequence{
   char[] _value;
   int _count;
 

@@ -1,22 +1,25 @@
 package java.util;
 
-public class ArrayList<E> {
+public class ArrayList<E> extends Object{
 
     Object[] elementData;
 
-    private int numElements = 0;
+    private int numElements;
     private int capacity;
 
     public ArrayList() {
 	this.elementData = new Object[10];
 	this.capacity = 10;
+	this.numElements = 0;
     }
 
     public ArrayList(int initialCapacity) {
 	this.elementData = new Object[initialCapacity];
 	this.capacity = initialCapacity;	
+	this.numElements = 0;
     }
 
+    // Expand capacity to size while keeping old elements of elementData
     private void copyNewElementData(int size) {
 	Object[] newElementData = new Object[size];
 	int i = 0;
@@ -29,6 +32,7 @@ public class ArrayList<E> {
 	capacity = size;
     }
 
+    // if adding one would be out of bounds, expand elementData
     private void checkAdjustSize() {
 	if (numElements + 1 >= capacity) {
 	    // Arbitrarily 10, should compare to source
@@ -36,7 +40,22 @@ public class ArrayList<E> {
 	}
     }
 
-    // something is going on here, looks like elementData is null in the translation?
+    private void createSpace(int index) {
+	int j = 0;
+
+	// Note - 1 because one after last element could be out of range
+	for (j = numElements; j > index; j--) {
+	    elementData[j] = elementData[j-1];
+	}
+    }
+
+    public <E> void add(int index, E e) {
+	checkAdjustSize();
+	createSpace(index);
+	elementData[index] = e;
+	numElements ++;
+    }
+
     public <E> boolean add(E e) {
 	checkAdjustSize();
 	elementData[numElements++] = e;
@@ -52,27 +71,10 @@ public class ArrayList<E> {
 	numElements = 0;
     }
 
-    // Sometimes won't compile concurrently with indexOf, size, and toArray???
     public boolean contains(Object o) {
-	int i = 0;
-	if (o == null) {
-            for (i = 0; i < capacity; i++) {
-                if (elementData[i]==null) {
-                    return true;
-		}
-	    }
-        } else {
-            for (i = 0; i < numElements; i++) {
-                if (o.equals(elementData[i])) {
-                    return true;
-		}
-	    }
-        }
-        return false;
+	return indexOf(o) >= 0;
     }
 
-    // GENERIC RETURN TYPE ERROR?
-    /*
     public E get(int index) {
 	if (index < 0 || index >= numElements) {
 	    return null;
@@ -80,7 +82,6 @@ public class ArrayList<E> {
 
 	return elementData[index];
     }
-    */
 
     public int indexOf(Object o) {
 	int i = 0;
@@ -100,8 +101,6 @@ public class ArrayList<E> {
         return -1;
     }
 
-    // MAX RECURSION?
-    /*
     private void removeElement(int index) {
 	int j = 0;
 
@@ -110,28 +109,19 @@ public class ArrayList<E> {
 	    elementData[j] = elementData[j+1];
 	}
 	elementData[numElements-1] = null;
+	numElements --;
     }
-    */
 
-    // GENERIC RETURN TYPE ERROR?
-    /*
     public E remove(int index) {
 	E e;
-	
 	if (index < 0 || index >= numElements) {
 	    return null;
-	}
-	
-	removeElement(index);
-
+	}	
 	e = elementData[index];
-
+	removeElement(index);
 	return e;
     }
-    */
 
-    // Doesn't work with removeElement?
-    /*
     public boolean remove(Object o) {
 	int i = 0;
 	if (o == null) {
@@ -151,12 +141,9 @@ public class ArrayList<E> {
         }
         return false;	
     }
-    */
 
 
-    // GENERIC RETURN TYPE ERROR?
-    /*
-    public E set (int index, E element) {
+    public <E> E set (int index, E element) {
 	E oldElement;
 
 	if (index < 0 || index >= numElements) {
@@ -168,15 +155,11 @@ public class ArrayList<E> {
 
 	return oldElement;
     }
-    */
-
-    // MAX RECURSION
     
     public int size() {
 	return numElements;
     }
 
-    /*
     public Object[] toArray() {
 	Object[] arr = new Object[numElements];
 	int i = 0;
@@ -187,6 +170,6 @@ public class ArrayList<E> {
 
 	return arr;
     }
-    */
+
 }
 
