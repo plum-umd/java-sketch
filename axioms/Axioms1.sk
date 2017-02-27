@@ -7,76 +7,78 @@ package Axioms1;
 
 // Problem: Not sure how this would work in terms of composing 'functions'.
 // Len(Concat) ...? That doesn't make sense here.
-adt T {
-  Len_T { int n; char[n] s; }
-  Concat_T { int n; char[n] s1; char[n] s2; }
-}
-generator T xform_T(T t) {
-  switch(t) {
-  case Len: return t;
-//case Concat: ...?
-  }
-}
+/* adt T { */
+/*   Len_T { int n; char[n] s; } */
+/*   Concat_T { int n; char[n] s1; char[n] s2; } */
+/* } */
+/* generator T xform_T(T t) { */
+/*   switch(t) { */
+/*   case Len: return t; */
+/* //case Concat: ...? */
+/*   } */
+/* } */
 
 // Ok, now we can compose these things together
-adt TT {
-  adt TTT {
-    String_TTT { int n; char[n] s; }
-    Len_TTT { TTT t; }
-    Concat_TTT { TTT t1; TTT t2; }
-    Plus_TTT {TTT left; TTT right; }
-    Error { }
-  }
+adt T {
+  String { int n; char[n] s; }
+  Len    { T t; }
+  Concat { T t1; T t2; }
+  Plus   {T left; T right; }
+  Error  { }
 }
-TTT xform_TTT(TTT t) {
+
+T string()           { return new String(); }
+T length(T t)        { return new Len(t=t); }
+T concat(T t1, T t2) { return new Concat(t1=t1, t2=t2); }
+T plus(T t1, T t2)   { return new Plus(left=t1, right=t2); }
+
+T xform(T t) {
   switch(t) {
-  case String_TTT: return t;
-  case Len_TTT: return xform_Len_TTT(t.t);
-  case Plus_TTT: return new Plus_TTT(left=xform_TTT(t.left), right=xform_TTT(t.right));
-  case Concat_TTT: return new Concat_TTT(t1=xform_TTT(t.t1), t2=xform_TTT(t.t2));
+  case String: return t;
+  case Len: return xform_Len(t.t);
+  case Plus: return plus(xform(t.left), xform(t.right));
+  case Concat: return concat(xform(t.t1), xform(t.t2));
   case Error: return t;
   }
 }
-TTT xform_Len_TTT(TTT tt) {
+T xform_Len(T tt) {
   switch(tt) {
-  case String_TTT: return new Len_TTT(t=tt);
-  case Len_TTT: return new Error(); // Len(Len())
-  case Plus_TTT: return new Error(); // Len(Plus())
-  case Concat_TTT:
-    return new Plus_TTT(left=new Len_TTT(t=xform_TTT(tt.t1)),
-			right=new Len_TTT(t=xform_TTT(tt.t2)));
+  case String: return new Len(t=tt);
+  case Len: return new Error(); // Len(Len())
+  case Plus: return new Error(); // Len(Plus())
+  case Concat: return plus(length(xform(tt.t1)), length(xform(tt.t2)));
   case Error: return tt;
   }
 }
 harness void mn() {
-  String_TTT s1 = new String_TTT();
-  String_TTT s2 = new String_TTT();
+  String s1 = new String();
+  String s2 = new String();
 
-  Len_TTT len1 = new Len_TTT(t=s1);
-  Len_TTT len2 = new Len_TTT(t=s2);
+  Len len1 = new Len(t=s1);
+  Len len2 = new Len(t=s2);
 
-  assert xform_TTT(len1) == len1;  // len(s1) == len(s1)
-  assert xform_TTT(len1) == len2; // How does Sketch compare tructs?
+  assert xform(len1) == len1;  // len(s1) == len(s1)
+  assert xform(len1) == len2; // How does Sketch compare tructs?
 
-  Concat_TTT con12 = new Concat_TTT(t1=s1, t2=s2);
-  Concat_TTT con21 = new Concat_TTT(t1=s1, t2=s2);
+  Concat con12 = new Concat(t1=s1, t2=s2);
+  Concat con21 = new Concat(t1=s1, t2=s2);
 
-  assert xform_TTT(con12) == xform_TTT(con12); // concat(s1, s2) == concat(s1, s2)
+  assert xform(con12) == xform(con12); // concat(s1, s2) == concat(s1, s2)
 
-  Len_TTT lcon12 = new Len_TTT(t=con12);
-  Len_TTT lcon21 = new Len_TTT(t=con21);
+  Len lcon12 = length(con12);
+  Len lcon21 = length(con21);
 
-  Plus_TTT p_l1_l2 = new Plus_TTT(left=len1, right=len2);
-  assert xform_TTT(lcon12) == p_l1_l2; // len(concat(s1, s2)) == len(s1) + len(s2)
-  assert p_l1_l2 == xform_TTT(lcon12); // len(s1) + len(s2) == len(concat(s1, s2))
+  Plus p_l1_l2 = new Plus(left=len1, right=len2);
+  assert xform(lcon12) == p_l1_l2; // len(concat(s1, s2)) == len(s1) + len(s2)
+  assert p_l1_l2 == xform(lcon12); // len(s1) + len(s2) == len(concat(s1, s2))
 
   // len(concat(s1, s2)) + len(s1) == len(s1) + len(s2) + len(s1)
-  Plus_TTT p_lcon12_l1 = new Plus_TTT(left=lcon12, right=len1);
-  Plus_TTT p_l1_l2_l1 = new Plus_TTT(left=new Plus_TTT(left=len1, right=len2), right=len1);
-  assert xform_TTT(p_lcon12_l1) == p_l1_l2_l1;
+  Plus p_lcon12_l1 = new Plus(left=lcon12, right=len1);
+  Plus p_l1_l2_l1 = new Plus(left=new Plus(left=len1, right=len2), right=len1);
+  assert xform(p_lcon12_l1) == p_l1_l2_l1;
 
   // Flips order in concat
   // len(concat(s2, s1)) + len(s1) == len(s1) + len(s2) + len(s1)
-  Plus_TTT p_lcon21_l1 = new Plus_TTT(left=lcon21, right=len1);
-  assert xform_TTT(p_lcon21_l1) == p_l1_l2_l1;
+  Plus p_lcon21_l1 = new Plus(left=lcon21, right=len1);
+  assert xform(p_lcon21_l1) == p_l1_l2_l1;
 }

@@ -1,0 +1,66 @@
+package Axioms2;
+/*
+ * Trying to use adt's to model something like:
+ * len(concat(s1, s2)) == len(s1) + len(s2)
+ */
+// Ok, now we can compose these things together
+adt T {
+  String { int n; char[n] s; }
+  Len    { T t; }
+  Concat { T t1; T t2; }
+  Plus   {T left; T right; }
+  Error  { }
+}
+
+String string()           { return new String(); }
+Len length(T t)           { return new Len(t=t); }
+Concat concat(T t1, T t2) { return new Concat(t1=t1, t2=t2); }
+Plus plus(T t1, T t2)     { return new Plus(left=t1, right=t2); }
+Error error()             { return new Error(); }
+
+T xform(T t) {
+  switch(t) {
+  case String: return t;
+  case Len:    return xform_Len(t.t);
+  case Plus:   return plus(xform(t.left), xform(t.right));
+  case Concat: return concat(xform(t.t1), xform(t.t2));
+  case Error:  return t;
+  }
+}
+/* This basically represents the axiom length(concat(s1,s2)) == length(s1) + length(s2) */
+T xform_Len(T tt) {
+  switch(tt) {
+  case String: return length(tt);
+  case Len:    return new Error(); // length(length(...)))
+  case Plus:   return new Error(); // length(plus(...))
+  case Concat: return plus(length(xform(tt.t1)), length(xform(tt.t2)));
+  case Error:  return tt;
+  }
+}
+harness void mn() {
+  String s1 = string();
+  String s2 = string();
+
+  Len len1 = length(s1);
+  Len len2 = length(s2);
+
+  Concat con12 = concat(s1, s2);
+  Concat con21 = concat(s1, s2);
+
+  Len lcon12 = length(con12);
+  Len lcon21 = length(con21);
+
+  Plus p_l1_l2 = plus(len1, len2);
+  assert xform(lcon12) == p_l1_l2; // len(concat(s1, s2)) == len(s1) + len(s2)
+  assert p_l1_l2 == xform(lcon12); // len(s1) + len(s2) == len(concat(s1, s2))
+
+  // len(concat(s1, s2)) + len(s1) == len(s1) + len(s2) + len(s1)
+  Plus p_lcon12_l1 = plus(lcon12, len1);
+  Plus p_l1_l2_l1 = plus(plus(len1, len2), len1);
+  assert xform(p_lcon12_l1) == p_l1_l2_l1;
+
+  // Flips order in concat
+  // len(concat(s2, s1)) + len(s1) == len(s1) + len(s2) + len(s1)
+  Plus p_lcon21_l1 = plus(lcon21, len1);
+  assert xform(p_lcon21_l1) == p_l1_l2_l1;
+}
