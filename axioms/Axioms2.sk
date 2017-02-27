@@ -28,13 +28,13 @@ T xform(T t) {
   }
 }
 /* This basically represents the axiom length(concat(s1,s2)) == length(s1) + length(s2) */
-T xform_Len(T tt) {
-  switch(tt) {
-  case String: return length(tt);
+T xform_Len(T t) {
+  switch(t) {
+  case String: return length(t);
   case Len:    return new Error(); // length(length(...)))
   case Plus:   return new Error(); // length(plus(...))
-  case Concat: return plus(length(xform(tt.t1)), length(xform(tt.t2)));
-  case Error:  return tt;
+  case Concat: return plus(length(xform(t.t1)), length(xform(t.t2)));
+  case Error:  return t;
   }
 }
 harness void mn() {
