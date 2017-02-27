@@ -167,7 +167,7 @@ class Translator(object):
         if type(n.parentNode) == ObjectCreationExpr:
             self.printt('_'.join([str(n), utils.anon_nm(n).name]))
         else: self.printt(str(n))
-        self.printTypeParameters(n.typeParameters)
+        #self.printTypeParameters(n.typeParameters)
         
         self.printt('(')
 
