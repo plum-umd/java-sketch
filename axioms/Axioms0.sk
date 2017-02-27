@@ -1,0 +1,41 @@
+/*
+ * Trying to use uninterpreted functions to model something like:
+ * len(concat(s1, s2)) == len(s1) + len(s2)
+ */
+
+/*
+// Problem: uninterpreted functions can't return structs
+struct String {
+  int length;
+  char[length] str;
+}
+int len(String s);
+String concat(String s1, String s2); // Nope.
+*/
+
+/* Get rid of struct and use char[] */
+int len([int n], char[n] s);
+char[n+m] concat([int n, int m], char[n] s1, char[m] s2);
+
+/*
+// Nonsensical syntax, but trying to use uninterpreted functions in an
+// adt for pattern matching.
+adt Funs {
+  Length { len; }
+  Concat { concat; }
+}
+/*
+
+harness void mn() {
+  /*
+  // Try to generate different compositions of functions with a generator
+  // Problem: Can't use uninterpreted functions inside generator?
+  generator fun xform(fun f) {
+    int t = ??;
+    if (t == 0) { return len; }
+    if (t == 1) { return concat; }
+    if (t == 2) { return len(concat(??, ??)); }
+  }
+  assert xform(len) == len;
+  */
+}

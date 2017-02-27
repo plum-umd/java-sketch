@@ -1,0 +1,82 @@
+package Axioms1;
+/*
+ * Trying to use adt's to model something like:
+ * len(concat(s1, s2)) == len(s1) + len(s2)
+ * Not sure what this looks like with adt's. Can't just use "+", Len() + Len()?
+ */
+
+// Problem: Not sure how this would work in terms of composing 'functions'.
+// Len(Concat) ...? That doesn't make sense here.
+adt T {
+  Len_T { int n; char[n] s; }
+  Concat_T { int n; char[n] s1; char[n] s2; }
+}
+generator T xform_T(T t) {
+  switch(t) {
+  case Len: return t;
+//case Concat: ...?
+  }
+}
+
+// Ok, now we can compose these things together
+adt TT {
+  adt TTT {
+    String_TTT { int n; char[n] s; }
+    Len_TTT { TTT t; }
+    Concat_TTT { TTT t1; TTT t2; }
+    Plus_TTT {TTT left; TTT right; }
+    Error { }
+  }
+}
+generator TTT xform_TTT(TTT t) {
+  switch(t) {
+  case String_TTT: return t;
+  case Len_TTT: return xform_Len_TTT(t.t);
+  case Plus_TTT: return new Plus_TTT(left=xform_TTT(t.left), right=xform_TTT(t.right));
+  case Concat_TTT: return new Concat_TTT(t1=xform_TTT(t.t1), t2=xform_TTT(t.t2));
+  case Error: return t;
+  }
+}
+generator TTT xform_Len_TTT(TTT tt) {
+  switch(tt) {
+  case String_TTT: return new Len_TTT(t=tt);
+  case Len_TTT: return new Error(); // Len(Len())
+  case Plus_TTT: return new Error(); // Len(Plus())
+  case Concat_TTT:
+    return new Plus_TTT(left=new Len_TTT(t=xform_TTT(tt.t1)),
+			right=new Len_TTT(t=xform_TTT(tt.t2)));
+  case Error: return tt;
+  }
+}
+harness void mn() {
+  String_TTT s1 = new String_TTT();
+  String_TTT s2 = new String_TTT();
+
+  Len_TTT len1 = new Len_TTT(t=s1);
+  Len_TTT len2 = new Len_TTT(t=s2);
+
+  assert xform_TTT(len1) == len1;  // len(s1) == len(s1)
+  assert xform_TTT(len1) == len2; // How does Sketch compare tructs?
+
+  Concat_TTT con12 = new Concat_TTT(t1=s1, t2=s2);
+  Concat_TTT con21 = new Concat_TTT(t1=s1, t2=s2);
+
+  assert xform_TTT(con12) == xform_TTT(con12); // concat(s1, s2) == concat(s1, s2)
+
+  Len_TTT lcon12 = new Len_TTT(t=con12);
+  Len_TTT lcon21 = new Len_TTT(t=con21);
+
+  Plus_TTT p_l1_l2 = new Plus_TTT(left=len1, right=len2);
+  assert xform_TTT(lcon12) == p_l1_l2; // len(concat(s1, s2)) == len(s1) + len(s2)
+  assert p_l1_l2 == xform_TTT(lcon12); // len(s1) + len(s2) == len(concat(s1, s2))
+
+  // len(concat(s1, s2)) + len(s1) == len(s1) + len(s2) + len(s1)
+  Plus_TTT p_lcon12_l1 = new Plus_TTT(left=lcon12, right=len1);
+  Plus_TTT p_l1_l2_l1 = new Plus_TTT(left=new Plus_TTT(left=len1, right=len2), right=len1);
+  assert xform_TTT(p_lcon12_l1) == p_l1_l2_l1;
+
+  // Flips order in concat
+  // len(concat(s2, s1)) + len(s1) == len(s1) + len(s2) + len(s1)
+  Plus_TTT p_lcon21_l1 = new Plus_TTT(left=lcon21, right=len1);
+  assert xform_TTT(p_lcon21_l1) == p_l1_l2_l1;
+}
