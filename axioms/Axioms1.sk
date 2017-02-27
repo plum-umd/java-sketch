@@ -28,7 +28,7 @@ adt TT {
     Error { }
   }
 }
-generator TTT xform_TTT(TTT t) {
+TTT xform_TTT(TTT t) {
   switch(t) {
   case String_TTT: return t;
   case Len_TTT: return xform_Len_TTT(t.t);
@@ -37,7 +37,7 @@ generator TTT xform_TTT(TTT t) {
   case Error: return t;
   }
 }
-generator TTT xform_Len_TTT(TTT tt) {
+TTT xform_Len_TTT(TTT tt) {
   switch(tt) {
   case String_TTT: return new Len_TTT(t=tt);
   case Len_TTT: return new Error(); // Len(Len())
