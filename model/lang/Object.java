@@ -8,4 +8,8 @@ public class Object {
 	return true;
     }
 
+    // NOTE THAT THIS SHOULD BE OVERRIDDEN FOR ALL RELEVANT CLASSES
+    public int hashCode() {
+	return 0;
+    }
 }
