@@ -13,7 +13,7 @@ class HashMap_Node<K,V> extends Object implements Map.Entry<K,V>{
     
     public final K getKey()        { return key; }
     public final V getValue()      { return value; }
-    public final String toString() { return key + "=" + value; }
+    //public final String toString() { return key + "=" + value; }
     
     public final int hashCode() {
 	return Objects.hashCode(key) ^ Objects.hashCode(value);
