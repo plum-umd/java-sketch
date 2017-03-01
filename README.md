@@ -175,6 +175,13 @@ $ python -m java_sk.sketch -p demo_name [option]*
 $ ./java_sk/sketch.py -p demo_name [option]*
 ```
 
+## Regression testing
+To run regression tests:
+```sh
+$ python -m test.test_mini
+$ python -m test.test_new_ast
+```
+
 ## Limitations
 
 As Java is a very large language, this tool currently only supports
@@ -188,4 +195,3 @@ are type correct.
 
 [sk]: https://bitbucket.org/gatoatigrado/sketch-frontend/
 [sk-170]: http://people.csail.mit.edu/jsjeon/adaptive-concretization/sketch-1.7.0.tgz
-

@@ -28,39 +28,58 @@ T xform(T t) {
   }
 }
 /* This basically represents the axiom length(concat(s1,s2)) == length(s1) + length(s2) */
+// plus(length(concat(s1, s2)), len1) == plus(plus(length(s1), length(s2)), length(s1));
 T xform_Len(T t) {
   switch(t) {
   case String: return length(t);
   case Len:    return new Error(); // length(length(...)))
   case Plus:   return new Error(); // length(plus(...))
-  case Concat: return plus(length(xform(t.t1)), length(xform(t.t2)));
+  case Concat: return plus(xform_Len(t.t1), xform_Len(t.t2));
   case Error:  return t;
   }
 }
 harness void mn() {
   String s1 = string();
   String s2 = string();
+  String s3 = string();
+  String s4 = string();
 
   Len len1 = length(s1);
   Len len2 = length(s2);
+  Len len3 = length(s4);
+  Len len4 = length(s4);
 
   Concat con12 = concat(s1, s2);
+  Concat con34 = concat(s3, s4);
   Concat con21 = concat(s1, s2);
 
-  Len lcon12 = length(con12);
-  Len lcon21 = length(con21);
+  Len len_con12 = length(con12);
+  Len len_con21 = length(con21);
 
-  Plus p_l1_l2 = plus(len1, len2);
-  assert xform(lcon12) == p_l1_l2; // len(concat(s1, s2)) == len(s1) + len(s2)
-  assert p_l1_l2 == xform(lcon12); // len(s1) + len(s2) == len(concat(s1, s2))
+  Plus p_len1_len2 = plus(len1, len2);
+  Plus p_len3_len4 = plus(len3, len4);
+  assert xform(len_con12) == p_len1_len2; // len(concat(s1, s2)) == len(s1) + len(s2)
+  assert p_len1_len2 == xform(len_con12); // len(s1) + len(s2) == len(concat(s1, s2))
 
   // len(concat(s1, s2)) + len(s1) == len(s1) + len(s2) + len(s1)
-  Plus p_lcon12_l1 = plus(lcon12, len1);
-  Plus p_l1_l2_l1 = plus(plus(len1, len2), len1);
-  assert xform(p_lcon12_l1) == p_l1_l2_l1;
+  Plus p_len_con12_len1 = plus(len_con12, len1);
+  Plus p_len1_len2_len1 = plus(plus(len1, len2), len1);
+  assert xform(p_len_con12_len1) == p_len1_len2_len1;
 
   // Flips order in concat
   // len(concat(s2, s1)) + len(s1) == len(s1) + len(s2) + len(s1)
-  Plus p_lcon21_l1 = plus(lcon21, len1);
-  assert xform(p_lcon21_l1) == p_l1_l2_l1;
+  Plus p_len_con21_len1 = plus(len_con21, len1);
+  assert xform(p_len_con21_len1) == p_len1_len2_len1;
+
+  // xform(len(concat(concat(s1, s2), s3))) == len(t1) + len(t2) + len(t3)
+  Concat con123 = concat(con12, s3);
+  Len len_con123 = length(con123);
+  Plus p_len1_len2_len3 = plus(plus(len1, len2), len3);
+  assert xform(len_con123) == p_len1_len2_len3;
+
+  // xform(len(concat(concat(s1, s2), concat(s3, s4)))) == len(t1) + len(t2) + len(t3) + len(s4)
+  Concat con1234 = concat(con12, con34);
+  Len len_con1234 = length(con1234);
+  Plus p_len1_len2_len3_len4 = plus(plus(len1, len2), plus(len3, len4));
+  assert xform(len_con1234) == p_len1_len2_len3_len4;
 }
