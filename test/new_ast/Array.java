@@ -19,12 +19,16 @@ class Array {
 
 	int[] a5 = {1,2,3,4,5};
 	assert list_sum(a5) == 15;
+
+	int[] a6;
+	a6 = a0;
+	assert a6.length == a0.length;
     }
     int list_sum(int[] lst) {
-	int sum = 0;
-	for (int i = 0; i < lst.length; ++i) {
-	    sum += lst[i];
-	}
-	return sum;
+    	int sum = 0;
+    	for (int i = 0; i < lst.length; ++i) {
+    	    sum += lst[i];
+    	}
+    	return sum;
     }
 }

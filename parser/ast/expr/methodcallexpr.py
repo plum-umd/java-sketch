@@ -4,6 +4,7 @@ from . import _import
 
 from .expression import Expression
 from .fieldaccessexpr import FieldAccessExpr
+from .thisexpr import ThisExpr
 
 from ..type.classorinterfacetype import ClassOrInterfaceType
 
@@ -63,8 +64,10 @@ class MethodCallExpr(Expression):
                 fld = utils.find_fld(a, None)
                 if not fld: return None
                 typ = fld.typee
-            elif type(a) == MethodCallExpr:
+            elif isinstance(a, MethodCallExpr):
                 typ = a.typee
+            elif isinstance(a, ThisExpr):
+                typ = utils.get_coid(self)
             elif not a.typee:
                 typ = self.symtab[a.name].typee
             else:
