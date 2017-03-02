@@ -58,7 +58,6 @@ class MethodCallExpr(Expression):
     def arg_typs(self):
         typs = []
         for a in self.args:
-            print 'a:', a, type(a)
             if type(a) == FieldAccessExpr:
                 # TODO: if a field from an imported class is only used in a method call
                 # this will fail :(

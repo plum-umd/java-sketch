@@ -223,7 +223,7 @@ def find_fld(n, obj_struct):
 
     # look up n's scope in symtab
     scope = node_to_obj(n.scope)
-    if n.name in scope.symtab: return scope.symtab.get(n.name)
+
     if isinstance(scope, Parameter): scope = scope.idd
     
     if not scope:
@@ -248,7 +248,7 @@ def find_fld(n, obj_struct):
     # print 'n.name:', n.name, 'cls:', cls, type(n)
     # print cls.symtab
     if not fld: # didn't find field in this cls, look in imported supers
-        supers = cls.supers()
+        supers = cls.extendsList
         for e in supers:
             if e.scope and str(e.scope) in cls.symtab:
                 impdec = cls.symtab[str(e.scope)]
@@ -259,6 +259,7 @@ def find_fld(n, obj_struct):
                 return fld
 
     if not fld:
+        if n.name in scope.symtab: return scope.symtab.get(n.name)
         raise Exception('fld {} not found in class {} or super classes.'.
                         format(n.field.name, cls.name))
     return fld

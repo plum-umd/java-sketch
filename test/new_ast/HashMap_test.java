@@ -1,15 +1,15 @@
 class HashMap_test {
     harness void m() {
 	// constructors
-	HashMap<Integer, String> hm1 = new HashMap<Integer, String>();
-	Integer n1 = new Integer(1);
-	Integer n2 = new Integer(2);
-	Integer n3 = new Integer(3);
-	Integer n4 = new Integer(4);
+	// HashMap<Integer, Integer> hm1 = new HashMap<Integer, Integer>();
+	// Integer n1 = new Integer(1);
+	// Integer n2 = new Integer(2);
+	// Integer n3 = new Integer(3);
+	// Integer n4 = new Integer(4);
 
-	// // isEmpty, containsKey, containsValue, size
-	assert hm1.isEmpty();
-	assert hm1.size() == 0;
+	// isEmpty, containsKey, containsValue, size
+	// assert hm1.isEmpty();
+	// assert hm1.size() == 0;
 	// assert !hm1.containsKey(n1);
 	// assert !hm1.containsValue("One");
 
@@ -78,6 +78,5 @@ class HashMap_test {
 	// assert !hm1.containsValue("One");
 	// assert !hm1.containsKey(n3);
 	// assert !hm1.containsValue("Three");
-	
     }
 }
