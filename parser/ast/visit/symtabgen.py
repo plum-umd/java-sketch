@@ -141,7 +141,9 @@ class SymtabGen(object):
             fd = FieldDeclaration({u"@t": u"FieldDeclaration",
                                    u"variables": {
                                        u"@e": [{u"@t": u"VariableDeclarator",
-                                                u"id": {u"name": u"length",},},]},
+                                                u"id": {u"name": u"length",},
+                                                u'init': {u'@t': u'IntegerLiteralExpr',
+                                                          u'value': u'0',},},]},
                                    u"type": {u"@t": u"PrimitiveType",
                                              u"type": {"name": "Int"},},})
             node.symtab.update({u'length':fd})
