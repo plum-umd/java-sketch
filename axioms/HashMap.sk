@@ -1,0 +1,28 @@
+adt H {
+  HashMap   { H h; }
+  Put       { H h; int k; int v; }
+  Get       { H h; int k; }
+}
+HashMap put(HashMap h, int k, int v) {
+  return new HashMap(h=new Put(h=h, k=k, v=v));
+}
+HashMap get(HashMap h, int k) {
+  return new HashMap(h=new Get(h=h, k=k));
+}
+harness void mn() {
+    HashMap hmap1 = new HashMap();
+    hmap1 = put(hmap1, 0, 1);
+    hmap1 = put(hmap1, 2, 3);
+    hmap1 = get(hmap1, 2);
+    HashMap hmap2 =
+      new HashMap(h=new Get(
+			    h=new HashMap(
+					  h=new Put(
+						    h=new HashMap(
+								  h=new Put(
+									    h=new HashMap(),
+									    k=0,v=1)),
+						    k=2, v=3)),
+			    k=2));
+    assert hmap1 == hmap2;
+}
