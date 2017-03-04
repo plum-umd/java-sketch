@@ -1,28 +1,34 @@
 adt H {
   HashMap   { H h; }
-  Put       { H h; int k; int v; }
   Get       { H h; int k; }
+  Put       { H h; int k; int v; }
 }
-HashMap put(HashMap h, int k, int v) {
-  return new HashMap(h=new Put(h=h, k=k, v=v));
-}
-HashMap get(HashMap h, int k) {
-  return new HashMap(h=new Get(h=h, k=k));
-}
+H get(H h, int k)             { return new Get(h=h, k=k); }
+H put(H h, int k, int v)      { return new Put(h=h, k=k, v=v); }
+
+// I'm not sure about this since we're not just transforming functions but
+// transforming functions based on their arguments.
+// get(put(x,y),x) == y; get(put(x,y),z) != y
+/* H xform(H h) { */
+/*   switch(h) { */
+/*   case HashMap: ... ? */
+/*   case Put: ... ? */
+/*   case Get: ... ? */
+/*   } */
+/* } */
+
 harness void mn() {
-    HashMap hmap1 = new HashMap();
-    hmap1 = put(hmap1, 0, 1);
-    hmap1 = put(hmap1, 2, 3);
-    hmap1 = get(hmap1, 2);
-    HashMap hmap2 =
-      new HashMap(h=new Get(
-			    h=new HashMap(
-					  h=new Put(
-						    h=new HashMap(
-								  h=new Put(
-									    h=new HashMap(),
-									    k=0,v=1)),
-						    k=2, v=3)),
-			    k=2));
-    assert hmap1 == hmap2;
+  H hmap1 = new HashMap();
+  H hmap2;
+  hmap1 = put(hmap1, 0, 1); // first call to put()
+  hmap2 = new Put(h=new HashMap(), k=0, v=1);
+  assert hmap1 == hmap2;
+
+  hmap1 = put(hmap1, 2, 3); // second call to put()
+  hmap2 = new Put(h=new Put(h=new HashMap(), k=0, v=1), k=2, v=3);
+  assert hmap1 == hmap2;
+
+  hmap1 = get(hmap1, 2); // first call to get()
+  hmap2 = new Get(h=new Put(h=new Put(h=new HashMap(), k=0, v=1), k=2, v=3), k=2);
+  assert hmap1 == hmap2;
 }
