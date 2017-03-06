@@ -5,7 +5,7 @@ public class HashMap_Simple<Integer,String> extends Object {
     int numPairs;
     int capacity;
 
-    class Node<Integer,String> extends Object implements Map.Entry<Integer,String> {
+    class Node<Integer,String> extends Object {
 	Integer key;
 	String value;
 	int hash;
