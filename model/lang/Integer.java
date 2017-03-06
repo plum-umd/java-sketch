@@ -98,4 +98,7 @@ public class Integer extends Number {
 	return new String(ret2, 0, size);
     }
 
+    public int hashCode() {
+	return value;
+    }
 }

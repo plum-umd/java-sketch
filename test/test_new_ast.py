@@ -139,6 +139,9 @@ class TestJava(TestCommon):
     def test_Integer(self):
         self.__test(["Integer_test.java", "../../model/"])
 
+    def test_ArrayList(self):
+        self.__test(["ArrayList_test.java", "../../model/"])
+
     # something is wrong here i dont understand
     # def test_Float(self):
     #     self.__test(["Float_test.java", "../../model/"])
