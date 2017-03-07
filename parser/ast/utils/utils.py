@@ -177,11 +177,11 @@ def node_to_obj(n):
             if type(cls.parentNode) == ClassOrInterfaceDeclaration:
                 return find_obj(cls.parentNode)
 
-    if type(n) == CastExpr: o = n.symtab[n.typee.name]
-    elif type(n) == EnclosedExpr: o = node_to_obj(n.inner)
-    elif type(n) == ThisExpr: o = get_coid(n)
+    if isinstance(n, CastExpr): o = n.symtab.get(n.typee.name)
+    elif isinstance(n, EnclosedExpr): o = node_to_obj(n.inner)
+    elif isinstance(n, ThisExpr): o = get_coid(n)
     # TODO: None here is wrong, it will fail somewhere...
-    elif type(n) == FieldAccessExpr: o = find_fld(n, None)
+    elif isinstance(n, FieldAccessExpr): o = find_fld(n, None)
     else: o = find_obj(n)
 
     if not o:
@@ -193,7 +193,7 @@ def node_to_obj(n):
         # raise Exception('Cant find {}.{}:{}'.format(str(n.name),get_coid(n),n.beginLine))
     return o
 
-def find_fld(n, obj_struct):
+def get_scopes_list(n):
     def top(s):
         if type(s.scope) == ArrayAccessExpr:
             if type(s.scope.nameExpr) == NameExpr: return n.symtab.get(s.scope.nameExpr.name)
@@ -206,15 +206,15 @@ def find_fld(n, obj_struct):
             else: return scopes(s.scope.nameExpr, [s.scope.nameExpr.name] + a)
         elif type(s.scope) == NameExpr: return a
         else: return scopes(s.scope, [s.scope.name] + a)
+    # top level variable of field access
+    v = top(n)
+    cls = v.symtab.get(v.typee.name)
+    # name of all the scope variables
+    return (cls, scopes(n, []))
+        
+def find_fld(n, obj_struct):
     if isinstance(n.scope, (FieldAccessExpr, ArrayAccessExpr)):
-        # top level variable of field access
-        v = top(n)
-        # print 'v:', v.name
-        cls = v.symtab.get(v.typee.name)
-        # print 'cls:', cls
-        # name of all the scope variables
-        scps = scopes(n, [])
-        # print 'scps', scps
+        (cls, scps) = get_scopes_list(n)
         for s in scps:
             fld = cls.symtab.get(s)
             cls = cls.symtab.get(fld.typee.name)

@@ -75,6 +75,9 @@ class TestJava(TestCommon):
     def test_LocalStaticCalls(self):
         self.__test(["LocalStaticCalls.java"])
 
+    def test_MethodcallScope(self):
+        self.__test(["MethodcallScope.java"])
+
     def test_MultiField(self):
         self.__test(["MultiField.java"])
 
@@ -87,8 +90,8 @@ class TestJava(TestCommon):
     def test_NonLocalCalls(self):
         self.__test(["NonLocalCalls.java"])
 
-    def test_Override(self):
-        self.__test(["Override.java"])
+    # def test_Override(self):
+    #     self.__test(["Override.java"])
 
     def test_PolymorphicFunctions(self):
         self.__test(["PolymorphicFunctions.java", "../../model/"])

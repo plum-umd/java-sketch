@@ -688,7 +688,7 @@ class Translator(object):
         if not callexpr.scope:
             cls = utils.get_coid(callexpr)
         else:
-            if type(callexpr.scope) == SuperExpr:
+            if isinstance(callexpr.scope, SuperExpr):
                 # super . [TypeArguments] Identifier ( [ArgumentList] )
                 sups = utils.get_coid(callexpr).supers()
                 if not sups:
@@ -696,6 +696,8 @@ class Translator(object):
                         callexpr, utils.get_coid(callexpr)))
                 cls = sups[0]
                 scope = NameExpr({u'name':u'self'})
+            elif isinstance(callexpr.scope, MethodCallExpr):
+                (cls, _) = utils.get_scopes_list(callexpr)
             else:
                 scope = utils.node_to_obj(callexpr.scope)
                 if not scope: return
@@ -795,12 +797,8 @@ class Translator(object):
             clss = filter(lambda c: not c.interface, [cls] + utils.all_subClasses(cls))
             logging.debug('subclasses: {}'.format(map(lambda c: str(c), clss)))
 
-            tltr.buf = cStringIO.StringIO()
             scp = tltr.trans(callexpr.scope)
             args = [NameExpr({u'name':scp})] + callexpr.args
-
-            # tltr.buf = cStringIO.StringIO()
-            # scp = tltr.trans(callexpr.scope)
 
             conexprs = []
             for c in reversed(clss): # start from bottom of hierarchy
@@ -816,7 +814,6 @@ class Translator(object):
             if type(mtd.typee) != VoidType: self.printt('(')
             self.print_dispatch(conexprs)
             if type(mtd.typee) != VoidType: self.printt(')')
-
         logging.debug('**END CALL***\n')
 
     def identify_potentials(self, callexpr, cls):
@@ -872,16 +869,8 @@ class Translator(object):
         def most(candidate, others):
             ctypes = candidate.param_typs()
             for i in range(len(others)):
-                # print 'others:', others[i]
-                # print 'ctypes.typee.name:', map(lambda t: t.typee.name, ctypes)
-                # print 'param_typs.name:', map(lambda t: t.name, others[i].param_typs())
-                # print 'others[i].typeParameters:', map(lambda t: t.name, others[i].typeParameters)
                 # if the parameters of the candidate aren't less specific than all the parameters of other
-                # print map(lambda t: utils.is_subtype(t[0], t[1]), zip(ctypes, others[i].param_typs()))
-                # print 'first'
-                # print map(lambda t: False if t.name not in map(lambda p: p.name, others[i].typeParameters) else True, ctypes)
                 if not all(map(lambda t: utils.is_subtype(t[0], t[1]), \
-                               # if (t[0].name not in map(lambda p: p.name, others[i].typeParameters)) else True,
                                zip(ctypes, others[i].param_typs()))):
                     return False
             return True
