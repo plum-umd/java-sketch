@@ -1,0 +1,26 @@
+package Axiom_String;
+
+harness void mn() {
+  Object self = Object_Object(new Object(__cid=Object()));
+  test_7_6(self);
+  /* test_100_200(self); */
+}
+
+void test_7_6(Object self) {
+  Object s1 = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=7+1, A="hello, "), 0, 7);
+  Object s2 = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=6+1, A="world!"), 0, 6);
+  Object s3 = (s1.__cid == String() ? concat_String@String(s1, s2) : null);
+  int len12 = (s1.__cid == String() ? length@String(s1) : 0) + (s2.__cid == String() ? length@String(s2) : 0);
+  int len3 = (s3.__cid == String() ? length@String(s3) : 0);
+  assert len3 == len12;
+}
+
+void test_100_200(Object self) {
+  Object s1 = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=100+1, A="0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789"), 0, 100);
+  Object s2 = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=200+1, A="01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789"), 0, 200);
+  Object s3 = (s1.__cid == String() ? concat_String@String(s1, s2) : null);
+  int len12 = (s1.__cid == String() ? length@String(s1) : 0) + (s2.__cid == String() ? length@String(s2) : 0);
+  int len3 = (s3.__cid == String() ? length@String(s3) : 0);
+  assert len3 == len12;
+}
+
