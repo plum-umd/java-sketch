@@ -1,6 +1,6 @@
 package Axiom_String;
 
-String string()           { return new String(); }
+String string(int __cid, int n, char[n] s)           { return new String(__cid=__cid, n=n, s=s); }
 Len length(T t)           { return new Len(t=t); }
 Concat concat(T t1, T t2) { return new Concat(t1=t1, t2=t2); }
 Plus plus(T t1, T t2)     { return new Plus(left=t1, right=t2); }
@@ -32,13 +32,26 @@ harness void mn() {
 }
 
 void test_7_6(Object self) {
-  Object s1 = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=7+1, A="hello, "), 0, 7);
-  Object s2 = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=6+1, A="world!"), 0, 6);
-  Object s3 = (s1.__cid == String() ? concat(s1, s2) : null);
+  /* ORIGINAL JSketch CODE:
+  /* Object s1 = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=7+1, A="hello, "), 0, 7); */
+  /* Object s2 = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=6+1, A="world!"), 0, 6); */
   /* Object s3 = (s1.__cid == String() ? concat_String@String(s1, s2) : null); */
   /* int len12 = (s1.__cid == String() ? length@String(s1) : 0) + (s2.__cid == String() ? length@String(s2) : 0); */
   /* int len3 = (s3.__cid == String() ? length@String(s3) : 0); */
-  /* assert len3 == len12; */
+
+  /* JSketch CODE TRANSLATED TO ADT WITH DYNAMIC DISPATCH */
+  /* Dynamic dispatch with adt. Not straightforward b/c of __cid. */
+  /* T s3 = (s1.__cid == String() ? concat(s1, s2) : null); */
+  /* T len12 = plus((s1.__cid == String() ? length(s1) : null), (s2.__cid == String() ? length(s2) : null)); */
+  /* T len3 = (((String)s3).__cid == String() ? length(s3) : null); */
+
+  /* W/OUT DYNAMIC DISPATCH */
+  String s1 = string(String(), 8, "hello, ");
+  String s2 = string(String(), 7, "world");
+  T s3 = concat(s1, s2);
+  T len12 = plus(length(s1), length(s2));
+  T len3 = length(s3);
+  assert xform(len3) == len12;
 }
 
 /* void test_100_200(Object self) { */
