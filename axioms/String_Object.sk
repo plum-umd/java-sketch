@@ -1,8 +1,6 @@
-package String_Struct;
+package String_Object;
+
 int String()        { return 1; }
-int length_String()    { return 2; }
-int concat_String() { return 3; }
-int plus_T() { return 3; }
 
 adt T {
   Str    { int n; char[n] s; }
@@ -23,7 +21,7 @@ struct Object {
 Object string()                  { return new Object(__cid=String(),str=new Str()); }
 Object length(T t)               { return new Object(__cid=String(),len=new Len(t=t)); }
 Object concat(T t1, T t2)        { return new Object(__cid=String(),ccat=new Concat(t1=t1,t2=t2)); }
-Object plus(T left, T right)     { return new Object(__cid=plus_T(),plus=new Plus(left=left,right=right)); }
+Object plus(T left, T right)     { return new Object(__cid=String(),plus=new Plus(left=left,right=right)); }
 
 T xform(T t) {
   switch(t) {
