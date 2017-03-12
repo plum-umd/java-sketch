@@ -71,7 +71,7 @@ void test_7_6(Object self) {
 
   int i = 0;
 
-  for (i = 0; i < 30; i++) {
+  for (i = 0; i < 10; i++) {
      T s11 = concat(s8, s8);
      T s12 = concat(s9, s9);
      T s13 = concat(s11, s12);

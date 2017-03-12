@@ -1,0 +1,7 @@
+package Plus;
+
+Object Plus_Plus(Object self) {
+   return self;
+}
+
+Object Plus_Plus_Object_Object(

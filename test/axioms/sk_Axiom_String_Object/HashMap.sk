@@ -1,0 +1,37 @@
+package HashMap;
+
+int DEFAULT_INITIAL_CAPACITY = 1 << 4;
+int DEFAULT_INITIAL_CAPACITY_g() { return DEFAULT_INITIAL_CAPACITY; }
+void DEFAULT_INITIAL_CAPACITY_s(int DEFAULT_INITIAL_CAPACITY_s) { DEFAULT_INITIAL_CAPACITY = DEFAULT_INITIAL_CAPACITY_s; }
+
+int MAXIMUM_CAPACITY = 1 << 30;
+int MAXIMUM_CAPACITY_g() { return MAXIMUM_CAPACITY; }
+void MAXIMUM_CAPACITY_s(int MAXIMUM_CAPACITY_s) { MAXIMUM_CAPACITY = MAXIMUM_CAPACITY_s; }
+
+float DEFAULT_LOAD_FACTOR = 0.75;
+float DEFAULT_LOAD_FACTOR_g() { return DEFAULT_LOAD_FACTOR; }
+void DEFAULT_LOAD_FACTOR_s(float DEFAULT_LOAD_FACTOR_s) { DEFAULT_LOAD_FACTOR = DEFAULT_LOAD_FACTOR_s; }
+
+int TREEIFY_THRESHOLD = 8;
+int TREEIFY_THRESHOLD_g() { return TREEIFY_THRESHOLD; }
+void TREEIFY_THRESHOLD_s(int TREEIFY_THRESHOLD_s) { TREEIFY_THRESHOLD = TREEIFY_THRESHOLD_s; }
+
+int UNTREEIFY_THRESHOLD = 6;
+int UNTREEIFY_THRESHOLD_g() { return UNTREEIFY_THRESHOLD; }
+void UNTREEIFY_THRESHOLD_s(int UNTREEIFY_THRESHOLD_s) { UNTREEIFY_THRESHOLD = UNTREEIFY_THRESHOLD_s; }
+
+int MIN_TREEIFY_CAPACITY = 64;
+int MIN_TREEIFY_CAPACITY_g() { return MIN_TREEIFY_CAPACITY; }
+void MIN_TREEIFY_CAPACITY_s(int MIN_TREEIFY_CAPACITY_s) { MIN_TREEIFY_CAPACITY = MIN_TREEIFY_CAPACITY_s; }
+
+Object HashMap_HashMap(Object self) {
+    return self;
+}
+
+Object putVal_int_K_V_boolean_boolean(Object self, int hash, Object key, Object value, bit onlyIfAbsent, bit evict) {
+}
+
+Object newNode_int_K_V_Node(Object self, int hash, Object key, Object value, Object next) {
+  return HashMap_Node_HashMap_Node_HashMap_int_K_V_Node(new Object(__cid=HashMap_Node()), self, hash, key, value, next);
+}
+

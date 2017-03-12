@@ -1,0 +1,62 @@
+package Object;
+
+Object Object_Object(Object self) {
+    return self;
+}
+
+Object toString(Object self) {
+  return String_String_char_int_int(new Object(__cid=String()), new Array_char(length=17+1, A="Object toString()"), 0, 17);
+}
+
+bit equals_Object(Object self, Object obj) {
+  return true;
+}
+
+int hashCode(Object self) {
+  return 0;
+}
+
+adt T {
+  String { int __cid; int n; char[n] s; }
+  Len    { T t; }
+  Concat { T t1; T t2; }
+  Plus   { T left; T right; }
+  Error  { }
+}
+
+struct Object {
+  int           __cid;
+  Array_Object  table_HashMap;
+  Object        entrySet_HashMap;
+  int           size_HashMap;
+  int           modCount_HashMap;
+  float         loadFactor_HashMap;
+  int           threshold_HashMap;
+  int           numPairs_HashMap;
+  int           value_Integer;
+  Array_Object  elementData_HashMap_Simple;
+  int           numPairs_HashMap_Simple;
+  int           capacity_HashMap_Simple;
+  float         value_Float;
+  Object        key_HashMap_Simple_Node;
+  Object        value_HashMap_Simple_Node;
+  int           hash_HashMap_Simple_Node;
+  int           hash_HashMap_Node;
+  Object        key_HashMap_Node;
+  Object        value_HashMap_Node;
+  Object        next_HashMap_Node;
+  Array_char    _value_String;
+  int           _count_String;
+  Array_char    _value_StringBuffer;
+  int           _count_StringBuffer;
+  Array_Object  elementData_ArrayList;
+  int           numElements_ArrayList;
+  int           capacity_ArrayList;
+  Object        parent_HashMap_TreeNode;
+  Object        left_HashMap_TreeNode;
+  Object        right_HashMap_TreeNode;
+  Object        prev_HashMap_TreeNode;
+  bit           red_HashMap_TreeNode;
+  Array_char    _value_StringBuilder;
+  int           _count_StringBuilder;
+}
