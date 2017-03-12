@@ -7,9 +7,9 @@ public class Stack<E> extends Object{
     int capacity;
 
     public Stack() { 
-	elementData = new Object[16];
+	elementData = new Object[10];
 	size = 0;
-	capacity = 16;
+	capacity = 10;
     }
     
     private void resize() {
