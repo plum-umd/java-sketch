@@ -1,9 +1,9 @@
 import subprocess
 
 NUM_TESTS=subprocess.check_output(['find', 'input_impl', '-name', 'm[0-9].sk']).count('\n')
-NUM_TRIALS=2
+NUM_TRIALS=50
 
-with open('results.csv', 'w') as f: pass
+with open('results_impl.csv', 'w') as f: pass
 for i in range(NUM_TESTS):
     times = []
     for j in range(NUM_TRIALS):
@@ -13,7 +13,7 @@ for i in range(NUM_TESTS):
         start = t.rfind('\n', t.rfind('='), t.rfind('user'))
         times.append(float(t[start+1:t.find('user', start)]))
     times.append(sum(times)/len(times))
-    with open('results.csv', 'a') as f:
+    with open('results_impl.csv', 'a') as f:
         [f.write('{:.2f}\t'.format(n)) for n in times]
         f.write('\n')
 

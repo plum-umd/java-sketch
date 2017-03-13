@@ -10,14 +10,16 @@ harness void mn() {
 					 new Array_char(length=13+1, A="ALLWORKNOPLAY"), 0, 13);
   Object s4 = String_String_char_int_int(new Object(__cid=String()),
 					 new Array_char(length=19+1, A="MAKESJACKADULLBOY!!"), 0, 19);
-  int len1234 = (s1.__cid == String() ? length@String(s1) : 0) +
-                (s2.__cid == String() ? length@String(s2) : 0) +
-                (s3.__cid == String() ? length@String(s3) : 0) +
-                (s4.__cid == String() ? length@String(s4) : 0);
-
+  int pl1234 = (s1.__cid == String() ? length@String(s1) : 0) +
+    (s2.__cid == String() ? length@String(s2) : 0) +
+    (s3.__cid == String() ? length@String(s3) : 0) +
+    (s4.__cid == String() ? length@String(s4) : 0);
+  
   Object c12 = (s1.__cid == String() ? concat_String@String(s1, s2) : null);
   Object c34 = (s3.__cid == String() ? concat_String@String(s3, s4) : null);
-  int lc12c34 = (c12.__cid == String() ? length@String(c12) : 0) +
-                (c34.__cid == String() ? length@String(c34) : 0);
-  assert lc12c34 == len1234;
+  int lc12 = (c12.__cid == String() ? length@String(c12) : 0);
+  int lc34 = (c34.__cid == String() ? length@String(c34) : 0);
+  int plc12c34 = lc12 + lc34;
+
+  assert plc12c34 == pl1234;
 }
