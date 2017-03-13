@@ -45,9 +45,9 @@ generator T xform(T t, int bnd) {
     case Str: return t;
     case Concat: {
       T tt1 = xform(t1.t1, bnd-1); T tt2 = xform(t1.t2, bnd-1);
-      /* return new Plus(left=new Len(t=tt1), right=new Len(t=tt2));  */
-      if (??) { return new Plus(left=new Len(t=tt1), right=new Len(t=tt2)); }
-      else    { return new Len(t=new Concat(t1=tt1, t2=tt2)); }
+      return {| (new Plus(left=new Len(t=tt1), right=new Len(t=tt2)) |
+		 new Len(t=new Concat(t1=tt1, t2=tt2)))
+	  |};
     }
     case Plus:  return new Error(); // Len(Plus(...))
     case Len:   return new Error();
@@ -81,48 +81,29 @@ harness void mn() {
   Object plenc12lenc34 = plus(lenc12.t, lenc34.t);
 
   /* assert len3 == len12; */
-   assert xform(lenc12.t, 2) == plen12.t;
+   /* assert xform(lenc12.t, 2) == plen12.t; */
   /* assert len3 == len3; */
-   assert xform(lenc12.t, 2) == lenc12.t;
+   /* assert xform(lenc12.t, 2) == lenc12.t; */
   /* assert txform(lenc12.t) == lenc12.t; */
 
   /* assert txform(plenc12lenc34.t) == plen1234.t; */
-  assert xform(plen1234.t, 3) == plen1234.t;
-  assert xform(plenc12lenc34.t, 50) == plen1234.t;
+  /* assert xform(plen1234.t, 3) == plen1234.t; */
+  assert xform(plenc12lenc34.t, 2) == plen1234.t;
+  /* assert txform(plenc12lenc34.t) == plen1234.t; */
+  /* assert ttxform(plenc12lenc34.t) == plen1234.t; */
 }
 
 T txform(T t) {
   T t1; T t2 = null; 
   switch(t) {
   case Str: return t;
-  case Len: {
-    t1 = t.t;
-    /* return txform_Len(t.t); */
-  }
-  case Plus: {
-    t1 = t.left; t2 = t.right;
-    /* return new Plus(left=txform(t.left), right=txform(t.right)); */
-  }
-  case Concat: {
-    t1 = t.t1; t2 = t.t2;
-    /* return new Concat(t1=txform(t.t1), t2=txform(t.t2)); */
-  }
+  case Len: return txform_Len(t.t);
+  case Plus: return new Plus(left=txform(t.left), right=txform(t.right));
+  case Concat: return new Concat(t1=txform(t.t1), t2=txform(t.t2));
   case Error:  return t;
   }
-  if (t2 != null) {
-    T new_t1 = txform(t1); T new_t2 = txform(t2);
-    switch(t) { // this should only be Plus or Concat
-    case Plus: return new Plus(left=new_t1, right=new_t2);
-    case Concat: return new Concat(t1=new_t1, t2=new_t2);
-    case Str: return new Error(); // should never happen
-    case Len: return new Error();
-    case Error: return t;
-    }
-  }
-  else { // should only be Len
-    return txform_Len(t1);
-  }
 }
+
 T txform_Len(T t) {
   switch(t) {
   case Str:    return new Len(t=txform(t));
@@ -130,5 +111,40 @@ T txform_Len(T t) {
   case Plus:   return new Error(); // length(plus(...))
   case Concat: return new Plus(left=txform_Len(t.t1), right=txform_Len(t.t2));
   case Error:  return t;
+  }
+}
+
+T ttxform(T t) {
+  T t1; T t2 = null; 
+  switch(t) {
+  case Str:    { return t; }
+  case Len:    { t1 = t.t; }
+  case Plus:   { t1 = t.left; t2 = t.right; }
+  case Concat: { t1 = t.t1; t2 = t.t2; }
+  case Error:  { return t; }
+  }
+  if (t2 != null) {
+    t1 = ttxform(t1);
+    t2 = ttxform(t2);
+    switch(t) { // this should only be Plus or Concat
+    case Plus:   return new Plus(left=t1, right=t2);
+    case Concat: return new Concat(t1=t1, t2=t2);
+    case Str:    return new Error(); // should never happen
+    case Len:    return new Error();
+    case Error:  return t;
+    }
+  }
+  else { // should only be Len
+    switch(t1) {
+    case Str: return t;
+    case Concat: {
+      T tt1 = ttxform(t1.t1); T tt2 = ttxform(t1.t2);
+      return {| (new Plus(left=new Len(t=tt1), right=new Len(t=tt2)) |
+		 new Len(t=new Concat(t1=tt1, t2=tt2))) |};
+    }
+    case Plus:  return new Error(); // Len(Plus(...))
+    case Len:   return new Error();
+    case Error: return t;
+    }
   }
 }
