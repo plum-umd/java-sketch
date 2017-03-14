@@ -140,7 +140,7 @@ public class HashMap<K,V> extends Object {
         // // if (++size > threshold)
         //     // resize();
         // // afterNodeInsertion(evict);
-        // return null;
+        return null;
     }
 
     // Create a regular (non-tree) node
