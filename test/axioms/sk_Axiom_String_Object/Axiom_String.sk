@@ -16,51 +16,63 @@ Object error() {
    return Error_Error(new Object(__cid=Error())); 
 }
 
-Object xform (Object t) {
+Object xform (Object t, int dice) {
+   Object t1; Object t2 = null;
+
    if (t.__cid == Len()) {
-      return xform_Len(t.str_Len);
+      t1 = t.str_Len;
    } else if (t.__cid == Plus()) {
-      return plus(xform(t.i1_Plus), xform(t.i2_Plus));	
+      t1 = t.i1_Plus;
+      t2 = t.i2_Plus;
    } else if (t.__cid == Concat()) {
-      return concat(xform(t.s1_Concat), xform(t.s2_Concat));	
+      t1 = t.s1_Concat;
+      t2 = t.s2_Concat;
    } else {
       return t;
    }  
-}
 
-Object xform_Len (Object t) {
-   if (t.__cid == String()) {
-      return length(t);
-   } else if (t.__cid == Concat()) {
-      return plus(xform_Len(t.s1_Concat), xform_Len(t.s2_Concat));	
+   if (t.__cid == Len()) {
+      if (t1.__cid == Concat()) {
+         Object tt1; Object tt2;
+         if (dice%2 == 0) {
+	    dice = dice/2;
+            tt1 = xform(length(t1.s1_Concat), dice);
+            dice = dice/2;
+            tt2 = xform(length(t1.s2_Concat), dice);
+	 
+	    return plus(tt1, tt2);	
+	 } else {
+	    dice = dice/2;
+            tt1 = xform(t1.s1_Concat, dice);
+            dice = dice/2;
+            tt2 = xform(t1.s2_Concat, dice);
+
+	    return length(concat(tt1, tt2));
+	 }	 
+      } else if (t1.__cid == String()) {
+         return t;
+      } else {
+         return error();
+      }  
    } else {
-      return error();
-   }         
-}
+      dice = dice/2;
+      t1 = xform(t1, dice);
+      dice = dice/2;
+      t2 = xform(t2, dice);
 
-// T xform(T t) {
-//   switch(t) {
-//   case String: return t;
-//   case Len:    return xform_Len(t.t);
-//   case Plus:   return plus(xform(t.left), xform(t.right));
-//   case Concat: return concat(xform(t.t1), xform(t.t2));
-//   case Error:  return t;
-//   }
-// }
-// T xform_Len(T t) {
-//   switch(t) {
-//   case String: return length(t);
-//   case Len:    return new Error(); // length(length(...)))
-//   case Plus:   return new Error(); // length(plus(...))
-//   case Concat: return plus(xform_Len(t.t1), xform_Len(t.t2));
-//   case Error:  return t;
-//   }
-// }
+      if (t.__cid == Plus()) {
+         return plus(t1, t2);	
+      } else if (t.__cid == Concat()) {
+         return concat(t1, t2);	
+      } else {
+         return error();
+      }  
+   }
+}
 
 harness void mn() {
   Object self = Object_Object(new Object(__cid=Object()));
   test_7_6(self);
-  // test_100_200(self);
 }
 
 void test_7_6(Object self) {
@@ -80,27 +92,29 @@ void test_7_6(Object self) {
   Object len5 = length(s5);
   Object len6 = length(s6);
   Object len7 = length(s7);
-  //assert equals_Axiom(len12, len12_2);
-  assert equals_Axiom(xform(len5), len12);
-  assert equals_Axiom(xform(len6), len34);
-  assert equals_Axiom(xform(len7), len1234);
+  Object plenc12lenc34 = plus(length(concat(s1, s2)), length(concat(s3, s4)));
+  // assert equals_Axiom(xform(len5, ??), len12);
+  // assert equals_Axiom(xform(len6, ??), len34);
+  // assert equals_Axiom(xform(len7, ??), len1234);
+  // assert equals_Axiom(xform(len7, ??), len7);
+  // assert equals_Axiom(xform(len7, ??), plenc12lenc34);
 
-  Object s8 = string(String(), 6, "SEED1");
-  Object s9 = string(String(), 6, "SEED2");
-  Object s10 = string(String(), 1, "");
+  // Object s8 = string(String(), 6, "SEED1");
+  // Object s9 = string(String(), 6, "SEED2");
+  // Object s10 = string(String(), 1, "");
 
-  Object looplen = length(s10);
+  // Object looplen = length(s10);
 
-  int i = 0;
+  // int i = 0;
 
-  for (i = 0; i < 30; i++) {
-     Object s11 = concat(s8, s8);
-     Object s12 = concat(s9, s9);
-     Object s13 = concat(s11, s12);
-     s10 = concat(s10, s13);
-     looplen = plus(looplen, plus(plus(length(s8), length(s8)),plus(length(s9), length(s9))));
-  }
+  // for (i = 0; i < 30; i++) {
+  //    Object s11 = concat(s8, s8);
+  //    Object s12 = concat(s9, s9);
+  //    Object s13 = concat(s11, s12);
+  //    s10 = concat(s10, s13);
+  //    looplen = plus(looplen, plus(plus(length(s8), length(s8)),plus(length(s9), length(s9))));
+  // }
 
-  Object len10 = length(s10);
-  assert equals_Axiom(xform(len10), looplen);
+  // Object len10 = length(s10);
+  // assert equals_Axiom(xform(len10, ??), looplen);
 }
