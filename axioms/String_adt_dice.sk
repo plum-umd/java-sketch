@@ -35,14 +35,7 @@ T xform(T t, int d) {
       d /= ??;
       tt2 = xform(t2, d);
       switch(t) {
-      case Concat: {
-	return new Plus(left=new Len(t=tt1), right=new Len(t=tt2));
-	/* if (d == ??) return new Plus(left=new Len(t=tt1), right=new Len(t=tt2)); */
-	/* if (d == ??) return new Plus(left=new Len(t=tt1), right=tt2); */
-	/* if (d == ??) return new Plus(left=tt1, right=new Len(t=tt2)); */
-	/* if (d == ??) return new Plus(left=tt1, right=tt2); */
-	/* else return new Concat(t1=tt1, t2=tt2); */
-      }
+      case Concat: return new Concat(t1=tt1, t2=tt2);
       case Plus:   return new Plus(left=tt1, right=tt2);
       case Str:    return new Error();
       case Error:  return new Error();
@@ -53,16 +46,20 @@ T xform(T t, int d) {
     switch(t1) {
     case Str: return t;
     case Concat: {
-      d /= ??;
-      tt1 = xform(t1.t1, d);
-      d /= ??;
-      tt2 = xform(t1.t2, d);
-      if (d == ??) return new Plus(left=new Len(t=tt1), right=new Len(t=tt2));
-      if (d == ??) return new Plus(left=new Len(t=tt1), right=tt2);
-      if (d == ??) return new Plus(left=tt1, right=new Len(t=tt2));
-      if (d == ??) return new Plus(left=tt1, right=new Len(t=tt2));
-      if (d == ??) return new Plus(left=tt1, right=tt2);
-      else return new Len(t=new Concat(t1=tt1, t2=tt2));
+      if (d%2 == 0) {
+	d /= 2;
+	tt1 = xform(new Len(t=t1.t1), d);
+	d /= 2;
+	tt2 = xform(new Len(t=t1.t2), d);
+	return new Plus(left=tt1, right=tt2);
+      }
+      else {
+	d /= 2;
+	tt1 = xform(t1.t1, d);
+	d /= 2;
+	tt2 = xform(t1.t2, d);
+	return new Len(t=new Concat(t1=tt1, t2=tt2));
+      }
     }
     case Len: return new Error();
     case Plus: return new Error();
@@ -96,11 +93,12 @@ harness void mn() {
   Object lenc34 = (c34.__cid == String() ? length(c34.t) : null);
   Object lenc12lenc34 = plus(lenc12.t, lenc34.t);
 
-   /* assert xform(lenc12.t, ??) == lenc12.t; */
-   /* assert xform(lenc12.t, ??) == len12.t; */
+  /* assert xform(lenc12.t, ??) == xform(lenc12.t, ??); */
+  /* assert xform(lenc12.t, ??) == xform(len12.t, ??); */
   /* len(concat(concat(s1,s2),s3)) == plus(plus(len(s1),len(s2)),len(s3)) */
-   /* assert xform(lencc123.t, ??) == len123.t; */
+  assert xform(lencc123.t, ??) == len123.t;
+  /* assert xform(lencc123.t, ??) == len123.t; */
    /* assert xform(lenc12lenc34.t, ??) == len1234.t; */
-   assert xform(len1234.t, ??) == len1234.t;
+   /* assert xform(len1234.t, ??) == len1234.t; */
    /* assert xform(lenc12lenc34.t, ??) == lenc12lenc34.t; */
 }
