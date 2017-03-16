@@ -1,7 +1,0 @@
-package Concat;
-
-Object Object_Object(Object self) {
-   return self;
-}
-
-Object 
