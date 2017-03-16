@@ -1,12 +1,14 @@
 package t0;
 
+// len(concat(s1,s2)) == len(s1) + len(s2)
 harness void mn() {
   Object s1 = string();
   Object s2 = string();
-  Object l = length(s1.t);
-  Object plen12 = plus((s1.__cid == String() ? length(s1.t).t : null),
-  		       (s2.__cid == String() ? length(s2.t).t : null));
+  Object len1 = length(s1.t);
+  Object len2 = length(s2.t);
+  Object len12 = plus(len1.t, len2.t);
+
   Object s3 = (s1.__cid == String() ? concat(s1.t, s2.t) : null);
   Object len3 = (s3.__cid == String() ? length(s3.t) : null);
-  assert xform(len3.t) == plen12.t;
+  assert xform(len3.t,1) == len12.t;
 }

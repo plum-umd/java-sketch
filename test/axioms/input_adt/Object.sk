@@ -4,18 +4,6 @@ Object Object_Object(Object self) {
     return self;
 }
 
-/* Object toString(Object self) { */
-/*   return String_String_char_int_int(new Object(__cid=String()), new Array_char(length=17+1, A="Object toString()"), 0, 17); */
-/* } */
-
-bit equals_Object(Object self, Object obj) {
-  return true;
-}
-
-int hashCode(Object self) {
-  return 0;
-}
-
 struct Object {
   int           __cid;
   Array_char    _value_String;
