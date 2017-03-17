@@ -17,10 +17,10 @@ harness void mn() {
   Object len6 = length(s6.t);
 
   Object len123456 = plus(
-			 plus(
-			      plus(len1.t,len2.t).t,
-			      plus(len3.t,len4.t).t),
-			 plus(len5.t,len6.t).t);
+			  plus(
+			       plus(len1.t,len2.t).t,
+			       plus(len3.t,len4.t).t).t,
+			  plus(len5.t,len6.t).t);
 
   Object c12 = (s1.__cid == String() ? concat(s1.t, s2.t) : null);
   Object c34 = (s3.__cid == String() ? concat(s3.t, s4.t) : null);
@@ -32,5 +32,5 @@ harness void mn() {
 
   Object lenc12c34c56 = plus(plus(lenc12.t,lenc34.t).t,lenc56.t);
 
-  assert xform(lenc12c34c56.t,3) == len123456.t;
+  assert xform(lenc12c34c56.t, ??) == len123456.t;
 }

@@ -40,5 +40,5 @@ harness void mn() {
 
   Object lenc12c34c56c78 = plus(plus(lenc12.t,lenc34.t).t,plus(lenc56.t,lenc78.t).t);
 
-  assert xform(lenc12c34c56c78.t,3) == len12345678.t;
+  assert xform(lenc12c34c56c78.t, ??) == len12345678.t;
 }

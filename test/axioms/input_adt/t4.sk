@@ -16,5 +16,5 @@ harness void mn() {
   Object cc123 = (c12.__cid == String() ? concat(c12.t, s3.t) : null);
   Object lencc123 = length(cc123.t);
     
-  assert xform(lencc123.t,4) == len123.t;
+  assert xform(lencc123.t, ??) == len123.t;
 }

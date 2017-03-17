@@ -6,22 +6,53 @@ Concat concat(T t1, T t2) { return new Concat(t1=t1, t2=t2); }
 Plus plus(T t1, T t2)     { return new Plus(left=t1, right=t2); }
 Error error()             { return new Error(); }
 
-T xform(T t) {
+
+T xform(T t, int d) {
+  T t1; T t2 = null;
+  T tt1; T tt2;
   switch(t) {
-  case String: return t;
-  case Len:    return xform_Len(t.t);
-  case Plus:   return plus(xform(t.left), xform(t.right));
-  case Concat: return concat(xform(t.t1), xform(t.t2));
-  case Error:  return t;
+  case Str:    { return t; }
+  case Len:    { t1 = t.t; }
+  case Plus:   { t1 = t.left; t2 = t.right; }
+  case Concat: { t1 = t.t1; t2 = t.t2; }
+  case Error:  { return t; }
   }
-}
-T xform_Len(T t) {
-  switch(t) {
-  case String: return length(t);
-  case Len:    return new Error(); // length(length(...)))
-  case Plus:   return new Error(); // length(plus(...))
-  case Concat: return plus(xform_Len(t.t1), xform_Len(t.t2));
-  case Error:  return t;
+  if (t2 != null) {
+      d /= ??;
+      tt1 = xform(t1, d);
+      d /= ??;
+      tt2 = xform(t2, d);
+      switch(t) {
+      case Concat: return new Concat(t1=tt1, t2=tt2);
+      case Plus:   return new Plus(left=tt1, right=tt2);
+      case Str:    return new Error();
+      case Error:  return new Error();
+      case Len:    return new Error();
+      }
+  }
+  else {
+    switch(t1) {
+    case Str: return t;
+    case Concat: {
+      if (d%2 == 0) {
+	d /= 2;
+	tt1 = xform(new Len(t=t1.t1), d);
+	d /= 2;
+	tt2 = xform(new Len(t=t1.t2), d);
+	return new Plus(left=tt1, right=tt2);
+      }
+      else {
+	d /= 2;
+	tt1 = xform(t1.t1, d);
+	d /= 2;
+	tt2 = xform(t1.t2, d);
+	return new Len(t=new Concat(t1=tt1, t2=tt2));
+      }
+    }
+    case Len: return new Error();
+    case Plus: return new Error();
+    case Error: return new Error();
+    }
   }
 }
 
