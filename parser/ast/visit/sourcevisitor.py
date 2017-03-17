@@ -133,7 +133,9 @@ class SourcePrinter(object):
         # typeParameters
         self.printTypeParameters(n.typeParameters)
 
-        if n.extendsList:
+        # don't print extends Object
+        if n.extendsList and \
+           (u'Object' not in map(lambda e: e.name, n.extendsList) and len(n.extendsList) == 1):
             self.printt(' extends ')
             self.printSepList(n.extendsList)
 
