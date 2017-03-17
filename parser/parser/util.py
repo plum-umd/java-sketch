@@ -5,13 +5,10 @@ from . import glob2
 
 pwd = os.path.dirname(__file__)
 
-
-# get the *sorted* list of file names in the designated path
-# template/gui/awt -> [.../AWTEvent.java, .../BorderLayout.java, ...]
 def get_files_from_path(path, ext):
     if os.path.isfile(path): return [path]
     else:  # i.e., folder
-        files = glob2.glob(os.path.join(path, "**/*.{}".format(ext)))
+        files = glob2.glob(os.path.abspath(os.path.join(path, "**/*.{}".format(ext))))
         return sorted(files)  # to guarantee the order of files read
 
 """
@@ -19,11 +16,16 @@ handling javaparser AST
 """
 def toAST(files, ext):
     prg_files = []
-    for f in files: prg_files.extend(get_files_from_path(f, "java"))
+    for f in files:
+        prg_files.extend(get_files_from_path(f, "java"))
     if not prg_files: exit('parser.util: File(s) not found!')
     java_in = os.path.abspath(os.path.join(pwd, '../tests/ir_asts/API.java'))
     json_out = os.path.abspath(os.path.join(pwd, '../tests/ir_asts/java.json'))
     api = ""
+    obj_path = os.path.abspath(os.path.join(pwd, '../../model/lang/Object.java'))
+    str_path = os.path.abspath(os.path.join(pwd, '../../model/lang/String.java'))
+    if obj_path not in prg_files: prg_files.append(obj_path)
+    if str_path not in prg_files: prg_files.append(str_path)
     for fname in prg_files:
         with open(fname, 'r') as fd:
             api += fd.read()

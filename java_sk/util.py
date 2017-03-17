@@ -21,7 +21,8 @@ def clean_dir(path):
   
 def add_object(ast):
     clss = utils.extract_nodes([ClassOrInterfaceDeclaration], ast)
-    obj = ClassOrInterfaceDeclaration({u'name':u'Object',u'parentNode':{u'@r':ast.ati},u'atr':ast.ati,u'@i':0})
+    clss = filter(lambda c: c.name != u'Object', clss)
+    obj = ast.symtab.get(u'Object')
     def obj_subs(n):
       if not n.extendsList:
           n.extendsList = [obj]

@@ -25,7 +25,8 @@ class ClassOrInterfaceDeclaration(TypeDeclaration):
         self._extendsList = []
         if kwargs.get(u'extendsList'):
             self._add_supers(kwargs.get(u'extendsList', {}).get(u'@e', []), '_extendsList')
-        else: self._extendsList.append(ClassOrInterfaceType({u'@t':u'ClassOrInterfaceType',u'name':u'Object'}))
+        # elif self.name != u'Object':
+        #     self._extendsList.append(ClassOrInterfaceType({u'@t':u'ClassOrInterfaceType',u'name':u'Object'}))
 
         # List<ClassOrInterfaceType>
         self._implementsList = []

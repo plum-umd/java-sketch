@@ -1,21 +1,19 @@
 public class Object {
-
-    
     public static boolean equals(Object a, Object b) {
-	if (a == null) {
-	    if (b == null) {
-		return true;
-	    }
-	    return false;
-	}
-	return a.equals(b);
+    	if (a == null) {
+    	    if (b == null) {
+    		return true;
+    	    }
+    	    return false;
+    	}
+    	return a.equals(b);
     }
 
     public static int hashCode(Object o) {
         return o != null ? o.hashCode() : 0;
     }
     public String toString() {
-	return "Object toString()";
+    	return "Object toString()";
     }
 
     public boolean equals(Object obj) {

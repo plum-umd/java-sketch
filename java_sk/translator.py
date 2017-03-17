@@ -803,8 +803,8 @@ class Translator(object):
             conexprs = []
             for c in reversed(clss): # start from bottom of hierarchy
                 (cls, mdec) = self.find_mtd(c, str(mtd))
-                if cls: conexprs.append(self.make_dispatch(scp, c, mdec, args))
-                else: raise Exception('Non-static mode, no mtd {} in {}'.format(str(mtd), str(cls)))
+                if mdec: conexprs.append(self.make_dispatch(scp, c, mdec, args))
+            # else: raise Exception('Non-static mode, no mtd {} in {}'.format(str(mtd), str(cls)))
             # need to foldr then reverse
             def combine(l, r):
                 if type(mtd.typee) != VoidType: r.elseExpr = l

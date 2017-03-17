@@ -88,6 +88,7 @@ class SymtabGen(object):
         # if type(node.parentNode) == ClassOrInterfaceDeclaration:
         #     node.parentNode.symtab.update({str(node):node})
         node.symtab.update({node.name:node})
+        if node.name == u'Object': node.parentNode.symtab.update({node.name:node})
         [node.symtab.update({n.name:n}) for n in node.extendsList if n.name not in node.symtab]
         [node.symtab.update({n.name:n}) for n in node.implementsList if n.name not in node.symtab]
         map(lambda n: node.symtab.update({n.name:n} if type(n) == FieldDeclaration or type(n) == ClassOrInterfaceDeclaration else \

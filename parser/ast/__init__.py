@@ -101,7 +101,7 @@ JAVA_LANG = [
     u'java.lang.Long',
     u'java.lang.Math',
     u'java.lang.Number',
-    u'java.lang.Object',
+    # u'java.lang.Object',
     u'java.lang.Package',
     u'java.lang.Process',
     u'java.lang.ProcessBuilder',
