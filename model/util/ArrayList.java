@@ -1,6 +1,6 @@
 package java.util;
 
-public class ArrayList<E> extends Object{
+public class ArrayList<E> {
 
     Object[] elementData;
 

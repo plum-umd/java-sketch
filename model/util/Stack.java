@@ -1,6 +1,6 @@
 package java.util;
 
-public class Stack<E> extends Object{
+public class Stack<E> {
     
     Object[] elementData;
     int size;

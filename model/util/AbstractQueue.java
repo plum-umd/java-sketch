@@ -1,4 +1,4 @@
-class AbstractQueue<E> extends Object implements Queue {
+class AbstractQueue<E> implements Queue {
 
     Object[] elementData;
     int size;

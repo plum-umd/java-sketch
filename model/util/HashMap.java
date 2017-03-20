@@ -1,4 +1,4 @@
-public class HashMap<K,V> extends Object {
+public class HashMap<K,V>  {
 
     static final int DEFAULT_INITIAL_CAPACITY = 1 << 4; // aka 16
     static final int MAXIMUM_CAPACITY = 1 << 30;
@@ -28,9 +28,9 @@ public class HashMap<K,V> extends Object {
     //     return numPairs;
     // }
 
-    // public boolean isEmpty() {
-    //     return numPairs == 0;
-    // }
+    public boolean isEmpty() {
+        return numPairs == 0;
+    }
 
     // public boolean containsKey(Object key) {
     //     return getNode(hash(key), key) != null;
@@ -148,22 +148,26 @@ public class HashMap<K,V> extends Object {
         return new Node<>(hash, key, value, next);
     }
 
-    class Node<K,V> extends Object implements Map.Entry<K,V> {
-	final int hash;
-	final K key;
-	V value;
-	Node<K,V> next;
+    class Node<K,V> implements Map.Entry<K,V> {
+    	final int hash;
+    	final K key;
+    	V value;
+    	Node<K,V> next;
 	
-	Node(int hash, K key, V value, Node<K,V> next) {
-	    this.hash = hash;
-	    this.key = key;
-	    this.value = value;
-	    this.next = next;
+    	Node(int hash, K key, V value, Node<K,V> next) {
+    	    this.hash = hash;
+    	    this.key = key;
+    	    this.value = value;
+    	    this.next = next;
+    	}
+
+	public boolean equals(Object obj) {
+	    return true;
 	}
     }
     
     // static final class TreeNode<K,V> extends LinkedHashMap.Entry<K,V> {
-    class TreeNode<K,V> extends Object {
+    class TreeNode<K,V> {
         TreeNode<K,V> parent;  // red-black tree links
         TreeNode<K,V> left;
         TreeNode<K,V> right;

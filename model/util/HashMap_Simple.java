@@ -1,4 +1,4 @@
-public class HashMap_Simple<Integer,String> extends Object {
+public class HashMap_Simple<Integer,String> {
 
     static final int DEFAULT_INITIAL_CAPACITY = 1 << 4; // aka 16
     Node[] elementData;
