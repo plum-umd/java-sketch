@@ -63,7 +63,7 @@ class ClassOrInterfaceDeclaration(TypeDeclaration):
                 ic = n.symtab.get(i.name)
                 if ic:
                     if isinstance(ic, ClassOrInterfaceType):
-                        logging.warning('class {} implements unknown type {}'.format(str(self), i.name))
+                        logging.warning('class {} implements type (no class def) {}'.format(str(self), i.name))
                     else: sups.append(ic)
                 else:
                     print 'ERROR: class {} not in symbol table of {}'.format(e.name, n.name) # library?
