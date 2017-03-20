@@ -979,7 +979,9 @@ class Translator(object):
         d['condition']['right']['value'] = '{}()'.format(str(S))
         if type(mdec.typee) != VoidType:
             d['thenExpr']['scope']['name'] = scope
-            d['thenExpr']['name'] = '@'.join([str(mdec), str(utils.get_coid(mdec))])
+            coid = utils.get_coid(mdec)
+            if coid.interface: raise Exception('{} unimplemented from {}'.format(mdec, coid))
+            d['thenExpr']['name'] = '@'.join([str(mdec), str(coid)])
             dis = ConditionalExpr(d)
             dis.thenExpr.args = args
             dis.elseExpr = mdec.typee
