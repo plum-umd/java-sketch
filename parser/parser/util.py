@@ -6,10 +6,11 @@ from . import glob2
 pwd = os.path.dirname(__file__)
 
 def get_files_from_path(path, ext):
-    if os.path.isfile(path): return [path]
+    # use set to remove duplicate files. weird...but it happens
+    if os.path.isfile(path): return set([os.path.abspath(path)])
     else:  # i.e., folder
         files = glob2.glob(os.path.abspath(os.path.join(path, "**/*.{}".format(ext))))
-        return sorted(files)  # to guarantee the order of files read
+        return set(sorted(files))  # to guarantee the order of files read
 
 """
 handling javaparser AST
