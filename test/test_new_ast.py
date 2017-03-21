@@ -133,6 +133,9 @@ class TestJava(TestCommon):
     def test_This(self):
         self.__test(["This.java"])
 
+    def test_TypeParameters(self):
+        self.__test(["TypeParameters.java"])
+
     def test_UninterpretedClass(self):
         self.__test(["UninterpretedClass.java"])
 
