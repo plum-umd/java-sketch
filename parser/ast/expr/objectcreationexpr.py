@@ -18,6 +18,9 @@ class ObjectCreationExpr(Expression):
         self._type = ClassOrInterfaceType(kwargs.get(u'type', {}))
 
         # List<Type> typeArgs;
+        typeArgs = kwargs.get(u'typeArgs', {})
+        self._typeArgs = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
+                             typeArgs.get(u'@e', [])) if typeArgs else []
 
         # List<Expression> args;
         args = kwargs.get(u'args', {})
