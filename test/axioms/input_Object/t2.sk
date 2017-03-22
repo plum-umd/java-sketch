@@ -16,7 +16,11 @@ harness void mn() {
   Object len5 = (s5.__cid == String() || s5.__cid == Concat() ? length(s5) : null);
   Object len6 = (s6.__cid == String() || s6.__cid == Concat() ? length(s6) : null);
 
-  Object len123456 = plus(plus(plus(len1, len2), len3), plus(plus(len4, len5),len6));
+  Object len123456 = plus(
+                          plus(
+                               plus(len1, len2), 
+			       plus(len3, len4)),
+                          plus(len5, len6));
 
   Object c12 = (s1.__cid == String() || s1.__cid == Concat() ? concat(s1, s2) : null);
   Object c34 = (s3.__cid == String() || s3.__cid == Concat() ? concat(s3, s4) : null);
