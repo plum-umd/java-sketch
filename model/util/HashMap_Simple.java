@@ -1,16 +1,16 @@
-public class HashMap_Simple<Integer,String> {
+public class HashMap_Simple<K,V> {
 
     static final int DEFAULT_INITIAL_CAPACITY = 1 << 4; // aka 16
     Node[] elementData;
     int numPairs;
     int capacity;
 
-    class Node<Integer,String> extends Object {
-	Integer key;
-	String value;
+    class Node<K,V> extends Object {
+	K key;
+	V value;
 	int hash;
 
-	public Node(Integer key, String value, int hash) {
+	public Node(K key, V value, int hash) {
 	    this.key = key;
 	    this.value = value;
 	    this.hash = hash;
@@ -33,12 +33,12 @@ public class HashMap_Simple<Integer,String> {
 
     public void resize(int newSize) {
 	int i,h, hashMod;
-	Node<Integer, String> n;
+	Node<K, V> n;
 	Node[] oldElementData = elementData;
 	Node[] newElementData = new Node[newSize];
 	//this.elementData = new Node[newSize];
-	Integer k;
-	String v;
+	K k;
+	V v;
 
 	for (i = 0; i < capacity; i++) {
 	    // putVal call gives Sketch Not Resolved Error
@@ -48,7 +48,7 @@ public class HashMap_Simple<Integer,String> {
 		v = oldElementData[i].value;
 		//putValNoResize(h, k, v);
 		hashMod = h % newSize;
-		newElementData[hashMod] = new Node<Integer,String>(k, v, h);
+		newElementData[hashMod] = new Node<K,V>(k, v, h);
 	    }
 	}
 
@@ -56,12 +56,12 @@ public class HashMap_Simple<Integer,String> {
 	this.capacity = newSize;
     }
 
-    public boolean containsValue(String value) {
+    public boolean containsValue(V value) {
 	int i;
 
 	for (i = 0; i < capacity; i++) {
 	    if (elementData[i] != null) {
-		String v = elementData[i].value;
+		V v = elementData[i].value;
 		if (value.equals(v)) {
 		    return true;
 		}
@@ -70,13 +70,13 @@ public class HashMap_Simple<Integer,String> {
 	return false;
     }
 
-    public boolean containsKey(Integer key) {
+    public boolean containsKey(K key) {
 	return get(key) != null;
     }
 
-    public String get(Integer key) {
+    public V get(K key) {
 	int hashMod = key.hashCode() % capacity;
-	Node<Integer,String> node = elementData[hashMod];
+	Node<K,V> node = elementData[hashMod];
 
 	if (node != null) {
 	    if (key.equals(node.key)) {
@@ -92,8 +92,8 @@ public class HashMap_Simple<Integer,String> {
 	this.numPairs = 0;
     }
 
-    public String remove(Integer key) {
-	String val = get(key);
+    public V remove(K key) {
+	V val = get(key);
 	int hashMod = key.hashCode() % capacity;
 
 	elementData[hashMod] = null;
@@ -105,14 +105,14 @@ public class HashMap_Simple<Integer,String> {
 	return val;
     }
 
-    public String put(Integer key, String value) {
+    public V put(K key, V value) {
 	int h = key.hashCode();
         return putVal(h, key, value);
     }
 
-    private String putVal(int hash, Integer key, String value) {
+    private V putVal(int hash, K key, V value) {
 	int hashMod = hash % capacity;
-	Node<Integer,String> node = elementData[hashMod];
+	Node<K,V> node = elementData[hashMod];
 	
 	if (node != null) {
 	    if (node.hash != hash || !key.equals(node.key)) {
@@ -121,22 +121,22 @@ public class HashMap_Simple<Integer,String> {
 		node = elementData[hashMod];
 		numPairs ++;
 	    } 
-	    elementData[hashMod] = new Node<Integer,String>(key, value, hash);
+	    elementData[hashMod] = new Node<K,V>(key, value, hash);
 	    if (node != null) {
 		return node.value;
 	    } else {
 		return null;
 	    }
 	}
-	elementData[hashMod] = new Node<Integer,String>(key, value, hash);
+	elementData[hashMod] = new Node<K,V>(key, value, hash);
 	numPairs ++;
 	return null;
     }
 
-    private void putValNoResize(int hash, Integer key, String value) {
+    private void putValNoResize(int hash, K key, V value) {
 	int hashMod = hash % capacity;
 
-	elementData[hashMod] = new Node<Integer,String>(key, value, hash);
+	elementData[hashMod] = new Node<K,V>(key, value, hash);
     }
 
 }

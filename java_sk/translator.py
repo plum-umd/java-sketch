@@ -750,7 +750,16 @@ class Translator(object):
                                 nm = '{}_{}'.format(callexpr.name, cls.name)
                                 callexpr.name = nm
                         if not cls:
-                            cls = scope.symtab.get(scope.typee.name)
+                            pmdec = utils.get_parent(callexpr, MethodDeclaration)
+                            pcls = utils.get_coid(callexpr)
+                            tparams = map(lambda p: p, pcls.typeParameters) + \
+                                      map(lambda p: p, pmdec.typeParameters) if pmdec else []
+                            tparam = filter(lambda p: p.name == scope.typee.name, tparams)
+                            if tparam:
+                                tparam = tparam[0]
+                                cls = scope.symtab.get(tparam.typeBound.name)
+                            else:
+                                cls = scope.symtab.get(scope.typee.name)
                     else:
                         cls = None
             # TODO: more possibilities
@@ -862,6 +871,7 @@ class Translator(object):
         for key,val in cls.symtab.items():
             if type(val) != MethodDeclaration: continue
             tparam_names = map(lambda t: t.name, val.typeParameters)
+            tparam_names.extend(map(lambda t: t.name, utils.get_coid(val).typeParameters))
             if callexpr.name == val.name and len(callexpr.args) == len(val.parameters):
                 if all(map(lambda t: t[1].name in tparam_names or utils.is_subtype(t[0], t[1]),
                            zip(callexpr.arg_typs(), val.param_typs()))):

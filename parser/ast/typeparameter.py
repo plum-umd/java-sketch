@@ -18,7 +18,7 @@ class TypeParameter(Node):
                               typeBound.get(u'@e', [])) if typeBound else []
 
     @property
-    def typeBound(self): return self._typeBound
+    def typeBound(self): return self._typeBound if self._typeBound else ClassOrInterfaceType({u'name':u'Object'})
     @typeBound.setter
     def typeBound(self, v): self._typeBound = v
 

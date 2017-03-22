@@ -19,12 +19,12 @@ class MethodDeclaration(BodyDeclaration):
         self._type = locs[typdct[u'@t']](typdct)
 
         # List<Parameter> parameters
-        params = kwargs.get(u'parameters', {})
+        params = kwargs.get(u'parameters', [])
         self._parameters = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
                                params.get(u'@e', [])) if params else []
 
         # List<TypeParameter>
-        typeParameters = kwargs.get(u'typeParameters', {})
+        typeParameters = kwargs.get(u'typeParameters', [])
         self._typeParameters = map(lambda x: TypeParameter(x) if u'@t' in x else [],
                                    typeParameters.get(u'@e', [])) if typeParameters else []
 
@@ -32,7 +32,7 @@ class MethodDeclaration(BodyDeclaration):
         self._arrayCount = kwargs.get(u'arrayCount', 0)
 
         # List<ReferenceType> throws_;
-        throws = kwargs.get(u'throws_', {})
+        throws = kwargs.get(u'throws_', [])
         self._throws = map(lambda x: locs[u'ReferenceType'](x) if u'@t' in x else [],
                            throws.get(u'@e', [])) if throws else []
 
