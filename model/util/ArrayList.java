@@ -160,6 +160,14 @@ public class ArrayList<E> {
 	return numElements;
     }
 
+    public int length() {
+	return size();
+    }
+
+    public boolean isEmpty() {
+	return numElements == 0;
+    }
+
     public Object[] toArray() {
 	Object[] arr = new Object[numElements];
 	int i = 0;
