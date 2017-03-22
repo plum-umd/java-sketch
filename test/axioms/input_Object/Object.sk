@@ -28,17 +28,17 @@ bit equals_Axiom(Object self, Object obj) {
   if (self.__cid != obj.__cid) {
      return false;
   } else {
-     if (self.__cid == String()) {
+     if (self.__cid == String() && obj.__cid == String()) {
         return self == obj;
-     } else if (self.__cid == Len()) {
+     } else if (self.__cid == Len() && obj.__cid == Len()) {
         return equals_Axiom(self.str_Len, obj.str_Len);
-     } else if (self.__cid == Concat()) {
+     } else if (self.__cid == Concat() && obj.__cid == Concat()) {
         if (equals_Axiom(self.s1_Concat, obj.s1_Concat)) {
            return equals_Axiom(self.s2_Concat, obj.s2_Concat);
 	} else {
 	   return false;
         }	       
-     } else if (self.__cid == Plus()) {
+     } else if (self.__cid == Plus() && obj.__cid == Plus()) {
         if (equals_Axiom(self.i1_Plus, obj.i1_Plus)) {
            return equals_Axiom(self.i2_Plus, obj.i2_Plus);
 	} else {
