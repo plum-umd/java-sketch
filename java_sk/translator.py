@@ -169,7 +169,7 @@ class Translator(object):
         n.typee.accept(self)
         self.printt(' ')
         self.printt(str(n))
-        #self.printTypeParameters(n.typeParameters)
+        # self.printTypeParameters(n.typeParameters)
         
         self.printt('(')
 
@@ -259,9 +259,16 @@ class Translator(object):
     # TODO: this needs work
     @v.when(ForeachStmt)
     def visit(self, n):
-        self.printt('for (int _i = 0; i < ')
-        n.iterable.accept(self)
-        self.printt('.length; ++_i) ')
+        tltr = copy.copy(self)
+        tltr.indentation = ''
+        it = tltr.trans(n.iterable)
+        self.printt('for (int _i = 0; _i < ')
+        self.printt('length@{}({}); ++_i)'.format(str(n.iterable.typee), it))
+        inits = []
+        for vv in n.var.varss:
+            inits.append('{} {} = get_int@{}({}, _i);'. \
+                     format(self.trans_ty(n.iterable.typee), vv.name, str(n.iterable.typee), it))
+        n.body.stmts = ['\n'.join(inits)] + n.body.stmts
         n.body.accept(self)
 
     @v.when(ForStmt)
@@ -372,6 +379,8 @@ class Translator(object):
                 if etypes:
                     for (i,j) in zip(xrange(len(etypes)), reversed(etypes)):
                         if j == obj_cls: break
+                else:
+                    i = ''
                 # this is the index of the class where the field lives
             slf = 'self{}'.format(i)
             self.printt('{}.{}'.format(slf, str(obj)))
