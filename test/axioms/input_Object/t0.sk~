@@ -1,0 +1,17 @@
+package t0;
+
+// len(concat(s1,s2)) == len(s1) + len(s2)
+harness void mn() {
+  Object s1 = string(String(), 8, "hello, ");
+  Object s2 = string(String(), 7, "world!");
+
+  Object len1 = (s1.__cid == String() || s1.__cid == Concat() ? length(s1) : null);
+  Object len2 = (s2.__cid == String() || s2.__cid == Concat() ? length(s2) : null);
+
+  Object len12 = plus(len1, len2);
+
+  Object c12 = (s1.__cid == String() || s1.__cid == Concat() ? concat(s1, s2) : null);
+  Object lenc12 = (c12.__cid == String() || c12.__cid == Concat() ? length(c12) : null);
+
+  assert equals_Axiom(xform(lenc12,??), lenc12);
+}
