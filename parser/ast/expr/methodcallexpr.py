@@ -44,8 +44,14 @@ class MethodCallExpr(Expression):
         # first look for this methed in the current scope
         mtd = sym.get(self.name)
         if not mtd:
+            # try the scopes class
+            cls = sym.get(str(obj.typee))
+            mtd = cls.symtab.get(self.name)
+            if mtd: return mtd.typee
+
             ftypes = utils.mtd_type_from_callexpr(self)
-            return ClassOrInterfaceType({u'@t': u'ClassOrInterfaceType', u'name': unicode(ftypes[0][-1])})
+            return ClassOrInterfaceType({u'@t': u'ClassOrInterfaceType',
+                                         u'name': unicode(ftypes[0][-1])})
         else: return mtd.typee
 
     @typee.setter

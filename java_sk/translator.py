@@ -107,6 +107,10 @@ class Translator(object):
         # already written uninterpreted functions
         self.unfuns = []
 
+        # anything that needs to get written post-translation (e.g., anonymous class mtds)
+        self._post_mtds = ''
+        self.anon_ids = -1
+
     @v.on('node')
     def visit(self, node):
         """
@@ -164,9 +168,7 @@ class Translator(object):
             n.body.stmts = [u'Object self = Object_Object(new Object(__cid=Object()));'] + n.body.stmts
         n.typee.accept(self)
         self.printt(' ')
-        if type(n.parentNode) == ObjectCreationExpr:
-            self.printt('_'.join([str(n), utils.anon_nm(n).name]))
-        else: self.printt(str(n))
+        self.printt(str(n))
         #self.printTypeParameters(n.typeParameters)
         
         self.printt('(')
@@ -193,7 +195,7 @@ class Translator(object):
 
     @v.when(VariableDeclarator)
     def visit(self, n):
-        # print 'VariableDeclarator'
+        # print 'VariableDeclarator', n
         if n.init:
             self.printt(' ')
             n.idd.accept(self)
@@ -450,6 +452,30 @@ class Translator(object):
         else:
             self.printt('{0}_{0}'.format(str(obj_cls)))
             if enclosing_cls: self.printt('_{}'.format(str(enclosing_cls)))
+
+        if n.anonymousClassBody:
+            # find name of variabledeclarator
+            target = utils.anon_nm(n)
+            target = n.symtab.get(target.name)
+            nm = '{}_{}'.format(n.typee, target.name)
+            cls = ClassOrInterfaceDeclaration({u'@t':u'ClassOrInterfaceDeclaration',
+                                               u'name':{u'name':nm,},})
+            cls.members = n.anonymousClassBody
+            cls.childrenNodes.extend(cls.members)
+            cls.symtab = {}
+            cls.symtab.update({cls.name:cls})
+            map(lambda m: cls.symtab.update({str(m):m}), n.anonymousClassBody)
+            target.symtab.update({nm:cls})
+
+            tltr = copy.copy(self)
+            tltr.indentation = ''
+            anon = map(tltr.trans, cls.members)
+
+            anon.append('int {}() {{ return {}; }}\n'.format(cls.name, self.anon_ids))
+            self.anon_ids -= 1
+            self.post_mtds += '\n'.join(anon)
+
+            obj_cls = cls
 
         self.printt('(new Object(__cid={}())'.format(str(obj_cls)))
         if enclosing_cls: self.printt(', self')
@@ -708,7 +734,14 @@ class Translator(object):
                 else:
                     logging.debug('scope: {} {} {}'.format(scope, scope.typee, type(scope)))
                     if not isinstance(scope, (ClassOrInterfaceType, ImportDeclaration)):
-                        cls = scope.symtab.get(scope.typee.name)
+                        cls = None
+                        if callexpr.name in scope.symtab:
+                            cls = scope.symtab.get('{}_{}'.format(scope.typee, scope.name))
+                            if cls:
+                                nm = '{}_{}'.format(callexpr.name, cls.name)
+                                callexpr.name = nm
+                        if not cls:
+                            cls = scope.symtab.get(scope.typee.name)
                     else:
                         cls = None
             # TODO: more possibilities
@@ -743,11 +776,10 @@ class Translator(object):
         # Compile-Time Step 2: Determine Method Signature
         # 15.12.2.1. Identify Potentially Applicable Methods
         pots = self.identify_potentials(callexpr, cls)
+        logging.debug('potentitals: {}'.format(map(lambda m: str(m), pots)))
         if not pots:
             uninterpreted()
             return
-
-        logging.debug('potentitals: {}'.format(map(lambda m: str(m), pots)))
 
         # 15.12.2.2. Phase 1: Identify Matching Arity Methods Applicable by Strict Invocation
         strict_mtds = self.identify_strict(callexpr, pots)
@@ -1087,3 +1119,8 @@ class Translator(object):
     def flds(self): return self._flds
     @flds.setter
     def flds(self, v): self._flds = v
+
+    @property
+    def post_mtds(self): return self._post_mtds
+    @post_mtds.setter
+    def post_mtds(self, v): self._post_mtds = v

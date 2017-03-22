@@ -149,6 +149,13 @@ def all_subClasses(n):
     a(n)
     return list(acc)
 
+def get_parent(n, ptype):
+    if n.parentNode:
+        if isinstance(n.parentNode, ptype):
+            return n.parentNode
+        else: return get_parent(n.parentNode, ptype)
+    else: return None
+
 def get_coid(n):
     if n.parentNode:
         if type(n.parentNode) == ClassOrInterfaceDeclaration:

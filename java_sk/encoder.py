@@ -246,6 +246,9 @@ class Encoder(object):
     def to_func(self, mtd):
         buf = cStringIO.StringIO()
         buf.write(self.tltr.trans(mtd))
+        if self.tltr.post_mtds:
+            buf.write(self.tltr.post_mtds)
+            self.tltr.post_mtds = ''
         return util.get_and_close(buf)
 
     # only called on base classes. This seems to just be Object?

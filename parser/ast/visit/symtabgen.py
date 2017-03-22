@@ -101,13 +101,6 @@ class SymtabGen(object):
         self.new_symtab(node, cp=True)
 
         node.parentNode.symtab.update({str(node):node})
-        if type(node.parentNode) == ObjectCreationExpr:
-            target = utils.anon_nm(node)
-            nm = '_'.join([str(node), target.name])
-            node.parentNode.symtab.update({nm:node})
-            target.symtab.update({nm:node})
-            node.symtab.update({nm:node})
-            node.parentNode.symtab.update({str(node):node})
         node.symtab.update({str(node):node})
 
         if str(node.typee) not in PRIMITIVES and str(node.typee) not in node.symtab:
@@ -118,6 +111,12 @@ class SymtabGen(object):
         map(lambda t: node.symtab.update({t.name:t}), node.typeParameters)
         map(lambda p: p.idd.symtab.update(node.symtab), node.parameters)
         if node.body: node.body.accept(self)
+
+        if type(node.parentNode) == ObjectCreationExpr:
+            target = node.symtab.get(utils.anon_nm(node).name)
+            target.symtab.update({str(node):node})
+            node.name = '{}_{}_{}'.format(str(node), node.parentNode.typee, target.name)
+            target.symtab.update({str(node):node})
 
     @v.when(ConstructorDeclaration)
     def visit(self, node):
