@@ -1,4 +1,4 @@
-public class HashMap_Simple<K,V> {
+public class HashMap_Simple<K,V> extends Map {
 
     static final int DEFAULT_INITIAL_CAPACITY = 1 << 4; // aka 16
     Node[] elementData;

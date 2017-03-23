@@ -2,12 +2,12 @@ package java.util;
 
 public interface Map<K,V> {
     public void clear();
-    public boolean containsKey(Object key);
-    // public Object get(Object key);
-    public void put(K key, V value);
+    public boolean containsKey(K key);
+    public V get(K key);
+    public V put(K key, V value);
     
     interface Entry<K,V> {
-    	// public boolean equals(Object o);
+    	public boolean equals(Object o);
     	// public <K> K getKey();
     	// public <V> V getValue();
     	// public int hashCode();

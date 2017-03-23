@@ -541,11 +541,13 @@ class Translator(object):
 
     @v.when(ConditionalExpr)
     def visit(self, n):
+        self.printt('(')
         n.condition.accept(self)
         self.printt(' ? ')
         n.thenExpr.accept(self)
         self.printt(' : ')
         n.elseExpr.accept(self)
+        self.printt(')')
 
     @v.when(ThisExpr)
     def visit(self, n):
