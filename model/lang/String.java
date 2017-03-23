@@ -124,4 +124,21 @@ public class String implements CharSequence{
 	// return s._value == this._value;
     }
 
+    public int hashCode() {
+	int n = _count, hash = 0, temp = 0;
+	if (n == 0) {
+	    return 0;
+	}
+
+	for (int i = 0; i < n; i++) {
+	    temp = this.charAt(i);
+	    for (int j = 0; j < n-1-i; j++) {
+		temp *= 31;
+	    }
+	    hash += temp;
+	}
+	
+	return hash;
+    }
+
 }
