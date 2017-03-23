@@ -27,7 +27,7 @@ class Subject {
     }
 }
 
-class Observer implements IObserver {
+class Observer extends Object implements IObserver{
     boolean notified;
 
     public Observer () {
@@ -69,8 +69,9 @@ class Test {
         // assert ! o2.isNotified();
         // assert ! o3.isNotified();
 
-        s.unregister(o2);
-        s.onEvent();
+	s.unregister(o2);
+        // assert s.unregister(o2);
+	s.onEvent();
         // assert o1.isNotified();
         assert ! o2.isNotified();
         // assert o3.isNotified();
