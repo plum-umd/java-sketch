@@ -24,7 +24,7 @@ class AbstractQueue<E> implements Queue {
 	}
     }
 
-    public <E> boolean add(E e) {
+    public boolean add(E e) {
 	resize();
 	size ++;
 	elementData[size-1] = e;
@@ -60,4 +60,7 @@ class AbstractQueue<E> implements Queue {
     	return e;
     }
 
+    public boolean isEmpty() {
+	return size == 0;
+    }
 }
