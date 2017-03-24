@@ -81,21 +81,21 @@ class Test {
         WindowManager wm = WindowManager.getInstance();
         sm.register(wm.getName(), wm);
 
-        // LocationManager lm = LocationManager.getInstance();
-        // sm.register(lm.getName(), lm);
+        LocationManager lm = LocationManager.getInstance();
+        sm.register(lm.getName(), lm);
 
-        // WindowManager wm2 = sm.lookup(wm.getName());
-        // assert wm2 != null;
-        // assert wm2 == wm;
+        WindowManager wm2 = sm.lookup(wm.getName());
+        assert wm2 != null;
+        assert wm2 == wm;
 
-        // LocationManager lm2 = sm.lookup(lm.getName());
-        // assert lm2 != null;
-        // assert lm2 == lm;
+        LocationManager lm2 = sm.lookup(lm.getName());
+        assert lm2 != null;
+        assert lm2 == lm;
 
-        // sm.reset();
-        // wm2 = sm.lookup(wm.getName());
-        // assert wm2 == null;
-        // lm2 = sm.lookup(lm.getName());
-        // assert lm2 == null;
+        sm.reset();
+        wm2 = sm.lookup(wm.getName());
+        assert wm2 == null;
+        lm2 = sm.lookup(lm.getName());
+        assert lm2 == null;
     }
 }
