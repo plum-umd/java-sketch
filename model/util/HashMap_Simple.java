@@ -48,6 +48,9 @@ public class HashMap_Simple<K,V> extends Map {
 		v = oldElementData[i].value;
 		//putValNoResize(h, k, v);
 		hashMod = h % newSize;
+		if (hashMod < 0) {
+		    hashMod += newSize;
+		}
 		newElementData[hashMod] = new Node<K,V>(k, v, h);
 	    }
 	}
@@ -76,6 +79,9 @@ public class HashMap_Simple<K,V> extends Map {
 
     public V get(K key) {
 	int hashMod = key.hashCode() % capacity;
+	if (hashMod < 0) {
+	    hashMod += capacity;
+	}
 	Node<K,V> node = elementData[hashMod];
 
 	if (node != null) {
@@ -95,6 +101,9 @@ public class HashMap_Simple<K,V> extends Map {
     public V remove(K key) {
 	V val = get(key);
 	int hashMod = key.hashCode() % capacity;
+	if (hashMod < 0) {
+	    hashMod += capacity;
+	}
 
 	elementData[hashMod] = null;
 
@@ -106,35 +115,44 @@ public class HashMap_Simple<K,V> extends Map {
     }
 
     public V put(K key, V value) {
-	int h = key.hashCode();
+    	int h = key.hashCode();
         return putVal(h, key, value);
     }
 
     private V putVal(int hash, K key, V value) {
-	int hashMod = hash % capacity;
-	Node<K,V> node = elementData[hashMod];
-	
-	if (node != null) {
-	    if (node.hash != hash || !key.equals(node.key)) {
-		resize(hash+1);
-		hashMod = hash % capacity;
-		node = elementData[hashMod];
-		numPairs ++;
-	    } 
-	    elementData[hashMod] = new Node<K,V>(key, value, hash);
-	    if (node != null) {
-		return node.value;
-	    } else {
-		return null;
-	    }
+    	int hashMod = hash % capacity;
+	if (hashMod < 0) {
+	    hashMod += capacity;
 	}
-	elementData[hashMod] = new Node<K,V>(key, value, hash);
-	numPairs ++;
-	return null;
+    	Node<K,V> node = elementData[hashMod];
+	
+    	if (node != null) {
+    	    if (node.hash != hash || !key.equals(node.key)) {
+    		resize(hash+1);
+    		hashMod = hash % capacity;
+		if (hashMod < 0) {
+		    hashMod += capacity;
+		}
+		node = elementData[hashMod];
+    		numPairs ++;
+    	    } 
+    	    elementData[hashMod] = new Node<K,V>(key, value, hash);
+    	    if (node != null) {
+    		return node.value;
+    	    } else {
+    		return null;
+    	    }
+    	}
+    	elementData[hashMod] = new Node<K,V>(key, value, hash);
+    	numPairs ++;
+    	return null;
     }
 
     private void putValNoResize(int hash, K key, V value) {
 	int hashMod = hash % capacity;
+	if (hashMod < 0) {
+	    hashMod += capacity;
+	}
 
 	elementData[hashMod] = new Node<K,V>(key, value, hash);
     }
