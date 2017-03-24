@@ -11,13 +11,13 @@ class TaskQueue {
     }
 
     public Task remove() {
-        if (!isEmpty2()) {
+        if (!isEmpty()) {
             return q.remove();
         }
         return null;
     }
 
-    public boolean isEmpty2() {
+    public boolean isEmpty() {
         return q.isEmpty();
     }
 }
