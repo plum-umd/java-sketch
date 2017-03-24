@@ -17,8 +17,7 @@ public class Object {
     }
 
     public boolean equals(Object obj) {
-    	// return this == obj;
-	return true;
+    	return this == obj;
     }
 
     // NOTE THAT THIS SHOULD BE OVERRIDDEN FOR ALL RELEVANT CLASSES
