@@ -1,4 +1,4 @@
-class HashMap_add_remove {
+class HashMap_put {
     harness void m() {
 	Map<String, Integer> m = new HashMap_Simple<String, Integer>();
 	String s1 = "1";
