@@ -3,7 +3,7 @@ package String_adt;
 int String()        { return 1; }
 
 adt T {
-  Str    { int n; char[n] s; }
+  Str    { Object o; }
   Len    { T t; }
   Concat { T t1; T t2; }
   Plus   { T left; T right; }
@@ -93,12 +93,12 @@ harness void mn() {
   Object lenc34 = (c34.__cid == String() ? length(c34.t) : null);
   Object lenc12lenc34 = plus(lenc12.t, lenc34.t);
 
-  /* assert xform(lenc12.t, ??) == xform(lenc12.t, ??); */
-  /* assert xform(lenc12.t, ??) == xform(len12.t, ??); */
-  /* len(concat(concat(s1,s2),s3)) == plus(plus(len(s1),len(s2)),len(s3)) */
-  assert xform(lencc123.t, ??) == len123.t;
-  /* assert xform(lencc123.t, ??) == len123.t; */
-   /* assert xform(lenc12lenc34.t, ??) == len1234.t; */
-   /* assert xform(len1234.t, ??) == len1234.t; */
-   /* assert xform(lenc12lenc34.t, ??) == lenc12lenc34.t; */
+  /* assert xform(lenc12.t, ??) === xform(lenc12.t, ??); */
+  /* assert xform(lenc12.t, ??) === xform(len12.t, ??); */
+  /* len(concat(concat(s1,s2),s3)) === plus(plus(len(s1),len(s2)),len(s3)) */
+  assert xform(lencc123.t, ??) === len123.t;
+  /* assert xform(lencc123.t, ??) === len123.t; */
+   /* assert xform(lenc12lenc34.t, ??) === len1234.t; */
+   /* assert xform(len1234.t, ??) === len1234.t; */
+   /* assert xform(lenc12lenc34.t, ??) === lenc12lenc34.t; */
 }
