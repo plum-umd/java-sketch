@@ -10,11 +10,11 @@ class Parameter(Node):
         self._modifiers = kwargs.get(u'modifiers', 0)
         locs = _import()
 
-        # Type
+        # Type type
         typdct = kwargs.get(u'type', {})
         if typdct: self._type = locs[typdct[u'@t']](typdct)
 
-        # VariableDeclarator
+        # VariableDeclarator id
         self._id = locs[u'VariableDeclarator'](kwargs)
 
         # Any
