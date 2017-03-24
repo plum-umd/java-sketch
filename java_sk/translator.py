@@ -765,21 +765,30 @@ class Translator(object):
                     else:
                         cls = None
             # TODO: more possibilities
-
+        
         def uninterpreted():
             (ftypes, scope) = utils.mtd_type_from_callexpr(callexpr)
+            meta = ClassOrInterfaceDeclaration({u'@t':u'ClassOrInterfaceDeclaration',
+                                                u'name':u'meta',})
+            subs = utils.all_subClasses(scope.symtab.get(str(scope.typee.name)))
+            meta.subClasses = subs
+            meta.members = []
             # write call
-            write_call()
+            # write_call()
 
             # write uninterpreted function signature
             # add fun declaration as uninterpreted
             with open(os.path.join(self.sk_dir, 'meta.sk'), 'a') as f:
                 trans_ftypes = set([tuple(map(self.trans_ty, map(convert, c))) for c in ftypes])
                 for fun in [list(d) for d in trans_ftypes]:
-                    sig = '{}.{}.{}'.format(fun[0], fun[1], callexpr.name)
+                    if len(fun) > 1:
+                        sig = '{}.{}.{}'.format(fun[0], fun[1], callexpr.name)
+                    else:
+                        sig = '{}.{}'.format(fun[0], callexpr.name)
                     if sig in self.unfuns: continue
                     self.unfuns.append(sig)
-                    f.write('{} {}('.format(self.trans_ty(fun.pop()), callexpr.name))
+                    rtyp = self.trans_ty(fun.pop())
+                    f.write('{} {}('.format(rtyp, callexpr.name))
                     if not isinstance(scope, ClassOrInterfaceType):
                         f.write('{} p0'.format(self.trans_ty(scope.typee)))
                         if len(fun) > 0: f.write(', ')
@@ -788,10 +797,32 @@ class Translator(object):
                     if len(fun) > 0: f.write('{} {}'.format(self.trans_ty(fun[-1]), 'p'+str(len(fun))))
                     f.write(');\n')
 
+                    typ = {u'@t':u'PrimitiveType',u'type':{u'name':rtyp},} if rtyp in CONVERSION_TYPES \
+                          else {u'@t':u'ClassOrInterfaceType',u'name': rtyp,}
+                    mtd = MethodDeclaration({u'@t':u'MethodDeclaration',
+                                             u'name':callexpr.name,
+                                             u'type':typ,})
+                    params = []
+                    for i in range(len(fun)):
+                        params.append(Parameter({u'@t':u'Parameter',
+                                                 u'type':{u'@t':u'ClassOrInterfaceType',
+                                                          u'name':self.trans_ty(fun[i])},
+                                                 u'id':{u'@t':u'VariableDeclarator',
+                                                        u'id':{u'@t':u'VariableDeclaratorId',
+                                                               u'name':'p'+str(i+1),},},}))
+                    mtd.parameters = params
+                    mtd.parentNode = meta
+                    meta.members.append(mtd)
+                    meta.childrenNodes.append(mtd)
+                    meta.symtab.update({mtd.name:mtd})
+            return meta
+
+        if not cls or isinstance(cls, ImportDeclaration):
+            cls = uninterpreted()
+            mtds = utils.extract_nodes([MethodDeclaration], cls)
+            for m in mtds: print 'm:', str(m)
+            # return
         logging.debug('searching in class: {}'.format(cls))
-        if not cls:
-            uninterpreted()
-            return
 
         # Compile-Time Step 2: Determine Method Signature
         # 15.12.2.1. Identify Potentially Applicable Methods
@@ -823,6 +854,7 @@ class Translator(object):
 
         # TODO: super?
         if cls.interface: invocation_mode = 'interface'
+        elif cls.name == 'meta': invocation_mode = 'uninterpreted'
         else: invocation_mode = 'static' if td.isStatic(mtd) else 'virtual'
 
         logging.debug('most_specific - name: {}, qualifying type: {}, invocation_mode: {}'. \
@@ -846,16 +878,23 @@ class Translator(object):
                 self.printArguments([NameExpr({u'name':u'self'})] + callexpr.args)
                 logging.debug('**END CALL***\n')
                 return
-            clss = filter(lambda c: not c.interface, [cls] + utils.all_subClasses(cls))
+            clss = [cls] + utils.all_subClasses(cls) if invocation_mode != 'uninterpreted' else \
+                   utils.all_subClasses(cls)
+
+            clss = filter(lambda c: not c.interface, clss)
             logging.debug('subclasses: {}'.format(map(lambda c: str(c), clss)))
 
             scp = tltr.trans(callexpr.scope)
             args = [NameExpr({u'name':scp})] + callexpr.args
-
             conexprs = []
             for c in reversed(clss): # start from bottom of hierarchy
-                (cls, mdec) = self.find_mtd(c, str(mtd))
+                (_, mdec) = self.find_mtd(c, str(mtd))
                 if mdec: conexprs.append(self.make_dispatch(scp, c, mdec, args))
+            if invocation_mode == 'uninterpreted':
+                (_, mdec) = self.find_mtd(cls, str(mtd))
+                conexprs[-1].elseExpr = copy.copy(conexprs[-1].thenExpr)
+                print 'name: {}@{}'.format(str(mdec), str(cls))
+                conexprs[-1].elseExpr.name = '{}@{}'.format(str(mdec), str(cls))
             # else: raise Exception('Non-static mode, no mtd {} in {}'.format(str(mtd), str(cls)))
             # need to foldr then reverse
             def combine(l, r):
@@ -866,6 +905,7 @@ class Translator(object):
             if type(mtd.typee) != VoidType: self.printt('(')
             self.print_dispatch(conexprs)
             if type(mtd.typee) != VoidType: self.printt(')')
+
         logging.debug('**END CALL***\n')
 
     def identify_potentials(self, callexpr, cls):
@@ -966,7 +1006,7 @@ class Translator(object):
     def print_dispatch(self, c):
         # we need to do this b/c the elseExpr's are going to have MethodCallExpr which
         # get handled differently
-        if type(c) == ConditionalExpr:
+        if isinstance(c, ConditionalExpr):
             c.condition.accept(self)
             self.printt(' ? ')
             self.printt('{}'.format(c.thenExpr.name))
@@ -980,6 +1020,10 @@ class Translator(object):
                 if c.elseExpr.name == u'char' or c.elseExpr.name == u'byte': self.printt("'\\0'")
             elif isinstance(c.elseExpr, (ClassOrInterfaceType, ReferenceType)): self.printt('null')
             else: self.print_dispatch(c.elseExpr)
+        elif isinstance(c, MethodCallExpr):
+            self.printt('{}('.format(c.name))
+            self.printArguments(c.args)
+            self.printt(')')
         else:
             self.printt('if (')
             c.condition.accept(self)

@@ -28,6 +28,10 @@ class ImportDeclaration(Node):
         # boolean implicit;
         self._implicit = kwargs.get(u'implicit', False)
 
+        # list[ClassOrInterfaceDeclaration]
+        self._subClasses = kwargs.get(u'subClasses', [])
+
+
     @property
     def static(self): return self._static
     @static.setter
@@ -54,6 +58,11 @@ class ImportDeclaration(Node):
                                      u'name':unicode(str(self).split('.')[-1]),})
     @typee.setter
     def typee(self, v): self._type = v
+
+    @property
+    def subClasses(self): return self._subClasses
+    @subClasses.setter
+    def subClasses(self, v): self._subClasses = v
 
     def cname(self): return str(self.typee)
 

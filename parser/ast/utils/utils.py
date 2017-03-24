@@ -108,7 +108,10 @@ def dec_in_ast(ast, node):
 # takes in AST and populates subclass relationships
 def build_subs(ast):
     clss = extract_nodes([ClassOrInterfaceDeclaration], ast)
+    imps = extract_nodes([ImportDeclaration], ast)
     clss_dct = {c.name: c for c in clss}
+    imps_dct = {i.cname(): i for i in imps}
+
     # updates class dict with subClasses, updates symtab
     def update(c, t):
         if t.name in clss_dct:
@@ -116,6 +119,10 @@ def build_subs(ast):
             sup.subClasses.append(c)
             for k,v in sup.symtab.items():
                 if k not in c.symtab: c.symtab.update({k:v})
+        elif t.name in imps_dct:
+            sup = imps_dct[t.name]
+            sup.subClasses.append(c)
+            
     for c in clss:
         for e in c.extendsList: update(c, e)
         for i in c.implementsList: update(c, i)
