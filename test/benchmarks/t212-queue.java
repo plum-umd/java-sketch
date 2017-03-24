@@ -16,7 +16,7 @@ class TaskQueue {
     Queue<Task> q;
 
     public TaskQueue() {
-        q = new Queue<Task>(); // will be replaced with ArrayDeque
+        q = new AbstractQueue<Task>();
     }
 
     public void add(Task t) {

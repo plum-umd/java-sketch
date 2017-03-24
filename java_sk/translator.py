@@ -870,7 +870,7 @@ class Translator(object):
                 self.printt('{}@{}'.format(str(mtd), str(utils.get_coid(mtd))))
             self.printArguments(callexpr.args)
         elif not callexpr.scope:
-            self.printt(str(mtd))
+            self.printt('{}@{}'.format(str(mtd), str(cls)))
             self.printArguments([NameExpr({u'name':u'self'})] + callexpr.args)
         else:
             if type(callexpr.scope) == SuperExpr:

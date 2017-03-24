@@ -1,6 +1,6 @@
 class AbstractQueue_test {
     harness void m() {
-	AbstractQueue<String> q = new AbstractQueue<String>();
+	Queue<String> q = new AbstractQueue<String>();
 	String s1 = "One";
 	String s2 = "Two";
 	String s3 = "Three";
