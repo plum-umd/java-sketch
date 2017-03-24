@@ -19,7 +19,7 @@ class TestJava(TestCommon):
     if using_model:
       _fs.extend(java_sk.util.get_files_from_path(model_dir, "java"))
     print fs
-    ret = java_sk.main.main(_fs)
+    ret = java_sk.main.main(_fs, '30')
     self.assertEqual(ret, 0)
 
   def test_java_201(self):

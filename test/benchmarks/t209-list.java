@@ -27,7 +27,7 @@ class Subject {
     }
 }
 
-class Observer extends Object implements IObserver{
+class Observer implements IObserver{
     boolean notified;
 
     public Observer () {
