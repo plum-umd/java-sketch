@@ -1,0 +1,21 @@
+package t4;
+
+// len(concat(concat(s1,s2),s3)) == len(s1) + len(s2) + len(s3)
+harness void mn() {
+  Object s1 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=7+1, A="hello, "), 0, 7);
+  Object s2 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=6+1, A="world!"), 0, 6);
+  Object s3 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=13+1, A="ALLWORKNOPLAY"), 0, 13);
+  int len1 = (s1.__cid == String() ? length@String(s1) : 0);
+  int len2 = (s2.__cid == String() ? length@String(s2) : 0);
+  int len3 = (s3.__cid == String() ? length@String(s3) : 0);
+  int len123 = len1 + len2 + len3;
+
+  Object c12 = (s1.__cid == String() ? concat_String@String(s1, s2) : null);
+  Object cc123 = (c12.__cid == String() ? concat_String@String(c12, s3) : null);
+  int lencc12 = (c12.__cid == String() ? length@String(cc123) : 0);
+
+  assert lencc12 == len123;
+}

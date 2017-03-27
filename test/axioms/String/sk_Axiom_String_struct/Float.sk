@@ -1,0 +1,77 @@
+package Float;
+
+Object Float_Float(Object self) {
+    return self;
+}
+
+Object Float_Float_float(Object self, float value) {
+  self.value_Float = value;
+  return self;
+}
+
+Object Float_Float_double(Object self, double value) {
+  self.value_Float = value;
+  return self;
+}
+
+float floatValue(Object self) {
+  return self.value_Float;
+}
+
+int compareTo_Float(Object self, Object anotherFloat) {
+  return compare_float_float(self.value_Float, anotherFloat.value_Float);
+}
+
+int compare_float_float(float x, float y) {
+  return (x < y) ? -1 : ((x == y) ? 0 : 1);
+}
+
+bit equals_Object(Object self, Object anotherFloat) {
+  if (anotherFloat.__cid == Float()) {
+    Object x = anotherFloat;
+    if (x.value_Float == self.value_Float) {
+      return true;
+    }
+  }
+  return false;
+}
+
+int intValue(Object self) {
+  return (int)self.value_Float;
+}
+
+Object toString(Object self) {
+  return toString_float(self.value_Float);
+}
+
+Object toString_float(float i) {
+  int index = 0,  j,  temp2 = (int)i;
+  float temp = i - (float)((int)i);
+  Array_char ret = new Array_char(length=32, A={'\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0'});
+  Array_char ret2 = new Array_char(length=32, A={'\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0'});
+  Array_char nums = new Array_char(length=10, A={'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'});
+  if (temp2 < 0) {
+    temp2 *= -1;
+  }
+  ret.A[index++] = '.';
+  while (temp2 > 0) {
+    ret.A[index++] = nums.A[temp2 % 10];
+    temp2 /= 10;
+  }
+  if (i < 0.0) {
+    ret.A[index++] = '-';
+  }
+  int size = index;
+  for (j = 0; j < size; j++) {
+    ret2.A[j] = ret.A[index - 1];
+    index--;
+  }
+  index = size;
+  while (temp > 0.0) {
+    temp *= 10.0;
+    ret2.A[index++] = nums.A[(int)temp];
+    temp = temp - (float)((int)temp);
+  }
+  return String_String_char_int_int(new Object(__cid=String()), ret2, 0, index);
+}
+

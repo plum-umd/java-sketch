@@ -1,0 +1,23 @@
+package t1;
+
+// len(concat(s1,s2)) + len(concat(s3,s4)) == len(s1) + len(s2) + len(s3) + len(s4)
+harness void mn() {
+  Object s1 = string(String(), 8, "hello, ");
+  Object s2 = string(String(), 7, "world!");
+  Object s3 = string(String(), 14, "ALLWORKNOPLAY");
+  Object s4 = string(String(), 20, "MAKESJACKADULLBOY!!");
+
+  Object len1 = (s1.__cid == String() || s1.__cid == Concat() ? length(s1) : null);
+  Object len2 = (s2.__cid == String() || s2.__cid == Concat() ? length(s2) : null);
+  Object len3 = (s3.__cid == String() || s3.__cid == Concat() ? length(s3) : null);
+  Object len4 = (s4.__cid == String() || s4.__cid == Concat() ? length(s4) : null);
+  Object len1234 = plus(plus(len1, len2), plus(len3,len4));
+
+  Object c12 = (s1.__cid == String() || s1.__cid == Concat() ? concat(s1, s2) : null);
+  Object c34 = (s3.__cid == String() || s3.__cid == Concat() ? concat(s3, s4) : null);
+  Object lenc12 = (c12.__cid == String() || c12.__cid == Concat() ? length(c12) : null);
+  Object lenc34 = (c34.__cid == String() || c34.__cid == Concat() ? length(c34) : null);
+  Object lenc12c34 = plus(lenc12, lenc34);
+
+  assert equals_Axiom(xform(lenc12c34, ??), len1234);
+}

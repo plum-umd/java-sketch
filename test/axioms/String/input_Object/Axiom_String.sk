@@ -1,0 +1,102 @@
+package Axiom_String;
+
+Object string(int __cid, int n, char[n] s) { 
+   return String_String_char_int_int(new Object(__cid=String()), new Array_char(length=n, A=s), 0, n-1);
+}
+Object length(Object str) { 
+   // return (str.__cid == String() || str.__cid == Concat() ?  Len_Len_Object(new Object(__cid=Len()), str) : null); 
+
+   return Len_Len_Object(new Object(__cid=Len()), str);
+}
+Object concat(Object s1, Object s2) { 
+   // return (s1.__cid == String() || s1.__cid == Concat() ?  Concat_Concat_Object_Object(new Object(__cid=Concat()), s1, s2): null); 
+
+   return Concat_Concat_Object_Object(new Object(__cid=Concat()), s1, s2);
+}
+Object plus(Object i1, Object i2) { 
+   // return (i1.__cid == Plus() || i1.__cid == Len() ? Plus_Plus_Object_Object(new Object(__cid=Plus()), i1, i2) : null);
+   return Plus_Plus_Object_Object(new Object(__cid=Plus()), i1, i2); 
+}
+Object error() { 
+   return Error_Error(new Object(__cid=Error())); 
+}
+
+Object xform (Object t, int dice) {
+   Object t1; Object t2 = null;
+
+   if (t.__cid == Len()) {
+      t1 = t.str_Len;
+   } else if (t.__cid == Plus()) {
+      t1 = t.i1_Plus;
+      t2 = t.i2_Plus;
+   } else if (t.__cid == Concat()) {
+      t1 = t.s1_Concat;
+      t2 = t.s2_Concat;
+   } else {
+      return t;
+   }  
+
+   if (t.__cid == Len()) {
+      if (t1.__cid == Concat()) {
+         Object tt1; Object tt2;
+         if (dice%2 == 0) {
+	    dice = dice/2;
+            tt1 = xform(length(t1.s1_Concat), dice);
+            dice = dice/2;
+            tt2 = xform(length(t1.s2_Concat), dice);
+	 
+	    return plus(tt1, tt2);	
+	 } else {
+	    dice = dice/2;
+            tt1 = xform(t1.s1_Concat, dice);
+            dice = dice/2;
+            tt2 = xform(t1.s2_Concat, dice);
+
+	    return length(concat(tt1, tt2));
+	 }	 
+      } else if (t1.__cid == String()) {
+         return t;
+      } else {
+         return error();
+      }  
+   } else {
+      dice = dice/2;
+      t1 = xform(t1, dice);
+      dice = dice/2;
+      t2 = xform(t2, dice);
+
+      if (t.__cid == Plus()) {
+         return plus(t1, t2);	
+      } else if (t.__cid == Concat()) {
+         return concat(t1, t2);	
+      } else {
+         return error();
+      }  
+   }
+}
+
+bit equals_Axiom(Object self, Object obj) {
+  if (self.__cid != obj.__cid) {
+     return false;
+  } else {
+     if (self.__cid == String() && obj.__cid == String()) {
+        return self == obj;
+     } else if (self.__cid == Len() && obj.__cid == Len()) {
+        return equals_Axiom(self.str_Len, obj.str_Len);
+     } else if (self.__cid == Concat() && obj.__cid == Concat()) {
+        if (equals_Axiom(self.s1_Concat, obj.s1_Concat)) {
+           return equals_Axiom(self.s2_Concat, obj.s2_Concat);
+	} else {
+	   return false;
+        }	       
+     } else if (self.__cid == Plus() && obj.__cid == Plus()) {
+        if (equals_Axiom(self.i1_Plus, obj.i1_Plus)) {
+           return equals_Axiom(self.i2_Plus, obj.i2_Plus);
+	} else {
+	   return false;
+        }
+     } else {
+        return false;
+     }
+  }
+}
