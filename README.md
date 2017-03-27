@@ -180,7 +180,10 @@ To run regression tests:
 ```sh
 $ python -m test.test_mini
 $ python -m test.test_new_ast
+$ python -m test.test_java
+$ python -m test.test_java_precisely
 ```
+Two of the test\_java tests and one of the java\_precisely tests currently fail due to boxing/unboxing issues.
 
 ## Limitations
 
