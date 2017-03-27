@@ -73,32 +73,45 @@ harness void mn() {
   Object s2 = string();
   Object s3 = string();
   Object s4 = string();
+  Object s5 = string();
+  Object s6 = string();
 
   Object len1 = (s1.__cid == String() ? length(s1.t) : null);
   Object len2 = (s2.__cid == String() ? length(s2.t) : null);
   Object len3 = (s3.__cid == String() ? length(s3.t) : null);
   Object len4 = (s4.__cid == String() ? length(s4.t) : null);
+  Object len5 = (s5.__cid == String() ? length(s5.t) : null);
+  Object len6 = (s6.__cid == String() ? length(s6.t) : null);
 
   Object len12 = plus(len1.t, len2.t);
   Object len34 = plus(len3.t, len4.t);
+  Object len56 = plus(len5.t, len6.t);
+
   Object len123 = plus(plus(len1.t, len2.t).t, len3.t);
   Object len1234 = plus(len12.t, len34.t);
+  Object len123456 = plus(plus(len12.t, len34.t).t,len56.t);
 
   Object c12 = (s1.__cid == String() ? concat(s1.t, s2.t) : null);
   Object c34 = (s3.__cid == String() ? concat(s3.t, s4.t) : null);
+  Object c56 = (s5.__cid == String() ? concat(s5.t, s6.t) : null);
   Object cc123 = (c12.__cid == String() ? concat(c12.t, s3.t) : null);
 
   Object lenc12 = (c12.__cid == String() ? length(c12.t) : null);
-  Object lencc123 = (cc123.__cid == String() ? length(cc123.t) : null);
   Object lenc34 = (c34.__cid == String() ? length(c34.t) : null);
+  Object lenc56 = (c56.__cid == String() ? length(c56.t) : null);
+
+  Object lencc123 = (cc123.__cid == String() ? length(cc123.t) : null);
   Object lenc12lenc34 = plus(lenc12.t, lenc34.t);
 
-  /* assert xform(lenc12.t, ??) === xform(lenc12.t, ??); */
-  /* assert xform(lenc12.t, ??) === xform(len12.t, ??); */
+  Object lenc12c34c56 = plus(plus(lenc12.t,lenc34.t).t,len56.t);
+
+  assert xform(lenc12.t, ??) === xform(lenc12.t, ??);
+  assert xform(lenc12.t, ??) === xform(len12.t, ??);
   /* len(concat(concat(s1,s2),s3)) === plus(plus(len(s1),len(s2)),len(s3)) */
   assert xform(lencc123.t, ??) === len123.t;
-  /* assert xform(lencc123.t, ??) === len123.t; */
-   /* assert xform(lenc12lenc34.t, ??) === len1234.t; */
-   /* assert xform(len1234.t, ??) === len1234.t; */
-   /* assert xform(lenc12lenc34.t, ??) === lenc12lenc34.t; */
+  assert xform(lencc123.t, ??) === len123.t;
+  assert xform(lenc12lenc34.t, ??) === len1234.t;
+  assert xform(len1234.t, ??) === len1234.t;
+  assert xform(lenc12lenc34.t, ??) === lenc12lenc34.t;
+  assert xform(lenc12c34c56.t, ??) === len123456.t;
 }

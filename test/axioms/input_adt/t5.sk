@@ -7,17 +7,18 @@ harness void mn() {
   Object s3 = string();
   Object s4 = string();
 
-  Object len1 = length(s1.t);
-  Object len2 = length(s2.t);
-  Object len3 = length(s3.t);
-  Object len4 = length(s4.t);
+  Object len1 = (s1.__cid == String() ? length(s1.t) : null);
+  Object len2 = (s2.__cid == String() ? length(s2.t) : null);
+  Object len3 = (s3.__cid == String() ? length(s3.t) : null);
+  Object len4 = (s4.__cid == String() ? length(s4.t) : null);
 
   Object len1234 = plus(plus(len1.t,len2.t).t,plus(len3.t,len4.t).t);
 
   Object c12 = (s1.__cid == String() ? concat(s1.t, s2.t) : null);
   Object c34 = (s1.__cid == String() ? concat(s3.t, s4.t) : null);
-  Object cc1234 = (c12.__cid == String() ? concat(c12.t, c34.t) : null);
-  Object lencc1234 = length(cc1234.t);
+  Object c12c34 = (c12.__cid == String() ? concat(c12.t, c34.t) : null);
+
+  Object lenc12c34 = (c12c34.__cid == String() ? length(c12c34.t) : null);
     
-  assert xform(lencc1234.t, ??) == len1234.t;
+  assert xform(lenc12c34.t, ??) === len1234.t;
 }

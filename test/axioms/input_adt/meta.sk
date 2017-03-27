@@ -1,7 +1,7 @@
 package meta;
 
 adt T {
-  Str    { int n; char[n] s; }
+  Str    { Object o; }
   Len    { T t; }
   Concat { T t1; T t2; }
   Plus   { T left; T right; }

@@ -10,8 +10,8 @@ for i in range(NUM_TESTS):
     for j in range(NUM_TRIALS):
         print 'test {}, trial {}'.format(i,j)
         nm = 'input_adt/m{}.sk'.format(i)
-        cmd = ['sketch', '--slv-seed', '1489670589', '--fe-inc', 'input_adt/', nm]
-        print 'cmd:', ' '.join(cmd)
+        cmd = ['sketch', '--fe-inc', 'input_adt/', nm]
+        # print 'cmd:', ' '.join(cmd)  
         t = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
         start = t.rfind('Total time = ') + len('Total time = ')
         times.append(float(t[start:t.find('\n', start)]))
