@@ -1,0 +1,9 @@
+pragma options "--bnd-cbits 7";
+pragma options "--bnd-arr-size 2048";
+pragma options "--bnd-unroll-amnt 256";
+pragma options "--fe-fpencoding AS_FIXPOINT";
+include "meta.sk";
+include "Object.sk";
+include "array.sk";
+
+include "test.sk";

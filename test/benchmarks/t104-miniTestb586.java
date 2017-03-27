@@ -12,8 +12,8 @@ class Tree {
 
 class Leaf extends Tree {
     public Leaf (int value) {
-        this.kind = Tree.LEAF;
         super(value);
+        this.kind = Tree.LEAF;
     }
 }
 
@@ -22,8 +22,8 @@ class Branch extends Tree {
     public Tree right;
 
     public Branch (int value) {
-        this.kind = Tree.BRANCH;
         super(value);
+        this.kind = Tree.BRANCH;
     }
 }
 

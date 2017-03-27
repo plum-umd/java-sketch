@@ -1,0 +1,30 @@
+package meta;
+
+// distinct class IDs
+int ArrayDeque()           { return 10; }
+int ArrayList()            { return 11; }
+int Axiom_String()         { return 2; }
+int CharSequence()         { return 3; }
+int Float()                { return 4; }
+int HashMap()              { return 12; }
+int HashMap_Node()         { return 13; }
+int HashMap_Simple()       { return 15; }
+int HashMap_Simple_Node()  { return 16; }
+int HashMap_TreeNode()     { return 14; }
+int Integer()              { return 5; }
+int Iterator()             { return 17; }
+int LinkedList()           { return 18; }
+int List()                 { return 19; }
+int Map()                  { return 20; }
+int Map_Entry()            { return 21; }
+int Number()               { return 6; }
+int Object()               { return 1; }
+int Objects()              { return 22; }
+int Queue()                { return 23; }
+int Stack()                { return 24; }
+int String()               { return 7; }
+int StringBuffer()         { return 8; }
+int StringBuilder()        { return 9; }
+int TreeMap()              { return 25; }
+
+// Uninterpreted functions

@@ -1,2 +1,3 @@
 #!/bin/bash
-python -m java_sk.main $@
+
+python -m java_sk.main -o result $@

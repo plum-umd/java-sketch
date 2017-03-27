@@ -1,0 +1,30 @@
+package t6;
+
+// len(concat(concat(concat(s1,s2),s3),concat(s4,s5)) == len(s1) + len(s2) + len(s3) + len(s4) + len(s5)
+harness void mn() {
+  Object s1 = string(String(), 8, "hello, ");
+  Object s2 = string(String(), 7, "world!");
+  Object s3 = string(String(), 14, "ALLWORKNOPLAY");
+  Object s4 = string(String(), 20, "MAKESJACKADULLBOY!!");
+  Object s5 = string(String(), 24, "blah blahblah blah blah");
+
+  Object len1 = (s1.__cid == String() || s1.__cid == Concat() ? length(s1) : null);
+  Object len2 = (s2.__cid == String() || s2.__cid == Concat() ? length(s2) : null);
+  Object len3 = (s3.__cid == String() || s3.__cid == Concat() ? length(s3) : null);
+  Object len4 = (s4.__cid == String() || s4.__cid == Concat() ? length(s4) : null);
+  Object len5 = (s5.__cid == String() || s5.__cid == Concat() ? length(s5) : null);
+
+  Object len12345 = plus(plus(plus(len1, len2),
+                              plus(len3, len4)),
+                         len5);
+
+  Object c12 = (s1.__cid == String() || s1.__cid == Concat() ? concat(s1, s2) : null);
+  Object c34 = (s3.__cid == String() || s3.__cid == Concat() ? concat(s3, s4) : null);
+
+  Object cc1234 = (c12.__cid == String() || c12.__cid == Concat() ? concat(c12, c34) : null);
+  Object cc12345 = (cc1234.__cid == String() || cc1234.__cid == Concat() ? concat(cc1234, s5) : null);
+  
+  Object lencc12345 = (cc12345.__cid == String() || cc12345.__cid == Concat() ? length(cc12345) : null);
+
+  assert equals_Axiom(xform(lencc12345, ??), len12345);
+}

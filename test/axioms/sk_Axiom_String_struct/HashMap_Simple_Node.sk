@@ -1,0 +1,17 @@
+package HashMap_Simple_Node;
+
+Object self0;
+
+Object HashMap_Simple_Node_HashMap_Simple_Node_HashMap_Simple(Object self, Object self_0) {
+    self0 = self_0;
+    return self;
+}
+
+Object HashMap_Simple_Node_HashMap_Simple_Node_HashMap_Simple_Integer_String_int(Object self, Object self_0, Object key, Object value, int hash) {
+  self0 = self_0;
+  self.key_HashMap_Simple_Node = key;
+  self.value_HashMap_Simple_Node = value;
+  self.hash_HashMap_Simple_Node = hash;
+  return self;
+}
+

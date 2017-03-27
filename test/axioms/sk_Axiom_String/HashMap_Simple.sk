@@ -1,0 +1,118 @@
+package HashMap_Simple;
+
+int DEFAULT_INITIAL_CAPACITY = 1 << 4;
+int DEFAULT_INITIAL_CAPACITY_g() { return DEFAULT_INITIAL_CAPACITY; }
+void DEFAULT_INITIAL_CAPACITY_s(int DEFAULT_INITIAL_CAPACITY_s) { DEFAULT_INITIAL_CAPACITY = DEFAULT_INITIAL_CAPACITY_s; }
+
+Object HashMap_Simple_HashMap_Simple(Object self) {
+  self.elementData_HashMap_Simple = new Array_Object(length=DEFAULT_INITIAL_CAPACITY);
+  self.numPairs_HashMap_Simple = 0;
+  self.capacity_HashMap_Simple = DEFAULT_INITIAL_CAPACITY;
+  return self;
+}
+
+int size(Object self) {
+  return self.numPairs_HashMap_Simple;
+}
+
+bit isEmpty(Object self) {
+  return self.numPairs_HashMap_Simple == 0;
+}
+
+void resize_int(Object self, int newSize) {
+  int i,  h,  hashMod;
+  Object n;
+  Array_Object oldElementData = self.elementData_HashMap_Simple;
+  Array_Object newElementData = new Array_Object(length=newSize);
+  Object k;
+  Object v;
+  for (i = 0; i < self.capacity_HashMap_Simple; i++) {
+    if (oldElementData.A[i] != null) {
+      h = oldElementData.A[i].hash_HashMap_Simple_Node;
+      k = oldElementData.A[i].key_HashMap_Simple_Node;
+      v = oldElementData.A[i].value_HashMap_Simple_Node;
+      hashMod = h % newSize;
+      newElementData.A[hashMod] = HashMap_Simple_Node_HashMap_Simple_Node_HashMap_Simple_Integer_String_int(new Object(__cid=HashMap_Simple_Node()), self, k, v, h);
+    }
+  }
+  self.elementData_HashMap_Simple = newElementData;
+  self.capacity_HashMap_Simple = newSize;
+}
+
+bit containsValue_String(Object self, Object value) {
+  int i;
+  for (i = 0; i < self.capacity_HashMap_Simple; i++) {
+    if (self.elementData_HashMap_Simple.A[i] != null) {
+      Object v = self.elementData_HashMap_Simple.A[i].value_HashMap_Simple_Node;
+      if ((value.__cid == String() ? equals_Object@String(value, v) : 0)) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+bit containsKey_Integer(Object self, Object key) {
+  return get_Integer(self, key) != null;
+}
+
+Object get_Integer(Object self, Object key) {
+  int hashMod = (key.__cid == Integer() ? hashCode@Integer(key) : 0) % self.capacity_HashMap_Simple;
+  Object node = self.elementData_HashMap_Simple.A[hashMod];
+  if (node != null) {
+    if ((key.__cid == Integer() ? equals_Object@Integer(key, node.key_HashMap_Simple_Node) : 0)) {
+      return node.value_HashMap_Simple_Node;
+    }
+  }
+  return null;
+}
+
+void clear(Object self) {
+  self.elementData_HashMap_Simple = new Array_Object(length=DEFAULT_INITIAL_CAPACITY);
+  self.capacity_HashMap_Simple = DEFAULT_INITIAL_CAPACITY;
+  self.numPairs_HashMap_Simple = 0;
+}
+
+Object remove_Integer(Object self, Object key) {
+  Object val = get_Integer(self, key);
+  int hashMod = (key.__cid == Integer() ? hashCode@Integer(key) : 0) % self.capacity_HashMap_Simple;
+  self.elementData_HashMap_Simple.A[hashMod] = null;
+  if (val != null) {
+    self.numPairs_HashMap_Simple--;
+  }
+  return val;
+}
+
+Object put_Integer_String(Object self, Object key, Object value) {
+  int h = (key.__cid == Integer() ? hashCode@Integer(key) : 0);
+  return putVal_int_Integer_String(self, h, key, value);
+}
+
+Object putVal_int_Integer_String(Object self, int hash, Object key, Object value) {
+  int hashMod = hash % self.capacity_HashMap_Simple;
+  Object node = self.elementData_HashMap_Simple.A[hashMod];
+  if (node != null) {
+    if (node.hash_HashMap_Simple_Node != hash || !(key.__cid == Integer() ? equals_Object@Integer(key, node.key_HashMap_Simple_Node) : 0)) {
+      resize_int(self, hash + 1);
+      hashMod = hash % self.capacity_HashMap_Simple;
+      node = self.elementData_HashMap_Simple.A[hashMod];
+      self.numPairs_HashMap_Simple++;
+    }
+    self.elementData_HashMap_Simple.A[hashMod] = HashMap_Simple_Node_HashMap_Simple_Node_HashMap_Simple_Integer_String_int(new Object(__cid=HashMap_Simple_Node()), self, key, value, hash);
+    if (node != null) {
+      return node.value_HashMap_Simple_Node;
+    }
+    else {
+      return null;
+    }
+  }
+  self.elementData_HashMap_Simple.A[hashMod] = HashMap_Simple_Node_HashMap_Simple_Node_HashMap_Simple_Integer_String_int(new Object(__cid=HashMap_Simple_Node()), self, key, value, hash);
+  self.numPairs_HashMap_Simple++;
+  return null;
+}
+
+void putValNoResize_int_Integer_String(Object self, int hash, Object key, Object value) {
+  int hashMod = hash % self.capacity_HashMap_Simple;
+  self.elementData_HashMap_Simple.A[hashMod] = HashMap_Simple_Node_HashMap_Simple_Node_HashMap_Simple_Integer_String_int(new Object(__cid=HashMap_Simple_Node()), self, key, value, hash);
+}
+

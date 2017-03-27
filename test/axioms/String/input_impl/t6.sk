@@ -1,0 +1,29 @@
+package t6;
+
+// len(concat(concat(concat(s1,s2),s3),concat(s4,s5)) == len(s1) + len(s2) + len(s3) + len(s4) + len(s5)
+harness void mn() {
+  Object s1 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=7+1, A="hello, "), 0, 7);
+  Object s2 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=6+1, A="world!"), 0, 6);
+  Object s3 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=13+1, A="ALLWORKNOPLAY"), 0, 13);
+  Object s4 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=17+1, A="MAKESJACKADULLBOY"), 0, 17);
+  Object s5 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=23+1, A="blah blahblah blah blah"), 0, 23);
+  int len1 = (s1.__cid == String() ? length@String(s1) : 0);
+  int len2 = (s2.__cid == String() ? length@String(s2) : 0);
+  int len3 = (s3.__cid == String() ? length@String(s3) : 0);
+  int len4 = (s4.__cid == String() ? length@String(s4) : 0);
+  int len5 = (s5.__cid == String() ? length@String(s5) : 0);
+  int len12345 = len1 + len2 + len3 + len4 + len5;
+
+  Object c12 = (s1.__cid == String() ? concat_String@String(s1, s2) : null);
+  Object c34 = (s3.__cid == String() ? concat_String@String(s3, s4) : null);
+  Object cc1234 = (c12.__cid == String() ? concat_String@String(c12, c34) : null);
+  Object cc12345 = (cc1234.__cid == String() ? concat_String@String(cc1234, s5) : null);
+  int lencc12345 = (cc12345.__cid == String() ? length@String(cc12345) : 0);
+
+  assert lencc12345 == len12345;
+}

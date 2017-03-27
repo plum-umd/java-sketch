@@ -1,0 +1,54 @@
+package Axiom_String;
+
+/* String string(int __cid, int n, char[n] s)           { return new String(__cid=__cid, n=n, s=s); } */
+/* Len length(T t)           { return new Len(t=t); } */
+/* Concat concat(T t1, T t2) { return new Concat(t1=t1, t2=t2); } */
+/* Plus plus(T t1, T t2)     { return new Plus(left=t1, right=t2); } */
+/* Error error()             { return new Error(); } */
+
+T xform(T t) {
+  switch(t) {
+  case String: return t;
+  case Len:    return xform_Len(t.t);
+  case Plus:   return plus(xform(t.left), xform(t.right));
+  case Concat: return concat(xform(t.t1), xform(t.t2));
+  case Error:  return t;
+  }
+}
+T xform_Len(T t) {
+  switch(t) {
+  case String: return length(t);
+  case Len:    return new Error(); // length(length(...)))
+  case Plus:   return new Error(); // length(plus(...))
+  case Concat: return plus(xform_Len(t.t1), xform_Len(t.t2));
+  case Error:  return t;
+  }
+}
+
+harness void mn() {
+  Object self = Object_Object(new Object(__cid=Object()));
+  test_7_6(self);
+  /* test_100_200(self); */
+}
+
+void test_7_6(Object self) {
+  /* ORIGINAL JSketch CODE:
+  Object s1 = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=7+1, A="hello, "), 0, 7);
+  Object s2 = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=6+1, A="world!"), 0, 6);
+  Object s3 = (s1.__cid == String() ? concat_String@String(s1, s2) : null);
+  int len12 = (s1.__cid == String() ? length@String(s1) : 0) + (s2.__cid == String() ? length@String(s2) : 0);
+  int len3 = (s3.__cid == String() ? length@String(s3) : 0);
+  */
+  Object s1 = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=7+1, A="hello, "), 0, 7);
+  Object s2 = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=6+1, A="world!"), 0, 6);
+  Concat s3 = (s1.__cid == Concat() ? concat(s1, s2) : null);
+}
+
+/* void test_100_200(Object self) { */
+/*   Object s1 = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=100+1, A="0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789"), 0, 100); */
+/*   Object s2 = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=200+1, A="01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789"), 0, 200); */
+/*   Object s3 = (s1.__cid == String() ? concat_String@String(s1, s2) : null); */
+/*   int len12 = (s1.__cid == String() ? length@String(s1) : 0) + (s2.__cid == String() ? length@String(s2) : 0); */
+/*   int len3 = (s3.__cid == String() ? length@String(s3) : 0); */
+/*   assert len3 == len12; */
+/* } */

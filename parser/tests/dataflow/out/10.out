@@ -1,0 +1,252 @@
+node: <class 'ast.compilationunit.CompilationUnit'> name: None 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.classorinterfacedeclaration.ClassOrInterfaceDeclaration'> name: C 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.methoddeclaration.MethodDeclaration'> name: m 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.type.primitivetype.PrimitiveType'> name: int 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.stmt.blockstmt.BlockStmt'> name: None 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.stmt.expressionstmt.ExpressionStmt'> name: None 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.variabledeclarationexpr.VariableDeclarationExpr'> name: None 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.type.primitivetype.PrimitiveType'> name: int 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.variabledeclarator.VariableDeclarator'> name: max 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.variabledeclaratorid.VariableDeclaratorId'> name: max 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.variabledeclarator.VariableDeclarator'> name: x 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.variabledeclaratorid.VariableDeclaratorId'> name: x 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.variabledeclarator.VariableDeclarator'> name: y 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.variabledeclaratorid.VariableDeclaratorId'> name: y 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.stmt.expressionstmt.ExpressionStmt'> name: None 
+	in: set([]) 
+	out: set([(u'x', 29)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.assignexpr.AssignExpr'> name: None 
+	in: set([]) 
+	out: set([(u'x', 29)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.nameexpr.NameExpr'> name: x 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.integerliteralexpr.IntegerLiteralExpr'> name: 0 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.stmt.expressionstmt.ExpressionStmt'> name: None 
+	in: set([(u'x', 29)]) 
+	out: set([(u'y', 25), (u'x', 29)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.assignexpr.AssignExpr'> name: None 
+	in: set([(u'x', 29)]) 
+	out: set([(u'y', 25), (u'x', 29)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.nameexpr.NameExpr'> name: y 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.integerliteralexpr.IntegerLiteralExpr'> name: 0 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.stmt.ifstmt.IfStmt'> name: None 
+	in: set([(u'y', 25), (u'x', 29)]) 
+	out: set([(u'y', 25), (u'x', 29), (u'max', 11), (u'max', 17)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.binaryexpr.BinaryExpr'> name: None 
+	in: set([(u'y', 25), (u'x', 29)]) 
+	out: set([(u'y', 25), (u'x', 29)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.nameexpr.NameExpr'> name: x 
+	in: set([(u'y', 25), (u'x', 29)]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.nameexpr.NameExpr'> name: y 
+	in: set([(u'y', 25), (u'x', 29)]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.stmt.blockstmt.BlockStmt'> name: None 
+	in: set([(u'y', 25), (u'x', 29)]) 
+	out: set([(u'y', 25), (u'x', 29), (u'max', 17)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.stmt.expressionstmt.ExpressionStmt'> name: None 
+	in: set([(u'y', 25), (u'x', 29)]) 
+	out: set([(u'y', 25), (u'x', 29), (u'max', 17)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.assignexpr.AssignExpr'> name: None 
+	in: set([(u'y', 25), (u'x', 29)]) 
+	out: set([(u'y', 25), (u'x', 29), (u'max', 17)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.nameexpr.NameExpr'> name: max 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.nameexpr.NameExpr'> name: x 
+	in: set([(u'y', 25), (u'x', 29)]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.stmt.blockstmt.BlockStmt'> name: None 
+	in: set([(u'y', 25), (u'x', 29)]) 
+	out: set([(u'y', 25), (u'x', 29), (u'max', 11)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.stmt.expressionstmt.ExpressionStmt'> name: None 
+	in: set([(u'y', 25), (u'x', 29)]) 
+	out: set([(u'y', 25), (u'x', 29), (u'max', 11)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.assignexpr.AssignExpr'> name: None 
+	in: set([(u'y', 25), (u'x', 29)]) 
+	out: set([(u'y', 25), (u'x', 29), (u'max', 11)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.nameexpr.NameExpr'> name: max 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.nameexpr.NameExpr'> name: y 
+	in: set([(u'y', 25), (u'x', 29)]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.stmt.expressionstmt.ExpressionStmt'> name: None 
+	in: set([(u'y', 25), (u'x', 29), (u'max', 11), (u'max', 17)]) 
+	out: set([(u'x', 7), (u'y', 25), (u'max', 11), (u'max', 17)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.assignexpr.AssignExpr'> name: None 
+	in: set([(u'y', 25), (u'x', 29), (u'max', 11), (u'max', 17)]) 
+	out: set([(u'y', 25), (u'max', 11), (u'max', 17), (u'x', 7)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.nameexpr.NameExpr'> name: x 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.nameexpr.NameExpr'> name: max 
+	in: set([(u'y', 25), (u'x', 29), (u'max', 11), (u'max', 17)]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.stmt.returnstmt.ReturnStmt'> name: None 
+	in: set([(u'y', 25), (u'max', 11), (u'max', 17), (u'x', 7)]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.nameexpr.NameExpr'> name: x 
+	in: set([(u'y', 25), (u'max', 11), (u'max', 17), (u'x', 7)]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+

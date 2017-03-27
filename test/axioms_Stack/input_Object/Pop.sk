@@ -1,0 +1,10 @@
+package Pop;
+
+Object Pop_Pop(Object self) {
+   return self;
+}
+
+Object Pop_Pop_Object(Object self, Object s) {
+   self.s_Pop = s;
+   return self;
+}

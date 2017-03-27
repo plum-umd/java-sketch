@@ -1,0 +1,246 @@
+node: <class 'ast.compilationunit.CompilationUnit'> name: None 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.classorinterfacedeclaration.ClassOrInterfaceDeclaration'> name: C 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.methoddeclaration.MethodDeclaration'> name: sum 
+	in: set([]) 
+	out: set([(u'x', 16), (u'b', 31), (u'x', 24), (u'a', 6), (u'a', 34)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.type.primitivetype.PrimitiveType'> name: int 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.parameter.Parameter'> name: a 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.variabledeclaratorid.VariableDeclaratorId'> name: a 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.type.primitivetype.PrimitiveType'> name: int 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.variabledeclarator.VariableDeclarator'> name: a 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.parameter.Parameter'> name: b 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.variabledeclaratorid.VariableDeclaratorId'> name: b 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.type.primitivetype.PrimitiveType'> name: int 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.variabledeclarator.VariableDeclarator'> name: b 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.stmt.blockstmt.BlockStmt'> name: None 
+	in: set([]) 
+	out: set([(u'x', 16), (u'b', 31), (u'x', 24), (u'a', 6), (u'a', 34)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.stmt.expressionstmt.ExpressionStmt'> name: None 
+	in: set([(u'b', 31), (u'a', 34)]) 
+	out: set([(u'b', 31), (u'a', 34)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.variabledeclarationexpr.VariableDeclarationExpr'> name: None 
+	in: set([(u'b', 31), (u'a', 34)]) 
+	out: set([(u'b', 31), (u'a', 34)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.type.primitivetype.PrimitiveType'> name: int 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.variabledeclarator.VariableDeclarator'> name: x 
+	in: set([(u'b', 31), (u'a', 34)]) 
+	out: set([(u'b', 31), (u'a', 34)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.body.variabledeclaratorid.VariableDeclaratorId'> name: x 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.stmt.expressionstmt.ExpressionStmt'> name: None 
+	in: set([(u'b', 31), (u'a', 34)]) 
+	out: set([(u'b', 31), (u'x', 24), (u'a', 34)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.assignexpr.AssignExpr'> name: None 
+	in: set([(u'b', 31), (u'a', 34)]) 
+	out: set([(u'b', 31), (u'x', 24), (u'a', 34)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.nameexpr.NameExpr'> name: x 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.integerliteralexpr.IntegerLiteralExpr'> name: 0 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.stmt.forstmt.ForStmt'> name: None 
+	in: set([(u'b', 31), (u'x', 24), (u'a', 34)]) 
+	out: set([(u'x', 16), (u'b', 31), (u'x', 24), (u'a', 6), (u'a', 34)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.assignexpr.AssignExpr'> name: None 
+	in: set([(u'b', 31), (u'x', 24), (u'a', 34)]) 
+	out: set([(u'b', 31), (u'x', 16), (u'a', 34)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.nameexpr.NameExpr'> name: x 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.integerliteralexpr.IntegerLiteralExpr'> name: 1 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.binaryexpr.BinaryExpr'> name: None 
+	in: set([(u'b', 31), (u'x', 24), (u'a', 34)]) 
+	out: set([(u'b', 31), (u'x', 24), (u'a', 34)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.nameexpr.NameExpr'> name: x 
+	in: set([(u'b', 31), (u'x', 24), (u'a', 34)]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.integerliteralexpr.IntegerLiteralExpr'> name: 10 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.assignexpr.AssignExpr'> name: None 
+	in: set([(u'b', 31), (u'x', 24), (u'a', 34)]) 
+	out: set([(u'x', 13), (u'a', 34), (u'b', 31)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.nameexpr.NameExpr'> name: x 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.binaryexpr.BinaryExpr'> name: None 
+	in: set([(u'b', 31), (u'x', 24), (u'a', 34)]) 
+	out: set([(u'b', 31), (u'x', 24), (u'a', 34)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.nameexpr.NameExpr'> name: x 
+	in: set([(u'b', 31), (u'x', 24), (u'a', 34)]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.integerliteralexpr.IntegerLiteralExpr'> name: 1 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.stmt.blockstmt.BlockStmt'> name: None 
+	in: set([(u'b', 31), (u'x', 16), (u'x', 24), (u'a', 34)]) 
+	out: set([(u'a', 6), (u'x', 16), (u'b', 31), (u'x', 24)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.stmt.expressionstmt.ExpressionStmt'> name: None 
+	in: set([(u'x', 16), (u'x', 24), (u'b', 31), (u'a', 34)]) 
+	out: set([(u'a', 6), (u'x', 16), (u'b', 31), (u'x', 24)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.assignexpr.AssignExpr'> name: None 
+	in: set([(u'b', 31), (u'x', 16), (u'x', 24), (u'a', 34)]) 
+	out: set([(u'a', 6), (u'x', 16), (u'x', 24), (u'b', 31)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.nameexpr.NameExpr'> name: a 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.binaryexpr.BinaryExpr'> name: None 
+	in: set([(u'b', 31), (u'x', 16), (u'x', 24), (u'a', 34)]) 
+	out: set([(u'b', 31), (u'x', 16), (u'x', 24), (u'a', 34)]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.nameexpr.NameExpr'> name: b 
+	in: set([(u'b', 31), (u'x', 16), (u'x', 24), (u'a', 34)]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+
+node: <class 'ast.expr.integerliteralexpr.IntegerLiteralExpr'> name: 1 
+	in: set([]) 
+	out: set([]) 
+	inputs: [] 
+	outputs: []
+

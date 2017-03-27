@@ -1,7 +1,13 @@
 package java.util;
 
-public interface Queue {
-  public boolean add(Object e);
+public interface Queue<E>{
+  public boolean add(E e);
   public boolean isEmpty();
-  public Object remove();
+
+  public E element();
+  public E peek();
+  public E poll();
+  public E remove();
+
+  public void clear();
 }

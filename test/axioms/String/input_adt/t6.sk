@@ -1,0 +1,28 @@
+package t6;
+
+// len(concat(concat(concat(s1,s2),s3),concat(s4,s5)) == len(s1) + len(s2) + len(s3) + len(s4) + len(s5)
+harness void mn() {
+  Object s1 = string();
+  Object s2 = string();
+  Object s3 = string();
+  Object s4 = string();
+  Object s5 = string();
+
+  Object len1 = length(s1.t);
+  Object len2 = length(s2.t);
+  Object len3 = length(s3.t);
+  Object len4 = length(s4.t);
+  Object len5 = length(s5.t);
+
+  Object len12345 = plus(plus(plus(len1.t,len2.t).t,
+			      plus(len3.t,len4.t).t).t,
+			 len5.t);
+
+  Object c12 = (s1.__cid == String() ? concat(s1.t, s2.t) : null);
+  Object c34 = (s1.__cid == String() ? concat(s3.t, s4.t) : null);
+  Object c1234 = (c12.__cid == String() ? concat(c12.t, c34.t) : null);
+  Object cc12345 = (c1234.__cid == String() ? concat(c1234.t, s5.t) : null);
+  Object lencc12345 = length(cc12345.t);
+    
+  assert xform(lencc12345.t, ??) == len12345.t;
+}

@@ -22,7 +22,6 @@ class MyQueue {
         }
         return null;
     }
-
 }
 
 class Node {

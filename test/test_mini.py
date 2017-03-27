@@ -12,7 +12,7 @@ class TestMini(TestCommon):
   def __test(self, fs):
     append_b = lambda f: os.path.join(benchmarks, f)
     _fs = map(append_b, fs)
-    ret = java_sk.main.main(_fs)
+    ret = java_sk.main.main(_fs, '30')
     self.assertEqual(ret, 0)
 
   def test_mini_101(self):

@@ -10,21 +10,21 @@ class ABC {
     }
 }
 
-class XYZ {
-    StringBuffer buf;
+// class XYZ {
+//     StringBuffer buf;
 
-    public XYZ (String name) {
-        this.buf = new StringBuffer(name);
-    }
+//     public XYZ (String name) {
+//         this.buf = new StringBuffer(name);
+//     }
 
-    public void setCharAt(int i, char c) {
-        this.buf.setCharAt(i, c);
-    }
+//     public void setCharAt(int i, char c) {
+//         this.buf.setCharAt(i, c);
+//     }
 
-    public String getName() {
-        return this.buf.toString();
-    }
-}
+//     public String getName() {
+//         return this.buf.toString();
+//     }
+// }
 
 class Test {
     harness static void test_string () {
@@ -33,10 +33,10 @@ class Test {
         assert msg.equals(a.getName());
     }
 
-    harness static void test_buf () {
-        String msg = "Hello, World";
-        XYZ x = new XYZ(msg);
-        x.setCharAt(0, 'h');
-        assert ! msg.equals(x.getName());
-    }
+    // harness static void test_buf () {
+    //     String msg = "Hello, World";
+    //     XYZ x = new XYZ(msg);
+    //     x.setCharAt(0, 'h');
+    //     assert ! msg.equals(x.getName());
+    // }
 }

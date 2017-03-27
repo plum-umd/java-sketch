@@ -23,11 +23,12 @@ class Testb415 {
         MultiType x = new MultiType(5, Testb415.INTEGER);
         MultiType __y = new MultiType(10, Testb415.INTEGER);
         MTArray _y = new MTArray();
-        _y.A = new MultiType[] {x, __y};
+        _y.A = new Multitype[] {x, __y};
         _y.len = 2;
         MultiType y = new MultiType(0, Testb415.LIST);
         y.lst = _y;
 
-        assert y.lst.A[0].val != y.lst.A[1].val;
+        // assert y.lst.A[0] == 0;
+        // assert y.lst.A[0].val != y.lst.A[1].val;
     }
 }

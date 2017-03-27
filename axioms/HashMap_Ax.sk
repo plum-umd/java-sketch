@@ -1,0 +1,59 @@
+adt H {
+  HashMap   { H h; }
+  Get       { H h; int k; }
+  Put       { H h; int k; int v; }
+  Error     { }
+}
+int get(H h, int k) {
+  switch(h) {
+  case Put: return h.k == k ? h.v : get(h.h, k);
+  case Get: return -1;
+  case HashMap: return -1;
+  case Error: return -1;
+  }
+}
+H put(H h, int k, int v)      { return new Put(h=h, k=k, v=v); }
+
+/* I'm not sure about this since we're not just transforming functions but */
+/* transforming functions based on their arguments. */
+/* get(put(x,y),x) == y; get(put(x,y),z) != y */
+/* int xform(H h) { */
+/*   switch(h) { */
+/*   case Get:  */
+/*   case Put: ... ? */
+/*   case HashMap: return -1; */
+/*   case Error: return -1; */
+/*   } */
+/* } */
+
+harness void mn(int w, int x, int y, int z) {
+  assume w != y;
+  test_adt(w,x,y,z);
+}
+
+void test_adt(int w, int x, int y, int z) {
+  H hmap1 = new HashMap();
+  H hmap2;
+  hmap1 = put(hmap1, 0, 1); // first call to put()
+  hmap2 = put(new HashMap(),0,1);
+  assert hmap1 == hmap2;
+  assert 1 == get(hmap1, 0);
+
+  hmap1 = put(hmap1, 2, 3); // second call to put()
+  hmap2 = put(put(new HashMap(),0,1),2,3);
+  assert hmap1 == hmap2;
+  assert 1 == get(hmap2, 0);
+  assert 3 == get(hmap2, 2);
+
+  H hmap3 = new HashMap();
+  hmap3 = put(new HashMap(), w, x);
+  assert x == get(hmap3, w);
+  assert x == get(put(new HashMap(), w, x), w);
+
+  H hmap4 = new HashMap();
+  hmap4 = put(put(new HashMap(), w, x), y, z);
+  assert z == get(hmap4, y);
+
+  /* Not sure why this doesn't work. Can get nested key with concrete values (above). */
+  assert x == get(hmap4, w);
+}
