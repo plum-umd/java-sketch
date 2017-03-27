@@ -5,12 +5,12 @@
 class Example4 {
   public static void main(String[] args) {
     int i1 = 1000111222, i2 = 40000, i3 = -1;
-    floatdouble(i1, i1);                           // L W: 1.00011123E9 1.000111222E9
+    floatdouble((float)i1, (double)i1);                           // L W: 1.00011123E9 1.000111222E9
     bytecharshort1((byte)i2, (char)i2, (short)i2);  // C C C: 64 40000 -25536
     bytecharshort2((byte)i3, (char)i3, (short)i3);  // C C C: -1 65535 -1
-    intint1((int)1.9, (int)-1.9);                   // C C: 1 -1
-    intint2((int)1.5, (int)-1.5);                   // C C: 1 -1
-    intint3((int)2.5, (int)-2.5);                   // C C: 2 -2
+    intint1((int)1.9, -(int)1.9);                   // C C: 1 -1
+    intint2((int)1.5, -(int)1.5);                   // C C: 1 -1
+    intint3((int)2.5, -(int)2.5);                   // C C: 2 -2
   }
 
   private static void floatdouble(float f, double d) { 

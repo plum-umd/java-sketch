@@ -40,6 +40,7 @@ from ast.stmt.expressionstmt import ExpressionStmt
 from ast.stmt.assertstmt import AssertStmt
 from ast.stmt.assumestmt import AssumeStmt
 from ast.stmt.switchstmt import SwitchStmt
+from ast.stmt.breakstmt import BreakStmt
 from ast.stmt.switchentrystmt import SwitchEntryStmt
 from ast.stmt.explicitconstructorinvocationstmt import ExplicitConstructorInvocationStmt
 
@@ -316,17 +317,41 @@ class Translator(object):
 
     @v.when(SwitchStmt)
     def visit(self, n):
-        for e in xrange(len(n.entries)):
-            self.printt('if (') if e == 0 else self.printt('else if (')
-            n.selector.accept(self)
-            self.printt(' == ')
-            n.entries[e].label.accept(self)
-            self.printLn(') {')
+        def print_stmts(stmts):
             self.indent()
-            for s in n.entries[e].stmts: s.accept(self)
+            for s in stmts:
+                s.accept(self)
+                self.printLn()
             self.unindent()
-            self.printLn()
             self.printLn('}')
+
+        self.printt('if (')
+        n.selector.accept(self)
+        # take care of the first case
+        if n.entries:
+            self.printt(' == ')
+            n.entries[0].label.accept(self)
+            self.printLn(') {')
+            if n.entries[0].stmts: print_stmts(n.entries[0].stmts)
+            if len(n.entries) > 0: self.printt('else if (')
+        
+        for e in range(1,len(n.entries)):
+            if n.entries[e].label:
+                if e > 1 and n.entries[e-1].stmts: self.printt('else if (')
+                if n.entries[e].stmts:
+                    n.selector.accept(self)
+                    self.printt(' == ')
+                    n.entries[e].label.accept(self)
+                    self.printLn(') {')
+                    print_stmts(n.entries[e].stmts)
+                else:
+                    n.selector.accept(self)
+                    self.printt(' == ')
+                    n.entries[e].label.accept(self)
+                    self.printt(' || ')
+            else:
+                self.printLn('else {')
+                print_stmts(n.entries[e].stmts)
 
     @v.when(SwitchEntryStmt)
     def visit(self, n):
@@ -355,6 +380,13 @@ class Translator(object):
     @v.when(ContinueStmt)
     def visit(self, n):
         self.printt('continue')
+        if n.idd:
+            self.printt(' {}'.format(n.idd))
+        self.printt(';')
+
+    @v.when(BreakStmt)
+    def visit(self, n):
+        self.printt('break')
         if n.idd:
             self.printt(' {}'.format(n.idd))
         self.printt(';')
@@ -653,15 +685,19 @@ class Translator(object):
     def trans_ty(self, typ, convert=True):
         if typ and isinstance(typ, ClassOrInterfaceType) or isinstance(typ, ReferenceType):
             cls = typ.symtab.get(typ.name)
-            r_ty = str(cls) if cls else str(typ)
+
+            if cls and isinstance(cls, ImportDeclaration): r_ty = cls.cname()
+            else: r_ty = str(cls) if cls else str(typ)
         else:
             r_ty = str(typ)
+        # print 'typ {},{} -> {}'.format(str(typ), type(typ), r_ty)
         # we've already rewritten this type
         if r_ty in self.ty: r_ty = self.ty[r_ty] if convert else r_ty
         # Java types to Sketch types
         elif r_ty in CONVERSION_TYPES: r_ty = CONVERSION_TYPES[r_ty]
         # Unknown type, cast as Object for now
         else: r_ty = u'Object'
+        # print 'typ {} -> {}'.format(repr(str(typ)), r_ty)
         return r_ty
 
     def trans_faccess(self, n):
@@ -820,7 +856,6 @@ class Translator(object):
         if not cls or isinstance(cls, ImportDeclaration):
             cls = uninterpreted()
             mtds = utils.extract_nodes([MethodDeclaration], cls)
-            for m in mtds: print 'm:', str(m)
             # return
         logging.debug('searching in class: {}'.format(cls))
 
@@ -893,7 +928,7 @@ class Translator(object):
             if invocation_mode == 'uninterpreted':
                 (_, mdec) = self.find_mtd(cls, str(mtd))
                 conexprs[-1].elseExpr = copy.copy(conexprs[-1].thenExpr)
-                print 'name: {}@{}'.format(str(mdec), str(cls))
+                # print 'name: {}@{}'.format(str(mdec), str(cls))
                 conexprs[-1].elseExpr.name = '{}@{}'.format(str(mdec), str(cls))
             # else: raise Exception('Non-static mode, no mtd {} in {}'.format(str(mtd), str(cls)))
             # need to foldr then reverse
@@ -910,13 +945,14 @@ class Translator(object):
 
     def identify_potentials(self, callexpr, cls):
         mtds = []
+        call_arg_typs = callexpr.arg_typs()
         for key,val in cls.symtab.items():
             if type(val) != MethodDeclaration: continue
             tparam_names = map(lambda t: t.name, val.typeParameters)
             tparam_names.extend(map(lambda t: t.name, utils.get_coid(val).typeParameters))
             if callexpr.name == val.name and len(callexpr.args) == len(val.parameters):
                 if all(map(lambda t: t[1].name in tparam_names or utils.is_subtype(t[0], t[1]),
-                           zip(callexpr.arg_typs(), val.param_typs()))):
+                           zip(call_arg_typs, val.param_typs()))):
                     mtds.append(val)
         return mtds
 

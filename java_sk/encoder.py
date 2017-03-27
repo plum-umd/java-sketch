@@ -219,8 +219,7 @@ class Encoder(object):
         if etypes: buf.write('Object self{};\n\n'.format(len(etypes)-1))
         # not a base class, not the harness class, and doesn't override the base constructor
         # if cls not in self.bases and str(cls) != str(self.mcls) and \
-        if str(cls) != str(self.mcls) and \
-           not filter(lambda c: len(c.parameters) == 0, cons):
+        if not filter(lambda c: len(c.parameters) == 0, cons):
             # these represent this$N (inner classes)
             if etypes:
                 i = len(etypes)-1

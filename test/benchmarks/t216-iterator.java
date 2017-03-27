@@ -26,7 +26,7 @@ class Test {
         CharIterator cit = new CharIterator("hi");
         int i = 0;
         while (cit.hasNext()) {
-            char c = cit.next();
+            Character c = cit.next();
             if (i == 0) assert c == 'h';
             else if (i == 1) assert c == 'i';
             i = i + 1;

@@ -18,7 +18,7 @@ class ClassOrInterfaceType(Type):
 
             # TypeArguments typeArguments
             self._typeArguments = TypeArguments(kwargs.get(u'typeArguments', {}))
-            
+
             # boolean any = false;
             self._any = False
 
@@ -26,7 +26,7 @@ class ClassOrInterfaceType(Type):
     def typee(self): return self
     @typee.setter
     def typee(self, v): pass
-  
+
     @property
     def scope(self): return self._scope
     @scope.setter

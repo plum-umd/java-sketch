@@ -36,7 +36,6 @@ class MethodCallExpr(Expression):
     @args.setter
     def args(self, v): self._args = v
 
-    # this is going to be weird. traverse tree until a type or expressionstmt is found
     @property
     def typee(self):
         obj = utils.node_to_obj(self.scope) if self.scope else self
@@ -51,7 +50,7 @@ class MethodCallExpr(Expression):
 
             ftypes = utils.mtd_type_from_callexpr(self)
             return ClassOrInterfaceType({u'@t': u'ClassOrInterfaceType',
-                                         u'name': unicode(ftypes[0][-1])})
+                                         u'name': unicode(ftypes[0][0][-1])})
         else: return mtd.typee
 
     @typee.setter

@@ -380,7 +380,6 @@ def get_mtd_types(path, name, num_params):
     # print 'path:', path, 'method name:', name, 'num_params:', num_params
     (_, _, mtds) = get_descriptors(path)
     candidates = [d[1][d[1].find(':')+2:] for d in mtds if name+'(' in d[0]]
-    # print 'candidates:', candidates
     ptypes = []
     def filter_by_params(c):
         params = c[c.find('(')+1:c.rfind(')')]

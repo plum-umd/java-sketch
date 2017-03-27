@@ -1,10 +1,10 @@
 import java.util.Iterator;
 
-/*
-interface Token{
-    public int getId();
+
+class Token{
+    int id; 
+    public int getId() { return this.id; }
 }
-*/
 
 class Automaton {
 // generator class Automaton {
@@ -18,10 +18,11 @@ class Automaton {
         // minimize(num_state);
     }
 
-/*
+
     public void transition(Token t) {
         int id = t.getId();
-*/
+    }
+
     public void transition(int id) {
         assert 0 <= state && state < num_state;
         // minrepeat {
@@ -31,7 +32,7 @@ class Automaton {
 
     public void transition(Iterator it) {
         while (it.hasNext()) {
-            transition(it.next());
+            transition((Token)it.next());
         }
     }
 
@@ -61,7 +62,7 @@ class CADsR extends Automaton {
         public Integer next() {
             Character c = str.charAt(pos);
             pos = pos + 1;
-            return (int)c;
+            return (Integer)c;
         }
 
         public void remove() {
@@ -72,7 +73,7 @@ class CADsR extends Automaton {
     public boolean accept(String str) {
         state = 0; // reset
         CharIterator cit = new CharIterator(str);
-        transitions(cit);
+        transition(cit);
         return accept();
     }
 }
@@ -117,7 +118,9 @@ class DBConnection {
 
 // Lisp-style identifier: c(a|d)+r
 class TestCADsR {
-
+    harness void mn() {
+    	example_0();
+    }
     // length 0
      static void example_0() {
         CADsR a = new CADsR();

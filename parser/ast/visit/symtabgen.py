@@ -110,6 +110,7 @@ class SymtabGen(object):
         map(lambda p: p.accept(self), node.parameters)
         map(lambda t: node.symtab.update({t.name:t}), node.typeParameters)
         map(lambda p: p.idd.symtab.update(node.symtab), node.parameters)
+        # map(lambda c: c.accept(self), node.childrenNodes)
         if node.body: node.body.accept(self)
 
         if type(node.parentNode) == ObjectCreationExpr:

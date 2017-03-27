@@ -6,7 +6,7 @@ class BreakStmt(Statement):
   def __init__(self, kwargs={}):
     super(BreakStmt, self).__init__(kwargs)
 
-    # Expression compare;
+    # String id;
     self._id = kwargs.get(u'id', '')
 
   @property

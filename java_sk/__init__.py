@@ -27,13 +27,13 @@ CONVERSION_TYPES = {
     u'long':u'double',
     u'float':u'float',
     u'double':u'double',
-    # u'Byte':'char',
-    # u'Character':'char',
-    # u'Short':u'char',
-    # u'Integer':u'int',
-    # u'Long':u'long',
-    # u'Float':u'float',
-    # u'Double':u'double',
+    u'Byte':'char',
+    u'Character':'char',
+    u'Short':u'char',
+    u'Integer':u'int',
+    u'Long':u'long',
+    u'Float':u'float',
+    u'Double':u'double',
 }
 
 sk_d = {u'@t': u'ClassOrInterfaceDeclaration', u'name': u''}

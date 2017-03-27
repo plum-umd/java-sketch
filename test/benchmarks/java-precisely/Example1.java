@@ -11,6 +11,7 @@ class Example1 {
   
   harness static void test() {
       Example1 t = new Example1();
+      t.x = 117;
       assert t.x == 117;
   }
 }

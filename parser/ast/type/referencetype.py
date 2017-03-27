@@ -42,5 +42,5 @@ class ReferenceType(Type):
     @values.setter
     def values(self, v): self._values = v
   
-    def __str__(self):
-        return self.name
+    def __str__(self): return self.name
+
