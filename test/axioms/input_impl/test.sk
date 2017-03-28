@@ -1,0 +1,187 @@
+//6  This is the number of tests
+package test;
+
+harness void mn() {
+  if (TID==0) t0();
+  else if (TID==1) t1();
+  /* else if (TID==2) t2(); */
+  /* else if (TID==3) t3(); */
+  /* else if (TID==4) t4(); */
+  /* else if (TID==5) t5(); */
+  /* else if (TID==6) t6(); */
+}
+
+// len(concat(s1,s2)) == len(s1) + len(s2)
+void t0() {
+  Object s1 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=7+1, A="hello, "), 0, 7);
+  Object s2 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=6+1, A="world!"), 0, 6);
+  int len1 = (s1.__cid == String() ? length@String(s1) : 0);
+  int len2 = (s2.__cid == String() ? length@String(s2) : 0);
+  int len12 = len1 + len2;
+  Object c12 = (s1.__cid == String() ? concat_String@String(s1, s2) : null);
+  int lenc12 = (c12.__cid == String() ? length@String(c12) : 0);
+  assert lenc12 == len12;
+}
+
+// len(concat(s1,s2)) + len(concat(s3,s4)) == len(s1) + len(s2) + len(s3) + len(s4)
+void t1() {
+  Object s1 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=7+1, A="hello, "), 0, 7);
+  Object s2 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=6+1, A="world!"), 0, 6);
+  Object s3 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=13+1, A="ALLWORKNOPLAY"), 0, 13);
+  Object s4 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=19+1, A="MAKESJACKADULLBOY!!"), 0, 19);
+  int len1 = (s1.__cid == String() ? length@String(s1) : 0);
+  int len2 = (s2.__cid == String() ? length@String(s2) : 0);
+  int len3 = (s3.__cid == String() ? length@String(s3) : 0);
+  int len4 = (s4.__cid == String() ? length@String(s4) : 0);
+  int len1234 = len1 + len2 + len3 + len4;
+  Object c12 = (s1.__cid == String() ? concat_String@String(s1, s2) : null);
+  Object c34 = (s3.__cid == String() ? concat_String@String(s3, s4) : null);
+  int lenc12 = (c12.__cid == String() ? length@String(c12) : 0);
+  int lenc34 = (c34.__cid == String() ? length@String(c34) : 0);
+  int lenc12c34 = lenc12 + lenc34;
+  assert lenc12c34 == len1234;
+}
+
+// len(concat(s1,s2)) + len(concat(s3,s4)) + len(concat(s5,s6)) == len(s1) + len(s2) + len(s3) + len(s4) + len(s5) + len(s6)
+void t2() {
+  Object s1 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=7+1, A="hello, "), 0, 7);
+  Object s2 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=6+1, A="world!"), 0, 6);
+  Object s3 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=13+1, A="ALLWORKNOPLAY"), 0, 13);
+  Object s4 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=19+1, A="MAKESJACKADULLBOY!!"), 0, 19);
+  Object s5 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=22+1, A="itwasthe best of times"), 0, 22);
+  Object s6 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=25+1, A="it was the worst of times"), 0, 25);
+  int len1 = (s1.__cid == String() ? length@String(s1) : 0);
+  int len2 = (s2.__cid == String() ? length@String(s2) : 0);
+  int len3 = (s3.__cid == String() ? length@String(s3) : 0);
+  int len4 = (s4.__cid == String() ? length@String(s4) : 0);
+  int len5 = (s5.__cid == String() ? length@String(s5) : 0);
+  int len6 = (s6.__cid == String() ? length@String(s6) : 0);
+  int len123456 = len1 + len2 + len3 + len4 + len5 + len6;
+  Object c12 = (s1.__cid == String() ? concat_String@String(s1, s2) : null);
+  Object c34 = (s3.__cid == String() ? concat_String@String(s3, s4) : null);
+  Object c56 = (s5.__cid == String() ? concat_String@String(s5, s6) : null);
+  int lenc12 = (c12.__cid == String() ? length@String(c12) : 0);
+  int lenc34 = (c34.__cid == String() ? length@String(c34) : 0);
+  int lenc56 = (c56.__cid == String() ? length@String(c56) : 0);
+  int lenc12c34c56 = lenc12 + lenc34 +lenc56;
+  assert lenc12c34c56 == len123456;
+}
+
+// len(concat(s1,s2)) + len(concat(s3,s4)) + len(concat(s5,s6)) + len(concat(s7,s8)) == len(s1) + len(s2) + len(s3) + len(s4) + len(s5) + len(s6) + len(s7) + len(s8)
+void t3() {
+  Object s1 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=7+1, A="hello, "), 0, 7);
+  Object s2 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=6+1, A="world!"), 0, 6);
+  Object s3 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=13+1, A="ALLWORKNOPLAY"), 0, 13);
+  Object s4 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=19+1, A="MAKESJACKADULLBOY!!"), 0, 19);
+  Object s5 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=22+1, A="itwasthe best of times"), 0, 22);
+  Object s6 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=25+1, A="it was the worst of times"), 0, 25);
+  Object s7 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=22+1, A="itwasthe best of times"), 0, 22);
+  Object s8 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=25+1, A="it was the worst of times"), 0, 25);
+  int len1 = (s1.__cid == String() ? length@String(s1) : 0);
+  int len2 = (s2.__cid == String() ? length@String(s2) : 0);
+  int len3 = (s3.__cid == String() ? length@String(s3) : 0);
+  int len4 = (s4.__cid == String() ? length@String(s4) : 0);
+  int len5 = (s5.__cid == String() ? length@String(s5) : 0);
+  int len6 = (s6.__cid == String() ? length@String(s6) : 0);
+  int len7 = (s7.__cid == String() ? length@String(s7) : 0);
+  int len8 = (s8.__cid == String() ? length@String(s8) : 0);
+  int len12345678 = len1 + len2 + len3 + len4 + len5 + len6 + len7 + len8;
+  Object c12 = (s1.__cid == String() ? concat_String@String(s1, s2) : null);
+  Object c34 = (s3.__cid == String() ? concat_String@String(s3, s4) : null);
+  Object c56 = (s5.__cid == String() ? concat_String@String(s5, s6) : null);
+  Object c78 = (s7.__cid == String() ? concat_String@String(s7, s8) : null);
+  int lenc12 = (c12.__cid == String() ? length@String(c12) : 0);
+  int lenc34 = (c34.__cid == String() ? length@String(c34) : 0);
+  int lenc56 = (c56.__cid == String() ? length@String(c56) : 0);
+  int lenc78 = (c78.__cid == String() ? length@String(c78) : 0);
+  int lenc12c34c56c78 = lenc12 + lenc34 +lenc56 + lenc78;
+  assert lenc12c34c56c78 == len12345678;
+}
+
+// len(concat(concat(s1,s2),s3) == len(s1) + len(s2) + len(s3)
+void t4() {
+  Object s1 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=7+1, A="hello, "), 0, 7);
+  Object s2 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=6+1, A="world!"), 0, 6);
+  Object s3 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=13+1, A="ALLWORKNOPLAY"), 0, 13);
+  int len1 = (s1.__cid == String() ? length@String(s1) : 0);
+  int len2 = (s2.__cid == String() ? length@String(s2) : 0);
+  int len3 = (s3.__cid == String() ? length@String(s3) : 0);
+  int len123 = len1 + len2 + len3;
+  Object c12 = (s1.__cid == String() ? concat_String@String(s1, s2) : null);
+  Object cc123 = (c12.__cid == String() ? concat_String@String(c12, s3) : null);
+  int lencc12 = (c12.__cid == String() ? length@String(cc123) : 0);
+  assert lencc12 == len123;
+}
+
+// len(concat(concat(concat(s1,s2),s3),s4)) == len(s1) + len(s2) + len(s3) + len(s4)
+void t5() {
+  Object s1 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=7+1, A="hello, "), 0, 7);
+  Object s2 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=6+1, A="world!"), 0, 6);
+  Object s3 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=13+1, A="ALLWORKNOPLAY"), 0, 13);
+  Object s4 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=17+1, A="MAKESJACKADULLBOY"), 0, 17);
+  int len1 = (s1.__cid == String() ? length@String(s1) : 0);
+  int len2 = (s2.__cid == String() ? length@String(s2) : 0);
+  int len3 = (s3.__cid == String() ? length@String(s3) : 0);
+  int len4 = (s4.__cid == String() ? length@String(s4) : 0);
+  int len1234 = len1 + len2 + len3 + len4;
+
+  Object c12 = (s1.__cid == String() ? concat_String@String(s1, s2) : null);
+  Object c34 = (s3.__cid == String() ? concat_String@String(s3, s4) : null);
+  Object c12c34 = (c12.__cid == String() ? concat_String@String(c12, c34) : null);
+  int lenc12c34 = (c12c34.__cid == String() ? length@String(c12c34) : 0);
+
+  assert lenc12c34 == len1234;
+}
+
+// len(concat(concat(concat(s1,s2),s3),concat(s4,s5)) == len(s1) + len(s2) + len(s3) + len(s4) + len(s5)
+void t6() {
+  Object s1 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=7+1, A="hello, "), 0, 7);
+  Object s2 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=6+1, A="world!"), 0, 6);
+  Object s3 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=13+1, A="ALLWORKNOPLAY"), 0, 13);
+  Object s4 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=17+1, A="MAKESJACKADULLBOY"), 0, 17);
+  Object s5 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=23+1, A="blah blahblah blah blah"), 0, 23);
+  int len1 = (s1.__cid == String() ? length@String(s1) : 0);
+  int len2 = (s2.__cid == String() ? length@String(s2) : 0);
+  int len3 = (s3.__cid == String() ? length@String(s3) : 0);
+  int len4 = (s4.__cid == String() ? length@String(s4) : 0);
+  int len5 = (s5.__cid == String() ? length@String(s5) : 0);
+  int len12345 = len1 + len2 + len3 + len4 + len5;
+  Object c12 = (s1.__cid == String() ? concat_String@String(s1, s2) : null);
+  Object c34 = (s3.__cid == String() ? concat_String@String(s3, s4) : null);
+  Object cc1234 = (c12.__cid == String() ? concat_String@String(c12, c34) : null);
+  Object cc12345 = (cc1234.__cid == String() ? concat_String@String(cc1234, s5) : null);
+  int lencc12345 = (cc12345.__cid == String() ? length@String(cc12345) : 0);
+  assert lencc12345 == len12345;
+}
