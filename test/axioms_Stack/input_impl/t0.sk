@@ -1,15 +1,15 @@
 package t0;
 
-// len(concat(s1,s2)) == len(s1) + len(s2)
-harness void mn() {
-  Object s1 = String_String_char_int_int(new Object(__cid=String()),
-					 new Array_char(length=7+1, A="hello, "), 0, 7);
-  Object s2 = String_String_char_int_int(new Object(__cid=String()),
-					 new Array_char(length=6+1, A="world!"), 0, 6);
-  int len1 = (s1.__cid == String() ? length@String(s1) : 0);
-  int len2 = (s2.__cid == String() ? length@String(s2) : 0);
-  int len12 = len1 + len2;
-  Object s3 = (s1.__cid == String() ? concat_String@String(s1, s2) : null);
-  int len3 = (s3.__cid == String() ? length@String(s3) : 0);
-  assert len3 == len12;
+Object t0_t0(Object self) {
+    return self;
 }
+
+harness void m() {
+  Object self = Object_Object(new Object(__cid=Object()));
+  Object s = Stack_Stack(new Object(__cid=Stack()));
+  Object o1 = Object_Object(new Object(__cid=Object()));
+  (s.__cid == Stack() ? push_E@Stack(s, o1) : null);
+  Object poppsh1 = (s.__cid == Stack() ? pop@Stack(s) : null);
+  assert (poppsh1.__cid == Stack() ? equals_Object@Object(poppsh1, o1) : poppsh1.__cid == String() ? equals_Object@String(poppsh1, o1) : poppsh1.__cid == t0() ? equals_Object@Object(poppsh1, o1) : poppsh1.__cid == Object() ? equals_Object@Object(poppsh1, o1) : 0);
+}
+

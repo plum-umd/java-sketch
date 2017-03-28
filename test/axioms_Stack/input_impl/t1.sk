@@ -1,26 +1,17 @@
 package t1;
 
-// len(concat(s1,s2)) + len(concat(s3,s4)) == len(s1) + len(s2) + len(s3) + len(s4)
-harness void mn() {
-  Object s1 = String_String_char_int_int(new Object(__cid=String()),
-					 new Array_char(length=7+1, A="hello, "), 0, 7);
-  Object s2 = String_String_char_int_int(new Object(__cid=String()),
-					 new Array_char(length=6+1, A="world!"), 0, 6);
-  Object s3 = String_String_char_int_int(new Object(__cid=String()),
-					 new Array_char(length=13+1, A="ALLWORKNOPLAY"), 0, 13);
-  Object s4 = String_String_char_int_int(new Object(__cid=String()),
-					 new Array_char(length=19+1, A="MAKESJACKADULLBOY!!"), 0, 19);
-  int len1 = (s1.__cid == String() ? length@String(s1) : 0);
-  int len2 = (s2.__cid == String() ? length@String(s2) : 0);
-  int len3 = (s3.__cid == String() ? length@String(s3) : 0);
-  int len4 = (s4.__cid == String() ? length@String(s4) : 0);
-  int len1234 = len1 + len2 + len3 + len4;
-
-  Object c12 = (s1.__cid == String() ? concat_String@String(s1, s2) : null);
-  Object c34 = (s3.__cid == String() ? concat_String@String(s3, s4) : null);
-  int lenc12 = (c12.__cid == String() ? length@String(c12) : 0);
-  int lenc34 = (c34.__cid == String() ? length@String(c34) : 0);
-  int lenc12c34 = lenc12 + lenc34;
-
-  assert lenc12c34 == len1234;
+Object t1_t1(Object self) {
+    return self;
 }
+
+harness void m() {
+  Object self = Object_Object(new Object(__cid=Object()));
+  Object s = Stack_Stack(new Object(__cid=Stack()));
+  Object o1 = Object_Object(new Object(__cid=Object()));
+  Object o2 = Object_Object(new Object(__cid=Object()));
+  (s.__cid == Stack() ? push_E@Stack(s, o1) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o2) : null);
+  Object poppsh12 = (s.__cid == Stack() ? pop@Stack(s) : null);
+  assert (poppsh12.__cid == String() ? equals_Object@String(poppsh12, o2) : poppsh12.__cid == t1() ? equals_Object@Object(poppsh12, o2) : poppsh12.__cid == Stack() ? equals_Object@Object(poppsh12, o2) : poppsh12.__cid == Object() ? equals_Object@Object(poppsh12, o2) : 0);
+}
+

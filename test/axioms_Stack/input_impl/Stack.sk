@@ -1,0 +1,57 @@
+package Stack;
+
+Object Stack_Stack(Object self) {
+  self.elementData_Stack = new Array_Object(length=10);
+  self.size_Stack = 0;
+  self.capacity_Stack = 10;
+  return self;
+}
+
+void resize(Object self) {
+  if (self.size_Stack >= self.capacity_Stack) {
+    self.capacity_Stack *= 2;
+    Array_Object newElementData = new Array_Object(length=self.capacity_Stack);
+    for (int i = 0; i < self.size_Stack; i++) {
+      newElementData.A[i] = self.elementData_Stack.A[i];
+      self.elementData_Stack.A[i] = null;
+    }
+    self.elementData_Stack = newElementData;
+  }
+}
+
+bit empty(Object self) {
+  return self.size_Stack == 0;
+}
+
+Object peek(Object self) {
+  if (self.size_Stack <= 0) {
+    return null;
+  }
+  return self.elementData_Stack.A[self.size_Stack - 1];
+}
+
+Object push_E(Object self, Object e) {
+  resize@Stack(self);
+  self.size_Stack++;
+  self.elementData_Stack.A[self.size_Stack - 1] = e;
+  return e;
+}
+
+Object pop(Object self) {
+  if (self.size_Stack <= 0) {
+    return null;
+  }
+  Object e = self.elementData_Stack.A[self.size_Stack - 1];
+  self.elementData_Stack.A[--self.size_Stack] = null;
+  return e;
+}
+
+int search_Object(Object self, Object o) {
+  for (int i = 0; i < self.size_Stack; i++) {
+    if ((self.elementData_Stack.A[i].__cid == Stack() ? equals_Object@Object(self.elementData_Stack.A[i], o) : self.elementData_Stack.A[i].__cid == String() ? equals_Object@String(self.elementData_Stack.A[i], o) : self.elementData_Stack.A[i].__cid == t0() ? equals_Object@Object(self.elementData_Stack.A[i], o) : self.elementData_Stack.A[i].__cid == Object() ? equals_Object@Object(self.elementData_Stack.A[i], o) : 0)) {
+      return i;
+    }
+  }
+  return -1;
+}
+

@@ -23,8 +23,12 @@ Object toString(Object self) {
   return self;
 }
 
+void setCharAt_int_char(Object self, int i, char c) {
+  self._value_String.A[i] = c;
+}
+
 int indexOf_String(Object self, Object s) {
-  return indexOf_String_int(self, s, 0);
+  return indexOf_String_int@String(self, s, 0);
 }
 
 int indexOf_String_int(Object self, Object s, int i) {
@@ -54,7 +58,7 @@ int indexOf_String_int(Object self, Object s, int i) {
 }
 
 int indexOf_char(Object self, char c) {
-  return indexOf_char_int(self, c, 0);
+  return indexOf_char_int@String(self, c, 0);
 }
 
 int indexOf_char_int(Object self, char c, int i) {
@@ -103,5 +107,20 @@ bit equals_Object(Object self, Object obj) {
     }
   }
   return isEqual;
+}
+
+int hashCode(Object self) {
+  int n = self._count_String,  hash = 0,  temp = 0;
+  if (n == 0) {
+    return 0;
+  }
+  for (int i = 0; i < n; i++) {
+    temp = (self.__cid == String() ? charAt_int@String(self, i) : '\0');
+    for (int j = 0; j < n - 1 - i; j++) {
+      temp *= 31;
+    }
+    hash += temp;
+  }
+  return hash;
 }
 
