@@ -2,16 +2,7 @@ import cStringIO
 import math
 import os
 import copy as cp
-from itertools import chain, ifilter, ifilterfalse
-from functools import partial
-import re
-import operator as op
-from string import Template as T
 import logging
-
-from lib.typecheck import *
-import lib.const as C
-from lib.enum import enum
 
 import util
 import cStringIO
