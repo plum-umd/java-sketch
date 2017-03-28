@@ -12,7 +12,5 @@ harness void mn() {
   Object poppsh12 = pop(psh12);
   Object poppoppsh12 = pop(poppsh12);
 
-  assert equals_Axiom(elem(xform(tuple(poppoppsh12, null), ??)), o1);
-  assert equals_Axiom(stack(xform(tuple(poppoppsh12, null), ??)), s);
-  assert equals_Axiom(stack(xform(tuple(poppoppsh12, null), ??)), poppoppsh12);
+  assert equals_Axiom(elem(xform3(tuple(poppoppsh12, null), 0, ??)), o1);
 }

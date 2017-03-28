@@ -25,6 +25,40 @@ Object elem(Object s) {
    return (s.__cid == Tuple() ? get_Obj(s) : null);
 }
 
+Object xform3 (Object t, int depth, int dice) {
+   Object ts1; Object ts; Object tts; Object tts1;
+
+   ts = t.s_Tuple;
+
+   if (ts.__cid == Pop()) {
+      ts1 = ts.s_Pop;
+      if (dice%2 == 0) {
+         dice /= 2;
+	 return xform3(tuple(ts1, null), depth+1, dice);
+      } else {
+         return t;
+      }
+   } else if (ts.__cid == Push()) {
+      ts1 = ts.s_Push;
+      if (depth == 1) {
+         if (dice%2 == 0) {
+	    return tuple(ts.s_Push, ts.o_Push);
+	 } else {
+	    return t;
+	 }
+      } else {
+         if (dice%2 == 0) {
+            dice /= 2;
+	    return xform3(tuple(ts1, null), depth-1, dice);	      
+	 } else {
+	    return t;
+	 }         
+      }
+   } else {
+      return t;
+   }
+}
+
 Object xform (Object t, int dice) {
    Object ts1; Object ts; Object tts; Object tts1;
 
@@ -48,6 +82,8 @@ Object xform (Object t, int dice) {
 	    if (ts1.__cid == Push()) {
 	       return tuple(ts1.s_Push, ts1.o_Push);
 	    } else {
+	       // WHAT IF XFORM RETURNS A POP??
+	       //    - Could try a depth flag
 	       return error();
 	    }
       	 } else {
