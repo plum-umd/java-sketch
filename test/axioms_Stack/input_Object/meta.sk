@@ -29,6 +29,7 @@ int TreeMap()              { return 25; }
 
 int Push()		   { return 30; }
 int Pop()		   { return 31; }
+int Tuple()		   { return 32; }
 int Error()		   { return 29; }
 
 // Uninterpreted functions

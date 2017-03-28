@@ -21,6 +21,8 @@ struct Object {
   Object 	s_Push;
   Object	o_Push;
   Object	s_Pop;
+  Object	s_Tuple;
+  Object	o_Tuple;
   Array_Object  table_HashMap;
   Object        entrySet_HashMap;
   int           size_HashMap;

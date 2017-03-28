@@ -13,29 +13,102 @@ Object error() {
    return Error_Error(new Object(__cid=Error())); 
 }
 
-Object xform (Object t, int dice) {
-   Object t1; Object tt1;
+Object tuple(Object s, Object o) {
+   return (s.__cid == Push() || s.__cid == Pop() || s.__cid == Object() ? Tuple_Tuple_Object_Object(new Object(__cid=Tuple()), s, o) : null);
+}
 
-   if (t.__cid == Pop()) {
-      t1 = t.s_Pop;
-      if (t1.__cid == Push()) {
+Object stack(Object s) {
+   return (s.__cid == Tuple() ? get_Stack(s) : null);
+}
+
+Object elem(Object s) {
+   return (s.__cid == Tuple() ? get_Obj(s) : null);
+}
+
+Object xform (Object t, int dice) {
+   Object ts1; Object ts; Object tts; Object tts1;
+
+   ts = t.s_Tuple;
+
+   if (ts.__cid == Pop()) {
+      ts1 = ts.s_Pop;
+      if (ts1.__cid == Push()) {
          if (dice%2 == 0) {
-	    return t1.o_Push;
+	    return tuple(ts1.s_Push, ts1.o_Push);
          } else {
-            return t;
+	    // should the object here be null?
+            return tuple(ts, ts1.o_Push);
          }
-      } else if (t1.__cid == Pop()) {
-         // TODO: Not sure what to do here
-	 return t;
       } else {
-         return error();
-      }
-   } else if (t.__cid == Push()) {
-      t1 = t.s_Push;
+         // THIS STILL DOESN'T WORK
+         if (dice%2 == 0) {
+            dice /= 2;
+	    ts1 = xform(tuple(ts1, null), dice);
+	    ts1 = ts1.s_Tuple;
+	    if (ts1.__cid == Push()) {
+	       return tuple(ts1.s_Push, ts1.o_Push);
+	    } else {
+	       return error();
+	    }
+      	 } else {
+            return t;
+      	 }  
+      }    
+   } else if (ts.__cid == Push()) {
+      ts1 = ts.s_Push;
       if (dice%2 == 0) {
          dice /= 2;
-	 t1 = xform(t1, dice);
-         return push(t1, t.o_Push);
+	 // TS1 NEEDS TO BE A TUPLE!!
+	 ts1 = xform(ts1, dice);
+         return tuple(push(ts1, ts.o_Push), null);
+      } else {
+         return t;
+      }
+   } else {
+      return t;
+   }
+}
+
+// This returns a tuple of the form (Stack<X>, X)
+Object xform2 (Object t, int dice) {
+   Object ts1; Object ts; Object tts; Object tts1;
+
+   ts = t.s_Tuple;
+
+   if (ts.__cid == Pop()) {
+      ts1 = ts.s_Pop;
+      if (ts1.__cid == Push()) {
+         if (dice%2 == 0) {
+	    return tuple(ts1.s_Push, ts1.o_Push);
+         } else {
+	    // should the object here be null?
+            return tuple(ts, ts1.o_Push);
+         }
+      } else if (ts1.__cid == Pop()) {
+         // TODO: Not sure what to do here
+	 dice /= 2;
+	 tts = xform(tuple(ts1, null), dice);
+	 tts = tts.s_Tuple;
+	 if (tts.__cid == Push()) {
+	    if (dice%2 == 0) {
+	       return tuple(tts.s_Push, tts.o_Push);
+	    } else {
+	       return tuple(ts, tts.o_Push);
+	    } 
+	 } else {
+	    // This needs to be expanded
+	    return tuple(ts, null);
+	 }
+      } else {
+         return tuple(error(), error());
+      }
+   } else if (ts.__cid == Push()) {
+      ts1 = ts.s_Push;
+      if (dice%2 == 0) {
+         dice /= 2;
+	 // TS1 HERE NEEDS TO BE A TUPLE!!
+	 ts1 = xform(ts1, dice);
+         return tuple(push(ts1, ts.o_Push), null);
       } else {
          return t;
       }
@@ -46,6 +119,12 @@ Object xform (Object t, int dice) {
 }
 
 bit equals_Axiom(Object self, Object obj) {
+  if (self == null && obj == null) {
+     return true;
+  }
+  if (self == null || obj == null) {
+     return false;
+  } 
   if (self.__cid != obj.__cid) {
      return false;
   } else {
