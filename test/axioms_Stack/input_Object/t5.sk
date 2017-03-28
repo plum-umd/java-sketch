@@ -1,24 +1,27 @@
 package t5;
 
-// len(concat(concat(concat(s1,s2),s3),s4)) == len(s1) + len(s2) + len(s3) + len(s4)
+// pop(push(pop(push(pop(push(pop(push(pop(push(s, o1)), o2)), o3)), o4)), o5))
+// == o5
 harness void mn() {
-  Object s1 = string(String(), 8, "hello, ");
-  Object s2 = string(String(), 7, "world!");
-  Object s3 = string(String(), 14, "ALLWORKNOPLAY");
-  Object s4 = string(String(), 20, "MAKESJACKADULLBOY!!");
+  Object s = object();
+  Object o1 = object();
+  Object o2 = object();
+  Object o3 = object();
+  Object o4 = object();
+  Object o5 = object();
 
-  Object len1 = (s1.__cid == String() || s1.__cid == Concat() ? length(s1) : null);
-  Object len2 = (s2.__cid == String() || s2.__cid == Concat() ? length(s2) : null);
-  Object len3 = (s3.__cid == String() || s3.__cid == Concat() ? length(s3) : null);
-  Object len4 = (s4.__cid == String() || s4.__cid == Concat() ? length(s4) : null);
+  Object psh1 = push(s, o1);
+  Object poppsh1 = pop(psh1);
+  Object psh2 = push(poppsh1, o2);
+  Object poppsh2 = pop(psh2);
+  Object psh3 = push(poppsh2, o3);
+  Object poppsh3 = pop(psh3);
+  Object psh4 = push(poppsh3, o4);
+  Object poppsh4 = pop(psh4);
+  Object psh5 = push(poppsh4, o5);
+  Object poppsh5 = pop(psh5);
 
-  Object len1234 = plus(plus(len1, len2), plus(len3, len4));
-
-  Object c12 = (s1.__cid == String() || s1.__cid == Concat() ? concat(s1, s2) : null);
-  Object c34 = (s3.__cid == String() || s3.__cid == Concat() ? concat(s3, s4) : null);
-
-  Object cc1234 = (c12.__cid == String() || c12.__cid == Concat() ? concat(c12, c34) : null);
-  Object lencc1234 = (cc1234.__cid == String() || cc1234.__cid == Concat() ? length(cc1234) : null);
-
-  assert equals_Axiom(xform(lencc1234, ??), len1234);
+  assert equals_Axiom(elem(xform(tuple(poppsh5, null), ??)), o5);
+  assert equals_Axiom(stack(xform(tuple(poppsh5, null), ??)), poppsh4);
+  assert equals_Axiom(stack(xform(tuple(poppsh5, null), ??)), poppsh5);
 }

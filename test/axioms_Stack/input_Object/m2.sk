@@ -1,6 +1,7 @@
 pragma options "--bnd-cbits 7";
 pragma options "--bnd-arr-size 2048";
 pragma options "--bnd-unroll-amnt 256";
+pragma options "--bnd-inline-amnt 15";
 pragma options "--fe-fpencoding AS_FIXPOINT";
 include "meta.sk";
 include "Object.sk";
@@ -9,6 +10,7 @@ include "String.sk";
 include "Push.sk";
 include "Pop.sk";
 include "Error.sk";
+include "Tuple.sk";
 include "Axiom_Stack.sk";
 
 include "t2.sk";

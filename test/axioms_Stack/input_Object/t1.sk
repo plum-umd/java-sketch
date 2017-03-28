@@ -1,6 +1,7 @@
 package t1;
 
-// pop(push(push(s,o1), o2)) == o2
+// pop(push(push(s,o1), o2)) == (push(s,o1), o2)
+// pop(push(push(s,o1), o2)) == (pop(push(push(s,o1), o2)), o2)
 harness void mn() {
   Object s = object();
   Object o1 = object();
@@ -11,5 +12,7 @@ harness void mn() {
 
   Object poppsh12 = pop(psh12);
 
-  assert equals_Axiom(xform(poppsh12,??), o2);
+  assert equals_Axiom(elem(xform(tuple(poppsh12, null),??)), o2);
+  assert equals_Axiom(stack(xform(tuple(poppsh12, null),??)), psh1);
+  assert equals_Axiom(stack(xform(tuple(poppsh12, null),??)), poppsh12);
 }
