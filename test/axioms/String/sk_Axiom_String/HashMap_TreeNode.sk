@@ -1,9 +1,0 @@
-package HashMap_TreeNode;
-
-Object self0;
-
-Object HashMap_TreeNode_HashMap_TreeNode_HashMap(Object self, Object self_0) {
-    self0 = self_0;
-    return self;
-}
-

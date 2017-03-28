@@ -1,5 +1,0 @@
-package Error;
-
-Object Error_Error(Object self) {
-   return self;
-}

@@ -1,6 +1,0 @@
-package LinkedList;
-
-Object LinkedList_LinkedList(Object self) {
-  return self;
-}
-

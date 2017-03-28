@@ -1,6 +1,0 @@
-package Stack;
-
-Object Stack_Stack(Object self) {
-  return self;
-}
-
