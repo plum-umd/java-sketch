@@ -1,9 +1,0 @@
-package CharSequence;
-
-Object CharSequence_CharSequence(Object self) {
-    return self;
-}
-
-
-
-
