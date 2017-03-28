@@ -72,6 +72,9 @@ class TestJava(TestCommon):
     def test_IfaceTypes(self):
         self.__test(["IfaceTypes.java"])
 
+    def test_Iter(self):
+        self.__test(["Iter.java"])
+
     def test_LocalStaticCalls(self):
         self.__test(["LocalStaticCalls.java"])
 
