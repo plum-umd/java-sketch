@@ -1,6 +1,0 @@
-package ArrayDeque;
-
-Object ArrayDeque_ArrayDeque(Object self) {
-  return self;
-}
-
