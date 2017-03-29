@@ -16,14 +16,6 @@ int hashCode(Object self) {
   return 0;
 }
 
-// adt T {
-//   String { int __cid; int n; char[n] s; }
-//   Len    { T t; }
-//   Concat { T t1; T t2; }
-//   Plus   { T left; T right; }
-//   Error  { }
-// }
-
 bit equals_Axiom(Object self, Object obj) {
   if (self.__cid != obj.__cid) {
      return false;

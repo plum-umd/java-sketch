@@ -1,14 +1,13 @@
-//6  This is the number of tests
 package test;
 
 harness void mn() {
   if (TID==0) t0();
   else if (TID==1) t1();
-  /* else if (TID==2) t2(); */
-  /* else if (TID==3) t3(); */
-  /* else if (TID==4) t4(); */
-  /* else if (TID==5) t5(); */
-  /* else if (TID==6) t6(); */
+  else if (TID==2) t2();
+  else if (TID==3) t3();
+  else if (TID==4) t4();
+  else if (TID==5) t5();
+  else if (TID==6) t6();
 }
 
 // len(concat(s1,s2)) == len(s1) + len(s2)
