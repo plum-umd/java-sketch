@@ -61,9 +61,8 @@ if __name__ == '__main__':
     parser.add_option('-i', action='store_true', dest='impl', default=False)
     parser.add_option('-a', action='store_true', dest='adt', default=False)
     parser.add_option('-o', action='store_true', dest='obj', default=False)
-    parser.add_option('-n', action='store_const', dest='trials', default=1)
+    parser.add_option('-n', action='store', type='int', dest='trials', default=1)
     (options, args) = parser.parse_args()
-
     print 'Number of trials: {}'.format(options.trials)
     if options.impl:
         print 'Testing implementation'
