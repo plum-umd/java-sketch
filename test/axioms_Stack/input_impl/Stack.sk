@@ -48,7 +48,7 @@ Object pop(Object self) {
 
 int search_Object(Object self, Object o) {
   for (int i = 0; i < self.size_Stack; i++) {
-    if ((self.elementData_Stack.A[i].__cid == Stack() ? equals_Object@Object(self.elementData_Stack.A[i], o) : self.elementData_Stack.A[i].__cid == String() ? equals_Object@String(self.elementData_Stack.A[i], o) : self.elementData_Stack.A[i].__cid == t0() ? equals_Object@Object(self.elementData_Stack.A[i], o) : self.elementData_Stack.A[i].__cid == Object() ? equals_Object@Object(self.elementData_Stack.A[i], o) : 0)) {
+    if ((self.elementData_Stack.A[i].__cid == Stack() ? equals_Object@Object(self.elementData_Stack.A[i], o) : self.elementData_Stack.A[i].__cid == String() ? equals_Object@String(self.elementData_Stack.A[i], o) : self.elementData_Stack.A[i].__cid == Object() ? equals_Object@Object(self.elementData_Stack.A[i], o) : 0)) {
       return i;
     }
   }

@@ -1,5 +1,7 @@
 package t4;
 
+int t4() { return 34; }
+
 Object t4_t4(Object self) {
     return self;
 }

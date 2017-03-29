@@ -1,5 +1,7 @@
 package t5;
 
+int t5() { return 35; }
+
 Object t5_t5(Object self) {
     return self;
 }

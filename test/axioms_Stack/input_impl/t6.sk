@@ -1,5 +1,7 @@
 package t6;
 
+int t6() { return 36; }
+
 Object t6_t6(Object self) {
     return self;
 }

@@ -11,11 +11,11 @@ bit equals_Object_Object(Object a, Object b) {
     }
     return false;
   }
-  return (a.__cid == Stack() ? equals_Object@Object(a, b) : a.__cid == String() ? equals_Object@String(a, b) : a.__cid == t0() ? equals_Object@Object(a, b) : a.__cid == Object() ? equals_Object@Object(a, b) : 0);
+  return (a.__cid == Stack() ? equals_Object@Object(a, b) : a.__cid == String() ? equals_Object@String(a, b) : a.__cid == Object() ? equals_Object@Object(a, b) : 0);
 }
 
 int hashCode_Object(Object o) {
-  return (o != null ? (o.__cid == Stack() ? hashCode@Object(o) : o.__cid == String() ? hashCode@String(o) : o.__cid == t0() ? hashCode@Object(o) : o.__cid == Object() ? hashCode@Object(o) : 0) : 0);
+  return (o != null ? (o.__cid == Stack() ? hashCode@Object(o) : o.__cid == String() ? hashCode@String(o) : o.__cid == Object() ? hashCode@Object(o) : 0) : 0);
 }
 
 Object toString(Object self) {
