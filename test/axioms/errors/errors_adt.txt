@@ -1,0 +1,2 @@
+sketch --fe-def TID=2 --fe-inc input_adt input_adt/main.sk
+sketch --fe-def TID=3 --fe-inc input_adt input_adt/main.sk
