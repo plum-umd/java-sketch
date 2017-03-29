@@ -1,7 +1,5 @@
 package test;
 
-int TID = -1;
-
 harness void mn() {
   if (TID==0) t0();
   else if (TID==1) t1();
@@ -11,6 +9,7 @@ harness void mn() {
   else if (TID==5) t5();
   else if (TID==6) t6();
   else if (TID==7) t7();
+  else if (TID==8) t8();
   else if (TID==-1) {
     t0();
     t1();
@@ -182,4 +181,31 @@ harness void t7() {
   Object pop1 = pop(pop2);
   
   assert equals_Axiom(elem(xform3(tuple(pop1, null), 0, ??)), o1);
+}
+
+void t8() {
+   Object s = object();
+   Object o1 = object();
+   Object o2 = object();
+   Object o3 = object();
+   Object o4 = object();
+   Object o5 = object();
+   Object o6 = object();
+ 
+   Object psh1 = push(s, o1);
+   Object psh12 = push(psh1, o2);
+   Object psh123 = push(psh12, o3);
+   Object psh1234 = push(psh123, o4);
+   Object psh12345 = push(psh1234, o5);
+   Object psh123456 = push(psh12345, o6);
+
+   Object pop1 = pop(psh123456);
+
+   int i = 0;
+
+   for (i = 0; i < ??; i++) {
+      pop1 = pop(pop1);
+   }
+
+   assert equals_Axiom(elem(xform3(tuple(pop1, null), 0, ??)), o1);
 }

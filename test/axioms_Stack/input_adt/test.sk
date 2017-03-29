@@ -1,7 +1,5 @@
 package test;
 
-int TID = 7;
-
 harness void mn() {
   if (TID==0) t0();
   else if (TID==1) t1();
@@ -11,6 +9,7 @@ harness void mn() {
   else if (TID==5) t5();
   else if (TID==6) t6();
   else if (TID==7) t7();
+  else if (TID==8) t8();
   else if (TID==-1) {
      t0();
      t1();
@@ -25,7 +24,7 @@ harness void mn() {
 
 // pop(push(s,o1)) == (s, o1)
 // pop(push(s,o1)) == (pop(push(s,o1)), o1)
-harness void t0() {
+void t0() {
   Object s = stack();
   Object o1 = object();
 
@@ -38,7 +37,7 @@ harness void t0() {
 
 // pop(push(push(s,o1), o2)) == (push(s,o1), o2)
 // pop(push(push(s,o1), o2)) == (pop(push(push(s,o1), o2)), o2)
-harness void t1() {
+void t1() {
   Object s = stack();
   Object o1 = object();
   Object o2 = object();
@@ -55,7 +54,7 @@ harness void t1() {
 //     (push(push(push(push(push(s, o1), o2), o3), o4), o5), o6)
 // pop(push(push(push(push(push(push(s, o1), o2), o3), o4), o5), o6)) == 
 //     (pop(push(push(push(push(push(push(s, o1), o2), o3), o4), o5), o6)), o6)
-harness void t2() {
+void t2() {
   Object s = stack();
   Object o1 = object();
   Object o2 = object();
@@ -77,7 +76,7 @@ harness void t2() {
 }
 
 // pop(push(pop(push(s, o1)), o2)) == o2
-harness void t3() {
+void t3() {
   Object s = stack();
   Object o1 = object();
   Object o2 = object();
@@ -92,7 +91,7 @@ harness void t3() {
 }
 
 // pop(pop(push(push(s, o1), o2))) == o1
-harness void t4() {
+void t4() {
   Object s = stack();
   Object o1 = object();
   Object o2 = object();
@@ -108,7 +107,7 @@ harness void t4() {
 
 // pop(push(pop(push(pop(push(pop(push(pop(push(s, o1)), o2)), o3)), o4)), o5))
 // == o5
-harness void t5() {
+void t5() {
   Object s = stack();
   Object o1 = object();
   Object o2 = object();
@@ -132,7 +131,7 @@ harness void t5() {
 
 // pop(pop(pop(pop(pop(push(push(push(push(push(s, o1), o2), o3), o4), o5))))))
 // == o1
-harness void t6() {
+void t6() {
   Object s = stack();
   Object o1 = object();
   Object o2 = object();
@@ -156,7 +155,7 @@ harness void t6() {
 }
 
 // pop(pop(pop(pop(push(push(pop(push(pop(push(push(push(s, o1), o2), o3)), o4)),// o5), o6))))) == o1
-harness void t7() {
+void t7() {
   Object s = stack();
   Object o1 = object();
   Object o2 = object();
@@ -182,4 +181,31 @@ harness void t7() {
   Object pop1 = pop(pop2.t);
   
   assert xform(pop1.t, 0, ??) === o1.t;
+}
+
+void t8() {
+   Object s = stack();
+   Object o1 = object();
+   Object o2 = object();
+   Object o3 = object();
+   Object o4 = object();
+   Object o5 = object();
+   Object o6 = object();
+ 
+   Object psh1 = push(s.t, o1.t);
+   Object psh12 = push(psh1.t, o2.t);
+   Object psh123 = push(psh12.t, o3.t);
+   Object psh1234 = push(psh123.t, o4.t);
+   Object psh12345 = push(psh1234.t, o5.t);
+   Object psh123456 = push(psh12345.t, o6.t);
+
+   Object pop1 = pop(psh123456.t);
+
+   int i = 0;
+
+   for (i = 0; i < ??; i++) {
+      pop1 = pop(pop1.t);
+   }
+
+   assert xform(pop1.t, 0, ??) === o1.t;
 }
