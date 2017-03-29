@@ -1,0 +1,185 @@
+package test;
+
+int TID = 7;
+
+harness void mn() {
+  if (TID==0) t0();
+  else if (TID==1) t1();
+  else if (TID==2) t2();
+  else if (TID==3) t3();
+  else if (TID==4) t4();
+  else if (TID==5) t5();
+  else if (TID==6) t6();
+  else if (TID==7) t7();
+  else if (TID==-1) {
+     t0();
+     t1();
+     t2();
+     t3();
+     t4();
+     t5();
+     t6();
+     t7();
+  }
+}
+
+// pop(push(s,o1)) == (s, o1)
+// pop(push(s,o1)) == (pop(push(s,o1)), o1)
+harness void t0() {
+  Object s = stack();
+  Object o1 = object();
+
+  Object psh1 = push(s.t, o1.t);
+
+  Object poppsh1 = pop(psh1.t);
+
+  assert xform(poppsh1.t, 0, ??) === o1.t;
+}
+
+// pop(push(push(s,o1), o2)) == (push(s,o1), o2)
+// pop(push(push(s,o1), o2)) == (pop(push(push(s,o1), o2)), o2)
+harness void t1() {
+  Object s = stack();
+  Object o1 = object();
+  Object o2 = object();
+
+  Object psh1 = push(s.t, o1.t);
+  Object psh12 = push(psh1.t, o2.t);
+
+  Object poppsh12 = pop(psh12.t);
+
+  assert xform(poppsh12.t, 0, ??) === o2.t;
+}
+
+// pop(push(push(push(push(push(push(s, o1), o2), o3), o4), o5), o6)) == 
+//     (push(push(push(push(push(s, o1), o2), o3), o4), o5), o6)
+// pop(push(push(push(push(push(push(s, o1), o2), o3), o4), o5), o6)) == 
+//     (pop(push(push(push(push(push(push(s, o1), o2), o3), o4), o5), o6)), o6)
+harness void t2() {
+  Object s = stack();
+  Object o1 = object();
+  Object o2 = object();
+  Object o3 = object();
+  Object o4 = object();
+  Object o5 = object();
+  Object o6 = object();
+
+  Object psh1 = push(s.t, o1.t);
+  Object psh12 = push(psh1.t, o2.t);
+  Object psh123 = push(psh12.t, o3.t);
+  Object psh1234 = push(psh123.t, o4.t);
+  Object psh12345 = push(psh1234.t, o5.t);
+  Object psh123456 = push(psh12345.t, o6.t);
+
+  Object poppsh123456 = pop(psh123456.t);
+
+  assert xform(poppsh123456.t, 0, ??) === o6.t;
+}
+
+// pop(push(pop(push(s, o1)), o2)) == o2
+harness void t3() {
+  Object s = stack();
+  Object o1 = object();
+  Object o2 = object();
+
+  Object psh1 = push(s.t, o1.t);  
+  Object poppsh1 = pop(psh1.t);
+
+  Object pshpoppsh12 = push(poppsh1.t, o2.t);
+  Object poppshpoppsh12 = pop(pshpoppsh12.t);
+
+  assert xform(poppshpoppsh12.t, 0, ??) === o2.t;
+}
+
+// pop(pop(push(push(s, o1), o2))) == o1
+harness void t4() {
+  Object s = stack();
+  Object o1 = object();
+  Object o2 = object();
+
+  Object psh1 = push(s.t, o1.t);
+  Object psh12 = push(psh1.t, o2.t);
+
+  Object poppsh12 = pop(psh12.t);
+  Object poppoppsh12 = pop(poppsh12.t);
+
+  assert xform(poppoppsh12.t, 0, ??) === o1.t;
+}
+
+// pop(push(pop(push(pop(push(pop(push(pop(push(s, o1)), o2)), o3)), o4)), o5))
+// == o5
+harness void t5() {
+  Object s = stack();
+  Object o1 = object();
+  Object o2 = object();
+  Object o3 = object();
+  Object o4 = object();
+  Object o5 = object();
+
+  Object psh1 = push(s.t, o1.t);
+  Object poppsh1 = pop(psh1.t);
+  Object psh2 = push(poppsh1.t, o2.t);
+  Object poppsh2 = pop(psh2.t);
+  Object psh3 = push(poppsh2.t, o3.t);
+  Object poppsh3 = pop(psh3.t);
+  Object psh4 = push(poppsh3.t, o4.t);
+  Object poppsh4 = pop(psh4.t);
+  Object psh5 = push(poppsh4.t, o5.t);
+  Object poppsh5 = pop(psh5.t);
+
+  assert xform(poppsh5.t, 0, ??) === o5.t;
+}
+
+// pop(pop(pop(pop(pop(push(push(push(push(push(s, o1), o2), o3), o4), o5))))))
+// == o1
+harness void t6() {
+  Object s = stack();
+  Object o1 = object();
+  Object o2 = object();
+  Object o3 = object();
+  Object o4 = object();
+  Object o5 = object();
+
+  Object psh1 = push(s.t, o1.t);
+  Object psh12 = push(psh1.t, o2.t);
+  Object psh123 = push(psh12.t, o3.t);
+  Object psh1234 = push(psh123.t, o4.t);
+  Object psh12345 = push(psh1234.t, o5.t);
+
+  Object pop5 = pop(psh12345.t);
+  Object pop4 = pop(pop5.t);
+  Object pop3 = pop(pop4.t);
+  Object pop2 = pop(pop3.t);
+  Object pop1 = pop(pop2.t);
+
+  assert xform(pop1.t, 0, ??) === o1.t;
+}
+
+// pop(pop(pop(pop(push(push(pop(push(pop(push(push(push(s, o1), o2), o3)), o4)),// o5), o6))))) == o1
+harness void t7() {
+  Object s = stack();
+  Object o1 = object();
+  Object o2 = object();
+  Object o3 = object();
+  Object o4 = object();
+  Object o5 = object();
+  Object o6 = object();
+
+  Object psh1 = push(s.t, o1.t);
+  Object psh12 = push(psh1.t, o2.t);
+  Object psh123 = push(psh12.t, o3.t);
+  
+  Object pop3 = pop(psh123.t);
+  Object psh124 = push(pop3.t, o4.t);
+
+  Object pop4 = pop(psh124.t);
+  Object psh125 = push(pop4.t, o5.t);
+  Object psh1256 = push(psh125.t, o6.t);
+
+  Object pop6 = pop(psh1256.t);
+  Object pop5 = pop(pop6.t);
+  Object pop2 = pop(pop5.t);
+  Object pop1 = pop(pop2.t);
+  
+  assert xform(pop1.t, 0, ??) === o1.t;
+}

@@ -1,0 +1,67 @@
+package meta;
+
+adt T {
+  Empty  { }
+  Obj    {Object o;}
+  Push	 {T t; T o;}
+  Pop	 {T t;}
+  Tuple  {T left; T Right;}
+  Error  { }
+}
+
+Object object() {
+   return new Object(__cid=Object(), t=new Obj(o=new Object(__cid=Object())));
+}
+
+Object stack() {
+   return new Object(__cid=Stack(), t=new Empty());
+}
+
+Object push(T t, T o) {
+   return new Object(__cid=Stack(), t=new Push(t=t, o=o));
+}
+
+Object pop(T t) {
+   return new Object(__cid=Stack(), t=new Pop(t=t));
+}
+
+T xform(T t, int depth, int dice) {
+   switch(t) {
+      case Empty:	{ return t; }
+      case Pop:	
+      { 
+         if (dice%2 == 0) {
+	    dice /= 2;
+	    return xform(t.t, depth+1, dice);
+	 } else {
+	    return t;
+	 }
+      }
+      case Push:		
+      { 
+         if (depth == 1) {
+	    if (dice%2 == 0) {
+	       return t.o;
+	    } else {
+	       return t;
+	    }
+	 } else {
+	    if (dice%2 == 0) {
+	       dice /=2;
+	       return xform(t.t, depth-1, dice);
+	    } else {
+	       return t;
+	    }
+	 }
+      }
+      case Tuple:	{ return t; }
+      case Obj:		{ return t; }
+      case Error:	{ return t; }
+   }
+}
+
+// distinct class IDs
+int Object()               { return 1; }
+int Stack()                { return 24; }
+
+// Uninterpreted functions
