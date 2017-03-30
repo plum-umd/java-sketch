@@ -3,21 +3,22 @@ import re
 import math
 
 def main(num_trials, test):
-    result_file = 'results/results_{}.csv'.format(test)
-    error_file = 'errors/errors_{}.txt'.format(test)
-    log_file = 'logs/log_{}.txt'.format(test)
+    result_file = 'results/{}.csv'.format(test)
+    error_file = 'errors/{}.txt'.format(test)
+    log_file = 'logs/{}.txt'.format(test)
     input_dir = 'input_{}'.format(test)
     with open(result_file, 'w') as f: pass
     with open(error_file, 'w') as f: pass
     with open('{}/test.sk'.format(input_dir)) as f: text = f.read()
     log = open(log_file, 'w')
-    num_tests=int(re.findall(r't[0-9]+', text)[-1][1:])
+    num_tests=int(re.findall(r't[0-9]+', text)[-1][1:]) + 1
     for i in range(num_tests):
         print 'Running test {}'.format(i)
         times = []
         for j in range(num_trials):
             cmd = ['sketch', '--fe-def', 'TID={}'.format(i), '--fe-inc', input_dir, '{}/main.sk'.format(input_dir)]
-            log.write('test: {}, trial: {}, cmd: {}'.format(i, j, ' '.join(cmd)))
+            log.write('test: {}, trial: {}, cmd: {}\n'.format(i, j, ' '.join(cmd)))
+            log.flush()
             try:
                 t = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
                 start = t.rfind('Total time = ') + len('Total time = ')
@@ -38,9 +39,9 @@ def combine():
         if len(nums) % 2 == 0: return (nums[mid-1]+nums[mid])/2.0
         else: return nums[int(math.floor(mid))]
     
-    with open('results/results_impl.csv','r') as f: impl_txt = map(lambda v: v.strip('\n\t'), f.readlines())
-    with open('results/results_adt.csv','r') as f: adt_txt = map(lambda v: v.strip('\n\t'), f.readlines())
-    with open('results/results_Object.csv','r') as f: Object_txt = map(lambda v: v.strip('\n\t'), f.readlines())
+    with open('results/impl.csv','r') as f: impl_txt = map(lambda v: v.strip('\n\t'), f.readlines())
+    with open('results/adt.csv','r') as f: adt_txt = map(lambda v: v.strip('\n\t'), f.readlines())
+    with open('results/Object.csv','r') as f: Object_txt = map(lambda v: v.strip('\n\t'), f.readlines())
     
     vals = []
     for i,a,o in zip(impl_txt, adt_txt, Object_txt):
@@ -52,7 +53,7 @@ def combine():
         mo = median(map(float, strs_o))
         vals.append((mi, ma, mo))
     
-    with open('results/all_results.csv', 'w') as f:
+    with open('results/all.csv', 'w') as f:
         map(lambda v: f.write('{}\t{}\t{}\n'.format(v[0], v[1], v[2])), vals)
     
 if __name__ == '__main__':
@@ -81,8 +82,10 @@ if __name__ == '__main__':
         main(options.trials, 'Object')
         print
     if (not options.impl) and (not options.adt) and (not options.obj):
-        print 'Testing implementation, adt, and Object'
+        print 'Testing implementation'
         main(options.trials, 'impl')
+        print 'Testing adt'
         main(options.trials, 'adt')
+        print 'Testing Object'
         main(options.trials, 'Object')
         combine()
