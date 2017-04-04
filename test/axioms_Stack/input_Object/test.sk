@@ -32,7 +32,7 @@ harness void t0() {
 
   Object poppsh1 = pop(psh1);
 
-  assert equals_Axiom(elem(xform3(tuple(poppsh1, null), 0, ??)), o1);
+  assert equals_Axiom(xform(poppsh1, 0, ??), o1);
 }
 
 // pop(push(push(s,o1), o2)) == (push(s,o1), o2)
@@ -47,7 +47,7 @@ harness void t1() {
 
   Object poppsh12 = pop(psh12);
 
-  assert equals_Axiom(elem(xform3(tuple(poppsh12, null), 0, ??)), o2);
+  assert equals_Axiom(xform(poppsh12, 0, ??), o2);
 }
 
 // pop(push(push(push(push(push(push(s, o1), o2), o3), o4), o5), o6)) == 
@@ -72,7 +72,7 @@ harness void t2() {
 
   Object poppsh123456 = pop(psh123456);
 
-  assert equals_Axiom(elem(xform3(tuple(poppsh123456, null), 0, ??)), o6);
+  assert equals_Axiom(xform(poppsh123456, 0, ??), o6);
 }
 
 // pop(push(pop(push(s, o1)), o2)) == o2
@@ -87,7 +87,7 @@ harness void t3() {
   Object pshpoppsh12 = push(poppsh1, o2);
   Object poppshpoppsh12 = pop(pshpoppsh12);
 
-  assert equals_Axiom(elem(xform3(tuple(poppshpoppsh12, null), 0, ??)), o2);
+  assert equals_Axiom(xform(poppshpoppsh12, 0, ??), o2);
 }
 
 // pop(pop(push(push(s, o1), o2))) == o1
@@ -102,7 +102,7 @@ harness void t4() {
   Object poppsh12 = pop(psh12);
   Object poppoppsh12 = pop(poppsh12);
 
-  assert equals_Axiom(elem(xform3(tuple(poppoppsh12, null), 0, ??)), o1);
+  assert equals_Axiom(xform(poppoppsh12, 0, ??), o1);
 }
 
 // pop(push(pop(push(pop(push(pop(push(pop(push(s, o1)), o2)), o3)), o4)), o5))
@@ -126,7 +126,7 @@ harness void t5() {
   Object psh5 = push(poppsh4, o5);
   Object poppsh5 = pop(psh5);
 
-  assert equals_Axiom(elem(xform3(tuple(poppsh5, null), 0, ??)), o5);
+  assert equals_Axiom(xform(poppsh5, 0, ??), o5);
 }
 
 // pop(pop(pop(pop(pop(push(push(push(push(push(s, o1), o2), o3), o4), o5))))))
@@ -151,7 +151,7 @@ harness void t6() {
   Object pop2 = pop(pop3);
   Object pop1 = pop(pop2);
 
-  assert equals_Axiom(elem(xform3(tuple(pop1, null), 0, ??)), o1);
+  assert equals_Axiom(xform(pop1, 0, ??), o1);
 }
 
 // pop(pop(pop(pop(push(push(pop(push(pop(push(push(push(s, o1), o2), o3)), o4)),// o5), o6))))) == o1
@@ -180,7 +180,7 @@ harness void t7() {
   Object pop2 = pop(pop5);
   Object pop1 = pop(pop2);
   
-  assert equals_Axiom(elem(xform3(tuple(pop1, null), 0, ??)), o1);
+  assert equals_Axiom(xform(pop1, 0, ??), o1);
 }
 
 void t8() {
@@ -207,5 +207,5 @@ void t8() {
       pop1 = pop(pop1);
    }
 
-   assert equals_Axiom(elem(xform3(tuple(pop1, null), 0, ??)), o1);
+   assert equals_Axiom(xform(pop1, 0, ??), o1);
 }
