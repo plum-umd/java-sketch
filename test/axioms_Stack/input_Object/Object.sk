@@ -23,6 +23,7 @@ struct Object {
   Object	s_Pop;
   Object	s_Tuple;
   Object	o_Tuple;
+  int		i;
   // Array_Object  table_HashMap;
   // Object        entrySet_HashMap;
   // int           size_HashMap;
