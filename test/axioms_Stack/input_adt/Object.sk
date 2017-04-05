@@ -11,4 +11,5 @@ struct Object {
   Array_char    _value_StringBuffer;
   int           _count_StringBuffer;
   T            t;
+  int	       i;
 }

@@ -26,7 +26,7 @@ harness void mn() {
 // pop(push(s,o1)) == (pop(push(s,o1)), o1)
 void t0() {
   Object s = stack();
-  Object o1 = object();
+  Object o1 = object(1);
 
   Object psh1 = push(s.t, o1.t);
 
@@ -39,8 +39,8 @@ void t0() {
 // pop(push(push(s,o1), o2)) == (pop(push(push(s,o1), o2)), o2)
 void t1() {
   Object s = stack();
-  Object o1 = object();
-  Object o2 = object();
+  Object o1 = object(1);
+  Object o2 = object(2);
 
   Object psh1 = push(s.t, o1.t);
   Object psh12 = push(psh1.t, o2.t);
@@ -56,12 +56,12 @@ void t1() {
 //     (pop(push(push(push(push(push(push(s, o1), o2), o3), o4), o5), o6)), o6)
 void t2() {
   Object s = stack();
-  Object o1 = object();
-  Object o2 = object();
-  Object o3 = object();
-  Object o4 = object();
-  Object o5 = object();
-  Object o6 = object();
+  Object o1 = object(1);
+  Object o2 = object(2);
+  Object o3 = object(3);
+  Object o4 = object(4);
+  Object o5 = object(5);
+  Object o6 = object(6);
 
   Object psh1 = push(s.t, o1.t);
   Object psh12 = push(psh1.t, o2.t);
@@ -78,8 +78,8 @@ void t2() {
 // pop(push(pop(push(s, o1)), o2)) == o2
 void t3() {
   Object s = stack();
-  Object o1 = object();
-  Object o2 = object();
+  Object o1 = object(1);
+  Object o2 = object(2);
 
   Object psh1 = push(s.t, o1.t);  
   Object poppsh1 = pop(psh1.t);
@@ -93,8 +93,8 @@ void t3() {
 // pop(pop(push(push(s, o1), o2))) == o1
 void t4() {
   Object s = stack();
-  Object o1 = object();
-  Object o2 = object();
+  Object o1 = object(1);
+  Object o2 = object(2);
 
   Object psh1 = push(s.t, o1.t);
   Object psh12 = push(psh1.t, o2.t);
@@ -109,11 +109,11 @@ void t4() {
 // == o5
 void t5() {
   Object s = stack();
-  Object o1 = object();
-  Object o2 = object();
-  Object o3 = object();
-  Object o4 = object();
-  Object o5 = object();
+  Object o1 = object(1);
+  Object o2 = object(2);
+  Object o3 = object(3);
+  Object o4 = object(4);
+  Object o5 = object(5);
 
   Object psh1 = push(s.t, o1.t);
   Object poppsh1 = pop(psh1.t);
@@ -133,11 +133,11 @@ void t5() {
 // == o1
 void t6() {
   Object s = stack();
-  Object o1 = object();
-  Object o2 = object();
-  Object o3 = object();
-  Object o4 = object();
-  Object o5 = object();
+  Object o1 = object(1);
+  Object o2 = object(2);
+  Object o3 = object(3);
+  Object o4 = object(4);
+  Object o5 = object(5);
 
   Object psh1 = push(s.t, o1.t);
   Object psh12 = push(psh1.t, o2.t);
@@ -157,12 +157,12 @@ void t6() {
 // pop(pop(pop(pop(push(push(pop(push(pop(push(push(push(s, o1), o2), o3)), o4)),// o5), o6))))) == o1
 void t7() {
   Object s = stack();
-  Object o1 = object();
-  Object o2 = object();
-  Object o3 = object();
-  Object o4 = object();
-  Object o5 = object();
-  Object o6 = object();
+  Object o1 = object(1);
+  Object o2 = object(2);
+  Object o3 = object(3);
+  Object o4 = object(4);
+  Object o5 = object(5);
+  Object o6 = object(6);
 
   Object psh1 = push(s.t, o1.t);
   Object psh12 = push(psh1.t, o2.t);
@@ -185,12 +185,12 @@ void t7() {
 
 void t8() {
    Object s = stack();
-   Object o1 = object();
-   Object o2 = object();
-   Object o3 = object();
-   Object o4 = object();
-   Object o5 = object();
-   Object o6 = object();
+   Object o1 = object(1);
+   Object o2 = object(2);
+   Object o3 = object(3);
+   Object o4 = object(4);
+   Object o5 = object(5);
+   Object o6 = object(6);
  
    Object psh1 = push(s.t, o1.t);
    Object psh12 = push(psh1.t, o2.t);
