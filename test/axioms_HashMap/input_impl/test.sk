@@ -1,0 +1,181 @@
+package test;
+
+harness void mn() {
+  if (TID==0) t0();
+  else if (TID==1) t1();
+  else if (TID==2) t2();
+  else if (TID==3) t3();
+  else if (TID==4) t4();
+  else if (TID==5) t5();
+  else if (TID==6) t6();
+  else if (TID==7) t7();
+  else if (TID==8) t8();
+  else if (TID==-1) {
+    t0();
+    t1();
+    t2();
+    t3();
+    t4();
+    t5();
+    t6();
+    t7();
+  }
+}
+
+void t0() {
+  Object self = Object_Object(new Object(__cid=Object()));
+  Object s = Stack_Stack(new Object(__cid=Stack()));
+  Object o1 = Object_Object(new Object(__cid=Object()));
+  (s.__cid == Stack() ? push_E@Stack(s, o1) : null);
+  Object poppsh1 = (s.__cid == Stack() ? pop@Stack(s) : null);
+  assert (poppsh1.__cid == Stack() ? equals_Object@Object(poppsh1, o1) : poppsh1.__cid == String() ? equals_Object@String(poppsh1, o1) : poppsh1.__cid == Object() ? equals_Object@Object(poppsh1, o1) : 0);
+}
+
+void t1() {
+  Object self = Object_Object(new Object(__cid=Object()));
+  Object s = Stack_Stack(new Object(__cid=Stack()));
+  Object o1 = Object_Object(new Object(__cid=Object()));
+  Object o2 = Object_Object(new Object(__cid=Object()));
+  (s.__cid == Stack() ? push_E@Stack(s, o1) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o2) : null);
+  Object poppsh12 = (s.__cid == Stack() ? pop@Stack(s) : null);
+  assert (poppsh12.__cid == String() ? equals_Object@String(poppsh12, o2) : poppsh12.__cid == Stack() ? equals_Object@Object(poppsh12, o2) : poppsh12.__cid == Object() ? equals_Object@Object(poppsh12, o2) : 0);
+}
+
+void t2() {
+  Object self = Object_Object(new Object(__cid=Object()));
+  Object s = Stack_Stack(new Object(__cid=Stack()));
+  Object o1 = Object_Object(new Object(__cid=Object()));
+  Object o2 = Object_Object(new Object(__cid=Object()));
+  Object o3 = Object_Object(new Object(__cid=Object()));
+  Object o4 = Object_Object(new Object(__cid=Object()));
+  Object o5 = Object_Object(new Object(__cid=Object()));
+  Object o6 = Object_Object(new Object(__cid=Object()));
+  (s.__cid == Stack() ? push_E@Stack(s, o1) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o2) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o3) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o4) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o5) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o6) : null);
+  Object poppsh123456 = (s.__cid == Stack() ? pop@Stack(s) : null);
+  assert (poppsh123456.__cid == String() ? equals_Object@String(poppsh123456, o6) : poppsh123456.__cid == Stack() ? equals_Object@Object(poppsh123456, o6) : poppsh123456.__cid == Object() ? equals_Object@Object(poppsh123456, o6) : 0);
+}
+
+void t3() {
+  Object self = Object_Object(new Object(__cid=Object()));
+  Object s = Stack_Stack(new Object(__cid=Stack()));
+  Object o1 = Object_Object(new Object(__cid=Object()));
+  Object o2 = Object_Object(new Object(__cid=Object()));
+  (s.__cid == Stack() ? push_E@Stack(s, o1) : null);
+  (s.__cid == Stack() ? pop@Stack(s) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o2) : null);
+  Object poppshpoppsh12 = (s.__cid == Stack() ? pop@Stack(s) : null);
+  assert (poppshpoppsh12.__cid == String() ? equals_Object@String(poppshpoppsh12, o2) : poppshpoppsh12.__cid == Stack() ? equals_Object@Object(poppshpoppsh12, o2) : poppshpoppsh12.__cid == Object() ? equals_Object@Object(poppshpoppsh12, o2) : 0);
+}
+
+void t4() {
+  Object self = Object_Object(new Object(__cid=Object()));
+  Object s = Stack_Stack(new Object(__cid=Stack()));
+  Object o1 = Object_Object(new Object(__cid=Object()));
+  Object o2 = Object_Object(new Object(__cid=Object()));
+  (s.__cid == Stack() ? push_E@Stack(s, o1) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o2) : null);
+  (s.__cid == Stack() ? pop@Stack(s) : null);
+  Object poppoppsh12 = (s.__cid == Stack() ? pop@Stack(s) : null);
+  assert (poppoppsh12.__cid == String() ? equals_Object@String(poppoppsh12, o1) : poppoppsh12.__cid == Stack() ? equals_Object@Object(poppoppsh12, o1) : poppoppsh12.__cid == Object() ? equals_Object@Object(poppoppsh12, o1) : 0);
+}
+
+void t5() {
+  Object self = Object_Object(new Object(__cid=Object()));
+  Object s = Stack_Stack(new Object(__cid=Stack()));
+  Object o1 = Object_Object(new Object(__cid=Object()));
+  Object o2 = Object_Object(new Object(__cid=Object()));
+  Object o3 = Object_Object(new Object(__cid=Object()));
+  Object o4 = Object_Object(new Object(__cid=Object()));
+  Object o5 = Object_Object(new Object(__cid=Object()));
+  (s.__cid == Stack() ? push_E@Stack(s, o1) : null);
+  (s.__cid == Stack() ? pop@Stack(s) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o2) : null);
+  (s.__cid == Stack() ? pop@Stack(s) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o3) : null);
+  (s.__cid == Stack() ? pop@Stack(s) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o4) : null);
+  (s.__cid == Stack() ? pop@Stack(s) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o5) : null);
+  Object poppsh5 = (s.__cid == Stack() ? pop@Stack(s) : null);
+  assert (poppsh5.__cid == String() ? equals_Object@String(poppsh5, o5) : poppsh5.__cid == Stack() ? equals_Object@Object(poppsh5, o5) : poppsh5.__cid == Object() ? equals_Object@Object(poppsh5, o5) : 0);
+}
+
+void t6() {
+  Object self = Object_Object(new Object(__cid=Object()));
+  Object s = Stack_Stack(new Object(__cid=Stack()));
+  Object o1 = Object_Object(new Object(__cid=Object()));
+  Object o2 = Object_Object(new Object(__cid=Object()));
+  Object o3 = Object_Object(new Object(__cid=Object()));
+  Object o4 = Object_Object(new Object(__cid=Object()));
+  Object o5 = Object_Object(new Object(__cid=Object()));
+  (s.__cid == Stack() ? push_E@Stack(s, o1) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o2) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o3) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o4) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o5) : null);
+  (s.__cid == Stack() ? pop@Stack(s) : null);
+  (s.__cid == Stack() ? pop@Stack(s) : null);
+  (s.__cid == Stack() ? pop@Stack(s) : null);
+  (s.__cid == Stack() ? pop@Stack(s) : null);
+  Object poppsh1 = (s.__cid == Stack() ? pop@Stack(s) : null);
+  assert (poppsh1.__cid == String() ? equals_Object@String(poppsh1, o1) : poppsh1.__cid == Stack() ? equals_Object@Object(poppsh1, o1) : poppsh1.__cid == Object() ? equals_Object@Object(poppsh1, o1) : 0);
+}
+
+void t7() {
+  Object self = Object_Object(new Object(__cid=Object()));
+  Object s = Stack_Stack(new Object(__cid=Stack()));
+  Object o1 = Object_Object(new Object(__cid=Object()));
+  Object o2 = Object_Object(new Object(__cid=Object()));
+  Object o3 = Object_Object(new Object(__cid=Object()));
+  Object o4 = Object_Object(new Object(__cid=Object()));
+  Object o5 = Object_Object(new Object(__cid=Object()));
+  Object o6 = Object_Object(new Object(__cid=Object()));
+  (s.__cid == Stack() ? push_E@Stack(s, o1) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o2) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o3) : null);
+  (s.__cid == Stack() ? pop@Stack(s) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o4) : null);
+  (s.__cid == Stack() ? pop@Stack(s) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o5) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o6) : null);
+  (s.__cid == Stack() ? pop@Stack(s) : null);
+  (s.__cid == Stack() ? pop@Stack(s) : null);
+  (s.__cid == Stack() ? pop@Stack(s) : null);
+  Object poppsh1 = (s.__cid == Stack() ? pop@Stack(s) : null);
+  assert (poppsh1.__cid == Stack() ? equals_Object@Object(poppsh1, o1) : poppsh1.__cid == String() ? equals_Object@String(poppsh1, o1) : poppsh1.__cid == Object() ? equals_Object@Object(poppsh1, o1) : 0);
+}
+
+void t8() {
+  Object self = Object_Object(new Object(__cid=Object()));
+  Object s = Stack_Stack(new Object(__cid=Stack()));
+  Object o1 = Object_Object(new Object(__cid=Object()));
+  Object o2 = Object_Object(new Object(__cid=Object()));
+  Object o3 = Object_Object(new Object(__cid=Object()));
+  Object o4 = Object_Object(new Object(__cid=Object()));
+  Object o5 = Object_Object(new Object(__cid=Object()));
+  Object o6 = Object_Object(new Object(__cid=Object()));
+
+  (s.__cid == Stack() ? push_E@Stack(s, o1) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o2) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o3) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o4) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o5) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o6) : null);
+
+  Object pop1 = (s.__cid == Stack() ? pop@Stack(s) : null);
+
+  int i = 0;
+
+  for (i = 0; i < ??; i++) {
+     pop1 = (s.__cid == Stack() ? pop@Stack(s) : null);
+  }
+
+  assert (pop1.__cid == Stack() ? equals_Object@Object(pop1, o1) : pop1.__cid == String() ? equals_Object@String(pop1, o1) : pop1.__cid == Object() ? equals_Object@Object(pop1, o1) : 0);
+
+}

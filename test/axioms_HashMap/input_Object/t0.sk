@@ -1,0 +1,14 @@
+package t0;
+
+// pop(push(s,o1)) == (s, o1)
+// pop(push(s,o1)) == (pop(push(s,o1)), o1)
+harness void mn() {
+  Object s = object();
+  Object o1 = object();
+
+  Object psh1 = push(s, o1);
+
+  Object poppsh1 = pop(psh1);
+
+  assert equals_Axiom(elem(xform3(tuple(poppsh1, null), 0, ??)), o1);
+}

@@ -1,0 +1,32 @@
+package t7;
+
+int t7() { return 37; }
+
+Object t7_t7(Object self) {
+    return self;
+}
+
+harness void m() {
+  Object self = Object_Object(new Object(__cid=Object()));
+  Object s = Stack_Stack(new Object(__cid=Stack()));
+  Object o1 = Object_Object(new Object(__cid=Object()));
+  Object o2 = Object_Object(new Object(__cid=Object()));
+  Object o3 = Object_Object(new Object(__cid=Object()));
+  Object o4 = Object_Object(new Object(__cid=Object()));
+  Object o5 = Object_Object(new Object(__cid=Object()));
+  Object o6 = Object_Object(new Object(__cid=Object()));
+  (s.__cid == Stack() ? push_E@Stack(s, o1) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o2) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o3) : null);
+  (s.__cid == Stack() ? pop@Stack(s) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o4) : null);
+  (s.__cid == Stack() ? pop@Stack(s) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o5) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o6) : null);
+  (s.__cid == Stack() ? pop@Stack(s) : null);
+  (s.__cid == Stack() ? pop@Stack(s) : null);
+  (s.__cid == Stack() ? pop@Stack(s) : null);
+  Object poppsh1 = (s.__cid == Stack() ? pop@Stack(s) : null);
+  assert (poppsh1.__cid == t7() ? equals_Object@Object(poppsh1, o1) : poppsh1.__cid == Stack() ? equals_Object@Object(poppsh1, o1) : poppsh1.__cid == String() ? equals_Object@String(poppsh1, o1) : poppsh1.__cid == Object() ? equals_Object@Object(poppsh1, o1) : 0);
+}
+

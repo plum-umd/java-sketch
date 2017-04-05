@@ -1,0 +1,19 @@
+package Tuple;
+
+Object Tuple_Tuple(Object self) {
+   return self;
+}
+
+Object Tuple_Tuple_Object_Object(Object self, Object s, Object o) {
+   self.s_Tuple = s;
+   self.o_Tuple = o;
+   return self;
+}
+
+Object get_Stack(Object self) {
+   return self.s_Tuple;
+}
+
+Object get_Obj(Object self) {
+   return self.o_Tuple;
+}
