@@ -1,7 +1,7 @@
 package Axiom_Stack;
 
-Object object() { 
-   return Object_Object(new Object(__cid=Object()));
+Object object(int i) { 
+   return new Object(__cid=Object(), i=i);
 }
 Object push(Object s, Object o) { 
    return (s.__cid == Object() || s.__cid == Push() || s.__cid == Pop() ? Push_Push_Object_Object(new Object(__cid=Push()), s, o) : null);
@@ -58,6 +58,7 @@ Object xform (Object t, int depth, int dice) {
 }
 
 bit equals_Axiom(Object self, Object obj) {
+  return self === obj;
   if (self == null && obj == null) {
      return true;
   }

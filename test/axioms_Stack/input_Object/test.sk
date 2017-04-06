@@ -25,8 +25,8 @@ harness void mn() {
 // pop(push(s,o1)) == (s, o1)
 // pop(push(s,o1)) == (pop(push(s,o1)), o1)
 harness void t0() {
-  Object s = object();
-  Object o1 = object();
+  Object s = object(0);
+  Object o1 = object(1);
 
   Object psh1 = push(s, o1);
 
@@ -38,9 +38,9 @@ harness void t0() {
 // pop(push(push(s,o1), o2)) == (push(s,o1), o2)
 // pop(push(push(s,o1), o2)) == (pop(push(push(s,o1), o2)), o2)
 harness void t1() {
-  Object s = object();
-  Object o1 = object();
-  Object o2 = object();
+  Object s = object(0);
+  Object o1 = object(1);
+  Object o2 = object(2);
 
   Object psh1 = push(s, o1);
   Object psh12 = push(psh1, o2);
@@ -55,13 +55,13 @@ harness void t1() {
 // pop(push(push(push(push(push(push(s, o1), o2), o3), o4), o5), o6)) == 
 //     (pop(push(push(push(push(push(push(s, o1), o2), o3), o4), o5), o6)), o6)
 harness void t2() {
-  Object s = object();
-  Object o1 = object();
-  Object o2 = object();
-  Object o3 = object();
-  Object o4 = object();
-  Object o5 = object();
-  Object o6 = object();
+  Object s = object(0);
+  Object o1 = object(1);
+  Object o2 = object(2);
+  Object o3 = object(3);
+  Object o4 = object(4);
+  Object o5 = object(5);
+  Object o6 = object(6);
 
   Object psh1 = push(s, o1);
   Object psh12 = push(psh1, o2);
@@ -77,9 +77,9 @@ harness void t2() {
 
 // pop(push(pop(push(s, o1)), o2)) == o2
 harness void t3() {
-  Object s = object();
-  Object o1 = object();
-  Object o2 = object();
+  Object s = object(0);
+  Object o1 = object(1);
+  Object o2 = object(2);
 
   Object psh1 = push(s, o1);  
   Object poppsh1 = pop(psh1);
@@ -92,9 +92,9 @@ harness void t3() {
 
 // pop(pop(push(push(s, o1), o2))) == o1
 harness void t4() {
-  Object s = object();
-  Object o1 = object();
-  Object o2 = object();
+  Object s = object(0);
+  Object o1 = object(1);
+  Object o2 = object(2);
 
   Object psh1 = push(s, o1);
   Object psh12 = push(psh1, o2);
@@ -108,12 +108,12 @@ harness void t4() {
 // pop(push(pop(push(pop(push(pop(push(pop(push(s, o1)), o2)), o3)), o4)), o5))
 // == o5
 harness void t5() {
-  Object s = object();
-  Object o1 = object();
-  Object o2 = object();
-  Object o3 = object();
-  Object o4 = object();
-  Object o5 = object();
+  Object s = object(0);
+  Object o1 = object(1);
+  Object o2 = object(2);
+  Object o3 = object(3);
+  Object o4 = object(4);
+  Object o5 = object(5);
 
   Object psh1 = push(s, o1);
   Object poppsh1 = pop(psh1);
@@ -132,12 +132,12 @@ harness void t5() {
 // pop(pop(pop(pop(pop(push(push(push(push(push(s, o1), o2), o3), o4), o5))))))
 // == o1
 harness void t6() {
-  Object s = object();
-  Object o1 = object();
-  Object o2 = object();
-  Object o3 = object();
-  Object o4 = object();
-  Object o5 = object();
+  Object s = object(0);
+  Object o1 = object(1);
+  Object o2 = object(2);
+  Object o3 = object(3);
+  Object o4 = object(4);
+  Object o5 = object(5);
 
   Object psh1 = push(s, o1);
   Object psh12 = push(psh1, o2);
@@ -156,13 +156,13 @@ harness void t6() {
 
 // pop(pop(pop(pop(push(push(pop(push(pop(push(push(push(s, o1), o2), o3)), o4)),// o5), o6))))) == o1
 harness void t7() {
-  Object s = object();
-  Object o1 = object();
-  Object o2 = object();
-  Object o3 = object();
-  Object o4 = object();
-  Object o5 = object();
-  Object o6 = object();
+  Object s = object(0);
+  Object o1 = object(1);
+  Object o2 = object(2);
+  Object o3 = object(3);
+  Object o4 = object(4);
+  Object o5 = object(5);
+  Object o6 = object(6);
 
   Object psh1 = push(s, o1);
   Object psh12 = push(psh1, o2);
@@ -184,13 +184,13 @@ harness void t7() {
 }
 
 void t8() {
-   Object s = object();
-   Object o1 = object();
-   Object o2 = object();
-   Object o3 = object();
-   Object o4 = object();
-   Object o5 = object();
-   Object o6 = object();
+   Object s = object(0);
+   Object o1 = object(1);
+   Object o2 = object(2);
+   Object o3 = object(3);
+   Object o4 = object(4);
+   Object o5 = object(5);
+   Object o6 = object(6);
  
    Object psh1 = push(s, o1);
    Object psh12 = push(psh1, o2);

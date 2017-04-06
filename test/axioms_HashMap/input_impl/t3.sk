@@ -1,0 +1,20 @@
+package t3;
+
+int t3() { return 33; }
+
+Object t3_t3(Object self) {
+    return self;
+}
+
+harness void m() {
+  Object self = Object_Object(new Object(__cid=Object()));
+  Object s = Stack_Stack(new Object(__cid=Stack()));
+  Object o1 = Object_Object(new Object(__cid=Object()));
+  Object o2 = Object_Object(new Object(__cid=Object()));
+  (s.__cid == Stack() ? push_E@Stack(s, o1) : null);
+  (s.__cid == Stack() ? pop@Stack(s) : null);
+  (s.__cid == Stack() ? push_E@Stack(s, o2) : null);
+  Object poppshpoppsh12 = (s.__cid == Stack() ? pop@Stack(s) : null);
+  assert (poppshpoppsh12.__cid == String() ? equals_Object@String(poppshpoppsh12, o2) : poppshpoppsh12.__cid == Stack() ? equals_Object@Object(poppshpoppsh12, o2) : poppshpoppsh12.__cid == t3() ? equals_Object@Object(poppshpoppsh12, o2) : poppshpoppsh12.__cid == Object() ? equals_Object@Object(poppshpoppsh12, o2) : 0);
+}
+

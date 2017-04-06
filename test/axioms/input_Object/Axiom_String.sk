@@ -23,6 +23,7 @@ Object error() {
 
 Object xform (Object t, int dice) {
    Object t1; Object t2 = null;
+   Object tt1; Object tt2;
 
    if (t.__cid == Len()) {
       t1 = t.str_Len;
@@ -35,10 +36,10 @@ Object xform (Object t, int dice) {
    } else {
       return t;
    }  
-
+   dice = dice/2;
+   tt1 = xform(t1, dice);
    if (t.__cid == Len()) {
       if (t1.__cid == Concat()) {
-         Object tt1; Object tt2;
          if (dice%2 == 0) {
 	    dice = dice/2;
             tt1 = xform(length(t1.s1_Concat), dice);
@@ -47,12 +48,7 @@ Object xform (Object t, int dice) {
 	 
 	    return plus(tt1, tt2);	
 	 } else {
-	    dice = dice/2;
-            tt1 = xform(t1.s1_Concat, dice);
-            dice = dice/2;
-            tt2 = xform(t1.s2_Concat, dice);
-
-	    return length(concat(tt1, tt2));
+	    return length(tt1);
 	 }	 
       } else if (t1.__cid == String()) {
          return t;
@@ -60,18 +56,15 @@ Object xform (Object t, int dice) {
          return error();
       }  
    } else {
-      dice = dice/2;
-      t1 = xform(t1, dice);
-      dice = dice/2;
-      t2 = xform(t2, dice);
-
-      if (t.__cid == Plus()) {
-         return plus(t1, t2);	
-      } else if (t.__cid == Concat()) {
-         return concat(t1, t2);	
-      } else {
-         return error();
-      }  
+     dice = dice/2;
+     tt2 = xform(t2, dice);
+     if (t.__cid == Plus()) {
+       return plus(tt1, tt2);	
+     } else if (t.__cid == Concat()) {
+       return concat(tt1, tt2);	
+     } else {
+       return error();
+     }  
    }
 }
 

@@ -9,8 +9,8 @@ adt T {
   Error  { }
 }
 
-Object object() {
-   return new Object(__cid=Object(), t=new Obj(o=new Object(__cid=Object())));
+Object object(int i) {
+   return new Object(__cid=Object(), t=new Obj(o=new Object(__cid=Object(), i=i)));
 }
 
 Object stack() {

@@ -1,0 +1,11 @@
+package Push;
+
+Object Push_Push(Object self) {
+   return self;
+}
+
+Object Push_Push_Object_Object(Object self, Object s, Object o) {
+   self.s_Push = s;
+   self.o_Push = o;
+   return self;
+}

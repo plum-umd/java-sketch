@@ -1,0 +1,30 @@
+package t7;
+
+// pop(pop(pop(pop(push(push(pop(push(pop(push(push(push(s, o1), o2), o3)), o4)),// o5), o6))))) == o1
+harness void mn() {
+  Object s = object();
+  Object o1 = object();
+  Object o2 = object();
+  Object o3 = object();
+  Object o4 = object();
+  Object o5 = object();
+  Object o6 = object();
+
+  Object psh1 = push(s, o1);
+  Object psh12 = push(psh1, o2);
+  Object psh123 = push(psh12, o3);
+  
+  Object pop3 = pop(psh123);
+  Object psh124 = push(pop3, o4);
+
+  Object pop4 = pop(psh124);
+  Object psh125 = push(pop4, o5);
+  Object psh1256 = push(psh125, o6);
+
+  Object pop6 = pop(psh1256);
+  Object pop5 = pop(pop6);
+  Object pop2 = pop(pop5);
+  Object pop1 = pop(pop2);
+  
+  assert equals_Axiom(elem(xform3(tuple(pop1, null), 0, ??)), o1);
+}
