@@ -14,5 +14,7 @@ Stack:
 
 HashMap:
 =======
+* `get(put(h, k, v), k) == v // this is klunky syntax, but we want the get of a key to be 
+  the value put with that key`
 * `get(h, k) == get(clone(h), k)       // clone requires am explicit cast to HashMap...`
 * `put(h, k, v) == put(clone(h), k, v)`
