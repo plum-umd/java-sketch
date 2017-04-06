@@ -17,7 +17,7 @@ def main(num_trials, test):
         print 'Running test {}'.format(i)
         times = []
         for j in range(num_trials):
-            cmd = ['sketch', '--fe-def', 'TID={}'.format(i), '--fe-inc', input_dir, '{}/main.sk'.format(input_dir)]
+            cmd = ['sketch', '--fe-def', 'TID={}'.format(i), '--fe-inc', input_dir, '{}/main_d.sk'.format(input_dir)]
             log.write('test: {}, trial: {}, cmd: {}\n'.format(i, j, ' '.join(cmd)))
             log.flush()
             try:
@@ -44,13 +44,13 @@ def combine():
     
     with open('results/impl.csv','r') as impl_fd:
         impl_txt = map(lambda v: v.strip('\n\t'), impl_fd.readlines())
-    with open('results/adt.csv','r') as adt_fd:
+    with open('results/adt_d.csv','r') as adt_fd:
         adt_txt = map(lambda v: v.strip('\n\t'), adt_fd.readlines())
     with open('results/Object.csv','r') as obj_fd:
         Object_txt = map(lambda v: v.strip('\n\t'), obj_fd.readlines())
     
     impl_fd = open('results/impl_s.csv','w')
-    adt_fd = open('results/adt_s.csv','w')
+    adt_fd = open('results/adt_d_s.csv','w')
     obj_fd = open('results/Object_s.csv','w')
     vals = []
     for i,a,o in zip(impl_txt, adt_txt, Object_txt):
@@ -90,7 +90,7 @@ if __name__ == '__main__':
         print
     if options.adt:
         print 'Testing adt'
-        main(options.trials, 'adt')
+        main(options.trials, 'adt_d')
         print
     if options.obj:
         print 'Testing Object'

@@ -6,42 +6,94 @@ adt S {
 S pop(S s)         { return new Pop(s=s); }
 S push(S s, int v) { return new Push(s=s,v=v); }
 
-S xform(S s) {
+/* assert xform(pop(pop(pop(push(push(push(new Stack(),x),y),z)))), ??) === pop(pop(pop(push(push(push(new Stack(),x),y),z)))); */
+S xform(S s, int d) {
+  S ss;
   switch(s) {
   case Stack: return s;
-  case Pop:   return xform_pop(s.s);
-  case Push:  return push(xform(s.s),s.v);
+  case Pop: {
+    /* if (d % 2 == 0) { */
+    /*   d /= 2; */
+    /*   ss = xform(s.s, d); */
+    /*   d /= 2; */
+    /*   return xform(pop(ss), d); */
+    /* } */
+    if (d % 2 == 0) {
+      d /= 2;
+      ss = xform(s.s, d);
+      return pop(ss);
+    }
+    else {
+      d /= 2;
+      ss = xform(s.s, d);
+      return ss;
+    }
+  }
+  case Push: {
+    if (d % 2 == 0) {
+      d /= 2;
+      ss = xform(s.s, d);
+      return push(ss, s.v);
+    }
+    else {
+      d /= 2;
+      ss = xform(s.s, d);
+      return ss;
+    }
+  }
   }
 }
-S xform_pop(S s) {
-  switch(s) {
-  case Stack: return s;
-  case Pop:   return xform(pop(xform_pop(s.s)));
-  case Push:  return xform(s.s);
-  }
-}
-
+  
 harness void mn(int w, int x, int y, int z) {
   S empty = new Stack();
-  
-  // pop(push(s,x)) == ()
-  assert xform(pop(push(new Stack(), x))) == empty;
 
-  // pop(push(push(s,x),y)) == push(s,x)
-  assert xform(pop(push(push(new Stack(),x),y))) == push(new Stack(), x);
+  /* assert xform(push(new Stack(), x), ??) === push(new Stack(), x); */
+  assert xform(pop(push(new Stack(), x)), ??) === pop(push(new Stack(), x));
+  assert xform(pop(pop(push(push(new Stack(), x), y))), ??) === pop(push(new Stack(), x));
+  /* /\* // pop(push(s,x)) === () *\/ */
+  /* assert xform(pop(push(new Stack(), x)), ??) === empty; */
+  /* assert xform(pop(pop(push(push(new Stack(), x), y))), ??) === empty; */
 
-  // pop(push(push(push(s,x),y),z)) == push(s,x)
-  assert xform(pop(push(push(push(new Stack(),x),y),z))) == push(push(new Stack(), x), y);
+  /* // pop(push(push(s,x),y)) === push(s,x) */
+  /* assert xform(pop(push(push(new Stack(),x),y)), ??) === push(new Stack(), x); */
 
-  // pop(pop(push(push(s,x),y))) == ()
-  assert xform(pop(pop(push(push(new Stack(),x),y)))) == empty;
+  /* // pop(push(push(push(s,x),y),z)) === push(s,x) */
+  /* assert xform(pop(push(push(push(new Stack(),x),y),z)), ??) === push(push(new Stack(), x), y); */
 
-  // push(pop(push(s,x)),y) == push(s,y)
-  assert xform(push(pop(push(new Stack(),x)),y)) == push(new Stack(), y);
+  /* // pop(pop(push(push(s,x),y))) === () */
+  /* assert xform(pop(pop(push(push(new Stack(),x),y))), ??) === empty; */
 
-  // pop(push(pop(push(s,x)),y)) == ()
-  assert xform(pop(push(pop(push(new Stack(),x)),y))) == empty;
+  /* // push(pop(push(s,x)),y) === push(s,y) */
+  /* assert xform(push(pop(push(new Stack(),x)),y), ??) === push(new Stack(), y); */
 
-  // pop(pop(pop(push(push(push(s,x),y),z)))) == ()
-  assert xform(pop(pop(pop(push(push(push(new Stack(),x),y),z))))) == empty;
+  /* // pop(push(pop(push(s,x)),y)) === () */
+  /* assert xform(pop(push(pop(push(new Stack(),x)),y)), ??) === empty; */
+
+  /* // pop(pop(pop(push(push(push(s,x),y),z)))) === () */
+  /* assert xform(pop(pop(pop(push(push(push(new Stack(),x),y),z)))), ??) === empty; */
+
+  assert pop(pop(pop(push(push(push(new Stack(),x),y),z)))) === pop(pop(pop(push(push(push(new Stack(),x),y),z))));
 }
+/* S xform_pop(S s, int d) { */
+/*   switch(s) { */
+/*   case Stack: return s; */
+/*   case Pop: { */
+/*     d /= 2; */
+/*     if (d % 2 == 0) { */
+/*       return xform(pop(xform_pop(s.s, d)), d); */
+/*     } */
+/*     else { */
+/*       return pop(xform(s.s, d)); */
+/*     } */
+/*   } */
+/*   case Push: { */
+/*     d /= 2; */
+/*     if (d % 2 == 0) { */
+/*       return xform(s.s, d); */
+/*     } */
+/*     else { */
+/*       return push(xform(s.s, d), s.v); */
+/*     } */
+/*   } */
+/*   } */
+/* } */

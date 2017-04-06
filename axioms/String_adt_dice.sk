@@ -30,9 +30,9 @@ T xform(T t, int d) {
   case Error:  { return t; }
   }
   if (t2 != null) {
-      d /= ??;
+      d /= 2;
       tt1 = xform(t1, d);
-      d /= ??;
+      d /= 2;
       tt2 = xform(t2, d);
       switch(t) {
       case Concat: return new Concat(t1=tt1, t2=tt2);

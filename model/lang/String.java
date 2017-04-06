@@ -140,5 +140,29 @@ public class String implements CharSequence{
 	
 	return hash;
     }
-
+    public String replace(char oldChar, char newChar) {
+	if (oldChar != newChar) {
+	    int len = _count;
+	    int i = -1;
+	    char[_count] val = _value;
+	    while (++i < len) {
+		if (val[i] == oldChar) {
+		    break;
+		}
+	    }
+	    if (i < len) {
+		char[] buf = new char[len];
+		for (int j = 0; j < i; j++) {
+		    buf[j] = val[j];
+		}
+		while (i < len) {
+		    char c = val[i];
+		    buf[i] = (c == oldChar) ? newChar : c;
+		    i++;
+		}
+		return new String(buf, 0, len);
+	    }
+	}
+	return this;
+    }
 }
