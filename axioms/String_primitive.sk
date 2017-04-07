@@ -1,0 +1,115 @@
+package String_adt;
+
+int String()        { return 1; }
+
+adt StrTerm {
+  Str      { Object o; }
+  Concat   { StrTerm t1; StrTerm t2; }
+  Error_S  { }
+}
+adt IntTerm {
+  Len      { StrTerm t; }
+  Plus     { IntTerm t1; IntTerm t2; }
+  Error_I  { }
+}
+struct Object {
+  int        __cid;
+  int        i;
+  StrTerm    sterm;
+  IntTerm    iterm;
+}
+
+Object string()                       { return new Object(__cid=String(),sterm=new Str()); }
+/* Object string(int i)                  { return new Object(__cid=String(),sterm=new Str(o=new Object(i=i))); } */
+Object length(StrTerm t)              { return new Object(__cid=String(),iterm=new Len(t=t)); }
+Object concat(StrTerm t1, StrTerm t2) { return new Object(__cid=String(),sterm=new Concat(t1=t1,t2=t2)); }
+Object plus(IntTerm t1, IntTerm t2)   { return new Object(__cid=String(),iterm=new Plus(t1=t1,t2=t2)); }
+
+IntTerm xform(IntTerm t, int d) {
+  StrTerm st1;
+  switch(t) {
+  case Len:     { st1 = t.t; }
+  case Plus:    { return new Plus(t1=xform(t.t1, d), t2=xform(t.t2, d)); }
+  case Error_I: { return t; }
+  }
+  switch(st1) {
+  case Str: return t;
+  case Concat: {
+    IntTerm it1; IntTerm it2; 
+    it1 = xform(new Len(t=st1.t1), d);
+    it2 = xform(new Len(t=st1.t2), d);
+    return new Plus(t1=it1, t2=it2);
+  }
+  case Error_S: return new Error_I();
+  }
+}
+
+int len(IntTerm t);
+int arithmetize(IntTerm t, int d) {
+  switch(t) {
+  case Len: {
+    d /= 2;
+    IntTerm it = xform(t, d);
+    if (d%2 == 0) return len(it);
+    else return arithmetize(it, d);
+  }
+  case Plus: return arithmetize(t.t1, d) + arithmetize(t.t2, d);
+  case Error_I: return -1;
+  }
+}
+
+harness void mn() {
+  Object s1 = string();
+  Object s2 = string();
+  Object s3 = string();
+  Object s4 = string();
+  Object s5 = string();
+  Object s6 = string();
+  /* Object s1 = string(1); */
+  /* Object s2 = string(2); */
+  /* Object s3 = string(3); */
+  /* Object s4 = string(4); */
+  /* Object s5 = string(5); */
+  /* Object s6 = string(6); */
+
+  Object len1 = (s1.__cid == String() ? length(s1.sterm) : null);
+  Object len2 = (s2.__cid == String() ? length(s2.sterm) : null);
+  Object len3 = (s3.__cid == String() ? length(s3.sterm) : null);
+  Object len4 = (s4.__cid == String() ? length(s4.sterm) : null);
+  Object len5 = (s5.__cid == String() ? length(s5.sterm) : null);
+  Object len6 = (s6.__cid == String() ? length(s6.sterm) : null);
+
+  int len12 = len(len1.iterm) + len(len2.iterm);
+  int len21 = len(len2.iterm) + len(len1.iterm);
+
+  int len34 = len(len3.iterm) + len(len4.iterm);
+  int len56 = len(len5.iterm) + len(len6.iterm);
+  int len123 = len(len1.iterm) + len(len2.iterm) + len(len3.iterm);
+  int len1234 = len12 + len34;
+  int len123456 = len12 + len34 + len56;
+  int len345612 = len34 + len56 + len12;
+
+  Object c12 = (s1.__cid == String() ? concat(s1.sterm, s2.sterm) : null);
+  Object c34 = (s3.__cid == String() ? concat(s3.sterm, s4.sterm) : null);
+  Object c56 = (s5.__cid == String() ? concat(s5.sterm, s6.sterm) : null);
+  Object cc123 = (c12.__cid == String() ? concat(c12.sterm, s3.sterm) : null);
+
+  Object lenc12 = (c12.__cid == String() ? length(c12.sterm) : null);
+  Object lenc34 = (c34.__cid == String() ? length(c34.sterm) : null);
+  Object lenc56 = (c56.__cid == String() ? length(c56.sterm) : null);
+
+  assert arithmetize(lenc12.iterm, ??) == len12;
+  assert arithmetize(lenc12.iterm, ??) == len21; //communativity
+
+  Object lencc123 = (cc123.__cid == String() ? length(cc123.sterm) : null);
+  Object lenc12lenc34 = plus(lenc12.iterm, lenc34.iterm);
+
+  Object lenc12c34c56 = plus(plus(lenc12.iterm,lenc34.iterm).iterm,lenc56.iterm);
+
+  assert arithmetize(lenc12.iterm, ??) == len12;
+  assert arithmetize(lencc123.iterm, ??) == len123;
+  /* assert arithmetize(lencc123.iterm, ??) == len12; // rejected, not failed assertion? */
+  assert arithmetize(lenc12lenc34.iterm, ??) == len1234;
+  assert arithmetize(lenc12c34c56.iterm, ??) == len123456;
+  assert arithmetize(lenc12c34c56.iterm, ??) == len345612;
+}
