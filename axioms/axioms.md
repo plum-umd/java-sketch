@@ -6,7 +6,7 @@ String
 * `split(s1, s2).length <= length(s1) // inequality? are we ready for these?`
 * `length(toUpper(s)) == length(s)`
 * `toString(s) == s // boring…but maybe somehow a useful axiom`
-* `compareToIgnoreCase(s) == compareTo(to[Upper|Lower]Case(s))`
+* `compareTo(f(s1), f(s2)) == compareToIgnoreCase(s1,s2) where f=to[Upper|Lower]Case(s))`
 
 Stack:
 =======
@@ -16,5 +16,5 @@ HashMap:
 =======
 * `get(put(h, k, v), k) == v // this is klunky syntax, but we want the get of a key to be 
   the value put with that key`
-* `get(h, k) == get(clone(h), k)       // clone requires am explicit cast to HashMap...`
-* `put(h, k, v) == put(clone(h), k, v)`
+* `get(clone(h), k == get(h, k)      // clone requires am explicit cast to HashMap...`
+* `put(clone(h), k, v) == put(h, k, v)`
