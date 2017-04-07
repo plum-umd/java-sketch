@@ -26,18 +26,18 @@ Object concat(StrTerm t1, StrTerm t2) { return new Object(__cid=String(),sterm=n
 Object plus(IntTerm t1, IntTerm t2)   { return new Object(__cid=String(),iterm=new Plus(t1=t1,t2=t2)); }
 
 IntTerm xform(IntTerm t) {
-  StrTerm st1;
+  StrTerm st;
   switch(t) {
-  case Len:     { st1 = t.t; }
+  case Len:     { st = t.t; }
   case Plus:    { return new Plus(t1=xform(t.t1), t2=xform(t.t2)); }
   case Error_I: { return t; }
   }
-  switch(st1) {
+  switch(st) {
   case Str: return t;
   case Concat: {
     IntTerm it1; IntTerm it2; 
-    it1 = xform(new Len(t=st1.t1));
-    it2 = xform(new Len(t=st1.t2));
+    it1 = xform(new Len(t=st.t1));
+    it2 = xform(new Len(t=st.t2));
     return new Plus(t1=it1, t2=it2);
   }
   case Error_S: return new Error_I();
@@ -47,14 +47,7 @@ IntTerm xform(IntTerm t) {
 int len(IntTerm t);
 int arithmetize(IntTerm t) {
   switch(t) {
-  case Len: {
-    IntTerm it = xform(t);
-    switch(it) {
-    case Len: return len(it);
-    case Plus: return arithmetize(it);
-    case Error_I: return -1;
-    }
-  }
+  case Len: return len(t);
   case Plus: return arithmetize(t.t1) + arithmetize(t.t2);
   case Error_I: return -1;
   }
@@ -100,17 +93,17 @@ harness void mn() {
   Object lenc34 = (c34.__cid == String() ? length(c34.sterm) : null);
   Object lenc56 = (c56.__cid == String() ? length(c56.sterm) : null);
 
-  assert arithmetize(lenc12.iterm) == len12;
-  assert arithmetize(lenc12.iterm) == len21; //communativity
+  assert arithmetize(xform(lenc12.iterm)) == len12;
+  assert arithmetize(xform(lenc12.iterm)) == len21; //communativity
 
   Object lencc123 = (cc123.__cid == String() ? length(cc123.sterm) : null);
   Object lenc12lenc34 = plus(lenc12.iterm, lenc34.iterm);
 
   Object lenc12c34c56 = plus(plus(lenc12.iterm,lenc34.iterm).iterm,lenc56.iterm);
 
-  assert arithmetize(lenc12.iterm) == len12;
-  assert arithmetize(lencc123.iterm) == len123;
-  assert arithmetize(lenc12lenc34.iterm) == len1234;
-  assert arithmetize(lenc12c34c56.iterm) == len123456;
-  assert arithmetize(lenc12c34c56.iterm) == len345612;
+  assert arithmetize(xform(lenc12.iterm)) == len12;
+  assert arithmetize(xform(lencc123.iterm)) == len123;
+  assert arithmetize(xform(lenc12lenc34.iterm)) == len1234;
+  assert arithmetize(xform(lenc12c34c56.iterm)) == len123456;
+  assert arithmetize(xform(lenc12c34c56.iterm)) == len345612;
 }
