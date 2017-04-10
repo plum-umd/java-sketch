@@ -11,6 +11,9 @@ String
 Stack:
 =======
 * `pop(push(x)) == x`
+* `peek(push(x)) == x`
+* `empty(push(x)) == False`
+* `search(push(x)) == 1`
 
 HashMap:
 =======
