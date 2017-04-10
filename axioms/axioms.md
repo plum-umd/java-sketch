@@ -13,7 +13,7 @@ Stack:
 * `pop(push(x)) == x`
 * `peek(push(x)) == x`
 * `empty(push(x)) == False`
-* `search(push(x)) == 1`
+* `search(push(x), x) == 1`
 
 HashMap:
 =======
@@ -21,3 +21,8 @@ HashMap:
   the value put with that key`
 * `get(clone(h), k == get(h, k)      // clone requires am explicit cast to HashMap...`
 * `put(clone(h), k, v) == put(h, k, v)`
+
+ArrayList:
+=========
+* `size(sort(a)) == size(a)`
+* 
