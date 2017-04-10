@@ -1,0 +1,54 @@
+package meta;
+
+adt StrTerm {
+  Str      { Object o; }
+  Concat   { StrTerm t1; StrTerm t2; }
+  Error_S  { }
+}
+adt IntTerm {
+  Len      { StrTerm t; }
+  Plus     { IntTerm t1; IntTerm t2; }
+  Error_I  { }
+}
+
+IntTerm xform(IntTerm t) {
+  StrTerm st1;
+  switch(t) {
+  case Len:     { st1 = t.t; }
+  case Plus:    { return new Plus(t1=xform(t.t1), t2=xform(t.t2)); }
+  case Error_I: { return t; }
+  }
+  switch(st1) {
+  case Str: return t;
+  case Concat: {
+    IntTerm it1; IntTerm it2; 
+    it1 = xform(new Len(t=st1.t1));
+    it2 = xform(new Len(t=st1.t2));
+    return new Plus(t1=it1, t2=it2);
+  }
+  case Error_S: return new Error_I();
+  }
+}
+
+int arithmetize(IntTerm t) {
+  switch(t) {
+  case Len:     return len(t);
+  case Plus:    return arithmetize(t.t1) + arithmetize(t.t2);
+  case Error_I: return -1;
+  }
+}
+
+/* Object string([int n], char[n] ca)    { return new Object(__cid=String(),sterm=new Str(o=String_String_char(new Object(__cid=String()),ca))); } */
+Object string()                       { return new Object(__cid=String(),sterm=new Str()); }
+Object length(StrTerm t)              { return new Object(__cid=String(),iterm=new Len(t=t)); }
+Object concat(StrTerm t1, StrTerm t2) { return new Object(__cid=String(),sterm=new Concat(t1=t1,t2=t2)); }
+Object plus(IntTerm t1, IntTerm t2)   { return new Object(__cid=String(),iterm=new Plus(t1=t1,t2=t2)); }
+
+
+// distinct class IDs
+int CharSequence()         { return 3; }
+int Object()               { return 1; }
+int String()               { return 7; }
+
+// Uninterpreted functions
+int len(IntTerm t);
