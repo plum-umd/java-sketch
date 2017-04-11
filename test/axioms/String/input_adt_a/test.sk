@@ -9,8 +9,12 @@ harness void mn() {
   else if (TID==5) t5();
   else if (TID==6) t6();
   else if (TID==7) t7();
+  else if (TID==8) t8();
 }
 
+/*****************************************************************************/
+/* len(concat()) tests */
+/*****************************************************************************/
 // len(concat(s1,s2)) == len(s1) + len(s2)
 void t0() {
   Object s1 = string();
@@ -165,4 +169,19 @@ void t7() {
   Object c1c1c1c12 = (s1.__cid == String() ? concat(s1.sterm, c1c1c12.sterm) : null);
   Object lenc1c1c1c12 = (c1c1c1c12.__cid == String() ? length(c1c1c1c12.sterm) : null);
   assert arithmetize(xform(lenc1c1c1c12.iterm)) == len21111;
+}
+
+/*****************************************************************************/
+/* len(replace) tests */
+/*****************************************************************************/
+// len(replace(s1,s2,s4)) == len(s1)
+void t8() {
+  Object s1 = string();
+  Object s2 = string();
+  Object s3 = string();
+  Object ls1 = (s1.__cid == String() ? length(s1.sterm) : null);
+  int len1 = len(ls1.iterm);
+  Object r12 = (s1.__cid == String() ? replace(s1.sterm, s2.sterm, s3.sterm) : null);
+  Object lenr12 = (r12.__cid == String() ? length(r12.sterm) : null);
+  assert arithmetize(xform(lenr12.iterm)) == len1;
 }

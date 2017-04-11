@@ -1,42 +1,48 @@
 package meta;
 
 adt T {
-  Str    { Object o; }
-  Len    { T t; }
-  Concat { T t1; T t2; }
-  Plus   { T left; T right; }
-  Error  { }
+  Str     { Object o; }
+  Len     { T t; }
+  Concat  { T t1; T t2; }
+  Replace { T t1; T t2; T t3; }
+  Plus    { T left; T right; }
+  Error   { }
 }
 
 Object string()                  { return new Object(__cid=String(),t=new Str()); }
 Object length(T t)               { return new Object(__cid=String(),t=new Len(t=t)); }
 Object concat(T t1, T t2)        { return new Object(__cid=String(),t=new Concat(t1=t1,t2=t2)); }
+Object replace(T t1, T t2, T t3) { return new Object(__cid=String(),t=new Replace(t1=t1,t2=t2,t3=t3)); }
 Object plus(T left, T right)     { return new Object(__cid=String(),t=new Plus(left=left,right=right)); }
 
 T xform(T t) {
-  T t1; T t2 = null;
-  T tt1; T tt2;
+  T t1; T t2 = null; T t3 = null;
+  T tt1; T tt2; T tt3;
   switch(t) {
-  case Str:    { return t; }
-  case Len:    { t1 = t.t; }
-  case Plus:   { t1 = t.left; t2 = t.right; }
-  case Concat: { t1 = t.t1; t2 = t.t2; }
-  case Error:  { return t; }
+  case Str:     { return t; }
+  case Len:     { t1 = t.t; }
+  case Plus:    { t1 = t.left; t2 = t.right; }
+  case Concat:  { t1 = t.t1; t2 = t.t2; }
+  case Replace: { t1 = t.t1; t2 = t.t2; t3 = t.t3; }
+  case Error:   { return t; }
   }
   if (t2 != null) {
       tt1 = xform(t1);
       tt2 = xform(t2);
+      if (t3 != null) tt3 = xform(t3);
       switch(t) {
-      case Concat: return new Concat(t1=tt1, t2=tt2);
-      case Plus:   return new Plus(left=tt1, right=tt2);
-      case Str:    return new Error();
-      case Error:  return new Error();
-      case Len:    return new Error();
+      case Concat:  return new Concat(t1=tt1, t2=tt2);
+      case Replace: return new Replace(t1=tt1, t2=tt2, t3=tt3);
+      case Plus:    return new Plus(left=tt1, right=tt2);
+      case Str:     return new Error();
+      case Error:   return new Error();
+      case Len:     return new Error();
       }
   }
   else {
     switch(t1) {
     case Str: return t;
+    case Replace: return xform(new Len(t=t1.t1));
     case Concat: {
       tt1 = xform(new Len(t=t1.t1));
       tt2 = xform(new Len(t=t1.t2));

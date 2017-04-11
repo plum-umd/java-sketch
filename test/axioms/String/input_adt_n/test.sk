@@ -64,8 +64,7 @@ void t2() {
   Object lenc34 = (c34.__cid == String() ? length(c34.t) : null);
   Object lenc56 = (c56.__cid == String() ? length(c56.t) : null);
   Object lenc12c34c56 = plus(plus(lenc12.t,lenc34.t).t,lenc56.t);
-  assert len123456.t === len123456.t;
-  /* assert xform(lenc12c34c56.t, ??) === len123456.t; */
+  assert xform(lenc12c34c56.t, ??) === len123456.t;
 }
 
 // len(concat(s1,s2)) + len(concat(s3,s4)) + len(concat(s5,s6)) + len(concat(s7,s8)) == len(s1) + len(s2) + len(s3) + len(s4) + len(s5) + len(s6) + len(s7) + len(s8)
@@ -97,8 +96,7 @@ void t3() {
   Object lenc56 = (c56.__cid == String() ? length(c56.t) : null);
   Object lenc78 = (c78.__cid == String() ? length(c78.t) : null);
   Object lenc12c34c56c78 = plus(plus(lenc12.t,lenc34.t).t,plus(lenc56.t,lenc78.t).t);
-  assert len12345678.t === len12345678.t;
-  /* assert xform(lenc12c34c56c78.t, ??) === len12345678.t; */
+  assert xform(lenc12c34c56c78.t, ??) === len12345678.t;
 }
 
 // len(concat(concat(s1,s2),s3) == len(s1) + len(s2) + len(s3)
@@ -122,20 +120,15 @@ void t5() {
   Object s2 = string();
   Object s3 = string();
   Object s4 = string();
-
   Object len1 = (s1.__cid == String() ? length(s1.t) : null);
   Object len2 = (s2.__cid == String() ? length(s2.t) : null);
   Object len3 = (s3.__cid == String() ? length(s3.t) : null);
   Object len4 = (s4.__cid == String() ? length(s4.t) : null);
-
   Object len1234 = plus(plus(len1.t,len2.t).t,plus(len3.t,len4.t).t);
-
   Object c12 = (s1.__cid == String() ? concat(s1.t, s2.t) : null);
   Object c34 = (s1.__cid == String() ? concat(s3.t, s4.t) : null);
   Object c12c34 = (c12.__cid == String() ? concat(c12.t, c34.t) : null);
-
   Object lenc12c34 = (c12c34.__cid == String() ? length(c12c34.t) : null);
-    
   assert xform(lenc12c34.t, ??) === len1234.t;
 }
 
@@ -158,8 +151,7 @@ void t6() {
   Object c1234 = (c12.__cid == String() ? concat(c12.t, c34.t) : null);
   Object c12c345 = (c1234.__cid == String() ? concat(c1234.t, s5.t) : null);
   Object lenc12c345 = (c12c345.__cid == String() ? length(c12c345.t) : null);
-  assert len12345.t === len12345.t;
-  /* assert xform(lenc12c345.t, ??) === len12345.t; */
+  assert xform(lenc12c345.t, ??) === len12345.t;
 }
 
 // len(concat(s1,concat(s1,concat(s1,concat(s1,s2))))) == len(s1) + len(s1) + len(s1) + len(s1) + len(s2)
@@ -174,12 +166,5 @@ void t7() {
   Object c1c1c12 = (s1.__cid == String() ? concat(s1.t, c1c12.t) : null); 
   Object c1c1c1c12 = (s1.__cid == String() ? concat(s1.t, c1c1c12.t) : null); 
   Object lenc1c1c1c12 = (c1c1c1c12.__cid == String() ? length(c1c1c1c12.t) : null);
-  assert lenc1c1c1c12 === lenc1c1c1c12;
-  /* assert xform(lenc1c1c1c12.t, ??) === len11112.t; */
-
-  // len(s1,concat(s1,s2))
-  /* Object cc12 = (s1.__cid == String() ? concat(s1.t, c12.t) : null); */
-  /* Object len112 = plus(len1.t,plus(len1.t,len2.t).t); */
-  /* Object lenc1c12 = (c1c12.__cid == String() ? length(c1c12.t) : null); */
-  /* assert xform(lenc1c12.t, ??) === len112.t; */
+  assert xform(lenc1c1c1c12.t, ??) === len11112.t;
 }

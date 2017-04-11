@@ -3,6 +3,7 @@ package meta;
 adt StrTerm {
   Str      { Object o; }
   Concat   { StrTerm t1; StrTerm t2; }
+  Replace  { StrTerm t1; StrTerm t2; StrTerm t3; }
   Error_S  { }
 }
 adt IntTerm {
@@ -19,7 +20,8 @@ IntTerm xform(IntTerm t) {
   case Error_I: { return t; }
   }
   switch(st1) {
-  case Str: return t;
+  case Str:     { return t; }
+  case Replace: { return xform(new Len(t=st1.t1)); }
   case Concat: {
     IntTerm it1; IntTerm it2; 
     it1 = xform(new Len(t=st1.t1));
@@ -42,6 +44,8 @@ int arithmetize(IntTerm t) {
 Object string()                       { return new Object(__cid=String(),sterm=new Str()); }
 Object length(StrTerm t)              { return new Object(__cid=String(),iterm=new Len(t=t)); }
 Object concat(StrTerm t1, StrTerm t2) { return new Object(__cid=String(),sterm=new Concat(t1=t1,t2=t2)); }
+Object replace(StrTerm t1, StrTerm t2, StrTerm t3)
+                                      { return new Object(__cid=String(),sterm=new Replace(t1=t1,t2=t2,t3=t3)); }
 Object plus(IntTerm t1, IntTerm t2)   { return new Object(__cid=String(),iterm=new Plus(t1=t1,t2=t2)); }
 
 
