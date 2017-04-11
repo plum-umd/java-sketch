@@ -144,21 +144,22 @@ public class String implements CharSequence{
 	if (oldChar != newChar) {
 	    int len = _count;
 	    int i = -1;
+	    int stop = 0;
 	    char[_count] val = _value;
 	    while (++i < len) {
-		if (val[i] == oldChar) {
-		    break;
+		if (val[i] == oldChar && stop == 0) {
+		    stop = i;
 		}
 	    }
-	    if (i < len) {
+	    if (stop < len) {
 		char[] buf = new char[len];
-		for (int j = 0; j < i; j++) {
+		for (int j = 0; j < stop; j++) {
 		    buf[j] = val[j];
 		}
-		while (i < len) {
-		    char c = val[i];
-		    buf[i] = (c == oldChar) ? newChar : c;
-		    i++;
+		while (stop < len) {
+		    char c = val[stop];
+		    buf[stop] = (c == oldChar) ? newChar : c;
+		    stop++;
 		}
 		return new String(buf, 0, len);
 	    }
