@@ -9,22 +9,14 @@ adt H {
   Error   { }
 }
 
-H get_xform (H h, H k, int depth) {
+H get_xform (H h, H k) {
   switch (h) {
      case Put:    {
-        if (h.k == k) {
-	   if (depth == 0) {
-	      return h.v;
-	   } else {
-	      return get_xform(h.h, k, depth-1);
-	   }
-	} else {
-	   return get_xform(h.h, k, depth);
-	}
+        return h.k == k ? h.v : get_xform(h.h, k);
      }
      case Get:    return null;
      case Remove: {
-        return h.k == k ? get_xform(h.h, k, depth+1) : get_xform(h.h, k, depth);
+        return h.k == k ? null : get_xform(h.h, k);
      }
      case Hash:   return null;
      case Obj:    return null;
@@ -57,7 +49,7 @@ H xform(H h, int dice) {
      case Put:   return h;
      case Get:   {
         if (dice%2 == 0) {
-           return get_xform(h.h, h.k, 0);
+           return get_xform(h.h, h.k);
 	} else {
 	   return h;
 	}

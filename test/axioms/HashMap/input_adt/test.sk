@@ -34,7 +34,7 @@ void t0() {
    assert xform(gxpx.h, ??) == y.h;
 }
 
-// get(put(put(x,y), w, z), x) = y
+// get(put(put([],x,y), w, z), x) = y
 void t1() {
    Object x = object();
    Object y = object();
@@ -49,7 +49,7 @@ void t1() {
    assert xform(gxpxw.h, ??) == y.h;
 }
 
-// get(put(put(x,y), x, z), x) = z
+// get(put(put([],x,y), x, z), x) = z
 void t2() {
    Object x = object();
    Object y = object();
@@ -63,7 +63,7 @@ void t2() {
    assert xform(gxpxx.h, ??) == z.h;
 }
 
-// get(put(put(put(put(put(x,y), w, z), a, b), c, d), e, f), x) = y
+// get(put(put(put(put(put([],x,y), w, z), a, b), c, d), e, f), x) = y
 void t3() {
    Object x = object();
    Object y = object();
@@ -87,7 +87,7 @@ void t3() {
    assert xform(gxpxw.h, ??) == y.h;
 }
 
-// get(remove(put(put(x,y), x, z), x), x) = y
+// get(remove(put(put([],x,y), x, z), x), x) = null
 void t4() {
    Object x = object();
    Object y = object();
@@ -99,10 +99,10 @@ void t4() {
    Object rxpxx = remove(pxx.h, x.h);
    Object gxrxpxx = get(rxpxx.h, x.h);
 
-   assert xform(gxrxpxx.h, ??) == y.h;
+   assert xform(gxrxpxx.h, ??) == null;
 }
 
-// get(put(remove(put(x,y), x), x, z), x) = z
+// get(put(remove(put([],x,y), x), x, z), x) = z
 void t5() {
    Object x = object();
    Object y = object();
