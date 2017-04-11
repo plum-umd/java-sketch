@@ -1,6 +1,5 @@
 import subprocess
 import re
-import math
 
 def main(num_trials, test):
     result_file = 'results/{}.csv'.format(test)
@@ -31,30 +30,17 @@ def main(num_trials, test):
         with open(result_file, 'a') as f:
             [f.write('{:.2f}\t'.format(n)) for n in times]
             f.write('\n')
+    sort_results(test)
 
-def combine():
-    def median(nums):
-        nums.sort()
-        mid = int(len(nums) / 2.0)
-        if len(nums) % 2 == 0: return (nums[mid-1]+nums[mid])/2.0
-        else: return nums[int(math.floor(mid))]
-    
-    with open('results/impl.csv','r') as f: impl_txt = map(lambda v: v.strip('\n\t'), f.readlines())
-    with open('results/adt.csv','r') as f: adt_txt = map(lambda v: v.strip('\n\t'), f.readlines())
-    with open('results/Object.csv','r') as f: Object_txt = map(lambda v: v.strip('\n\t'), f.readlines())
-    
-    vals = []
-    for i,a,o in zip(impl_txt, adt_txt, Object_txt):
-        strs_i = i.split('\t') if i.split('\t') != [''] else [0]
-        strs_a = a.split('\t') if a.split('\t') != [''] else [0]
-        strs_o = o.split('\t') if o.split('\t') != [''] else [0]
-        mi = median(map(float, strs_i))
-        ma = median(map(float, strs_a))
-        mo = median(map(float, strs_o))
-        vals.append((mi, ma, mo))
-    
-    with open('results/all.csv', 'w') as f:
-        map(lambda v: f.write('{}\t{}\t{}\n'.format(v[0], v[1], v[2])), vals)
+def sort_results(test):
+    result_file = 'results/{}.csv'.format(test)
+    sorted_result_file = 'results/{}_s.csv'.format(test)
+    with open(result_file,'r') as fd:
+        lines = fd.readlines()
+    # do it all on one line! (split line, convert to float, sort)
+    res = map(lambda l: sorted(map(float, l.strip('\n\t').split('\t') if l.split('\t') != [''] else [0])), lines)
+    with open(sorted_result_file, 'w') as fd:
+        for r in res: fd.write('{}\n'.format('\t'.join(map(str,r))))
     
 if __name__ == '__main__':
     from optparse import OptionParser
@@ -88,4 +74,3 @@ if __name__ == '__main__':
         main(options.trials, 'adt')
         print 'Testing Object'
         main(options.trials, 'Object')
-        combine()
