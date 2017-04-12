@@ -1,0 +1,17 @@
+package HashMap_NoHash_Node;
+
+Object self0;
+
+Object HashMap_NoHash_Node_HashMap_NoHash_Node_HashMap_NoHash(Object self, Object self_0) {
+    self0 = self_0;
+    return self;
+}
+
+Object HashMap_NoHash_Node_HashMap_NoHash_Node_HashMap_NoHash_K_V_Node(Object self, Object self_0, Object key, Object value, Object next) {
+  self0 = self_0;
+  self.key_HashMap_NoHash_Node = key;
+  self.value_HashMap_NoHash_Node = value;
+  self.next_HashMap_NoHash_Node = next;
+  return self;
+}
+

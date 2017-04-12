@@ -11,15 +11,11 @@ bit equals_Object_Object(Object a, Object b) {
     }
     return false;
   }
-  return (a.__cid == Stack() ? equals_Object@Object(a, b) : a.__cid == String() ? equals_Object@String(a, b) : a.__cid == Object() ? equals_Object@Object(a, b) : 0);
+  return (a.__cid == HashMap_NoHash_Node() ? equals_Object@Object(a, b) : a.__cid == Object() ? equals_Object@Object(a, b) : 0);
 }
 
 int hashCode_Object(Object o) {
-  return (o != null ? (o.__cid == Stack() ? hashCode@Object(o) : o.__cid == String() ? hashCode@String(o) : o.__cid == Object() ? hashCode@Object(o) : 0) : 0);
-}
-
-Object toString(Object self) {
-  return String_String_char_int_int(new Object(__cid=String()), new Array_char(length=17+1, A="Object toString()"), 0, 17);
+  return (o != null ? (o.__cid == HashMap_NoHash_Node() ? hashCode@Object(o) : o.__cid == Object() ? hashCode@Object(o) : 0) : 0);
 }
 
 bit equals_Object(Object self, Object obj) {
@@ -31,10 +27,10 @@ int hashCode(Object self) {
 }
 
 struct Object {
-  int           __cid;
-  Array_char    _value_String;
-  int           _count_String;
-  Array_Object  elementData_Stack;
-  int           size_Stack;
-  int           capacity_Stack;
+  int         __cid;
+  Object      elementData_HashMap_NoHash;
+  int         numPairs_HashMap_NoHash;
+  Object      key_HashMap_NoHash_Node;
+  Object      value_HashMap_NoHash_Node;
+  Object      next_HashMap_NoHash_Node;
 }
