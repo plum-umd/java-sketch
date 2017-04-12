@@ -25,11 +25,13 @@ HashMap:
 * `get(clone(h), k == get(h, k)`
 * `put(clone(h), k, v) == put(h, k, v)`
 * `isEmpty(put(h, k, v)) == False`
-* `remove(put(h, k, v), v) == nil`
-* `remove(put(put(h, k1, v1), k2, v2), v2) == put(h, k1, v1)`
-* `remove(put(put(h, k1, v1), k2, v2), v1) == put(h, k2, v2)`
-* `get(remove(put(h, k, v), v), v) == nil`
-* `get(remove(put(put(h, k1, v1), k2, v2), v1), v2) == v2`
+* `size(remove(h, k)) == size(h) - 1`
+* `remove(put(h, k, v), k) == nil`
+* `remove(put(put(h, k1, v1), k2, v2), k2) == put(h, k1, v1)`
+* `remove(put(put(h, k1, v1), k2, v2), k1) == put(h, k2, v2)`
+* `get(remove(put(h, k, v), k), k) == nil`
+* `get(remove(put(put(h, k1, v1), k2, v2), k2), k1) == v1`
+* `get(remove(put(put(h, k1, v1), k2, v2), k1), k2) == v2`
 * `containsKey(h, k) => put(h, k, v)`
 * `containValue(h, v) => put(h, k, v)`
 * `isEmpty(h) => size(h) == 0`
@@ -47,8 +49,10 @@ ArrayList:
 * `get(remove(add(a, e), e), e) == nil`
 * `get(remove(add(add(a, e1), e2), e1), e2) == e2`
 * `remove(add(a, v), v) == nil`
-* `remove(a, put(put(a, k1, v1), k2, v2), v2) == put(a, k1, v1)`
-* `remove(a, put(put(a, k1, v1), k2, v2), v1) == put(a, k2, v2)`
+* `remove(add(add(a, e1), e2), e1) == add(a, e1)`
+* `remove(add(add(a, e1), e2), e1) == add(a, e2)`
+* `size(remove(a, e)) == size(a) - 1`
+* `size(replaceAll(a, op)) == size(a)`
 * `indexOf(add(a, e), e) == 0`
 * `indexOf(add(add(a, e1), e2), e2) == 1`
 * `size(sort(a)) == size(a)`
