@@ -60,8 +60,11 @@ if __name__ == '__main__':
         main(options.trials, 'impl')
         print
     if options.adt:
-        print 'Testing adt'
-        main(options.trials, 'adt')
+        print 'Testing nondeterministic adt'
+        main(options.trials, 'adt_n')
+        print
+        print 'Testing deterministic adt'
+        main(options.trials, 'adt_d')
         print
     if options.obj:
         print 'Testing Object'
@@ -70,7 +73,11 @@ if __name__ == '__main__':
     if (not options.impl) and (not options.adt) and (not options.obj):
         print 'Testing implementation'
         main(options.trials, 'impl')
-        print 'Testing adt'
-        main(options.trials, 'adt')
+        print 'Testing nondeterministic adt'
+        main(options.trials, 'adt_n')
+        print
+        print 'Testing deterministic adt'
+        main(options.trials, 'adt_d')
+        print
         print 'Testing Object'
         main(options.trials, 'Object')
