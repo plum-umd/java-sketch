@@ -14,29 +14,42 @@ Stack:
 =======
 * `pop(push(x)) == x`
 * `peek(push(x)) == x`
-* `empty(push(x)) == False`
+* `isEmpty(push(x)) == False`
 * `search(push(x), x) == 1`
 * `s == nil => size(s) == 0`
 * `s != nil => size(s) > 0`
 
 HashMap:
 =======
-* `get(put(h, k, v), k) == v // this is klunky syntax, but we want the get of a key to be 
-  the value put with that key`
-* `get(clone(h), k == get(h, k)      // clone requires am explicit cast to HashMap...`
+* `get(put(h, k, v), k) == v`
+* `get(clone(h), k == get(h, k)`
 * `put(clone(h), k, v) == put(h, k, v)`
+* `isEmpty(put(h, k, v)) == False`
 * `remove(h, put(h, k, v), v) == nil`
-* `remove(h, put(h, put(h, v1), v2), v2) == put(h, v1)`
-* `remove(h, put(h, put(h, v1), v2), v1) == put(h, v2)`
-* `get(h, remove(h, put(h, x), x), x) == nil`
-* `get(h, remove(h, put(h, put(h, x), y), x), y) == y`
+* `remove(h, put(put(h, k1, v1), k2, v2), v2) == put(h, k1, v1)`
+* `remove(h, put(put(h, k1, v1), k2, v2), v1) == put(h, k2, v2)`
+* `get(h, remove(put(h, k, v), v), v) == nil`
+* `get(h, remove(put(put(h, k1, v1), k2, v2), v1), v2) == v2`
 * `containsKey(h, k) => put(h, k, v)`
 * `containValue(h, v) => put(h, k, v)`
+* `isEmpty(h) => size(h) == 0`
+* `!isEmpty(h) => size(h) > 0`
 * `h == nil => size(h) == 0`
 * `h != nil => size(h) > 0`
 
 ArrayList:
 =========
+* `add(clone(a), e) == add(a, e) // and other clone stuff`
+* `isEmpty(add(a, e)) == False`
+* `contains(add(a, e), e) == True`
+* `get(add(a, e), 0) == e`
+* `get(add(add(a, e1), e2), 1) == e2`
+* `get(remove(add(a, e), e), e) == nil`
+* `get(h, remove(h, add(h, put(h, x), y), x), y) == y`
+* `indexOf(add(a, e), e) == 0`
+* `indexOf(add(add(a, e1), e2), e2) == 1`
 * `size(sort(a)) == size(a)`
+* `isEmpty(a) => size(a) == 0`
+* `!isEmpty(a) => size(a) > 0`
 * `a == nil => size(a) == 0`
 * `a != nil => size(a) > 0`
