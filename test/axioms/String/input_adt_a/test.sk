@@ -129,10 +129,10 @@ void t5() {
   Object len4 = (s4.__cid == String() ? length(s4.sterm) : null);
   int len1234 = len(len1.iterm) + len(len2.iterm) + len(len3.iterm) + len(len4.iterm);
   Object c12 = (s1.__cid == String() ? concat(s1.sterm, s2.sterm) : null);
-  Object c34 = (s1.__cid == String() ? concat(s3.sterm, s4.sterm) : null);
-  Object c12c34 = (c12.__cid == String() ? concat(c12.sterm, c34.sterm) : null);
-  Object lenc12c34 = (c12c34.__cid == String() ? length(c12c34.sterm) : null);
-  assert arithmetize(xform(lenc12c34.iterm)) == len1234;
+  Object cc123 = (c12.__cid == String() ? concat(c12.sterm, s3.sterm) : null);
+  Object ccc1234 = (cc123.__cid == String() ? concat(cc123.sterm, s4.sterm) : null);
+  Object lenccc1234 = (ccc1234.__cid == String() ? length(ccc1234.sterm) : null);
+  assert arithmetize(xform(lenccc1234.iterm)) == len1234;
 }
 
 // len(concat(concat(concat(s1,s2),s3),concat(s4,s5)) == len(s1) + len(s2) + len(s3) + len(s4) + len(s5)
@@ -149,11 +149,11 @@ void t6() {
   Object len5 = (s5.__cid == String() ? length(s5.sterm) : null);
   int len12345 = len(len1.iterm) + len(len2.iterm) + len(len3.iterm) + len(len4.iterm) + len(len5.iterm);
   Object c12 = (s1.__cid == String() ? concat(s1.sterm, s2.sterm) : null);
-  Object c34 = (s3.__cid == String() ? concat(s3.sterm, s4.sterm) : null);
-  Object c1234 = (c12.__cid == String() ? concat(c12.sterm, c34.sterm) : null);
-  Object c12c345 = (c1234.__cid == String() ? concat(c1234.sterm, s5.sterm) : null);
-  Object lenc12c345 = (c12c345.__cid == String() ? length(c12c345.sterm) : null);
-  assert arithmetize(xform(lenc12c345.iterm)) == len12345;
+  Object c45 = (s4.__cid == String() ? concat(s4.sterm, s5.sterm) : null);
+  Object cc123 = (c12.__cid == String() ? concat(c12.sterm, s3.sterm) : null);
+  Object ccc123c45 = (cc123.__cid == String() ? concat(cc123.sterm,c45.sterm) : null);
+  Object lenccc123c45 = (ccc123c45.__cid == String() ? length(ccc123c45.sterm) : null);
+  assert arithmetize(xform(lenccc123c45.iterm)) == len12345;
 }
 
 // len(concat(s1,concat(s1,concat(s1,concat(s1,s2))))) == len(s1) + len(s1) + len(s1) + len(s1) + len(s2)

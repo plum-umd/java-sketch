@@ -21,6 +21,9 @@ HashMap:
   the value put with that key`
 * `get(clone(h), k == get(h, k)      // clone requires am explicit cast to HashMap...`
 * `put(clone(h), k, v) == put(h, k, v)`
+* `get(h, remove(h, put(h, x), x), x) == null`
+* `get(h, remove(h, put(h, put(h, x), y), x), y) == y`
+
 
 ArrayList:
 =========

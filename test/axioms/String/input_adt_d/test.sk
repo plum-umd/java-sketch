@@ -125,12 +125,12 @@ void t5() {
   Object len2 = (s2.__cid == String() ? length(s2.t) : null);
   Object len3 = (s3.__cid == String() ? length(s3.t) : null);
   Object len4 = (s4.__cid == String() ? length(s4.t) : null);
-  Object len1234 = plus(plus(len1.t,len2.t).t,plus(len3.t,len4.t).t);
+  Object len1234 = plus(plus(plus(len1.t,len2.t).t,len3.t).t,len4.t);
   Object c12 = (s1.__cid == String() ? concat(s1.t, s2.t) : null);
-  Object c34 = (s1.__cid == String() ? concat(s3.t, s4.t) : null);
-  Object c12c34 = (c12.__cid == String() ? concat(c12.t, c34.t) : null);
-  Object lenc12c34 = (c12c34.__cid == String() ? length(c12c34.t) : null);
-  assert xform(lenc12c34.t) === len1234.t;
+  Object cc123 = (c12.__cid == String() ? concat(c12.t, s3.t) : null);
+  Object ccc1234 = (cc123.__cid == String() ? concat(cc123.t, s4.t) : null);
+  Object lenccc1234 = (ccc1234.__cid == String() ? length(ccc1234.t) : null);
+  assert xform(lenccc1234.t) === len1234.t;
 }
 
 // len(concat(concat(concat(s1,s2),s3),concat(s4,s5)) == len(s1) + len(s2) + len(s3) + len(s4) + len(s5)
@@ -145,14 +145,14 @@ void t6() {
   Object len3 = (s3.__cid == String() ? length(s3.t) : null);
   Object len4 = (s4.__cid == String() ? length(s4.t) : null);
   Object len5 = (s5.__cid == String() ? length(s5.t) : null);
-  Object len12345 = plus(plus(plus(len1.t,len2.t).t,
-			      plus(len3.t,len4.t).t).t,len5.t);
+  Object len12345 = plus(plus(plus(len1.t,len2.t).t,len3.t).t,
+			 plus(len4.t,len5.t).t);
   Object c12 = (s1.__cid == String() ? concat(s1.t, s2.t) : null);
-  Object c34 = (s3.__cid == String() ? concat(s3.t, s4.t) : null);
-  Object c1234 = (c12.__cid == String() ? concat(c12.t, c34.t) : null);
-  Object c12c345 = (c1234.__cid == String() ? concat(c1234.t, s5.t) : null);
-  Object lenc12c345 = (c12c345.__cid == String() ? length(c12c345.t) : null);
-  assert xform(lenc12c345.t) === len12345.t;
+  Object c45 = (s4.__cid == String() ? concat(s4.t, s5.t) : null);
+  Object cc123 = (c12.__cid == String() ? concat(c12.t, s3.t) : null);
+  Object ccc123c45 = (cc123.__cid == String() ? concat(cc123.t,c45.t) : null);
+  Object lenccc123c45 = (ccc123c45.__cid == String() ? length(ccc123c45.t) : null);
+  assert xform(lenccc123c45.t) === len12345.t;
 }
 
 // len(concat(s1,concat(s1,concat(s1,concat(s1,s2))))) == len(s1) + len(s1) + len(s1) + len(s1) + len(s2)
