@@ -10,16 +10,12 @@ harness void mn() {
   else if (TID==6) t6();
   else if (TID==7) t7();
   else if (TID==8) t8();
-  else if (TID==-1) {
-     t0();
-     t1();
-     t2();
-     t3();
-     t4();
-     t5();
-     t6();
-     t7();
-  }
+  else if (TID==9) t9();
+  else if (TID==10) t10();
+  else if (TID==11) t11();
+  else if (TID==12) t12();
+  else if (TID==13) t13();
+  else if (TID==14) t14();
 }
 
 // get(put([],x,y), x) == y
@@ -117,17 +113,149 @@ void t5() {
    assert xform(gxpxrxpx.h, ??) == z.h;
 }
 
-// containsKey
+// containsKey(put([],x,y), x) == true
 void t6() {
+   Object x = object();
+   Object y = object();
+   
+   Object h = hashMap();
+   Object px = put(h.h, x.h, y.h);
+   Object ckxpx = containsKey(px.h, x.h);
 
+   assert xform(ckxpx.h, ??) === new Bool(b=1);
 }
 
-// containsValue
+// containsKey(put(put(put(put(put([],x,y), w, z), a, b), c, d), e, f), x) = 
+//   true
 void t7() {
+   Object x = object();
+   Object y = object();
+   Object w = object();
+   Object z = object();
+   Object a = object();
+   Object b = object();
+   Object c = object();
+   Object d = object();
+   Object e = object();
+   Object f = object();
+   
+   Object h = hashMap();
+   Object px = put(h.h, x.h, y.h);
+   Object pxw = put(px.h, w.h, z.h);
+   Object pxwa = put(pxw.h, a.h, b.h);
+   Object pxwac = put(pxwa.h, c.h, d.h);
+   Object pxwace = put(pxwa.h, e.h, f.h);
+   Object ckxpxw = containsKey(pxwace.h, x.h);
 
+   assert xform(ckxpxw.h, ??) === new Bool(b=1);   
 }
 
-// Complicated Mix
+// containsKey(put([],x,y), z) == false
 void t8() {
+   Object x = object();
+   Object y = object();
+   Object z = object();
+   
+   Object h = hashMap();
+   Object px = put(h.h, x.h, y.h);
+   Object ckzpx = containsKey(px.h, z.h);
 
+   assert xform(ckzpx.h, ??) === new Bool(b=0);
+}
+
+// containsKey(remove(put(put([],x,y), x, z), x), x) = false
+void t9() {
+   Object x = object();
+   Object y = object();
+   Object z = object();
+   
+   Object h = hashMap();
+   Object px = put(h.h, x.h, y.h);
+   Object pxx = put(px.h, x.h, z.h);
+   Object rxpxx = remove(pxx.h, x.h);
+   Object ckxrxpxx = containsKey(rxpxx.h, x.h);
+
+   assert xform(ckxrxpxx.h, ??) === new Bool(b=0);
+}
+
+// containsKey(put(remove(put([],x,y), x), x, z), x) = true
+void t10() {
+   Object x = object();
+   Object y = object();
+   Object z = object();
+   
+   Object h = hashMap();
+   Object px = put(h.h, x.h, y.h);
+   Object rxpx = remove(px.h, x.h);
+   Object pxrxpx = put(rxpx.h, x.h, z.h);
+   Object ckxpxrxpx = containsKey(pxrxpx.h, x.h);
+
+   assert xform(ckxpxrxpx.h, ??) === new Bool(b=1);
+}
+
+// containsValue(put([],x,y), y) == true
+void t11() {
+   Object x = object();
+   Object y = object();
+   
+   Object h = hashMap();
+   Object px = put(h.h, x.h, y.h);
+   Object cvypx = containsValue(px.h, y.h);
+
+   assert xform(cvypx.h, ??) === new Bool(b=1);
+}
+
+// containsValue(put(put(put(put(put([],x,y), w, z), a, b), c, d), e, f), y) = 
+//   true
+void t12() {
+   Object x = object();
+   Object y = object();
+   Object w = object();
+   Object z = object();
+   Object a = object();
+   Object b = object();
+   Object c = object();
+   Object d = object();
+   Object e = object();
+   Object f = object();
+   
+   Object h = hashMap();
+   Object px = put(h.h, x.h, y.h);
+   Object pxw = put(px.h, w.h, z.h);
+   Object pxwa = put(pxw.h, a.h, b.h);
+   Object pxwac = put(pxwa.h, c.h, d.h);
+   Object pxwace = put(pxwa.h, e.h, f.h);
+   Object cvypxw = containsValue(pxwace.h, y.h);
+
+   assert xform(cvypxw.h, ??) === new Bool(b=1);   
+}
+
+// containsValue(put(put([],x,y), x, z), y) = false
+void t13() {
+   Object x = object();
+   Object y = object();
+   Object z = object();
+   
+   Object h = hashMap();
+   Object px = put(h.h, x.h, y.h);
+   Object pxx = put(px.h, x.h, z.h);
+   Object cvypxx = containsValue(pxx.h, y.h);
+
+   assert xform(cvypxx.h, ??) === new Bool(b=0);
+}
+
+// containsValue(remove(put(put([],x,y), w, z), x), y) = false
+void t14() {
+   Object w = object();
+   Object x = object();
+   Object y = object();
+   Object z = object();
+   
+   Object h = hashMap();
+   Object px = put(h.h, x.h, y.h);
+   Object pxw = put(px.h, w.h, z.h);
+   Object rxpxw = remove(pxw.h, x.h);
+   Object cvyrxpxw = containsValue(rxpxw.h, y.h);
+
+   assert xform(cvyrxpxw.h, ??) === new Bool(b=0);
 }
