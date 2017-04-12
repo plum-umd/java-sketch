@@ -1,181 +1,206 @@
 package test;
 
 harness void mn() {
-  if (TID==0) t0();
-  else if (TID==1) t1();
-  else if (TID==2) t2();
-  else if (TID==3) t3();
-  else if (TID==4) t4();
-  else if (TID==5) t5();
-  else if (TID==6) t6();
-  else if (TID==7) t7();
-  else if (TID==8) t8();
-  else if (TID==-1) {
-    t0();
-    t1();
-    t2();
-    t3();
-    t4();
-    t5();
-    t6();
-    t7();
-  }
+  if (TID == 0) t0();
+  else if (TID == 1) t1();
+  else if (TID == 2) t2();
+  else if (TID == 3) t3();
+  else if (TID == 4) t4();
+  else if (TID == 5) t5();
+  else if (TID == 6) t6();
+  else if (TID == 7) t7();
+  else if (TID == 8) t8();
+  else if (TID == 9) t9();
+  else if (TID == 10) t10();
+  else if (TID == 11) t11();
+  else if (TID == 12) t12();
+  else if (TID == 13) t13();
+  else if (TID == 14) t14();
 }
 
 void t0() {
-  Object self = Object_Object(new Object(__cid=Object()));
-  Object s = Stack_Stack(new Object(__cid=Stack()));
-  Object o1 = Object_Object(new Object(__cid=Object()));
-  (s.__cid == Stack() ? push_E@Stack(s, o1) : null);
-  Object poppsh1 = (s.__cid == Stack() ? pop@Stack(s) : null);
-  assert (poppsh1.__cid == Stack() ? equals_Object@Object(poppsh1, o1) : poppsh1.__cid == String() ? equals_Object@String(poppsh1, o1) : poppsh1.__cid == Object() ? equals_Object@Object(poppsh1, o1) : 0);
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  Object gxpx = (h.__cid == HashMap_NoHash() ? get_K@HashMap_NoHash(h, x) : null);
+  assert (gxpx.__cid == HashMap_NoHash_Node() ? equals_Object@Object(gxpx, y) : gxpx.__cid == Object() ? equals_Object@Object(gxpx, y) : 0);
 }
 
 void t1() {
-  Object self = Object_Object(new Object(__cid=Object()));
-  Object s = Stack_Stack(new Object(__cid=Stack()));
-  Object o1 = Object_Object(new Object(__cid=Object()));
-  Object o2 = Object_Object(new Object(__cid=Object()));
-  (s.__cid == Stack() ? push_E@Stack(s, o1) : null);
-  (s.__cid == Stack() ? push_E@Stack(s, o2) : null);
-  Object poppsh12 = (s.__cid == Stack() ? pop@Stack(s) : null);
-  assert (poppsh12.__cid == String() ? equals_Object@String(poppsh12, o2) : poppsh12.__cid == Stack() ? equals_Object@Object(poppsh12, o2) : poppsh12.__cid == Object() ? equals_Object@Object(poppsh12, o2) : 0);
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  Object w = Object_Object(new Object(__cid=Object()));
+  Object z = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, w, z) : null);
+  Object gxpxw = (h.__cid == HashMap_NoHash() ? get_K@HashMap_NoHash(h, x) : null);
+  assert (gxpxw.__cid == HashMap_NoHash_Node() ? equals_Object@Object(gxpxw, y) : gxpxw.__cid == Object() ? equals_Object@Object(gxpxw, y) : 0);
 }
 
 void t2() {
-  Object self = Object_Object(new Object(__cid=Object()));
-  Object s = Stack_Stack(new Object(__cid=Stack()));
-  Object o1 = Object_Object(new Object(__cid=Object()));
-  Object o2 = Object_Object(new Object(__cid=Object()));
-  Object o3 = Object_Object(new Object(__cid=Object()));
-  Object o4 = Object_Object(new Object(__cid=Object()));
-  Object o5 = Object_Object(new Object(__cid=Object()));
-  Object o6 = Object_Object(new Object(__cid=Object()));
-  (s.__cid == Stack() ? push_E@Stack(s, o1) : null);
-  (s.__cid == Stack() ? push_E@Stack(s, o2) : null);
-  (s.__cid == Stack() ? push_E@Stack(s, o3) : null);
-  (s.__cid == Stack() ? push_E@Stack(s, o4) : null);
-  (s.__cid == Stack() ? push_E@Stack(s, o5) : null);
-  (s.__cid == Stack() ? push_E@Stack(s, o6) : null);
-  Object poppsh123456 = (s.__cid == Stack() ? pop@Stack(s) : null);
-  assert (poppsh123456.__cid == String() ? equals_Object@String(poppsh123456, o6) : poppsh123456.__cid == Stack() ? equals_Object@Object(poppsh123456, o6) : poppsh123456.__cid == Object() ? equals_Object@Object(poppsh123456, o6) : 0);
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  Object z = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, z) : null);
+  Object gxpxx = (h.__cid == HashMap_NoHash() ? get_K@HashMap_NoHash(h, x) : null);
+  assert (gxpxx.__cid == HashMap_NoHash_Node() ? equals_Object@Object(gxpxx, z) : gxpxx.__cid == Object() ? equals_Object@Object(gxpxx, z) : 0);
 }
 
 void t3() {
-  Object self = Object_Object(new Object(__cid=Object()));
-  Object s = Stack_Stack(new Object(__cid=Stack()));
-  Object o1 = Object_Object(new Object(__cid=Object()));
-  Object o2 = Object_Object(new Object(__cid=Object()));
-  (s.__cid == Stack() ? push_E@Stack(s, o1) : null);
-  (s.__cid == Stack() ? pop@Stack(s) : null);
-  (s.__cid == Stack() ? push_E@Stack(s, o2) : null);
-  Object poppshpoppsh12 = (s.__cid == Stack() ? pop@Stack(s) : null);
-  assert (poppshpoppsh12.__cid == String() ? equals_Object@String(poppshpoppsh12, o2) : poppshpoppsh12.__cid == Stack() ? equals_Object@Object(poppshpoppsh12, o2) : poppshpoppsh12.__cid == Object() ? equals_Object@Object(poppshpoppsh12, o2) : 0);
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object w = Object_Object(new Object(__cid=Object()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  Object z = Object_Object(new Object(__cid=Object()));
+  Object a = Object_Object(new Object(__cid=Object()));
+  Object b = Object_Object(new Object(__cid=Object()));
+  Object c = Object_Object(new Object(__cid=Object()));
+  Object d = Object_Object(new Object(__cid=Object()));
+  Object e = Object_Object(new Object(__cid=Object()));
+  Object f = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, w, z) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, a, b) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, c, d) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, e, f) : null);
+  Object gxpxwace = (h.__cid == HashMap_NoHash() ? get_K@HashMap_NoHash(h, x) : null);
+  assert (gxpxwace.__cid == HashMap_NoHash_Node() ? equals_Object@Object(gxpxwace, y) : gxpxwace.__cid == Object() ? equals_Object@Object(gxpxwace, y) : 0);
 }
 
 void t4() {
-  Object self = Object_Object(new Object(__cid=Object()));
-  Object s = Stack_Stack(new Object(__cid=Stack()));
-  Object o1 = Object_Object(new Object(__cid=Object()));
-  Object o2 = Object_Object(new Object(__cid=Object()));
-  (s.__cid == Stack() ? push_E@Stack(s, o1) : null);
-  (s.__cid == Stack() ? push_E@Stack(s, o2) : null);
-  (s.__cid == Stack() ? pop@Stack(s) : null);
-  Object poppoppsh12 = (s.__cid == Stack() ? pop@Stack(s) : null);
-  assert (poppoppsh12.__cid == String() ? equals_Object@String(poppoppsh12, o1) : poppoppsh12.__cid == Stack() ? equals_Object@Object(poppoppsh12, o1) : poppoppsh12.__cid == Object() ? equals_Object@Object(poppoppsh12, o1) : 0);
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  Object z = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, z) : null);
+  (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, x) : null);
+  Object gxrxpxx = (h.__cid == HashMap_NoHash() ? get_K@HashMap_NoHash(h, x) : null);
+  assert gxrxpxx == null;
 }
 
 void t5() {
-  Object self = Object_Object(new Object(__cid=Object()));
-  Object s = Stack_Stack(new Object(__cid=Stack()));
-  Object o1 = Object_Object(new Object(__cid=Object()));
-  Object o2 = Object_Object(new Object(__cid=Object()));
-  Object o3 = Object_Object(new Object(__cid=Object()));
-  Object o4 = Object_Object(new Object(__cid=Object()));
-  Object o5 = Object_Object(new Object(__cid=Object()));
-  (s.__cid == Stack() ? push_E@Stack(s, o1) : null);
-  (s.__cid == Stack() ? pop@Stack(s) : null);
-  (s.__cid == Stack() ? push_E@Stack(s, o2) : null);
-  (s.__cid == Stack() ? pop@Stack(s) : null);
-  (s.__cid == Stack() ? push_E@Stack(s, o3) : null);
-  (s.__cid == Stack() ? pop@Stack(s) : null);
-  (s.__cid == Stack() ? push_E@Stack(s, o4) : null);
-  (s.__cid == Stack() ? pop@Stack(s) : null);
-  (s.__cid == Stack() ? push_E@Stack(s, o5) : null);
-  Object poppsh5 = (s.__cid == Stack() ? pop@Stack(s) : null);
-  assert (poppsh5.__cid == String() ? equals_Object@String(poppsh5, o5) : poppsh5.__cid == Stack() ? equals_Object@Object(poppsh5, o5) : poppsh5.__cid == Object() ? equals_Object@Object(poppsh5, o5) : 0);
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  Object z = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, x) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, z) : null);
+  Object gxpxrxpx = (h.__cid == HashMap_NoHash() ? get_K@HashMap_NoHash(h, x) : null);
+  assert (gxpxrxpx.__cid == HashMap_NoHash_Node() ? equals_Object@Object(gxpxrxpx, z) : gxpxrxpx.__cid == Object() ? equals_Object@Object(gxpxrxpx, z) : 0);
 }
 
 void t6() {
-  Object self = Object_Object(new Object(__cid=Object()));
-  Object s = Stack_Stack(new Object(__cid=Stack()));
-  Object o1 = Object_Object(new Object(__cid=Object()));
-  Object o2 = Object_Object(new Object(__cid=Object()));
-  Object o3 = Object_Object(new Object(__cid=Object()));
-  Object o4 = Object_Object(new Object(__cid=Object()));
-  Object o5 = Object_Object(new Object(__cid=Object()));
-  (s.__cid == Stack() ? push_E@Stack(s, o1) : null);
-  (s.__cid == Stack() ? push_E@Stack(s, o2) : null);
-  (s.__cid == Stack() ? push_E@Stack(s, o3) : null);
-  (s.__cid == Stack() ? push_E@Stack(s, o4) : null);
-  (s.__cid == Stack() ? push_E@Stack(s, o5) : null);
-  (s.__cid == Stack() ? pop@Stack(s) : null);
-  (s.__cid == Stack() ? pop@Stack(s) : null);
-  (s.__cid == Stack() ? pop@Stack(s) : null);
-  (s.__cid == Stack() ? pop@Stack(s) : null);
-  Object poppsh1 = (s.__cid == Stack() ? pop@Stack(s) : null);
-  assert (poppsh1.__cid == String() ? equals_Object@String(poppsh1, o1) : poppsh1.__cid == Stack() ? equals_Object@Object(poppsh1, o1) : poppsh1.__cid == Object() ? equals_Object@Object(poppsh1, o1) : 0);
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  assert (h.__cid == HashMap_NoHash() ? containsKey_K@HashMap_NoHash(h, x) : 0);
 }
 
 void t7() {
-  Object self = Object_Object(new Object(__cid=Object()));
-  Object s = Stack_Stack(new Object(__cid=Stack()));
-  Object o1 = Object_Object(new Object(__cid=Object()));
-  Object o2 = Object_Object(new Object(__cid=Object()));
-  Object o3 = Object_Object(new Object(__cid=Object()));
-  Object o4 = Object_Object(new Object(__cid=Object()));
-  Object o5 = Object_Object(new Object(__cid=Object()));
-  Object o6 = Object_Object(new Object(__cid=Object()));
-  (s.__cid == Stack() ? push_E@Stack(s, o1) : null);
-  (s.__cid == Stack() ? push_E@Stack(s, o2) : null);
-  (s.__cid == Stack() ? push_E@Stack(s, o3) : null);
-  (s.__cid == Stack() ? pop@Stack(s) : null);
-  (s.__cid == Stack() ? push_E@Stack(s, o4) : null);
-  (s.__cid == Stack() ? pop@Stack(s) : null);
-  (s.__cid == Stack() ? push_E@Stack(s, o5) : null);
-  (s.__cid == Stack() ? push_E@Stack(s, o6) : null);
-  (s.__cid == Stack() ? pop@Stack(s) : null);
-  (s.__cid == Stack() ? pop@Stack(s) : null);
-  (s.__cid == Stack() ? pop@Stack(s) : null);
-  Object poppsh1 = (s.__cid == Stack() ? pop@Stack(s) : null);
-  assert (poppsh1.__cid == Stack() ? equals_Object@Object(poppsh1, o1) : poppsh1.__cid == String() ? equals_Object@String(poppsh1, o1) : poppsh1.__cid == Object() ? equals_Object@Object(poppsh1, o1) : 0);
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object w = Object_Object(new Object(__cid=Object()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  Object z = Object_Object(new Object(__cid=Object()));
+  Object a = Object_Object(new Object(__cid=Object()));
+  Object b = Object_Object(new Object(__cid=Object()));
+  Object c = Object_Object(new Object(__cid=Object()));
+  Object d = Object_Object(new Object(__cid=Object()));
+  Object e = Object_Object(new Object(__cid=Object()));
+  Object f = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, w, z) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, a, b) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, c, d) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, e, f) : null);
+  assert (h.__cid == HashMap_NoHash() ? containsKey_K@HashMap_NoHash(h, x) : 0);
 }
 
 void t8() {
-  Object self = Object_Object(new Object(__cid=Object()));
-  Object s = Stack_Stack(new Object(__cid=Stack()));
-  Object o1 = Object_Object(new Object(__cid=Object()));
-  Object o2 = Object_Object(new Object(__cid=Object()));
-  Object o3 = Object_Object(new Object(__cid=Object()));
-  Object o4 = Object_Object(new Object(__cid=Object()));
-  Object o5 = Object_Object(new Object(__cid=Object()));
-  Object o6 = Object_Object(new Object(__cid=Object()));
-
-  (s.__cid == Stack() ? push_E@Stack(s, o1) : null);
-  (s.__cid == Stack() ? push_E@Stack(s, o2) : null);
-  (s.__cid == Stack() ? push_E@Stack(s, o3) : null);
-  (s.__cid == Stack() ? push_E@Stack(s, o4) : null);
-  (s.__cid == Stack() ? push_E@Stack(s, o5) : null);
-  (s.__cid == Stack() ? push_E@Stack(s, o6) : null);
-
-  Object pop1 = (s.__cid == Stack() ? pop@Stack(s) : null);
-
-  int i = 0;
-
-  for (i = 0; i < ??; i++) {
-     pop1 = (s.__cid == Stack() ? pop@Stack(s) : null);
-  }
-
-  assert (pop1.__cid == Stack() ? equals_Object@Object(pop1, o1) : pop1.__cid == String() ? equals_Object@String(pop1, o1) : pop1.__cid == Object() ? equals_Object@Object(pop1, o1) : 0);
-
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  Object z = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  assert !(h.__cid == HashMap_NoHash() ? containsKey_K@HashMap_NoHash(h, z) : 0);
 }
+
+void t9() {
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  Object z = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, z) : null);
+  (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, x) : null);
+  assert !(h.__cid == HashMap_NoHash() ? containsKey_K@HashMap_NoHash(h, x) : 0);
+}
+
+void t10() {
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  Object z = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, x) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, z) : null);
+  assert (h.__cid == HashMap_NoHash() ? containsKey_K@HashMap_NoHash(h, x) : 0);
+}
+
+void t11() {
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  assert (h.__cid == HashMap_NoHash() ? containsValue_V@HashMap_NoHash(h, y) : 0);
+}
+
+void t12() {
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object w = Object_Object(new Object(__cid=Object()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  Object z = Object_Object(new Object(__cid=Object()));
+  Object a = Object_Object(new Object(__cid=Object()));
+  Object b = Object_Object(new Object(__cid=Object()));
+  Object c = Object_Object(new Object(__cid=Object()));
+  Object d = Object_Object(new Object(__cid=Object()));
+  Object e = Object_Object(new Object(__cid=Object()));
+  Object f = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, w, z) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, a, b) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, c, d) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, e, f) : null);
+  assert (h.__cid == HashMap_NoHash() ? containsValue_V@HashMap_NoHash(h, y) : 0);
+}
+
+void t13() {
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  Object z = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, z) : null);
+  assert !(h.__cid == HashMap_NoHash() ? containsValue_V@HashMap_NoHash(h, y) : 0);
+}
+
+void t14() {
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object w = Object_Object(new Object(__cid=Object()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  Object z = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, w, z) : null);
+  (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, x) : null);
+  assert !(h.__cid == HashMap_NoHash() ? containsValue_V@HashMap_NoHash(h, y) : 0);
+}
+
