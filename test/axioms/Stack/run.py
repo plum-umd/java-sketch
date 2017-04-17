@@ -1,8 +1,7 @@
 import subprocess
 import re
-import math
 
-def main(num_trials, test):
+def main(num_trials, test, first_test, last_test):
     result_file = 'results/{}.csv'.format(test)
     error_file = 'errors/{}.txt'.format(test)
     log_file = 'logs/{}.txt'.format(test)
@@ -11,8 +10,8 @@ def main(num_trials, test):
     with open(error_file, 'w') as f: pass
     with open('{}/test.sk'.format(input_dir)) as f: text = f.read()
     log = open(log_file, 'w')
-    num_tests=int(re.findall(r't[0-9]+', text)[-1][1:]) + 1
-    for i in range(num_tests):
+    if last_test == 0: last_test = int(re.findall(r't[0-9]+', text)[-1][1:])
+    for i in xrange(first_test + 1 if first_test == -1 else first_test, last_test+1):
         print 'Running test {}'.format(i)
         times = []
         for j in range(num_trials):
@@ -28,6 +27,7 @@ def main(num_trials, test):
                 with open(error_file, 'a') as f: f.write('{}\n'.format(' '.join(cmd)))
                 times.extend([0.0]*num_trials)
                 break
+        if first_test != -1: print 'Test: {}, times: {}'.format(i, times)
         with open(result_file, 'a') as f:
             [f.write('{:.2f}\t'.format(n)) for n in times]
             f.write('\n')
@@ -54,24 +54,28 @@ if __name__ == '__main__':
                       help='Execute Object tests.')
     parser.add_option('-n', action='store', type='int', dest='trials', default=1,
                       help='Number of trials to run.')
+    parser.add_option('-f', action='store', type='int', dest='first_test', default=-1,
+                      help='First test to run.')
+    parser.add_option('-l', action='store', type='int', dest='last_test', default=0,
+                      help='Last test to run.')
     (options, args) = parser.parse_args()
     print 'Number of trials: {}'.format(options.trials)
     if options.impl:
         print 'Testing implementation'
-        main(options.trials, 'impl')
+        main(options.trials, 'impl', options.first_test, options.last_test)
         print
     if options.adt:
         print 'Testing adt'
-        main(options.trials, 'adt')
+        main(options.trials, 'adt', options.first_test, options.last_test)
         print
     if options.obj:
         print 'Testing Object'
-        main(options.trials, 'Object')
+        main(options.trials, 'Object', options.first_test, options.last_test)
         print
     if (not options.impl) and (not options.adt) and (not options.obj):
         print 'Testing implementation'
-        main(options.trials, 'impl')
+        main(options.trials, 'impl', options.first_test, options.last_test)
         print 'Testing adt'
-        main(options.trials, 'adt')
+        main(options.trials, 'adt', options.first_test, options.last_test)
         print 'Testing Object'
-        main(options.trials, 'Object')
+        main(options.trials, 'Object', options.first_test, options.last_test)
