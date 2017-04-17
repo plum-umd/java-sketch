@@ -20,6 +20,7 @@ harness void mn() {
   else if (TID == 16) t16();
   else if (TID == 17) t17();
   else if (TID == 18) t18();
+  else if (TID == 19) t19();
 }
 
 void t0() {
@@ -290,7 +291,7 @@ void t17() {
   for (i=0; i<30; i++) {
      (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
      gpx = (h.__cid == HashMap_NoHash() ? get_K@HashMap_NoHash(h, x) : null);
-     assert (gpx.__cid == HashMap_NoHash_Node() ? equals_Object@Object(gpx, y) : gpx.__cid == Object() ? equals_Object@Object(gpx, y) : 0);
+     assert (gpx.__cid == HashMap_NoHash_Node() ? equals_Object@Object(gpx, y) : gpx.__cid == Object() ? equals_Object@Object(gpx, y) : 0);  
   }
 }
 
@@ -318,54 +319,6 @@ void t18() {
      (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
      (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
      (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
-     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
-     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
-     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
-     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
-     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
-     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
-     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
-     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
-     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
-     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
-     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
-     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
-     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
-     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
-     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
-     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
-     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
-     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
-     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
-     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
-     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
-     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
-     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
-     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
-     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
-     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
-     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
-     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
-     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
-     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
-     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
-     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
-     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
-     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
-     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
-     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
-     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
-     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
-     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
-     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
-     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
-     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
-     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
-     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
-     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
-     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
-     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
-     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
   }
 
   Object gpx = (h.__cid == HashMap_NoHash() ? get_K@HashMap_NoHash(h, x) : null);
@@ -373,3 +326,23 @@ void t18() {
   assert (gpx.__cid == HashMap_NoHash_Node() ? equals_Object@Object(gpx, y) : gpx.__cid == Object() ? equals_Object@Object(gpx, y) : 0);
 }
 
+void t19() {
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object w = Object_Object(new Object(__cid=Object()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  Object z = Object_Object(new Object(__cid=Object()));
+  Object a = Object_Object(new Object(__cid=Object()));
+  Object b = Object_Object(new Object(__cid=Object()));
+  Object c = Object_Object(new Object(__cid=Object()));
+  Object d = Object_Object(new Object(__cid=Object()));
+  Object e = Object_Object(new Object(__cid=Object()));
+  Object f = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, w, z) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, a, b) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, c, d) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, e, f) : null);
+  Object gxpxwace = (h.__cid == HashMap_NoHash() ? get_K@HashMap_NoHash(h, $(Object)) : null);
+  assert (gxpxwace.__cid == HashMap_NoHash_Node() ? equals_Object@Object(gxpxwace, y) : gxpxwace.__cid == Object() ? equals_Object@Object(gxpxwace, y) : 0);
+}

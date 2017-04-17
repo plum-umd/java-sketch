@@ -20,6 +20,7 @@ harness void mn() {
   else if (TID==16) t16();
   else if (TID==17) t17();
   else if (TID==18) t18();
+  else if (TID==19) t19();
 }
 
 // get(put([],x,y), x) == y
@@ -291,45 +292,44 @@ void t16() {
 
    Object h = hashMap();
    Object px = put(h.h, x.h, y.h);   
-   Object px2;
 
    int i = 0;
 
    for(i=0; i < 30; i++) {
       Object z = object();
-      px2 = put(px.h, z.h, q.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = put(px2.h, z.h, q.h); 
-      px2 = put(px2.h, z.h, q.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = put(px2.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h); 
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
    }
 
-   Object gpx = get(px2.h, x.h);
+   Object gpx = get(px.h, x.h);
 
    assert xform(gpx.h) == y.h;
 }
@@ -362,75 +362,58 @@ void t18() {
 
    Object h = hashMap();
    Object px = put(h.h, x.h, y.h);   
-   Object px2;
 
    int i = 0;
 
    for(i=0; i < 30; i++) {
       Object z = object();
-      px2 = put(px.h, z.h, q.h);
-      px2 = remove(px.h, z.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = remove(px.h, z.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = remove(px.h, z.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = remove(px.h, z.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = remove(px.h, z.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = remove(px.h, z.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = remove(px.h, z.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = remove(px.h, z.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = remove(px.h, z.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = remove(px.h, z.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = remove(px.h, z.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = remove(px.h, z.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = remove(px.h, z.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = remove(px.h, z.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = remove(px.h, z.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = remove(px.h, z.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = remove(px.h, z.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = remove(px.h, z.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = remove(px.h, z.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = remove(px.h, z.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = remove(px.h, z.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = remove(px.h, z.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = remove(px.h, z.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = remove(px.h, z.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = remove(px.h, z.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = remove(px.h, z.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = remove(px.h, z.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = remove(px.h, z.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = remove(px.h, z.h);
-      px2 = put(px2.h, z.h, q.h);
-      px2 = remove(px.h, z.h);
+      px = put(px.h, z.h, q.h);
+      px = remove(px.h, z.h);
+      px = put(px.h, z.h, q.h);
+      px = remove(px.h, z.h);
+      px = put(px.h, z.h, q.h);
+      px = remove(px.h, z.h);
+      px = put(px.h, z.h, q.h);
+      px = remove(px.h, z.h);
+      px = put(px.h, z.h, q.h);
+      px = remove(px.h, z.h);
+      px = put(px.h, z.h, q.h);
+      px = remove(px.h, z.h);
    }
 
-   Object gpx = get(px2.h, x.h);
+   Object gpx = get(px.h, x.h);
 
    assert xform(gpx.h) == y.h;
+}
+
+// containsKey(put(put(put(put(put([],x,y), w, z), a, b), c, d), e, f), x) = 
+//   true
+void t19() {
+   Object x = object();
+   Object y = object();
+   Object w = object();
+   Object z = object();
+   Object a = object();
+   Object b = object();
+   Object c = object();
+   Object d = object();
+   Object e = object();
+   Object f = object();
+   
+   Object h = hashMap();
+   Object px = put(h.h, x.h, y.h);
+   Object pxw = put(px.h, w.h, z.h);
+   Object pxwa = put(pxw.h, a.h, b.h);
+   Object pxwac = put(pxwa.h, c.h, d.h);
+   Object pxwace = put(pxwa.h, e.h, f.h);
+
+   int i = 0;
+
+   for (i = 0; i < 30; i ++) {
+      pxwace = put(pxwace.h, e.h, f.h);
+   }
+
+   Object gxpxw = get(pxwace.h, $(Object).h);
+
+   assert xform(gxpxw.h) == y.h;
 }
