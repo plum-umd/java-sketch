@@ -1,5 +1,5 @@
 /* pragma options "--bnd-cbits 7"; */
-pragma options "--bnd-unroll-amnt 50";
+/* pragma options "--bnd-unroll-amnt 50"; */
 /* pragma options "--fe-fpencoding AS_FIXPOINT"; */
 /* pragma options "--bnd-inline-amnt 6"; */
 
