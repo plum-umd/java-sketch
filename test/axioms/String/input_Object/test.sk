@@ -128,7 +128,9 @@ void t5() {
   Object c34 = (s3.__cid == String() || s3.__cid == Concat() ? concat(s3, s4) : null);
   Object c12c34 = (c12.__cid == String() || c12.__cid == Concat() ? concat(c12, c34) : null);
   Object lenc12c34 = (c12c34.__cid == String() || c12c34.__cid == Concat() ? length(c12c34) : null);
-  assert equals_Axiom(xform(lenc12c34, ??), len1234);
+  int b = ??;
+  assert equals_Axiom(xform(lenc12c34, b), len1234);
+  minimize(b);
 }
 
 // len(concat(concat(concat(s1,s2),s3),concat(s4,s5)) == len(s1) + len(s2) + len(s3) + len(s4) + len(s5)

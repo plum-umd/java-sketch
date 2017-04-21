@@ -1,0 +1,764 @@
+SKETCH version 1.7.2
+Benchmark = input_Object/main.sk_TID=6
+/* BEGIN PACKAGE Concat*/
+package Concat{
+  /*Concat.sk:7*/
+  
+void Concat_Concat_Object_Object (Object self, Object s1, Object s2, ref Object _out)/*Concat.sk:7*/
+  {
+    _out = null;
+    self.s1_Concat = s1;
+    self.s2_Concat = s2;
+    _out = self;
+    return;
+  }
+  /* END PACKAGE Concat*/
+}
+/* BEGIN PACKAGE ANONYMOUS*/
+/* END PACKAGE ANONYMOUS*/
+/* BEGIN PACKAGE Len*/
+package Len{
+  /*Len.sk:7*/
+  
+void Len_Len_Object (Object self, Object s, ref Object _out)/*Len.sk:7*/
+  {
+    _out = null;
+    self.str_Len = s;
+    _out = self;
+    return;
+  }
+  /* END PACKAGE Len*/
+}
+/* BEGIN PACKAGE Axiom_String*/
+package Axiom_String{
+  /*Axiom_String.sk:11*/
+  
+void concat (Object s1, Object s2, ref Object _out)/*Axiom_String.sk:11*/
+  {
+    _out = null;
+    int _out_s45 = 0;
+    Concat@meta(_out_s45);
+    Object@Object _out_s47 = null;
+    Concat_Concat_Object_Object@Concat(new Object@Object(__cid=_out_s45), s1, s2, _out_s47);
+    _out = _out_s47;
+    return;
+  }
+  /*Axiom_String.sk:20*/
+  
+void error (ref Object _out)/*Axiom_String.sk:20*/
+  {
+    _out = null;
+    int _out_s41 = 0;
+    Error@meta(_out_s41);
+    Object@Object _out_s43 = null;
+    Error_Error@Error(new Object@Object(__cid=_out_s41), _out_s43);
+    _out = _out_s43;
+    return;
+  }
+  /*Axiom_String.sk:6*/
+  
+void length (Object str, ref Object _out)/*Axiom_String.sk:6*/
+  {
+    _out = null;
+    int _out_s53 = 0;
+    Len@meta(_out_s53);
+    Object@Object _out_s55 = null;
+    Len_Len_Object@Len(new Object@Object(__cid=_out_s53), str, _out_s55);
+    _out = _out_s55;
+    return;
+  }
+  /*Axiom_String.sk:16*/
+  
+void plus (Object i1, Object i2, ref Object _out)/*Axiom_String.sk:16*/
+  {
+    _out = null;
+    int _out_s49 = 0;
+    Plus@meta(_out_s49);
+    Object@Object _out_s51 = null;
+    Plus_Plus_Object_Object@Plus(new Object@Object(__cid=_out_s49), i1, i2, _out_s51);
+    _out = _out_s51;
+    return;
+  }
+  /*Axiom_String.sk:3*/
+  
+void string (int __cid, int n, char[n] s, ref Object _out)/*Axiom_String.sk:3*/
+  {
+    _out = null;
+    int _out_s57 = 0;
+    String@meta(_out_s57);
+    Object@Object _out_s59 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=_out_s57), new Array_char@array(length=n, A=s), 0, n - 1, _out_s59);
+    _out = _out_s59;
+    return;
+  }
+  /*Axiom_String.sk:24*/
+  
+void xform (Object t, int dice_0, ref Object _out)/*Axiom_String.sk:24*/
+  {
+    _out = null;
+    int dice = dice_0;
+    Object@Object t2 = null;
+    int _out_s1 = 0;
+    Len@meta(_out_s1);
+    Object@Object t1 = null;
+    if((t.__cid) == _out_s1)/*Axiom_String.sk:28*/
+    {
+      t1 = t.str_Len;
+    }
+    else
+    {
+      int _out_s3 = 0;
+      Plus@meta(_out_s3);
+      if((t.__cid) == _out_s3)/*Axiom_String.sk:30*/
+      {
+        t1 = t.i1_Plus;
+        t2 = t.i2_Plus;
+      }
+      else
+      {
+        int _out_s5 = 0;
+        Concat@meta(_out_s5);
+        if((t.__cid) == _out_s5)/*Axiom_String.sk:33*/
+        {
+          t1 = t.s1_Concat;
+          t2 = t.s2_Concat;
+        }
+        else
+        {
+          _out = t;
+          return;
+        }
+      }
+    }
+    dice = dice_0 / 2;
+    Object@Object tt1_s7 = null;
+    xform(t1, dice, tt1_s7);
+    int _out_s9 = 0;
+    Len@meta(_out_s9);
+    if((t.__cid) == _out_s9)/*Axiom_String.sk:41*/
+    {
+      int _out_s11 = 0;
+      Concat@meta(_out_s11);
+      if((t1.__cid) == _out_s11)/*Axiom_String.sk:42*/
+      {
+        if((dice % 2) == 0)/*Axiom_String.sk:43*/
+        {
+          dice = dice / 2;
+          Object@Object tt1_s13 = null;
+          length(t1.s1_Concat, tt1_s13);
+          Object@Object tt1_s15 = null;
+          xform(tt1_s13, dice, tt1_s15);
+          dice = dice / 2;
+          Object@Object tt2_s17 = null;
+          length(t1.s2_Concat, tt2_s17);
+          Object@Object tt2_s19 = null;
+          xform(tt2_s17, dice, tt2_s19);
+          Object@Object _out_s21 = null;
+          plus(tt1_s15, tt2_s19, _out_s21);
+          _out = _out_s21;
+          return;
+        }
+        else
+        {
+          Object@Object _out_s23 = null;
+          length(tt1_s7, _out_s23);
+          _out = _out_s23;
+          return;
+        }
+      }
+      else
+      {
+        int _out_s25 = 0;
+        String@meta(_out_s25);
+        if((t1.__cid) == _out_s25)/*Axiom_String.sk:53*/
+        {
+          _out = t;
+          return;
+        }
+        else
+        {
+          Object@Object _out_s27 = null;
+          error(_out_s27);
+          _out = _out_s27;
+          return;
+        }
+      }
+    }
+    else
+    {
+      dice = dice / 2;
+      Object@Object tt2_s29 = null;
+      xform(t2, dice, tt2_s29);
+      int _out_s31 = 0;
+      Plus@meta(_out_s31);
+      if((t.__cid) == _out_s31)/*Axiom_String.sk:61*/
+      {
+        Object@Object _out_s33 = null;
+        plus(tt1_s7, tt2_s29, _out_s33);
+        _out = _out_s33;
+        return;
+      }
+      else
+      {
+        int _out_s35 = 0;
+        Concat@meta(_out_s35);
+        if((t.__cid) == _out_s35)/*Axiom_String.sk:63*/
+        {
+          Object@Object _out_s37 = null;
+          concat(tt1_s7, tt2_s29, _out_s37);
+          _out = _out_s37;
+          return;
+        }
+        else
+        {
+          Object@Object _out_s39 = null;
+          error(_out_s39);
+          _out = _out_s39;
+          return;
+        }
+      }
+    }
+  }
+  /* END PACKAGE Axiom_String*/
+}
+/* BEGIN PACKAGE test*/
+package test{
+  /*test.sk:3*/
+  
+void mn ()/*test.sk:3*/
+  {
+    t6();
+  }
+  /*test.sk:3*/
+  
+void mn__Wrapper ()  implements mn__WrapperNospec/*test.sk:3*/
+  {
+    mn();
+  }
+  /*test.sk:3*/
+  
+void mn__WrapperNospec ()/*test.sk:3*/
+  { }
+  /*test.sk:137*/
+  
+void t6 ()/*test.sk:137*/
+  {
+    int s1_s364 = 0;
+    String@meta(s1_s364);
+    Object@Object s1_s366 = null;
+    string@Axiom_String(s1_s364, 8, {'h','e','l','l','o',',',' ','\0'}, s1_s366);
+    int s2_s368 = 0;
+    String@meta(s2_s368);
+    Object@Object s2_s370 = null;
+    string@Axiom_String(s2_s368, 7, {'w','o','r','l','d','!','\0'}, s2_s370);
+    int s3_s372 = 0;
+    String@meta(s3_s372);
+    Object@Object s3_s374 = null;
+    string@Axiom_String(s3_s372, 14, {'A','L','L','W','O','R','K','N','O','P','L','A','Y','\0'}, s3_s374);
+    int s4_s376 = 0;
+    String@meta(s4_s376);
+    Object@Object s4_s378 = null;
+    string@Axiom_String(s4_s376, 20, {'M','A','K','E','S','J','A','C','K','A','D','U','L','L','B','O','Y','!','!','\0'}, s4_s378);
+    int s5_s380 = 0;
+    String@meta(s5_s380);
+    Object@Object s5_s382 = null;
+    string@Axiom_String(s5_s380, 24, {'b','l','a','h',' ','b','l','a','h','b','l','a','h',' ','b','l','a','h',' ','b','l','a','h','\0'}, s5_s382);
+    int _pac_sc_s383_s385 = 0;
+    String@meta(_pac_sc_s383_s385);
+    bit _pac_sc_s383;
+    _pac_sc_s383 = (s1_s366.__cid) == _pac_sc_s383_s385;
+    if(!(_pac_sc_s383))/*test.sk:143*/
+    {
+      int _pac_sc_s383_s387 = 0;
+      Concat@meta(_pac_sc_s383_s387);
+      _pac_sc_s383 = (s1_s366.__cid) == _pac_sc_s383_s387;
+    }
+    Object@Object _pac_sc_s388 = null;
+    if(_pac_sc_s383)/*test.sk:143*/
+    {
+      Object@Object _out_s390 = null;
+      length@Axiom_String(s1_s366, _out_s390);
+      _pac_sc_s388 = _out_s390;
+    }
+    else
+    {
+      _pac_sc_s388 = null;
+    }
+    int _pac_sc_s391_s393 = 0;
+    String@meta(_pac_sc_s391_s393);
+    bit _pac_sc_s391;
+    _pac_sc_s391 = (s2_s370.__cid) == _pac_sc_s391_s393;
+    if(!(_pac_sc_s391))/*test.sk:144*/
+    {
+      int _pac_sc_s391_s395 = 0;
+      Concat@meta(_pac_sc_s391_s395);
+      _pac_sc_s391 = (s2_s370.__cid) == _pac_sc_s391_s395;
+    }
+    Object@Object _pac_sc_s396 = null;
+    if(_pac_sc_s391)/*test.sk:144*/
+    {
+      Object@Object _out_s398 = null;
+      length@Axiom_String(s2_s370, _out_s398);
+      _pac_sc_s396 = _out_s398;
+    }
+    else
+    {
+      _pac_sc_s396 = null;
+    }
+    int _pac_sc_s399_s401 = 0;
+    String@meta(_pac_sc_s399_s401);
+    bit _pac_sc_s399;
+    _pac_sc_s399 = (s3_s374.__cid) == _pac_sc_s399_s401;
+    if(!(_pac_sc_s399))/*test.sk:145*/
+    {
+      int _pac_sc_s399_s403 = 0;
+      Concat@meta(_pac_sc_s399_s403);
+      _pac_sc_s399 = (s3_s374.__cid) == _pac_sc_s399_s403;
+    }
+    Object@Object _pac_sc_s404 = null;
+    if(_pac_sc_s399)/*test.sk:145*/
+    {
+      Object@Object _out_s406 = null;
+      length@Axiom_String(s3_s374, _out_s406);
+      _pac_sc_s404 = _out_s406;
+    }
+    else
+    {
+      _pac_sc_s404 = null;
+    }
+    int _pac_sc_s407_s409 = 0;
+    String@meta(_pac_sc_s407_s409);
+    bit _pac_sc_s407;
+    _pac_sc_s407 = (s4_s378.__cid) == _pac_sc_s407_s409;
+    if(!(_pac_sc_s407))/*test.sk:146*/
+    {
+      int _pac_sc_s407_s411 = 0;
+      Concat@meta(_pac_sc_s407_s411);
+      _pac_sc_s407 = (s4_s378.__cid) == _pac_sc_s407_s411;
+    }
+    Object@Object _pac_sc_s412 = null;
+    if(_pac_sc_s407)/*test.sk:146*/
+    {
+      Object@Object _out_s414 = null;
+      length@Axiom_String(s4_s378, _out_s414);
+      _pac_sc_s412 = _out_s414;
+    }
+    else
+    {
+      _pac_sc_s412 = null;
+    }
+    int _pac_sc_s415_s417 = 0;
+    String@meta(_pac_sc_s415_s417);
+    bit _pac_sc_s415;
+    _pac_sc_s415 = (s5_s382.__cid) == _pac_sc_s415_s417;
+    if(!(_pac_sc_s415))/*test.sk:147*/
+    {
+      int _pac_sc_s415_s419 = 0;
+      Concat@meta(_pac_sc_s415_s419);
+      _pac_sc_s415 = (s5_s382.__cid) == _pac_sc_s415_s419;
+    }
+    Object@Object _pac_sc_s420 = null;
+    if(_pac_sc_s415)/*test.sk:147*/
+    {
+      Object@Object _out_s422 = null;
+      length@Axiom_String(s5_s382, _out_s422);
+      _pac_sc_s420 = _out_s422;
+    }
+    else
+    {
+      _pac_sc_s420 = null;
+    }
+    Object@Object len12345_s424 = null;
+    plus@Axiom_String(_pac_sc_s388, _pac_sc_s396, len12345_s424);
+    Object@Object len12345_s426 = null;
+    plus@Axiom_String(_pac_sc_s404, _pac_sc_s412, len12345_s426);
+    Object@Object len12345_s428 = null;
+    plus@Axiom_String(len12345_s424, len12345_s426, len12345_s428);
+    Object@Object len12345_s430 = null;
+    plus@Axiom_String(len12345_s428, _pac_sc_s420, len12345_s430);
+    int _pac_sc_s431_s433 = 0;
+    String@meta(_pac_sc_s431_s433);
+    bit _pac_sc_s431;
+    _pac_sc_s431 = (s1_s366.__cid) == _pac_sc_s431_s433;
+    if(!(_pac_sc_s431))/*test.sk:149*/
+    {
+      int _pac_sc_s431_s435 = 0;
+      Concat@meta(_pac_sc_s431_s435);
+      _pac_sc_s431 = (s1_s366.__cid) == _pac_sc_s431_s435;
+    }
+    Object@Object _pac_sc_s436 = null;
+    if(_pac_sc_s431)/*test.sk:149*/
+    {
+      Object@Object _out_s438 = null;
+      concat@Axiom_String(s1_s366, s2_s370, _out_s438);
+      _pac_sc_s436 = _out_s438;
+    }
+    else
+    {
+      _pac_sc_s436 = null;
+    }
+    int _pac_sc_s439_s441 = 0;
+    String@meta(_pac_sc_s439_s441);
+    bit _pac_sc_s439;
+    _pac_sc_s439 = (s3_s374.__cid) == _pac_sc_s439_s441;
+    if(!(_pac_sc_s439))/*test.sk:150*/
+    {
+      int _pac_sc_s439_s443 = 0;
+      Concat@meta(_pac_sc_s439_s443);
+      _pac_sc_s439 = (s3_s374.__cid) == _pac_sc_s439_s443;
+    }
+    Object@Object _pac_sc_s444 = null;
+    if(_pac_sc_s439)/*test.sk:150*/
+    {
+      Object@Object _out_s446 = null;
+      concat@Axiom_String(s3_s374, s4_s378, _out_s446);
+      _pac_sc_s444 = _out_s446;
+    }
+    else
+    {
+      _pac_sc_s444 = null;
+    }
+    int _pac_sc_s447_s449 = 0;
+    String@meta(_pac_sc_s447_s449);
+    bit _pac_sc_s447;
+    _pac_sc_s447 = (_pac_sc_s436.__cid) == _pac_sc_s447_s449;
+    if(!(_pac_sc_s447))/*test.sk:151*/
+    {
+      int _pac_sc_s447_s451 = 0;
+      Concat@meta(_pac_sc_s447_s451);
+      _pac_sc_s447 = (_pac_sc_s436.__cid) == _pac_sc_s447_s451;
+    }
+    Object@Object _pac_sc_s452 = null;
+    if(_pac_sc_s447)/*test.sk:151*/
+    {
+      Object@Object _out_s454 = null;
+      concat@Axiom_String(_pac_sc_s436, _pac_sc_s444, _out_s454);
+      _pac_sc_s452 = _out_s454;
+    }
+    else
+    {
+      _pac_sc_s452 = null;
+    }
+    int _pac_sc_s455_s457 = 0;
+    String@meta(_pac_sc_s455_s457);
+    bit _pac_sc_s455;
+    _pac_sc_s455 = (_pac_sc_s452.__cid) == _pac_sc_s455_s457;
+    if(!(_pac_sc_s455))/*test.sk:152*/
+    {
+      int _pac_sc_s455_s459 = 0;
+      Concat@meta(_pac_sc_s455_s459);
+      _pac_sc_s455 = (_pac_sc_s452.__cid) == _pac_sc_s455_s459;
+    }
+    Object@Object _pac_sc_s460 = null;
+    if(_pac_sc_s455)/*test.sk:152*/
+    {
+      Object@Object _out_s462 = null;
+      concat@Axiom_String(_pac_sc_s452, s5_s382, _out_s462);
+      _pac_sc_s460 = _out_s462;
+    }
+    else
+    {
+      _pac_sc_s460 = null;
+    }
+    int _pac_sc_s463_s465 = 0;
+    String@meta(_pac_sc_s463_s465);
+    bit _pac_sc_s463;
+    _pac_sc_s463 = (_pac_sc_s460.__cid) == _pac_sc_s463_s465;
+    if(!(_pac_sc_s463))/*test.sk:153*/
+    {
+      int _pac_sc_s463_s467 = 0;
+      Concat@meta(_pac_sc_s463_s467);
+      _pac_sc_s463 = (_pac_sc_s460.__cid) == _pac_sc_s463_s467;
+    }
+    Object@Object _pac_sc_s468 = null;
+    if(_pac_sc_s463)/*test.sk:153*/
+    {
+      Object@Object _out_s470 = null;
+      length@Axiom_String(_pac_sc_s460, _out_s470);
+      _pac_sc_s468 = _out_s470;
+    }
+    else
+    {
+      _pac_sc_s468 = null;
+    }
+    Object@Object _out_s472 = null;
+    xform@Axiom_String(_pac_sc_s468, 1, _out_s472);
+    bit _out_s474 = 0;
+    equals_Axiom@Object(_out_s472, len12345_s430, _out_s474);
+    assert (_out_s474); //Assert at test.sk:154 (-7542265342386698250)
+  }
+  /* END PACKAGE test*/
+}
+/* BEGIN PACKAGE array*/
+package array{
+  struct Array_bit {
+      int length;
+      bit[length] A;
+  }
+  struct Array_char {
+      int length;
+      char[length] A;
+  }
+  struct Array_int {
+      int length;
+      int[length] A;
+  }
+  struct Array_float {
+      int length;
+      float[length] A;
+  }
+  struct Array_double {
+      int length;
+      double[length] A;
+  }
+  struct Array_Object {
+      int length;
+      Object[length] A;
+  }
+  /* END PACKAGE array*/
+}
+/* BEGIN PACKAGE meta*/
+package meta{
+  /*meta.sk:31*/
+  
+void Concat (ref int _out)/*meta.sk:31*/
+  {
+    _out = 0;
+    _out = 27;
+    return;
+  }
+  /*meta.sk:33*/
+  
+void Error (ref int _out)/*meta.sk:33*/
+  {
+    _out = 0;
+    _out = 29;
+    return;
+  }
+  /*meta.sk:30*/
+  
+void Len (ref int _out)/*meta.sk:30*/
+  {
+    _out = 0;
+    _out = 26;
+    return;
+  }
+  /*meta.sk:32*/
+  
+void Plus (ref int _out)/*meta.sk:32*/
+  {
+    _out = 0;
+    _out = 28;
+    return;
+  }
+  /*meta.sk:25*/
+  
+void String (ref int _out)/*meta.sk:25*/
+  {
+    _out = 0;
+    _out = 7;
+    return;
+  }
+  /* END PACKAGE meta*/
+}
+/* BEGIN PACKAGE Error*/
+package Error{
+  /*Error.sk:3*/
+  
+void Error_Error (Object self, ref Object _out)/*Error.sk:3*/
+  {
+    _out = null;
+    _out = self;
+    return;
+  }
+  /* END PACKAGE Error*/
+}
+/* BEGIN PACKAGE Object*/
+package Object{
+  struct Object {
+      int __cid;
+      Object str_Len;
+      Object s1_Concat;
+      Object s2_Concat;
+      Object i1_Plus;
+      Object i2_Plus;
+      Array_Object table_HashMap;
+      Object entrySet_HashMap;
+      int size_HashMap;
+      int modCount_HashMap;
+      float loadFactor_HashMap;
+      int threshold_HashMap;
+      int numPairs_HashMap;
+      int value_Integer;
+      Array_Object elementData_HashMap_Simple;
+      int numPairs_HashMap_Simple;
+      int capacity_HashMap_Simple;
+      float value_Float;
+      Object key_HashMap_Simple_Node;
+      Object value_HashMap_Simple_Node;
+      int hash_HashMap_Simple_Node;
+      int hash_HashMap_Node;
+      Object key_HashMap_Node;
+      Object value_HashMap_Node;
+      Object next_HashMap_Node;
+      Array_char _value_String;
+      int _count_String;
+      Array_char _value_StringBuffer;
+      int _count_StringBuffer;
+      Array_Object elementData_ArrayList;
+      int numElements_ArrayList;
+      int capacity_ArrayList;
+      Object parent_HashMap_TreeNode;
+      Object left_HashMap_TreeNode;
+      Object right_HashMap_TreeNode;
+      Object prev_HashMap_TreeNode;
+      bit red_HashMap_TreeNode;
+      Array_char _value_StringBuilder;
+      int _count_StringBuilder;
+  }
+  /*Object.sk:19*/
+  
+void equals_Axiom (Object self, Object obj, ref bit _out)/*Object.sk:19*/
+  {
+    _out = 0;
+    if((self.__cid) != (obj.__cid))/*Object.sk:20*/
+    {
+      _out = 0;
+      return;
+    }
+    else
+    {
+      int _pac_sc_s871_s873 = 0;
+      String@meta(_pac_sc_s871_s873);
+      bit _pac_sc_s871;
+      _pac_sc_s871 = (self.__cid) == _pac_sc_s871_s873;
+      if(_pac_sc_s871)/*Object.sk:23*/
+      {
+        int _pac_sc_s871_s875 = 0;
+        String@meta(_pac_sc_s871_s875);
+        _pac_sc_s871 = (obj.__cid) == _pac_sc_s871_s875;
+      }
+      if(_pac_sc_s871)/*Object.sk:23*/
+      {
+        _out = self == obj;
+        return;
+      }
+      else
+      {
+        int _pac_sc_s876_s878 = 0;
+        Len@meta(_pac_sc_s876_s878);
+        bit _pac_sc_s876;
+        _pac_sc_s876 = (self.__cid) == _pac_sc_s876_s878;
+        if(_pac_sc_s876)/*Object.sk:25*/
+        {
+          int _pac_sc_s876_s880 = 0;
+          Len@meta(_pac_sc_s876_s880);
+          _pac_sc_s876 = (obj.__cid) == _pac_sc_s876_s880;
+        }
+        if(_pac_sc_s876)/*Object.sk:25*/
+        {
+          bit _out_s882 = 0;
+          equals_Axiom(self.str_Len, obj.str_Len, _out_s882);
+          _out = _out_s882;
+          return;
+        }
+        else
+        {
+          int _pac_sc_s883_s885 = 0;
+          Concat@meta(_pac_sc_s883_s885);
+          bit _pac_sc_s883;
+          _pac_sc_s883 = (self.__cid) == _pac_sc_s883_s885;
+          if(_pac_sc_s883)/*Object.sk:27*/
+          {
+            int _pac_sc_s883_s887 = 0;
+            Concat@meta(_pac_sc_s883_s887);
+            _pac_sc_s883 = (obj.__cid) == _pac_sc_s883_s887;
+          }
+          if(_pac_sc_s883)/*Object.sk:27*/
+          {
+            bit _out_s889 = 0;
+            equals_Axiom(self.s1_Concat, obj.s1_Concat, _out_s889);
+            if(_out_s889)/*Object.sk:28*/
+            {
+              bit _out_s891 = 0;
+              equals_Axiom(self.s2_Concat, obj.s2_Concat, _out_s891);
+              _out = _out_s891;
+              return;
+            }
+            else
+            {
+              _out = 0;
+              return;
+            }
+          }
+          else
+          {
+            int _pac_sc_s892_s894 = 0;
+            Plus@meta(_pac_sc_s892_s894);
+            bit _pac_sc_s892;
+            _pac_sc_s892 = (self.__cid) == _pac_sc_s892_s894;
+            if(_pac_sc_s892)/*Object.sk:33*/
+            {
+              int _pac_sc_s892_s896 = 0;
+              Plus@meta(_pac_sc_s892_s896);
+              _pac_sc_s892 = (obj.__cid) == _pac_sc_s892_s896;
+            }
+            if(_pac_sc_s892)/*Object.sk:33*/
+            {
+              bit _out_s898 = 0;
+              equals_Axiom(self.i1_Plus, obj.i1_Plus, _out_s898);
+              if(_out_s898)/*Object.sk:34*/
+              {
+                bit _out_s900 = 0;
+                equals_Axiom(self.i2_Plus, obj.i2_Plus, _out_s900);
+                _out = _out_s900;
+                return;
+              }
+              else
+              {
+                _out = 0;
+                return;
+              }
+            }
+            else
+            {
+              _out = 0;
+              return;
+            }
+          }
+        }
+      }
+    }
+  }
+  /* END PACKAGE Object*/
+}
+/* BEGIN PACKAGE String*/
+package String{
+  /*String.sk:7*/
+  
+void String_String_char_int_int (Object self, Array_char ca, int offset, int count, ref Object _out)/*String.sk:7*/
+  {
+    _out = null;
+    self._value_String = ca;
+    self._count_String = count;
+    _out = self;
+    return;
+  }
+  /* END PACKAGE String*/
+}
+/* BEGIN PACKAGE Plus*/
+package Plus{
+  /*Plus.sk:7*/
+  
+void Plus_Plus_Object_Object (Object self, Object i1, Object i2, ref Object _out)/*Plus.sk:7*/
+  {
+    _out = null;
+    self.i1_Plus = i1;
+    self.i2_Plus = i2;
+    _out = self;
+    return;
+  }
+  /* END PACKAGE Plus*/
+}
+[SKETCH] DONE
+Total time = 2964
