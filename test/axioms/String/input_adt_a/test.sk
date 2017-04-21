@@ -1,4 +1,4 @@
-package test_p;
+package test;
 
 harness void mn() {
   if (TID==0) t0();
@@ -9,7 +9,7 @@ harness void mn() {
   else if (TID==5) t5();
   else if (TID==6) t6();
   else if (TID==7) t7();
-  else if (TID==8) t8();
+  /* else if (TID==8) t8(); */
 }
 
 /*****************************************************************************/

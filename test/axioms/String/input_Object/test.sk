@@ -8,6 +8,7 @@ harness void mn() {
   else if (TID==4) t4();
   else if (TID==5) t5();
   else if (TID==6) t6();
+  else if (TID==7) t7();
 }
 
 // len(concat(s1,s2)) == len(s1) + len(s2)
@@ -149,4 +150,18 @@ void t6() {
   Object c12c345 = (c12c34.__cid == String() || c12c34.__cid == Concat() ? concat(c12c34, s5) : null);
   Object lenc12c345 = (c12c345.__cid == String() || c12c345.__cid == Concat() ? length(c12c345) : null);
   assert equals_Axiom(xform(lenc12c345, ??), len12345);
+}
+// len(concat(s1,concat(s1,concat(s1,concat(s1,s2))))) == len(s1) + len(s1) + len(s1) + len(s1) + len(s2)
+void t7() {
+  Object s1 = string(String(), 8, "hello, ");
+  Object s2 = string(String(), 7, "world!");
+  Object len1 = (s1.__cid == String() || s1.__cid == Concat() ? length(s1) : null);
+  Object len2 = (s2.__cid == String() || s2.__cid == Concat() ? length(s2) : null);
+  Object len11112 = plus(len1,plus(len1,plus(len1,plus(len1,len2))));
+  Object c12 = (s1.__cid == String() || s1.__cid == Concat() ? concat(s1, s2) : null);
+  Object c1c12 = (s1.__cid == String() || s1.__cid == Concat() ? concat(s1, c12) : null);
+  Object c1c1c12 = (s1.__cid == String() || s1.__cid == Concat() ? concat(s1, c1c12) : null);
+  Object c1c1c1c12 = (s1.__cid == String() ? concat(s1, c1c1c12) : null);
+  Object lenc1c1c1c12 = (c1c1c1c12.__cid == String() || c1c1c1c12.__cid == Concat() ? length(c1c1c1c12) : null);
+  assert equals_Axiom(xform(lenc1c1c1c12, ??), len11112);
 }
