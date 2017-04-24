@@ -1,0 +1,36 @@
+package Object;
+
+Object Object_Object(Object self) {
+    return self;
+}
+
+bit equals_Object_Object(Object a, Object b) {
+  if (a == null) {
+    if (b == null) {
+      return true;
+    }
+    return false;
+  }
+  return (a.__cid == HashMap_NoHash_Node() ? equals_Object@Object(a, b) : a.__cid == Object() ? equals_Object@Object(a, b) : 0);
+}
+
+int hashCode_Object(Object o) {
+  return (o != null ? (o.__cid == HashMap_NoHash_Node() ? hashCode@Object(o) : o.__cid == Object() ? hashCode@Object(o) : 0) : 0);
+}
+
+bit equals_Object(Object self, Object obj) {
+  return self == obj;
+}
+
+int hashCode(Object self) {
+  return 0;
+}
+
+struct Object {
+  int         __cid;
+  Object      elementData_HashMap_NoHash;
+  int         numPairs_HashMap_NoHash;
+  Object      key_HashMap_NoHash_Node;
+  Object      value_HashMap_NoHash_Node;
+  Object      next_HashMap_NoHash_Node;
+}

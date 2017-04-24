@@ -1,0 +1,10 @@
+package meta;
+
+// distinct class IDs
+int HashMap_NoHash()       { return 3; }
+int HashMap_NoHash_Node()  { return 4; }
+int Map()                  { return 5; }
+int Map_Entry()            { return 6; }
+int Object()               { return 1; }
+
+// Uninterpreted functions
