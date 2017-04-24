@@ -1,0 +1,479 @@
+package test;
+
+harness void mn() {
+  if (TID==0) t0();
+  else if (TID==1) t1();
+  else if (TID==2) t2();
+  else if (TID==3) t3();
+  else if (TID==4) t4();
+  else if (TID==5) t5();
+  else if (TID==6) t6();
+  else if (TID==7) t7();
+  else if (TID==8) t8();
+  else if (TID==9) t9();
+  else if (TID==10) t10();
+  else if (TID==11) t11();
+  else if (TID==12) t12();
+  else if (TID==13) t13();
+  else if (TID==14) t14();
+  else if (TID==15) t15();
+  else if (TID==16) t16();
+  else if (TID==17) t17();
+  else if (TID==18) t18();
+  else if (TID==19) t19();
+  else if (TID==20) t20();
+  else if (TID==21) t21();
+}
+
+// get(put([],x,y), x) == y
+void t0() {
+   Object x = object();
+   Object y = object();
+   
+   Object h = hashMap();
+   Object px = put(h.h, x.h, y.h);
+   Object gxpx = get(px.h, x.h);
+
+   assert xform(gxpx.h, ??) == y.h;
+}
+
+// get(put(put([],x,y), w, z), x) = y
+void t1() {
+   Object x = object();
+   Object y = object();
+   Object w = object();
+   Object z = object();
+   
+   Object h = hashMap();
+   Object px = put(h.h, x.h, y.h);
+   Object pxw = put(px.h, w.h, z.h);
+   Object gxpxw = get(pxw.h, x.h);
+
+   assert xform(gxpxw.h, ??) == y.h;
+}
+
+// get(put(put([],x,y), x, z), x) = z
+void t2() {
+   Object x = object();
+   Object y = object();
+   Object z = object();
+   
+   Object h = hashMap();
+   Object px = put(h.h, x.h, y.h);
+   Object pxx = put(px.h, x.h, z.h);
+   Object gxpxx = get(pxx.h, x.h);
+
+   assert xform(gxpxx.h, ??) == z.h;
+}
+
+// get(put(put(put(put(put([],x,y), w, z), a, b), c, d), e, f), x) = y
+void t3() {
+   Object x = object();
+   Object y = object();
+   Object w = object();
+   Object z = object();
+   Object a = object();
+   Object b = object();
+   Object c = object();
+   Object d = object();
+   Object e = object();
+   Object f = object();
+   
+   Object h = hashMap();
+   Object px = put(h.h, x.h, y.h);
+   Object pxw = put(px.h, w.h, z.h);
+   Object pxwa = put(pxw.h, a.h, b.h);
+   Object pxwac = put(pxwa.h, c.h, d.h);
+   Object pxwace = put(pxwa.h, e.h, f.h);
+   Object gxpxw = get(pxwace.h, x.h);
+
+   assert xform(gxpxw.h, ??) == y.h;
+}
+
+// get(remove(put(put([],x,y), x, z), x), x) = null
+void t4() {
+   Object x = object();
+   Object y = object();
+   Object z = object();
+   
+   Object h = hashMap();
+   Object px = put(h.h, x.h, y.h);
+   Object pxx = put(px.h, x.h, z.h);
+   Object rxpxx = remove(pxx.h, x.h);
+   Object gxrxpxx = get(rxpxx.h, x.h);
+
+   assert xform(gxrxpxx.h, ??) == null;
+}
+
+// get(put(remove(put([],x,y), x), x, z), x) = z
+void t5() {
+   Object x = object();
+   Object y = object();
+   Object z = object();
+   
+   Object h = hashMap();
+   Object px = put(h.h, x.h, y.h);
+   Object rxpx = remove(px.h, x.h);
+   Object pxrxpx = put(rxpx.h, x.h, z.h);
+   Object gxpxrxpx = get(pxrxpx.h, x.h);
+
+   assert xform(gxpxrxpx.h, ??) == z.h;
+}
+
+// containsKey(put([],x,y), x) == true
+void t6() {
+   Object x = object();
+   Object y = object();
+   
+   Object h = hashMap();
+   Object px = put(h.h, x.h, y.h);
+   Object ckxpx = containsKey(px.h, x.h);
+
+   assert xform(ckxpx.h, ??) === new Bool(b=1);
+}
+
+// containsKey(put(put(put(put(put([],x,y), w, z), a, b), c, d), e, f), x) = 
+//   true
+void t7() {
+   Object x = object();
+   Object y = object();
+   Object w = object();
+   Object z = object();
+   Object a = object();
+   Object b = object();
+   Object c = object();
+   Object d = object();
+   Object e = object();
+   Object f = object();
+   
+   Object h = hashMap();
+   Object px = put(h.h, x.h, y.h);
+   Object pxw = put(px.h, w.h, z.h);
+   Object pxwa = put(pxw.h, a.h, b.h);
+   Object pxwac = put(pxwa.h, c.h, d.h);
+   Object pxwace = put(pxwa.h, e.h, f.h);
+   Object ckxpxw = containsKey(pxwace.h, x.h);
+
+   assert xform(ckxpxw.h, ??) === new Bool(b=1);   
+}
+
+// containsKey(put([],x,y), z) == false
+void t8() {
+   Object x = object();
+   Object y = object();
+   Object z = object();
+   
+   Object h = hashMap();
+   Object px = put(h.h, x.h, y.h);
+   Object ckzpx = containsKey(px.h, z.h);
+
+   assert xform(ckzpx.h, ??) === new Bool(b=0);
+}
+
+// containsKey(remove(put(put([],x,y), x, z), x), x) = false
+void t9() {
+   Object x = object();
+   Object y = object();
+   Object z = object();
+   
+   Object h = hashMap();
+   Object px = put(h.h, x.h, y.h);
+   Object pxx = put(px.h, x.h, z.h);
+   Object rxpxx = remove(pxx.h, x.h);
+   Object ckxrxpxx = containsKey(rxpxx.h, x.h);
+
+   assert xform(ckxrxpxx.h, ??) === new Bool(b=0);
+}
+
+// containsKey(put(remove(put([],x,y), x), x, z), x) = true
+void t10() {
+   Object x = object();
+   Object y = object();
+   Object z = object();
+   
+   Object h = hashMap();
+   Object px = put(h.h, x.h, y.h);
+   Object rxpx = remove(px.h, x.h);
+   Object pxrxpx = put(rxpx.h, x.h, z.h);
+   Object ckxpxrxpx = containsKey(pxrxpx.h, x.h);
+
+   assert xform(ckxpxrxpx.h, ??) === new Bool(b=1);
+}
+
+// containsValue(put([],x,y), y) == true
+void t11() {
+   Object x = object();
+   Object y = object();
+   
+   Object h = hashMap();
+   Object px = put(h.h, x.h, y.h);
+   Object cvypx = containsValue(px.h, y.h);
+
+   assert xform(cvypx.h, ??) === new Bool(b=1);
+}
+
+// containsValue(put(put(put(put(put([],x,y), w, z), a, b), c, d), e, f), y) = 
+//   true
+void t12() {
+   Object x = object();
+   Object y = object();
+   Object w = object();
+   Object z = object();
+   Object a = object();
+   Object b = object();
+   Object c = object();
+   Object d = object();
+   Object e = object();
+   Object f = object();
+   
+   Object h = hashMap();
+   Object px = put(h.h, x.h, y.h);
+   Object pxw = put(px.h, w.h, z.h);
+   Object pxwa = put(pxw.h, a.h, b.h);
+   Object pxwac = put(pxwa.h, c.h, d.h);
+   Object pxwace = put(pxwa.h, e.h, f.h);
+   Object cvypxw = containsValue(pxwace.h, y.h);
+
+   assert xform(cvypxw.h, ??) === new Bool(b=1);   
+}
+
+// containsValue(put(put([],x,y), x, z), y) = false
+void t13() {
+   Object x = object();
+   Object y = object();
+   Object z = object();
+   
+   Object h = hashMap();
+   Object px = put(h.h, x.h, y.h);
+   Object pxx = put(px.h, x.h, z.h);
+   Object cvypxx = containsValue(pxx.h, y.h);
+
+   assert xform(cvypxx.h, ??) === new Bool(b=0);
+}
+
+// containsValue(remove(put(put([],x,y), w, z), x), y) = false
+void t14() {
+   Object w = object();
+   Object x = object();
+   Object y = object();
+   Object z = object();
+   
+   Object h = hashMap();
+   Object px = put(h.h, x.h, y.h);
+   Object pxw = put(px.h, w.h, z.h);
+   Object rxpxw = remove(pxw.h, x.h);
+   Object cvyrxpxw = containsValue(rxpxw.h, y.h);
+
+   assert xform(cvyrxpxw.h, ??) === new Bool(b=0);
+}
+
+void t15() {
+   Object x = object();
+   Object y = object();
+
+   Object h = hashMap();
+   Object px = put(h.h, x.h, y.h);   
+   Object prx;
+
+   int i = 0;
+
+   for(i=0; i < 30; i++) {
+      prx = remove(px.h, x.h);
+      px = put(prx.h, x.h, y.h);
+   }
+
+   Object gpx = get(px.h, x.h);
+
+   assert xform(gpx.h, ??) == y.h;
+}
+
+void t16() {
+   Object q = object();
+   Object x = object();
+   Object y = object();
+
+   Object h = hashMap();
+   Object px = put(h.h, x.h, y.h);   
+
+   int i = 0;
+
+   for(i=0; i < 30; i++) {
+      Object z = object();
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h); 
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+   }
+
+   Object gpx = get(px.h, x.h);
+
+   assert xform(gpx.h, ??) == y.h;
+}
+
+void t17() {
+   Object x = object();
+   Object y = object();
+
+   Object h = hashMap();
+
+   Object px = put(h.h, x.h, y.h);   
+   Object gpx = get(px.h, x.h);
+   assert xform(gpx.h, ??) == y.h;
+
+   int i = 0;
+
+   for(i=0; i < 30; i++) {
+      px = put(px.h, x.h, y.h);   
+      gpx = get(px.h, x.h);
+      assert xform(gpx.h, ??) == y.h;
+   }
+}
+
+void t18() {
+   Object q = object();
+   Object x = object();
+   Object y = object();
+
+   Object h = hashMap();
+   Object px = put(h.h, x.h, y.h);   
+
+   int i = 0;
+
+   for(i=0; i < 30; i++) {
+      Object z = object();
+      px = put(px.h, z.h, q.h);
+      px = remove(px.h, z.h);
+      px = put(px.h, z.h, q.h);
+      px = remove(px.h, z.h);
+      px = put(px.h, z.h, q.h);
+      px = remove(px.h, z.h);
+      px = put(px.h, z.h, q.h);
+      px = remove(px.h, z.h);
+      px = put(px.h, z.h, q.h);
+      px = remove(px.h, z.h);
+      px = put(px.h, z.h, q.h);
+      px = remove(px.h, z.h);
+   }
+
+   Object gpx = get(px.h, x.h);
+
+   assert xform(gpx.h, ??) == y.h;
+}
+
+// containsKey(put(put(put(put(put([],x,y), w, z), a, b), c, d), e, f), x) = 
+//   true
+void t19() {
+   Object x = object();
+   Object y = object();
+   Object w = object();
+   Object z = object();
+   Object a = object();
+   Object b = object();
+   Object c = object();
+   Object d = object();
+   Object e = object();
+   Object f = object();
+   
+   Object h = hashMap();
+   Object px = put(h.h, x.h, y.h);
+   Object pxw = put(px.h, w.h, z.h);
+   Object pxwa = put(pxw.h, a.h, b.h);
+   Object pxwac = put(pxwa.h, c.h, d.h);
+   Object pxwace = put(pxwa.h, e.h, f.h);
+
+   int i = 0;
+
+   for (i = 0; i < 30; i ++) {
+      pxwace = put(pxwace.h, e.h, f.h);
+   }
+
+   Object gxpxw = get(pxwace.h, $(Object).h);
+
+   assert xform(gxpxw.h, ??) == y.h;
+}
+
+void t20() {
+   Object q = object();
+   Object x = object();
+   Object y = object();
+
+   Object h = hashMap();
+   Object px = put(h.h, x.h, y.h);   
+
+   int i = 0;
+
+   for(i=0; i < 30; i++) {
+      Object z = object();
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h); 
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+   }
+
+   Object gpx = get(px.h, x.h);
+
+   assert xform(gpx.h, ??) == y.h;
+}
+
+void t21() {
+   Object q = object();
+   Object x = object();
+   Object y = object();
+
+   Object h = hashMap();
+   Object px = put(h.h, x.h, y.h);   
+
+   int i = 0;
+
+   for(i=0; i < 30; i++) {
+      Object z = object();
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h); 
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = put(px.h, z.h, q.h);
+      px = remove(px.h, z.h);
+   }
+
+   Object gpx = get(px.h, x.h);
+
+   assert xform(gpx.h, ??) == y.h;
+}

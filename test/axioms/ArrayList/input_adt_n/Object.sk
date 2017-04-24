@@ -1,0 +1,14 @@
+package Object;
+
+Object Object_Object(Object self) {
+    return self;
+}
+
+struct Object {
+  int           __cid;
+  Array_char    _value_String;
+  int           _count_String;
+  Array_char    _value_StringBuffer;
+  int           _count_StringBuffer;
+  H            h;
+}

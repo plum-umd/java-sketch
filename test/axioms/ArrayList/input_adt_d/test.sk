@@ -1,0 +1,194 @@
+package test;
+
+harness void mn() {
+  if (TID==0) t0();
+  else if (TID==1) t1();
+  else if (TID==2) t2();
+  else if (TID==3) t3();
+  else if (TID==4) t4();
+  else if (TID==5) t5();
+  else if (TID==6) t6();
+  else if (TID==7) t7();
+  else if (TID==8) t8();
+  else if (TID==9) t9();
+  else if (TID==10) t10();
+}
+
+// get(add([],x), 0) == x
+void t0() {
+   Object x = object();
+   Object y = object();   
+
+   Object a = arrayList();
+   Object ax = add(a.a, x.a);
+   Object g0ax = get(ax.a, 0);
+
+   assert xform(g0ax.a) == x.a;
+}
+
+// get(add(add([],x), y), 0) == x
+void t1() {
+   Object x = object();
+   Object y = object();   
+
+   Object a = arrayList();
+   Object ax = add(a.a, x.a);
+   Object axy = add(ax.a, y.a);
+   Object g0axy = get(axy.a, 0);
+
+   assert xform(g0axy.a) == x.a;
+}
+
+// get(remove(add(add([], x), y), 0), 0) = y
+void t2() {
+   Object x = object();
+   Object y = object();   
+
+   Object a = arrayList();
+   Object ax = add(a.a, x.a);
+   Object axy = add(ax.a, y.a);
+   Object r0axy = remove(axy.a, 0); 
+   Object g0r0axy = get(r0axy.a, 0);
+
+   assert xform(g0r0axy.a) == y.a;
+}
+
+// get(remove(add(add([], x), y), 1), 0) = x
+void t3() {
+   Object x = object();
+   Object y = object();   
+
+   Object a = arrayList();
+   Object ax = add(a.a, x.a);
+   Object axy = add(ax.a, y.a);
+   Object r1axy = remove(axy.a, 1); 
+   Object g0r1axy = get(r1axy.a, 0);
+
+   assert xform(g0r1axy.a) == x.a;
+}
+
+// get(set(add(add([], x), y), 0, z), 0) = z
+void t4() {
+   Object x = object();
+   Object y = object();   
+   Object z = object();   
+
+   Object a = arrayList();
+   Object ax = add(a.a, x.a);
+   Object axy = add(ax.a, y.a);
+   Object s0zaxy = set(axy.a, 0, z.a); 
+   Object g0s0zaxy = get(s0zaxy.a, 0);
+
+   assert xform(g0s0zaxy.a) == z.a;
+}
+
+// get(set(add(add([], x), y), 1, z), 0) = x
+void t5() {
+   Object x = object();
+   Object y = object();   
+   Object z = object();   
+
+   Object a = arrayList();
+   Object ax = add(a.a, x.a);
+   Object axy = add(ax.a, y.a);
+   Object s1zaxy = set(axy.a, 1, z.a); 
+   Object g0s1zaxy = get(s1zaxy.a, 0);
+
+   assert xform(g0s1zaxy.a) == x.a;
+}
+
+// get(set(add(add([], x), y), 0, z), 1) = x
+// get(set(add(add([], x), y), 0, z), 2) = y
+void t6() {
+   Object x = object();
+   Object y = object();   
+   Object z = object();   
+
+   Object a = arrayList();
+   Object ax = add(a.a, x.a);
+   Object axy = add(ax.a, y.a);
+   Object s0zaxy = set(axy.a, 0, z.a); 
+   Object g1s0zaxy = get(s0zaxy.a, 1);
+   Object g2s0zaxy = get(s0zaxy.a, 2);
+
+   assert xform(g1s0zaxy.a) == x.a;
+   assert xform(g2s0zaxy.a) == y.a;
+}
+
+// size([]) = 0
+void t7() {
+   Object a = arrayList();
+   Object empty = num(0);
+
+   Object size_empty = size(a.a);
+
+   assert xform(size_empty.a) == empty.a;
+}
+
+// size(set(add(add(add([], x), y), z), 1, w)) = 4
+void t8() {
+   Object a = arrayList();
+   Object w = object();
+   Object x = object();
+   Object y = object();   
+   Object z = object();   
+
+   Object four = num(4);
+
+   Object ax = add(a.a, x.a);
+   Object axy = add(ax.a, y.a);
+   Object axyz = add(axy.a, z.a);
+   Object s1waxyz = set(axyz.a, 1, w.a);
+
+   Object size_s1waxyz = size(s1waxyz.a);
+
+   assert xform(size_s1waxyz.a) == four.a;
+}
+
+// size(remove(set(add(add(add([], x), y), z), 1, w), 0)) = 3
+void t9() {
+   Object a = arrayList();
+   Object w = object();
+   Object x = object();
+   Object y = object();   
+   Object z = object();   
+
+   Object three = num(3);
+
+   Object ax = add(a.a, x.a);
+   Object axy = add(ax.a, y.a);
+   Object axyz = add(axy.a, z.a);
+   Object s1waxyz = set(axyz.a, 1, w.a);
+   Object r0s1waxyz = remove(s1waxyz.a, 0);
+
+   Object size_r0s1waxyz = size(r0s1waxyz.a);
+
+   assert xform(size_r0s1waxyz.a) == three.a;
+}
+
+void t10() {
+   Object x = object();
+   Object y = object();   
+   Object z = object();   
+
+   Object a = arrayList();
+   Object ax = add(a.a, x.a);
+   Object axy = add(ax.a, y.a);
+
+   int i = 0;
+
+   for (i=0; i<30; i++) {
+      axy = add(axy.a, y.a);
+      axy = remove(axy.a, 1);
+      axy = set(axy.a, 1, z.a);
+      axy = remove(axy.a, 1);
+   } 
+   
+   Object axyx = add(axy.a, x.a);
+
+   Object g1axyx = get(axyx.a, 1);
+
+   A f = xform(g1axyx.a);
+
+   assert xform(g1axyx.a) == y.a;
+}
