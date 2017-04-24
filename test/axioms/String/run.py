@@ -2,7 +2,7 @@ import subprocess
 import re
 import time
 
-def main(num_trials, test, first_test, last_test):
+def main(num_trials, test, first_test, last_test, I):
     result_file = 'results/{}.csv'.format(test)
     error_file = 'errors/{}.txt'.format(test)
     log_file = 'logs/{}.txt'.format(test)
@@ -16,7 +16,7 @@ def main(num_trials, test, first_test, last_test):
         print 'Running test {}'.format(i)
         times = []
         for j in range(num_trials):
-            cmd = ['sketch', '--fe-def', 'TID={}'.format(i), '--fe-inc', input_dir, '{}/main.sk'.format(input_dir)]
+            cmd = ['sketch', '--fe-def', 'TID={}'.format(i), '--fe-def', 'I={}'.format(I), '--fe-inc', input_dir, '{}/main.sk'.format(input_dir)]
             log.write('test: {}, trial: {}, cmd: {}\n'.format(i, j, ' '.join(cmd)))
             log.flush()
             try:
@@ -64,37 +64,39 @@ if __name__ == '__main__':
                       help='First test to run.')
     parser.add_option('-l', action='store', type='int', dest='last_test', default=-1,
                       help='Last test to run.')
+    parser.add_option('-I', action='store', type='int', dest='I', default=0,
+                      help='Loop amount for various tests.')
     (options, args) = parser.parse_args()
     print 'Number of trials: {}'.format(options.trials)
     if options.impl:
         print 'Testing implementation'
-        main(options.trials, 'impl', options.first_test, options.last_test)
+        main(options.trials, 'impl', options.first_test, options.last_test, options.I)
         print
     if options.adt_n:
         print 'Testing non-deterministic adt'
-        main(options.trials, 'adt_n', options.first_test, options.last_test)
+        main(options.trials, 'adt_n', options.first_test, options.last_test, options.I)
         print
     if options.adt_d:
         print 'Testing deterministic adt'
-        main(options.trials, 'adt_d', options.first_test, options.last_test)
+        main(options.trials, 'adt_d', options.first_test, options.last_test, options.I)
         print
     if options.adt_a:
         print 'Testing arithmetize adt'
-        main(options.trials, 'adt_a', options.first_test, options.last_test)
+        main(options.trials, 'adt_a', options.first_test, options.last_test, options.I)
         print
     if options.obj:
         print 'Testing Object'
-        main(options.trials, 'Object', options.first_test, options.last_test)
+        main(options.trials, 'Object', options.first_test, options.last_test, options.I)
         print
     if (not options.impl) and (not options.adt_n) and (not options.adt_d) and \
        (not options.adt_a) and (not options.obj):
         print 'Testing implementation'
-        main(options.trials, 'impl', options.first_test, options.last_test)
+        main(options.trials, 'impl', options.first_test, options.last_test, options.I)
         print 'Testing non-deterministic adt'
-        main(options.trials, 'adt_n', options.first_test, options.last_test)
+        main(options.trials, 'adt_n', options.first_test, options.last_test, options.I)
         print 'Testing deterministic adt'
-        main(options.trials, 'adt_d', options.first_test, options.last_test)
+        main(options.trials, 'adt_d', options.first_test, options.last_test, options.I)
         print 'Testing arithmetize adt'
-        main(options.trials, 'adt_a', options.first_test, options.last_test)
+        main(options.trials, 'adt_a', options.first_test, options.last_test, options.I)
         print 'Testing Object'
-        main(options.trials, 'Object', options.first_test, options.last_test)
+        main(options.trials, 'Object', options.first_test, options.last_test, options.I)

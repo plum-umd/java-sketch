@@ -1,4 +1,4 @@
-pragma options "--bnd-unroll-amnt 50";
+pragma options "--bnd-unroll-amnt 256";
 include "meta.sk";
 include "Object.sk";
 include "array.sk";

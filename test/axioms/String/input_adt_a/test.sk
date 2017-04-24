@@ -9,7 +9,7 @@ harness void mn() {
   else if (TID==5) t5();
   else if (TID==6) t6();
   else if (TID==7) t7();
-  /* else if (TID==8) t8(); */
+  else if (TID==8) t8();
 }
 
 /*****************************************************************************/
@@ -171,17 +171,36 @@ void t7() {
   assert arithmetize(xform(lenc1c1c1c12.iterm)) == len21111;
 }
 
+// len(concat(s1,concat(s1,concat(s1,concat(s1,s2))))) == len(s1) + len(s1) + len(s1) + len(s1) + len(s2)
+void t8() {
+  Object s1 = string();
+  Object s2 = string();
+  Object len1 = (s1.__cid == String() ? length(s1.sterm) : null);
+  Object len2 = (s2.__cid == String() ? length(s2.sterm) : null);
+  int lens = 0;
+  for (int i = 0; i < I; i++) {
+    lens += len(len1.iterm);
+  }
+  lens += len(len1.iterm) + len(len2.iterm);
+  Object c = (s1.__cid == String() ? concat(s1.sterm, s2.sterm) : null);
+  for (int i = 0; i < I; i++) {
+    c = (s1.__cid == String() ? concat(s1.sterm, c.sterm) : null);
+  }
+  Object lenc = (c.__cid == String() ? length(c.sterm) : null);
+  assert arithmetize(xform(lenc.iterm)) == lens;
+}
+
 /*****************************************************************************/
 /* len(replace) tests */
 /*****************************************************************************/
 // len(replace(s1,s2,s4)) == len(s1)
-void t8() {
-  Object s1 = string();
-  Object s2 = string();
-  Object s3 = string();
-  Object ls1 = (s1.__cid == String() ? length(s1.sterm) : null);
-  int len1 = len(ls1.iterm);
-  Object r12 = (s1.__cid == String() ? replace(s1.sterm, s2.sterm, s3.sterm) : null);
-  Object lenr12 = (r12.__cid == String() ? length(r12.sterm) : null);
-  assert arithmetize(xform(lenr12.iterm)) == len1;
-}
+/* void t8() { */
+/*   Object s1 = string(); */
+/*   Object s2 = string(); */
+/*   Object s3 = string(); */
+/*   Object ls1 = (s1.__cid == String() ? length(s1.sterm) : null); */
+/*   int len1 = len(ls1.iterm); */
+/*   Object r12 = (s1.__cid == String() ? replace(s1.sterm, s2.sterm, s3.sterm) : null); */
+/*   Object lenr12 = (r12.__cid == String() ? length(r12.sterm) : null); */
+/*   assert arithmetize(xform(lenr12.iterm)) == len1; */
+/* } */
