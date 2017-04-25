@@ -2,7 +2,7 @@ import subprocess
 import re
 import time
 
-def main(num_trials, test, first_test, last_test, I):
+def main(num_trials, test, first_test, last_test):
     result_file = 'results/{}.csv'.format(test)
     error_file = 'errors/{}.txt'.format(test)
     log_file = 'logs/{}.txt'.format(test)
@@ -11,12 +11,12 @@ def main(num_trials, test, first_test, last_test, I):
     with open(error_file, 'w') as f: pass
     with open('{}/test.sk'.format(input_dir)) as f: text = f.read()
     log = open(log_file, 'w')
-    if last_test == -1: last_test = int(re.findall(r't[0-9]+', text)[-1][1:])
+    if last_test == 0: last_test = int(re.findall(r't[0-9]+', text)[-1][1:])
     for i in xrange(first_test + 1 if first_test == -1 else first_test, last_test+1):
         print 'Running test {}'.format(i)
         times = []
-        for j in range(num_trials):
-            cmd = ['sketch', '--fe-def', 'TID={}'.format(i), '--fe-def', 'I={}'.format(I), '--fe-inc', input_dir, '{}/main.sk'.format(input_dir)]
+        for j in xrange(num_trials):
+            cmd = ['sketch', '--fe-def', 'TID={}'.format(i), '--fe-inc', input_dir, '{}/main.sk'.format(input_dir)]
             log.write('test: {}, trial: {}, cmd: {}\n'.format(i, j, ' '.join(cmd)))
             log.flush()
             try:
@@ -54,49 +54,38 @@ if __name__ == '__main__':
                       help='Execute non-deterministic adt tests.')
     parser.add_option('--ad', action='store_true', dest='adt_d', default=False,
                       help='Execute deterministic adt tests.')
-    parser.add_option('--aa', action='store_true', dest='adt_a', default=False,
-                      help='Execute arithmetize adt tests.')
     parser.add_option('-o', action='store_true', dest='obj', default=False,
                       help='Execute Object tests.')
     parser.add_option('-n', action='store', type='int', dest='trials', default=1,
                       help='Number of trials to run.')
     parser.add_option('-f', action='store', type='int', dest='first_test', default=-1,
                       help='First test to run.')
-    parser.add_option('-l', action='store', type='int', dest='last_test', default=-1,
+    parser.add_option('-l', action='store', type='int', dest='last_test', default=0,
                       help='Last test to run.')
-    parser.add_option('-I', action='store', type='int', dest='I', default=0,
-                      help='Loop amount for various tests.')
     (options, args) = parser.parse_args()
     print 'Number of trials: {}'.format(options.trials)
     if options.impl:
         print 'Testing implementation'
-        main(options.trials, 'impl', options.first_test, options.last_test, options.I)
+        main(options.trials, 'impl', options.first_test, options.last_test)
         print
     if options.adt_n:
         print 'Testing non-deterministic adt'
-        main(options.trials, 'adt_n', options.first_test, options.last_test, options.I)
+        main(options.trials, 'adt_n', options.first_test, options.last_test)
         print
     if options.adt_d:
         print 'Testing deterministic adt'
-        main(options.trials, 'adt_d', options.first_test, options.last_test, options.I)
-        print
-    if options.adt_a:
-        print 'Testing arithmetize adt'
-        main(options.trials, 'adt_a', options.first_test, options.last_test, options.I)
+        main(options.trials, 'adt_d', options.first_test, options.last_test)
         print
     if options.obj:
         print 'Testing Object'
-        main(options.trials, 'Object', options.first_test, options.last_test, options.I)
+        main(options.trials, 'Object', options.first_test, options.last_test)
         print
-    if (not options.impl) and (not options.adt_n) and (not options.adt_d) and \
-       (not options.adt_a) and (not options.obj):
+    if (not options.impl) and (not options.adt_n) and (not options.adt_d) and (not options.obj):
         print 'Testing implementation'
-        main(options.trials, 'impl', options.first_test, options.last_test, options.I)
+        main(options.trials, 'impl', options.first_test, options.last_test)
         print 'Testing non-deterministic adt'
-        main(options.trials, 'adt_n', options.first_test, options.last_test, options.I)
+        main(options.trials, 'adt_n', options.first_test, options.last_test)
         print 'Testing deterministic adt'
-        main(options.trials, 'adt_d', options.first_test, options.last_test, options.I)
-        print 'Testing arithmetize adt'
-        main(options.trials, 'adt_a', options.first_test, options.last_test, options.I)
+        main(options.trials, 'adt_d', options.first_test, options.last_test)
         print 'Testing Object'
-        main(options.trials, 'Object', options.first_test, options.last_test, options.I)
+        main(options.trials, 'Object', options.first_test, options.last_test)

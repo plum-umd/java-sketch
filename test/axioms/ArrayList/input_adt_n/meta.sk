@@ -1,0 +1,157 @@
+package meta;
+
+adt H {
+  Hash          { }
+  Bool	        { bit b; }
+  ContainsValue { H h; H v; }
+  ContainsKey   { H h; H k; }
+  Obj	      	{ Object o; }
+  Get         	{ H h; H k; }
+  Put         	{ H h; H k; H v; }
+  Remove      	{ H h; H k; }
+  Error       	{ }
+}
+
+adt KeyList {
+  EmptyList {}
+  List	    { KeyList l; H k; }
+}
+
+boolean key_in_keyList(KeyList l, H k) {
+   switch(l) {
+      case List:      return l.k == k ? true : key_in_keyList(l.l, k);
+      case EmptyList: return false;
+   }
+}
+
+H containsValue_xform(H h, KeyList ks, H v) {
+  switch (h) {
+     case Put: {
+        if (h.v == v) {
+     	   if (key_in_keyList(ks, h.k)) {
+     	      return containsValue_xform(h.h, ks, v);
+     	   } else {  
+     	      return new Bool(b=1);
+     	   }
+     	} else {
+     	   return containsValue_xform(h.h, new List(l=ks, k=h.k), v);
+     	}
+     }
+     case Get:		 return new Error();
+     case Remove: {
+        return containsValue_xform(h.h, new List(l=ks, k=h.k), v);
+     }
+     case Hash:		 return new Bool(b=0);
+     case Obj:    	 return new Error();
+     case ContainsValue: return new Error();
+     case ContainsKey:   return new Error();
+     case Bool:	  	 return new Error();
+     case Error:  	 return h;
+  }
+}
+
+H containsKey_xform(H h, H k) {
+  switch (h) {
+     case Put:    {
+        return h.k == k ? new Bool(b=1) : containsKey_xform(h.h, k);
+     }
+     case Get:		 return new Error();
+     case Remove: {
+        return h.k == k ? new Bool(b=0) : containsKey_xform(h.h, k);
+     }
+     case Hash:		 return new Bool(b=0);
+     case Obj:    	 return new Error();
+     case ContainsValue: return new Error();
+     case ContainsKey:   return new Error();
+     case Bool:	  	 return new Error();
+     case Error:  	 return h;
+  }
+}
+
+H get_xform (H h, H k) {
+  switch (h) {
+     case Put:    {
+        return h.k == k ? h.v : get_xform(h.h, k);
+     }
+     case Get:           return null;
+     case Remove: {
+        return h.k == k ? null : get_xform(h.h, k);
+     }
+     case Hash:		 return null;
+     case Obj:    	 return new Error();
+     case ContainsValue: return new Error();
+     case ContainsKey:   return new Error();
+     case Bool:	  	 return new Error();
+     case Error:  	 return h;
+  }
+}
+
+Object object() {
+   return new Object(__cid = Object(), h=new Obj(o=new Object(__cid = Object())));
+}
+
+Object hashMap() {
+   return new Object(__cid = HashMap(), h=new Hash());
+}
+
+Object get(H h, H k) {
+   return new Object(__cid = Object(), h=new Get(h=h, k=k));
+}
+
+Object containsKey(H h, H k) {
+   return new Object(__cid = Object(), h=new ContainsKey(h=h, k=k));
+}
+
+Object containsValue(H h, H v) {
+   return new Object(__cid = Object(), h=new ContainsValue(h=h, v=v));
+}
+
+Object bool(bit b) {
+   return new Object(__cid = Object(), h=new Bool(b=b));
+}
+
+Object remove(H h, H k) {
+   return new Object(__cid = HashMap(), h=new Remove(h=h, k=k));
+}
+
+Object put(H h, H k, H v) {
+   return new Object(__cid = HashMap(), h=new Put(h=h, k=k, v=v));
+}
+
+H xform(H h, int dice) {
+  switch (h) {
+     case Put:   return h;
+     case Get:   {
+        if (dice%2 == 0) {
+           return get_xform(h.h, h.k);
+	} else {
+	   return h;
+	}
+     }
+     case Remove:        return h;
+     case Hash:          return h;
+     case ContainsValue: {
+        if (dice%2 == 0) {
+	   return containsValue_xform(h.h, new EmptyList(), h.v);
+	} else {
+	   return h;
+	}
+     }
+     case ContainsKey:   {
+        if (dice%2 == 0) {
+	   return containsKey_xform(h.h, h.k);
+	} else {
+	   return h;
+	}
+     }
+     case Obj:     	 return h;
+     case Bool:	   	 return h;
+     case Error:   	 return h;
+  }
+}
+
+// distinct class IDs
+int Object()               { return 1; }
+int HashMap()              { return 24; }
+
+// Uninterpreted functions

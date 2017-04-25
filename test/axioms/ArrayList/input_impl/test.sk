@@ -1,0 +1,410 @@
+package test;
+
+harness void mn() {
+  if (TID == 0) t0();
+  else if (TID == 1) t1();
+  else if (TID == 2) t2();
+  else if (TID == 3) t3();
+  else if (TID == 4) t4();
+  else if (TID == 5) t5();
+  else if (TID == 6) t6();
+  else if (TID == 7) t7();
+  else if (TID == 8) t8();
+  else if (TID == 9) t9();
+  else if (TID == 10) t10();
+  else if (TID == 11) t11();
+  else if (TID == 12) t12();
+  else if (TID == 13) t13();
+  else if (TID == 14) t14();
+  else if (TID == 15) t15();
+  else if (TID == 16) t16();
+  else if (TID == 17) t17();
+  else if (TID == 18) t18();
+  else if (TID == 19) t19();
+  else if (TID == 20) t20();
+  else if (TID == 21) t21();
+}
+
+void t0() {
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  Object gxpx = (h.__cid == HashMap_NoHash() ? get_K@HashMap_NoHash(h, x) : null);
+  assert (gxpx.__cid == HashMap_NoHash_Node() ? equals_Object@Object(gxpx, y) : gxpx.__cid == Object() ? equals_Object@Object(gxpx, y) : 0);
+}
+
+void t1() {
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  Object w = Object_Object(new Object(__cid=Object()));
+  Object z = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, w, z) : null);
+  Object gxpxw = (h.__cid == HashMap_NoHash() ? get_K@HashMap_NoHash(h, x) : null);
+  assert (gxpxw.__cid == HashMap_NoHash_Node() ? equals_Object@Object(gxpxw, y) : gxpxw.__cid == Object() ? equals_Object@Object(gxpxw, y) : 0);
+}
+
+void t2() {
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  Object z = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, z) : null);
+  Object gxpxx = (h.__cid == HashMap_NoHash() ? get_K@HashMap_NoHash(h, x) : null);
+  assert (gxpxx.__cid == HashMap_NoHash_Node() ? equals_Object@Object(gxpxx, z) : gxpxx.__cid == Object() ? equals_Object@Object(gxpxx, z) : 0);
+}
+
+void t3() {
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object w = Object_Object(new Object(__cid=Object()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  Object z = Object_Object(new Object(__cid=Object()));
+  Object a = Object_Object(new Object(__cid=Object()));
+  Object b = Object_Object(new Object(__cid=Object()));
+  Object c = Object_Object(new Object(__cid=Object()));
+  Object d = Object_Object(new Object(__cid=Object()));
+  Object e = Object_Object(new Object(__cid=Object()));
+  Object f = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, w, z) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, a, b) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, c, d) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, e, f) : null);
+  Object gxpxwace = (h.__cid == HashMap_NoHash() ? get_K@HashMap_NoHash(h, x) : null);
+  assert (gxpxwace.__cid == HashMap_NoHash_Node() ? equals_Object@Object(gxpxwace, y) : gxpxwace.__cid == Object() ? equals_Object@Object(gxpxwace, y) : 0);
+}
+
+void t4() {
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  Object z = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, z) : null);
+  (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, x) : null);
+  Object gxrxpxx = (h.__cid == HashMap_NoHash() ? get_K@HashMap_NoHash(h, x) : null);
+  assert gxrxpxx == null;
+}
+
+void t5() {
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  Object z = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, x) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, z) : null);
+  Object gxpxrxpx = (h.__cid == HashMap_NoHash() ? get_K@HashMap_NoHash(h, x) : null);
+  assert (gxpxrxpx.__cid == HashMap_NoHash_Node() ? equals_Object@Object(gxpxrxpx, z) : gxpxrxpx.__cid == Object() ? equals_Object@Object(gxpxrxpx, z) : 0);
+}
+
+void t6() {
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  assert (h.__cid == HashMap_NoHash() ? containsKey_K@HashMap_NoHash(h, x) : 0);
+}
+
+void t7() {
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object w = Object_Object(new Object(__cid=Object()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  Object z = Object_Object(new Object(__cid=Object()));
+  Object a = Object_Object(new Object(__cid=Object()));
+  Object b = Object_Object(new Object(__cid=Object()));
+  Object c = Object_Object(new Object(__cid=Object()));
+  Object d = Object_Object(new Object(__cid=Object()));
+  Object e = Object_Object(new Object(__cid=Object()));
+  Object f = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, w, z) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, a, b) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, c, d) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, e, f) : null);
+  assert (h.__cid == HashMap_NoHash() ? containsKey_K@HashMap_NoHash(h, x) : 0);
+}
+
+void t8() {
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  Object z = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  assert !(h.__cid == HashMap_NoHash() ? containsKey_K@HashMap_NoHash(h, z) : 0);
+}
+
+void t9() {
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  Object z = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, z) : null);
+  (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, x) : null);
+  assert !(h.__cid == HashMap_NoHash() ? containsKey_K@HashMap_NoHash(h, x) : 0);
+}
+
+void t10() {
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  Object z = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, x) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, z) : null);
+  assert (h.__cid == HashMap_NoHash() ? containsKey_K@HashMap_NoHash(h, x) : 0);
+}
+
+void t11() {
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  assert (h.__cid == HashMap_NoHash() ? containsValue_V@HashMap_NoHash(h, y) : 0);
+}
+
+void t12() {
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object w = Object_Object(new Object(__cid=Object()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  Object z = Object_Object(new Object(__cid=Object()));
+  Object a = Object_Object(new Object(__cid=Object()));
+  Object b = Object_Object(new Object(__cid=Object()));
+  Object c = Object_Object(new Object(__cid=Object()));
+  Object d = Object_Object(new Object(__cid=Object()));
+  Object e = Object_Object(new Object(__cid=Object()));
+  Object f = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, w, z) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, a, b) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, c, d) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, e, f) : null);
+  assert (h.__cid == HashMap_NoHash() ? containsValue_V@HashMap_NoHash(h, y) : 0);
+}
+
+void t13() {
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  Object z = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, z) : null);
+  assert !(h.__cid == HashMap_NoHash() ? containsValue_V@HashMap_NoHash(h, y) : 0);
+}
+
+void t14() {
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object w = Object_Object(new Object(__cid=Object()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  Object z = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, w, z) : null);
+  (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, x) : null);
+  assert !(h.__cid == HashMap_NoHash() ? containsValue_V@HashMap_NoHash(h, y) : 0);
+}
+
+void t15() {
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+
+  int i = 0;
+
+  for(i=0; i < 30; i++) {
+     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, x) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  }
+
+  Object gpx = (h.__cid == HashMap_NoHash() ? get_K@HashMap_NoHash(h, x) : null);
+
+  assert (gpx.__cid == HashMap_NoHash_Node() ? equals_Object@Object(gpx, y) : gpx.__cid == Object() ? equals_Object@Object(gpx, y) : 0);
+}
+
+void t16() {
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object q = Object_Object(new Object(__cid=Object()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+
+  int i = 0;
+  
+  for(i=0; i < 30; i++) {
+     Object z = Object_Object(new Object(__cid=Object()));
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+  }
+
+  Object gpx = (h.__cid == HashMap_NoHash() ? get_K@HashMap_NoHash(h, x) : null);
+
+  assert (gpx.__cid == HashMap_NoHash_Node() ? equals_Object@Object(gpx, y) : gpx.__cid == Object() ? equals_Object@Object(gpx, y) : 0);
+}
+
+void t17() {
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+
+  int i = 0;
+
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  Object gpx = (h.__cid == HashMap_NoHash() ? get_K@HashMap_NoHash(h, x) : null);
+  assert (gpx.__cid == HashMap_NoHash_Node() ? equals_Object@Object(gpx, y) : gpx.__cid == Object() ? equals_Object@Object(gpx, y) : 0);
+
+  for (i=0; i<30; i++) {
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+     gpx = (h.__cid == HashMap_NoHash() ? get_K@HashMap_NoHash(h, x) : null);
+     assert (gpx.__cid == HashMap_NoHash_Node() ? equals_Object@Object(gpx, y) : gpx.__cid == Object() ? equals_Object@Object(gpx, y) : 0);  
+  }
+}
+
+void t18() {
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object q = Object_Object(new Object(__cid=Object()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+
+  int i = 0;
+  
+  for(i=0; i < 30; i++) {
+     Object z = Object_Object(new Object(__cid=Object()));
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
+  }
+
+  Object gpx = (h.__cid == HashMap_NoHash() ? get_K@HashMap_NoHash(h, x) : null);
+
+  assert (gpx.__cid == HashMap_NoHash_Node() ? equals_Object@Object(gpx, y) : gpx.__cid == Object() ? equals_Object@Object(gpx, y) : 0);
+}
+
+void t19() {
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object w = Object_Object(new Object(__cid=Object()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+  Object z = Object_Object(new Object(__cid=Object()));
+  Object a = Object_Object(new Object(__cid=Object()));
+  Object b = Object_Object(new Object(__cid=Object()));
+  Object c = Object_Object(new Object(__cid=Object()));
+  Object d = Object_Object(new Object(__cid=Object()));
+  Object e = Object_Object(new Object(__cid=Object()));
+  Object f = Object_Object(new Object(__cid=Object()));
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, w, z) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, a, b) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, c, d) : null);
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, e, f) : null);
+  Object gxpxwace = (h.__cid == HashMap_NoHash() ? get_K@HashMap_NoHash(h, $(Object)) : null);
+  assert (gxpxwace.__cid == HashMap_NoHash_Node() ? equals_Object@Object(gxpxwace, y) : gxpxwace.__cid == Object() ? equals_Object@Object(gxpxwace, y) : 0);
+}
+
+void t20() {
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object q = Object_Object(new Object(__cid=Object()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+
+  int i = 0;
+  
+  for(i=0; i < 30; i++) {
+     Object z = Object_Object(new Object(__cid=Object()));
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+  }
+
+  Object gpx = (h.__cid == HashMap_NoHash() ? get_K@HashMap_NoHash(h, x) : null);
+
+  assert (gpx.__cid == HashMap_NoHash_Node() ? equals_Object@Object(gpx, y) : gpx.__cid == Object() ? equals_Object@Object(gpx, y) : 0);
+}
+
+void t21() {
+  Object h = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  Object q = Object_Object(new Object(__cid=Object()));
+  Object x = Object_Object(new Object(__cid=Object()));
+  Object y = Object_Object(new Object(__cid=Object()));
+
+  (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, x, y) : null);
+
+  int i = 0;
+  
+  for(i=0; i < 30; i++) {
+     Object z = Object_Object(new Object(__cid=Object()));
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? put_K_V@HashMap_NoHash(h, z, q) : null);
+     (h.__cid == HashMap_NoHash() ? remove_K@HashMap_NoHash(h, z) : null);    
+  }
+
+  Object gpx = (h.__cid == HashMap_NoHash() ? get_K@HashMap_NoHash(h, x) : null);
+
+  assert (gpx.__cid == HashMap_NoHash_Node() ? equals_Object@Object(gpx, y) : gpx.__cid == Object() ? equals_Object@Object(gpx, y) : 0);
+}

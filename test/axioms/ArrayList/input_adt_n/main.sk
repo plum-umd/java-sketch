@@ -1,0 +1,8 @@
+pragma options "--bnd-cbits 5";
+pragma options "--fe-fpencoding AS_FIXPOINT";
+pragma options "--bnd-inline-amnt 901";
+include "meta.sk";
+include "Object.sk";
+include "array.sk";
+
+include "test.sk";

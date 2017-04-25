@@ -8,6 +8,8 @@ harness void mn() {
   else if (TID==4) t4();
   else if (TID==5) t5();
   else if (TID==6) t6();
+  else if (TID==7) t7();
+  else if (TID==8) t8();
 }
 
 // len(concat(s1,s2)) == len(s1) + len(s2)
@@ -183,4 +185,42 @@ void t6() {
   Object cc12345 = (cc1234.__cid == String() ? concat_String@String(cc1234, s5) : null);
   int lencc12345 = (cc12345.__cid == String() ? length@String(cc12345) : 0);
   assert lencc12345 == len12345;
+}
+
+// len(concat(s1,concat(s1,concat(s1,concat(s1,s2))))) == len(s1) + len(s1) + len(s1) + len(s1) + len(s2)
+void t7() {
+  Object s1 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=7+1, A="hello, "), 0, 7);
+  Object s2 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=6+1, A="world!"), 0, 6);
+  int len1 = (s1.__cid == String() ? length@String(s1) : 0);
+  int len2 = (s2.__cid == String() ? length@String(s2) : 0);
+  int len11112 = len1 + len1 + len1 + len1 + len2;
+  Object c12 = (s1.__cid == String() ? concat_String@String(s1, s2) : null);
+  Object c1c12 = (s1.__cid == String() ? concat_String@String(s1, c12) : null);
+  Object c1c1c12 = (s1.__cid == String() ? concat_String@String(s1, c1c12) : null);
+  Object c1c1c1c12 = (s1.__cid == String() ? concat_String@String(s1, c1c1c12) : null);
+  int lenc1c1c1c12 = (c1c1c1c12.__cid == String() ? length@String(c1c1c1c12) : 0);
+  assert lenc1c1c1c12 == len11112;
+}
+
+// len(concat(s1,concat(s1,concat(s1,concat(s1,s2))))) == len(s1) + len(s1) + len(s1) + len(s1) + len(s2)
+void t8() {
+  Object s1 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=7+1, A="hello, "), 0, 7);
+  Object s2 = String_String_char_int_int(new Object(__cid=String()),
+					 new Array_char(length=6+1, A="world!"), 0, 6);
+  int len1 = (s1.__cid == String() ? length@String(s1) : 0);
+  int len2 = (s2.__cid == String() ? length@String(s2) : 0);
+  int lens = 0;
+  for (int i = 0; i < I; i++) {
+    lens += len1;
+  }
+  lens += len1 + len2;
+  Object c = (s1.__cid == String() ? concat_String@String(s1, s2) : null);
+  for (int i = 0; i < I; i++) {
+    c = (s1.__cid == String() ? concat_String@String(s1, c) : null);
+  }
+  int lenc = (s1.__cid == String() ? length@String(c) : 0);
+  assert lenc == lens;
 }
