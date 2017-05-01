@@ -23,23 +23,25 @@ def _import():
     from ..expr.unaryexpr import UnaryExpr
     from ..expr.binaryexpr import BinaryExpr
     from ..expr.nameexpr import NameExpr
-    from ..expr.integerliteralexpr import IntegerLiteralExpr
     from ..expr.variabledeclarationexpr import VariableDeclarationExpr
     from ..expr.assignexpr import AssignExpr
     from ..expr.methodcallexpr import MethodCallExpr
     from ..expr.fieldaccessexpr import FieldAccessExpr
-    from ..expr.stringliteralexpr import StringLiteralExpr
-    from ..expr.nullliteralexpr import NullLiteralExpr
-    from ..expr.charliteralexpr import CharLiteralExpr
     from ..expr.objectcreationexpr import ObjectCreationExpr
     from ..expr.generatorexpr import GeneratorExpr
     from ..expr.superexpr import SuperExpr
-    from ..expr.booleanliteralexpr import BooleanLiteralExpr
     from ..expr.instanceofexpr import InstanceOfExpr
     from ..expr.arrayaccessexpr import ArrayAccessExpr
     from ..expr.thisexpr import ThisExpr
     from ..expr.castexpr import CastExpr
     from ..expr.conditionalexpr import ConditionalExpr
+    from ..expr.integerliteralexpr import IntegerLiteralExpr
+    from ..expr.stringliteralexpr import StringLiteralExpr
+    from ..expr.nullliteralexpr import NullLiteralExpr
+    from ..expr.doubleliteralexpr import DoubleLiteralExpr
+    from ..expr.charliteralexpr import CharLiteralExpr
+    from ..expr.booleanliteralexpr import BooleanLiteralExpr
+    from ..expr.longliteralexpr import LongLiteralExpr
 
     from ..body.parameter import Parameter
 
