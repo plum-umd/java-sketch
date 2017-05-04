@@ -9,7 +9,7 @@ harness void mn() {
   else if (TID==5) t5();
   else if (TID==6) t6();
   else if (TID==7) t7();
-  /* else if (TID==8) t8(); */
+  else if (TID==8) t8();
 }
 
 /*****************************************************************************/
@@ -172,17 +172,34 @@ void t7() {
   Object lenc1c1c1c12 = (c1c1c1c12.__cid == String() ? length(c1c1c1c12.t) : null);
   assert xform(lenc1c1c1c12.t) === len11112.t;
 }
+// len(concat(s1,concat(s1,concat(s1,concat(s1,s2))))) == len(s1) + len(s1) + len(s1) + len(s1) + len(s2)
+void t8() {
+  Object s1 = string();
+  Object s2 = string();
+  Object len1 = (s1.__cid == String() ? length(s1.t) : null);
+  Object len2 = (s2.__cid == String() ? length(s2.t) : null);
+  Object lens = plus(len1.t, len2.t);
+  for (int i = 0; i < 30; i++) {
+    lens = plus(len1.t, lens.t);
+  }
+  Object c = (s1.__cid == String() ? concat(s1.t, s2.t) : null);
+  for (int i = 0; i < 30; i++) {
+    c = (s1.__cid == String() ? concat(s1.t, c.t) : null);
+  }
+  Object lenc = (c.__cid == String() ? length(c.t) : null);
+  assert xform(lenc.t) == lens.t;
+}
 
 /*****************************************************************************/
 /* len(replace) tests */
 /*****************************************************************************/
 // len(replace(s1,s2,s4)) == len(s1)
-void t8() {
-  Object s1 = string();
-  Object s2 = string();
-  Object s3 = string();
-  Object len1 = (s1.__cid == String() ? length(s1.t) : null);
-  Object r12 = (s1.__cid == String() ? replace(s1.t, s2.t, s3.t) : null);
-  Object lenr12 = (r12.__cid == String() ? length(r12.t) : null);
-  assert xform(lenr12.t) == len1.t;
-}
+/* void t8() { */
+/*   Object s1 = string(); */
+/*   Object s2 = string(); */
+/*   Object s3 = string(); */
+/*   Object len1 = (s1.__cid == String() ? length(s1.t) : null); */
+/*   Object r12 = (s1.__cid == String() ? replace(s1.t, s2.t, s3.t) : null); */
+/*   Object lenr12 = (r12.__cid == String() ? length(r12.t) : null); */
+/*   assert xform(lenr12.t) == len1.t; */
+/* } */

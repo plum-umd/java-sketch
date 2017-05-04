@@ -1,3 +1,8 @@
+/* pragma options "--bnd-cbits 7"; */
+/* /\* pragma options "--bnd-inline-amnt 6"; *\/ */
+/* pragma options "--fe-fpencoding AS_FIXPOINT"; */
+/* pragma options "--bnd-inline-amnt 60"; */
+
 include "meta.sk";
 include "Object.sk";
 include "array.sk";

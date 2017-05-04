@@ -213,12 +213,12 @@ void t8() {
   int len1 = (s1.__cid == String() ? length@String(s1) : 0);
   int len2 = (s2.__cid == String() ? length@String(s2) : 0);
   int lens = 0;
-  for (int i = 0; i < I; i++) {
+  for (int i = 0; i < 30; i++) {
     lens += len1;
   }
   lens += len1 + len2;
   Object c = (s1.__cid == String() ? concat_String@String(s1, s2) : null);
-  for (int i = 0; i < I; i++) {
+  for (int i = 0; i < 30; i++) {
     c = (s1.__cid == String() ? concat_String@String(s1, c) : null);
   }
   int lenc = (s1.__cid == String() ? length@String(c) : 0);

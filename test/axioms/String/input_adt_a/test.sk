@@ -178,15 +178,16 @@ void t8() {
   Object len1 = (s1.__cid == String() ? length(s1.sterm) : null);
   Object len2 = (s2.__cid == String() ? length(s2.sterm) : null);
   int lens = 0;
-  for (int i = 0; i < I; i++) {
+  for (int i = 0; i < 30; i++) {
     lens += len(len1.iterm);
   }
   lens += len(len1.iterm) + len(len2.iterm);
   Object c = (s1.__cid == String() ? concat(s1.sterm, s2.sterm) : null);
-  for (int i = 0; i < I; i++) {
+  for (int i = 0; i < 30; i++) {
     c = (s1.__cid == String() ? concat(s1.sterm, c.sterm) : null);
   }
   Object lenc = (c.__cid == String() ? length(c.sterm) : null);
+  /* arithmetize(xform(lenc.iterm)); */
   assert arithmetize(xform(lenc.iterm)) == lens;
 }
 

@@ -167,3 +167,20 @@ void t7() {
   Object lenc1c1c1c12 = (c1c1c1c12.__cid == String() || c1c1c1c12.__cid == Concat() ? length(c1c1c1c12) : null);
   assert equals_Axiom(xform(lenc1c1c1c12, ??), len11112);
 }
+// len(concat(s1,concat(s1,concat(s1,concat(s1,s2))))) == len(s1) + len(s1) + len(s1) + len(s1) + len(s2)
+void t8() {
+  Object s1 = string(String(), 8, "hello, ");
+  Object s2 = string(String(), 7, "world!");
+  Object len1 = (s1.__cid == String() || s1.__cid == Concat() ? length(s1) : null);
+  Object len2 = (s2.__cid == String() || s2.__cid == Concat() ? length(s2) : null);
+  Object lens = plus(len1, len2);
+  for (int i = 0; i < 30; i++) {
+    lens = plus(len1, lens);
+  }
+  Object c = (s1.__cid == String() || s1.__cid == Concat() ? concat(s1, s2) : null);
+  for (int i = 0; i < 30; i++) {
+    c = (s1.__cid == String() ? concat(s1, c) : null);
+  }
+  Object lenc = (c.__cid == String() || c.__cid == Concat() ? length(c) : null);
+  assert equals_Axiom(xform(lenc, ??), lens);
+}
