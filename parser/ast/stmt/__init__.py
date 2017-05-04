@@ -42,6 +42,7 @@ def _import():
     from ..expr.charliteralexpr import CharLiteralExpr
     from ..expr.booleanliteralexpr import BooleanLiteralExpr
     from ..expr.longliteralexpr import LongLiteralExpr
+    from ..expr.enclosedexpr import EnclosedExpr    
 
     from ..body.parameter import Parameter
 
