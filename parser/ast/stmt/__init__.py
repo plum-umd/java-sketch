@@ -19,6 +19,7 @@ def _import():
     from .explicitconstructorinvocationstmt import ExplicitConstructorInvocationStmt
     from .assumestmt import AssumeStmt
     from .minrepeatstmt import MinrepeatStmt
+    from .throwstmt import ThrowStmt
 
     from ..expr.unaryexpr import UnaryExpr
     from ..expr.binaryexpr import BinaryExpr
