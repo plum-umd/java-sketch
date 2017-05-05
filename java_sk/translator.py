@@ -801,7 +801,7 @@ class Translator(object):
                     else:
                         cls = None
             # TODO: more possibilities
-        
+
         def uninterpreted():
             (ftypes, scope) = utils.mtd_type_from_callexpr(callexpr)
             meta = ClassOrInterfaceDeclaration({u'@t':u'ClassOrInterfaceDeclaration',
@@ -809,8 +809,6 @@ class Translator(object):
             subs = utils.all_subClasses(scope.symtab.get(str(scope.typee.name)))
             meta.subClasses = subs
             meta.members = []
-            # write call
-            # write_call()
 
             # write uninterpreted function signature
             # add fun declaration as uninterpreted
@@ -853,10 +851,7 @@ class Translator(object):
                     meta.symtab.update({mtd.name:mtd})
             return meta
 
-        if not cls or isinstance(cls, ImportDeclaration):
-            cls = uninterpreted()
-            mtds = utils.extract_nodes([MethodDeclaration], cls)
-            # return
+        if not cls or isinstance(cls, ImportDeclaration): cls = uninterpreted()
         logging.debug('searching in class: {}'.format(cls))
 
         # Compile-Time Step 2: Determine Method Signature

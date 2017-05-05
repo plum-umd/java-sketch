@@ -26,6 +26,7 @@ from ast.expr.fieldaccessexpr import FieldAccessExpr
 from ast.expr.arrayaccessexpr import ArrayAccessExpr
 from ast.expr.assignexpr import AssignExpr
 
+from ast.type.primitivetype import PrimitiveType
 from ast.type.referencetype import ReferenceType
 from ast.type.classorinterfacetype import ClassOrInterfaceType
 
@@ -129,6 +130,8 @@ def build_subs(ast):
 
 def is_subtype(t1, t2):
     if t1.name == t2.name: return True
+    if not isinstance(t1, PrimitiveType) and t2.name == u'null': return True
+    if not isinstance(t2, PrimitiveType) and t1.name == u'null': return True
     if type(t1) != type(t2): return False
     if t2.name == u'Object': return True
     # primitive type
