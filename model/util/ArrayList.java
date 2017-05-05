@@ -178,6 +178,9 @@ public class ArrayList<E> {
 
 	return arr;
     }
+    public void ensureCapacity(int minCapacity) {
+	// TODO: fill me in!
+    }
 
 }
 
