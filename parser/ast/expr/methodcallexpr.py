@@ -42,17 +42,20 @@ class MethodCallExpr(Expression):
         sym = obj.symtab
         # first look for this methed in the current scope
         mtd = sym.get(self.name)
+        print 'mtd:', mtd
         if not mtd:
-            # try the scopes class
-            cls = sym.get(str(obj.typee))
-            mtd = cls.symtab.get(self.name)
-            if mtd: return mtd.typee
+            mtd = sym.get(str(self))
+            if not mtd:
+                # try the scopes class
+                cls = sym.get(str(obj.typee))
+                mtd = cls.symtab.get(self.name)
+                if mtd: return mtd.typee
 
-            ftypes = utils.mtd_type_from_callexpr(self)
-            return ClassOrInterfaceType({u'@t': u'ClassOrInterfaceType',
-                                         u'name': unicode(ftypes[0][0][-1])})
-        else: return mtd.typee
-
+                ftypes = utils.mtd_type_from_callexpr(self)
+                return ClassOrInterfaceType({u'@t': u'ClassOrInterfaceType',
+                                             u'name': unicode(ftypes[0][0][-1])})
+        return mtd.typee
+            
     @typee.setter
     def typee(self, v): self._typee = v
 

@@ -85,6 +85,7 @@ public class Jsonify {
         typeRewrites.put("com.github.javaparser.ast.stmt.ExplicitConstructorInvocationStmt","ExplicitConstructorInvocationStmt");
         typeRewrites.put("com.github.javaparser.ast.stmt.AssumeStmt","AssumeStmt");
         typeRewrites.put("com.github.javaparser.ast.stmt.MinrepeatStmt","MinrepeatStmt");
+        typeRewrites.put("com.github.javaparser.ast.stmt.ThrowStmt","ThrowStmt");
 	
         // Expressions
         typeRewrites.put("com.github.javaparser.ast.expr.AssignExpr","AssignExpr");
