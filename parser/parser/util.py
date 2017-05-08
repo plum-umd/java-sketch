@@ -37,5 +37,6 @@ def toAST(files, ext):
     # can be a security vulnerability (if allowed to take user input).
     # This just got a whole lot nastier
     cmd = 'cd ' + pwd + '/..; /usr/bin/java -cp .:javaparser/javaparser-core/target/classes:$HOME/.m2/repository/com/cedarsoftware/json-io/4.3.0/json-io-4.3.0.jar parser.Jsonify ' + java_in + ' ' + json_out
-    call(cmd, shell=True)
+    ret = call(cmd, shell=True)
+    if ret != 0: exit('Problem parsing.')
     return json_out
