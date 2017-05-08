@@ -178,6 +178,7 @@ class Translator(object):
             ty = self.trans_ty(utils.get_coid(n))
             self.printt('{} self'.format(ty))
             if n.parameters: self.printt(', ')
+
         self.printSepList(n.parameters)
         self.printt(')')
 
@@ -427,19 +428,25 @@ class Translator(object):
 
     @v.when(AssignExpr)
     def visit(self, n):
+        def print_op():
+            self.printt(' ')
+            o = n.op.upper()
+            if o == u'ASSIGN': self.printt(assignop[o])
+            else:
+                self.printt('=')
+                self.printt(' ')
+                n.target.accept(self)
+                self.printt(assignop['_{}'.format(o)])
+            self.printt(' ')
         # print 'AssignExpr'
         if type(n.target) == FieldAccessExpr:
             v = self.trans_faccess(n.target)
             if v:
-                self.printt(' ')
-                self.printt(assignop[n.op.upper()])
-                self.printt(' ')
+                print_op()
                 n.value.accept(self)
         else:
             n.target.accept(self)
-            self.printt(' ')
-            self.printt(assignop[n.op.upper()])
-            self.printt(' ')
+            print_op()
             n.value.accept(self)
 
     @v.when(FieldAccessExpr)
@@ -895,7 +902,7 @@ class Translator(object):
         if invocation_mode == 'static':
             if (callexpr.scope and isinstance(callexpr.scope, ThisExpr)) or \
                str(utils.get_coid(callexpr)) == str(utils.get_coid(mtd)):
-                self.printt('{}'.format(str(mtd), str(utils.get_coid(mtd))))
+                self.printt('{}'.format(str(mtd)))
             else:
                 self.printt('{}@{}'.format(str(mtd), str(utils.get_coid(mtd))))
             self.printArguments(callexpr.args)
@@ -918,7 +925,7 @@ class Translator(object):
             args = [NameExpr({u'name':scp})] + callexpr.args
             conexprs = []
             for c in reversed(clss): # start from bottom of hierarchy
-                (_, mdec) = self.find_mtd(c, str(mtd))
+                (_, mdec) = self.find_mtd(c, mtd.sig())
                 if mdec: conexprs.append(self.make_dispatch(scp, c, mdec, args))
             if invocation_mode == 'uninterpreted':
                 (_, mdec) = self.find_mtd(cls, str(mtd))

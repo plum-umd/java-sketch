@@ -79,6 +79,9 @@ class ConstructorDeclaration(BodyDeclaration):
   
     def param_typs(self): return map(lambda p: p.typee, self.parameters)
     def param_names(self): return map(lambda p: p.name, self.parameters)
+
+    def sig(self):
+        return 'm{}'.format(str(self))
   
     def __str__(self):
         nm = self.sanitize_ty(self.name)

@@ -14,6 +14,7 @@ from ..body.variabledeclarator import VariableDeclarator
 from ..body.variabledeclaratorid import VariableDeclaratorId
 from ..body.methoddeclaration import MethodDeclaration
 from ..body.constructordeclaration import ConstructorDeclaration
+from ..body.emptymemberdeclaration import EmptyMemberDeclaration
 
 from ..stmt.blockstmt import BlockStmt
 from ..stmt.ifstmt import IfStmt
@@ -91,8 +92,10 @@ class SymtabGen(object):
         if node.name == u'Object': node.parentNode.symtab.update({node.name:node})
         [node.symtab.update({n.name:n}) for n in node.extendsList if n.name not in node.symtab]
         [node.symtab.update({n.name:n}) for n in node.implementsList if n.name not in node.symtab]
+        [node.symtab.update({n.name:n}) for n in node.typeParameters if n.name not in node.symtab]
+        node.members = filter(lambda n: not isinstance(n, EmptyMemberDeclaration), node.members)
         map(lambda n: node.symtab.update({n.name:n} if type(n) == FieldDeclaration or type(n) == ClassOrInterfaceDeclaration else \
-                                         {str(n):n}), node.members)
+                                         {n.sig():n}), node.members)
         map(lambda n: n.accept(self), node.members)
 
     @v.when(MethodDeclaration)
@@ -100,8 +103,8 @@ class SymtabGen(object):
         # The scope of a formal parameter of a method is the entire body of the method
         self.new_symtab(node, cp=True)
 
-        node.parentNode.symtab.update({str(node):node})
-        node.symtab.update({str(node):node})
+        # node.parentNode.symtab.update({str(node):node})
+        node.symtab.update({node.sig():node})
 
         if str(node.typee) not in PRIMITIVES and str(node.typee) not in node.symtab:
             node.symtab.update({str(node.typee):node.typee})

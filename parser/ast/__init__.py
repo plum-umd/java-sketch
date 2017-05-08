@@ -48,6 +48,18 @@ AssignOperators = {
     u'AND':u'&=',
     u'XOR':u'^=',
     u'OR':u'|=',
+    # expand for Sketch
+    u'_STAR':u'*',
+    u'_SLASH':u'/',
+    u'_REM':u'%',
+    u'_PLUS':u'+',
+    u'_MINUS':u'-',
+    u'_LSHIFT':u'<<',
+    u'_RSIGNEDSHIFT':u'>>',
+    u'_RUNSIGNEDSHIFT':u'>>>',
+    u'_AND':u'&',
+    u'_XOR':u'^',
+    u'_OR':u'|',
 }
 
 field = {

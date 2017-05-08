@@ -8,6 +8,7 @@ from .thisexpr import ThisExpr
 
 from ..type.classorinterfacetype import ClassOrInterfaceType
 
+from ..typeparameter import TypeParameter
 from ..utils import utils
 
 class MethodCallExpr(Expression):
@@ -41,13 +42,14 @@ class MethodCallExpr(Expression):
         obj = utils.node_to_obj(self.scope) if self.scope else self
         sym = obj.symtab
         # first look for this methed in the current scope
-        mtd = sym.get(self.name)
-        print 'mtd:', mtd
+        mtd = sym.get(self.sig())
         if not mtd:
             mtd = sym.get(str(self))
             if not mtd:
                 # try the scopes class
                 cls = sym.get(str(obj.typee))
+                if isinstance(cls, TypeParameter):
+                    cls = sym.get(str(cls.typeBound))
                 mtd = cls.symtab.get(self.name)
                 if mtd: return mtd.typee
 
@@ -60,8 +62,9 @@ class MethodCallExpr(Expression):
     def typee(self, v): self._typee = v
 
     def sig(self):
-        atyps = ','.join(map(str, self.arg_typs())) if self.args else ''
-        return '{} {}({});'.format(str(self.typee), str(self), atyps)
+        return 'm{}'.format(str(self))
+        # atyps = ','.join(map(str, self.arg_typs())) if self.args else ''
+        # return '{} {}({});'.format(str(self.typee), str(self), atyps)
 
     def arg_typs(self):
         typs = []

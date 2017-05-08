@@ -82,6 +82,9 @@ class MethodDeclaration(BodyDeclaration):
     def param_typs(self): return map(lambda p: p.typee, self.parameters)
     def param_names(self): return map(lambda p: p.name, self.parameters)
 
+    def sig(self):
+        return 'm{}'.format(str(self))
+
     def __str__(self):
         params = map(self.sanitize_ty, map(lambda p: p.typee.name, self.parameters))
         return u'_'.join([self.sanitize_ty(self.name)] + params)
