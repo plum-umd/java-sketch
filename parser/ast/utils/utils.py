@@ -429,9 +429,9 @@ def mtd_type_from_callexpr(callexpr):
             if str(typ) == nm[-1]:
                 types = get_mtd_types(os.path.join(*nm), callexpr.name, len(callexpr.args))
                 if not types:
-                    raise Exception('Somethign went wrong: {} {}'.format(key, callexpr.name))
+                    raise Exception('Somethign went wrong: {} {}, {}:{}'.format(key, callexpr.name, str(get_coid(callexpr)), callexpr.beginLine))
                 ftypes.extend(types)
-    if not ftypes: raise Exception('Somethign went wrong (ftypes): {}'.format(callexpr.name))
+    if not ftypes: raise Exception('Somethign went wrong (ftypes): {}, {}:{}'.format(callexpr.name, str(get_coid(callexpr)), callexpr.beginLine))
     return (ftypes, scope)
 
 # this is also in ast.node...
