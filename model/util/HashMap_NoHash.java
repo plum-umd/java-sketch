@@ -15,7 +15,7 @@ public class HashMap_NoHash<K,V> extends Map {
 	}
     }
 
-    public HashMap_Simple() {
+    public HashMap_NoHash() {
 	this.elementData = null;
     	this.numPairs = 0;
     }
