@@ -44,6 +44,9 @@ class TestJava(TestCommon):
     def test_Creation(self):
         self.__test(["Creation.java"])
 
+    def test_DifferentTypeVars(self):
+        self.__test(["DifferentTypeVars.java"])
+
     def test_Fields(self):
         self.__test(["Fields.java"])
 
@@ -102,6 +105,9 @@ class TestJava(TestCommon):
     # not ready for this yet.
     # def test_PolyStuff(self):
     #     self.__test(["PolyStuff.java"])
+
+    def test_ReturnTypeParam(self):
+        self.__test(["ReturnTypeParam.java"])
 
     def test_SimpleArray(self):
         self.__test(["SimpleArray.java"])
