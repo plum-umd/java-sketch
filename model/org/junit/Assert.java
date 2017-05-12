@@ -147,6 +147,10 @@ public class Assert {
         assertEquals(null, expected, actual);
     }
 
+    public static boolean assertEquals(int expected, int actual) {
+        return expected == actual;
+    }
+
     // /**
     //  * Asserts that two objects are <b>not</b> equals. If they are, an
     //  * {@link AssertionError} is thrown with the given message. If
@@ -724,38 +728,39 @@ public class Assert {
     //     assertNotNull(null, object);
     // }
 
-    // /**
-    //  * Asserts that an object is null. If it is not, an {@link AssertionError}
-    //  * is thrown with the given message.
-    //  *
-    //  * @param message the identifying message for the {@link AssertionError} (<code>null</code>
-    //  * okay)
-    //  * @param object Object to check or <code>null</code>
-    //  */
-    // public static void assertNull(String message, Object object) {
-    //     if (object == null) {
-    //         return;
-    //     }
-    //     failNotNull(message, object);
-    // }
+    /**
+     * Asserts that an object is null. If it is not, an {@link AssertionError}
+     * is thrown with the given message.
+     *
+     * @param message the identifying message for the {@link AssertionError} (<code>null</code>
+     * okay)
+     * @param object Object to check or <code>null</code>
+     */
+    public static void assertNull(String message, Object object) {
+        if (object == null) {
+            return;
+        }
+        failNotNull(message, object);
+    }
 
-    // /**
-    //  * Asserts that an object is null. If it isn't an {@link AssertionError} is
-    //  * thrown.
-    //  *
-    //  * @param object Object to check or <code>null</code>
-    //  */
-    // public static void assertNull(Object object) {
-    //     assertNull(null, object);
-    // }
+    /**
+     * Asserts that an object is null. If it isn't an {@link AssertionError} is
+     * thrown.
+     *
+     * @param object Object to check or <code>null</code>
+     */
+    public static void assertNull(Object object) {
+        assertNull(null, object);
+    }
 
-    // private static void failNotNull(String message, Object actual) {
-    //     String formatted = "";
-    //     if (message != null) {
-    //         formatted = message + " ";
-    //     }
-    //     fail(formatted + "expected null, but was:<" + actual + ">");
-    // }
+    private static void failNotNull(String message, Object actual) {
+        // String formatted = "";
+        // if (message != null) {
+        //     formatted = message + " ";
+        // }
+	assert false;
+        // fail(formatted + "expected null, but was:<" + actual + ">");
+    }
 
     // /**
     //  * Asserts that two objects refer to the same object. If they are not, an
