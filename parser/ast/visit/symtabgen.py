@@ -137,6 +137,7 @@ class SymtabGen(object):
     def visit(self, node):
         self.new_symtab(node, cp=True)
         node.symtab.update({node.name:node})
+        node.variable.accept(self)
 
     @v.when(VariableDeclarator)
     def visit(self, node):

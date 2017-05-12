@@ -231,3 +231,13 @@ class Node(object):
     def kill(self): return set([])
 
     def sanitize_ty(self, tname): return tname.replace('$','_').replace('.','_').replace('?', u'Object')
+
+    def get_coid(self):
+        locs = _import()
+        if self.parentNode:
+            if type(self.parentNode) == locs[u'ClassOrInterfaceDeclaration']:
+                return self.parentNode
+            else:
+                return self.parentNode.get_coid()
+        else: return None
+

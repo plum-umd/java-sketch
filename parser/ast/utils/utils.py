@@ -166,13 +166,6 @@ def get_parent(n, ptype):
         else: return get_parent(n.parentNode, ptype)
     else: return None
 
-def get_coid(n):
-    if n.parentNode:
-        if type(n.parentNode) == ClassOrInterfaceDeclaration:
-            return n.parentNode
-        else: return get_coid(n.parentNode)
-    else: return None
-
 def find_mtd(mname, cls):
     if mname in cls.symtab: return cls.symtab.get(mname)
     for s in cls.supers():
@@ -187,7 +180,7 @@ def node_to_obj(n):
     def find_obj(obj):
         if n.name in obj.symtab: return obj.symtab.get(n.name)
         else:
-            cls = get_coid(obj)
+            cls = n.get_coid()
             if not cls: return obj
             for s in cls.supers():
                 if n.name in s.symtab: return s.symtab.get(n.name)
@@ -196,13 +189,13 @@ def node_to_obj(n):
 
     if isinstance(n, CastExpr): o = n.symtab.get(n.typee.name)
     elif isinstance(n, EnclosedExpr): o = node_to_obj(n.inner)
-    elif isinstance(n, ThisExpr): o = get_coid(n)
+    elif isinstance(n, ThisExpr): o = n.get_coid()
     # TODO: None here is wrong, it will fail somewhere...
     elif isinstance(n, FieldAccessExpr): o = find_fld(n, None)
     else: o = find_obj(n)
 
     if not o:
-        print 'node_to_obj() -- Cant find {}.{}:{}'.format(str(n.name),get_coid(n),n.beginLine)
+        print 'node_to_obj() -- Cant find {}.{}:{}'.format(str(n.name), n.get_coid(),n.beginLine)
         # n might be a static reference to an imported class
         for k, v in n.symtab.get(u'_cu_').symtab.items():
             nm = k.split('.')[-1]
@@ -421,6 +414,7 @@ def mtd_type_from_callexpr(callexpr):
         raise Exception('Uninterpreted function with no scope? {}'.format(callexpr))
     scope = node_to_obj(callexpr.scope)
     typ = scope.typee
+    # cls = scope.symtab.get(str(typ))
     cu = callexpr.symtab[u'_cu_'].symtab
     ftypes = []
     for key, val in cu.items():
@@ -429,9 +423,9 @@ def mtd_type_from_callexpr(callexpr):
             if str(typ) == nm[-1]:
                 types = get_mtd_types(os.path.join(*nm), callexpr.name, len(callexpr.args))
                 if not types:
-                    raise Exception('Somethign went wrong: {} {}, {}:{}'.format(key, callexpr.name, str(get_coid(callexpr)), callexpr.beginLine))
+                    raise Exception('Somethign went wrong: {} {}, {}:{}'.format(key, callexpr.name, str(callexpr.get_coid()), callexpr.beginLine))
                 ftypes.extend(types)
-    if not ftypes: raise Exception('Somethign went wrong (ftypes): {}, {}:{}'.format(callexpr.name, str(get_coid(callexpr)), callexpr.beginLine))
+    if not ftypes: raise Exception('Somethign went wrong (ftypes): {}, {}:{}'.format(callexpr.name, str(callexpr.get_coid()), callexpr.beginLine))
     return (ftypes, scope)
 
 # this is also in ast.node...

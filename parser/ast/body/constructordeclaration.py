@@ -84,6 +84,8 @@ class ConstructorDeclaration(BodyDeclaration):
         return 'm{}'.format(str(self))
   
     def __str__(self):
-        nm = self.sanitize_ty(self.name)
+        cls = self.get_coid()
+        nm = '{0}_{0}'.format(str(cls))
+        if cls.isinner(): nm += '_{}'.format(str(cls.get_coid()))
         params = map(self.sanitize_ty, map(lambda p: p.typee.name, self.parameters))
-        return u'_'.join([nm, nm] + params)
+        return u'_'.join([nm] + params)

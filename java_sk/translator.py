@@ -128,11 +128,12 @@ class Translator(object):
     # body
     @v.when(ConstructorDeclaration)
     def visit(self, n):
-        cls = n if isinstance(n, ClassOrInterfaceDeclaration) else utils.get_coid(n)
+        n = copy.copy(n)
+        cls = n if isinstance(n, ClassOrInterfaceDeclaration) else n.get_coid()
         etypes = cls.enclosing_types()
         self.printt('Object {0}_{0}'.format(str(cls)))
         ptypes = n.param_typs()
-        if cls.isinner(): self.printt('_{}'.format(str(utils.get_coid(cls))))
+        if cls.isinner(): self.printt('_{}'.format(str(cls.get_coid())))
         if ptypes: self.printt('_{}'.format('_'.join(map(str, ptypes))))
         self.printTypeParameters(n.typeParameters)
 
@@ -162,11 +163,12 @@ class Translator(object):
 
     @v.when(MethodDeclaration)
     def visit(self, n):
-        if utils.get_coid(n).interface: return
+        if n.get_coid().interface: return
         self.printMods(n)
         if td.isHarness(n):
             self.printt('harness ')
             n.body.stmts = [u'Object self = Object_Object(new Object(__cid=Object()));'] + n.body.stmts
+            # n.body.stmts = [u'Object self = Object_Object(new Object(__cid=Object()));',u'fs_s@Object(HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash())));'] + n.body.stmts
         n.typee.accept(self)
         self.printt(' ')
         self.printt(str(n))
@@ -175,7 +177,7 @@ class Translator(object):
         self.printt('(')
 
         if not td.isStatic(n) and not td.isHarness(n):
-            ty = self.trans_ty(utils.get_coid(n))
+            ty = self.trans_ty(n.get_coid())
             self.printt('{} self'.format(ty))
             if n.parameters: self.printt(', ')
 
@@ -366,7 +368,7 @@ class Translator(object):
             if n.expr:
                 n.expr.accept(self)
                 self.printt('.')
-            cls = utils.get_coid(n)
+            cls = n.get_coid()
             sups = cls.supers()
             if not sups: exit('Calling super with  with no super class: {}'.format(str(cls)))
             def ty(a):
@@ -403,8 +405,8 @@ class Translator(object):
             if td.isStatic(obj):
                 self.printt(obj.name)
                 return
-            this = utils.get_coid(n)
-            obj_cls = utils.get_coid(obj)
+            this = n.get_coid()
+            obj_cls = obj.get_coid()
             if obj.name in this.symtab and this == obj_cls:
                 i = ''
             else:
@@ -470,63 +472,65 @@ class Translator(object):
     @v.when(ObjectCreationExpr)
     def visit(self, n):
         obj_cls = n.symtab.get(n.typee.name)
+        cls = obj_cls.symtab.get(obj_cls.name)
         if isinstance(obj_cls, ImportDeclaration): obj_cls = obj_cls.cname()
-        # print 'ObjectCreationExpr:', n, n.beginLine, n.typee.name, type(obj_cls)
-        # print 'type(n.typee):', type(n.typee)
         if isinstance(obj_cls, ReferenceType): obj_cls = self.trans_ty(obj_cls)
-        enclosing_cls = obj_cls.enclosing_types()[-1] \
-            if type(obj_cls) == ClassOrInterfaceDeclaration and obj_cls.isinner() else None
+        # print 'obj_cls', obj_cls, type(obj_cls)
+        # print 'cls:', cls
         if n.scope:
             n.getScope.accept(self)
             self.printt('.')
         if n.args:
             typs = []
+            tparam_nms = map(lambda t: t.name, cls.typeParameters)
+            cons = utils.extract_nodes([ConstructorDeclaration], cls)
             for a in n.args:
                 if type(a) == FieldAccessExpr:
-                    tname = utils.find_fld(a, self.obj_struct).typee.name
+                    tname = utils.find_fld(a, self.obj_struct).typee
                 elif not a.typee:
                     t = n.symtab.get(a.name)
                     if t:
-                        tname = t.typee.name
+                        tname = t.typee
                     else:
                         print a, type(a)
                 else:
-                    tname = a.typee.name
+                    tname = a.typee
                 typs.append(tname)
-
-            self.printt('{0}_{0}_'.format(str(obj_cls)))
-            if enclosing_cls: self.printt('{}_'.format(str(enclosing_cls)))
-            self.printt('_'.join(typs))
+            nm = ''
+            for c in cons:
+                if self.match_loose(typs, c.param_typs(), tparam_nms):
+                    nm = str(c)
+                    break
+            self.printt(nm)
         else:
             self.printt('{0}_{0}'.format(str(obj_cls)))
-            if enclosing_cls: self.printt('_{}'.format(str(enclosing_cls)))
 
         if n.anonymousClassBody:
             # find name of variabledeclarator
             target = utils.anon_nm(n)
             target = n.symtab.get(target.name)
             nm = '{}_{}'.format(n.typee, target.name)
-            cls = ClassOrInterfaceDeclaration({u'@t':u'ClassOrInterfaceDeclaration',
+            anon_cls = ClassOrInterfaceDeclaration({u'@t':u'ClassOrInterfaceDeclaration',
                                                u'name':{u'name':nm,},})
-            cls.members = n.anonymousClassBody
-            cls.childrenNodes.extend(cls.members)
-            cls.symtab = {}
-            cls.symtab.update({cls.name:cls})
-            map(lambda m: cls.symtab.update({str(m):m}), n.anonymousClassBody)
-            target.symtab.update({nm:cls})
+            anon_cls.members = n.anonymousClassBody
+            anon_cls.childrenNodes.extend(anon_cls.members)
+            anon_cls.symtab = {}
+            anon_cls.symtab.update({anon_cls.name:anon_cls})
+            map(lambda m: anon_cls.symtab.update({str(m):m}), n.anonymousClassBody)
+            target.symtab.update({nm:anon_cls})
 
             tltr = copy.copy(self)
             tltr.indentation = ''
-            anon = map(tltr.trans, cls.members)
+            anon = map(tltr.trans, anon_cls.members)
 
-            anon.append('int {}() {{ return {}; }}\n'.format(cls.name, self.anon_ids))
+            anon.append('int {}() {{ return {}; }}\n'.format(anon_cls.name, self.anon_ids))
             self.anon_ids -= 1
             self.post_mtds += '\n'.join(anon)
 
-            obj_cls = cls
+            obj_cls = anon_cls
 
         self.printt('(new Object(__cid={}())'.format(str(obj_cls)))
-        if enclosing_cls: self.printt(', self')
+        if cls.isinner(): self.printt(', self')
         if n.args: self.printt(', ')
         self.printSepList(n.args)
         self.printt(')')
@@ -712,15 +716,15 @@ class Translator(object):
         fld = utils.find_fld(n, self.obj_struct)
         logging.debug('found field: {}'.format(str(fld)))
         if td.isStatic(fld):
-            if isinstance(n.scope, ThisExpr) or n.scope.name == utils.get_coid(n).name:
+            if isinstance(n.scope, ThisExpr) or n.scope.name == n.get_coid().name:
                 self.printt(fld.name)
             elif type(n.parentNode) == AssignExpr and n == n.parentNode.target:
-                self.printt('{}_s@{}('.format(fld.name, str(utils.get_coid(fld))))
+                self.printt('{}_s@{}('.format(fld.name, str(fld.get_coid())))
                 n.parentNode.value.accept(self)
                 self.printt(')')
                 return False
             else:
-                self.printt('{}_g@{}()'.format(fld.name, str(utils.get_coid(fld))))
+                self.printt('{}_g@{}()'.format(fld.name, str(fld.get_coid())))
         else:
             logging.debug('non-static field - type(n.scope): {}'.format(type(n.scope)))
             n.scope.accept(self)
@@ -763,17 +767,17 @@ class Translator(object):
             write_call()
             return
 
-        logging.info('calling: {} from {}'.format(str(callexpr), utils.get_coid(callexpr)))
+        logging.info('calling: {} from {}'.format(str(callexpr), callexpr.get_coid()))
         # 15.12.1 Compile-Time Step 1: Determine Class or Interface to Search
         if not callexpr.scope:
-            cls = utils.get_coid(callexpr)
+            cls = callexpr.get_coid()
         else:
             if isinstance(callexpr.scope, SuperExpr):
                 # super . [TypeArguments] Identifier ( [ArgumentList] )
-                sups = utils.get_coid(callexpr).supers()
+                sups = callexpr.get_coid().supers()
                 if not sups:
                     raise Exception('Calling super with no super class {} in {}'.format(
-                        callexpr, utils.get_coid(callexpr)))
+                        callexpr, callexpr.get_coid()))
                 cls = sups[0]
                 scope = NameExpr({u'name':u'self'})
             elif isinstance(callexpr.scope, MethodCallExpr):
@@ -796,7 +800,7 @@ class Translator(object):
                                 callexpr.name = nm
                         if not cls:
                             pmdec = utils.get_parent(callexpr, MethodDeclaration)
-                            pcls = utils.get_coid(callexpr)
+                            pcls = callexpr.get_coid()
                             tparams = map(lambda p: p, pcls.typeParameters) + \
                                       map(lambda p: p, pmdec.typeParameters) if pmdec else []
                             tparam = filter(lambda p: p.name == scope.typee.name, tparams)
@@ -829,7 +833,7 @@ class Translator(object):
                     if sig in self.unfuns: continue
                     self.unfuns.append(sig)
                     rtyp = self.trans_ty(fun.pop())
-                    f.write('{} {}('.format(rtyp, callexpr.name))
+                    f.write('{} {}('.format(rtyp, str(callexpr)))
                     if not isinstance(scope, ClassOrInterfaceType):
                         f.write('{} p0'.format(self.trans_ty(scope.typee)))
                         if len(fun) > 0: f.write(', ')
@@ -901,10 +905,10 @@ class Translator(object):
         # 15.12.4.1. Compute Target Reference (If Necessary)
         if invocation_mode == 'static':
             if (callexpr.scope and isinstance(callexpr.scope, ThisExpr)) or \
-               str(utils.get_coid(callexpr)) == str(utils.get_coid(mtd)):
+               str(callexpr.get_coid()) == str(mtd.get_coid()):
                 self.printt('{}'.format(str(mtd)))
             else:
-                self.printt('{}@{}'.format(str(mtd), str(utils.get_coid(mtd))))
+                self.printt('{}@{}'.format(str(mtd), str(mtd.get_coid())))
             self.printArguments(callexpr.args)
         elif not callexpr.scope:
             self.printt('{}@{}'.format(str(mtd), str(cls)))
@@ -951,7 +955,7 @@ class Translator(object):
         for key,val in cls.symtab.items():
             if type(val) != MethodDeclaration: continue
             tparam_names = map(lambda t: t.name, val.typeParameters)
-            tparam_names.extend(map(lambda t: t.name, utils.get_coid(val).typeParameters))
+            tparam_names.extend(map(lambda t: t.name, val.get_coid().typeParameters))
             if callexpr.name == val.name and len(callexpr.args) == len(val.parameters):
                 if all(map(lambda t: t[1].name in tparam_names or utils.is_subtype(t[0], t[1]),
                            zip(call_arg_typs, val.param_typs()))):
@@ -963,11 +967,11 @@ class Translator(object):
         arg_typs = callexpr.arg_typs()
         for m in mtds:
             param_typs = m.param_typs()
-            if self.match_strict(arg_typs, param_typs, m.typeParameters):
+            if self.match_strict(arg_typs, param_typs):
                 pots.append(m)
         return pots
 
-    def match_strict(self, arg_typs, param_typs, typeParameters):
+    def match_strict(self, arg_typs, param_typs):
         for atyp,ptyp in zip(arg_typs, param_typs):
             if ptyp.name in map(lambda p: p.name, param_typs): continue
             if not (self.identity_conversion(atyp,ptyp) or \
@@ -989,8 +993,8 @@ class Translator(object):
         # TODO: Spec says if the result is a raw type, do an unchecked conversion. Does this already happen?
         for atyp,ptyp in zip(arg_typs, param_typs):
             if ptyp.name in map(lambda p: p.name, param_typs): continue
-            # going to ignore, identity and windenings b/c they should be caught with strict
-            # TODO: spec says boxing then reference_widening, dont know what that means
+            if ptyp.name in map(lambda p: p.name, typeParameters) and not isinstance(atyp, PrimitiveType): continue
+            # going to ignore, identity and widenings b/c they should be caught with strict
             if not (self.boxing_conversion(atyp, ptyp) or \
                     (self.unboxing_conversion(atyp, ptyp) and \
                      self.primitive_widening(utils.unbox[atyp.name], ptyp))): return False
@@ -1114,7 +1118,7 @@ class Translator(object):
         d['condition']['right']['value'] = '{}()'.format(str(S))
         if type(mdec.typee) != VoidType:
             d['thenExpr']['scope']['name'] = scope
-            coid = utils.get_coid(mdec)
+            coid = mdec.get_coid()
             if coid.interface: raise Exception('{} unimplemented from {}'.format(mdec, coid))
             d['thenExpr']['name'] = '@'.join([str(mdec), str(coid)])
             dis = ConditionalExpr(d)
@@ -1124,7 +1128,7 @@ class Translator(object):
             d['thenStmt'] = d.pop('thenExpr')
             d['elseStmt'] = d.pop('elseExpr')
             d['thenStmt']['scope']['name'] = scope
-            d['thenStmt']['name'] = '@'.join([str(mdec), str(utils.get_coid(mdec))])
+            d['thenStmt']['name'] = '@'.join([str(mdec), str(mdec.get_coid())])
             dis = IfStmt(d)
             dis.thenStmt.args = args
         return dis
@@ -1206,7 +1210,7 @@ class Translator(object):
     @mtd.setter
     def mtd(self, v):
         self._mtd = v
-        self._cls = utils.get_coid(v)
+        self._cls = v.get_coid()
 
     @property
     def cls(self): return self._cls

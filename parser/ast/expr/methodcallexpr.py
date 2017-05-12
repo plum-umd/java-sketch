@@ -44,6 +44,12 @@ class MethodCallExpr(Expression):
         # first look for this methed in the current scope
         mtd = sym.get(self.sig())
         if not mtd:
+            cls = self.symtab.get(str(obj.typee))
+            if isinstance(cls, TypeParameter):
+                cls = self.symtab.get(str(cls.typeBound))
+            mtd = cls.symtab.get(self.sig())
+            if mtd: return mtd.typee
+        if not mtd:
             mtd = sym.get(str(self))
             if not mtd:
                 # try the scopes class
