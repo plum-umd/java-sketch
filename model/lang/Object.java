@@ -1,4 +1,6 @@
 public class Object {
+    public static HashMap_NoHash<String, String> fs;
+
     public static boolean equals(Object a, Object b) {
     	if (a == null) {
     	    if (b == null) {

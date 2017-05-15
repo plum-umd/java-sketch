@@ -25,13 +25,14 @@ def translate(**kwargs):
     prg = kwargs.get('prg', None)
     out_dir = kwargs.get('out_dir', res_dir)
     sk = kwargs.get('sketch', True)
+    fs = kwargs.get('fs', False)
     codegen_jar = os.path.join(root_dir, "codegen", "lib", "codegen.jar")
     
     logging.info('parsing {}'.format(prg))
     prg_ast = parse(prg)
     util.add_object(prg_ast)
  
-    encoder = Encoder(prg_ast, out_dir)
+    encoder = Encoder(prg_ast, out_dir, fs)
     logging.info('encoding to Sketch')
     encoder.to_sk()
  
@@ -90,6 +91,9 @@ if __name__ == "__main__":
     parser.add_option("-o", "--out_dir",
       dest="out_dir", default=None,
       help="use models of Java libraries")
+    parser.add_option("-f", "--file-system",
+      action="store_true", dest="fs", default=False,
+      help="model filesytem with HashMap")
     parser.add_option("--no-sketch",
       action="store_false", dest="sketch", default=True,
       help="proceed the whole process without running Sketch")
@@ -97,5 +101,4 @@ if __name__ == "__main__":
     (OPT, argv) = parser.parse_args()
     OPT.prg = argv
   
-    if OPT.tmpl: sys.exit(translate(**vars(OPT)))
     sys.exit(translate(**vars(OPT)))

@@ -89,6 +89,7 @@ class Translator(object):
         self._cnums = kwargs.get('cnums')
         self._mnums = kwargs.get('mnums')
         self._sk_dir = kwargs.get('sk_dir')
+        self._fs = kwargs.get('fs')
 
         self._buf = None
         self._mtd = None
@@ -167,8 +168,10 @@ class Translator(object):
         self.printMods(n)
         if td.isHarness(n):
             self.printt('harness ')
-            n.body.stmts = [u'Object self = Object_Object(new Object(__cid=Object()));'] + n.body.stmts
-            # n.body.stmts = [u'Object self = Object_Object(new Object(__cid=Object()));',u'fs_s@Object(HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash())));'] + n.body.stmts
+            s = [u'Object self = Object_Object(new Object(__cid=Object()));']
+            if self._fs:
+                s.append(u'fs_s@Object(HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash())));')
+            n.body.stmts = s + n.body.stmts
         n.typee.accept(self)
         self.printt(' ')
         self.printt(str(n))

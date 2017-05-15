@@ -26,11 +26,12 @@ from ast.expr.generatorexpr import GeneratorExpr
 from ast.type.referencetype import ReferenceType
 
 class Encoder(object):
-    def __init__(self, program, out_dir):
+    def __init__(self, program, out_dir, fs):
         # more globals to check out.
         self._prg = program
         self._prg.symtab.update(builtins)
         self._out_dir = out_dir
+        self._fs = fs
         self._sk_dir = ''
         self._mcls = None
         self._bases = []
@@ -58,7 +59,7 @@ class Encoder(object):
         # finds main/harness and populates some book keeping stuff
         self.main_cls()
         # create a translator object, this will do the JSketch -> Sketch
-        self._tltr = Translator(cnums=self._CLASS_NUMS, mnums=self._MTD_NUMS, sk_dir=self.sk_dir)
+        self._tltr = Translator(cnums=self._CLASS_NUMS, mnums=self._MTD_NUMS, sk_dir=self._sk_dir, fs=self._fs)
 
     def find_main(self):
         mtds = []
@@ -317,6 +318,11 @@ class Encoder(object):
     def out_dir(self): return self._out_dir
     @out_dir.setter
     def out_dir(self, v): self._out_dir = v
+
+    @property
+    def fs(self): return self._fs
+    @fs.setter
+    def fs(self, v): self._fs = v
 
     @property
     def sk_dir(self): return self._sk_dir
