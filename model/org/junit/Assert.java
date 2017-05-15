@@ -147,8 +147,8 @@ public class Assert {
         assertEquals(null, expected, actual);
     }
 
-    public static boolean assertEquals(int expected, int actual) {
-        return expected == actual;
+    public static void assertEquals(int expected, int actual) {
+        assert expected == actual;
     }
 
     // /**
