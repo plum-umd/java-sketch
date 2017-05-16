@@ -10,6 +10,8 @@ harness void mn() {
   else if (TID==6) t6();
   else if (TID==7) t7();
   else if (TID==8) t8();
+  else if (TID==9) t9();
+  else if (TID==10) t10();
 }
 
 /*****************************************************************************/
@@ -189,6 +191,30 @@ void t8() {
   Object lenc = (c.__cid == String() ? length(c.sterm) : null);
   /* arithmetize(xform(lenc.iterm)); */
   assert arithmetize(xform(lenc.iterm)) == lens;
+}
+
+IntTerm f2(StrTerm s1, StrTerm s2) {
+  return ??({s1, s2});
+}
+
+IntTerm f3(StrTerm s1, StrTerm s2, StrTerm s3) {
+  return ??({s1, s2, s3});
+}
+
+void t9() {
+  Object s1 = string2(4, "aaa");
+  Object s2 = string2(5, "abab");
+  Object s3 = string2(6, "ababa");
+  assertPost(arithmetize(xform(f3(s1.sterm, s1.sterm, s1.sterm))) == 9);
+  assertPost(arithmetize(xform(f3(s2.sterm, s1.sterm, s3.sterm))) == 12);
+}
+
+void t10() {
+  Object s1 = string2(4, "aaa");
+  Object s2 = string2(5, "abab");
+  Object s3 = string2(6, "ababa");
+  assertPost(arithmetize(xform(f2(s1.sterm, s1.sterm))) == 9);
+  assertPost(arithmetize(xform(f2(s2.sterm, s3.sterm))) == 13);
 }
 
 /*****************************************************************************/

@@ -1,7 +1,19 @@
 package meta;
 
+bit error_flag = 0;
+
+void assumePre(bit b) {
+    if (!b) error_flag = true;
+}
+
+void assertPost(bit b) {
+    if  (error_flag) return;
+    else assert b;
+}
+
+
 adt StrTerm {
-  Str      { Object o; }
+  Str      { int length; char[length] A; }
   Concat   { StrTerm t1; StrTerm t2; }
   Replace  { StrTerm t1; StrTerm t2; StrTerm t3; }
   Error_S  { }
@@ -42,6 +54,11 @@ int arithmetize(IntTerm t) {
 
 /* Object string([int n], char[n] ca)    { return new Object(__cid=String(),sterm=new Str(o=String_String_char(new Object(__cid=String()),ca))); } */
 Object string()                       { return new Object(__cid=String(),sterm=new Str()); }
+Object string2([int n], char[n] ca) {
+  Object r = new Object(__cid=String(),sterm=new Str(length=n,A=ca)); 
+  assumePre(len(r.sterm) == n-1);
+  return r;
+}
 Object length(StrTerm t)              { return new Object(__cid=String(),iterm=new Len(t=t)); }
 Object concat(StrTerm t1, StrTerm t2) { return new Object(__cid=String(),sterm=new Concat(t1=t1,t2=t2)); }
 Object replace(StrTerm t1, StrTerm t2, StrTerm t3)
