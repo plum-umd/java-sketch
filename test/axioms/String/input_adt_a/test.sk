@@ -19,9 +19,9 @@ harness void mn() {
 void t0() {
   Object s1 = string();
   Object s2 = string();
-  Object len1 = (s1.__cid == String() ? length(s1.sterm) : null);
-  Object len2 = (s2.__cid == String() ? length(s2.sterm) : null);
-  int len12 = len(len1.iterm) + len(len2.iterm);
+  //Object len1 = (s1.__cid == String() ? length(s1.sterm) : null);
+  //Object len2 = (s2.__cid == String() ? length(s2.sterm) : null);
+  int len12 = len(s1.sterm) + len(s2.sterm);
   Object c12 = (s1.__cid == String() ? concat(s1.sterm, s2.sterm) : null);
   Object lenc12 = (c12.__cid == String() ? length(c12.sterm) : null);
   assert arithmetize(xform(lenc12.iterm)) == len12;
@@ -33,11 +33,11 @@ void t1() {
   Object s2 = string();
   Object s3 = string();
   Object s4 = string();
-  Object len1 = (s1.__cid == String() ? length(s1.sterm) : null);
-  Object len2 = (s2.__cid == String() ? length(s2.sterm) : null);
-  Object len3 = (s3.__cid == String() ? length(s3.sterm) : null);
-  Object len4 = (s4.__cid == String() ? length(s4.sterm) : null);
-  int len1234 = len(len1.iterm) + len(len2.iterm) + len(len3.iterm) + len(len4.iterm);
+  //Object len1 = (s1.__cid == String() ? length(s1.sterm) : null);
+  //Object len2 = (s2.__cid == String() ? length(s2.sterm) : null);
+  //Object len3 = (s3.__cid == String() ? length(s3.sterm) : null);
+  //Object len4 = (s4.__cid == String() ? length(s4.sterm) : null);
+  int len1234 = len(s1.sterm) + len(s2.sterm) + len(s3.sterm) + len(s4.sterm);
   Object c12 = (s1.__cid == String() ? concat(s1.sterm, s2.sterm) : null);
   Object c34 = (s3.__cid == String() ? concat(s3.sterm, s4.sterm) : null);
   Object lenc12 = (c12.__cid == String() ? length(c12.sterm) : null);
@@ -54,13 +54,13 @@ void t2() {
   Object s4 = string();
   Object s5 = string();
   Object s6 = string();
-  Object len1 = (s1.__cid == String() ? length(s1.sterm) : null);
-  Object len2 = (s2.__cid == String() ? length(s2.sterm) : null);
-  Object len3 = (s3.__cid == String() ? length(s3.sterm) : null);
-  Object len4 = (s4.__cid == String() ? length(s4.sterm) : null);
-  Object len5 = (s5.__cid == String() ? length(s5.sterm) : null);
-  Object len6 = (s6.__cid == String() ? length(s6.sterm) : null);
-  int len123456 = len(len1.iterm) + len(len2.iterm) + len(len3.iterm) + len(len4.iterm) + len(len5.iterm) + len(len6.iterm);
+  //Object len1 = (s1.__cid == String() ? length(s1.sterm) : null);
+  //Object len2 = (s2.__cid == String() ? length(s2.sterm) : null);
+  //Object len3 = (s3.__cid == String() ? length(s3.sterm) : null);
+  //Object len4 = (s4.__cid == String() ? length(s4.sterm) : null);
+  //Object len5 = (s5.__cid == String() ? length(s5.sterm) : null);
+  //Object len6 = (s6.__cid == String() ? length(s6.sterm) : null);
+  int len123456 = len(s1.sterm) + len(s2.sterm) + len(s3.sterm) + len(s4.sterm) + len(s5.sterm) + len(s6.sterm);
   Object c12 = (s1.__cid == String() ? concat(s1.sterm, s2.sterm) : null);
   Object c34 = (s3.__cid == String() ? concat(s3.sterm, s4.sterm) : null);
   Object c56 = (s5.__cid == String() ? concat(s5.sterm, s6.sterm) : null);
@@ -81,15 +81,15 @@ void t3() {
   Object s6 = string();
   Object s7 = string();
   Object s8 = string();
-  Object len1 = (s1.__cid == String() ? length(s1.sterm) : null);
-  Object len2 = (s2.__cid == String() ? length(s2.sterm) : null);
-  Object len3 = (s3.__cid == String() ? length(s3.sterm) : null);
-  Object len4 = (s4.__cid == String() ? length(s4.sterm) : null);
-  Object len5 = (s5.__cid == String() ? length(s5.sterm) : null);
-  Object len6 = (s6.__cid == String() ? length(s6.sterm) : null);
-  Object len7 = (s7.__cid == String() ? length(s7.sterm) : null);
-  Object len8 = (s8.__cid == String() ? length(s8.sterm) : null);
-  int len12345678 = len(len1.iterm) + len(len2.iterm) + len(len3.iterm) + len(len4.iterm) + len(len5.iterm) + len(len6.iterm) + len(len7.iterm) + len(len8.iterm);
+  //Object len1 = (s1.__cid == String() ? length(s1.sterm) : null);
+  //Object len2 = (s2.__cid == String() ? length(s2.sterm) : null);
+  //Object len3 = (s3.__cid == String() ? length(s3.sterm) : null);
+  //Object len4 = (s4.__cid == String() ? length(s4.sterm) : null);
+  //Object len5 = (s5.__cid == String() ? length(s5.sterm) : null);
+  //Object len6 = (s6.__cid == String() ? length(s6.sterm) : null);
+  //Object len7 = (s7.__cid == String() ? length(s7.sterm) : null);
+  //Object len8 = (s8.__cid == String() ? length(s8.sterm) : null);
+  int len12345678 = len(s1.sterm) + len(s2.sterm) + len(s3.sterm) + len(s4.sterm) + len(s5.sterm) + len(s6.sterm) + len(s7.sterm) + len(s8.sterm);
   Object c12 = (s1.__cid == String() ? concat(s1.sterm, s2.sterm) : null);
   Object c34 = (s3.__cid == String() ? concat(s3.sterm, s4.sterm) : null);
   Object c56 = (s5.__cid == String() ? concat(s5.sterm, s6.sterm) : null);
@@ -107,10 +107,10 @@ void t4() {
   Object s1 = string();
   Object s2 = string();
   Object s3 = string();
-  Object len1 = (s1.__cid == String() ? length(s1.sterm) : null);
-  Object len2 = (s2.__cid == String() ? length(s2.sterm) : null);
-  Object len3 = (s3.__cid == String() ? length(s3.sterm) : null);
-  int len123 = len(len1.iterm) + len(len2.iterm) + len(len3.iterm);
+  //Object len1 = (s1.__cid == String() ? length(s1.sterm) : null);
+  //Object len2 = (s2.__cid == String() ? length(s2.sterm) : null);
+  //Object len3 = (s3.__cid == String() ? length(s3.sterm) : null);
+  int len123 = len(s1.sterm) + len(s2.sterm) + len(s3.sterm);
   Object c12 = (s1.__cid == String() ? concat(s1.sterm, s2.sterm) : null);
   Object cc123 = (c12.__cid == String() ? concat(c12.sterm, s3.sterm) : null);
   Object lencc123 = (cc123.__cid == String() ? length(cc123.sterm) : null);
@@ -123,11 +123,11 @@ void t5() {
   Object s2 = string();
   Object s3 = string();
   Object s4 = string();
-  Object len1 = (s1.__cid == String() ? length(s1.sterm) : null);
-  Object len2 = (s2.__cid == String() ? length(s2.sterm) : null);
-  Object len3 = (s3.__cid == String() ? length(s3.sterm) : null);
-  Object len4 = (s4.__cid == String() ? length(s4.sterm) : null);
-  int len1234 = len(len1.iterm) + len(len2.iterm) + len(len3.iterm) + len(len4.iterm);
+  //Object len1 = (s1.__cid == String() ? length(s1.sterm) : null);
+  //Object len2 = (s2.__cid == String() ? length(s2.sterm) : null);
+  //Object len3 = (s3.__cid == String() ? length(s3.sterm) : null);
+  //Object len4 = (s4.__cid == String() ? length(s4.sterm) : null);
+  int len1234 = len(s1.sterm) + len(s2.sterm) + len(s3.sterm) + len(s4.sterm);
   Object c12 = (s1.__cid == String() ? concat(s1.sterm, s2.sterm) : null);
   Object cc123 = (c12.__cid == String() ? concat(c12.sterm, s3.sterm) : null);
   Object ccc1234 = (cc123.__cid == String() ? concat(cc123.sterm, s4.sterm) : null);
@@ -142,12 +142,12 @@ void t6() {
   Object s3 = string();
   Object s4 = string();
   Object s5 = string();
-  Object len1 = (s1.__cid == String() ? length(s1.sterm) : null);
-  Object len2 = (s2.__cid == String() ? length(s2.sterm) : null);
-  Object len3 = (s3.__cid == String() ? length(s3.sterm) : null);
-  Object len4 = (s4.__cid == String() ? length(s4.sterm) : null);
-  Object len5 = (s5.__cid == String() ? length(s5.sterm) : null);
-  int len12345 = len(len1.iterm) + len(len2.iterm) + len(len3.iterm) + len(len4.iterm) + len(len5.iterm);
+  //Object len1 = (s1.__cid == String() ? length(s1.sterm) : null);
+  //Object len2 = (s2.__cid == String() ? length(s2.sterm) : null);
+  //Object len3 = (s3.__cid == String() ? length(s3.sterm) : null);
+  //Object len4 = (s4.__cid == String() ? length(s4.sterm) : null);
+  //Object len5 = (s5.__cid == String() ? length(s5.sterm) : null);
+  int len12345 = len(s1.sterm) + len(s2.sterm) + len(s3.sterm) + len(s4.sterm) + len(s5.sterm);
   Object c12 = (s1.__cid == String() ? concat(s1.sterm, s2.sterm) : null);
   Object c45 = (s4.__cid == String() ? concat(s4.sterm, s5.sterm) : null);
   Object cc123 = (c12.__cid == String() ? concat(c12.sterm, s3.sterm) : null);
@@ -160,9 +160,9 @@ void t6() {
 void t7() {
   Object s1 = string();
   Object s2 = string();
-  Object len1 = (s1.__cid == String() ? length(s1.sterm) : null);
-  Object len2 = (s2.__cid == String() ? length(s2.sterm) : null);
-  int len21111 = len(len2.iterm) + len(len1.iterm) + len(len1.iterm) + len(len1.iterm) + len(len1.iterm);
+  //Object len1 = (s1.__cid == String() ? length(s1.sterm) : null);
+  //Object len2 = (s2.__cid == String() ? length(s2.sterm) : null);
+  int len21111 = len(s2.sterm) + len(s1.sterm) + len(s1.sterm) + len(s1.sterm) + len(s1.sterm);
   Object c12 = (s1.__cid == String() ? concat(s1.sterm, s2.sterm) : null);
   Object c1c12 = (s1.__cid == String() ? concat(s1.sterm, c12.sterm) : null);
   Object c1c1c12 = (s1.__cid == String() ? concat(s1.sterm, c1c12.sterm) : null);
@@ -175,13 +175,13 @@ void t7() {
 void t8() {
   Object s1 = string();
   Object s2 = string();
-  Object len1 = (s1.__cid == String() ? length(s1.sterm) : null);
-  Object len2 = (s2.__cid == String() ? length(s2.sterm) : null);
+  //Object len1 = (s1.__cid == String() ? length(s1.sterm) : null);
+  //Object len2 = (s2.__cid == String() ? length(s2.sterm) : null);
   int lens = 0;
   for (int i = 0; i < 30; i++) {
-    lens += len(len1.iterm);
+    lens += len(s1.sterm);
   }
-  lens += len(len1.iterm) + len(len2.iterm);
+  lens += len(s1.sterm) + len(s2.sterm);
   Object c = (s1.__cid == String() ? concat(s1.sterm, s2.sterm) : null);
   for (int i = 0; i < 30; i++) {
     c = (s1.__cid == String() ? concat(s1.sterm, c.sterm) : null);

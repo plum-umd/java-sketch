@@ -34,7 +34,7 @@ IntTerm xform(IntTerm t) {
 
 int arithmetize(IntTerm t) {
   switch(t) {
-  case Len:     return len(t);
+  case Len:     return len(t.t);
   case Plus:    return arithmetize(t.t1) + arithmetize(t.t2);
   case Error_I: return -1;
   }
@@ -55,4 +55,4 @@ int Object()               { return 1; }
 int String()               { return 7; }
 
 // Uninterpreted functions
-int len(IntTerm t);
+int len(StrTerm t);
