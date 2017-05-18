@@ -14,7 +14,7 @@ void assertPost(bit b) {
 
 adt StrTerm {
   Str      { int length; char[length] A; }
-  Concat   { StrTerm t1; StrTerm t2; }
+  Concat   { int length; StrTerm[length] T; }
   Replace  { StrTerm t1; StrTerm t2; StrTerm t3; }
   Error_S  { }
 }
@@ -35,10 +35,16 @@ IntTerm xform(IntTerm t) {
   case Str:     { return t; }
   case Replace: { return xform(new Len(t=st1.t1)); }
   case Concat: {
-    IntTerm it1; IntTerm it2; 
-    it1 = xform(new Len(t=st1.t1));
-    it2 = xform(new Len(t=st1.t2));
-    return new Plus(t1=it1, t2=it2);
+    assert st1.length >= 2;
+    IntTerm[st1.length] its;
+    for (int i = 0; i < st1.length; i++)
+      its[i] = xform(new Len(t=st1.T[i]));
+    assert its[0] == new Len(t=st1.T[0]);
+    assert its[1] == new Len(t=st1.T[1]);
+    Plus p = new Plus(t1=its[0], t2=its[1]);
+    for (int i = 2; i < st1.length; i++)
+      p = new Plus(t1=p, t2=its[i]);
+    return p;
   }
   case Error_S: return new Error_I();
   }
@@ -60,16 +66,47 @@ Object string2([int n], char[n] ca) {
   return r;
 }
 Object length(StrTerm t)              { return new Object(__cid=String(),iterm=new Len(t=t)); }
-Object concat(StrTerm t1, StrTerm t2) { return new Object(__cid=String(),sterm=new Concat(t1=t1,t2=t2)); }
+Object concat([int n], StrTerm t1, StrTerm t2) {
+  int i = 0;
+  StrTerm[n] ta;
+  switch (t1) {
+  case Str: { ta[i++] = t1; assert ta[0] == t1; }
+  case Replace: { ta[i++] = t1.t1; }
+  case Concat:  {
+       for (; i < t1.length; i++) ta[i] = t1.T[i];
+  }
+  case Error_S: { ; }
+  }
+  assert i == 1;
+  switch (t2) {
+  case Str:     { ta[i] = t2; }
+  case Replace: { ta[i] = t2.t1; }
+  case Concat:  {
+    int j = 0;
+    for (; i < n; i++)
+      ta[i] = t2.T[j++];
+  }
+  case Error_S: { ; }
+  }
+  assert ta[0] == t1;
+  assert ta[1] == t2;
+  Concat c = new Concat(length=n, T=ta);
+  assert c.length == 2;
+  assert c.T[0] == t1;
+  assert c.T[1] == t2;
+  return new Object(__cid=String(),sterm=c);
+}
 Object replace(StrTerm t1, StrTerm t2, StrTerm t3)
-                                      { return new Object(__cid=String(),sterm=new Replace(t1=t1,t2=t2,t3=t3)); }
+{ return new Object(__cid=String(),sterm=new Replace(t1=t1,t2=t2,t3=t3)); }
 Object plus(IntTerm t1, IntTerm t2)   { return new Object(__cid=String(),iterm=new Plus(t1=t1,t2=t2)); }
 
 
 // distinct class IDs
-int CharSequence()         { return 3; }
 int Object()               { return 1; }
-int String()               { return 7; }
+int String()               { return 2; }
+/* int Ccat()                 { return 3; } */
+/* int Length()               { return 4; } */
+/* int Pluss()                 { return 5; } */
 
 // Uninterpreted functions
 int len(StrTerm t);
