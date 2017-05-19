@@ -441,6 +441,7 @@ class Translator(object):
                 self.printt('=')
                 self.printt(' ')
                 n.target.accept(self)
+                self.printt(' ')
                 self.printt(assignop['_{}'.format(o)])
             self.printt(' ')
         # print 'AssignExpr'
