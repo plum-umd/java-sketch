@@ -501,7 +501,8 @@ class Translator(object):
                 typs.append(tname)
             nm = ''
             for c in cons:
-                if self.match_loose(typs, c.param_typs(), tparam_nms):
+                if len(typs) == len(c.param_typs()) and \
+                   self.match_loose(typs, c.param_typs(), tparam_nms):
                     nm = str(c)
                     break
             self.printt(nm)
