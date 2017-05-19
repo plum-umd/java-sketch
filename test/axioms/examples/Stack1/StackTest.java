@@ -9,16 +9,19 @@ import org.junit.Assert;
 
 public class StackTest {
 
-    private Stack<String> classUnderTest;
+    private Stack<Integer> classUnderTest;
 
     @Before
-    public harness void setUp() {
+    public harness void setUp(int x, int y, int z) {
         classUnderTest = new Stack<>();
 	testEmptyStack();
-	testPushingElements();
-	testPoppingElements();
-	testPeeking();
-	testClear();
+	Integer xx = new Integer(x);
+	Integer yy = new Integer(y);
+	Integer zz = new Integer(z);
+	testPushingElements(xx, yy);
+	testPoppingElements(xx, yy);
+	testPeeking(xx, yy);
+	testClear(xx, yy, zz);
     }
     
     @Test(expected = EmptyStackException.class)
@@ -30,23 +33,21 @@ public class StackTest {
     }
 
     @Test
-    public void testPushingElements() {
-        classUnderTest.push("there");
-
+    public void testPushingElements(Integer x, Integer y) {
+        classUnderTest.push(x);
         Assert.assertEquals(classUnderTest.size(), 1);
 
-        classUnderTest.push("hello");
-
+        classUnderTest.push(y);
         Assert.assertEquals(classUnderTest.size(), 2);
     }
 
     @Test(expected = EmptyStackException.class)
-    public void testPoppingElements() {
-        classUnderTest.push("there");
-        classUnderTest.push("hello");
+    public void testPoppingElements(Integer x, Integer y) {
+        classUnderTest.push(x);
+        classUnderTest.push(y);
 
-        Assert.assertEquals(classUnderTest.pop(), "hello");
-        Assert.assertEquals(classUnderTest.pop(), "there");
+        Assert.assertEquals(classUnderTest.pop(), y);
+        Assert.assertEquals(classUnderTest.pop(), x);
         // classUnderTest.pop();
     }
 
@@ -64,33 +65,30 @@ public class StackTest {
     // }
 
     @Test(expected = EmptyStackException.class)
-    public void testPeeking() {
+    public void testPeeking(Integer x, Integer y) {
         classUnderTest.clear();
-        classUnderTest.push("some");
-        classUnderTest.push("people");
+        classUnderTest.push(x);
+        classUnderTest.push(y);
 
-        Assert.assertEquals(classUnderTest.peek(), "people");
-
+        Assert.assertEquals(classUnderTest.peek(), y);
         classUnderTest.pop();
-
-        Assert.assertEquals(classUnderTest.peek(), "some");
+        Assert.assertEquals(classUnderTest.peek(), x);
 
         // Pop last element
-        classUnderTest.pop();
-
+        // classUnderTest.pop();
         // Peek empty stack, will throw exception
         // classUnderTest.peek();
     }
 
     @Test
-    public void testClear() {
+    public void testClear(Integer x, Integer y, Integer z) {
         classUnderTest.clear();
 
         Assert.assertEquals(classUnderTest.size(), 0);
 
-        classUnderTest.push("this");
-        classUnderTest.push("that");
-        classUnderTest.push("some");
+        classUnderTest.push(x);
+        classUnderTest.push(y);
+        classUnderTest.push(z);
 
         Assert.assertEquals(classUnderTest.size(), 3);
 
