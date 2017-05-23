@@ -1,5 +1,5 @@
 // run with:
-// ./jsk.sh ../possible_test_cases/ArrayListExamples/Hashing-Table/src/test.java ../possible_test_cases/ArrayListExamples/Hashing-Table/src/HashingTechnique/Bucketing.java ../possible_test_cases/ArrayListExamples/Hashing-Table/src/Interfaing/HashTable.java ../possible_test_cases/ArrayListExamples/Hashing-Table/src/HashingTechnique/Pair.java model/util/ model/lang/
+// ./jsk.sh test/axioms/examples/HashMap1/test.java test/axioms/examples/HashMap1/Bucketing.java test/axioms/examples/HashMap1/HashTable.java test/axioms/examples/HashMap1/Pair.java model/lang/ model/util/
 
 package HashingTechnique;
 
