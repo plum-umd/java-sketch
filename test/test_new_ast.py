@@ -136,11 +136,14 @@ class TestJava(TestCommon):
     def test_Switch(self):
         self.__test(["Switch.java"])
 
+    def test_This(self):
+        self.__test(["This.java"])
+
     def test_ThisCalls(self):
         self.__test(["ThisCalls.java"])
 
-    def test_This(self):
-        self.__test(["This.java"])
+    def test_ThisConstructor(self):
+        self.__test(["ThisConstructor.java"])
 
     def test_TypeParameters(self):
         self.__test(["TypeParameters.java"])

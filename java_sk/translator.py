@@ -365,8 +365,9 @@ class Translator(object):
 
     @v.when(ExplicitConstructorInvocationStmt)
     def visit(self, n):
+        print 'n:', n.isThis, n.expr, n.args, n.arg_typs(), str(n.get_coid())
         if n.isThis:
-            self.printt('self')
+            self.printt('_'.join([str(n.get_coid()), str(n.get_coid())] + map(str, n.arg_typs())))
         else:
             if n.expr:
                 n.expr.accept(self)
