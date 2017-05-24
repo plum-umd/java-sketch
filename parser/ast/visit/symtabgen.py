@@ -152,6 +152,8 @@ class SymtabGen(object):
                                    u"type": {u"@t": u"PrimitiveType",
                                              u"type": {"name": "Int"},},})
             node.symtab.update({u'length':fd})
+            if isinstance(node.parentNode, FieldDeclaration):
+                node.parentNode.symtab.update({u'length':fd})
         node.symtab.update({node.name:node})
         if node.init: node.init.accept(self)
 

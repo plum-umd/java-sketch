@@ -226,9 +226,14 @@ def find_fld(n, obj_struct):
     if isinstance(n.scope, (FieldAccessExpr, ArrayAccessExpr)):
         (cls, scps) = get_scopes_list(n)
         for s in scps:
-            fld = cls.symtab.get(s)
-            cls = cls.symtab.get(fld.typee.name)
+            fld0 = cls.symtab.get(s)
+            cls = cls.symtab.get(fld0.typee.name)
         fld = cls.symtab.get(n.field.name)
+        if not fld:
+            if fld0:
+                return fld0.symtab.get(n.field.name)
+            else: raise Exception('Cant find field: {}'.format(n.name))
+
         return fld
 
     # look up n's scope in symtab
