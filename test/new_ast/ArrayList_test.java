@@ -128,5 +128,9 @@ class ArrayList_test {
 
 	assert arr[0].equals("String 1");
 	assert arr[1].equals("String 4");
+
+	ArrayList<Integer> a = new ArrayList<Integer>();
+	a.ensureCapacity(11);
+	assert a.elementData.length == 15;
     }
 }
