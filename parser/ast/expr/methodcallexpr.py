@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import itertools
+
 from . import _import
 
 from .expression import Expression
@@ -57,7 +59,20 @@ class MethodCallExpr(Expression):
                 if isinstance(cls, TypeParameter):
                     cls = sym.get(str(cls.typeBound))
                 mtd = cls.symtab.get(self.name)
-                if mtd: return mtd.typee
+                if mtd:
+                    return mtd.typee
+                else:   # check for method signature using type parameters from cls
+                    nm = self.sig().split('_')
+                    args = nm[1:]
+                    nm = nm[0]
+                    tps = map(str, cls.typeParameters)
+                    if len(args) == 1:
+                        nms = map(lambda n: '_'.join([nm, n]), tps)
+                    else:
+                        nms = map(lambda n: '_'.join([nm]+list(n)), list(itertools.chain(itertools.product(tps,args), itertools.product(args,tps))))
+                        nms.extend(map(lambda n: '_'.join([nm]+list(n)), list(itertools.chain(itertools.product(tps, tps)))))
+                    for n in nms:
+                        if cls.symtab.get(n): return cls.symtab.get(n).typee
 
                 ftypes = utils.mtd_type_from_callexpr(self)
                 return ClassOrInterfaceType({u'@t': u'ClassOrInterfaceType',
