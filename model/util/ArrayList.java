@@ -4,13 +4,18 @@ public class ArrayList<E> {
 
     Object[] elementData;
 
+    private int DEFAULT_CAPACITY;
     private int numElements;
     private int capacity;
+    private static Object[] EMPTY_ELEMENTDATA = {};
+    private static final int MAX_ARRAY_SIZE = 1000000; // other value causing weird problem in Sketch
+    // private static final int MAX_ARRAY_SIZE = 0x7fffffff - 8;
 
     public ArrayList() {
 	this.elementData = new Object[10];
 	this.capacity = 10;
 	this.numElements = 0;
+	this.DEFAULT_CAPACITY = 10;
     }
 
     public ArrayList(int initialCapacity) {
@@ -179,8 +184,48 @@ public class ArrayList<E> {
 	return arr;
     }
     public void ensureCapacity(int minCapacity) {
-	// TODO: fill me in!
+	int minExpand;
+	if (elementData != EMPTY_ELEMENTDATA) { minExpand = 0; }
+	else { minExpand = DEFAULT_CAPACITY; }
+	assert minCapacity == 11;
+	if (minCapacity > minExpand) { ensureExplicitCapacity(minCapacity); }
     }
 
+    private void ensureCapacityInternal(int minCapacity) {
+        if (elementData == EMPTY_ELEMENTDATA) {
+	    if (DEFAULT_CAPACITY > minCapacity) { minCapacity = DEFAULT_CAPACITY; }
+        }
+	assert minCapacity == 11;
+        ensureExplicitCapacity(minCapacity);
+    }
+
+    private void ensureExplicitCapacity(int minCapacity) {
+        // modCount++; // What is this?
+
+        // overflow-conscious code
+        if (minCapacity - elementData.length > 0)
+            grow(minCapacity);
+    }
+
+    private void grow(int minCapacity) {
+	assert minCapacity == 11;
+        // overflow-conscious code
+        int oldCapacity = elementData.length;
+        int newCapacity = oldCapacity + (oldCapacity / 2);
+	assert newCapacity == 15;
+        if (newCapacity - minCapacity < 0)
+            newCapacity = minCapacity;
+        if (newCapacity - MAX_ARRAY_SIZE > 0)
+            newCapacity = hugeCapacity(minCapacity);
+        // minCapacity is usually close to size, so this is a win:
+	assert newCapacity == 15;
+	copyNewElementData(newCapacity);
+    }
+
+    private static int hugeCapacity(int minCapacity) {
+        return (minCapacity > MAX_ARRAY_SIZE) ?
+            0x7fffffff :
+            MAX_ARRAY_SIZE;
+    }
 }
 
