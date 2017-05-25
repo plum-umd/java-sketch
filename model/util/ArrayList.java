@@ -187,7 +187,6 @@ public class ArrayList<E> {
 	int minExpand;
 	if (elementData != EMPTY_ELEMENTDATA) { minExpand = 0; }
 	else { minExpand = DEFAULT_CAPACITY; }
-	assert minCapacity == 11;
 	if (minCapacity > minExpand) { ensureExplicitCapacity(minCapacity); }
     }
 
@@ -195,7 +194,6 @@ public class ArrayList<E> {
         if (elementData == EMPTY_ELEMENTDATA) {
 	    if (DEFAULT_CAPACITY > minCapacity) { minCapacity = DEFAULT_CAPACITY; }
         }
-	assert minCapacity == 11;
         ensureExplicitCapacity(minCapacity);
     }
 
