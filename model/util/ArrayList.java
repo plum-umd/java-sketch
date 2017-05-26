@@ -206,17 +206,14 @@ public class ArrayList<E> {
     }
 
     private void grow(int minCapacity) {
-	assert minCapacity == 11;
         // overflow-conscious code
         int oldCapacity = elementData.length;
         int newCapacity = oldCapacity + (oldCapacity / 2);
-	assert newCapacity == 15;
         if (newCapacity - minCapacity < 0)
             newCapacity = minCapacity;
         if (newCapacity - MAX_ARRAY_SIZE > 0)
             newCapacity = hugeCapacity(minCapacity);
         // minCapacity is usually close to size, so this is a win:
-	assert newCapacity == 15;
 	copyNewElementData(newCapacity);
     }
 
