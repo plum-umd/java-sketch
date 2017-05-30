@@ -37,11 +37,12 @@ public class Assert {
     //  * okay)
     //  * @param condition condition to be checked
     //  */
-    // public static void assertTrue(String message, boolean condition) {
-    //     if (!condition) {
-    //         fail(message);
-    //     }
-    // }
+    public static void assertTrue(String message, boolean condition) {
+	assert condition;
+        // if (!condition) {
+        //     fail(message);
+        // }
+    }
 
     // /**
     //  * Asserts that a condition is true. If it isn't it throws an
@@ -49,9 +50,9 @@ public class Assert {
     //  *
     //  * @param condition condition to be checked
     //  */
-    // public static void assertTrue(boolean condition) {
-    //     assertTrue("", condition);
-    // }
+    public static void assertTrue(boolean condition) {
+        assertTrue("", condition);
+    }
 
     // /**
     //  * Asserts that a condition is false. If it isn't it throws an
