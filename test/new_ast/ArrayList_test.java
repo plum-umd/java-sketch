@@ -1,5 +1,16 @@
+class Dummy<K> {
+    K key;
+    K getKey() { return this.key; }
+}
+
 class ArrayList_test {
     harness void m() {
+	ArrayList<Object> o = new ArrayList<Object>();
+	Dummy<Object> d = new Dummy<Object>();
+	Integer x = new Integer(0);
+	d.key = x;
+	Integer y = new Integer(0);
+	assert d.getKey().equals(y);
 	ArrayList<Integer> ints = new ArrayList<Integer>();
 	ArrayList<String> strs = new ArrayList<String>();
 	ArrayList<Object> objs = new ArrayList<Object>();
