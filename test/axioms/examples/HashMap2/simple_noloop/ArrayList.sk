@@ -1,0 +1,208 @@
+package ArrayList;
+
+Array_Object EMPTY_ELEMENTDATA = new Array_Object(length=0, A={});
+Array_Object EMPTY_ELEMENTDATA_g() { return EMPTY_ELEMENTDATA; }
+void EMPTY_ELEMENTDATA_s(Array_Object EMPTY_ELEMENTDATA_s) { EMPTY_ELEMENTDATA = EMPTY_ELEMENTDATA_s; }
+
+int MAX_ARRAY_SIZE = 1000000;
+int MAX_ARRAY_SIZE_g() { return MAX_ARRAY_SIZE; }
+void MAX_ARRAY_SIZE_s(int MAX_ARRAY_SIZE_s) { MAX_ARRAY_SIZE = MAX_ARRAY_SIZE_s; }
+
+Object ArrayList_ArrayList(Object self) {
+  self.elementData_ArrayList = new Array_Object(length=10);
+  self.capacity_ArrayList = 10;
+  self.numElements_ArrayList = 0;
+  self.DEFAULT_CAPACITY_ArrayList = 10;
+  return self;
+}
+
+Object ArrayList_ArrayList_int(Object self, int initialCapacity) {
+  self.elementData_ArrayList = new Array_Object(length=initialCapacity);
+  self.capacity_ArrayList = initialCapacity;
+  self.numElements_ArrayList = 0;
+  return self;
+}
+
+void copyNewElementData_int(Object self, int size) {
+  Array_Object newElementData = new Array_Object(length=size);
+  int i = 0;
+  for (i = 0; i < self.numElements_ArrayList; i++) {
+    newElementData.A[i] = self.elementData_ArrayList.A[i];
+  }
+  self.elementData_ArrayList = newElementData;
+  self.capacity_ArrayList = size;
+}
+
+void checkAdjustSize(Object self) {
+  if (self.numElements_ArrayList + 1 >= self.capacity_ArrayList) {
+    copyNewElementData_int@ArrayList(self, self.capacity_ArrayList + 10);
+  }
+}
+
+void createSpace_int(Object self, int index) {
+  int j = 0;
+  for (j = self.numElements_ArrayList; j > index; j--) {
+    self.elementData_ArrayList.A[j] = self.elementData_ArrayList.A[j - 1];
+  }
+}
+
+void add_int_E(Object self, int index, Object e) {
+  checkAdjustSize@ArrayList(self);
+  createSpace_int@ArrayList(self, index);
+  self.elementData_ArrayList.A[index] = e;
+  self.numElements_ArrayList++;
+}
+
+bit add_E(Object self, Object e) {
+  checkAdjustSize@ArrayList(self);
+  self.elementData_ArrayList.A[self.numElements_ArrayList++] = e;
+  return true;
+}
+
+void clear(Object self) {
+  for (int i = 0; i < self.numElements_ArrayList; i++) {
+    self.elementData_ArrayList.A[i] = null;
+  }
+  self.capacity_ArrayList = 10;
+  self.numElements_ArrayList = 0;
+}
+
+bit contains_Object(Object self, Object o) {
+  return indexOf_Object@ArrayList(self, o) >= 0;
+}
+
+Object get_int(Object self, int index) {
+  if (index < 0 || index >= self.numElements_ArrayList) {
+    return null;
+  }
+  return self.elementData_ArrayList.A[index];
+}
+
+int indexOf_Object(Object self, Object o) {
+  int i = 0;
+  if (o == null) {
+    for (i = 0; i < self.capacity_ArrayList; i++) {
+      if (self.elementData_ArrayList.A[i] == null) {
+        return i;
+      }
+    }
+  }
+  else {
+    for (i = 0; i < self.numElements_ArrayList; i++) {
+      if ((o.__cid == Number() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == simple_test() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Integer() ? equals_Object@Integer(o, self.elementData_ArrayList.A[i]) : o.__cid == simple_hash() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == ArrayList() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Assert() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == String() ? equals_Object@String(o, self.elementData_ArrayList.A[i]) : o.__cid == Object() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : 0)) {
+        return i;
+      }
+    }
+  }
+  return -1;
+}
+
+void removeElement_int(Object self, int index) {
+  int j = 0;
+  for (j = index; j < self.numElements_ArrayList - 1; j++) {
+    self.elementData_ArrayList.A[j] = self.elementData_ArrayList.A[j + 1];
+  }
+  self.elementData_ArrayList.A[self.numElements_ArrayList - 1] = null;
+  self.numElements_ArrayList--;
+}
+
+Object remove_int(Object self, int index) {
+  Object e;
+  if (index < 0 || index >= self.numElements_ArrayList) {
+    return null;
+  }
+  e = self.elementData_ArrayList.A[index];
+  removeElement_int@ArrayList(self, index);
+  return e;
+}
+
+bit remove_Object(Object self, Object o) {
+  int i = 0;
+  if (o == null) {
+    for (i = 0; i < self.capacity_ArrayList; i++) {
+      if (self.elementData_ArrayList.A[i] == null) {
+        removeElement_int@ArrayList(self, i);
+        return true;
+      }
+    }
+  }
+  else {
+    for (i = 0; i < self.numElements_ArrayList; i++) {
+      if ((o.__cid == Number() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == simple_test() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Integer() ? equals_Object@Integer(o, self.elementData_ArrayList.A[i]) : o.__cid == simple_hash() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == ArrayList() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Assert() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == String() ? equals_Object@String(o, self.elementData_ArrayList.A[i]) : o.__cid == Object() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : 0)) {
+        removeElement_int@ArrayList(self, i);
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+Object set_int_E(Object self, int index, Object element) {
+  Object oldElement;
+  if (index < 0 || index >= self.numElements_ArrayList) {
+    return null;
+  }
+  oldElement = self.elementData_ArrayList.A[index];
+  self.elementData_ArrayList.A[index] = element;
+  return oldElement;
+}
+
+int size(Object self) {
+  return self.numElements_ArrayList;
+}
+
+int length(Object self) {
+  return size@ArrayList(self);
+}
+
+bit isEmpty(Object self) {
+  return self.numElements_ArrayList == 0;
+}
+
+Array_Object toArray(Object self) {
+  Array_Object arr = new Array_Object(length=self.numElements_ArrayList);
+  int i = 0;
+  for (i = 0; i < self.numElements_ArrayList; i++) {
+    arr.A[i] = self.elementData_ArrayList.A[i];
+  }
+  return arr;
+}
+
+void ensureCapacity_int(Object self, int minCapacity) {
+  int minExpand;
+  if (self.elementData_ArrayList != EMPTY_ELEMENTDATA) {
+    minExpand = 0;
+  }
+  else {
+    minExpand = self.DEFAULT_CAPACITY_ArrayList;
+  }
+  if (minCapacity > minExpand) {
+    ensureExplicitCapacity_int@ArrayList(self, minCapacity);
+  }
+}
+
+void ensureCapacityInternal_int(Object self, int minCapacity) {
+  if (self.elementData_ArrayList == EMPTY_ELEMENTDATA) {
+    if (self.DEFAULT_CAPACITY_ArrayList > minCapacity) {
+      minCapacity = self.DEFAULT_CAPACITY_ArrayList;
+    }
+  }
+  ensureExplicitCapacity_int@ArrayList(self, minCapacity);
+}
+
+void ensureExplicitCapacity_int(Object self, int minCapacity) {
+  if (minCapacity - self.elementData_ArrayList.length > 0) grow_int@ArrayList(self, minCapacity);
+}
+
+void grow_int(Object self, int minCapacity) {
+  int oldCapacity = self.elementData_ArrayList.length;
+  int newCapacity = oldCapacity + (oldCapacity / 2);
+  if (newCapacity - minCapacity < 0) newCapacity = minCapacity;
+  if (newCapacity - MAX_ARRAY_SIZE > 0) newCapacity = hugeCapacity_int(minCapacity);
+  copyNewElementData_int@ArrayList(self, newCapacity);
+}
+
+int hugeCapacity_int(int minCapacity) {
+  return ((minCapacity > MAX_ARRAY_SIZE) ? 0x7fffffff : MAX_ARRAY_SIZE);
+}
+
