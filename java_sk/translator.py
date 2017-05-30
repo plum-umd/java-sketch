@@ -787,6 +787,12 @@ class Translator(object):
                 scope = NameExpr({u'name':u'self'})
             elif isinstance(callexpr.scope, MethodCallExpr):
                 (cls, _) = utils.get_scopes_list(callexpr)
+                m = cls.symtab.get(callexpr.scope.sig())
+                typ = m.typee
+                for t in cls.typeParameters:
+                    if str(t) == str(m.typee):
+                        typ = t.typeBound[0]
+                cls = cls.symtab.get(str(typ))
             else:
                 scope = utils.node_to_obj(callexpr.scope)
                 if not scope: return
@@ -811,7 +817,7 @@ class Translator(object):
                             tparam = filter(lambda p: p.name == scope.typee.name, tparams)
                             if tparam:
                                 tparam = tparam[0]
-                                cls = scope.symtab.get(tparam.typeBound.name)
+                                cls = scope.symtab.get(tparam.typeBound[0].name)
                             else:
                                 cls = scope.symtab.get(scope.typee.name)
                     else:
@@ -869,6 +875,8 @@ class Translator(object):
 
         if not cls or isinstance(cls, ImportDeclaration): cls = uninterpreted()
         logging.debug('searching in class: {}'.format(cls))
+        if isinstance(cls, TypeParameter):
+            cls = callexpr.symtab.get(cls.typeBound[0].name)
 
         # Compile-Time Step 2: Determine Method Signature
         # 15.12.2.1. Identify Potentially Applicable Methods
@@ -926,7 +934,6 @@ class Translator(object):
                 return
             clss = [cls] + utils.all_subClasses(cls) if invocation_mode != 'uninterpreted' else \
                    utils.all_subClasses(cls)
-
             clss = filter(lambda c: not c.interface, clss)
             logging.debug('subclasses: {}'.format(map(lambda c: str(c), clss)))
 

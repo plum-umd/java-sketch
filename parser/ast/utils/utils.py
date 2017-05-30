@@ -132,6 +132,10 @@ def is_subtype(t1, t2):
     if t1.name == t2.name: return True
     if not isinstance(t1, PrimitiveType) and t2.name == u'null': return True
     if not isinstance(t2, PrimitiveType) and t1.name == u'null': return True
+    print 'type:', type(t1), type(t2)
+    if (type(t1) == ClassOrInterfaceType and type(t2) == ReferenceType) or \
+       (type(t2) == ClassOrInterfaceType and type(t1) == ReferenceType):
+        return True
     if type(t1) != type(t2): return False
     if t2.name == u'Object': return True
     # primitive type
