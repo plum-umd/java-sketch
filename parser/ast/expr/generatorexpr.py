@@ -5,22 +5,28 @@ from .expression import Expression
 from . import _import
 
 class GeneratorExpr(Expression):
-  def __init__(self, kwargs={}):
-    super(GeneratorExpr, self).__init__(kwargs)
-    locs = _import()
+    def __init__(self, kwargs={}):
+        super(GeneratorExpr, self).__init__(kwargs)
+        locs = _import()
+    
+        self._isHole = kwargs.get(u'isHole', False)
+        # List Expression
+        exprs = kwargs.get(u'exprs', {})
+        self._exprs = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
+                          exprs.get(u'@e', [])) if exprs else []
+                    
+    @property
+    def isHole(self): return self._isHole
+    @isHole.setter
+    def isHole(self, v): self._isHole = v
+  
+    @property
+    def exprs(self): return self._exprs
+    @exprs.setter
+    def exprs(self, v): self._exprs = v
 
-    self._isHole = kwargs.get(u'isHole', False)
-    # List Expression
-    exprs = kwargs.get(u'exprs', {})
-    self._exprs = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
-                      exprs.get(u'@e', [])) if exprs else []
-                
-  @property
-  def isHole(self): return self._isHole
-  @isHole.setter
-  def isHole(self, v): self._isHole = v
-
-  @property
-  def exprs(self): return self._exprs
-  @exprs.setter
-  def exprs(self, v): self._exprs = v
+    @property
+    def typee(self):
+        return self.symtab.get(self._exprs[0].name).typee
+    @typee.setter
+    def typee(self, v): self._typee = v
