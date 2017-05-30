@@ -56,6 +56,9 @@ class TestJava(TestCommon):
     def test_FieldMethod(self):
         self.__test(["FieldMethod.java"])
 
+    def test_GenAsArg(self):
+        self.__test(["GenAsArg.java"])
+
     def test_Generators(self):
         self.__test(["Generators.java"])
 
