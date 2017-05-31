@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 
+from . import _import
+
 from .expression import Expression
 
-from . import _import
+from ..type.primitivetype import PrimitiveType
 
 class GeneratorExpr(Expression):
     def __init__(self, kwargs={}):
@@ -27,6 +29,7 @@ class GeneratorExpr(Expression):
 
     @property
     def typee(self):
-        return self.symtab.get(self._exprs[0].name).typee
+        return PrimitiveType({u'type': {u'name': u'int'}}) if self.isHole else \
+            self.symtab.get(self._exprs[0].name).typee
     @typee.setter
     def typee(self, v): self._typee = v
