@@ -52,6 +52,7 @@ ArrayList:
 * `isEmpty(add(a, e)) == False`
 * `contains(add(a, e), e) == True`
 * `contains(remove(add(a, e), e), e) == False`
+* `get(set(a, i, e), e) == e`
 * `indexOf(remove(add(a, e), e), e) == -1`
 * `remove(add(a, v), v) == True`
 * `size(add(a, e)) == size(a) + 1`
