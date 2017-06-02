@@ -26,6 +26,7 @@ def translate(**kwargs):
     out_dir = kwargs.get('out_dir', res_dir)
     sk = kwargs.get('sketch', True)
     fs = kwargs.get('fs', False)
+    cgen = kwargs.get('custom_gen', False)
     codegen_jar = os.path.join(root_dir, "codegen", "lib", "codegen.jar")
     
     logging.info('parsing {}'.format(prg))
@@ -43,7 +44,7 @@ def translate(**kwargs):
     opts.append("--fe-keep-tmp")
  
     # custom codegen
-    opts.extend(["--fe-custom-codegen", codegen_jar])
+    if cgen: opts.extend(["--fe-custom-codegen", codegen_jar])
  
     #run Sketch
     output_path = os.path.join(out_dir, "output", "{}.txt".format(encoder.demo_name))
@@ -97,6 +98,9 @@ if __name__ == "__main__":
     parser.add_option("--no-sketch",
       action="store_false", dest="sketch", default=True,
       help="proceed the whole process without running Sketch")
+    parser.add_option("-c", "--custom-codegen",
+      action="store_true", dest="custom_gen", default=False,
+      help="use custom code generator")
   
     (OPT, argv) = parser.parse_args()
     OPT.prg = argv
