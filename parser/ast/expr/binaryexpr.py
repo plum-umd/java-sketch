@@ -39,7 +39,6 @@ class BinaryExpr(Expression):
   
     @property
     def typee(self):
-        print 'OP:', self.op
         if self.op == u'or' or self.op == u'and' or self.op == u'equals' or \
            self.op == u'notequals' or self.op == u'less' or self.op == u'greater' or \
            self.op == u'lessequals' or self.op == u'greaterequals':

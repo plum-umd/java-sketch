@@ -23,6 +23,9 @@ class TestJava(TestCommon):
     def test_BinExprArgs(self):
         self.__test(["BinExprArgs.java"])
 
+    def test_BoolArg(self):
+        self.__test(["BoolArg.java"])
+
     def test_BooMoo(self):
         self.__test(["BooMoo.java"])
 
