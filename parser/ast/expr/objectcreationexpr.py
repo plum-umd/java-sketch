@@ -33,6 +33,8 @@ class ObjectCreationExpr(Expression):
         self._anonymousClassBody = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
                                        anon.get(u'@e', [])) if anon else []
 
+        self.add_as_parent([self.scope, self.typee]+self.typeArgs+self.args+self.anonymousClassBody)
+
     @property
     def scope(self): return self._scope
     @scope.setter
@@ -47,6 +49,11 @@ class ObjectCreationExpr(Expression):
     def args(self): return self._args
     @args.setter
     def args(self, v): self._args = v
+
+    @property
+    def typeArgs(self): return self._typeArgs
+    @typeArgs.setter
+    def typeArgs(self, v): self._typeArgs = v
 
     @property
     def anonymousClassBody(self): return self._anonymousClassBody

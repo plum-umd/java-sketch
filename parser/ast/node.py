@@ -241,3 +241,10 @@ class Node(object):
                 return self.parentNode.get_coid()
         else: return None
 
+    def add_as_parent(self, kids):
+        if kids:
+            for k in kids:
+                if k:
+                    if not k.parentNode:
+                        k.parentNode = self
+                        self.childrenNodes.append(k)

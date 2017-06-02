@@ -29,6 +29,8 @@ class MethodCallExpr(Expression):
         self._args = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
                          args.get(u'@e', [])) if args else []
 
+        self.add_as_parent([self.scope]+self.args)
+
     @property
     def scope(self): return self._scope
     @scope.setter

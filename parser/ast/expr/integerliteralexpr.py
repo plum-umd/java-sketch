@@ -8,9 +8,13 @@ class IntegerLiteralExpr(StringLiteralExpr):
         super(IntegerLiteralExpr, self).__init__(kwargs)
         #  String UNSIGNED_MIN_VALUE = "2147483648";
         self._UNSIGNED_MIN_VALUE = "2147483648"
+
         #  String MIN_VALUE = "-" + self._UNSIGNED_MIN_VALUE;
         self._MIN_VALUE = "-" + self._UNSIGNED_MIN_VALUE
+
         self._value = kwargs.get(u'value')
+
+        self.add_as_parent([self.typee])
                 
     @property
     def UNSIGNED_MIN_VALUE(self): return self._UNSIGNED_MIN_VALUE

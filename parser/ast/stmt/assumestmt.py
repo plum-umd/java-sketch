@@ -12,6 +12,8 @@ class AssumeStmt(Statement):
         # Expression expr
         expr = kwargs.get(u'expr', {})
         self._expr = locs[expr[u'@t']](expr) if expr else None
+
+        self.add_as_parent([self.expr])
         
     @property
     def expr(self): return self._expr

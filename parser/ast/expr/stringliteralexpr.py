@@ -1,14 +1,17 @@
 #!/usr/bin/env python
 
 from .literalexpr import LiteralExpr
+
 from ..type.referencetype import ReferenceType
 
 class StringLiteralExpr(LiteralExpr):
   def __init__(self, kwargs={}):
     super(StringLiteralExpr, self).__init__(kwargs)
 
-    # expression value
+    # Expression value
     self._value = kwargs.get(u'value', '')
+
+    self.add_as_parent([self.typee])
     
   @property
   def value(self): return self._value

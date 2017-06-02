@@ -21,6 +21,8 @@ class BinaryExpr(Expression):
         
         # Operator op;
         self._op = kwargs.get(u'op', {}).get(u'name')
+
+        self.add_as_parent([self.left, self.right])
                     
     @property
     def left(self): return self._left

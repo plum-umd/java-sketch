@@ -6,9 +6,10 @@ from .bodydeclaration import BodyDeclaration
 class FieldDeclaration(BodyDeclaration):
     def __init__(self, kwargs={}):
         super(FieldDeclaration, self).__init__(kwargs)
-
-        self._modifiers = kwargs.get(u'modifiers', 0)
         locs = _import()
+        
+        # int modifiers;
+        self._modifiers = kwargs.get(u'modifiers', 0)
 
         # Type
         typdct = kwargs.get(u'type')
@@ -29,6 +30,8 @@ class FieldDeclaration(BodyDeclaration):
         # # unmodified list of variables
         # self._variables = map(lambda v: locs[u'VariableDeclarator'](v) if u'@t' in v else [],
         #                       iddct) if iddct else []
+
+        self.add_as_parent([self.typee, self.variable])
 
     @property
     def modifiers(self): return self._modifiers

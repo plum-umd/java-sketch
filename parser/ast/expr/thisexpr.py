@@ -9,6 +9,8 @@ class ThisExpr(Expression):
         # Expression classExpr
         self._classExpr = kwargs.get(u'classExpr', None)
 
+        self.add_as_parent([self.classExpr])
+
     @property
     def classExpr(self): return self._classExpr
     @classExpr.setter

@@ -27,6 +27,8 @@ class ExplicitConstructorInvocationStmt(Statement):
         args = kwargs.get(u'args', {})
         self._args = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
                          args.get(u'@e', [])) if args else []
+
+        self.add_as_parent([self.expr]+self.args)
         
     @property
     def isThis(self): return self._isThis

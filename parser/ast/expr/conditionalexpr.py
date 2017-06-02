@@ -12,12 +12,16 @@ class ConditionalExpr(Expression):
         # Expression condition
         condition = kwargs.get(u'condition', {})
         self._condition = locs[condition[u'@t']](condition) if condition else None
+
         # Expression thenExpr
         thenExpr = kwargs.get(u'thenExpr', {})
         self._thenExpr = locs[thenExpr[u'@t']](thenExpr) if thenExpr else None
+
         # Expression elseExpr
         elseExpr = kwargs.get(u'elseExpr', {})
         self._elseExpr = locs[elseExpr[u'@t']](elseExpr) if elseExpr else None
+
+        self.add_as_parent([self.condition, self.thenExpr, self.elseExpr])
 
     @property
     def condition(self): return self._condition

@@ -23,6 +23,8 @@ class VariableDeclarationExpr(Expression):
         self._arrayCount = kwargs.get(u'arrayCount', 0)
         # List<AnnotationExpr> annotations
 
+        self.add_as_parent([self.typee]+self.varss)
+
     @property
     def modifiers(self): return self._modifiers
     @modifiers.setter

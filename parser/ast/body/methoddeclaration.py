@@ -44,6 +44,8 @@ class MethodDeclaration(BodyDeclaration):
             chs = filter(lambda c: not isinstance(c, Comment), self._body.childrenNodes)
             if chs: chs[0].in_set = set(map(lambda x: x.lbl, self._parameters))
 
+        self.add_as_parent(self.parameters+self.typeParameters+[self.typee]+self.throws)
+
     @property
     def modifiers(self): return self._modifiers
     @modifiers.setter

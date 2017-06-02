@@ -19,6 +19,8 @@ class UnaryExpr(Expression):
         # Operator op;
         self._op = kwargs.get(u'op', {}).get(u'name')
 
+        self.add_as_parent([self.expr])
+
     @property
     def expr(self): return self._expr
     @expr.setter

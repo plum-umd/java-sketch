@@ -17,6 +17,8 @@ class AssertStmt(Statement):
     msg = kwargs.get(u'msg', {})
     self._msg = locs[msg[u'@t']](msg) if msg else None
 
+    self.add_as_parent([self.check, self.msg])
+
   @property
   def check(self): return self._check
   @check.setter

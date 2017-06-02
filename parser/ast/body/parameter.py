@@ -20,6 +20,8 @@ class Parameter(Node):
         # Any
         self._any = kwargs.get(u'any', False)
 
+        self.add_as_parent([self.idd])
+
         # bool
         # isVarArgs
         # List<AnnotationExpr>

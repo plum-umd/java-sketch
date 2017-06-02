@@ -12,6 +12,7 @@ class ConstructorDeclaration(BodyDeclaration):
         super(ConstructorDeclaration, self).__init__(kwargs)
         locs = _import()
     
+        # int modifiers
         self._modifiers = kwargs.get(u'modifiers', 0)
     
         # int arrayCount;
@@ -41,6 +42,8 @@ class ConstructorDeclaration(BodyDeclaration):
     
         # List<TypeParameter>
         # self._typeParameters = None
+
+        self.add_as_parent(self.parameters+self.typeParameters+[self.typee]+self.throws+[self.body])
     
     @property
     def modifiers(self): return self._modifiers

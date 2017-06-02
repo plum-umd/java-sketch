@@ -3,13 +3,15 @@
 from .expression import Expression
 
 class SuperExpr(Expression):
-  def __init__(self, kwargs={}):
-    super(SuperExpr, self).__init__(kwargs)
+    def __init__(self, kwargs={}):
+        super(SuperExpr, self).__init__(kwargs)
+        
+        # Expression classExpr
+        self._classExpr = kwargs.get(u'classExpr', None)
 
-    # Expression classExpr
-    self._classExpr = kwargs.get(u'classExpr', None)
+        self.add_as_parent([self.classExpr])
 
-  @property
-  def classExpr(self): return self._classExpr
-  @classExpr.setter
-  def classExpr(self, v): self._classExpr = v
+    @property
+    def classExpr(self): return self._classExpr
+    @classExpr.setter
+    def classExpr(self, v): self._classExpr = v

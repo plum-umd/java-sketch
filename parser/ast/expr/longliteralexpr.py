@@ -11,6 +11,8 @@ class LongLiteralExpr(StringLiteralExpr):
 
         # protected static final String MIN_VALUE = "-" + UNSIGNED_MIN_VALUE + "L";
         self._MIN_VALUE = "-" + self._UNSIGNED_MIN_VALUE + "L"
+
+        self.add_as_parent([self.typee])
     
     @property
     def UNSIGNED_MIN_VALUE(self): return self._UNSIGNED_MIN_VALUE
@@ -21,4 +23,3 @@ class LongLiteralExpr(StringLiteralExpr):
     def MIN_VALUE(self):return self._MIN_VALUE
     @MIN_VALUE.setter
     def MIN_VALUE(self, v): pass
-        

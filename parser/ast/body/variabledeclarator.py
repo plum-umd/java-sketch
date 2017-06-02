@@ -13,6 +13,7 @@ class VariableDeclarator(Node):
             # VariableDeclaratorId
             self._id = locs[u'VariableDeclaratorId'](kwargs.get(u'id', ''))
 
+            # Type type
             typ = kwargs.get(u'type')
             self._typ = locs[typ[u'@t']](typ) if typ else None
 
@@ -22,6 +23,8 @@ class VariableDeclarator(Node):
             self._init = locs[i[u'@t']](i) if i else None
             # if self._init and self.parentNode and not self._typ:
             #     self._init.typee = self.parentNode.typee
+
+            self.add_as_parent([self.idd, self.init])
 
     @property
     def idd(self): return self._id

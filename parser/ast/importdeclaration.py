@@ -31,6 +31,7 @@ class ImportDeclaration(Node):
         # list[ClassOrInterfaceDeclaration]
         self._subClasses = kwargs.get(u'subClasses', [])
 
+        self.add_as_parent([self.name])
 
     @property
     def static(self): return self._static

@@ -14,7 +14,9 @@ class ClassOrInterfaceDeclaration(TypeDeclaration):
     def __init__(self, kwargs={}):
         super(ClassOrInterfaceDeclaration, self).__init__(kwargs)
 
+        # boolean interface_;
         self._interface = kwargs.get('interface_', False)
+
         # List<TypeParameters>
         typeParameters = kwargs.get(u'typeParameters', [])
         self._typeParameters = map(lambda x: TypeParameter(x) if u'@t' in x else [],
@@ -33,6 +35,8 @@ class ClassOrInterfaceDeclaration(TypeDeclaration):
         if kwargs.get(u'implementsList'):
             self._add_supers(kwargs.get(u'implementsList', {}).get(u'@e', []), '_implementsList')
         self._subClasses = kwargs.get(u'subClasses', [])
+
+        self.add_as_parent(self.typeParameters+self.extendsList+self.implementsList+self.subClasses)
 
     def _add_supers(self, supers, lst_name):
         locs = _import()

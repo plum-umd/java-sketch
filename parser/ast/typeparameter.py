@@ -17,6 +17,8 @@ class TypeParameter(Node):
         self._typeBound = map(lambda x: ClassOrInterfaceType(x) if u'@t' in x else [],
                               typeBound.get(u'@e', [])) if typeBound else []
 
+        self.add_as_parent(typeBound)
+
     @property
     def typeBound(self): return self._typeBound if self._typeBound else [ClassOrInterfaceType({u'name':u'Object'})]
     @typeBound.setter

@@ -9,13 +9,18 @@ from ..type.primitivetype import PrimitiveType
 class GeneratorExpr(Expression):
     def __init__(self, kwargs={}):
         super(GeneratorExpr, self).__init__(kwargs)
+
         locs = _import()
-    
+
+        # boolean isHole
         self._isHole = kwargs.get(u'isHole', False)
+
         # List Expression
         exprs = kwargs.get(u'exprs', {})
         self._exprs = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
                           exprs.get(u'@e', [])) if exprs else []
+
+        self.add_as_parent(self.exprs)
                     
     @property
     def isHole(self): return self._isHole
