@@ -5,21 +5,23 @@ import java.util.ArrayList;
 
 public class HashTable<K, V> {
 
-    protected final double maxLoadFactor = 0.75d;
-    protected final int capacityGrowth = 2;
+    protected final double maxLoadFactor;
+    protected final int capacityGrowth;
     protected final int initialCapacity;
     protected int size;
     protected int currentCapacity;
     protected ArrayList<HashTableNode<K, V>> buckets;
 
-    public HashTable() {
-        this(16);
-    }
+    // public HashTable() {
+    //     this(16);
+    // }
 
     // Initialize with desired initial number of buckets
     public HashTable(int initialCapacity) {
         this.initialCapacity = initialCapacity;
-        // this.initialCapacity = nearestPowerOfTwo(initialCapacity);
+	this.capacityGrowth = 2;
+	this.maxLoadFactor = 0.75;
+	// this.initialCapacity = nearestPowerOfTwo(initialCapacity);
         resetHashTable();
     }
 
@@ -33,12 +35,15 @@ public class HashTable<K, V> {
     // }
 
     protected void resetHashTable() {
-        this.size = 0;
+        this.size = 0; // replace 0 with hole
         this.currentCapacity = this.initialCapacity;
         this.buckets = new ArrayList<>(this.initialCapacity);
+	// generator that does assignment to fields, invoke generator to see if it can synthesise these statements.
         // Initialize all buckets to null
-        for (int i = 0; i < this.currentCapacity; i++) {
-            this.buckets.add(null);
+        // for (int i = 0; i < this.currentCapacity; i++) {
+	// i < ??, other ArrayList methods .add
+        for (int i = 0; i < {|this.size, this.currentCapacity,
+			      this.capacityGrowth, this.initialCapacity|}; i++) {            this.buckets.add(null);
         }
     }
 
@@ -69,26 +74,22 @@ public class HashTable<K, V> {
 
     // Inserts a Key, Value pair into the table
     public void put(K key, V value) throws IllegalArgumentException {
+	// *** No exceptions in JSketch ***
         // No support for null as key
-        if (key == null) {
-            throw new IllegalArgumentException("key cannot be null");
-        }
-
+        // if (key == null) {
+        //     throw new IllegalArgumentException("key cannot be null");
+        // }
         ensureCapacity(size() + 1);
-
         // Hash the key and get the bucket index
         int bucketIndex = getBucketIndex(key);
-
         HashTableNode<K, V> newNode = new HashTableNode<>(key, value);
         HashTableNode<K, V> current = buckets.get(bucketIndex);
-
         // If bucket is empty, set as first node and we're done
         if (current == null) {
             buckets.set(bucketIndex, newNode);
             this.size++;
             return;
         }
-
         // Traverse the list within the bucket until match or end found
         while (current != null) {
             // When a key match is found, replace the value it stores and break
@@ -225,9 +226,19 @@ public class HashTable<K, V> {
 
     // Hash the key and find the appropriate bucket index
     protected int getBucketIndex(K key) {
-	return key.hashCode();
-        // // Rehash to protect against poor hash functions
-        // int rehashed = hash(key.hashCode());
+	int h = key.hashCode();
+	int c = this.currentCapacity - 1;
+	int result = 0, s = 1;
+	for (int i = 0; i < 32; i++) {
+	    if (i > 1) {
+		for (int j = 0; j < i-1; j++) s *= 2;
+	    }
+	    result += (((h/s) % 2) * ((c/s) % 2) * s);
+	    s = 2;
+	}
+	return result;
+	// // Rehash to protect against poor hash functions
+	// int rehashed = hash(key.hashCode());
         // // Capacity is always a power of two, use fast modulo operation
         // return rehashed & (this.currentCapacity - 1);
     }
@@ -246,7 +257,6 @@ public class HashTable<K, V> {
 
         int bucketIndex = getBucketIndex(key);
         HashTableNode<K, V> current = buckets.get(bucketIndex);
-
         while (current != null) {
             if (current.getKey().equals(key)) {
                 return current;
