@@ -45,12 +45,72 @@ public class test {
 	public static boolean testBucketing() {
 		boolean ok = true;
 		Bucketing<Integer, String> ht1 = new Bucketing<Integer, String>();
-		for (int i=0;i<10;i++) {
-			// String s = String.valueOf(i*100);
-			String s = "";
-			Integer i2 = new Integer(i*10);
-			ht1.put(i2, s);
-		}
+
+		Integer i0 = new Integer(1);
+		Integer i1 = new Integer(11);
+		Integer i2 = new Integer(21);
+		Integer i3 = new Integer(31);		
+		Integer i4 = new Integer(41);
+		Integer i5 = new Integer(51);
+		Integer i6 = new Integer(61);		
+		Integer i7 = new Integer(71);
+		Integer i8 = new Integer(81);
+		Integer i9 = new Integer(91);		
+		Integer i10 = new Integer(101);
+		Integer i11 = new Integer(111);
+		Integer i12 = new Integer(121);		
+		String s0 = "0";
+		String s1 = "1";
+		String s2 = "2";
+		String s3 = "3";
+		String s4 = "4";
+		String s5 = "5";
+		String s6 = "6";
+		String s7 = "7";
+		String s8 = "8";
+		String s9 = "9";
+		String s10 = "10";
+		String s11 = "11";
+		String s12 = "12";
+
+		ht1.put(i1, s1);
+		ht1.put(i2, s2);
+		ht1.put(i3, s3);		
+		ht1.put(i4, s4);
+		ht1.put(i5, s5);
+		ht1.put(i6, s6);		
+		ht1.put(i7, s7);
+		ht1.put(i8, s8);
+		ht1.put(i9, s9);		
+		ht1.put(i10, s10);
+		ht1.put(i11, s11);
+		ht1.put(i12, s12);		
+
+		String gs1 = ht1.get(i1);
+		String gs2 = ht1.get(i2);		
+		String gs3 = ht1.get(i3);				
+		String gs4 = ht1.get(i4);
+		String gs5 = ht1.get(i5);		
+		String gs6 = ht1.get(i6);				
+		String gs7 = ht1.get(i7);
+		String gs8 = ht1.get(i8);		
+		String gs9 = ht1.get(i9);				
+		String gs10 = ht1.get(i10);
+		String gs11 = ht1.get(i11);		
+		String gs12 = ht1.get(i12);				
+
+		ok = gs1.equals(s1) && gs2.equals(s2) && gs3.equals(s3);
+		ok = ok && gs4.equals(s4) && gs5.equals(s5) && gs6.equals(s6);
+		ok = ok && gs7.equals(s7) && gs8.equals(s8) && gs9.equals(s9);
+		ok = ok && gs10.equals(s10) && gs11.equals(s11) && gs12.equals(s12);				
+
+		Assert.assertTrue(ok);
+		// for (int i=0;i<10;i++) {
+		// 	// String s = String.valueOf(i*100);
+		// 	String s = "";
+		// 	Integer i2 = new Integer(i*10);
+		// 	ht1.put(i2, s);
+		// }
 	// //	System.out.println(ht1.() + " collisions occurred in test 1.");
 	// 	System.out.println("The size of the hashtable is " + ht1.size());
 	// 	for (int i=0;i<10;i++) {
