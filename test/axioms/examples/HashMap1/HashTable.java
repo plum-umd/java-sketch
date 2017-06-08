@@ -1,5 +1,7 @@
 // This code is from https://github.com/anthonynsimon/java-ds-algorithms
 
+// Come up with bugs for each method,
+// Sketch open addressing HashTable implementation??
 
 import java.util.ArrayList;
 
@@ -34,16 +36,22 @@ public class HashTable<K, V> {
     //     return 1 << pow;
     // }
 
+    // high level: criticism - really only works if you know what the answer is
+    // bug fix: error sites are reasonable error sites
     protected void resetHashTable() {
+        // this.size = ??; // UNSAT with generators in loop condition
         this.size = 0; // replace 0 with hole
         this.currentCapacity = this.initialCapacity;
+        // this.currentCapacity = ??; // SKETCH NOT RESOLVED
+        // this.currentCapacity = {|0 , this.initialCapacity|}; // UNSAT 
         this.buckets = new ArrayList<>(this.initialCapacity);
+	// i < ??, other ArrayList methods .add
 	// generator that does assignment to fields, invoke generator to see if it can synthesise these statements.
         // Initialize all buckets to null
-        // for (int i = 0; i < this.currentCapacity; i++) {
-	// i < ??, other ArrayList methods .add
-        for (int i = 0; i < {|this.size, this.currentCapacity,
-			      this.capacityGrowth, this.initialCapacity|}; i++) {            this.buckets.add(null);
+        for (int i = 0; i < this.currentCapacity; i++) {
+        // for (int i = 0; i < {|this.size, this.currentCapacity,
+	// 			this.capacityGrowth, this.initialCapacity|}; i++) {
+	    this.buckets.add(null);
         }
     }
 
@@ -53,25 +61,6 @@ public class HashTable<K, V> {
         return result != null ? result.getValue() : null;
     }
 
-    protected void ensureCapacity(int intendedCapacity) {
-        double loadFactor = (double) intendedCapacity / (double) currentCapacity;
-        // If we're within the load limit, return early, it's all good.
-        if (loadFactor < maxLoadFactor) {
-            return;
-        }
-
-        // Otherwise, ensure we will be within limits
-        int newCapacity = currentCapacity * capacityGrowth;
-        buckets.ensureCapacity(newCapacity);
-
-        // Initialize buckets
-        for (int i = this.currentCapacity; i < newCapacity; i++) {
-            this.buckets.add(null);
-        }
-
-        currentCapacity = newCapacity;
-    }
-
     // Inserts a Key, Value pair into the table
     public void put(K key, V value) throws IllegalArgumentException {
 	// *** No exceptions in JSketch ***
@@ -79,20 +68,25 @@ public class HashTable<K, V> {
         // if (key == null) {
         //     throw new IllegalArgumentException("key cannot be null");
         // }
-        ensureCapacity(size() + 1);
+        ensureCapacity(size() + 1); // not enough tests to try ?? here
         // Hash the key and get the bucket index
+        // int bucketIndex = getBucketIndex({|key, value|}); // WORKS
         int bucketIndex = getBucketIndex(key);
+        // HashTableNode<K, V> newNode = new HashTableNode<>({|key, value|}, {|key, value|}); // WORKS
         HashTableNode<K, V> newNode = new HashTableNode<>(key, value);
         HashTableNode<K, V> current = buckets.get(bucketIndex);
         // If bucket is empty, set as first node and we're done
+        // if (current == {|key, value, newNode, null|}) { // WORKS
         if (current == null) {
             buckets.set(bucketIndex, newNode);
             this.size++;
             return;
         }
         // Traverse the list within the bucket until match or end found
-        while (current != null) {
+        // while (current != {|key, value, newNode, null|}) { // no real bucket tests yet
+        while (current != null) { 
             // When a key match is found, replace the value it stores and break
+	    // getKey() == key ?
             if (current.getKey().equals(key)) {
                 current.setValue(value);
                 break;
@@ -287,5 +281,24 @@ public class HashTable<K, V> {
         }
 
         return null;
+    }
+
+    protected void ensureCapacity(int intendedCapacity) {
+        double loadFactor = (double) intendedCapacity / (double) currentCapacity;
+        // If we're within the load limit, return early, it's all good.
+        if (loadFactor < maxLoadFactor) {
+            return;
+        }
+
+        // Otherwise, ensure we will be within limits
+        int newCapacity = currentCapacity * capacityGrowth;
+        buckets.ensureCapacity(newCapacity);
+
+        // Initialize buckets
+        for (int i = this.currentCapacity; i < newCapacity; i++) {
+            this.buckets.add(null);
+        }
+
+        currentCapacity = newCapacity;
     }
 }

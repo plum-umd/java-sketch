@@ -14,21 +14,22 @@ public class HashTableTest {
     private HashTable<Object, Object> classUnderTest32;
 
     harness void mn(int x, int y, int z) {
+	Integer xx = new Integer(x);
+	Integer yy = new Integer(y);
+	// Integer zz = new Integer(z);
 	setUp();
-	Integer xx = new Integer(14);
-	Integer yy = new Integer(15);
-	Integer zz = new Integer(31);
-	// assume xx.intValue() > 0;
-	testPutAndGet(xx, yy, zz);
+	// testGetEmpty();
+	// testPutAndGet(xx, yy, zz);
 	// testReplacing(xx, yy, zz);
 	// testKeys(xx, yy);
-	testClear(xx, yy, zz);
+	testSize();
+	// testClear(xx, yy, zz);
     }
     // Not sure about random in Sketch
     // @Before
     public void setUp() {
         classUnderTest16 = new HashTable<>(16);
-        classUnderTest32 = new HashTable<>(32);
+        // classUnderTest32 = new HashTable<>(32);
 
     //     Random rand = new Random();
     //     for (int i = 0; i < 2048; i++) {
@@ -39,14 +40,8 @@ public class HashTableTest {
     @Test
     public void testGetEmpty() {
 	Object o = classUnderTest16.get(null);
-        // Assert.assertNull(null);
-        // Assert.assertNull(classUnderTest16.get(null));
+        Assert.assertNull(classUnderTest16.get(null));
     }
-
-    // @Test(expected = IllegalArgumentException.class)
-    // public void testPutNull() throws IllegalArgumentException {
-    //     classUnderTest16.put(null, 100);
-    // }
 
     @Test
     public void testPutAndGet(Integer x, Integer y, Integer z) {
@@ -55,19 +50,12 @@ public class HashTableTest {
         Assert.assertEquals(classUnderTest16.get(x), y);
         Assert.assertEquals(classUnderTest16.get(y), x);
 
-	classUnderTest32.put(x, y);
-        classUnderTest32.put(y, x);
-        classUnderTest32.put(z, x);
-        Assert.assertEquals(classUnderTest32.get(x), y);
-        Assert.assertEquals(classUnderTest32.get(y), x);
-        Assert.assertEquals(classUnderTest32.get(z), x);
-
-	//     classUnderTest32.put("hey", "there");
-	//     classUnderTest16.put(79514, "you");
-	//     classUnderTest16.put("mac", 72);
-	//     Assert.assertEquals(classUnderTest16.get("hey"), "there");
-	//     Assert.assertEquals(classUnderTest16.get(79514), "you");
-	//     Assert.assertEquals(classUnderTest16.get("mac"), 72);
+	// classUnderTest32.put(x, y);
+        // classUnderTest32.put(y, x);
+        // classUnderTest32.put(z, x);
+        // Assert.assertEquals(classUnderTest32.get(x), y);
+        // Assert.assertEquals(classUnderTest32.get(y), x);
+        // Assert.assertEquals(classUnderTest32.get(z), x);
     }
 
     // @Test
@@ -85,20 +73,22 @@ public class HashTableTest {
 
     // @Test
     public void testKeys(Integer x, Integer y) {
-        // classUnderTest16.clear();
+        classUnderTest16.clear();
         // Assert.assertArrayEquals(classUnderTest16.keys(), new Object[]{}); // assertArrayEquals not implemented in JSKetch
 
-        // classUnderTest16.put(x, y);
-
-        // Assert.assertTrue(classUnderTest16.keys()[0] == y); // Dont have assertTrue yet
-        // Assert.assertEquals(classUnderTest16.keys()[0], y);
+        classUnderTest16.put(x, y);
+	Object k = classUnderTest16.keys()[0];
+        Assert.assertTrue(k.equals(x));
+	// TODO: fix this vvvv
+        // Assert.assertEquals(classUnderTest16.keys()[0], k);
 
         // classUnderTest16.put("that", "there");
         // classUnderTest16.put("this", "there");
-        // classUnderTest16.put(452, "there");
+        // classUnderTest16.put(new Integer(452), "there");
 
-        // Assert.assertTrue(classUnderTest16.keys().length == 4);
-    }
+	Object[] keys = classUnderTest16.keys();
+        Assert.assertTrue(keys.length == 1);
+     }
 
     // @Test
     // public void testValues() {
@@ -147,11 +137,13 @@ public class HashTableTest {
     // }
 
     // @Test
-    // public void testSize() {
-    //     Assert.assertEquals(classUnderTest16.size(), 2048);
-    //     classUnderTest16.put("hey", "you");
-    //     Assert.assertEquals(classUnderTest16.size(), 2049);
-    // }
+    public void testSize() {
+	// had to reduce loop size from original (2048)
+	for (int i = 0; i < 16; i++) { classUnderTest16.put(new Integer(i), null); }
+        Assert.assertEquals(classUnderTest16.size(), 16);
+        classUnderTest16.put("hey", "you");
+        Assert.assertEquals(classUnderTest16.size(), 17);
+    }
 
     // @Test
     // public void testRemoveNonExistent() {
@@ -191,13 +183,21 @@ public class HashTableTest {
     // @Test
     public void testClear(Integer x, Integer y, Integer z) {
         Assert.assertTrue(classUnderTest16.size() > 0);
-        Assert.assertTrue(classUnderTest32.size() > 0);
         
 	classUnderTest16.clear();
 	assert classUnderTest16.buckets.get(classUnderTest16.initialCapacity-1) == null;
-	classUnderTest32.clear();
-	assert classUnderTest32.buckets.get(classUnderTest32.initialCapacity-1) == null;
+	Assert.assertFalse(classUnderTest16.size() > 0);
+
+        // Assert.assertTrue(classUnderTest32.size() > 0);
+	// classUnderTest32.clear();
+	// assert classUnderTest32.buckets.get(classUnderTest32.initialCapacity-1) == null;
         // Assert.assertArrayEquals(classUnderTest16.keys(), new Object[]{});
         // Assert.assertArrayEquals(classUnderTest16.values(), new Object[]{});
     }
 }
+
+
+    // @Test(expected = IllegalArgumentException.class)
+    // public void testPutNull() throws IllegalArgumentException {
+    //     classUnderTest16.put(null, 100);
+    // }
