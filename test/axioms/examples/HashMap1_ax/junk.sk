@@ -1,0 +1,12 @@
+adt ADT {
+  Empty { }
+  Node { ADT n; }
+}
+harness void mn() {
+  ADT a = new Empty();
+  a = new Node(n=a);
+  assert a == new Node(n=new Empty());
+  a = new Empty();
+  a = new Node(n=a);
+  assert a == new Node(n=new Empty());
+}

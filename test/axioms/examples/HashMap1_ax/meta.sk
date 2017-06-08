@@ -1,0 +1,15 @@
+package meta;
+
+// distinct class IDs
+int ArrayList()      { return 8; }
+int Assert()         { return 5; }
+int HashTable()      { return 2; }
+int HashTableNode()  { return 3; }
+int HashTableTest()  { return 4; }
+int Integer()        { return 6; }
+int Number()         { return 7; }
+int Object()         { return 1; }
+int String()         { return 9; }
+int Null()           { return -1; }
+
+// Uninterpreted functions

@@ -1,0 +1,60 @@
+package ArrayList;
+
+adt AList {
+  List          { }
+  Obj           { Object o; }
+  Get		{ AList l; int i; }
+  Set		{ AList l; int i; AList v; }
+  Add		{ AList l; AList v; }
+  Null		{ }
+  Error         { int code; }
+}
+
+Object arrayList(Object o) {
+  o.alist = new List();
+  return o;
+}
+
+Object object(Object o) {
+  return new Object(__cid = Object(), alist=new Obj(o=o));
+}
+
+Object get(AList l, int i) {
+   return new Object(__cid = ArrayList(), alist=new Get(l=l, i=i));
+}
+
+Object set(AList l, int i, Object v) {
+  return new Object(__cid = ArrayList(), alist=new Set(l=l, i=i, v=new Obj(o=v)));
+}
+
+Object add(AList l, Object v) {
+  return new Object(__cid = ArrayList(), alist=new Set(l=l, v=new Obj(o=v)));
+}
+
+AList get_xform(AList a, int index) {
+  switch (a) {
+  case List: { return new Error(code=1); }
+  case Obj:  { return new Error(code=2); }
+  case Get:  { return new Error(code=3); }
+  case Set:  {
+    if (a.i == index) { return a.v; }
+    else if (a.i < 0) { return new Error(); }
+    else { return get_xform(a.l, index); }
+    }
+  case Add:   { return a; }
+  case Null:  { return a; }
+  case Error: { return a; }
+  }
+}
+
+AList xform(AList a) {
+  switch (a) {
+     case List:         return a; 
+     case Obj:          return a; 
+     case Get:		return get_xform(a.l, a.i); 
+     case Set:		return a; 
+     case Add:		return a; 
+     case Null:		return a; 
+     case Error:       	return a; 
+  }
+}

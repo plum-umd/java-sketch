@@ -1,0 +1,53 @@
+package HashTableTest;
+
+Object HashTableTest_HashTableTest(Object self) {
+    return self;
+}
+
+harness void mn_int_int_int() {
+  Object self = Object_Object(new Object(__cid=Object()));
+  setUp@HashTableTest(self);
+  Object xx = Integer_Integer_int(new Object(__cid=Integer()), 15);
+  Object yy = Integer_Integer_int(new Object(__cid=Integer()), 1);
+  Object zz = Integer_Integer_int(new Object(__cid=Integer()), 2);
+  
+  testPutAndGet_Integer_Integer@HashTableTest(self, xx, yy);
+  testClear_Integer_Integer_Integer(self, xx, yy, zz);
+}
+
+void setUp(Object self) {
+  self.classUnderTest_HashTableTest = HashTable_HashTable(new Object(__cid=HashTable()));
+  assert xform(get@ArrayList(self.classUnderTest_HashTableTest.buckets_HashTable, 0).alist) == object(null).alist;
+}
+
+void testPutAndGet_Integer_Integer(Object self, Object x, Object y) {
+  Object newNode = put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y);
+  /* Object g = get_K@HashTable(self.classUnderTest_HashTableTest, x); */
+  /* assert xform(g.alist) == object(newNode).alist; */
+}
+
+/* void testReplacing_Integer_Integer_Integer(Object self, Object x, Object y, Object z) { */
+/*   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, x); } */
+/*   else { 0; }; */
+/*   assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? get_K@HashTable(self.classUnderTest_HashTableTest, x) : null), x); */
+/*   int size = (self.classUnderTest_HashTableTest.__cid == HashTable() ? size@HashTable(self.classUnderTest_HashTableTest) : 0); */
+/*   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, z); } */
+/*   else { 0; }; */
+/*   assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? get_K@HashTable(self.classUnderTest_HashTableTest, x) : null), z); */
+/*   assertEquals_int_int@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? size@HashTable(self.classUnderTest_HashTableTest) : 0), size); */
+/* } */
+
+/* void testGetEmpty(Object self) { */
+/*   Object o = (self.classUnderTest_HashTableTest.__cid == HashTable() ? get_K@HashTable(self.classUnderTest_HashTableTest, null) : null); */
+/* } */
+
+void testKeys_Integer_Integer(Object self, Object x, Object y) {
+}
+
+void testClear_Integer_Integer_Integer (Object self, Object x, Object y, Object z) {
+  assert size@HashTable(self.classUnderTest_HashTableTest) > 0;
+  clear_HashTable@HashTable(self.classUnderTest_HashTableTest);
+  assert xform(get@ArrayList(self.classUnderTest_HashTableTest.buckets_HashTable, 15).alist) == object(null).alist;
+  assert size@HashTable(self.classUnderTest_HashTableTest) == 0;
+  /* assert xform(get@ArrayList(self.classUnderTest_HashTableTest.buckets_HashTable, 0).alist) == object(null).alist; */
+}
