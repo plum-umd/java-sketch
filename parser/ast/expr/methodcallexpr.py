@@ -8,6 +8,7 @@ from .expression import Expression
 from .fieldaccessexpr import FieldAccessExpr
 from .thisexpr import ThisExpr
 
+from ..type.primitivetype import PrimitiveType
 from ..type.classorinterfacetype import ClassOrInterfaceType
 
 from ..typeparameter import TypeParameter
@@ -43,11 +44,13 @@ class MethodCallExpr(Expression):
 
     @property
     def typee(self):
+        if self.name == u'equals': return PrimitiveType({u'type': {u'name':u'boolean'}})
         obj = utils.node_to_obj(self.scope) if self.scope else self
         sym = obj.symtab
         # first look for this methed in the current scope
         mtd = sym.get(self.sig())
         if not mtd:
+            # check for equals
             cls = self.symtab.get(str(obj.typee))
             if isinstance(cls, TypeParameter):
                 cls = self.symtab.get(str(cls.typeBound))
