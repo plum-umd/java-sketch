@@ -273,7 +273,9 @@ public class HashTable<K, V> {
             HashTableNode<K, V> current = buckets.get(i);
 
             while (current != null) {
-                if (current.getValue().equals(value)) {
+		// changed current.getValue().equals(value) to help JSketch
+		V v = current.getValue();
+                if (v.equals(value)) {
                     return current;
                 }
                 current = current.getNext();

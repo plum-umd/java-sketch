@@ -16,13 +16,18 @@ public class HashTableTest {
     harness void mn(int x, int y, int z) {
 	Integer xx = new Integer(x);
 	Integer yy = new Integer(y);
-	// Integer zz = new Integer(z);
+	Integer zz = new Integer(z);
 	setUp();
 	// testGetEmpty();
 	// testPutAndGet(xx, yy, zz);
 	// testReplacing(xx, yy, zz);
 	// testKeys(xx, yy);
-	testSize();
+	// testValues(xx, yy);
+	// testContainsValue(xx, yy, zz);
+	// testContainsKey(xx, yy, zz);
+	// testRemoveNonExistent();
+	testRemove(xx, yy, zz);
+	// testSize();
 	// testClear(xx, yy, zz);
     }
     // Not sure about random in Sketch
@@ -91,39 +96,50 @@ public class HashTableTest {
      }
 
     // @Test
-    // public void testValues() {
-    //     classUnderTest16.clear();
-    //     Assert.assertArrayEquals(classUnderTest16.values(), new Object[]{});
+    public void testValues(Integer x, Integer y) {
+        classUnderTest16.clear();
+        // Assert.assertArrayEquals(classUnderTest16.values(), new Object[]{});
 
-    //     classUnderTest16.put("what", "some");
+        classUnderTest16.put(x, y);
 
-    //     Assert.assertTrue(classUnderTest16.values()[0] == "some");
+	Object k = classUnderTest16.values()[0];
+        Assert.assertTrue(k.equals(y));
 
-    //     classUnderTest16.put("that", "things");
-    //     classUnderTest16.put("this", "are");
-    //     classUnderTest16.put(452, "there");
+        // classUnderTest16.put("that", "things");
+        // classUnderTest16.put("this", "are");
+        // classUnderTest16.put(452, "there");
 
-    //     Assert.assertTrue(classUnderTest16.values().length == 4);
-    // }
-
-    // @Test
-    // public void testContainsValue() {
-    //     Assert.assertFalse(classUnderTest16.containsValue("there"));
-    //     Assert.assertFalse(classUnderTest16.containsValue(79514));
-    //     Assert.assertFalse(classUnderTest16.containsValue("you"));
-
-    //     classUnderTest16.put("what", "there");
-    //     classUnderTest16.put(155550, "you");
-    //     classUnderTest16.put("hey", 79514);
-
-    //     Assert.assertTrue(classUnderTest16.containsValue("there"));
-    //     Assert.assertTrue(classUnderTest16.containsValue(79514));
-    //     Assert.assertTrue(classUnderTest16.containsValue("you"));
-    // }
+        // Assert.assertTrue(classUnderTest16.values().length == 4);
+    }
 
     // @Test
-    // public void testContainsKey() {
-    //     Assert.assertFalse(classUnderTest16.containsKey("what"));
+    //TODO: why the heck is this so slow?! containsValue()????
+    public void testContainsValue(Integer x, Integer y, Integer z) {
+        classUnderTest16.clear();
+        classUnderTest16.put(x, y);
+	Assert.assertTrue(classUnderTest16.containsValue(y));
+
+        // Assert.assertFalse(classUnderTest16.containsValue(x));
+        // Assert.assertFalse(classUnderTest16.containsValue(y));
+        // Assert.assertFalse(classUnderTest16.containsValue(z));
+
+	// classUnderTest16.put("what", "there");
+        // classUnderTest16.put(155550, "you");
+        // classUnderTest16.put("hey", 79514);
+
+        // Assert.assertTrue(classUnderTest16.containsValue("there"));
+        // Assert.assertTrue(classUnderTest16.containsValue(79514));
+        // Assert.assertTrue(classUnderTest16.containsValue("you"));
+    }
+
+    // @Test
+    public void testContainsKey(Integer x, Integer y, Integer z) {
+        classUnderTest16.clear();
+        Assert.assertFalse(classUnderTest16.containsKey(x));
+        classUnderTest16.put(x, y);
+	Assert.assertTrue(classUnderTest16.containsKey(x));
+
+	// Assert.assertFalse(classUnderTest16.containsKey("what"));
     //     Assert.assertFalse(classUnderTest16.containsKey(79514));
     //     Assert.assertFalse(classUnderTest16.containsKey("hey"));
 
@@ -134,9 +150,9 @@ public class HashTableTest {
     //     Assert.assertTrue(classUnderTest16.containsKey("what"));
     //     Assert.assertTrue(classUnderTest16.containsKey(79514));
     //     Assert.assertTrue(classUnderTest16.containsKey("hey"));
-    // }
+    }
 
-    // @Test
+    @Test
     public void testSize() {
 	// had to reduce loop size from original (2048)
 	for (int i = 0; i < 16; i++) { classUnderTest16.put(new Integer(i), null); }
@@ -145,42 +161,47 @@ public class HashTableTest {
         Assert.assertEquals(classUnderTest16.size(), 17);
     }
 
-    // @Test
-    // public void testRemoveNonExistent() {
-    //     int size = classUnderTest16.size();
-    //     classUnderTest16.remove("hey");
-    //     Assert.assertEquals(classUnderTest16.size(), size);
-    // }
+    @Test
+    public void testRemoveNonExistent() {
+        int size = classUnderTest16.size();
+        classUnderTest16.remove("hey");
+        Assert.assertEquals(classUnderTest16.size(), size);
+    }
 
-    // @Test
-    // public void testRemove() {
-    //     int size = classUnderTest16.size();
-    //     classUnderTest16.put("hey", "there");
+    @Test
+    public void testRemove(Integer x, Integer y, Integer z) {
+        int size = classUnderTest16.size();
+        classUnderTest16.put(x, y);
 
-    //     Assert.assertEquals(classUnderTest16.get("hey"), "there");
-    //     Assert.assertEquals(classUnderTest16.size(), size + 1);
 
-    //     classUnderTest16.remove("hey");
-    //     Assert.assertEquals(classUnderTest16.get("hey"), null);
-    //     Assert.assertEquals(classUnderTest16.size(), size);
+        Assert.assertEquals(classUnderTest16.get(x), y);
+        Assert.assertEquals(classUnderTest16.size(), size + 1);
 
-    //     classUnderTest16.put("hey", "a");
-    //     classUnderTest16.put("hola", "b");
-    //     classUnderTest16.put("hello", "c");
-    //     classUnderTest16.put("mac", "d");
+        classUnderTest16.remove(x);
+        Assert.assertNull(classUnderTest16.get(x));
 
-    //     Assert.assertEquals(classUnderTest16.get("hola"), "b");
-    //     Assert.assertEquals(classUnderTest16.size(), size + 4);
+        // classUnderTest16.put("hey", "there");
+        // classUnderTest16.remove("hey");
+        // Assert.assertEquals(classUnderTest16.get("hey"), null);
+        // Assert.assertEquals(classUnderTest16.size(), size);
 
-    //     classUnderTest16.remove("hola");
+        // classUnderTest16.put("hey", "a");
+        // classUnderTest16.put("hola", "b");
+        // classUnderTest16.put("hello", "c");
+        // classUnderTest16.put("mac", "d");
 
-    //     Assert.assertEquals(classUnderTest16.get("hello"), "c");
-    //     Assert.assertEquals(classUnderTest16.get("mac"), "d");
-    //     Assert.assertEquals(classUnderTest16.get("hey"), "a");
-    //     Assert.assertEquals(classUnderTest16.size(), size + 3);
-    // }
+        // Assert.assertEquals(classUnderTest16.get("hola"), "b");
+        // Assert.assertEquals(classUnderTest16.size(), size + 4);
 
-    // @Test
+        // classUnderTest16.remove("hola");
+
+        // Assert.assertEquals(classUnderTest16.get("hello"), "c");
+        // Assert.assertEquals(classUnderTest16.get("mac"), "d");
+        // Assert.assertEquals(classUnderTest16.get("hey"), "a");
+        // Assert.assertEquals(classUnderTest16.size(), size + 3);
+    }
+
+    @Test
     public void testClear(Integer x, Integer y, Integer z) {
         Assert.assertTrue(classUnderTest16.size() > 0);
         
