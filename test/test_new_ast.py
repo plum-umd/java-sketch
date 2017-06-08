@@ -151,6 +151,9 @@ class TestJava(TestCommon):
     def test_ThisConstructor(self):
         self.__test(["ThisConstructor.java"])
 
+    def test_ThisGenerator(self):
+        self.__test(["ThisGenerator.java"])
+
     def test_TypeParameters(self):
         self.__test(["TypeParameters.java"])
 
