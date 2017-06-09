@@ -91,17 +91,28 @@ public class sorting {
 	for (int j=lo; j<hi; j++) {
 	    Integer val = l.get(j);
 	    int val_int = val.intValue();
-	    if (val_int <= pivot_int) {
+	    int t1 = {| i,j,val_int,pivot_int,hi,lo,p |};
+      	    int t2 = {| i,j,val_int,pivot_int,hi,lo,p |};
+	    // if ({|val_int == pivot_int, val_int > pivot_int, val_int >= pivot_int, val_int < pivot_int, val_int <= pivot_int |}) {
+	    // if ({| t1 == t2, t1 <= t2, t1 < t2 |}) {
+	    // if (t1 <= t2) {
+	    if (val_int <= pivot_int) {		
 		i++;
+		// if ({| i < j, i > j, i <= j, i >= j, i != j, i==j |}) {
+		// if ({| i != j, i==j |}) {
 		if (i != j) {
-		    int s1 = {| i,j,val_int,pivot_int,hi,lo,p|};
-		    int s2 = {| i,j,val_int,pivot_int,hi,lo,p|};
-		    // l = swap(l, i, j);
-		    l = swap(l, s1, s2);
+		// if (i < j) {
+		    // int s1 = {| i,j,val_int,pivot_int,hi,lo,p|};
+		    // int s2 = {| i,j,val_int,pivot_int,hi,lo,p|};
+		    l = swap(l, i, j);
+		    // l = swap(l, s1, s2);
 		}
 	    }
 	}
 	l = swap(l, i+1, hi);
+	// int r1 = {| i+1, i, i-1 |};
+	// int r2 = {| lo, hi |};
+	// l = swap(l, r1, r2);
 	p = i+1;
 	return l;
     }

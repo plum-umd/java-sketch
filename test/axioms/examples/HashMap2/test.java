@@ -59,6 +59,17 @@ public class test {
 		Integer i10 = new Integer(101);
 		Integer i11 = new Integer(111);
 		Integer i12 = new Integer(121);		
+
+		Integer i20 = new Integer(100);
+		Integer i21 = new Integer(102);
+		Integer i22 = new Integer(103);
+		Integer i23 = new Integer(104);		
+		Integer i24 = new Integer(105);
+		Integer i25 = new Integer(106);
+		Integer i26 = new Integer(107);		
+		Integer i27 = new Integer(108);
+		Integer i28 = new Integer(109);
+
 		String s0 = "0";
 		String s1 = "1";
 		String s2 = "2";
@@ -86,6 +97,17 @@ public class test {
 		ht1.put(i11, s11);
 		ht1.put(i12, s12);		
 
+		ht1.put(i20, s1);
+		ht1.put(i21, s2);
+		ht1.put(i22, s3);		
+		ht1.put(i23, s4);
+		ht1.put(i24, s5);
+		ht1.put(i25, s6);		
+		ht1.put(i26, s7);
+		ht1.put(i27, s8);
+		ht1.put(i28, s9);
+		ht1.put(i28, s9);				
+		
 		String gs1 = ht1.get(i1);
 		String gs2 = ht1.get(i2);		
 		String gs3 = ht1.get(i3);				
@@ -103,7 +125,6 @@ public class test {
 		ok = ok && gs4.equals(s4) && gs5.equals(s5) && gs6.equals(s6);
 		ok = ok && gs7.equals(s7) && gs8.equals(s8) && gs9.equals(s9);
 		ok = ok && gs10.equals(s10) && gs11.equals(s11) && gs12.equals(s12);				
-
 		Assert.assertTrue(ok);
 		// for (int i=0;i<10;i++) {
 		// 	// String s = String.valueOf(i*100);

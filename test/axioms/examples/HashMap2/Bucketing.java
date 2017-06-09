@@ -148,9 +148,11 @@ public class Bucketing<K, V> implements HashTable<K, V> {
 			K tmp_key = tmp.key;
 			// if (bucketHash[i].key.equals(key))
 			// 	return bucketHash[i].value;
-			if (tmp_key.equals(key))
-				//return bucketHash[i].value;
-				val = bucketHash[i].value;
+			boolean bool = tmp_key.equals(key);
+			if ({| bool, tmp_key == key |})
+			// if (tmp_key.equals(key))
+      			    //return bucketHash[i].value;
+			    val = bucketHash[i].value;
 		}
 
 		if (sizeBucket[integerkey] == numberOfSlots) {
@@ -160,7 +162,9 @@ public class Bucketing<K, V> implements HashTable<K, V> {
 				K tmp_key = tmp.key;				
 				// if (overflow.get(i).key.equals(key))
 				// 	return overflow.get(i).value;
-				if (tmp_key.equals(key))
+				boolean bool = tmp_key.equals(key);
+				if ({| bool, tmp_key == key |})				
+				// if (tmp_key.equals(key))
 					//return tmp.value;
 					val = tmp.value;
 			}
@@ -194,23 +198,26 @@ public class Bucketing<K, V> implements HashTable<K, V> {
 		int rand3 = {|numberOfElements, index, integerkey, size, mod, numberOfSlots, s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, integerkey, o_size, ?? |};
 		int rand4 = {|numberOfElements, index, integerkey, size, mod, numberOfSlots, s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, integerkey, o_size, ?? |};
 
-		for (int i = rand1dcfes; i-sizeBucket[integerkey] < rand2; i++) {
-		// for (int i = index; i < index + sizeBucket[integerkey]; i++) {
-			if (bucketHash[i].key.equals(key)) {
-				flag = true;
-			} else if (flag) {
-				bucketHash[i - 1] = new Pair(bucketHash[i].key,
-						bucketHash[i].value);
-
-			}
+		// for (int i = rand1; i-sizeBucket[integerkey] < rand2; i++) {
+		for (int i = index; i < index + sizeBucket[integerkey]; i++) {
+		    Pair<K,V> tmp = bucketHash[i];
+    		    boolean bool = tmp.key.equals(key);
+		    if ({| tmp.key == key, bool |}) {
+		    // if (bucketHash[i].key.equals(key)) {
+			flag = true;
+		    } else if (flag) {
+			bucketHash[i - 1] = new Pair(bucketHash[i].key,
+						     bucketHash[i].value);
+			
+		    }
 		}
 		if (flag) {
 			numberOfElements--;
 			sizeBucket[integerkey]--;
 		} 
 		else if (sizeBucket[integerkey] == numberOfSlots) {
-			for (int i = rand3; i < rand4; i++) {
-			// for (int i = 0; i < overflow.size(); i++) {
+			// for (int i = rand3; i < rand4; i++) {
+			for (int i = 0; i < overflow.size(); i++) {
 				Pair<K,V> tmp = overflow.get(i);
 				K tmp_key = tmp.key;
 				// if (overflow.get(i).key.equals(key)) {
@@ -218,10 +225,12 @@ public class Bucketing<K, V> implements HashTable<K, V> {
 				// 	numberOfElements--;
 				// 	break;
 				// }
-				if (tmp_key.equals(key)) {
-					overflow.remove(i);
-					numberOfElements--;
-					break;
+				boolean bool = tmp_key.equals(key);
+				if ({| bool, tmp_key == key |}) {
+				// if (tmp_key.equals(key)) {
+				    overflow.remove(i);
+				    numberOfElements--;
+				    break;
 				}
 			}
 		}
