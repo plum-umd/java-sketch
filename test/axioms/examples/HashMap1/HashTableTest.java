@@ -18,8 +18,8 @@ public class HashTableTest {
 	Integer yy = new Integer(y);
 	Integer zz = new Integer(z);
 	setUp();
-	testGetEmpty();
-	// testPutAndGet(xx, yy, zz);
+	// testGetEmpty();
+	testPutAndGet(xx, yy, zz);
 	// testReplacing(xx, yy, zz);
 	// testKeys(xx, yy);
 	// testValues(xx, yy);
@@ -27,8 +27,9 @@ public class HashTableTest {
 	// testContainsKey(xx, yy, zz);
 	// testRemoveNonExistent();
 	// testRemove(xx, yy, zz);
-	// testSize();
-	// testClear(xx, yy, zz);
+	// testClear(xx, yy);
+	// assume x >= 16 && x < 0;
+	// testSize(x, y);
     }
     public void setUp() {
         classUnderTest16 = new HashTable<>(16);
@@ -42,8 +43,10 @@ public class HashTableTest {
     public void testPutAndGet(Integer x, Integer y, Integer z) {
         classUnderTest16.put(x, y);
         classUnderTest16.put(y, x);
+        classUnderTest16.put(z, x);
         Assert.assertEquals(classUnderTest16.get(x), y);
         Assert.assertEquals(classUnderTest16.get(y), x);
+        // Assert.assertEquals(classUnderTest16.get(z), x);
     }
 
     public void testReplacing(Integer x, Integer y, Integer z) {
@@ -96,24 +99,25 @@ public class HashTableTest {
 	Assert.assertTrue(classUnderTest16.containsKey(x));
     }
 
-    public void testSize() {
+    public void testSize(int x, int y) {
 	// had to reduce loop size from original (2048)
 	for (int i = 0; i < 16; i++) { classUnderTest16.put(new Integer(i), null); }
         Assert.assertEquals(classUnderTest16.size(), 16);
-        classUnderTest16.put("hey", "you");
+        classUnderTest16.put(new Integer(x), new Integer(y));
         Assert.assertEquals(classUnderTest16.size(), 17);
     }
 
-    public void testRemoveNonExistent() {
+    public void testRemoveNonExistent(Integer x) {
         int size = classUnderTest16.size();
-        classUnderTest16.remove("hey");
+        classUnderTest16.remove(x);
         Assert.assertEquals(classUnderTest16.size(), size);
     }
 
     public void testRemove(Integer x, Integer y, Integer z) {
+        classUnderTest16.clear();
+
         int size = classUnderTest16.size();
         classUnderTest16.put(x, y);
-
 
         Assert.assertEquals(classUnderTest16.get(x), y);
         Assert.assertEquals(classUnderTest16.size(), size + 1);
@@ -122,11 +126,13 @@ public class HashTableTest {
         Assert.assertNull(classUnderTest16.get(x));
     }
 
-    public void testClear(Integer x, Integer y, Integer z) {
+    public void testClear(Integer x, Integer y) {
+        classUnderTest16.put(x, y);
+        classUnderTest16.put(y, x);
         Assert.assertTrue(classUnderTest16.size() > 0);
         
 	classUnderTest16.clear();
-	assert classUnderTest16.buckets.get(classUnderTest16.initialCapacity-1) == null;
+	Asset.assertNull(classUnderTest16.buckets.get(classUnderTest16.initialCapacity-1));
 	Assert.assertFalse(classUnderTest16.size() > 0);
     }
 }

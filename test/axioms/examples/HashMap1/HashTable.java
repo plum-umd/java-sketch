@@ -1,5 +1,29 @@
 // This code is from https://github.com/anthonynsimon/java-ds-algorithms
 
+// Things synthesised:
+// 25s no synthesis, 
+/* resetHashTable:
+   - this.size = ?? // UNSAT with generators in loop  (6.6s)
+   - this.currentCapacity = ??; // SKETCH NOT RESOLVED  (16s)
+   - this.currentCapacity = {|0 , this.initialCapacity|}; // UNSAT (6.3s)
+   - for (;i < {|this.size, this.currentCapacity,this.capacityGrowth, this.initialCapacity|};) (5.5s)
+ * put: (6.4s)
+    - int bucketIndex = getBucketIndex({|key, value|}); // WORKS (5.8s)
+    - HashTableNode<K, V> newNode = new HashTableNode<>({|key, value|}, {|key, value|}); // WORKS  (6.0s)
+    - int index = getBucketIndex(key);
+      int bucketIndex = {|index, this.size, this.currentCapacity,
+                          this.capacityGrowth, this.initialCapacity|}; // WORKS  (5.0s)
+    - if (current == {|key, value, newNode, null|}) { // WORKS  (6.3s)
+ * remove:
+    - int index = getBucketIndex(key);
+      int bucketIndex = {|index, this.size, this.currentCapacity,
+                          this.capacityGrowth, this.initialCapacity|}; // WORKS (5.8s)
+ * values: (9s)
+    - int h = {|this.size, this.currentCapacity,this.capacityGrowth, this.initialCapacity|}; 
+      V[] values = (V[]) new Object[h];
+      minimize(h);  WORKS (8.6s)
+    - if (size() > ??) { WORKS  (9s)
+*/
 // Come up with bugs for each method,
 // Sketch open addressing HashTable implementation??
 
@@ -39,15 +63,16 @@ public class HashTable<K, V> {
     // high level: criticism - really only works if you know what the answer is
     // bug fix: error sites are reasonable error sites
     protected void resetHashTable() {
+	// generator that does assignment to fields, invoke generator to see if it can synthesise these statements.
+        this.size = 0;
         // this.size = ??; // UNSAT with generators in loop condition
-        this.size = 0; // replace 0 with hole
+
         this.currentCapacity = this.initialCapacity;
         // this.currentCapacity = ??; // SKETCH NOT RESOLVED
         // this.currentCapacity = {|0 , this.initialCapacity|}; // UNSAT 
+
         this.buckets = new ArrayList<>(this.initialCapacity);
-	// i < ??, other ArrayList methods .add
-	// generator that does assignment to fields, invoke generator to see if it can synthesise these statements.
-        // Initialize all buckets to null
+
         for (int i = 0; i < this.currentCapacity; i++) {
         // for (int i = 0; i < {|this.size, this.currentCapacity,
 	// 			this.capacityGrowth, this.initialCapacity|}; i++) {
@@ -70,21 +95,26 @@ public class HashTable<K, V> {
         // }
         ensureCapacity(size() + 1); // not enough tests to try ?? here
         // Hash the key and get the bucket index
+	int bucketIndex = getBucketIndex(key);
+	// int index = getBucketIndex(key);
+        // int bucketIndex = {|index, this.size, this.currentCapacity, this.capacityGrowth, this.initialCapacity|}; // WORKS
         // int bucketIndex = getBucketIndex({|key, value|}); // WORKS
-        int bucketIndex = getBucketIndex(key);
-        // HashTableNode<K, V> newNode = new HashTableNode<>({|key, value|}, {|key, value|}); // WORKS
+
         HashTableNode<K, V> newNode = new HashTableNode<>(key, value);
+        // HashTableNode<K, V> newNode = new HashTableNode<>({|key, value|}, {|key, value|}); // WORKS
+
         HashTableNode<K, V> current = buckets.get(bucketIndex);
+
         // If bucket is empty, set as first node and we're done
-        // if (current == {|key, value, newNode, null|}) { // WORKS
         if (current == null) {
+        // if (current == {|key, value, newNode, null|}) { // WORKS
             buckets.set(bucketIndex, newNode);
             this.size++;
             return;
         }
         // Traverse the list within the bucket until match or end found
-        // while (current != {|key, value, newNode, null|}) { // no real bucket tests yet
         while (current != null) { 
+        // while (current != {|key, value, newNode, null|}) { // no real bucket tests yet
             // When a key match is found, replace the value it stores and break
 	    // getKey() == key ?
             if (current.getKey().equals(key)) {
@@ -104,10 +134,14 @@ public class HashTable<K, V> {
     // Removes the Key, Value pair based on the provided Key
     public void remove(K key) {
         if (size() == 0 || key == null) {
+        // if (size() == ?? || key == null) { Wrong answer
             return;
         }
 
         int bucketIndex = getBucketIndex(key);
+	// int index = getBucketIndex(key);
+        // int bucketIndex = {|index, this.size, this.currentCapacity,
+	// 		   this.capacityGrowth, this.initialCapacity|}; // WORKS
 
         HashTableNode<K, V> current = buckets.get(bucketIndex);
         HashTableNode<K, V> previous = null;
@@ -153,10 +187,13 @@ public class HashTable<K, V> {
     public V[] values() {
         // It is safe to suppress unchecked exception because the array we're creating
         // is of the same type as the one passed.
-        @SuppressWarnings("unchecked")
-        V[] values = (V[]) new Object[size()];
+	V[] values = (V[]) new Object[size()];
+	// int h = {|this.size, this.currentCapacity,this.capacityGrowth, this.initialCapacity|}; 
+	// V[] values = (V[]) new Object[h];
+	// minimize(h);
 
-        if (size() > 0) {
+        // if (size() > 0) {
+        if (size() > ??) { // WORKS
             int index = 0;
             for (int i = 0; i < buckets.size(); i++) {
                 HashTableNode<K, V> current = buckets.get(i);
