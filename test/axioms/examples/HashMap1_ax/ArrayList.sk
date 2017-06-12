@@ -10,6 +10,14 @@ adt AList {
   Error         { int code; }
 }
 
+int List_err()  { return 0; }
+int Obj_err()   { return 1; }
+int Get_err()   { return 2; }
+int Set_err()   { return 3; }
+int Add_err()   { return 4; }
+int Null_err()  { return 5; }
+int Error_err() { return 6; }
+
 Object arrayList(Object o) {
   o.alist = new List();
   return o;
@@ -33,9 +41,9 @@ Object add(AList l, Object v) {
 
 AList get_xform(AList a, int index) {
   switch (a) {
-  case List: { return new Error(code=1); }
-  case Obj:  { return new Error(code=2); }
-  case Get:  { return new Error(code=3); }
+  case List: { return new Error(code=List_err()); }
+  case Obj:  { return new Error(code=Obj_err()); }
+  case Get:  { return new Error(code=Get_err()); }
   case Set:  {
     if (a.i == index) { return a.v; }
     else if (a.i < 0) { return new Error(); }
@@ -57,4 +65,20 @@ AList xform(AList a) {
      case Null:		return a; 
      case Error:       	return a; 
   }
+}
+
+Object get_obj(AList alist) {
+  Object current;
+  AList current_alist = new List();
+  alist = xform(alist);
+  switch (alist) {
+  case List:  { current = null; }
+  case Obj:   { current = alist.o; }
+  case Get:   { current = null; }
+  case Set:   { current = null; }
+  case Add:   { current = null; }
+  case Null:  { current = null; }
+  case Error: { current = null; }
+  }
+  return current;
 }

@@ -1,0 +1,84 @@
+package Assert;
+
+Object Assert_Assert(Object self) {
+  return self;
+}
+
+void assertTrue_String_boolean(Object message, bit condition) {
+  assert condition;
+}
+
+void assertTrue_boolean(bit condition) {
+  assertTrue_String_boolean(String_String_char_int_int(new Object(__cid=String()), new Array_char(length=0+1, A=""), 0, 0), condition);
+}
+
+void assertFalse_String_boolean(Object message, bit condition) {
+  assertTrue_String_boolean(message, !condition);
+}
+
+void assertFalse_boolean(bit condition) {
+  assertFalse_String_boolean(String_String_char_int_int(new Object(__cid=String()), new Array_char(length=0+1, A=""), 0, 0), condition);
+}
+
+void fail_String(Object message) {
+  if (message == null) {
+
+  }
+
+}
+
+void assertEquals_String_Object_Object(Object message, Object expected, Object actual) {
+  assert (expected.__cid == HashTable() ?
+	  equals_Object@Object(expected, actual) : expected.__cid == HashTableTest() ?
+	  equals_Object@Object(expected, actual) : expected.__cid == String() ?
+	  equals_Object@String(expected, actual) : expected.__cid == Assert() ?
+	  equals_Object@Object(expected, actual) : expected.__cid == Integer() ?
+	  equals_Object@Integer(expected, actual) : expected.__cid == ArrayList() ?
+	  equals_Object@Object(expected, actual) : expected.__cid == HashTableNode() ?
+	  equals_Object@Object(expected, actual) : expected.__cid == Number() ?
+	  equals_Object@Object(expected, actual) : expected.__cid == Object() ?
+	  equals_Object@Object(expected, actual) : 0);
+}
+
+bit equalsRegardingNull_Object_Object(Object expected, Object actual) {
+  if (expected == null) {
+    return actual == null;
+  }
+  return isEquals_Object_Object(expected, actual);
+}
+
+bit isEquals_Object_Object(Object expected, Object actual) {
+  return (expected.__cid == HashTable() ? equals_Object@Object(expected, actual) : expected.__cid == HashTableTest() ? equals_Object@Object(expected, actual) : expected.__cid == String() ? equals_Object@String(expected, actual) : expected.__cid == Assert() ? equals_Object@Object(expected, actual) : expected.__cid == Integer() ? equals_Object@Integer(expected, actual) : expected.__cid == ArrayList() ? equals_Object@Object(expected, actual) : expected.__cid == HashTableNode() ? equals_Object@Object(expected, actual) : expected.__cid == Number() ? equals_Object@Object(expected, actual) : expected.__cid == Object() ? equals_Object@Object(expected, actual) : 0);
+}
+
+void assertEquals_Object_Object(Object expected, Object actual) {
+  assertEquals_String_Object_Object(null, expected, actual);
+}
+
+void assertEquals_int_int(int expected, int actual) {
+  assert expected == actual;
+}
+
+void assertNull_String_Object(Object message, Object object) {
+  if (object == null) {
+    return;
+  }
+  failNotNull_String_Object(message, object);
+}
+
+void assertNull_Object(Object object) {
+  assertNull_String_Object(null, object);
+}
+
+void failNotNull_String_Object(Object message, Object actual) {
+  assert false;
+}
+
+void failNotEquals_String_Object_Object(Object message, Object expected, Object actual) {
+  fail_String(format_String_Object_Object(message, expected, actual));
+}
+
+Object format_String_Object_Object(Object message, Object expected, Object actual) {
+  return String_String_char_int_int(new Object(__cid=String()), new Array_char(length=0+1, A=""), 0, 0);
+}
+

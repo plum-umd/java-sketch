@@ -9,8 +9,8 @@ void resetHashTable(Object self) {
   self.size_HashTable = 0;
   self.currentCapacity_HashTable = self.initialCapacity_HashTable;
   self.buckets_HashTable = new List();
-  for (int i = 0; i < {| self.size_HashTable |  self.currentCapacity_HashTable |  self.capacityGrowth_HashTable |  self.initialCapacity_HashTable |}; i++) {
-  /* for (int i = 0; i < self.initialCapacity_HashTable; i++)  */
+  /* for (int i = 0; i < {| self.size_HashTable |  self.currentCapacity_HashTable |  self.capacityGrowth_HashTable |  self.initialCapacity_HashTable |}; i++) { */
+  for (int i = 0; i < self.initialCapacity_HashTable; i++) {
     self.buckets_HashTable = set(self.buckets_HashTable, i, null).alist;
   }
 }
@@ -25,9 +25,9 @@ Object HashTable_HashTable_int(Object self, int initialCapacity) {
 }
 
 Object get_K(Object self, Object key) {
-  return getNodeWithKey_K@HashTable(self, key);
-  /* Object result = getNodeWithKey_K@HashTable(self, key); */
-  /* return (result != null ? getValue@HashTableNode(result) : null); */
+  // don't want to return the actual value, or do we?
+  Object result = getNodeWithKey_K@HashTable(self, key);
+  return (result != null ? getValue@HashTableNode(result) : null);
 }
 
 Object getNodeWithKey_K(Object self, Object key) {
@@ -35,46 +35,38 @@ Object getNodeWithKey_K(Object self, Object key) {
     return null;
   }
   int bucketIndex = getBucketIndex_K@HashTable(self, key);
-  Object current = get@ArrayList(self.buckets_HashTable, bucketIndex);
-  return current;
-  /* while (current != null) { */
-  /*   if (((current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null).__cid == HashTable() ? equals_Object@Object((current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null), key) : (current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null).__cid == Integer() ? equals_Object@Integer((current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null), key) : (current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null).__cid == Number() ? equals_Object@Object((current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null), key) : (current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null).__cid == ArrayList() ? equals_Object@Object((current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null), key) : (current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null).__cid == String() ? equals_Object@String((current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null), key) : (current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null).__cid == HashTableNode() ? equals_Object@Object((current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null), key) : (current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null).__cid == HashTableTest() ? equals_Object@Object((current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null), key) : (current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null).__cid == Assert() ? equals_Object@Object((current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null), key) : (current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null).__cid == Object() ? equals_Object@Object((current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null), key) : 0)) { */
-  /*     return current; */
-  /*   } */
-  /*   current = (current.__cid == HashTableNode() ? getNext@HashTableNode(current) : null); */
-  /* } */
-  /* return null; */
+  AList current = get@ArrayList(self.buckets_HashTable, bucketIndex).alist;
+  while (get_obj@ArrayList(current) != null) {
+    if (equals_Object@Object(getKey@HashTableNode(get_obj@ArrayList(current)), key)) {
+      return get_obj@ArrayList(current);
+    }
+    current = getNext@HashTableNode(get_obj@ArrayList(current)).alist;
+  }
+  return get_obj@ArrayList(current);
 }
 
-Object put_K_V(Object self, Object key, Object value) {
+void put_K_V(Object self, Object key, Object value) {
   int bucketIndex = getBucketIndex_K@HashTable(self, key);
-  self.size_HashTable++;
   Object newNode = HashTableNode_HashTableNode_K_V(new Object(__cid=HashTableNode()), key, value);
-  self.buckets_HashTable = set@ArrayList(self.buckets_HashTable, bucketIndex, newNode).alist;
-  return newNode;
-  /* Object current = get@ArrayList(self.buckets_HashTable, bucketIndex); */
-  /* if (current.alist == arrayList(new Object(__cid=Object())).alist) { */
-  /*   self.buckets_HashTable = set@ArrayList(self.buckets_HashTable, bucketIndex, newNode).alist; */
-  /*   self.size_HashTable++; */
-  /*   return; */
-  /* } */
+  AList current = get@ArrayList(self.buckets_HashTable, bucketIndex).alist;
+  if (get_obj@ArrayList(current) == null) {
+    self.buckets_HashTable = set@ArrayList(self.buckets_HashTable, bucketIndex, newNode).alist;
+    self.size_HashTable++;
+    return;
+  }
   
-  /* while (current != null) { */
-  /*   if (((current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null).__cid == HashTable() ? equals_Object@Object((current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null), key) : (current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null).__cid == Integer() ? equals_Object@Integer((current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null), key) : (current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null).__cid == Number() ? equals_Object@Object((current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null), key) : (current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null).__cid == ArrayList() ? equals_Object@Object((current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null), key) : (current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null).__cid == String() ? equals_Object@String((current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null), key) : (current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null).__cid == HashTableNode() ? equals_Object@Object((current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null), key) : (current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null).__cid == HashTableTest() ? equals_Object@Object((current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null), key) : (current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null).__cid == Assert() ? equals_Object@Object((current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null), key) : (current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null).__cid == Object() ? equals_Object@Object((current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null), key) : 0)) { */
-  /*     if (current.__cid == HashTableNode()) { setValue_V@HashTableNode(current, value); } */
-  /*     else { 0; }; */
-  /*     current = null; */
-  /*   } */
-  /*   else if ((current.__cid == HashTableNode() ? getNext@HashTableNode(current) : null) == null) { */
-  /*     if (current.__cid == HashTableNode()) { setNext_HashTableNode@HashTableNode(current, newNode); } */
-  /*     else { 0; }; */
-  /*     self.size_HashTable++; */
-  /*     current = null; */
-  /*   } */
-  /*   else { */
-  /*     current = (current.__cid == HashTableNode() ? getNext@HashTableNode(current) : null); */
-  /*   } */
-  /* } */
+  while (get_obj@ArrayList(current) != null) {
+    if (equals_Object@Object(getKey@HashTableNode(get_obj@ArrayList(current)), key)) {
+      setValue_V@HashTableNode(get_obj@ArrayList(current), value);
+      return;
+    }
+    else if (getNext@HashTableNode(get_obj@ArrayList(current)) == null) {
+      setNext_HashTableNode@HashTableNode(get_obj@ArrayList(current), newNode); 
+      self.size_HashTable++;
+      return;
+    }
+    current = getNext@HashTableNode(get_obj@ArrayList(current)).alist;
+  }
 }
 
 /* Object getNodeWithValue_V(Object self, Object value) { */
@@ -94,7 +86,16 @@ Object put_K_V(Object self, Object key, Object value) {
 /* } */
 
 int getBucketIndex_K(Object self, Object key) {
-  int h = (key.__cid == HashTable() ? hashCode@Object(key) : key.__cid == Integer() ? hashCode@Integer(key) : key.__cid == Number() ? hashCode@Object(key) : key.__cid == ArrayList() ? hashCode@Object(key) : key.__cid == String() ? hashCode@String(key) : key.__cid == HashTableNode() ? hashCode@Object(key) : key.__cid == HashTableTest() ? hashCode@Object(key) : key.__cid == Assert() ? hashCode@Object(key) : key.__cid == Object() ? hashCode@Object(key) : 0);
+  assert key.__cid == Integer();
+  int h = (key.__cid == HashTable() ? hashCode@Object(key) :
+	   key.__cid == Integer() ? hashCode@Integer(key) :
+	   key.__cid == Number() ? hashCode@Object(key) :
+	   key.__cid == ArrayList() ? hashCode@Object(key) :
+	   key.__cid == String() ? hashCode@String(key) :
+	   key.__cid == HashTableNode() ? hashCode@Object(key) :
+	   key.__cid == HashTableTest() ? hashCode@Object(key) :
+	   key.__cid == Assert() ? hashCode@Object(key) :
+	   key.__cid == Object() ? hashCode@Object(key) : 0);
   int c = self.currentCapacity_HashTable - 1;
   int result = 0,  s = 1;
   for (int i = 0; i < 32; i++) {
@@ -147,6 +148,23 @@ int size(Object self) {
 /*   } */
 /* } */
 
-void clear_HashTable(Object self) {
+Array_Object keys(Object self) {
+  Array_Object keys = new Array_Object(length=size@HashTable(self));
+  if (size@HashTable(self) > 0) {
+    int index = 0;
+    /* for (int i = 0; i < size@ArrayList(self.buckets_HashTable); i++) { */ //TODO: Fix this 
+    for (int i = 0; i < 16; i++) {
+      AList current = get@ArrayList(self.buckets_HashTable, i).alist;
+      while (get_obj@ArrayList(current) != null) {
+        keys.A[index] = getKey@HashTableNode(get_obj@ArrayList(current));
+        index++;
+        current = getNext@HashTableNode(get_obj@ArrayList(current)).alist;
+      }
+    }
+  }
+  return keys;
+}
+
+void clear(Object self) {
   resetHashTable@HashTable(self);
 }

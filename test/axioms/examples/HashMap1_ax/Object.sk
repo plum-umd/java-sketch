@@ -49,4 +49,5 @@ struct Object {
   int           capacityGrowth_HashTable;
   AList         buckets_HashTable;
   AList         alist;
+  Object        o;
 }
