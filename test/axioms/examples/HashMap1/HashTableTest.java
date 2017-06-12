@@ -22,12 +22,12 @@ public class HashTableTest {
 	testPutAndGet(xx, yy, zz);
 	// testReplacing(xx, yy, zz);
 	// testKeys(xx, yy);
-	// testValues(xx, yy);
+	testValues(xx, yy);
 	// testContainsValue(xx, yy, zz);
 	// testContainsKey(xx, yy, zz);
-	// testRemoveNonExistent();
-	// testRemove(xx, yy, zz);
-	// testClear(xx, yy);
+	// testRemoveNonExistent(xx);
+	testRemove(xx, yy, zz);
+	testClear(xx, yy);
 	// assume x >= 16 && x < 0;
 	// testSize(x, y);
     }
@@ -43,7 +43,7 @@ public class HashTableTest {
     public void testPutAndGet(Integer x, Integer y, Integer z) {
         classUnderTest16.put(x, y);
         classUnderTest16.put(y, x);
-        classUnderTest16.put(z, x);
+        // classUnderTest16.put(z, x);
         Assert.assertEquals(classUnderTest16.get(x), y);
         Assert.assertEquals(classUnderTest16.get(y), x);
         // Assert.assertEquals(classUnderTest16.get(z), x);
