@@ -7,7 +7,7 @@ Object HashTableTest_HashTableTest(Object self) {
 harness void mn_int_int_int() {
   Object self = Object_Object(new Object(__cid=Object()));
   setUp@HashTableTest(self);
-  Object xx = Integer_Integer_int(new Object(__cid=Integer()), 15);
+  Object xx = Integer_Integer_int(new Object(__cid=Integer()), 0);
   Object yy = Integer_Integer_int(new Object(__cid=Integer()), 1);
   Object zz = Integer_Integer_int(new Object(__cid=Integer()), 2);
   
@@ -46,8 +46,8 @@ void testKeys_Integer_Integer(Object self, Object x, Object y) {
   put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y);
   Object k = keys@HashTable(self.classUnderTest_HashTableTest).A[0];
   assertTrue_boolean@Assert(equals_Object@Object(k, x));
-  /* Array_Object keys = keys@HashTable(self.classUnderTest16_HashTableTest); */
-  /* assertTrue_boolean@Assert(keys.length == 1); */
+  Array_Object keys = keys@HashTable(self.classUnderTest_HashTableTest);
+  assertTrue_boolean@Assert(keys.length == 1);
 }
 
 void testClear_Integer_Integer(Object self, Object x, Object y) {
