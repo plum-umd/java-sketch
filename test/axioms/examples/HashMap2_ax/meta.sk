@@ -1,0 +1,15 @@
+package meta;
+
+// distinct class IDs
+int ArrayList()  { return 9; }
+int Assert()     { return 6; }
+int Bucketing()  { return 3; }
+int HashTable()  { return 4; }
+int Integer()    { return 7; }
+int Number()     { return 8; }
+int Object()     { return 1; }
+int Pair()       { return 5; }
+int String()     { return 10; }
+int test()       { return 2; }
+
+// Uninterpreted functions

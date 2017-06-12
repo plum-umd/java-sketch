@@ -1,0 +1,113 @@
+package test;
+
+Object test_test(Object self) {
+    return self;
+}
+
+bit testBucketing() {
+  bit ok = true;
+  Object ht1 = Bucketing_Bucketing(new Object(__cid=Bucketing()));
+  Object i0 = Integer_Integer_int(new Object(__cid=Integer()), 1);
+  Object i1 = Integer_Integer_int(new Object(__cid=Integer()), 11);
+  Object i2 = Integer_Integer_int(new Object(__cid=Integer()), 21);
+  Object i3 = Integer_Integer_int(new Object(__cid=Integer()), 31);
+  Object i4 = Integer_Integer_int(new Object(__cid=Integer()), 41);
+  Object i5 = Integer_Integer_int(new Object(__cid=Integer()), 51);
+  Object i6 = Integer_Integer_int(new Object(__cid=Integer()), 61);
+  Object i7 = Integer_Integer_int(new Object(__cid=Integer()), 71);
+  Object i8 = Integer_Integer_int(new Object(__cid=Integer()), 81);
+  Object i9 = Integer_Integer_int(new Object(__cid=Integer()), 91);
+  Object i10 = Integer_Integer_int(new Object(__cid=Integer()), 101);
+  Object i11 = Integer_Integer_int(new Object(__cid=Integer()), 111);
+  Object i12 = Integer_Integer_int(new Object(__cid=Integer()), 121);
+  Object i20 = Integer_Integer_int(new Object(__cid=Integer()), 100);
+  Object i21 = Integer_Integer_int(new Object(__cid=Integer()), 102);
+  Object i22 = Integer_Integer_int(new Object(__cid=Integer()), 103);
+  Object i23 = Integer_Integer_int(new Object(__cid=Integer()), 104);
+  Object i24 = Integer_Integer_int(new Object(__cid=Integer()), 105);
+  Object i25 = Integer_Integer_int(new Object(__cid=Integer()), 106);
+  Object i26 = Integer_Integer_int(new Object(__cid=Integer()), 107);
+  Object i27 = Integer_Integer_int(new Object(__cid=Integer()), 108);
+  Object i28 = Integer_Integer_int(new Object(__cid=Integer()), 109);
+  Object s0 = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="0"), 0, 1);
+  Object s1 = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="1"), 0, 1);
+  Object s2 = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="2"), 0, 1);
+  Object s3 = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="3"), 0, 1);
+  Object s4 = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="4"), 0, 1);
+  Object s5 = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="5"), 0, 1);
+  Object s6 = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="6"), 0, 1);
+  Object s7 = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="7"), 0, 1);
+  Object s8 = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="8"), 0, 1);
+  Object s9 = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="9"), 0, 1);
+  Object s10 = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=2+1, A="10"), 0, 2);
+  Object s11 = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=2+1, A="11"), 0, 2);
+  Object s12 = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=2+1, A="12"), 0, 2);
+  if (ht1.__cid == Bucketing()) { put_K_V@Bucketing(ht1, i1, s1); }
+  else { 0; };
+  if (ht1.__cid == Bucketing()) { put_K_V@Bucketing(ht1, i2, s2); }
+  else { 0; };
+  if (ht1.__cid == Bucketing()) { put_K_V@Bucketing(ht1, i3, s3); }
+  else { 0; };
+  if (ht1.__cid == Bucketing()) { put_K_V@Bucketing(ht1, i4, s4); }
+  else { 0; };
+  if (ht1.__cid == Bucketing()) { put_K_V@Bucketing(ht1, i5, s5); }
+  else { 0; };
+  if (ht1.__cid == Bucketing()) { put_K_V@Bucketing(ht1, i6, s6); }
+  else { 0; };
+  if (ht1.__cid == Bucketing()) { put_K_V@Bucketing(ht1, i7, s7); }
+  else { 0; };
+  if (ht1.__cid == Bucketing()) { put_K_V@Bucketing(ht1, i8, s8); }
+  else { 0; };
+  if (ht1.__cid == Bucketing()) { put_K_V@Bucketing(ht1, i9, s9); }
+  else { 0; };
+  if (ht1.__cid == Bucketing()) { put_K_V@Bucketing(ht1, i10, s10); }
+  else { 0; };
+  if (ht1.__cid == Bucketing()) { put_K_V@Bucketing(ht1, i11, s11); }
+  else { 0; };
+  if (ht1.__cid == Bucketing()) { put_K_V@Bucketing(ht1, i12, s12); }
+  else { 0; };
+  if (ht1.__cid == Bucketing()) { put_K_V@Bucketing(ht1, i20, s1); }
+  else { 0; };
+  if (ht1.__cid == Bucketing()) { put_K_V@Bucketing(ht1, i21, s2); }
+  else { 0; };
+  if (ht1.__cid == Bucketing()) { put_K_V@Bucketing(ht1, i22, s3); }
+  else { 0; };
+  if (ht1.__cid == Bucketing()) { put_K_V@Bucketing(ht1, i23, s4); }
+  else { 0; };
+  if (ht1.__cid == Bucketing()) { put_K_V@Bucketing(ht1, i24, s5); }
+  else { 0; };
+  if (ht1.__cid == Bucketing()) { put_K_V@Bucketing(ht1, i25, s6); }
+  else { 0; };
+  if (ht1.__cid == Bucketing()) { put_K_V@Bucketing(ht1, i26, s7); }
+  else { 0; };
+  if (ht1.__cid == Bucketing()) { put_K_V@Bucketing(ht1, i27, s8); }
+  else { 0; };
+  if (ht1.__cid == Bucketing()) { put_K_V@Bucketing(ht1, i28, s9); }
+  else { 0; };
+  if (ht1.__cid == Bucketing()) { put_K_V@Bucketing(ht1, i28, s9); }
+  else { 0; };
+  Object gs1 = (ht1.__cid == Bucketing() ? get_K@Bucketing(ht1, i1) : null);
+  Object gs2 = (ht1.__cid == Bucketing() ? get_K@Bucketing(ht1, i2) : null);
+  Object gs3 = (ht1.__cid == Bucketing() ? get_K@Bucketing(ht1, i3) : null);
+  Object gs4 = (ht1.__cid == Bucketing() ? get_K@Bucketing(ht1, i4) : null);
+  Object gs5 = (ht1.__cid == Bucketing() ? get_K@Bucketing(ht1, i5) : null);
+  Object gs6 = (ht1.__cid == Bucketing() ? get_K@Bucketing(ht1, i6) : null);
+  Object gs7 = (ht1.__cid == Bucketing() ? get_K@Bucketing(ht1, i7) : null);
+  Object gs8 = (ht1.__cid == Bucketing() ? get_K@Bucketing(ht1, i8) : null);
+  Object gs9 = (ht1.__cid == Bucketing() ? get_K@Bucketing(ht1, i9) : null);
+  Object gs10 = (ht1.__cid == Bucketing() ? get_K@Bucketing(ht1, i10) : null);
+  Object gs11 = (ht1.__cid == Bucketing() ? get_K@Bucketing(ht1, i11) : null);
+  Object gs12 = (ht1.__cid == Bucketing() ? get_K@Bucketing(ht1, i12) : null);
+  ok = (gs1.__cid == String() ? equals_Object@String(gs1, s1) : 0) && (gs2.__cid == String() ? equals_Object@String(gs2, s2) : 0) && (gs3.__cid == String() ? equals_Object@String(gs3, s3) : 0);
+  ok = ok && (gs4.__cid == String() ? equals_Object@String(gs4, s4) : 0) && (gs5.__cid == String() ? equals_Object@String(gs5, s5) : 0) && (gs6.__cid == String() ? equals_Object@String(gs6, s6) : 0);
+  ok = ok && (gs7.__cid == String() ? equals_Object@String(gs7, s7) : 0) && (gs8.__cid == String() ? equals_Object@String(gs8, s8) : 0) && (gs9.__cid == String() ? equals_Object@String(gs9, s9) : 0);
+  ok = ok && (gs10.__cid == String() ? equals_Object@String(gs10, s10) : 0) && (gs11.__cid == String() ? equals_Object@String(gs11, s11) : 0) && (gs12.__cid == String() ? equals_Object@String(gs12, s12) : 0);
+  assertTrue_boolean@Assert(ok);
+  return ok;
+}
+
+harness void main() {
+  Object self = Object_Object(new Object(__cid=Object()));
+  assert testBucketing();
+}
+
