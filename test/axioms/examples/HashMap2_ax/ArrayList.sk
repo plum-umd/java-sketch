@@ -1,0 +1,165 @@
+package ArrayList;
+
+adt A {
+  List          { }
+  Obj		{ Object o; }
+  Num		{ int i; }
+  Add		{ A l; A v; }
+  Get		{ A l; int i; }
+  Set		{ A l; int i; A v; }
+  Remove	{ A l; int i; }
+  Size		{ A l; }
+  Error       	{ }
+}
+
+Object ArrayList_ArrayList(Object self) {
+   return arrayList();
+}
+
+bit add_E(Object self, Object e) {
+   self = add(self.a, new Obj(o=e)); 
+   return true;
+}
+
+Object get_int(Object self, int index) {
+   return get(self.a, index);
+}
+
+Object remove_int(Object self, int index) {
+   return remove(self.a, index);
+}
+
+int size(Object self) {
+   return intValue@Integer(size_2(self.a));
+}
+
+Object object() {
+   return new Object(__cid = Object(), a=new Obj(o=new Object(__cid = Object())));
+}
+
+Object num(int i) {
+   return new Object(__cid = Integer(), a=new Num(i=i));
+}
+
+Object arrayList() {
+   return new Object(__cid = ArrayList(), a=new List());
+}
+
+Object get(A l, int i) {
+   return new Object(__cid = Object(), a=new Get(l=l, i=i));
+}
+
+Object add(A l, A v) {
+   return new Object(__cid = ArrayList(), a=new Add(l=l, v=v));
+}
+
+Object set(A l, int i, A v) {
+   return new Object(__cid = ArrayList(), a=new Set(l=l, i=i, v=v));
+}
+
+Object remove(A l, int i) {
+   return new Object(__cid = ArrayList(), a=new Remove(l=l, i=i));
+}
+
+Object size_2(A l) {
+   return new Object(__cid = Integer(), a=new Size(l=l));
+}
+
+A size_xform(A a, int size) {
+  switch (a) {
+     case List:         return new Num(i=size); 
+     case Obj:		return new Error(); 
+     case Num:		return new Error(); 
+     case Add:		return size_xform(a.l, size+1); 
+     case Get:		return new Error();
+     case Set:		return size_xform(a.l, size+1); 
+     case Remove:	return size_xform(a.l, size-1); 
+     case Size:		return new Error(); 
+     case Error:       	return a; 
+  }
+}
+
+A get_xform(A a, int index) {
+  switch (a) {
+     case List:         return new Num(i=-1); 
+     case Obj:		return new Error(); 
+     case Num:		return new Error(); 
+     case Add: {
+        A inner = get_xform(a.l, index);
+	switch(inner) {
+           case List:           return new Error(); 
+     	   case Obj:		return inner;
+     	   case Num: {
+	      int this_index = inner.i + 1;
+	      if (this_index == index) {
+	         return a.v;
+	      } else {
+	         return new Num(i=this_index);
+	      }
+	   }		
+     	   case Add:		return new Error();
+     	   case Get:		return new Error();
+     	   case Set:		return new Error();
+     	   case Remove:		return new Error();
+     	   case Size:		return new Error();
+     	   case Error:       	return inner;
+	}
+     } 
+     case Get: 		return new Error();
+     case Set: {
+        if (a.i > index) {
+	   return get_xform(a.l, index);
+	} else if (a.i == index) {
+	   return a.v;
+	} else {
+	   A x = get_xform(a.l, index-1);
+	   switch (x) {
+              case List:        return new Error(); 
+     	      case Obj:		return x;
+     	      case Num: 	return new Num(i=x.i+1);
+     	      case Add:		return new Error();
+     	      case Get:		return new Error();
+     	      case Set:		return new Error();
+     	      case Remove:	return new Error();
+     	      case Size:	return new Error();
+     	      case Error:       return x;
+	   }
+	}
+     }
+     case Remove: {
+        if (a.i > index) {
+	   return get_xform(a.l, index);
+	} else {
+	   A x = get_xform(a.l, index+1);
+	   switch (x) {
+              case List:        return new Error(); 
+     	      case Obj:		return x;
+     	      case Num: 	return new Num(i=x.i-1);
+     	      case Add:		return new Error();
+     	      case Get:		return new Error();
+     	      case Set:		return new Error();
+     	      case Remove:	return new Error();
+     	      case Size:	return new Error();
+     	      case Error:       return x;
+	   }
+	}
+     }  
+     case Size:		return new Error(); 
+     case Error:       	return a; 
+  }
+}
+
+A xform(A a) {
+  switch (a) {
+     case List:         return a; 
+     case Obj:		return a; 
+     case Num:		return a; 
+     case Add:		return a; 
+     case Get:		return get_xform(a.l, a.i); 
+     case Set:		return a; 
+     case Remove:	return a; 
+     case Size:		return size_xform(a.l, 0); 
+     case Error:       	return a; 
+  }
+}
+
