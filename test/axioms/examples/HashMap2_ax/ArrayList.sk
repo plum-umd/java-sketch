@@ -12,12 +12,27 @@ adt A {
   Error       	{ }
 }
 
+Object objectify (A a) {
+  switch (a) {
+     case List:         return null;
+     case Obj:		return a.o;
+     case Num:		return Integer_Integer_int(new Object(__cid=Integer()), a.i);
+     case Add:		return null;
+     case Get:		return null;
+     case Set:		return null;
+     case Remove:	return null;
+     case Size:		return null;
+     case Error:       	return null;
+  }
+}
+
 Object ArrayList_ArrayList(Object self) {
    return arrayList();
 }
 
 bit add_E(Object self, Object e) {
-   self = add(self.a, new Obj(o=e)); 
+   // self = add(self.a, new Obj(o=e)); 
+   self.a = new Add(l=self.a, v=new Obj(o=e));
    return true;
 }
 
@@ -29,8 +44,9 @@ Object remove_int(Object self, int index) {
    return remove(self.a, index);
 }
 
-int size(Object self) {
-   return intValue@Integer(size_2(self.a));
+Object size(Object self) {
+   //return intValue@Integer(size_2(self.a));
+   return size_2(self.a);
 }
 
 Object object() {
