@@ -25,12 +25,12 @@ public class Bucketing<K, V> implements HashTable<K, V> {
 	// mod 10
 	// 10 bucket
 	public Bucketing() {
-		size = 100;
-		mod = 10;
-		numberOfSlots = 10; // 10;
+		size = 10;
+		mod = 2;
+		numberOfSlots = 2; // 10;
 		bucketHash = new Pair<K,V>[size];
 		overflow = new ArrayList<Pair <K,V>>();
-		sizeBucket = new int[10];
+		sizeBucket = new int[2];
 		numberOfElements = 0;
 	}
 
@@ -42,12 +42,12 @@ public class Bucketing<K, V> implements HashTable<K, V> {
 
 		ArrayList<Pair <K, V>> temp1 = new ArrayList();
 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 2; i++) {
 			for (int j = 0; j < sizeBucket[i]; j++) {
 
 				int index = i * numberOfSlots + j;
 				temp1.add(new Pair(bucketHash[index].key,
-						bucketHash[index].value));
+						   bucketHash[index].value));
 			}
 		}
 		for (int i = 0; i < overflow.size(); i++) {
@@ -127,19 +127,11 @@ public class Bucketing<K, V> implements HashTable<K, V> {
 
 		int s0 = sizeBucket[0];
 		int s1 = sizeBucket[1];
-		int s2 = sizeBucket[2];
-		int s3 = sizeBucket[3];
-		int s4 = sizeBucket[4];
-		int s5 = sizeBucket[5];
-		int s6 = sizeBucket[6];
-		int s7 = sizeBucket[7];
-		int s8 = sizeBucket[8];
-		int s9 = sizeBucket[9];		
 		int o_size = overflow.size();
-		int rand1 = {|numberOfElements, index, integerkey, size, mod, numberOfSlots, s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, integerkey, o_size, ?? |};
-		int rand2 = {|numberOfElements, index, integerkey, size, mod, numberOfSlots, s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, integerkey, o_size, ?? |};
-		int rand3 = {|numberOfElements, index, integerkey, size, mod, numberOfSlots, s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, integerkey, o_size, ?? |};
-		int rand4 = {|numberOfElements, index, integerkey, size, mod, numberOfSlots, s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, integerkey, o_size, ?? |};
+		int rand1 = {|numberOfElements, index, integerkey, size, mod, numberOfSlots, s0, s1, integerkey, o_size, ?? |};
+		int rand2 = {|numberOfElements, index, integerkey, size, mod, numberOfSlots, s0, s1, integerkey, o_size, ?? |};
+		int rand3 = {|numberOfElements, index, integerkey, size, mod, numberOfSlots, s0, s1, integerkey, o_size, ?? |};
+		int rand4 = {|numberOfElements, index, integerkey, size, mod, numberOfSlots, s0, s1, integerkey, o_size, ?? |};
 		V val = null;
 
 		for (int i = rand1; i-sizeBucket[integerkey] < rand2; i++) {
@@ -163,7 +155,7 @@ public class Bucketing<K, V> implements HashTable<K, V> {
 				// if (overflow.get(i).key.equals(key))
 				// 	return overflow.get(i).value;
 				boolean bool = tmp_key.equals(key);
-				if ({| bool, tmp_key == key |})				
+				if ({| bool, tmp_key == key |})	     	
 				// if (tmp_key.equals(key))
 					//return tmp.value;
 					val = tmp.value;
@@ -184,22 +176,14 @@ public class Bucketing<K, V> implements HashTable<K, V> {
 
 		int s0 = sizeBucket[0];
 		int s1 = sizeBucket[1];
-		int s2 = sizeBucket[2];
-		int s3 = sizeBucket[3];
-		int s4 = sizeBucket[4];
-		int s5 = sizeBucket[5];
-		int s6 = sizeBucket[6];
-		int s7 = sizeBucket[7];
-		int s8 = sizeBucket[8];
-		int s9 = sizeBucket[9];		
 		int o_size = overflow.size();
-		int rand1 = {|numberOfElements, index, integerkey, size, mod, numberOfSlots, s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, integerkey, o_size, ?? |};
-		int rand2 = {|numberOfElements, index, integerkey, size, mod, numberOfSlots, s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, integerkey, o_size, ?? |};
-		int rand3 = {|numberOfElements, index, integerkey, size, mod, numberOfSlots, s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, integerkey, o_size, ?? |};
-		int rand4 = {|numberOfElements, index, integerkey, size, mod, numberOfSlots, s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, integerkey, o_size, ?? |};
+		int rand1 = {|numberOfElements, index, integerkey, size, mod, numberOfSlots, s0, s1, integerkey, o_size, ?? |};
+		int rand2 = {|numberOfElements, index, integerkey, size, mod, numberOfSlots, s0, s1, integerkey, o_size, ?? |};
+		int rand3 = {|numberOfElements, index, integerkey, size, mod, numberOfSlots, s0, s1, integerkey, o_size, ?? |};
+		int rand4 = {|numberOfElements, index, integerkey, size, mod, numberOfSlots, s0, s1, integerkey, o_size, ?? |};
 
-		// for (int i = rand1; i-sizeBucket[integerkey] < rand2; i++) {
-		for (int i = index; i < index + sizeBucket[integerkey]; i++) {
+		for (int i = rand1; i-sizeBucket[integerkey] < rand2; i++) {
+		// for (int i = index; i < index + sizeBucket[integerkey]; i++) {
 		    Pair<K,V> tmp = bucketHash[i];
     		    boolean bool = tmp.key.equals(key);
 		    if ({| tmp.key == key, bool |}) {
@@ -216,8 +200,8 @@ public class Bucketing<K, V> implements HashTable<K, V> {
 			sizeBucket[integerkey]--;
 		} 
 		else if (sizeBucket[integerkey] == numberOfSlots) {
-			// for (int i = rand3; i < rand4; i++) {
-			for (int i = 0; i < overflow.size(); i++) {
+			for (int i = rand3; i < rand4; i++) {
+			// for (int i = 0; i < overflow.size(); i++) {
 				Pair<K,V> tmp = overflow.get(i);
 				K tmp_key = tmp.key;
 				// if (overflow.get(i).key.equals(key)) {
@@ -262,7 +246,7 @@ public class Bucketing<K, V> implements HashTable<K, V> {
 	@Override
 	public Iterable<K> keys() {
 		ilterator = new ArrayList();
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 2; i++) {
 			for (int j = 0; j < sizeBucket[i]; j++) {
 				int index = i * numberOfSlots + j;
 				ilterator.add(bucketHash[index].key);
