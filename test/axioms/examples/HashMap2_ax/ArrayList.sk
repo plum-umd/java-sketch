@@ -1,13 +1,13 @@
 package ArrayList;
 
 adt A {
-  List          { }
+  List          { int i;}
   Obj		{ Object o; }
   Num		{ int i; }
-  Add		{ A l; A v; }
+  Add		{ A l; A v; int i;}
   Get		{ A l; int i; }
-  Set		{ A l; int i; A v; }
-  Remove	{ A l; int i; }
+  Set		{ A l; int i; int pi; A v; }
+  Remove	{ A l; int i; int pi; }
   Size		{ A l; }
   Error       	{ }
 }
@@ -32,8 +32,21 @@ Object ArrayList_ArrayList(Object self) {
 
 bit add_E(Object self, Object e) {
    // self = add(self.a, new Obj(o=e)); 
-   self.a = new Add(l=self.a, v=new Obj(o=e));
-   return true;
+  int pi = -1;
+  A l = self.a;
+  switch (l) {
+     case List:         pi = -1;
+     case Obj:		pi = -1;
+     case Num:		pi = -1;
+     case Add:		pi = l.i;
+     case Get:		pi = -1;
+     case Set:		pi = l.pi;
+     case Remove:	pi = l.pi;
+     case Size:		pi = -1;
+     case Error:       	pi = -1;
+  }
+  self.a = new Add(l=self.a, v=new Obj(o=e), i=pi+1);
+  return true;
 }
 
 Object get_int(Object self, int index) {
@@ -58,7 +71,7 @@ Object num(int i) {
 }
 
 Object arrayList() {
-   return new Object(__cid = ArrayList(), a=new List());
+   return new Object(__cid = ArrayList(), a=new List(i=0));
 }
 
 Object get(A l, int i) {
@@ -66,30 +79,66 @@ Object get(A l, int i) {
 }
 
 Object add(A l, A v) {
-   return new Object(__cid = ArrayList(), a=new Add(l=l, v=v));
+  int pi = -1;
+  switch (l) {
+     case List:         pi = -1;
+     case Obj:		pi = -1;
+     case Num:		pi = -1;
+     case Add:		pi = l.i;
+     case Get:		pi = -1;
+     case Set:		pi = l.pi;
+     case Remove:	pi = l.pi;
+     case Size:		pi = -1;
+     case Error:       	pi = -1;
+  }
+  return new Object(__cid = ArrayList(), a=new Add(l=l, v=v, i=pi+1));
 }
 
 Object set(A l, int i, A v) {
-   return new Object(__cid = ArrayList(), a=new Set(l=l, i=i, v=v));
+  int pi = -1;
+  switch (l) {
+     case List:         pi = -1;
+     case Obj:		pi = -1;
+     case Num:		pi = -1;
+     case Add:		pi = l.i;
+     case Get:		pi = -1;
+     case Set:		pi = l.pi;
+     case Remove:	pi = l.pi;
+     case Size:		pi = -1;
+     case Error:       	pi = -1;
+  }
+  return new Object(__cid = ArrayList(), a=new Set(l=l, i=i, pi=pi, v=v));
 }
 
 Object remove(A l, int i) {
-   return new Object(__cid = ArrayList(), a=new Remove(l=l, i=i));
+  int pi = -1;
+  switch (l) {
+     case List:         pi = -1;
+     case Obj:		pi = -1;
+     case Num:		pi = -1;
+     case Add:		pi = l.i;
+     case Get:		pi = -1;
+     case Set:		pi = l.pi;
+     case Remove:	pi = l.pi;
+     case Size:		pi = -1;
+     case Error:       	pi = -1;
+  }
+  return new Object(__cid = ArrayList(), a=new Remove(l=l, i=i, pi=pi));
 }
 
 Object size_2(A l) {
    return new Object(__cid = Integer(), a=new Size(l=l));
 }
 
-A size_xform(A a, int size) {
+A size_xform(A a) {
   switch (a) {
-     case List:         return new Num(i=size); 
+     case List:         return new Num(i=0); 
      case Obj:		return new Error(); 
      case Num:		return new Error(); 
-     case Add:		return size_xform(a.l, size+1); 
+     case Add:		return new Num(i=a.i+1); 
      case Get:		return new Error();
-     case Set:		return size_xform(a.l, size+1); 
-     case Remove:	return size_xform(a.l, size-1); 
+     case Set:		return new Num(i=a.i+1); 
+     case Remove:	return new Num(i=a.i+1); 
      case Size:		return new Error(); 
      case Error:       	return a; 
   }
@@ -101,69 +150,95 @@ A get_xform(A a, int index) {
      case Obj:		return new Error(); 
      case Num:		return new Error(); 
      case Add: {
-        A inner = get_xform(a.l, index);
-	switch(inner) {
-           case List:           return new Error(); 
-     	   case Obj:		return inner;
-     	   case Num: {
-	      int this_index = inner.i + 1;
-	      if (this_index == index) {
-	         return a.v;
-	      } else {
-	         return new Num(i=this_index);
-	      }
-	   }		
-     	   case Add:		return new Error();
-     	   case Get:		return new Error();
-     	   case Set:		return new Error();
-     	   case Remove:		return new Error();
-     	   case Size:		return new Error();
-     	   case Error:       	return inner;
-	}
+       if (a.i == index) { return a.v; }
+       else if (a.i < 0) { return new Error(); }
+       else { return get_xform(a.l, index); }
      } 
      case Get: 		return new Error();
      case Set: {
-        if (a.i > index) {
-	   return get_xform(a.l, index);
-	} else if (a.i == index) {
-	   return a.v;
-	} else {
-	   A x = get_xform(a.l, index-1);
-	   switch (x) {
-              case List:        return new Error(); 
-     	      case Obj:		return x;
-     	      case Num: 	return new Num(i=x.i+1);
-     	      case Add:		return new Error();
-     	      case Get:		return new Error();
-     	      case Set:		return new Error();
-     	      case Remove:	return new Error();
-     	      case Size:	return new Error();
-     	      case Error:       return x;
-	   }
-	}
+       if (a.i == index) { return a.v; }
+       else if (a.i < 0) { return new Error(); }
+       else { return get_xform(a.l, index); }     
      }
      case Remove: {
-        if (a.i > index) {
-	   return get_xform(a.l, index);
-	} else {
-	   A x = get_xform(a.l, index+1);
-	   switch (x) {
-              case List:        return new Error(); 
-     	      case Obj:		return x;
-     	      case Num: 	return new Num(i=x.i-1);
-     	      case Add:		return new Error();
-     	      case Get:		return new Error();
-     	      case Set:		return new Error();
-     	      case Remove:	return new Error();
-     	      case Size:	return new Error();
-     	      case Error:       return x;
-	   }
-	}
+       if (a.i <= index) { return get_xform(a.l, index-1); }
+       else if (a.i < 0) { return new Error(); }
+       else { return get_xform(a.l, index); }     
      }  
      case Size:		return new Error(); 
      case Error:       	return a; 
   }
 }
+
+// A get_xform(A a, int index) {
+//   switch (a) {
+//      case List:         return new Num(i=-1); 
+//      case Obj:		return new Error(); 
+//      case Num:		return new Error(); 
+//      case Add: {
+//         A inner = get_xform(a.l, index);
+// 	switch(inner) {
+//            case List:           return new Error(); 
+//      	   case Obj:		return inner;
+//      	   case Num: {
+// 	      int this_index = inner.i + 1;
+// 	      if (this_index == index) {
+// 	         return a.v;
+// 	      } else {
+// 	         return new Num(i=this_index);
+// 	      }
+// 	   }		
+//      	   case Add:		return new Error();
+//      	   case Get:		return new Error();
+//      	   case Set:		return new Error();
+//      	   case Remove:		return new Error();
+//      	   case Size:		return new Error();
+//      	   case Error:       	return inner;
+// 	}
+//      } 
+//      case Get: 		return new Error();
+//      case Set: {
+//         if (a.i > index) {
+// 	   return get_xform(a.l, index);
+// 	} else if (a.i == index) {
+// 	   return a.v;
+// 	} else {
+// 	   A x = get_xform(a.l, index-1);
+// 	   switch (x) {
+//               case List:        return new Error(); 
+//      	      case Obj:		return x;
+//      	      case Num: 	return new Num(i=x.i+1);
+//      	      case Add:		return new Error();
+//      	      case Get:		return new Error();
+//      	      case Set:		return new Error();
+//      	      case Remove:	return new Error();
+//      	      case Size:	return new Error();
+//      	      case Error:       return x;
+// 	   }
+// 	}
+//      }
+//      case Remove: {
+//         if (a.i > index) {
+// 	   return get_xform(a.l, index);
+// 	} else {
+// 	   A x = get_xform(a.l, index+1);
+// 	   switch (x) {
+//               case List:        return new Error(); 
+//      	      case Obj:		return x;
+//      	      case Num: 	return new Num(i=x.i-1);
+//      	      case Add:		return new Error();
+//      	      case Get:		return new Error();
+//      	      case Set:		return new Error();
+//      	      case Remove:	return new Error();
+//      	      case Size:	return new Error();
+//      	      case Error:       return x;
+// 	   }
+// 	}
+//      }  
+//      case Size:		return new Error(); 
+//      case Error:       	return a; 
+//   }
+// }
 
 A xform(A a) {
   switch (a) {
@@ -174,7 +249,7 @@ A xform(A a) {
      case Get:		return get_xform(a.l, a.i); 
      case Set:		return a; 
      case Remove:	return a; 
-     case Size:		return size_xform(a.l, 0); 
+     case Size:		return size_xform(a.l); 
      case Error:       	return a; 
   }
 }

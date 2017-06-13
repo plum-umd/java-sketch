@@ -2,11 +2,11 @@ package Bucketing;
 
 Object Bucketing_Bucketing(Object self) {
   self.size_Bucketing = 10; // 99;
-  self.mod_Bucketing = 3;
+  self.mod_Bucketing = 2;
   self.numberOfSlots_Bucketing = 2;
   self.bucketHash_Bucketing = new Array_Object(length=self.size_Bucketing);
   self.overflow_Bucketing = ArrayList_ArrayList(new Object(__cid=ArrayList()));
-  self.sizeBucket_Bucketing = new Array_int(length=3);
+  self.sizeBucket_Bucketing = new Array_int(length=2);
   self.numberOfElements_Bucketing = 0;
   return self;
 }
@@ -17,7 +17,7 @@ int sizeOfArray(Object self) {
 
 void rehashng(Object self) {
   Object temp1 = ArrayList_ArrayList(new Object(__cid=ArrayList()));
-  for (int i = 0; i < 3 /*10*/; i++) {
+  for (int i = 0; i < 2 /*10*/; i++) {
     for (int j = 0; j < self.sizeBucket_Bucketing.A[i]; j++) {
       int index = i * self.numberOfSlots_Bucketing + j;
       (temp1.__cid == ArrayList() ? add_E@ArrayList(temp1, Pair_Pair_K_V(new Object(__cid=Pair()), self.bucketHash_Bucketing.A[index].key_Pair, self.bucketHash_Bucketing.A[index].value_Pair)) : 0);
@@ -80,8 +80,7 @@ Object get_K(Object self, Object key) {
   }
   self.index_Bucketing = self.numberOfSlots_Bucketing * self.integerkey_Bucketing;
   int s0 = self.sizeBucket_Bucketing.A[0];
-  int s1 = self.sizeBucket_Bucketing.A[1];
-  int s2 = self.sizeBucket_Bucketing.A[2];
+  int s1 = self.sizeBucket_Bucketing.A[1];	
   Object o_size_tmp = (self.overflow_Bucketing.__cid == ArrayList() ? size@ArrayList(self.overflow_Bucketing) : null);
   A tmp_size1 = xform(o_size_tmp.a);
   Object tmp_size2 = objectify(tmp_size1);
@@ -120,7 +119,6 @@ void delete_K(Object self, Object key) {
   bit flag = false;
   int s0 = self.sizeBucket_Bucketing.A[0];
   int s1 = self.sizeBucket_Bucketing.A[1];
-  int s2 = self.sizeBucket_Bucketing.A[2];
   Object o_size_tmp = (self.overflow_Bucketing.__cid == ArrayList() ? size@ArrayList(self.overflow_Bucketing) : null);
   A tmp_size1 = xform(o_size_tmp.a);
   Object tmp_size2 = objectify(tmp_size1);
@@ -176,7 +174,7 @@ int size2(Object self) {
 
 Object keys(Object self) {
   self.ilterator_Bucketing = ArrayList_ArrayList(new Object(__cid=ArrayList()));
-  for (int i = 0; i < 3 /*10*/; i++) {
+  for (int i = 0; i < 2 /*10*/; i++) {
     for (int j = 0; j < self.sizeBucket_Bucketing.A[i]; j++) {
       int index = i * self.numberOfSlots_Bucketing + j;
       (self.ilterator_Bucketing.__cid == ArrayList() ? add_E@ArrayList(self.ilterator_Bucketing, self.bucketHash_Bucketing.A[index].key_Pair) : 0);
