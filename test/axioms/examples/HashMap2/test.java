@@ -51,30 +51,64 @@ public class test {
 		Integer i2 = new Integer(6);
 		Integer i3 = new Integer(8);		
 		Integer i4 = new Integer(10);
+		Integer i5 = new Integer(1);		
+		Integer i6 = new Integer(3);		
+		Integer i7 = new Integer(5);		
 
 		String s0 = "0";
 		String s1 = "1";
 		String s2 = "2";
 		String s3 = "3";
 		String s4 = "4";
+		String s5 = "5";		
+		String s6 = "6";		
+		String s7 = "7";		
+		String s4_2= "4_2";		
 
 		ht1.put(i0, s0);
-		ht1.put(i1, s1);		
-		ht1.put(i2, s2);
-		ht1.put(i3, s3);		
-		ht1.put(i4, s4);
-		
 		String gs0 = ht1.get(i0);
-		String gs1 = ht1.get(i1);		
-		String gs2 = ht1.get(i2);		
-		String gs3 = ht1.get(i3);				
-		String gs4 = ht1.get(i4);
-
 		Assert.assertTrue(gs0.equals(s0));
+
+		ht1.put(i1, s1);
+		String gs1 = ht1.get(i1);		
 		Assert.assertTrue(gs1.equals(s1));
+		
+		ht1.put(i2, s2);
+		String gs2 = ht1.get(i2);		
 		Assert.assertTrue(gs2.equals(s2));
+
+		ht1.put(i3, s3);		
+		String gs3 = ht1.get(i3);
 		Assert.assertTrue(gs3.equals(s3));
+		
+		ht1.put(i4, s4);
+		String gs4 = ht1.get(i4);		
 		Assert.assertTrue(gs4.equals(s4));		
+
+		ht1.put(i4, s4_2);		
+		gs4 = ht1.get(i4);
+		Assert.assertTrue(gs4.equals(s4_2));
+
+		ht1.put(i5, s5);
+		ht1.put(i6, s6);
+		// ht1.put(i7, s7);
+
+		gs0 = ht1.get(i0);
+		Assert.assertTrue(gs0.equals(s0));
+		gs1 = ht1.get(i1);
+		Assert.assertTrue(gs1.equals(s1));
+		gs2 = ht1.get(i2);
+		Assert.assertTrue(gs2.equals(s2));
+		gs3 = ht1.get(i3);
+		Assert.assertTrue(gs3.equals(s3));
+		gs4 = ht1.get(i4);
+		Assert.assertTrue(gs4.equals(s4_2));
+		String gs5 = ht1.get(i5);
+		Assert.assertTrue(gs5.equals(s5));
+		String gs6 = ht1.get(i6);
+		Assert.assertTrue(gs6.equals(s6));
+		// String gs7 = ht1.get(i7);
+		// Assert.assertTrue(gs7.equals(s7));
 		
 		// for (int i=0;i<10;i++) {
 		// 	// String s = String.valueOf(i*100);
