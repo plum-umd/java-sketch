@@ -6,7 +6,7 @@ adt AList {
   Get		{ AList l; int i; }
   Set		{ AList l; int i; AList v; }
   Add		{ AList l; AList v; }
-  Null		{ }
+  Size		{ AList l; int sz; }
   Error         { int code; }
 }
 
@@ -15,7 +15,6 @@ int Obj_err()   { return 1; }
 int Get_err()   { return 2; }
 int Set_err()   { return 3; }
 int Add_err()   { return 4; }
-int Null_err()  { return 5; }
 int Error_err() { return 6; }
 
 Object arrayList(Object o) {
@@ -39,31 +38,52 @@ Object add(AList l, Object v) {
   return new Object(__cid = ArrayList(), alist=new Set(l=l, v=new Obj(o=v)));
 }
 
+Object size(AList l, int i) {
+  return new Object(__cid = ArrayList(), alist=new Size(l=l, sz=i));
+}
+
 AList get_xform(AList a, int index) {
+  AList alist = null;
   switch (a) {
-  case List: { return new Error(code=List_err()); }
-  case Obj:  { return new Error(code=Obj_err()); }
-  case Get:  { return new Error(code=Get_err()); }
-  case Set:  {
+  case List:  { return new Error(code=List_err()); }
+  case Obj:   { return new Error(code=Obj_err()); }
+  case Get:   { alist = a.l; }
+  case Set:   {
     if (a.i == index) { return a.v; }
     else if (a.i < 0) { return new Error(); }
-    else { return get_xform(a.l, index); }
-    }
-  case Add:   { return a; }
-  case Null:  { return a; }
+    else { alist = a.l; }
+  }
+  case Add:   { alist = a.l; }
+  case Size:  { alist = a.l; }
   case Error: { return a; }
   }
+  return get_xform(alist, index);
+}
+
+
+AList size_xform(AList a) {
+  AList alist = null;
+  switch (a) {
+  case List:  { return new Size(sz=0); }
+  case Obj:   { return new Error(code=Obj_err()); }
+  case Get:   { alist = a.l; }
+  case Set:   { alist = a.l; }
+  case Add:   { alist = a.l; }
+  case Size:  { return a; }
+  case Error: { return a; }
+  }
+  return size_xform(alist);
 }
 
 AList xform(AList a) {
   switch (a) {
-     case List:         return a; 
-     case Obj:          return a; 
-     case Get:		return get_xform(a.l, a.i); 
-     case Set:		return a; 
-     case Add:		return a; 
-     case Null:		return a; 
-     case Error:       	return a; 
+  case List:         return a; 
+  case Obj:          return a; 
+  case Get:          return get_xform(a.l, a.i); 
+  case Set:	     return a; 
+  case Add:	     return a; 
+  case Size:	     return size_xform(a.l); 
+  case Error:        return a; 
   }
 }
 
@@ -77,7 +97,7 @@ Object get_obj(AList alist) {
   case Get:   { current = null; }
   case Set:   { current = null; }
   case Add:   { current = null; }
-  case Null:  { current = null; }
+  case Size:  { current = null; }
   case Error: { current = null; }
   }
   return current;
