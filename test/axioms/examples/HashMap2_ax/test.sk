@@ -30,14 +30,14 @@ bit testBucketing() {
   Object gs0 = (ht1.__cid == Bucketing() ? get_K@Bucketing(ht1, i0) : null);
   Object gs1 = (ht1.__cid == Bucketing() ? get_K@Bucketing(ht1, i1) : null);
   Object gs2 = (ht1.__cid == Bucketing() ? get_K@Bucketing(ht1, i2) : null);
-  Object gs3 = (ht1.__cid == Bucketing() ? get_K@Bucketing(ht1, i3) : null);
-  Object gs4 = (ht1.__cid == Bucketing() ? get_K@Bucketing(ht1, i4) : null);
+  // Object gs3 = (ht1.__cid == Bucketing() ? get_K@Bucketing(ht1, i3) : null);
+  // Object gs4 = (ht1.__cid == Bucketing() ? get_K@Bucketing(ht1, i4) : null);
 
   assertTrue_boolean@Assert(equals_Object@String(gs0,s0));
   assertTrue_boolean@Assert(equals_Object@String(gs1,s1));
   assertTrue_boolean@Assert(equals_Object@String(gs2,s2));
-  assertTrue_boolean@Assert(equals_Object@String(gs3,s3));
-  assertTrue_boolean@Assert(equals_Object@String(gs4,s4));  
+  // assertTrue_boolean@Assert(equals_Object@String(gs3,s3));
+  // assertTrue_boolean@Assert(equals_Object@String(gs4,s4));  
 
   // assertTrue_boolean@Assert(ok);
   return ok;

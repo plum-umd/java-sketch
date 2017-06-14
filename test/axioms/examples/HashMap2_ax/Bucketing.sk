@@ -89,14 +89,15 @@ Object get_K(Object self, Object key) {
     self.integerkey_Bucketing = self.integerkey_Bucketing * -1;
   }
   self.index_Bucketing = self.numberOfSlots_Bucketing * self.integerkey_Bucketing;
-  // int i_gen1 = getInt2@Bucketing(self);
-  // int i_gen2 = getInt2@Bucketing(self);
-  // int i_gen4 = getInt2@Bucketing(self);
+
+  int i_gen1 = getInt2@Bucketing(self);
+  int i_gen2 = getInt2@Bucketing(self);
+  int i_gen4 = getInt2@Bucketing(self);
   // int i_gen5 = getInt2@Bucketing(self);
   // int i_gen6 = getInt2@Bucketing(self);
   Object val = null;
-  for (int i = self.index_Bucketing; i < self.index_Bucketing + self.sizeBucket_Bucketing.A[self.integerkey_Bucketing]; i++) {
-  // for (int i = i_gen1; i < i_gen1 + i_gen2; i++) {
+  // for (int i = self.index_Bucketing; i < self.index_Bucketing + self.sizeBucket_Bucketing.A[self.integerkey_Bucketing]; i++) {
+  for (int i = i_gen1; i < i_gen1 + i_gen2; i++) {
     Object tmp = self.bucketHash_Bucketing.A[i];
     Object tmp_key = tmp.key_Pair;
     bit bool = (tmp_key.__cid == Pair() ? equals_Object@Object(tmp_key, key) : tmp_key.__cid == test() ? equals_Object@Object(tmp_key, key) : tmp_key.__cid == Integer() ? equals_Object@Integer(tmp_key, key) : tmp_key.__cid == Bucketing() ? equals_Object@Object(tmp_key, key) : tmp_key.__cid == Assert() ? equals_Object@Object(tmp_key, key) : tmp_key.__cid == ArrayList() ? equals_Object@Object(tmp_key, key) : tmp_key.__cid == String() ? equals_Object@String(tmp_key, key) : tmp_key.__cid == Number() ? equals_Object@Object(tmp_key, key) : tmp_key.__cid == Object() ? equals_Object@Object(tmp_key, key) : 0);
@@ -108,8 +109,8 @@ Object get_K(Object self, Object key) {
     Object tmp_size2 = objectify(tmp_size1);
     int o_size = intValue@Integer(tmp_size2);
 
-    for (int i = 0; i < o_size; i++) {
-    // for (int i = ??; i < i_gen4; i++) {
+    // for (int i = 0; i < o_size; i++) {
+    for (int i = ??; i < i_gen4; i++) {
       Object tmp_pre = (self.overflow_Bucketing.__cid == ArrayList() ? get_int@ArrayList(self.overflow_Bucketing, i) : null);
       A tmp_xform = xform(tmp_pre.a);
       Object tmp = objectify(tmp_xform);      
@@ -128,6 +129,7 @@ void delete_K(Object self, Object key) {
   }
   self.index_Bucketing = self.numberOfSlots_Bucketing * self.integerkey_Bucketing;
   bit flag = false;
+
   // int i_gen1 = getInt2@Bucketing(self);
   // int i_gen2 = getInt2@Bucketing(self);
   // int i_gen4 = getInt2@Bucketing(self);
