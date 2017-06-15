@@ -14,29 +14,29 @@ public class HashTableTest {
     private HashTable<Object, Object> classUnderTest32;
 
     harness void mn(int x, int y, int z) {
+	assume x != y;
+	assume y != z;
 	Integer xx = new Integer(x);
 	Integer yy = new Integer(y);
 	Integer zz = new Integer(z);
 	setUp();
-	// testGetEmpty();
+	testGetEmpty();
 	testPutAndGet(xx, yy, zz);
-	// testReplacing(xx, yy, zz);
-	// testKeys(xx, yy);
+	testReplacing(xx, yy, zz);
+	testKeys(xx, yy);
 	testValues(xx, yy);
-	// testContainsValue(xx, yy, zz);
-	// testContainsKey(xx, yy, zz);
-	// testRemoveNonExistent(xx);
+	testContainsValue(xx, yy, zz);
+	testContainsKey(xx, yy, zz);
+	testRemoveNonExistent(xx);
 	testRemove(xx, yy, zz);
 	testClear(xx, yy);
-	// assume x >= 16 && x < 0;
-	// testSize(x, y);
+	if (x >= 16 && x < 0) { testSize(x, y); }
     }
     public void setUp() {
         classUnderTest16 = new HashTable<>(16);
     }
 
     public void testGetEmpty() {
-	Object o = classUnderTest16.get(null);
         Assert.assertNull(classUnderTest16.get(null));
     }
 
@@ -100,6 +100,7 @@ public class HashTableTest {
     }
 
     public void testSize(int x, int y) {
+	assume x >= 16 && x < 0;
 	// had to reduce loop size from original (2048)
 	for (int i = 0; i < 16; i++) { classUnderTest16.put(new Integer(i), null); }
         Assert.assertEquals(classUnderTest16.size(), 16);
