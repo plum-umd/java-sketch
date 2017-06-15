@@ -17,9 +17,8 @@ int Set_err()   { return 3; }
 int Add_err()   { return 4; }
 int Error_err() { return 6; }
 
-Object arrayList(Object o) {
-  o.alist = new List();
-  return o;
+Object arraylist(int sz) {
+  return new Object(__cid = ArrayList(), alist=new Size(l=new List(), sz=sz));
 }
 
 Object object(Object o) {
@@ -87,13 +86,13 @@ AList xform(AList a) {
   }
 }
 
-Object get_obj(AList alist) {
+Object get_obj(AList a) {
+  if (a == null) return null;
   Object current;
-  AList current_alist = new List();
-  alist = xform(alist);
-  switch (alist) {
+  a = xform(a);
+  switch (a) {
   case List:  { current = null; }
-  case Obj:   { current = alist.o; }
+  case Obj:   { current = a.o; }
   case Get:   { current = null; }
   case Set:   { current = null; }
   case Add:   { current = null; }
@@ -101,4 +100,20 @@ Object get_obj(AList alist) {
   case Error: { current = null; }
   }
   return current;
+}
+
+int size_int(AList a) {
+  assert a != null;
+  int sz = 0;
+  a = xform(a);
+  switch (a) {
+  case List:  { sz = 0; }
+  case Obj:   { sz = 0; }
+  case Get:   { sz = 0; }
+  case Set:   { sz = 0; }
+  case Add:   { sz = 0; }
+  case Size:  { sz = a.sz; }
+  case Error: { sz = 0; }
+  }
+  return sz;
 }
