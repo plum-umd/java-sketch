@@ -43,10 +43,11 @@ struct Object {
   Array_char    _value_String;
   int           _count_String;
   int           value_Integer;
+  double        maxLoadFactor_HashTable;
+  int           capacityGrowth_HashTable;
+  int           initialCapacity_HashTable;
   int           size_HashTable;
   int           currentCapacity_HashTable;
-  int           initialCapacity_HashTable;
-  int           capacityGrowth_HashTable;
   AList         buckets_HashTable;
   AList         alist;
   Object        o;
