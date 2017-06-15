@@ -14,42 +14,46 @@ public class HashTableTest {
     private HashTable<Object, Object> classUnderTest32;
 
     harness void mn(int x, int y, int z) {
-	assume x != y;
-	assume y != z;
 	Integer xx = new Integer(x);
 	Integer yy = new Integer(y);
 	Integer zz = new Integer(z);
 	setUp();
-	testGetEmpty();
+	// testGetEmpty();
 	testPutAndGet(xx, yy, zz);
-	testReplacing(xx, yy, zz);
-	testKeys(xx, yy);
-	testValues(xx, yy);
-	testContainsValue(xx, yy, zz);
-	testContainsKey(xx, yy, zz);
-	testRemoveNonExistent(xx);
-	testRemove(xx, yy, zz);
-	testClear(xx, yy);
-	if (x >= 16 && x < 0) { testSize(x, y); }
+	// testReplacing(xx, yy, zz);
+	// testKeys(xx, yy);
+	// testValues(xx, yy);
+	// testContainsValue(xx, yy, zz);
+	// testContainsKey(xx, yy, zz);
+	// testRemoveNonExistent(xx, yy);
+	// testRemove(xx, yy, zz);
+	// testClear(xx, yy);
+	// if (x >= 16 && x < 0) { testSize(x, y); }
     }
     public void setUp() {
         classUnderTest16 = new HashTable<>(16);
     }
 
     public void testGetEmpty() {
+        classUnderTest16.clear();
         Assert.assertNull(classUnderTest16.get(null));
     }
 
     public void testPutAndGet(Integer x, Integer y, Integer z) {
+	assume x != y && x != z;
+        classUnderTest16.clear();
+
         classUnderTest16.put(x, y);
-        classUnderTest16.put(y, x);
-        // classUnderTest16.put(z, x);
         Assert.assertEquals(classUnderTest16.get(x), y);
+        classUnderTest16.put(y, x);
+        classUnderTest16.put(z, x);
         Assert.assertEquals(classUnderTest16.get(y), x);
-        // Assert.assertEquals(classUnderTest16.get(z), x);
+        Assert.assertEquals(classUnderTest16.get(z), x);
     }
 
     public void testReplacing(Integer x, Integer y, Integer z) {
+        classUnderTest16.clear();
+
         classUnderTest16.put(x, x);
         Assert.assertEquals(classUnderTest16.get(x), x);
 
@@ -88,12 +92,14 @@ public class HashTableTest {
     //TODO: why the heck is this so slow?! containsValue()????
     public void testContainsValue(Integer x, Integer y, Integer z) {
         classUnderTest16.clear();
+
         classUnderTest16.put(x, y);
 	Assert.assertTrue(classUnderTest16.containsValue(y));
     }
 
     public void testContainsKey(Integer x, Integer y, Integer z) {
         classUnderTest16.clear();
+
         Assert.assertFalse(classUnderTest16.containsKey(x));
         classUnderTest16.put(x, y);
 	Assert.assertTrue(classUnderTest16.containsKey(x));
@@ -101,6 +107,8 @@ public class HashTableTest {
 
     public void testSize(int x, int y) {
 	assume x >= 16 && x < 0;
+        classUnderTest16.clear();
+
 	// had to reduce loop size from original (2048)
 	for (int i = 0; i < 16; i++) { classUnderTest16.put(new Integer(i), null); }
         Assert.assertEquals(classUnderTest16.size(), 16);
@@ -108,7 +116,10 @@ public class HashTableTest {
         Assert.assertEquals(classUnderTest16.size(), 17);
     }
 
-    public void testRemoveNonExistent(Integer x) {
+    public void testRemoveNonExistent(Integer x, Integer y) {
+        classUnderTest16.clear();
+
+        classUnderTest16.put(x, y);
         int size = classUnderTest16.size();
         classUnderTest16.remove(x);
         Assert.assertEquals(classUnderTest16.size(), size);

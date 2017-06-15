@@ -7,8 +7,6 @@ Object HashTableTest_HashTableTest(Object self) {
 }
 
 harness void mn_int_int_int(int x, int y, int z) {
-  assume x != y;
-  assume y != z;
   Object self = Object_Object(new Object(__cid=Object()));
   Object xx = Integer_Integer_int(new Object(__cid=Integer()), x);
   Object yy = Integer_Integer_int(new Object(__cid=Integer()), y);
@@ -40,10 +38,12 @@ void testPutAndGet_Integer_Integer_Integer(Object self, Object x, Object y, Obje
   else { 0; };
   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y); }
   else { 0; };
+  assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? get_K@HashTable(self.classUnderTest_HashTableTest, x) : null), y);
   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, y, z); }
   else { 0; };
-  assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? get_K@HashTable(self.classUnderTest_HashTableTest, x) : null), y);
-  assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? get_K@HashTable(self.classUnderTest_HashTableTest, y) : null), z);
+  if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, z, x); }
+  else { 0; };
+  assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? get_K@HashTable(self.classUnderTest_HashTableTest, z) : null), x);
 }
 
 void testReplacing_Integer_Integer_Integer(Object self, Object x, Object y, Object z) {
