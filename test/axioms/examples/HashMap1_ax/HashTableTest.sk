@@ -1,6 +1,36 @@
 package HashTableTest;
 
+// Things synthesised:
+// 17m1s no synthesis, all tests,
+// PutAndGet, Values, Remove, Clear - _ (no synthesis)
+// PutAndGet, Values, Remove, Clear - _ (synthesis)
+
+/* resetHashTable:
+   - this.size = ?? // UNSAT with generators in loop  (6.6s)
+   - this.currentCapacity = ??; // SKETCH NOT RESOLVED  (16s)
+   - this.currentCapacity = {|0 , this.initialCapacity|}; // UNSAT (6.3s)
+   - for (;i < {|this.size, this.currentCapacity,this.capacityGrowth, this.initialCapacity|};) (8s)
+ * put: (6.4s)
+    - int bucketIndex = getBucketIndex({|key, value|}); // WORKS (7.7s)
+    - HashTableNode<K, V> newNode = new HashTableNode<>({|key, value|}, {|key, value|}); (7.3s)
+    - int index = getBucketIndex(key);
+      int bucketIndex = {|index, this.size, this.currentCapacity,
+                          this.capacityGrowth, this.initialCapacity|}; // WORKS  (8s)
+    - if (current == {|key, value, newNode, null|}) { // WORKS  (7.5s)
+ * remove:
+    - int index = getBucketIndex(key);
+      int bucketIndex = {|index, this.size, this.currentCapacity,
+                          this.capacityGrowth, this.initialCapacity|}; // WORKS (s)
+ * values: (9s)
+    - int h = {|this.size, this.currentCapacity,this.capacityGrowth, this.initialCapacity|}; 
+      V[] values = (V[]) new Object[h];
+      minimize(h);  WORKS (8.6s)
+    - if (size() > ??) { WORKS  (9s)
+*/
+
 int INITIAL_SIZE = 16;
+int INITIAL_SIZE_g() { return INITIAL_SIZE; }
+void INITIAL_SIZE_s(int INITIAL_SIZE_s) { INITIAL_SIZE = INITIAL_SIZE_s; }
 
 Object HashTableTest_HashTableTest(Object self) {
     return self;
@@ -8,28 +38,33 @@ Object HashTableTest_HashTableTest(Object self) {
 
 harness void mn_int_int_int(int x, int y, int z) {
   Object self = Object_Object(new Object(__cid=Object()));
+  assume x != y && x != z && y != z;
   Object xx = Integer_Integer_int(new Object(__cid=Integer()), x);
   Object yy = Integer_Integer_int(new Object(__cid=Integer()), y);
   Object zz = Integer_Integer_int(new Object(__cid=Integer()), z);
   setUp@HashTableTest(self);
-  testGetEmpty(self);
-  /* testPutAndGet_Integer_Integer_Integer@HashTableTest(self, xx, yy, zz); */
-  /* testReplacing_Integer_Integer_Integer(self, xx, yy, zz); */
+  testGetEmpty@HashTableTest(self);
+  testPutAndGet_Integer_Integer_Integer@HashTableTest(self, xx, yy, zz);
+  /* testReplacing_Integer_Integer_Integer@HashTableTest(self, xx, yy, zz); */
   /* testKeys_Integer_Integer@HashTableTest(self, xx, yy); */
   /* testValues_Integer_Integer@HashTableTest(self, xx, yy); */
-  /* testContainsValue_Integer_Integer_Integer(self, xx, yy, zz); */
-  /* testContainsKey_Integer_Integer_Integer(self, xx, yy, zz); */
-  /* testRemove_Integer_Integer_Integer@HashTableTest(self, xx, yy, zz); */
-  /* testRemoveNonExistent_Integer_Integer(self, xx, yy); */
+  /* testContainsValue_Integer_Integer@HashTableTest(self, xx, yy); */
+  /* testContainsKey_Integer_Integer@HashTableTest(self, xx, yy); */
+  /* testRemoveNonExistent_Integer_Integer@HashTableTest(self, xx, yy); */
+  /* testRemove_Integer_Integer@HashTableTest(self, xx, yy); */
   /* testClear_Integer_Integer@HashTableTest(self, xx, yy); */
-  if (x >= INITIAL_SIZE && x < 0){ testSize_int_int(self, x, y); }
+  /* if (x >= 16 && x < 0) { */
+  /*   testSize_int_int@HashTableTest(self, x, y); */
+  /* } */
 }
 
 void setUp(Object self) {
-  self.classUnderTest_HashTableTest = HashTable_HashTable_int(new Object(__cid=HashTable()), INITIAL_SIZE);
+  self.classUnderTest_HashTableTest = HashTable_HashTable_int(new Object(__cid=HashTable()), 16);
 }
 
 void testGetEmpty(Object self) {
+  if (self.classUnderTest_HashTableTest.__cid == HashTable()) { clear@HashTable(self.classUnderTest_HashTableTest); }
+  else { 0; };
   assertNull_Object@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? get_K@HashTable(self.classUnderTest_HashTableTest, null) : null));
 }
 
@@ -38,11 +73,12 @@ void testPutAndGet_Integer_Integer_Integer(Object self, Object x, Object y, Obje
   else { 0; };
   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y); }
   else { 0; };
-  assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? get_K@HashTable(self.classUnderTest_HashTableTest, x) : null), y);
-  if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, y, z); }
+  if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, y, x); }
   else { 0; };
   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, z, x); }
   else { 0; };
+  assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? get_K@HashTable(self.classUnderTest_HashTableTest, x) : null), y);
+  assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? get_K@HashTable(self.classUnderTest_HashTableTest, y) : null), x);
   assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? get_K@HashTable(self.classUnderTest_HashTableTest, z) : null), x);
 }
 
@@ -59,21 +95,13 @@ void testReplacing_Integer_Integer_Integer(Object self, Object x, Object y, Obje
   assertEquals_int_int@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? size@HashTable(self.classUnderTest_HashTableTest) : 0), size);
 }
 
-void testKeys_Integer_Integer(Object self, Object x, Object y) { // TODO: WHY IS THIS SO MUCH SLOWER THAN testValues()!?!
+void testKeys_Integer_Integer(Object self, Object x, Object y) {
   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { clear@HashTable(self.classUnderTest_HashTableTest); }
   else { 0; };
   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y); }
   else { 0; };
   Object k = (self.classUnderTest_HashTableTest.__cid == HashTable() ? keys@HashTable(self.classUnderTest_HashTableTest) : null).A[0];
-  assertTrue_boolean@Assert((k.__cid == HashTableTest() ? equals_Object@Object(k, x) :
-			     k.__cid == Number() ? equals_Object@Object(k, x) :
-			     k.__cid == String() ? equals_Object@String(k, x) :
-			     k.__cid == HashTable() ? equals_Object@Object(k, x) :
-			     k.__cid == HashTableNode() ? equals_Object@Object(k, x) :
-			     k.__cid == Integer() ? equals_Object@Integer(k, x) :
-			     k.__cid == Assert() ? equals_Object@Object(k, x) :
-			     k.__cid == ArrayList() ? equals_Object@Object(k, x) :
-			     k.__cid == Object() ? equals_Object@Object(k, x) : 0));
+  assertTrue_boolean@Assert((k.__cid == HashTable() ? equals_Object@Object(k, x) : k.__cid == HashTableTest() ? equals_Object@Object(k, x) : k.__cid == HashTableNode() ? equals_Object@Object(k, x) : k.__cid == String() ? equals_Object@String(k, x) : k.__cid == ArrayList() ? equals_Object@Object(k, x) : k.__cid == Number() ? equals_Object@Object(k, x) : k.__cid == Assert() ? equals_Object@Object(k, x) : k.__cid == Integer() ? equals_Object@Integer(k, x) : k.__cid == Object() ? equals_Object@Object(k, x) : 0));
   Array_Object keys = (self.classUnderTest_HashTableTest.__cid == HashTable() ? keys@HashTable(self.classUnderTest_HashTableTest) : null);
   assertTrue_boolean@Assert(keys.length == 1);
 }
@@ -84,31 +112,53 @@ void testValues_Integer_Integer(Object self, Object x, Object y) {
   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y); }
   else { 0; };
   Object k = (self.classUnderTest_HashTableTest.__cid == HashTable() ? values@HashTable(self.classUnderTest_HashTableTest) : null).A[0];
-  assertTrue_boolean@Assert((k.__cid == HashTableTest() ? equals_Object@Object(k, y) :
-			     k.__cid == Number() ? equals_Object@Object(k, y) :
-			     k.__cid == String() ? equals_Object@String(k, y) :
-			     k.__cid == HashTable() ? equals_Object@Object(k, y) :
-			     k.__cid == HashTableNode() ? equals_Object@Object(k, y) :
-			     k.__cid == Integer() ? equals_Object@Integer(k, y) :
-			     k.__cid == Assert() ? equals_Object@Object(k, y) :
-			     k.__cid == ArrayList() ? equals_Object@Object(k, y) :
-			     k.__cid == Object() ? equals_Object@Object(k, y) : 0));
-  Array_Object values = (self.classUnderTest_HashTableTest.__cid == HashTable() ? values@HashTable(self.classUnderTest_HashTableTest) : null);
-  assertTrue_boolean@Assert(values.length == 1);
+  assertTrue_boolean@Assert((k.__cid == HashTable() ? equals_Object@Object(k, y) : k.__cid == HashTableTest() ? equals_Object@Object(k, y) : k.__cid == HashTableNode() ? equals_Object@Object(k, y) : k.__cid == String() ? equals_Object@String(k, y) : k.__cid == ArrayList() ? equals_Object@Object(k, y) : k.__cid == Number() ? equals_Object@Object(k, y) : k.__cid == Assert() ? equals_Object@Object(k, y) : k.__cid == Integer() ? equals_Object@Integer(k, y) : k.__cid == Object() ? equals_Object@Object(k, y) : 0));
 }
 
-void testContainsValue_Integer_Integer_Integer(Object self, Object x, Object y, Object z) {
+void testContainsValue_Integer_Integer(Object self, Object x, Object y) {
+  if (self.classUnderTest_HashTableTest.__cid == HashTable()) { clear@HashTable(self.classUnderTest_HashTableTest); }
+  else { 0; };
+  assertFalse_boolean@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? containsValue_V@HashTable(self.classUnderTest_HashTableTest, y) : 0));
+  if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y); }
+  else { 0; };
+  assertTrue_boolean@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? containsValue_V@HashTable(self.classUnderTest_HashTableTest, y) : 0));
+}
+
+void testContainsKey_Integer_Integer(Object self, Object x, Object y) {
+  if (self.classUnderTest_HashTableTest.__cid == HashTable()) { clear@HashTable(self.classUnderTest_HashTableTest); }
+  else { 0; };
+  assertFalse_boolean@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? containsKey_K@HashTable(self.classUnderTest_HashTableTest, x) : 0));
+  if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y); }
+  else { 0; };
+  assertTrue_boolean@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? containsKey_K@HashTable(self.classUnderTest_HashTableTest, x) : 0));
+}
+
+void testSize_int_int(Object self, int x, int y) {
+  assume x >= 16 && x < 0;
+  if (self.classUnderTest_HashTableTest.__cid == HashTable()) { clear@HashTable(self.classUnderTest_HashTableTest); }
+  else { 0; };
+  for (int i = 0; i < 16; i++) {
+    if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, Integer_Integer_int(new Object(__cid=Integer()), i), null); }
+    else { 0; };
+  }
+  assertEquals_int_int@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? size@HashTable(self.classUnderTest_HashTableTest) : 0), 16);
+  if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, Integer_Integer_int(new Object(__cid=Integer()), x), Integer_Integer_int(new Object(__cid=Integer()), y)); }
+  else { 0; };
+  assertEquals_int_int@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? size@HashTable(self.classUnderTest_HashTableTest) : 0), 17);
+}
+
+void testRemoveNonExistent_Integer_Integer(Object self, Object x, Object y) {
   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { clear@HashTable(self.classUnderTest_HashTableTest); }
   else { 0; };
   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y); }
   else { 0; };
-  assertTrue_boolean@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? containsValue_V@HashTable(self.classUnderTest_HashTableTest, y) : 0));
-  /* if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y); } */
-  /* else { 0; }; */
-  /* assertTrue_boolean@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? containsValue_V@HashTable(self.classUnderTest_HashTableTest, y) : 0)); */
+  int size = (self.classUnderTest_HashTableTest.__cid == HashTable() ? size@HashTable(self.classUnderTest_HashTableTest) : 0);
+  if (self.classUnderTest_HashTableTest.__cid == HashTable()) { remove_K@HashTable(self.classUnderTest_HashTableTest, y); }
+  else { 0; };
+  assertEquals_int_int@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? size@HashTable(self.classUnderTest_HashTableTest) : 0), size);
 }
 
-void testRemove_Integer_Integer_Integer(Object self, Object x, Object y, Object z) {
+void testRemove_Integer_Integer(Object self, Object x, Object y) {
   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { clear@HashTable(self.classUnderTest_HashTableTest); }
   else { 0; };
   int size = (self.classUnderTest_HashTableTest.__cid == HashTable() ? size@HashTable(self.classUnderTest_HashTableTest) : 0);
@@ -119,45 +169,6 @@ void testRemove_Integer_Integer_Integer(Object self, Object x, Object y, Object 
   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { remove_K@HashTable(self.classUnderTest_HashTableTest, x); }
   else { 0; };
   assertNull_Object@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? get_K@HashTable(self.classUnderTest_HashTableTest, x) : null));
-}
-
-void testContainsKey_Integer_Integer_Integer(Object self, Object x, Object y, Object z) {
-  if (self.classUnderTest_HashTableTest.__cid == HashTable()) { clear@HashTable(self.classUnderTest_HashTableTest); }
-  else { 0; };
-  assertFalse_boolean@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? containsKey_K@HashTable(self.classUnderTest_HashTableTest, x) : 0));
-  if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y); }
-  else { 0; };
-  assertTrue_boolean@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? containsKey_K@HashTable(self.classUnderTest_HashTableTest, x) : 0));
-}
-
-void testSize_int_int(Object self, int x, int y) {
-  assume x >= INITIAL_SIZE && x < 0;
-  if (self.classUnderTest_HashTableTest.__cid == HashTable()) {
-    clear@HashTable(self.classUnderTest_HashTableTest);
-  }
-  else { 0; };
-  for (int i = 0; i < INITIAL_SIZE; i++) {
-    if (self.classUnderTest_HashTableTest.__cid == HashTable()) {
-      put_K_V@HashTable(self.classUnderTest_HashTableTest, Integer_Integer_int(new Object(__cid=Integer()), i), null);
-    }
-    else { 0; };
-  }
-  assertEquals_int_int@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? size@HashTable(self.classUnderTest_HashTableTest) : 0), INITIAL_SIZE);
-  if (self.classUnderTest_HashTableTest.__cid == HashTable()) {
-    put_K_V@HashTable(self.classUnderTest_HashTableTest, Integer_Integer_int(new Object(__cid=Integer()), x), Integer_Integer_int(new Object(__cid=Integer()), y));
-  }
-  else { 0; };
-  assertEquals_int_int@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? size@HashTable(self.classUnderTest_HashTableTest) : 0), INITIAL_SIZE + 1);
-}
-
-void testRemoveNonExistent_Integer_Integer(Object self, Object x, Object y) {
-  if (self.classUnderTest_HashTableTest.__cid == HashTable()) { clear@HashTable(self.classUnderTest_HashTableTest); }
-  else { 0; };
-  if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y); }
-  int size = (self.classUnderTest_HashTableTest.__cid == HashTable() ? size@HashTable(self.classUnderTest_HashTableTest) : 0);
-  if (self.classUnderTest_HashTableTest.__cid == HashTable()) { remove_K@HashTable(self.classUnderTest_HashTableTest, y); }
-  else { 0; };
-  assertEquals_int_int@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? size@HashTable(self.classUnderTest_HashTableTest) : 0), size);
 }
 
 void testClear_Integer_Integer(Object self, Object x, Object y) {
@@ -171,3 +182,178 @@ void testClear_Integer_Integer(Object self, Object x, Object y) {
   ;
   assertFalse_boolean@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? size@HashTable(self.classUnderTest_HashTableTest) : 0) > 0);
 }
+
+/* Object HashTableTest_HashTableTest(Object self) { */
+/*     return self; */
+/* } */
+
+/* harness void mn_int_int_int(int x, int y, int z) { */
+/*   assume x != y && x != z && y != z; */
+/*   Object self = Object_Object(new Object(__cid=Object())); */
+/*   Object xx = Integer_Integer_int(new Object(__cid=Integer()), x); */
+/*   Object yy = Integer_Integer_int(new Object(__cid=Integer()), y); */
+/*   Object zz = Integer_Integer_int(new Object(__cid=Integer()), z); */
+/*   setUp@HashTableTest(self); */
+/*   /\* testGetEmpty(self); *\/ */
+/*     testPutAndGet_Integer_Integer_Integer@HashTableTest(self, xx, yy, zz); */
+/*   /\* testReplacing_Integer_Integer_Integer(self, xx, yy, zz); *\/ */
+/*   /\* testKeys_Integer_Integer@HashTableTest(self, xx, yy); *\/ */
+/*   /\* testValues_Integer_Integer@HashTableTest(self, xx, yy); *\/ */
+/*   /\* testContainsValue_Integer_Integer_Integer(self, xx, yy, zz); *\/ */
+/*   /\* testContainsKey_Integer_Integer_Integer(self, xx, yy, zz); *\/ */
+/*   /\* testRemove_Integer_Integer_Integer@HashTableTest(self, xx, yy, zz); *\/ */
+/*   /\* testRemoveNonExistent_Integer_Integer(self, xx, yy); *\/ */
+/*   /\* testClear_Integer_Integer@HashTableTest(self, xx, yy); *\/ */
+/*   /\* if (x >= INITIAL_SIZE && x < 0){ testSize_int_int(self, x, y); } *\/ */
+/*   } */
+/* } */
+
+/* void setUp(Object self) { */
+/*   self.classUnderTest_HashTableTest = HashTable_HashTable_int(new Object(__cid=HashTable()), INITIAL_SIZE); */
+/* } */
+
+/* void testGetEmpty(Object self) { */
+/*   assertNull_Object@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? get_K@HashTable(self.classUnderTest_HashTableTest, null) : null)); */
+/* } */
+
+/* void testPutAndGet_Integer_Integer_Integer(Object self, Object x, Object y, Object z) { */
+/*   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { clear@HashTable(self.classUnderTest_HashTableTest); } */
+/*   else { 0; }; */
+/*   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y); } */
+/*   else { 0; }; */
+/*   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, y, z); } */
+/*   else { 0; }; */
+/*   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, z, x); } */
+/*   else { 0; }; */
+/*   assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? get_K@HashTable(self.classUnderTest_HashTableTest, x) : null), y); */
+/*   assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? get_K@HashTable(self.classUnderTest_HashTableTest, y) : null), z); */
+/*   assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? get_K@HashTable(self.classUnderTest_HashTableTest, z) : null), x); */
+/* } */
+
+/* void testReplacing_Integer_Integer_Integer(Object self, Object x, Object y, Object z) { */
+/*   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { clear@HashTable(self.classUnderTest_HashTableTest); } */
+/*   else { 0; }; */
+/*   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y); } */
+/*   else { 0; }; */
+/*   assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? get_K@HashTable(self.classUnderTest_HashTableTest, x) : null), y); */
+/*   int size = (self.classUnderTest_HashTableTest.__cid == HashTable() ? size@HashTable(self.classUnderTest_HashTableTest) : 0); */
+/*   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, z); } */
+/*   else { 0; }; */
+/*   assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? get_K@HashTable(self.classUnderTest_HashTableTest, x) : null), z); */
+/*   assertEquals_int_int@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? size@HashTable(self.classUnderTest_HashTableTest) : 0), size); */
+/* } */
+
+/* void testKeys_Integer_Integer(Object self, Object x, Object y) { // TODO: WHY IS THIS SO MUCH SLOWER THAN testValues()!?! */
+/*   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { clear@HashTable(self.classUnderTest_HashTableTest); } */
+/*   else { 0; }; */
+/*   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y); } */
+/*   else { 0; }; */
+/*   Object k = (self.classUnderTest_HashTableTest.__cid == HashTable() ? keys@HashTable(self.classUnderTest_HashTableTest) : null).A[0]; */
+/*   assertTrue_boolean@Assert((k.__cid == HashTableTest() ? equals_Object@Object(k, x) : */
+/* 			     k.__cid == Number() ? equals_Object@Object(k, x) : */
+/* 			     k.__cid == String() ? equals_Object@String(k, x) : */
+/* 			     k.__cid == HashTable() ? equals_Object@Object(k, x) : */
+/* 			     k.__cid == HashTableNode() ? equals_Object@Object(k, x) : */
+/* 			     k.__cid == Integer() ? equals_Object@Integer(k, x) : */
+/* 			     k.__cid == Assert() ? equals_Object@Object(k, x) : */
+/* 			     k.__cid == ArrayList() ? equals_Object@Object(k, x) : */
+/* 			     k.__cid == Object() ? equals_Object@Object(k, x) : 0)); */
+/*   Array_Object keys = (self.classUnderTest_HashTableTest.__cid == HashTable() ? keys@HashTable(self.classUnderTest_HashTableTest) : null); */
+/*   assertTrue_boolean@Assert(keys.length == 1); */
+/* } */
+
+/* void testValues_Integer_Integer(Object self, Object x, Object y) { */
+/*   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { clear@HashTable(self.classUnderTest_HashTableTest); } */
+/*   else { 0; }; */
+/*   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y); } */
+/*   else { 0; }; */
+/*   Object k = (self.classUnderTest_HashTableTest.__cid == HashTable() ? values@HashTable(self.classUnderTest_HashTableTest) : null).A[0]; */
+/*   assertTrue_boolean@Assert((k.__cid == HashTableTest() ? equals_Object@Object(k, y) : */
+/* 			     k.__cid == Number() ? equals_Object@Object(k, y) : */
+/* 			     k.__cid == String() ? equals_Object@String(k, y) : */
+/* 			     k.__cid == HashTable() ? equals_Object@Object(k, y) : */
+/* 			     k.__cid == HashTableNode() ? equals_Object@Object(k, y) : */
+/* 			     k.__cid == Integer() ? equals_Object@Integer(k, y) : */
+/* 			     k.__cid == Assert() ? equals_Object@Object(k, y) : */
+/* 			     k.__cid == ArrayList() ? equals_Object@Object(k, y) : */
+/* 			     k.__cid == Object() ? equals_Object@Object(k, y) : 0)); */
+/*   Array_Object values = (self.classUnderTest_HashTableTest.__cid == HashTable() ? values@HashTable(self.classUnderTest_HashTableTest) : null); */
+/*   assertTrue_boolean@Assert(values.length == 1); */
+/* } */
+
+/* void testContainsValue_Integer_Integer_Integer(Object self, Object x, Object y, Object z) { */
+/*   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { clear@HashTable(self.classUnderTest_HashTableTest); } */
+/*   else { 0; }; */
+/*   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y); } */
+/*   else { 0; }; */
+/*   assertTrue_boolean@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? containsValue_V@HashTable(self.classUnderTest_HashTableTest, y) : 0)); */
+/*   /\* if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y); } *\/ */
+/*   /\* else { 0; }; *\/ */
+/*   /\* assertTrue_boolean@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? containsValue_V@HashTable(self.classUnderTest_HashTableTest, y) : 0)); *\/ */
+/* } */
+
+/* void testRemove_Integer_Integer_Integer(Object self, Object x, Object y, Object z) { */
+/*   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { clear@HashTable(self.classUnderTest_HashTableTest); } */
+/*   else { 0; }; */
+/*   int size = (self.classUnderTest_HashTableTest.__cid == HashTable() ? size@HashTable(self.classUnderTest_HashTableTest) : 0); */
+/*   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y); } */
+/*   else { 0; }; */
+/*   assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? get_K@HashTable(self.classUnderTest_HashTableTest, x) : null), y); */
+/*   assert size == 0; */
+/*   assert size@HashTable(self.classUnderTest_HashTableTest) == 1; */
+/*   /\* assertEquals_int_int@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? size@HashTable(self.classUnderTest_HashTableTest) : 0), size + 1); *\/ */
+/*   /\* if (self.classUnderTest_HashTableTest.__cid == HashTable()) { remove_K@HashTable(self.classUnderTest_HashTableTest, x); } *\/ */
+/*   /\* else { 0; }; *\/ */
+/*   /\* assertNull_Object@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? get_K@HashTable(self.classUnderTest_HashTableTest, x) : null)); *\/ */
+/* } */
+
+/* void testContainsKey_Integer_Integer_Integer(Object self, Object x, Object y, Object z) { */
+/*   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { clear@HashTable(self.classUnderTest_HashTableTest); } */
+/*   else { 0; }; */
+/*   assertFalse_boolean@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? containsKey_K@HashTable(self.classUnderTest_HashTableTest, x) : 0)); */
+/*   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y); } */
+/*   else { 0; }; */
+/*   assertTrue_boolean@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? containsKey_K@HashTable(self.classUnderTest_HashTableTest, x) : 0)); */
+/* } */
+
+/* void testSize_int_int(Object self, int x, int y) { */
+/*   assume x >= INITIAL_SIZE && x < 0; */
+/*   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { */
+/*     clear@HashTable(self.classUnderTest_HashTableTest); */
+/*   } */
+/*   else { 0; }; */
+/*   for (int i = 0; i < INITIAL_SIZE; i++) { */
+/*     if (self.classUnderTest_HashTableTest.__cid == HashTable()) { */
+/*       put_K_V@HashTable(self.classUnderTest_HashTableTest, Integer_Integer_int(new Object(__cid=Integer()), i), null); */
+/*     } */
+/*     else { 0; }; */
+/*   } */
+/*   assertEquals_int_int@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? size@HashTable(self.classUnderTest_HashTableTest) : 0), INITIAL_SIZE); */
+/*   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { */
+/*     put_K_V@HashTable(self.classUnderTest_HashTableTest, Integer_Integer_int(new Object(__cid=Integer()), x), Integer_Integer_int(new Object(__cid=Integer()), y)); */
+/*   } */
+/*   else { 0; }; */
+/*   assertEquals_int_int@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? size@HashTable(self.classUnderTest_HashTableTest) : 0), INITIAL_SIZE + 1); */
+/* } */
+
+/* void testRemoveNonExistent_Integer_Integer(Object self, Object x, Object y) { */
+/*   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { clear@HashTable(self.classUnderTest_HashTableTest); } */
+/*   else { 0; }; */
+/*   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y); } */
+/*   int size = (self.classUnderTest_HashTableTest.__cid == HashTable() ? size@HashTable(self.classUnderTest_HashTableTest) : 0); */
+/*   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { remove_K@HashTable(self.classUnderTest_HashTableTest, y); } */
+/*   else { 0; }; */
+/*   assertEquals_int_int@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? size@HashTable(self.classUnderTest_HashTableTest) : 0), size); */
+/* } */
+
+/* void testClear_Integer_Integer(Object self, Object x, Object y) { */
+/*   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y); } */
+/*   else { 0; }; */
+/*   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { put_K_V@HashTable(self.classUnderTest_HashTableTest, y, x); } */
+/*   else { 0; }; */
+/*   assertTrue_boolean@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? size@HashTable(self.classUnderTest_HashTableTest) : 0) > 0); */
+/*   if (self.classUnderTest_HashTableTest.__cid == HashTable()) { clear@HashTable(self.classUnderTest_HashTableTest); } */
+/*   else { 0; }; */
+/*   ; */
+/*   assertFalse_boolean@Assert((self.classUnderTest_HashTableTest.__cid == HashTable() ? size@HashTable(self.classUnderTest_HashTableTest) : 0) > 0); */
+/* } */

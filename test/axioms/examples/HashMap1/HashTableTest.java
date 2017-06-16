@@ -1,5 +1,7 @@
 // This code is from https://github.com/anthonynsimon/java-ds-algorithms
 
+// All tests take 10m to pass.
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,144 +10,147 @@ import java.util.UUID;
 
 import org.junit.Assert;
 
-public class HashTableTest {
 
-    private HashTable<Object, Object> classUnderTest16;
-    private HashTable<Object, Object> classUnderTest32;
+public class HashTableTest {
+     // static so it will be initialised when translated
+    public static final int INITIAL_SIZE = 16;
+
+    private HashTable<Object, Object> classUnderTest;
 
     harness void mn(int x, int y, int z) {
+	assume x != y && x != z && y != z;
 	Integer xx = new Integer(x);
 	Integer yy = new Integer(y);
 	Integer zz = new Integer(z);
 	setUp();
-	// testGetEmpty();
+	testGetEmpty();
 	testPutAndGet(xx, yy, zz);
-	// testReplacing(xx, yy, zz);
-	// testKeys(xx, yy);
-	// testValues(xx, yy);
-	// testContainsValue(xx, yy, zz);
-	// testContainsKey(xx, yy, zz);
-	// testRemoveNonExistent(xx, yy);
-	// testRemove(xx, yy, zz);
-	// testClear(xx, yy);
-	// if (x >= 16 && x < 0) { testSize(x, y); }
+	testReplacing(xx, yy, zz);
+	testKeys(xx, yy);
+	testValues(xx, yy);
+	testContainsValue(xx, yy);
+	testContainsKey(xx, yy);
+	testRemoveNonExistent(xx, yy);
+	testRemove(xx, yy);
+	testClear(xx, yy);
+	if (x >= INITIAL_SIZE && x < 0) { testSize(x, y); }
     }
     public void setUp() {
-        classUnderTest16 = new HashTable<>(16);
+        classUnderTest = new HashTable<>(INITIAL_SIZE);
     }
 
     public void testGetEmpty() {
-        classUnderTest16.clear();
-        Assert.assertNull(classUnderTest16.get(null));
+        classUnderTest.clear();
+        Assert.assertNull(classUnderTest.get(null));
     }
 
     public void testPutAndGet(Integer x, Integer y, Integer z) {
-	assume x != y && x != z;
-        classUnderTest16.clear();
+        classUnderTest.clear();
 
-        classUnderTest16.put(x, y);
-        Assert.assertEquals(classUnderTest16.get(x), y);
-        classUnderTest16.put(y, x);
-        classUnderTest16.put(z, x);
-        Assert.assertEquals(classUnderTest16.get(y), x);
-        Assert.assertEquals(classUnderTest16.get(z), x);
+        classUnderTest.put(x, y);
+        classUnderTest.put(y, x);
+        classUnderTest.put(z, x);
+        Assert.assertEquals(classUnderTest.get(x), y);
+        Assert.assertEquals(classUnderTest.get(y), x);
+        Assert.assertEquals(classUnderTest.get(z), x);
     }
 
     public void testReplacing(Integer x, Integer y, Integer z) {
-        classUnderTest16.clear();
+        classUnderTest.clear();
 
-        classUnderTest16.put(x, x);
-        Assert.assertEquals(classUnderTest16.get(x), x);
+        classUnderTest.put(x, y);
+        Assert.assertEquals(classUnderTest.get(x), y);
 
-        int size = classUnderTest16.size();
+        int size = classUnderTest.size();
 
-        classUnderTest16.put(x, z);
-        Assert.assertEquals(classUnderTest16.get(x), z);
+        classUnderTest.put(x, z);
+        Assert.assertEquals(classUnderTest.get(x), z);
 
-        Assert.assertEquals(classUnderTest16.size(), size);
+        Assert.assertEquals(classUnderTest.size(), size);
     }
 
     public void testKeys(Integer x, Integer y) {
-        classUnderTest16.clear();
+        classUnderTest.clear();
 
-        classUnderTest16.put(x, y);
-	Object k = classUnderTest16.keys()[0];
+        classUnderTest.put(x, y);
+	Object k = classUnderTest.keys()[0];
         Assert.assertTrue(k.equals(x));
 	// TODO: array access from method call as argument to assertTrue
-        // Assert.assertEquals(classUnderTest16.keys()[0], k);
+        // Assert.assertEquals(classUnderTest.keys()[0], k);
 
-	Object[] keys = classUnderTest16.keys();
+	Object[] keys = classUnderTest.keys();
         Assert.assertTrue(keys.length == 1);
      }
 
     // @Test
     public void testValues(Integer x, Integer y) {
-        classUnderTest16.clear();
-        classUnderTest16.put(x, y);
+        classUnderTest.clear();
+        classUnderTest.put(x, y);
 
-	Object k = classUnderTest16.values()[0];
+	Object k = classUnderTest.values()[0];
         Assert.assertTrue(k.equals(y));
 	// TODO: array access from method call as argument to assertTrue
-        // Assert.assertEquals(classUnderTest16.values()[0], k);
+        // Assert.assertEquals(classUnderTest.values()[0], k);
     }
 
     //TODO: why the heck is this so slow?! containsValue()????
-    public void testContainsValue(Integer x, Integer y, Integer z) {
-        classUnderTest16.clear();
+    public void testContainsValue(Integer x, Integer y) {
+        classUnderTest.clear();
 
-        classUnderTest16.put(x, y);
-	Assert.assertTrue(classUnderTest16.containsValue(y));
+        Assert.assertFalse(classUnderTest.containsValue(y));
+        classUnderTest.put(x, y);
+	Assert.assertTrue(classUnderTest.containsValue(y));
     }
 
-    public void testContainsKey(Integer x, Integer y, Integer z) {
-        classUnderTest16.clear();
+    public void testContainsKey(Integer x, Integer y) {
+        classUnderTest.clear();
 
-        Assert.assertFalse(classUnderTest16.containsKey(x));
-        classUnderTest16.put(x, y);
-	Assert.assertTrue(classUnderTest16.containsKey(x));
+        Assert.assertFalse(classUnderTest.containsKey(x));
+        classUnderTest.put(x, y);
+	Assert.assertTrue(classUnderTest.containsKey(x));
     }
 
     public void testSize(int x, int y) {
-	assume x >= 16 && x < 0;
-        classUnderTest16.clear();
+	assume x >= INITIAL_SIZE && x < 0;
+        classUnderTest.clear();
 
 	// had to reduce loop size from original (2048)
-	for (int i = 0; i < 16; i++) { classUnderTest16.put(new Integer(i), null); }
-        Assert.assertEquals(classUnderTest16.size(), 16);
-        classUnderTest16.put(new Integer(x), new Integer(y));
-        Assert.assertEquals(classUnderTest16.size(), 17);
+	for (int i = 0; i < INITIAL_SIZE; i++) { classUnderTest.put(new Integer(i), null); }
+        Assert.assertEquals(classUnderTest.size(), INITIAL_SIZE);
+        classUnderTest.put(new Integer(x), new Integer(y));
+        Assert.assertEquals(classUnderTest.size(), 17);
     }
 
     public void testRemoveNonExistent(Integer x, Integer y) {
-        classUnderTest16.clear();
+        classUnderTest.clear();
 
-        classUnderTest16.put(x, y);
-        int size = classUnderTest16.size();
-        classUnderTest16.remove(x);
-        Assert.assertEquals(classUnderTest16.size(), size);
+        classUnderTest.put(x, y);
+        int size = classUnderTest.size();
+        classUnderTest.remove(y);
+        Assert.assertEquals(classUnderTest.size(), size);
     }
 
-    public void testRemove(Integer x, Integer y, Integer z) {
-        classUnderTest16.clear();
+    public void testRemove(Integer x, Integer y) {
+        classUnderTest.clear();
 
-        int size = classUnderTest16.size();
-        classUnderTest16.put(x, y);
+        int size = classUnderTest.size();
+        classUnderTest.put(x, y);
 
-        Assert.assertEquals(classUnderTest16.get(x), y);
-        Assert.assertEquals(classUnderTest16.size(), size + 1);
+        Assert.assertEquals(classUnderTest.get(x), y);
+        Assert.assertEquals(classUnderTest.size(), size + 1);
 
-        classUnderTest16.remove(x);
-        Assert.assertNull(classUnderTest16.get(x));
+        classUnderTest.remove(x);
+        Assert.assertNull(classUnderTest.get(x));
     }
 
     public void testClear(Integer x, Integer y) {
-        classUnderTest16.put(x, y);
-        classUnderTest16.put(y, x);
-        Assert.assertTrue(classUnderTest16.size() > 0);
+        classUnderTest.put(x, y);
+        classUnderTest.put(y, x);
+        Assert.assertTrue(classUnderTest.size() > 0);
         
-	classUnderTest16.clear();
-	Asset.assertNull(classUnderTest16.buckets.get(classUnderTest16.initialCapacity-1));
-	Assert.assertFalse(classUnderTest16.size() > 0);
+	classUnderTest.clear();
+	Asset.assertNull(classUnderTest.buckets.get(classUnderTest.initialCapacity-1));
+	Assert.assertFalse(classUnderTest.size() > 0);
     }
 }
 

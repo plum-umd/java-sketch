@@ -56,10 +56,18 @@ Object getNodeWithKey_K(Object self, Object key) {
 
 void put_K_V(Object self, Object key, Object value) {
   /* ensureCapacity_int@HashTable(self, size@HashTable(self) + 1); */
+
   int bucketIndex = getBucketIndex_K@HashTable(self, key);
+  /* int bucketIndex = getBucketIndex_K@HashTable(self, {|key | value|}); */
+  /* int index = getBucketIndex_K@HashTable(self, key); */
+  /* int bucketIndex = {| index |  self.size_HashTable |  self.currentCapacity_HashTable |  self.capacityGrowth_HashTable |  self.initialCapacity_HashTable |}; */
+
   Object newNode = HashTableNode_HashTableNode_K_V(new Object(__cid=HashTableNode()), key, value);
+  /* Object newNode = HashTableNode_HashTableNode_K_V(new Object(__cid=HashTableNode()), {|key | value|}, {|key | value|}); */
+
   Object current = get_obj@ArrayList(get@ArrayList(self.buckets_HashTable, bucketIndex).alist);
   if (current == null) {
+  /* if (current == {|null | key | value | newNode|}) { */
     self.buckets_HashTable = set@ArrayList(self.buckets_HashTable, bucketIndex, newNode).alist;
     self.size_HashTable++;
     return;
@@ -162,6 +170,9 @@ void remove_K(Object self, Object key) {
     return;
   }
   int bucketIndex = getBucketIndex_K@HashTable(self, key);
+  /* int index = getBucketIndex_K@HashTable(self, key); */
+  /* int bucketIndex = {| index |  self.size_HashTable |  self.currentCapacity_HashTable |  self.capacityGrowth_HashTable |  self.initialCapacity_HashTable |}; */
+
   Object current = get_obj@ArrayList(get@ArrayList(self.buckets_HashTable, bucketIndex).alist);
   Object previous = null;
   while (current != null) {
