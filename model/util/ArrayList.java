@@ -12,13 +12,14 @@ public class ArrayList<E> {
     // private static final int MAX_ARRAY_SIZE = 0x7fffffff - 8;
 
     public ArrayList() {
-	this.elementData = new Object[10];
-	this.capacity = 10;
-	this.numElements = 0;
 	this.DEFAULT_CAPACITY = 10;
+	this.elementData = new Object[this.DEFAULT_CAPACITY];
+	this.capacity = this.DEFAULT_CAPACITY;
+	this.numElements = 0;
     }
 
     public ArrayList(int initialCapacity) {
+	this.DEFAULT_CAPACITY = 10;
 	this.elementData = new Object[initialCapacity];
 	this.capacity = initialCapacity;	
 	this.numElements = 0;
