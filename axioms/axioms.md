@@ -35,6 +35,8 @@ Stack:
 
 HashMap:
 =======
+* `get(add(x, a), i) == ITE(length(x) == i-1, a, get(x, i))`
+* `get(set(x, a, j), i) == ITE(i == j, a, get(x, i))`
 * `put(h, k, v) == v`
 * `get(put(h, k, v), k) == v`
 * `get(clone(h), k) == get(h, k)`
