@@ -52,12 +52,14 @@ AList get_xform(AList a, int index) {
   case List:             { return new Error(code=List_err()); }
   case Obj:              { return new Error(code=Obj_err()); }
   case Get:              { alist = a.l; }
-  case Set:   {
+  case Set: {
     if (a.i == index) { return a.v; }
-    else if (a.i < 0) { return new Error(); }
     else { alist = a.l; }
   }
-  case Add:              { alist = a.l; }
+  case Add: {
+    if ((size_int(new Size(l=a, sz=0)) - 1) == index) { return a.v; }
+    else { alist = a.l; }
+  }
   case Size:             { alist = a.l; }
   case EnsureCapacity:   { alist = a.l; }
   case Error:            { return a; }
