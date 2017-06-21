@@ -1,13 +1,14 @@
 package ArrayList;
 
 adt AList {
-  List          { }
-  Obj           { Object o; }
-  Get		{ AList l; int i; }
-  Set		{ AList l; int i; AList v; }
-  Add		{ AList l; AList v; }
-  Size		{ AList l; int sz; }
-  Error         { int code; }
+  List            { }
+  Obj             { Object o; }
+  Get             { AList l; int i; }
+  Set	  	  { AList l; int i; AList v; }
+  Add		  { AList l; AList v; }
+  Size		  { AList l; int sz; }
+  EnsureCapacity  { AList l; int m; }
+  Error           { int code; }
 }
 
 int List_err()  { return 0; }
@@ -18,7 +19,7 @@ int Add_err()   { return 4; }
 int Error_err() { return 6; }
 
 Object arraylist(int sz) {
-  return new Object(__cid = ArrayList(), alist=new Size(l=new List(), sz=sz));
+  return new Object(__cid = ArrayList(), alist=new List());
 }
 
 Object object(Object o) {
@@ -34,55 +35,76 @@ Object set(AList l, int i, Object v) {
 }
 
 Object add(AList l, Object v) {
-  return new Object(__cid = ArrayList(), alist=new Set(l=l, v=new Obj(o=v)));
+  return new Object(__cid = ArrayList(), alist=new Add(l=l, v=new Obj(o=v)));
 }
 
 Object size(AList l, int i) {
   return new Object(__cid = ArrayList(), alist=new Size(l=l, sz=i));
 }
 
+Object ensureCapacity(AList l, int m) {
+  return new Object(__cid = ArrayList(), alist=new EnsureCapacity(l=l, m=m));
+}
+
 AList get_xform(AList a, int index) {
   AList alist = null;
   switch (a) {
-  case List:  { return new Error(code=List_err()); }
-  case Obj:   { return new Error(code=Obj_err()); }
-  case Get:   { alist = a.l; }
+  case List:             { return new Error(code=List_err()); }
+  case Obj:              { return new Error(code=Obj_err()); }
+  case Get:              { alist = a.l; }
   case Set:   {
     if (a.i == index) { return a.v; }
     else if (a.i < 0) { return new Error(); }
     else { alist = a.l; }
   }
-  case Add:   { alist = a.l; }
-  case Size:  { alist = a.l; }
-  case Error: { return a; }
+  case Add:              { alist = a.l; }
+  case Size:             { alist = a.l; }
+  case EnsureCapacity:   { alist = a.l; }
+  case Error:            { return a; }
   }
-  return get_xform(alist, index);
+  return xform(new Get(l=alist, i=index));
 }
 
-
-AList size_xform(AList a) {
+AList size_xform(AList a, int sz) {
   AList alist = null;
   switch (a) {
-  case List:  { return new Size(sz=0); }
-  case Obj:   { return new Error(code=Obj_err()); }
-  case Get:   { alist = a.l; }
-  case Set:   { alist = a.l; }
-  case Add:   { alist = a.l; }
-  case Size:  { return a; }
-  case Error: { return a; }
+  case List:             { return new Size(sz=sz); }
+  case Obj:              { return new Error(code=Obj_err()); }
+  case Get:              { alist = a.l; }
+  case Set:              { alist = a.l; }
+  case Add:              { alist = a.l; sz++; }
+  case Size:             { alist = a.l; }
+  case EnsureCapacity:   { alist = a.l; }
+  case Error:            { return a ; }
   }
-  return size_xform(alist);
+  return xform(new Size(l=alist, sz=sz));
+}
+
+AList ensureCapacity_xform(AList a) {
+  AList alist = null;
+  switch (a) {
+  case List:             { return new Size(sz=0); }
+  case Obj:              { return new Error(code=Obj_err()); }
+  case Get:              { alist = a.l; }
+  case Set:              { alist = a.l; }
+  case Add:              { alist = a.l; }
+  case Size:             { alist = a.l; }
+  case EnsureCapacity:   { return a; }
+  case Error:            { return a ; }
+  }
+  return xform(alist);
 }
 
 AList xform(AList a) {
   switch (a) {
-  case List:         return a; 
-  case Obj:          return a; 
-  case Get:          return get_xform(a.l, a.i); 
-  case Set:	     return a; 
-  case Add:	     return a; 
-  case Size:	     return size_xform(a.l); 
-  case Error:        return a; 
+  case List:            return a; 
+  case Obj:             return a; 
+  case Get:             return get_xform(a.l, a.i); 
+  case Set:   	        return a; 
+  case Add:   	        return a; 
+  case Size:	        return size_xform(a.l, a.sz); 
+  case EnsureCapacity:  return ensureCapacity_xform(a.l); 
+  case Error:           return a; 
   }
 }
 
@@ -91,13 +113,14 @@ Object get_obj(AList a) {
   Object current;
   a = xform(a);
   switch (a) {
-  case List:  { current = null; }
-  case Obj:   { current = a.o; }
-  case Get:   { current = null; }
-  case Set:   { current = null; }
-  case Add:   { current = null; }
-  case Size:  { current = null; }
-  case Error: { current = null; }
+  case List:            { current = null; }
+  case Obj:             { current = a.o; }
+  case Get:             { current = null; }
+  case Set:             { current = null; }
+  case Add:             { current = null; }
+  case Size:            { current = null; }
+  case EnsureCapacity:  { current = null; }
+  case Error:           { current = null; }
   }
   return current;
 }
@@ -107,13 +130,14 @@ int size_int(AList a) {
   int sz = 0;
   a = xform(a);
   switch (a) {
-  case List:  { sz = 0; }
-  case Obj:   { sz = 0; }
-  case Get:   { sz = 0; }
-  case Set:   { sz = 0; }
-  case Add:   { sz = 0; }
-  case Size:  { sz = a.sz; }
-  case Error: { sz = 0; }
+  case List:            { sz = 0; }
+  case Obj:             { sz = 0; }
+  case Get:             { sz = 0; }
+  case Set:             { sz = 0; }
+  case Add:             { sz = 0; }
+  case Size:            { sz = a.sz; }
+  case EnsureCapacity:  { sz = 0; }
+  case Error:           { assert false; }
   }
   return sz;
 }
