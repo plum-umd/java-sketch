@@ -1,24 +1,37 @@
 String
 ======
-* `length(concat(s1,s2)) == length(s1) + length(s2)`
-* `length(replace(s1, c1, c2)) == length(s1)`
-* `length(substring(s, i, j)) == j - i`
-* `split(s1, s2).length <= length(s1) // inequality? are we ready for these?`
+(`length < toUpper < replace < substring < concat < null`)
 * `length(toUpper(s)) == length(s)`
+* `length(replace(s1, c1, c2)) == length(s1)`
+* `length(substring(s, i, j)) == MAX(j - i, 0)`
+* `length(concat(s1,s2)) == length(s1) + length(s2)`
+* `length(null) == 0`
+* `toUpper(replace(s1, c1, c2)) == replace(toUpper(s1), toUpper(c1), toUpper(c2))`
+* `toUpper(substring(s, i, j)) == substring(toUpper(s), i, j)`
+* `toUpper(concat(s1, s2)) == concat(toUpper(s1), toUpper(s2))`
+* `toUpper(null) == null`
+* `replace(substring(s, i, j), c1, c2) == substring(replace(s, c1, c2), i, j)`
+* `replace(concat(s1, s2), c1, c2) == concat(replace(s1, c1, c2), replace(s2, c1, c2))`
+* `replace(null, c1, c2) = null`
+* `substring(concat(s1, s2), i, j) == concat(substring(s1, i, j), substring(s2, i-length(s1), j-length(s2)))`
+* `substring(null, i, j)` == null
+* `concat(null, s2) == s2`
+* `concat(s1, null) == s1`
+
+* `split(s1, s2).length <= length(s1) // inequality? are we ready for these?`
 * `toString(s) == s // boring…but maybe somehow a useful axiom`
 * `compareTo(f(s1), f(s2)) == compareToIgnoreCase(s1,s2) where f=to[Upper|Lower]Case(s))`
-* `s == null => length(s) == 0`
-* `s != null => length(s) > 0`
+* `length(s) >= ITE(s == null, 0, 1)`
 
 Stack:
 =======
+(`isEmpty < size < pop,peek < push`)
+* `isEmpty(x) == (size(x) == 0)`
+* `size(pop(x)) == MAX(size(x),1) - 1 // size inherited from Vector`
+* `size(push(x)) == size(x) + 1 // size inherited from Vector`
 * `pop(push(s, x)) == x`
-* `size(pop(push(x))) == size(push(x)) - 1 // size inherited from Vector`
-* `size(push(push(x1), x2)) == size(push(x1)) + 1 // size inherited from Vector`
 * `peek(push(x)) == x`
-* `isEmpty(push(x)) == False`
-* `s == null => size(s) == 0`
-* `s != null => size(s) > 0`
+* `size(s) >= ITE(s == null, 0, 1)`
 
 HashMap:
 =======
