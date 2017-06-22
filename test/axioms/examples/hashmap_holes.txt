@@ -1,0 +1,6 @@
+1) Guards to for loops replaced with generators of all local variables & fields along with a hole for any constant loop guard.
+2) Any call to an equals method replaced with a generator of the equals method and "=="
+3) Replaced values in constructors with generators containing local variables/fields/arguments/result of method call with appropriate return value (e.g. getBucketIndex)
+4) Replaced constants in conditionals with holes.
+5) Replaced and minimised size of return arrays (values() and keys())
+6) Replaced accesses to buckets field with generators.

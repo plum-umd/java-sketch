@@ -115,14 +115,14 @@ Object get_obj(AList a) {
   Object current;
   a = xform(a);
   switch (a) {
-  case List:            { current = null; }
+  case List:            { assert false; }
   case Obj:             { current = a.o; }
-  case Get:             { current = null; }
-  case Set:             { current = null; }
-  case Add:             { current = null; }
-  case Size:            { current = null; }
-  case EnsureCapacity:  { current = null; }
-  case Error:           { current = null; }
+  case Get:             { assert false; }
+  case Set:             { assert false; }
+  case Add:             { assert false; }
+  case Size:            { assert false; }
+  case EnsureCapacity:  { assert false; }
+  case Error:           { assert false; }
   }
   return current;
 }
@@ -132,13 +132,13 @@ int size_int(AList a) {
   int sz = 0;
   a = xform(a);
   switch (a) {
-  case List:            { sz = 0; }
-  case Obj:             { sz = 0; }
-  case Get:             { sz = 0; }
-  case Set:             { sz = 0; }
-  case Add:             { sz = 0; }
+  case List:            { assert false; }
+  case Obj:             { assert false; }
+  case Get:             { assert false; }
+  case Set:             { assert false; }
+  case Add:             { assert false; }
   case Size:            { sz = a.sz; }
-  case EnsureCapacity:  { sz = 0; }
+  case EnsureCapacity:  { assert false; }
   case Error:           { assert false; }
   }
   return sz;
