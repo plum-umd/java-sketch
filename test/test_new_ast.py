@@ -56,6 +56,9 @@ class TestJava(TestCommon):
     def test_FieldFromImport(self):
         self.__test(["FieldFromImport.java"])
 
+    def test_FieldGenericArg(self):
+        self.__test(["FieldGenericArg.java"])
+
     def test_FieldMethod(self):
         self.__test(["FieldMethod.java"])
 
