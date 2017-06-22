@@ -32,6 +32,17 @@ public class BucketingTest {
         classUnderTest = new Bucketing<>();
     }
 
+    public void testClear(Integer x, Integer y) {
+	// classUnderTest.clear();
+
+        classUnderTest.put(x, y);
+        classUnderTest.put(y, x);
+        // Assert.assertTrue(classUnderTest.size() > 0);
+        
+	// classUnderTest.clear();
+	// Assert.assertFalse(classUnderTest.size() > 0);
+    }
+
     // public void testGetEmpty() {
     //     classUnderTest.clear();
     //     Assert.assertNull(classUnderTest.get(null));
@@ -150,17 +161,6 @@ public class BucketingTest {
     //     classUnderTest.remove(x);
     //     Assert.assertNull(classUnderTest.get(x));
     // }
-
-    public void testClear(Integer x, Integer y) {
-	// classUnderTest.clear();
-
-        classUnderTest.put(x, y);
-        classUnderTest.put(y, x);
-        // Assert.assertTrue(classUnderTest.size() > 0);
-        
-	// classUnderTest.clear();
-	// Assert.assertFalse(classUnderTest.size() > 0);
-    }
 
     // Doesn't exist in HashMap2
     // public void testEnsureCapacity(Integer v, Integer w, Integer x, Integer y, Integer z) {
