@@ -583,9 +583,9 @@ class Translator(object):
     def visit(self, n):
         if n.isHole: self.printt('??')
         else:
-            self.printt('{| ')
-            self.printSepList(n.exprs, ' | ')
-            self.printt(' |}')
+            self.printt('{|')
+            self.printSepList(n.exprs, ' |')
+            self.printt('|}')
 
     @v.when(ConditionalExpr)
     def visit(self, n):
