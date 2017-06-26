@@ -9,7 +9,6 @@ public class TreeSet<E> {
     static int RESIZE_FACTOR = 2;
     
     public TreeSet() {
-	assert 0 == 1;
 	set = new E[INITIAL_CAPACITY];
 	size = 0;
 	capacity = INITIAL_CAPACITY;

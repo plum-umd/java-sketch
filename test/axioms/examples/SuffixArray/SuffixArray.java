@@ -292,10 +292,8 @@ class SuffixArray {
     if (K <= 1) {
     	return null;
     }
-    
-    TreeSet<String> lcss = new TreeSet();
 
-    assert 0 == 1;
+    TreeSet<String> lcss = new TreeSet();
     
     if (strs == null || strs.length <= 1) return lcss;
     
@@ -306,7 +304,9 @@ class SuffixArray {
     for(int i = 0; i < N; i++) L += strs[i].length() + 1;
 
     int[] indexMap = new int[L];
-    int LOWEST_ASCII = Integer.MAX_VALUE;
+    // CHANGE
+    int LOWEST_ASCII = Integer.maxInt();
+    // int LOWEST_ASCII = Integer.MAX_VALUE;
     
     // Find the lowest ASCII value within the strings.
     // Also construct the index map to know which original 
@@ -344,9 +344,6 @@ class SuffixArray {
 
     // CHANGE
     String tmp = intArrToString(T);
-    if (tmp.length() >= 0 || tmp.length() < 0) {
-	assert 0 ==1;
-    }
     SuffixArray sa = new SuffixArray(tmp);
     // SuffixArray sa = new SuffixArray(T);
     Deque <Integer> deque = new ArrayDeque<>();
@@ -377,10 +374,10 @@ class SuffixArray {
       if (uniqueColors >= K) {
 
         // CHANGE
-	Integer deqPeekFirst = deque.peekFirst();
-	int deqPeekFirst_int = deqPeekFirst.intValue();
-	int windowLCP = sa.lcp[deqPeekFirst_int];
-	// int windowLCP = sa.lcp[deque.peekFirst()];
+    	Integer deqPeekFirst = deque.peekFirst();
+    	int deqPeekFirst_int = deqPeekFirst.intValue();
+    	int windowLCP = sa.lcp[deqPeekFirst_int];
+    	// int windowLCP = sa.lcp[deque.peekFirst()];
 
         if (windowLCP > 0 && bestLCSLength < windowLCP) {
           bestLCSLength = windowLCP;
@@ -394,7 +391,7 @@ class SuffixArray {
           char[] lcs = new char[windowLCP];
           for (int i = 0; i < windowLCP; i++) lcs[i] = (char)(T[pos+i] - SHIFT);
 
-	  // CHANGE
+    	  // CHANGE
           lcss.add(new String(lcs, 0, lcs.length));
           // lcss.add(new String(lcs));
 
@@ -406,24 +403,24 @@ class SuffixArray {
 
         // Update the colors in our window
         int lastColor = indexMap[sa.sa[lo]];
-	// CHANGE
+    	// CHANGE
         Integer colorCount = windowColorCount.get(new Integer(lastColor));
         // Integer colorCount = windowColorCount.get(lastColor);
-	// CHANGE
+    	// CHANGE
         if (colorCount.intValue() == 1) windowColors.remove(new Integer(lastColor));
         // if (colorCount == 1) windowColors.remove(lastColor);
-	// CHANGE
+    	// CHANGE
         windowColorCount.put(new Integer(lastColor), new Integer(colorCount.intValue() - 1));
         // windowColorCount.put(lastColor, colorCount - 1);
 
-	// CHANGE
-	deqPeekFirst = deque.peekFirst();
+    	// CHANGE
+    	deqPeekFirst = deque.peekFirst();
 	
-	// Remove the head if it's outside the new range: [lo+1, hi)
+    	// Remove the head if it's outside the new range: [lo+1, hi)
         while (!deque.isEmpty() && deqPeekFirst.intValue() <= lo) {
           deque.removeFirst();
-	  deqPeekFirst = deque.peekFirst();
-	}
+    	  deqPeekFirst = deque.peekFirst();
+    	}
 	
 
         // Decrease the window size
@@ -433,36 +430,36 @@ class SuffixArray {
       } else if(++hi < L) {
 
         int nextColor = indexMap[sa.sa[hi]];
-	// CHANGE 
-	Integer nextColor_Int = new Integer(nextColor);
+    	// CHANGE 
+    	Integer nextColor_Int = new Integer(nextColor);
 	
         // Update the colors in our window
-	// CHANGE
+    	// CHANGE
         windowColors.add(nextColor_Int);
         // windowColors.add(nextColor);
-	// CHANGE
+    	// CHANGE
         Integer colorCount = windowColorCount.get(nextColor_Int);
         // Integer colorCount = windowColorCount.get(nextColor);
-	// CHANGE
+    	// CHANGE
         if (colorCount == null) colorCount = new Integer(0);
         // if (colorCount == null) colorCount = 0;
-	// CHANGE
+    	// CHANGE
         windowColorCount.put(nextColor_Int, new Integer(colorCount.intValue() + 1));
         // windowColorCount.put(nextColor, colorCount + 1);
 
-	// CHANGE
-	Integer deqPeekLast = deque.peekLast();
-	int deqPeekLast_int = deqPeekLast.intValue();
+    	// CHANGE
+    	Integer deqPeekLast = deque.peekLast();
+    	int deqPeekLast_int = deqPeekLast.intValue();
 	
-	// CHANGE
+    	// CHANGE
         // Remove all the worse values in the back of the deque
         while(!deque.isEmpty() && sa.lcp[deqPeekLast_int] > sa.lcp[hi-1]) {
         // while(!deque.isEmpty() && sa.lcp[deque.peekLast()] > sa.lcp[hi-1])
           deque.removeLast();
-	  deqPeekLast = deque.peekLast();
-	  deqPeekLast_int = deqPeekLast.intValue();
-	}
-	// CHANGE
+    	  deqPeekLast = deque.peekLast();
+    	  deqPeekLast_int = deqPeekLast.intValue();
+    	}
+    	// CHANGE
         deque.addLast(new Integer(hi-1));
         // deque.addLast(hi-1);
 
@@ -487,6 +484,8 @@ class SuffixArray {
     // public static void main(String[] args){
     harness public static void main() {      
 	
+    // String[] strs = { "GAGL", "RGAG", "TGAGE" };
+    
     String[] strs = { "AAGAAGC", "AGAAGT", "CGAAGC" };
     // String[] strs = { "abca", "bcad", "daca" };
     // String[] strs = { "abca", "bcad", "daca" };
