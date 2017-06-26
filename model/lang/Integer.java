@@ -78,4 +78,5 @@ public class Integer extends Number {
     public int hashCode() {
     	return value;
     }
+
 }

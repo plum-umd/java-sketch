@@ -4,11 +4,38 @@ public class String implements CharSequence{
     char[] _value;
     int _count;
 
+    // public String(int[] ca, int offset, int count) {
+    // 	if (offset > 0 && offset < count) {
+    // 	    int l = count-offset-1;
+    // 	    char[] tmp = new char[l];
+    // 	    for (int i=0; i<l; i++) {
+    // 		tmp[i] = (char) ca[i+offset];
+    // 	    }
+    // 	    _value = tmp;
+    // 	    _count = l;
+    // 	} else {
+    // 	    char[] tmp = new char[count];
+    // 	    for (int i=0; i<count; i++) {
+    // 		tmp[i] = (char) ca[i];
+    // 	    }
+    // 	    _value = tmp;
+    // 	    _count = count;
+    // 	}
+    // }
+    
     // use this constructor as it includes "count"
     // ignore offset at the moment
     public String(char[] ca, int offset, int count) {
-	_value = ca;
-	_count = count;
+	if (offset > 0 && offset < count) {
+	    char[] tmp = new char[count];
+	    for (int i=offset; i<offset+count; i++) {
+		tmp[i] = ca[i];
+	    }
+	    _value = tmp;
+	} else {
+	    _value = ca;
+	}
+	_count = count;	
     }
 
     public char charAt(int index) {
@@ -81,6 +108,30 @@ public class String implements CharSequence{
 	return index;
     }
 
+    public int compareTo(String str) {
+    	return compare(this.toString(), str);
+    }
+
+    public static int compare(String s1, String s2) {
+    	int l1 = s1.length();
+    	int l2 = s2.length();
+
+    	if (l1 < l2) {
+    	    return l1 - l2;
+    	} else if (l1 > l2) {
+    	    return l2 - l1;
+    	} else {
+    	    for (int i=0; i<l1; i++) {
+    		char c1 = s1.charAt(i);
+    		char c2 = s2.charAt(i);
+    		if (c1 != c2) {
+    		    return c1 - c2;
+    		}
+    	    }
+    	    return 0;
+    	}
+    }
+    
     public String concat(String str) {
 	int otherLen = str.length();
 	if (otherLen == 0) {
