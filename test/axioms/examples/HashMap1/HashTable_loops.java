@@ -40,13 +40,16 @@ public class HashTable<K, V> {
     //     return 1 << pow;
     // }
 
+    // high level: criticism - really only works if you know what the answer is
+    // bug fix: error sites are reasonable error sites
     protected void resetHashTable() {
         this.size = 0;
         this.currentCapacity = this.initialCapacity;
         this.buckets = new ArrayList<>();
-        for (int i = 0; i < this.currentCapacity; i++) {
-	    this.buckets.add(null);
-        }
+
+	// Not going to use buckets.size() here b/c we just created it...
+	int g = {|this.size, this.currentCapacity, this.capacityGrowth, this.initialCapacity|};
+        for (int i = ??, t = g; i < t; i++) { this.buckets.add(null); }
     }
 
     // Returns the value stored under the given key, if found
@@ -60,7 +63,7 @@ public class HashTable<K, V> {
         ensureCapacity(size() + 1);
 
         // Hash the key and get the bucket index
-    	int bucketIndex = getBucketIndex(key);
+	int bucketIndex = getBucketIndex(key);
         HashTableNode<K, V> newNode = new HashTableNode<>(key, value);
         HashTableNode<K, V> current = buckets.get(bucketIndex);
 
@@ -71,18 +74,18 @@ public class HashTable<K, V> {
             return;
         }
         // Traverse the list within the bucket until match or end found
-    	while (current != null) {
+	while (current != null) {
             // When a key match is found, replace the value it stores and break
-    	    K k = current.getKey();
+	    K k = current.getKey();
             if (k.equals(key)) {
                 current.setValue(value);
-    		return;
+		return;
             }
             // When the last node of the list is reached, append new node here and break
             else if (current.getNext() == null) {
                 current.setNext(newNode);
                 this.size++;
-    		return;
+		return;
             }
             current = current.getNext();
         }
@@ -100,7 +103,7 @@ public class HashTable<K, V> {
 
         // Traverse the list inside the bucket until match is found or end of list reached
         while (current != null) {
-    	    K k = current.getKey();
+	    K k = current.getKey();
             if (k.equals(key)) {
                 // Handle case when node is first in bucket
                 if (previous == null) {
@@ -138,17 +141,21 @@ public class HashTable<K, V> {
     // Returns array of all values in table
     // Traverse each bucket and add value to results
     public V[] values() {
-    	V[] values = (V[]) new Object[size()];
+	V[] values = (V[]) new Object[size()];
+
         if (size() > 0) {
             int index = 0;
-    	    for (int i = 0; i < buckets.size(); i++) {
-    		HashTableNode<K, V> current = buckets.get(i);
-    		while (current != null) {
-    		    values[index] = current.getValue();
-    		    index++;
-    		    current = current.getNext();
-    		}
+	    int bs = buckets.size();
+	    int g = {|this.size, this.currentCapacity, this.capacityGrowth, this.initialCapacity, bs|};
+	    for (int i = 0; i < g; i++) {
+		HashTableNode<K, V> current = buckets.get(i);
+		while (current != null) {
+		    values[index] = current.getValue();
+		    index++;
+		    current = current.getNext();
+		}
             }
+	    minimize(g);
         }
         return values;
     }
@@ -157,9 +164,12 @@ public class HashTable<K, V> {
     // Traverse each bucket and add key to results
     public K[] keys() {
         K[] keys = (K[]) new Object[size()];
+
         if (size() > 0) {
             int index = 0;
-            for (int i = 0; i < buckets.size(); i++) {
+	    int bs = buckets.size();
+	    int g = {|this.size, this.currentCapacity, this.capacityGrowth, this.initialCapacity, bs|};
+            for (int i = 0; i < g; i++) {
                 HashTableNode<K, V> current = buckets.get(i);
                 while (current != null) {
                     keys[index] = current.getKey();
@@ -167,6 +177,7 @@ public class HashTable<K, V> {
                     current = current.getNext();
                 }
             }
+	    minimize(g);
          }
         return keys;
     }
@@ -195,22 +206,17 @@ public class HashTable<K, V> {
 
     // Hash the key and find the appropriate bucket index
     protected int getBucketIndex(K key) {
-    	// leaving this method alone b/c it's a translation of the comments below
-    	int h = key.hashCode();
-    	int c = this.currentCapacity - 1;
-    	int result = 0, s = 1;
-    	for (int i = 0; i < 32; i++) {
-    	    if (i > 1) {
-    		for (int j = 0; j < i-1; j++) s *= 2;
-    	    }
-    	    result += (((h/s) % 2) * ((c/s) % 2) * s);
-    	    s = 2;
-    	}
-    	return result;
-    	// // Rehash to protect against poor hash functions
-    	// int rehashed = hash(key.hashCode());
-        // // Capacity is always a power of two, use fast modulo operation
-        // return rehashed & (this.currentCapacity - 1);
+	int h = key.hashCode();
+	int c = this.currentCapacity - 1;
+	int result = 0, s = 1;
+	for (int i = 0; i < 32; i++) {
+	    if (i > 1) {
+		for (int j = 0; j < i-1; j++) s *= 2;
+	    }
+	    result += (((h/s) % 2) * ((c/s) % 2) * s);
+	    s = 2;
+	}
+	return result;
     }
 
     // protected int hash(int h) {
@@ -228,7 +234,7 @@ public class HashTable<K, V> {
         int bucketIndex = getBucketIndex(key);
         HashTableNode<K, V> current = buckets.get(bucketIndex);
         while (current != null) {
-    	    K k = current.getKey();
+	    K k = current.getKey();
             if (k.equals(key)) {
                 return current;
             }
@@ -246,12 +252,16 @@ public class HashTable<K, V> {
             return null;
         }
 
-    	// This seems too tough for Sketch
-        for (int i = 0; i < buckets.size(); i++) {
+	// This seems too tough for Sketch
+	int bs = buckets.size();
+	int b = {|this.size, this.currentCapacity, this.capacityGrowth,
+		 this.initialCapacity, bs|};
+	for (int i = 0; i < b; i++) {
+        // for (int i = 0; i < buckets.size(); i++) {
             HashTableNode<K, V> current = buckets.get(i);
 
             while (current != null) {
-    		V v = current.getValue();
+		V v = current.getValue();
                 if (v.equals(value)) {
                     return current;
                 }
@@ -274,10 +284,13 @@ public class HashTable<K, V> {
         buckets.ensureCapacity(newCapacity);
 
         // Initialize buckets
-    	for (int i = this.currentCapacity; i < newCapacity; i++) {
-    	    this.buckets.add(null);
-    	}
+	for (int i = this.currentCapacity; i < newCapacity; i++) {
+	// for (int i = this.currentCapacity; i < {|this.capacityGrowth, this.initialCapacity,
+	// 				       this.size, this.currentCapacity, newCapacity,
+	// 					   intendedCapacity|}; i++) {
+	    this.buckets.add(null);
+	}
 	
-    	currentCapacity = newCapacity;
+	currentCapacity = newCapacity;
     }
 }

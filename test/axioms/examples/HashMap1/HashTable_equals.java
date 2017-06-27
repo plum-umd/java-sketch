@@ -17,6 +17,7 @@ public class HashTable<K, V> {
     protected int currentCapacity;
     protected ArrayList<HashTableNode<K, V>> buckets;
 
+    // Changed this b/c JSketch had a problem with this(...)
     // public HashTable() {
     //     this(16);
     // }
@@ -60,7 +61,7 @@ public class HashTable<K, V> {
         ensureCapacity(size() + 1);
 
         // Hash the key and get the bucket index
-    	int bucketIndex = getBucketIndex(key);
+	int bucketIndex = getBucketIndex(key);
         HashTableNode<K, V> newNode = new HashTableNode<>(key, value);
         HashTableNode<K, V> current = buckets.get(bucketIndex);
 
@@ -71,18 +72,19 @@ public class HashTable<K, V> {
             return;
         }
         // Traverse the list within the bucket until match or end found
-    	while (current != null) {
+	while (current != null) {
             // When a key match is found, replace the value it stores and break
-    	    K k = current.getKey();
-            if (k.equals(key)) {
+	    K k = current.getKey();
+	    boolean b = k.equals(key);
+            if ({|b, k == key|}) {
                 current.setValue(value);
-    		return;
+		return;
             }
             // When the last node of the list is reached, append new node here and break
             else if (current.getNext() == null) {
                 current.setNext(newNode);
                 this.size++;
-    		return;
+		return;
             }
             current = current.getNext();
         }
@@ -100,8 +102,10 @@ public class HashTable<K, V> {
 
         // Traverse the list inside the bucket until match is found or end of list reached
         while (current != null) {
-    	    K k = current.getKey();
-            if (k.equals(key)) {
+	    K k = current.getKey();
+	    boolean b = k.equals(key);
+            if (b) {
+            // if ({|b, k == key|}) {
                 // Handle case when node is first in bucket
                 if (previous == null) {
                     // If there is a next node, set next node as first in bucket
@@ -138,16 +142,17 @@ public class HashTable<K, V> {
     // Returns array of all values in table
     // Traverse each bucket and add value to results
     public V[] values() {
-    	V[] values = (V[]) new Object[size()];
+	V[] values = (V[]) new Object[size()];
+
         if (size() > 0) {
             int index = 0;
-    	    for (int i = 0; i < buckets.size(); i++) {
-    		HashTableNode<K, V> current = buckets.get(i);
-    		while (current != null) {
-    		    values[index] = current.getValue();
-    		    index++;
-    		    current = current.getNext();
-    		}
+	    for (int i = 0; i < buckets.size(); i++) {
+		HashTableNode<K, V> current = buckets.get(i);
+		while (current != null) {
+		    values[index] = current.getValue();
+		    index++;
+		    current = current.getNext();
+		}
             }
         }
         return values;
@@ -157,6 +162,7 @@ public class HashTable<K, V> {
     // Traverse each bucket and add key to results
     public K[] keys() {
         K[] keys = (K[]) new Object[size()];
+
         if (size() > 0) {
             int index = 0;
             for (int i = 0; i < buckets.size(); i++) {
@@ -195,28 +201,18 @@ public class HashTable<K, V> {
 
     // Hash the key and find the appropriate bucket index
     protected int getBucketIndex(K key) {
-    	// leaving this method alone b/c it's a translation of the comments below
-    	int h = key.hashCode();
-    	int c = this.currentCapacity - 1;
-    	int result = 0, s = 1;
-    	for (int i = 0; i < 32; i++) {
-    	    if (i > 1) {
-    		for (int j = 0; j < i-1; j++) s *= 2;
-    	    }
-    	    result += (((h/s) % 2) * ((c/s) % 2) * s);
-    	    s = 2;
-    	}
-    	return result;
-    	// // Rehash to protect against poor hash functions
-    	// int rehashed = hash(key.hashCode());
-        // // Capacity is always a power of two, use fast modulo operation
-        // return rehashed & (this.currentCapacity - 1);
+	int h = key.hashCode();
+	int c = this.currentCapacity - 1;
+	int result = 0, s = 1;
+	for (int i = 0; i < 32; i++) {
+	    if (i > 1) {
+		for (int j = 0; j < i-1; j++) s *= 2;
+	    }
+	    result += (((h/s) % 2) * ((c/s) % 2) * s);
+	    s = 2;
+	}
+	return result;
     }
-
-    // protected int hash(int h) {
-    //     h ^= (h >> 20) ^ (h >> 12);
-    //     return h ^ (h >> 7) ^ (h >> 4);
-    // }
 
     // Returns the node with the matching key, if any
     // Searches only inside the appropriate bucket
@@ -228,8 +224,10 @@ public class HashTable<K, V> {
         int bucketIndex = getBucketIndex(key);
         HashTableNode<K, V> current = buckets.get(bucketIndex);
         while (current != null) {
-    	    K k = current.getKey();
-            if (k.equals(key)) {
+	    K k = current.getKey();
+	    boolean b = k.equals(key); 
+            // if ({|b, k == key|}) {
+            if (b) {
                 return current;
             }
             current = current.getNext();
@@ -246,19 +244,19 @@ public class HashTable<K, V> {
             return null;
         }
 
-    	// This seems too tough for Sketch
         for (int i = 0; i < buckets.size(); i++) {
             HashTableNode<K, V> current = buckets.get(i);
-
             while (current != null) {
-    		V v = current.getValue();
-                if (v.equals(value)) {
+		// changed current.getValue().equals(value) to help JSketch
+		V v = current.getValue();
+		boolean b = v.equals(value);
+                // if ({|b, v == value|}) {
+                if (b) {
                     return current;
                 }
                 current = current.getNext();
             }
         }
-
         return null;
     }
 
@@ -274,10 +272,9 @@ public class HashTable<K, V> {
         buckets.ensureCapacity(newCapacity);
 
         // Initialize buckets
-    	for (int i = this.currentCapacity; i < newCapacity; i++) {
-    	    this.buckets.add(null);
-    	}
-	
-    	currentCapacity = newCapacity;
+	for (int i = this.currentCapacity; i < newCapacity; i++) {
+	    this.buckets.add(null);
+	}
+	currentCapacity = newCapacity;
     }
 }
