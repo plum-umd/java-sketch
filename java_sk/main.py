@@ -28,6 +28,7 @@ def translate(**kwargs):
     fs = kwargs.get('fs', False)
     cgen = kwargs.get('custom_gen', False)
     cntr = kwargs.get('cntr', False)
+    skv = kwargs.get('skv', 0)
     codegen_jar = os.path.join(root_dir, "codegen", "lib", "codegen.jar")
     
     logging.info('parsing {}'.format(prg))
@@ -43,6 +44,7 @@ def translate(**kwargs):
 
     # print counter examples
     if cntr: opts.extend(['-V3', '--debug-cex'])
+    if skv != 0: opts.extend(['-V{}'.format(skv)])
 
     # place to keep sketch's temporary files
     opts.extend(["--fe-tempdir", out_dir])
@@ -109,6 +111,9 @@ if __name__ == "__main__":
     parser.add_option("--cntr",
       action="store_true", dest="cntr", default=False,
       help="print out counter examples")
+    parser.add_option("--skv",
+      action="store", dest="skv", default=0,
+      help="set verbosity level for Sketch")
   
     (OPT, argv) = parser.parse_args()
     OPT.prg = argv
