@@ -30,19 +30,30 @@ public class HashTableTest {
 	Integer zz = new Integer(z);
 	setUp();
 	testClear(xx, yy);
-	testGetEmpty();
 	testPutAndGet(xx, yy, zz);
-	// testReplacing(xx, yy, zz);
-	// testKeys(xx, yy);
-	// testValues(xx, yy);
-	// testContainsValue(xx, yy);
-	// testContainsKey(xx, yy);
-	// testRemoveNonExistent(xx, yy);
-	// testRemove(xx, yy);
-	// if (x >= INITIAL_SIZE && x < 0) { testSize(x, y); }
+	testGetEmpty();
+	testReplacing(xx, yy, zz);
+	testKeys(xx, yy);
+	testValues(xx, yy);
+	testContainsValue(xx, yy);
+	testContainsKey(xx, yy);
+	testRemoveNonExistent(xx, yy);
+	testRemove(xx, yy);
+	if (x >= INITIAL_SIZE && x < 0) { testSize(x, y); }
 
-	/* Something is wrong with expanding. Maybe hash function? */
 	// testEnsureCapacity(vv, ww, xx, yy, zz);
+    }
+    public Integer[] makeInts(Integer i1) {
+	Integer[] i = {new Integer(i1.intValue())};
+	return i;
+    }
+    public Integer[] makeInts(Integer i1, Integer i2) {
+    	Integer[] i = {new Integer(i1.intValue()), new Integer(i2.intValue())};
+    	return i;
+    }
+    public Integer[] makeInts(Integer i1, Integer i2, Integer i3) {
+    	Integer[] i = {new Integer(i1.intValue()), new Integer(i2.intValue()), new Integer(i3.intValue())};
+    	return i;
     }
     public void setUp() {
         classUnderTest = new HashTable<>(INITIAL_SIZE);
@@ -54,14 +65,15 @@ public class HashTableTest {
     }
 
     public void testPutAndGet(Integer x, Integer y, Integer z) {
+	Integer[3] is = makeInts(x, y, z);
         classUnderTest.clear();
 
         classUnderTest.put(x, y);
         classUnderTest.put(y, x);
         classUnderTest.put(z, x);
-        Assert.assertEquals(classUnderTest.get(x), y);
-        Assert.assertEquals(classUnderTest.get(y), x);
-        Assert.assertEquals(classUnderTest.get(z), x);
+        Assert.assertEquals(classUnderTest.get(is[0]), is[1]);
+        Assert.assertEquals(classUnderTest.get(is[1]), is[0]);
+        Assert.assertEquals(classUnderTest.get(is[2]), is[0]);
 
     	Integer i = new Integer(x.intValue()+INITIAL_SIZE);
         classUnderTest.put(i, y);
@@ -69,32 +81,35 @@ public class HashTableTest {
     }
 
     public void testReplacing(Integer x, Integer y, Integer z) {
+	Integer[3] is = makeInts(x, y, z);
         classUnderTest.clear();
-    	Integer i = new Integer(x.intValue()+INITIAL_SIZE);
-        classUnderTest.put(i, z);
-        Assert.assertEquals(classUnderTest.get(i), z);
+    	Integer i0 = new Integer(x.intValue()+INITIAL_SIZE);
+    	Integer i1 = new Integer(x.intValue()+INITIAL_SIZE);
+        classUnderTest.put(i0, z);
+        Assert.assertEquals(classUnderTest.get(i1), is[2]);
 
         classUnderTest.put(x, y);
-        Assert.assertEquals(classUnderTest.get(x), y);
+        Assert.assertEquals(classUnderTest.get(is[0]), is[1]);
 
         int size = classUnderTest.size();
 
         classUnderTest.put(x, z);
-        Assert.assertEquals(classUnderTest.get(x), z);
+        Assert.assertEquals(classUnderTest.get(is[0]), is[2]);
 
-    	classUnderTest.put(i, z);
-        Assert.assertEquals(classUnderTest.get(i), z);
+    	classUnderTest.put(i0, z);
+        Assert.assertEquals(classUnderTest.get(i1), is[2]);
 
         Assert.assertEquals(classUnderTest.size(), size);
 
     }
 
     public void testKeys(Integer x, Integer y) {
+	Integer[2] is = makeInts(x, y);
         classUnderTest.clear();
 
         classUnderTest.put(x, y);
     	Object k = classUnderTest.keys()[0];
-        Assert.assertEquals(k, x);
+        Assert.assertEquals(k, is[0]);
     	// TODO: array access from method call as argument to assertTrue
         // Assert.assertEquals(classUnderTest.keys()[0], k);
 
@@ -104,11 +119,12 @@ public class HashTableTest {
 
     // @Test
     public void testValues(Integer x, Integer y) {
+	Integer[2] is = makeInts(x, y);
         classUnderTest.clear();
 
     	classUnderTest.put(x, y);
     	Object v = classUnderTest.values()[0];
-    	Assert.assertEquals(v, y);
+    	Assert.assertEquals(v, is[1]);
 
         // Assert.assertTrue(k.equals(y));
     	// TODO: array access from method call as argument to assertTrue
@@ -117,19 +133,21 @@ public class HashTableTest {
 
     //TODO: why the heck is this so slow?! containsValue()????
     public void testContainsValue(Integer x, Integer y) {
+	Integer[2] is = makeInts(x, y);
         classUnderTest.clear();
 
-        Assert.assertFalse(classUnderTest.containsValue(y));
         classUnderTest.put(x, y);
-    	Assert.assertTrue(classUnderTest.containsValue(y));
+    	Assert.assertTrue(classUnderTest.containsValue(is[1]));
     }
 
     public void testContainsKey(Integer x, Integer y) {
+	Integer[2] is = makeInts(x, y);
         classUnderTest.clear();
 
         Assert.assertFalse(classUnderTest.containsKey(x));
         classUnderTest.put(x, y);
-    	Assert.assertTrue(classUnderTest.containsKey(x));
+	// Integer i = new Integer(x.intValue());
+    	Assert.assertTrue(classUnderTest.containsKey(is[0]));
     }
 
     public void testSize(int x, int y) {
@@ -140,29 +158,31 @@ public class HashTableTest {
     	for (int i = 0; i < INITIAL_SIZE; i++) { classUnderTest.put(new Integer(i), null); }
         Assert.assertEquals(classUnderTest.size(), INITIAL_SIZE);
         classUnderTest.put(new Integer(x), new Integer(y));
-        Assert.assertEquals(classUnderTest.size(), 17);
+        Assert.assertEquals(classUnderTest.size(), INITIAL_SIZE+1);
     }
 
     public void testRemoveNonExistent(Integer x, Integer y) {
+	Integer[2] is = makeInts(x, y);
         classUnderTest.clear();
 
         classUnderTest.put(x, y);
         int size = classUnderTest.size();
-        classUnderTest.remove(y);
+        classUnderTest.remove(is[1]);
         Assert.assertEquals(classUnderTest.size(), size);
     }
 
     public void testRemove(Integer x, Integer y) {
+	Integer[2] is = makeInts(x, y);
         classUnderTest.clear();
 
         int size = classUnderTest.size();
         classUnderTest.put(x, y);
 
-        Assert.assertEquals(classUnderTest.get(x), y);
+        Assert.assertEquals(classUnderTest.get(is[0]), is[1]);
         Assert.assertEquals(classUnderTest.size(), size + 1);
 
         classUnderTest.remove(x);
-        Assert.assertNull(classUnderTest.get(x));
+        Assert.assertNull(classUnderTest.get(is[0]));
     }
 
     public void testClear(Integer x, Integer y) {

@@ -1,10 +1,9 @@
 // This code is from https://github.com/anthonynsimon/java-ds-algorithms
-// Things synthesised:
-// All tests: 10m.
-
-// Synthesis:
-// 1: tests - clear, putAndGet ~30s
-// 2: tests - clear, putAndGet, containsValue, containsKey, remove ~4m53s
+// Methods w/.equals: put, remove, getNodeWithKey, getNodeWithValue
+// Times (all tests use testClear and putAndGet)
+// putAndGet: 10s, getEmpty: 11s, replacing: 33s, keys: 18s, values: 19s, containsValue: 1m35s,
+// containsKey: 13s, removeNonExistent: 14s, remove: 16s, size: 44s
+// all: 6m42s
 
 import java.util.ArrayList;
 
@@ -104,8 +103,7 @@ public class HashTable<K, V> {
         while (current != null) {
 	    K k = current.getKey();
 	    boolean b = k.equals(key);
-            if (b) {
-            // if ({|b, k == key|}) {
+            if ({|b, k == key|}) {
                 // Handle case when node is first in bucket
                 if (previous == null) {
                     // If there is a next node, set next node as first in bucket
@@ -226,8 +224,7 @@ public class HashTable<K, V> {
         while (current != null) {
 	    K k = current.getKey();
 	    boolean b = k.equals(key); 
-            // if ({|b, k == key|}) {
-            if (b) {
+            if ({|b, k == key|}) {
                 return current;
             }
             current = current.getNext();
@@ -250,8 +247,7 @@ public class HashTable<K, V> {
 		// changed current.getValue().equals(value) to help JSketch
 		V v = current.getValue();
 		boolean b = v.equals(value);
-                // if ({|b, v == value|}) {
-                if (b) {
+                if ({|b, v == value|}) {
                     return current;
                 }
                 current = current.getNext();
