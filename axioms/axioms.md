@@ -79,3 +79,13 @@ ArrayList:
 * `a != null => size(a) > 0`
 * `remove(a, e) == True => size(a) > 0 // not sure about this`
 * `remove(a, e) == True => size(remove(a, e)) == size(a) - 1 // not sure about this`
+
+ArrayDeque:
+=========
+
+* `getFirst(a) == getFirst(a, 0, 0)`
+* `getFirst([], n, m) == null`
+* `getFirst(addFirst(a, e), n, m) == ITE(n > 0, getFirst(a, n-1, m), ITE(n+m == size(e), null, e))`
+* `getFirst(addLast(a, e), n, m) == ITE(size(a) == 0, ITE(m == 1, null, e), getFirst(a,n,m-1))`
+* `getFirst(removeFirst(a), n, m) == getFirst(a, n+1, m)`
+* `getFirst(removeLast(a), n, m) == getFirst(a, n, m+1)`
