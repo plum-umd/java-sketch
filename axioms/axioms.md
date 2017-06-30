@@ -83,9 +83,9 @@ ArrayList:
 ArrayDeque:
 =========
 
-* `getFirst(a) == getFirst(a, 0, 0)`
-* `getFirst([], n, m) == null`
-* `getFirst(addFirst(a, e), n, m) == ITE(n > 0, getFirst(a, n-1, m), ITE(m == size(e), null, e))`
-* `getFirst(addLast(a, e), n, m) == ITE(size(a) == 0, ITE(m == 1, null, e), getFirst(a,n,m-1))`
-* `getFirst(removeFirst(a), n, m) == getFirst(a, n+1, m)`
-* `getFirst(removeLast(a), n, m) == getFirst(a, n, m+1)`
+* `removeFirst(addFirst(a, e)) == (a,e)`
+* `removeFirst(addLast(a, e)) == ITE(size(a) == 0, (a,e), removeFirst(a))`
+* `removeFirst(removeFirst(a)) == removeFirst(a'), where a' = xform(removeFirst(a))`
+* `getFirst(addFirst(a,e)) == (addFirst(a,e), e)`
+* `getFirst(addLast(a,e)) == ITE(size(a) == 0, (addFirst(a,e), e), getFirst(a))`
+* `getFirst(removeFirst(a, e)) == getFirst(a'), where a' = xform(removeFirst(a))`
