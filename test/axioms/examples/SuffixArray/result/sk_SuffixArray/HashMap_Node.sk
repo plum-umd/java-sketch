@@ -1,0 +1,22 @@
+package HashMap_Node;
+
+Object self0;
+
+Object HashMap_Node_HashMap_Node_HashMap(Object self, Object self_0) {
+    self0 = self_0;
+    return self;
+}
+
+Object HashMap_Node_HashMap_Node_HashMap_int_K_V_Node(Object self, Object self_0, int hash, Object key, Object value, Object next) {
+  self0 = self_0;
+  self.hash_HashMap_Node = hash;
+  self.key_HashMap_Node = key;
+  self.value_HashMap_Node = value;
+  self.next_HashMap_Node = next;
+  return self;
+}
+
+bit equals_Object(Object self, Object obj) {
+  return true;
+}
+

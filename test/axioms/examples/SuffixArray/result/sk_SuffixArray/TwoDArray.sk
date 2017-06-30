@@ -1,0 +1,39 @@
+package TwoDArray;
+
+Object TwoDArray_TwoDArray(Object self) {
+    return self;
+}
+
+Object TwoDArray_TwoDArray_int_int(Object self, int n, int m) {
+  self.N_TwoDArray = n;
+  self.M_TwoDArray = m;
+  self.arr_TwoDArray = new Array_int(length=n * m);
+  return self;
+}
+
+void set_int_int_int(Object self, int i, int j, int val) {
+  self.arr_TwoDArray.A[(i * self.M_TwoDArray) + j] = val;
+}
+
+int get_int_int(Object self, int i, int j) {
+  return self.arr_TwoDArray.A[(i * self.M_TwoDArray) + j];
+}
+
+void setRow_int_int(Object self, int i, Array_int row) {
+  int count = 0;
+  for (int j = i * self.M_TwoDArray; j < (i * self.M_TwoDArray) + self.N_TwoDArray; j++) {
+    self.arr_TwoDArray.A[j] = row.A[count];
+    count++;
+  }
+}
+
+Array_int getRow_int(Object self, int i) {
+  int count = 0;
+  Array_int row = new Array_int(length=self.N_TwoDArray);
+  for (int j = i * self.M_TwoDArray; j < (i * self.M_TwoDArray) + self.N_TwoDArray; j++) {
+    row.A[count] = self.arr_TwoDArray.A[j];
+    count++;
+  }
+  return row;
+}
+
