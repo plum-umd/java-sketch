@@ -18,8 +18,8 @@ log_lvls = {'0':logging.NOTSET, '10':logging.DEBUG, '20':logging.INFO, '30':logg
             '40':logging.ERROR, '50':logging.CRITICAL}
 
 def parse(path, **kwargs):
-    # print 'field_types:', utils.get_fld_descriptors('parser/J')
-    # ftypes = utils.get_mtd_types('parser/J', 'm2', 2)
+    # print 'field_types:', utils.get_fld_descriptors('jskparser/J')
+    # ftypes = utils.get_mtd_types('jskparser/J', 'm2', 2)
     # print 'ftypes:', ftypes
     # exit()
     ## logging configuration
@@ -60,34 +60,34 @@ def create_logger(log_lvl):
     
 if __name__ == "__main__":
     from optparse import OptionParser
-    parser = OptionParser(usage="%prog [options]* [FILE]+")
+    jskparser = OptionParser(usage="%prog [options]* [FILE]+")
     
-    parser.add_option("-r", "--reach",
+    jskparser.add_option("-r", "--reach",
                       action="store_true", dest="reach", default=False,
                     help="whether or not to do reaching defs")
-    parser.add_option("-f", "--dataflow",
+    jskparser.add_option("-f", "--dataflow",
                       action="store_true", dest="dataflow", default=False,
                     help="whether or not to do dataflow analysis")
-    parser.add_option("-i", "--inputs",
+    jskparser.add_option("-i", "--inputs",
                       action="store_true", dest="inputs", default=False,
                       help="do input analysis")
-    parser.add_option("-e", "--expr",
+    jskparser.add_option("-e", "--expr",
                       action="append", type="int", dest="e", default=[],
                       help="start and stop nodes for i/o")
-    parser.add_option("-d", "--debug",
+    jskparser.add_option("-d", "--debug",
                       action="store_true", dest="debug", default=False,
                       help="print intermediate messages verbosely")
-    parser.add_option("-v", "--verbose",
+    jskparser.add_option("-v", "--verbose",
                       action="store_true", dest="verbose", default=False,
                       help="print dataflow results")
-    parser.add_option("-s", "--symtab",
+    jskparser.add_option("-s", "--symtab",
                       action="store_true", dest="symtab", default=False,
                       help="Print symbol tables")
-    parser.add_option("-l", "--log_lvl",
+    jskparser.add_option("-l", "--log_lvl",
                       action="store", dest="log_lvl", default='10',
                       help="level of logging")
     
-    (OPT, argv) = parser.parse_args()
+    (OPT, argv) = jskparser.parse_args()
     
     if len(argv) < 1: exit("incorrect number of arguments: missing program(s)")
     program = parse(argv, **vars(OPT))

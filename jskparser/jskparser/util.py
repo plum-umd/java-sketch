@@ -13,13 +13,13 @@ def get_files_from_path(path, ext):
         return set(sorted(files))  # to guarantee the order of files read
 
 """
-handling javaparser AST
+handling javajskparser AST
 """
 def toAST(files, ext):
     prg_files = []
     for f in files:
         prg_files.extend(get_files_from_path(f, "java"))
-    if not prg_files: exit('parser.util: File(s) not found!')
+    if not prg_files: exit('jskparser.util: File(s) not found!')
     java_in = os.path.abspath(os.path.join(pwd, '../tests/ir_asts/API.java'))
     json_out = os.path.abspath(os.path.join(pwd, '../tests/ir_asts/java.json'))
     api = ""
@@ -36,7 +36,7 @@ def toAST(files, ext):
     # single string to subprocess.call is platform dependant, and shell=True
     # can be a security vulnerability (if allowed to take user input).
     # This just got a whole lot nastier
-    cmd = 'cd ' + pwd + '/..; /usr/bin/java -cp .:javaparser/javaparser-core/target/classes:$HOME/.m2/repository/com/cedarsoftware/json-io/4.3.0/json-io-4.3.0.jar parser.Jsonify ' + java_in + ' ' + json_out
+    cmd = 'cd ' + pwd + '/..; /usr/bin/java -cp .:javaparser/javaparser-core/target/classes:$HOME/.m2/repository/com/cedarsoftware/json-io/4.3.0/json-io-4.3.0.jar jskparser.Jsonify ' + java_in + ' ' + json_out
     ret = call(cmd, shell=True)
     if ret != 0: exit('Problem parsing.')
     return json_out

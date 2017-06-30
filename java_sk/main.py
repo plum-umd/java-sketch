@@ -8,7 +8,7 @@ import sketch
 import util
 from encoder import Encoder
 
-from parser.parser import parse
+from jskparser.jskparser import parse
 
 pwd = os.path.dirname(__file__)
 root_dir = os.path.join(pwd, "..")
@@ -65,7 +65,7 @@ def translate(**kwargs):
         # if sketch fails, halt the process here
         if not r: return 1
     elif not prg:
-        parser.error("need to pass in some file")
+        jskparser.error("need to pass in some file")
  
     return 0
        
@@ -82,40 +82,40 @@ if __name__ == "__main__":
       sys.exit("incorrect number of arguments")
   
     from optparse import OptionParser
-    parser = OptionParser(usage="%prog [options]* [-t tmp_path]* (api_path)")
+    jskparser = OptionParser(usage="%prog [options]* [-t tmp_path]* (api_path)")
   
-    parser.add_option("-t", "--template",
+    jskparser.add_option("-t", "--template",
       action="append", dest="tmpl", default=[],
       help="template folder")
-    parser.add_option("-l", "--log_lvl",
+    jskparser.add_option("-l", "--log_lvl",
       action="store", dest="log_lvl", default='10',
       help="level of logging")
-    parser.add_option("-v", "--verbose",
+    jskparser.add_option("-v", "--verbose",
       action="store_true", dest="verbose", default=False,
       help="print intermediate messages verbosely")
-    parser.add_option("-m", "--model",
+    jskparser.add_option("-m", "--model",
       action="store_true", dest="model", default=False,
       help="use models of Java libraries")
-    parser.add_option("-o", "--out_dir",
+    jskparser.add_option("-o", "--out_dir",
       dest="out_dir", default=None,
       help="use models of Java libraries")
-    parser.add_option("-f", "--file-system",
+    jskparser.add_option("-f", "--file-system",
       action="store_true", dest="fs", default=False,
       help="model filesytem with HashMap")
-    parser.add_option("--no-sketch",
+    jskparser.add_option("--no-sketch",
       action="store_false", dest="sketch", default=True,
       help="proceed the whole process without running Sketch")
-    parser.add_option("-c", "--custom-codegen",
+    jskparser.add_option("-c", "--custom-codegen",
       action="store_true", dest="custom_gen", default=False,
       help="use custom code generator")
-    parser.add_option("--cntr",
+    jskparser.add_option("--cntr",
       action="store_true", dest="cntr", default=False,
       help="print out counter examples")
-    parser.add_option("--skv",
+    jskparser.add_option("--skv",
       action="store", dest="skv", default=0,
       help="set verbosity level for Sketch")
   
-    (OPT, argv) = parser.parse_args()
+    (OPT, argv) = jskparser.parse_args()
     OPT.prg = argv
   
     sys.exit(translate(**vars(OPT)))

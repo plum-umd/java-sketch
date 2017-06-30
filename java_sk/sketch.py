@@ -109,30 +109,30 @@ def be_p_run(sk_dir, output_path):
 if __name__ == "__main__":
     from optparse import OptionParser
     usage = "usage: python -m java_sk.sketch [opt]"
-    parser = OptionParser(usage=usage)
-    parser.add_option("-p", "--pattern", # same as run.py at the top level
+    jskparser = OptionParser(usage=usage)
+    jskparser.add_option("-p", "--pattern", # same as run.py at the top level
                       action="store", dest="demo", default=None,
                       help="demo name")
-    parser.add_option("--timeout",
+    jskparser.add_option("--timeout",
                       action="store", dest="timeout", default=None, type="int",
                       help="Sketch timeout")
-    parser.add_option("--parallel",
+    jskparser.add_option("--parallel",
                       action="store_true", dest="parallel", default=False,
                       help="run sketch in parallel")
-    parser.add_option("--p_cpus",
+    jskparser.add_option("--p_cpus",
                       action="store", dest="p_cpus", default=None, type="int",
                       help="the number of cores to use for parallel running")
-    parser.add_option("--ntimes",
+    jskparser.add_option("--ntimes",
                       action="store", dest="ntimes", default=None, type="int",
                       help="number of rounds on a single sketch-backend invocation")
-    parser.add_option("-v", "--verbose",
+    jskparser.add_option("-v", "--verbose",
                       action="store_true", dest="verbose", default=False,
                       help="print intermediate messages verbosely")
     
-    (opt, argv) = parser.parse_args()
+    (opt, argv) = jskparser.parse_args()
     
     if not opt.demo:
-        parser.error("no demo name given")
+        jskparser.error("no demo name given")
         
     pwd = os.path.dirname(__file__)
     root_dir = os.path.join(pwd, "..")

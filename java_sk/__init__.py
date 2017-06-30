@@ -3,7 +3,7 @@ import os
 
 pwd = os.path.dirname(__file__)
 
-ast = os.path.abspath(os.path.join(pwd,'../parser'))
+ast = os.path.abspath(os.path.join(pwd,'../jskparser'))
 sys.path.insert(0, ast)
 
 from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
