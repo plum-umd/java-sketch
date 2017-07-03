@@ -100,3 +100,14 @@ ArrayDeque:
 * `getLast(addFirst(a,e)) == ITE(size(a) == 0, (addFirst(a,e), e), getLast(a))`
 * `getLast(removeLast(a, e)) == getLast(a'), where a' = xform(removeLast(a))`
 * `getLast(removeFirst(a, e)) == getLast(a'), where a' = xform(removeFirst(a))`
+
+HashSet:
+=========
+
+* `add(h, e) == ITE(contains(h, e), (h, False), (add(h,e), True))`
+* `remove(h,e) == ITE(contains(h,e), (remove(h,e), True), (h, False))`
+* `contains([], e) == False`
+* `contains(remove(h, e1), e2) == (remove(h, e1), ITE(e2.equals(e1), False, contains(h, e2)))`
+* `contains(add(h, e1), e2) == (add(h, e1), ITE(e2.equals(e1), True, contains(h, e2)))`
+* `size(add(h, e)) == 1 + size(h)`
+* `size(remove(h, e)) == ITE(h' == True, size(h)-1, size(h)), where h' = xform(remove(h, e))`
