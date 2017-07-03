@@ -84,7 +84,7 @@ ArrayDeque:
 =========
 
 * `removeFirst(addFirst(a, e)) == (a,e)`
-* `removeFirst(addLast(a, e)) == ITE(size(a) == 0, (a,e), removeFirst(a))`
+* `removeFirst(addLast(a, e)) == ITE(size(a) == 0, (a,e), addLast(removeFirst(a), e)`
 * `removeFirst(removeFirst(a)) == removeFirst(a'), where a' = xform(removeFirst(a))`
 * `removeFirst(removeLast(a)) == removeFirst(a'), where a' = xform(removeLast(a))`
 * `getFirst(addFirst(a,e)) == (addFirst(a,e), e)`
