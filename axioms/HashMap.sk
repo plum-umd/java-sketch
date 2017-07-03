@@ -1,0 +1,66 @@
+adt HMap {
+  Map       { }
+  Obj       { Object o; }
+  Get       { HMap h; HMap k; }
+  Put       { HMap h; HMap k; HMap v; }
+  Error     { int code; }
+}
+Object hashmap() {
+  return new Object(__cid = HashMap(), hmap=new Map());
+}
+Object put(HMap h, Object k, Object v) {
+  return new Object(__cid = HashMap(), hmap=new Put(h=h, k=new Obj(o=k), v=new Obj(o=v)));
+}
+Object get(HMap h, Object k) {
+  return new Object(__cid = HashMap(), hmap=new Get(h=h, k=new Obj(o=k)));
+}
+Object object(Object o) {
+  return new Object(__cid = O(), hmap=new Obj(o=o));
+}
+
+HMap get_xform(HMap h, HMap key) {
+  HMap hmap = null;
+  switch (h) {
+  case Map:              { return new Error(code=ERR_M()); }
+  case Obj:              { return new Error(code=ERR_O()); }
+  case Get:              { hmap = h.h; }
+  case Put: {
+    if (h.k == key) { return h.v; }
+    else { hmap = h.h; }
+  }
+  case Error:            { return new Error(code=ERR_E()); }
+  }
+  return xform(new Get(h=hmap, k=key));
+}
+
+HMap xform(HMap h) {
+  switch (h) {
+  case Map:             return h; 
+  case Obj:             return h; 
+  case Get:             return get_xform(h.h, h.k); 
+  case Put:   	        return h; 
+  case Error:           return h; 
+  }
+}
+
+struct Object {
+  int           __cid;
+  int           v;
+  HMap         hmap;
+  Object        o;
+}
+
+harness void mn() {
+  HMap h = new Map();
+  Object one = new Object(__cid=O(), v=1);
+  Object two = new Object(__cid=O(), v=2);
+  h = put(h, one, two).hmap;
+  assert xform(get(h, one).hmap) == new Obj(o=two);
+}
+
+int O()              { return 1; }
+int HashMap()        { return 2; }
+int ERR_M()          { return -1; }
+int ERR_O()          { return -2; }
+int ERR_E()          { return -3; }
+	  
