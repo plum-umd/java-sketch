@@ -86,6 +86,17 @@ ArrayDeque:
 * `removeFirst(addFirst(a, e)) == (a,e)`
 * `removeFirst(addLast(a, e)) == ITE(size(a) == 0, (a,e), removeFirst(a))`
 * `removeFirst(removeFirst(a)) == removeFirst(a'), where a' = xform(removeFirst(a))`
+* `removeFirst(removeLast(a)) == removeFirst(a'), where a' = xform(removeLast(a))`
 * `getFirst(addFirst(a,e)) == (addFirst(a,e), e)`
-* `getFirst(addLast(a,e)) == ITE(size(a) == 0, (addFirst(a,e), e), getFirst(a))`
+* `getFirst(addLast(a,e)) == ITE(size(a) == 0, (addLast(a,e), e), getFirst(a))`
 * `getFirst(removeFirst(a, e)) == getFirst(a'), where a' = xform(removeFirst(a))`
+* `getFirst(removeLast(a, e)) == getFirst(a'), where a' = xform(removeLast(a))`
+
+* `removeLast(addLast(a, e)) == (a,e)`
+* `removeLast(addFirst(a, e)) == ITE(size(a) == 0, (a,e), removeLast(a))`
+* `removeLast(removeLast(a)) == removeLast(a'), where a' = xform(removeLast(a))`
+* `removeLast(removeFirst(a)) == removeLast(a'), where a' = xform(removeFirst(a))`
+* `getLast(addLast(a,e)) == (addLast(a,e), e)`
+* `getLast(addFirst(a,e)) == ITE(size(a) == 0, (addFirst(a,e), e), getLast(a))`
+* `getLast(removeLast(a, e)) == getLast(a'), where a' = xform(removeLast(a))`
+* `getLast(removeFirst(a, e)) == getLast(a'), where a' = xform(removeFirst(a))`
