@@ -114,7 +114,7 @@ public class ArrayDeque <E> implements Deque{
     }
 
     public E peekLast() {
-	return peekLast();
+	return getLast();
     }
 
     public E removeFirst() {
