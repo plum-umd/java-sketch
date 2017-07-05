@@ -1,6 +1,24 @@
+ArrayList
+=========
+* `get(set(a, i, e), j) == ITE(i == j, (a, e), get(a, j)`
+* `get(add(a, e), i) == ITE(size(a) == i-1, (a, e), get(a, i)`
+* `size(add(a, e)) == size(a) + 1`
+
+String
+======
+Are we using any right now?
+
+
+
+
+
+
+Old Stuff:
+---------
 String
 ======
 (`length < toUpper < replace < substring < concat < null`)
+
 * `length(toUpper(s)) == length(s)`
 * `length(replace(s1, c1, c2)) == length(s1)`
 * `length(substring(s, i, j)) == MAX(j - i, 0)`
@@ -26,6 +44,7 @@ String
 Stack:
 =======
 (`isEmpty < size < pop,peek < push`)
+
 * `isEmpty(x) == (size(x) == 0)`
 * `size(pop(x)) == MAX(size(x),1) - 1 // size inherited from Vector`
 * `size(push(x)) == size(x) + 1 // size inherited from Vector`
