@@ -6,8 +6,8 @@ ArrayList
 
 File
 ======
-* `read(filereader(file(f, n))) = (f, int) //would like to note here that f's length is reduced`
-* `ready(filereader(file(f, n))) = ITE(length(f) != 0, (f, True), (f, False))`
+* `read(filereader(file(f, d, l, n), c)) = (filereader(file(f, d, l, n), c+1), int)`
+* `ready(filereader(file(f, d, l, n), c) as fr) = ITE(l != 0, (fr, True), (fr, False))`
 
 String
 ======

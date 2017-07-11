@@ -1,0 +1,12 @@
+package meta;
+
+// distinct class IDs
+int File()         { return 6; }
+int FileReaderr()  { return 5; }
+int FreqTable()    { return 2; }
+int Integer()      { return 4; }
+int Number()       { return 3; }
+int Object()       { return 1; }
+int String()       { return 7; }
+
+// Uninterpreted functions

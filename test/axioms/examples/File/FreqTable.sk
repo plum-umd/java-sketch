@@ -1,0 +1,39 @@
+package FreqTable;
+
+int NUM_ASCII_CHAR = 128;
+int NUM_ASCII_CHAR_g() { return NUM_ASCII_CHAR; }
+void NUM_ASCII_CHAR_s(int NUM_ASCII_CHAR_s) { NUM_ASCII_CHAR = NUM_ASCII_CHAR_s; }
+
+Object file0;
+Object file0_g() { return file0; }
+void file0_s(Object file0_s) { file0 = file0_s; }
+
+Object FreqTable_FreqTable(Object self) {
+    return self;
+}
+
+harness void main() {
+  Object self = Object_Object(new Object(__cid=Object()));
+  file0 = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="a"), 0, 1);
+  Array_int freqs = new Array_int(length=0, A={});
+  freqs = createTable_String(file0);
+  if (freqs.length == 0) assert false;
+  else {
+    assert freqs.A[97] == 1;
+  }
+  assert true;
+}
+
+Array_int createTable_String(Object fileName) {
+  Array_int freqs = new Array_int(length=NUM_ASCII_CHAR);
+  Object f = File_File_String(new Object(__cid=File()), fileName);
+  Object r = FileReaderr_FileReaderr_File(new Object(__cid=FileReaderr()), f);
+  while ((r.__cid == FileReaderr() ? ready@FileReaderr(r) : 0)) {
+    int ch = (r.__cid == FileReaderr() ? read@FileReaderr(r) : 0);
+    if (0 <= ch && ch < freqs.length) freqs.A[ch]++;
+  }
+  if (r.__cid == FileReaderr()) { close@FileReaderr(r); }
+  else { 0; };
+  return freqs;
+}
+

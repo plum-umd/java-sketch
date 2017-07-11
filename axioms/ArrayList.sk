@@ -1,0 +1,145 @@
+package ArrayList;
+
+adt AList {
+  List            { }
+  Obj             { Object o; }
+  Get             { AList l; int i; }
+  Set	  	  { AList l; int i; AList v; }
+  Add		  { AList l; AList v; }
+  Size		  { AList l; int sz; }
+  EnsureCapacity  { AList l; int m; }
+  Error           { int code; }
+}
+
+int List_err()  { return 0; }
+int Obj_err()   { return 1; }
+int Get_err()   { return 2; }
+int Set_err()   { return 3; }
+int Add_err()   { return 4; }
+int Error_err() { return 6; }
+
+Object arraylist(int sz) {
+  return new Object(__cid = ArrayList(), alist=new List());
+}
+
+Object object(Object o) {
+  return new Object(__cid = Object(), alist=new Obj(o=o));
+}
+
+Object get(AList l, int i) {
+   return new Object(__cid = ArrayList(), alist=new Get(l=l, i=i));
+}
+
+Object set(AList l, int i, Object v) {
+  return new Object(__cid = ArrayList(), alist=new Set(l=l, i=i, v=new Obj(o=v)));
+}
+
+Object add(AList l, Object v) {
+  return new Object(__cid = ArrayList(), alist=new Add(l=l, v=new Obj(o=v)));
+}
+
+Object size(AList l, int i) {
+  return new Object(__cid = ArrayList(), alist=new Size(l=l, sz=i));
+}
+
+Object ensureCapacity(AList l, int m) {
+  return new Object(__cid = ArrayList(), alist=new EnsureCapacity(l=l, m=m));
+}
+
+AList get_xform(AList a, int index) {
+  AList alist = null;
+  switch (a) {
+  case List:             { return new Error(code=List_err()); }
+  case Obj:              { return new Error(code=Obj_err()); }
+  case Get:              { alist = a.l; }
+  case Set: {
+    if (a.i == index) { return a.v; }
+    else { alist = a.l; }
+  }
+  case Add: {
+    if ((size_int(new Size(l=a, sz=0)) - 1) == index) { return a.v; }
+    else { alist = a.l; }
+  }
+  case Size:             { alist = a.l; }
+  case EnsureCapacity:   { alist = a.l; }
+  case Error:            { return a; }
+  }
+  return xform(new Get(l=alist, i=index));
+}
+
+AList size_xform(AList a, int sz) {
+  AList alist = null;
+  switch (a) {
+  case List:             { return new Size(sz=sz); }
+  case Obj:              { return new Error(code=Obj_err()); }
+  case Get:              { alist = a.l; }
+  case Set:              { alist = a.l; }
+  case Add:              { alist = a.l; sz++; }
+  case Size:             { alist = a.l; }
+  case EnsureCapacity:   { alist = a.l; }
+  case Error:            { return a ; }
+  }
+  return xform(new Size(l=alist, sz=sz));
+}
+
+AList ensureCapacity_xform(AList a) {
+  AList alist = null;
+  switch (a) {
+  case List:             { return new Size(sz=0); }
+  case Obj:              { return new Error(code=Obj_err()); }
+  case Get:              { alist = a.l; }
+  case Set:              { alist = a.l; }
+  case Add:              { alist = a.l; }
+  case Size:             { alist = a.l; }
+  case EnsureCapacity:   { return a; }
+  case Error:            { return a ; }
+  }
+  return xform(alist);
+}
+
+AList xform(AList a) {
+  switch (a) {
+  case List:            return a; 
+  case Obj:             return a; 
+  case Get:             return get_xform(a.l, a.i); 
+  case Set:   	        return a; 
+  case Add:   	        return a; 
+  case Size:	        return size_xform(a.l, a.sz); 
+  case EnsureCapacity:  return ensureCapacity_xform(a.l); 
+  case Error:           return a; 
+  }
+}
+
+Object get_obj(AList a) {
+  if (a == null) return null;
+  Object current;
+  a = xform(a);
+  switch (a) {
+  case List:            { assert false; }
+  case Obj:             { current = a.o; }
+  case Get:             { assert false; }
+  case Set:             { assert false; }
+  case Add:             { assert false; }
+  case Size:            { assert false; }
+  case EnsureCapacity:  { assert false; }
+  case Error:           { assert false; }
+  }
+  return current;
+}
+
+int size_int(AList a) {
+  assert a != null;
+  int sz = 0;
+  a = xform(a);
+  switch (a) {
+  case List:            { assert false; }
+  case Obj:             { assert false; }
+  case Get:             { assert false; }
+  case Set:             { assert false; }
+  case Add:             { assert false; }
+  case Size:            { sz = a.sz; }
+  case EnsureCapacity:  { assert false; }
+  case Error:           { assert false; }
+  }
+  return sz;
+}
