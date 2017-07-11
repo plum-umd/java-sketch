@@ -270,11 +270,10 @@ class Translator(object):
         tltr.indentation = ''
         it = tltr.trans(n.iterable)
         self.printt('for (int _i = 0; _i < ')
-        self.printt('length@{}({}); ++_i)'.format(str(n.iterable.typee), it))
+        self.printt('{}.length; ++_i)'.format(it))
         inits = []
         for vv in n.var.varss:
-            inits.append('{} {} = get_int@{}({}, _i);'. \
-                     format(self.trans_ty(n.iterable.typee), vv.name, str(n.iterable.typee), it))
+            inits.append('{} {} = {}.A[_i];'.format(self.trans_ty(n.iterable.typee), vv.name, it))
         n.body.stmts = ['\n'.join(inits)] + n.body.stmts
         n.body.accept(self)
 
@@ -310,9 +309,10 @@ class Translator(object):
     def visit(self, n):
         self.printt('assert ')
         n.check.accept(self)
-        if n.msg:
-            self.printt(' : ')
-            n.msg.accept(self)
+        # There are no messages in Sketch, I think
+        # if n.msg:
+        #     self.printt(' : ')
+        #     n.msg.accept(self)
         self.printt(';')
 
     @v.when(AssumeStmt)
