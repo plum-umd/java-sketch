@@ -1,6 +1,9 @@
 public class File {
-    // String fname;
-    // File(String fname) { this.fname = fname; }
-    // public int write(String s) { }
-    // public String read(String f) { }
+    String fname;
+    int size;
+    File(String fname) {
+	this.fname = fname;
+	this.size = 0;
+    }
+    int size() { return this.size; }
 }
