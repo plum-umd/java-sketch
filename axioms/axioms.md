@@ -4,6 +4,11 @@ ArrayList
 * `get(add(a, e), i) == ITE(size(a) == i-1, (a, e), get(a, i)`
 * `size(add(a, e)) == size(a) + 1`
 
+File
+======
+* `read(filereader(file(f, n))) = (f, int) //would like to note here that f's length is reduced`
+* `ready(filereader(file(f, n))) = ITE(length(f) != 0, (f, True), (f, False))`
+
 String
 ======
 Are we using any right now?
@@ -32,7 +37,7 @@ String
 * `replace(concat(s1, s2), c1, c2) == concat(replace(s1, c1, c2), replace(s2, c1, c2))`
 * `replace(null, c1, c2) = null`
 * `substring(concat(s1, s2), i, j) == concat(substring(s1, i, j), substring(s2, i-length(s1), j-length(s2)))`
-* `substring(null, i, j)` == null
+* `substring(null, i, j) == null`
 * `concat(null, s2) == s2`
 * `concat(s1, null) == s1`
 
