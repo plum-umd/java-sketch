@@ -1,13 +1,13 @@
 ArrayList
 =========
-* `get(set(a, i, e), j) == ITE(i == j, (a, e), get(a, j)`
-* `get(add(a, e), i) == ITE(size(a) == i-1, (a, e), get(a, i)`
+* `get(set(a, i, e), j) == ITE(i == j, e, get(a, j))`
+* `get(add(a, e), i) == ITE(size(a) == i-1, e, get(a, i))`
 * `size(add(a, e)) == size(a) + 1`
 
 File
 ======
-* `read(filereader(file(f, d, l, n), c)) = (filereader(file(f, d, l, n), c+1), d[c])`
-* `ready(filereader(file(f, d, l, n), c) as fr) = ITE(c != l-1, (fr, True), (fr, False))`
+* `read(filereader(file(f, d, l, n), p)) *== (filereader(file(f, d, l, n), p+1), d[c])`
+* `ready(filereader(file(f, d, l, n), p)) == ITE(c != l-1, True, False)`
 
 String
 ======
