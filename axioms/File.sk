@@ -1,0 +1,14 @@
+package File;
+
+adt AFile {
+  Empty           { }
+  File            { AFile f; int ln; int ld; char[ln] n; char[ld] d; }
+  Error           { int code; }
+}
+
+// State, name, data
+Object file([int ln, int ld], AFile f, char[ln] n, char[ld] d) {
+  return new Object(__cid = File(), af=new File(f=f, n=n, ln=ln, d=d, ld=ld));
+}
+
+int Error_err() { return 0; }
