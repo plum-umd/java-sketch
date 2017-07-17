@@ -5,6 +5,7 @@ public interface Map<K,V> {
     public boolean containsKey(K key);
     public V get(K key);
     public V put(K key, V value);
+    public V replace(K key, V value);
     
     interface Entry<K,V> {
     	public boolean equals(Object o);
