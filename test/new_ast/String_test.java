@@ -53,5 +53,11 @@ class String_test {
 	assert s1.equals("Hzllo, world!");
 	String s2 = s0.replace('a', 'z');
 	assert s2.equals("Hello, world!");
+
+	// substring
+	String xs = x.substring(1);
+	assert xs.equals(" am a string");
+	xs = xs.substring(3);
+	assert xs.equals(" a string");
     }
 }
