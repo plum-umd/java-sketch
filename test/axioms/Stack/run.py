@@ -45,20 +45,20 @@ def sort_results(test):
     
 if __name__ == '__main__':
     from optparse import OptionParser
-    parser = OptionParser(usage="%prog [options]*")
-    parser.add_option('-i', action='store_true', dest='impl', default=False,
+    jskparser = OptionParser(usage="%prog [options]*")
+    jskparser.add_option('-i', action='store_true', dest='impl', default=False,
                       help='Execute implementation tests.')
-    parser.add_option('-a', action='store_true', dest='adt', default=False,
+    jskparser.add_option('-a', action='store_true', dest='adt', default=False,
                       help='Execute adt tests.')
-    parser.add_option('-o', action='store_true', dest='obj', default=False,
+    jskparser.add_option('-o', action='store_true', dest='obj', default=False,
                       help='Execute Object tests.')
-    parser.add_option('-n', action='store', type='int', dest='trials', default=1,
+    jskparser.add_option('-n', action='store', type='int', dest='trials', default=1,
                       help='Number of trials to run.')
-    parser.add_option('-f', action='store', type='int', dest='first_test', default=-1,
+    jskparser.add_option('-f', action='store', type='int', dest='first_test', default=-1,
                       help='First test to run.')
-    parser.add_option('-l', action='store', type='int', dest='last_test', default=0,
+    jskparser.add_option('-l', action='store', type='int', dest='last_test', default=0,
                       help='Last test to run.')
-    (options, args) = parser.parse_args()
+    (options, args) = jskparser.parse_args()
     print 'Number of trials: {}'.format(options.trials)
     if options.impl:
         print 'Testing implementation'
