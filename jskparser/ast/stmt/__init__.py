@@ -21,6 +21,7 @@ def _import():
     from .minrepeatstmt import MinrepeatStmt
     from .throwstmt import ThrowStmt
 
+    from ..expr.arraycreationexpr import ArrayCreationExpr
     from ..expr.unaryexpr import UnaryExpr
     from ..expr.binaryexpr import BinaryExpr
     from ..expr.nameexpr import NameExpr
