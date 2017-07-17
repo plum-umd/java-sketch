@@ -80,6 +80,24 @@ class HashMap_test {
 	assert !hm1.containsKey(n3);
 	assert !hm1.containsValue("Three");
 
+	// replace
+	
+	hm1.clear();
+
+	hm1.put(n1, "Test");
+	hm1.put(n2, "String 1");
+	hm1.replace(n1, "Replaced value");
+
+	String r1 = hm1.get(n1);
+	String r2 = hm1.get(n2);
+
+	assert r1.equals("Replaced value");
+	assert r2.equals("String 1");
+
+	hm1.replace(n1, "yep yep yep yep");
+	r1 = hm1.get(n1);
+	assert r1.equals("yep yep yep yep");
+
 	// Big table test
 
 	// int i = 0;
