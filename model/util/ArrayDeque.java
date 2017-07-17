@@ -58,6 +58,7 @@ public class ArrayDeque <E> implements Deque{
 	    currentHead = newNode;
 	} else {
 	    newNode.setPrev(currentTail);
+	    currentTail.setNext(newNode);
 	}
 	currentTail = newNode;
 	size++;
@@ -74,6 +75,7 @@ public class ArrayDeque <E> implements Deque{
 	    currentTail = newNode;
 	} else {
 	    newNode.setNext(currentHead);
+	    currentHead.setPrev(newNode);
 	}
 	currentHead = newNode;
 	size++;
@@ -98,11 +100,15 @@ public class ArrayDeque <E> implements Deque{
     }
 
     public E getFirst() {
-	return currentHead;
+	if (size > 0) assert currentHead != null;
+	if (currentHead != null) return currentHead.getVal();
+	return null;
     }
 
     public E getLast() {
-	return currentTail;
+	if (size > 0) assert currentTail != null;
+	if (currentTail != null) return currentTail.getVal();
+	return null;
     }
 
     public E peek() {
@@ -124,7 +130,7 @@ public class ArrayDeque <E> implements Deque{
 	    if (nextNode != null) {
 		nextNode.setPrev(null);
 	    }
-	    currentHead = currentHead.next;
+	    currentHead = nextNode;
 	    if (size == 1) {
 		currentTail = null;
 	    }
@@ -140,7 +146,7 @@ public class ArrayDeque <E> implements Deque{
 	    if (prevNode != null) {
 		prevNode.setNext(null);
 	    }
-	    currentTail = currentTail.prev;
+	    currentTail = prevNode;
 	    if (size == 1) {
 		currentHead = null;
 	    }

@@ -19,7 +19,7 @@ public class TwoDArray {
 
     public void setRow(int i, int[] row) {
 	int count = 0;
-	for (int j=i*M; j<(i*M)+N; j++) {
+	for (int j=i*M; j<(i*M)+M; j++) {
 	    arr[j] = row[count];
 	    count ++;
 	}
@@ -27,8 +27,8 @@ public class TwoDArray {
 
     public int[] getRow(int i) {
 	int count = 0;
-	int[] row = new int[N];
-	for (int j=i*M; j<(i*M)+N; j++) {
+	int[] row = new int[M];
+	for (int j=i*M; j<(i*M)+M; j++) {
 	    row[count] = arr[j];
 	    count ++;
 	}
