@@ -102,84 +102,11 @@ class SuffixArray {
         suffixRank.originalIndex = i;
       }
 
-      // if (pos == 1) {
-      // 	  assert ranks[0].originalIndex == 0;
-      // 	  assert ranks[1].originalIndex == 1;	  
-      // 	  assert ranks[2].originalIndex == 2;
-      // 	  assert ranks[3].originalIndex == 3;	  
-      // 	  assert ranks[4].originalIndex == 4;
-      // 	  assert ranks[5].originalIndex == 5;	  
-      // 	  assert ranks[6].originalIndex == 6;
-      // 	  assert ranks[7].originalIndex == 7;	  
-      // 	  assert ranks[8].originalIndex == 8;
-      // 	  assert ranks[9].originalIndex == 9;	  
-      // 	  assert ranks[10].originalIndex == 10;
-      // 	  assert ranks[11].originalIndex == 11;	  
-      // 	  assert ranks[12].originalIndex == 12;
-      // 	  assert ranks[13].originalIndex == 13;	  
-      // 	  assert ranks[14].originalIndex == 14;
-      // 	  assert ranks[15].originalIndex == 15;	  
-      // 	  assert ranks[16].originalIndex == 16;
-      // 	  assert ranks[17].originalIndex == 17;	  
-      // 	  assert ranks[18].originalIndex == 18;
-      // 	  assert ranks[19].originalIndex == 19;
-      // 	  assert ranks[20].originalIndex == 20;
-      // 	  assert ranks[21].originalIndex == 21;	  	  
-      // }
       // O(nlogn)
       // CHANGE
       // java.util.Arrays.sort(ranks);
       ranks = Arrays.sort(ranks, ranks.length);
 
-      if (pos == 1) {
-      	  assert ranks[0].originalIndex == 7;
-      	  assert ranks[1].originalIndex == 14;	  
-      	  assert ranks[2].originalIndex == 21;
-      	  assert ranks[3].originalIndex == 0;	  
-      	  assert ranks[4].originalIndex == 3;
-      	  assert ranks[5].originalIndex == 10;	  
-      	  assert ranks[6].originalIndex == 17;
-      	  assert ranks[7].originalIndex == 1;	  
-      	  assert ranks[8].originalIndex == 4;
-      	  assert ranks[9].originalIndex == 8;	  
-      	  assert ranks[10].originalIndex == 11;
-      	  assert ranks[11].originalIndex == 18;	  
-      	  assert ranks[12].originalIndex == 6;
-      	  assert ranks[13].originalIndex == 20;	  
-      	  assert ranks[14].originalIndex == 15;
-      	  assert ranks[15].originalIndex == 2;	  
-      	  assert ranks[16].originalIndex == 9;
-      	  assert ranks[17].originalIndex == 16;	  
-      	  assert ranks[18].originalIndex == 5;
-      	  assert ranks[19].originalIndex == 19;
-      	  assert ranks[20].originalIndex == 12;
-      	  assert ranks[21].originalIndex == 13;	  	  
-      }
-
-      // if (pos == 2) {
-      // 	  assert ranks[0].originalIndex == 7;
-      // 	  assert ranks[1].originalIndex == 14;	  
-      // 	  assert ranks[2].originalIndex == 21;
-      // 	  assert ranks[3].originalIndex == 0;	  
-      // 	  assert ranks[4].originalIndex == 3;
-      // 	  assert ranks[5].originalIndex == 17;	  
-      // 	  assert ranks[6].originalIndex == 10;
-      // 	  assert ranks[7].originalIndex == 1;	  
-      // 	  assert ranks[8].originalIndex == 8;
-      // 	  assert ranks[9].originalIndex == 4;	  
-      // 	  assert ranks[10].originalIndex == 18;
-      // 	  assert ranks[11].originalIndex == 11;	  
-      // 	  assert ranks[12].originalIndex == 6;
-      // 	  assert ranks[13].originalIndex == 20;	  
-      // 	  assert ranks[14].originalIndex == 15;
-      // 	  assert ranks[15].originalIndex == 2;	  
-      // 	  assert ranks[16].originalIndex == 9;
-      // 	  assert ranks[17].originalIndex == 16;	  
-      // 	  assert ranks[18].originalIndex == 5;
-      // 	  assert ranks[19].originalIndex == 19;
-      // 	  assert ranks[20].originalIndex == 12;
-      // 	  assert ranks[21].originalIndex == 13;	  	  
-      // }
 
       int newRank = 0;
       suffixRanks.set(1, ranks[0].originalIndex, 0);
@@ -197,91 +124,17 @@ class SuffixArray {
           newRank++;
 
         suffixRanks.set(1, currSuffixRank.originalIndex, newRank);
-	// if (pos == 1) {
-	    // if (currSuffixRank.originalIndex == 14) assert newRank == 1;
-	    // if (currSuffixRank.originalIndex == 21) assert newRank == 2;	    
-	    // if (currSuffixRank.originalIndex == 0) assert newRank == 3;
-	    // if (currSuffixRank.originalIndex == 3) assert newRank == 3;	    
-	    // if (currSuffixRank.originalIndex == 10) assert newRank == 3;
-	    // if (currSuffixRank.originalIndex == 17) assert newRank == 3;	    
-	    // if (currSuffixRank.originalIndex == 1) assert newRank == 4;
-	    // if (currSuffixRank.originalIndex == 4) assert newRank == 4;	    
-	    // if (currSuffixRank.originalIndex == 8) assert newRank == 4;
-	    // if (currSuffixRank.originalIndex == 11) assert newRank == 4;	    
-	    // if (currSuffixRank.originalIndex == 18) assert newRank == 4;
-	    // if (currSuffixRank.originalIndex == 6) assert newRank == 5;	    
-	    // if (currSuffixRank.originalIndex == 20) assert newRank == 6;
-	    // if (currSuffixRank.originalIndex == 15) assert newRank == 7;	    
-	    // if (currSuffixRank.originalIndex == 2) assert newRank == 8;
-	    // if (currSuffixRank.originalIndex == 9) assert newRank == 8;	    
-	    // if (currSuffixRank.originalIndex == 16) assert newRank == 8;
-	    // if (currSuffixRank.originalIndex == 5) assert newRank == 9;	    
-	    // if (currSuffixRank.originalIndex == 19) assert newRank == 9;
-	    // if (currSuffixRank.originalIndex == 12) assert newRank == 10;	    
-	    // if (currSuffixRank.originalIndex == 13) assert newRank == 11;
-	// }
 
 	// CHANGE
         // suffixRanks[1][currSuffixRank.originalIndex] = newRank;
 
       }
-
-      // if (pos == 1) {
-      // 	  assert suffixRanks.get(1,12) == 10;
-      // }
       
       // Place top row (current row) to be the last row
       suffixRanks.setRow(0, suffixRanks.getRow(1));
-      // CHANGE
-      // suffixRanks[0] = suffixRanks[1];
 
-      // if (pos == 1) {
-      // 	  assert suffixRanks.get(0,0) == 3;
-      // 	  assert suffixRanks.get(0,1) == 4;
-      // 	  assert suffixRanks.get(0,2) == 8;
-      // 	  assert suffixRanks.get(0,3) == 3;
-      // 	  assert suffixRanks.get(0,4) == 4;	  
-      // 	  assert suffixRanks.get(0,5) == 9;
-      // 	  assert suffixRanks.get(0,6) == 5;
-      // 	  assert suffixRanks.get(0,7) == 0;
-      // 	  assert suffixRanks.get(0,8) == 4;
-      // 	  assert suffixRanks.get(0,9) == 8;	  
-      // 	  assert suffixRanks.get(0,10) == 3;
-      // 	  assert suffixRanks.get(0,11) == 4;
-      // 	  assert suffixRanks.get(0,12) == 10;
-      // 	  assert suffixRanks.get(0,13) == 11;
-      // 	  assert suffixRanks.get(0,14) == 1;	  
-      // 	  assert suffixRanks.get(0,15) == 7;
-      // 	  assert suffixRanks.get(0,16) == 8;
-      // 	  assert suffixRanks.get(0,17) == 3;
-      // 	  assert suffixRanks.get(0,18) == 4;
-      // 	  assert suffixRanks.get(0,19) == 9;	  
-      // 	  assert suffixRanks.get(0,20) == 6;
-      // 	  assert suffixRanks.get(0,21) == 2;
-      // 	  assert suffixRanks.get(1,0) == 3;
-      // 	  assert suffixRanks.get(1,1) == 4;
-      // 	  assert suffixRanks.get(1,2) == 8;
-      // 	  assert suffixRanks.get(1,3) == 3;
-      // 	  assert suffixRanks.get(1,4) == 4;	  
-      // 	  assert suffixRanks.get(1,5) == 9;
-      // 	  assert suffixRanks.get(1,6) == 5;
-      // 	  assert suffixRanks.get(1,7) == 0;
-      // 	  assert suffixRanks.get(1,8) == 4;
-      // 	  assert suffixRanks.get(1,9) == 8;	  
-      // 	  assert suffixRanks.get(1,10) == 3;
-      // 	  assert suffixRanks.get(1,11) == 4;
-      // 	  assert suffixRanks.get(1,12) == 10;
-      // 	  assert suffixRanks.get(1,13) == 11;
-      // 	  assert suffixRanks.get(1,14) == 1;	  
-      // 	  assert suffixRanks.get(1,15) == 7;
-      // 	  assert suffixRanks.get(1,16) == 8;
-      // 	  assert suffixRanks.get(1,17) == 3;
-      // 	  assert suffixRanks.get(1,18) == 4;
-      // 	  assert suffixRanks.get(1,19) == 9;	  
-      // 	  assert suffixRanks.get(1,20) == 6;
-      // 	  assert suffixRanks.get(1,21) == 2;
-      // }
-      
+      // CHANGE
+      // suffixRanks[0] = suffixRanks[1];      
       // Optimization to stop early 
       // CHANGE
       // if (newRank == N-1) break;
@@ -349,11 +202,11 @@ class SuffixArray {
     int substr_len = substr.length();
 
     while( lo <= hi ) {
-
+	
       int mid = (lo + hi) / 2;
       int suffix_index = sa[mid];
       int suffix_len = N - suffix_index;
-
+      
       // CHANGE
       char[] tmp = new char[T.length];      
       for (int i=0; i<T.length; i++) {
@@ -366,7 +219,7 @@ class SuffixArray {
       // CHANGE
       // if (suffix_len <= substr_len) suffix_str = new String(T, suffix_index, suffix_len);
       // else suffix_str = new String(T, suffix_index, substr_len);
-       
+      
       int cmp = suffix_str.compareTo(substr);
 
       // Found a match
@@ -474,29 +327,6 @@ class SuffixArray {
 
     }
 
-    // assert indexMap[0] == 0;
-    // assert indexMap[1] == 0;
-    // assert indexMap[2] == 0;
-    // assert indexMap[3] == 0;    
-    // assert indexMap[4] == 0;
-    // assert indexMap[5] == 0;
-    // assert indexMap[6] == 0;
-    // assert indexMap[7] == 0;    
-    // assert indexMap[8] == 1;
-    // assert indexMap[9] == 1;
-    // assert indexMap[10] == 1;
-    // assert indexMap[11] == 1;    
-    // assert indexMap[12] == 1;
-    // assert indexMap[13] == 1;
-    // assert indexMap[14] == 1;
-    // assert indexMap[15] == 2;    
-    // assert indexMap[16] == 2;
-    // assert indexMap[17] == 2;    
-    // assert indexMap[18] == 2;
-    // assert indexMap[19] == 2;
-    // assert indexMap[20] == 2;
-    // assert indexMap[21] == 2;    
-    
     final int SHIFT = LOWEST_ASCII + NUM_SENTINELS + 1;
     
     int sentinel = 0;
@@ -513,52 +343,14 @@ class SuffixArray {
       T[k++] = sentinel++;
     }
 
-    // assert T[0] == 134;
-    // assert T[1] == 134;    
-    // assert T[2] == 140;
-    // assert T[3] == 134;
-    // assert T[4] == 134;    
-    // assert T[5] == 140;
-    // assert T[6] == 136;
-    // assert T[7] == 0;    
-    // assert T[8] == 134;
-    // assert T[9] == 140;    
-    // assert T[10] == 134;
-    // assert T[11] == 134;    
-    // assert T[12] == 140;
-    // assert T[13] == 153;
-    // assert T[14] == 1;    
-    // assert T[15] == 136;
-    // assert T[16] == 140;
-    // assert T[17] == 134;    
-    // assert T[18] == 134;
-    // assert T[19] == 140;    
-    // assert T[20] == 136;
-    // assert T[21] == 2;    
-    
     // CHANGE
     String tmp = intArrToString(T);
     SuffixArray sa = new SuffixArray(tmp);
     // SuffixArray sa = new SuffixArray(T);
-
-    // assert sa.sa[0] == 7;
-    // assert sa.sa[1] == 14;	  
-    // assert sa.sa[2] == 21;
-    // assert sa.sa[3] == 0;	  
-    // assert sa.sa[4] == 3;
-    // assert sa.sa[5] == 17;	  
-    // assert sa.sa[6] == 10;
-    // assert sa.sa[7] == 1;	  
-    // assert sa.sa[8] == 8;
-    // assert sa.sa[9] == 4;	  
-    // assert sa.sa[10] == 18;
-    // assert sa.sa[11] == 11;	  
-    // assert sa.sa[12] == 6;
-    // assert sa.sa[13] == 20;	  
-    // assert sa.sa[14] == 15;
-    // assert sa.sa[15] == 2;	  
-    // assert sa.sa[16] == 16;
-
+    Deque <Integer> deque = new ArrayDeque<>();
+    Map <Integer, Integer> windowColorCount = new HashMap_Simple<>();
+    Set <Integer> windowColors = new HashSet<>();
+    
     // Start the sliding window at the number of sentinels because those
     // all get sorted first and we want to ignore them
     int lo = NUM_SENTINELS, hi = NUM_SENTINELS, bestLCSLength = 0;
@@ -580,7 +372,6 @@ class SuffixArray {
 	
         // CHANGE
     	Integer deqPeekFirst = deque.peekFirst();
-    	assert deqPeekFirst != null;
     	int deqPeekFirst_int = deqPeekFirst.intValue();	
     	int windowLCP = sa.lcp[deqPeekFirst_int];
     	// int windowLCP = sa.lcp[deque.peekFirst()];
@@ -613,24 +404,6 @@ class SuffixArray {
         Integer colorCount = windowColorCount.get(new Integer(lastColor));
         // Integer colorCount = windowColorCount.get(lastColor);
 	int check = colorCount.intValue();
-	if (count == 2) assert check == 2;
-	else if (count == 3) assert check == 1;
-	else if (count == 5) assert check == 1;	
-	else if (count == 7) assert check == 1;
-	else if (count == 9) assert check == 1;	
-	else if (count == 11) assert check == 1;
-	else if (count == 13) assert check == 1;	
-	else if (count == 15) assert check == 1;
-	else if (count == 17) assert check == 1;	
-	else if (count == 19) assert check == 1;
-	else if (count == 22) assert check == 2;	
-	else if (count == 23) assert check == 1;
-	else if (count == 25) assert check == 1;	
-	else if (count == 27) assert check == 1;
-	else if (count == 29) assert check == 1;	
-	else if (count == 31) assert check == 1;
-	else if (count == 33) assert check == 1;	
-	else assert 0 == 1;
     	// CHANGE
     	boolean removed = false;
         if (colorCount.intValue() == 1) {
@@ -641,38 +414,16 @@ class SuffixArray {
     	// CHANGE
         windowColorCount.put(new Integer(lastColor), new Integer(colorCount.intValue() - 1));
         // windowColorCount.put(lastColor, colorCount - 1);
-
-	int loop_count = 0;
 	
     	// CHANGE
     	if (!deque.isEmpty()) {
     	    // CHANGE
     	    deqPeekFirst = deque.peekFirst();
-	    assert deqPeekFirst != null;
     	    boolean deqPeekLessThanLo = deqPeekFirst.intValue() <= lo;
 	    	    
     	    // Remove the head if it's outside the new range: [lo+1, hi)
     	    while (!deque.isEmpty() && deqPeekLessThanLo) {
-		// if (lo == 3) assert count == 2;
-		int deqPeekFirstVal = deqPeekFirst.intValue();
-		if (lo == 3) assert deqPeekFirstVal == 3;
-		if (lo == 4) assert deqPeekFirstVal == 4;
-		if (lo == 5) assert deqPeekFirstVal == 5;		
-		if (lo == 6) assert deqPeekFirstVal == 6;
-		if (lo == 7) assert deqPeekFirstVal == 7;
-		if (lo == 8) assert deqPeekFirstVal == 8;		
-		if (lo == 9) assert deqPeekFirstVal == 9;
-		if (lo == 10) assert deqPeekFirstVal == 10;
-		if (lo == 11) assert deqPeekFirstVal == 11;		
-		if (lo == 12) assert deqPeekFirstVal == 12;
-		if (lo == 14) assert deqPeekFirstVal == 14;
-		if (lo == 15) assert deqPeekFirstVal == 15;		
-		if (lo == 16) assert deqPeekFirstVal == 16;
-		if (lo == 17) assert deqPeekFirstVal == 17;
-		if (lo == 18) assert deqPeekFirstVal == 18;		
-		if (lo == 19) assert deqPeekFirstVal == 19;
     		deque.removeFirst();
-		loop_count++;
     		deqPeekFirst = deque.peekFirst();
     		if (deqPeekFirst != null) {
     		    deqPeekLessThanLo = deqPeekFirst.intValue() <= lo;
@@ -680,37 +431,9 @@ class SuffixArray {
     		    deqPeekLessThanLo = false;
     		}
     	    }
-	    // assert loop_count <= 1;
 
     	}
-	
-    	if (deque.isEmpty()) {
-    	    // if (!removed) {
-    	    // 	assert 0 == 1;
-    	    // }
 		
-    	    if (windowColors.size() >= K) {
-		// if (count == 2) assert 0 == 1;
-		// else if (count == 3) assert 0 == 1;
-		// else if (count == 5) assert 0 == 1;	
-		// else if (count == 7) assert 0 == 1;
-		// else if (count == 9) assert 0 == 1;	
-		// else if (count == 11) assert 0 == 1;
-		// else if (count == 13) assert 0 == 1;	
-		// else if (count == 15) assert 0 == 1;
-		// else if (count == 17) assert 0 == 1;	
-		// else if (count == 19) assert 0 == 1;
-		// else if (count == 22) assert 0 == 2;	
-		// else if (count == 23) assert 0 == 1;
-		// else if (count == 25) assert 0 == 1;	
-		// else if (count == 27) assert 0 == 1;
-		// else if (count == 29) assert 0 == 1;	
-		// else if (count == 31) assert 0 == 1;
-		// else if (count == 33) assert 0 == 1;	
-    		// else assert 0 == 1;
-    	    }
-    	} 
-	
         // Decrease the window size
         lo++;
 
@@ -746,7 +469,6 @@ class SuffixArray {
     	    while(!deque.isEmpty() && sa.lcp[deqPeekLast_int] > sa.lcp[hi-1]) {
     		// while(!deque.isEmpty() && sa.lcp[deque.peekLast()] > sa.lcp[hi-1])
     		deque.removeLast();
-		if (count != 21) assert 0 == 1;
     		// CHANGE
     		if (!deque.isEmpty()) {
     		    deqPeekLast = deque.peekLast();
@@ -757,7 +479,6 @@ class SuffixArray {
 
     	// CHANGE
         deque.addLast(new Integer(hi-1));
-	assert hi-1 != 0;
         // deque.addLast(hi-1);
 
       }
@@ -778,31 +499,31 @@ class SuffixArray {
   // }
 
     // CHANGE
-    // public static void main(String[] args){
-    harness public static void main() {      
+  //   // public static void main(String[] args){
+  //   harness public static void main() {      
         	
-    // String[] strs = { "GAGL", "RGAG", "TGAGE" };
+  //   // String[] strs = { "GAGL", "RGAG", "TGAGE" };
     
-    String[] strs = { "AAGAAGC", "AGAAGT", "CGAAGC" };
-    // String[] strs = { "abca", "bcad", "daca" };
-    // String[] strs = { "abca", "bcad", "daca" };
-    // String[] strs = { "AABC", "BCDC", "BCDE", "CDED" };
-    // String[] strs = { "abcdefg", "bcdefgh", "cdefghi" };
-    // String[] strs = { "xxx", "yyy", "zzz" };
-    TreeSet <String> lcss = SuffixArray.lcs(strs, 2);
-    // System.out.println(lcss);
+  //   String[] strs = { "AAGAAGC", "AGAAGT", "CGAAGC" };
+  //   // String[] strs = { "abca", "bcad", "daca" };
+  //   // String[] strs = { "abca", "bcad", "daca" };
+  //   // String[] strs = { "AABC", "BCDC", "BCDE", "CDED" };
+  //   // String[] strs = { "abcdefg", "bcdefgh", "cdefghi" };
+  //   // String[] strs = { "xxx", "yyy", "zzz" };
+  //   TreeSet <String> lcss = SuffixArray.lcs(strs, 2);
+  //   // System.out.println(lcss);
 
-    // SuffixArray sa = new SuffixArray("abracadabra");
-    // System.out.println(sa);
-    // System.out.println(java.util.Arrays.toString(sa.sa));
-    // System.out.println(java.util.Arrays.toString(sa.lcp));
+  //   // SuffixArray sa = new SuffixArray("abracadabra");
+  //   // System.out.println(sa);
+  //   // System.out.println(java.util.Arrays.toString(sa.sa));
+  //   // System.out.println(java.util.Arrays.toString(sa.lcp));
 
-    // SuffixArray sa = new SuffixArray("ababcabaa");
-    // sa.display();
+  //   // SuffixArray sa = new SuffixArray("ababcabaa");
+  //   // sa.display();
     
   
 
-  }
+  // }
 
 }
 
