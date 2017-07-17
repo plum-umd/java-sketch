@@ -1,13 +1,14 @@
 ArrayList
 =========
-* `get(set(a, i, e), j) == ITE(i == j, e, get(a, j))`
-* `get(add(a, e), i) == ITE(size(a) == i-1, e, get(a, i))`
-* `size(add(a, e)) == size(a) + 1`
+* `get(set!(a, i, e), j) == ITE(i == j, e, get(a, j))`
+* `get(add!(a, e), i) == ITE(size(a) == i-1, e, get(a, i))`
+* `size(add!(a, e)) == size(a) + 1`
 
 File
 ======
-* `read(filereader(file(f, d, l, n), p)) *== (filereader(file(f, d, l, n), p+1), d[c])`
-* `ready(filereader(file(f, d, l, n), p)) == ITE(c != l-1, True, False)`
+* `read(filereader(file(f, d, l, n), p)) ==d[p]`
+* `read!(filereader(file(f, d, l, n), p)) == filereader(file(f, d, l, n), p+1)`
+* `ready(filereader(file(f, d, l, n), p)) == ITE(p != l-1, True, False)`
 
 String
 ======
@@ -24,12 +25,12 @@ String
 ======
 (`length < toUpper < replace < substring < concat < null`)
 
-* `length(toUpper(s)) == length(s)`
-* `length(replace(s1, c1, c2)) == length(s1)`
+* `length(toUpper!(s)) == length(s)`
+* `length(replace!(s1, c1, c2)) == length(s1)`
 * `length(substring(s, i, j)) == MAX(j - i, 0)`
-* `length(concat(s1,s2)) == length(s1) + length(s2)`
+* `length(concat!(s1, s2)) == length(s1) + length(s2)`
 * `length(null) == 0`
-* `toUpper(replace(s1, c1, c2)) == replace(toUpper(s1), toUpper(c1), toUpper(c2))`
+* `toUpper!(replace!(s1, c1, c2)) == replace(toUpper(s1), toUpper(c1), toUpper(c2))`
 * `toUpper(substring(s, i, j)) == substring(toUpper(s), i, j)`
 * `toUpper(concat(s1, s2)) == concat(toUpper(s1), toUpper(s2))`
 * `toUpper(null) == null`
