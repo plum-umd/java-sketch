@@ -225,6 +225,14 @@ public class String implements CharSequence{
 	return (beginIndex == 0) ? this : new String(_value, beginIndex, subLen);
     }
 
+    public String substring(int beginIndex, int endIndex) {
+	assert beginIndex > 0 && endIndex <= _count;
+	int subLen = endIndex - beginIndex;
+	assert subLen > 0;
+	return (beginIndex == 0 && endIndex == _count) ? this :
+	    new String(_value, beginIndex, subLen);
+    }
+
     // public String[] split(String regex, int limit) {
     // 	int off = 0;
     // 	char ch = regex.charAt(0);
