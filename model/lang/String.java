@@ -26,7 +26,7 @@ public class String implements CharSequence{
     // use this constructor as it includes "count"
     // ignore offset at the moment
     public String(char[] ca, int offset, int count) {
-	if (offset > 0 && offset < count) {
+	if (offset > 0 /*&& offset < count*/) {
 	    char[] tmp = new char[count];
 	    for (int i=0; i<count; i++) {
 		tmp[i] = ca[i+offset];
@@ -116,19 +116,20 @@ public class String implements CharSequence{
     public static int compare(String s1, String s2) {
     	int l1 = s1.length();
     	int l2 = s2.length();
-
-    	if (l1 < l2) {
-    	    return l1 - l2;
-    	} else if (l1 > l2) {
-    	    return l2 - l1;
+	int lendiff = l1-l2;
+	int smaller = l1;
+	
+    	if (l1 > l2) {
+	    smaller = l2;
     	} else {
-    	    for (int i=0; i<l1; i++) {
+    	    for (int i=0; i<smaller; i++) {
     		char c1 = s1.charAt(i);
     		char c2 = s2.charAt(i);
     		if (c1 != c2) {
     		    return c1 - c2;
     		}
     	    }
+	    if (lendiff != 0) return lendiff;
     	    return 0;
     	}
     }
@@ -226,11 +227,11 @@ public class String implements CharSequence{
     }
 
     public String substring(int beginIndex, int endIndex) {
-	assert beginIndex > 0 && endIndex <= _count;
-	int subLen = endIndex - beginIndex;
-	assert subLen > 0;
-	return (beginIndex == 0 && endIndex == _count) ? this :
-	    new String(_value, beginIndex, subLen);
+    	assert beginIndex >= 0 && endIndex <= _count;
+    	int subLen = endIndex - beginIndex;
+    	assert subLen > 0;
+    	return (beginIndex == 0 && endIndex == _count) ? this :
+    	    new String(_value, beginIndex, subLen);
     }
 
     // public String[] split(String regex, int limit) {
