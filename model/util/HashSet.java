@@ -1,6 +1,6 @@
 // THIS CLASS IS UNTESTED
 
-public class HashSet<E> {
+public class HashSet<E> implements Set{
     E[] set;
     int capacity;
     int size;
