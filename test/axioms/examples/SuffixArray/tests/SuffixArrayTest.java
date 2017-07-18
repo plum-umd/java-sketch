@@ -20,7 +20,8 @@ public class SuffixArrayTest {
   // static final int MAX_RAND_NUM = 250;
 
   harness public void main() {
-      containsSubstring();
+      // containsSubstring();
+      testLRS();
   }
     
   @Before
@@ -79,64 +80,92 @@ public class SuffixArrayTest {
 
     // List <String> list = new ArrayList<>();
 
-    // String s = "aabaab";
-    // SuffixArray sa = new SuffixArray(s);
-    // Set <String> lrss = sa.lrs();
+    String s = "aabaab";
+    SuffixArray sa = new SuffixArray(s);
+    Set <String> lrss = sa.lrs();
     // list.addAll(lrss);
+    //CHANGE
+    assert 1 == lrss.size();
     // assertEquals(1, lrss.size());
+    // CHANGE
+    assert lrss.contains("aab");    
     // assertEquals("aab", list.get(0));
     // list.clear();
 
-    // s = "abcdefg";
-    // sa = new SuffixArray(s);
-    // lrss = sa.lrs();    
+    s = "abcdefg";
+    sa = new SuffixArray(s);
+    lrss = sa.lrs();    
     // list.addAll(lrss);
+    // CHANGE
+    assert lrss.size() == 0;
     // assertEquals(0, list.size());
     // list.clear();
 
-    // s = "abca";
-    // sa = new SuffixArray(s);
-    // lrss = sa.lrs();
+    s = "abca";
+    sa = new SuffixArray(s);
+    lrss = sa.lrs();
     // list.addAll(lrss);
+    // CHANGE
+    assert lrss.size() == 1;
     // assertEquals(1, lrss.size());
+    // CHANGE
+    assert lrss.contains("a");
     // assertEquals("a", list.get(0));
     // list.clear();
 
-    // s = "abcba";
-    // sa = new SuffixArray(s);
-    // lrss = sa.lrs();
+    s = "abcba";
+    sa = new SuffixArray(s);
+    lrss = sa.lrs();
     // list.addAll(lrss);
+    // CHANGE
+    assert lrss.size() == 2;
     // assertEquals(2, lrss.size() );
+    // CHANGE
+    assert lrss.contains("a");
+    assert lrss.contains("b");
     // assertEquals("a", list.get(0));
     // assertEquals("b", list.get(1));
     // list.clear();
 
 
-    // s = "aZZbZZcYYdYYe";
-    // sa = new SuffixArray(s);
-    // lrss = sa.lrs();
+    s = "aZZbZZcYYdYYe";
+    sa = new SuffixArray(s);
+    lrss = sa.lrs();
     // list.addAll(lrss);
+    assert lrss.size() == 2;
     // assertEquals(2, lrss.size() );
+    // CHANGE
+    assert lrss.contains("YY");
+    assert lrss.contains("ZZ");
     // assertEquals("YY", list.get(0));
     // assertEquals("ZZ", list.get(1));
     // list.clear();
 
-    // s = "AAAAAA";
-    // sa = new SuffixArray(s);
-    // lrss = sa.lrs();
+    s = "AAAAAA";
+    sa = new SuffixArray(s);
+    lrss = sa.lrs();
     // list.addAll(lrss);
+    // CHANGE
+    assert lrss.size() == 1;
     // assertEquals(1, lrss.size() );
+    // CHANGE
+    assert lrss.contains("AAAAA");
     // assertEquals("AAAAA", list.get(0));
     // list.clear();
 
     // s = "aWXYZsdfABCDbvABCDsWXYZyWXYZjisdssd";
     // sa = new SuffixArray(s);
     // lrss = sa.lrs();
-    // list.addAll(lrss);
-    // assertEquals(2, lrss.size() );
-    // assertEquals("ABCD", list.get(0));
-    // assertEquals("WXYZ", list.get(1));
-    // list.clear();
+    // // list.addAll(lrss);
+    // // CHANGE
+    // assert lrss.size() == 2;
+    // // assertEquals(2, lrss.size() );
+    // // CHANGE
+    // assert lrss.contains("ABCD");
+    // assert lrss.contains("WXYZ");
+    // // assertEquals("ABCD", list.get(0));
+    // // assertEquals("WXYZ", list.get(1));
+    // // list.clear();
 
   }
 

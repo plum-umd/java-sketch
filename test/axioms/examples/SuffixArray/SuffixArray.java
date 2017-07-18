@@ -270,7 +270,6 @@ class SuffixArray {
 	// CHANGE
         lrss.add( new String(tmp, sa[i], max_len) );
 	// lrss.add( new String(T, sa[i], max_len) );
-
       }
     }
 
