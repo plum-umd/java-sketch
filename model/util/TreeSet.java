@@ -1,6 +1,6 @@
 // THIS LIBRARY IS UNTESTED???
 
-public class TreeSet<E> {
+public class TreeSet<E> implements Set{
     E[] set;
     int capacity;
     int size;
@@ -61,6 +61,7 @@ public class TreeSet<E> {
 		set[j] = set[j+1];
 	    }
 	    set[size-1] = null;
+	    size --;
 	    return true;
 	} else {
 	    return false;
