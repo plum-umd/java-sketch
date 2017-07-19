@@ -42,6 +42,7 @@ from ast.stmt.assumestmt import AssumeStmt
 from ast.stmt.switchstmt import SwitchStmt
 from ast.stmt.breakstmt import BreakStmt
 from ast.stmt.switchentrystmt import SwitchEntryStmt
+from ast.stmt.throwstmt import ThrowStmt
 from ast.stmt.explicitconstructorinvocationstmt import ExplicitConstructorInvocationStmt
 
 from ast.expr.variabledeclarationexpr import VariableDeclarationExpr
@@ -274,7 +275,8 @@ class Translator(object):
         inits = []
         for vv in n.var.varss:
             inits.append('{} {} = {}.A[_i];'.format(self.trans_ty(n.iterable.typee), vv.name, it))
-        n.body.stmts = ['\n'.join(inits)] + n.body.stmts
+        s = [n.body] if isinstance(n.body, ExpressionStmt) else n.body.stmts
+        n.body.stmts = ['\n'.join(inits)] + s
         n.body.accept(self)
 
     @v.when(ForStmt)
@@ -397,6 +399,10 @@ class Translator(object):
             self.printt(' {}'.format(n.idd))
         self.printt(';')
 
+    @v.when(ThrowStmt)
+    def visit(self, n):
+        pass
+        
     @v.when(EmptyStmt)
     def visit(self, n): pass
 
