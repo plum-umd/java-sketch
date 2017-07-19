@@ -233,9 +233,9 @@ class Node(object):
     def sanitize_ty(self, tname): return tname.replace('$','_').replace('.','_').replace('?', u'Object')
 
     def get_coid(self):
-        locs = _import()
+        from .body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
         if self.parentNode:
-            if type(self.parentNode) == locs[u'ClassOrInterfaceDeclaration']:
+            if isinstance(self.parentNode, ClassOrInterfaceDeclaration):
                 return self.parentNode
             else:
                 return self.parentNode.get_coid()
