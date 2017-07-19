@@ -135,6 +135,9 @@ class ArrayList_test {
 	assert !strs.contains(s2);
 
 	// toArray
+	strs.clear();
+	strs.add(s1);
+	strs.add(s4);
 	String[] arr = strs.toArray();
 
 	assert arr[0].equals("String 1");

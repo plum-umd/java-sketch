@@ -5,8 +5,8 @@ public class ArrayList<E> {
     Object[] elementData;
 
     private int DEFAULT_CAPACITY;
-    private int numElements;
     private int capacity;
+    private int size;
     private static Object[] EMPTY_ELEMENTDATA = {};
     private static final int MAX_ARRAY_SIZE = 1000000; // other value causing weird problem in Sketch
     // private static final int MAX_ARRAY_SIZE = 0x7fffffff - 8;
@@ -15,14 +15,14 @@ public class ArrayList<E> {
 	this.DEFAULT_CAPACITY = 10;
 	this.elementData = new Object[this.DEFAULT_CAPACITY];
 	this.capacity = this.DEFAULT_CAPACITY;
-	this.numElements = 0;
+	this.size = 0;
     }
 
     public ArrayList(int initialCapacity) {
 	this.DEFAULT_CAPACITY = 10;
 	this.elementData = new Object[initialCapacity];
 	this.capacity = initialCapacity;	
-	this.numElements = 0;
+	this.size = 0;
     }
 
     // Expand capacity to size while keeping old elements of elementData
@@ -30,7 +30,7 @@ public class ArrayList<E> {
 	Object[] newElementData = new Object[size];
 	int i = 0;
 
-	for (i = 0; i < numElements; i++) {
+	for (i = 0; i < this.size; i++) {
 	    newElementData[i] = elementData[i];
 	}
 
@@ -40,7 +40,7 @@ public class ArrayList<E> {
 
     // if adding one would be out of bounds, expand elementData
     private void checkAdjustSize() {
-	if (numElements + 1 >= capacity) {
+	if (size + 1 >= capacity) {
 	    // Arbitrarily 10, should compare to source
 	    copyNewElementData(capacity + 10);
 	}
@@ -50,7 +50,7 @@ public class ArrayList<E> {
 	int j = 0;
 
 	// Note - 1 because one after last element could be out of range
-	for (j = numElements; j > index; j--) {
+	for (j = size; j > index; j--) {
 	    elementData[j] = elementData[j-1];
 	}
     }
@@ -59,22 +59,22 @@ public class ArrayList<E> {
 	checkAdjustSize();
 	createSpace(index);
 	elementData[index] = e;
-	numElements ++;
+	size ++;
     }
 
     public <E> boolean add(E e) {
 	checkAdjustSize();
-	elementData[numElements++] = e;
+	elementData[size++] = e;
 	return true;
     }
 
     public void clear() {
 	// clear for GC
-	for (int i = 0; i < numElements; i++) {
+	for (int i = 0; i < size; i++) {
 	    elementData[i] = null;
 	}
 	capacity = 10;
-	numElements = 0;
+	size = 0;
     }
 
     public boolean contains(Object o) {
@@ -82,7 +82,7 @@ public class ArrayList<E> {
     }
 
     public E get(int index) {
-	if (index < 0 || index >= numElements) {
+	if (index < 0 || index >= size) {
 	    return null;
 	}
 
@@ -98,7 +98,7 @@ public class ArrayList<E> {
 		}
 	    }
         } else {
-            for (i = 0; i < numElements; i++) {
+            for (i = 0; i < size; i++) {
                 if (o.equals(elementData[i])) {
                     return i;
 		}
@@ -111,16 +111,16 @@ public class ArrayList<E> {
 	int j = 0;
 
 	// Note - 1 because one after last element could be out of range
-	for (j = index; j < numElements - 1; j++) {
+	for (j = index; j < size - 1; j++) {
 	    elementData[j] = elementData[j+1];
 	}
-	elementData[numElements-1] = null;
-	numElements --;
+	elementData[size-1] = null;
+	size --;
     }
 
     public E remove(int index) {
 	E e;
-	if (index < 0 || index >= numElements) {
+	if (index < 0 || index >= size) {
 	    return null;
 	}	
 	e = elementData[index];
@@ -138,7 +138,7 @@ public class ArrayList<E> {
 		}
 	    }
         } else {
-            for (i = 0; i < numElements; i++) {
+            for (i = 0; i < size; i++) {
                 if (o.equals(elementData[i])) {
                     removeElement(i);
 		    return true;
@@ -152,7 +152,7 @@ public class ArrayList<E> {
     public <E> E set (int index, E element) {
 	E oldElement;
 
-	if (index < 0 || index >= numElements) {
+	if (index < 0 || index >= size) {
 	    return null;
 	}
 
@@ -163,7 +163,7 @@ public class ArrayList<E> {
     }
     
     public int size() {
-	return numElements;
+	return size;
     }
 
     public int length() {
@@ -171,14 +171,14 @@ public class ArrayList<E> {
     }
 
     public boolean isEmpty() {
-	return numElements == 0;
+	return size == 0;
     }
 
-    public Object[] toArray() {
-	Object[] arr = new Object[numElements];
+    public T[] toArray() {
+	Object[] arr = new Object[size];
 	int i = 0;
 
-	for (i = 0; i < numElements; i++) {
+	for (i = 0; i < size; i++) {
 	    arr[i] = elementData[i];
 	}
 
@@ -191,6 +191,21 @@ public class ArrayList<E> {
 	if (minCapacity > minExpand) { ensureExplicitCapacity(minCapacity); }
     }
 
+    public List<E> subList(int fromIndex, int toIndex) {
+        subListRangeCheck(fromIndex, toIndex, size);
+    	ArrayList a = new ArrayList();
+	for (int i = 0; i < toIndex-fromIndex; i++ )
+	    a.add(elementData[i]); 
+    	return a;
+        // return new SubList(this, 0, fromIndex, toIndex);
+    }
+
+    static void subListRangeCheck(int fromIndex, int toIndex, int size) {
+        assert fromIndex >= 0;
+	assert toIndex <= size;
+	assert fromIndex < toIndex;
+    }
+    
     private void ensureCapacityInternal(int minCapacity) {
         if (elementData == EMPTY_ELEMENTDATA) {
 	    if (DEFAULT_CAPACITY > minCapacity) { minCapacity = DEFAULT_CAPACITY; }
