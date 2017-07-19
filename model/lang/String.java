@@ -4,19 +4,20 @@ public class String implements CharSequence{
     char[] _value;
     int _count;
 
-    // public String(int[] ca, int offset, int count) {
+    // public String(char[] ca, int offset, int count) {
     // 	if (offset > 0 && offset < count) {
-    // 	    int l = count-offset-1;
+    // 	    int l = count-offset;
     // 	    char[] tmp = new char[l];
     // 	    for (int i=0; i<l; i++) {
-    // 		tmp[i] = (char) ca[i+offset];
+    // 		tmp[i] = ca[i+offset];
     // 	    }
     // 	    _value = tmp;
     // 	    _count = l;
-    // 	} else {
+    // 	}
+    // 	else {
     // 	    char[] tmp = new char[count];
     // 	    for (int i=0; i<count; i++) {
-    // 		tmp[i] = (char) ca[i];
+    // 		tmp[i] = ca[i];
     // 	    }
     // 	    _value = tmp;
     // 	    _count = count;
@@ -26,17 +27,17 @@ public class String implements CharSequence{
     // use this constructor as it includes "count"
     // ignore offset at the moment
     public String(char[] ca, int offset, int count) {
-	if (offset > 0 /*&& offset < count*/) {
-	    char[] tmp = new char[count];
-	    for (int i=0; i<count; i++) {
-		tmp[i] = ca[i+offset];
-	    }
-	    _value = tmp;
-	}
-	else {
-	    _value = ca;
-	}
-	_count = count;	
+    	if (offset > 0 && offset < ca.length) {
+    	    char[] tmp = new char[count];
+    	    for (int i=0; i<count; i++) {
+    		tmp[i] = ca[i+offset];
+    	    }
+    	    _value = tmp;
+    	}
+    	else {
+    	    _value = ca;
+    	}
+    	_count = count;	
     }
 
     public char charAt(int index) {
@@ -100,9 +101,9 @@ public class String implements CharSequence{
 	    return index;
 	}
 
-	for (int j = i; (j < len) && (index == -1); j++) {
+	for (int j = i; j < len; j++) {
 	    if (this.charAt(j) == c) {
-		index = j;
+		return j;
 	    }
 	}
 
@@ -227,34 +228,59 @@ public class String implements CharSequence{
     }
 
     public String substring(int beginIndex, int endIndex) {
-    	assert beginIndex >= 0 && endIndex <= _count;
+    	assert beginIndex >= 0 && endIndex <= _value.length;
     	int subLen = endIndex - beginIndex;
     	assert subLen > 0;
     	return (beginIndex == 0 && endIndex == _count) ? this :
     	    new String(_value, beginIndex, subLen);
     }
 
-    // public String[] split(String regex, int limit) {
-    // 	int off = 0;
-    // 	char ch = regex.charAt(0);
-    // 	int next = indexOf(ch, off);
-    // 	boolean limited = limit > 0;
-    // 	boolean c = true;
-    // 	ArrayList<String> list = new ArrayList<>();
-    // 	while (indexOf(ch, off) != -1) {
-    // 	    if (c) {
-    // 		if (!limited || list.size() < limit - 1) {
-    // 		    list.add(substring(off, next));
-    // 		    off = next + 1;
-    // 		    next = indexOf(ch, off);
-    // 		}
-    // 		else {    // last one
-    // 		    list.add(substring(off, value.length));
-    // 		    off = value.length;
-    // 		    c = !c;
-    // 		}
-    // 	    }
-    // 	}
+    public String[] split(String regex) {
+        return split(regex, 0);
+    }
+
+    public String[] split(String regex, int limit) {
+	int off = 0;
+    	char ch = regex.charAt(0);
+    	int next = indexOf(ch, off);
+    	boolean limited = limit > 0;
+    	ArrayList<String> list = new ArrayList<>();
+    	while (next != -1) {
+	    if (!limited || list.size() < limit - 1) {
+		list.add(substring(off, next));
+		off = next + 1;
+		next = indexOf(ch, off);
+	    }
+	    else {    // last one
+		list.add(substring(off, _count));
+		off = _value.length;
+		next = -1;
+	    }
+    	}
+
+	// If no match was found, return this
+	if (off == 0)
+	    return new String[]{this};
+
+	// Add remaining segment
+	if (!limited || list.size() < limit) {
+	    list.add(substring(off, _count));
+	}
+
+	// // Construct result
+	int resultSize = list.size();
+	if (limit == 0) {
+	    String tmp = list.get(resultSize - 1);
+	    while (resultSize > 0 && tmp.length() == 0) {
+		resultSize--;
+	    }
+	}
+	String[] result = new String[resultSize];
+	list = list.subList(0, resultSize);
+	result = list.toArray();
+	return result;
+	// return list.toArray();
+    }
     // 	// If no match was found, return this
     // 	if (off == 0)
     // 	    return new String[]{this};

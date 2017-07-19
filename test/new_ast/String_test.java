@@ -63,7 +63,21 @@ class String_test {
     	// substring_int_int
 	xs = x.substring(1, 5);
 	assert xs.equals(" am ");
-	xs = x.substring(3, 10);
-	assert xs.equals("m a str");
+	xs = x.substring(3, 13);
+	assert xs.equals("m a string");
+
+	// split
+	String ss = "This is";
+	String[] sa = ss.split(" ");
+	assert sa[0].equals("This");
+	assert sa[1].equals("is");
+
+    	String ss1 = "This,is,split,by, comma";
+	String[] sa1 = ss1.split(",");
+	assert sa1[0].equals("This");
+	assert sa1[1].equals("is");
+	assert sa1[2].equals("split");
+	assert sa1[3].equals("by");
+	assert sa1[4].equals(" comma");
     }
 }
