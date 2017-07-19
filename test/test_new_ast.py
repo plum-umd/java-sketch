@@ -10,7 +10,7 @@ tests = os.path.join(pwd, "new_ast")
 
 class TestJava(TestCommon):
     def __test(self, fs):
-        _fs = map(lambda f: os.path.join(tests, f), fs)
+        _fs = map(lambda f: os.path.join(tests, f), fs + ['../../model/'])
         ret = java_sk.main.main(_fs, '30')
         self.assertEqual(ret, 0)
 
@@ -57,7 +57,7 @@ class TestJava(TestCommon):
         self.__test(["FieldFromImport.java"])
 
     def test_FieldGenericArg(self):
-        self.__test(["FieldGenericArg.java", "../../model/"])
+        self.__test(["FieldGenericArg.java"])
 
     def test_FieldMethod(self):
         self.__test(["FieldMethod.java"])
@@ -109,7 +109,7 @@ class TestJava(TestCommon):
     #     self.__test(["Override.java"])
 
     def test_PolymorphicFunctions(self):
-        self.__test(["PolymorphicFunctions.java", "../../model/"])
+        self.__test(["PolymorphicFunctions.java"])
 
     # not ready for this yet.
     # def test_PolyStuff(self):

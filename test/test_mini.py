@@ -10,8 +10,7 @@ benchmarks = os.path.join(pwd, "benchmarks")
 class TestMini(TestCommon):
 
   def __test(self, fs):
-    append_b = lambda f: os.path.join(benchmarks, f)
-    _fs = map(append_b, fs)
+    _fs = map(lambda f: os.path.join(benchmarks, f), fs + ['../../model/'])
     ret = java_sk.main.main(_fs, '30')
     self.assertEqual(ret, 0)
 

@@ -1,6 +1,6 @@
 class UninterpretedClass {
     String s;
-    void main() {
+    harness void main() {
 	
     }
 }
