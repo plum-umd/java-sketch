@@ -71,5 +71,15 @@ public class Character {
     // public static final int MIN_SUPPLEMENTARY_CODE_POINT = 0x010000;
     // public static final int MIN_CODE_POINT = 0x000000;
     // public static final int MAX_CODE_POINT = 0X10FFFF;
+
+    char value;
+
+    public Character(char value) {
+	this.value = value;
+    }
+
+    public char charValue() {
+	return value;
+    }
 }
 
