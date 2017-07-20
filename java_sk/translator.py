@@ -502,7 +502,8 @@ class Translator(object):
                     if t:
                         tname = t.typee
                     else:
-                        print a, type(a)
+                        raise Exception('ObjectCreationExpr:{} - cannot find {}'.
+                                        format(a.beginLine, str(a)))
                 else:
                     tname = a.typee
                 typs.append(tname)
