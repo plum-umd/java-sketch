@@ -1,0 +1,82 @@
+package SimpleFileExample;
+
+adt AFile {
+  File { AFile f; int ld; char[ld] d; }
+}
+
+adt AFileReaderr {
+  FileReaderr     { AFile f; int p; }
+  Read            { AFileReaderr r; }
+  ReadB           { AFileReaderr r; }
+  Ready           { AFileReaderr r; }
+}
+
+char xform_read(AFileReaderr r) {
+  switch (r) {
+  case FileReaderr: {
+    AFile f = r.f;
+    switch (f) {
+    case File:  return f.d[r.p];
+    }
+  }
+  case Read:   assert false;
+  case ReadB:  return xform_read(xform_readB(r.r));
+  case Ready:  assert false;
+  }
+}
+
+
+AFileReaderr xform_readB(AFileReaderr r) {
+  switch (r) {
+  case FileReaderr: {
+    AFile f = r.f;
+    switch (f) {
+    case File:  return new FileReaderr(f=f, p=r.p + 1);
+    }
+  }
+  case Read:   assert false;
+  case ReadB:  {
+    AFileReaderr rr = r.r;
+    switch (rr) {
+    case FileReaderr: return xform_readB(rr);
+    case Read:        assert false;
+    case ReadB:       return xform_readB(xform_readB(r.r));
+    case Ready:       assert false;
+    }
+  }
+  case Ready:  assert false;
+  }
+}
+
+bit xform_ready(AFileReaderr r) {
+  switch (r) {
+  case FileReaderr: {
+    AFile f = r.f;
+    switch (f) {
+    case File: {
+      if (r.p != f.ld-1) { return true; }
+      else { return false; }
+    }
+    }
+  }
+  case Read:   assert false;
+  case ReadB:  return xform_ready(xform_readB(r.r));
+  case Ready:  assert false;
+  }
+}
+
+harness void main() {
+  int ld = 3;
+  char[] data = "He";
+  File f = new File(f=new File(), ld=ld, d=data);
+  AFileReaderr r = new FileReaderr(f=f, p=0);
+  
+  int i = 0;
+  while (i < ld-1) {
+    Read read = new Read(r=r);
+    assert xform_read(read.r) == data[i++];
+    r = new ReadB(r=r);
+  }
+  assert r == new ReadB(r=new ReadB(r=new FileReaderr(f=f, p=0)));
+  assert xform_readB(r) == new FileReaderr(f=f, p=2);
+}
