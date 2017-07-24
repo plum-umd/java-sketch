@@ -118,4 +118,15 @@ public class HashMap_NoHash<K,V> extends Map {
 	return val;
     }
 
+    public V replace(K key, V newVal) {
+    	Node<K,V> node = get(key);
+
+    	if (node != null) {
+    	    if (key.equals(node.key)) {
+    		node.value = newVal;
+    		return node.value;
+    	    }
+    	}
+    	return null;
+    }
 }

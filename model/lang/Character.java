@@ -81,5 +81,12 @@ public class Character {
     public char charValue() {
 	return value;
     }
+
+    public boolean equals(Object obj) {
+    	if (obj instanceof Character) {
+    	    return value == ((Character)obj).charValue();
+    	}
+    	return false;
+    }
 }
 
