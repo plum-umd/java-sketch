@@ -47,19 +47,23 @@ public class HashMap_NoHash<K,V> extends Map {
     }
 
     public V get(K key) {
+	Node n = getKey(key);
+	return n == null ? null : n.value;
+    }
+    
+    private Node getKey(K key) {
 	Node n = elementData;
 
-	while (n != null) {
+    	while (n != null) {
 	    K k = n.key;
-	    if (key.equals(k)) {
-		return n.value;
-	    }
+	    if (key.equals(k))
+		return n;
 	    n = n.next;
 	}
-
+	
 	return null;
     }
-
+    
     public void clear() {
 	elementData = null;
 	this.numPairs = 0;
@@ -119,7 +123,7 @@ public class HashMap_NoHash<K,V> extends Map {
     }
 
     public V replace(K key, V newVal) {
-    	Node<K,V> node = get(key);
+    	Node<K,V> node = getKey(key);
 
     	if (node != null) {
     	    if (key.equals(node.key)) {

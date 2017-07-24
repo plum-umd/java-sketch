@@ -24,12 +24,9 @@ public class Integer extends Number {
         return (x < y) ? -1 : ((x == y) ? 0 : 1);
     }
 
-    public boolean equals(Object anotherInt) {
-    	if (anotherInt instanceof Integer) {
-    	    Integer x = (Integer) anotherInt;
-    	    if (this.value == x.intValue()) {
-    		return true;
-    	    }
+    public boolean equals(Object obj) {
+    	if (obj instanceof Integer) {
+    	    return this.value == ((Integer)obj).intValue();
     	}
     	return false;
     }
