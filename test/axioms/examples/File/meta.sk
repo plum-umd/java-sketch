@@ -1,12 +1,19 @@
 package meta;
 
 // distinct class IDs
-int File()         { return 6; }
-int FileReaderr()  { return 5; }
-int FreqTable()    { return 2; }
-int Integer()      { return 4; }
-int Number()       { return 3; }
-int Object()       { return 1; }
-int String()       { return 7; }
+int ArrayList()            { return 12; }
+int Character()            { return 10; }
+int FreqTable()            { return 2; }
+int HashMap_Simple()       { return 5; }
+int HashMap_Simple_Node()  { return 6; }
+int Integer()              { return 9; }
+int List()                 { return 11; }
+int Map()                  { return 3; }
+int Map_Entry()            { return 4; }
+int Number()               { return 8; }
+int Object()               { return 1; }
+int String()               { return 7; }
+int File()                 { return 13; }
+int FileReaderr()          { return 14; }
 
 // Uninterpreted functions

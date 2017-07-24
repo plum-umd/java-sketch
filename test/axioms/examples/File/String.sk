@@ -5,10 +5,10 @@ Object String_String(Object self) {
 }
 
 Object String_String_char_int_int(Object self, Array_char ca, int offset, int count) {
-  if (offset > 0 && offset < count) {
+  if (offset > 0 && offset < ca.length) {
     Array_char tmp = new Array_char(length=count);
-    for (int i = offset; i < offset + count; i++) {
-      tmp.A[i] = ca.A[i];
+    for (int i = 0; i < count; i++) {
+      tmp.A[i] = ca.A[i + offset];
     }
     self._value_String = tmp;
   }
@@ -76,9 +76,9 @@ int indexOf_char_int(Object self, char c, int i) {
   if (i >= len || i < 0) {
     return index;
   }
-  for (int j = i; (j < len) && (index == -1); j++) {
+  for (int j = i; j < len; j++) {
     if ((self.__cid == String() ? charAt_int@String(self, j) : '\0') == c) {
-      index = j;
+      return j;
     }
   }
   return index;
@@ -91,20 +91,20 @@ int compareTo_String(Object self, Object str) {
 int compare_String_String(Object s1, Object s2) {
   int l1 = (s1.__cid == String() ? length@String(s1) : 0);
   int l2 = (s2.__cid == String() ? length@String(s2) : 0);
-  if (l1 < l2) {
-    return l1 - l2;
-  }
-  else if (l1 > l2) {
-    return l2 - l1;
+  int lendiff = l1 - l2;
+  int smaller = l1;
+  if (l1 > l2) {
+    smaller = l2;
   }
   else {
-    for (int i = 0; i < l1; i++) {
+    for (int i = 0; i < smaller; i++) {
       char c1 = (s1.__cid == String() ? charAt_int@String(s1, i) : '\0');
       char c2 = (s2.__cid == String() ? charAt_int@String(s2, i) : '\0');
       if (c1 != c2) {
         return c1 - c2;
       }
     }
+    if (lendiff != 0) return lendiff;
     return 0;
   }
 }
@@ -183,5 +183,57 @@ Object replace_char_char(Object self, char oldChar, char newChar) {
     }
   }
   return self;
+}
+
+Object substring_int(Object self, int beginIndex) {
+  int subLen = self._count_String - beginIndex;
+  assert subLen > 0;
+  return ((beginIndex == 0) ? self : String_String_char_int_int(new Object(__cid=String()), self._value_String, beginIndex, subLen));
+}
+
+Object substring_int_int(Object self, int beginIndex, int endIndex) {
+  assert beginIndex >= 0 && endIndex <= self._value_String.length;
+  int subLen = endIndex - beginIndex;
+  assert subLen > 0;
+  return ((beginIndex == 0 && endIndex == self._count_String) ? self : String_String_char_int_int(new Object(__cid=String()), self._value_String, beginIndex, subLen));
+}
+
+Array_Object split_String(Object self, Object regex) {
+  return split_String_int@String(self, regex, 0);
+}
+
+Array_Object split_String_int(Object self, Object regex, int limit) {
+  int off = 0;
+  char ch = (regex.__cid == String() ? charAt_int@String(regex, 0) : '\0');
+  int next = indexOf_char_int@String(self, ch, off);
+  bit limited = limit > 0;
+  Object list = ArrayList_ArrayList(new Object(__cid=ArrayList()));
+  while (next != -1) {
+    if (!limited || (list.__cid == ArrayList() ? size@ArrayList(list) : 0) < limit - 1) {
+      (list.__cid == ArrayList() ? add_E@ArrayList(list, substring_int_int@String(self, off, next)) : 0);
+      off = next + 1;
+      next = indexOf_char_int@String(self, ch, off);
+    }
+    else {
+      (list.__cid == ArrayList() ? add_E@ArrayList(list, substring_int_int@String(self, off, self._count_String)) : 0);
+      off = self._value_String.length;
+      next = -1;
+    }
+  }
+  if (off == 0) return new Array_Object(length=1, A={self});
+  if (!limited || (list.__cid == ArrayList() ? size@ArrayList(list) : 0) < limit) {
+    (list.__cid == ArrayList() ? add_E@ArrayList(list, substring_int_int@String(self, off, self._count_String)) : 0);
+  }
+  int resultSize = (list.__cid == ArrayList() ? size@ArrayList(list) : 0);
+  if (limit == 0) {
+    Object tmp = (list.__cid == ArrayList() ? get_int@ArrayList(list, resultSize - 1) : null);
+    while (resultSize > 0 && (tmp.__cid == String() ? length@String(tmp) : 0) == 0) {
+      resultSize--;
+    }
+  }
+  Array_Object result = new Array_Object(length=resultSize);
+  list = (list.__cid == ArrayList() ? subList_int_int@ArrayList(list, 0, resultSize) : null);
+  result = (list.__cid == ArrayList() ? toArray@ArrayList(list) : null);
+  return result;
 }
 

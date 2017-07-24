@@ -1,7 +1,7 @@
 package SimpleFileExample;
 
 adt AFile {
-  File { AFile f; int ld; char[ld] d; }
+  File { AFile f; int ln; int ld; char[ln] n; char[ld] d; }
 }
 
 adt AFileReaderr {
@@ -20,7 +20,7 @@ char xform_read(AFileReaderr r) {
     }
   }
   case Read:   assert false;
-  case ReadB:  return xform_read(xform_readB(r.r));
+  case ReadB:  return xform_read(xform_readB(r));
   case Ready:  assert false;
   }
 }
@@ -54,29 +54,32 @@ bit xform_ready(AFileReaderr r) {
     AFile f = r.f;
     switch (f) {
     case File: {
-      if (r.p != f.ld-1) { return true; }
+      if (r.p < f.ld-1) { return true; }
       else { return false; }
     }
     }
   }
   case Read:   assert false;
-  case ReadB:  return xform_ready(xform_readB(r.r));
+  case ReadB:  return xform_ready(xform_readB(r));
   case Ready:  assert false;
   }
 }
 
 harness void main() {
   int ld = 3;
+  int ln = 2;
   char[] data = "He";
-  File f = new File(f=new File(), ld=ld, d=data);
+  char[] name = "a";
+  File f = new File(f=new File(), ln=ln, n=name, ld=ld, d=data);
   AFileReaderr r = new FileReaderr(f=f, p=0);
-  
+
   int i = 0;
-  while (i < ld-1) {
+  while (xform_ready(r)) {
     Read read = new Read(r=r);
     assert xform_read(read.r) == data[i++];
     r = new ReadB(r=r);
   }
+  assert i == 2;
   assert r == new ReadB(r=new ReadB(r=new FileReaderr(f=f, p=0)));
-  assert xform_readB(r) == new FileReaderr(f=f, p=2);
+  /* assert xform_readB(r) == new Filereaderr(f=f, p=2); */
 }
