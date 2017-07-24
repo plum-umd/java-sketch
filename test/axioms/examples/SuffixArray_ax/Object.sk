@@ -36,6 +36,7 @@ int hashCode(Object self) {
 
 struct Object {
   int           __cid;
+  AThing	Tree;
   Array_Object  set_HashSet;
   int           capacity_HashSet;
   int           size_HashSet;

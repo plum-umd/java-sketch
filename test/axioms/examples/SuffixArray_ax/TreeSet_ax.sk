@@ -1,0 +1,65 @@
+struct Object {
+  int           __cid;
+  AThing	Tree;
+}
+
+adt AThing {
+   TreeSet {}
+   Add { AThing a; Object e; }
+   AddB { AThing a; Object e; }   
+   ClearB {}
+   Contains { AThing a; Object e; }
+   Error { int code; }
+}
+
+Object TreeSet_TreeSet(Object self) {
+   self.Tree = new TreeSet(); 
+   return self;
+}
+
+Object add_E(Object self, Object e) {
+   self.Tree = new Add(a=self.Tree,e=e);
+   return self;
+}
+
+Object add_EB(Object self, Object e) {
+   self.Tree = new AddB(a=self.Tree,e=e);
+   return self;
+}
+
+Object contains_Object(Object self, Object e) {
+   self.Tree = new Contains(a=self.Tree,e=e);
+   return self;
+}
+
+Object clearB(Object self) {
+   self.Tree = new ClearB();
+   return self;
+}
+
+AThing xform_AddB(AThing a, Object e) {
+   return new TreeSet();
+}
+
+AThing xform_ClearB() {
+   return new TreeSet();
+}
+
+Object xform_B(Object self) {
+   AThing newTree = new TreeSet();
+   AThing a = self.Tree;
+   switch(a) {
+      case TreeSet:  assert false;
+      case Add:      assert false;
+      case AddB:     newTree = xform_AddB(a.a, a.e);
+      case ClearB:   newTree = xform_ClearB();   
+      case Contains: assert false;
+      case Error:    assert false;
+   }
+   self.Tree = newTree;
+   return self;
+}
+
+harness void main() {
+   assert 1 == 1;
+}
