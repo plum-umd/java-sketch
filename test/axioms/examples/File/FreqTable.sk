@@ -44,9 +44,7 @@ Object createTable([int ln, int ld], char[ln] name, char[ld] data) {
       Object k = get_K(freqs, c);
       if (k == null) {
 	Object i0 = Integer_Integer_int(new Object(__cid=Integer()), intValue@Integer(??));
-	if (??) replace_K_V(freqs, c, i0);
-	else if (??) put_K_V(freqs, c, i0);
-	else remove_K(freqs, c);
+	put_K_V(freqs, c, i0);
       }
       else {
 	Object i0 = Integer_Integer_int(new Object(__cid=Integer()), intValue@Integer(k) + ??);
@@ -60,9 +58,7 @@ Object createTable([int ln, int ld], char[ln] name, char[ld] data) {
       Object k = get_K(freqs, c);
       if (k == null) {
 	Object i0 = Integer_Integer_int(new Object(__cid=Integer()), intValue@Integer(??));
-	if (??) replace_K_V(freqs, c, i0);
-	else if (??) put_K_V(freqs, c, i0);
-	else remove_K(freqs, c);
+	put_K_V(freqs, c, i0);
       }
       else {
 	Object i0 = Integer_Integer_int(new Object(__cid=Integer()), intValue@Integer(k) + ??);
