@@ -1,0 +1,110 @@
+package HashMap_NoHash;
+
+Object HashMap_NoHash_HashMap_NoHash(Object self) {
+  self.elementData_HashMap_NoHash = null;
+  self.numPairs_HashMap_NoHash = 0;
+  return self;
+}
+
+int size(Object self) {
+  return self.numPairs_HashMap_NoHash;
+}
+
+bit isEmpty(Object self) {
+  return self.numPairs_HashMap_NoHash == 0;
+}
+
+bit containsValue_V(Object self, Object value) {
+  Object n = self.elementData_HashMap_NoHash;
+  while (n != null) {
+    Object v = n.value_HashMap_NoHash_Node;
+    if ((value.__cid == Number() ? equals_Object@Object(value, v) : value.__cid == ArrayList() ? equals_Object@Object(value, v) : value.__cid == HashMap_NoHash() ? equals_Object@Object(value, v) : value.__cid == String() ? equals_Object@String(value, v) : value.__cid == Integer() ? equals_Object@Integer(value, v) : value.__cid == HashMap_NoHash_Node() ? equals_Object@Object(value, v) : value.__cid == Character() ? equals_Object@Character(value, v) : value.__cid == Object() ? equals_Object@Object(value, v) : 0)) {
+      return true;
+    }
+    n = n.next_HashMap_NoHash_Node;
+  }
+  return false;
+}
+
+bit containsKey_K(Object self, Object key) {
+  return get_K@HashMap_NoHash(self, key) != null;
+}
+
+Object get_K(Object self, Object key) {
+  Object n = getKey_K@HashMap_NoHash(self, key);
+  return (n == null ? null : n.value_HashMap_NoHash_Node);
+}
+
+Object getKey_K(Object self, Object key) {
+  Object n = self.elementData_HashMap_NoHash;
+  while (n != null) {
+    Object k = n.key_HashMap_NoHash_Node;
+    if ((key.__cid == Number() ? equals_Object@Object(key, k) : key.__cid == ArrayList() ? equals_Object@Object(key, k) : key.__cid == HashMap_NoHash() ? equals_Object@Object(key, k) : key.__cid == String() ? equals_Object@String(key, k) : key.__cid == Integer() ? equals_Object@Integer(key, k) : key.__cid == HashMap_NoHash_Node() ? equals_Object@Object(key, k) : key.__cid == Character() ? equals_Object@Character(key, k) : key.__cid == Object() ? equals_Object@Object(key, k) : 0)) return n;
+    n = n.next_HashMap_NoHash_Node;
+  }
+  return null;
+}
+
+void clear(Object self) {
+  self.elementData_HashMap_NoHash = null;
+  self.numPairs_HashMap_NoHash = 0;
+}
+
+Object remove_K(Object self, Object key) {
+  Object n = self.elementData_HashMap_NoHash,  prev;
+  Object val = null;
+  Object k;
+  if (n != null) {
+    k = n.key_HashMap_NoHash_Node;
+    if ((key.__cid == Number() ? equals_Object@Object(key, k) : key.__cid == ArrayList() ? equals_Object@Object(key, k) : key.__cid == HashMap_NoHash() ? equals_Object@Object(key, k) : key.__cid == String() ? equals_Object@String(key, k) : key.__cid == Integer() ? equals_Object@Integer(key, k) : key.__cid == HashMap_NoHash_Node() ? equals_Object@Object(key, k) : key.__cid == Character() ? equals_Object@Character(key, k) : key.__cid == Object() ? equals_Object@Object(key, k) : 0)) {
+      val = n.value_HashMap_NoHash_Node;
+      self.elementData_HashMap_NoHash = n.next_HashMap_NoHash_Node;
+      self.numPairs_HashMap_NoHash--;
+      return val;
+    }
+    prev = n;
+    n = n.next_HashMap_NoHash_Node;
+  }
+  while (n != null) {
+    k = n.key_HashMap_NoHash_Node;
+    if ((key.__cid == Number() ? equals_Object@Object(key, k) : key.__cid == ArrayList() ? equals_Object@Object(key, k) : key.__cid == HashMap_NoHash() ? equals_Object@Object(key, k) : key.__cid == String() ? equals_Object@String(key, k) : key.__cid == Integer() ? equals_Object@Integer(key, k) : key.__cid == HashMap_NoHash_Node() ? equals_Object@Object(key, k) : key.__cid == Character() ? equals_Object@Character(key, k) : key.__cid == Object() ? equals_Object@Object(key, k) : 0)) {
+      val = n.value_HashMap_NoHash_Node;
+      prev.next_HashMap_NoHash_Node = n.next_HashMap_NoHash_Node;
+      self.numPairs_HashMap_NoHash--;
+      return val;
+    }
+    n = n.next_HashMap_NoHash_Node;
+  }
+  return null;
+}
+
+Object put_K_V(Object self, Object key, Object value) {
+  Object n = self.elementData_HashMap_NoHash;
+  Object val = null;
+  while (n != null) {
+    Object k = n.key_HashMap_NoHash_Node;
+    if ((key.__cid == Number() ? equals_Object@Object(key, k) : key.__cid == ArrayList() ? equals_Object@Object(key, k) : key.__cid == HashMap_NoHash() ? equals_Object@Object(key, k) : key.__cid == String() ? equals_Object@String(key, k) : key.__cid == Integer() ? equals_Object@Integer(key, k) : key.__cid == HashMap_NoHash_Node() ? equals_Object@Object(key, k) : key.__cid == Character() ? equals_Object@Character(key, k) : key.__cid == Object() ? equals_Object@Object(key, k) : 0)) {
+      val = n.value_HashMap_NoHash_Node;
+      n.value_HashMap_NoHash_Node = value;
+    }
+    n = n.next_HashMap_NoHash_Node;
+  }
+  if (val == null) {
+    Object newNode = HashMap_NoHash_Node_HashMap_NoHash_Node_HashMap_NoHash_K_V_Node(new Object(__cid=HashMap_NoHash_Node()), self, key, value, self.elementData_HashMap_NoHash);
+    self.elementData_HashMap_NoHash = newNode;
+    self.numPairs_HashMap_NoHash++;
+  }
+  return val;
+}
+
+Object replace_K_V(Object self, Object key, Object newVal) {
+  Object node = getKey_K@HashMap_NoHash(self, key);
+  if (node != null) {
+    if ((key.__cid == Number() ? equals_Object@Object(key, node.key_HashMap_NoHash_Node) : key.__cid == ArrayList() ? equals_Object@Object(key, node.key_HashMap_NoHash_Node) : key.__cid == HashMap_NoHash() ? equals_Object@Object(key, node.key_HashMap_NoHash_Node) : key.__cid == String() ? equals_Object@String(key, node.key_HashMap_NoHash_Node) : key.__cid == Integer() ? equals_Object@Integer(key, node.key_HashMap_NoHash_Node) : key.__cid == HashMap_NoHash_Node() ? equals_Object@Object(key, node.key_HashMap_NoHash_Node) : key.__cid == Character() ? equals_Object@Character(key, node.key_HashMap_NoHash_Node) : key.__cid == Object() ? equals_Object@Object(key, node.key_HashMap_NoHash_Node) : 0)) {
+      node.value_HashMap_NoHash_Node = newVal;
+      return node.value_HashMap_NoHash_Node;
+    }
+  }
+  return null;
+}
+

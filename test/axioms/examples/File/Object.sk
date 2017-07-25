@@ -15,11 +15,11 @@ bit equals_Object_Object(Object a, Object b) {
     }
     return false;
   }
-  return (a.__cid == Character() ? equals_Object@Object(a, b) : a.__cid == Number() ? equals_Object@Object(a, b) : a.__cid == HashMap_Simple() ? equals_Object@Object(a, b) : a.__cid == Integer() ? equals_Object@Integer(a, b) : a.__cid == String() ? equals_Object@String(a, b) : a.__cid == HashMap_Simple_Node() ? equals_Object@Object(a, b) : a.__cid == FreqTable() ? equals_Object@Object(a, b) : a.__cid == ArrayList() ? equals_Object@Object(a, b) : a.__cid == Object() ? equals_Object@Object(a, b) : 0);
+  return (a.__cid == HashMap_NoHash() ? equals_Object@Object(a, b) : a.__cid == Number() ? equals_Object@Object(a, b) : a.__cid == String() ? equals_Object@String(a, b) : a.__cid == ArrayList() ? equals_Object@Object(a, b) : a.__cid == Integer() ? equals_Object@Integer(a, b) : a.__cid == FreqTable() ? equals_Object@Object(a, b) : a.__cid == HashMap_NoHash_Node() ? equals_Object@Object(a, b) : a.__cid == Character() ? equals_Object@Character(a, b) : a.__cid == Object() ? equals_Object@Object(a, b) : 0);
 }
 
 int hashCode_Object(Object o) {
-  return (o != null ? (o.__cid == Character() ? hashCode@Object(o) : o.__cid == Number() ? hashCode@Object(o) : o.__cid == HashMap_Simple() ? hashCode@Object(o) : o.__cid == Integer() ? hashCode@Integer(o) : o.__cid == String() ? hashCode@String(o) : o.__cid == HashMap_Simple_Node() ? hashCode@Object(o) : o.__cid == FreqTable() ? hashCode@Object(o) : o.__cid == ArrayList() ? hashCode@Object(o) : o.__cid == Object() ? hashCode@Object(o) : 0) : 0);
+  return (o.__cid == HashMap_NoHash() ? hashCode@Object(o) : o.__cid == Number() ? hashCode@Object(o) : o.__cid == String() ? hashCode@String(o) : o.__cid == ArrayList() ? hashCode@Object(o) : o.__cid == Integer() ? hashCode@Integer(o) : o.__cid == FreqTable() ? hashCode@Object(o) : o.__cid == HashMap_NoHash_Node() ? hashCode@Object(o) : o.__cid == Character() ? hashCode@Object(o) : o.__cid == Object() ? hashCode@Object(o) : 0);
 }
 
 Object toString(Object self) {
@@ -36,20 +36,17 @@ int hashCode(Object self) {
 
 struct Object {
   int           __cid;
+  char          value_Character;
+  Object        key_HashMap_NoHash_Node;
+  Object        value_HashMap_NoHash_Node;
+  Object        next_HashMap_NoHash_Node;
+  int           value_Integer;
   Array_Object  elementData_ArrayList;
   int           DEFAULT_CAPACITY_ArrayList;
   int           capacity_ArrayList;
   int           size_ArrayList;
-  Object        key_HashMap_Simple_Node;
-  Object        value_HashMap_Simple_Node;
-  int           hash_HashMap_Simple_Node;
   Array_char    _value_String;
   int           _count_String;
-  int           value_Integer;
-  Array_Object  elementData_HashMap_Simple;
-  int           numPairs_HashMap_Simple;
-  int           capacity_HashMap_Simple;
-  char          value_Character;
-  AFileReaderr  ar;
-  AFile         af;
+  Object        elementData_HashMap_NoHash;
+  int           numPairs_HashMap_NoHash;
 }

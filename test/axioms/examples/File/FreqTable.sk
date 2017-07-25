@@ -1,39 +1,77 @@
 package FreqTable;
 
-int NUM_ASCII_CHAR = 128;
-int NUM_ASCII_CHAR_g() { return NUM_ASCII_CHAR; }
-void NUM_ASCII_CHAR_s(int NUM_ASCII_CHAR_s) { NUM_ASCII_CHAR = NUM_ASCII_CHAR_s; }
-
-Object file0;
-Object file0_g() { return file0; }
-void file0_s(Object file0_s) { file0 = file0_s; }
-
-Object FreqTable_FreqTable(Object self) {
-    return self;
-}
-
 harness void main() {
-  Object self = Object_Object(new Object(__cid=Object()));
-  file0 = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="a"), 0, 1);
-  Array_int freqs = new Array_int(length=0, A={});
-  freqs = createTable_String(file0);
-  if (freqs.length == 0) assert false;
-  else {
-    assert freqs.A[97] == 1;
-  }
-  assert true;
+  test1();
+  test2();
+}
+void test1() {
+  Object freqs = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  char[] file0_nm = "f";
+  char[] file0_d = "aab";
+  freqs = createTable(file0_nm, file0_d);
+  Object a = Character_Character_char(new Object(__cid=Character()), 'a');
+  Object b = Character_Character_char(new Object(__cid=Character()), 'b');
+  Object ia = get_K(freqs, a);
+  Object ib = get_K(freqs, b);
+  assert intValue@Integer(ia) == 2;
+  assert intValue@Integer(ib) == 1;
+}
+void test2() {
+  Object freqs = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  char[] file0_nm = "f";
+  char[] file0_d = "aba";
+  freqs = createTable(file0_nm, file0_d);
+  Object a = Character_Character_char(new Object(__cid=Character()), 'a');
+  Object b = Character_Character_char(new Object(__cid=Character()), 'b');
+  Object ia = get_K(freqs, a);
+  Object ib = get_K(freqs, b);
+  assert intValue@Integer(ia) == 2;
+  assert intValue@Integer(ib) == 1;
 }
 
-Array_int createTable_String(Object fileName) {
-  Array_int freqs = new Array_int(length=NUM_ASCII_CHAR);
-  Object f = File_File_String(new Object(__cid=File()), fileName);
-  Object r = FileReaderr_FileReaderr_File(new Object(__cid=FileReaderr()), f);
-  while ((r.__cid == FileReaderr() ? ready@FileReaderr(r) : 0)) {
-    int ch = (r.__cid == FileReaderr() ? read@FileReaderr(r) : 0);
-    if (0 <= ch && ch < freqs.length) freqs.A[ch]++;
+Object createTable([int ln, int ld], char[ln] name, char[ld] data) {
+  Object freqs = HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash()));
+  File af = new File(f=new File(), ln=ln, n=name, ld=ld, d=data);
+  AFileReaderr ar = new FileReaderr(f=af, p=0);
+  while (xform_ready(ar)) {
+    Read rd = new Read(r=ar);
+    Object c = Character_Character_char(new Object(__cid=Character()), xform_read(rd.r));
+    ar = new ReadB(r=ar);
+    bit bE = isEmpty@HashMap_NoHash(freqs);
+    bit bV = containsValue_V@HashMap_NoHash(freqs, c);
+    bit bK = containsKey_K@HashMap_NoHash(freqs, c);
+    if ({|bE | bV | bK|}) {
+      Object k = get_K(freqs, c);
+      if (k == null) {
+	Object i0 = Integer_Integer_int(new Object(__cid=Integer()), intValue@Integer(??));
+	if (??) replace_K_V(freqs, c, i0);
+	else if (??) put_K_V(freqs, c, i0);
+	else remove_K(freqs, c);
+      }
+      else {
+	Object i0 = Integer_Integer_int(new Object(__cid=Integer()), intValue@Integer(k) + ??);
+	Object i1 = Integer_Integer_int(new Object(__cid=Integer()), intValue@Integer(k));
+	if (??) replace_K_V(freqs, c, {|i0 | i1|});
+	else if (??) put_K_V(freqs, c, {|i0 | i1|});
+	else remove_K(freqs, c);
+      }
+    }
+    else {
+      Object k = get_K(freqs, c);
+      if (k == null) {
+	Object i0 = Integer_Integer_int(new Object(__cid=Integer()), intValue@Integer(??));
+	if (??) replace_K_V(freqs, c, i0);
+	else if (??) put_K_V(freqs, c, i0);
+	else remove_K(freqs, c);
+      }
+      else {
+	Object i0 = Integer_Integer_int(new Object(__cid=Integer()), intValue@Integer(k) + ??);
+	Object i1 = Integer_Integer_int(new Object(__cid=Integer()), intValue@Integer(k));
+	if (??) replace_K_V(freqs, c, {|i0 | i1|});
+	else if (??) put_K_V(freqs, c, {|i0 | i1|});
+	else remove_K(freqs, c);
+      }
+    }
   }
-  if (r.__cid == FileReaderr()) { close@FileReaderr(r); }
-  else { 0; };
   return freqs;
 }
-

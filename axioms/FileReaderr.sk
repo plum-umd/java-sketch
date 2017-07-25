@@ -3,106 +3,60 @@ package FileReaderr;
 adt AFileReaderr {
   FileReaderr     { AFile f; int p; }
   Read            { AFileReaderr r; }
+  ReadB           { AFileReaderr r; }
   Ready           { AFileReaderr r; }
-  Pair            { AFileReaderr state; AFileReaderr val; }
-  Int             { int i; }
-  Bool            { bit b; }
-  Error           { int code; }
 }
 
-Object filereaderr(AFile f, int p) {
-  return new Object(__cid = FileReaderr(), ar=new FileReaderr(f=f, p=p));
-}
-
-Object read(AFileReaderr r) {
-  return new Object(__cid = FileReaderr(), ar=new Read(r=r));
-}
-
-Object ready(AFileReaderr r) {
-  return new Object(__cid = FileReaderr(), ar=new Ready(r=r));
-}
-
-Pair xform_read(AFileReaderr r) {
-  AFileReaderr tmpr;
+char xform_read(AFileReaderr r) {
   switch (r) {
   case FileReaderr: {
     AFile f = r.f;
     switch (f) {
-    case Empty: tmpr = new Error();
-    case File: {
-      return new Pair(state=new FileReaderr(f=f, p=r.p+1), val=new Int(i=(int)f.d[r.p]));
-    }
-    case Error: tmpr = r;
+    case File:  return f.d[r.p];
     }
   }
-  case Read:   tmpr = r;
-  case Ready:  tmpr = r;
-  case Pair:   tmpr = new Error();
-  case Int:    tmpr = r;
-  case Bool:   tmpr = r;
-  case Error:  tmpr = r;
+  case Read:   assert false;
+  case ReadB:  return xform_read(xform_readB(r));
+  case Ready:  assert false;
   }
-  return xform(new Read(r=tmpr));
 }
 
-Pair xform_ready(AFileReaderr r) {
-  AFileReaderr tmpr;
+
+AFileReaderr xform_readB(AFileReaderr r) {
   switch (r) {
   case FileReaderr: {
     AFile f = r.f;
     switch (f) {
-    case Empty:   tmpr = r;
+    case File:  return new FileReaderr(f=f, p=r.p + 1);
+    }
+  }
+  case Read:   assert false;
+  case ReadB:  {
+    AFileReaderr rr = r.r;
+    switch (rr) {
+    case FileReaderr: return xform_readB(rr);
+    case Read:        assert false;
+    case ReadB:       return xform_readB(xform_readB(r.r));
+    case Ready:       assert false;
+    }
+  }
+  case Ready:  assert false;
+  }
+}
+
+bit xform_ready(AFileReaderr r) {
+  switch (r) {
+  case FileReaderr: {
+    AFile f = r.f;
+    switch (f) {
     case File: {
-      if (r.p != f.ld-1) { return new Pair(state=r, val=new Bool(b=true)); }
-      else { return new Pair(state=r, val=new Bool(b=false)); }
+      if (r.p < f.ld-1) { return true; }
+      else { return false; }
     }
-    case Error: tmpr = r;
     }
   }
-  case Read:   tmpr = r;
-  case Ready:  tmpr = r;
-  case Pair:   tmpr = new Error();
-  case Int:    tmpr = r;
-  case Bool:   tmpr = r;
-  case Error:  tmpr = r;
-  }
-  return xform(new Ready(r=tmpr));
-}
-
-Pair xform(AFileReaderr r) {
-  switch (r) {
-  case FileReaderr: return new Pair(state=r, val=null);
-  case Read:        return xform_read(r.r);
-  case Ready:       return xform_ready(r.r);
-  case Pair:        return r;
-  case Int:         return new Pair(state=r, val=null);
-  case Bool:        return new Pair(state=r, val=null);
-  case Error:       return new Pair(state=r, val=null);
+  case Read:   assert false;
+  case ReadB:  return xform_ready(xform_readB(r));
+  case Ready:  assert false;
   }
 }
-
-int read_int(AFileReaderr r) {
-  switch (r) {
-  case FileReaderr:  assert false;
-  case Read:         assert false;
-  case Ready:        assert false;
-  case Pair:         assert false;
-  case Int:          return r.i;
-  case Bool:         assert false;
-  case Error:        assert false;
-  }
-}
-
-/* bit ready_bit(AFileReaderr r) { */
-/*   switch (r) { */
-/*   case FileReaderr:  assert false; */
-/*   case Read: { */
-/*     AFileReaderr rr = r.r; */
-    
-/*   } */
-/*   case Ready:        assert false; */
-/*   case Error:        assert false; */
-/*   } */
-/* } */
-
-int Error_err() { return 0; }

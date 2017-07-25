@@ -217,3 +217,14 @@ char charValue(Object self) {
   return self.value_Character;
 }
 
+int hashCode(Object self) {
+  return (int)self.value_Character;
+}
+
+bit equals_Object(Object self, Object obj) {
+  if (obj.__cid == Character()) {
+    return self.value_Character == ((obj).__cid == Character() ? charValue@Character((obj)) : '\0');
+  }
+  return false;
+}
+

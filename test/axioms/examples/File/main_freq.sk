@@ -1,5 +1,5 @@
 pragma options "--bnd-cbits 7";
-pragma options "--bnd-unroll-amnt 35";
+/* pragma options "--bnd-unroll-amnt 35"; */
 pragma options "--fe-fpencoding AS_FIXPOINT";
 include "meta.sk";
 include "Object.sk";
@@ -7,9 +7,8 @@ include "array.sk";
 include "FreqTable.sk";
 include "Map.sk";
 include "Map_Entry.sk";
-include "HashMap_Simple.sk";
-include "HashMap_Simple_Node.sk";
-include "Object.sk";
+include "HashMap_NoHash.sk";
+include "HashMap_NoHash_Node.sk";
 include "String.sk";
 include "Number.sk";
 include "Integer.sk";

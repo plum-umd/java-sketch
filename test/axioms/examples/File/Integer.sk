@@ -29,12 +29,10 @@ int compare_int_int(int x, int y) {
   return ((x < y) ? -1 : (((x == y) ? 0 : 1)));
 }
 
-bit equals_Object(Object self, Object anotherInt) {
-  if (anotherInt.__cid == Integer()) {
-    Object x = anotherInt;
-    if (self.value_Integer == (x.__cid == Integer() ? intValue@Integer(x) : 0)) {
-      return true;
-    }
+
+bit equals_Object(Object self, Object obj) {
+  if (obj.__cid == Integer()) {
+    return self.value_Integer == ((obj).__cid == Integer() ? intValue@Integer((obj)) : 0);
   }
   return false;
 }
