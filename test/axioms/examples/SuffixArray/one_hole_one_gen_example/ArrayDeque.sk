@@ -1,0 +1,157 @@
+package ArrayDeque;
+
+Object ArrayDeque_ArrayDeque(Object self) {
+  self.currentHead_ArrayDeque = null;
+  self.currentTail_ArrayDeque = null;
+  self.size_ArrayDeque = 0;
+  return self;
+}
+
+int size(Object self) {
+  return self.size_ArrayDeque;
+}
+
+bit isEmpty(Object self) {
+  return self.size_ArrayDeque == 0;
+}
+
+bit add_E(Object self, Object e) {
+  Object newNode = ArrayDeque_DequeNode_ArrayDeque_DequeNode_ArrayDeque_E_DequeNode_DequeNode(new Object(__cid=ArrayDeque_DequeNode()), self, e, null, null);
+  if (isEmpty@ArrayDeque(self)) {
+    self.currentHead_ArrayDeque = newNode;
+  }
+  else {
+    if (newNode.__cid == ArrayDeque_DequeNode()) { setPrev_DequeNode@ArrayDeque_DequeNode(newNode, self.currentTail_ArrayDeque); }
+    else { 0; };
+    if (self.currentTail_ArrayDeque.__cid == ArrayDeque_DequeNode()) { setNext_DequeNode@ArrayDeque_DequeNode(self.currentTail_ArrayDeque, newNode); }
+    else { 0; };
+  }
+  self.currentTail_ArrayDeque = newNode;
+  self.size_ArrayDeque++;
+  return true;
+}
+
+void addLast_E(Object self, Object e) {
+  add_E@ArrayDeque(self, e);
+}
+
+void addFirst_E(Object self, Object e) {
+  Object newNode = ArrayDeque_DequeNode_ArrayDeque_DequeNode_ArrayDeque_E_DequeNode_DequeNode(new Object(__cid=ArrayDeque_DequeNode()), self, e, null, null);
+  if (isEmpty@ArrayDeque(self)) {
+    self.currentTail_ArrayDeque = newNode;
+  }
+  else {
+    if (newNode.__cid == ArrayDeque_DequeNode()) { setNext_DequeNode@ArrayDeque_DequeNode(newNode, self.currentHead_ArrayDeque); }
+    else { 0; };
+    if (self.currentHead_ArrayDeque.__cid == ArrayDeque_DequeNode()) { setPrev_DequeNode@ArrayDeque_DequeNode(self.currentHead_ArrayDeque, newNode); }
+    else { 0; };
+  }
+  self.currentHead_ArrayDeque = newNode;
+  self.size_ArrayDeque++;
+}
+
+int getIndex_Object(Object self, Object o) {
+  Object current = self.currentHead_ArrayDeque;
+  int index = 0;
+  while (current != null) {
+    if ((current.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(current, o) : 0)) {
+      return index;
+    }
+    index++;
+    current = (current.__cid == ArrayDeque_DequeNode() ? getNext@ArrayDeque_DequeNode(current) : null);
+  }
+  return -1;
+}
+
+bit contains_Object(Object self, Object o) {
+  return getIndex_Object@ArrayDeque(self, o) >= 0;
+}
+
+Object getFirst(Object self) {
+  if (self.size_ArrayDeque > 0) assert self.currentHead_ArrayDeque != null;
+  if (self.currentHead_ArrayDeque != null) return (self.currentHead_ArrayDeque.__cid == ArrayDeque_DequeNode() ? getVal@ArrayDeque_DequeNode(self.currentHead_ArrayDeque) : null);
+  return null;
+}
+
+Object getLast(Object self) {
+  if (self.size_ArrayDeque > 0) assert self.currentTail_ArrayDeque != null;
+  if (self.currentTail_ArrayDeque != null) return (self.currentTail_ArrayDeque.__cid == ArrayDeque_DequeNode() ? getVal@ArrayDeque_DequeNode(self.currentTail_ArrayDeque) : null);
+  return null;
+}
+
+Object peek(Object self) {
+  return getFirst@ArrayDeque(self);
+}
+
+Object peekFirst(Object self) {
+  return getFirst@ArrayDeque(self);
+}
+
+Object peekLast(Object self) {
+  return getLast@ArrayDeque(self);
+}
+
+Object removeFirst(Object self) {
+  Object head = self.currentHead_ArrayDeque;
+  if (self.currentHead_ArrayDeque != null) {
+    Object nextNode = (self.currentHead_ArrayDeque.__cid == ArrayDeque_DequeNode() ? getNext@ArrayDeque_DequeNode(self.currentHead_ArrayDeque) : null);
+    if (nextNode != null) {
+      if (nextNode.__cid == ArrayDeque_DequeNode()) { setPrev_DequeNode@ArrayDeque_DequeNode(nextNode, null); }
+      else { 0; };
+    }
+    self.currentHead_ArrayDeque = nextNode;
+    if (self.size_ArrayDeque == 1) {
+      self.currentTail_ArrayDeque = null;
+    }
+    self.size_ArrayDeque--;
+  }
+  return head;
+}
+
+Object removeLast(Object self) {
+  Object tail = self.currentTail_ArrayDeque;
+  if (self.currentTail_ArrayDeque != null) {
+    Object prevNode = (self.currentTail_ArrayDeque.__cid == ArrayDeque_DequeNode() ? getPrev@ArrayDeque_DequeNode(self.currentTail_ArrayDeque) : null);
+    if (prevNode != null) {
+      if (prevNode.__cid == ArrayDeque_DequeNode()) { setNext_DequeNode@ArrayDeque_DequeNode(prevNode, null); }
+      else { 0; };
+    }
+    self.currentTail_ArrayDeque = prevNode;
+    if (self.size_ArrayDeque == 1) {
+      self.currentHead_ArrayDeque = null;
+    }
+    self.size_ArrayDeque--;
+  }
+  return tail;
+}
+
+Object remove(Object self) {
+  return removeFirst@ArrayDeque(self);
+}
+
+bit remove_Object(Object self, Object o) {
+  Object current = self.currentHead_ArrayDeque;
+  while (current != null) {
+    if ((current.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(current, o) : 0)) {
+      Object nextNode = (current.__cid == ArrayDeque_DequeNode() ? getNext@ArrayDeque_DequeNode(current) : null);
+      Object prevNode = (current.__cid == ArrayDeque_DequeNode() ? getPrev@ArrayDeque_DequeNode(current) : null);
+      if (nextNode != null) {
+        if (nextNode.__cid == ArrayDeque_DequeNode()) { setPrev_DequeNode@ArrayDeque_DequeNode(nextNode, null); }
+        else { 0; };
+      }
+      if (prevNode != null) {
+        if (prevNode.__cid == ArrayDeque_DequeNode()) { setNext_DequeNode@ArrayDeque_DequeNode(prevNode, null); }
+        else { 0; };
+      }
+      if (current == self.currentHead_ArrayDeque) {
+        self.currentHead_ArrayDeque = (self.currentHead_ArrayDeque.__cid == ArrayDeque_DequeNode() ? getNext@ArrayDeque_DequeNode(self.currentHead_ArrayDeque) : null);
+      }
+      else if (current == self.currentTail_ArrayDeque) {
+        self.currentTail_ArrayDeque = (self.currentTail_ArrayDeque.__cid == ArrayDeque_DequeNode() ? getPrev@ArrayDeque_DequeNode(self.currentTail_ArrayDeque) : null);
+      }
+      return true;
+    }
+  }
+  return false;
+}
+
