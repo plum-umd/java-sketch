@@ -22,10 +22,10 @@ Object HashTable_HashTable_int(Object self, int initialCapacity) {
 void resetHashTable(Object self) {
   self.size_HashTable = 0;
   self.currentCapacity_HashTable = self.initialCapacity_HashTable;
-  self.buckets_HashTable = arraylist@ArrayList(self.initialCapacity_HashTable).alist;
+  self.buckets_HashTable = new List();
 
   for (int i = 0; i < self.initialCapacity_HashTable; i++) {
-    self.buckets_HashTable = add(self.buckets_HashTable, null).alist;
+    self.buckets_HashTable = new Add(l=self.buckets_HashTable, v=null);
   }
 }
 
@@ -39,7 +39,7 @@ Object getNodeWithKey_K(Object self, Object key) {
     return null;
   }
   int bucketIndex = getBucketIndex_K@HashTable(self, key);
-  Object current = get_obj(get@ArrayList(self.buckets_HashTable, bucketIndex).alist);
+  Object current = xform_get(self.buckets_HashTable, bucketIndex);;
   while (current != null) {
     Object k = (current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null);
     bit b = (k.__cid == ArrayList() ? equals_Object@Object(k, key) :
@@ -62,9 +62,9 @@ void put_K_V(Object self, Object key, Object value) {
 
   int bucketIndex = getBucketIndex_K@HashTable(self, key);
   Object newNode = HashTableNode_HashTableNode_K_V(new Object(__cid=HashTableNode()), key, value);
-  Object current = get_obj@ArrayList(get@ArrayList(self.buckets_HashTable, bucketIndex).alist);
+  Object current = xform_get(self.buckets_HashTable, bucketIndex);
   if (current == null) {
-    self.buckets_HashTable = set@ArrayList(self.buckets_HashTable, bucketIndex, newNode).alist;
+    self.buckets_HashTable = new Set(l=self.buckets_HashTable, i=bucketIndex, v=newNode);
     self.size_HashTable++;
     return;
   }
@@ -110,9 +110,9 @@ Object getNodeWithValue_V(Object self, Object value) {
   if (size@HashTable(self) == 0) {
     return null;
   }
-  int s = size_int(new Size(l=self.buckets_HashTable, sz=0));
+  int s = xform_size(self.buckets_HashTable, 0);
   for (int i = 0; i <  s; i++) {
-    Object current = get_obj@ArrayList(get@ArrayList(self.buckets_HashTable, i).alist);
+    Object current = xform_get(self.buckets_HashTable, i);
     while (current != null) {
       Object v = (current.__cid == HashTableNode() ? getValue@HashTableNode(current) : null);
       bit b = (v.__cid == HashTableTest() ? equals_Object@Object(v, value) :
@@ -162,10 +162,8 @@ void remove_K(Object self, Object key) {
     return;
   }
   int bucketIndex = getBucketIndex_K@HashTable(self, key);
-  /* int index = getBucketIndex_K@HashTable(self, key); */
-  /* int bucketIndex = {| index |  self.size_HashTable |  self.currentCapacity_HashTable |  self.capacityGrowth_HashTable |  self.initialCapacity_HashTable |}; */
 
-  Object current = get_obj@ArrayList(get@ArrayList(self.buckets_HashTable, bucketIndex).alist);
+  Object current = xform_get(self.buckets_HashTable, bucketIndex);
   Object previous = null;
   while (current != null) {
     Object k = (current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null);
@@ -181,10 +179,10 @@ void remove_K(Object self, Object key) {
     if ({|b | k == key|}) {
       if (previous == null) {
         if ((current.__cid == HashTableNode() ? getNext@HashTableNode(current) : null) != null) {
-	  self.buckets_HashTable = set@ArrayList(self.buckets_HashTable, bucketIndex, current.__cid == HashTableNode() ? getNext@HashTableNode(current) : null).alist;
+	  self.buckets_HashTable = new Set(l=self.buckets_HashTable, i=bucketIndex, v=current.__cid == HashTableNode() ? getNext@HashTableNode(current) : null);
         }
         else {
-          self.buckets_HashTable = set@ArrayList(self.buckets_HashTable, bucketIndex, null).alist;
+          self.buckets_HashTable = new Set(l=self.buckets_HashTable, i=bucketIndex, v=null);
         }
       }
       else {
@@ -208,11 +206,11 @@ void remove_K(Object self, Object key) {
 Array_Object values(Object self) {
   Array_Object values = new Array_Object(length=size@HashTable(self));
   if (size@HashTable(self) > 0) {
-    int s = size_int(new Size(l=self.buckets_HashTable, sz=0));
+    int s = xform_size(self.buckets_HashTable, 0);
     // replacing s here reducing runtime by an order of magnitude
     for (int i = 0; i < s; i++) {
       int index = 0;
-      Object current = get_obj(get@ArrayList(self.buckets_HashTable, i).alist);
+      Object current = xform_get(self.buckets_HashTable, i);
       while (current != null) {
         values.A[index] = (current.__cid == HashTableNode() ? getValue@HashTableNode(current) : null);
         index++;
@@ -227,10 +225,10 @@ Array_Object keys(Object self) {
   Array_Object keys = new Array_Object(length=size@HashTable(self));
   if (size@HashTable(self) > 0) {
     int index = 0;
-    int s = size_int(new Size(l=self.buckets_HashTable, sz=0));
+    int s = xform_size(self.buckets_HashTable, 0);
     // replacing s here reducing runtime by an order of magnitude
     for (int i = 0; i < s; i++) {
-      Object current = get_obj(get@ArrayList(self.buckets_HashTable, i).alist);
+      Object current = xform_get(self.buckets_HashTable, i);
       while (current != null) {
         keys.A[index] = (current.__cid == HashTableNode() ? getKey@HashTableNode(current) : null);
         index++;
