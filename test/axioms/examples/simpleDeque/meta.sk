@@ -1,0 +1,16 @@
+package meta;
+
+// distinct class IDs
+int ArrayDeque()            { return 4; }
+int ArrayDeque_DequeNode()  { return 5; }
+int ArrayList()             { return 11; }
+int Character()             { return 9; }
+int Deque()                 { return 3; }
+int Integer()               { return 8; }
+int List()                  { return 10; }
+int Number()                { return 7; }
+int Object()                { return 1; }
+int String()                { return 6; }
+int simpleDeque()           { return 2; }
+
+// Uninterpreted functions

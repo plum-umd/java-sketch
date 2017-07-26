@@ -1,0 +1,60 @@
+package ArrayDeque;
+
+adt AThing {
+   ArrayDeque   {}
+   AddFirstB    { AThing t; Object o; }
+   AddLastB     { AThing t; Object o; } 
+   RemoveFirst  { AThing t; }
+   RemoveFirstB { AThing t; }
+   RemoveLast   { AThing t; }
+   RemoveLastB  { AThing t; }
+   PeekFirst    { AThing t; }
+   PeekLast     { AThing t; }
+   Size         { AThing t; }
+   IsEmpty      { AThing t; }
+}
+
+Object ArrayDeque_ArrayDeque(Object self) {
+   self.Thing = new ArrayDeque();
+   return self;
+}
+
+Object addFirst_EB(Object self, Object e) {
+   self.Thing = new AddFirstB(t=self.Thing, o=e);
+   return self;
+}
+
+Object addLast_EB(Object self, Object e) {
+   self.Thing = new AddLastB(t=self.Thing, o=e);
+   return self;
+}
+
+Object peekFirst(Object self) {
+   self.Thing = new PeekFirst(t=self.Thing);
+   return self;
+}
+
+Object peekLast(Object self) {
+   self.Thing = new PeekLast(t=self.Thing);
+   return self;
+}
+
+Object removeFirst(Object self) {
+   self.Thing = new RemoveFirst(t=self.Thing);
+   return self;
+}
+
+Object removeFirstB(Object self) {
+   self.Thing = new RemoveFirstB(t=self.Thing);
+   return self;
+}
+
+Object removeLast(Object self) {
+   self.Thing = new RemoveLast(t=self.Thing);
+   return self;
+}
+
+Object removeLastB(Object self) {
+   self.Thing = new RemoveLastB(t=self.Thing);
+   return self;
+}
