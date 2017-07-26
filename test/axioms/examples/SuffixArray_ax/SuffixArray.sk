@@ -133,122 +133,126 @@ Object lrs(Object self) {
   for (int i = 0; i < self.T_SuffixArray.length; i++) {
     tmp.A[i] = (char)self.T_SuffixArray.A[i];
   }
-  for (int i = 0; i < self.N_SuffixArray; i++) {
+  int g2 = {| self.T_SuffixArray.length | self.N_SuffixArray | max_len |};
+  for (int i = ??; i < g2; i++) {
+  // for (int i = 0; i < self.N_SuffixArray; i++) {
     if (self.lcp_SuffixArray.A[i] > 0 && self.lcp_SuffixArray.A[i] >= max_len) {
-      if (self.lcp_SuffixArray.A[i] > max_len) if (lrss.__cid == TreeSet()) { clear@TreeSet(lrss); }
+      if (self.lcp_SuffixArray.A[i] > max_len) if (lrss.__cid == TreeSet()) { lrss = clearB@TreeSet(lrss); }
+      // if (self.lcp_SuffixArray.A[i] > max_len) if (lrss.__cid == TreeSet()) { clear@TreeSet(lrss); }
         else { 0; };
       max_len = self.lcp_SuffixArray.A[i];
-      (lrss.__cid == TreeSet() ? add_E@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), tmp, self.sa_SuffixArray.A[i], max_len)) : 0);
+      lrss = (lrss.__cid == TreeSet() ? add_EB@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), tmp, self.sa_SuffixArray.A[i], max_len)) : null);
+      // (lrss.__cid == TreeSet() ? add_E@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), tmp, self.sa_SuffixArray.A[i], max_len)) : 0);
     }
   }
   return lrss;
 }
 
-Object lcs_String_int(Array_Object strs, int K) {
-  if (K <= 1) {
-    return null;
-  }
-  Object lcss = TreeSet_TreeSet(new Object(__cid=TreeSet()));
-  if (strs == null || strs.length <= 1) return lcss;
-  int L = 0;
-  int NUM_SENTINELS = strs.length,  N = strs.length;
-  for (int i = 0; i < N; i++) L = L + (strs.A[i].__cid == String() ? length@String(strs.A[i]) : 0) + 1;
-  Array_int indexMap = new Array_int(length=L);
-  int LOWEST_ASCII = 1000;
-  int k = 0;
-  for (int i = 0; i < strs.length; i++) {
-    Object str = strs.A[i];
-    for (int j = 0; j < (str.__cid == String() ? length@String(str) : 0); j++) {
-      int asciiVal = (str.__cid == String() ? charAt_int@String(str, j) : '\0');
-      if (asciiVal < LOWEST_ASCII) LOWEST_ASCII = asciiVal;
-      indexMap.A[k++] = i;
-    }
-    indexMap.A[k++] = i;
-  }
-  int SHIFT = LOWEST_ASCII + NUM_SENTINELS + 1;
-  int sentinel = 0;
-  Array_int T = new Array_int(length=L);
-  k = 0;
-  for (int i = 0; i < N; i++) {
-    Object str = strs.A[i];
-    for (int j = 0; j < (str.__cid == String() ? length@String(str) : 0); j++) T.A[k++] = ((int)(str.__cid == String() ? charAt_int@String(str, j) : '\0')) + SHIFT;
-    T.A[k++] = sentinel++;
-  }
-  Object tmp = intArrToString_int(T);
-  Object sa = SuffixArray_SuffixArray_String(new Object(__cid=SuffixArray()), tmp);
-  Object deque = ArrayDeque_ArrayDeque(new Object(__cid=ArrayDeque()));
-  Object windowColorCount = HashMap_Simple_HashMap_Simple(new Object(__cid=HashMap_Simple()));
-  Object windowColors = HashSet_HashSet(new Object(__cid=HashSet()));
-  int lo = NUM_SENTINELS,  hi = NUM_SENTINELS,  bestLCSLength = 0;
-  int firstColor = indexMap.A[sa.sa_SuffixArray.A[hi]];
-  (windowColors.__cid == HashSet() ? add_E@HashSet(windowColors, Integer_Integer_int(new Object(__cid=Integer()), firstColor)) : windowColors.__cid == TreeSet() ? add_E@TreeSet(windowColors, Integer_Integer_int(new Object(__cid=Integer()), firstColor)) : 0);
-  (windowColorCount.__cid == HashMap_Simple() ? put_K_V@HashMap_Simple(windowColorCount, Integer_Integer_int(new Object(__cid=Integer()), firstColor), Integer_Integer_int(new Object(__cid=Integer()), 1)) : null);
-  int count = 0;
-  while (hi < L) {
-    int uniqueColors = (windowColors.__cid == HashSet() ? size@HashSet(windowColors) : windowColors.__cid == TreeSet() ? size@TreeSet(windowColors) : 0);
-    if (uniqueColors >= K) {
-      Object deqPeekFirst = (deque.__cid == ArrayDeque() ? peekFirst@ArrayDeque(deque) : null);
-      int deqPeekFirst_int = (deqPeekFirst.__cid == Integer() ? intValue@Integer(deqPeekFirst) : 0);
-      int windowLCP = sa.lcp_SuffixArray.A[deqPeekFirst_int];
-      if (windowLCP > 0 && bestLCSLength < windowLCP) {
-        bestLCSLength = windowLCP;
-        if (lcss.__cid == TreeSet()) { clear@TreeSet(lcss); }
-        else { 0; };
-      }
-      if (windowLCP > 0 && bestLCSLength == windowLCP) {
-        int pos = sa.sa_SuffixArray.A[lo];
-        Array_char lcs = new Array_char(length=windowLCP);
-        for (int i = 0; i < windowLCP; i++) lcs.A[i] = (char)(T.A[pos + i] - SHIFT);
-        (lcss.__cid == TreeSet() ? add_E@TreeSet(lcss, String_String_char_int_int(new Object(__cid=String()), lcs, 0, lcs.length)) : 0);
-      }
-      int lastColor = indexMap.A[sa.sa_SuffixArray.A[lo]];
-      Object colorCount = (windowColorCount.__cid == HashMap_Simple() ? get_K@HashMap_Simple(windowColorCount, Integer_Integer_int(new Object(__cid=Integer()), lastColor)) : null);
-      int check = (colorCount.__cid == Integer() ? intValue@Integer(colorCount) : 0);
-      bit removed = false;
-      if ((colorCount.__cid == Integer() ? intValue@Integer(colorCount) : 0) == 1) {
-        (windowColors.__cid == HashSet() ? remove_Object@HashSet(windowColors, Integer_Integer_int(new Object(__cid=Integer()), lastColor)) : windowColors.__cid == TreeSet() ? remove_Object@TreeSet(windowColors, Integer_Integer_int(new Object(__cid=Integer()), lastColor)) : 0);
-        removed = true;
-      }
-      (windowColorCount.__cid == HashMap_Simple() ? put_K_V@HashMap_Simple(windowColorCount, Integer_Integer_int(new Object(__cid=Integer()), lastColor), Integer_Integer_int(new Object(__cid=Integer()), (colorCount.__cid == Integer() ? intValue@Integer(colorCount) : 0) - 1)) : null);
-      if (!(deque.__cid == ArrayDeque() ? isEmpty@ArrayDeque(deque) : 0)) {
-        deqPeekFirst = (deque.__cid == ArrayDeque() ? peekFirst@ArrayDeque(deque) : null);
-        bit deqPeekLessThanLo = (deqPeekFirst.__cid == Integer() ? intValue@Integer(deqPeekFirst) : 0) <= lo;
-        while (!(deque.__cid == ArrayDeque() ? isEmpty@ArrayDeque(deque) : 0) && deqPeekLessThanLo) {
-          (deque.__cid == ArrayDeque() ? removeFirst@ArrayDeque(deque) : null);
-          deqPeekFirst = (deque.__cid == ArrayDeque() ? peekFirst@ArrayDeque(deque) : null);
-          if (deqPeekFirst != null) {
-            deqPeekLessThanLo = (deqPeekFirst.__cid == Integer() ? intValue@Integer(deqPeekFirst) : 0) <= lo;
-          }
-          else {
-            deqPeekLessThanLo = false;
-          }
-        }
-      }
-      lo++;
-    }
-    else if (++hi < L) {
-      int nextColor = indexMap.A[sa.sa_SuffixArray.A[hi]];
-      Object nextColor_Int = Integer_Integer_int(new Object(__cid=Integer()), nextColor);
-      (windowColors.__cid == HashSet() ? add_E@HashSet(windowColors, nextColor_Int) : windowColors.__cid == TreeSet() ? add_E@TreeSet(windowColors, nextColor_Int) : 0);
-      Object colorCount = (windowColorCount.__cid == HashMap_Simple() ? get_K@HashMap_Simple(windowColorCount, nextColor_Int) : null);
-      if (colorCount == null) colorCount = Integer_Integer_int(new Object(__cid=Integer()), 0);
-      (windowColorCount.__cid == HashMap_Simple() ? put_K_V@HashMap_Simple(windowColorCount, nextColor_Int, Integer_Integer_int(new Object(__cid=Integer()), (colorCount.__cid == Integer() ? intValue@Integer(colorCount) : 0) + 1)) : null);
-      if (!(deque.__cid == ArrayDeque() ? isEmpty@ArrayDeque(deque) : 0)) {
-        Object deqPeekLast = (deque.__cid == ArrayDeque() ? peekLast@ArrayDeque(deque) : null);
-        int deqPeekLast_int = (deqPeekLast.__cid == Integer() ? intValue@Integer(deqPeekLast) : 0);
-        while (!(deque.__cid == ArrayDeque() ? isEmpty@ArrayDeque(deque) : 0) && sa.lcp_SuffixArray.A[deqPeekLast_int] > sa.lcp_SuffixArray.A[hi - 1]) {
-          (deque.__cid == ArrayDeque() ? removeLast@ArrayDeque(deque) : null);
-          if (!(deque.__cid == ArrayDeque() ? isEmpty@ArrayDeque(deque) : 0)) {
-            deqPeekLast = (deque.__cid == ArrayDeque() ? peekLast@ArrayDeque(deque) : null);
-            deqPeekLast_int = (deqPeekLast.__cid == Integer() ? intValue@Integer(deqPeekLast) : 0);
-          }
-        }
-      }
-      if (deque.__cid == ArrayDeque()) { addLast_E@ArrayDeque(deque, Integer_Integer_int(new Object(__cid=Integer()), hi - 1)); }
-      else { 0; };
-    }
-    count++;
-  }
-  return lcss;
-}
+// Object lcs_String_int(Array_Object strs, int K) {
+//   if (K <= 1) {
+//     return null;
+//   }
+//   Object lcss = TreeSet_TreeSet(new Object(__cid=TreeSet()));
+//   if (strs == null || strs.length <= 1) return lcss;
+//   int L = 0;
+//   int NUM_SENTINELS = strs.length,  N = strs.length;
+//   for (int i = 0; i < N; i++) L = L + (strs.A[i].__cid == String() ? length@String(strs.A[i]) : 0) + 1;
+//   Array_int indexMap = new Array_int(length=L);
+//   int LOWEST_ASCII = 1000;
+//   int k = 0;
+//   for (int i = 0; i < strs.length; i++) {
+//     Object str = strs.A[i];
+//     for (int j = 0; j < (str.__cid == String() ? length@String(str) : 0); j++) {
+//       int asciiVal = (str.__cid == String() ? charAt_int@String(str, j) : '\0');
+//       if (asciiVal < LOWEST_ASCII) LOWEST_ASCII = asciiVal;
+//       indexMap.A[k++] = i;
+//     }
+//     indexMap.A[k++] = i;
+//   }
+//   int SHIFT = LOWEST_ASCII + NUM_SENTINELS + 1;
+//   int sentinel = 0;
+//   Array_int T = new Array_int(length=L);
+//   k = 0;
+//   for (int i = 0; i < N; i++) {
+//     Object str = strs.A[i];
+//     for (int j = 0; j < (str.__cid == String() ? length@String(str) : 0); j++) T.A[k++] = ((int)(str.__cid == String() ? charAt_int@String(str, j) : '\0')) + SHIFT;
+//     T.A[k++] = sentinel++;
+//   }
+//   Object tmp = intArrToString_int(T);
+//   Object sa = SuffixArray_SuffixArray_String(new Object(__cid=SuffixArray()), tmp);
+//   Object deque = ArrayDeque_ArrayDeque(new Object(__cid=ArrayDeque()));
+//   Object windowColorCount = HashMap_Simple_HashMap_Simple(new Object(__cid=HashMap_Simple()));
+//   Object windowColors = HashSet_HashSet(new Object(__cid=HashSet()));
+//   int lo = NUM_SENTINELS,  hi = NUM_SENTINELS,  bestLCSLength = 0;
+//   int firstColor = indexMap.A[sa.sa_SuffixArray.A[hi]];
+//   (windowColors.__cid == HashSet() ? add_E@HashSet(windowColors, Integer_Integer_int(new Object(__cid=Integer()), firstColor)) : windowColors.__cid == TreeSet() ? add_E@TreeSet(windowColors, Integer_Integer_int(new Object(__cid=Integer()), firstColor)) : 0);
+//   (windowColorCount.__cid == HashMap_Simple() ? put_K_V@HashMap_Simple(windowColorCount, Integer_Integer_int(new Object(__cid=Integer()), firstColor), Integer_Integer_int(new Object(__cid=Integer()), 1)) : null);
+//   int count = 0;
+//   while (hi < L) {
+//     int uniqueColors = (windowColors.__cid == HashSet() ? size@HashSet(windowColors) : windowColors.__cid == TreeSet() ? size@TreeSet(windowColors) : 0);
+//     if (uniqueColors >= K) {
+//       Object deqPeekFirst = (deque.__cid == ArrayDeque() ? peekFirst@ArrayDeque(deque) : null);
+//       int deqPeekFirst_int = (deqPeekFirst.__cid == Integer() ? intValue@Integer(deqPeekFirst) : 0);
+//       int windowLCP = sa.lcp_SuffixArray.A[deqPeekFirst_int];
+//       if (windowLCP > 0 && bestLCSLength < windowLCP) {
+//         bestLCSLength = windowLCP;
+//         if (lcss.__cid == TreeSet()) { clear@TreeSet(lcss); }
+//         else { 0; };
+//       }
+//       if (windowLCP > 0 && bestLCSLength == windowLCP) {
+//         int pos = sa.sa_SuffixArray.A[lo];
+//         Array_char lcs = new Array_char(length=windowLCP);
+//         for (int i = 0; i < windowLCP; i++) lcs.A[i] = (char)(T.A[pos + i] - SHIFT);
+//         (lcss.__cid == TreeSet() ? add_E@TreeSet(lcss, String_String_char_int_int(new Object(__cid=String()), lcs, 0, lcs.length)) : 0);
+//       }
+//       int lastColor = indexMap.A[sa.sa_SuffixArray.A[lo]];
+//       Object colorCount = (windowColorCount.__cid == HashMap_Simple() ? get_K@HashMap_Simple(windowColorCount, Integer_Integer_int(new Object(__cid=Integer()), lastColor)) : null);
+//       int check = (colorCount.__cid == Integer() ? intValue@Integer(colorCount) : 0);
+//       bit removed = false;
+//       if ((colorCount.__cid == Integer() ? intValue@Integer(colorCount) : 0) == 1) {
+//         (windowColors.__cid == HashSet() ? remove_Object@HashSet(windowColors, Integer_Integer_int(new Object(__cid=Integer()), lastColor)) : windowColors.__cid == TreeSet() ? remove_Object@TreeSet(windowColors, Integer_Integer_int(new Object(__cid=Integer()), lastColor)) : 0);
+//         removed = true;
+//       }
+//       (windowColorCount.__cid == HashMap_Simple() ? put_K_V@HashMap_Simple(windowColorCount, Integer_Integer_int(new Object(__cid=Integer()), lastColor), Integer_Integer_int(new Object(__cid=Integer()), (colorCount.__cid == Integer() ? intValue@Integer(colorCount) : 0) - 1)) : null);
+//       if (!(deque.__cid == ArrayDeque() ? isEmpty@ArrayDeque(deque) : 0)) {
+//         deqPeekFirst = (deque.__cid == ArrayDeque() ? peekFirst@ArrayDeque(deque) : null);
+//         bit deqPeekLessThanLo = (deqPeekFirst.__cid == Integer() ? intValue@Integer(deqPeekFirst) : 0) <= lo;
+//         while (!(deque.__cid == ArrayDeque() ? isEmpty@ArrayDeque(deque) : 0) && deqPeekLessThanLo) {
+//           (deque.__cid == ArrayDeque() ? removeFirst@ArrayDeque(deque) : null);
+//           deqPeekFirst = (deque.__cid == ArrayDeque() ? peekFirst@ArrayDeque(deque) : null);
+//           if (deqPeekFirst != null) {
+//             deqPeekLessThanLo = (deqPeekFirst.__cid == Integer() ? intValue@Integer(deqPeekFirst) : 0) <= lo;
+//           }
+//           else {
+//             deqPeekLessThanLo = false;
+//           }
+//         }
+//       }
+//       lo++;
+//     }
+//     else if (++hi < L) {
+//       int nextColor = indexMap.A[sa.sa_SuffixArray.A[hi]];
+//       Object nextColor_Int = Integer_Integer_int(new Object(__cid=Integer()), nextColor);
+//       (windowColors.__cid == HashSet() ? add_E@HashSet(windowColors, nextColor_Int) : windowColors.__cid == TreeSet() ? add_E@TreeSet(windowColors, nextColor_Int) : 0);
+//       Object colorCount = (windowColorCount.__cid == HashMap_Simple() ? get_K@HashMap_Simple(windowColorCount, nextColor_Int) : null);
+//       if (colorCount == null) colorCount = Integer_Integer_int(new Object(__cid=Integer()), 0);
+//       (windowColorCount.__cid == HashMap_Simple() ? put_K_V@HashMap_Simple(windowColorCount, nextColor_Int, Integer_Integer_int(new Object(__cid=Integer()), (colorCount.__cid == Integer() ? intValue@Integer(colorCount) : 0) + 1)) : null);
+//       if (!(deque.__cid == ArrayDeque() ? isEmpty@ArrayDeque(deque) : 0)) {
+//         Object deqPeekLast = (deque.__cid == ArrayDeque() ? peekLast@ArrayDeque(deque) : null);
+//         int deqPeekLast_int = (deqPeekLast.__cid == Integer() ? intValue@Integer(deqPeekLast) : 0);
+//         while (!(deque.__cid == ArrayDeque() ? isEmpty@ArrayDeque(deque) : 0) && sa.lcp_SuffixArray.A[deqPeekLast_int] > sa.lcp_SuffixArray.A[hi - 1]) {
+//           (deque.__cid == ArrayDeque() ? removeLast@ArrayDeque(deque) : null);
+//           if (!(deque.__cid == ArrayDeque() ? isEmpty@ArrayDeque(deque) : 0)) {
+//             deqPeekLast = (deque.__cid == ArrayDeque() ? peekLast@ArrayDeque(deque) : null);
+//             deqPeekLast_int = (deqPeekLast.__cid == Integer() ? intValue@Integer(deqPeekLast) : 0);
+//           }
+//         }
+//       }
+//       if (deque.__cid == ArrayDeque()) { addLast_E@ArrayDeque(deque, Integer_Integer_int(new Object(__cid=Integer()), hi - 1)); }
+//       else { 0; };
+//     }
+//     count++;
+//   }
+//   return lcss;
+// }
 
