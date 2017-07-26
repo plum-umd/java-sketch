@@ -136,7 +136,7 @@ public class ArrayDeque <E> implements Deque{
 	    }
 	    size --;
 	}
-	return head;
+	return head.getVal();
     }
 	
     public E removeLast() {
@@ -152,7 +152,7 @@ public class ArrayDeque <E> implements Deque{
 	    }
 	    size --;
 	}
-	return tail;
+	return tail.getVal();
     }
 
     public E remove() {
