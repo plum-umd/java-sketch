@@ -3,6 +3,7 @@ ArrayList
 * `get(set!(a, i, e), j) == ITE(i == j, e, get(a, j))`
 * `get(add!(a, e), i) == ITE(size(a) == i-1, e, get(a, i))`
 * `size(add!(a, e)) == size(a) + 1`
+* `size(set(a, i, e)) == size(a)`
 
 File
 ======
