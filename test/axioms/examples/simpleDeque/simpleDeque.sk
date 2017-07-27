@@ -18,44 +18,89 @@ harness void main() {
   else { 0; };
   // if (deque.__cid == ArrayDeque()) { addFirst_E@ArrayDeque(deque, o1); }
   // else { 0; };
+  Object size = (deque.__cid == ArrayDeque() ? size@ArrayDeque(deque) : null); 
   // assert (deque.__cid == ArrayDeque() ? size@ArrayDeque(deque) : 0) == 1;
-  Object p1 = (deque.__cid == ArrayDeque() ? peekFirst@ArrayDeque(deque) : null);
-  Object p2 = (deque.__cid == ArrayDeque() ? peekLast@ArrayDeque(deque) : null);
-  // assert (p1.__cid == Number() ? equals_Object@Object(p1, o1) : p1.__cid == String() ? equals_Object@String(p1, o1) : p1.__cid == ArrayList() ? equals_Object@Object(p1, o1) : p1.__cid == Integer() ? equals_Object@Integer(p1, o1) : p1.__cid == simpleDeque() ? equals_Object@Object(p1, o1) : p1.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(p1, o1) : p1.__cid == Character() ? equals_Object@Character(p1, o1) : p1.__cid == ArrayDeque() ? equals_Object@Object(p1, o1) : p1.__cid == Object() ? equals_Object@Object(p1, o1) : 0);
-  // assert (p2.__cid == Number() ? equals_Object@Object(p2, o1) : p2.__cid == String() ? equals_Object@String(p2, o1) : p2.__cid == ArrayList() ? equals_Object@Object(p2, o1) : p2.__cid == Integer() ? equals_Object@Integer(p2, o1) : p2.__cid == simpleDeque() ? equals_Object@Object(p2, o1) : p2.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(p2, o1) : p2.__cid == Character() ? equals_Object@Character(p2, o1) : p2.__cid == ArrayDeque() ? equals_Object@Object(p2, o1) : p2.__cid == Object() ? equals_Object@Object(p2, o1) : 0);
-  // (deque.__cid == ArrayDeque() ? removeFirst@ArrayDeque(deque) : null);
+  assert xform_size(size.Thing) == 1;
+
+  Object p1p = (deque.__cid == ArrayDeque() ? peekFirst@ArrayDeque(deque) : null);
+  Object p1 = xform_peekFirst(p1p.Thing);
+  Object p2p = (deque.__cid == ArrayDeque() ? peekLast@ArrayDeque(deque) : null);
+  Object p2 = xform_peekLast(p2p.Thing);
+  assert (p1.__cid == Number() ? equals_Object@Object(p1, o1) : p1.__cid == String() ? equals_Object@String(p1, o1) : p1.__cid == ArrayList() ? equals_Object@Object(p1, o1) : p1.__cid == Integer() ? equals_Object@Integer(p1, o1) : p1.__cid == simpleDeque() ? equals_Object@Object(p1, o1) : p1.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(p1, o1) : p1.__cid == Character() ? equals_Object@Character(p1, o1) : p1.__cid == ArrayDeque() ? equals_Object@Object(p1, o1) : p1.__cid == Object() ? equals_Object@Object(p1, o1) : 0);
+  assert (p2.__cid == Number() ? equals_Object@Object(p2, o1) : p2.__cid == String() ? equals_Object@String(p2, o1) : p2.__cid == ArrayList() ? equals_Object@Object(p2, o1) : p2.__cid == Integer() ? equals_Object@Integer(p2, o1) : p2.__cid == simpleDeque() ? equals_Object@Object(p2, o1) : p2.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(p2, o1) : p2.__cid == Character() ? equals_Object@Character(p2, o1) : p2.__cid == ArrayDeque() ? equals_Object@Object(p2, o1) : p2.__cid == Object() ? equals_Object@Object(p2, o1) : 0);
+
+  deque = (deque.__cid == ArrayDeque() ? removeFirstB@ArrayDeque(deque) : null);
+  size =  (deque.__cid == ArrayDeque() ? size@ArrayDeque(deque) : null);
   // assert (deque.__cid == ArrayDeque() ? size@ArrayDeque(deque) : 0) == 0;
+  assert xform_size(size.Thing) == 0;
+
+  if (deque.__cid == ArrayDeque()) { deque = addFirst_EB@ArrayDeque(deque, o2); }
+  else { 0; };
   // if (deque.__cid == ArrayDeque()) { addFirst_E@ArrayDeque(deque, o2); }
   // else { 0; };
-  // p1 = (deque.__cid == ArrayDeque() ? peekLast@ArrayDeque(deque) : null);
-  // p2 = (deque.__cid == ArrayDeque() ? peekFirst@ArrayDeque(deque) : null);
-  // assert (p1.__cid == Number() ? equals_Object@Object(p1, o2) : p1.__cid == String() ? equals_Object@String(p1, o2) : p1.__cid == ArrayList() ? equals_Object@Object(p1, o2) : p1.__cid == Integer() ? equals_Object@Integer(p1, o2) : p1.__cid == simpleDeque() ? equals_Object@Object(p1, o2) : p1.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(p1, o2) : p1.__cid == Character() ? equals_Object@Character(p1, o2) : p1.__cid == ArrayDeque() ? equals_Object@Object(p1, o2) : p1.__cid == Object() ? equals_Object@Object(p1, o2) : 0);
-  // assert (p2.__cid == Number() ? equals_Object@Object(p2, o2) : p2.__cid == String() ? equals_Object@String(p2, o2) : p2.__cid == ArrayList() ? equals_Object@Object(p2, o2) : p2.__cid == Integer() ? equals_Object@Integer(p2, o2) : p2.__cid == simpleDeque() ? equals_Object@Object(p2, o2) : p2.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(p2, o2) : p2.__cid == Character() ? equals_Object@Character(p2, o2) : p2.__cid == ArrayDeque() ? equals_Object@Object(p2, o2) : p2.__cid == Object() ? equals_Object@Object(p2, o2) : 0);
-  // (deque.__cid == ArrayDeque() ? removeLast@ArrayDeque(deque) : null);
+  p1p = (deque.__cid == ArrayDeque() ? peekLast@ArrayDeque(deque) : null);
+  p1 = xform_peekLast(p1p.Thing);
+  p2p = (deque.__cid == ArrayDeque() ? peekFirst@ArrayDeque(deque) : null);
+  p2 = xform_peekFirst(p2p.Thing);
+  assert (p1.__cid == Number() ? equals_Object@Object(p1, o2) : p1.__cid == String() ? equals_Object@String(p1, o2) : p1.__cid == ArrayList() ? equals_Object@Object(p1, o2) : p1.__cid == Integer() ? equals_Object@Integer(p1, o2) : p1.__cid == simpleDeque() ? equals_Object@Object(p1, o2) : p1.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(p1, o2) : p1.__cid == Character() ? equals_Object@Character(p1, o2) : p1.__cid == ArrayDeque() ? equals_Object@Object(p1, o2) : p1.__cid == Object() ? equals_Object@Object(p1, o2) : 0);
+  assert (p2.__cid == Number() ? equals_Object@Object(p2, o2) : p2.__cid == String() ? equals_Object@String(p2, o2) : p2.__cid == ArrayList() ? equals_Object@Object(p2, o2) : p2.__cid == Integer() ? equals_Object@Integer(p2, o2) : p2.__cid == simpleDeque() ? equals_Object@Object(p2, o2) : p2.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(p2, o2) : p2.__cid == Character() ? equals_Object@Character(p2, o2) : p2.__cid == ArrayDeque() ? equals_Object@Object(p2, o2) : p2.__cid == Object() ? equals_Object@Object(p2, o2) : 0);
+
+  deque = (deque.__cid == ArrayDeque() ? removeLastB@ArrayDeque(deque) : null);
+  size =  (deque.__cid == ArrayDeque() ? size@ArrayDeque(deque) : null);
   // assert (deque.__cid == ArrayDeque() ? size@ArrayDeque(deque) : 0) == 0;
+  assert xform_size(size.Thing) == 0;
+
+  if (deque.__cid == ArrayDeque()) { deque = addFirst_EB@ArrayDeque(deque, o3); }
+  else { 0; };
+  if (deque.__cid == ArrayDeque()) { deque = addFirst_EB@ArrayDeque(deque, o4); }
+  else { 0; };
+  if (deque.__cid == ArrayDeque()) { deque = addFirst_EB@ArrayDeque(deque, o5); }
+  else { 0; };
   // if (deque.__cid == ArrayDeque()) { addFirst_E@ArrayDeque(deque, o3); }
   // else { 0; };
   // if (deque.__cid == ArrayDeque()) { addFirst_E@ArrayDeque(deque, o4); }
   // else { 0; };
   // if (deque.__cid == ArrayDeque()) { addFirst_E@ArrayDeque(deque, o5); }
   // else { 0; };
+  size =  (deque.__cid == ArrayDeque() ? size@ArrayDeque(deque) : null);
   // assert (deque.__cid == ArrayDeque() ? size@ArrayDeque(deque) : 0) == 3;
-  // Object r1 = (deque.__cid == ArrayDeque() ? removeLast@ArrayDeque(deque) : null);
-  // assert (r1.__cid == Number() ? equals_Object@Object(r1, o3) : r1.__cid == String() ? equals_Object@String(r1, o3) : r1.__cid == ArrayList() ? equals_Object@Object(r1, o3) : r1.__cid == Integer() ? equals_Object@Integer(r1, o3) : r1.__cid == simpleDeque() ? equals_Object@Object(r1, o3) : r1.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(r1, o3) : r1.__cid == Character() ? equals_Object@Character(r1, o3) : r1.__cid == ArrayDeque() ? equals_Object@Object(r1, o3) : r1.__cid == Object() ? equals_Object@Object(r1, o3) : 0);
-  // Object r2 = (deque.__cid == ArrayDeque() ? removeFirst@ArrayDeque(deque) : null);
-  // assert (r2.__cid == Number() ? equals_Object@Object(r2, o5) : r2.__cid == String() ? equals_Object@String(r2, o5) : r2.__cid == ArrayList() ? equals_Object@Object(r2, o5) : r2.__cid == Integer() ? equals_Object@Integer(r2, o5) : r2.__cid == simpleDeque() ? equals_Object@Object(r2, o5) : r2.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(r2, o5) : r2.__cid == Character() ? equals_Object@Character(r2, o5) : r2.__cid == ArrayDeque() ? equals_Object@Object(r2, o5) : r2.__cid == Object() ? equals_Object@Object(r2, o5) : 0);
+  assert xform_size(size.Thing) == 3;
+
+  Object r1p = (deque.__cid == ArrayDeque() ? removeLast@ArrayDeque(deque) : null);
+  Object r1 = xform_removeLast(r1p.Thing);
+  deque = (deque.__cid == ArrayDeque() ? removeLastB@ArrayDeque(deque) : null);
+  assert (r1.__cid == Number() ? equals_Object@Object(r1, o3) : r1.__cid == String() ? equals_Object@String(r1, o3) : r1.__cid == ArrayList() ? equals_Object@Object(r1, o3) : r1.__cid == Integer() ? equals_Object@Integer(r1, o3) : r1.__cid == simpleDeque() ? equals_Object@Object(r1, o3) : r1.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(r1, o3) : r1.__cid == Character() ? equals_Object@Character(r1, o3) : r1.__cid == ArrayDeque() ? equals_Object@Object(r1, o3) : r1.__cid == Object() ? equals_Object@Object(r1, o3) : 0);
+
+  Object r2p = (deque.__cid == ArrayDeque() ? removeFirst@ArrayDeque(deque) : null);
+  Object r2 = xform_removeFirst(r2p.Thing);
+  deque = (deque.__cid == ArrayDeque() ? removeFirstB@ArrayDeque(deque) : null);
+  assert (r2.__cid == Number() ? equals_Object@Object(r2, o5) : r2.__cid == String() ? equals_Object@String(r2, o5) : r2.__cid == ArrayList() ? equals_Object@Object(r2, o5) : r2.__cid == Integer() ? equals_Object@Integer(r2, o5) : r2.__cid == simpleDeque() ? equals_Object@Object(r2, o5) : r2.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(r2, o5) : r2.__cid == Character() ? equals_Object@Character(r2, o5) : r2.__cid == ArrayDeque() ? equals_Object@Object(r2, o5) : r2.__cid == Object() ? equals_Object@Object(r2, o5) : 0);
+
+  if (deque.__cid == ArrayDeque()) { deque = addLast_EB@ArrayDeque(deque, o6); }
+  else { 0; };
+  if (deque.__cid == ArrayDeque()) { deque = addLast_EB@ArrayDeque(deque, o7); }
+  else { 0; };
   // if (deque.__cid == ArrayDeque()) { addLast_E@ArrayDeque(deque, o6); }
   // else { 0; };
   // if (deque.__cid == ArrayDeque()) { addLast_E@ArrayDeque(deque, o7); }
   // else { 0; };
+  size =  (deque.__cid == ArrayDeque() ? size@ArrayDeque(deque) : null);
   // assert (deque.__cid == ArrayDeque() ? size@ArrayDeque(deque) : 0) == 3;
-  // p1 = (deque.__cid == ArrayDeque() ? peekLast@ArrayDeque(deque) : null);
-  // r1 = (deque.__cid == ArrayDeque() ? removeLast@ArrayDeque(deque) : null);
-  // p2 = (deque.__cid == ArrayDeque() ? peekFirst@ArrayDeque(deque) : null);
-  // r2 = (deque.__cid == ArrayDeque() ? removeFirst@ArrayDeque(deque) : null);
-  // assert (p1.__cid == Number() ? equals_Object@Object(p1, o7) : p1.__cid == String() ? equals_Object@String(p1, o7) : p1.__cid == ArrayList() ? equals_Object@Object(p1, o7) : p1.__cid == Integer() ? equals_Object@Integer(p1, o7) : p1.__cid == simpleDeque() ? equals_Object@Object(p1, o7) : p1.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(p1, o7) : p1.__cid == Character() ? equals_Object@Character(p1, o7) : p1.__cid == ArrayDeque() ? equals_Object@Object(p1, o7) : p1.__cid == Object() ? equals_Object@Object(p1, o7) : 0);
-  // assert (r1.__cid == Number() ? equals_Object@Object(r1, o7) : r1.__cid == String() ? equals_Object@String(r1, o7) : r1.__cid == ArrayList() ? equals_Object@Object(r1, o7) : r1.__cid == Integer() ? equals_Object@Integer(r1, o7) : r1.__cid == simpleDeque() ? equals_Object@Object(r1, o7) : r1.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(r1, o7) : r1.__cid == Character() ? equals_Object@Character(r1, o7) : r1.__cid == ArrayDeque() ? equals_Object@Object(r1, o7) : r1.__cid == Object() ? equals_Object@Object(r1, o7) : 0);
-  // assert (p2.__cid == Number() ? equals_Object@Object(p2, o4) : p2.__cid == String() ? equals_Object@String(p2, o4) : p2.__cid == ArrayList() ? equals_Object@Object(p2, o4) : p2.__cid == Integer() ? equals_Object@Integer(p2, o4) : p2.__cid == simpleDeque() ? equals_Object@Object(p2, o4) : p2.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(p2, o4) : p2.__cid == Character() ? equals_Object@Character(p2, o4) : p2.__cid == ArrayDeque() ? equals_Object@Object(p2, o4) : p2.__cid == Object() ? equals_Object@Object(p2, o4) : 0);
-  // assert (r2.__cid == Number() ? equals_Object@Object(r2, o4) : r2.__cid == String() ? equals_Object@String(r2, o4) : r2.__cid == ArrayList() ? equals_Object@Object(r2, o4) : r2.__cid == Integer() ? equals_Object@Integer(r2, o4) : r2.__cid == simpleDeque() ? equals_Object@Object(r2, o4) : r2.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(r2, o4) : r2.__cid == Character() ? equals_Object@Character(r2, o4) : r2.__cid == ArrayDeque() ? equals_Object@Object(r2, o4) : r2.__cid == Object() ? equals_Object@Object(r2, o4) : 0);
+  assert xform_size(size.Thing) == 3;
+
+  p1p = (deque.__cid == ArrayDeque() ? peekLast@ArrayDeque(deque) : null);
+  p1 = xform_peekLast(p1p.Thing);
+  r1p = (deque.__cid == ArrayDeque() ? removeLast@ArrayDeque(deque) : null);
+  r1 = xform_removeLast(r1p.Thing);
+  deque = (deque.__cid == ArrayDeque() ? removeLastB@ArrayDeque(deque) : null);  
+  p2p = (deque.__cid == ArrayDeque() ? peekFirst@ArrayDeque(deque) : null);
+  p2 = xform_peekFirst(p2p.Thing);
+  r2p = (deque.__cid == ArrayDeque() ? removeFirst@ArrayDeque(deque) : null);
+  r2 = xform_removeFirst(r2p.Thing);
+  deque = (deque.__cid == ArrayDeque() ? removeFirstB@ArrayDeque(deque) : null);  
+  assert (p1.__cid == Number() ? equals_Object@Object(p1, o7) : p1.__cid == String() ? equals_Object@String(p1, o7) : p1.__cid == ArrayList() ? equals_Object@Object(p1, o7) : p1.__cid == Integer() ? equals_Object@Integer(p1, o7) : p1.__cid == simpleDeque() ? equals_Object@Object(p1, o7) : p1.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(p1, o7) : p1.__cid == Character() ? equals_Object@Character(p1, o7) : p1.__cid == ArrayDeque() ? equals_Object@Object(p1, o7) : p1.__cid == Object() ? equals_Object@Object(p1, o7) : 0);
+  assert (r1.__cid == Number() ? equals_Object@Object(r1, o7) : r1.__cid == String() ? equals_Object@String(r1, o7) : r1.__cid == ArrayList() ? equals_Object@Object(r1, o7) : r1.__cid == Integer() ? equals_Object@Integer(r1, o7) : r1.__cid == simpleDeque() ? equals_Object@Object(r1, o7) : r1.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(r1, o7) : r1.__cid == Character() ? equals_Object@Character(r1, o7) : r1.__cid == ArrayDeque() ? equals_Object@Object(r1, o7) : r1.__cid == Object() ? equals_Object@Object(r1, o7) : 0);
+  assert (p2.__cid == Number() ? equals_Object@Object(p2, o4) : p2.__cid == String() ? equals_Object@String(p2, o4) : p2.__cid == ArrayList() ? equals_Object@Object(p2, o4) : p2.__cid == Integer() ? equals_Object@Integer(p2, o4) : p2.__cid == simpleDeque() ? equals_Object@Object(p2, o4) : p2.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(p2, o4) : p2.__cid == Character() ? equals_Object@Character(p2, o4) : p2.__cid == ArrayDeque() ? equals_Object@Object(p2, o4) : p2.__cid == Object() ? equals_Object@Object(p2, o4) : 0);
+  assert (r2.__cid == Number() ? equals_Object@Object(r2, o4) : r2.__cid == String() ? equals_Object@String(r2, o4) : r2.__cid == ArrayList() ? equals_Object@Object(r2, o4) : r2.__cid == Integer() ? equals_Object@Integer(r2, o4) : r2.__cid == simpleDeque() ? equals_Object@Object(r2, o4) : r2.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(r2, o4) : r2.__cid == Character() ? equals_Object@Character(r2, o4) : r2.__cid == ArrayDeque() ? equals_Object@Object(r2, o4) : r2.__cid == Object() ? equals_Object@Object(r2, o4) : 0);
 }
 

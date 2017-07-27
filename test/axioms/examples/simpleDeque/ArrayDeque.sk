@@ -30,18 +30,21 @@ Object addLast_EB(Object self, Object e) {
 }
 
 Object peekFirst(Object self) {
-   self.Thing = new PeekFirst(t=self.Thing);
-   return self;
+   Object ret = new Object();
+   ret.Thing = new PeekFirst(t=self.Thing);
+   return ret;
 }
 
 Object peekLast(Object self) {
-   self.Thing = new PeekLast(t=self.Thing);
-   return self;
+   Object ret = new Object();
+   ret.Thing = new PeekLast(t=self.Thing);
+   return ret;
 }
 
 Object removeFirst(Object self) {
-   self.Thing = new RemoveFirst(t=self.Thing);
-   return self;
+   Object ret = new Object();
+   ret.Thing = new RemoveFirst(t=self.Thing);
+   return ret;
 }
 
 Object removeFirstB(Object self) {
@@ -50,11 +53,288 @@ Object removeFirstB(Object self) {
 }
 
 Object removeLast(Object self) {
-   self.Thing = new RemoveLast(t=self.Thing);
-   return self;
+   Object ret = new Object();
+   ret.Thing = new RemoveLast(t=self.Thing);
+   return ret;
 }
 
 Object removeLastB(Object self) {
    self.Thing = new RemoveLastB(t=self.Thing);
    return self;
+}
+
+Object size(Object self) {
+   Object ret = new Object();
+   ret.Thing = new Size(t=self.Thing);
+   return ret;
+}
+
+Object isEmpty(Object self) {
+   Object ret = new Object();
+   ret.Thing = new IsEmpty(t=self.Thing);
+   return ret;
+}
+
+boolean xform_isEmpty(AThing a) {
+   switch(a) {
+      case ArrayDeque:     assert false;
+      case AddFirstB:      assert false;
+      case AddLastB:       assert false;
+      case RemoveFirst:    assert false;
+      case RemoveFirstB:   assert false;
+      case RemoveLast:     assert false;
+      case RemoveLastB:    assert false;
+      case PeekFirst:      assert false;
+      case PeekLast:       assert false;
+      case Size:	   assert false;
+      case IsEmpty:        return xform_IsEmpty(a.t);
+   }
+}
+
+boolean xform_IsEmpty(AThing a) {
+   switch(a) {
+      case ArrayDeque:     return true;
+      case AddFirstB:      {}
+      case AddLastB:       {
+         int size = xform_Size(a);
+	 if (size == 0) return true;
+	 return false;	 
+      }
+      case RemoveFirst:    assert false;
+      case RemoveFirstB:   {}
+      case RemoveLast:     assert false;
+      case RemoveLastB:    {}
+      case PeekFirst:      assert false;
+      case PeekLast:       assert false;
+      case Size:	   assert false;
+      case IsEmpty:        assert false;
+   }
+   int size = xform_Size(a);
+   if (size == 0) return true;
+   return false;	 
+}
+
+Object xform_removeFirst(AThing a) {
+   switch(a) {
+      case ArrayDeque:     assert false;
+      case AddFirstB:      assert false;
+      case AddLastB:       assert false;
+      case RemoveFirst:    return xform_RemoveFirst(a.t);
+      case RemoveFirstB:   assert false;
+      case RemoveLast:     assert false;
+      case RemoveLastB:    assert false;
+      case PeekFirst:      assert false;
+      case PeekLast:       assert false;
+      case Size:	   assert false;
+      case IsEmpty:        assert false;
+   }
+}
+
+Object xform_peekFirst(AThing a) {
+   switch(a) {
+      case ArrayDeque:     assert false;
+      case AddFirstB:      assert false;
+      case AddLastB:       assert false;
+      case RemoveFirst:    assert false;
+      case RemoveFirstB:   assert false;
+      case RemoveLast:     assert false;
+      case RemoveLastB:    assert false;
+      case PeekFirst:      return xform_RemoveFirst(a.t);
+      case PeekLast:       assert false;
+      case Size:	   assert false;
+      case IsEmpty:        assert false;
+   }
+}
+
+Object xform_RemoveFirst(AThing a) {
+   AThing hold = null;
+   switch(a) {
+      case ArrayDeque:     assert false;
+      case AddFirstB:      return a.o;
+      case AddLastB:       {
+         if (xform_IsEmpty(a.t)) {
+	    return a.o;
+	 }
+	 hold = a.t;
+      }
+      case RemoveFirst:    assert false;
+      case RemoveFirstB:   hold = xform_RemoveFirstB(a.t);
+      case RemoveLast:     assert false;
+      case RemoveLastB:    hold = xform_RemoveLastB(a.t);
+      case PeekFirst:      assert false;
+      case PeekLast:       assert false;
+      case Size:	   assert false;
+      case IsEmpty:        assert false;
+   }
+   return xform_RemoveFirst(hold);
+}
+
+Object xform_removeLast(AThing a) {
+   switch(a) {
+      case ArrayDeque:     assert false;
+      case AddFirstB:      assert false;
+      case AddLastB:       assert false;
+      case RemoveFirst:    assert false;
+      case RemoveFirstB:   assert false;
+      case RemoveLast:     return xform_RemoveLast(a.t);
+      case RemoveLastB:    assert false;
+      case PeekFirst:      assert false;
+      case PeekLast:       assert false;
+      case Size:	   assert false;
+      case IsEmpty:        assert false;
+   }
+}
+
+Object xform_peekLast(AThing a) {
+   switch(a) {
+      case ArrayDeque:     assert false;
+      case AddFirstB:      assert false;
+      case AddLastB:       assert false;
+      case RemoveFirst:    assert false;
+      case RemoveFirstB:   assert false;
+      case RemoveLast:     assert false;
+      case RemoveLastB:    assert false;
+      case PeekFirst:      assert false;
+      case PeekLast:       return xform_RemoveLast(a.t);
+      case Size:	   assert false;
+      case IsEmpty:        assert false;
+   }
+}
+
+Object xform_RemoveLast(AThing a) {
+   AThing hold = null;
+   switch(a) {
+      case ArrayDeque:     assert false;
+      case AddFirstB:      {
+         if (xform_IsEmpty(a.t)) {
+	    return a.o;
+	 }
+	 hold = a.t;
+      }
+      case AddLastB:       return a.o;
+      case RemoveFirst:    assert false;
+      case RemoveFirstB:   hold = xform_RemoveFirstB(a.t);
+      case RemoveLast:     assert false;
+      case RemoveLastB:    hold = xform_RemoveLastB(a.t);
+      case PeekFirst:      assert false;
+      case PeekLast:       assert false;
+      case Size:	   assert false;
+      case IsEmpty:        assert false;
+   }
+   return xform_RemoveLast(hold);
+}
+
+AThing xform_RemoveFirstB(AThing a) {
+   AThing hold = null;
+   switch(a) {
+      case ArrayDeque:     return a;
+      case AddFirstB:      return a.t;
+      case AddLastB:       {
+         if (xform_IsEmpty(a.t)) {
+	    return a.t;
+	 }
+	 hold = a.t;
+      }
+      case RemoveFirst:    assert false;
+      case RemoveFirstB:   hold = xform_RemoveFirstB(a.t);
+      case RemoveLast:     assert false;
+      case RemoveLastB:    hold = xform_RemoveLastB(a.t);
+      case PeekFirst:      assert false;
+      case PeekLast:       assert false;
+      case Size:	   assert false;
+      case IsEmpty:        assert false;
+   }
+   hold = xform_RemoveFirstB(hold);
+   switch(a) {
+      case ArrayDeque:     assert false;
+      case AddFirstB:      assert false;
+      case AddLastB:       return new AddLastB(t=hold, o=a.o);
+      case RemoveFirst:    assert false;
+      case RemoveFirstB:   return hold;
+      case RemoveLast:     assert false;
+      case RemoveLastB:    return hold;
+      case PeekFirst:      assert false;
+      case PeekLast:       assert false;
+      case Size:	   assert false;
+      case IsEmpty:        assert false;
+   }
+}
+
+AThing xform_RemoveLastB(AThing a) {
+   AThing hold = null;   
+   switch(a) {
+      case ArrayDeque:     return a;
+      case AddFirstB:      {
+         if (xform_IsEmpty(a.t)) {
+	    return a.t;
+	 }
+	 hold = a.t;
+      }
+      case AddLastB:       return a.t;       
+      case RemoveFirst:    assert false;
+      case RemoveFirstB:   hold = xform_RemoveFirstB(a.t);
+      case RemoveLast:     assert false;
+      case RemoveLastB:    hold = xform_RemoveLastB(a.t);
+      case PeekFirst:      assert false;
+      case PeekLast:       assert false;
+      case Size:	   assert false;
+      case IsEmpty:        assert false;
+   }
+   hold = xform_RemoveLastB(hold);
+   switch(a) {
+      case ArrayDeque:     assert false;
+      case AddFirstB:      return new AddFirstB(t=hold, o=a.o);
+      case AddLastB:       assert false;
+      case RemoveFirst:    assert false;
+      case RemoveFirstB:   return hold;
+      case RemoveLast:     assert false;
+      case RemoveLastB:    return hold;
+      case PeekFirst:      assert false;
+      case PeekLast:       assert false;
+      case Size:	   assert false;
+      case IsEmpty:        assert false;
+   }
+
+}
+
+int xform_Size(AThing a) {
+   int constant = 0;
+   AThing hold = null;
+   switch(a) {
+      case ArrayDeque:     return 0;
+      case AddFirstB:      { constant = 1; hold = a.t; }
+      case AddLastB:       { constant = 1; hold = a.t; }
+      case RemoveFirst:    assert false;
+      case RemoveFirstB:   { constant = -1; hold = a.t; }
+      case RemoveLast:     assert false;
+      case RemoveLastB:    { constant = -1; hold = a.t; }
+      case PeekFirst:      assert false;
+      case PeekLast:       assert false;
+      case Size:	   assert false;
+      case IsEmpty:        assert false;
+   }
+   return constant+xform_Size(hold);
+}
+
+int xform_size(AThing a) {
+   switch(a) {
+      case ArrayDeque:     assert false;
+      case AddFirstB:      assert false;
+      case AddLastB:       assert false;
+      case RemoveFirst:    assert false;
+      case RemoveFirstB:   assert false;
+      case RemoveLast:     assert false;
+      case RemoveLastB:    assert false;
+      case PeekFirst:      assert false;
+      case PeekLast:       assert false;
+      case Size:	   return xform_Size(a.t);
+      case IsEmpty:        assert false;
+   }
+}
+
+bit equals(Object a, Object b) {
+   if (equals_Object@Object(a, b)) {
+      return true;
+   }
+   return false;
 }
