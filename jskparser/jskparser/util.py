@@ -15,28 +15,30 @@ def get_files_from_path(path, ext):
 """
 handling javajskparser AST
 """
-def toAST(files, ext):
+def toAST(files, ext, add_libs=True):
+    print 'files:', files
     prg_files = []
     for f in files:
         prg_files.extend(get_files_from_path(f, "java"))
     if not prg_files: exit('jskparser.util: File(s) not found!')
     java_in = os.path.abspath(os.path.join(pwd, '../tests/ir_asts/API.java'))
     json_out = os.path.abspath(os.path.join(pwd, '../tests/ir_asts/java.json'))
+    if add_libs:
+        obj_path = os.path.abspath(os.path.join(pwd, '../../model/lang/Object.java'))
+        str_path = os.path.abspath(os.path.join(pwd, '../../model/lang/String.java'))
+        num_path = os.path.abspath(os.path.join(pwd, '../../model/lang/Number.java'))
+        int_path = os.path.abspath(os.path.join(pwd, '../../model/lang/Integer.java'))
+        char_path = os.path.abspath(os.path.join(pwd, '../../model/lang/Character.java'))
+        list_path = os.path.abspath(os.path.join(pwd, '../../model/util/List.java'))
+        alist_path = os.path.abspath(os.path.join(pwd, '../../model/util/ArrayList.java'))
+        if obj_path not in prg_files: prg_files.append(obj_path)
+        if str_path not in prg_files: prg_files.append(str_path)
+        if num_path not in prg_files: prg_files.append(num_path)
+        if int_path not in prg_files: prg_files.append(int_path)
+        if char_path not in prg_files: prg_files.append(char_path)
+        if list_path not in prg_files: prg_files.append(list_path)
+        if alist_path not in prg_files: prg_files.append(alist_path)
     api = ""
-    obj_path = os.path.abspath(os.path.join(pwd, '../../model/lang/Object.java'))
-    str_path = os.path.abspath(os.path.join(pwd, '../../model/lang/String.java'))
-    num_path = os.path.abspath(os.path.join(pwd, '../../model/lang/Number.java'))
-    int_path = os.path.abspath(os.path.join(pwd, '../../model/lang/Integer.java'))
-    char_path = os.path.abspath(os.path.join(pwd, '../../model/lang/Character.java'))
-    list_path = os.path.abspath(os.path.join(pwd, '../../model/util/List.java'))
-    alist_path = os.path.abspath(os.path.join(pwd, '../../model/util/ArrayList.java'))
-    if obj_path not in prg_files: prg_files.append(obj_path)
-    if str_path not in prg_files: prg_files.append(str_path)
-    if num_path not in prg_files: prg_files.append(num_path)
-    if int_path not in prg_files: prg_files.append(int_path)
-    if char_path not in prg_files: prg_files.append(char_path)
-    if list_path not in prg_files: prg_files.append(list_path)
-    if alist_path not in prg_files: prg_files.append(alist_path)
     for fname in prg_files:
         with open(fname, 'r') as fd:
             api += fd.read()

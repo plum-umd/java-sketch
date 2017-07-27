@@ -25,7 +25,7 @@ def parse(path, **kwargs):
     ## logging configuration
     create_logger(log_lvls.get(kwargs.get('log_lvl', '10')))
     
-    with open(util.toAST(path, 'java'), 'r') as fd:
+    with open(util.toAST(path, 'java', kwargs.get('lib')), 'r') as fd:
         d = json.load(fd)
         d.update({u'GSYMTAB':'RESET'})
         logging.info('parsing file...')
@@ -86,6 +86,9 @@ if __name__ == "__main__":
     jskparser.add_option("-l", "--log_lvl",
                       action="store", dest="log_lvl", default='10',
                       help="level of logging")
+    jskparser.add_option("--no-lib",
+                      action="store_false", dest="lib", default=True,
+                      help="compile without linking default Java libraries")
     
     (OPT, argv) = jskparser.parse_args()
     
