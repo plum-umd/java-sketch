@@ -16,7 +16,6 @@ def get_files_from_path(path, ext):
 handling javajskparser AST
 """
 def toAST(files, ext, add_libs=True):
-    print 'files:', files
     prg_files = []
     for f in files:
         prg_files.extend(get_files_from_path(f, "java"))

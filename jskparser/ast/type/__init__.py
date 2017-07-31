@@ -6,4 +6,6 @@ def _import():
 
     from ..expr.integerliteralexpr import IntegerLiteralExpr
     from ..expr.nameexpr import NameExpr
+    from ..expr.annotationexpr import AnnotationExpr
+
     return locals()

@@ -7,10 +7,16 @@ from node import Node
 
 from .type.classorinterfacetype import ClassOrInterfaceType
 
+from .expr.annotationexpr import AnnotationExpr
+
 class TypeParameter(Node):
     def __init__(self, kwargs={}):
         super(TypeParameter, self).__init__(kwargs)
-        # List<AnnotationExpr> annotations; TODO
+
+        # List<AnnotationExpr> annotations;
+        annotations = kwargs.get(u'annotations', [])
+        self._annotations = map(lambda x: AnnotationExpr(x) if u'@t' in x else [],
+                                annotations.get(u'@e', [])) if annotations else []
         
         # List<ClassOrInterfaceType> typeBound;
         typeBound = kwargs.get(u'typeBound', [])
@@ -23,5 +29,10 @@ class TypeParameter(Node):
     def typeBound(self): return self._typeBound if self._typeBound else [ClassOrInterfaceType({u'name':u'Object'})]
     @typeBound.setter
     def typeBound(self, v): self._typeBound = v
+
+    @property
+    def annotations(self): return self._annotations
+    @annotations.setter
+    def annotations(self, v): self._annotations = v
 
     def __str__(self): return self.name

@@ -41,6 +41,10 @@ def _import():
     from ..expr.conditionalexpr import ConditionalExpr
     from ..expr.castexpr import CastExpr
     from ..expr.unaryexpr import UnaryExpr
+    from ..expr.annotationexpr import AnnotationExpr
+    from ..expr.markerannotationexpr import MarkerAnnotationExpr
+    from ..expr.singlememberannotationexpr import SingleMemberAnnotationExpr
+    from ..expr.normalannotationexpr import NormalAnnotationExpr
 
     return locals()
 

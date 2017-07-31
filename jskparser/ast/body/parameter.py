@@ -24,8 +24,11 @@ class Parameter(Node):
 
         # bool
         # isVarArgs
-        # List<AnnotationExpr>
-        # self._annotations =
+
+        # List<AnnotationExpr> annotations;
+        annotations = kwargs.get(u'annotations', [])
+        self._annotations = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
+                                annotations.get(u'@e', [])) if annotations else []
 
     @property
     def modifiers(self): return self._modifiers
@@ -56,3 +59,8 @@ class Parameter(Node):
     def lbl(self): return (self._id.name, self._ati)
     @lbl.setter
     def lbl(self, v): self._lbl = v
+
+    @property
+    def annotations(self): return self._annotations
+    @annotations.setter
+    def annotations(self, v): self._annotations = v

@@ -21,8 +21,12 @@ class VariableDeclarationExpr(Expression):
         self._varss = map(lambda v: VariableDeclarator(v), var)
 
         self._arrayCount = kwargs.get(u'arrayCount', 0)
-        # List<AnnotationExpr> annotations
 
+        # List<AnnotationExpr> annotations
+        annotations = kwargs.get(u'annotations', [])
+        self._annotations = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
+                                annotations.get(u'@e', [])) if annotations else []
+        
         self.add_as_parent([self.typee]+self.varss)
 
     @property
@@ -44,3 +48,8 @@ class VariableDeclarationExpr(Expression):
     def arrayCount(self): return self._arrayCount
     @arrayCount.setter
     def arrayCount(self, v): self._arrayCount = v
+        
+    @property
+    def annotations(self): return self._annotations
+    @annotations.setter
+    def annotations(self, v): self._annotations = v

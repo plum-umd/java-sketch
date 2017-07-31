@@ -19,6 +19,8 @@ from ..body.variabledeclaratorid import VariableDeclaratorId
 from ..body.methoddeclaration import MethodDeclaration
 from ..body.constructordeclaration import ConstructorDeclaration
 from ..body.parameter import Parameter
+from ..body.annotationdeclaration import AnnotationDeclaration
+from ..body.annotationmemberdeclaration import AnnotationMemberDeclaration
 
 from ..stmt.blockstmt import BlockStmt
 from ..stmt.returnstmt import ReturnStmt
@@ -64,6 +66,10 @@ from ..expr.conditionalexpr import ConditionalExpr
 from ..expr.superexpr import SuperExpr
 from ..expr.castexpr import CastExpr
 from ..expr.instanceofexpr import InstanceOfExpr
+from ..expr.markerannotationexpr import MarkerAnnotationExpr
+from ..expr.singlememberannotationexpr import SingleMemberAnnotationExpr
+from ..expr.normalannotationexpr import NormalAnnotationExpr
+from ..expr.annotationexpr import AnnotationExpr
 
 from ..type.primitivetype import PrimitiveType
 from ..type.voidtype import VoidType
@@ -124,8 +130,9 @@ class SourcePrinter(object):
     def visit(self, n):
         self.printJavaComment(n.comment)
         self.printJavadoc(n.javadoc)
-
+        self.printMemberAnnotations(n.annotations)
         self.printMods(n)
+
         if n.interface: self.printt('interface ')
         else: self.printt('class ')
         self.printt(n.name)
@@ -155,8 +162,9 @@ class SourcePrinter(object):
     @v.when(FieldDeclaration)
     def visit(self, n):
         self.printJavaComment(n.comment)
-
+        self.printMemberAnnotations(n.annotations)
         self.printMods(n)
+
         n.typee.accept(self)
         self.printt(' ')
         n.variable.accept(self)
@@ -165,7 +173,7 @@ class SourcePrinter(object):
     @v.when(MethodDeclaration)
     def visit(self, n):
         self.printJavaComment(n.comment)
-
+        self.printMemberAnnotations(n.annotations)
         self.printMods(n)
 
         self.printTypeParameters(n.typeParameters)
@@ -173,6 +181,7 @@ class SourcePrinter(object):
 
         n.typee.accept(self)
         self.printt(' ')
+        print 'n:', n.name
         self.printt(n.name)
         self.printt('(')
 
@@ -193,7 +202,7 @@ class SourcePrinter(object):
     @v.when(ConstructorDeclaration)
     def visit(self, n):
         self.printJavaComment(n.comment)
-
+        self.printMemberAnnotations(n.annotations)
         self.printMods(n)
 
         self.printTypeParameters(n.typeParameters)
@@ -219,8 +228,9 @@ class SourcePrinter(object):
     @v.when(Parameter)
     def visit(self, n):
         self.printJavaComment(n.comment)
-
+        self.printMemberAnnotations(n.annotations)
         self.printMods(n)
+        
         n.typee.accept(self)
         self.printt(' ')
         n.idd.accept(self)
@@ -241,6 +251,60 @@ class SourcePrinter(object):
         self.printt(n.name)
         for i in xrange(n.arrayCount): self.printt('[]')
 
+    @v.when(AnnotationDeclaration)
+    def visit(self, n):
+        self.printJavaComment(n.comment)
+        self.printMemberAnnotations(n.annotations)
+        self.printMods(n)
+
+        self.printt('@interface')
+        self.printt(n.name)
+        self.printLn(' {')
+        self.indent()
+        for m in n.members:
+            self.printMembers(n.members)
+        self.unindent()
+        self.printt('}')
+        
+    @v.when(AnnotationMemberDeclaration)
+    def visit(self, n):
+        self.printJavaComment(n.comment)
+        self.printMemberAnnotations(n.annotations)
+        self.printMods(n)
+
+        n.typee.accept(self)
+        self.printt(' ')
+        self.printt(n.name)
+        self.printt('()')
+        if n.defaultValue:
+            self.printt(' default ')
+            n.defaultValue.accept(self)
+        self.printt(';')
+
+    @v.when(MarkerAnnotationExpr)
+    def visit(self, n):
+        self.printJavaComment(n.comment)
+        self.printt('@')
+        n.name.accept(self)
+
+    @v.when(SingleMemberAnnotationExpr)
+    def visit(self, n):
+        self.printJavaComment(n.comment)
+        self.printt('@')
+        n.name.accept(self)
+        self.printt('(')
+        n.member.accept(self)
+        self.printt(')')
+
+    @v.when(NormalAnnotationExpr)
+    def visit(self, n):
+        self.printJavaComment(n.comment)
+        self.printt('@')
+        n.name.accept(self)
+        self.printt('(')
+        self.printSepList(n.pairs)
+        self.printt(')')
+        
     # Stmt
     @v.when(BlockStmt)
     def visit(self, n):
@@ -461,7 +525,8 @@ class SourcePrinter(object):
     @v.when(VariableDeclarationExpr)
     def visit(self, n):
         self.printJavaComment(n.comment)
-
+        self.printAnnotations(n.annotations)
+        
         n.typee.accept(self)
         self.printt(' ')
         self.printSepList(n.varss)
@@ -507,6 +572,8 @@ class SourcePrinter(object):
         if n.anonymousClassBody:
             self.printLn(' {')
             self.indent()
+            for m in n.anonymousClassBody:
+                print 'm:', m, m.name, type(m)
             self.printMembers(n.anonymousClassBody)
             self.unindent()
             self.printt('}')
@@ -571,6 +638,8 @@ class SourcePrinter(object):
 
         self.printt('new ')
         n.typee.accept(self)
+        # TODO
+        # List<List<AnnotationExpr>> arraysAnnotations = n.getArraysAnnotations();
         if n.dimensions:
             for d in n.dimensions:
                 self.printt('[')
@@ -638,10 +707,18 @@ class SourcePrinter(object):
         self.printJavaComment(n.comment)
         self.printt(n.value)
         
+    @v.when(AnnotationExpr)
+    def visit(self, n):
+        pass
+        
     # Type
     @v.when(PrimitiveType)
     def visit(self, n):
         self.printJavaComment(n.comment)
+        if n.annotations:
+            for a in n.annotations:
+                a.accept(self)
+                self.printt(' ')
         self.printt(n.name)
 
     @v.when(IntegerLiteralExpr)
@@ -676,7 +753,14 @@ class SourcePrinter(object):
     @v.when(ReferenceType)
     def visit(self, n):
         self.printJavaComment(n.comment)
+        if n.annotations:
+            for a in n.annotations:
+                a.accept(self)
+                self.printt(' ')
+
         n.typee.accept(self)
+        # TODO:
+        # List<List<AnnotationExpr>> arraysAnnotations = n.getArraysAnnotations();
         for i in xrange(n.arrayCount):
             self.printt('[')
             if n.values:
@@ -686,6 +770,10 @@ class SourcePrinter(object):
     @v.when(ClassOrInterfaceType)
     def visit(self, n):
         self.printJavaComment(n.comment)
+        if n.annotations:
+            for a in n.annotations:
+                a.accept(self)
+                self.printt(' ')
 
         if n.scope:
             n.scope.accept(self)
@@ -702,6 +790,10 @@ class SourcePrinter(object):
         self.printJavaComment(n.comment)
 
         # annotations
+        if n.annotations:
+            for a in n.annotations:
+                a.accept(self)
+                self.printt(' ')
 
         self.printt(n.name)
         if n.typeBound:
@@ -801,6 +893,18 @@ class SourcePrinter(object):
             if isinstance(c, Comment):
                 c.accept(self)
 
+    def printMemberAnnotations(self, annotations):
+        if annotations:
+            for a in annotations:
+                a.accept(self)
+                self.printLn()
+
+    def printAnnotations(self, annotations):
+        if annotations:
+            for a in annotations:
+                a.accept(self)
+                self.printt(' ')
+                
     @property
     def buf(self): return self._buf
     @buf.setter

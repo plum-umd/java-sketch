@@ -26,7 +26,14 @@ class ArrayCreationExpr(Expression):
                                dim.get(u'@e', [])) if dim else []
     
         # List<List<AnnotationExpr>> arraysAnnotations;
-
+        self._arraysAnnotations = []
+        aa = kwargs.get(u'arraysAnnotations', {})
+        ad = [None] if not aa else aa.get(u'@e')
+        if ad[0]:
+            print 'ReferenceType annotations not implemented'
+            for a in aa:
+                self._arraysAnnotations.append(locs[u'AnnotationExpr'](a) if a else None)
+                
         self.add_as_parent([self.typee, self.initializer]+self.dimensions)
                     
     @property

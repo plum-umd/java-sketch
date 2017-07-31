@@ -25,7 +25,7 @@ class MethodCallExpr(Expression):
 
         # List<Type> typeArgs;
 
-        # Expression args
+        # List<Expression> args;
         args = kwargs.get(u'args', {})
         self._args = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
                          args.get(u'@e', [])) if args else []

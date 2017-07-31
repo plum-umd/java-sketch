@@ -7,7 +7,6 @@ if [ $# -ge 1 ]
 then
     in=$1
     shift
-    echo "python -m jskparser.jskparser $* $wd/$in"
     python -m jskparser.jskparser $* $wd/$in
 else
     if [ ! -d $wd/out ]; then mkdir -p $wd/out
@@ -17,7 +16,7 @@ else
     for f in $FILES
     do
     	echo "python -m jskparser.jskparser $f > $wd/out/$(basename $f)"
-    	python -m jskparser.jskparser $f -l40 > $wd/out/$(basename $f)
+    	python -m jskparser.jskparser $f -l40 > $wd/out/$(basename $f) --no-lib
     done
 
     cd $wd

@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-import logging
-
 from . import _import
 from .typedeclaration import TypeDeclaration
 

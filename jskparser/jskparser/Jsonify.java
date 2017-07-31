@@ -113,8 +113,11 @@ public class Jsonify {
         typeRewrites.put("com.github.javaparser.ast.expr.CastExpr","CastExpr");
 	typeRewrites.put("com.github.javaparser.ast.expr.CharLiteralExpr","CharLiteralExpr");
 	typeRewrites.put("com.github.javaparser.ast.expr.InstanceOfExpr","InstanceOfExpr");
-	typeRewrites.put("com.github.javaparser.ast.expr.InstanceOfExpr","InstanceOfExpr");
-
+	typeRewrites.put("com.github.javaparser.ast.expr.AnnotationExpr","AnnotationExpr");
+	typeRewrites.put("com.github.javaparser.ast.expr.SingleMemberAnnotationExpr","SingleMemberAnnotationExpr");
+	typeRewrites.put("com.github.javaparser.ast.expr.MarkerAnnotationExpr","MarkerAnnotationExpr");
+	typeRewrites.put("com.github.javaparser.ast.expr.NormalAnnotationExpr","NormalAnnotationExpr");
+	
 	// Comments
         typeRewrites.put("com.github.javaparser.ast.comments.Comment","Comment");
 	typeRewrites.put("com.github.javaparser.ast.comments.JavadocComment","JavadocComment");

@@ -22,6 +22,16 @@ class ReferenceType(Type):
             self._values = map(lambda e: locs[e[u'@t']](e) if u'@t' in e else [],
                                v.get(u'@e', [])) if v else []
 
+        # List<List<AnnotationExpr>> arraysAnnotations;
+        self._arraysAnnotations = []
+
+        aa = kwargs.get(u'arraysAnnotations', {})
+        ad = [None] if not aa else aa.get(u'@e')
+        if ad[0]:
+            print 'ReferenceType annotations not implemented'
+            for a in aa:
+                self._arraysAnnotations.append(locs[u'AnnotationExpr'](a) if a else None)
+
     @property
     def typee(self): return self._type
     @typee.setter
