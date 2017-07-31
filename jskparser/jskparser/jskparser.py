@@ -24,8 +24,7 @@ def parse(path, **kwargs):
     # exit()
     ## logging configuration
     create_logger(log_lvls.get(kwargs.get('log_lvl', '10')))
-    
-    with open(util.toAST(path, 'java', kwargs.get('lib')), 'r') as fd:
+    with open(util.toAST(path, 'java', kwargs.get('lib', True)), 'r') as fd:
         d = json.load(fd)
         d.update({u'GSYMTAB':'RESET'})
         logging.info('parsing file...')
