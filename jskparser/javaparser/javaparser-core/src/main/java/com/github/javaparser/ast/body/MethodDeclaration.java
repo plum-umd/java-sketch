@@ -43,23 +43,25 @@ import static com.github.javaparser.ast.internal.Utils.ensureNotNull;
  */
 public final class MethodDeclaration extends BodyDeclaration implements DocumentableNode, WithDeclaration, NamedNode {
 
-	private int modifiers;
+    private int modifiers;
 
-	private List<TypeParameter> typeParameters;
+    private List<TypeParameter> typeParameters;
 
-	private Type type;
+    private Type type;
 
-	private NameExpr name;
+    private NameExpr name;
 
-	private List<Parameter> parameters;
+    private List<Parameter> parameters;
 
-	private int arrayCount;
+    private int arrayCount;
 
-	private List<ReferenceType> throws_;
+    private List<ReferenceType> throws_;
 
-	private BlockStmt body;
+    private BlockStmt body;
 
     private boolean isDefault = false;
+
+    private boolean bang = false;
 
     public MethodDeclaration() {
 	}
@@ -78,8 +80,9 @@ public final class MethodDeclaration extends BodyDeclaration implements Document
 	}
 
 	public MethodDeclaration(final int modifiers, final List<AnnotationExpr> annotations,
-			final List<TypeParameter> typeParameters, final Type type, final String name,
-			final List<Parameter> parameters, final int arrayCount, final List<ReferenceType> throws_, final BlockStmt block) {
+				 final List<TypeParameter> typeParameters, final Type type, final String name,
+				 final List<Parameter> parameters, final int arrayCount,
+				 final List<ReferenceType> throws_, final BlockStmt block) {
 		super(annotations);
 		setModifiers(modifiers);
 		setTypeParameters(typeParameters);
@@ -92,9 +95,10 @@ public final class MethodDeclaration extends BodyDeclaration implements Document
 	}
 
 	public MethodDeclaration(final int beginLine, final int beginColumn, final int endLine, final int endColumn,
-			final int modifiers, final List<AnnotationExpr> annotations,
-			final List<TypeParameter> typeParameters, final Type type, final String name,
-			final List<Parameter> parameters, final int arrayCount, final List<ReferenceType> throws_, final BlockStmt block) {
+				 final int modifiers, final List<AnnotationExpr> annotations,
+				 final List<TypeParameter> typeParameters, final Type type, final String name,
+				 final List<Parameter> parameters, final int arrayCount,
+				 final List<ReferenceType> throws_, final BlockStmt block) {
 		super(beginLine, beginColumn, endLine, endColumn, annotations);
 		setModifiers(modifiers);
 		setTypeParameters(typeParameters);
@@ -180,6 +184,10 @@ public final class MethodDeclaration extends BodyDeclaration implements Document
 
     public void setNameExpr(final NameExpr name) {
         this.name = name;
+    }
+
+    public void setBang(final boolean bang) {
+        this.bang = bang;
     }
 
     public void setParameters(final List<Parameter> parameters) {

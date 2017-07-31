@@ -181,8 +181,8 @@ class SourcePrinter(object):
 
         n.typee.accept(self)
         self.printt(' ')
-        print 'n:', n.name
         self.printt(n.name)
+        if n.bang: self.printt('!')
         self.printt('(')
 
         self.printSepList(n.parameters)

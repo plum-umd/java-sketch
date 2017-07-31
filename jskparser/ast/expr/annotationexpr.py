@@ -10,3 +10,6 @@ class AnnotationExpr(Expression):
         # NameExpr name;
         name = kwargs.get(u'name', {})
         self._name = NameExpr(name)
+
+    def __str__(self):
+        return str(self._name)

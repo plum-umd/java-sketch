@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from . import _import
+
 from .typedeclaration import TypeDeclaration
 
 from ..typeparameter import TypeParameter
@@ -33,6 +34,10 @@ class ClassOrInterfaceDeclaration(TypeDeclaration):
         if kwargs.get(u'implementsList'):
             self._add_supers(kwargs.get(u'implementsList', {}).get(u'@e', []), '_implementsList')
         self._subClasses = kwargs.get(u'subClasses', [])
+
+        self._axiom = False
+        if self.annotations:
+            self._axiom = any(map(lambda a: str(a) == 'axiom', self.annotations))
 
         self.add_as_parent(self.typeParameters+self.extendsList+self.implementsList+self.subClasses)
 
@@ -117,6 +122,11 @@ class ClassOrInterfaceDeclaration(TypeDeclaration):
     def name(self): return self._name
     @name.setter
     def name(self, v): self._name = v
+
+    @property
+    def axiom(self): return self._axiom
+    @axiom.setter
+    def axiom(self, v): self._axiom = v
 
     def isinner(self): return type(self.parentNode) == ClassOrInterfaceDeclaration
     def enclosing_types(self):

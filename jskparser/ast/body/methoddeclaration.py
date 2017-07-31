@@ -44,6 +44,16 @@ class MethodDeclaration(BodyDeclaration):
             chs = filter(lambda c: not isinstance(c, Comment), self._body.childrenNodes)
             if chs: chs[0].in_set = set(map(lambda x: x.lbl, self._parameters))
 
+        self._axiom = False
+        self._adt = False
+        if self.annotations:
+            self._axiom = any(map(lambda a: str(a) == 'axiom', self.annotations))
+            self._adt = any(map(lambda a: str(a) == 'adt', self.annotations))
+        if self._axiom and self._adt:
+            raise Exception('Cannot have a method declared as both adt and axiom:{}'.format(self.beginLine))
+
+        self._bang = kwargs.get(u'bang', False)
+
         self.add_as_parent(self.parameters+self.typeParameters+[self.typee]+self.throws)
 
     @property
@@ -80,6 +90,21 @@ class MethodDeclaration(BodyDeclaration):
     def typeParameters(self): return self._typeParameters
     @typeParameters.setter
     def typeParameters(self, v): self._typeParameters = v
+
+    @property
+    def bang(self): return self._bang
+    @bang.setter
+    def bang(self, v): self._bang = v
+
+    @property
+    def axiom(self): return self._axiom
+    @axiom.setter
+    def axiom(self, v): self._axiom = v
+
+    @property
+    def adt(self): return self._adt
+    @adt.setter
+    def adt(self, v): self._adt = v
 
     def param_typs(self): return map(lambda p: p.typee, self.parameters)
     def param_names(self): return map(lambda p: p.name, self.parameters)
