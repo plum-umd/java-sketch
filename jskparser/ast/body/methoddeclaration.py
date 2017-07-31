@@ -46,9 +46,11 @@ class MethodDeclaration(BodyDeclaration):
 
         self._axiom = False
         self._adt = False
+        self._pure = False
         if self.annotations:
             self._axiom = any(map(lambda a: str(a) == 'axiom', self.annotations))
             self._adt = any(map(lambda a: str(a) == 'adt', self.annotations))
+            self._pure = any(map(lambda a: str(a) == 'pure', self.annotations))
         if self._axiom and self._adt:
             raise Exception('Cannot have a method declared as both adt and axiom:{}'.format(self.beginLine))
 
@@ -105,6 +107,11 @@ class MethodDeclaration(BodyDeclaration):
     def adt(self): return self._adt
     @adt.setter
     def adt(self, v): self._adt = v
+
+    @property
+    def pure(self): return self._pure
+    @adt.setter
+    def pure(self, v): self._pure = v
 
     def param_typs(self): return map(lambda p: p.typee, self.parameters)
     def param_names(self): return map(lambda p: p.name, self.parameters)
