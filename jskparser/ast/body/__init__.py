@@ -11,6 +11,8 @@ def _import():
     from .bodydeclaration import BodyDeclaration
     from .variabledeclarator import VariableDeclarator
     from .variabledeclaratorid import VariableDeclaratorId
+    from .axiomdeclaration import AxiomDeclaration
+    from .axiomparameter import AxiomParameter
 
     from ..type.type import Type
     from ..type.classorinterfacetype import ClassOrInterfaceType

@@ -39,6 +39,8 @@ import com.github.javaparser.ast.body.EnumDeclaration;
 import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.InitializerDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.body.AxiomDeclaration;
+import com.github.javaparser.ast.body.AxiomParameter;
 import com.github.javaparser.ast.body.ModifierSet;
 import com.github.javaparser.ast.body.MultiTypeParameter;
 import com.github.javaparser.ast.body.Parameter;
@@ -1051,6 +1053,52 @@ public class DumpVisitor implements VoidVisitor<Object> {
 	n.getBlock().accept(this, arg);
     }
 
+    @Override public void visit(final AxiomDeclaration n, final Object arg) {
+        printOrphanCommentsBeforeThisChildNode(n);
+
+	printJavaComment(n.getComment(), arg);
+	printJavadoc(n.getJavaDoc(), arg);
+	printMemberAnnotations(n.getAnnotations(), arg);
+
+	printer.print("axiom ");
+
+	n.getType().accept(this, arg);
+	printer.print(" ");
+	printer.print(n.getName());
+
+	printer.print("(");
+	if (!isNullOrEmpty(n.getParameters())) {
+	    for (final Iterator<AxiomParameter> i = n.getParameters().iterator(); i.hasNext();) {
+		final AxiomParameter p = i.next();
+		p.accept(this, arg);
+		if (i.hasNext()) {
+		    printer.print(", ");
+		}
+	    }
+	}
+	printer.print(")");
+
+	if (n.getBody() == null) {
+	    printer.print(";");
+	} else {
+	    printer.print(" ");
+	    n.getBody().accept(this, arg);
+	}
+    }
+
+    @Override public void visit(final AxiomParameter n, final Object arg) {
+	printJavaComment(n.getComment(), arg);
+	printAnnotations(n.getAnnotations(), arg);
+	if (n.getType() != null) {
+	    n.getType().accept(this, arg);
+	}
+	printer.print(" ");
+	if (n.getMethod() != null)
+	    n.getId().accept(this, arg);
+	else
+	    n.getMethod().accept(this, arg);
+    }
+
     @Override public void visit(final MethodDeclaration n, final Object arg) {
         printOrphanCommentsBeforeThisChildNode(n);
 
@@ -1103,7 +1151,7 @@ public class DumpVisitor implements VoidVisitor<Object> {
 	    n.getBody().accept(this, arg);
 	}
     }
-
+    
     @Override public void visit(final Parameter n, final Object arg) {
 	printJavaComment(n.getComment(), arg);
 	printAnnotations(n.getAnnotations(), arg);

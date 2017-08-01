@@ -65,6 +65,8 @@ public class Jsonify {
         typeRewrites.put("com.github.javaparser.ast.type.VoidType","VoidType");
         typeRewrites.put("com.github.javaparser.ast.body.EmptyMemberDeclaration","EmptyMemberDeclaration");
         typeRewrites.put("com.github.javaparser.ast.body.InitializerDeclaration","InitializerDeclaration");
+        typeRewrites.put("com.github.javaparser.ast.body.AxiomDeclaration","AxiomDeclaration");
+        typeRewrites.put("com.github.javaparser.ast.body.AxiomParameter","AxiomParameter");
 
         // Statements
         typeRewrites.put("com.github.javaparser.ast.stmt.BlockStmt","BlockStmt");

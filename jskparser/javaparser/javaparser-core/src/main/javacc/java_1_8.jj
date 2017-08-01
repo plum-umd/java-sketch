@@ -271,6 +271,7 @@ TOKEN :
 | < ASSUME: "assume" >
 | < MINREPEAT: "minrepeat" >
 | < GENERATOR: "generator" >
+| < AXIOM: "axiom" >
 }
 
 /* LITERALS */
@@ -1512,6 +1513,8 @@ BodyDeclaration ClassOrInterfaceBodyDeclaration(boolean isInterface):
 	      LOOKAHEAD( Type() <IDENTIFIER> ( "[" "]" )* ( "," | "=" | ";" ) )
 	      ret = FieldDeclaration(modifier)
 	    |
+	      ret = AxiomDeclaration(modifier)
+	    |
 	      ret = MethodDeclaration(modifier)
 	      {
 	        if(isDefault && ret!= null && ((MethodDeclaration)ret).getBody() == null)
@@ -1605,6 +1608,57 @@ ArrayInitializerExpr ArrayInitializer():
   { return new ArrayInitializerExpr(line, column, token.endLine, token.endColumn,values); }
 }
 
+AxiomDeclaration AxiomDeclaration(Modifier modifier):
+{
+	Type type;
+	NameExpr name;
+	List parameters;
+	BlockStmt body = null;
+	int line = modifier.beginLine;
+	int column = modifier.beginColumn;
+}
+{
+  "axiom " type = Type() name = Name() parameters = AxiomParameters() ( body = Block() | ";")
+
+  {
+     AxiomDeclaration tmp = new AxiomDeclaration(line, column, token.endLine, token.endColumn, modifier.modifiers, modifier.annotations, type, null, parameters, body);
+     tmp.setNameExpr(name);
+     return tmp;
+  }	
+}
+
+List AxiomParameters():
+{
+	List ret = null;
+	AxiomParameter par;
+}
+{
+  "(" [ par = AxiomParameter() { ret = add(ret, par); } ( "," par = AxiomParameter() { ret = add(ret, par); } )* ] ")"
+
+  { return ret; }
+}
+
+AxiomParameter AxiomParameter():
+{
+	Modifier modifier = null;
+	Type type = null;
+	VariableDeclaratorId id = null;
+	MethodDeclaration method = null;
+	AxiomParameter ret;
+}
+{
+  (
+	LOOKAHEAD(3)
+	modifier = Modifiers()
+        method = MethodDeclaration(modifier)
+	{ ret = new AxiomParameter(modifier.beginLine, modifier.beginColumn, token.endLine, token.endColumn, modifier.modifiers, modifier.annotations, type, id, method); }
+        |
+         type = Type() id = VariableDeclaratorId()
+	 { ret = new AxiomParameter(token.beginLine, token.beginColumn, token.endLine, token.endColumn, type, id, method); }
+  )
+  { return ret; }
+}
+
 MethodDeclaration MethodDeclaration(Modifier modifier):
 {
 	List typeParameters = null;
@@ -1626,7 +1680,7 @@ MethodDeclaration MethodDeclaration(Modifier modifier):
   name = Name() ("!" { bang = true; })? parameters = FormalParameters() ( "[" "]" { arrayCount++; } )*
   [ "throws" throwType = ReferenceTypeWithAnnotations() { throws_ = add(throws_, throwType); }
     ("," throwType = ReferenceTypeWithAnnotations() { throws_ = add(throws_, throwType); })* ]
-  ( block = Block() | ";" )
+  ( block = Block() | ( ";" )? )
   { 
       MethodDeclaration tmp = new MethodDeclaration(line, column, token.endLine, token.endColumn, modifier.modifiers, modifier.annotations, typeParameters, type, null, parameters, arrayCount, throws_, block);
       tmp.setNameExpr(name);

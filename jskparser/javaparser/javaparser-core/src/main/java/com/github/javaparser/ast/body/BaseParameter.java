@@ -50,6 +50,12 @@ public abstract class BaseParameter extends Node implements AnnotableNode {
         setAny(any);
     }
 
+    public BaseParameter(final int beginLine, final int beginColumn, final int endLine,
+                         final int endColumn, final VariableDeclaratorId id) {
+        super(beginLine, beginColumn, endLine, endColumn);
+        setId(id);
+    }
+
     public BaseParameter(int modifiers, VariableDeclaratorId id) {
         setModifiers(modifiers);
         setId(id);

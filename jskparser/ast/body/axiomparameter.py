@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 
-from ..node import Node
-
 from . import _import
 
-class Parameter(Node):
+from ..node import Node
+
+class AxiomParameter(Node):
     def __init__(self, kwargs={}):
-        super(Parameter, self).__init__(kwargs)
+        super(AxiomParameter, self).__init__(kwargs)
         locs = _import()
 
         # int modifiers
@@ -17,20 +17,19 @@ class Parameter(Node):
         if typdct: self._type = locs[typdct[u'@t']](typdct)
 
         # VariableDeclarator id
-        self._id = locs[u'VariableDeclarator'](kwargs)
+        idd = kwargs.get(u'id', {})
+        self._id = locs[u'VariableDeclarator'](kwargs) if idd else None
 
-        # Any
-        self._any = kwargs.get(u'any', False)
-
-        # boolean isVarArgs
-        self._isVarArgs = kwargs.get(u'isVarArgs', False)
+        method = kwargs.get(u'method', {})
+        self._method = locs[u'MethodDeclaration'](method) if method else None
 
         # List<AnnotationExpr> annotations;
         annotations = kwargs.get(u'annotations', [])
         self._annotations = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
                                 annotations.get(u'@e', [])) if annotations else []
 
-        self.add_as_parent([self.idd])
+        if self._id: self.add_as_parent([self._id])
+        elif self._method: self.add_as_parent([self._method])
 
     @property
     def modifiers(self): return self._modifiers
@@ -38,7 +37,7 @@ class Parameter(Node):
     def modifiers(self, v): self._modifiers = v
 
     @property
-    def typee(self): return self._type
+    def typee(self): return self._type if self._type else self._method.typee
     @typee.setter
     def typee(self, v): self._type = v
 
@@ -48,19 +47,14 @@ class Parameter(Node):
     def idd(self, v): self._id = v
 
     @property
-    def name(self): return self._id.name
+    def name(self): return self._name
     @name.setter
-    def name(self, v): self._id.name = v
+    def name(self, v): self._name = v
 
     @property
-    def anyy(self): return self._any
-    @anyy.setter
-    def anyy(self, v): self._any = v
-
-    @property
-    def isVarArgs(self): return self._isVarArgs
-    @isVarArgs.setter
-    def isVarArgs(self, v): self._isVarArgs = v
+    def method(self): return self._method
+    @method.setter
+    def method(self, v): self._method = v
 
     @property
     def lbl(self): return (self._id.name, self._ati)

@@ -13,7 +13,9 @@ class MethodDeclaration(BodyDeclaration):
 
         locs = _import()
 
+        # int modifiers
         self._modifiers = kwargs.get(u'modifiers', 0)
+
         # This is the return type and will be stored as a child of the method
         typdct = kwargs.get(u'type')
         self._type = locs[typdct[u'@t']](typdct)
@@ -44,15 +46,13 @@ class MethodDeclaration(BodyDeclaration):
             chs = filter(lambda c: not isinstance(c, Comment), self._body.childrenNodes)
             if chs: chs[0].in_set = set(map(lambda x: x.lbl, self._parameters))
 
-        self._axiom = False
         self._adt = False
         self._pure = False
         if self.annotations:
-            self._axiom = any(map(lambda a: str(a) == 'axiom', self.annotations))
             self._adt = any(map(lambda a: str(a) == 'adt', self.annotations))
             self._pure = any(map(lambda a: str(a) == 'pure', self.annotations))
-        if self._axiom and self._adt:
-            raise Exception('Cannot have a method declared as both adt and axiom:{}'.format(self.beginLine))
+        if self._pure and self._adt:
+            raise Exception('Cannot have a method declared as both adt and pure:{}'.format(self.beginLine))
 
         self._bang = kwargs.get(u'bang', False)
 
@@ -99,18 +99,13 @@ class MethodDeclaration(BodyDeclaration):
     def bang(self, v): self._bang = v
 
     @property
-    def axiom(self): return self._axiom
-    @axiom.setter
-    def axiom(self, v): self._axiom = v
-
-    @property
     def adt(self): return self._adt
     @adt.setter
     def adt(self, v): self._adt = v
 
     @property
     def pure(self): return self._pure
-    @adt.setter
+    @pure.setter
     def pure(self, v): self._pure = v
 
     def param_typs(self): return map(lambda p: p.typee, self.parameters)

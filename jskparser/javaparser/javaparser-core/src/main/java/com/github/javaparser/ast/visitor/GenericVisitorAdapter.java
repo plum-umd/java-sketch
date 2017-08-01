@@ -40,6 +40,8 @@ import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.InitializerDeclaration;
 import com.github.javaparser.ast.comments.JavadocComment;
 import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.body.AxiomDeclaration;
+import com.github.javaparser.ast.body.AxiomParameter;
 import com.github.javaparser.ast.body.MultiTypeParameter;
 import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.body.TypeDeclaration;
@@ -1032,6 +1034,11 @@ public abstract class GenericVisitorAdapter<R, A> implements GenericVisitor<R, A
 		}
 		return null;
 	}
+
+	@Override
+	public R visit(final AxiomDeclaration n, final A arg) { return null; }
+	@Override
+	public R visit(final AxiomParameter n, final A arg) { return null; }
 
 	@Override
 	public R visit(final MethodDeclaration n, final A arg) {

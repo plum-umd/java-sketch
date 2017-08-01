@@ -39,6 +39,8 @@ import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.InitializerDeclaration;
 import com.github.javaparser.ast.comments.JavadocComment;
 import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.body.AxiomDeclaration;
+import com.github.javaparser.ast.body.AxiomParameter;
 import com.github.javaparser.ast.body.MultiTypeParameter;
 import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.body.VariableDeclarator;
@@ -113,6 +115,10 @@ public interface GenericVisitor<R, A> {
 	public R visit(ConstructorDeclaration n, A arg);
 
 	public R visit(MethodDeclaration n, A arg);
+
+	public R visit(AxiomDeclaration n, A arg);
+
+	public R visit(AxiomParameter n, A arg);
 
 	public R visit(Parameter n, A arg);
 	

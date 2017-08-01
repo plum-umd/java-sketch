@@ -15,6 +15,7 @@ from ..body.variabledeclaratorid import VariableDeclaratorId
 from ..body.methoddeclaration import MethodDeclaration
 from ..body.constructordeclaration import ConstructorDeclaration
 from ..body.emptymemberdeclaration import EmptyMemberDeclaration
+from ..body.axiomdeclaration import AxiomDeclaration
 
 from ..stmt.blockstmt import BlockStmt
 from ..stmt.ifstmt import IfStmt
@@ -94,7 +95,9 @@ class SymtabGen(object):
         [node.symtab.update({n.name:n}) for n in node.implementsList if n.name not in node.symtab]
         [node.symtab.update({n.name:n}) for n in node.typeParameters if n.name not in node.symtab]
         node.members = filter(lambda n: not isinstance(n, EmptyMemberDeclaration), node.members)
-        map(lambda n: node.symtab.update({n.name:n} if type(n) == FieldDeclaration or type(n) == ClassOrInterfaceDeclaration else \
+        map(lambda n: node.symtab.update({n.name:n} if isinstance(n, FieldDeclaration) or \
+                                         isinstance(n, ClassOrInterfaceDeclaration) or \
+                                         isinstance(n, AxiomDeclaration) else \
                                          {n.sig():n}), node.members)
         map(lambda n: n.accept(self), node.members)
 

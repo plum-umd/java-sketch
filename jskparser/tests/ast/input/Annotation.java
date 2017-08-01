@@ -1,9 +1,8 @@
-@axiom
+@axiomClass
 class A {
-    @axiom
-    void m() { }
     @adt
-    void m() { }
+    void m() {
+    }
     @fieldAnnotation
     int x;
 }

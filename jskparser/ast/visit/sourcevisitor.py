@@ -21,6 +21,8 @@ from ..body.constructordeclaration import ConstructorDeclaration
 from ..body.parameter import Parameter
 from ..body.annotationdeclaration import AnnotationDeclaration
 from ..body.annotationmemberdeclaration import AnnotationMemberDeclaration
+from ..body.axiomdeclaration import AxiomDeclaration
+from ..body.axiomparameter import AxiomParameter
 
 from ..stmt.blockstmt import BlockStmt
 from ..stmt.returnstmt import ReturnStmt
@@ -199,6 +201,27 @@ class SourcePrinter(object):
             n.body.accept(self)
         self.printLn()
 
+    @v.when(AxiomDeclaration)
+    def visit(self, n):
+        self.printJavaComment(n.comment)
+        self.printMemberAnnotations(n.annotations)
+        self.printMods(n)
+
+        self.printt('axiom ')
+        n.typee.accept(self)
+        self.printt(' ')
+        self.printt(n.name)
+        self.printt('(')
+
+        self.printSepList(n.parameters)
+        self.printt(')')
+
+        if not n.body: self.printt(';')
+        else:
+            self.printt(' ')
+            n.body.accept(self)
+        self.printLn()
+
     @v.when(ConstructorDeclaration)
     def visit(self, n):
         self.printJavaComment(n.comment)
@@ -234,6 +257,29 @@ class SourcePrinter(object):
         n.typee.accept(self)
         self.printt(' ')
         n.idd.accept(self)
+
+    @v.when(AxiomParameter)
+    def visit(self, n):
+        self.printJavaComment(n.comment)
+        self.printMemberAnnotations(n.annotations)
+        self.printMods(n)
+        
+        if n.idd:
+            n.typee.accept(self)
+            self.printt(' ')
+            n.idd.accept(self)
+        elif n.method:
+            self.printMods(n)
+            n.method.typee.accept(self)
+            self.printt(' ')
+            self.printt(n.method.name)
+            if n.method.bang: self.printt('!')
+            self.printt('(')
+            self.printSepList(n.method.parameters)
+            self.printt(')')
+            if n.method.body:
+                self.printt(' ')
+                n.method.body.accept(self)
 
     @v.when(VariableDeclarator)
     def visit(self, n):

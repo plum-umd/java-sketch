@@ -199,7 +199,8 @@ class Encoder(object):
             f.write(util.get_and_close(buf))
 
     def gen_cls_sk(self, cls):
-        # if cls in self.bases: return None
+        if cls.axiom:
+            return self.gen_axiom_cls_sk(cls)
 
         mtds = utils.extract_nodes([MethodDeclaration], cls, recurse=False)
         cons = utils.extract_nodes([ConstructorDeclaration], cls, recurse=False)
@@ -248,6 +249,38 @@ class Encoder(object):
             f.write(util.get_and_close(buf))
         return cls_sk
 
+    def gen_axiom_cls_sk(self, cls):
+        def gen_adt_constructor(mtd):
+            c = '    {} {{'.format(mtd.name.capitalize())
+            for t,n in zip(mtd.param_typs(), mtd.param_names()):
+                c += ' {} {}; '.format(self.tltr.trans_ty(t), n)
+            c += '}\n'
+            if not mtd.pure:
+                m = cp.copy(mtd)
+                m.name = mtd.name + 'B'
+                m.pure = True
+                return c + gen_adt_constructor(m)
+            return c
+        cname = str(cls)
+        buf = cStringIO.StringIO()
+        buf.write("package {};\n\n".format(cname))
+
+        mtds = utils.extract_nodes([MethodDeclaration], cls, recurse=False)
+        adt_mtds = filter(lambda m: m.adt, mtds)
+        axiom_mtds = filter(lambda m: m.axiom, mtds)
+
+        print 'adt', adt_mtds
+        adt_cons = map(gen_adt_constructor, adt_mtds)
+        print axiom_mtds
+
+        adt = 'adt {} {{\n{}}}'.format(cname, ''.join(adt_cons))
+        print adt
+        
+        cls_sk = cname + ".sk"
+        with open(os.path.join(self.sk_dir, cls_sk), 'w') as f:
+            f.write(util.get_and_close(buf))
+        return cls_sk
+
     def to_func(self, mtd):
         buf = cStringIO.StringIO()
         buf.write(self.tltr.trans(mtd))
@@ -256,7 +289,6 @@ class Encoder(object):
             self.tltr.post_mtds = ''
         return util.get_and_close(buf)
 
-    # only called on base classes. This seems to just be Object?
     def to_struct(self, cls):
         if not cls.extendsList: self.tltr.obj_struct = self.to_v_struct(cls)
  

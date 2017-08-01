@@ -46,6 +46,8 @@ import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.InitializerDeclaration;
 import com.github.javaparser.ast.comments.JavadocComment;
 import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.body.AxiomDeclaration;
+import com.github.javaparser.ast.body.AxiomParameter;
 import com.github.javaparser.ast.body.MultiTypeParameter;
 import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.body.TypeDeclaration;
@@ -273,6 +275,11 @@ public class CloneVisitor implements GenericVisitor<Node, Object> {
 		r.setComment(comment);
 		return r;
 	}
+
+	@Override
+	public Node visit(AxiomDeclaration _n, Object _arg) { return null; }
+	@Override
+	public Node visit(AxiomParameter _n, Object _arg) { return null; }
 
 	@Override
 	public Node visit(MethodDeclaration _n, Object _arg) {

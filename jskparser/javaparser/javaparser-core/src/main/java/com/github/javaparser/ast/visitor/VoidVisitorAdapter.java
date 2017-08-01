@@ -41,6 +41,8 @@ import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.InitializerDeclaration;
 import com.github.javaparser.ast.comments.JavadocComment;
 import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.body.AxiomDeclaration;
+import com.github.javaparser.ast.body.AxiomParameter;
 import com.github.javaparser.ast.body.MultiTypeParameter;
 import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.body.TypeDeclaration;
@@ -545,6 +547,41 @@ public abstract class VoidVisitorAdapter<A> implements VoidVisitor<A> {
 				e.accept(this, arg);
 			}
 		}
+	}
+
+	@Override public void visit(final AxiomDeclaration n, final A arg) {
+	    visitComment(n.getComment(), arg);
+	    if (n.getJavaDoc() != null) {
+		n.getJavaDoc().accept(this, arg);
+	    }
+	    if (n.getAnnotations() != null) {
+		for (final AnnotationExpr a : n.getAnnotations()) {
+		    a.accept(this, arg);
+		}
+	    }
+	    n.getType().accept(this, arg);
+	    if (n.getParameters() != null) {
+		for (final AxiomParameter m : n.getParameters()) {
+		    m.accept(this, arg);
+		}
+	    }
+	    if (n.getBody() != null) {
+		n.getBody().accept(this, arg);
+	    }
+	}
+
+	@Override public void visit(final AxiomParameter n, final A arg) {
+	    visitComment(n.getComment(), arg);
+	    if (n.getAnnotations() != null) {
+		for (final AnnotationExpr a : n.getAnnotations()) {
+		    a.accept(this, arg);
+		}
+	    }
+	    n.getType().accept(this, arg);
+	    if (n.getMethod() != null)
+		n.getId().accept(this, arg);
+	    else
+		n.getMethod().accept(this, arg);
 	}
 
 	@Override public void visit(final MethodDeclaration n, final A arg) {

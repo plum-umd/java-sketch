@@ -41,6 +41,8 @@ import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.InitializerDeclaration;
 import com.github.javaparser.ast.comments.JavadocComment;
 import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.body.AxiomDeclaration;
+import com.github.javaparser.ast.body.AxiomParameter;
 import com.github.javaparser.ast.body.MultiTypeParameter;
 import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.body.VariableDeclarator;
@@ -488,6 +490,9 @@ public class EqualsVisitor implements GenericVisitor<Boolean, Node> {
 
 		return Boolean.TRUE;
 	}
+
+	@Override public Boolean visit(final AxiomDeclaration n1, final Node arg) { return Boolean.TRUE; }
+	@Override public Boolean visit(final AxiomParameter n1, final Node arg) { return Boolean.TRUE; } 
 
 	@Override public Boolean visit(final MethodDeclaration n1, final Node arg) {
 		final MethodDeclaration n2 = (MethodDeclaration) arg;
