@@ -1,0 +1,27 @@
+include "ArrayList.sk";
+include "Integer.sk";
+include "Object.sk";
+include "array.sk";
+include "meta.sk";
+
+harness void mn() {
+  Object list = arraylist();
+  Object o20 = new Object(__cid=20);
+  Object o21 = new Object(__cid=21);
+  Object o22 = new Object(__cid=22);
+  list = add(list, o20);
+  assert xform(size(list)._alist) === Integer_Integer_int@Integer(new Object(__cid=Integer()), 1);
+  assert xform(get(list, 0)._alist) == o20;
+
+  list = add(list, o21);
+  assert xform(size(list)._alist) === Integer_Integer_int@Integer(new Object(__cid=Integer()), 2);
+  assert xform(get(list, 1)._alist) == o21;
+
+  list = set(list, 0, o22);
+  assert xform(get(list, 0)._alist) == o22;
+  assert xform(size(list)._alist) === Integer_Integer_int@Integer(new Object(__cid=Integer()), 2);
+
+  list = set(list, 1, o20);
+  assert xform(get(list, 1)._alist) == o20;
+  assert xform(size(list)._alist) === Integer_Integer_int@Integer(new Object(__cid=Integer()), 2);
+}
