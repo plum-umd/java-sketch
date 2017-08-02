@@ -1,10 +1,11 @@
 ArrayList
 =========
+* `get(list()) == ERROR //not sure how best to represent this but it is the base case for next 2`
 * `get(set!(a, i, e), j) == ITE(i == j, e, get(a, j))`
 * `get(add!(a, e), i) == ITE(size(a) == i-1, e, get(a, i))`
+* `size(list()) == 0`
 * `size(add!(a, e)) == size(a) + 1`
 * `size(set!(a, i, e)) == size(a)`
-* `size(set!(add!(a, e0), i, e1)) == size(add!(a, e0)))`
 
 File
 ======

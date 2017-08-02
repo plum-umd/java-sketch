@@ -5,8 +5,33 @@ adt AList {
   Get             { AList l; int i; }
   Set	  	  { AList l; int i; Object v; }
   Add		  { AList l; Object v; }
-  Size		  { AList l; int sz; }
+  Size		  { AList l; }
   EnsureCapacity  { AList l; int m; }
+  Error           { int code; }
+}
+
+Object arraylist() {
+  return new Object(__cid = ArrayList(), _alist=new List());
+}
+
+Object get(Object l, int i) {
+  return new Object(__cid = ArrayList(), _alist=new Get(l=l._alist, i=i));
+}
+
+Object set(Object l, int i, Object v) {
+  return new Object(__cid = ArrayList(), _alist=new Set(l=l._alist, i=i, v=v));
+}
+
+Object add(Object l, Object v) {
+  return new Object(__cid = ArrayList(), _alist=new Add(l=l._alist, v=v));
+}
+
+Object size(Object l) {
+  return new Object(__cid = ArrayList(), _alist=new Size(l=l._alist));
+}
+
+Object error(int code) {
+  return new Object(__cid = ArrayList(), _alist=new Error(code=code));
 }
 
 Object xform_get(AList a, int index) {
@@ -16,29 +41,44 @@ Object xform_get(AList a, int index) {
   case Get:              { assert false; }
   case Set: {
     if (a.i == index) { return a.v; }
-    else { alist = a.l; }
+    else { return xform_get(a.l, index); }
   }
-  case Add: {
-    if ((xform_size(a, 0) - 1) == index) { return a.v; }
-    else { alist = a.l; }
+  case Add: { 
+    if (intValue@Integer(xform_size(a)) - 1 == index) { return a.v; }
+    else { return xform_get(a.l, index); }
   }
   case Size:             { assert false; }
   case EnsureCapacity:   { assert false; }
+  case Error:            { assert false; }
   }
-  return xform_get(alist, index); 
 }
 
-int xform_size(AList a, int sz) {
+Object xform_size(AList a) {
   AList alist = null;
   switch (a) {
-  case List:             { return sz; }
+  case List:             { return Integer_Integer_int@Integer(new Object(__cid=Integer()), 0); }
   case Get:              { assert false; }
-  case Set:              { alist = a.l; }
-  case Add:              { alist = a.l; sz++; }
+  case Set:              { return xform_size(a.l); }
+  case Add:              {
+    return Integer_Integer_int@Integer(new Object(__cid=Integer()),
+				       intValue@Integer(xform_size(a.l)) + 1);
+  }
   case Size:             { assert false; }
   case EnsureCapacity:   { assert false; }
+  case Error:            { assert false; }
   }
-  return xform_size(alist, sz);
+}
+
+Object xform(AList a) {
+  switch (a) {
+  case List:            assert false; // return a;
+  case Get:             return xform_get(a.l, a.i);
+  case Set:   	        assert false; //return a;
+  case Add:   	        assert false; //return a;
+  case Size:	        return xform_size(a.l);
+  case EnsureCapacity:  assert false; //return a; //ensureCapacity_xform(a.l);
+  case Error:           assert false; //return a;
+  }
 }
 
 /* AList ensureCapacity_xform(AList a) { */
@@ -54,51 +94,4 @@ int xform_size(AList a, int sz) {
 /*   case Error:            { return a ; } */
 /*   } */
 /*   return xform(alist); */
-/* } */
-
-/* AList xform(AList a) { */
-/*   switch (a) { */
-/*   case List:            return a;  */
-/*   case Obj:             return a;  */
-/*   case Get:             return get_xform(a.l, a.i);  */
-/*   case Set:   	        return a;  */
-/*   case Add:   	        return a;  */
-/*   case Size:	        return size_xform(a.l, a.sz);  */
-/*   case EnsureCapacity:  return ensureCapacity_xform(a.l);  */
-/*   case Error:           return a;  */
-/*   } */
-/* } */
-
-/* Object get_obj(AList a) { */
-/*   if (a == null) return null; */
-/*   Object current; */
-/*   a = xform(a); */
-/*   switch (a) { */
-/*   case List:            { assert false; } */
-/*   case Obj:             { current = a.o; } */
-/*   case Get:             { assert false; } */
-/*   case Set:             { assert false; } */
-/*   case Add:             { assert false; } */
-/*   case Size:            { assert false; } */
-/*   case EnsureCapacity:  { assert false; } */
-/*   case Error:           { assert false; } */
-/*   } */
-/*   return current; */
-/* } */
-
-/* int size_int(AList a) { */
-/*   assert a != null; */
-/*   int sz = 0; */
-/*   a = xform(a); */
-/*   switch (a) { */
-/*   case List:            { assert false; } */
-/*   case Obj:             { assert false; } */
-/*   case Get:             { assert false; } */
-/*   case Set:             { assert false; } */
-/*   case Add:             { assert false; } */
-/*   case Size:            { sz = a.sz; } */
-/*   case EnsureCapacity:  { assert false; } */
-/*   case Error:           { assert false; } */
-/*   } */
-/*   return sz; */
 /* } */
