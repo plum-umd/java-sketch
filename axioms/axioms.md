@@ -3,11 +3,12 @@ ArrayList
 * `get(set!(a, i, e), j) == ITE(i == j, e, get(a, j))`
 * `get(add!(a, e), i) == ITE(size(a) == i-1, e, get(a, i))`
 * `size(add!(a, e)) == size(a) + 1`
-* `size(set(a, i, e)) == size(a)`
+* `size(set!(a, i, e)) == size(a)`
+* `size(set!(add!(a, e0), i, e1)) == size(add!(a, e0)))`
 
 File
 ======
-* `read(filereader(file(f, d, l, n), p)) ==d[p]`
+* `read(filereader(file(f, d, l, n), p)) == d[p]`
 * `read!(filereader(file(f, d, l, n), p)) == filereader(file(f, d, l, n), p+1)`
 * `ready(filereader(file(f, d, l, n), p)) == ITE(p != l-1, True, False)`
 
