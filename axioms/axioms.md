@@ -75,14 +75,24 @@ ArrayDeque
 * `size([]) == 0`
 * `isEmpty(s) == ITE(size(s)==0, True, False)`
 
+DES Example (private key -- symmetric crypto)
+===========
+
+* `let t = doFinal(init("DES/ECB/PKCS5Padding"), "Cipher.ENCRYPT_MODE", k1), t1) in
+   doFinal(init(getInstance("DES/ECB/PKCS5Padding"), "Cipher.DECRYPT_MODE", k2), t) ==
+   ITE(k2.equals(k1), t1, GARBAGE)`
+
+
+RSA Example (public key -- asymmetric crypto)
+=========== 
+
+* `let t = doFinal(init("RSA/ECB/PKCS1Padding"),"Cipher.ENCRYPT_MODE",getPublic(k1)),t1) in
+   doFinal(init(getInstance("RSA/ECB/PKCS1Padding"),"Cipher.DECRYPT_MODE",getPrivate(k2)),t) ==
+   ITE(k2.equals(k1), t1, GARBAGE)`
+
 String
 ======
 Are we using any right now?
-
-
-
-
-
 
 Old Stuff:
 ---------
