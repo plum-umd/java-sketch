@@ -6,10 +6,10 @@ adt AList {
   Set	  	  { AList l; int i; Object v; }
   Add		  { AList l; Object v; }
   Size		  { AList l; }
-  EnsureCapacity  { AList l; int m; }
   Error           { int code; }
 }
 
+// Construct Object from ADT
 Object arraylist() {
   return new Object(__cid = ArrayList(), _alist=new List());
 }
@@ -48,7 +48,6 @@ Object xform_get(AList a, int index) {
     else { return xform_get(a.l, index); }
   }
   case Size:             { assert false; }
-  case EnsureCapacity:   { assert false; }
   case Error:            { assert false; }
   }
 }
@@ -64,34 +63,17 @@ Object xform_size(AList a) {
 				       intValue@Integer(xform_size(a.l)) + 1);
   }
   case Size:             { assert false; }
-  case EnsureCapacity:   { assert false; }
   case Error:            { assert false; }
   }
 }
 
 Object xform(AList a) {
   switch (a) {
-  case List:            assert false; // return a;
+  case List:            assert false;
   case Get:             return xform_get(a.l, a.i);
-  case Set:   	        assert false; //return a;
-  case Add:   	        assert false; //return a;
+  case Set:   	        assert false;
+  case Add:   	        assert false;
   case Size:	        return xform_size(a.l);
-  case EnsureCapacity:  assert false; //return a; //ensureCapacity_xform(a.l);
-  case Error:           assert false; //return a;
+  case Error:           assert false;
   }
 }
-
-/* AList ensureCapacity_xform(AList a) { */
-/*   AList alist = null; */
-/*   switch (a) { */
-/*   case List:             { return new Size(sz=0); } */
-/*   case Obj:              { return new Error(code=Obj_err()); } */
-/*   case Get:              { alist = a.l; } */
-/*   case Set:              { alist = a.l; } */
-/*   case Add:              { alist = a.l; } */
-/*   case Size:             { alist = a.l; } */
-/*   case EnsureCapacity:   { return a; } */
-/*   case Error:            { return a ; } */
-/*   } */
-/*   return xform(alist); */
-/* } */
