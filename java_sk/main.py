@@ -29,10 +29,12 @@ def translate(**kwargs):
     cgen = kwargs.get('custom_gen', False)
     cntr = kwargs.get('cntr', False)
     skv = kwargs.get('skv', 0)
+    lib = kwargs.get('lib', True)
+
     codegen_jar = os.path.join(root_dir, "codegen", "lib", "codegen.jar")
     
     logging.info('parsing {}'.format(prg))
-    prg_ast = parse(prg)
+    prg_ast = parse(prg,lib=lib)
     util.add_object(prg_ast)
  
     encoder = Encoder(prg_ast, out_dir, fs)
@@ -79,42 +81,44 @@ if __name__ == "__main__":
     # descriptors = util.get_mtd_types('java/lang/Byte', 'compare', 2)
     # exit()
     if len(sys.argv) < 1:
-      sys.exit("incorrect number of arguments")
+        sys.exit("incorrect number of arguments")
   
     from optparse import OptionParser
     jskparser = OptionParser(usage="%prog [options]* [-t tmp_path]* (api_path)")
   
     jskparser.add_option("-t", "--template",
-      action="append", dest="tmpl", default=[],
-      help="template folder")
+                         action="append", dest="tmpl", default=[],
+                         help="template folder")
     jskparser.add_option("-l", "--log_lvl",
-      action="store", dest="log_lvl", default='10',
-      help="level of logging")
+                         action="store", dest="log_lvl", default='10',
+                         help="level of logging")
     jskparser.add_option("-v", "--verbose",
-      action="store_true", dest="verbose", default=False,
-      help="print intermediate messages verbosely")
+                         action="store_true", dest="verbose", default=False,
+                         help="print intermediate messages verbosely")
     jskparser.add_option("-m", "--model",
-      action="store_true", dest="model", default=False,
-      help="use models of Java libraries")
+                         action="store_true", dest="model", default=False,
+                         help="use models of Java libraries")
     jskparser.add_option("-o", "--out_dir",
-      dest="out_dir", default=None,
-      help="use models of Java libraries")
+                         dest="out_dir", default=None,
+                         help="use models of Java libraries")
     jskparser.add_option("-f", "--file-system",
-      action="store_true", dest="fs", default=False,
-      help="model filesytem with HashMap")
+                         action="store_true", dest="fs", default=False,
+                         help="model filesytem with HashMap")
     jskparser.add_option("--no-sketch",
-      action="store_false", dest="sketch", default=True,
-      help="proceed the whole process without running Sketch")
+                         action="store_false", dest="sketch", default=True,
+                         help="proceed the whole process without running Sketch")
     jskparser.add_option("-c", "--custom-codegen",
-      action="store_true", dest="custom_gen", default=False,
-      help="use custom code generator")
+                         action="store_true", dest="custom_gen", default=False,
+                         help="use custom code generator")
     jskparser.add_option("--cntr",
-      action="store_true", dest="cntr", default=False,
-      help="print out counter examples")
+                         action="store_true", dest="cntr", default=False,
+                         help="print out counter examples")
     jskparser.add_option("--skv",
-      action="store", dest="skv", default=0,
-      help="set verbosity level for Sketch")
-  
+                         action="store", dest="skv", default=0,
+                         help="set verbosity level for Sketch")
+    jskparser.add_option("--no-lib",
+                         action="store_false", dest="lib", default=True,
+                         help="compile without linking default Java libraries")
     (OPT, argv) = jskparser.parse_args()
     OPT.prg = argv
   

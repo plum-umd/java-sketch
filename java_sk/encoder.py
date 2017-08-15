@@ -5,10 +5,8 @@ import copy as cp
 import logging
 
 import util
-import cStringIO
-import math
-import copy as cp
-import logging
+
+from functools import partial
 
 from . import builtins
 from .translator import Translator
@@ -17,11 +15,18 @@ from ast.utils import utils
 
 from ast.body.fielddeclaration import FieldDeclaration
 from ast.body.methoddeclaration import MethodDeclaration
+from ast.body.parameter import Parameter
 from ast.body.constructordeclaration import ConstructorDeclaration
 from ast.body.typedeclaration import TypeDeclaration as td
 from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
+from ast.body.xform import Xform
+from ast.body.axiomdeclaration import AxiomDeclaration
+
+from ast.stmt.returnstmt import ReturnStmt
 
 from ast.expr.generatorexpr import GeneratorExpr
+from ast.expr.methodcallexpr import MethodCallExpr
+from ast.expr.literalexpr import LiteralExpr
 
 from ast.type.referencetype import ReferenceType
 
@@ -251,31 +256,142 @@ class Encoder(object):
 
     def gen_axiom_cls_sk(self, cls):
         def gen_adt_constructor(mtd):
-            c = '    {} {{'.format(mtd.name.capitalize())
+            c = '    {}{} {{ '.format(mtd.name.capitalize(), ' '*(max_len+1-len(mtd.name)))
+            if not mtd.default:
+                c += '{} self'.format(cls.name)
+                if not mtd.parameters:
+                    c += '; '
+            if mtd.parameters: c += '; '
             for t,n in zip(mtd.param_typs(), mtd.param_names()):
-                c += ' {} {}; '.format(self.tltr.trans_ty(t), n)
+                c += '{} {}; '.format(self.tltr.trans_ty(t), n)
             c += '}\n'
-            if not mtd.pure:
-                m = cp.copy(mtd)
-                m.name = mtd.name + 'B'
-                m.pure = True
-                return c + gen_adt_constructor(m)
             return c
+        def gen_obj_constructor(mtd):
+            name = mtd.name
+            (ptyps, pnms) = (map(str, mtd.param_typs()), map(str, mtd.param_names()))
+            params = ', '.join(map(lambda p: ' '.join(p), zip(ptyps, pnms)))
+            c = 'Object {}('.format(name.lower())
+            if not mtd.default:
+                c += 'Object self'
+                if mtd.parameters: c += ', '
+                c += '{}) {{\n    '.format(params)
+            else:
+                c += ') {\n    '
+            c += 'return new Object(__cid={}(), _{}=new {}('.format(cls.name, cls.name.lower(), name.capitalize())
+            if not mtd.default:
+                c += 'self=self._{}'.format(cls.name.lower())
+            for n in pnms:
+                c += ', {0}={0}'.format(n)
+            c += '));\n}\n\n'
+            return c
+
         cname = str(cls)
+        # add new axiom fields to Object struct
+
         buf = cStringIO.StringIO()
         buf.write("package {};\n\n".format(cname))
 
         mtds = utils.extract_nodes([MethodDeclaration], cls, recurse=False)
         adt_mtds = filter(lambda m: m.adt, mtds)
-        axiom_mtds = filter(lambda m: m.axiom, mtds)
+        # add bang functions for non-pure methods
+        for (m,i) in zip(adt_mtds, xrange(len(adt_mtds))):
+            if not m.pure:
+                mtd = cp.copy(m)
+                mtd.name = m.name + 'B'
+                mtd.pure = True
+                adt_mtds.insert(i+1, mtd)
 
-        print 'adt', adt_mtds
-        adt_cons = map(gen_adt_constructor, adt_mtds)
-        print axiom_mtds
-
-        adt = 'adt {} {{\n{}}}'.format(cname, ''.join(adt_cons))
-        print adt
+        # add default constructor if one isn't provided
+        default = filter(lambda m: cname == m.name, adt_mtds)
+        if not default:
+            m = MethodDeclaration({u'@t':u'MethodDeclaration', u'name':cname.lower(),
+                                   u'type':{u'@t':u'ClassOrInterfaceType',u'name':u'Object',},},)
+            # set this to pure so we don't generate a bang constructor and default...so we know it's default
+            m.pure = True
+            m.default = True
+            m.add_parent_post(cls)
+            adt_mtds = [m] + adt_mtds
         
+        # I like to format
+        max_len = max(map(lambda m: len(m.name), adt_mtds))
+
+        cons = map(gen_obj_constructor, adt_mtds)
+        adt_cons = map(gen_adt_constructor, adt_mtds)
+        adt = 'adt {} {{\n{}}}\n\n{}'.format(cname, ''.join(adt_cons), ''.join(cons))
+        buf.write(adt)
+
+        # create all xform methods
+        def cpy_sym(n, *args):
+            if n.parentNode: n.symtab = dict(n.parentNode.symtab.items() + n.symtab.items())
+        xforms = {}
+        for a in adt_mtds:
+            xnm = u'xform_{}'.format(a.name)
+            x = Xform.gen_xform(a.get_coid(), xnm, adt_mtds,
+                                [{u'@t':u'Parameter',
+                                  u'type':{u'@t':u'ClassOrInterfaceType',u'name':cname},
+                                  u'id':{u'name':u'self',},},],)
+            _self = Parameter({u'id':{u'name':u'self'},
+                               u'type':{u'@t':u'ClassOrInterfaceType', u'name':cname},},)
+            x.childrenNodes.append(_self)
+            x.parameters = [_self] + map(cp.copy, a.parameters)
+            x.adtName = str(a)
+            x.add_parent_post(cls, True)
+            xforms[xnm] = x
+        map(partial(utils.walk, cpy_sym), cls.childrenNodes)
+
+        # create xform dispatch method
+        dispatch = Xform.gen_xform(cls, u'xform', adt_mtds,
+                                   [{u'@t':u'Parameter',
+                                     u'type':{u'@t':u'ClassOrInterfaceType',u'name':cname},
+                                     u'id':{u'name':u'self',},},],)
+        dispatch.add_parent_post(cls)
+
+        for a in adt_mtds:
+            xnm = 'xform_{}'.format(a.name)
+            xf = xforms[xnm]
+            ret = ReturnStmt({u'expr':{u'@t':u'MethodCallExpr',
+                                       u'name':xnm,u'type':{u'@t':u'ClassOrInterfaceType',
+                                                            u'name':'Object',},
+                                       u'args':[],},},)
+            for p in xf.parameters:
+                if not a.default:
+                    v = LiteralExpr({u'name':u'self.{}'.format(p.idd.name),},)
+                else:
+                    v = LiteralExpr({u'name':u'{}'.format(p.idd.name),},)
+                v.typee = p.typee
+                ret.expr.childrenNodes.append(v)
+                ret.expr.args.append(v)
+            body = dispatch.get_xform()
+            body.add_body([a.name.capitalize()], [ret])
+        buf.write(self.tltr.trans(dispatch))
+
+        # populate individual xforms with axioms
+        ax_mtds = utils.extract_nodes([AxiomDeclaration], cls, recurse=False)
+        for a in ax_mtds:
+            xnm = 'xform_{}'.format(a.name)
+            xf = xforms[xnm]
+            xf.name = 'xform_{}'.format(a.name)
+
+            # rename xf parameters to correspond to axiom declaration, not adt
+            for (xp,ap) in zip(xf.parameters, a.parameters):
+                if ap.idd: xp.name = ap.name
+
+            # there has to be a better way than this
+            xf.symtab = dict(a.symtab.items() + xf.symtab.items())
+            map(partial(utils.walk, cpy_sym), xf.childrenNodes)
+            a.symtab = dict(xf.symtab.items() + a.symtab.items())
+            map(partial(utils.walk, cpy_sym), a.childrenNodes)
+
+            # transform xform method call names and parameters
+            body = xf.get_xform()
+            self.tltr.trans_xform(a.name, body, a.body.stmts)
+
+            decs = utils.extract_nodes([AxiomDeclaration], a.parameters[0])
+            cases = map(lambda d: d.name.capitalize(), decs)
+            body.add_body(cases, a.body.stmts)
+
+        for v in xforms.values():
+            buf.write(self.tltr.trans(v))
         cls_sk = cname + ".sk"
         with open(os.path.join(self.sk_dir, cls_sk), 'w') as f:
             f.write(util.get_and_close(buf))
@@ -298,27 +414,36 @@ class Encoder(object):
         cls_d = {u'name':str(cls)}
         cls_v = ClassOrInterfaceDeclaration(cls_d)
         # add __cid field
-        fld_d = {u'variables':
-                 {u'@e': [{u'@t': u'VariableDeclarator', u'id': {u'name': u'__cid'}}]},
-                 u'@t': u'FieldDeclaration', u'type':
-                 {u'@t': u'PrimitiveType', u'type':
-                  {u'nameOfBoxedType': u'Integer', u'name': u'Int'}}}
-        fd = FieldDeclaration(fld_d)
+        fd = FieldDeclaration(
+            {u'variables':{u'@e': [{u'@t': u'VariableDeclarator',
+                                    u'id': {u'name': u'__cid',},},],},
+             u'type':{u'@t': u'PrimitiveType', u'type':
+                      {u'nameOfBoxedType': u'Integer', u'name': u'Int',},},},)
         cls_v.members.append(fd)
         cls_v.childrenNodes.append(fd)
         def per_cls(cls):
             cname = str(cls)
-            if cname != str(cls_v): self.tltr.ty[str(cls)] = str(cls_v)
+            if cname != str(cls_v):
+                self.tltr.ty[str(cls)] = str(cls_v) if not cls.axiom else str(cls)
             flds = filter(lambda m: type(m) == FieldDeclaration, cls.members)
             def cp_fld(fld):
-                # fld_v = cp.deepcopy(fld)
                 fld_v = cp.copy(fld)
-                # fld_v.variable = cp.copy(fld.variable)
                 fld_v.parentNode = cls
                 cls_v.members.append(fld_v)
                 cls_v.childrenNodes.append(fld_v)
             map(cp_fld, filter(lambda f: not td.isStatic(f), flds))
         map(per_cls, utils.all_subClasses(cls))
+
+        # add ADT fields
+        axiom_clss = filter(lambda c: c.axiom, utils.all_subClasses(cls))
+        for a in axiom_clss:
+            fd = FieldDeclaration(
+                {u'variables':{u'@e': [{u'@t': u'VariableDeclarator',
+                                        u'id': {u'name': '_{}'.format(str(a).lower()),},},],},
+                 u'type':{u'@t': u'ClassOrInterfaceType', u'name':str(a),},},)
+
+            cls_v.members.append(fd)
+            cls_v.childrenNodes.append(fd)
         return cls_v
 
     @property
