@@ -32,6 +32,6 @@ class FieldAccessExpr(Expression):
     def field(self, v): self._field = v
   
     @property
-    def name(self): return self._field.name
+    def name(self): return self.field.name
     @name.setter
-    def name(self, v): self._field.name = v
+    def name(self, v): self.field.name = v
