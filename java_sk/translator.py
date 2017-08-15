@@ -26,6 +26,8 @@ from ast.body.parameter import Parameter
 from ast.body.fielddeclaration import FieldDeclaration
 from ast.body.variabledeclarator import VariableDeclarator
 from ast.body.variabledeclaratorid import VariableDeclaratorId
+from ast.body.axiomparameter import AxiomParameter
+from ast.body.xform import Xform
 
 from ast.stmt.blockstmt import BlockStmt
 from ast.stmt.returnstmt import ReturnStmt
@@ -62,6 +64,7 @@ from ast.expr.conditionalexpr import ConditionalExpr
 from ast.expr.thisexpr import ThisExpr
 from ast.expr.superexpr import SuperExpr
 from ast.expr.castexpr import CastExpr
+from ast.expr.literalexpr import LiteralExpr
 from ast.expr.booleanliteralexpr import BooleanLiteralExpr
 from ast.expr.integerliteralexpr import IntegerLiteralExpr
 from ast.expr.doubleliteralexpr import DoubleLiteralExpr
@@ -122,14 +125,14 @@ class Translator(object):
         """
 
     @v.when(Node)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         logging.error('unimplemented node: {}'.format(n))
         # if isinstance(n, Type): print 'un:', n
-        # map(lambda x: x.accept(self), n.childrenNodes)
+        # map(lambda x: x.accept(self, **kwargs), n.childrenNodes)
 
     # body
     @v.when(ConstructorDeclaration)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         n = copy.copy(n)
         cls = n if isinstance(n, ClassOrInterfaceDeclaration) else n.get_coid()
         etypes = cls.enclosing_types()
@@ -160,11 +163,11 @@ class Translator(object):
             if cls.isinner():
                 n.body.stmts = ['self{0} = self_{0};'.format(len(etypes)-1)] + n.body.stmts
             n.body.stmts = n.body.stmts + [u'return self;']
-            n.body.accept(self)
+            n.body.accept(self, **kwargs)
         self.printLn()
 
     @v.when(MethodDeclaration)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         if n.get_coid().interface: return
         self.printMods(n)
         if td.isHarness(n):
@@ -173,19 +176,25 @@ class Translator(object):
             if self._fs:
                 s.append(u'fs_s@Object(HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash())));')
             n.body.stmts = s + n.body.stmts
-        n.typee.accept(self)
+        n.typee.accept(self, **kwargs)
         self.printt(' ')
         self.printt(str(n))
         # self.printTypeParameters(n.typeParameters)
         
         self.printt('(')
 
-        if not td.isStatic(n) and not td.isHarness(n):
-            ty = self.trans_ty(n.get_coid())
+        if not td.isStatic(n) and not td.isHarness(n) and not td.isADT(n):
+            ty = n.get_coid().name if n.adtType else self.trans_ty(n.get_coid())
             self.printt('{} self'.format(ty))
             if n.parameters: self.printt(', ')
 
-        self.printSepList(n.parameters)
+        if not td.isADT(n): self.printSepList(n.parameters)
+        elif n.parameters:
+            self.printt(n.parameters[0].typee.name)
+            self.printt(' ')
+            self.printt(n.parameters[0].name)
+            if len(n.parameters) > 1: self.printt(', ')
+            self.printSepList(n.parameters[1:])
         self.printt(')')
 
         for i in xrange(n.arrayCount): self.printt('[]')
@@ -193,37 +202,63 @@ class Translator(object):
         if not n.body: self.printt(';')
         else:
             self.printt(' ')
-            n.body.accept(self)
+            n.body.accept(self, **kwargs)
         self.printLn()
 
+    @v.when(Xform)
+    def visit(self, n, **kwargs):
+        # going to have to parse switch statements differently here
+        if n.stmt:
+            self.printt('switch(')
+            n.stmt.selector.accept(self, **kwargs)
+            self.printLn(') {')
+            for e in n.stmt.entries:
+                self.printt('case ')
+                e.label.accept(self, **kwargs)
+                self.printt(': ')
+                if not e.stmts:
+                    self.printt('{ assert false; }')
+                    self.printLn()
+                for s in e.stmts:
+                    s.accept(self, **kwargs)
+                    self.printLn()
+
+        if not n.stmt: self.printLn()
+        self.printLn('}')
+
     @v.when(Parameter)
-    def visit(self, n):
-        n.typee.accept(self)
+    def visit(self, n, **kwargs):
+        n.typee.accept(self, **kwargs)
+        self.buf.write(' {}'.format(str(n.idd)))
+
+    @v.when(AxiomParameter)
+    def visit(self, n, **kwargs):
+        self.printt(str(n.typee))
         self.buf.write(' {}'.format(str(n.idd)))
 
     @v.when(VariableDeclarator)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         # print 'VariableDeclarator', n
         if n.init:
             self.printt(' ')
-            n.idd.accept(self)
+            n.idd.accept(self, **kwargs)
             self.printt(' = ')
             if isinstance(n.init, ArrayInitializerExpr):
                 self.printt('new ')
-                n.typee.accept(self)
+                n.typee.accept(self, **kwargs)
                 self.printt('(')
-            n.init.accept(self)
+            n.init.accept(self, **kwargs)
         else:
             self.printt(' ')
-            n.idd.accept(self)
+            n.idd.accept(self, **kwargs)
 
     @v.when(VariableDeclaratorId)
-    def visit(self, n):
-        self.printt(str(n))
+    def visit(self, n, **kwargs):
+        self.printt(str(n))        
 
     # stmt
     @v.when(BlockStmt)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         self.printLn('{')
         if n.stmts:
             self.indent()
@@ -231,27 +266,27 @@ class Translator(object):
                 if type(s) == str or type(s) == unicode:
                     self.printLn(s)
                 else:
-                    s.accept(self)
+                    s.accept(self, **kwargs)
                     self.printLn()
             self.unindent()
         self.printt('}')
 
     @v.when(ReturnStmt)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         self.printt('return')
         if n.expr:
             self.printt(' ')
-            n.expr.accept(self)
+            n.expr.accept(self, **kwargs)
         self.printt(';')
 
     @v.when(IfStmt)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         self.printt('if (')
-        n.condition.accept(self)
+        n.condition.accept(self, **kwargs)
         thenBlock = isinstance(n.thenStmt, BlockStmt)
         self.printt(') ')
         if not thenBlock: self.indent()
-        n.thenStmt.accept(self)
+        n.thenStmt.accept(self, **kwargs)
         if not thenBlock: self.unindent()
         if n.elseStmt:
             self.printLn()
@@ -261,12 +296,12 @@ class Translator(object):
             else:
                 self.printLn('else')
                 self.indent()
-            n.elseStmt.accept(self)
+            n.elseStmt.accept(self, **kwargs)
             if not (elseIf or elseBlock): self.unindent()
 
     # TODO: this needs work
     @v.when(ForeachStmt)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         tltr = copy.copy(self)
         tltr.indentation = ''
         it = tltr.trans(n.iterable)
@@ -277,68 +312,68 @@ class Translator(object):
             inits.append('{} {} = {}.A[_i];'.format(self.trans_ty(n.iterable.typee), vv.name, it))
         s = [n.body] if isinstance(n.body, ExpressionStmt) else n.body.stmts
         n.body.stmts = ['\n'.join(inits)] + s
-        n.body.accept(self)
+        n.body.accept(self, **kwargs)
 
     @v.when(ForStmt)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         self.printt('for (')
         if n.init: self.printSepList(n.init)
         self.printt('; ')
-        if n.compare: n.compare.accept(self)
+        if n.compare: n.compare.accept(self, **kwargs)
         self.printt('; ')
         if n.update: self.printSepList(n.update)
         self.printt(') ')
-        n.body.accept(self)
+        n.body.accept(self, **kwargs)
 
     @v.when(WhileStmt)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         self.printt('while (')
-        if n.condition: n.condition.accept(self)
+        if n.condition: n.condition.accept(self, **kwargs)
         self.printt(') ')
-        n.body.accept(self)
+        n.body.accept(self, **kwargs)
 
     @v.when(MinrepeatStmt)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         self.printt('minrepeat ')
-        n.body.accept(self)
+        n.body.accept(self, **kwargs)
 
     @v.when(ExpressionStmt)
-    def visit(self, n):
-        n.expr.accept(self)
+    def visit(self, n, **kwargs):
+        if n.expr: n.expr.accept(self, **kwargs)
         self.printt(';')
 
     @v.when(AssertStmt)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         self.printt('assert ')
-        n.check.accept(self)
+        n.check.accept(self, **kwargs)
         # There are no messages in Sketch, I think
         # if n.msg:
         #     self.printt(' : ')
-        #     n.msg.accept(self)
+        #     n.msg.accept(self, **kwargs)
         self.printt(';')
 
     @v.when(AssumeStmt)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         self.printt('assume ')
-        n.expr.accept(self)
+        n.expr.accept(self, **kwargs)
         self.printt(';')
 
     @v.when(SwitchStmt)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         def print_stmts(stmts):
             self.indent()
             for s in stmts:
-                s.accept(self)
+                s.accept(self, **kwargs)
                 self.printLn()
             self.unindent()
             self.printLn('}')
 
         self.printt('if (')
-        n.selector.accept(self)
+        n.selector.accept(self, **kwargs)
         # take care of the first case
         if n.entries:
             self.printt(' == ')
-            n.entries[0].label.accept(self)
+            n.entries[0].label.accept(self, **kwargs)
             self.printLn(') {')
             if n.entries[0].stmts: print_stmts(n.entries[0].stmts)
             if len(n.entries) > 0: self.printt('else if (')
@@ -347,31 +382,31 @@ class Translator(object):
             if n.entries[e].label:
                 if e > 1 and n.entries[e-1].stmts: self.printt('else if (')
                 if n.entries[e].stmts:
-                    n.selector.accept(self)
+                    n.selector.accept(self, **kwargs)
                     self.printt(' == ')
-                    n.entries[e].label.accept(self)
+                    n.entries[e].label.accept(self, **kwargs)
                     self.printLn(') {')
                     print_stmts(n.entries[e].stmts)
                 else:
-                    n.selector.accept(self)
+                    n.selector.accept(self, **kwargs)
                     self.printt(' == ')
-                    n.entries[e].label.accept(self)
+                    n.entries[e].label.accept(self, **kwargs)
                     self.printt(' || ')
             else:
                 self.printLn('else {')
                 print_stmts(n.entries[e].stmts)
 
     @v.when(SwitchEntryStmt)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         pass
 
     @v.when(ExplicitConstructorInvocationStmt)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         if n.isThis:
             self.printt('_'.join([str(n.get_coid()), str(n.get_coid())] + map(str, n.arg_typs())))
         else:
             if n.expr:
-                n.expr.accept(self)
+                n.expr.accept(self, **kwargs)
                 self.printt('.')
             cls = n.get_coid()
             sups = cls.supers()
@@ -383,32 +418,37 @@ class Translator(object):
         self.printt(u'(self')
         if n.args: self.printt(', ')
         self.printSepList(n.args)
-        self.printt(');')
+        self.printt(')')
+        self.printt(';')
 
     @v.when(ContinueStmt)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         self.printt('continue')
         if n.idd:
             self.printt(' {}'.format(n.idd))
         self.printt(';')
 
     @v.when(BreakStmt)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         self.printt('break')
         if n.idd:
             self.printt(' {}'.format(n.idd))
         self.printt(';')
 
     @v.when(ThrowStmt)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         pass
         
     @v.when(EmptyStmt)
-    def visit(self, n): pass
+    def visit(self, n, **kwargs):
+        pass
 
     # expr
     @v.when(NameExpr)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
+        if not n.symtab:
+            self.printt(n.name)
+            return
         obj = utils.node_to_obj(n)
         if type(obj) == FieldDeclaration:
             if td.isStatic(obj):
@@ -431,14 +471,14 @@ class Translator(object):
         else: self.printt(n.name)
 
     @v.when(VariableDeclarationExpr)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         # print 'VariableDeclarationExpr', n.typee, type(n.typee)
-        n.typee.accept(self)
+        n.typee.accept(self, **kwargs)
         # self.printt(' ')
         self.printSepList(n.varss)
 
     @v.when(AssignExpr)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         def print_op():
             self.printt(' ')
             o = n.op.upper()
@@ -446,7 +486,7 @@ class Translator(object):
             else:
                 self.printt('=')
                 self.printt(' ')
-                n.target.accept(self)
+                n.target.accept(self, **kwargs)
                 self.printt(' ')
                 self.printt(assignop['_{}'.format(o)])
             self.printt(' ')
@@ -455,40 +495,38 @@ class Translator(object):
             v = self.trans_faccess(n.target)
             if v:
                 print_op()
-                n.value.accept(self)
+                n.value.accept(self, **kwargs)
         else:
-            n.target.accept(self)
+            n.target.accept(self, **kwargs)
             print_op()
-            n.value.accept(self)
+            n.value.accept(self, **kwargs)
 
     @v.when(FieldAccessExpr)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         self.trans_faccess(n)
 
     @v.when(UnaryExpr)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         self.printt(UnaryExpr.PRE_OPS.get(n.op, ''))
-        n.expr.accept(self)
+        n.expr.accept(self, **kwargs)
         self.printt(UnaryExpr.POST_OPS.get(n.op, ''))
 
     @v.when(BinaryExpr)
-    def visit(self, n):
-        n.left.accept(self)
+    def visit(self, n, **kwargs):
+        n.left.accept(self, **kwargs)
         self.printt(' ')
         self.printt(op[n.op.upper()])
         self.printt(' ')
-        n.right.accept(self)
+        n.right.accept(self, **kwargs)
 
     @v.when(ObjectCreationExpr)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         obj_cls = n.symtab.get(n.typee.name)
         cls = obj_cls.symtab.get(obj_cls.name)
         if isinstance(obj_cls, ImportDeclaration): obj_cls = obj_cls.cname()
         if isinstance(obj_cls, ReferenceType): obj_cls = self.trans_ty(obj_cls)
-        # print 'obj_cls', obj_cls, type(obj_cls)
-        # print 'cls:', cls
         if n.scope:
-            n.getScope.accept(self)
+            n.getScope.accept(self, **kwargs)
             self.printt('.')
         if n.args:
             typs = []
@@ -548,120 +586,124 @@ class Translator(object):
         self.printt(')')
 
     @v.when(ArrayCreationExpr)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         # print 'arraycreationexpr'
         self.printt('new Array_{}('.format(self.trans_ty(n.typee)))
         if n.dimensions:
             for d in n.dimensions:
                 self.printt('length=')
-                d.accept(self)
+                d.accept(self, **kwargs)
             self.printt(')')
             # for c in xrange(n.arrayCount):
             #     self.printt('[]')
         else:
-            n.initializer.accept(self)
+            n.initializer.accept(self, **kwargs)
 
     @v.when(ArrayInitializerExpr)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         # print 'arrayinitializerexpr'
         self.printt('length={}, A={{'.format(len(n.values)))
         self.printSepList(n.values)
         self.printt('})')
 
     @v.when(ArrayAccessExpr)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         # print 'arrayaccessexpr'
-        n.nameExpr.accept(self)
+        n.nameExpr.accept(self, **kwargs)
         self.printt('.A[')
-        n.index.accept(self)
+        n.index.accept(self, **kwargs)
         self.printt(']')
 
     @v.when(MethodCallExpr)
-    def visit(self, n):
-        self.trans_call(n)
+    def visit(self, n, **kwargs):
+        self.trans_call(n, **kwargs)
 
     @v.when(EnclosedExpr)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         self.printt('(')
-        if n.inner: n.inner.accept(self)
+        if n.inner: n.inner.accept(self, **kwargs)
         self.printt(')')
 
     @v.when(GeneratorExpr)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         if n.isHole: self.printt('??')
         else:
             self.printt('{|')
-            self.printSepList(n.exprs, ' |')
+            self.printSepList(n.exprs, sep=' |')
             self.printt('|}')
 
     @v.when(ConditionalExpr)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         self.printt('(')
-        n.condition.accept(self)
+        n.condition.accept(self, **kwargs)
         self.printt(' ? ')
-        n.thenExpr.accept(self)
+        n.thenExpr.accept(self, **kwargs)
         self.printt(' : ')
-        n.elseExpr.accept(self)
+        n.elseExpr.accept(self, **kwargs)
         self.printt(')')
 
     @v.when(ThisExpr)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         if n.classExpr:
-            n.classExpr.accept(self)
+            n.classExpr.accept(self, **kwargs)
             self.printt('.')
         self.printt('self')
 
     @v.when(SuperExpr)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         if n.classExpr:
-            n.classExpr.accept(self)
+            n.classExpr.accept(self, **kwargs)
             self.printt('.')
         self.printt('super')
 
     @v.when(CastExpr)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         if isinstance(n.typee, PrimitiveType):
             self.printt('(')
-            n.typee.accept(self)
+            n.typee.accept(self, **kwargs)
             self.printt(')')
-        n.expr.accept(self)
+        n.expr.accept(self, **kwargs)
+
+    @v.when(LiteralExpr)
+    def visit(self, n, **kwargs):
+        self.printt(n.name)
 
     @v.when(BooleanLiteralExpr)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         self.printt(n.value)
 
     @v.when(IntegerLiteralExpr)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         self.printt(n.value)
 
     @v.when(DoubleLiteralExpr)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         self.printt(n.value)
 
     @v.when(NullLiteralExpr)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         self.printt('null')
 
     @v.when(StringLiteralExpr)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         self.printt('String_String_char_int_int(new Object(__cid=String()), new Array_char(length={1}+1, A="{0}"), 0, {1})'.format(n.value, len(n.value)))
 
     @v.when(CharLiteralExpr)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         self.printt("'")
         self.printt(n.value)
         self.printt("'")
 
     @v.when(InstanceOfExpr)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         cls = n.symtab.get(n.typee.name)
-        n.expr.accept(self)
+        n.expr.accept(self, **kwargs)
         self.printt('.__cid == {}()'.format(str(cls)))
 
         def subclss(allsubs):
             if not allsubs: return
             self.printt(' || ')
-            n.expr.accept(self)
+            n.expr.accept(self, **kwargs)
             self.printt('.__cd == {}()'.format(str(allsubs[0])))
             subclss(allsubs[1:])
 
@@ -669,7 +711,7 @@ class Translator(object):
 
     # type
     @v.when(ClassOrInterfaceType)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         self.printt(self.trans_ty(n))
         # if n.isUsingDiamondOperator():
         #     self.printt('<>')
@@ -677,38 +719,37 @@ class Translator(object):
         # self.printTypeArgs(n.typeArgs())
 
     @v.when(TypeParameter)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         # annotations
 
         self.printt(self.trans_ty(n.name))
         if n.typeBound:
-            self.printSepList(n.typeBound, '&')
+            self.printSepList(n.typeBound, sep='&')
 
     @v.when(PrimitiveType)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         self.printt(self.trans_ty(n))
 
     @v.when(VoidType)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         self.printt(n.name)
 
     @v.when(ReferenceType)
-    def visit(self, n):
+    def visit(self, n, **kwargs):
         # print 'ReferenceType -- type: {} arrayCount: {}'.format(n, n.arrayCount)
         if n.arrayCount:
             self.printt('Array_{}'.format(self.trans_ty(n.typee)))
         else:
-            n.typee.accept(self)
+            n.typee.accept(self, **kwargs)
 
-    def trans(self, s):
+    def trans(self, s, **kwargs):
         self.buf = cStringIO.StringIO()
-        s.accept(self)
+        s.accept(self, **kwargs)
         return util.get_and_close(self.buf)
 
-    def trans_ty(self, typ, convert=True):
+    def trans_ty(self, typ, **kwargs):
         if typ and isinstance(typ, ClassOrInterfaceType) or isinstance(typ, ReferenceType):
             cls = typ.symtab.get(typ.name)
-
             if cls and isinstance(cls, ImportDeclaration): r_ty = cls.cname()
             else: r_ty = str(cls) if cls else str(typ)
         else:
@@ -723,7 +764,7 @@ class Translator(object):
         # print 'typ {} -> {}'.format(repr(str(typ)), r_ty)
         return r_ty
 
-    def trans_faccess(self, n):
+    def trans_faccess(self, n, **kwargs):
         logging.debug('accessing {}.{}:{}'.format(n.scope.name, n.field.name, n.beginLine))
         fld = utils.find_fld(n, self.obj_struct)
         logging.debug('found field: {}'.format(str(fld)))
@@ -732,14 +773,14 @@ class Translator(object):
                 self.printt(fld.name)
             elif type(n.parentNode) == AssignExpr and n == n.parentNode.target:
                 self.printt('{}_s@{}('.format(fld.name, str(fld.get_coid())))
-                n.parentNode.value.accept(self)
+                n.parentNode.value.accept(self, **kwargs)
                 self.printt(')')
                 return False
             else:
                 self.printt('{}_g@{}()'.format(fld.name, str(fld.get_coid())))
         else:
             logging.debug('non-static field - type(n.scope): {}'.format(type(n.scope)))
-            n.scope.accept(self)
+            n.scope.accept(self, **kwargs)
             self.printt('.{}'.format(str(fld)))
 
         logging.debug('***END FIELD ACCESS***\n')
@@ -763,7 +804,8 @@ class Translator(object):
     def trans_params(self, (ty, nm)):
         return ' '.join([self.trans_ty(ty), nm])
 
-    def trans_call(self, callexpr):
+    def trans_call(self, callexpr, **kwargs):
+        semi = kwargs.get('semi', True)
         tltr = copy.copy(self)
         tltr.indentation = ''
         def write_call():
@@ -858,7 +900,9 @@ class Translator(object):
                     for i in range(len(fun)-1):
                         f.write('{} {}, '.format(self.trans_ty(fun[i]), 'p'+str(i+1)))
                     if len(fun) > 0: f.write('{} {}'.format(self.trans_ty(fun[-1]), 'p'+str(len(fun))))
-                    f.write(');\n')
+                    f.write(')')
+                    f.write(';')
+                    f.write('\n')
 
                     typ = {u'@t':u'PrimitiveType',u'type':{u'name':rtyp},} if rtyp in CONVERSION_TYPES \
                           else {u'@t':u'ClassOrInterfaceType',u'name': rtyp,}
@@ -916,7 +960,7 @@ class Translator(object):
         # TODO: super?
         if cls.interface: invocation_mode = 'interface'
         elif cls.name == 'meta': invocation_mode = 'uninterpreted'
-        else: invocation_mode = 'static' if td.isStatic(mtd) else 'virtual'
+        else: invocation_mode = 'static' if td.isStatic(mtd) or td.isADT(mtd) else 'virtual'
 
         logging.debug('most_specific - name: {}, qualifying type: {}, invocation_mode: {}'. \
             format(str(mtd), type(mtd.typee), invocation_mode))
@@ -930,6 +974,7 @@ class Translator(object):
             else:
                 self.printt('{}@{}'.format(str(mtd), str(mtd.get_coid())))
             self.printArguments(callexpr.args)
+            # self.printt(';')
         elif not callexpr.scope:
             self.printt('{}@{}'.format(str(mtd), str(cls)))
             self.printArguments([NameExpr({u'name':u'self'})] + callexpr.args)
@@ -953,7 +998,6 @@ class Translator(object):
             if invocation_mode == 'uninterpreted':
                 (_, mdec) = self.find_mtd(cls, str(mtd))
                 conexprs[-1].elseExpr = copy.copy(conexprs[-1].thenExpr)
-                # print 'name: {}@{}'.format(str(mdec), str(cls))
                 conexprs[-1].elseExpr.name = '{}@{}'.format(str(mdec), str(cls))
             # else: raise Exception('Non-static mode, no mtd {} in {}'.format(str(mtd), str(cls)))
             # need to foldr then reverse
@@ -963,7 +1007,7 @@ class Translator(object):
                 return r
             conexprs = reduce(combine, reversed(conexprs))
             if type(mtd.typee) != VoidType: self.printt('(')
-            self.print_dispatch(conexprs)
+            self.print_dispatch(conexprs, **kwargs)
             if type(mtd.typee) != VoidType: self.printt(')')
 
         logging.debug('**END CALL***\n')
@@ -981,7 +1025,7 @@ class Translator(object):
                     mtds.append(val)
         return mtds
 
-    def identify_strict(self, callexpr, mtds):
+    def identify_strict(self, callexpr, mtds, **kwargs):
         pots = []
         arg_typs = callexpr.arg_typs()
         for m in mtds:
@@ -990,7 +1034,7 @@ class Translator(object):
                 pots.append(m)
         return pots
 
-    def match_strict(self, arg_typs, param_typs):
+    def match_strict(self, arg_typs, param_typs, **kwargs):
         for atyp,ptyp in zip(arg_typs, param_typs):
             if ptyp.name in map(lambda p: p.name, param_typs): continue
             if not (self.identity_conversion(atyp,ptyp) or \
@@ -999,7 +1043,7 @@ class Translator(object):
                 return False
         return True
 
-    def identify_loose(self, callexpr, mtds):
+    def identify_loose(self, callexpr, mtds, **kwargs):
         pots = []
         arg_typs = callexpr.arg_typs()
 
@@ -1019,7 +1063,7 @@ class Translator(object):
                      self.primitive_widening(utils.unbox[atyp.name], ptyp))): return False
         return True
 
-    def most_specific(self, mtds):
+    def most_specific(self, mtds, **kwargs):
         def most(candidate, others):
             ctypes = candidate.param_typs()
             for i in range(len(others)):
@@ -1033,29 +1077,29 @@ class Translator(object):
         raise Exception('Unable to find most specific method!')
 
     # Conversions
-    def identity_conversion(self, typ1, typ2):
+    def identity_conversion(self, typ1, typ2, **kwargs):
         return True if typ1.name == typ2.name else False
 
-    def primitive_widening(self, typ1, typ2):
+    def primitive_widening(self, typ1, typ2, **kwargs):
         t1 = typ1 if type(typ1) == unicode else typ1.name
         t2 = typ2 if type(typ2) == unicode else typ2.name
         return True if t1 in utils.widen and t2 in utils.widen[t1] else False
 
-    def reference_widening(self, typ1, typ2):
+    def reference_widening(self, typ1, typ2, **kwargs):
         if not typ1 or not typ2: return False
         return utils.is_subtype(typ1, typ2)
 
-    def boxing_conversion(self, typ1, typ2): # TODO: reference widening here
+    def boxing_conversion(self, typ1, typ2, **kwargs): # TODO: reference widening here
         return typ1.name in utils.box and utils.box[typ1.name] == typ2.name
 
-    def unboxing_conversion(self, typ1, typ2):
+    def unboxing_conversion(self, typ1, typ2, **kwargs):
         if typ1.name in utils.unbox:
             return utils.unbox[typ1.name] == typ2.name or \
                 self.primitive_widening(utils.unbox[typ1.name], typ2.name)
         else: return False
 
     # dynamic dispatch
-    def find_mtd(self, cls, descriptor):
+    def find_mtd(self, cls, descriptor, **kwargs):
         # check current class for method
         m = cls.symtab.get(descriptor)
         # remove import declarations and interfaces from super classes
@@ -1064,20 +1108,21 @@ class Translator(object):
         elif s: return self.find_mtd(s[0], descriptor) # nope, check superclasses
         else: return (None, None) # doesn't exist
 
-    def print_dispatch(self, c):
+    def print_dispatch(self, c, **kwargs):
         # we need to do this b/c the elseExpr's are going to have MethodCallExpr which
         # get handled differently
         if isinstance(c, ConditionalExpr):
-            c.condition.accept(self)
+            c.condition.accept(self, **kwargs)
             self.printt(' ? ')
             self.printt('{}'.format(c.thenExpr.name))
             self.printArguments(c.thenExpr.args)
             self.printt(' : ')
             if isinstance(c.elseExpr, IntegerLiteralExpr): self.printt('0')
             elif isinstance(c.elseExpr, PrimitiveType):
-                # print 'c.elseExpr.name:', c.elseExpr.name
-                if c.elseExpr.name == u'double' or c.elseExpr.name == u'float' or c.elseExpr.name == u'long': self.printt('0.0')
-                if c.elseExpr.name == u'int' or c.elseExpr.name == u'boolean' or c.elseExpr.name == u'bit' or c.elseExpr.name == u'short': self.printt('0')
+                if c.elseExpr.name == u'double' or c.elseExpr.name == u'float' or \
+                   c.elseExpr.name == u'long': self.printt('0.0')
+                if c.elseExpr.name == u'int' or c.elseExpr.name == u'boolean' or c.\
+                   elseExpr.name == u'bit' or c.elseExpr.name == u'short': self.printt('0')
                 if c.elseExpr.name == u'char' or c.elseExpr.name == u'byte': self.printt("'\\0'")
             elif isinstance(c.elseExpr, (ClassOrInterfaceType, ReferenceType)): self.printt('null')
             else: self.print_dispatch(c.elseExpr)
@@ -1087,11 +1132,12 @@ class Translator(object):
             self.printt(')')
         else:
             self.printt('if (')
-            c.condition.accept(self)
+            c.condition.accept(self, **kwargs)
             self.printt(') { ')
             self.printt('{}'.format(c.thenStmt.name))
             self.printArguments(c.thenStmt.args)
-            self.printt('; }')
+            self.printt(';')
+            self.printt(' }')
             if type(c.elseStmt) == IntegerLiteralExpr:
                 self.printLn()
                 self.printt('else {{ 0; }}'.format(c.elseStmt.value))
@@ -1100,7 +1146,7 @@ class Translator(object):
                 self.printt('else ')
                 self.print_dispatch(c.elseStmt)
 
-    def make_dispatch(self, scope, S, mdec, args):
+    def make_dispatch(self, scope, S, mdec, args, **kwargs):
         d = {
             "@t": "",
             "condition": {
@@ -1152,40 +1198,71 @@ class Translator(object):
             dis.thenStmt.args = args
         return dis
 
+    def trans_xform(self, xname, xform, stmts, **kwargs):
+        label = str(xform.stmt.selector)
+        def change_call(s, *args):
+            t = s.symtab.get(s.name)
+            if isinstance(s, MethodCallExpr):
+                name = 'xform_{}'.format(str(s))
+                mdec = s.symtab.get('m'+name)
+                if not mdec: return
+                # change call name to include xform
+                s.name = 'xform_{}'.format(s.name)
+                # change parameters to match ADT construction members
+                ax_mtd = mdec.symtab.get('m'+mdec.adtName)
+                args = [LiteralExpr({u'name':u'{}.self'.format(label),},),] if \
+                       isinstance(s.args[0], FieldAccessExpr) else \
+                       [LiteralExpr({u'name':u'self',},),]
+                args[0].typee = xform.typee
+                for p in ax_mtd.parameters:
+                    t = p.symtab.get(p.name)
+                    slf = '{}.'.format(label) if t and not t.axiomParameter() else ''
+                    v = LiteralExpr({u'name':u'{}{}'.format(slf,p.idd.name),},)
+                    v.typee = p.typee
+                    args.append(v)
+                    s.childrenNodes.append(v)
+                    v.add_parent_post(s)
+                s.args = args
+            elif isinstance(t, VariableDeclarator):
+                if t.axiomParameter():
+                    s.name = u'{}.{}'.format(label,t.name)
+                    
+        map(lambda s: utils.walk(change_call, s), stmts)
+
     def indent(self): self._level += 1
     def unindent(self): self._level -= 1
 
     def makeIndent(self):
         for i in xrange(self._level): self._buf.write(self._indentation)
 
-    def printt(self, arg):
+    def printt(self, arg, **kwargs):
         if not self._indented:
             self.makeIndent()
             self.indented = True
         self.buf.write(arg)
 
-    def printLn(self, arg=None):
+    def printLn(self, arg=None, **kwargs):
         if arg:
             self.printt(arg)
         self.buf.write('\n')
         self.indented = False
 
-    def printSepList(self, args, sep=','):
+    def printSepList(self, args, **kwargs):
         if args:
             lenn = len(args)
             for i in xrange(lenn):
-                args[i].accept(self)
-                if i+1 < lenn: self.printt('{} '.format(sep))
+                args[i].accept(self, **kwargs)
+                if i+1 < lenn: self.printt('{} '.format(kwargs.get('sep', ',')))
 
-    def printArguments(self, args):
+    def printArguments(self, args, **kwargs):
         self.printt('(')
         self.printSepList(args)
         self.printt(')')
 
-    def printMods(self, mods):
+    def printMods(self, mods, **kwargs):
         if td.isGenerator(mods): self.printt('generator ')
 
-    def printTypeArgs(self, args):
+    def printTypeArgs(self, args, **kwargs):
         self.printTypeParameters(args)
         
     def printTypeParameters(self, args):
