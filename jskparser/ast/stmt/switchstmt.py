@@ -16,7 +16,7 @@ class SwitchStmt(Statement):
     
         # List<SwitchEntryStmt> entries;
         en = kwargs.get(u'entries', {}).get(u'@e')
-        self._entries = map(lambda e: SwitchEntryStmt(e), en)
+        self._entries = map(lambda e: SwitchEntryStmt(e), en) if en else []
 
         self.add_as_parent([self.selector]+self.entries)
     
