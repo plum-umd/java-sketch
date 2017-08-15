@@ -10,7 +10,6 @@ from ..comments.comment import Comment
 class MethodDeclaration(BodyDeclaration):
     def __init__(self, kwargs={}):
         super(MethodDeclaration, self).__init__(kwargs)
-
         locs = _import()
 
         # int modifiers
@@ -48,15 +47,18 @@ class MethodDeclaration(BodyDeclaration):
 
         self._adt = False
         self._pure = False
+        self._default = False
         if self.annotations:
             self._adt = any(map(lambda a: str(a) == 'adt', self.annotations))
             self._pure = any(map(lambda a: str(a) == 'pure', self.annotations))
-        if self._pure and self._adt:
-            raise Exception('Cannot have a method declared as both adt and pure:{}'.format(self.beginLine))
+            self._default = any(map(lambda a: str(a) == 'default', self.annotations))
 
         self._bang = kwargs.get(u'bang', False)
+        self._adtType = kwargs.get(u'adtType', False)
 
-        self.add_as_parent(self.parameters+self.typeParameters+[self.typee]+self.throws)
+        self._adtName = kwargs.get(u'adtName', None)
+        
+        self.add_as_parent(self.parameters+self.typeParameters+[self.typee]+self.throws+[self.body])
 
     @property
     def modifiers(self): return self._modifiers
@@ -108,8 +110,30 @@ class MethodDeclaration(BodyDeclaration):
     @pure.setter
     def pure(self, v): self._pure = v
 
+    @property
+    def default(self): return self._default
+    @default.setter
+    def default(self, v): self._default = v
+
+    @property
+    def adtType(self): return self._adtType
+    @adtType.setter
+    def adtType(self, v): self._adtType = v
+
+    @property
+    def adtName(self): return self._adtName
+    @adtName.setter
+    def adtName(self, v): self._adtName = v
+
     def param_typs(self): return map(lambda p: p.typee, self.parameters)
     def param_names(self): return map(lambda p: p.name, self.parameters)
+
+    def get_xform(self):
+        from .xform import Xform
+        x = self.body.stmts[0]
+        if not isinstance(x, Xform):
+            raise Exception('Trying to get Xform from {} but body isnt an Xform'.format(self))
+        return x
 
     def sig(self):
         return 'm{}'.format(str(self))

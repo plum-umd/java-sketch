@@ -49,3 +49,5 @@ class TypeDeclaration(BodyDeclaration):
     def isHarness(mod):   return (mod.modifiers & Modifiers['HN']) != 0
     @staticmethod
     def isGenerator(mod): return (mod.modifiers & Modifiers['GN']) != 0
+    @staticmethod
+    def isADT(mod):       return (mod.modifiers & Modifiers['AT']) != 0
