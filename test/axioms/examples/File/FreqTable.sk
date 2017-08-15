@@ -37,35 +37,29 @@ Object createTable([int ln, int ld], char[ln] name, char[ld] data) {
     Read rd = new Read(r=ar);
     Object c = Character_Character_char(new Object(__cid=Character()), xform_read(rd.r));
     ar = new ReadB(r=ar);
-    bit bE = isEmpty@HashMap_NoHash(freqs);
+    bit bE = !isEmpty@HashMap_NoHash(freqs);
     bit bV = containsValue_V@HashMap_NoHash(freqs, c);
     bit bK = containsKey_K@HashMap_NoHash(freqs, c);
     if ({|bE | bV | bK|}) {
-      Object k = get_K(freqs, c);
-      if (k == null) {
+      Object v = get_K(freqs, c);
+      if (v == null) {
 	Object i0 = Integer_Integer_int(new Object(__cid=Integer()), intValue@Integer(??));
-	put_K_V(freqs, c, i0);
+	put_K_V(freqs, {|c | i0|}, {|c | i0|});
       }
       else {
-	Object i0 = Integer_Integer_int(new Object(__cid=Integer()), intValue@Integer(k) + ??);
-	Object i1 = Integer_Integer_int(new Object(__cid=Integer()), intValue@Integer(k));
-	if (??) replace_K_V(freqs, c, {|i0 | i1|});
-	else if (??) put_K_V(freqs, c, {|i0 | i1|});
-	else remove_K(freqs, c);
+	Object i0 = Integer_Integer_int(new Object(__cid=Integer()), intValue@Integer(v) + ??);
+	replace_K_V(freqs, {|c | i0|}, {|c | i0|});
       }
     }
     else {
-      Object k = get_K(freqs, c);
-      if (k == null) {
+      Object v = get_K(freqs, c);
+      if (v == null) {
 	Object i0 = Integer_Integer_int(new Object(__cid=Integer()), intValue@Integer(??));
-	put_K_V(freqs, c, i0);
+	put_K_V(freqs, {|c | i0|}, {|c | i0|});
       }
       else {
-	Object i0 = Integer_Integer_int(new Object(__cid=Integer()), intValue@Integer(k) + ??);
-	Object i1 = Integer_Integer_int(new Object(__cid=Integer()), intValue@Integer(k));
-	if (??) replace_K_V(freqs, c, {|i0 | i1|});
-	else if (??) put_K_V(freqs, c, {|i0 | i1|});
-	else remove_K(freqs, c);
+	Object i0 = Integer_Integer_int(new Object(__cid=Integer()), intValue@Integer(v) + ??);
+	replace_K_V(freqs, {|c | i0|}, {|c | i0|});
       }
     }
   }

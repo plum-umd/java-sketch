@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.FileInputStream;
+import java.util.Map;
+import java.util.HashMap;
 
 public class FreqTable {
     public static final int NUM_ASCII_CHAR = 128;
@@ -12,19 +14,22 @@ public class FreqTable {
 
     // Original program modified to remove print statements, some catch blocks, and URL frequency table
     public static harness void main() {
-	file0 = "a";
-	int[] freqs = new int[]{};
-	freqs = createTable(file0);
-	if (freqs.length == 0) assert false;
-	else {
-	    assert freqs[97] == 1;
+	Map<Character, Integer> freqs = new HashMap_NoHash<>();
+	String file0_d = "a";
+	String file0_n = "f";
+	freqs = createTable(file0_n, file0_d);
+	// if (freqs.size() == 0) assert false;
+	Character c = new Character('a');
+	Integer i = freqs.get(c);
+	assert i.intValue() == 0;
+	// else {
+	//     assert freqs[97] == 1;
 	//     for(int i = 0; i < freqs.length; i++) {
 	// 	assert freqs[i] == file0.charAt(i);
 	// // 	System.out.println("charcater code: " + i + " ,character: " + (char)i + " ,frequency: " + freqs[i]);
-	//     }
 	//     System.out.println("Total characters in file: " + sum(freqs));
-	}
-	assert true;
+	// }
+	// assert true;
     }
     // private static int sum(Integer[] list) {
     // 	assert list != null : "Failed precondition, sum: parameter list may not be null.";
@@ -35,16 +40,21 @@ public class FreqTable {
     // 	}
     // 	return total.intValue();
     // }
-    public static int[] createTable(String fileName) throws FileNotFoundException, IOException{
-    	int[] freqs = new int[NUM_ASCII_CHAR];
+    public static HashMap<Character, Integer> createTable(String fileName, String data) throws FileNotFoundException, IOException{
+    	Map<Character, Integer> freqs = new HashMap_NoHash<>();
     	File f = new File(fileName);
     	FileReaderr r = new FileReaderr(f);
     	while (r.ready()) {
-    	    int ch = r.read();
-    	    if(0 <= ch && ch < freqs.length)
-    		freqs[ch]++;
-    	    // else
-    	    // 	System.out.println((char) ch);
+    	    Character ch = new Character(r.read());
+    	    Integer i = freqs.get(ch);
+    	    if (i != null) {
+		assert ch.charValue() == 'b';
+    		freqs.replace(ch, new Integer(i.intValue() + 1));
+    	    }
+    	    else {
+		assert ch.charValue() == 'b';
+    		freqs.put(ch, new Integer(1));
+    	    }
     	}
     	r.close();
     	return freqs;

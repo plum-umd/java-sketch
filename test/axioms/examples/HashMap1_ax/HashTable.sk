@@ -23,12 +23,10 @@ Object HashTable_HashTable_int(Object self, int initialCapacity) {
 
 void resetHashTable(Object self) {
   self.size_HashTable = 0;
-  /* self.size_HashTable = ??; */
   self.currentCapacity_HashTable = self.initialCapacity_HashTable;
   self.buckets_HashTable = arraylist@ArrayList(self.initialCapacity_HashTable).alist;
 
-  /* for (int i = 0; i < self.initialCapacity_HashTable; i++) { */
-  for (int i = ??; i < {| self.size_HashTable |  self.currentCapacity_HashTable |  self.capacityGrowth_HashTable |  self.initialCapacity_HashTable |}; i++) {
+  for (int i = 0; i < self.initialCapacity_HashTable; i++) {
     self.buckets_HashTable = add(self.buckets_HashTable, null).alist;
   }
 }
@@ -103,7 +101,7 @@ void put_K_V(Object self, Object key, Object value) {
       }
       else { 0; };
       self.size_HashTable++;
-      return;
+
     }
     current = (current.__cid == HashTableNode() ? getNext@HashTableNode(current) : null);
   }
