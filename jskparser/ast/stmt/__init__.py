@@ -37,6 +37,7 @@ def _import():
     from ..expr.thisexpr import ThisExpr
     from ..expr.castexpr import CastExpr
     from ..expr.conditionalexpr import ConditionalExpr
+    from ..expr.literalexpr import LiteralExpr
     from ..expr.integerliteralexpr import IntegerLiteralExpr
     from ..expr.stringliteralexpr import StringLiteralExpr
     from ..expr.nullliteralexpr import NullLiteralExpr
@@ -47,5 +48,6 @@ def _import():
     from ..expr.enclosedexpr import EnclosedExpr    
 
     from ..body.parameter import Parameter
+    from ..body.xform import Xform
 
     return locals()

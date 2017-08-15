@@ -21,6 +21,7 @@ def _import():
     from .conditionalexpr import ConditionalExpr
     from .superexpr import SuperExpr
     from .castexpr import CastExpr
+    from .literalexpr import LiteralExpr
     from .integerliteralexpr import IntegerLiteralExpr
     from .stringliteralexpr import StringLiteralExpr
     from .nullliteralexpr import NullLiteralExpr

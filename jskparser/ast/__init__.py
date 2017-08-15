@@ -6,11 +6,11 @@ Modifiers = {
     u'AB':0x0400,
     u'ST':0x0008,
     u'FN':0x0010,
-    u'GN':u"generator", # not sure -- remnant of the past
     # don't think there are any with these values
     u'OP':0x8000,   # optional
     u'HN':0x10000,   # harness
     u'GN':0x20000,   # generator
+    u'AT':0x40000,   # adt
 }
 
 Operators = {
@@ -154,6 +154,9 @@ def _import():
     from .importdeclaration import ImportDeclaration
 
     from .body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
+    from .body.fielddeclaration import FieldDeclaration
+    from .body.methoddeclaration import MethodDeclaration
+    from .body.axiomdeclaration import AxiomDeclaration
 
     from .expr.nameexpr import NameExpr
     from .expr.qualifiednameexpr import QualifiedNameExpr
