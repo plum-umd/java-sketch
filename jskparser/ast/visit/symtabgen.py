@@ -16,6 +16,7 @@ from ..body.methoddeclaration import MethodDeclaration
 from ..body.constructordeclaration import ConstructorDeclaration
 from ..body.emptymemberdeclaration import EmptyMemberDeclaration
 from ..body.axiomdeclaration import AxiomDeclaration
+from ..body.axiomparameter import AxiomParameter
 
 from ..stmt.blockstmt import BlockStmt
 from ..stmt.ifstmt import IfStmt
@@ -36,6 +37,8 @@ from ..type.referencetype import ReferenceType
 # https://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.3
 class SymtabGen(object):
     NONSYM = [PrimitiveType, VoidType, IntegerLiteralExpr]
+    def __init__(self, **kwargs):
+       self. _lib = kwargs.get('lib', True)
 
     @v.on("node")
     def visit(self, node):
@@ -61,23 +64,25 @@ class SymtabGen(object):
     def visit(self, node):
         # The scope of a top level type is all type declarations in the package in
         # which the top level type is declared.
-        for i in JAVA_LANG: # add in java.lang which is import by default
-            nm = i.split('.')
-            qn = {
-                u'@t': u'QualifiedNameExpr',
-                u'name': nm[-1],
-                u'qualifier': {
+        if self.lib:
+            for i in JAVA_LANG: # add in java.lang which is import by default
+                nm = i.split('.')
+                qn = {
                     u'@t': u'QualifiedNameExpr',
-                    u'name': u'lang',
+                    u'name': nm[-1],
                     u'qualifier': {
-                        u'name': u'java',},},
-            }
+                        u'@t': u'QualifiedNameExpr',
+                        u'name': u'lang',
+                        u'qualifier': {
+                            u'name': u'java',},},
+                }
             node.imports.append(ImportDeclaration({u'@t':u'ImportDeclaration',u'name':qn, u'implicit': True}))
-        for i in node.imports: node.symtab.update({str(i):i})
+            for i in node.imports: node.symtab.update({str(i):i})
         d = dict([v for v in map(lambda t: (t.name,t), node.types)])
         for ty in node.types:
             ty.symtab.update({u'_cu_':node})
-            for i in node.imports: ty.symtab.update({str(i).split('.')[-1]:i})
+            if self.lib:
+                for i in node.imports: ty.symtab.update({str(i).split('.')[-1]:i})
             ty.symtab.update(d)
             ty.accept(self)
 
@@ -96,8 +101,7 @@ class SymtabGen(object):
         [node.symtab.update({n.name:n}) for n in node.typeParameters if n.name not in node.symtab]
         node.members = filter(lambda n: not isinstance(n, EmptyMemberDeclaration), node.members)
         map(lambda n: node.symtab.update({n.name:n} if isinstance(n, FieldDeclaration) or \
-                                         isinstance(n, ClassOrInterfaceDeclaration) or \
-                                         isinstance(n, AxiomDeclaration) else \
+                                         isinstance(n, ClassOrInterfaceDeclaration) else \
                                          {n.sig():n}), node.members)
         map(lambda n: n.accept(self), node.members)
 
@@ -124,6 +128,49 @@ class SymtabGen(object):
             target.symtab.update({str(node):node})
             node.name = '{}_{}_{}'.format(str(node), node.parentNode.typee, target.name)
             target.symtab.update({str(node):node})
+
+    @v.when(AxiomDeclaration)
+    def visit(self, node):
+        self.new_symtab(node, cp=True)
+        # print '*'*10, str(node)
+        # print 'axiomdeclaration:', str(node), node.name
+        # print node.symtab
+        node.parentNode.symtab.update({node.sig():node})
+
+        if str(node.typee) not in PRIMITIVES and str(node.typee) not in node.symtab:
+            node.symtab.update({str(node.typee):node.typee})
+        # somethign is weird here. shouldnt have to visit idd and parameters
+        # for p in node.parameters:
+        #     if p.idd: p.idd.accept(self)
+        #     if p.method: p.method.accept(self)
+        map(lambda p: p.accept(self), node.parameters)
+        for p in node.parameters:
+            if p.idd:
+                p.idd.symtab.update(node.symtab)
+                # node.symtab = dict(p.idd.symtab.items() + node.symtab.items())
+            if p.method:
+                p.method.symtab.update(node.symtab)
+                node.symtab = dict(p.method.symtab.items() + node.symtab.items())
+        if node.body:
+            node.body.accept(self)
+        # print node.symtab
+        # print '*'*10, str(node)
+
+    @v.when(AxiomParameter)
+    def visit(self, node):
+        self.new_symtab(node)
+        # print '--'*8
+        # print 'axiomparameter:', node.name
+        # print node.symtab
+
+        node.typee.accept(self)
+        if node.idd:
+            node.idd.accept(self)
+        else:
+            node.method.accept(self)
+        # print 'axiomparameter:', node.name
+        # print node.symtab
+        # print '--'*8
 
     @v.when(ConstructorDeclaration)
     def visit(self, node):
@@ -215,3 +262,8 @@ class SymtabGen(object):
     @v.when(NameExpr)
     def visit(self, node):
         self.new_symtab(node)
+
+    @property
+    def lib(self): return self._lib
+    @lib.setter
+    def lib(self, v): self._lib = v
