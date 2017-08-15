@@ -20,14 +20,16 @@ class AxiomParameter(Node):
         idd = kwargs.get(u'id', {})
         self._id = locs[u'VariableDeclarator'](kwargs) if idd else None
 
+        # AxiomDeclaration method
         method = kwargs.get(u'method', {})
-        self._method = locs[u'MethodDeclaration'](method) if method else None
+        self._method = locs[u'AxiomDeclaration'](method) if method else None
 
         # List<AnnotationExpr> annotations;
         annotations = kwargs.get(u'annotations', [])
         self._annotations = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
                                 annotations.get(u'@e', [])) if annotations else []
 
+        self.add_as_parent([self.typee]+[self.annotations])
         if self._id: self.add_as_parent([self._id])
         elif self._method: self.add_as_parent([self._method])
 
@@ -47,7 +49,7 @@ class AxiomParameter(Node):
     def idd(self, v): self._id = v
 
     @property
-    def name(self): return self._name
+    def name(self): return self._id.name if self._id else self._method.name
     @name.setter
     def name(self, v): self._name = v
 
@@ -65,3 +67,5 @@ class AxiomParameter(Node):
     def annotations(self): return self._annotations
     @annotations.setter
     def annotations(self, v): self._annotations = v
+
+    def __str__(self): return self.name
