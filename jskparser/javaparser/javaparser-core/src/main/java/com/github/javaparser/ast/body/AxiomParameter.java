@@ -24,7 +24,7 @@ package com.github.javaparser.ast.body;
 
 import com.github.javaparser.ast.expr.AnnotationExpr;
 import com.github.javaparser.ast.type.Type;
-import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.body.AxiomDeclaration;
 import com.github.javaparser.ast.visitor.GenericVisitor;
 import com.github.javaparser.ast.visitor.VoidVisitor;
 
@@ -36,19 +36,19 @@ import java.util.List;
 public final class AxiomParameter extends BaseParameter {
     private Type type;
 
-    private MethodDeclaration method;
+    private AxiomDeclaration method;
 
     public AxiomParameter() {
     }
 
     public AxiomParameter(final int beginLine, final int beginColumn, final int endLine,
-			  final int endColumn, Type type, VariableDeclaratorId id, MethodDeclaration method) {
+			  final int endColumn, Type type, VariableDeclaratorId id, AxiomDeclaration method) {
     	super(beginLine, beginColumn, endLine, endColumn, id);
         setType(type);
 	setMethod(method);
     }
 
-    public AxiomParameter(Type type, VariableDeclaratorId id, MethodDeclaration method) {
+    public AxiomParameter(Type type, VariableDeclaratorId id, AxiomDeclaration method) {
     	super(id);
         setType(type);
 	setMethod(method);
@@ -61,7 +61,7 @@ public final class AxiomParameter extends BaseParameter {
 
     public AxiomParameter(int beginLine, int beginColumn, int endLine, int endColumn,
 			  int modifiers, List<AnnotationExpr> annotations, Type type,
-			  VariableDeclaratorId id, MethodDeclaration method) {
+			  VariableDeclaratorId id, AxiomDeclaration method) {
         super(beginLine, beginColumn, endLine, endColumn, modifiers, annotations, id);
         setType(type);
         setMethod(method);
@@ -81,7 +81,7 @@ public final class AxiomParameter extends BaseParameter {
         return type;
     }
 
-    public MethodDeclaration getMethod() {
+    public AxiomDeclaration getMethod() {
         return method;
     }
 
@@ -90,7 +90,7 @@ public final class AxiomParameter extends BaseParameter {
 	setAsParentNodeOf(this.type);
     }
 
-    public void setMethod(MethodDeclaration method) {
+    public void setMethod(AxiomDeclaration method) {
         this.method = method;
 	setAsParentNodeOf(this.method);
     }

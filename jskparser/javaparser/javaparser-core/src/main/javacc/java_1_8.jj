@@ -1513,6 +1513,7 @@ BodyDeclaration ClassOrInterfaceBodyDeclaration(boolean isInterface):
 	      LOOKAHEAD( Type() <IDENTIFIER> ( "[" "]" )* ( "," | "=" | ";" ) )
 	      ret = FieldDeclaration(modifier)
 	    |
+	      "axiom"
 	      ret = AxiomDeclaration(modifier)
 	    |
 	      ret = MethodDeclaration(modifier)
@@ -1616,12 +1617,13 @@ AxiomDeclaration AxiomDeclaration(Modifier modifier):
 	BlockStmt body = null;
 	int line = modifier.beginLine;
 	int column = modifier.beginColumn;
+	boolean bang = false;
 }
 {
-  "axiom " type = Type() name = Name() parameters = AxiomParameters() ( body = Block() | ";")
+  type = Type() name = Name() ( "!"  { bang = true; } )? parameters = AxiomParameters() ( body = Block() | ( ";") )?
 
   {
-     AxiomDeclaration tmp = new AxiomDeclaration(line, column, token.endLine, token.endColumn, modifier.modifiers, modifier.annotations, type, null, parameters, body);
+     AxiomDeclaration tmp = new AxiomDeclaration(line, column, token.endLine, token.endColumn, modifier.modifiers, modifier.annotations, type, null, parameters, body, bang);
      tmp.setNameExpr(name);
      return tmp;
   }	
@@ -1643,14 +1645,14 @@ AxiomParameter AxiomParameter():
 	Modifier modifier = null;
 	Type type = null;
 	VariableDeclaratorId id = null;
-	MethodDeclaration method = null;
+	AxiomDeclaration method = null;
 	AxiomParameter ret;
 }
 {
   (
 	LOOKAHEAD(3)
 	modifier = Modifiers()
-        method = MethodDeclaration(modifier)
+        method = AxiomDeclaration(modifier)
 	{ ret = new AxiomParameter(modifier.beginLine, modifier.beginColumn, token.endLine, token.endColumn, modifier.modifiers, modifier.annotations, type, id, method); }
         |
          type = Type() id = VariableDeclaratorId()
@@ -1677,7 +1679,7 @@ MethodDeclaration MethodDeclaration(Modifier modifier):
   // Modifiers already matched in the caller!
   [ typeParameters = TypeParameters() { int[] lineCol=(int[])typeParameters.remove(0); if(line==-1){ line=lineCol[0]; column=lineCol[1];} } ]
   type = ResultType() { if(line==-1){line=type.getBeginLine(); column=type.getBeginColumn();}}
-  name = Name() ("!" { bang = true; })? parameters = FormalParameters() ( "[" "]" { arrayCount++; } )*
+  name = Name() ( "!" { bang = true; } )? parameters = FormalParameters() ( "[" "]" { arrayCount++; } )*
   [ "throws" throwType = ReferenceTypeWithAnnotations() { throws_ = add(throws_, throwType); }
     ("," throwType = ReferenceTypeWithAnnotations() { throws_ = add(throws_, throwType); })* ]
   ( block = Block() | ( ";" )? )

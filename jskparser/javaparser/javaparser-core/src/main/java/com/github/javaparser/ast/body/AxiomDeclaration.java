@@ -55,6 +55,8 @@ public final class AxiomDeclaration extends BodyDeclaration implements Documenta
 
     private BlockStmt body;
 
+    private boolean bang = false;
+
     public AxiomDeclaration() {
     }
 
@@ -72,8 +74,9 @@ public final class AxiomDeclaration extends BodyDeclaration implements Documenta
 	setParameters(parameters);
     }
 
-    public AxiomDeclaration(final int modifiers, final List<AnnotationExpr> annotations, final Type type,
-			    final String name, final List<AxiomParameter> parameters, final BlockStmt block) {
+    public AxiomDeclaration(final int modifiers, final List<AnnotationExpr> annotations,
+			    final Type type, final String name,
+			    final List<AxiomParameter> parameters, final BlockStmt block) {
 	super(annotations);
 	setModifiers(modifiers);
 	setType(type);
@@ -82,9 +85,11 @@ public final class AxiomDeclaration extends BodyDeclaration implements Documenta
 	setBody(block);
     }
 
-    public AxiomDeclaration(final int beginLine, final int beginColumn, final int endLine, final int endColumn,
-			    final int modifiers, final List<AnnotationExpr> annotations, final Type type,
-			    final String name, final List<AxiomParameter> parameters, final BlockStmt block) {
+    public AxiomDeclaration(final int beginLine, final int beginColumn, final int endLine,
+			    final int endColumn, final int modifiers,
+			    final List<AnnotationExpr> annotations, final Type type,
+			    final String name, final List<AxiomParameter> parameters,
+			    final BlockStmt block) {
 	super(beginLine, beginColumn, endLine, endColumn, annotations);
 	setModifiers(modifiers);
 	setType(type);
@@ -93,6 +98,20 @@ public final class AxiomDeclaration extends BodyDeclaration implements Documenta
 	setBody(block);
     }
 
+    public AxiomDeclaration(final int beginLine, final int beginColumn, final int endLine,
+			    final int endColumn, final int modifiers,
+			    final List<AnnotationExpr> annotations, final Type type,
+			    final String name, final List<AxiomParameter> parameters,
+			    final BlockStmt block, final boolean bang) {
+	super(beginLine, beginColumn, endLine, endColumn, annotations);
+	setModifiers(modifiers);
+	setType(type);
+	setName(name);
+	setParameters(parameters);
+	setBody(block);
+	setBang(bang);
+    }
+    
     @Override public <R, A> R accept(final GenericVisitor<R, A> v, final A arg) {
 	return v.visit(this, arg);
     }
@@ -133,6 +152,10 @@ public final class AxiomDeclaration extends BodyDeclaration implements Documenta
 	return type;
     }
 
+    public boolean getBang() {
+	return bang;
+    }
+
     public void setBody(final BlockStmt body) {
 	this.body = body;
 	setAsParentNodeOf(this.body);
@@ -158,6 +181,10 @@ public final class AxiomDeclaration extends BodyDeclaration implements Documenta
     public void setType(final Type type) {
 	this.type = type;
 	setAsParentNodeOf(this.type);
+    }
+
+    public void setBang(final boolean bang) {
+	this.bang = bang;
     }
 
     // @Override
