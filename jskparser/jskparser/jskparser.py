@@ -24,13 +24,15 @@ def parse(path, **kwargs):
     # exit()
     ## logging configuration
     create_logger(log_lvls.get(kwargs.get('log_lvl', '10')))
-    with open(util.toAST(path, 'java', kwargs.get('lib', True)), 'r') as fd:
+
+    lib = kwargs.get('lib', True)
+    with open(util.toAST(path, 'java', lib), 'r') as fd:
         d = json.load(fd)
         d.update({u'GSYMTAB':'RESET'})
         logging.info('parsing file...')
         program = CompilationUnit(d)
         
-        s = SymtabGen()
+        s = SymtabGen(lib=lib)
         logging.info('generating symbol table...')
         s.visit(program)
         logging.info('building class heirarchy...')
