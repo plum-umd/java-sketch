@@ -7,6 +7,7 @@ from . import _import
 from .expression import Expression
 from .fieldaccessexpr import FieldAccessExpr
 from .thisexpr import ThisExpr
+from .nameexpr import NameExpr
 
 from ..type.primitivetype import PrimitiveType
 from ..type.classorinterfacetype import ClassOrInterfaceType
@@ -95,12 +96,26 @@ class MethodCallExpr(Expression):
     def arg_typs(self):
         typs = []
         for a in self.args:
-            if type(a) == FieldAccessExpr:
+            # print type(a), a
+            if isinstance(a, FieldAccessExpr):
                 # TODO: if a field from an imported class is only used in a method call
                 # this will fail :(
                 fld = utils.find_fld(a, None)
                 if not fld: return None
                 typ = fld.typee
+            elif isinstance(a, NameExpr):
+                t = a.parentNode.symtab.get(a.name)
+                if isinstance(t, NameExpr):
+                    while t.parentNode:
+                        t = t.parentNode
+                        t = t.symtab.get(t.name)
+                        if not t:
+                            raise Exception('Unable to find VarDec in {} and all parents.'.format(self.name))
+                        if not isinstance(t, NameExpr):
+                            typ = t.typee
+                            break
+                else:
+                    typ = t.typee
             elif isinstance(a, MethodCallExpr):
                 typ = a.typee
             elif isinstance(a, ThisExpr):
