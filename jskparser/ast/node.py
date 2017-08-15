@@ -3,6 +3,8 @@ import json
 
 from . import _import
 
+from copy import copy
+
 class Node(object):
     GSYMTAB = {}
     def __init__(self, kwargs={}):
@@ -225,7 +227,23 @@ class Node(object):
         #         .format(k,v)
         #     print '*'*20,'\nSYMBOL TABLE:'
 
-    def accept(self, v): v.visit(self)
+    def add_parent_post(self, p, recurse=True):
+        # print 'adding parent:', p, str(p), type(p), self, type(self), self.childrenNodes
+        nm = self.sig() if type(self).__name__ == 'MethodDeclaration' else self.name
+        self.symtab = {nm:self}
+        if nm and nm not in p.symtab: p.symtab.update({nm:self})
+        if self not in p.childrenNodes: p.childrenNodes.append(self)
+        self.parentNode = p
+        if p.symtab and self.symtab:
+            self.symtab = dict(p.symtab.items() + self.symtab.items())
+        elif p.symtab:
+            self.symtab = copy.copy(p.symtab)
+
+        if recurse:
+            for c in self.childrenNodes:
+                if c: c.add_parent_post(self, True)
+
+    def accept(self, v, **kwargs): v.visit(self, **kwargs)
 
     def gen(self): return set([])
     def kill(self): return set([])
@@ -248,3 +266,8 @@ class Node(object):
                     if not k.parentNode:
                         k.parentNode = self
                         self.childrenNodes.append(k)
+
+    def axiomParameter(self):
+        if type(self).__name__ == 'AxiomParameter': return True
+        if self.parentNode: return self.parentNode.axiomParameter()
+        else: return False
