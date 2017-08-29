@@ -297,7 +297,9 @@ class Encoder(object):
         for (m,i) in zip(adt_mtds, xrange(len(adt_mtds))):
             if not m.pure:
                 mtd = cp.copy(m)
-                mtd.name = m.name + 'B'
+                # BEN CHANGE
+                # mtd.name = m.name + 'B'
+                mtd.name = m.name + 'b'
                 mtd.pure = True
                 adt_mtds.insert(i+1, mtd)
 
@@ -388,6 +390,7 @@ class Encoder(object):
 
             decs = utils.extract_nodes([AxiomDeclaration], a.parameters[0])
             cases = map(lambda d: d.name.capitalize(), decs)
+            print("CASES: "+str(cases))            
             body.add_body(cases, a.body.stmts)
 
         for v in xforms.values():
