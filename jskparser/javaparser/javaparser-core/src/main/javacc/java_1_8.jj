@@ -2092,9 +2092,11 @@ List ClassOrInterfaceTypeList():
 NameExpr SimpleName():
 {
     NameExpr ret;
+    boolean bang = false;
+    String name = "";
 }
 {
-  <IDENTIFIER> { ret = new NameExpr(token.beginLine, token.beginColumn, token.endLine, token.endColumn, token.image); }
+  (<IDENTIFIER> { name = token.image; })( "!"  { bang = true; } )? { ret = new NameExpr(token.beginLine, token.beginColumn, token.endLine, token.endColumn, name, bang); }
   { return ret; }
 }
 
@@ -2583,6 +2585,7 @@ Expression PrimaryPrefix():
 	  	name = SimpleName() { line=token.beginLine; column=token.beginColumn; }
 	  	[ args = Arguments() {hasArgs=true;} ]
 	  	{
+			System.out.println("SimpleName?");
 	  		if (hasArgs) {
 	  			MethodCallExpr m = new MethodCallExpr(line, column, token.endLine, token.endColumn, null, null, null, args);
 				m.setNameExpr(name);
@@ -2592,7 +2595,7 @@ Expression PrimaryPrefix():
 			}
 	  	}
   )
-  { return ret; }
+  { System.out.println("Primary Prefix?"); return ret; }
 }
 
 Expression PrimarySuffix(Expression scope):
