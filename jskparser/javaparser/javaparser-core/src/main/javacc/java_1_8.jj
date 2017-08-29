@@ -1620,10 +1620,10 @@ AxiomDeclaration AxiomDeclaration(Modifier modifier):
 	boolean bang = false;
 }
 {
-  type = Type() name = Name() ( "!"  { bang = true; } )? parameters = AxiomParameters() ( body = Block() | ( ";") )?
+  type = Type() name = Name() parameters = AxiomParameters() ( body = Block() | ( ";") )?
 
   {
-     AxiomDeclaration tmp = new AxiomDeclaration(line, column, token.endLine, token.endColumn, modifier.modifiers, modifier.annotations, type, null, parameters, body, bang);
+     AxiomDeclaration tmp = new AxiomDeclaration(line, column, token.endLine, token.endColumn, modifier.modifiers, modifier.annotations, type, null, parameters, body, name.getBang());
      tmp.setNameExpr(name);
      return tmp;
   }	
@@ -2066,11 +2066,14 @@ NameExpr Name():
  */
 {
 	NameExpr ret;
+	boolean bang = false;
+	String name = "";
 }
 {
-  <IDENTIFIER> { ret = new NameExpr(token.beginLine, token.beginColumn, token.endLine, token.endColumn, token.image); }
+  (<IDENTIFIER> { name = token.image; })( "!"  { bang = true; } )? { ret = new NameExpr(token.beginLine, token.beginColumn, token.endLine, token.endColumn, name, bang); }
   ( LOOKAHEAD(2) "." <IDENTIFIER> { ret = new QualifiedNameExpr(ret.getBeginLine(), ret.getBeginColumn(), token.endLine, token.endColumn, ret, token.image); } )*
-  { return ret; }
+  { if (ret.getName().equals("!")) System.out.println("ERRRRGGG");
+    else return ret; }
 }
 
 List ClassOrInterfaceTypeList():

@@ -32,6 +32,8 @@ public class NameExpr extends Expression implements NamedNode {
 
 	private String name;
 
+        private boolean bang = false;
+    
 	public NameExpr() {
 	}
 
@@ -43,6 +45,13 @@ public class NameExpr extends Expression implements NamedNode {
 			final String name) {
 		super(beginLine, beginColumn, endLine, endColumn);
 		this.name = name;
+	}
+
+    	public NameExpr(final int beginLine, final int beginColumn, final int endLine, final int endColumn,
+			final String name, final boolean bang) {
+		super(beginLine, beginColumn, endLine, endColumn);
+		this.name = name;
+		this.bang = bang;
 	}
 
 	@Override public <R, A> R accept(final GenericVisitor<R, A> v, final A arg) {
@@ -60,6 +69,14 @@ public class NameExpr extends Expression implements NamedNode {
 
 	public final void setName(final String name) {
 		this.name = name;
+	}
+
+        public final boolean getBang() {
+		return bang;
+	}
+
+	public final void setBang(final boolean bang) {
+		this.bang = bang;
 	}
 
 }
