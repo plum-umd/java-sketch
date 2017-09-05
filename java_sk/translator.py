@@ -1200,6 +1200,8 @@ class Translator(object):
 
     def trans_xform(self, xname, xform, stmts, **kwargs):
         label = str(xform.stmt.selector)
+        # Transform xform function call into appropriate function call
+        #    i.e A return of type add! in JSketch translated to a call to xform_addb
         def change_call(s, *args):
             t = s.symtab.get(s.name)
             if isinstance(s, MethodCallExpr):
@@ -1208,6 +1210,8 @@ class Translator(object):
                 if not mdec: return
                 # change call name to include xform
                 s.name = 'xform_{}'.format(s.name)
+                if not s.pure:
+                    s.name += "b"
                 # change parameters to match ADT construction members
                 ax_mtd = mdec.symtab.get('m'+mdec.adtName)
                 args = [LiteralExpr({u'name':u'{}.self'.format(label),},),] if \

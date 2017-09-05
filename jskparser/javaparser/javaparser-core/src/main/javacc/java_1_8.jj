@@ -2527,7 +2527,7 @@ Expression PrimaryPrefix():
 	  [ args = Arguments() {hasArgs=true;} ]
 	  	{
 			if (hasArgs) {
-	  			MethodCallExpr m = new MethodCallExpr(ret.getBeginLine(), ret.getBeginColumn(), token.endLine, token.endColumn, ret, typeArgs, null, args);
+	  			MethodCallExpr m = new MethodCallExpr(ret.getBeginLine(), ret.getBeginColumn(), token.endLine, token.endColumn, ret, typeArgs, null, args, name.getBang());
 				m.setNameExpr(name);
 				ret = m;
 			} else {
@@ -2585,17 +2585,16 @@ Expression PrimaryPrefix():
 	  	name = SimpleName() { line=token.beginLine; column=token.beginColumn; }
 	  	[ args = Arguments() {hasArgs=true;} ]
 	  	{
-			System.out.println("SimpleName?");
 	  		if (hasArgs) {
-	  			MethodCallExpr m = new MethodCallExpr(line, column, token.endLine, token.endColumn, null, null, null, args);
-				m.setNameExpr(name);
+	  			MethodCallExpr m = new MethodCallExpr(line, column, token.endLine, token.endColumn, null, null, null, args, name.getBang());
+				m.setNameExpr(name);				
 				ret = m;
 			} else {
 	  			ret = name;
 			}
 	  	}
   )
-  { System.out.println("Primary Prefix?"); return ret; }
+  { return ret; }
 }
 
 Expression PrimarySuffix(Expression scope):
@@ -2634,7 +2633,7 @@ Expression PrimarySuffixWithoutSuper(Expression scope):
 	  	[ args = Arguments() {hasArgs=true;} ]
 	  	{
 			if (hasArgs) {
-	  			MethodCallExpr m = new MethodCallExpr(scope.getBeginLine(), scope.getBeginColumn(), token.endLine, token.endColumn, scope, typeArgs, null, args);
+	  			MethodCallExpr m = new MethodCallExpr(scope.getBeginLine(), scope.getBeginColumn(), token.endLine, token.endColumn, scope, typeArgs, null, args, name.getBang());
 				m.setNameExpr(name);
 				ret = m;
 			} else {

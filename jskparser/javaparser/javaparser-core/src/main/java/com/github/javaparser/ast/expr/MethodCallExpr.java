@@ -42,6 +42,8 @@ public final class MethodCallExpr extends Expression {
 
 	private List<Expression> args;
 
+        private boolean pure = true;
+
 	public MethodCallExpr() {
 	}
 
@@ -65,6 +67,16 @@ public final class MethodCallExpr extends Expression {
 		setArgs(args);
 	}
 
+	public MethodCallExpr(final int beginLine, final int beginColumn, final int endLine, final int endColumn,
+			      final Expression scope, final List<Type> typeArgs, final String name, final List<Expression> args, boolean bang) {
+		super(beginLine, beginColumn, endLine, endColumn);
+		setScope(scope);
+		setTypeArgs(typeArgs);
+		setName(name);
+		setArgs(args);
+		setPure(!bang);
+	}
+    
 	@Override public <R, A> R accept(final GenericVisitor<R, A> v, final A arg) {
 		return v.visit(this, arg);
 	}
@@ -73,6 +85,10 @@ public final class MethodCallExpr extends Expression {
 		v.visit(this, arg);
 	}
 
+        public boolean getPure() {
+	return pure;
+        }
+    
 	public List<Expression> getArgs() {
         args = ensureNotNull(args);
         return args;
@@ -95,6 +111,10 @@ public final class MethodCallExpr extends Expression {
         return typeArgs;
 	}
 
+        public void setPure(final boolean pure) {
+	    this.pure = pure;
+        }
+    
 	public void setArgs(final List<Expression> args) {
 		this.args = args;
 		setAsParentNodeOf(this.args);

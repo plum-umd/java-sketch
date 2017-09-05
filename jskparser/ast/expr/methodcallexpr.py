@@ -33,6 +33,13 @@ class MethodCallExpr(Expression):
 
         self.add_as_parent([self.scope]+self.args)
 
+        self._pure = kwargs.get(u'pure', {})
+
+    @property
+    def pure(self): return self._pure
+    @pure.setter
+    def pure(self, v): self._pure = v
+        
     @property
     def scope(self): return self._scope
     @scope.setter

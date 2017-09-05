@@ -255,6 +255,7 @@ class Encoder(object):
         return cls_sk
 
     def gen_axiom_cls_sk(self, cls):
+        # Defines Constructors for Axiom ADT
         def gen_adt_constructor(mtd):
             c = '    {}{} {{ '.format(mtd.name.capitalize(), ' '*(max_len+1-len(mtd.name)))
             if not mtd.default:
@@ -266,6 +267,7 @@ class Encoder(object):
                 c += '{} {}; '.format(self.tltr.trans_ty(t), n)
             c += '}\n'
             return c
+        # Generates Object Wrapper Functions for ADT Constructors
         def gen_obj_constructor(mtd):
             name = mtd.name
             (ptyps, pnms) = (map(str, mtd.param_typs()), map(str, mtd.param_names()))
@@ -291,6 +293,7 @@ class Encoder(object):
         buf = cStringIO.StringIO()
         buf.write("package {};\n\n".format(cname))
 
+        # Creates list of adt "functions" (i.e. axioms) including bang functions
         mtds = utils.extract_nodes([MethodDeclaration], cls, recurse=False)
         adt_mtds = filter(lambda m: m.adt, mtds)
         # add bang functions for non-pure methods
@@ -317,14 +320,18 @@ class Encoder(object):
         # I like to format
         max_len = max(map(lambda m: len(m.name), adt_mtds))
 
+        # Create ADT constructors for all methods and wraps them in ADT struct
         cons = map(gen_obj_constructor, adt_mtds)
         adt_cons = map(gen_adt_constructor, adt_mtds)
         adt = 'adt {} {{\n{}}}\n\n{}'.format(cname, ''.join(adt_cons), ''.join(cons))
         buf.write(adt)
 
-        # create all xform methods
+        # Updates n's symbol table to include parents symbol table items
         def cpy_sym(n, *args):
             if n.parentNode: n.symtab = dict(n.parentNode.symtab.items() + n.symtab.items())
+        # Creates a dictionary of xforms
+        #   Keys are the xform name (of the form "xform_"+adt_name)
+        #   Values are MethodDeclarations with lots of ugly looking formatting 
         xforms = {}
         for a in adt_mtds:
             xnm = u'xform_{}'.format(a.name)
@@ -339,15 +346,20 @@ class Encoder(object):
             x.adtName = str(a)
             x.add_parent_post(cls, True)
             xforms[xnm] = x
+
+        # Applies cpy_sym to all children of this class and all children of those
+        #    Updates symbol table of each of these children
         map(partial(utils.walk, cpy_sym), cls.childrenNodes)
 
         # create xform dispatch method
+        #    i.e. calls the right xform depending on type of ADT
         dispatch = Xform.gen_xform(cls, u'xform', adt_mtds,
                                    [{u'@t':u'Parameter',
                                      u'type':{u'@t':u'ClassOrInterfaceType',u'name':cname},
                                      u'id':{u'name':u'self',},},],)
         dispatch.add_parent_post(cls)
 
+        # Builds up return and body of dispatch function
         for a in adt_mtds:
             xnm = 'xform_{}'.format(a.name)
             xf = xforms[xnm]
@@ -365,9 +377,12 @@ class Encoder(object):
                 ret.expr.args.append(v)
             body = dispatch.get_xform()
             body.add_body([a.name.capitalize()], [ret])
+
+        # Writes dispatch function
         buf.write(self.tltr.trans(dispatch))
 
         # populate individual xforms with axioms
+        #   
         ax_mtds = utils.extract_nodes([AxiomDeclaration], cls, recurse=False)
         for a in ax_mtds:
             xnm = 'xform_{}'.format(a.name)
@@ -375,10 +390,14 @@ class Encoder(object):
             xf.name = 'xform_{}'.format(a.name)
 
             # rename xf parameters to correspond to axiom declaration, not adt
+            #    (i.e. parameters representing xforms must access their fields through
+            #    correct names, some parameters must be renamed
             for (xp,ap) in zip(xf.parameters, a.parameters):
-                if ap.idd: xp.name = ap.name
-
+                if ap.idd:
+                    xp.name = ap.name
+                    
             # there has to be a better way than this
+            #    More updating of the symbol tables, not sure why the order
             xf.symtab = dict(a.symtab.items() + xf.symtab.items())
             map(partial(utils.walk, cpy_sym), xf.childrenNodes)
             a.symtab = dict(xf.symtab.items() + a.symtab.items())
@@ -390,7 +409,6 @@ class Encoder(object):
 
             decs = utils.extract_nodes([AxiomDeclaration], a.parameters[0])
             cases = map(lambda d: d.name.capitalize(), decs)
-            print("CASES: "+str(cases))            
             body.add_body(cases, a.body.stmts)
 
         for v in xforms.values():
