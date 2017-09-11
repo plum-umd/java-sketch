@@ -56,7 +56,17 @@ class MethodCallExpr(Expression):
         obj = utils.node_to_obj(self.scope) if self.scope else self
         sym = obj.symtab
         # first look for this methed in the current scope
-        mtd = sym.get(self.sig())
+        sig = self.sig()
+        # print("HERE1: "+str(sig))
+        # for k in sym:
+        #     print(str(k)+": "+str(sym[k]))
+        if not self._pure:
+            if sig[1:6] != "xform":
+                sig = "a"+sig[1:]
+                sig = sig.replace("_", "b_", 1)
+                print("HERE: "+str(sig))
+                print("pure?: "+str(self._pure))
+        mtd = sym.get(sig)
         if not mtd:
             # check for equals
             cls = self.symtab.get(str(obj.typee))
