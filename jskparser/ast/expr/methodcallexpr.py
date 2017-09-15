@@ -64,8 +64,6 @@ class MethodCallExpr(Expression):
             if sig[1:6] != "xform":
                 sig = "a"+sig[1:]
                 sig = sig.replace("_", "b_", 1)
-                print("HERE: "+str(sig))
-                print("pure?: "+str(self._pure))
         mtd = sym.get(sig)
         if not mtd:
             # check for equals

@@ -11,7 +11,7 @@ class MethodDeclaration(BodyDeclaration):
     def __init__(self, kwargs={}):
         super(MethodDeclaration, self).__init__(kwargs)
         locs = _import()
-
+        
         # int modifiers
         self._modifiers = kwargs.get(u'modifiers', 0)
 
@@ -21,6 +21,7 @@ class MethodDeclaration(BodyDeclaration):
 
         # List<Parameter> parameters
         params = kwargs.get(u'parameters', [])
+        self._params = params
         self._parameters = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
                                params.get(u'@e', [])) if params else []
 
@@ -60,6 +61,11 @@ class MethodDeclaration(BodyDeclaration):
         
         self.add_as_parent(self.parameters+self.typeParameters+[self.typee]+self.throws+[self.body])
 
+    @property
+    def params(self): return self._params
+    @params.setter
+    def params(self, v): self._params = v
+    
     @property
     def modifiers(self): return self._modifiers
     @modifiers.setter

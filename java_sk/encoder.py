@@ -272,7 +272,15 @@ class Encoder(object):
             name = mtd.name
             (ptyps, pnms) = (map(str, mtd.param_typs()), map(str, mtd.param_names()))
             params = ', '.join(map(lambda p: ' '.join(p), zip(ptyps, pnms)))
-            c = 'Object {}('.format(name.lower())
+            c = 'Object '
+            mtd_name = str(name.lower())
+            typ_params = '_'.join(ptyps)
+            if not mtd.default:
+                mtd_name += '_Object'
+                if mtd.parameters:
+                    mtd_name += '_{}'.format(typ_params)
+            c += '{}'.format(mtd_name)
+            c += '('
             if not mtd.default:
                 c += 'Object self'
                 if mtd.parameters: c += ', '
@@ -285,7 +293,7 @@ class Encoder(object):
             for n in pnms:
                 c += ', {0}={0}'.format(n)
             c += '));\n}\n\n'
-            return c
+            return c, name
 
         cname = str(cls)
         # add new axiom fields to Object struct
@@ -321,10 +329,25 @@ class Encoder(object):
         max_len = max(map(lambda m: len(m.name), adt_mtds))
 
         # Create ADT constructors for all methods and wraps them in ADT struct
-        cons = map(gen_obj_constructor, adt_mtds)
+        #    Also create a dictionary for object constructors for symbol table reference
+        obj_cons = {}
+        cons, cons_names = zip(*map(gen_obj_constructor, adt_mtds))
         adt_cons = map(gen_adt_constructor, adt_mtds)
         adt = 'adt {} {{\n{}}}\n\n{}'.format(cname, ''.join(adt_cons), ''.join(cons))
         buf.write(adt)
+
+        # HOW TO DO THIS!!??
+        for name,a in zip(cons_names, adt_mtds):            
+            print("HERE777: "+str(a.parameters))
+            if not a.default:
+                print "BLAH"
+            v = MethodDeclaration({u'type':{u'@t':u'ClassOrInterfaceType',u'name':u'Object',}, u'name':a.name,u'adtType':a.adtType,u'modifiers':a.modifiers,u'body':a.body,},) 
+            _self = Parameter({u'id':{u'name':u'self'},
+                               u'type':{u'@t':u'ClassOrInterfaceType', u'name':cname},},)
+            v.childrenNodes.append(_self)
+            v.parameters = [_self] + map(cp.copy, a.parameters)
+            v.add_parent_post(a.parentNode, True)
+            obj_cons[name] = v
 
         # Updates n's symbol table to include parents symbol table items
         def cpy_sym(n, *args):
@@ -403,14 +426,29 @@ class Encoder(object):
             a.symtab = dict(xf.symtab.items() + a.symtab.items())
             map(partial(utils.walk, cpy_sym), a.childrenNodes)
 
+            # Add axiom object constructors to class symbol table
+            parent_cls = xf.get_coid()
+            print("HERE987: "+str(parent_cls))
+            parent_cls.symtab = dict(parent_cls.symtab.items() + obj_cons.items())
+            
+            # symbol table for xf doesn't seem to change regardless of nested add!
+            # in axiom return ... probably in a's symtab
+            
+            # print("HERE")
+            # for k in a.symtab:
+            #     v = a.symtab[k]
+            #     print(str(k)+" -> "+str(v))
+
             # transform xform method call names and parameters
             body = xf.get_xform()
-            self.tltr.trans_xform(a.name, body, a.body.stmts)
 
+            # Yuckiness in sybol table happens in here I think
+            self.tltr.trans_xform(a.name, body, a.body.stmts)
+            
             decs = utils.extract_nodes([AxiomDeclaration], a.parameters[0])
             cases = map(lambda d: d.name.capitalize(), decs)
             body.add_body(cases, a.body.stmts)
-
+            
         for v in xforms.values():
             buf.write(self.tltr.trans(v))
         cls_sk = cname + ".sk"

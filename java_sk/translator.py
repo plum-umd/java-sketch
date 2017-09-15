@@ -3,6 +3,7 @@ import cStringIO
 import logging
 import copy
 import os
+import copy as cp
 
 from . import util
 from . import convert
@@ -808,6 +809,7 @@ class Translator(object):
         semi = kwargs.get('semi', True)
         tltr = copy.copy(self)
         tltr.indentation = ''
+
         def write_call():
             tltr.buf = cStringIO.StringIO()
             if callexpr.scope:
@@ -929,6 +931,52 @@ class Translator(object):
         if isinstance(cls, TypeParameter):
             cls = callexpr.symtab.get(cls.typeBound[0].name)
 
+        if not callexpr.pure and not callexpr.name.startswith('xform_'):
+            nameb = callexpr.name + "b"
+            mtd = cls.symtab[nameb]
+            object_wrapper = 'new Object(__cid={}(), _{}='.format(str(cls), str(cls).lower())
+            print("HERE999: "+str(nameb))
+            count = 0
+            tmp_symtab = {}
+            for p in mtd.parameters[1:]:
+                print("NAME: "+str(p.name))                
+                for key,val in p.symtab.items():
+                    print(str(count) + ": " + str(key) +" -> "+str(val))
+                    count = count + 1
+                    tmp_symtab[str(val)] = str(key)
+            self.printt('{}@{}'.format(str(mtd).replace(str(cls), 'Object'), str(cls)))
+            adtArg = callexpr.args[0]
+            adtArgName = str(adtArg).replace('xform_', '', 1).replace(str(cls), 'Object')
+            print("ADT: "+str(adtArgName))
+
+            self.printt('(')
+            self.printt(adtArgName)            
+
+            # Internal adt args
+            adtAdtArg = adtArg.args[0]
+            self.printt('(')
+
+            self.printt(object_wrapper)
+            adtArg.args[0].accept(self)
+            self.printt(')')
+            if len(adtArg.args[1:]) > 0:
+                self.printt(', ')
+
+            new_args = []
+            for p in mtd.parameters[1:]:
+                print("Trying "+str(p.name))
+                v = LiteralExpr({u'name':u'self.{}'.format(tmp_symtab[p.name]),},)
+                new_args.append(v)
+            # non-self-args
+            self.printSepList(new_args)
+            self.printt(')')
+            
+            if len(callexpr.args[1:]) > 0:
+                self.printt(', ')
+            self.printSepList(callexpr.args[1:])
+            self.printt(')')
+            return
+            
         # Compile-Time Step 2: Determine Method Signature
         # 15.12.2.1. Identify Potentially Applicable Methods
         pots = self.identify_potentials(callexpr, cls)
@@ -1015,6 +1063,8 @@ class Translator(object):
     def identify_potentials(self, callexpr, cls):
         mtds = []
         call_arg_typs = callexpr.arg_typs()
+        for key,val in cls.symtab.items():        
+            print(str(key)+": "+str(val))
         for key,val in cls.symtab.items():
             if type(val) != MethodDeclaration: continue
             tparam_names = map(lambda t: t.name, val.typeParameters)
@@ -1203,6 +1253,12 @@ class Translator(object):
         # Transform xform function call into appropriate function call
         #    i.e A return of type add! in JSketch translated to a call to xform_addb
         def change_call(s, *args):
+            # print("HERE: "+str(s.name))
+            # for k in s.symtab:
+            #     v = s.symtab[k]
+            #     print(str(k)+" -> "+str(v))
+            # print("")
+
             t = s.symtab.get(s.name)
             if isinstance(s, MethodCallExpr):
                 name = 'xform_{}'.format(str(s))
@@ -1262,7 +1318,7 @@ class Translator(object):
         self.printt('(')
         self.printSepList(args)
         self.printt(')')
-
+        
     def printMods(self, mods, **kwargs):
         if td.isGenerator(mods): self.printt('generator ')
 

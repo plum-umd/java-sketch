@@ -142,8 +142,13 @@ def is_subtype(t1, t2):
     if t1.name in widen:
         return True if t2.name in widen[t1.name] else False
 
+    # Catch instance of object wrapper param
+    if t1.name == u'Object' and isinstance(t2, ClassOrInterfaceDeclaration) and t2.axiom:
+        return True    
+    
     cls1 = t1.symtab.get(t1.name)
     cls2 = t2.symtab.get(t2.name)
+    
     if not cls1 or not cls2:
         raise Exception('Cant dereference {} or {}'.format(t1.name, t2.name))
     if cls1 in cls2.subClasses or cls1 == cls2: return True
