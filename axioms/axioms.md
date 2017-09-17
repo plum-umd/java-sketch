@@ -87,8 +87,8 @@ DES Example (private key -- symmetric crypto)
 RSA Example (public key -- asymmetric crypto)
 =========== 
 
-* `let g = getInstance("RSA/ECB/PKCS1Padding") in <br />
-   let t = doFinal(init(g, "Cipher.ENCRYPT_MODE", getPublic(k1)), t1) in <br />
+* `let g = getInstance("RSA/ECB/PKCS1Padding") in ` <br />
+   `let t = doFinal(init(g, "Cipher.ENCRYPT_MODE", getPublic(k1)), t1) in <br />
    doFinal(init(g,"Cipher.DECRYPT_MODE", getPrivate(k2)), t) == ITE(k2.equals(k1), t1, GARBAGE)`
 
 String
