@@ -80,8 +80,8 @@ ArrayDeque
 DES Example (private key -- symmetric crypto)
 ===========
 
-* 'let g = getInstance("DES/ECB/PKCS5Padding") in
-      let t = doFinal(init(g, "Cipher.ENCRYPT_MODE", k1), t1) in 
+* 'let g = getInstance("DES/ECB/PKCS5Padding") in'
+  'let t = doFinal(init(g, "Cipher.ENCRYPT_MODE", k1), t1) in' 
          doFinal(init(g,"Cipher.DECRYPT_MODE", k2), t) == ITE(k2.equals(k1), t1, GARBAGE)'
 
 RSA Example (public key -- asymmetric crypto)
