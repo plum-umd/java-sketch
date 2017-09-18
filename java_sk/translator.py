@@ -450,6 +450,10 @@ class Translator(object):
         if not n.symtab:
             self.printt(n.name)
             return
+        # catch special axiom arg
+        if n.name + "_axparam" in n.symtab:
+            self.printt(n.symtab[n.name+"_axparam"])
+            return
         obj = utils.node_to_obj(n)
         if type(obj) == FieldDeclaration:
             if td.isStatic(obj):
@@ -522,6 +526,10 @@ class Translator(object):
 
     @v.when(ObjectCreationExpr)
     def visit(self, n, **kwargs):
+        print("HERE776655: "+str(n))
+        for key,val in n.symtab.items():
+            print(str(key)+", "+str(type(key))+": "+str(val)+", "+str(type(val)))
+        print "--"*8
         obj_cls = n.symtab.get(n.typee.name)
         cls = obj_cls.symtab.get(obj_cls.name)
         if isinstance(obj_cls, ImportDeclaration): obj_cls = obj_cls.cname()
@@ -930,16 +938,15 @@ class Translator(object):
         logging.debug('searching in class: {}'.format(cls))
         if isinstance(cls, TypeParameter):
             cls = callexpr.symtab.get(cls.typeBound[0].name)
-
+            
+        # added to deal with calls to axiom constructor method
         if not callexpr.pure and not callexpr.name.startswith('xform_'):
             nameb = callexpr.name + "b"
             mtd = cls.symtab[nameb]
             object_wrapper = 'new Object(__cid={}(), _{}='.format(str(cls), str(cls).lower())
-            print("HERE999: "+str(nameb))
             count = 0
             tmp_symtab = {}
             for p in mtd.parameters[1:]:
-                print("NAME: "+str(p.name))                
                 for key,val in p.symtab.items():
                     print(str(count) + ": " + str(key) +" -> "+str(val))
                     count = count + 1
@@ -1037,6 +1044,10 @@ class Translator(object):
             clss = filter(lambda c: not c.interface, clss)
             logging.debug('subclasses: {}'.format(map(lambda c: str(c), clss)))
 
+            print("HERE1133: "+str(callexpr.scope)+", "+str(type(callexpr.scope)))
+            # if isinstance(scp, NameExpr):
+            #     if scp._axparam:
+            #         scp =             
             scp = tltr.trans(callexpr.scope)
             args = [NameExpr({u'name':scp})] + callexpr.args
             conexprs = []
@@ -1286,12 +1297,46 @@ class Translator(object):
             elif isinstance(t, VariableDeclarator):
                 if t.axiomParameter():
                     s.name = u'{}.{}'.format(label,t.name)
-                    
+                    print("HERE676")
+                    print(s.name)
+                    v = LiteralExpr({u'name':u'self.{}'.format(s.name),},)
+                    t.symtab[s] = v
+                    for key,val in t.symtab.items():
+                        print(str(key)+": "+str(val))
+
+            if isinstance(s, ReturnStmt):
+                print("HERE3343: "+str(s.expr)+", "+str(type(s.expr)))
+                # print(s.expr._tmpargs)
+                # print(s.expr.name)
+                # print(s.expr.typee)
+                # print(s.expr.typeArgs)
+                # print(s.expr.args)
+                # print(s.expr.anonymousClassBody)
+                if isinstance(s.expr.typee, PrimitiveType):
+                    print("HERE009" + str(s)+", "+str(s.typee)+", "+str(type(s.typee)))
+                    s.expr = self.wrapPrimitive(s, s.expr)
+            
         map(lambda s: utils.walk(change_call, s), stmts)
 
     def indent(self): self._level += 1
     def unindent(self): self._level -= 1
 
+    def wrapPrimitive(self, s, prim):
+        primToBox = {
+            u'int':u'Integer'
+        }
+        boxName = primToBox[str(prim.typee)]        
+        print("HERE9989: "+str(boxName))
+        for key,val in prim.symtab.items():
+            print(str(key)+", "+str(type(key))+": "+str(val)+", "+str(type(val)))
+        # Try just setting the stuff after, i.e. call arg setter
+        objCreExpr = ObjectCreationExpr({u'type':prim.symtab[boxName],u'box':True,},)
+        # objCreExpr.scope(prim.scope)
+        objCreExpr.symtab = prim.symtab
+        objCreExpr.symtab[prim.name] = prim
+        objCreExpr._args = [prim]
+        return objCreExpr
+    
     def makeIndent(self):
         for i in xrange(self._level): self._buf.write(self._indentation)
 

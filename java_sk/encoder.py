@@ -27,6 +27,7 @@ from ast.stmt.returnstmt import ReturnStmt
 from ast.expr.generatorexpr import GeneratorExpr
 from ast.expr.methodcallexpr import MethodCallExpr
 from ast.expr.literalexpr import LiteralExpr
+from ast.expr.nameexpr import NameExpr
 
 from ast.type.referencetype import ReferenceType
 
@@ -337,6 +338,8 @@ class Encoder(object):
         buf.write(adt)
 
         # HOW TO DO THIS!!??
+        #    Creating dictionary of object constructors to later be added to
+        #    symbol tables for xforms
         for name,a in zip(cons_names, adt_mtds):            
             print("HERE777: "+str(a.parameters))
             if not a.default:
@@ -404,9 +407,38 @@ class Encoder(object):
         # Writes dispatch function
         buf.write(self.tltr.trans(dispatch))
 
+        ax_mtds = utils.extract_nodes([AxiomDeclaration], cls, recurse=False)
+
+        # fix symbol table for axiom parameters that are methods
+        print("HERE1212")
+        for a in ax_mtds:
+            for p in a.parameters:
+                if p.method:
+                    index = 1
+                    for p2 in p.method.parameters[1:]:
+                        print(p2.name)
+                        print(type(p2))
+                        xnm = 'xform_{}'.format(a.name)
+                        xf = xforms[xnm]
+                        if index < len(xf.parameters):                            
+                            new_name = xf.parameters[index].idd.name
+                            print(new_name)
+                        else:
+                            new_name = p2.name
+                        v = NameExpr({u'name':u'self.{}'.format(new_name),u'axparam':True,},)
+                        for key,val in xf.symtab.items():
+                            print(str(key)+": "+str(val))
+                        print "--"*8
+                        v.symtab = p2.typee.symtab
+                        v.symtab[v.name] = p2.typee
+                        print("HERE4321: "+str(p2.typee))
+                        a.symtab[p2] = v
+                        a.symtab[str(p2)] = v
+                        a.symtab["self."+p2.name+"_axparam"] = v.name
+                        index += 1
+                        
         # populate individual xforms with axioms
         #   
-        ax_mtds = utils.extract_nodes([AxiomDeclaration], cls, recurse=False)
         for a in ax_mtds:
             xnm = 'xform_{}'.format(a.name)
             xf = xforms[xnm]
@@ -418,6 +450,9 @@ class Encoder(object):
             for (xp,ap) in zip(xf.parameters, a.parameters):
                 if ap.idd:
                     xp.name = ap.name
+
+            for key,val in a.symtab.items():
+                print(str(key) + ": "+str(val))
                     
             # there has to be a better way than this
             #    More updating of the symbol tables, not sure why the order
@@ -425,24 +460,18 @@ class Encoder(object):
             map(partial(utils.walk, cpy_sym), xf.childrenNodes)
             a.symtab = dict(xf.symtab.items() + a.symtab.items())
             map(partial(utils.walk, cpy_sym), a.childrenNodes)
-
+            
             # Add axiom object constructors to class symbol table
             parent_cls = xf.get_coid()
-            print("HERE987: "+str(parent_cls))
             parent_cls.symtab = dict(parent_cls.symtab.items() + obj_cons.items())
             
             # symbol table for xf doesn't seem to change regardless of nested add!
             # in axiom return ... probably in a's symtab
             
-            # print("HERE")
-            # for k in a.symtab:
-            #     v = a.symtab[k]
-            #     print(str(k)+" -> "+str(v))
-
             # transform xform method call names and parameters
             body = xf.get_xform()
 
-            # Yuckiness in sybol table happens in here I think
+            # translate the xform body 
             self.tltr.trans_xform(a.name, body, a.body.stmts)
             
             decs = utils.extract_nodes([AxiomDeclaration], a.parameters[0])

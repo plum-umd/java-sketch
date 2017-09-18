@@ -9,11 +9,11 @@ class PrimitiveType(Type):
         self._type = typdct
         self._name = typdct['name'].lower()
         self._nameOfBoxedType = typdct.get(u'nameOfBoxedType', '')
-      
+                
     @property
-    def nameOfBoxedType(self): return self.nameOfBoxedType
+    def nameOfBoxedType(self): return self._nameOfBoxedType
     @nameOfBoxedType.setter
-    def nameOfBoxedType(self, v): self.nameOfBoxedType = v
+    def nameOfBoxedType(self, v): self._nameOfBoxedType = v
 
     @property
     def typee(self): return self

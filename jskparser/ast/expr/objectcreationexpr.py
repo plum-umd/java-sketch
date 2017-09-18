@@ -2,6 +2,7 @@
 
 from .expression import Expression
 from ..type.classorinterfacetype import ClassOrInterfaceType
+from ..body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 
 from . import _import
 
@@ -15,7 +16,11 @@ class ObjectCreationExpr(Expression):
         self._scope = locs[scope[u'@t']](scope) if scope else None
 
         # ClassOrInterfaceType type;
-        self._type = ClassOrInterfaceType(kwargs.get(u'type', {}))
+        typ = kwargs.get(u'type', {})
+        if isinstance(typ, ClassOrInterfaceDeclaration):
+            self._type = typ
+        else:
+            self._type = ClassOrInterfaceType(kwargs.get(u'type', {}))
 
         # List<Type> typeArgs;
         typeArgs = kwargs.get(u'typeArgs', {})
@@ -24,6 +29,7 @@ class ObjectCreationExpr(Expression):
 
         # List<Expression> args;
         args = kwargs.get(u'args', {})
+        self._tmpargs = args
         self._args = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
                          args.get(u'@e', [])) if args else []
 
@@ -33,7 +39,12 @@ class ObjectCreationExpr(Expression):
         self._anonymousClassBody = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
                                        anon.get(u'@e', [])) if anon else []
 
-        self.add_as_parent([self.scope, self.typee]+self.typeArgs+self.args+self.anonymousClassBody)
+        box = kwargs.get(u'box', {})
+        self._box = box if box else False
+        if not self._box:
+            print("HERE5151: "+str(self._type))                        
+            self.add_as_parent([self.scope, self.typee]+self.typeArgs+self.args+self.anonymousClassBody)
+            print("HERE5151: "+str(self._type))
 
     @property
     def scope(self): return self._scope

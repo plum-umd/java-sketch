@@ -14,7 +14,9 @@ class NameExpr(Expression):
 
         typdct = kwargs.get(u'type')
         self._type = locs[typdct[u'@t']](typdct) if typdct else None
-  
+
+        self._axparam = kwargs.get(u'axparam')
+        
     @property
     def name(self): return self._name
     @name.setter
@@ -29,6 +31,10 @@ class NameExpr(Expression):
     @property
     def typee(self):
         t = self.symtab.get(self.name)
+        # Catch infinite recursion for axiom parameter params
+        if self == t:
+            new_name = self.name.replace('self.','', 1)
+            t = self.symtab.get(new_name)
         return t.typee if t else None
     @typee.setter
     def typee(self, v): pass
