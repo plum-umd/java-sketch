@@ -214,6 +214,11 @@ def node_to_obj(n):
 
 def get_scopes_list(n):
     def top(s):
+        print("HEREUTILS: "+str(s.scope.name))
+        print "$$"*8
+        for key,val in s.scope.symtab.items():
+            print(str(key)+", "+str(type(key))+": "+str(val)+", "+str(type(val)))
+        print "$$"*8
         if type(s.scope) == ArrayAccessExpr:
             if type(s.scope.nameExpr) == NameExpr: return n.symtab.get(s.scope.nameExpr.name)
             else: return top(s.scope.nameExpr)
@@ -226,8 +231,27 @@ def get_scopes_list(n):
         elif type(s.scope) == NameExpr: return a
         else: return scopes(s.scope, [s.scope.name] + a)
     # top level variable of field access
+    print("HERESCOPES: "+str(n))
+    print "%%"*8
+    for key,val in n.symtab.items():
+        print(str(key)+", "+str(type(key))+": "+str(val)+", "+str(type(val)))        
+        # print(str(key)+": "+str(val))
+    print "%%"*8    
     v = top(n)
-    cls = v.symtab.get(v.typee.name)
+    typ = v.typee.name
+    primToBox = {
+        u'int':u'Integer',
+        u'byte':u'Byte',
+        u'boolean':u'Boolean',
+        u'short':u'Short',
+        u'long':u'Long',
+        u'float':u'Float',
+        u'double':u'Double',
+        u'char':u'Character'
+    }
+    if typ in primToBox:
+        typ = primToBox[typ]
+    cls = v.symtab.get(typ)
     # name of all the scope variables
     return (cls, scopes(n, []))
         

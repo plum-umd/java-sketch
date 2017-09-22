@@ -18,6 +18,7 @@ from ast.utils import utils
 from ast.node import Node
 from ast.importdeclaration import ImportDeclaration
 from ast.typeparameter import TypeParameter
+from ast.compilationunit import CompilationUnit
 
 from ast.body.typedeclaration import TypeDeclaration as td
 from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
@@ -526,10 +527,6 @@ class Translator(object):
 
     @v.when(ObjectCreationExpr)
     def visit(self, n, **kwargs):
-        print("HERE776655: "+str(n))
-        for key,val in n.symtab.items():
-            print(str(key)+", "+str(type(key))+": "+str(val)+", "+str(type(val)))
-        print "--"*8
         obj_cls = n.symtab.get(n.typee.name)
         cls = obj_cls.symtab.get(obj_cls.name)
         if isinstance(obj_cls, ImportDeclaration): obj_cls = obj_cls.cname()
@@ -563,7 +560,6 @@ class Translator(object):
             self.printt(nm)
         else:
             self.printt('{0}_{0}'.format(str(obj_cls)))
-
         if n.anonymousClassBody:
             # find name of variabledeclarator
             target = utils.anon_nm(n)
@@ -587,7 +583,6 @@ class Translator(object):
             self.post_mtds += '\n'.join(anon)
 
             obj_cls = anon_cls
-
         self.printt('(new Object(__cid={}())'.format(str(obj_cls)))
         if cls.isinner(): self.printt(', self')
         if n.args: self.printt(', ')
@@ -818,6 +813,11 @@ class Translator(object):
         tltr = copy.copy(self)
         tltr.indentation = ''
 
+        print("HERE999: "+str(callexpr.name))
+        for key, val in callexpr.symtab.items():
+            print(str(key)+", "+str(type(key))+": "+str(val)+", "+str(type(val)))
+        print "--"*8
+        
         def write_call():
             tltr.buf = cStringIO.StringIO()
             if callexpr.scope:
@@ -860,6 +860,10 @@ class Translator(object):
                 # ExpressionName . [TypeArguments] Identifier
                 # Primary . [TypeArguments] Identifier
                 else:
+                    print("HERE1_1:"+str(scope.name))
+                    for key,val in scope.symtab.items():
+                        print(str(key)+", "+str(type(key))+": "+str(val)+", "+str(type(val)))
+                    print "--"*8
                     logging.debug('scope: {} {} {}'.format(scope, scope.typee, type(scope)))
                     if not isinstance(scope, (ClassOrInterfaceType, ImportDeclaration)):
                         cls = None
@@ -934,6 +938,8 @@ class Translator(object):
                     meta.symtab.update({mtd.name:mtd})
             return meta
 
+        print("HERE2")
+        
         if not cls or isinstance(cls, ImportDeclaration): cls = uninterpreted()
         logging.debug('searching in class: {}'.format(cls))
         if isinstance(cls, TypeParameter):
@@ -1044,10 +1050,9 @@ class Translator(object):
             clss = filter(lambda c: not c.interface, clss)
             logging.debug('subclasses: {}'.format(map(lambda c: str(c), clss)))
 
-            print("HERE1133: "+str(callexpr.scope)+", "+str(type(callexpr.scope)))
             # if isinstance(scp, NameExpr):
             #     if scp._axparam:
-            #         scp =             
+            #         scp =
             scp = tltr.trans(callexpr.scope)
             args = [NameExpr({u'name':scp})] + callexpr.args
             conexprs = []
@@ -1074,8 +1079,6 @@ class Translator(object):
     def identify_potentials(self, callexpr, cls):
         mtds = []
         call_arg_typs = callexpr.arg_typs()
-        for key,val in cls.symtab.items():        
-            print(str(key)+": "+str(val))
         for key,val in cls.symtab.items():
             if type(val) != MethodDeclaration: continue
             tparam_names = map(lambda t: t.name, val.typeParameters)
@@ -1264,14 +1267,10 @@ class Translator(object):
         # Transform xform function call into appropriate function call
         #    i.e A return of type add! in JSketch translated to a call to xform_addb
         def change_call(s, *args):
-            # print("HERE: "+str(s.name))
-            # for k in s.symtab:
-            #     v = s.symtab[k]
-            #     print(str(k)+" -> "+str(v))
-            # print("")
-
             t = s.symtab.get(s.name)
             if isinstance(s, MethodCallExpr):
+                # if isinstance(s.scope, ClassOrInterfaceDeclaration):
+                #     if s.scope.axiom:
                 name = 'xform_{}'.format(str(s))
                 mdec = s.symtab.get('m'+name)
                 if not mdec: return
@@ -1297,15 +1296,12 @@ class Translator(object):
             elif isinstance(t, VariableDeclarator):
                 if t.axiomParameter():
                     s.name = u'{}.{}'.format(label,t.name)
-                    print("HERE676")
-                    print(s.name)
                     v = LiteralExpr({u'name':u'self.{}'.format(s.name),},)
                     t.symtab[s] = v
                     for key,val in t.symtab.items():
                         print(str(key)+": "+str(val))
 
             if isinstance(s, ReturnStmt):
-                print("HERE3343: "+str(s.expr)+", "+str(type(s.expr)))
                 # print(s.expr._tmpargs)
                 # print(s.expr.name)
                 # print(s.expr.typee)
@@ -1313,22 +1309,107 @@ class Translator(object):
                 # print(s.expr.args)
                 # print(s.expr.anonymousClassBody)
                 if isinstance(s.expr.typee, PrimitiveType):
-                    print("HERE009" + str(s)+", "+str(s.typee)+", "+str(type(s.typee)))
-                    s.expr = self.wrapPrimitive(s, s.expr)
-            
+                    s.expr = self.boxUnbox(s, s.expr)                    
+                    
         map(lambda s: utils.walk(change_call, s), stmts)
 
     def indent(self): self._level += 1
     def unindent(self): self._level -= 1
 
+    def boxUnbox(self, s, expr):
+        if isinstance(expr, BinaryExpr):
+            return self.convertPrimitiveExpr(expr)
+        else:
+            return self.wrapPrimitive(s, expr)
+
+    def getParentCls(self, expr):
+        if expr.parentNode:
+            if not isinstance(expr.parentNode, CompilationUnit):
+                return self.getParentCls(expr.parentNode)
+        return expr
+        
+    def convertPrimitiveExpr(self, expr):
+        wrappers = [u'Integer', u'Byte', u'Boolean', u'Short', u'Long', u'Float', u'Double', u'Character']
+        if expr.left.typee.name == "Object":
+            expr.left = self.unwrapBox(expr.left)
+        if expr.right.typee.name == "Object":
+            expr.right = self.unwrapBox(expr.right)
+        return expr
+
+    def unwrapBox(self, expr):
+        primToBox = {
+            u'int':u'Integer',
+            u'byte':u'Byte',
+            u'boolean':u'Boolean',
+            u'short':u'Short',
+            u'long':u'Long',
+            u'float':u'Float',
+            u'double':u'Double',
+            u'char':u'Character'
+        }
+        primToUnbox = {
+            u'int':u'mintValue',
+            u'byte':u'mbyteValue',
+            u'boolean':u'mbooleanValue',
+            u'short':u'mshortValue',
+            u'long':u'mlongValue',
+            u'float':u'mfloatValue',
+            u'double':u'mdoubleValue',
+            u'char':u'mcharValue'
+        }
+        mnm = "m"+expr.name
+        parent = self.getParentCls(expr)
+        primType = parent.symtab[mnm].typee.name
+        boxType = primToBox[primType]
+        unboxFuncName = primToUnbox[primType]
+        unboxFuncName_nom = unboxFuncName.replace('m', '', 1)
+        box = expr.symtab[boxType]
+        unboxFunc = box.symtab[unboxFuncName]
+
+        newExpr = MethodCallExpr({u'name':unboxFuncName_nom,
+                                  u'type':{u'@t':u'ClassOrInterfaceType',
+                                           u'name':primType,},
+                                  u'args':[],
+                                  u'pure':True,})
+
+        # newExpr = ObjectCreationExpr({u'name':u'BLAH',
+        #                               u'type':box,})
+
+
+        newExpr.args = [expr]
+        newExpr.symtab = expr.symtab
+        # nameExpr = NameExpr({u'name':unboxFuncName_nom, })                   
+        # newExpr.args = [expr]
+        # newExpr.symtab = expr.symtab
+        # newExpr.scope = box
+        # expr.scope = nameExpr
+        # expr.symtab[unboxFuncName_nom] = unboxFunc
+        # nameExpr.symtab = expr.symtab
+        # newExpr.symtab = expr.symtab        
+        # newExpr.symtab[unboxFuncName] = unboxFunc
+        # expr.add_as_parent([newExpr])
+        # box.add_as_parent([newExpr])
+        # print("Parent: "+str(parent))
+        # for key,val in parent.symtab.items():
+        #     print(str(key)+": "+str(val))
+        # print "--"*8
+        # print(parent.symtab["m"+expr.name].typee)
+        # print "--"*8
+        
+        return newExpr
+    
     def wrapPrimitive(self, s, prim):
         primToBox = {
-            u'int':u'Integer'
+            u'int':u'Integer',
+            u'byte':u'Byte',
+            u'boolean':u'Boolean',
+            u'short':u'Short',
+            u'long':u'Long',
+            u'float':u'Float',
+            u'double':u'Double',
+            u'char':u'Character'
         }
         boxName = primToBox[str(prim.typee)]        
-        print("HERE9989: "+str(boxName))
-        for key,val in prim.symtab.items():
-            print(str(key)+", "+str(type(key))+": "+str(val)+", "+str(type(val)))
         # Try just setting the stuff after, i.e. call arg setter
         objCreExpr = ObjectCreationExpr({u'type':prim.symtab[boxName],u'box':True,},)
         # objCreExpr.scope(prim.scope)

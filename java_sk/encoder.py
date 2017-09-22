@@ -341,9 +341,6 @@ class Encoder(object):
         #    Creating dictionary of object constructors to later be added to
         #    symbol tables for xforms
         for name,a in zip(cons_names, adt_mtds):            
-            print("HERE777: "+str(a.parameters))
-            if not a.default:
-                print "BLAH"
             v = MethodDeclaration({u'type':{u'@t':u'ClassOrInterfaceType',u'name':u'Object',}, u'name':a.name,u'adtType':a.adtType,u'modifiers':a.modifiers,u'body':a.body,},) 
             _self = Parameter({u'id':{u'name':u'self'},
                                u'type':{u'@t':u'ClassOrInterfaceType', u'name':cname},},)
@@ -410,14 +407,11 @@ class Encoder(object):
         ax_mtds = utils.extract_nodes([AxiomDeclaration], cls, recurse=False)
 
         # fix symbol table for axiom parameters that are methods
-        print("HERE1212")
         for a in ax_mtds:
             for p in a.parameters:
                 if p.method:
                     index = 1
                     for p2 in p.method.parameters[1:]:
-                        print(p2.name)
-                        print(type(p2))
                         xnm = 'xform_{}'.format(a.name)
                         xf = xforms[xnm]
                         if index < len(xf.parameters):                            
@@ -426,12 +420,8 @@ class Encoder(object):
                         else:
                             new_name = p2.name
                         v = NameExpr({u'name':u'self.{}'.format(new_name),u'axparam':True,},)
-                        for key,val in xf.symtab.items():
-                            print(str(key)+": "+str(val))
-                        print "--"*8
                         v.symtab = p2.typee.symtab
                         v.symtab[v.name] = p2.typee
-                        print("HERE4321: "+str(p2.typee))
                         a.symtab[p2] = v
                         a.symtab[str(p2)] = v
                         a.symtab["self."+p2.name+"_axparam"] = v.name
@@ -451,9 +441,6 @@ class Encoder(object):
                 if ap.idd:
                     xp.name = ap.name
 
-            for key,val in a.symtab.items():
-                print(str(key) + ": "+str(val))
-                    
             # there has to be a better way than this
             #    More updating of the symbol tables, not sure why the order
             xf.symtab = dict(a.symtab.items() + xf.symtab.items())
@@ -471,11 +458,11 @@ class Encoder(object):
             # transform xform method call names and parameters
             body = xf.get_xform()
 
-            # translate the xform body 
+            # transform the xform body to work (i.e. mess with symtab) 
             self.tltr.trans_xform(a.name, body, a.body.stmts)
             
             decs = utils.extract_nodes([AxiomDeclaration], a.parameters[0])
-            cases = map(lambda d: d.name.capitalize(), decs)
+            cases = map(lambda d: d.name.capitalize(), decs)            
             body.add_body(cases, a.body.stmts)
             
         for v in xforms.values():
