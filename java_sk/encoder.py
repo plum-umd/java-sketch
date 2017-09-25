@@ -416,7 +416,6 @@ class Encoder(object):
                         xf = xforms[xnm]
                         if index < len(xf.parameters):                            
                             new_name = xf.parameters[index].idd.name
-                            print(new_name)
                         else:
                             new_name = p2.name
                         v = NameExpr({u'name':u'self.{}'.format(new_name),u'axparam':True,},)

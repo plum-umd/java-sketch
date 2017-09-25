@@ -813,11 +813,6 @@ class Translator(object):
         tltr = copy.copy(self)
         tltr.indentation = ''
 
-        print("HERE999: "+str(callexpr.name))
-        for key, val in callexpr.symtab.items():
-            print(str(key)+", "+str(type(key))+": "+str(val)+", "+str(type(val)))
-        print "--"*8
-        
         def write_call():
             tltr.buf = cStringIO.StringIO()
             if callexpr.scope:
@@ -845,13 +840,16 @@ class Translator(object):
                 cls = sups[0]
                 scope = NameExpr({u'name':u'self'})
             elif isinstance(callexpr.scope, MethodCallExpr):
-                (cls, _) = utils.get_scopes_list(callexpr)
-                m = cls.symtab.get(callexpr.scope.sig())
-                typ = m.typee
-                for t in cls.typeParameters:
-                    if str(t) == str(m.typee):
-                        typ = t.typeBound[0]
-                cls = cls.symtab.get(str(typ))
+                if not callexpr.unbox:
+                    (cls, _) = utils.get_scopes_list(callexpr)
+                    m = cls.symtab.get(callexpr.scope.sig())
+                    typ = m.typee
+                    for t in cls.typeParameters:
+                        if str(t) == str(m.typee):
+                            typ = t.typeBound[0]
+                    cls = cls.symtab.get(str(typ))
+                else:
+                    cls = callexpr.symtab[u'unboxer']
             else:
                 scope = utils.node_to_obj(callexpr.scope)
                 if not scope: return
@@ -860,10 +858,6 @@ class Translator(object):
                 # ExpressionName . [TypeArguments] Identifier
                 # Primary . [TypeArguments] Identifier
                 else:
-                    print("HERE1_1:"+str(scope.name))
-                    for key,val in scope.symtab.items():
-                        print(str(key)+", "+str(type(key))+": "+str(val)+", "+str(type(val)))
-                    print "--"*8
                     logging.debug('scope: {} {} {}'.format(scope, scope.typee, type(scope)))
                     if not isinstance(scope, (ClassOrInterfaceType, ImportDeclaration)):
                         cls = None
@@ -937,8 +931,6 @@ class Translator(object):
                     meta.childrenNodes.append(mtd)
                     meta.symtab.update({mtd.name:mtd})
             return meta
-
-        print("HERE2")
         
         if not cls or isinstance(cls, ImportDeclaration): cls = uninterpreted()
         logging.debug('searching in class: {}'.format(cls))
@@ -950,18 +942,13 @@ class Translator(object):
             nameb = callexpr.name + "b"
             mtd = cls.symtab[nameb]
             object_wrapper = 'new Object(__cid={}(), _{}='.format(str(cls), str(cls).lower())
-            count = 0
             tmp_symtab = {}
             for p in mtd.parameters[1:]:
                 for key,val in p.symtab.items():
-                    print(str(count) + ": " + str(key) +" -> "+str(val))
-                    count = count + 1
                     tmp_symtab[str(val)] = str(key)
             self.printt('{}@{}'.format(str(mtd).replace(str(cls), 'Object'), str(cls)))
             adtArg = callexpr.args[0]
             adtArgName = str(adtArg).replace('xform_', '', 1).replace(str(cls), 'Object')
-            print("ADT: "+str(adtArgName))
-
             self.printt('(')
             self.printt(adtArgName)            
 
@@ -977,7 +964,6 @@ class Translator(object):
 
             new_args = []
             for p in mtd.parameters[1:]:
-                print("Trying "+str(p.name))
                 v = LiteralExpr({u'name':u'self.{}'.format(tmp_symtab[p.name]),},)
                 new_args.append(v)
             # non-self-args
@@ -1083,6 +1069,7 @@ class Translator(object):
             if type(val) != MethodDeclaration: continue
             tparam_names = map(lambda t: t.name, val.typeParameters)
             tparam_names.extend(map(lambda t: t.name, val.get_coid().typeParameters))
+            
             if callexpr.name == val.name and len(callexpr.args) == len(val.parameters):
                 if all(map(lambda t: t[1].name in tparam_names or utils.is_subtype(t[0], t[1]),
                            zip(call_arg_typs, val.param_typs()))):
@@ -1298,16 +1285,8 @@ class Translator(object):
                     s.name = u'{}.{}'.format(label,t.name)
                     v = LiteralExpr({u'name':u'self.{}'.format(s.name),},)
                     t.symtab[s] = v
-                    for key,val in t.symtab.items():
-                        print(str(key)+": "+str(val))
 
             if isinstance(s, ReturnStmt):
-                # print(s.expr._tmpargs)
-                # print(s.expr.name)
-                # print(s.expr.typee)
-                # print(s.expr.typeArgs)
-                # print(s.expr.args)
-                # print(s.expr.anonymousClassBody)
                 if isinstance(s.expr.typee, PrimitiveType):
                     s.expr = self.boxUnbox(s, s.expr)                    
                     
@@ -1317,8 +1296,10 @@ class Translator(object):
     def unindent(self): self._level -= 1
 
     def boxUnbox(self, s, expr):
+        # NEED TO ADD IN ALL EXPR TYPES THAT CAN RESOLVE TO TYPE PRIMITIVE THAT HAVE
+        #   SUBPARTS THAT NEED TO BE CONVERTED
         if isinstance(expr, BinaryExpr):
-            return self.convertPrimitiveExpr(expr)
+            return self.convertPrimitiveExpr(s, expr)
         else:
             return self.wrapPrimitive(s, expr)
 
@@ -1328,13 +1309,13 @@ class Translator(object):
                 return self.getParentCls(expr.parentNode)
         return expr
         
-    def convertPrimitiveExpr(self, expr):
+    def convertPrimitiveExpr(self, s, expr):
         wrappers = [u'Integer', u'Byte', u'Boolean', u'Short', u'Long', u'Float', u'Double', u'Character']
         if expr.left.typee.name == "Object":
             expr.left = self.unwrapBox(expr.left)
         if expr.right.typee.name == "Object":
             expr.right = self.unwrapBox(expr.right)
-        return expr
+        return self.wrapPrimitive(s, expr)
 
     def unwrapBox(self, expr):
         primToBox = {
@@ -1370,31 +1351,11 @@ class Translator(object):
                                   u'type':{u'@t':u'ClassOrInterfaceType',
                                            u'name':primType,},
                                   u'args':[],
-                                  u'pure':True,})
+                                  u'pure':True,
+                                  u'unbox':True,})
 
-        # newExpr = ObjectCreationExpr({u'name':u'BLAH',
-        #                               u'type':box,})
-
-
-        newExpr.args = [expr]
-        newExpr.symtab = expr.symtab
-        # nameExpr = NameExpr({u'name':unboxFuncName_nom, })                   
-        # newExpr.args = [expr]
-        # newExpr.symtab = expr.symtab
-        # newExpr.scope = box
-        # expr.scope = nameExpr
-        # expr.symtab[unboxFuncName_nom] = unboxFunc
-        # nameExpr.symtab = expr.symtab
-        # newExpr.symtab = expr.symtab        
-        # newExpr.symtab[unboxFuncName] = unboxFunc
-        # expr.add_as_parent([newExpr])
-        # box.add_as_parent([newExpr])
-        # print("Parent: "+str(parent))
-        # for key,val in parent.symtab.items():
-        #     print(str(key)+": "+str(val))
-        # print "--"*8
-        # print(parent.symtab["m"+expr.name].typee)
-        # print "--"*8
+        newExpr.symtab[u'unboxer'] = box
+        newExpr.scope = expr
         
         return newExpr
     

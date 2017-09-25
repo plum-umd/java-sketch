@@ -35,6 +35,13 @@ class MethodCallExpr(Expression):
 
         self._pure = kwargs.get(u'pure', {})
 
+        self._unbox = kwargs.get(u'unbox', False)
+
+    @property
+    def unbox(self): return self._unbox
+    @unbox.setter
+    def unbox(self, v): self._unbox = v
+        
     @property
     def pure(self): return self._pure
     @pure.setter
@@ -57,9 +64,6 @@ class MethodCallExpr(Expression):
         sym = obj.symtab
         # first look for this methed in the current scope
         sig = self.sig()
-        # print("HERE1: "+str(sig))
-        # for k in sym:
-        #     print(str(k)+": "+str(sym[k]))
         if not self._pure:
             if sig[1:6] != "xform":
                 sig = "a"+sig[1:]

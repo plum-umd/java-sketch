@@ -230,7 +230,11 @@ class Node(object):
     def add_parent_post(self, p, recurse=True):
         # print 'adding parent:', p, str(p), type(p), self, type(self), self.childrenNodes
         nm = self.sig() if type(self).__name__ == 'MethodDeclaration' else self.name
-        self.symtab = {nm:self}
+        tmp_symtab = self.symtab
+        if nm not in tmp_symtab:
+            self.symtab = {nm:self}
+        else:
+            self.symtab = {nm:self.symtab[nm]}
         if nm and nm not in p.symtab: p.symtab.update({nm:self})
         if self not in p.childrenNodes: p.childrenNodes.append(self)
         self.parentNode = p

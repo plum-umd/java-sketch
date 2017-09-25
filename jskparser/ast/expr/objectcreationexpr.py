@@ -42,9 +42,7 @@ class ObjectCreationExpr(Expression):
         box = kwargs.get(u'box', {})
         self._box = box if box else False
         if not self._box:
-            print("HERE5151: "+str(self._type))                        
             self.add_as_parent([self.scope, self.typee]+self.typeArgs+self.args+self.anonymousClassBody)
-            print("HERE5151: "+str(self._type))
 
     @property
     def scope(self): return self._scope

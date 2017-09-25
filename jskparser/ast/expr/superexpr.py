@@ -8,7 +8,7 @@ class SuperExpr(Expression):
         
         # Expression classExpr
         self._classExpr = kwargs.get(u'classExpr', None)
-
+        
         self.add_as_parent([self.classExpr])
 
     @property
