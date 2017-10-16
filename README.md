@@ -100,13 +100,6 @@ You can skip custom codegen (and the regression test)
 and move to script usages.
 
 ### Parser Generation
-Currently working a non-master branch. To clone:
-```sh
-git clone
-git checkout new-ast
-```
-
-### Parser Generation
 
 We slightly changed Java grammar to support holes (written `??`),
 generators in an expression-level (written {| e* |}) and
