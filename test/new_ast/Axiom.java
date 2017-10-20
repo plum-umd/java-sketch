@@ -19,19 +19,19 @@ class AxArrayList {
     int size();
     
     axiom Object get(Object add!(AxArrayList a, Object o), int j) {
-    	return size(a) == j-1 ? o : get(a.self, j);
+    	return size(a) == j-1 ? o : get(a, j);
     }
     axiom Object get(Object set!(AxArrayList a, int i, Object o), int j) {
-    	return i == j ? o : get(a.self, j);
+    	return i == j ? o : get(a, j);
     }
     axiom Object size(Object AxArrayList()) {
     	return 0;
     }
     axiom Object size(Object add!(AxArrayList a, Object o)) {
-    	return size(a.self) + 1;
+    	return size(a) + 1;
     }
     axiom Object size(Object set!(AxArrayList a, int i, Object o)) {
-    	return size(a.self);
+    	return size(a);
     }
 }
     
