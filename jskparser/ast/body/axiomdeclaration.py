@@ -20,7 +20,7 @@ class AxiomDeclaration(BodyDeclaration):
         params = kwargs.get(u'parameters', [])
         self._parameters = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
                                params.get(u'@e', [])) if params else []
-
+        
         # BlockStmt body;
         body = kwargs.get(u'body')
         self._body = locs[u'BlockStmt'](body) if body else None

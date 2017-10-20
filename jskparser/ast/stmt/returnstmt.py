@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 from .statement import Statement
-from ..utils import utils
 from ..expr.nameexpr import NameExpr
 from ..expr.literalexpr import LiteralExpr
 from ..type.type import Type
@@ -21,7 +20,7 @@ class ReturnStmt(Statement):
         def t(n):
             if type(n) == NameExpr: self._type = n
             elif isinstance(n, Type) or isinstance(n, LiteralExpr): self._type = n.typee
-        utils.walk(t, self)
+        walk(t, self)
 
         self.add_as_parent([self.expr])
     
@@ -39,3 +38,9 @@ class ReturnStmt(Statement):
     def out_set(self): return set([])
     @out_set.setter
     def out_set(self, v): pass
+
+def walk(f, n, *args):
+    f(n, *args)
+    for c in n.childrenNodes:
+        walk(f, c, *args)
+    

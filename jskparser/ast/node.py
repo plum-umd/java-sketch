@@ -231,10 +231,17 @@ class Node(object):
         # print 'adding parent:', p, str(p), type(p), self, type(self), self.childrenNodes
         nm = self.sig() if type(self).__name__ == 'MethodDeclaration' else self.name
         tmp_symtab = self.symtab
+        special_syms = {}
+        for key,val in tmp_symtab.items():
+            if str(key)[:8] == "#unboxer":
+                special_syms[key] = val
         if nm not in tmp_symtab:
             self.symtab = {nm:self}
         else:
             self.symtab = {nm:self.symtab[nm]}
+
+        if len(special_syms) > 0:
+            self.symtab = dict(special_syms.items() + self.symtab.items())
         if nm and nm not in p.symtab: p.symtab.update({nm:self})
         if self not in p.childrenNodes: p.childrenNodes.append(self)
         self.parentNode = p

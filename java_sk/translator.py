@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+from __future__ import print_function
+
+import sys
 import cStringIO
 import logging
 import copy
@@ -240,7 +243,6 @@ class Translator(object):
 
     @v.when(VariableDeclarator)
     def visit(self, n, **kwargs):
-        # print 'VariableDeclarator', n
         if n.init:
             self.printt(' ')
             n.idd.accept(self, **kwargs)
@@ -452,8 +454,8 @@ class Translator(object):
             self.printt(n.name)
             return
         # catch special axiom arg
-        if n.name + "_axparam" in n.symtab:
-            self.printt(n.symtab[n.name+"_axparam"])
+        if n.axparam:
+            self.printt("self."+n.axparam)
             return
         obj = utils.node_to_obj(n)
         if type(obj) == FieldDeclaration:
@@ -474,7 +476,8 @@ class Translator(object):
                 # this is the index of the class where the field lives
             slf = 'self{}'.format(i)
             self.printt('{}.{}'.format(slf, str(obj)))
-        else: self.printt(n.name)
+        else:
+            self.printt(n.name)
 
     @v.when(VariableDeclarationExpr)
     def visit(self, n, **kwargs):
@@ -812,7 +815,7 @@ class Translator(object):
         semi = kwargs.get('semi', True)
         tltr = copy.copy(self)
         tltr.indentation = ''
-
+        
         def write_call():
             tltr.buf = cStringIO.StringIO()
             if callexpr.scope:
@@ -825,7 +828,7 @@ class Translator(object):
         if callexpr.name in builtins:
             write_call()
             return
-
+        
         logging.info('calling: {} from {}'.format(str(callexpr), callexpr.get_coid()))
         # 15.12.1 Compile-Time Step 1: Determine Class or Interface to Search
         if not callexpr.scope:
@@ -849,7 +852,7 @@ class Translator(object):
                             typ = t.typeBound[0]
                     cls = cls.symtab.get(str(typ))
                 else:
-                    cls = callexpr.symtab[u'unboxer']
+                    cls = callexpr.symtab[u'#unboxer_'+callexpr.name+'#']
             else:
                 scope = utils.node_to_obj(callexpr.scope)
                 if not scope: return
@@ -937,45 +940,46 @@ class Translator(object):
         if isinstance(cls, TypeParameter):
             cls = callexpr.symtab.get(cls.typeBound[0].name)
             
-        # added to deal with calls to axiom constructor method
-        if not callexpr.pure and not callexpr.name.startswith('xform_'):
-            nameb = callexpr.name + "b"
-            mtd = cls.symtab[nameb]
-            object_wrapper = 'new Object(__cid={}(), _{}='.format(str(cls), str(cls).lower())
-            tmp_symtab = {}
-            for p in mtd.parameters[1:]:
-                for key,val in p.symtab.items():
-                    tmp_symtab[str(val)] = str(key)
-            self.printt('{}@{}'.format(str(mtd).replace(str(cls), 'Object'), str(cls)))
-            adtArg = callexpr.args[0]
-            adtArgName = str(adtArg).replace('xform_', '', 1).replace(str(cls), 'Object')
-            self.printt('(')
-            self.printt(adtArgName)            
+        # # added to deal with calls to axiom constructor method
+        # #   I SHOULD MOVE THIS TO trans_xform
+        # if not callexpr.pure and not callexpr.name.startswith('xform_'):
+        #     nameb = callexpr.name + "b"
+        #     mtd = cls.symtab[nameb]
+        #     object_wrapper = 'new Object(__cid={}(), _{}='.format(str(cls), str(cls).lower())
+        #     tmp_symtab = {}
+        #     for p in mtd.parameters[1:]:
+        #         for key,val in p.symtab.items():
+        #             tmp_symtab[str(val)] = str(key)
+        #     self.printt('{}@{}'.format(str(mtd).replace(str(cls), 'Object'), str(cls)))
+        #     adtArg = callexpr.args[0]
+        #     adtArgName = str(adtArg).replace('xform_', '', 1).replace(str(cls), 'Object')
+        #     self.printt('(')
+        #     self.printt(adtArgName)            
 
-            # Internal adt args
-            adtAdtArg = adtArg.args[0]
-            self.printt('(')
+        #     # Internal adt args
+        #     adtAdtArg = adtArg.args[0]
+        #     self.printt('(')
 
-            self.printt(object_wrapper)
-            adtArg.args[0].accept(self)
-            self.printt(')')
-            if len(adtArg.args[1:]) > 0:
-                self.printt(', ')
+        #     self.printt(object_wrapper)
+        #     adtArg.args[0].accept(self)
+        #     self.printt(')')
+        #     if len(adtArg.args[1:]) > 0:
+        #         self.printt(', ')
 
-            new_args = []
-            for p in mtd.parameters[1:]:
-                v = LiteralExpr({u'name':u'self.{}'.format(tmp_symtab[p.name]),},)
-                new_args.append(v)
-            # non-self-args
-            self.printSepList(new_args)
-            self.printt(')')
+        #     new_args = []
+        #     for p in mtd.parameters[1:]:
+        #         v = LiteralExpr({u'name':u'self.{}'.format(tmp_symtab[p.name]),},)
+        #         new_args.append(v)
+        #     # non-self-args
+        #     self.printSepList(new_args)
+        #     self.printt(')')
             
-            if len(callexpr.args[1:]) > 0:
-                self.printt(', ')
-            self.printSepList(callexpr.args[1:])
-            self.printt(')')
-            return
-            
+        #     if len(callexpr.args[1:]) > 0:
+        #         self.printt(', ')
+        #     self.printSepList(callexpr.args[1:])
+        #     self.printt(')')
+        #     return
+        
         # Compile-Time Step 2: Determine Method Signature
         # 15.12.2.1. Identify Potentially Applicable Methods
         pots = self.identify_potentials(callexpr, cls)
@@ -1036,9 +1040,6 @@ class Translator(object):
             clss = filter(lambda c: not c.interface, clss)
             logging.debug('subclasses: {}'.format(map(lambda c: str(c), clss)))
 
-            # if isinstance(scp, NameExpr):
-            #     if scp._axparam:
-            #         scp =
             scp = tltr.trans(callexpr.scope)
             args = [NameExpr({u'name':scp})] + callexpr.args
             conexprs = []
@@ -1249,75 +1250,161 @@ class Translator(object):
             dis.thenStmt.args = args
         return dis
 
+    # xname = name of xform
+    # xform = body of xform (I believe this starts as an empty switch statement)
+    #         it's what returned by get_xform() from method_declaration
+    # stmts = body of axiom declaration (i.e. return add!(t, e1))
     def trans_xform(self, xname, xform, stmts, **kwargs):
+        # SEEMS TO ALWAYS BE "self"???
+        #    It seems like maybe this is for each selector in the switch
+        #    They aren't actually initialized to not "self" until later
         label = str(xform.stmt.selector)
+
+        # Unwraps function calls that are not the direct return
+        #   This is so that "return size(h)+1" works
+        #   i.e. size(h) is unwrapped
+        # Wraps primitive returns from xforms
+        #   i.e. "return 1"
+        def wrapUnwrap(s, *args):
+            # Handle function call unwrapping
+            if isinstance(s, MethodCallExpr):
+                name = s.name +"_"+self.getParentCls(s).name
+                mdec = s.symtab.get('m'+name)
+                if mdec:
+
+                    # get method declaration for corresponding Axiom Method Call
+                    ax_mtd = mdec.symtab.get('m'+mdec.adtName)
+                    if not isDirectParentReturn(s):
+                        if isinstance(ax_mtd.typee, PrimitiveType):
+                            s = self.unwrapBox(s, ax_mtd.typee.name)
+                            
+            # Handle primitive wrapping
+            if isDirectParentReturn(s):
+                if isinstance(s.typee, PrimitiveType):
+                    s = self.wrapPrimitive(s)
+                    
+            return s
+
+        # calls wrapUnwrap on n. then calls it on n's children and replaces
+        #    n's children with wrapUnwrap'ed versions. Finally, for specific n's
+        #    it replaces other relavent values with newly updated children
+        def wrapUnwrapPrimitives(n, *args):
+            prevChildren = n.childrenNodes
+            n = wrapUnwrap(n, *args)
+            children = []
+            if n != None:
+                for c in prevChildren:
+                    children.append(wrapUnwrapPrimitives(c, *args))
+                n.childrenNodes = children
+                if isinstance(n, BinaryExpr):
+                    n.left = children[0]
+                    n.right = children[1]
+                if isinstance(n, ReturnStmt):
+                    n.expr = children[0]
+                if isinstance(n, ConditionalExpr):
+                    n.thenExpr = children[1]
+                    n.elseExpr = children[2]
+                if isinstance(n, ObjectCreationExpr):
+                    if n.box:
+                        n.children = n.args[0]
+                        if isinstance(n.args[0], BinaryExpr):
+                            n.args[0].left = children[0]
+                            n.args[0].right = children[1]
+                    
+            return n
+
+        # return true if the "direct" parent of expr is Return
+        #    means the statement is "return expr" or
+        #    "return if _ then expr else expr"
+        def isDirectParentReturn(expr):
+            if expr.parentNode:
+                if isinstance(expr.parentNode, ConditionalExpr):
+                    if expr.parentNode.condition == expr:
+                        return False
+                    else:
+                        return isDirectParentReturn(expr.parentNode)
+                elif isinstance(expr.parentNode, ReturnStmt):
+                    return True
+            return False
+        
         # Transform xform function call into appropriate function call
         #    i.e A return of type add! in JSketch translated to a call to xform_addb
         def change_call(s, *args):
+            # if s is a variable, t will be it's associated VariableDeclarator
             t = s.symtab.get(s.name)
+            # if method call is reference to ADT, it needs to be changed
+            #    could be recursive call to xform
+            #    could be call to different xform
+            #    could be call to ADT wrapper (for bang return types)
+            #    could be call to outside function
             if isinstance(s, MethodCallExpr):
-                # if isinstance(s.scope, ClassOrInterfaceDeclaration):
-                #     if s.scope.axiom:
+                # checks if there is an xform version of the function call
                 name = 'xform_{}'.format(str(s))
                 mdec = s.symtab.get('m'+name)
-                if not mdec: return
-                # change call name to include xform
-                s.name = 'xform_{}'.format(s.name)
-                if not s.pure:
-                    s.name += "b"
-                # change parameters to match ADT construction members
-                ax_mtd = mdec.symtab.get('m'+mdec.adtName)
-                args = [LiteralExpr({u'name':u'{}.self'.format(label),},),] if \
-                       isinstance(s.args[0], FieldAccessExpr) else \
-                       [LiteralExpr({u'name':u'self',},),]
-                args[0].typee = xform.typee
-                for p in ax_mtd.parameters:
-                    t = p.symtab.get(p.name)
-                    slf = '{}.'.format(label) if t and not t.axiomParameter() else ''
-                    v = LiteralExpr({u'name':u'{}{}'.format(slf,p.idd.name),},)
-                    v.typee = p.typee
-                    args.append(v)
-                    s.childrenNodes.append(v)
-                    v.add_parent_post(s)
-                s.args = args
-            elif isinstance(t, VariableDeclarator):
-                if t.axiomParameter():
-                    s.name = u'{}.{}'.format(label,t.name)
-                    v = LiteralExpr({u'name':u'self.{}'.format(s.name),},)
-                    t.symtab[s] = v
+                if mdec:                 
+                    # alter method call name to be xform call
+                    s.name = 'xform_{}'.format(s.name)
+                    if not s.pure:
+                        s.name += "b"
 
-            if isinstance(s, ReturnStmt):
-                if isinstance(s.expr.typee, PrimitiveType):
-                    s.expr = self.boxUnbox(s, s.expr)                    
+            elif isinstance(t, VariableDeclarator):
+                # if this variable is a parameter of the first argument
+                #   (i.e. axiomParameter) add symbol to the table for
+                #   this value
+                if t.axiomParameter():
+                    param_check = '#'+t.name+'_axparam#'
+                    if param_check in s.symtab:
+                        real_name = s.symtab[param_check]
+                        s.axparam = real_name
                     
+        # apply change_call to every statement, and every statement's children
+        #    note that stmt is changed first, followed by it's children
         map(lambda s: utils.walk(change_call, s), stmts)
 
-    def indent(self): self._level += 1
-    def unindent(self): self._level -= 1
-
-    def boxUnbox(self, s, expr):
-        # NEED TO ADD IN ALL EXPR TYPES THAT CAN RESOLVE TO TYPE PRIMITIVE THAT HAVE
-        #   SUBPARTS THAT NEED TO BE CONVERTED
-        if isinstance(expr, BinaryExpr):
-            return self.convertPrimitiveExpr(s, expr)
+        # alter stmts to wrap and unwrap primitives appropriately
+        new_stmts = []
+        for s in stmts:
+            new_stmts.append(wrapUnwrapPrimitives(s))
+            
+        return new_stmts
+        
+    # wrap prim in an object creation expr
+    #   This is done when returning a primitive from an xform (must be an object)
+    def wrapPrimitive(self, prim):
+        primToBox = {
+            u'int':u'Integer',
+            u'byte':u'Byte',
+            u'boolean':u'Boolean',
+            u'short':u'Short',
+            u'long':u'Long',
+            u'float':u'Float',
+            u'double':u'Double',
+            u'char':u'Character'
+        }
+        boxName = primToBox[str(prim.typee)]        
+        # Only create the expr if wrapper library included
+        if boxName in prim.symtab:
+            objCreExpr = ObjectCreationExpr({u'type':prim.symtab[boxName],u'box':True,},)
         else:
-            return self.wrapPrimitive(s, expr)
+            logging.error('{} wrapper not found. Perhaps jsketch was run without including it.'.format(boxName))
+            sys.exit()
+        objCreExpr.symtab = prim.symtab
+        objCreExpr.symtab[prim.name] = prim
+        objCreExpr.args = [prim]
+        
+        return objCreExpr
 
+    # Returns highest parent that isn't compilation unit
+    #    I believe this will always be the member class
     def getParentCls(self, expr):
         if expr.parentNode:
             if not isinstance(expr.parentNode, CompilationUnit):
                 return self.getParentCls(expr.parentNode)
         return expr
-        
-    def convertPrimitiveExpr(self, s, expr):
-        wrappers = [u'Integer', u'Byte', u'Boolean', u'Short', u'Long', u'Float', u'Double', u'Character']
-        if expr.left.typee.name == "Object":
-            expr.left = self.unwrapBox(expr.left)
-        if expr.right.typee.name == "Object":
-            expr.right = self.unwrapBox(expr.right)
-        return self.wrapPrimitive(s, expr)
-
-    def unwrapBox(self, expr):
+    
+    # creates wrapper for primType for unbox. This handles the instance when a return
+    #    from an xform has primitive type and is being used as such (i.e not return)
+    def unwrapBox(self, expr, primType=''):
         primToBox = {
             u'int':u'Integer',
             u'byte':u'Byte',
@@ -1338,9 +1425,10 @@ class Translator(object):
             u'double':u'mdoubleValue',
             u'char':u'mcharValue'
         }
-        mnm = "m"+expr.name
-        parent = self.getParentCls(expr)
-        primType = parent.symtab[mnm].typee.name
+        if primType == '':
+            mnm = "m"+expr.name
+            parent = self.getParentCls(expr)
+            primType = parent.symtab[mnm].typee.name
         boxType = primToBox[primType]
         unboxFuncName = primToUnbox[primType]
         unboxFuncName_nom = unboxFuncName.replace('m', '', 1)
@@ -1354,31 +1442,16 @@ class Translator(object):
                                   u'pure':True,
                                   u'unbox':True,})
 
-        newExpr.symtab[u'unboxer'] = box
+        newExpr.symtab[u'#unboxer_'+unboxFuncName_nom+'#'] = box
         newExpr.scope = expr
         
         return newExpr
     
-    def wrapPrimitive(self, s, prim):
-        primToBox = {
-            u'int':u'Integer',
-            u'byte':u'Byte',
-            u'boolean':u'Boolean',
-            u'short':u'Short',
-            u'long':u'Long',
-            u'float':u'Float',
-            u'double':u'Double',
-            u'char':u'Character'
-        }
-        boxName = primToBox[str(prim.typee)]        
-        # Try just setting the stuff after, i.e. call arg setter
-        objCreExpr = ObjectCreationExpr({u'type':prim.symtab[boxName],u'box':True,},)
-        # objCreExpr.scope(prim.scope)
-        objCreExpr.symtab = prim.symtab
-        objCreExpr.symtab[prim.name] = prim
-        objCreExpr._args = [prim]
-        return objCreExpr
     
+        
+    def indent(self): self._level += 1
+    def unindent(self): self._level -= 1
+
     def makeIndent(self):
         for i in xrange(self._level): self._buf.write(self._indentation)
 

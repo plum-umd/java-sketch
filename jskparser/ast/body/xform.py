@@ -9,6 +9,9 @@ from .bodydeclaration import BodyDeclaration
 from ..stmt.switchstmt import SwitchStmt
 from ..stmt.blockstmt import BlockStmt
 from ..stmt.expressionstmt import ExpressionStmt
+from ..stmt.returnstmt import ReturnStmt
+from ..expr.conditionalexpr import ConditionalExpr
+from ..expr.binaryexpr import BinaryExpr
 
 # This is just going to be a child of MethodDeclaration and allow for special handling of
 # the switch statements
@@ -73,6 +76,6 @@ class Xform(BodyDeclaration):
                     b.stmts = body
                     s.stmts = [b]
                     b.add_parent_post(s, True)
-                    map(lambda s: s.add_parent_post(b), body)
+                    map(lambda s: s.add_parent_post(b), body)                       
 
     def __str__(self): return self._name

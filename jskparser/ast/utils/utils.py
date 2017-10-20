@@ -25,6 +25,11 @@ from ast.expr.thisexpr import ThisExpr
 from ast.expr.fieldaccessexpr import FieldAccessExpr
 from ast.expr.arrayaccessexpr import ArrayAccessExpr
 from ast.expr.assignexpr import AssignExpr
+from ast.expr.binaryexpr import BinaryExpr
+from ast.expr.conditionalexpr import ConditionalExpr
+from ast.expr.objectcreationexpr import ObjectCreationExpr
+
+from ast.stmt.returnstmt import ReturnStmt
 
 from ast.type.primitivetype import PrimitiveType
 from ast.type.referencetype import ReferenceType
@@ -75,6 +80,26 @@ unbox = {u'Boolean':u'boolean',
          u'Long':u'long',
          u'Float':u'float',
          u'Double':u'double'}
+
+# applies f to n and all children to n
+#    updates n's fields with new children
+def walk_changeState(f, n, *args):
+    prevChildren = n.childrenNodes
+    n = f(n, *args)
+    children = []
+    if n != None:
+        for c in prevChildren:
+            children.append(walk_changeState(f, c, *args))
+        n.childrenNodes = children
+        if isinstance(n, BinaryExpr):
+            n.left = children[0]
+            n.right = children[1]
+        if isinstance(n, ReturnStmt):
+            n.expr = children[0]
+        if isinstance(n, ConditionalExpr):
+            n.thenExpr = children[1]
+            n.elseExpr = children[2]
+    return n
 
 def walk(f, n, *args):
     f(n, *args)

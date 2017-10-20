@@ -16,7 +16,12 @@ class NameExpr(Expression):
         self._type = locs[typdct[u'@t']](typdct) if typdct else None
 
         self._axparam = kwargs.get(u'axparam')
-        
+
+    @property
+    def axparam(self) : return self._axparam
+    @axparam.setter
+    def axparam(self, v) : self._axparam = v
+    
     @property
     def name(self): return self._name
     @name.setter

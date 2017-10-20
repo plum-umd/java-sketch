@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import cStringIO
 import math
 import os
@@ -21,6 +23,7 @@ from ast.body.typedeclaration import TypeDeclaration as td
 from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 from ast.body.xform import Xform
 from ast.body.axiomdeclaration import AxiomDeclaration
+from ast.body.variabledeclarator import VariableDeclarator
 
 from ast.stmt.returnstmt import ReturnStmt
 
@@ -28,6 +31,8 @@ from ast.expr.generatorexpr import GeneratorExpr
 from ast.expr.methodcallexpr import MethodCallExpr
 from ast.expr.literalexpr import LiteralExpr
 from ast.expr.nameexpr import NameExpr
+from ast.expr.conditionalexpr import ConditionalExpr
+from ast.expr.binaryexpr import BinaryExpr
 
 from ast.type.referencetype import ReferenceType
 
@@ -256,7 +261,6 @@ class Encoder(object):
         return cls_sk
 
     def gen_axiom_cls_sk(self, cls):
-        # Defines Constructors for Axiom ADT
         def gen_adt_constructor(mtd):
             c = '    {}{} {{ '.format(mtd.name.capitalize(), ' '*(max_len+1-len(mtd.name)))
             if not mtd.default:
@@ -294,65 +298,55 @@ class Encoder(object):
             for n in pnms:
                 c += ', {0}={0}'.format(n)
             c += '));\n}\n\n'
-            return c, name
+            return c
 
         cname = str(cls)
-        # add new axiom fields to Object struct
 
         buf = cStringIO.StringIO()
         buf.write("package {};\n\n".format(cname))
 
-        # Creates list of adt "functions" (i.e. axioms) including bang functions
+        # Creates list of adt "functions" (i.e. constructors from top of java file)
+        #   including bang functions
         mtds = utils.extract_nodes([MethodDeclaration], cls, recurse=False)
         adt_mtds = filter(lambda m: m.adt, mtds)
         # add bang functions for non-pure methods
         for (m,i) in zip(adt_mtds, xrange(len(adt_mtds))):
             if not m.pure:
                 mtd = cp.copy(m)
-                # BEN CHANGE
-                # mtd.name = m.name + 'B'
                 mtd.name = m.name + 'b'
                 mtd.pure = True
                 adt_mtds.insert(i+1, mtd)
 
         # add default constructor if one isn't provided
+        #   i.e. user didn't write constructor at top of Java file
         default = filter(lambda m: cname == m.name, adt_mtds)
         if not default:
             m = MethodDeclaration({u'@t':u'MethodDeclaration', u'name':cname.lower(),
                                    u'type':{u'@t':u'ClassOrInterfaceType',u'name':u'Object',},},)
-            # set this to pure so we don't generate a bang constructor and default...so we know it's default
+            # set this to pure so we don't generate a bang constructor and default...
+            # so we know it's default
             m.pure = True
             m.default = True
             m.add_parent_post(cls)
-            adt_mtds = [m] + adt_mtds
-        
+            adt_mtds = [m] + adt_mtds                                
+
         # I like to format
         max_len = max(map(lambda m: len(m.name), adt_mtds))
 
         # Create ADT constructors for all methods and wraps them in ADT struct
-        #    Also create a dictionary for object constructors for symbol table reference
-        obj_cons = {}
-        cons, cons_names = zip(*map(gen_obj_constructor, adt_mtds))
+        #  Also create a dictionary for object constructors for symbol table reference
+        cons = map(gen_obj_constructor, adt_mtds)
         adt_cons = map(gen_adt_constructor, adt_mtds)
         adt = 'adt {} {{\n{}}}\n\n{}'.format(cname, ''.join(adt_cons), ''.join(cons))
         buf.write(adt)
 
-        # HOW TO DO THIS!!??
-        #    Creating dictionary of object constructors to later be added to
-        #    symbol tables for xforms
-        for name,a in zip(cons_names, adt_mtds):            
-            v = MethodDeclaration({u'type':{u'@t':u'ClassOrInterfaceType',u'name':u'Object',}, u'name':a.name,u'adtType':a.adtType,u'modifiers':a.modifiers,u'body':a.body,},) 
-            _self = Parameter({u'id':{u'name':u'self'},
-                               u'type':{u'@t':u'ClassOrInterfaceType', u'name':cname},},)
-            v.childrenNodes.append(_self)
-            v.parameters = [_self] + map(cp.copy, a.parameters)
-            v.add_parent_post(a.parentNode, True)
-            obj_cons[name] = v
-
         # Updates n's symbol table to include parents symbol table items
         def cpy_sym(n, *args):
-            if n.parentNode: n.symtab = dict(n.parentNode.symtab.items() + n.symtab.items())
-        # Creates a dictionary of xforms
+            if n.parentNode: n.symtab = dict(n.parentNode.symtab.items() +
+                                             n.symtab.items())
+        
+        # Iterates through ADT constructors
+        #   Creates a dictionary of xforms using constructor names
         #   Keys are the xform name (of the form "xform_"+adt_name)
         #   Values are MethodDeclarations with lots of ugly looking formatting 
         xforms = {}
@@ -371,9 +365,10 @@ class Encoder(object):
             xforms[xnm] = x
 
         # Applies cpy_sym to all children of this class and all children of those
-        #    Updates symbol table of each of these children
+        #    Updates symbol table of each of these children to include parent's
+        #    symbol table
         map(partial(utils.walk, cpy_sym), cls.childrenNodes)
-
+            
         # create xform dispatch method
         #    i.e. calls the right xform depending on type of ADT
         dispatch = Xform.gen_xform(cls, u'xform', adt_mtds,
@@ -404,28 +399,9 @@ class Encoder(object):
         # Writes dispatch function
         buf.write(self.tltr.trans(dispatch))
 
+        # Gets all the axiom declarations 
         ax_mtds = utils.extract_nodes([AxiomDeclaration], cls, recurse=False)
-
-        # fix symbol table for axiom parameters that are methods
-        for a in ax_mtds:
-            for p in a.parameters:
-                if p.method:
-                    index = 1
-                    for p2 in p.method.parameters[1:]:
-                        xnm = 'xform_{}'.format(a.name)
-                        xf = xforms[xnm]
-                        if index < len(xf.parameters):                            
-                            new_name = xf.parameters[index].idd.name
-                        else:
-                            new_name = p2.name
-                        v = NameExpr({u'name':u'self.{}'.format(new_name),u'axparam':True,},)
-                        v.symtab = p2.typee.symtab
-                        v.symtab[v.name] = p2.typee
-                        a.symtab[p2] = v
-                        a.symtab[str(p2)] = v
-                        a.symtab["self."+p2.name+"_axparam"] = v.name
-                        index += 1
-                        
+        
         # populate individual xforms with axioms
         #   
         for a in ax_mtds:
@@ -433,44 +409,65 @@ class Encoder(object):
             xf = xforms[xnm]
             xf.name = 'xform_{}'.format(a.name)
 
+            xf2 = filter(lambda m: m.name == a.parameters[0].method.name, adt_mtds)
+
+            if len(xf2) > 0:
+                xf2 = xf2[0]
+                for (xp, ap) in zip(xf2.parameters, a.parameters[0].method.parameters[1:]):
+                    print("HERE_PARAMS: "+str(xp.name)+", "+str(ap.name))
+                    xf.symtab['#'+ap.name+"_axparam#"] = xp.name
+
+                ap_name = a.parameters[0].method.parameters[0].name
+                xf.symtab['#'+ap_name+"_axparam#"] = u'self'
+                    
+            # fst_arg = a.parameters[0].method.parameters[0].name
+            # xf.symtab['#'+fst_arg+"_axparam#"] = 'self.self'
+                
             # rename xf parameters to correspond to axiom declaration, not adt
             #    (i.e. parameters representing xforms must access their fields through
             #    correct names, some parameters must be renamed
             for (xp,ap) in zip(xf.parameters, a.parameters):
+                # Filters out first argument (i.e. the bang ADT structure)
                 if ap.idd:
                     xp.name = ap.name
 
-            # there has to be a better way than this
-            #    More updating of the symbol tables, not sure why the order
+                
+            # add a symbol table items to xf
+            #   this will give it access to the argument names of a
+            #   then updates xf children with 
             xf.symtab = dict(a.symtab.items() + xf.symtab.items())
             map(partial(utils.walk, cpy_sym), xf.childrenNodes)
+
+            # NOT SURE WHY THIS IS NEEDED
+            #    without this it isn't able to resolve the string type of the
+            #    function. not sure why...
             a.symtab = dict(xf.symtab.items() + a.symtab.items())
             map(partial(utils.walk, cpy_sym), a.childrenNodes)
             
-            # Add axiom object constructors to class symbol table
-            parent_cls = xf.get_coid()
-            parent_cls.symtab = dict(parent_cls.symtab.items() + obj_cons.items())
-            
-            # symbol table for xf doesn't seem to change regardless of nested add!
-            # in axiom return ... probably in a's symtab
-            
-            # transform xform method call names and parameters
+            # returns empty switch statement to be filled by axioms declarations
+            #   of the axiom "a"
+            #   TODO: add depth argument here for nested structures
             body = xf.get_xform()
 
-            # transform the xform body to work (i.e. mess with symtab) 
-            self.tltr.trans_xform(a.name, body, a.body.stmts)
-            
+            # iterate through body of axiom declarations of a, translate
+            #    them to appropriate IRs (i.e. JSON dicts)
+            a.body.stmts = self.tltr.trans_xform(a.name, body, a.body.stmts)
+
+            # Find all possible instances of the ADT (i.e. all cases)
             decs = utils.extract_nodes([AxiomDeclaration], a.parameters[0])
-            cases = map(lambda d: d.name.capitalize(), decs)            
-            body.add_body(cases, a.body.stmts)
-            
+            cases = map(lambda d: d.name.capitalize(), decs)
+
+            # add cases to body
+            body.add_body(cases, a.body.stmts)                    
+                    
         for v in xforms.values():
-            buf.write(self.tltr.trans(v))
+            buf.write(self.tltr.trans(v))        
         cls_sk = cname + ".sk"
         with open(os.path.join(self.sk_dir, cls_sk), 'w') as f:
             f.write(util.get_and_close(buf))
         return cls_sk
-
+        
+            
     def to_func(self, mtd):
         buf = cStringIO.StringIO()
         buf.write(self.tltr.trans(mtd))

@@ -45,6 +45,11 @@ class ObjectCreationExpr(Expression):
             self.add_as_parent([self.scope, self.typee]+self.typeArgs+self.args+self.anonymousClassBody)
 
     @property
+    def box(self): return self._box
+    @box.setter
+    def box(self, v): self._box = v
+
+    @property
     def scope(self): return self._scope
     @scope.setter
     def scope(self, v): self._scope = v
