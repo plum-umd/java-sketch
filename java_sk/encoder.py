@@ -401,6 +401,23 @@ class Encoder(object):
 
         # Gets all the axiom declarations 
         ax_mtds = utils.extract_nodes([AxiomDeclaration], cls, recurse=False)
+
+        for a in ax_mtds:
+            xnm = 'xform_{}'.format(a.name)
+            xf = xforms[xnm]
+            xf.name = 'xform_{}'.format(a.name)
+
+            xf2 = filter(lambda m: m.name == a.parameters[0].method.name, adt_mtds)
+            if len(xf2) > 0:
+                xf2 = xf2[0]
+                for (xp, ap) in zip(xf2.parameters, a.parameters[0].method.parameters[1:]):
+                    old_name = '#'+ap.name+"_axparam#"
+                    if not old_name in xf.symtab: 
+                        xf.symtab['#'+ap.name+"_axparam#"] = xp.name
+
+                ap_name = a.parameters[0].method.parameters[0].name
+                xf.symtab['#'+ap_name+"_axparam#"] = u'self'
+            
         
         # populate individual xforms with axioms
         #   
@@ -408,20 +425,6 @@ class Encoder(object):
             xnm = 'xform_{}'.format(a.name)
             xf = xforms[xnm]
             xf.name = 'xform_{}'.format(a.name)
-
-            xf2 = filter(lambda m: m.name == a.parameters[0].method.name, adt_mtds)
-
-            if len(xf2) > 0:
-                xf2 = xf2[0]
-                for (xp, ap) in zip(xf2.parameters, a.parameters[0].method.parameters[1:]):
-                    print("HERE_PARAMS: "+str(xp.name)+", "+str(ap.name))
-                    xf.symtab['#'+ap.name+"_axparam#"] = xp.name
-
-                ap_name = a.parameters[0].method.parameters[0].name
-                xf.symtab['#'+ap_name+"_axparam#"] = u'self'
-                    
-            # fst_arg = a.parameters[0].method.parameters[0].name
-            # xf.symtab['#'+fst_arg+"_axparam#"] = 'self.self'
                 
             # rename xf parameters to correspond to axiom declaration, not adt
             #    (i.e. parameters representing xforms must access their fields through
