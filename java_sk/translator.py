@@ -1280,7 +1280,7 @@ class Translator(object):
                             
             # Handle primitive wrapping
             if isDirectParentReturn(s):
-                if isinstance(s.typee, PrimitiveType):
+                if isinstance(s.typee, PrimitiveType) and s.typee.name != 'null':
                     s = self.wrapPrimitive(s)
                     
             return s
@@ -1347,6 +1347,9 @@ class Translator(object):
                     if not s.pure:
                         s.name += "b"
 
+            elif isinstance(s, ObjectCreationExpr):
+                print("OBJ")
+                        
             elif isinstance(t, VariableDeclarator):
                 # if this variable is a parameter of the first argument
                 #   (i.e. axiomParameter) add symbol to the table for
@@ -1356,7 +1359,7 @@ class Translator(object):
                     if param_check in s.symtab:
                         real_name = s.symtab[param_check]
                         s.axparam = real_name
-                    
+                        
         # apply change_call to every statement, and every statement's children
         #    note that stmt is changed first, followed by it's children
         map(lambda s: utils.walk(change_call, s), stmts)

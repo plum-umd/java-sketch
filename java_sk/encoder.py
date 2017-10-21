@@ -24,6 +24,7 @@ from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 from ast.body.xform import Xform
 from ast.body.axiomdeclaration import AxiomDeclaration
 from ast.body.variabledeclarator import VariableDeclarator
+from ast.body.axiomparameter import AxiomParameter
 
 from ast.stmt.returnstmt import ReturnStmt
 
@@ -407,7 +408,13 @@ class Encoder(object):
             xf = xforms[xnm]
             xf.name = 'xform_{}'.format(a.name)
 
-            xf2 = filter(lambda m: m.name == a.parameters[0].method.name, adt_mtds)
+            if a.parameters[0].method:
+                xf2 = filter(lambda m: m.name == a.parameters[0].method.name, adt_mtds)
+            else:
+                xf2 = []
+                # v = VariableDeclarator({u'name':u'self', })
+                # xf.parameters[0].idd = v
+                
             if len(xf2) > 0:
                 xf2 = xf2[0]
                 for (xp, ap) in zip(xf2.parameters, a.parameters[0].method.parameters[1:]):
@@ -417,8 +424,7 @@ class Encoder(object):
 
                 ap_name = a.parameters[0].method.parameters[0].name
                 xf.symtab['#'+ap_name+"_axparam#"] = u'self'
-            
-        
+                    
         # populate individual xforms with axioms
         #   
         for a in ax_mtds:
@@ -456,9 +462,14 @@ class Encoder(object):
             #    them to appropriate IRs (i.e. JSON dicts)
             a.body.stmts = self.tltr.trans_xform(a.name, body, a.body.stmts)
 
-            # Find all possible instances of the ADT (i.e. all cases)
+            # Find the right instance for which case this should be in the
+            #    resulting switch statement
             decs = utils.extract_nodes([AxiomDeclaration], a.parameters[0])
-            cases = map(lambda d: d.name.capitalize(), decs)
+
+            if not a.parameters[0].method:
+                decs.append(adt_mtds[0])
+
+            cases = map(lambda d: d.name.capitalize(), decs)                
 
             # add cases to body
             body.add_body(cases, a.body.stmts)                    
