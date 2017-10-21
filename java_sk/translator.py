@@ -532,6 +532,7 @@ class Translator(object):
     def visit(self, n, **kwargs):
         obj_cls = n.symtab.get(n.typee.name)
         cls = obj_cls.symtab.get(obj_cls.name)
+        print("OBJCREAT: "+str(cls)+", "+str(cls.axiom))
         if isinstance(obj_cls, ImportDeclaration): obj_cls = obj_cls.cname()
         if isinstance(obj_cls, ReferenceType): obj_cls = self.trans_ty(obj_cls)
         if n.scope:
@@ -586,9 +587,11 @@ class Translator(object):
             self.post_mtds += '\n'.join(anon)
 
             obj_cls = anon_cls
-        self.printt('(new Object(__cid={}())'.format(str(obj_cls)))
-        if cls.isinner(): self.printt(', self')
-        if n.args: self.printt(', ')
+        self.printt('(')
+        if not cls.axiom:
+            self.printt('new Object(__cid={}())'.format(str(obj_cls)))
+            if cls.isinner(): self.printt(', self')
+            if n.args: self.printt(', ')
         self.printSepList(n.args)
         self.printt(')')
 

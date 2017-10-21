@@ -262,6 +262,8 @@ class Encoder(object):
         return cls_sk
 
     def gen_axiom_cls_sk(self, cls):
+        cname = str(cls)
+
         def gen_adt_constructor(mtd):
             c = '    {}{} {{ '.format(mtd.name.capitalize(), ' '*(max_len+1-len(mtd.name)))
             if not mtd.default:
@@ -279,7 +281,11 @@ class Encoder(object):
             (ptyps, pnms) = (map(str, mtd.param_typs()), map(str, mtd.param_names()))
             params = ', '.join(map(lambda p: ' '.join(p), zip(ptyps, pnms)))
             c = 'Object '
-            mtd_name = str(name.lower())
+            print("CONST: "+str(name)+", "+str(cname))
+            if name == cname.lower():
+                mtd_name = cname + "_" + cname
+            else:
+                mtd_name = str(name.lower())
             typ_params = '_'.join(ptyps)
             if not mtd.default:
                 mtd_name += '_Object'
@@ -300,8 +306,6 @@ class Encoder(object):
                 c += ', {0}={0}'.format(n)
             c += '));\n}\n\n'
             return c
-
-        cname = str(cls)
 
         buf = cStringIO.StringIO()
         buf.write("package {};\n\n".format(cname))
