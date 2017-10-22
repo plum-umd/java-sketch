@@ -281,7 +281,6 @@ class Encoder(object):
             (ptyps, pnms) = (map(str, mtd.param_typs()), map(str, mtd.param_names()))
             params = ', '.join(map(lambda p: ' '.join(p), zip(ptyps, pnms)))
             c = 'Object '
-            print("CONST: "+str(name)+", "+str(cname))
             if name == cname.lower():
                 mtd_name = cname + "_" + cname
             else:
@@ -399,7 +398,7 @@ class Encoder(object):
                 ret.expr.childrenNodes.append(v)
                 ret.expr.args.append(v)
             body = dispatch.get_xform()
-            body.add_body([a.name.capitalize()], [ret])
+            body.add_body([a.name.capitalize()], [ret], adt_mtds)
 
         # Writes dispatch function
         buf.write(self.tltr.trans(dispatch))
@@ -412,23 +411,24 @@ class Encoder(object):
             xf = xforms[xnm]
             xf.name = 'xform_{}'.format(a.name)
 
-            if a.parameters[0].method:
-                xf2 = filter(lambda m: m.name == a.parameters[0].method.name, adt_mtds)
-            else:
-                xf2 = []
-                # v = VariableDeclarator({u'name':u'self', })
-                # xf.parameters[0].idd = v
-                
-            if len(xf2) > 0:
+            fst_param = a.parameters[0]
+            xf2 = []
+            # if fst_param.method:
+            #     if fst_param.method.parameters:
+            depth = 0
+            while fst_param.method and fst_param.method.parameters:
+                xf2 = filter(lambda m: m.name == fst_param.method.name, adt_mtds)
                 xf2 = xf2[0]
-                for (xp, ap) in zip(xf2.parameters, a.parameters[0].method.parameters[1:]):
+                for (xp, ap) in zip(xf2.parameters, fst_param.method.parameters[1:]):
                     old_name = '#'+ap.name+"_axparam#"
                     if not old_name in xf.symtab: 
-                        xf.symtab['#'+ap.name+"_axparam#"] = xp.name
+                        xf.symtab[old_name] = (u'self.'*depth)+xp.name
 
-                ap_name = a.parameters[0].method.parameters[0].name
-                xf.symtab['#'+ap_name+"_axparam#"] = u'self'
-                    
+                ap_name = fst_param.method.parameters[0].name
+                xf.symtab['#'+ap_name+"_axparam#"] = u'self'+(u'.self'*depth)
+                fst_param = fst_param.method.parameters[0]
+                depth += 1
+                
         # populate individual xforms with axioms
         #   
         for a in ax_mtds:
@@ -443,7 +443,6 @@ class Encoder(object):
                 # Filters out first argument (i.e. the bang ADT structure)
                 if ap.idd:
                     xp.name = ap.name
-
                 
             # add a symbol table items to xf
             #   this will give it access to the argument names of a
@@ -469,14 +468,15 @@ class Encoder(object):
             # Find the right instance for which case this should be in the
             #    resulting switch statement
             decs = utils.extract_nodes([AxiomDeclaration], a.parameters[0])
-
+            
+            # Add the empty constructor to the declarations if needed
             if not a.parameters[0].method:
                 decs.append(adt_mtds[0])
 
             cases = map(lambda d: d.name.capitalize(), decs)                
 
             # add cases to body
-            body.add_body(cases, a.body.stmts)                    
+            body.add_body(cases, a.body.stmts, adt_mtds)                    
                     
         for v in xforms.values():
             buf.write(self.tltr.trans(v))        

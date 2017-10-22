@@ -532,7 +532,6 @@ class Translator(object):
     def visit(self, n, **kwargs):
         obj_cls = n.symtab.get(n.typee.name)
         cls = obj_cls.symtab.get(obj_cls.name)
-        print("OBJCREAT: "+str(cls)+", "+str(cls.axiom))
         if isinstance(obj_cls, ImportDeclaration): obj_cls = obj_cls.cname()
         if isinstance(obj_cls, ReferenceType): obj_cls = self.trans_ty(obj_cls)
         if n.scope:
@@ -1344,12 +1343,12 @@ class Translator(object):
                 # checks if there is an xform version of the function call
                 name = 'xform_{}'.format(str(s))
                 mdec = s.symtab.get('m'+name)
-                if mdec:                 
+                if mdec or not s.pure:                 
                     # alter method call name to be xform call
                     s.name = 'xform_{}'.format(s.name)
                     if not s.pure:
-                        s.name += "b"
-
+                        s.name += "b"                                        
+                        
             elif isinstance(s, ObjectCreationExpr):
                 print("OBJ")
                         

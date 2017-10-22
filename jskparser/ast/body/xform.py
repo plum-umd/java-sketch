@@ -59,13 +59,62 @@ class Xform(BodyDeclaration):
                                   u'body':{u'@t':u'BlockStmt',
                                            u'stmts':{u'@e':[xform, ret_none],},},
                                   u'parameters':{u'@e':params},},)
+    def gen_switch(self, adt_mtds, depth):
+        entries = []
+        for a in adt_mtds:
+            entries.append({u'@t':u'SwitchEntryStmt',
+                            u'label':{u'@t':u'NameExpr',
+                                      u'name':a.name.capitalize(),},},)
 
+        slf = u'self'+(u'.self'*depth)
+        switch = {u'@t':u'SwitchStmt',
+                  u'selector':{u'@t':u'NameExpr',u'name':slf},
+                  u'entries':{u'@e':entries,},}
+
+        xform = Xform({u'@t':u'Xform',u'stmt':switch,u'name':self.name,
+                       u'type':{u'@t':u'ClassOrInterfaceType',u'name':self.name,},})
+
+        # str(cls),},}
+        
+        return xform
+
+    def build_switch(self, cases, body, adt_mtds, depth, switch):
+        new_switch = None
+        if not switch:
+            new_switch = self.gen_switch(adt_mtds, depth)
+        else:
+            new_switch = switch
+            
+        for s in new_switch.stmt.entries:
+            if str(s.label) == cases[0]:
+                if len(cases) == 1:
+                    if s.stmts:
+                        raise Exception('Are we overwriting an axiom??')
+                    b = BlockStmt()
+                    body = [body] if not isinstance(body, list) else body
+                    b.stmts = body
+                    s.stmts = [b]
+                    b.add_parent_post(s, True)
+                    map(lambda s: s.add_parent_post(b), body)                       
+                else:
+                    b = BlockStmt()
+                    switch2 = s.stmts[0].stmts[0] if len(s.stmts) > 0 else None
+                    body2 = self.build_switch(cases[1:], body, adt_mtds, depth+1, switch2)
+                    body = [body2] if not isinstance(body2, list) else body2
+                    b.stmts = body
+                    s.stmts = [b]
+                    b.add_parent_post(s, True)
+                    map(lambda s: s.add_parent_post(b), body)                         
+        
+        return new_switch
+        
     # cases should be a list of NameExprs representing the tree of cases
     # body is the body to fill in for that case
-    def add_body(self, cases, body):
+    def add_body(self, cases, body, adt_mtds):
         # i dont think i know what this means yet...but it's probably not good
         if len(cases) == 0:
             raise Exception('Length of cases == 0')
+
         for s in self.stmt.entries:
             if str(s.label) == cases[0]:                
                 if len(cases) == 1:
@@ -77,5 +126,14 @@ class Xform(BodyDeclaration):
                     s.stmts = [b]
                     b.add_parent_post(s, True)
                     map(lambda s: s.add_parent_post(b), body)                       
-
+                else:
+                    b = BlockStmt()
+                    switch = s.stmts[0].stmts[0] if len(s.stmts) > 0 else None
+                    body2 = self.build_switch(cases[1:], body, adt_mtds, 1, switch)
+                    body = [body2] if not isinstance(body2, list) else body2
+                    b.stmts = body
+                    s.stmts = [b]
+                    b.add_parent_post(s, True)
+                    map(lambda s: s.add_parent_post(b), body)                       
+                    
     def __str__(self): return self._name
