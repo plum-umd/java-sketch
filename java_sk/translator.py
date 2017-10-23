@@ -240,7 +240,7 @@ class Translator(object):
     def visit(self, n, **kwargs):
         self.printt(str(n.typee))
         self.buf.write(' {}'.format(str(n.idd)))
-
+        
     @v.when(VariableDeclarator)
     def visit(self, n, **kwargs):
         if n.init:
@@ -455,7 +455,8 @@ class Translator(object):
             return
         # catch special axiom arg
         if n.axparam:
-            self.printt("self."+n.axparam)
+            # self.printt("self_"+n.axparam)
+            self.printt(n.axparam)
             return
         obj = utils.node_to_obj(n)
         if type(obj) == FieldDeclaration:

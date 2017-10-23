@@ -415,17 +415,17 @@ class Encoder(object):
             xf2 = []
             # if fst_param.method:
             #     if fst_param.method.parameters:
-            depth = 0
+            depth = 1
             while fst_param.method and fst_param.method.parameters:
                 xf2 = filter(lambda m: m.name == fst_param.method.name, adt_mtds)
                 xf2 = xf2[0]
                 for (xp, ap) in zip(xf2.parameters, fst_param.method.parameters[1:]):
                     old_name = '#'+ap.name+"_axparam#"
                     if not old_name in xf.symtab: 
-                        xf.symtab[old_name] = (u'self.'*depth)+xp.name
+                        xf.symtab[old_name] = (u'self_'*(depth-1))+u'self.'+xp.name
 
                 ap_name = fst_param.method.parameters[0].name
-                xf.symtab['#'+ap_name+"_axparam#"] = u'self'+(u'.self'*depth)
+                xf.symtab['#'+ap_name+"_axparam#"] = (u'self_'*(depth-1))+u'self.self'
                 fst_param = fst_param.method.parameters[0]
                 depth += 1
                 

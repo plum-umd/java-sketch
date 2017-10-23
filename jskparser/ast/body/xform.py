@@ -66,22 +66,45 @@ class Xform(BodyDeclaration):
                             u'label':{u'@t':u'NameExpr',
                                       u'name':a.name.capitalize(),},},)
 
-        slf = u'self'+(u'.self'*depth)
+        slf = u'self'+(u'_self'*depth)
+        slf_dot = (u'self_'*(depth-1))+u'self.self'
+
+        assn = {u'@t':u'AssignExpr',
+                u'target':{u'@t':u'LiteralExpr', u'name':slf,},
+                u'value':{u'@t':u'LiteralExpr', u'name':slf_dot,},
+                u'op':{u'name':u'ASSIGN',},}
+
+        assn_expr = {u'@t':u'ExpressionStmt',
+                     u'expr':assn,}
+        
+        vdecor = {u'@t':u'VariableDeclarator',
+                  u'id':{u'@t':u'VariableDeclaratorId', u'name':slf,},
+                  u'type':{u'@t':u'ClassOrInterfaceType',u'name':str(self.typee),},}
+
+        vdec = {u'@t':u'VariableDeclarationExpr',
+                u'type':{u'@t':u'ClassOrInterfaceType',u'name':str(self.typee),},
+                u'vars':{u'@e':[vdecor],},}
+
+        vdec_expr = {u'@t':u'ExpressionStmt',
+                     u'expr':vdec,}
+        
         switch = {u'@t':u'SwitchStmt',
                   u'selector':{u'@t':u'NameExpr',u'name':slf},
                   u'entries':{u'@e':entries,},}
 
-        xform = Xform({u'@t':u'Xform',u'stmt':switch,u'name':self.name,
-                       u'type':{u'@t':u'ClassOrInterfaceType',u'name':self.name,},})
-
-        # str(cls),},}
+        xform = {u'@t':u'Xform',u'stmt':switch,u'name':self.name,
+                 u'type':{u'@t':u'ClassOrInterfaceType',u'name':self.name,},}
         
-        return xform
+        block = BlockStmt({u'@t':u'BlockStmt',
+                           u'stmts':{u'@e':[vdec_expr, assn_expr, xform],},},)
+        
+        return block
 
     def build_switch(self, cases, body, adt_mtds, depth, switch):
         new_switch = None
         if not switch:
-            new_switch = self.gen_switch(adt_mtds, depth)
+            new_block = self.gen_switch(adt_mtds, depth)
+            new_switch = new_block.stmts[2]
         else:
             new_switch = switch
             
@@ -106,7 +129,7 @@ class Xform(BodyDeclaration):
                     b.add_parent_post(s, True)
                     map(lambda s: s.add_parent_post(b), body)                         
         
-        return new_switch
+        return new_block
         
     # cases should be a list of NameExprs representing the tree of cases
     # body is the body to fill in for that case
