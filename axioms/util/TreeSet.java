@@ -1,9 +1,5 @@
-class TreeSet {
-    harness void mn() { }   
-}
-
 @axiomClass
-class AxTreeSet {
+class TreeSet {
 
     @adt
     boolean add(Object e);
