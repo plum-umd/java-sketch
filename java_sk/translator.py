@@ -1307,6 +1307,7 @@ class Translator(object):
                 if isinstance(n, ReturnStmt):
                     n.expr = children[0]
                 if isinstance(n, ConditionalExpr):
+                    n.condition = children[0]
                     n.thenExpr = children[1]
                     n.elseExpr = children[2]
                 if isinstance(n, ObjectCreationExpr):
