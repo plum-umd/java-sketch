@@ -1,4 +1,4 @@
-class Array {
+class ArrayTest {
     harness static void main() {
 	int[] a0 = new int[5];
 	assert a0.length == 5;
