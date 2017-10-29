@@ -1274,9 +1274,9 @@ class Translator(object):
             # Handle function call unwrapping
             if isinstance(s, MethodCallExpr):
                 name = s.name +"_"+self.getParentCls(s).name
-                mdec = s.symtab.get('m'+name)
-                if mdec:
-
+                mdec = s.symtab.get('m'+str(s))
+                if mdec and mdec.adtName:
+                    
                     # get method declaration for corresponding Axiom Method Call
                     ax_mtd = mdec.symtab.get('m'+mdec.adtName)
                     if not isDirectParentReturn(s):
