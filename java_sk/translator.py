@@ -477,6 +477,8 @@ class Translator(object):
                 # this is the index of the class where the field lives
             slf = 'self{}'.format(i)
             self.printt('{}.{}'.format(slf, str(obj)))
+        elif type(obj) == VariableDeclarator:
+            self.printt(obj.name)
         else:
             self.printt(n.name)
 

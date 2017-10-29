@@ -442,8 +442,10 @@ class Encoder(object):
             for (xp,ap) in zip(xf.parameters, a.parameters):
                 # Filters out first argument (i.e. the bang ADT structure)
                 if ap.idd:
-                    xp.name = ap.name
-                
+                    # xp.name = ap.name
+                    # ap.name = xp.name
+                    a.symtab[ap.name].name = xp.name
+                    
             # add a symbol table items to xf
             #   this will give it access to the argument names of a
             #   then updates xf children with 
