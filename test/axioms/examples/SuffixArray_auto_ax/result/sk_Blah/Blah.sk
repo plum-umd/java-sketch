@@ -1,0 +1,11 @@
+package Blah;
+
+Object Blah_Blah(Object self) {
+    return self;
+}
+
+harness void main() {
+  Object self = Object_Object(new Object(__cid=Object()));
+  assert 1 == 1;
+}
+

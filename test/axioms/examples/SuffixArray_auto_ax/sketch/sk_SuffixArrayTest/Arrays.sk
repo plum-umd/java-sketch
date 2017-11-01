@@ -1,0 +1,31 @@
+package Arrays;
+
+Object Arrays_Arrays(Object self) {
+    return self;
+}
+
+Array_Object swap_SuffixRankTuple_int_int(Array_Object a, int i, int j) {
+  Object tmp = a.A[i];
+  a.A[i] = a.A[j];
+  a.A[j] = tmp;
+  return a;
+}
+
+Array_Object sort_SuffixRankTuple_int(Array_Object a, int n) {
+  for (int j = 0; j < n - 1; j++) {
+    int iMin = j;
+    for (int i = j + 1; i < n; i++) {
+      Object a1 = a.A[i];
+      Object a2 = a.A[iMin];
+      int cmp = (a1.__cid == SuffixRankTuple() ? compareTo_SuffixRankTuple@SuffixRankTuple(a1, a2) : 0);
+      if (cmp < 0) {
+        iMin = i;
+      }
+    }
+    if (iMin != j) {
+      a = swap_SuffixRankTuple_int_int(a, j, iMin);
+    }
+  }
+  return a;
+}
+

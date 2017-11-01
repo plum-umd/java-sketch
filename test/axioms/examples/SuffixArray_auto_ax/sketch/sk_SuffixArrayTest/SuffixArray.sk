@@ -1,0 +1,114 @@
+package SuffixArray;
+
+Object SuffixArray_SuffixArray(Object self) {
+    return self;
+}
+
+Object SuffixArray_SuffixArray_String(Object self, Object text) {
+  SuffixArray_SuffixArray_int(self, toIntArray_String(text));
+  return self;
+}
+
+Object SuffixArray_SuffixArray_int(Object self, Array_int text) {
+  self.T_SuffixArray = clone_int@SuffixArray(self, text);
+  self.N_SuffixArray = text.length;
+  construct@SuffixArray(self);
+  kasai@SuffixArray(self);
+  return self;
+}
+
+Array_int clone_int(Object self, Array_int arr) {
+  int l = arr.length;
+  Array_int arr_cp = new Array_int(length=l);
+  for (int i = 0; i < l; i++) {
+    arr_cp.A[i] = arr.A[i];
+  }
+  return arr_cp;
+}
+
+Object intArrToString_int(Array_int text) {
+  Array_char tmp = new Array_char(length=text.length);
+  for (int i = 0; i < text.length; i++) {
+    tmp.A[i] = (char)text.A[i];
+  }
+  return String_String_char_int_int(new Object(__cid=String()), tmp, 0, text.length);
+}
+
+Array_int toIntArray_String(Object s) {
+  Array_int text = new Array_int(length=(s.__cid == String() ? length@String(s) : 0));
+  for (int i = 0; i < (s.__cid == String() ? length@String(s) : 0); i++) text.A[i] = (s.__cid == String() ? charAt_int@String(s, i) : '\0');
+  return text;
+}
+
+void construct(Object self) {
+  self.sa_SuffixArray = new Array_int(length=self.N_SuffixArray);
+  Object suffixRanks = TwoDArray_TwoDArray_int_int(new Object(__cid=TwoDArray()), 2, self.N_SuffixArray);
+  Array_Object ranks = new Array_Object(length=self.N_SuffixArray);
+  for (int i = 0; i < self.N_SuffixArray; i++) {
+    if (suffixRanks.__cid == TwoDArray()) { set_int_int_int@TwoDArray(suffixRanks, 0, i, self.T_SuffixArray.A[i]); }
+    else { 0; };
+    ranks.A[i] = SuffixRankTuple_SuffixRankTuple(new Object(__cid=SuffixRankTuple()));
+  }
+  for (int pos = 1; pos < self.N_SuffixArray; pos = pos * 2) {
+    for (int i = 0; i < self.N_SuffixArray; i++) {
+      Object suffixRank = ranks.A[i];
+      suffixRank.firstHalf_SuffixRankTuple = (suffixRanks.__cid == TwoDArray() ? get_int_int@TwoDArray(suffixRanks, 0, i) : 0);
+      suffixRank.secondHalf_SuffixRankTuple = (i + pos < self.N_SuffixArray ? (suffixRanks.__cid == TwoDArray() ? get_int_int@TwoDArray(suffixRanks, 0, i + pos) : 0) : -1);
+      suffixRank.originalIndex_SuffixRankTuple = i;
+    }
+    ranks = sort_SuffixRankTuple_int@Arrays(ranks, ranks.length);
+    int newRank = 0;
+    if (suffixRanks.__cid == TwoDArray()) { set_int_int_int@TwoDArray(suffixRanks, 1, ranks.A[0].originalIndex_SuffixRankTuple, 0); }
+    else { 0; };
+    for (int i = 1; i < self.N_SuffixArray; i++) {
+      Object lastSuffixRank = ranks.A[i - 1];
+      Object currSuffixRank = ranks.A[i];
+      if (currSuffixRank.firstHalf_SuffixRankTuple != lastSuffixRank.firstHalf_SuffixRankTuple || currSuffixRank.secondHalf_SuffixRankTuple != lastSuffixRank.secondHalf_SuffixRankTuple) newRank++;
+      if (suffixRanks.__cid == TwoDArray()) { set_int_int_int@TwoDArray(suffixRanks, 1, currSuffixRank.originalIndex_SuffixRankTuple, newRank); }
+      else { 0; };
+    }
+    if (suffixRanks.__cid == TwoDArray()) { setRow_int_int@TwoDArray(suffixRanks, 0, (suffixRanks.__cid == TwoDArray() ? getRow_int@TwoDArray(suffixRanks, 1) : null)); }
+    else { 0; };
+    if (newRank == self.N_SuffixArray - 1) pos = self.N_SuffixArray;
+  }
+  for (int i = 0; i < self.N_SuffixArray; i++) {
+    self.sa_SuffixArray.A[i] = ranks.A[i].originalIndex_SuffixRankTuple;
+    ranks.A[i] = null;
+  }
+  suffixRanks = null;
+  suffixRanks = null;
+  ranks = null;
+}
+
+void kasai(Object self) {
+  self.lcp_SuffixArray = new Array_int(length=self.N_SuffixArray);
+  Array_int inv = new Array_int(length=self.N_SuffixArray);
+  for (int i = 0; i < self.N_SuffixArray; i++) inv.A[self.sa_SuffixArray.A[i]] = i;
+  int len = 0;
+  for (int i = 0; i < self.N_SuffixArray; i++) {
+    if (inv.A[i] > 0) {
+      int k = self.sa_SuffixArray.A[inv.A[i] - 1];
+      while ((i + len < self.N_SuffixArray) && (k + len < self.N_SuffixArray) && self.T_SuffixArray.A[i + len] == self.T_SuffixArray.A[k + len]) len++;
+      self.lcp_SuffixArray.A[inv.A[i] - 1] = len;
+      if (len > 0) len--;
+    }
+  }
+}
+
+Object lrs(Object self) {
+  int max_len = 0;
+  Object lrss = TreeSet_TreeSet();
+  Array_char tmp = new Array_char(length=self.T_SuffixArray.length);
+  for (int i = 0; i < self.T_SuffixArray.length; i++) {
+    tmp.A[i] = (char)self.T_SuffixArray.A[i];
+  }
+  for (int i = 0; i < self.N_SuffixArray; i++) {
+    if (self.lcp_SuffixArray.A[i] > 0 && self.lcp_SuffixArray.A[i] >= max_len) {
+      if (self.lcp_SuffixArray.A[i] > max_len) lrss = (lrss.__cid == TreeSet() ? clearb_Object@TreeSet(lrss) : null);
+      max_len = self.lcp_SuffixArray.A[i];
+      lrss = (lrss.__cid == TreeSet() ? addb_Object_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), tmp, self.sa_SuffixArray.A[i], max_len)) : null);
+    }
+  }
+  return lrss;
+}
+

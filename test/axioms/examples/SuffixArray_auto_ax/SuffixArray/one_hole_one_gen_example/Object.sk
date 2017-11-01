@@ -1,0 +1,91 @@
+package Object;
+
+Object fs;
+Object fs_g() { return fs; }
+void fs_s(Object fs_s) { fs = fs_s; }
+
+Object Object_Object(Object self) {
+    return self;
+}
+
+bit equals_Object_Object(Object a, Object b) {
+  if (a == null) {
+    if (b == null) {
+      return true;
+    }
+    return false;
+  }
+  return (a.__cid == SuffixRankTuple() ? equals_Object@Object(a, b) : a.__cid == HashMap_Node() ? equals_Object@HashMap_Node(a, b) : a.__cid == TreeSet() ? equals_Object@Object(a, b) : a.__cid == HashMap_Simple_Node() ? equals_Object@Object(a, b) : a.__cid == Integer() ? equals_Object@Integer(a, b) : a.__cid == HashSet() ? equals_Object@Object(a, b) : a.__cid == Assert() ? equals_Object@Object(a, b) : a.__cid == String() ? equals_Object@String(a, b) : a.__cid == SuffixArray() ? equals_Object@Object(a, b) : a.__cid == Number() ? equals_Object@Object(a, b) : a.__cid == SuffixArrayTest() ? equals_Object@Object(a, b) : a.__cid == Character() ? equals_Object@Character(a, b) : a.__cid == TwoDArray() ? equals_Object@Object(a, b) : a.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(a, b) : a.__cid == ArrayDeque() ? equals_Object@Object(a, b) : a.__cid == ArrayList() ? equals_Object@Object(a, b) : a.__cid == HashMap_TreeNode() ? equals_Object@Object(a, b) : a.__cid == Arrays() ? equals_Object@Object(a, b) : a.__cid == HashMap() ? equals_Object@Object(a, b) : a.__cid == Assert() ? equals_Object@Object(a, b) : a.__cid == Object() ? equals_Object@Object(a, b) : 0);
+}
+
+int hashCode_Object(Object o) {
+  return (o != null ? (o.__cid == SuffixRankTuple() ? hashCode@Object(o) : o.__cid == HashMap_Node() ? hashCode@Object(o) : o.__cid == TreeSet() ? hashCode@Object(o) : o.__cid == HashMap_Simple_Node() ? hashCode@Object(o) : o.__cid == Integer() ? hashCode@Integer(o) : o.__cid == HashSet() ? hashCode@Object(o) : o.__cid == Assert() ? hashCode@Object(o) : o.__cid == String() ? hashCode@String(o) : o.__cid == SuffixArray() ? hashCode@Object(o) : o.__cid == Number() ? hashCode@Object(o) : o.__cid == SuffixArrayTest() ? hashCode@Object(o) : o.__cid == Character() ? hashCode@Object(o) : o.__cid == TwoDArray() ? hashCode@Object(o) : o.__cid == ArrayDeque_DequeNode() ? hashCode@Object(o) : o.__cid == ArrayDeque() ? hashCode@Object(o) : o.__cid == ArrayList() ? hashCode@Object(o) : o.__cid == HashMap_TreeNode() ? hashCode@Object(o) : o.__cid == Arrays() ? hashCode@Object(o) : o.__cid == HashMap() ? hashCode@Object(o) : o.__cid == Assert() ? hashCode@Object(o) : o.__cid == Object() ? hashCode@Object(o) : 0) : 0);
+}
+
+Object toString(Object self) {
+  return String_String_char_int_int(new Object(__cid=String()), new Array_char(length=17+1, A="Object toString()"), 0, 17);
+}
+
+bit equals_Object(Object self, Object obj) {
+  return self == obj;
+}
+
+int hashCode(Object self) {
+  return 0;
+}
+
+struct Object {
+  int           __cid;
+  Array_Object  table_HashMap;
+  Object        entrySet_HashMap;
+  int           size_HashMap;
+  int           modCount_HashMap;
+  float         loadFactor_HashMap;
+  int           threshold_HashMap;
+  int           numPairs_HashMap;
+  Object        parent_HashMap_TreeNode;
+  Object        left_HashMap_TreeNode;
+  Object        right_HashMap_TreeNode;
+  Object        prev_HashMap_TreeNode;
+  bit           red_HashMap_TreeNode;
+  Array_Object  elementData_ArrayList;
+  int           DEFAULT_CAPACITY_ArrayList;
+  int           capacity_ArrayList;
+  int           size_ArrayList;
+  Object        currentHead_ArrayDeque;
+  Object        currentTail_ArrayDeque;
+  int           size_ArrayDeque;
+  Object        val_ArrayDeque_DequeNode;
+  Object        prev_ArrayDeque_DequeNode;
+  Object        next_ArrayDeque_DequeNode;
+  int           M_TwoDArray;
+  Array_int     arr_TwoDArray;
+  int           N_TwoDArray;
+  char          value_Character;
+  int           N_SuffixArray;
+  Array_int     T_SuffixArray;
+  Array_int     sa_SuffixArray;
+  Array_int     lcp_SuffixArray;
+  Array_char    _value_String;
+  int           _count_String;
+  Array_Object  set_HashSet;
+  int           capacity_HashSet;
+  int           size_HashSet;
+  int           value_Integer;
+  Array_Object  elementData_HashMap_Simple;
+  int           numPairs_HashMap_Simple;
+  int           capacity_HashMap_Simple;
+  Object        key_HashMap_Simple_Node;
+  Object        value_HashMap_Simple_Node;
+  int           hash_HashMap_Simple_Node;
+  Array_Object  set_TreeSet;
+  int           capacity_TreeSet;
+  int           size_TreeSet;
+  int           hash_HashMap_Node;
+  Object        key_HashMap_Node;
+  Object        value_HashMap_Node;
+  Object        next_HashMap_Node;
+  int           originalIndex_SuffixRankTuple;
+  int           secondHalf_SuffixRankTuple;
+  int           firstHalf_SuffixRankTuple;
+}

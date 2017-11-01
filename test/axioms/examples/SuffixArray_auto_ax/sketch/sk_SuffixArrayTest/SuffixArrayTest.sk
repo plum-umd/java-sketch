@@ -1,0 +1,61 @@
+package SuffixArrayTest;
+
+Object SuffixArrayTest_SuffixArrayTest(Object self) {
+    return self;
+}
+
+harness void main() {
+  Object self = Object_Object(new Object(__cid=Object()));
+  testLRS@SuffixArrayTest(self);
+}
+
+void setup(Object self) {
+}
+
+void testLRS(Object self) {
+  Object s = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=6+1, A="aabaab"), 0, 6);
+  Object sa = SuffixArray_SuffixArray_String(new Object(__cid=SuffixArray()), s);
+  Object lrss = (sa.__cid == SuffixArray() ? lrs@SuffixArray(sa) : null);
+  Object sz = (lrss.__cid == TreeSet() ? size_Object@TreeSet(lrss) : null);
+  assert 1 == intValue@Integer(xform_TreeSet(sz._treeset));
+  Object cnt = (lrss.__cid == TreeSet() ? contains_Object_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=3+1, A="aab"), 0, 3)) : null);
+  assert booleanValue@Boolean(xform_TreeSet(cnt._treeset));
+  s = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=7+1, A="abcdefg"), 0, 7);
+  sa = SuffixArray_SuffixArray_String(new Object(__cid=SuffixArray()), s);
+  lrss = (sa.__cid == SuffixArray() ? lrs@SuffixArray(sa) : null);
+  sz = (lrss.__cid == TreeSet() ? size_Object@TreeSet(lrss) : null);
+  assert 0 == intValue@Integer(xform_TreeSet(sz._treeset));
+  s = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=4+1, A="abca"), 0, 4);
+  sa = SuffixArray_SuffixArray_String(new Object(__cid=SuffixArray()), s);
+  lrss = (sa.__cid == SuffixArray() ? lrs@SuffixArray(sa) : null);
+  sz = (lrss.__cid == TreeSet() ? size_Object@TreeSet(lrss) : null);
+  assert 1 == intValue@Integer(xform_TreeSet(sz._treeset));
+  cnt = (lrss.__cid == TreeSet() ? contains_Object_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="a"), 0, 1)) : null);
+  assert booleanValue@Boolean(xform_TreeSet(cnt._treeset));
+  s = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=5+1, A="abcba"), 0, 5);
+  sa = SuffixArray_SuffixArray_String(new Object(__cid=SuffixArray()), s);
+  lrss = (sa.__cid == SuffixArray() ? lrs@SuffixArray(sa) : null);
+  sz = (lrss.__cid == TreeSet() ? size_Object@TreeSet(lrss) : null);
+  assert 2 == intValue@Integer(xform_TreeSet(sz._treeset));
+  cnt = (lrss.__cid == TreeSet() ? contains_Object_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="a"), 0, 1)) : null);
+  assert booleanValue@Boolean(xform_TreeSet(cnt._treeset));  
+  cnt = (lrss.__cid == TreeSet() ? contains_Object_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="b"), 0, 1)) : null);
+  assert booleanValue@Boolean(xform_TreeSet(cnt._treeset));  
+  s = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=13+1, A="aZZbZZcYYdYYe"), 0, 13);
+  sa = SuffixArray_SuffixArray_String(new Object(__cid=SuffixArray()), s);
+  lrss = (sa.__cid == SuffixArray() ? lrs@SuffixArray(sa) : null);
+  sz = (lrss.__cid == TreeSet() ? size_Object@TreeSet(lrss) : null);
+  assert 2 == intValue@Integer(xform_TreeSet(sz._treeset));  
+  cnt = (lrss.__cid == TreeSet() ? contains_Object_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=2+1, A="YY"), 0, 2)) : null);
+  assert booleanValue@Boolean(xform_TreeSet(cnt._treeset));    
+  cnt = (lrss.__cid == TreeSet() ? contains_Object_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=2+1, A="ZZ"), 0, 2)) : null);
+  assert booleanValue@Boolean(xform_TreeSet(cnt._treeset));      
+  s = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=6+1, A="AAAAAA"), 0, 6);
+  sa = SuffixArray_SuffixArray_String(new Object(__cid=SuffixArray()), s);
+  lrss = (sa.__cid == SuffixArray() ? lrs@SuffixArray(sa) : null);
+  sz = (lrss.__cid == TreeSet() ? size_Object@TreeSet(lrss) : null);
+  assert 1 == intValue@Integer(xform_TreeSet(sz._treeset));  
+  cnt = (lrss.__cid == TreeSet() ? contains_Object_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=5+1, A="AAAAA"), 0, 5)) : null);
+  assert booleanValue@Boolean(xform_TreeSet(cnt._treeset));        
+}
+

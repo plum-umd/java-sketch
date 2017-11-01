@@ -1,0 +1,205 @@
+package TreeSet;
+
+adt TreeSet {
+    Treeset    { }
+    Add        { TreeSet self; Object e; }
+    Addb       { TreeSet self; Object e; }
+    Clearb     { TreeSet self; }
+    Containsb  { TreeSet self; Object e; }
+    Clear      { TreeSet self; }
+    Contains   { TreeSet self; Object e; }
+    Size       { TreeSet self; }
+}
+
+Object TreeSet_TreeSet() {
+    return new Object(__cid=TreeSet(), _treeset=new Treeset());
+}
+
+Object add_Object_Object(Object self, Object e) {
+    return new Object(__cid=TreeSet(), _treeset=new Add(self=self._treeset, e=e));
+}
+
+Object addb_Object_Object(Object self, Object e) {
+    return new Object(__cid=TreeSet(), _treeset=new Addb(self=self._treeset, e=e));
+}
+
+Object clearb_Object(Object self) {
+    return new Object(__cid=TreeSet(), _treeset=new Clearb(self=self._treeset));
+}
+
+Object containsb_Object_Object(Object self, Object e) {
+    return new Object(__cid=TreeSet(), _treeset=new Containsb(self=self._treeset, e=e));
+}
+
+Object clear_Object(Object self) {
+    return new Object(__cid=TreeSet(), _treeset=new Clear(self=self._treeset));
+}
+
+Object contains_Object_Object(Object self, Object e) {
+    return new Object(__cid=TreeSet(), _treeset=new Contains(self=self._treeset, e=e));
+}
+
+Object size_Object(Object self) {
+    return new Object(__cid=TreeSet(), _treeset=new Size(self=self._treeset));
+}
+
+Object xform_TreeSet(TreeSet self) {
+  switch(self) {
+  case Treeset: {
+    return xform_treeset_TreeSet(self);
+  }
+  case Add: {
+    return xform_add_TreeSet_Object(self.self, self.e);
+  }
+  case Addb: {
+    return xform_addb_TreeSet_Object(self.self, self.e);
+  }
+  case Clearb: {
+    return xform_clearb_TreeSet(self.self);
+  }
+  case Containsb: {
+    return xform_containsb_TreeSet_Object(self.self, self.e);
+  }
+  case Clear: {
+    return xform_clear_TreeSet(self.self);
+  }
+  case Contains: {
+    return xform_contains_TreeSet_Object(self.self, self.e);
+  }
+  case Size: {
+    return xform_size_TreeSet(self.self);
+  }
+  }
+
+  return null;
+}
+Object xform_contains_TreeSet_Object(TreeSet self, Object e) {
+  switch(self) {
+  case Treeset: {
+    return Boolean_Boolean_boolean(new Object(__cid=Boolean()), false);
+  }
+  case Add: { assert false; }
+  case Addb: {
+    return ((self.e.__cid == Character() ? equals_Object@Character(self.e, e) : self.e.__cid == TwoDArray() ? equals_Object@Object(self.e, e) : self.e.__cid == ArrayList() ? equals_Object@Object(self.e, e) : self.e.__cid == TreeSet() ? equals_Object@Object(self.e, e) : self.e.__cid == String() ? equals_Object@String(self.e, e) : self.e.__cid == HashMap() ? equals_Object@Object(self.e, e) : self.e.__cid == Integer() ? equals_Object@Integer(self.e, e) : self.e.__cid == ArrayDeque() ? equals_Object@Object(self.e, e) : self.e.__cid == SuffixArrayTest() ? equals_Object@Object(self.e, e) : self.e.__cid == Boolean() ? equals_Object@Object(self.e, e) : self.e.__cid == Arrays() ? equals_Object@Object(self.e, e) : self.e.__cid == SuffixArray() ? equals_Object@Object(self.e, e) : self.e.__cid == SuffixRankTuple() ? equals_Object@Object(self.e, e) : self.e.__cid == Object() ? equals_Object@Object(self.e, e) : 0) ? Boolean_Boolean_boolean(new Object(__cid=Boolean()), true) : xform_contains_TreeSet_Object(self.self, e));
+  }
+  case Clearb: {
+    return Boolean_Boolean_boolean(new Object(__cid=Boolean()), false);
+  }
+  case Containsb: { assert false; }
+  case Clear: { assert false; }
+  case Contains: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}
+Object xform_clearb_TreeSet(TreeSet self) {
+  switch(self) {
+  case Treeset: { assert false; }
+  case Add: { assert false; }
+  case Addb: { assert false; }
+  case Clearb: { assert false; }
+  case Containsb: { assert false; }
+  case Clear: { assert false; }
+  case Contains: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}
+Object xform_containsb_TreeSet_Object(TreeSet self, Object e) {
+  switch(self) {
+  case Treeset: { assert false; }
+  case Add: { assert false; }
+  case Addb: { assert false; }
+  case Clearb: { assert false; }
+  case Containsb: { assert false; }
+  case Clear: { assert false; }
+  case Contains: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}
+Object xform_size_TreeSet(TreeSet self) {
+  switch(self) {
+  case Treeset: {
+    return Integer_Integer_int(new Object(__cid=Integer()), 0);
+  }
+  case Add: { assert false; }
+  case Addb: {
+    return ((xform_contains_TreeSet_Object(self.self, self.e).__cid == Boolean() ? booleanValue@Boolean(xform_contains_TreeSet_Object(self.self, self.e)) : 0) ? xform_size_TreeSet(self.self) : Integer_Integer_int(new Object(__cid=Integer()), (xform_size_TreeSet(self.self).__cid == Integer() ? intValue@Integer(xform_size_TreeSet(self.self)) : 0) + 1));
+  }
+  case Clearb: {
+    return Integer_Integer_int(new Object(__cid=Integer()), 0);
+  }
+  case Containsb: { assert false; }
+  case Clear: { assert false; }
+  case Contains: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}
+Object xform_clear_TreeSet(TreeSet self) {
+  switch(self) {
+  case Treeset: { assert false; }
+  case Add: { assert false; }
+  case Addb: { assert false; }
+  case Clearb: { assert false; }
+  case Containsb: { assert false; }
+  case Clear: { assert false; }
+  case Contains: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}
+Object xform_treeset_TreeSet(TreeSet self) {
+  switch(self) {
+  case Treeset: { assert false; }
+  case Add: { assert false; }
+  case Addb: { assert false; }
+  case Clearb: { assert false; }
+  case Containsb: { assert false; }
+  case Clear: { assert false; }
+  case Contains: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}
+Object xform_add_TreeSet_Object(TreeSet self, Object e) {
+  switch(self) {
+  case Treeset: {
+    return Boolean_Boolean_boolean(new Object(__cid=Boolean()), true);
+  }
+  case Add: { assert false; }
+  case Addb: {
+    return ((e.__cid == Character() ? equals_Object@Character(e, self.e) : e.__cid == TwoDArray() ? equals_Object@Object(e, self.e) : e.__cid == ArrayList() ? equals_Object@Object(e, self.e) : e.__cid == TreeSet() ? equals_Object@Object(e, self.e) : e.__cid == String() ? equals_Object@String(e, self.e) : e.__cid == HashMap() ? equals_Object@Object(e, self.e) : e.__cid == Integer() ? equals_Object@Integer(e, self.e) : e.__cid == ArrayDeque() ? equals_Object@Object(e, self.e) : e.__cid == SuffixArrayTest() ? equals_Object@Object(e, self.e) : e.__cid == Boolean() ? equals_Object@Object(e, self.e) : e.__cid == Arrays() ? equals_Object@Object(e, self.e) : e.__cid == SuffixArray() ? equals_Object@Object(e, self.e) : e.__cid == SuffixRankTuple() ? equals_Object@Object(e, self.e) : e.__cid == Object() ? equals_Object@Object(e, self.e) : 0) ? Boolean_Boolean_boolean(new Object(__cid=Boolean()), false) : xform_add_TreeSet_Object(self.self, e));
+  }
+  case Clearb: {
+    return Boolean_Boolean_boolean(new Object(__cid=Boolean()), true);
+  }
+  case Containsb: { assert false; }
+  case Clear: { assert false; }
+  case Contains: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}
+Object xform_addb_TreeSet_Object(TreeSet self, Object e) {
+  switch(self) {
+  case Treeset: { assert false; }
+  case Add: { assert false; }
+  case Addb: { assert false; }
+  case Clearb: { assert false; }
+  case Containsb: { assert false; }
+  case Clear: { assert false; }
+  case Contains: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}
