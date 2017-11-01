@@ -283,7 +283,7 @@ class SuffixArray {
   //  * @param strs - The strings you wish to find the longest common substring between
   //  * @param K - The minimum number of strings to find the LCS between. K must be at least 2.
   //  **/
-  public static TreeSet<String> lcs(String [] strs, final int K) {
+  public static TreeSet<String> lcs(String [] strs, int K) {
 
       // CHANGE
       // if (K <= 1) throw new IllegalArgumentException("K must be greater than or equal to 2!");

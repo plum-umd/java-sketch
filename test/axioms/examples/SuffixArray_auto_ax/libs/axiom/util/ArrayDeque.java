@@ -33,6 +33,10 @@ class ArrayDeque {
     @pure
     int size();
 
+    axiom Object size(Object ArrayDeque()) {
+	return 0;
+    }
+    
     axiom Object size(Object addLast!(ArrayDeque d, Object e)) {
     	return size(d)+1;
     }

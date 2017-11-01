@@ -17,6 +17,7 @@ include "Integer.sk";
 include "ArrayList.sk";
 include "HashMap.sk";
 include "Boolean.sk";
+include "Assert.sk";
 include "CharSequence.sk";
 include "Arrays.sk";
 include "SuffixRankTuple.sk";

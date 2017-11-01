@@ -7,6 +7,7 @@ Object SuffixArrayTest_SuffixArrayTest(Object self) {
 harness void main() {
   Object self = Object_Object(new Object(__cid=Object()));
   // testLRS@SuffixArrayTest(self);
+  testLCS@SuffixArrayTest(self);  
 }
 
 void setup(Object self) {
@@ -58,4 +59,13 @@ void testLRS(Object self) {
   cnt = (lrss.__cid == TreeSet() ? contains_Object_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=5+1, A="AAAAA"), 0, 5)) : null);
   assert booleanValue@Boolean(xform_TreeSet(cnt._treeset));        
 }
+
+void testLCS(Object self) {
+  Array_Object strs = new Array_Object(length=3, A={String_String_char_int_int(new Object(__cid=String()), new Array_char(length=5+1, A="abcde"), 0, 5), String_String_char_int_int(new Object(__cid=String()), new Array_char(length=4+1, A="gear"), 0, 4), String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="#"), 0, 1)});
+  Object a = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="a"), 0, 1);
+  Object lcss = lcs_String_int@SuffixArray(strs, 2);
+  Object sz = (lcss.__cid == TreeSet() ? size_Object@TreeSet(lcss) : null);
+  assert intValue@Integer(xform_TreeSet(sz._treeset)) == 1;
+}
+
 

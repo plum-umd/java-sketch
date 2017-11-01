@@ -3,9 +3,10 @@ package meta;
 // distinct class IDs
 int ArrayDeque()       { return 5; }
 int ArrayList()        { return 11; }
-int Arrays()           { return 15; }
+int Arrays()           { return 16; }
+int Assert()           { return 14; }
 int Boolean()          { return 13; }
-int CharSequence()     { return 14; }
+int CharSequence()     { return 15; }
 int Character()        { return 8; }
 int HashMap()          { return 12; }
 int HashSet()          { return 9; }
@@ -14,7 +15,7 @@ int Object()           { return 1; }
 int String()           { return 7; }
 int SuffixArray()      { return 3; }
 int SuffixArrayTest()  { return 2; }
-int SuffixRankTuple()  { return 16; }
+int SuffixRankTuple()  { return 17; }
 int TreeSet()          { return 6; }
 int TwoDArray()        { return 4; }
 

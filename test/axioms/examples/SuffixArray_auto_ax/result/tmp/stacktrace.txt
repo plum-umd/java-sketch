@@ -6,7 +6,7 @@ sketch.compiler.passes.bidirectional.BidirectionalAnalysis.visitExprTernary(Bidi
 sketch.compiler.ast.core.exprs.ExprTernary.accept(ExprTernary.java:91)
 sketch.compiler.passes.bidirectional.BidirectionalAnalysis.doT(BidirectionalAnalysis.java:224)
 sketch.compiler.passes.bidirectional.BidirectionalAnalysis.doExpression(BidirectionalAnalysis.java:255)
-sketch.compiler.passes.bidirectional.BidirectionalAnalysis.visitExprBinary(BidirectionalAnalysis.java:384)
+sketch.compiler.passes.bidirectional.BidirectionalAnalysis.visitExprBinary(BidirectionalAnalysis.java:382)
 sketch.compiler.ast.core.exprs.ExprBinary.accept(ExprBinary.java:205)
 sketch.compiler.passes.bidirectional.BidirectionalAnalysis.doT(BidirectionalAnalysis.java:224)
 sketch.compiler.passes.bidirectional.BidirectionalAnalysis.doExpression(BidirectionalAnalysis.java:255)
