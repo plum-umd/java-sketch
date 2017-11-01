@@ -10,6 +10,22 @@ class TreeSet {
     @adt
     boolean contains(Object e);
 
+    @adt
+    @pure
+    int size();
+
+    axiom Object size(Object TreeSet()) {
+	return 0;
+    }
+
+    axiom Object size(Object add!(TreeSet s, Object e)) {
+	return contains(s, e) ? size(s) : size(s)+1;
+    }
+
+    axiom Object size(Object clear!(TreeSet s)) {
+	return 0;
+    }
+    
     axiom Object add(Object clear!(TreeSet s), Object e) {
     	return true;
     }
