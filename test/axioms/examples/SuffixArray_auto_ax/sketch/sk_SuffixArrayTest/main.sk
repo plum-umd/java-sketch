@@ -15,6 +15,7 @@ include "Character.sk";
 include "Integer.sk";
 include "ArrayList.sk";
 include "HashMap.sk";
+include "HashSet.sk";
 include "Boolean.sk";
 include "CharSequence.sk";
 include "Arrays.sk";

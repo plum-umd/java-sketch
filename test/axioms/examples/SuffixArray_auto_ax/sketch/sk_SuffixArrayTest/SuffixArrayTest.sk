@@ -6,7 +6,7 @@ Object SuffixArrayTest_SuffixArrayTest(Object self) {
 
 harness void main() {
   Object self = Object_Object(new Object(__cid=Object()));
-  testLRS@SuffixArrayTest(self);
+  // testLRS@SuffixArrayTest(self);
 }
 
 void setup(Object self) {

@@ -1,4 +1,4 @@
-pragma options "--bnd-cbits 6";
+pragma options "--bnd-cbits 7";
 pragma options "--bnd-unroll-amnt 35";
 pragma options "--fe-fpencoding AS_FIXPOINT";
 include "meta.sk";
@@ -12,6 +12,7 @@ include "ArrayDeque.sk";
 include "TreeSet.sk";
 include "String.sk";
 include "Character.sk";
+include "HashSet.sk";
 include "Integer.sk";
 include "ArrayList.sk";
 include "HashMap.sk";

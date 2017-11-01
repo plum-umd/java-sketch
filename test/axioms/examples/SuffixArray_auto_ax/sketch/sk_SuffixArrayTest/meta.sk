@@ -8,6 +8,7 @@ int Boolean()          { return 12; }
 int CharSequence()     { return 13; }
 int Character()        { return 8; }
 int HashMap()          { return 11; }
+int HashSet()          { return 16; }
 int Integer()          { return 9; }
 int Object()           { return 1; }
 int String()           { return 7; }

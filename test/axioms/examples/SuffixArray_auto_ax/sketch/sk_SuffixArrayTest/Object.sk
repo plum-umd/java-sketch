@@ -39,4 +39,5 @@ struct Object {
   ArrayList   _arraylist;
   TreeSet     _treeset;
   ArrayDeque  _arraydeque;
+  HashSet     _hashset;
 }
