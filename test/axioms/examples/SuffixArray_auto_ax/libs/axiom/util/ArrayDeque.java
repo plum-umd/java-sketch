@@ -53,6 +53,10 @@ class ArrayDeque {
     	return size(d)==0;
     }
 
+    axiom Object peekLast(Object ArrayDeque()) {
+	return null;
+    }
+    
     axiom Object peekLast(Object addLast!(ArrayDeque d, Object e)) {
     	return e;
     }
@@ -83,7 +87,11 @@ class ArrayDeque {
 	}
     }
 
-    axiom Object peekFirst(Objeact addLast!(ArrayDeque d, Object e)) {
+    axiom Object peekFirst(Object ArrayDeque()) {
+	return null;
+    }
+    
+    axiom Object peekFirst(Object addLast!(ArrayDeque d, Object e)) {
 	return size(d)==0 ? e : peekFirst(d);
     }
 

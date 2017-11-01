@@ -231,7 +231,9 @@ Object xform_arraydeque_ArrayDeque(ArrayDeque self) {
 }
 Object xform_peekFirst_ArrayDeque(ArrayDeque self) {
   switch(self) {
-  case Arraydeque: { assert false; }
+  case Arraydeque: {
+    return null;
+  }
   case Peekfirst: { assert false; }
   case Peekfirst_help: { assert false; }
   case Isempty: { assert false; }
@@ -255,29 +257,14 @@ Object xform_peekFirst_ArrayDeque(ArrayDeque self) {
   return null;
 }
 Object xform_isEmpty_ArrayDeque(ArrayDeque self) {
-  switch(self) {
-  case Arraydeque: {
     return Boolean_Boolean_boolean(new Object(__cid=Boolean()), (xform_size_ArrayDeque(self).__cid == Integer() ? intValue@Integer(xform_size_ArrayDeque(self)) : 0) == 0);
-  }
-  case Peekfirst: { assert false; }
-  case Peekfirst_help: { assert false; }
-  case Isempty: { assert false; }
-  case Removefirst: { assert false; }
-  case Removefirstb: { assert false; }
-  case Peeklast: { assert false; }
-  case Peeklast_help: { assert false; }
-  case Removelastb: { assert false; }
-  case Addlastb: { assert false; }
-  case Removelast: { assert false; }
-  case Addlast: { assert false; }
-  case Size: { assert false; }
-  }
-
-  return null;
 }
+
 Object xform_peekLast_ArrayDeque(ArrayDeque self) {
   switch(self) {
-  case Arraydeque: { assert false; }
+  case Arraydeque: {
+    return null;
+  }
   case Peekfirst: { assert false; }
   case Peekfirst_help: { assert false; }
   case Isempty: { assert false; }
