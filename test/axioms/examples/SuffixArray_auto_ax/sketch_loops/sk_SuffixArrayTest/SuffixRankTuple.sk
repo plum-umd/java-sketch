@@ -1,0 +1,17 @@
+package SuffixRankTuple;
+
+Object SuffixRankTuple_SuffixRankTuple(Object self) {
+    return self;
+}
+
+int compareTo_SuffixRankTuple(Object self, Object other) {
+  int cmp = compare_int_int@Integer(self.firstHalf_SuffixRankTuple, other.firstHalf_SuffixRankTuple);
+  if (cmp == 0) cmp = compare_int_int@Integer(self.secondHalf_SuffixRankTuple, other.secondHalf_SuffixRankTuple);
+  if (cmp == 0) return compare_int_int@Integer(self.originalIndex_SuffixRankTuple, other.originalIndex_SuffixRankTuple);
+  return cmp;
+}
+
+Object toString(Object self) {
+  return String_String_char_int_int(new Object(__cid=String()), new Array_char(length=5+1, A="Blah!"), 0, 5);
+}
+

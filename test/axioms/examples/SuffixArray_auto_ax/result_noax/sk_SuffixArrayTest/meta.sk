@@ -1,0 +1,44 @@
+package meta;
+
+// distinct class IDs
+int AbstractQueue()         { return 19; }
+int ArrayDeque()            { return 13; }
+int ArrayDeque_DequeNode()  { return 14; }
+int ArrayList()             { return 20; }
+int Arrays()                { return 5; }
+int Assert()                { return 32; }
+int Boolean()               { return 15; }
+int BufferedWriter()        { return 26; }
+int CharSequence()          { return 31; }
+int Character()             { return 16; }
+int Comparable()            { return 28; }
+int Deque()                 { return 11; }
+int File()                  { return 39; }
+int FileReaderr()           { return 38; }
+int FileWriterr()           { return 35; }
+int Float()                 { return 10; }
+int HashMap()               { return 29; }
+int HashMap_Node()          { return 30; }
+int HashSet()               { return 21; }
+int Integer()               { return 24; }
+int LinkedList()            { return 12; }
+int List()                  { return 27; }
+int Map()                   { return 8; }
+int Map_Entry()             { return 9; }
+int Number()                { return 37; }
+int Object()                { return 1; }
+int Queue()                 { return 23; }
+int Scanner()               { return 7; }
+int Set()                   { return 25; }
+int Stack()                 { return 34; }
+int String()                { return 36; }
+int StringBuffer()          { return 17; }
+int StringBuilder()         { return 22; }
+int SuffixArray()           { return 3; }
+int SuffixArrayTest()       { return 2; }
+int SuffixRankTuple()       { return 6; }
+int TreeMap()               { return 18; }
+int TreeSet()               { return 33; }
+int TwoDArray()             { return 4; }
+
+// Uninterpreted functions

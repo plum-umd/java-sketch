@@ -9,15 +9,13 @@
  * @author William Fiset, william.alexandre.fiset@gmail.com
  **/
 
-// SYNTHESIS
-// clone: 157529 (default params)
-// clone, intArrToString: 272047 (default params)
-// clone, intArrToString, toIntArray: 279050 (default params)
-// clone, intArrToString, toIntArray, construct: does not finish (default params)
-// construct: does not finish (default params, (100, 5), (35, 100), (100, 100))
-// kasai: does not finish (default params)
-// contains: does not finish (default params)
-// lrs: 1531511 (default params)
+// MODEL SYNTHESIS
+// clone: 338318 (using testLRS, default params)
+// lrs:
+
+// AXIOM SYNTHESIS
+// clone: 32605 (using testLRS, default params) 
+// lrs: 
 
 import java.util.*;
 
@@ -40,13 +38,13 @@ class SuffixArray {
     // CHANGE
     public int[] clone(int[] arr) {
 	// int l = {| arr.length, N |};
-	int l = arr.length;
-	int[] arr_cp = new int[l];
-	// for(int i=??; i<l; i++) {
-	for(int i=0; i<l; i++) {
-	    arr_cp[i] = arr[i];
-	}
-	return arr_cp;
+  	int l = arr.length;
+  	int[] arr_cp = new int[l];
+	// for(int i=??; i<l; i++) {	
+  	for(int i=0; i<l; i++) {
+  	    arr_cp[i] = arr[i];
+  	}
+  	return arr_cp;
     }
 
   public SuffixArray(String text) {
@@ -55,20 +53,18 @@ class SuffixArray {
 
     //CHANGE
     private static String intArrToString(int [] text) {
-	char[] tmp = new char[text.length];      
-	// for (int i=??; i<text.length; i++) {
-	for (int i=0; i<text.length; i++) {	    
-	    tmp[i] = (char) text[i];
-	}
+  	char[] tmp = new char[text.length];
+  	for (int i=0; i<text.length; i++) {
+  	    tmp[i] = (char) text[i];
+  	}
 	
-	// Extract part of the suffix we need to compare
+  	// Extract part of the suffix we need to compare
         return new String(tmp, 0, text.length);
     }
     
   private static int[] toIntArray(String s) {
     int[] text = new int[s.length()];
-    // for(int i=??;i<s.length();i++)text[i] = s.charAt(i);
-    for(int i=0;i<s.length();i++)text[i] = s.charAt(i);    
+    for(int i=0;i<s.length();i++)text[i] = s.charAt(i);
     return text;
   }
 
@@ -95,29 +91,25 @@ class SuffixArray {
     SuffixRankTuple[] ranks = new SuffixRankTuple[N];
 
     // Assign a numerical value to each character in the text
-    // for (int i = ??; i < N; i++) {
-    for (int i = 0; i < N; i++) {	
-	// CHANGE
-	// suffixRanks[0][i] = T[i];
-	suffixRanks.set(0, i, T[i]);
-	ranks[i] = new SuffixRankTuple();
+    for (int i = 0; i < N; i++) {
+  	// CHANGE
+  	// suffixRanks[0][i] = T[i];
+  	suffixRanks.set(0, i, T[i]);
+  	ranks[i] = new SuffixRankTuple();
     }
 
     // O(logn)
-    // for(int pos = ??; pos < N; pos *= ??) {
-    for(int pos = 1; pos < N; pos *= 2) {	
+    for(int pos = 1; pos < N; pos *= 2) {
 
-      // int g = {| pos, N |};
-      // for(int i = ??, t = g; i < t; i++) {
-      for(int i = 0; i < N; i++) {	  
-	  SuffixRankTuple suffixRank = ranks[i];
-	  suffixRank.firstHalf  = suffixRanks.get(0, i);
-	  // CHANGE
-	  // suffixRank.firstHalf  = suffixRanks[0][i];
-	  suffixRank.secondHalf = i+pos < N ? suffixRanks.get(0, i+pos) : -1;
-	  // CHANGE
-	  // suffixRank.secondHalf = i+pos < N ? suffixRanks[0][i+pos] : -1;	
-	  suffixRank.originalIndex = i;
+      for(int i = 0; i < N; i++) {
+        SuffixRankTuple suffixRank = ranks[i];
+        suffixRank.firstHalf  = suffixRanks.get(0, i);
+  	// CHANGE
+        // suffixRank.firstHalf  = suffixRanks[0][i];
+        suffixRank.secondHalf = i+pos < N ? suffixRanks.get(0, i+pos) : -1;
+  	// CHANGE
+        // suffixRank.secondHalf = i+pos < N ? suffixRanks[0][i+pos] : -1;	
+        suffixRank.originalIndex = i;
       }
 
       // O(nlogn)
@@ -131,9 +123,7 @@ class SuffixArray {
       // CHANGE
       // suffixRanks[1][ranks[0].originalIndex] = 0;
 
-      // int g2 = {| N, newRank, pos |};      
-      // for (int i = ??, t = g2; i < t; i++ ) {
-      for (int i = 1; i < N; i++ ) {	  
+      for (int i = 1; i < N; i++ ) {
         
         SuffixRankTuple lastSuffixRank = ranks[i-1];
         SuffixRankTuple currSuffixRank = ranks[i];
@@ -145,7 +135,7 @@ class SuffixArray {
 
         suffixRanks.set(1, currSuffixRank.originalIndex, newRank);
 
-	// CHANGE
+  	// CHANGE
         // suffixRanks[1][currSuffixRank.originalIndex] = newRank;
 
       }
@@ -163,7 +153,6 @@ class SuffixArray {
     }
 
     // Fill suffix array
-    // for (int i = ??; i < N; i++) {
     for (int i = 0; i < N; i++) {
       sa[i] = ranks[i].originalIndex;
       ranks[i] = null;
@@ -186,15 +175,12 @@ class SuffixArray {
     
     // Compute inverse index values
     int [] inv = new int[N];
-    // for (int i = ??; i < N; i++)
     for (int i = 0; i < N; i++)
       inv[sa[i]] = i;
 
     // Current lcp length
     int len = 0;
 
-    // int g = {| len, N |};
-    // for (int i = ??, t = g; i < t; i++) {
     for (int i = 0; i < N; i++) {
       if (inv[i] > 0) {
 
@@ -212,66 +198,60 @@ class SuffixArray {
 
   }
 
-  // Runs on O(mlog(n)) where m is the length of the substring
-  // and n is the length of the text.
-  // NOTE: This is the naive implementation. There exists an
-  // implementation which runs in O(m + log(n)) time
-  public boolean contains(String substr) {
+  // // Runs on O(mlog(n)) where m is the length of the substring
+  // // and n is the length of the text.
+  // // NOTE: This is the naive implementation. There exists an
+  // // implementation which runs in O(m + log(n)) time
+  // public boolean contains(String substr) {
 
-    if (substr == null) return false;
-    if (substr.equals("")) return true;
+  //   if (substr == null) return false;
+  //   if (substr.equals("")) return true;
 
-    String suffix_str;
-    int lo = 0, hi = N - 1;
-    int substr_len = substr.length();
+  //   String suffix_str;
+  //   int lo = 0, hi = N - 1;
+  //   int substr_len = substr.length();
 
-    // int g1 = {| lo, hi, N, substr_len |};
-    // int g2 = {| lo, hi, N, substr_len |};    
-    
-    // while( g1 <= g2 ) {
-    while( lo <= hi ) {
+  //   while( lo <= hi ) {
 	
-      int mid = (lo + hi) / 2;
-      int suffix_index = sa[mid];
-      int suffix_len = N - suffix_index;
+  //     int mid = (lo + hi) / 2;
+  //     int suffix_index = sa[mid];
+  //     int suffix_len = N - suffix_index;
       
-      // CHANGE
-      char[] tmp = new char[T.length];      
-      // int g3 = {| lo, hi, N, substr_len, mid, suffix_index, suffix_len, T.length |};
-      // for (int i=??; i<g3; i++) {
-      for (int i=0; i<T.length; i++) {
-	  tmp[i] = (char) T[i];
-      }
+  //     // CHANGE
+  //     char[] tmp = new char[T.length];      
+  //     for (int i=0; i<T.length; i++) {
+  // 	  tmp[i] = (char) T[i];
+  //     }
 
-      // Extract part of the suffix we need to compare
-      if (suffix_len <= substr_len) suffix_str = new String(tmp, suffix_index, suffix_len);
-      else suffix_str = new String(tmp, suffix_index, substr_len);
-      // CHANGE
-      // if (suffix_len <= substr_len) suffix_str = new String(T, suffix_index, suffix_len);
-      // else suffix_str = new String(T, suffix_index, substr_len);
+  //     // Extract part of the suffix we need to compare
+  //     if (suffix_len <= substr_len) suffix_str = new String(tmp, suffix_index, suffix_len);
+  //     else suffix_str = new String(tmp, suffix_index, substr_len);
+  //     // CHANGE
+  //     // if (suffix_len <= substr_len) suffix_str = new String(T, suffix_index, suffix_len);
+  //     // else suffix_str = new String(T, suffix_index, substr_len);
       
-      int cmp = suffix_str.compareTo(substr);
+  //     int cmp = suffix_str.compareTo(substr);
 
-      // Found a match
-      if ( cmp == 0 ) {
-        // To find the first occurrence linear scan up/down
-        // from here or keep doing binary search
-        return true;
+  //     // Found a match
+  //     if ( cmp == 0 ) {
+  //       // To find the first occurrence linear scan up/down
+  //       // from here or keep doing binary search
+  //       return true;
       
-      // Substring is found above
-      } else if (cmp < 0) {
-        lo = mid + 1;
+  //     // Substring is found above
+  //     } else if (cmp < 0) {
+  //       lo = mid + 1;
 
-      // Substring is found below
-      } else {
-        hi = mid - 1;
-      }
+  //     // Substring is found below
+  //     } else {
+  //       hi = mid - 1;
+  //     }
 
-    }
+  //   }
 
-    return false;
+  //   return false;
 
-  }
+  // }
 
   // Finds the LRS(s) (Longest Repeated Substring) that occurs in a string.
   // Traditionally we are only interested in substrings that appear at
@@ -287,9 +267,9 @@ class SuffixArray {
     int g1 = {| T.length, N, max_len |};
     for (int i=??; i<g1; i++) {
     // for (int i=0; i<T.length; i++) {
-	tmp[i] = (char) T[i];
+    	tmp[i] = (char) T[i];
     }
-
+    
     int g2 = {| T.length, N, max_len |};
     for (int i = ??; i < g2; i++) {
     // for (int i = 0; i < N; i++) {
@@ -301,9 +281,9 @@ class SuffixArray {
         
         // Append substring to the list and update max
         max_len = lcp[i];
-	// CHANGE
+    	// CHANGE
         lrss.add( new String(tmp, sa[i], max_len) );
-	// lrss.add( new String(T, sa[i], max_len) );
+    	// lrss.add( new String(T, sa[i], max_len) );
       }
     }
 
@@ -311,13 +291,13 @@ class SuffixArray {
 
   }
 
-  /**
-   * Finds the Longest Common Substring (LCS) between a group of strings.
-   * The current implementation takes O(nlog(n)) bounded by the suffix array construction.
-   * @param strs - The strings you wish to find the longest common substring between
-   * @param K - The minimum number of strings to find the LCS between. K must be at least 2.
-   **/
-  public static TreeSet<String> lcs(String [] strs, final int K) {
+  // /**
+  //  * Finds the Longest Common Substring (LCS) between a group of strings.
+  //  * The current implementation takes O(nlog(n)) bounded by the suffix array construction.
+  //  * @param strs - The strings you wish to find the longest common substring between
+  //  * @param K - The minimum number of strings to find the LCS between. K must be at least 2.
+  //  **/
+  public static TreeSet<String> lcs(String [] strs, int K) {
 
       // CHANGE
       // if (K <= 1) throw new IllegalArgumentException("K must be greater than or equal to 2!");
@@ -379,10 +359,10 @@ class SuffixArray {
     // CHANGE
     String tmp = intArrToString(T);
     SuffixArray sa = new SuffixArray(tmp);
-    // SuffixArray sa = new SuffixArray(T);
-    Deque <Integer> deque = new ArrayDeque<>();
-    Map <Integer, Integer> windowColorCount = new HashMap_Simple<>();
-    Set <Integer> windowColors = new HashSet<>();
+    // // SuffixArray sa = new SuffixArray(T);
+    ArrayDeque <Integer> deque = new ArrayDeque<>();
+    HashMap <Integer, Integer> windowColorCount = new HashMap<>();
+    HashSet <Integer> windowColors = new HashSet<>();
     
     // Start the sliding window at the number of sentinels because those
     // all get sorted first and we want to ignore them
@@ -436,7 +416,7 @@ class SuffixArray {
     	// CHANGE
         Integer colorCount = windowColorCount.get(new Integer(lastColor));
         // Integer colorCount = windowColorCount.get(lastColor);
-	int check = colorCount.intValue();
+    	int check = colorCount.intValue();
     	// CHANGE
     	boolean removed = false;
         if (colorCount.intValue() == 1) {
@@ -473,7 +453,7 @@ class SuffixArray {
       // Increase the window size because we don't have enough colors
       } else if(++hi < L) {
 
-	int nextColor = indexMap[sa.sa[hi]];
+    	int nextColor = indexMap[sa.sa[hi]];
     	// CHANGE 
     	Integer nextColor_Int = new Integer(nextColor);
 	
@@ -522,41 +502,41 @@ class SuffixArray {
 
   }
 
-  // public void display() {
-  //   System.out.printf("-----i-----SA-----LCP---Suffix\n");
-  //   for(int i = 0; i < N; i++) {
-  //     int suffixLen = N - sa[i];
-  //     String suffix = new String(T, sa[i], suffixLen);
-  //     System.out.printf("% 7d % 7d % 7d %s\n", i, sa[i],lcp[i], suffix );
-  //   }
-  // }
+  // // public void display() {
+  // //   System.out.printf("-----i-----SA-----LCP---Suffix\n");
+  // //   for(int i = 0; i < N; i++) {
+  // //     int suffixLen = N - sa[i];
+  // //     String suffix = new String(T, sa[i], suffixLen);
+  // //     System.out.printf("% 7d % 7d % 7d %s\n", i, sa[i],lcp[i], suffix );
+  // //   }
+  // // }
 
-    // CHANGE
-  //   // public static void main(String[] args){
-  //   harness public static void main() {      
+  //   // CHANGE
+  // //   // public static void main(String[] args){
+  // //   harness public static void main() {      
         	
-  //   // String[] strs = { "GAGL", "RGAG", "TGAGE" };
+  // //   // String[] strs = { "GAGL", "RGAG", "TGAGE" };
     
-  //   String[] strs = { "AAGAAGC", "AGAAGT", "CGAAGC" };
-  //   // String[] strs = { "abca", "bcad", "daca" };
-  //   // String[] strs = { "abca", "bcad", "daca" };
-  //   // String[] strs = { "AABC", "BCDC", "BCDE", "CDED" };
-  //   // String[] strs = { "abcdefg", "bcdefgh", "cdefghi" };
-  //   // String[] strs = { "xxx", "yyy", "zzz" };
-  //   TreeSet <String> lcss = SuffixArray.lcs(strs, 2);
-  //   // System.out.println(lcss);
+  // //   String[] strs = { "AAGAAGC", "AGAAGT", "CGAAGC" };
+  // //   // String[] strs = { "abca", "bcad", "daca" };
+  // //   // String[] strs = { "abca", "bcad", "daca" };
+  // //   // String[] strs = { "AABC", "BCDC", "BCDE", "CDED" };
+  // //   // String[] strs = { "abcdefg", "bcdefgh", "cdefghi" };
+  // //   // String[] strs = { "xxx", "yyy", "zzz" };
+  // //   TreeSet <String> lcss = SuffixArray.lcs(strs, 2);
+  // //   // System.out.println(lcss);
 
-  //   // SuffixArray sa = new SuffixArray("abracadabra");
-  //   // System.out.println(sa);
-  //   // System.out.println(java.util.Arrays.toString(sa.sa));
-  //   // System.out.println(java.util.Arrays.toString(sa.lcp));
+  // //   // SuffixArray sa = new SuffixArray("abracadabra");
+  // //   // System.out.println(sa);
+  // //   // System.out.println(java.util.Arrays.toString(sa.sa));
+  // //   // System.out.println(java.util.Arrays.toString(sa.lcp));
 
-  //   // SuffixArray sa = new SuffixArray("ababcabaa");
-  //   // sa.display();
+  // //   // SuffixArray sa = new SuffixArray("ababcabaa");
+  // //   // sa.display();
     
   
 
-  // }
+  // // }
 
 }
 

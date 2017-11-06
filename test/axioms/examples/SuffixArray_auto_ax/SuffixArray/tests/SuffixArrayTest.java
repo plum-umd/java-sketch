@@ -21,8 +21,8 @@ public class SuffixArrayTest {
 
   harness public void main() {
       // containsSubstring();
-      // testLRS();
-      testLCS();
+      testLRS();
+      // testLCS();
   }
     
   @Before
@@ -83,7 +83,7 @@ public class SuffixArrayTest {
 
     String s = "aabaab";
     SuffixArray sa = new SuffixArray(s);
-    TreeSet <String> lrss; //= sa.lrs();
+    TreeSet <String> lrss = sa.lrs();
     // list.addAll(lrss);
     //CHANGE
     assert 1 == lrss.size();
@@ -202,7 +202,7 @@ public class SuffixArrayTest {
     String a = "a";
     TreeSet <String> lcss = SuffixArray.lcs(strs, 2);
     
-    assert lcss.size() == 1;
+    assert lcss.size() == 2;
       // assertEquals( SuffixArray.lcs(strs, 2), "a" );
     // assertEquals( SuffixArray.lcs("abcde", "xzy", '#'), null );
     // assertEquals( SuffixArray.lcs("cabbage", "garbage", '#'), "bage" );

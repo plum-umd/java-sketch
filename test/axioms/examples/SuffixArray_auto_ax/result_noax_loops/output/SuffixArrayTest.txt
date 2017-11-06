@@ -1,0 +1,2 @@
+SKETCH version 1.7.4
+Benchmark = /Users/grumpy/Research/java-sketch/test/axioms/examples/SuffixArray_auto_ax/SuffixArray/../result_noax_loops/sk_SuffixArrayTest/main.sk

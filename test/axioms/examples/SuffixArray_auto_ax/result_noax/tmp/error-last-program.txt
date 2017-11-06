@@ -1,0 +1,4780 @@
+/* BEGIN PACKAGE Scanner*/
+package Scanner{
+  /*Scanner.sk:3*/
+  
+Object Scanner_Scanner (Object self)/*Scanner.sk:3*/
+  {
+    return self;
+  }
+  /*Scanner.sk:7*/
+  
+Object Scanner_Scanner_File (Object self, Object file)/*Scanner.sk:7*/
+  {
+    self.file_Scanner = file;
+    return self;
+  }
+  /*Scanner.sk:12*/
+  
+bit hasNext (Object self)/*Scanner.sk:12*/
+  {
+    return 1;
+  }
+  /*Scanner.sk:20*/
+  
+bit hasNextLine (Object self)/*Scanner.sk:20*/
+  {
+    return 1;
+  }
+  /*Scanner.sk:16*/
+  
+Object next (Object self)/*Scanner.sk:16*/
+  {
+    return String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1, A={'\0'}), 0, 0);
+  }
+  /*Scanner.sk:24*/
+  
+Object nextLine (Object self)/*Scanner.sk:24*/
+  {
+    return String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1, A={'\0'}), 0, 0);
+  }
+  /* END PACKAGE Scanner*/
+}
+/* BEGIN PACKAGE FileWriterr*/
+package FileWriterr{
+  /*FileWriterr.sk:3*/
+  
+Object FileWriterr_FileWriterr (Object self)/*FileWriterr.sk:3*/
+  {
+    return self;
+  }
+  /*FileWriterr.sk:7*/
+  
+Object FileWriterr_FileWriterr_String (Object self, Object fname)/*FileWriterr.sk:7*/
+  {
+    self.fname_FileWriterr = fname;
+    return self;
+  }
+  /* END PACKAGE FileWriterr*/
+}
+/* BEGIN PACKAGE Comparable*/
+package Comparable{
+  /*Comparable.sk:3*/
+  
+Object Comparable_Comparable (Object self)/*Comparable.sk:3*/
+  {
+    return self;
+  }
+  /* END PACKAGE Comparable*/
+}
+/* BEGIN PACKAGE Set*/
+package Set{
+  /*Set.sk:3*/
+  
+Object Set_Set (Object self)/*Set.sk:3*/
+  {
+    return self;
+  }
+  /* END PACKAGE Set*/
+}
+/* BEGIN PACKAGE SuffixRankTuple*/
+package SuffixRankTuple{
+  /*SuffixR..kTuple.sk:3*/
+  
+Object SuffixRankTuple_SuffixRankTuple (Object self)/*SuffixR..kTuple.sk:3*/
+  {
+    return self;
+  }
+  /*SuffixR..kTuple.sk:7*/
+  
+int compareTo_SuffixRankTuple (Object self, Object other)/*SuffixR..kTuple.sk:7*/
+  {
+    int cmp = compare_int_int@Integer(self.firstHalf_SuffixRankTuple, other.firstHalf_SuffixRankTuple);
+    if(cmp == 0)/*SuffixR..kTuple.sk:9*/
+    {
+      cmp = compare_int_int@Integer(self.secondHalf_SuffixRankTuple, other.secondHalf_SuffixRankTuple);
+    }
+    if(cmp == 0)/*SuffixR..kTuple.sk:10*/
+    {
+      return compare_int_int@Integer(self.originalIndex_SuffixRankTuple, other.originalIndex_SuffixRankTuple);
+    }
+    return cmp;
+  }
+  /*SuffixR..kTuple.sk:14*/
+  
+Object toString (Object self)/*SuffixR..kTuple.sk:14*/
+  {
+    return String_String_char_int_int(new Object(__cid=String()), new Array_char(length=6, A={'B','l','a','h','!','\0'}), 0, 5);
+  }
+  /* END PACKAGE SuffixRankTuple*/
+}
+/* BEGIN PACKAGE StringBuilder*/
+package StringBuilder{
+  /*StringBuilder.sk:3*/
+  
+Object StringBuilder_StringBuilder (Object self)/*StringBuilder.sk:3*/
+  {
+    return self;
+  }
+  /*StringBuilder.sk:7*/
+  
+Object StringBuilder_StringBuilder_String (Object self, Object str)/*StringBuilder.sk:7*/
+  {
+    self._value_StringBuilder = str._value_String;
+    self._count_StringBuilder = ((str.__cid) == (String()) ? length@String(str) : 0);
+    return self;
+  }
+  /*StringBuilder.sk:13*/
+  
+char charAt_int (Object self, int index)/*StringBuilder.sk:13*/
+  {
+    if((0 <= index) && (index < (self._count_StringBuilder)))/*StringBuilder.sk:14*/
+    {
+      return self._value_StringBuilder.A[index];
+    }
+  }
+  /*StringBuilder.sk:17*/
+  
+int length (Object self)/*StringBuilder.sk:17*/
+  {
+    return self._count_StringBuilder;
+  }
+  /*StringBuilder.sk:25*/
+  
+void setCharAt_int_char (Object self, int i, char c)/*StringBuilder.sk:25*/
+  {
+    self._value_StringBuilder.A[i] = c;
+  }
+  /*StringBuilder.sk:21*/
+  
+Object toString (Object self)/*StringBuilder.sk:21*/
+  {
+    return String_String_char_int_int(new Object(__cid=String()), self._value_StringBuilder, 0, self._count_StringBuilder);
+  }
+  /* END PACKAGE StringBuilder*/
+}
+/* BEGIN PACKAGE HashMap*/
+package HashMap{
+  int DEFAULT_INITIAL_CAPACITY=16;
+  /*HashMap.sk:4*/
+  
+int DEFAULT_INITIAL_CAPACITY_g ()/*HashMap.sk:4*/
+  {
+    return DEFAULT_INITIAL_CAPACITY;
+  }
+  /*HashMap.sk:5*/
+  
+void DEFAULT_INITIAL_CAPACITY_s (int DEFAULT_INITIAL_CAPACITY_s)/*HashMap.sk:5*/
+  {
+    DEFAULT_INITIAL_CAPACITY = DEFAULT_INITIAL_CAPACITY_s;
+  }
+  /*HashMap.sk:7*/
+  
+Object HashMap_HashMap (Object self)/*HashMap.sk:7*/
+  {
+    self.elementData_HashMap = new Array_Object(length=DEFAULT_INITIAL_CAPACITY);
+    self.numPairs_HashMap = 0;
+    self.capacity_HashMap = DEFAULT_INITIAL_CAPACITY;
+    return self;
+  }
+  /*HashMap.sk:76*/
+  
+void clear (Object self)/*HashMap.sk:76*/
+  {
+    self.elementData_HashMap = new Array_Object(length=DEFAULT_INITIAL_CAPACITY);
+    self.capacity_HashMap = DEFAULT_INITIAL_CAPACITY;
+    self.numPairs_HashMap = 0;
+  }
+  /*HashMap.sk:58*/
+  
+bit containsKey_K (Object self, Object key)/*HashMap.sk:58*/
+  {
+    return (get_K@HashMap(self, key)) != (null);
+  }
+  /*HashMap.sk:45*/
+  
+bit containsValue_V (Object self, Object value)/*HashMap.sk:45*/
+  {
+    int i;
+    {
+      i = 0;
+      bit __sa1 = i < (self.capacity_HashMap);
+      while(__sa1)
+      {
+        {
+          {
+            if((self.elementData_HashMap.A[i]) != (null))/*HashMap.sk:48*/
+            {
+              {
+                Object v = self.elementData_HashMap.A[i].value_HashMap_Node;
+                if(((value.__cid) == (Arrays()) ? equals_Object@Object(value, v) : ((value.__cid) == (StringBuffer()) ? equals_Object@Object(value, v) : ((value.__cid) == (File()) ? equals_Object@Object(value, v) : ((value.__cid) == (ArrayDeque_DequeNode()) ? equals_Object@Object(value, v) : ((value.__cid) == (ArrayDeque()) ? equals_Object@Object(value, v) : ((value.__cid) == (Boolean()) ? equals_Object@Object(value, v) : ((value.__cid) == (HashMap()) ? equals_Object@Object(value, v) : ((value.__cid) == (StringBuilder()) ? equals_Object@Object(value, v) : ((value.__cid) == (Float()) ? equals_Object@Float(value, v) : ((value.__cid) == (ArrayList()) ? equals_Object@Object(value, v) : ((value.__cid) == (FileReaderr()) ? equals_Object@Object(value, v) : ((value.__cid) == (HashSet()) ? equals_Object@Object(value, v) : ((value.__cid) == (Character()) ? equals_Object@Character(value, v) : ((value.__cid) == (Assert()) ? equals_Object@Object(value, v) : ((value.__cid) == (Integer()) ? equals_Object@Integer(value, v) : ((value.__cid) == (BufferedWriter()) ? equals_Object@Object(value, v) : ((value.__cid) == (LinkedList()) ? equals_Object@Object(value, v) : ((value.__cid) == (Stack()) ? equals_Object@Object(value, v) : ((value.__cid) == (AbstractQueue()) ? equals_Object@Object(value, v) : ((value.__cid) == (TwoDArray()) ? equals_Object@Object(value, v) : ((value.__cid) == (FileWriterr()) ? equals_Object@Object(value, v) : ((value.__cid) == (Number()) ? equals_Object@Object(value, v) : ((value.__cid) == (SuffixRankTuple()) ? equals_Object@Object(value, v) : ((value.__cid) == (SuffixArrayTest()) ? equals_Object@Object(value, v) : ((value.__cid) == (Scanner()) ? equals_Object@Object(value, v) : ((value.__cid) == (TreeMap()) ? equals_Object@Object(value, v) : ((value.__cid) == (String()) ? equals_Object@String(value, v) : ((value.__cid) == (HashMap_Node()) ? equals_Object@Object(value, v) : ((value.__cid) == (SuffixArray()) ? equals_Object@Object(value, v) : ((value.__cid) == (TreeSet()) ? equals_Object@Object(value, v) : ((value.__cid) == (Object()) ? equals_Object@Object(value, v) : 0))))))))))))))))))))))))))))))))/*HashMap.sk:50*/
+                {
+                  {
+                    return 1;
+                  }
+                }
+              }
+            }
+          }
+        }
+        (i)++;
+        __sa1 = i < (self.capacity_HashMap);
+      }
+    }
+    return 0;
+  }
+  /*HashMap.sk:62*/
+  
+Object get_K (Object self, Object key)/*HashMap.sk:62*/
+  {
+    int hashMod = (((key.__cid) == (Arrays()) ? hashCode@Object(key) : ((key.__cid) == (StringBuffer()) ? hashCode@Object(key) : ((key.__cid) == (File()) ? hashCode@Object(key) : ((key.__cid) == (ArrayDeque_DequeNode()) ? hashCode@Object(key) : ((key.__cid) == (ArrayDeque()) ? hashCode@Object(key) : ((key.__cid) == (Boolean()) ? hashCode@Object(key) : ((key.__cid) == (HashMap()) ? hashCode@Object(key) : ((key.__cid) == (StringBuilder()) ? hashCode@Object(key) : ((key.__cid) == (Float()) ? hashCode@Object(key) : ((key.__cid) == (ArrayList()) ? hashCode@Object(key) : ((key.__cid) == (FileReaderr()) ? hashCode@Object(key) : ((key.__cid) == (HashSet()) ? hashCode@Object(key) : ((key.__cid) == (Character()) ? hashCode@Object(key) : ((key.__cid) == (Assert()) ? hashCode@Object(key) : ((key.__cid) == (Integer()) ? hashCode@Integer(key) : ((key.__cid) == (BufferedWriter()) ? hashCode@Object(key) : ((key.__cid) == (LinkedList()) ? hashCode@Object(key) : ((key.__cid) == (Stack()) ? hashCode@Object(key) : ((key.__cid) == (AbstractQueue()) ? hashCode@Object(key) : ((key.__cid) == (TwoDArray()) ? hashCode@Object(key) : ((key.__cid) == (FileWriterr()) ? hashCode@Object(key) : ((key.__cid) == (Number()) ? hashCode@Object(key) : ((key.__cid) == (SuffixRankTuple()) ? hashCode@Object(key) : ((key.__cid) == (SuffixArrayTest()) ? hashCode@Object(key) : ((key.__cid) == (Scanner()) ? hashCode@Object(key) : ((key.__cid) == (TreeMap()) ? hashCode@Object(key) : ((key.__cid) == (String()) ? hashCode@String(key) : ((key.__cid) == (HashMap_Node()) ? hashCode@Object(key) : ((key.__cid) == (SuffixArray()) ? hashCode@Object(key) : ((key.__cid) == (TreeSet()) ? hashCode@Object(key) : ((key.__cid) == (Object()) ? hashCode@Object(key) : 0)))))))))))))))))))))))))))))))) % (self.capacity_HashMap);
+    if(hashMod < 0)/*HashMap.sk:64*/
+    {
+      {
+        hashMod = hashMod + (self.capacity_HashMap);
+      }
+    }
+    Object node = self.elementData_HashMap.A[hashMod];
+    if(node != (null))/*HashMap.sk:68*/
+    {
+      {
+        if(((key.__cid) == (Arrays()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (StringBuffer()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (File()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (ArrayDeque_DequeNode()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (ArrayDeque()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (Boolean()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (HashMap()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (StringBuilder()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (Float()) ? equals_Object@Float(key, node.key_HashMap_Node) : ((key.__cid) == (ArrayList()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (FileReaderr()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (HashSet()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (Character()) ? equals_Object@Character(key, node.key_HashMap_Node) : ((key.__cid) == (Assert()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (Integer()) ? equals_Object@Integer(key, node.key_HashMap_Node) : ((key.__cid) == (BufferedWriter()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (LinkedList()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (Stack()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (AbstractQueue()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (TwoDArray()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (FileWriterr()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (Number()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (SuffixRankTuple()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (SuffixArrayTest()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (Scanner()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (TreeMap()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (String()) ? equals_Object@String(key, node.key_HashMap_Node) : ((key.__cid) == (HashMap_Node()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (SuffixArray()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (TreeSet()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (Object()) ? equals_Object@Object(key, node.key_HashMap_Node) : 0))))))))))))))))))))))))))))))))/*HashMap.sk:69*/
+        {
+          {
+            return node.value_HashMap_Node;
+          }
+        }
+      }
+    }
+    return null;
+  }
+  /*HashMap.sk:18*/
+  
+bit isEmpty (Object self)/*HashMap.sk:18*/
+  {
+    return (self.numPairs_HashMap) == 0;
+  }
+  /*HashMap.sk:144*/
+  
+void putValNoResize_int_K_V (Object self, int hash, Object key, Object value)/*HashMap.sk:144*/
+  {
+    int hashMod = hash % (self.capacity_HashMap);
+    if(hashMod < 0)/*HashMap.sk:146*/
+    {
+      {
+        hashMod = hashMod + (self.capacity_HashMap);
+      }
+    }
+    self.elementData_HashMap.A[hashMod] = HashMap_Node_HashMap_Node_HashMap_K_V_int(new Object(__cid=HashMap_Node()), self, key, value, hash);
+  }
+  /*HashMap.sk:115*/
+  
+Object putVal_int_K_V (Object self, int hash, Object key, Object value)/*HashMap.sk:115*/
+  {
+    int hashMod = hash % (self.capacity_HashMap);
+    if(hashMod < 0)/*HashMap.sk:117*/
+    {
+      {
+        hashMod = hashMod + (self.capacity_HashMap);
+      }
+    }
+    Object node = self.elementData_HashMap.A[hashMod];
+    if(node != (null))/*HashMap.sk:121*/
+    {
+      {
+        if(((node.hash_HashMap_Node) != hash) || (!(((key.__cid) == (Arrays()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (StringBuffer()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (File()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (ArrayDeque_DequeNode()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (ArrayDeque()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (Boolean()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (HashMap()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (StringBuilder()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (Float()) ? equals_Object@Float(key, node.key_HashMap_Node) : ((key.__cid) == (ArrayList()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (FileReaderr()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (HashSet()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (Character()) ? equals_Object@Character(key, node.key_HashMap_Node) : ((key.__cid) == (Assert()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (Integer()) ? equals_Object@Integer(key, node.key_HashMap_Node) : ((key.__cid) == (BufferedWriter()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (LinkedList()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (Stack()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (AbstractQueue()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (TwoDArray()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (FileWriterr()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (Number()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (SuffixRankTuple()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (SuffixArrayTest()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (Scanner()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (TreeMap()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (String()) ? equals_Object@String(key, node.key_HashMap_Node) : ((key.__cid) == (HashMap_Node()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (SuffixArray()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (TreeSet()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (Object()) ? equals_Object@Object(key, node.key_HashMap_Node) : 0))))))))))))))))))))))))))))))))))/*HashMap.sk:122*/
+        {
+          {
+            resize_int@HashMap(self, hash + 1);
+            hashMod = hash % (self.capacity_HashMap);
+            if(hashMod < 0)/*HashMap.sk:125*/
+            {
+              {
+                hashMod = hashMod + (self.capacity_HashMap);
+              }
+            }
+            node = self.elementData_HashMap.A[hashMod];
+            (self.numPairs_HashMap)++;
+          }
+        }
+        self.elementData_HashMap.A[hashMod] = HashMap_Node_HashMap_Node_HashMap_K_V_int(new Object(__cid=HashMap_Node()), self, key, value, hash);
+        if(node != (null))/*HashMap.sk:132*/
+        {
+          {
+            return node.value_HashMap_Node;
+          }
+        }
+        else
+        {
+          {
+            return null;
+          }
+        }
+      }
+    }
+    self.elementData_HashMap.A[hashMod] = HashMap_Node_HashMap_Node_HashMap_K_V_int(new Object(__cid=HashMap_Node()), self, key, value, hash);
+    (self.numPairs_HashMap)++;
+    return null;
+  }
+  /*HashMap.sk:95*/
+  
+Object put_K_V (Object self, Object key, Object value)/*HashMap.sk:95*/
+  {
+    int h = ((key.__cid) == (Arrays()) ? hashCode@Object(key) : ((key.__cid) == (StringBuffer()) ? hashCode@Object(key) : ((key.__cid) == (File()) ? hashCode@Object(key) : ((key.__cid) == (ArrayDeque_DequeNode()) ? hashCode@Object(key) : ((key.__cid) == (ArrayDeque()) ? hashCode@Object(key) : ((key.__cid) == (Boolean()) ? hashCode@Object(key) : ((key.__cid) == (HashMap()) ? hashCode@Object(key) : ((key.__cid) == (StringBuilder()) ? hashCode@Object(key) : ((key.__cid) == (Float()) ? hashCode@Object(key) : ((key.__cid) == (ArrayList()) ? hashCode@Object(key) : ((key.__cid) == (FileReaderr()) ? hashCode@Object(key) : ((key.__cid) == (HashSet()) ? hashCode@Object(key) : ((key.__cid) == (Character()) ? hashCode@Object(key) : ((key.__cid) == (Assert()) ? hashCode@Object(key) : ((key.__cid) == (Integer()) ? hashCode@Integer(key) : ((key.__cid) == (BufferedWriter()) ? hashCode@Object(key) : ((key.__cid) == (LinkedList()) ? hashCode@Object(key) : ((key.__cid) == (Stack()) ? hashCode@Object(key) : ((key.__cid) == (AbstractQueue()) ? hashCode@Object(key) : ((key.__cid) == (TwoDArray()) ? hashCode@Object(key) : ((key.__cid) == (FileWriterr()) ? hashCode@Object(key) : ((key.__cid) == (Number()) ? hashCode@Object(key) : ((key.__cid) == (SuffixRankTuple()) ? hashCode@Object(key) : ((key.__cid) == (SuffixArrayTest()) ? hashCode@Object(key) : ((key.__cid) == (Scanner()) ? hashCode@Object(key) : ((key.__cid) == (TreeMap()) ? hashCode@Object(key) : ((key.__cid) == (String()) ? hashCode@String(key) : ((key.__cid) == (HashMap_Node()) ? hashCode@Object(key) : ((key.__cid) == (SuffixArray()) ? hashCode@Object(key) : ((key.__cid) == (TreeSet()) ? hashCode@Object(key) : ((key.__cid) == (Object()) ? hashCode@Object(key) : 0)))))))))))))))))))))))))))))));
+    return putVal_int_K_V@HashMap(self, h, key, value);
+  }
+  /*HashMap.sk:82*/
+  
+Object remove_K (Object self, Object key)/*HashMap.sk:82*/
+  {
+    Object val = get_K@HashMap(self, key);
+    int hashMod = (((key.__cid) == (Arrays()) ? hashCode@Object(key) : ((key.__cid) == (StringBuffer()) ? hashCode@Object(key) : ((key.__cid) == (File()) ? hashCode@Object(key) : ((key.__cid) == (ArrayDeque_DequeNode()) ? hashCode@Object(key) : ((key.__cid) == (ArrayDeque()) ? hashCode@Object(key) : ((key.__cid) == (Boolean()) ? hashCode@Object(key) : ((key.__cid) == (HashMap()) ? hashCode@Object(key) : ((key.__cid) == (StringBuilder()) ? hashCode@Object(key) : ((key.__cid) == (Float()) ? hashCode@Object(key) : ((key.__cid) == (ArrayList()) ? hashCode@Object(key) : ((key.__cid) == (FileReaderr()) ? hashCode@Object(key) : ((key.__cid) == (HashSet()) ? hashCode@Object(key) : ((key.__cid) == (Character()) ? hashCode@Object(key) : ((key.__cid) == (Assert()) ? hashCode@Object(key) : ((key.__cid) == (Integer()) ? hashCode@Integer(key) : ((key.__cid) == (BufferedWriter()) ? hashCode@Object(key) : ((key.__cid) == (LinkedList()) ? hashCode@Object(key) : ((key.__cid) == (Stack()) ? hashCode@Object(key) : ((key.__cid) == (AbstractQueue()) ? hashCode@Object(key) : ((key.__cid) == (TwoDArray()) ? hashCode@Object(key) : ((key.__cid) == (FileWriterr()) ? hashCode@Object(key) : ((key.__cid) == (Number()) ? hashCode@Object(key) : ((key.__cid) == (SuffixRankTuple()) ? hashCode@Object(key) : ((key.__cid) == (SuffixArrayTest()) ? hashCode@Object(key) : ((key.__cid) == (Scanner()) ? hashCode@Object(key) : ((key.__cid) == (TreeMap()) ? hashCode@Object(key) : ((key.__cid) == (String()) ? hashCode@String(key) : ((key.__cid) == (HashMap_Node()) ? hashCode@Object(key) : ((key.__cid) == (SuffixArray()) ? hashCode@Object(key) : ((key.__cid) == (TreeSet()) ? hashCode@Object(key) : ((key.__cid) == (Object()) ? hashCode@Object(key) : 0)))))))))))))))))))))))))))))))) % (self.capacity_HashMap);
+    if(hashMod < 0)/*HashMap.sk:85*/
+    {
+      {
+        hashMod = hashMod + (self.capacity_HashMap);
+      }
+    }
+    self.elementData_HashMap.A[hashMod] = null;
+    if(val != (null))/*HashMap.sk:89*/
+    {
+      {
+        (self.numPairs_HashMap)--;
+      }
+    }
+    return val;
+  }
+  /*HashMap.sk:100*/
+  
+Object replace_K_V (Object self, Object key, Object newVal)/*HashMap.sk:100*/
+  {
+    int hashMod = (((key.__cid) == (Arrays()) ? hashCode@Object(key) : ((key.__cid) == (StringBuffer()) ? hashCode@Object(key) : ((key.__cid) == (File()) ? hashCode@Object(key) : ((key.__cid) == (ArrayDeque_DequeNode()) ? hashCode@Object(key) : ((key.__cid) == (ArrayDeque()) ? hashCode@Object(key) : ((key.__cid) == (Boolean()) ? hashCode@Object(key) : ((key.__cid) == (HashMap()) ? hashCode@Object(key) : ((key.__cid) == (StringBuilder()) ? hashCode@Object(key) : ((key.__cid) == (Float()) ? hashCode@Object(key) : ((key.__cid) == (ArrayList()) ? hashCode@Object(key) : ((key.__cid) == (FileReaderr()) ? hashCode@Object(key) : ((key.__cid) == (HashSet()) ? hashCode@Object(key) : ((key.__cid) == (Character()) ? hashCode@Object(key) : ((key.__cid) == (Assert()) ? hashCode@Object(key) : ((key.__cid) == (Integer()) ? hashCode@Integer(key) : ((key.__cid) == (BufferedWriter()) ? hashCode@Object(key) : ((key.__cid) == (LinkedList()) ? hashCode@Object(key) : ((key.__cid) == (Stack()) ? hashCode@Object(key) : ((key.__cid) == (AbstractQueue()) ? hashCode@Object(key) : ((key.__cid) == (TwoDArray()) ? hashCode@Object(key) : ((key.__cid) == (FileWriterr()) ? hashCode@Object(key) : ((key.__cid) == (Number()) ? hashCode@Object(key) : ((key.__cid) == (SuffixRankTuple()) ? hashCode@Object(key) : ((key.__cid) == (SuffixArrayTest()) ? hashCode@Object(key) : ((key.__cid) == (Scanner()) ? hashCode@Object(key) : ((key.__cid) == (TreeMap()) ? hashCode@Object(key) : ((key.__cid) == (String()) ? hashCode@String(key) : ((key.__cid) == (HashMap_Node()) ? hashCode@Object(key) : ((key.__cid) == (SuffixArray()) ? hashCode@Object(key) : ((key.__cid) == (TreeSet()) ? hashCode@Object(key) : ((key.__cid) == (Object()) ? hashCode@Object(key) : 0)))))))))))))))))))))))))))))))) % (self.capacity_HashMap);
+    if(hashMod < 0)/*HashMap.sk:102*/
+    {
+      {
+        hashMod = hashMod + (self.capacity_HashMap);
+      }
+    }
+    Object node = self.elementData_HashMap.A[hashMod];
+    if(node != (null))/*HashMap.sk:106*/
+    {
+      {
+        if(((key.__cid) == (Arrays()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (StringBuffer()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (File()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (ArrayDeque_DequeNode()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (ArrayDeque()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (Boolean()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (HashMap()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (StringBuilder()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (Float()) ? equals_Object@Float(key, node.key_HashMap_Node) : ((key.__cid) == (ArrayList()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (FileReaderr()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (HashSet()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (Character()) ? equals_Object@Character(key, node.key_HashMap_Node) : ((key.__cid) == (Assert()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (Integer()) ? equals_Object@Integer(key, node.key_HashMap_Node) : ((key.__cid) == (BufferedWriter()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (LinkedList()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (Stack()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (AbstractQueue()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (TwoDArray()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (FileWriterr()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (Number()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (SuffixRankTuple()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (SuffixArrayTest()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (Scanner()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (TreeMap()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (String()) ? equals_Object@String(key, node.key_HashMap_Node) : ((key.__cid) == (HashMap_Node()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (SuffixArray()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (TreeSet()) ? equals_Object@Object(key, node.key_HashMap_Node) : ((key.__cid) == (Object()) ? equals_Object@Object(key, node.key_HashMap_Node) : 0))))))))))))))))))))))))))))))))/*HashMap.sk:107*/
+        {
+          {
+            node.value_HashMap_Node = newVal;
+            return node.value_HashMap_Node;
+          }
+        }
+      }
+    }
+    return null;
+  }
+  /*HashMap.sk:22*/
+  
+void resize_int (Object self, int newSize)/*HashMap.sk:22*/
+  {
+    int i;
+    int h;
+    int hashMod;
+    Object n;
+    Array_Object oldElementData = self.elementData_HashMap;
+    Array_Object newElementData = new Array_Object(length=newSize);
+    Object k;
+    Object v;
+    {
+      i = 0;
+      bit __sa0 = i < (self.capacity_HashMap);
+      while(__sa0)
+      {
+        {
+          {
+            if((oldElementData.A[i]) != (null))/*HashMap.sk:30*/
+            {
+              {
+                h = oldElementData.A[i].hash_HashMap_Node;
+                k = oldElementData.A[i].key_HashMap_Node;
+                v = oldElementData.A[i].value_HashMap_Node;
+                hashMod = h % newSize;
+                if(hashMod < 0)/*HashMap.sk:35*/
+                {
+                  {
+                    hashMod = hashMod + newSize;
+                  }
+                }
+                newElementData.A[hashMod] = HashMap_Node_HashMap_Node_HashMap_K_V_int(new Object(__cid=HashMap_Node()), self, k, v, h);
+              }
+            }
+          }
+        }
+        (i)++;
+        __sa0 = i < (self.capacity_HashMap);
+      }
+    }
+    self.elementData_HashMap = newElementData;
+    self.capacity_HashMap = newSize;
+  }
+  /*HashMap.sk:14*/
+  
+int size (Object self)/*HashMap.sk:14*/
+  {
+    return self.numPairs_HashMap;
+  }
+  /* END PACKAGE HashMap*/
+}
+/* BEGIN PACKAGE ArrayList*/
+package ArrayList{
+  Array_Object EMPTY_ELEMENTDATA=new Array_Object(length=0, A={});
+  int MAX_ARRAY_SIZE=1000000;
+  /*ArrayList.sk:11*/
+  
+Object ArrayList_ArrayList (Object self)/*ArrayList.sk:11*/
+  {
+    self.DEFAULT_CAPACITY_ArrayList = 10;
+    self.elementData_ArrayList = new Array_Object(length=self.DEFAULT_CAPACITY_ArrayList);
+    self.capacity_ArrayList = self.DEFAULT_CAPACITY_ArrayList;
+    self.size_ArrayList = 0;
+    return self;
+  }
+  /*ArrayList.sk:19*/
+  
+Object ArrayList_ArrayList_int (Object self, int initialCapacity)/*ArrayList.sk:19*/
+  {
+    self.DEFAULT_CAPACITY_ArrayList = 10;
+    self.elementData_ArrayList = new Array_Object(length=initialCapacity);
+    self.capacity_ArrayList = initialCapacity;
+    self.size_ArrayList = 0;
+    return self;
+  }
+  /*ArrayList.sk:4*/
+  
+Array_Object EMPTY_ELEMENTDATA_g ()/*ArrayList.sk:4*/
+  {
+    return EMPTY_ELEMENTDATA;
+  }
+  /*ArrayList.sk:5*/
+  
+void EMPTY_ELEMENTDATA_s (Array_Object EMPTY_ELEMENTDATA_s)/*ArrayList.sk:5*/
+  {
+    EMPTY_ELEMENTDATA = EMPTY_ELEMENTDATA_s;
+  }
+  /*ArrayList.sk:8*/
+  
+int MAX_ARRAY_SIZE_g ()/*ArrayList.sk:8*/
+  {
+    return MAX_ARRAY_SIZE;
+  }
+  /*ArrayList.sk:9*/
+  
+void MAX_ARRAY_SIZE_s (int MAX_ARRAY_SIZE_s)/*ArrayList.sk:9*/
+  {
+    MAX_ARRAY_SIZE = MAX_ARRAY_SIZE_s;
+  }
+  /*ArrayList.sk:57*/
+  
+bit add_E (Object self, Object e)/*ArrayList.sk:57*/
+  {
+    checkAdjustSize@ArrayList(self);
+    self.elementData_ArrayList.A[(self.size_ArrayList)++] = e;
+    return 1;
+  }
+  /*ArrayList.sk:50*/
+  
+void add_int_E (Object self, int index, Object e)/*ArrayList.sk:50*/
+  {
+    checkAdjustSize@ArrayList(self);
+    createSpace_int@ArrayList(self, index);
+    self.elementData_ArrayList.A[index] = e;
+    (self.size_ArrayList)++;
+  }
+  /*ArrayList.sk:37*/
+  
+void checkAdjustSize (Object self)/*ArrayList.sk:37*/
+  {
+    if(((self.size_ArrayList) + 1) >= (self.capacity_ArrayList))/*ArrayList.sk:38*/
+    {
+      {
+        copyNewElementData_int@ArrayList(self, (self.capacity_ArrayList) + 10);
+      }
+    }
+  }
+  /*ArrayList.sk:63*/
+  
+void clear (Object self)/*ArrayList.sk:63*/
+  {
+    {
+      int i = 0;
+      bit __sa4 = i < (self.size_ArrayList);
+      while(__sa4)
+      {
+        {
+          {
+            self.elementData_ArrayList.A[i] = null;
+          }
+        }
+        (i)++;
+        __sa4 = i < (self.size_ArrayList);
+      }
+    }
+    self.capacity_ArrayList = 10;
+    self.size_ArrayList = 0;
+  }
+  /*ArrayList.sk:71*/
+  
+bit contains_Object (Object self, Object o)/*ArrayList.sk:71*/
+  {
+    return (indexOf_Object@ArrayList(self, o)) >= 0;
+  }
+  /*ArrayList.sk:27*/
+  
+void copyNewElementData_int (Object self, int size)/*ArrayList.sk:27*/
+  {
+    Array_Object newElementData = new Array_Object(length=size);
+    int i = 0;
+    {
+      i = 0;
+      bit __sa2 = i < (self.size_ArrayList);
+      while(__sa2)
+      {
+        {
+          {
+            newElementData.A[i] = self.elementData_ArrayList.A[i];
+          }
+        }
+        (i)++;
+        __sa2 = i < (self.size_ArrayList);
+      }
+    }
+    self.elementData_ArrayList = newElementData;
+    self.capacity_ArrayList = size;
+  }
+  /*ArrayList.sk:43*/
+  
+void createSpace_int (Object self, int index)/*ArrayList.sk:43*/
+  {
+    int j = 0;
+    {
+      j = self.size_ArrayList;
+      bit __sa3 = j > index;
+      while(__sa3)
+      {
+        {
+          {
+            self.elementData_ArrayList.A[j] = self.elementData_ArrayList.A[j - 1];
+          }
+        }
+        (j)--;
+        __sa3 = j > index;
+      }
+    }
+  }
+  /*ArrayList.sk:198*/
+  
+void ensureCapacityInternal_int (Object self, int minCapacity)/*ArrayList.sk:198*/
+  {
+    if((self.elementData_ArrayList) == EMPTY_ELEMENTDATA)/*ArrayList.sk:199*/
+    {
+      {
+        if((self.DEFAULT_CAPACITY_ArrayList) > minCapacity)/*ArrayList.sk:200*/
+        {
+          {
+            minCapacity = self.DEFAULT_CAPACITY_ArrayList;
+          }
+        }
+      }
+    }
+    ensureExplicitCapacity_int@ArrayList(self, minCapacity);
+  }
+  /*ArrayList.sk:172*/
+  
+void ensureCapacity_int (Object self, int minCapacity)/*ArrayList.sk:172*/
+  {
+    int minExpand;
+    if((self.elementData_ArrayList) != EMPTY_ELEMENTDATA)/*ArrayList.sk:174*/
+    {
+      {
+        minExpand = 0;
+      }
+    }
+    else
+    {
+      {
+        minExpand = self.DEFAULT_CAPACITY_ArrayList;
+      }
+    }
+    if(minCapacity > minExpand)/*ArrayList.sk:180*/
+    {
+      {
+        ensureExplicitCapacity_int@ArrayList(self, minCapacity);
+      }
+    }
+  }
+  /*ArrayList.sk:207*/
+  
+void ensureExplicitCapacity_int (Object self, int minCapacity)/*ArrayList.sk:207*/
+  {
+    if((minCapacity - (self.elementData_ArrayList.length)) > 0)/*ArrayList.sk:208*/
+    {
+      grow_int@ArrayList(self, minCapacity);
+    }
+  }
+  /*ArrayList.sk:75*/
+  
+Object get_int (Object self, int index)/*ArrayList.sk:75*/
+  {
+    if((index < 0) || (index >= (self.size_ArrayList)))/*ArrayList.sk:76*/
+    {
+      {
+        return null;
+      }
+    }
+    return self.elementData_ArrayList.A[index];
+  }
+  /*ArrayList.sk:211*/
+  
+void grow_int (Object self, int minCapacity)/*ArrayList.sk:211*/
+  {
+    int oldCapacity = self.elementData_ArrayList.length;
+    int newCapacity = oldCapacity + (oldCapacity / 2);
+    if((newCapacity - minCapacity) < 0)/*ArrayList.sk:214*/
+    {
+      newCapacity = minCapacity;
+    }
+    if((newCapacity - MAX_ARRAY_SIZE) > 0)/*ArrayList.sk:215*/
+    {
+      newCapacity = hugeCapacity_int(minCapacity);
+    }
+    copyNewElementData_int@ArrayList(self, newCapacity);
+  }
+  /*ArrayList.sk:219*/
+  
+int hugeCapacity_int (int minCapacity)/*ArrayList.sk:219*/
+  {
+    return (minCapacity > MAX_ARRAY_SIZE ? 2147483647 : MAX_ARRAY_SIZE);
+  }
+  /*ArrayList.sk:82*/
+  
+int indexOf_Object (Object self, Object o)/*ArrayList.sk:82*/
+  {
+    int i = 0;
+    if(o == (null))/*ArrayList.sk:84*/
+    {
+      {
+        {
+          i = 0;
+          bit __sa5 = i < (self.capacity_ArrayList);
+          while(__sa5)
+          {
+            {
+              {
+                if((self.elementData_ArrayList.A[i]) == (null))/*ArrayList.sk:86*/
+                {
+                  {
+                    return i;
+                  }
+                }
+              }
+            }
+            (i)++;
+            __sa5 = i < (self.capacity_ArrayList);
+          }
+        }
+      }
+    }
+    else
+    {
+      {
+        {
+          i = 0;
+          bit __sa6 = i < (self.size_ArrayList);
+          while(__sa6)
+          {
+            {
+              {
+                if(((o.__cid) == (Arrays()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (StringBuffer()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (File()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (ArrayDeque_DequeNode()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (ArrayDeque()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (Boolean()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (HashMap()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (StringBuilder()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (Float()) ? equals_Object@Float(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (ArrayList()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (FileReaderr()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (HashSet()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (Character()) ? equals_Object@Character(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (Assert()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (Integer()) ? equals_Object@Integer(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (BufferedWriter()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (LinkedList()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (Stack()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (AbstractQueue()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (TwoDArray()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (FileWriterr()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (Number()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (SuffixRankTuple()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (SuffixArrayTest()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (Scanner()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (TreeMap()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (String()) ? equals_Object@String(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (HashMap_Node()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (SuffixArray()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (TreeSet()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (Object()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : 0))))))))))))))))))))))))))))))))/*ArrayList.sk:93*/
+                {
+                  {
+                    return i;
+                  }
+                }
+              }
+            }
+            (i)++;
+            __sa6 = i < (self.size_ArrayList);
+          }
+        }
+      }
+    }
+    return -1;
+  }
+  /*ArrayList.sk:159*/
+  
+bit isEmpty (Object self)/*ArrayList.sk:159*/
+  {
+    return (self.size_ArrayList) == 0;
+  }
+  /*ArrayList.sk:155*/
+  
+int length (Object self)/*ArrayList.sk:155*/
+  {
+    return size@ArrayList(self);
+  }
+  /*ArrayList.sk:101*/
+  
+void removeElement_int (Object self, int index)/*ArrayList.sk:101*/
+  {
+    int j = 0;
+    {
+      j = index;
+      bit __sa7 = j < ((self.size_ArrayList) - 1);
+      while(__sa7)
+      {
+        {
+          {
+            self.elementData_ArrayList.A[j] = self.elementData_ArrayList.A[j + 1];
+          }
+        }
+        (j)++;
+        __sa7 = j < ((self.size_ArrayList) - 1);
+      }
+    }
+    self.elementData_ArrayList.A[(self.size_ArrayList) - 1] = null;
+    (self.size_ArrayList)--;
+  }
+  /*ArrayList.sk:120*/
+  
+bit remove_Object (Object self, Object o)/*ArrayList.sk:120*/
+  {
+    int i = 0;
+    if(o == (null))/*ArrayList.sk:122*/
+    {
+      {
+        {
+          i = 0;
+          bit __sa8 = i < (self.capacity_ArrayList);
+          while(__sa8)
+          {
+            {
+              {
+                if((self.elementData_ArrayList.A[i]) == (null))/*ArrayList.sk:124*/
+                {
+                  {
+                    removeElement_int@ArrayList(self, i);
+                    return 1;
+                  }
+                }
+              }
+            }
+            (i)++;
+            __sa8 = i < (self.capacity_ArrayList);
+          }
+        }
+      }
+    }
+    else
+    {
+      {
+        {
+          i = 0;
+          bit __sa9 = i < (self.size_ArrayList);
+          while(__sa9)
+          {
+            {
+              {
+                if(((o.__cid) == (Arrays()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (StringBuffer()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (File()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (ArrayDeque_DequeNode()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (ArrayDeque()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (Boolean()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (HashMap()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (StringBuilder()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (Float()) ? equals_Object@Float(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (ArrayList()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (FileReaderr()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (HashSet()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (Character()) ? equals_Object@Character(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (Assert()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (Integer()) ? equals_Object@Integer(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (BufferedWriter()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (LinkedList()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (Stack()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (AbstractQueue()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (TwoDArray()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (FileWriterr()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (Number()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (SuffixRankTuple()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (SuffixArrayTest()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (Scanner()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (TreeMap()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (String()) ? equals_Object@String(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (HashMap_Node()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (SuffixArray()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (TreeSet()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : ((o.__cid) == (Object()) ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : 0))))))))))))))))))))))))))))))))/*ArrayList.sk:132*/
+                {
+                  {
+                    removeElement_int@ArrayList(self, i);
+                    return 1;
+                  }
+                }
+              }
+            }
+            (i)++;
+            __sa9 = i < (self.size_ArrayList);
+          }
+        }
+      }
+    }
+    return 0;
+  }
+  /*ArrayList.sk:110*/
+  
+Object remove_int (Object self, int index)/*ArrayList.sk:110*/
+  {
+    Object e;
+    if((index < 0) || (index >= (self.size_ArrayList)))/*ArrayList.sk:112*/
+    {
+      {
+        return null;
+      }
+    }
+    e = self.elementData_ArrayList.A[index];
+    removeElement_int@ArrayList(self, index);
+    return e;
+  }
+  /*ArrayList.sk:141*/
+  
+Object set_int_E (Object self, int index, Object element)/*ArrayList.sk:141*/
+  {
+    Object oldElement;
+    if((index < 0) || (index >= (self.size_ArrayList)))/*ArrayList.sk:143*/
+    {
+      {
+        return null;
+      }
+    }
+    oldElement = self.elementData_ArrayList.A[index];
+    self.elementData_ArrayList.A[index] = element;
+    return oldElement;
+  }
+  /*ArrayList.sk:151*/
+  
+int size (Object self)/*ArrayList.sk:151*/
+  {
+    return self.size_ArrayList;
+  }
+  /*ArrayList.sk:192*/
+  
+void subListRangeCheck_int_int_int (int fromIndex, int toIndex, int size)/*ArrayList.sk:192*/
+  {
+    assert (fromIndex >= 0); //Assert at ArrayList.sk:193 (1)
+    assert (toIndex <= size); //Assert at ArrayList.sk:194 (1)
+    assert (fromIndex < toIndex); //Assert at ArrayList.sk:195 (1)
+  }
+  /*ArrayList.sk:185*/
+  
+Object subList_int_int (Object self, int fromIndex, int toIndex)/*ArrayList.sk:185*/
+  {
+    subListRangeCheck_int_int_int(fromIndex, toIndex, self.size_ArrayList);
+    Object a = ArrayList_ArrayList(new Object(__cid=ArrayList()));
+    for(int i = 0; i < (toIndex - fromIndex); (i)++)
+    {
+      ((a.__cid) == (ArrayList()) ? add_E@ArrayList(a, self.elementData_ArrayList.A[i]) : 0);
+    }
+    return a;
+  }
+  /*ArrayList.sk:163*/
+  
+Array_Object toArray (Object self)/*ArrayList.sk:163*/
+  {
+    Array_Object arr = new Array_Object(length=self.size_ArrayList);
+    int i = 0;
+    {
+      i = 0;
+      bit __sa10 = i < (self.size_ArrayList);
+      while(__sa10)
+      {
+        {
+          {
+            arr.A[i] = self.elementData_ArrayList.A[i];
+          }
+        }
+        (i)++;
+        __sa10 = i < (self.size_ArrayList);
+      }
+    }
+    return arr;
+  }
+  /* END PACKAGE ArrayList*/
+}
+/* BEGIN PACKAGE String*/
+package String{
+  /*String.sk:3*/
+  
+Object String_String (Object self)/*String.sk:3*/
+  {
+    return self;
+  }
+  /*String.sk:7*/
+  
+Object String_String_char_int_int (Object self, Array_char ca, int offset, int count)/*String.sk:7*/
+  {
+    if((offset > 0) && (offset < (ca.length)))/*String.sk:8*/
+    {
+      {
+        Array_char tmp = new Array_char(length=count);
+        for(int i = 0; i < count; (i)++)
+        {
+          {
+            tmp.A[i] = ca.A[i + offset];
+          }
+        }
+        self._value_String = tmp;
+      }
+    }
+    else
+    {
+      {
+        self._value_String = ca;
+      }
+    }
+    self._count_String = count;
+    return self;
+  }
+  /*String.sk:22*/
+  
+char charAt_int (Object self, int index)/*String.sk:22*/
+  {
+    if((0 <= index) && (index < (self._count_String)))/*String.sk:23*/
+    {
+      return self._value_String.A[index];
+    }
+    return '\0';
+  }
+  /*String.sk:87*/
+  
+int compareTo_String (Object self, Object str)/*String.sk:87*/
+  {
+    return compare_String_String(((self.__cid) == (String()) ? toString@String(self) : null), str);
+  }
+  /*String.sk:91*/
+  
+int compare_String_String (Object s1, Object s2)/*String.sk:91*/
+  {
+    int l1 = ((s1.__cid) == (String()) ? length@String(s1) : 0);
+    int l2 = ((s2.__cid) == (String()) ? length@String(s2) : 0);
+    int lendiff = l1 - l2;
+    int smaller = l1;
+    if(l1 > l2)/*String.sk:96*/
+    {
+      {
+        smaller = l2;
+      }
+    }
+    else
+    {
+      {
+        for(int i = 0; i < smaller; (i)++)
+        {
+          {
+            char c1 = ((s1.__cid) == (String()) ? charAt_int@String(s1, i) : '\0');
+            char c2 = ((s2.__cid) == (String()) ? charAt_int@String(s2, i) : '\0');
+            if(c1 != c2)/*String.sk:103*/
+            {
+              {
+                return c1 - c2;
+              }
+            }
+          }
+        }
+        if(lendiff != 0)/*String.sk:107*/
+        {
+          return lendiff;
+        }
+        return 0;
+      }
+    }
+  }
+  /*String.sk:112*/
+  
+Object concat_String (Object self, Object str)/*String.sk:112*/
+  {
+    int otherLen = ((str.__cid) == (String()) ? length@String(str) : 0);
+    if(otherLen == 0)/*String.sk:114*/
+    {
+      {
+        return self;
+      }
+    }
+    int thisLen = ((self.__cid) == (String()) ? length@String(self) : 0);
+    int totalLen = (((self.__cid) == (String()) ? length@String(self) : 0)) + otherLen;
+    Array_char ret = new Array_char(length=totalLen);
+    for(int i = 0; i < thisLen; (i)++)
+    {
+      {
+        ret.A[i] = ((self.__cid) == (String()) ? charAt_int@String(self, i) : '\0');
+      }
+    }
+    for(int i = thisLen; i < totalLen; (i)++)
+    {
+      {
+        ret.A[i] = ((str.__cid) == (String()) ? charAt_int@String(str, i - thisLen) : '\0');
+      }
+    }
+    return String_String_char_int_int(new Object(__cid=String()), ret, 0, totalLen);
+  }
+  /*String.sk:129*/
+  
+bit equals_Object (Object self, Object obj)/*String.sk:129*/
+  {
+    bit isEqual = 0;
+    if((obj.__cid) == (String()))/*String.sk:131*/
+    {
+      {
+        isEqual = 1;
+        Object s = obj;
+        int sLen = ((s.__cid) == (String()) ? length@String(s) : 0);
+        int tLen = ((self.__cid) == (String()) ? length@String(self) : 0);
+        if(sLen != tLen)/*String.sk:136*/
+        {
+          isEqual = 0;
+        }
+        for(int i = 0; (i < sLen) && (isEqual == 1); (i)++)
+        {
+          {
+            if((s._value_String.A[i]) != (self._value_String.A[i]))/*String.sk:138*/
+            {
+              {
+                isEqual = 0;
+              }
+            }
+          }
+        }
+      }
+    }
+    return isEqual;
+  }
+  /*String.sk:146*/
+  
+int hashCode (Object self)/*String.sk:146*/
+  {
+    int n = self._count_String;
+    int hash = 0;
+    int temp = 0;
+    if(n == 0)/*String.sk:148*/
+    {
+      {
+        return 0;
+      }
+    }
+    for(int i = 0; i < n; (i)++)
+    {
+      {
+        temp = ((self.__cid) == (String()) ? charAt_int@String(self, i) : '\0');
+        for(int j = 0; j < ((n - 1) - i); (j)++)
+        {
+          {
+            temp = temp * 31;
+          }
+        }
+        hash = hash + temp;
+      }
+    }
+    return hash;
+  }
+  /*String.sk:39*/
+  
+int indexOf_String (Object self, Object s)/*String.sk:39*/
+  {
+    return indexOf_String_int@String(self, s, 0);
+  }
+  /*String.sk:43*/
+  
+int indexOf_String_int (Object self, Object s, int i)/*String.sk:43*/
+  {
+    int tLen = ((self.__cid) == (String()) ? length@String(self) : 0);
+    int sLen = ((s.__cid) == (String()) ? length@String(s) : 0);
+    int index = i;
+    int mLen = 0;
+    int j;
+    if(((i >= tLen) || (i < 0)) || (sLen == 0))/*String.sk:49*/
+    {
+      {
+        return -1;
+      }
+    }
+    for(j = i; ((j < tLen) && (mLen < sLen)) && ((j - index) < sLen); { })
+    {
+      {
+        if((((self.__cid) == (String()) ? charAt_int@String(self, j) : '\0')) != (((s.__cid) == (String()) ? charAt_int@String(s, j - index) : '\0')))/*String.sk:53*/
+        {
+          {
+            mLen = 0;
+            (index)++;
+            j = index;
+          }
+        }
+        else
+        {
+          {
+            (mLen)++;
+            (j)++;
+          }
+        }
+      }
+    }
+    if(mLen != sLen)/*String.sk:63*/
+    {
+      {
+        index = -1;
+      }
+    }
+    return index;
+  }
+  /*String.sk:69*/
+  
+int indexOf_char (Object self, char c)/*String.sk:69*/
+  {
+    return indexOf_char_int@String(self, c, 0);
+  }
+  /*String.sk:73*/
+  
+int indexOf_char_int (Object self, char c, int i)/*String.sk:73*/
+  {
+    int len = ((self.__cid) == (String()) ? length@String(self) : 0);
+    int index = -1;
+    if((i >= len) || (i < 0))/*String.sk:76*/
+    {
+      {
+        return index;
+      }
+    }
+    for(int j = i; j < len; (j)++)
+    {
+      {
+        if((((self.__cid) == (String()) ? charAt_int@String(self, j) : '\0')) == c)/*String.sk:80*/
+        {
+          {
+            return j;
+          }
+        }
+      }
+    }
+    return index;
+  }
+  /*String.sk:27*/
+  
+int length (Object self)/*String.sk:27*/
+  {
+    return self._count_String;
+  }
+  /*String.sk:161*/
+  
+Object replace_char_char (Object self, char oldChar, char newChar)/*String.sk:161*/
+  {
+    if(oldChar != newChar)/*String.sk:162*/
+    {
+      {
+        int len = self._count_String;
+        int i = -1;
+        int stop = 0;
+        Array_char val = self._value_String;
+        while((++(i)) < len)
+        {
+          {
+            if(((val.A[i]) == oldChar) && (stop == 0))/*String.sk:168*/
+            {
+              {
+                stop = i;
+              }
+            }
+          }
+        }
+        if(stop < len)/*String.sk:172*/
+        {
+          {
+            Array_char buf = new Array_char(length=len);
+            for(int j = 0; j < stop; (j)++)
+            {
+              {
+                buf.A[j] = val.A[j];
+              }
+            }
+            while(stop < len)
+            {
+              {
+                char c = val.A[stop];
+                buf.A[stop] = (c == oldChar ? newChar : c);
+                (stop)++;
+              }
+            }
+            return String_String_char_int_int(new Object(__cid=String()), buf, 0, len);
+          }
+        }
+      }
+    }
+    return self;
+  }
+  /*String.sk:35*/
+  
+void setCharAt_int_char (Object self, int i, char c)/*String.sk:35*/
+  {
+    self._value_String.A[i] = c;
+  }
+  /*String.sk:201*/
+  
+Array_Object split_String (Object self, Object regex)/*String.sk:201*/
+  {
+    return split_String_int@String(self, regex, 0);
+  }
+  /*String.sk:205*/
+  
+Array_Object split_String_int (Object self, Object regex, int limit)/*String.sk:205*/
+  {
+    int off = 0;
+    char ch = ((regex.__cid) == (String()) ? charAt_int@String(regex, 0) : '\0');
+    int next = indexOf_char_int@String(self, ch, off);
+    bit limited = limit > 0;
+    Object list = ArrayList_ArrayList(new Object(__cid=ArrayList()));
+    while(next != -1)
+    {
+      {
+        if((!(limited)) || ((((list.__cid) == (ArrayList()) ? size@ArrayList(list) : 0)) < (limit - 1)))/*String.sk:212*/
+        {
+          {
+            ((list.__cid) == (ArrayList()) ? add_E@ArrayList(list, substring_int_int@String(self, off, next)) : 0);
+            off = next + 1;
+            next = indexOf_char_int@String(self, ch, off);
+          }
+        }
+        else
+        {
+          {
+            ((list.__cid) == (ArrayList()) ? add_E@ArrayList(list, substring_int_int@String(self, off, self._count_String)) : 0);
+            off = self._value_String.length;
+            next = -1;
+          }
+        }
+      }
+    }
+    if(off == 0)/*String.sk:223*/
+    {
+      return new Array_Object(length=1, A={self});
+    }
+    if((!(limited)) || ((((list.__cid) == (ArrayList()) ? size@ArrayList(list) : 0)) < limit))/*String.sk:224*/
+    {
+      {
+        ((list.__cid) == (ArrayList()) ? add_E@ArrayList(list, substring_int_int@String(self, off, self._count_String)) : 0);
+      }
+    }
+    int resultSize = ((list.__cid) == (ArrayList()) ? size@ArrayList(list) : 0);
+    if(limit == 0)/*String.sk:228*/
+    {
+      {
+        Object tmp = ((list.__cid) == (ArrayList()) ? get_int@ArrayList(list, resultSize - 1) : null);
+        {
+          bit __sa11 = (resultSize > 0) && ((((tmp.__cid) == (String()) ? length@String(tmp) : 0)) == 0);
+          while(__sa11)
+          {
+            {
+              {
+                (resultSize)--;
+              }
+            }
+            __sa11 = (resultSize > 0) && ((((tmp.__cid) == (String()) ? length@String(tmp) : 0)) == 0);
+          }
+        }
+      }
+    }
+    Array_Object result = new Array_Object(length=resultSize);
+    list = ((list.__cid) == (ArrayList()) ? subList_int_int@ArrayList(list, 0, resultSize) : null);
+    result = ((list.__cid) == (ArrayList()) ? toArray@ArrayList(list) : null);
+    return result;
+  }
+  /*String.sk:188*/
+  
+Object substring_int (Object self, int beginIndex)/*String.sk:188*/
+  {
+    int subLen = (self._count_String) - beginIndex;
+    assert (subLen > 0); //Assert at String.sk:190 (1)
+    return (beginIndex == 0 ? self : String_String_char_int_int(new Object(__cid=String()), self._value_String, beginIndex, subLen));
+  }
+  /*String.sk:194*/
+  
+Object substring_int_int (Object self, int beginIndex, int endIndex)/*String.sk:194*/
+  {
+    assert ((beginIndex >= 0) && (endIndex <= (self._value_String.length))); //Assert at String.sk:195 (1)
+    int subLen = endIndex - beginIndex;
+    assert (subLen > 0); //Assert at String.sk:197 (1)
+    return ((beginIndex == 0) && (endIndex == (self._count_String)) ? self : String_String_char_int_int(new Object(__cid=String()), self._value_String, beginIndex, subLen));
+  }
+  /*String.sk:31*/
+  
+Object toString (Object self)/*String.sk:31*/
+  {
+    return self;
+  }
+  /* END PACKAGE String*/
+}
+/* BEGIN PACKAGE ArrayDeque_DequeNode*/
+package ArrayDeque_DequeNode{
+  Object self0;
+  /*ArrayDe..ueNode.sk:5*/
+  
+Object ArrayDeque_DequeNode_ArrayDeque_DequeNode_ArrayDeque (Object self, Object self_0)/*ArrayDe..ueNode.sk:5*/
+  {
+    self0 = self_0;
+    return self;
+  }
+  /*ArrayDe..ueNode.sk:10*/
+  
+Object ArrayDeque_DequeNode_ArrayDeque_DequeNode_ArrayDeque_E_DequeNode_DequeNode (Object self, Object self_0, Object v, Object p, Object n)/*ArrayDe..ueNode.sk:10*/
+  {
+    self0 = self_0;
+    self.val_ArrayDeque_DequeNode = v;
+    self.prev_ArrayDeque_DequeNode = p;
+    self.next_ArrayDeque_DequeNode = n;
+    return self;
+  }
+  /*ArrayDe..ueNode.sk:18*/
+  
+Object getNext (Object self)/*ArrayDe..ueNode.sk:18*/
+  {
+    return self.next_ArrayDeque_DequeNode;
+  }
+  /*ArrayDe..ueNode.sk:22*/
+  
+Object getPrev (Object self)/*ArrayDe..ueNode.sk:22*/
+  {
+    return self.prev_ArrayDeque_DequeNode;
+  }
+  /*ArrayDe..ueNode.sk:26*/
+  
+Object getVal (Object self)/*ArrayDe..ueNode.sk:26*/
+  {
+    return self.val_ArrayDeque_DequeNode;
+  }
+  /*ArrayDe..ueNode.sk:30*/
+  
+void setNext_DequeNode (Object self, Object n)/*ArrayDe..ueNode.sk:30*/
+  {
+    self.next_ArrayDeque_DequeNode = n;
+  }
+  /*ArrayDe..ueNode.sk:34*/
+  
+void setPrev_DequeNode (Object self, Object p)/*ArrayDe..ueNode.sk:34*/
+  {
+    self.prev_ArrayDeque_DequeNode = p;
+  }
+  /* END PACKAGE ArrayDeque_DequeNode*/
+}
+/* BEGIN PACKAGE BufferedWriter*/
+package BufferedWriter{
+  /*BufferedWriter.sk:3*/
+  
+Object BufferedWriter_BufferedWriter (Object self)/*BufferedWriter.sk:3*/
+  {
+    return self;
+  }
+  /*BufferedWriter.sk:7*/
+  
+Object BufferedWriter_BufferedWriter_FileWriter (Object self, Object writer)/*BufferedWriter.sk:7*/
+  {
+    self.writer_BufferedWriter = writer;
+    return self;
+  }
+  /*BufferedWriter.sk:18*/
+  
+void close (Object self)/*BufferedWriter.sk:18*/
+  {
+  }
+  /*BufferedWriter.sk:15*/
+  
+void newLine (Object self)/*BufferedWriter.sk:15*/
+  {
+  }
+  /*BufferedWriter.sk:12*/
+  
+void write_String (Object self, Object s)/*BufferedWriter.sk:12*/
+  {
+  }
+  /* END PACKAGE BufferedWriter*/
+}
+/* BEGIN PACKAGE AbstractQueue*/
+package AbstractQueue{
+  /*AbstractQueue.sk:3*/
+  
+Object AbstractQueue_AbstractQueue (Object self)/*AbstractQueue.sk:3*/
+  {
+    self.elementData_AbstractQueue = new Array_Object(length=10);
+    self.size_AbstractQueue = 0;
+    self.capacity_AbstractQueue = 10;
+    return self;
+  }
+  /*AbstractQueue.sk:22*/
+  
+bit add_E (Object self, Object e)/*AbstractQueue.sk:22*/
+  {
+    resize@AbstractQueue(self);
+    (self.size_AbstractQueue)++;
+    self.elementData_AbstractQueue.A[(self.size_AbstractQueue) - 1] = e;
+    return 1;
+  }
+  /*AbstractQueue.sk:29*/
+  
+void clear (Object self)/*AbstractQueue.sk:29*/
+  {
+    {
+      int i = 0;
+      bit __sa13 = i < (self.size_AbstractQueue);
+      while(__sa13)
+      {
+        {
+          {
+            self.elementData_AbstractQueue.A[i] = null;
+          }
+        }
+        (i)++;
+        __sa13 = i < (self.size_AbstractQueue);
+      }
+    }
+    self.elementData_AbstractQueue = new Array_Object(length=10);
+    self.size_AbstractQueue = 0;
+    self.capacity_AbstractQueue = 10;
+  }
+  /*AbstractQueue.sk:38*/
+  
+Object element (Object self)/*AbstractQueue.sk:38*/
+  {
+    if((self.size_AbstractQueue) <= 0)/*AbstractQueue.sk:39*/
+    {
+      {
+        return null;
+      }
+    }
+    return self.elementData_AbstractQueue.A[0];
+  }
+  /*AbstractQueue.sk:58*/
+  
+bit isEmpty (Object self)/*AbstractQueue.sk:58*/
+  {
+    return (self.size_AbstractQueue) == 0;
+  }
+  /*AbstractQueue.sk:45*/
+  
+Object remove (Object self)/*AbstractQueue.sk:45*/
+  {
+    if((self.size_AbstractQueue) <= 0)/*AbstractQueue.sk:46*/
+    {
+      {
+        return null;
+      }
+    }
+    Object e = self.elementData_AbstractQueue.A[0];
+    {
+      int i = 0;
+      bit __sa14 = i < ((self.size_AbstractQueue) - 1);
+      while(__sa14)
+      {
+        {
+          {
+            self.elementData_AbstractQueue.A[i] = self.elementData_AbstractQueue.A[i + 1];
+          }
+        }
+        (i)++;
+        __sa14 = i < ((self.size_AbstractQueue) - 1);
+      }
+    }
+    self.elementData_AbstractQueue.A[(self.size_AbstractQueue) - 1] = null;
+    (self.size_AbstractQueue)--;
+    return e;
+  }
+  /*AbstractQueue.sk:10*/
+  
+void resize (Object self)/*AbstractQueue.sk:10*/
+  {
+    if((self.size_AbstractQueue) >= (self.capacity_AbstractQueue))/*AbstractQueue.sk:11*/
+    {
+      {
+        self.capacity_AbstractQueue = (self.capacity_AbstractQueue) * 2;
+        Array_Object newElementData = new Array_Object(length=self.capacity_AbstractQueue);
+        {
+          int i = 0;
+          bit __sa12 = i < (self.size_AbstractQueue);
+          while(__sa12)
+          {
+            {
+              {
+                newElementData.A[i] = self.elementData_AbstractQueue.A[i];
+                self.elementData_AbstractQueue.A[i] = null;
+              }
+            }
+            (i)++;
+            __sa12 = i < (self.size_AbstractQueue);
+          }
+        }
+        self.elementData_AbstractQueue = newElementData;
+      }
+    }
+  }
+  /* END PACKAGE AbstractQueue*/
+}
+/* BEGIN PACKAGE Assert*/
+package Assert{
+  /*Assert.sk:3*/
+  
+Object Assert_Assert (Object self)/*Assert.sk:3*/
+  {
+    return self;
+  }
+  /*Assert.sk:45*/
+  
+void assertEquals_Object_Object (Object expected, Object actual)/*Assert.sk:45*/
+  {
+    assertEquals_String_Object_Object(null, expected, actual);
+  }
+  /*Assert.sk:30*/
+  
+void assertEquals_String_Object_Object (Object message, Object expected, Object actual)/*Assert.sk:30*/
+  {
+    assert (((expected.__cid) == (Arrays()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (StringBuffer()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (File()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (ArrayDeque_DequeNode()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (ArrayDeque()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (Boolean()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (HashMap()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (StringBuilder()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (Float()) ? equals_Object@Float(expected, actual) : ((expected.__cid) == (ArrayList()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (FileReaderr()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (HashSet()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (Character()) ? equals_Object@Character(expected, actual) : ((expected.__cid) == (Assert()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (Integer()) ? equals_Object@Integer(expected, actual) : ((expected.__cid) == (BufferedWriter()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (LinkedList()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (Stack()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (AbstractQueue()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (TwoDArray()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (FileWriterr()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (Number()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (SuffixRankTuple()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (SuffixArrayTest()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (Scanner()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (TreeMap()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (String()) ? equals_Object@String(expected, actual) : ((expected.__cid) == (HashMap_Node()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (SuffixArray()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (TreeSet()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (Object()) ? equals_Object@Object(expected, actual) : 0)))))))))))))))))))))))))))))))); //Assert at Assert.sk:31 (0)
+  }
+  /*Assert.sk:49*/
+  
+void assertEquals_int_int (int expected, int actual)/*Assert.sk:49*/
+  {
+    assert (expected == actual); //Assert at Assert.sk:50 (1)
+  }
+  /*Assert.sk:15*/
+  
+void assertFalse_String_boolean (Object message, bit condition)/*Assert.sk:15*/
+  {
+    assertTrue_String_boolean(message, !(condition));
+  }
+  /*Assert.sk:19*/
+  
+void assertFalse_boolean (bit condition)/*Assert.sk:19*/
+  {
+    assertFalse_String_boolean(String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1, A={'\0'}), 0, 0), condition);
+  }
+  /*Assert.sk:60*/
+  
+void assertNull_Object (Object object)/*Assert.sk:60*/
+  {
+    assertNull_String_Object(null, object);
+  }
+  /*Assert.sk:53*/
+  
+void assertNull_String_Object (Object message, Object object)/*Assert.sk:53*/
+  {
+    if(object == (null))/*Assert.sk:54*/
+    {
+      {
+        return;
+      }
+    }
+    failNotNull_String_Object(message, object);
+  }
+  /*Assert.sk:7*/
+  
+void assertTrue_String_boolean (Object message, bit condition)/*Assert.sk:7*/
+  {
+    assert (condition); //Assert at Assert.sk:8 (1)
+  }
+  /*Assert.sk:11*/
+  
+void assertTrue_boolean (bit condition)/*Assert.sk:11*/
+  {
+    assertTrue_String_boolean(String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1, A={'\0'}), 0, 0), condition);
+  }
+  /*Assert.sk:34*/
+  
+bit equalsRegardingNull_Object_Object (Object expected, Object actual)/*Assert.sk:34*/
+  {
+    if(expected == (null))/*Assert.sk:35*/
+    {
+      {
+        return actual == (null);
+      }
+    }
+    return isEquals_Object_Object(expected, actual);
+  }
+  /*Assert.sk:68*/
+  
+void failNotEquals_String_Object_Object (Object message, Object expected, Object actual)/*Assert.sk:68*/
+  {
+    fail_String(format_String_Object_Object(message, expected, actual));
+  }
+  /*Assert.sk:64*/
+  
+void failNotNull_String_Object (Object message, Object actual)/*Assert.sk:64*/
+  {
+    assert (0); //Assert at Assert.sk:65 (1)
+  }
+  /*Assert.sk:23*/
+  
+void fail_String (Object message)/*Assert.sk:23*/
+  {
+    if(message == (null))/*Assert.sk:24*/
+    {
+      {
+      }
+    }
+  }
+  /*Assert.sk:72*/
+  
+Object format_String_Object_Object (Object message, Object expected, Object actual)/*Assert.sk:72*/
+  {
+    return String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1, A={'\0'}), 0, 0);
+  }
+  /*Assert.sk:41*/
+  
+bit isEquals_Object_Object (Object expected, Object actual)/*Assert.sk:41*/
+  {
+    return ((expected.__cid) == (Arrays()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (StringBuffer()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (File()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (ArrayDeque_DequeNode()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (ArrayDeque()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (Boolean()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (HashMap()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (StringBuilder()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (Float()) ? equals_Object@Float(expected, actual) : ((expected.__cid) == (ArrayList()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (FileReaderr()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (HashSet()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (Character()) ? equals_Object@Character(expected, actual) : ((expected.__cid) == (Assert()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (Integer()) ? equals_Object@Integer(expected, actual) : ((expected.__cid) == (BufferedWriter()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (LinkedList()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (Stack()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (AbstractQueue()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (TwoDArray()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (FileWriterr()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (Number()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (SuffixRankTuple()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (SuffixArrayTest()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (Scanner()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (TreeMap()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (String()) ? equals_Object@String(expected, actual) : ((expected.__cid) == (HashMap_Node()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (SuffixArray()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (TreeSet()) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (Object()) ? equals_Object@Object(expected, actual) : 0)))))))))))))))))))))))))))))));
+  }
+  /* END PACKAGE Assert*/
+}
+/* BEGIN PACKAGE Number*/
+package Number{
+  /*Number.sk:3*/
+  
+Object Number_Number (Object self)/*Number.sk:3*/
+  {
+    return self;
+  }
+  /*Number.sk:7*/
+  
+uninterp int intValue (Object self)/*Number.sk:7*/
+  /* END PACKAGE Number*/
+}
+/* BEGIN PACKAGE array*/
+package array{
+  struct Array_bit {
+      int length;
+      bit[length] A;
+  }
+  struct Array_char {
+      int length;
+      char[length] A;
+  }
+  struct Array_int {
+      int length;
+      int[length] A;
+  }
+  struct Array_float {
+      int length;
+      float[length] A;
+  }
+  struct Array_double {
+      int length;
+      double[length] A;
+  }
+  struct Array_Object {
+      int length;
+      Object[length] A;
+  }
+  /* END PACKAGE array*/
+}
+/* BEGIN PACKAGE TreeSet*/
+package TreeSet{
+  int INITIAL_CAPACITY=16;
+  int RESIZE_FACTOR=2;
+  /*TreeSet.sk:4*/
+  
+int INITIAL_CAPACITY_g ()/*TreeSet.sk:4*/
+  {
+    return INITIAL_CAPACITY;
+  }
+  /*TreeSet.sk:5*/
+  
+void INITIAL_CAPACITY_s (int INITIAL_CAPACITY_s)/*TreeSet.sk:5*/
+  {
+    INITIAL_CAPACITY = INITIAL_CAPACITY_s;
+  }
+  /*TreeSet.sk:8*/
+  
+int RESIZE_FACTOR_g ()/*TreeSet.sk:8*/
+  {
+    return RESIZE_FACTOR;
+  }
+  /*TreeSet.sk:9*/
+  
+void RESIZE_FACTOR_s (int RESIZE_FACTOR_s)/*TreeSet.sk:9*/
+  {
+    RESIZE_FACTOR = RESIZE_FACTOR_s;
+  }
+  /*TreeSet.sk:11*/
+  
+Object TreeSet_TreeSet (Object self)/*TreeSet.sk:11*/
+  {
+    self.set_TreeSet = new Array_Object(length=INITIAL_CAPACITY);
+    self.size_TreeSet = 0;
+    self.capacity_TreeSet = INITIAL_CAPACITY;
+    return self;
+  }
+  /*TreeSet.sk:34*/
+  
+bit add_E (Object self, Object e)/*TreeSet.sk:34*/
+  {
+    if((contains_Object@TreeSet(self, e)) || (e == (null)))/*TreeSet.sk:35*/
+    {
+      {
+        return 0;
+      }
+    }
+    else
+    {
+      {
+        self.set_TreeSet.A[self.size_TreeSet] = e;
+        (self.size_TreeSet)++;
+        check_size@TreeSet(self);
+        return 1;
+      }
+    }
+  }
+  /*TreeSet.sk:28*/
+  
+void check_size (Object self)/*TreeSet.sk:28*/
+  {
+    if((self.size_TreeSet) >= (self.capacity_TreeSet))/*TreeSet.sk:29*/
+    {
+      {
+        resize@TreeSet(self);
+      }
+    }
+  }
+  /*TreeSet.sk:74*/
+  
+void clear (Object self)/*TreeSet.sk:74*/
+  {
+    self.set_TreeSet = new Array_Object(length=INITIAL_CAPACITY);
+    self.size_TreeSet = 0;
+    self.capacity_TreeSet = INITIAL_CAPACITY;
+  }
+  /*TreeSet.sk:55*/
+  
+bit contains_Object (Object self, Object o)/*TreeSet.sk:55*/
+  {
+    return (get_Index_Object@TreeSet(self, o)) >= 0;
+  }
+  /*TreeSet.sk:46*/
+  
+int get_Index_Object (Object self, Object o)/*TreeSet.sk:46*/
+  {
+    {
+      int i = 0;
+      bit __sa16 = i < (self.size_TreeSet);
+      while(__sa16)
+      {
+        {
+          {
+            if(((o.__cid) == (Arrays()) ? equals_Object@Object(o, self.set_TreeSet.A[i]) : ((o.__cid) == (StringBuffer()) ? equals_Object@Object(o, self.set_TreeSet.A[i]) : ((o.__cid) == (File()) ? equals_Object@Object(o, self.set_TreeSet.A[i]) : ((o.__cid) == (ArrayDeque_DequeNode()) ? equals_Object@Object(o, self.set_TreeSet.A[i]) : ((o.__cid) == (ArrayDeque()) ? equals_Object@Object(o, self.set_TreeSet.A[i]) : ((o.__cid) == (Boolean()) ? equals_Object@Object(o, self.set_TreeSet.A[i]) : ((o.__cid) == (HashMap()) ? equals_Object@Object(o, self.set_TreeSet.A[i]) : ((o.__cid) == (StringBuilder()) ? equals_Object@Object(o, self.set_TreeSet.A[i]) : ((o.__cid) == (Float()) ? equals_Object@Float(o, self.set_TreeSet.A[i]) : ((o.__cid) == (ArrayList()) ? equals_Object@Object(o, self.set_TreeSet.A[i]) : ((o.__cid) == (FileReaderr()) ? equals_Object@Object(o, self.set_TreeSet.A[i]) : ((o.__cid) == (HashSet()) ? equals_Object@Object(o, self.set_TreeSet.A[i]) : ((o.__cid) == (Character()) ? equals_Object@Character(o, self.set_TreeSet.A[i]) : ((o.__cid) == (Assert()) ? equals_Object@Object(o, self.set_TreeSet.A[i]) : ((o.__cid) == (Integer()) ? equals_Object@Integer(o, self.set_TreeSet.A[i]) : ((o.__cid) == (BufferedWriter()) ? equals_Object@Object(o, self.set_TreeSet.A[i]) : ((o.__cid) == (LinkedList()) ? equals_Object@Object(o, self.set_TreeSet.A[i]) : ((o.__cid) == (Stack()) ? equals_Object@Object(o, self.set_TreeSet.A[i]) : ((o.__cid) == (AbstractQueue()) ? equals_Object@Object(o, self.set_TreeSet.A[i]) : ((o.__cid) == (TwoDArray()) ? equals_Object@Object(o, self.set_TreeSet.A[i]) : ((o.__cid) == (FileWriterr()) ? equals_Object@Object(o, self.set_TreeSet.A[i]) : ((o.__cid) == (Number()) ? equals_Object@Object(o, self.set_TreeSet.A[i]) : ((o.__cid) == (SuffixRankTuple()) ? equals_Object@Object(o, self.set_TreeSet.A[i]) : ((o.__cid) == (SuffixArrayTest()) ? equals_Object@Object(o, self.set_TreeSet.A[i]) : ((o.__cid) == (Scanner()) ? equals_Object@Object(o, self.set_TreeSet.A[i]) : ((o.__cid) == (TreeMap()) ? equals_Object@Object(o, self.set_TreeSet.A[i]) : ((o.__cid) == (String()) ? equals_Object@String(o, self.set_TreeSet.A[i]) : ((o.__cid) == (HashMap_Node()) ? equals_Object@Object(o, self.set_TreeSet.A[i]) : ((o.__cid) == (SuffixArray()) ? equals_Object@Object(o, self.set_TreeSet.A[i]) : ((o.__cid) == (TreeSet()) ? equals_Object@Object(o, self.set_TreeSet.A[i]) : ((o.__cid) == (Object()) ? equals_Object@Object(o, self.set_TreeSet.A[i]) : 0))))))))))))))))))))))))))))))))/*TreeSet.sk:48*/
+            {
+              {
+                return i;
+              }
+            }
+          }
+        }
+        (i)++;
+        __sa16 = i < (self.size_TreeSet);
+      }
+    }
+    return -1;
+  }
+  /*TreeSet.sk:84*/
+  
+bit isEmpty (Object self)/*TreeSet.sk:84*/
+  {
+    return (self.size_TreeSet) == 0;
+  }
+  /*TreeSet.sk:59*/
+  
+bit remove_Object (Object self, Object o)/*TreeSet.sk:59*/
+  {
+    int index = get_Index_Object@TreeSet(self, o);
+    if(index > 0)/*TreeSet.sk:61*/
+    {
+      {
+        {
+          int j = index;
+          bit __sa17 = j < ((self.size_TreeSet) - 1);
+          while(__sa17)
+          {
+            {
+              {
+                self.set_TreeSet.A[j] = self.set_TreeSet.A[j + 1];
+              }
+            }
+            (j)++;
+            __sa17 = j < ((self.size_TreeSet) - 1);
+          }
+        }
+        self.set_TreeSet.A[(self.size_TreeSet) - 1] = null;
+        (self.size_TreeSet)--;
+        return 1;
+      }
+    }
+    else
+    {
+      {
+        return 0;
+      }
+    }
+  }
+  /*TreeSet.sk:18*/
+  
+void resize (Object self)/*TreeSet.sk:18*/
+  {
+    int new_size = (self.capacity_TreeSet) * RESIZE_FACTOR;
+    Array_Object new_set = new Array_Object(length=new_size);
+    {
+      int i = 0;
+      bit __sa15 = i < (self.capacity_TreeSet);
+      while(__sa15)
+      {
+        {
+          {
+            new_set.A[i] = self.set_TreeSet.A[i];
+          }
+        }
+        (i)++;
+        __sa15 = i < (self.capacity_TreeSet);
+      }
+    }
+    self.set_TreeSet = new_set;
+    self.capacity_TreeSet = (self.capacity_TreeSet) * RESIZE_FACTOR;
+  }
+  /*TreeSet.sk:80*/
+  
+int size (Object self)/*TreeSet.sk:80*/
+  {
+    return self.size_TreeSet;
+  }
+  /* END PACKAGE TreeSet*/
+}
+/* BEGIN PACKAGE SuffixArray*/
+package SuffixArray{
+  /*SuffixArray.sk:3*/
+  
+Object SuffixArray_SuffixArray (Object self)/*SuffixArray.sk:3*/
+  {
+    return self;
+  }
+  /*SuffixArray.sk:7*/
+  
+Object SuffixArray_SuffixArray_String (Object self, Object text)/*SuffixArray.sk:7*/
+  {
+    SuffixArray_SuffixArray_int(self, toIntArray_String(text));
+    return self;
+  }
+  /*SuffixArray.sk:12*/
+  
+Object SuffixArray_SuffixArray_int (Object self, Array_int text)/*SuffixArray.sk:12*/
+  {
+    self.T_SuffixArray = clone_int@SuffixArray(self, text);
+    self.N_SuffixArray = text.length;
+    construct@SuffixArray(self);
+    kasai@SuffixArray(self);
+    return self;
+  }
+  /*SuffixArray.sk:20*/
+  
+Array_int clone_int (Object self, Array_int arr)/*SuffixArray.sk:20*/
+  {
+    int l = arr.length;
+    Array_int arr_cp = new Array_int(length=l);
+    for(int i = 0; i < l; (i)++)
+    {
+      {
+        arr_cp.A[i] = arr.A[i];
+      }
+    }
+    return arr_cp;
+  }
+  /*SuffixArray.sk:43*/
+  
+void construct (Object self)/*SuffixArray.sk:43*/
+  {
+    self.sa_SuffixArray = new Array_int(length=self.N_SuffixArray);
+    Object suffixRanks = TwoDArray_TwoDArray_int_int(new Object(__cid=TwoDArray()), 2, self.N_SuffixArray);
+    Array_Object ranks = new Array_Object(length=self.N_SuffixArray);
+    {
+      int i = 0;
+      bit __sa20 = i < (self.N_SuffixArray);
+      while(__sa20)
+      {
+        {
+          {
+            if((suffixRanks.__cid) == (TwoDArray()))/*SuffixArray.sk:48*/
+            {
+              {
+                set_int_int_int@TwoDArray(suffixRanks, 0, i, self.T_SuffixArray.A[i]);
+              }
+            }
+            else
+            {
+              {
+                0;
+              }
+            }
+            { }
+            ranks.A[i] = SuffixRankTuple_SuffixRankTuple(new Object(__cid=SuffixRankTuple()));
+          }
+        }
+        (i)++;
+        __sa20 = i < (self.N_SuffixArray);
+      }
+    }
+    {
+      int pos = 1;
+      bit __sa21 = pos < (self.N_SuffixArray);
+      while(__sa21)
+      {
+        {
+          {
+            {
+              int i = 0;
+              bit __sa22 = i < (self.N_SuffixArray);
+              while(__sa22)
+              {
+                {
+                  {
+                    Object suffixRank = ranks.A[i];
+                    suffixRank.firstHalf_SuffixRankTuple = ((suffixRanks.__cid) == (TwoDArray()) ? get_int_int@TwoDArray(suffixRanks, 0, i) : 0);
+                    suffixRank.secondHalf_SuffixRankTuple = ((i + pos) < (self.N_SuffixArray) ? ((suffixRanks.__cid) == (TwoDArray()) ? get_int_int@TwoDArray(suffixRanks, 0, i + pos) : 0) : -1);
+                    suffixRank.originalIndex_SuffixRankTuple = i;
+                  }
+                }
+                (i)++;
+                __sa22 = i < (self.N_SuffixArray);
+              }
+            }
+            ranks = sort_SuffixRankTuple_int@Arrays(ranks, ranks.length);
+            int newRank = 0;
+            if((suffixRanks.__cid) == (TwoDArray()))/*SuffixArray.sk:61*/
+            {
+              {
+                set_int_int_int@TwoDArray(suffixRanks, 1, ranks.A[0].originalIndex_SuffixRankTuple, 0);
+              }
+            }
+            else
+            {
+              {
+                0;
+              }
+            }
+            { }
+            {
+              int i = 1;
+              bit __sa23 = i < (self.N_SuffixArray);
+              while(__sa23)
+              {
+                {
+                  {
+                    Object lastSuffixRank = ranks.A[i - 1];
+                    Object currSuffixRank = ranks.A[i];
+                    if(((currSuffixRank.firstHalf_SuffixRankTuple) != (lastSuffixRank.firstHalf_SuffixRankTuple)) || ((currSuffixRank.secondHalf_SuffixRankTuple) != (lastSuffixRank.secondHalf_SuffixRankTuple)))/*SuffixArray.sk:66*/
+                    {
+                      (newRank)++;
+                    }
+                    if((suffixRanks.__cid) == (TwoDArray()))/*SuffixArray.sk:67*/
+                    {
+                      {
+                        set_int_int_int@TwoDArray(suffixRanks, 1, currSuffixRank.originalIndex_SuffixRankTuple, newRank);
+                      }
+                    }
+                    else
+                    {
+                      {
+                        0;
+                      }
+                    }
+                    { }
+                  }
+                }
+                (i)++;
+                __sa23 = i < (self.N_SuffixArray);
+              }
+            }
+            if((suffixRanks.__cid) == (TwoDArray()))/*SuffixArray.sk:70*/
+            {
+              {
+                setRow_int_int@TwoDArray(suffixRanks, 0, ((suffixRanks.__cid) == (TwoDArray()) ? getRow_int@TwoDArray(suffixRanks, 1) : null));
+              }
+            }
+            else
+            {
+              {
+                0;
+              }
+            }
+            { }
+            if(newRank == ((self.N_SuffixArray) - 1))/*SuffixArray.sk:72*/
+            {
+              pos = self.N_SuffixArray;
+            }
+          }
+        }
+        pos = pos * 2;
+        __sa21 = pos < (self.N_SuffixArray);
+      }
+    }
+    {
+      int i = 0;
+      bit __sa24 = i < (self.N_SuffixArray);
+      while(__sa24)
+      {
+        {
+          {
+            self.sa_SuffixArray.A[i] = ranks.A[i].originalIndex_SuffixRankTuple;
+            ranks.A[i] = null;
+          }
+        }
+        (i)++;
+        __sa24 = i < (self.N_SuffixArray);
+      }
+    }
+    suffixRanks = null;
+    suffixRanks = null;
+    ranks = null;
+  }
+  /*SuffixArray.sk:29*/
+  
+Object intArrToString_int (Array_int text)/*SuffixArray.sk:29*/
+  {
+    Array_char tmp = new Array_char(length=text.length);
+    {
+      int i = 0;
+      bit __sa18 = i < (text.length);
+      while(__sa18)
+      {
+        {
+          {
+            tmp.A[i] = ((char)text.A[i]);
+          }
+        }
+        (i)++;
+        __sa18 = i < (text.length);
+      }
+    }
+    return String_String_char_int_int(new Object(__cid=String()), tmp, 0, text.length);
+  }
+  /*SuffixArray.sk:83*/
+  
+void kasai (Object self)/*SuffixArray.sk:83*/
+  {
+    self.lcp_SuffixArray = new Array_int(length=self.N_SuffixArray);
+    Array_int inv = new Array_int(length=self.N_SuffixArray);
+    {
+      int i = 0;
+      bit __sa25 = i < (self.N_SuffixArray);
+      while(__sa25)
+      {
+        {
+          inv.A[self.sa_SuffixArray.A[i]] = i;
+        }
+        (i)++;
+        __sa25 = i < (self.N_SuffixArray);
+      }
+    }
+    int len = 0;
+    {
+      int i = 0;
+      bit __sa26 = i < (self.N_SuffixArray);
+      while(__sa26)
+      {
+        {
+          {
+            if((inv.A[i]) > 0)/*SuffixArray.sk:89*/
+            {
+              {
+                int k = self.sa_SuffixArray.A[(inv.A[i]) - 1];
+                {
+                  bit __sa27 = (((i + len) < (self.N_SuffixArray)) && ((k + len) < (self.N_SuffixArray))) && ((self.T_SuffixArray.A[i + len]) == (self.T_SuffixArray.A[k + len]));
+                  while(__sa27)
+                  {
+                    {
+                      (len)++;
+                    }
+                    __sa27 = (((i + len) < (self.N_SuffixArray)) && ((k + len) < (self.N_SuffixArray))) && ((self.T_SuffixArray.A[i + len]) == (self.T_SuffixArray.A[k + len]));
+                  }
+                }
+                self.lcp_SuffixArray.A[(inv.A[i]) - 1] = len;
+                if(len > 0)/*SuffixArray.sk:93*/
+                {
+                  (len)--;
+                }
+              }
+            }
+          }
+        }
+        (i)++;
+        __sa26 = i < (self.N_SuffixArray);
+      }
+    }
+  }
+  /*SuffixArray.sk:116*/
+  
+Object lcs_String_int (Array_Object strs, int K)/*SuffixArray.sk:116*/
+  {
+    if(K <= 1)/*SuffixArray.sk:117*/
+    {
+      {
+        return null;
+      }
+    }
+    Object lcss = TreeSet_TreeSet(new Object(__cid=TreeSet()));
+    if((strs == (null)) || ((strs.length) <= 1))/*SuffixArray.sk:121*/
+    {
+      return lcss;
+    }
+    int L = 0;
+    int NUM_SENTINELS = strs.length;
+    int N = strs.length;
+    for(int i = 0; i < N; (i)++)
+    {
+      L = (L + (((strs.A[i].__cid) == (String()) ? length@String(strs.A[i]) : 0))) + 1;
+    }
+    Array_int indexMap = new Array_int(length=L);
+    int LOWEST_ASCII = 1000;
+    int k = 0;
+    {
+      int i = 0;
+      bit __sa30 = i < (strs.length);
+      while(__sa30)
+      {
+        {
+          {
+            Object str = strs.A[i];
+            {
+              int j = 0;
+              bit __sa31 = j < (((str.__cid) == (String()) ? length@String(str) : 0));
+              while(__sa31)
+              {
+                {
+                  {
+                    int asciiVal = ((str.__cid) == (String()) ? charAt_int@String(str, j) : '\0');
+                    if(asciiVal < LOWEST_ASCII)/*SuffixArray.sk:132*/
+                    {
+                      LOWEST_ASCII = asciiVal;
+                    }
+                    indexMap.A[(k)++] = i;
+                  }
+                }
+                (j)++;
+                __sa31 = j < (((str.__cid) == (String()) ? length@String(str) : 0));
+              }
+            }
+            indexMap.A[(k)++] = i;
+          }
+        }
+        (i)++;
+        __sa30 = i < (strs.length);
+      }
+    }
+    int SHIFT = (LOWEST_ASCII + NUM_SENTINELS) + 1;
+    int sentinel = 0;
+    Array_int T = new Array_int(length=L);
+    k = 0;
+    for(int i = 0; i < N; (i)++)
+    {
+      {
+        Object str = strs.A[i];
+        {
+          int j = 0;
+          bit __sa32 = j < (((str.__cid) == (String()) ? length@String(str) : 0));
+          while(__sa32)
+          {
+            {
+              T.A[(k)++] = (((int)((str.__cid) == (String()) ? charAt_int@String(str, j) : '\0'))) + SHIFT;
+            }
+            (j)++;
+            __sa32 = j < (((str.__cid) == (String()) ? length@String(str) : 0));
+          }
+        }
+        T.A[(k)++] = (sentinel)++;
+      }
+    }
+    Object tmp = intArrToString_int(T);
+    Object sa = SuffixArray_SuffixArray_String(new Object(__cid=SuffixArray()), tmp);
+    Object deque = ArrayDeque_ArrayDeque(new Object(__cid=ArrayDeque()));
+    Object windowColorCount = HashMap_HashMap(new Object(__cid=HashMap()));
+    Object windowColors = HashSet_HashSet(new Object(__cid=HashSet()));
+    int lo = NUM_SENTINELS;
+    int hi = NUM_SENTINELS;
+    int bestLCSLength = 0;
+    int firstColor = indexMap.A[sa.sa_SuffixArray.A[hi]];
+    ((windowColors.__cid) == (HashSet()) ? add_E@HashSet(windowColors, Integer_Integer_int(new Object(__cid=Integer()), firstColor)) : 0);
+    ((windowColorCount.__cid) == (HashMap()) ? put_K_V@HashMap(windowColorCount, Integer_Integer_int(new Object(__cid=Integer()), firstColor), Integer_Integer_int(new Object(__cid=Integer()), 1)) : null);
+    int count = 0;
+    while(hi < L)
+    {
+      {
+        int uniqueColors = ((windowColors.__cid) == (HashSet()) ? size@HashSet(windowColors) : 0);
+        if(uniqueColors >= K)/*SuffixArray.sk:158*/
+        {
+          {
+            Object deqPeekFirst = ((deque.__cid) == (ArrayDeque()) ? peekFirst@ArrayDeque(deque) : null);
+            int deqPeekFirst_int = ((deqPeekFirst.__cid) == (Integer()) ? intValue@Integer(deqPeekFirst) : 0);
+            int windowLCP = sa.lcp_SuffixArray.A[deqPeekFirst_int];
+            if((windowLCP > 0) && (bestLCSLength < windowLCP))/*SuffixArray.sk:162*/
+            {
+              {
+                bestLCSLength = windowLCP;
+                if((lcss.__cid) == (TreeSet()))/*SuffixArray.sk:164*/
+                {
+                  {
+                    clear@TreeSet(lcss);
+                  }
+                }
+                else
+                {
+                  {
+                    0;
+                  }
+                }
+                { }
+              }
+            }
+            if((windowLCP > 0) && (bestLCSLength == windowLCP))/*SuffixArray.sk:167*/
+            {
+              {
+                int pos = sa.sa_SuffixArray.A[lo];
+                Array_char lcs = new Array_char(length=windowLCP);
+                for(int i = 0; i < windowLCP; (i)++)
+                {
+                  lcs.A[i] = ((char)(T.A[pos + i]) - SHIFT);
+                }
+                ((lcss.__cid) == (TreeSet()) ? add_E@TreeSet(lcss, String_String_char_int_int(new Object(__cid=String()), lcs, 0, lcs.length)) : 0);
+              }
+            }
+            int lastColor = indexMap.A[sa.sa_SuffixArray.A[lo]];
+            Object colorCount = ((windowColorCount.__cid) == (HashMap()) ? get_K@HashMap(windowColorCount, Integer_Integer_int(new Object(__cid=Integer()), lastColor)) : null);
+            int check = ((colorCount.__cid) == (Integer()) ? intValue@Integer(colorCount) : 0);
+            bit removed = 0;
+            if((((colorCount.__cid) == (Integer()) ? intValue@Integer(colorCount) : 0)) == 1)/*SuffixArray.sk:177*/
+            {
+              {
+                ((windowColors.__cid) == (HashSet()) ? remove_Object@HashSet(windowColors, Integer_Integer_int(new Object(__cid=Integer()), lastColor)) : 0);
+                removed = 1;
+              }
+            }
+            ((windowColorCount.__cid) == (HashMap()) ? put_K_V@HashMap(windowColorCount, Integer_Integer_int(new Object(__cid=Integer()), lastColor), Integer_Integer_int(new Object(__cid=Integer()), (((colorCount.__cid) == (Integer()) ? intValue@Integer(colorCount) : 0)) - 1)) : null);
+            if(!(((deque.__cid) == (ArrayDeque()) ? isEmpty@ArrayDeque(deque) : 0)))/*SuffixArray.sk:182*/
+            {
+              {
+                deqPeekFirst = ((deque.__cid) == (ArrayDeque()) ? peekFirst@ArrayDeque(deque) : null);
+                bit deqPeekLessThanLo = (((deqPeekFirst.__cid) == (Integer()) ? intValue@Integer(deqPeekFirst) : 0)) <= lo;
+                {
+                  bit __sa33 = (!(((deque.__cid) == (ArrayDeque()) ? isEmpty@ArrayDeque(deque) : 0))) && deqPeekLessThanLo;
+                  while(__sa33)
+                  {
+                    {
+                      {
+                        ((deque.__cid) == (ArrayDeque()) ? removeFirst@ArrayDeque(deque) : null);
+                        deqPeekFirst = ((deque.__cid) == (ArrayDeque()) ? peekFirst@ArrayDeque(deque) : null);
+                        if(deqPeekFirst != (null))/*SuffixArray.sk:188*/
+                        {
+                          {
+                            deqPeekLessThanLo = (((deqPeekFirst.__cid) == (Integer()) ? intValue@Integer(deqPeekFirst) : 0)) <= lo;
+                          }
+                        }
+                        else
+                        {
+                          {
+                            deqPeekLessThanLo = 0;
+                          }
+                        }
+                      }
+                    }
+                    __sa33 = (!(((deque.__cid) == (ArrayDeque()) ? isEmpty@ArrayDeque(deque) : 0))) && deqPeekLessThanLo;
+                  }
+                }
+              }
+            }
+            (lo)++;
+          }
+        }
+        else
+        {
+          if((++(hi)) < L)/*SuffixArray.sk:198*/
+          {
+            {
+              int nextColor = indexMap.A[sa.sa_SuffixArray.A[hi]];
+              Object nextColor_Int = Integer_Integer_int(new Object(__cid=Integer()), nextColor);
+              ((windowColors.__cid) == (HashSet()) ? add_E@HashSet(windowColors, nextColor_Int) : 0);
+              Object colorCount = ((windowColorCount.__cid) == (HashMap()) ? get_K@HashMap(windowColorCount, nextColor_Int) : null);
+              if(colorCount == (null))/*SuffixArray.sk:203*/
+              {
+                colorCount = Integer_Integer_int(new Object(__cid=Integer()), 0);
+              }
+              ((windowColorCount.__cid) == (HashMap()) ? put_K_V@HashMap(windowColorCount, nextColor_Int, Integer_Integer_int(new Object(__cid=Integer()), (((colorCount.__cid) == (Integer()) ? intValue@Integer(colorCount) : 0)) + 1)) : null);
+              if(!(((deque.__cid) == (ArrayDeque()) ? isEmpty@ArrayDeque(deque) : 0)))/*SuffixArray.sk:205*/
+              {
+                {
+                  Object deqPeekLast = ((deque.__cid) == (ArrayDeque()) ? peekLast@ArrayDeque(deque) : null);
+                  int deqPeekLast_int = ((deqPeekLast.__cid) == (Integer()) ? intValue@Integer(deqPeekLast) : 0);
+                  {
+                    bit __sa34 = (!(((deque.__cid) == (ArrayDeque()) ? isEmpty@ArrayDeque(deque) : 0))) && ((sa.lcp_SuffixArray.A[deqPeekLast_int]) > (sa.lcp_SuffixArray.A[hi - 1]));
+                    while(__sa34)
+                    {
+                      {
+                        {
+                          ((deque.__cid) == (ArrayDeque()) ? removeLast@ArrayDeque(deque) : null);
+                          if(!(((deque.__cid) == (ArrayDeque()) ? isEmpty@ArrayDeque(deque) : 0)))/*SuffixArray.sk:210*/
+                          {
+                            {
+                              deqPeekLast = ((deque.__cid) == (ArrayDeque()) ? peekLast@ArrayDeque(deque) : null);
+                              deqPeekLast_int = ((deqPeekLast.__cid) == (Integer()) ? intValue@Integer(deqPeekLast) : 0);
+                            }
+                          }
+                        }
+                      }
+                      __sa34 = (!(((deque.__cid) == (ArrayDeque()) ? isEmpty@ArrayDeque(deque) : 0))) && ((sa.lcp_SuffixArray.A[deqPeekLast_int]) > (sa.lcp_SuffixArray.A[hi - 1]));
+                    }
+                  }
+                }
+              }
+              if((deque.__cid) == (ArrayDeque()))/*SuffixArray.sk:216*/
+              {
+                {
+                  addLast_E@ArrayDeque(deque, Integer_Integer_int(new Object(__cid=Integer()), hi - 1));
+                }
+              }
+              else
+              {
+                {
+                  0;
+                }
+              }
+              { }
+            }
+          }
+        }
+        (count)++;
+      }
+    }
+    return lcss;
+  }
+  /*SuffixArray.sk:98*/
+  
+Object lrs (Object self)/*SuffixArray.sk:98*/
+  {
+    int max_len = 0;
+    Object lrss = TreeSet_TreeSet(new Object(__cid=TreeSet()));
+    Array_char tmp = new Array_char(length=self.T_SuffixArray.length);
+    {
+      int i = 0;
+      bit __sa28 = i < (self.T_SuffixArray.length);
+      while(__sa28)
+      {
+        {
+          {
+            tmp.A[i] = ((char)self.T_SuffixArray.A[i]);
+          }
+        }
+        (i)++;
+        __sa28 = i < (self.T_SuffixArray.length);
+      }
+    }
+    {
+      int i = 0;
+      bit __sa29 = i < (self.N_SuffixArray);
+      while(__sa29)
+      {
+        {
+          {
+            if(((self.lcp_SuffixArray.A[i]) > 0) && ((self.lcp_SuffixArray.A[i]) >= max_len))/*SuffixArray.sk:106*/
+            {
+              {
+                if((self.lcp_SuffixArray.A[i]) > max_len)/*SuffixArray.sk:107*/
+                {
+                  if((lrss.__cid) == (TreeSet()))/*SuffixArray.sk:107*/
+                  {
+                    {
+                      clear@TreeSet(lrss);
+                    }
+                  }
+                  else
+                  {
+                    {
+                      0;
+                    }
+                  }
+                }
+                { }
+                max_len = self.lcp_SuffixArray.A[i];
+                ((lrss.__cid) == (TreeSet()) ? add_E@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), tmp, self.sa_SuffixArray.A[i], max_len)) : 0);
+              }
+            }
+          }
+        }
+        (i)++;
+        __sa29 = i < (self.N_SuffixArray);
+      }
+    }
+    return lrss;
+  }
+  /*SuffixArray.sk:37*/
+  
+Array_int toIntArray_String (Object s)/*SuffixArray.sk:37*/
+  {
+    Array_int text = new Array_int(length=((s.__cid) == (String()) ? length@String(s) : 0));
+    {
+      int i = 0;
+      bit __sa19 = i < (((s.__cid) == (String()) ? length@String(s) : 0));
+      while(__sa19)
+      {
+        {
+          text.A[i] = ((s.__cid) == (String()) ? charAt_int@String(s, i) : '\0');
+        }
+        (i)++;
+        __sa19 = i < (((s.__cid) == (String()) ? length@String(s) : 0));
+      }
+    }
+    return text;
+  }
+  /* END PACKAGE SuffixArray*/
+}
+/* BEGIN PACKAGE List*/
+package List{
+  /*List.sk:3*/
+  
+Object List_List (Object self)/*List.sk:3*/
+  {
+    return self;
+  }
+  /* END PACKAGE List*/
+}
+/* BEGIN PACKAGE Boolean*/
+package Boolean{
+  /*Boolean.sk:3*/
+  
+Object Boolean_Boolean (Object self)/*Boolean.sk:3*/
+  {
+    return self;
+  }
+  /*Boolean.sk:7*/
+  
+Object Boolean_Boolean_boolean (Object self, bit bool)/*Boolean.sk:7*/
+  {
+    self.bool_Boolean = bool;
+    return self;
+  }
+  /*Boolean.sk:12*/
+  
+bit booleanValue (Object self)/*Boolean.sk:12*/
+  {
+    return self.bool_Boolean;
+  }
+  /* END PACKAGE Boolean*/
+}
+/* BEGIN PACKAGE Queue*/
+package Queue{
+  /*Queue.sk:3*/
+  
+Object Queue_Queue (Object self)/*Queue.sk:3*/
+  {
+    return self;
+  }
+  /* END PACKAGE Queue*/
+}
+/* BEGIN PACKAGE HashSet*/
+package HashSet{
+  int INITIAL_CAPACITY=16;
+  int RESIZE_FACTOR=2;
+  /*HashSet.sk:11*/
+  
+Object HashSet_HashSet (Object self)/*HashSet.sk:11*/
+  {
+    self.set_HashSet = new Array_Object(length=INITIAL_CAPACITY);
+    self.size_HashSet = 0;
+    self.capacity_HashSet = INITIAL_CAPACITY;
+    return self;
+  }
+  /*HashSet.sk:4*/
+  
+int INITIAL_CAPACITY_g ()/*HashSet.sk:4*/
+  {
+    return INITIAL_CAPACITY;
+  }
+  /*HashSet.sk:5*/
+  
+void INITIAL_CAPACITY_s (int INITIAL_CAPACITY_s)/*HashSet.sk:5*/
+  {
+    INITIAL_CAPACITY = INITIAL_CAPACITY_s;
+  }
+  /*HashSet.sk:8*/
+  
+int RESIZE_FACTOR_g ()/*HashSet.sk:8*/
+  {
+    return RESIZE_FACTOR;
+  }
+  /*HashSet.sk:9*/
+  
+void RESIZE_FACTOR_s (int RESIZE_FACTOR_s)/*HashSet.sk:9*/
+  {
+    RESIZE_FACTOR = RESIZE_FACTOR_s;
+  }
+  /*HashSet.sk:34*/
+  
+bit add_E (Object self, Object e)/*HashSet.sk:34*/
+  {
+    if((contains_Object@HashSet(self, e)) || (e == (null)))/*HashSet.sk:35*/
+    {
+      {
+        return 0;
+      }
+    }
+    else
+    {
+      {
+        self.set_HashSet.A[self.size_HashSet] = e;
+        (self.size_HashSet)++;
+        check_size@HashSet(self);
+        return 1;
+      }
+    }
+  }
+  /*HashSet.sk:28*/
+  
+void check_size (Object self)/*HashSet.sk:28*/
+  {
+    if((self.size_HashSet) >= (self.capacity_HashSet))/*HashSet.sk:29*/
+    {
+      {
+        resize@HashSet(self);
+      }
+    }
+  }
+  /*HashSet.sk:74*/
+  
+void clear (Object self)/*HashSet.sk:74*/
+  {
+    self.set_HashSet = new Array_Object(length=INITIAL_CAPACITY);
+    self.size_HashSet = 0;
+    self.capacity_HashSet = INITIAL_CAPACITY;
+  }
+  /*HashSet.sk:55*/
+  
+bit contains_Object (Object self, Object o)/*HashSet.sk:55*/
+  {
+    return (get_Index_Object@HashSet(self, o)) >= 0;
+  }
+  /*HashSet.sk:46*/
+  
+int get_Index_Object (Object self, Object o)/*HashSet.sk:46*/
+  {
+    {
+      int i = 0;
+      bit __sa36 = i < (self.size_HashSet);
+      while(__sa36)
+      {
+        {
+          {
+            if(((o.__cid) == (Arrays()) ? equals_Object@Object(o, self.set_HashSet.A[i]) : ((o.__cid) == (StringBuffer()) ? equals_Object@Object(o, self.set_HashSet.A[i]) : ((o.__cid) == (File()) ? equals_Object@Object(o, self.set_HashSet.A[i]) : ((o.__cid) == (ArrayDeque_DequeNode()) ? equals_Object@Object(o, self.set_HashSet.A[i]) : ((o.__cid) == (ArrayDeque()) ? equals_Object@Object(o, self.set_HashSet.A[i]) : ((o.__cid) == (Boolean()) ? equals_Object@Object(o, self.set_HashSet.A[i]) : ((o.__cid) == (HashMap()) ? equals_Object@Object(o, self.set_HashSet.A[i]) : ((o.__cid) == (StringBuilder()) ? equals_Object@Object(o, self.set_HashSet.A[i]) : ((o.__cid) == (Float()) ? equals_Object@Float(o, self.set_HashSet.A[i]) : ((o.__cid) == (ArrayList()) ? equals_Object@Object(o, self.set_HashSet.A[i]) : ((o.__cid) == (FileReaderr()) ? equals_Object@Object(o, self.set_HashSet.A[i]) : ((o.__cid) == (HashSet()) ? equals_Object@Object(o, self.set_HashSet.A[i]) : ((o.__cid) == (Character()) ? equals_Object@Character(o, self.set_HashSet.A[i]) : ((o.__cid) == (Assert()) ? equals_Object@Object(o, self.set_HashSet.A[i]) : ((o.__cid) == (Integer()) ? equals_Object@Integer(o, self.set_HashSet.A[i]) : ((o.__cid) == (BufferedWriter()) ? equals_Object@Object(o, self.set_HashSet.A[i]) : ((o.__cid) == (LinkedList()) ? equals_Object@Object(o, self.set_HashSet.A[i]) : ((o.__cid) == (Stack()) ? equals_Object@Object(o, self.set_HashSet.A[i]) : ((o.__cid) == (AbstractQueue()) ? equals_Object@Object(o, self.set_HashSet.A[i]) : ((o.__cid) == (TwoDArray()) ? equals_Object@Object(o, self.set_HashSet.A[i]) : ((o.__cid) == (FileWriterr()) ? equals_Object@Object(o, self.set_HashSet.A[i]) : ((o.__cid) == (Number()) ? equals_Object@Object(o, self.set_HashSet.A[i]) : ((o.__cid) == (SuffixRankTuple()) ? equals_Object@Object(o, self.set_HashSet.A[i]) : ((o.__cid) == (SuffixArrayTest()) ? equals_Object@Object(o, self.set_HashSet.A[i]) : ((o.__cid) == (Scanner()) ? equals_Object@Object(o, self.set_HashSet.A[i]) : ((o.__cid) == (TreeMap()) ? equals_Object@Object(o, self.set_HashSet.A[i]) : ((o.__cid) == (String()) ? equals_Object@String(o, self.set_HashSet.A[i]) : ((o.__cid) == (HashMap_Node()) ? equals_Object@Object(o, self.set_HashSet.A[i]) : ((o.__cid) == (SuffixArray()) ? equals_Object@Object(o, self.set_HashSet.A[i]) : ((o.__cid) == (TreeSet()) ? equals_Object@Object(o, self.set_HashSet.A[i]) : ((o.__cid) == (Object()) ? equals_Object@Object(o, self.set_HashSet.A[i]) : 0))))))))))))))))))))))))))))))))/*HashSet.sk:48*/
+            {
+              {
+                return i;
+              }
+            }
+          }
+        }
+        (i)++;
+        __sa36 = i < (self.size_HashSet);
+      }
+    }
+    return -1;
+  }
+  /*HashSet.sk:84*/
+  
+bit isEmpty (Object self)/*HashSet.sk:84*/
+  {
+    return (self.size_HashSet) == 0;
+  }
+  /*HashSet.sk:59*/
+  
+bit remove_Object (Object self, Object o)/*HashSet.sk:59*/
+  {
+    int index = get_Index_Object@HashSet(self, o);
+    if(index >= 0)/*HashSet.sk:61*/
+    {
+      {
+        {
+          int j = index;
+          bit __sa37 = j < ((self.size_HashSet) - 1);
+          while(__sa37)
+          {
+            {
+              {
+                self.set_HashSet.A[j] = self.set_HashSet.A[j + 1];
+              }
+            }
+            (j)++;
+            __sa37 = j < ((self.size_HashSet) - 1);
+          }
+        }
+        self.set_HashSet.A[(self.size_HashSet) - 1] = null;
+        (self.size_HashSet)--;
+        return 1;
+      }
+    }
+    else
+    {
+      {
+        return 0;
+      }
+    }
+  }
+  /*HashSet.sk:18*/
+  
+void resize (Object self)/*HashSet.sk:18*/
+  {
+    int new_size = (self.capacity_HashSet) * RESIZE_FACTOR;
+    Array_Object new_set = new Array_Object(length=new_size);
+    {
+      int i = 0;
+      bit __sa35 = i < (self.capacity_HashSet);
+      while(__sa35)
+      {
+        {
+          {
+            new_set.A[i] = self.set_HashSet.A[i];
+          }
+        }
+        (i)++;
+        __sa35 = i < (self.capacity_HashSet);
+      }
+    }
+    self.set_HashSet = new_set;
+    self.capacity_HashSet = (self.capacity_HashSet) * RESIZE_FACTOR;
+  }
+  /*HashSet.sk:80*/
+  
+int size (Object self)/*HashSet.sk:80*/
+  {
+    return self.size_HashSet;
+  }
+  /* END PACKAGE HashSet*/
+}
+/* BEGIN PACKAGE SuffixArrayTest*/
+package SuffixArrayTest{
+  /*SuffixA..ayTest.sk:3*/
+  
+Object SuffixArrayTest_SuffixArrayTest (Object self)/*SuffixA..ayTest.sk:3*/
+  {
+    return self;
+  }
+  /*SuffixA..ayTest.sk:7*/
+  
+harness void main ()/*SuffixA..ayTest.sk:7*/
+  {
+    Object self = Object_Object(new Object(__cid=Object()));
+    testLCS@SuffixArrayTest(self);
+  }
+  /*SuffixA..ayTest.sk:12*/
+  
+void setup (Object self)/*SuffixA..ayTest.sk:12*/
+  {
+  }
+  /*SuffixA..ayTest.sk:49*/
+  
+void testLCS (Object self)/*SuffixA..ayTest.sk:49*/
+  {
+    Array_Object strs = new Array_Object(length=3, A={String_String_char_int_int(new Object(__cid=String()), new Array_char(length=6, A={'a','b','c','d','e','\0'}), 0, 5),String_String_char_int_int(new Object(__cid=String()), new Array_char(length=5, A={'g','e','a','r','\0'}), 0, 4),String_String_char_int_int(new Object(__cid=String()), new Array_char(length=2, A={'#','\0'}), 0, 1)});
+    Object a = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=2, A={'a','\0'}), 0, 1);
+    Object lcss = lcs_String_int@SuffixArray(strs, 2);
+    assert ((((lcss.__cid) == (TreeSet()) ? size@TreeSet(lcss) : 0)) == 1); //Assert at SuffixA..ayTest.sk:53 (0)
+  }
+  /*SuffixA..ayTest.sk:15*/
+  
+void testLRS (Object self)/*SuffixA..ayTest.sk:15*/
+  {
+    Object s = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=7, A={'a','a','b','a','a','b','\0'}), 0, 6);
+    Object sa = SuffixArray_SuffixArray_String(new Object(__cid=SuffixArray()), s);
+    Object lrss;
+    assert (1 == (((lrss.__cid) == (TreeSet()) ? size@TreeSet(lrss) : 0))); //Assert at SuffixA..ayTest.sk:19 (0)
+    assert (((lrss.__cid) == (TreeSet()) ? contains_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=4, A={'a','a','b','\0'}), 0, 3)) : 0)); //Assert at SuffixA..ayTest.sk:20 (0)
+    s = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=8, A={'a','b','c','d','e','f','g','\0'}), 0, 7);
+    sa = SuffixArray_SuffixArray_String(new Object(__cid=SuffixArray()), s);
+    lrss = ((sa.__cid) == (SuffixArray()) ? lrs@SuffixArray(sa) : null);
+    assert ((((lrss.__cid) == (TreeSet()) ? size@TreeSet(lrss) : 0)) == 0); //Assert at SuffixA..ayTest.sk:24 (0)
+    s = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=5, A={'a','b','c','a','\0'}), 0, 4);
+    sa = SuffixArray_SuffixArray_String(new Object(__cid=SuffixArray()), s);
+    lrss = ((sa.__cid) == (SuffixArray()) ? lrs@SuffixArray(sa) : null);
+    assert ((((lrss.__cid) == (TreeSet()) ? size@TreeSet(lrss) : 0)) == 1); //Assert at SuffixA..ayTest.sk:28 (0)
+    assert (((lrss.__cid) == (TreeSet()) ? contains_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=2, A={'a','\0'}), 0, 1)) : 0)); //Assert at SuffixA..ayTest.sk:29 (0)
+    s = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=6, A={'a','b','c','b','a','\0'}), 0, 5);
+    sa = SuffixArray_SuffixArray_String(new Object(__cid=SuffixArray()), s);
+    lrss = ((sa.__cid) == (SuffixArray()) ? lrs@SuffixArray(sa) : null);
+    assert ((((lrss.__cid) == (TreeSet()) ? size@TreeSet(lrss) : 0)) == 2); //Assert at SuffixA..ayTest.sk:33 (0)
+    assert (((lrss.__cid) == (TreeSet()) ? contains_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=2, A={'a','\0'}), 0, 1)) : 0)); //Assert at SuffixA..ayTest.sk:34 (0)
+    assert (((lrss.__cid) == (TreeSet()) ? contains_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=2, A={'b','\0'}), 0, 1)) : 0)); //Assert at SuffixA..ayTest.sk:35 (0)
+    s = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=14, A={'a','Z','Z','b','Z','Z','c','Y','Y','d','Y','Y','e','\0'}), 0, 13);
+    sa = SuffixArray_SuffixArray_String(new Object(__cid=SuffixArray()), s);
+    lrss = ((sa.__cid) == (SuffixArray()) ? lrs@SuffixArray(sa) : null);
+    assert ((((lrss.__cid) == (TreeSet()) ? size@TreeSet(lrss) : 0)) == 2); //Assert at SuffixA..ayTest.sk:39 (0)
+    assert (((lrss.__cid) == (TreeSet()) ? contains_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=3, A={'Y','Y','\0'}), 0, 2)) : 0)); //Assert at SuffixA..ayTest.sk:40 (0)
+    assert (((lrss.__cid) == (TreeSet()) ? contains_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=3, A={'Z','Z','\0'}), 0, 2)) : 0)); //Assert at SuffixA..ayTest.sk:41 (0)
+    s = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=7, A={'A','A','A','A','A','A','\0'}), 0, 6);
+    sa = SuffixArray_SuffixArray_String(new Object(__cid=SuffixArray()), s);
+    lrss = ((sa.__cid) == (SuffixArray()) ? lrs@SuffixArray(sa) : null);
+    assert ((((lrss.__cid) == (TreeSet()) ? size@TreeSet(lrss) : 0)) == 1); //Assert at SuffixA..ayTest.sk:45 (0)
+    assert (((lrss.__cid) == (TreeSet()) ? contains_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=6, A={'A','A','A','A','A','\0'}), 0, 5)) : 0)); //Assert at SuffixA..ayTest.sk:46 (0)
+  }
+  /* END PACKAGE SuffixArrayTest*/
+}
+/* BEGIN PACKAGE ANONYMOUS*/
+/* END PACKAGE ANONYMOUS*/
+/* BEGIN PACKAGE Character*/
+package Character{
+  int MIN_RADIX=2;
+  int MAX_RADIX=36;
+  char UNASSIGNED=0;
+  char UPPERCASE_LETTER=1;
+  char LOWERCASE_LETTER=2;
+  char TITLECASE_LETTER=3;
+  char MODIFIER_LETTER=4;
+  char OTHER_LETTER=5;
+  char NON_SPACING_MARK=6;
+  char ENCLOSING_MARK=7;
+  char COMBINING_SPACING_MARK=8;
+  char DECIMAL_DIGIT_NUMBER=9;
+  char LETTER_NUMBER=10;
+  char OTHER_NUMBER=11;
+  char SPACE_SEPARATOR=12;
+  char LINE_SEPARATOR=13;
+  char PARAGRAPH_SEPARATOR=14;
+  char CONTROL=15;
+  char FORMAT=16;
+  char PRIVATE_USE=18;
+  char SURROGATE=19;
+  char DASH_PUNCTUATION=20;
+  char START_PUNCTUATION=21;
+  char END_PUNCTUATION=22;
+  char CONNECTOR_PUNCTUATION=23;
+  char OTHER_PUNCTUATION=24;
+  char MATH_SYMBOL=25;
+  char CURRENCY_SYMBOL=26;
+  char MODIFIER_SYMBOL=27;
+  char OTHER_SYMBOL=28;
+  char FINAL_QUOTE_PUNCTUATION=30;
+  char DIRECTIONALITY_UNDEFINED=-1;
+  char DIRECTIONALITY_LEFT_TO_RIGHT=0;
+  char DIRECTIONALITY_RIGHT_TO_LEFT=1;
+  char DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC=2;
+  char DIRECTIONALITY_EUROPEAN_NUMBER=3;
+  char DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR=4;
+  char DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR=5;
+  char DIRECTIONALITY_ARABIC_NUMBER=6;
+  char DIRECTIONALITY_COMMON_NUMBER_SEPARATOR=7;
+  char DIRECTIONALITY_NONSPACING_MARK=8;
+  char DIRECTIONALITY_BOUNDARY_NEUTRAL=9;
+  char DIRECTIONALITY_PARAGRAPH_SEPARATOR=10;
+  char DIRECTIONALITY_SEGMENT_SEPARATOR=11;
+  char DIRECTIONALITY_WHITESPACE=12;
+  char DIRECTIONALITY_OTHER_NEUTRALS=13;
+  char DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING=14;
+  char DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE=15;
+  char DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING=16;
+  char DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE=17;
+  char DIRECTIONALITY_POP_DIRECTIONAL_FORMAT=18;
+  /*Character.sk:44*/
+  
+char COMBINING_SPACING_MARK_g ()/*Character.sk:44*/
+  {
+    return COMBINING_SPACING_MARK;
+  }
+  /*Character.sk:45*/
+  
+void COMBINING_SPACING_MARK_s (char COMBINING_SPACING_MARK_s)/*Character.sk:45*/
+  {
+    COMBINING_SPACING_MARK = COMBINING_SPACING_MARK_s;
+  }
+  /*Character.sk:100*/
+  
+char CONNECTOR_PUNCTUATION_g ()/*Character.sk:100*/
+  {
+    return CONNECTOR_PUNCTUATION;
+  }
+  /*Character.sk:101*/
+  
+void CONNECTOR_PUNCTUATION_s (char CONNECTOR_PUNCTUATION_s)/*Character.sk:101*/
+  {
+    CONNECTOR_PUNCTUATION = CONNECTOR_PUNCTUATION_s;
+  }
+  /*Character.sk:72*/
+  
+char CONTROL_g ()/*Character.sk:72*/
+  {
+    return CONTROL;
+  }
+  /*Character.sk:73*/
+  
+void CONTROL_s (char CONTROL_s)/*Character.sk:73*/
+  {
+    CONTROL = CONTROL_s;
+  }
+  /*Character.sk:112*/
+  
+char CURRENCY_SYMBOL_g ()/*Character.sk:112*/
+  {
+    return CURRENCY_SYMBOL;
+  }
+  /*Character.sk:113*/
+  
+void CURRENCY_SYMBOL_s (char CURRENCY_SYMBOL_s)/*Character.sk:113*/
+  {
+    CURRENCY_SYMBOL = CURRENCY_SYMBOL_s;
+  }
+  /*Character.sk:207*/
+  
+Object Character_Character (Object self)/*Character.sk:207*/
+  {
+    return self;
+  }
+  /*Character.sk:211*/
+  
+Object Character_Character_char (Object self, char value)/*Character.sk:211*/
+  {
+    self.value_Character = value;
+    return self;
+  }
+  /*Character.sk:88*/
+  
+char DASH_PUNCTUATION_g ()/*Character.sk:88*/
+  {
+    return DASH_PUNCTUATION;
+  }
+  /*Character.sk:89*/
+  
+void DASH_PUNCTUATION_s (char DASH_PUNCTUATION_s)/*Character.sk:89*/
+  {
+    DASH_PUNCTUATION = DASH_PUNCTUATION_s;
+  }
+  /*Character.sk:48*/
+  
+char DECIMAL_DIGIT_NUMBER_g ()/*Character.sk:48*/
+  {
+    return DECIMAL_DIGIT_NUMBER;
+  }
+  /*Character.sk:49*/
+  
+void DECIMAL_DIGIT_NUMBER_s (char DECIMAL_DIGIT_NUMBER_s)/*Character.sk:49*/
+  {
+    DECIMAL_DIGIT_NUMBER = DECIMAL_DIGIT_NUMBER_s;
+  }
+  /*Character.sk:156*/
+  
+char DIRECTIONALITY_ARABIC_NUMBER_g ()/*Character.sk:156*/
+  {
+    return DIRECTIONALITY_ARABIC_NUMBER;
+  }
+  /*Character.sk:157*/
+  
+void DIRECTIONALITY_ARABIC_NUMBER_s (char DIRECTIONALITY_ARABIC_NUMBER_s)/*Character.sk:157*/
+  {
+    DIRECTIONALITY_ARABIC_NUMBER = DIRECTIONALITY_ARABIC_NUMBER_s;
+  }
+  /*Character.sk:168*/
+  
+char DIRECTIONALITY_BOUNDARY_NEUTRAL_g ()/*Character.sk:168*/
+  {
+    return DIRECTIONALITY_BOUNDARY_NEUTRAL;
+  }
+  /*Character.sk:169*/
+  
+void DIRECTIONALITY_BOUNDARY_NEUTRAL_s (char DIRECTIONALITY_BOUNDARY_NEUTRAL_s)/*Character.sk:169*/
+  {
+    DIRECTIONALITY_BOUNDARY_NEUTRAL = DIRECTIONALITY_BOUNDARY_NEUTRAL_s;
+  }
+  /*Character.sk:160*/
+  
+char DIRECTIONALITY_COMMON_NUMBER_SEPARATOR_g ()/*Character.sk:160*/
+  {
+    return DIRECTIONALITY_COMMON_NUMBER_SEPARATOR;
+  }
+  /*Character.sk:161*/
+  
+void DIRECTIONALITY_COMMON_NUMBER_SEPARATOR_s (char DIRECTIONALITY_COMMON_NUMBER_SEPARATOR_s)/*Character.sk:161*/
+  {
+    DIRECTIONALITY_COMMON_NUMBER_SEPARATOR = DIRECTIONALITY_COMMON_NUMBER_SEPARATOR_s;
+  }
+  /*Character.sk:148*/
+  
+char DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR_g ()/*Character.sk:148*/
+  {
+    return DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR;
+  }
+  /*Character.sk:149*/
+  
+void DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR_s (char DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR_s)/*Character.sk:149*/
+  {
+    DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR = DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR_s;
+  }
+  /*Character.sk:152*/
+  
+char DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR_g ()/*Character.sk:152*/
+  {
+    return DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR;
+  }
+  /*Character.sk:153*/
+  
+void DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR_s (char DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR_s)/*Character.sk:153*/
+  {
+    DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR = DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR_s;
+  }
+  /*Character.sk:144*/
+  
+char DIRECTIONALITY_EUROPEAN_NUMBER_g ()/*Character.sk:144*/
+  {
+    return DIRECTIONALITY_EUROPEAN_NUMBER;
+  }
+  /*Character.sk:145*/
+  
+void DIRECTIONALITY_EUROPEAN_NUMBER_s (char DIRECTIONALITY_EUROPEAN_NUMBER_s)/*Character.sk:145*/
+  {
+    DIRECTIONALITY_EUROPEAN_NUMBER = DIRECTIONALITY_EUROPEAN_NUMBER_s;
+  }
+  /*Character.sk:188*/
+  
+char DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING_g ()/*Character.sk:188*/
+  {
+    return DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING;
+  }
+  /*Character.sk:189*/
+  
+void DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING_s (char DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING_s)/*Character.sk:189*/
+  {
+    DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING = DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING_s;
+  }
+  /*Character.sk:192*/
+  
+char DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE_g ()/*Character.sk:192*/
+  {
+    return DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE;
+  }
+  /*Character.sk:193*/
+  
+void DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE_s (char DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE_s)/*Character.sk:193*/
+  {
+    DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE = DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE_s;
+  }
+  /*Character.sk:132*/
+  
+char DIRECTIONALITY_LEFT_TO_RIGHT_g ()/*Character.sk:132*/
+  {
+    return DIRECTIONALITY_LEFT_TO_RIGHT;
+  }
+  /*Character.sk:133*/
+  
+void DIRECTIONALITY_LEFT_TO_RIGHT_s (char DIRECTIONALITY_LEFT_TO_RIGHT_s)/*Character.sk:133*/
+  {
+    DIRECTIONALITY_LEFT_TO_RIGHT = DIRECTIONALITY_LEFT_TO_RIGHT_s;
+  }
+  /*Character.sk:164*/
+  
+char DIRECTIONALITY_NONSPACING_MARK_g ()/*Character.sk:164*/
+  {
+    return DIRECTIONALITY_NONSPACING_MARK;
+  }
+  /*Character.sk:165*/
+  
+void DIRECTIONALITY_NONSPACING_MARK_s (char DIRECTIONALITY_NONSPACING_MARK_s)/*Character.sk:165*/
+  {
+    DIRECTIONALITY_NONSPACING_MARK = DIRECTIONALITY_NONSPACING_MARK_s;
+  }
+  /*Character.sk:184*/
+  
+char DIRECTIONALITY_OTHER_NEUTRALS_g ()/*Character.sk:184*/
+  {
+    return DIRECTIONALITY_OTHER_NEUTRALS;
+  }
+  /*Character.sk:185*/
+  
+void DIRECTIONALITY_OTHER_NEUTRALS_s (char DIRECTIONALITY_OTHER_NEUTRALS_s)/*Character.sk:185*/
+  {
+    DIRECTIONALITY_OTHER_NEUTRALS = DIRECTIONALITY_OTHER_NEUTRALS_s;
+  }
+  /*Character.sk:172*/
+  
+char DIRECTIONALITY_PARAGRAPH_SEPARATOR_g ()/*Character.sk:172*/
+  {
+    return DIRECTIONALITY_PARAGRAPH_SEPARATOR;
+  }
+  /*Character.sk:173*/
+  
+void DIRECTIONALITY_PARAGRAPH_SEPARATOR_s (char DIRECTIONALITY_PARAGRAPH_SEPARATOR_s)/*Character.sk:173*/
+  {
+    DIRECTIONALITY_PARAGRAPH_SEPARATOR = DIRECTIONALITY_PARAGRAPH_SEPARATOR_s;
+  }
+  /*Character.sk:204*/
+  
+char DIRECTIONALITY_POP_DIRECTIONAL_FORMAT_g ()/*Character.sk:204*/
+  {
+    return DIRECTIONALITY_POP_DIRECTIONAL_FORMAT;
+  }
+  /*Character.sk:205*/
+  
+void DIRECTIONALITY_POP_DIRECTIONAL_FORMAT_s (char DIRECTIONALITY_POP_DIRECTIONAL_FORMAT_s)/*Character.sk:205*/
+  {
+    DIRECTIONALITY_POP_DIRECTIONAL_FORMAT = DIRECTIONALITY_POP_DIRECTIONAL_FORMAT_s;
+  }
+  /*Character.sk:140*/
+  
+char DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC_g ()/*Character.sk:140*/
+  {
+    return DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC;
+  }
+  /*Character.sk:141*/
+  
+void DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC_s (char DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC_s)/*Character.sk:141*/
+  {
+    DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC = DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC_s;
+  }
+  /*Character.sk:196*/
+  
+char DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING_g ()/*Character.sk:196*/
+  {
+    return DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING;
+  }
+  /*Character.sk:197*/
+  
+void DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING_s (char DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING_s)/*Character.sk:197*/
+  {
+    DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING = DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING_s;
+  }
+  /*Character.sk:200*/
+  
+char DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE_g ()/*Character.sk:200*/
+  {
+    return DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE;
+  }
+  /*Character.sk:201*/
+  
+void DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE_s (char DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE_s)/*Character.sk:201*/
+  {
+    DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE = DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE_s;
+  }
+  /*Character.sk:136*/
+  
+char DIRECTIONALITY_RIGHT_TO_LEFT_g ()/*Character.sk:136*/
+  {
+    return DIRECTIONALITY_RIGHT_TO_LEFT;
+  }
+  /*Character.sk:137*/
+  
+void DIRECTIONALITY_RIGHT_TO_LEFT_s (char DIRECTIONALITY_RIGHT_TO_LEFT_s)/*Character.sk:137*/
+  {
+    DIRECTIONALITY_RIGHT_TO_LEFT = DIRECTIONALITY_RIGHT_TO_LEFT_s;
+  }
+  /*Character.sk:176*/
+  
+char DIRECTIONALITY_SEGMENT_SEPARATOR_g ()/*Character.sk:176*/
+  {
+    return DIRECTIONALITY_SEGMENT_SEPARATOR;
+  }
+  /*Character.sk:177*/
+  
+void DIRECTIONALITY_SEGMENT_SEPARATOR_s (char DIRECTIONALITY_SEGMENT_SEPARATOR_s)/*Character.sk:177*/
+  {
+    DIRECTIONALITY_SEGMENT_SEPARATOR = DIRECTIONALITY_SEGMENT_SEPARATOR_s;
+  }
+  /*Character.sk:128*/
+  
+char DIRECTIONALITY_UNDEFINED_g ()/*Character.sk:128*/
+  {
+    return DIRECTIONALITY_UNDEFINED;
+  }
+  /*Character.sk:129*/
+  
+void DIRECTIONALITY_UNDEFINED_s (char DIRECTIONALITY_UNDEFINED_s)/*Character.sk:129*/
+  {
+    DIRECTIONALITY_UNDEFINED = DIRECTIONALITY_UNDEFINED_s;
+  }
+  /*Character.sk:180*/
+  
+char DIRECTIONALITY_WHITESPACE_g ()/*Character.sk:180*/
+  {
+    return DIRECTIONALITY_WHITESPACE;
+  }
+  /*Character.sk:181*/
+  
+void DIRECTIONALITY_WHITESPACE_s (char DIRECTIONALITY_WHITESPACE_s)/*Character.sk:181*/
+  {
+    DIRECTIONALITY_WHITESPACE = DIRECTIONALITY_WHITESPACE_s;
+  }
+  /*Character.sk:40*/
+  
+char ENCLOSING_MARK_g ()/*Character.sk:40*/
+  {
+    return ENCLOSING_MARK;
+  }
+  /*Character.sk:41*/
+  
+void ENCLOSING_MARK_s (char ENCLOSING_MARK_s)/*Character.sk:41*/
+  {
+    ENCLOSING_MARK = ENCLOSING_MARK_s;
+  }
+  /*Character.sk:96*/
+  
+char END_PUNCTUATION_g ()/*Character.sk:96*/
+  {
+    return END_PUNCTUATION;
+  }
+  /*Character.sk:97*/
+  
+void END_PUNCTUATION_s (char END_PUNCTUATION_s)/*Character.sk:97*/
+  {
+    END_PUNCTUATION = END_PUNCTUATION_s;
+  }
+  /*Character.sk:124*/
+  
+char FINAL_QUOTE_PUNCTUATION_g ()/*Character.sk:124*/
+  {
+    return FINAL_QUOTE_PUNCTUATION;
+  }
+  /*Character.sk:125*/
+  
+void FINAL_QUOTE_PUNCTUATION_s (char FINAL_QUOTE_PUNCTUATION_s)/*Character.sk:125*/
+  {
+    FINAL_QUOTE_PUNCTUATION = FINAL_QUOTE_PUNCTUATION_s;
+  }
+  /*Character.sk:76*/
+  
+char FORMAT_g ()/*Character.sk:76*/
+  {
+    return FORMAT;
+  }
+  /*Character.sk:77*/
+  
+void FORMAT_s (char FORMAT_s)/*Character.sk:77*/
+  {
+    FORMAT = FORMAT_s;
+  }
+  /*Character.sk:52*/
+  
+char LETTER_NUMBER_g ()/*Character.sk:52*/
+  {
+    return LETTER_NUMBER;
+  }
+  /*Character.sk:53*/
+  
+void LETTER_NUMBER_s (char LETTER_NUMBER_s)/*Character.sk:53*/
+  {
+    LETTER_NUMBER = LETTER_NUMBER_s;
+  }
+  /*Character.sk:64*/
+  
+char LINE_SEPARATOR_g ()/*Character.sk:64*/
+  {
+    return LINE_SEPARATOR;
+  }
+  /*Character.sk:65*/
+  
+void LINE_SEPARATOR_s (char LINE_SEPARATOR_s)/*Character.sk:65*/
+  {
+    LINE_SEPARATOR = LINE_SEPARATOR_s;
+  }
+  /*Character.sk:20*/
+  
+char LOWERCASE_LETTER_g ()/*Character.sk:20*/
+  {
+    return LOWERCASE_LETTER;
+  }
+  /*Character.sk:21*/
+  
+void LOWERCASE_LETTER_s (char LOWERCASE_LETTER_s)/*Character.sk:21*/
+  {
+    LOWERCASE_LETTER = LOWERCASE_LETTER_s;
+  }
+  /*Character.sk:108*/
+  
+char MATH_SYMBOL_g ()/*Character.sk:108*/
+  {
+    return MATH_SYMBOL;
+  }
+  /*Character.sk:109*/
+  
+void MATH_SYMBOL_s (char MATH_SYMBOL_s)/*Character.sk:109*/
+  {
+    MATH_SYMBOL = MATH_SYMBOL_s;
+  }
+  /*Character.sk:8*/
+  
+int MAX_RADIX_g ()/*Character.sk:8*/
+  {
+    return MAX_RADIX;
+  }
+  /*Character.sk:9*/
+  
+void MAX_RADIX_s (int MAX_RADIX_s)/*Character.sk:9*/
+  {
+    MAX_RADIX = MAX_RADIX_s;
+  }
+  /*Character.sk:4*/
+  
+int MIN_RADIX_g ()/*Character.sk:4*/
+  {
+    return MIN_RADIX;
+  }
+  /*Character.sk:5*/
+  
+void MIN_RADIX_s (int MIN_RADIX_s)/*Character.sk:5*/
+  {
+    MIN_RADIX = MIN_RADIX_s;
+  }
+  /*Character.sk:28*/
+  
+char MODIFIER_LETTER_g ()/*Character.sk:28*/
+  {
+    return MODIFIER_LETTER;
+  }
+  /*Character.sk:29*/
+  
+void MODIFIER_LETTER_s (char MODIFIER_LETTER_s)/*Character.sk:29*/
+  {
+    MODIFIER_LETTER = MODIFIER_LETTER_s;
+  }
+  /*Character.sk:116*/
+  
+char MODIFIER_SYMBOL_g ()/*Character.sk:116*/
+  {
+    return MODIFIER_SYMBOL;
+  }
+  /*Character.sk:117*/
+  
+void MODIFIER_SYMBOL_s (char MODIFIER_SYMBOL_s)/*Character.sk:117*/
+  {
+    MODIFIER_SYMBOL = MODIFIER_SYMBOL_s;
+  }
+  /*Character.sk:36*/
+  
+char NON_SPACING_MARK_g ()/*Character.sk:36*/
+  {
+    return NON_SPACING_MARK;
+  }
+  /*Character.sk:37*/
+  
+void NON_SPACING_MARK_s (char NON_SPACING_MARK_s)/*Character.sk:37*/
+  {
+    NON_SPACING_MARK = NON_SPACING_MARK_s;
+  }
+  /*Character.sk:32*/
+  
+char OTHER_LETTER_g ()/*Character.sk:32*/
+  {
+    return OTHER_LETTER;
+  }
+  /*Character.sk:33*/
+  
+void OTHER_LETTER_s (char OTHER_LETTER_s)/*Character.sk:33*/
+  {
+    OTHER_LETTER = OTHER_LETTER_s;
+  }
+  /*Character.sk:56*/
+  
+char OTHER_NUMBER_g ()/*Character.sk:56*/
+  {
+    return OTHER_NUMBER;
+  }
+  /*Character.sk:57*/
+  
+void OTHER_NUMBER_s (char OTHER_NUMBER_s)/*Character.sk:57*/
+  {
+    OTHER_NUMBER = OTHER_NUMBER_s;
+  }
+  /*Character.sk:104*/
+  
+char OTHER_PUNCTUATION_g ()/*Character.sk:104*/
+  {
+    return OTHER_PUNCTUATION;
+  }
+  /*Character.sk:105*/
+  
+void OTHER_PUNCTUATION_s (char OTHER_PUNCTUATION_s)/*Character.sk:105*/
+  {
+    OTHER_PUNCTUATION = OTHER_PUNCTUATION_s;
+  }
+  /*Character.sk:120*/
+  
+char OTHER_SYMBOL_g ()/*Character.sk:120*/
+  {
+    return OTHER_SYMBOL;
+  }
+  /*Character.sk:121*/
+  
+void OTHER_SYMBOL_s (char OTHER_SYMBOL_s)/*Character.sk:121*/
+  {
+    OTHER_SYMBOL = OTHER_SYMBOL_s;
+  }
+  /*Character.sk:68*/
+  
+char PARAGRAPH_SEPARATOR_g ()/*Character.sk:68*/
+  {
+    return PARAGRAPH_SEPARATOR;
+  }
+  /*Character.sk:69*/
+  
+void PARAGRAPH_SEPARATOR_s (char PARAGRAPH_SEPARATOR_s)/*Character.sk:69*/
+  {
+    PARAGRAPH_SEPARATOR = PARAGRAPH_SEPARATOR_s;
+  }
+  /*Character.sk:80*/
+  
+char PRIVATE_USE_g ()/*Character.sk:80*/
+  {
+    return PRIVATE_USE;
+  }
+  /*Character.sk:81*/
+  
+void PRIVATE_USE_s (char PRIVATE_USE_s)/*Character.sk:81*/
+  {
+    PRIVATE_USE = PRIVATE_USE_s;
+  }
+  /*Character.sk:60*/
+  
+char SPACE_SEPARATOR_g ()/*Character.sk:60*/
+  {
+    return SPACE_SEPARATOR;
+  }
+  /*Character.sk:61*/
+  
+void SPACE_SEPARATOR_s (char SPACE_SEPARATOR_s)/*Character.sk:61*/
+  {
+    SPACE_SEPARATOR = SPACE_SEPARATOR_s;
+  }
+  /*Character.sk:92*/
+  
+char START_PUNCTUATION_g ()/*Character.sk:92*/
+  {
+    return START_PUNCTUATION;
+  }
+  /*Character.sk:93*/
+  
+void START_PUNCTUATION_s (char START_PUNCTUATION_s)/*Character.sk:93*/
+  {
+    START_PUNCTUATION = START_PUNCTUATION_s;
+  }
+  /*Character.sk:84*/
+  
+char SURROGATE_g ()/*Character.sk:84*/
+  {
+    return SURROGATE;
+  }
+  /*Character.sk:85*/
+  
+void SURROGATE_s (char SURROGATE_s)/*Character.sk:85*/
+  {
+    SURROGATE = SURROGATE_s;
+  }
+  /*Character.sk:24*/
+  
+char TITLECASE_LETTER_g ()/*Character.sk:24*/
+  {
+    return TITLECASE_LETTER;
+  }
+  /*Character.sk:25*/
+  
+void TITLECASE_LETTER_s (char TITLECASE_LETTER_s)/*Character.sk:25*/
+  {
+    TITLECASE_LETTER = TITLECASE_LETTER_s;
+  }
+  /*Character.sk:12*/
+  
+char UNASSIGNED_g ()/*Character.sk:12*/
+  {
+    return UNASSIGNED;
+  }
+  /*Character.sk:13*/
+  
+void UNASSIGNED_s (char UNASSIGNED_s)/*Character.sk:13*/
+  {
+    UNASSIGNED = UNASSIGNED_s;
+  }
+  /*Character.sk:16*/
+  
+char UPPERCASE_LETTER_g ()/*Character.sk:16*/
+  {
+    return UPPERCASE_LETTER;
+  }
+  /*Character.sk:17*/
+  
+void UPPERCASE_LETTER_s (char UPPERCASE_LETTER_s)/*Character.sk:17*/
+  {
+    UPPERCASE_LETTER = UPPERCASE_LETTER_s;
+  }
+  /*Character.sk:216*/
+  
+char charValue (Object self)/*Character.sk:216*/
+  {
+    return self.value_Character;
+  }
+  /*Character.sk:220*/
+  
+bit equals_Object (Object self, Object obj)/*Character.sk:220*/
+  {
+    if((obj.__cid) == (Character()))/*Character.sk:221*/
+    {
+      {
+        return (self.value_Character) == (((obj.__cid) == (Character()) ? charValue@Character(obj) : '\0'));
+      }
+    }
+    return 0;
+  }
+  /* END PACKAGE Character*/
+}
+/* BEGIN PACKAGE TwoDArray*/
+package TwoDArray{
+  /*TwoDArray.sk:3*/
+  
+Object TwoDArray_TwoDArray (Object self)/*TwoDArray.sk:3*/
+  {
+    return self;
+  }
+  /*TwoDArray.sk:7*/
+  
+Object TwoDArray_TwoDArray_int_int (Object self, int n, int m)/*TwoDArray.sk:7*/
+  {
+    self.N_TwoDArray = n;
+    self.M_TwoDArray = m;
+    self.arr_TwoDArray = new Array_int(length=n * m);
+    return self;
+  }
+  /*TwoDArray.sk:30*/
+  
+Array_int getRow_int (Object self, int i)/*TwoDArray.sk:30*/
+  {
+    int count = 0;
+    Array_int row = new Array_int(length=self.M_TwoDArray);
+    {
+      int j = i * (self.M_TwoDArray);
+      bit __sa39 = j < ((i * (self.M_TwoDArray)) + (self.M_TwoDArray));
+      while(__sa39)
+      {
+        {
+          {
+            row.A[count] = self.arr_TwoDArray.A[j];
+            (count)++;
+          }
+        }
+        (j)++;
+        __sa39 = j < ((i * (self.M_TwoDArray)) + (self.M_TwoDArray));
+      }
+    }
+    return row;
+  }
+  /*TwoDArray.sk:18*/
+  
+int get_int_int (Object self, int i, int j)/*TwoDArray.sk:18*/
+  {
+    return self.arr_TwoDArray.A[(i * (self.M_TwoDArray)) + j];
+  }
+  /*TwoDArray.sk:22*/
+  
+void setRow_int_int (Object self, int i, Array_int row)/*TwoDArray.sk:22*/
+  {
+    int count = 0;
+    {
+      int j = i * (self.M_TwoDArray);
+      bit __sa38 = j < ((i * (self.M_TwoDArray)) + (self.M_TwoDArray));
+      while(__sa38)
+      {
+        {
+          {
+            self.arr_TwoDArray.A[j] = row.A[count];
+            (count)++;
+          }
+        }
+        (j)++;
+        __sa38 = j < ((i * (self.M_TwoDArray)) + (self.M_TwoDArray));
+      }
+    }
+  }
+  /*TwoDArray.sk:14*/
+  
+void set_int_int_int (Object self, int i, int j, int val)/*TwoDArray.sk:14*/
+  {
+    self.arr_TwoDArray.A[(i * (self.M_TwoDArray)) + j] = val;
+  }
+  /* END PACKAGE TwoDArray*/
+}
+/* BEGIN PACKAGE CharSequence*/
+package CharSequence{
+  /*CharSequence.sk:3*/
+  
+Object CharSequence_CharSequence (Object self)/*CharSequence.sk:3*/
+  {
+    return self;
+  }
+  /* END PACKAGE CharSequence*/
+}
+/* BEGIN PACKAGE TreeMap*/
+package TreeMap{
+  /*TreeMap.sk:3*/
+  
+Object TreeMap_TreeMap (Object self)/*TreeMap.sk:3*/
+  {
+    return self;
+  }
+  /* END PACKAGE TreeMap*/
+}
+/* BEGIN PACKAGE Deque*/
+package Deque{
+  /*Deque.sk:3*/
+  
+Object Deque_Deque (Object self)/*Deque.sk:3*/
+  {
+    return self;
+  }
+  /* END PACKAGE Deque*/
+}
+/* BEGIN PACKAGE HashMap_Node*/
+package HashMap_Node{
+  Object self0;
+  /*HashMap_Node.sk:5*/
+  
+Object HashMap_Node_HashMap_Node_HashMap (Object self, Object self_0)/*HashMap_Node.sk:5*/
+  {
+    self0 = self_0;
+    return self;
+  }
+  /*HashMap_Node.sk:10*/
+  
+Object HashMap_Node_HashMap_Node_HashMap_K_V_int (Object self, Object self_0, Object key, Object value, int hash)/*HashMap_Node.sk:10*/
+  {
+    self0 = self_0;
+    self.key_HashMap_Node = key;
+    self.value_HashMap_Node = value;
+    self.hash_HashMap_Node = hash;
+    return self;
+  }
+  /* END PACKAGE HashMap_Node*/
+}
+/* BEGIN PACKAGE LinkedList*/
+package LinkedList{
+  /*LinkedList.sk:3*/
+  
+Object LinkedList_LinkedList (Object self)/*LinkedList.sk:3*/
+  {
+    return self;
+  }
+  /* END PACKAGE LinkedList*/
+}
+/* BEGIN PACKAGE ArrayDeque*/
+package ArrayDeque{
+  /*ArrayDeque.sk:3*/
+  
+Object ArrayDeque_ArrayDeque (Object self)/*ArrayDeque.sk:3*/
+  {
+    self.currentHead_ArrayDeque = null;
+    self.currentTail_ArrayDeque = null;
+    self.size_ArrayDeque = 0;
+    return self;
+  }
+  /*ArrayDeque.sk:38*/
+  
+void addFirst_E (Object self, Object e)/*ArrayDeque.sk:38*/
+  {
+    Object newNode = ArrayDeque_DequeNode_ArrayDeque_DequeNode_ArrayDeque_E_DequeNode_DequeNode(new Object(__cid=ArrayDeque_DequeNode()), self, e, null, null);
+    if(isEmpty@ArrayDeque(self))/*ArrayDeque.sk:40*/
+    {
+      {
+        self.currentTail_ArrayDeque = newNode;
+      }
+    }
+    else
+    {
+      {
+        if((newNode.__cid) == (ArrayDeque_DequeNode()))/*ArrayDeque.sk:44*/
+        {
+          {
+            setNext_DequeNode@ArrayDeque_DequeNode(newNode, self.currentHead_ArrayDeque);
+          }
+        }
+        else
+        {
+          {
+            0;
+          }
+        }
+        { }
+        if((self.currentHead_ArrayDeque.__cid) == (ArrayDeque_DequeNode()))/*ArrayDeque.sk:46*/
+        {
+          {
+            setPrev_DequeNode@ArrayDeque_DequeNode(self.currentHead_ArrayDeque, newNode);
+          }
+        }
+        else
+        {
+          {
+            0;
+          }
+        }
+        { }
+      }
+    }
+    self.currentHead_ArrayDeque = newNode;
+    (self.size_ArrayDeque)++;
+  }
+  /*ArrayDeque.sk:34*/
+  
+void addLast_E (Object self, Object e)/*ArrayDeque.sk:34*/
+  {
+    add_E@ArrayDeque(self, e);
+  }
+  /*ArrayDeque.sk:18*/
+  
+bit add_E (Object self, Object e)/*ArrayDeque.sk:18*/
+  {
+    Object newNode = ArrayDeque_DequeNode_ArrayDeque_DequeNode_ArrayDeque_E_DequeNode_DequeNode(new Object(__cid=ArrayDeque_DequeNode()), self, e, null, null);
+    if(isEmpty@ArrayDeque(self))/*ArrayDeque.sk:20*/
+    {
+      {
+        self.currentHead_ArrayDeque = newNode;
+      }
+    }
+    else
+    {
+      {
+        if((newNode.__cid) == (ArrayDeque_DequeNode()))/*ArrayDeque.sk:24*/
+        {
+          {
+            setPrev_DequeNode@ArrayDeque_DequeNode(newNode, self.currentTail_ArrayDeque);
+          }
+        }
+        else
+        {
+          {
+            0;
+          }
+        }
+        { }
+        if((self.currentTail_ArrayDeque.__cid) == (ArrayDeque_DequeNode()))/*ArrayDeque.sk:26*/
+        {
+          {
+            setNext_DequeNode@ArrayDeque_DequeNode(self.currentTail_ArrayDeque, newNode);
+          }
+        }
+        else
+        {
+          {
+            0;
+          }
+        }
+        { }
+      }
+    }
+    self.currentTail_ArrayDeque = newNode;
+    (self.size_ArrayDeque)++;
+    return 1;
+  }
+  /*ArrayDeque.sk:66*/
+  
+bit contains_Object (Object self, Object o)/*ArrayDeque.sk:66*/
+  {
+    return (getIndex_Object@ArrayDeque(self, o)) >= 0;
+  }
+  /*ArrayDeque.sk:70*/
+  
+Object getFirst (Object self)/*ArrayDeque.sk:70*/
+  {
+    if((self.size_ArrayDeque) > 0)/*ArrayDeque.sk:71*/
+    {
+      assert ((self.currentHead_ArrayDeque) != (null)); //Assert at ArrayDeque.sk:71 (0)
+    }
+    if((self.currentHead_ArrayDeque) != (null))/*ArrayDeque.sk:72*/
+    {
+      return ((self.currentHead_ArrayDeque.__cid) == (ArrayDeque_DequeNode()) ? getVal@ArrayDeque_DequeNode(self.currentHead_ArrayDeque) : null);
+    }
+    return null;
+  }
+  /*ArrayDeque.sk:53*/
+  
+int getIndex_Object (Object self, Object o)/*ArrayDeque.sk:53*/
+  {
+    Object current = self.currentHead_ArrayDeque;
+    int index = 0;
+    while(current != (null))
+    {
+      {
+        if(((current.__cid) == (ArrayDeque_DequeNode()) ? equals_Object@Object(current, o) : 0))/*ArrayDeque.sk:57*/
+        {
+          {
+            return index;
+          }
+        }
+        (index)++;
+        current = ((current.__cid) == (ArrayDeque_DequeNode()) ? getNext@ArrayDeque_DequeNode(current) : null);
+      }
+    }
+    return -1;
+  }
+  /*ArrayDeque.sk:76*/
+  
+Object getLast (Object self)/*ArrayDeque.sk:76*/
+  {
+    if((self.size_ArrayDeque) > 0)/*ArrayDeque.sk:77*/
+    {
+      assert ((self.currentTail_ArrayDeque) != (null)); //Assert at ArrayDeque.sk:77 (0)
+    }
+    if((self.currentTail_ArrayDeque) != (null))/*ArrayDeque.sk:78*/
+    {
+      return ((self.currentTail_ArrayDeque.__cid) == (ArrayDeque_DequeNode()) ? getVal@ArrayDeque_DequeNode(self.currentTail_ArrayDeque) : null);
+    }
+    return null;
+  }
+  /*ArrayDeque.sk:14*/
+  
+bit isEmpty (Object self)/*ArrayDeque.sk:14*/
+  {
+    return (self.size_ArrayDeque) == 0;
+  }
+  /*ArrayDeque.sk:82*/
+  
+Object peek (Object self)/*ArrayDeque.sk:82*/
+  {
+    return getFirst@ArrayDeque(self);
+  }
+  /*ArrayDeque.sk:86*/
+  
+Object peekFirst (Object self)/*ArrayDeque.sk:86*/
+  {
+    return getFirst@ArrayDeque(self);
+  }
+  /*ArrayDeque.sk:90*/
+  
+Object peekLast (Object self)/*ArrayDeque.sk:90*/
+  {
+    return getLast@ArrayDeque(self);
+  }
+  /*ArrayDeque.sk:128*/
+  
+Object remove (Object self)/*ArrayDeque.sk:128*/
+  {
+    return removeFirst@ArrayDeque(self);
+  }
+  /*ArrayDeque.sk:94*/
+  
+Object removeFirst (Object self)/*ArrayDeque.sk:94*/
+  {
+    Object head = self.currentHead_ArrayDeque;
+    if((self.currentHead_ArrayDeque) != (null))/*ArrayDeque.sk:96*/
+    {
+      {
+        Object nextNode = ((self.currentHead_ArrayDeque.__cid) == (ArrayDeque_DequeNode()) ? getNext@ArrayDeque_DequeNode(self.currentHead_ArrayDeque) : null);
+        if(nextNode != (null))/*ArrayDeque.sk:98*/
+        {
+          {
+            if((nextNode.__cid) == (ArrayDeque_DequeNode()))/*ArrayDeque.sk:99*/
+            {
+              {
+                setPrev_DequeNode@ArrayDeque_DequeNode(nextNode, null);
+              }
+            }
+            else
+            {
+              {
+                0;
+              }
+            }
+            { }
+          }
+        }
+        self.currentHead_ArrayDeque = nextNode;
+        if((self.size_ArrayDeque) == 1)/*ArrayDeque.sk:103*/
+        {
+          {
+            self.currentTail_ArrayDeque = null;
+          }
+        }
+        (self.size_ArrayDeque)--;
+      }
+    }
+    return ((head.__cid) == (ArrayDeque_DequeNode()) ? getVal@ArrayDeque_DequeNode(head) : null);
+  }
+  /*ArrayDeque.sk:111*/
+  
+Object removeLast (Object self)/*ArrayDeque.sk:111*/
+  {
+    Object tail = self.currentTail_ArrayDeque;
+    if((self.currentTail_ArrayDeque) != (null))/*ArrayDeque.sk:113*/
+    {
+      {
+        Object prevNode = ((self.currentTail_ArrayDeque.__cid) == (ArrayDeque_DequeNode()) ? getPrev@ArrayDeque_DequeNode(self.currentTail_ArrayDeque) : null);
+        if(prevNode != (null))/*ArrayDeque.sk:115*/
+        {
+          {
+            if((prevNode.__cid) == (ArrayDeque_DequeNode()))/*ArrayDeque.sk:116*/
+            {
+              {
+                setNext_DequeNode@ArrayDeque_DequeNode(prevNode, null);
+              }
+            }
+            else
+            {
+              {
+                0;
+              }
+            }
+            { }
+          }
+        }
+        self.currentTail_ArrayDeque = prevNode;
+        if((self.size_ArrayDeque) == 1)/*ArrayDeque.sk:120*/
+        {
+          {
+            self.currentHead_ArrayDeque = null;
+          }
+        }
+        (self.size_ArrayDeque)--;
+      }
+    }
+    return ((tail.__cid) == (ArrayDeque_DequeNode()) ? getVal@ArrayDeque_DequeNode(tail) : null);
+  }
+  /*ArrayDeque.sk:132*/
+  
+bit remove_Object (Object self, Object o)/*ArrayDeque.sk:132*/
+  {
+    Object current = self.currentHead_ArrayDeque;
+    while(current != (null))
+    {
+      {
+        if(((current.__cid) == (ArrayDeque_DequeNode()) ? equals_Object@Object(current, o) : 0))/*ArrayDeque.sk:135*/
+        {
+          {
+            Object nextNode = ((current.__cid) == (ArrayDeque_DequeNode()) ? getNext@ArrayDeque_DequeNode(current) : null);
+            Object prevNode = ((current.__cid) == (ArrayDeque_DequeNode()) ? getPrev@ArrayDeque_DequeNode(current) : null);
+            if(nextNode != (null))/*ArrayDeque.sk:138*/
+            {
+              {
+                if((nextNode.__cid) == (ArrayDeque_DequeNode()))/*ArrayDeque.sk:139*/
+                {
+                  {
+                    setPrev_DequeNode@ArrayDeque_DequeNode(nextNode, null);
+                  }
+                }
+                else
+                {
+                  {
+                    0;
+                  }
+                }
+                { }
+              }
+            }
+            if(prevNode != (null))/*ArrayDeque.sk:142*/
+            {
+              {
+                if((prevNode.__cid) == (ArrayDeque_DequeNode()))/*ArrayDeque.sk:143*/
+                {
+                  {
+                    setNext_DequeNode@ArrayDeque_DequeNode(prevNode, null);
+                  }
+                }
+                else
+                {
+                  {
+                    0;
+                  }
+                }
+                { }
+              }
+            }
+            if(current == (self.currentHead_ArrayDeque))/*ArrayDeque.sk:146*/
+            {
+              {
+                self.currentHead_ArrayDeque = ((self.currentHead_ArrayDeque.__cid) == (ArrayDeque_DequeNode()) ? getNext@ArrayDeque_DequeNode(self.currentHead_ArrayDeque) : null);
+              }
+            }
+            else
+            {
+              if(current == (self.currentTail_ArrayDeque))/*ArrayDeque.sk:149*/
+              {
+                {
+                  self.currentTail_ArrayDeque = ((self.currentTail_ArrayDeque.__cid) == (ArrayDeque_DequeNode()) ? getPrev@ArrayDeque_DequeNode(self.currentTail_ArrayDeque) : null);
+                }
+              }
+            }
+            return 1;
+          }
+        }
+      }
+    }
+    return 0;
+  }
+  /*ArrayDeque.sk:10*/
+  
+int size (Object self)/*ArrayDeque.sk:10*/
+  {
+    return self.size_ArrayDeque;
+  }
+  /* END PACKAGE ArrayDeque*/
+}
+/* BEGIN PACKAGE Stack*/
+package Stack{
+  /*Stack.sk:3*/
+  
+Object Stack_Stack (Object self)/*Stack.sk:3*/
+  {
+    self.elementData_Stack = new Array_Object(length=10);
+    self.size_Stack = 0;
+    self.capacity_Stack = 10;
+    return self;
+  }
+  /*Stack.sk:22*/
+  
+bit empty (Object self)/*Stack.sk:22*/
+  {
+    return (self.size_Stack) == 0;
+  }
+  /*Stack.sk:26*/
+  
+Object peek (Object self)/*Stack.sk:26*/
+  {
+    if((self.size_Stack) <= 0)/*Stack.sk:27*/
+    {
+      {
+        return null;
+      }
+    }
+    return self.elementData_Stack.A[(self.size_Stack) - 1];
+  }
+  /*Stack.sk:40*/
+  
+Object pop (Object self)/*Stack.sk:40*/
+  {
+    if((self.size_Stack) <= 0)/*Stack.sk:41*/
+    {
+      {
+        return null;
+      }
+    }
+    Object e = self.elementData_Stack.A[(self.size_Stack) - 1];
+    self.elementData_Stack.A[--(self.size_Stack)] = null;
+    return e;
+  }
+  /*Stack.sk:33*/
+  
+Object push_E (Object self, Object e)/*Stack.sk:33*/
+  {
+    resize@Stack(self);
+    (self.size_Stack)++;
+    self.elementData_Stack.A[(self.size_Stack) - 1] = e;
+    return e;
+  }
+  /*Stack.sk:10*/
+  
+void resize (Object self)/*Stack.sk:10*/
+  {
+    if((self.size_Stack) >= (self.capacity_Stack))/*Stack.sk:11*/
+    {
+      {
+        self.capacity_Stack = (self.capacity_Stack) * 2;
+        Array_Object newElementData = new Array_Object(length=self.capacity_Stack);
+        {
+          int i = 0;
+          bit __sa40 = i < (self.size_Stack);
+          while(__sa40)
+          {
+            {
+              {
+                newElementData.A[i] = self.elementData_Stack.A[i];
+                self.elementData_Stack.A[i] = null;
+              }
+            }
+            (i)++;
+            __sa40 = i < (self.size_Stack);
+          }
+        }
+        self.elementData_Stack = newElementData;
+      }
+    }
+  }
+  /*Stack.sk:49*/
+  
+int search_Object (Object self, Object o)/*Stack.sk:49*/
+  {
+    {
+      int i = 0;
+      bit __sa41 = i < (self.size_Stack);
+      while(__sa41)
+      {
+        {
+          {
+            if(((self.elementData_Stack.A[i].__cid) == (Arrays()) ? equals_Object@Object(self.elementData_Stack.A[i], o) : ((self.elementData_Stack.A[i].__cid) == (StringBuffer()) ? equals_Object@Object(self.elementData_Stack.A[i], o) : ((self.elementData_Stack.A[i].__cid) == (File()) ? equals_Object@Object(self.elementData_Stack.A[i], o) : ((self.elementData_Stack.A[i].__cid) == (ArrayDeque_DequeNode()) ? equals_Object@Object(self.elementData_Stack.A[i], o) : ((self.elementData_Stack.A[i].__cid) == (ArrayDeque()) ? equals_Object@Object(self.elementData_Stack.A[i], o) : ((self.elementData_Stack.A[i].__cid) == (Boolean()) ? equals_Object@Object(self.elementData_Stack.A[i], o) : ((self.elementData_Stack.A[i].__cid) == (HashMap()) ? equals_Object@Object(self.elementData_Stack.A[i], o) : ((self.elementData_Stack.A[i].__cid) == (StringBuilder()) ? equals_Object@Object(self.elementData_Stack.A[i], o) : ((self.elementData_Stack.A[i].__cid) == (Float()) ? equals_Object@Float(self.elementData_Stack.A[i], o) : ((self.elementData_Stack.A[i].__cid) == (ArrayList()) ? equals_Object@Object(self.elementData_Stack.A[i], o) : ((self.elementData_Stack.A[i].__cid) == (FileReaderr()) ? equals_Object@Object(self.elementData_Stack.A[i], o) : ((self.elementData_Stack.A[i].__cid) == (HashSet()) ? equals_Object@Object(self.elementData_Stack.A[i], o) : ((self.elementData_Stack.A[i].__cid) == (Character()) ? equals_Object@Character(self.elementData_Stack.A[i], o) : ((self.elementData_Stack.A[i].__cid) == (Assert()) ? equals_Object@Object(self.elementData_Stack.A[i], o) : ((self.elementData_Stack.A[i].__cid) == (Integer()) ? equals_Object@Integer(self.elementData_Stack.A[i], o) : ((self.elementData_Stack.A[i].__cid) == (BufferedWriter()) ? equals_Object@Object(self.elementData_Stack.A[i], o) : ((self.elementData_Stack.A[i].__cid) == (LinkedList()) ? equals_Object@Object(self.elementData_Stack.A[i], o) : ((self.elementData_Stack.A[i].__cid) == (Stack()) ? equals_Object@Object(self.elementData_Stack.A[i], o) : ((self.elementData_Stack.A[i].__cid) == (AbstractQueue()) ? equals_Object@Object(self.elementData_Stack.A[i], o) : ((self.elementData_Stack.A[i].__cid) == (TwoDArray()) ? equals_Object@Object(self.elementData_Stack.A[i], o) : ((self.elementData_Stack.A[i].__cid) == (FileWriterr()) ? equals_Object@Object(self.elementData_Stack.A[i], o) : ((self.elementData_Stack.A[i].__cid) == (Number()) ? equals_Object@Object(self.elementData_Stack.A[i], o) : ((self.elementData_Stack.A[i].__cid) == (SuffixRankTuple()) ? equals_Object@Object(self.elementData_Stack.A[i], o) : ((self.elementData_Stack.A[i].__cid) == (SuffixArrayTest()) ? equals_Object@Object(self.elementData_Stack.A[i], o) : ((self.elementData_Stack.A[i].__cid) == (Scanner()) ? equals_Object@Object(self.elementData_Stack.A[i], o) : ((self.elementData_Stack.A[i].__cid) == (TreeMap()) ? equals_Object@Object(self.elementData_Stack.A[i], o) : ((self.elementData_Stack.A[i].__cid) == (String()) ? equals_Object@String(self.elementData_Stack.A[i], o) : ((self.elementData_Stack.A[i].__cid) == (HashMap_Node()) ? equals_Object@Object(self.elementData_Stack.A[i], o) : ((self.elementData_Stack.A[i].__cid) == (SuffixArray()) ? equals_Object@Object(self.elementData_Stack.A[i], o) : ((self.elementData_Stack.A[i].__cid) == (TreeSet()) ? equals_Object@Object(self.elementData_Stack.A[i], o) : ((self.elementData_Stack.A[i].__cid) == (Object()) ? equals_Object@Object(self.elementData_Stack.A[i], o) : 0))))))))))))))))))))))))))))))))/*Stack.sk:51*/
+            {
+              {
+                return i;
+              }
+            }
+          }
+        }
+        (i)++;
+        __sa41 = i < (self.size_Stack);
+      }
+    }
+    return -1;
+  }
+  /* END PACKAGE Stack*/
+}
+/* BEGIN PACKAGE FileReaderr*/
+package FileReaderr{
+  /*FileReaderr.sk:3*/
+  
+Object FileReaderr_FileReaderr (Object self)/*FileReaderr.sk:3*/
+  {
+    return self;
+  }
+  /*FileReaderr.sk:7*/
+  
+Object FileReaderr_FileReaderr_File (Object self, Object file)/*FileReaderr.sk:7*/
+  {
+    self.file_FileReaderr = file;
+    return self;
+  }
+  /*FileReaderr.sk:20*/
+  
+void close (Object self)/*FileReaderr.sk:20*/
+  {
+  }
+  /*FileReaderr.sk:16*/
+  
+int read (Object self)/*FileReaderr.sk:16*/
+  {
+    return 0;
+  }
+  /*FileReaderr.sk:12*/
+  
+bit ready (Object self)/*FileReaderr.sk:12*/
+  {
+    return (((self.file_FileReaderr.__cid) == (File()) ? size@File(self.file_FileReaderr) : 0)) > 0;
+  }
+  /* END PACKAGE FileReaderr*/
+}
+/* BEGIN PACKAGE Integer*/
+package Integer{
+  int MIN_VALUE=-2147483648;
+  int MAX_VALUE=2147483647;
+  /*Integer.sk:11*/
+  
+Object Integer_Integer (Object self)/*Integer.sk:11*/
+  {
+    return self;
+  }
+  /*Integer.sk:15*/
+  
+Object Integer_Integer_int (Object self, int value)/*Integer.sk:15*/
+  {
+    self.value_Integer = value;
+    return self;
+  }
+  /*Integer.sk:8*/
+  
+int MAX_VALUE_g ()/*Integer.sk:8*/
+  {
+    return MAX_VALUE;
+  }
+  /*Integer.sk:9*/
+  
+void MAX_VALUE_s (int MAX_VALUE_s)/*Integer.sk:9*/
+  {
+    MAX_VALUE = MAX_VALUE_s;
+  }
+  /*Integer.sk:4*/
+  
+int MIN_VALUE_g ()/*Integer.sk:4*/
+  {
+    return MIN_VALUE;
+  }
+  /*Integer.sk:5*/
+  
+void MIN_VALUE_s (int MIN_VALUE_s)/*Integer.sk:5*/
+  {
+    MIN_VALUE = MIN_VALUE_s;
+  }
+  /*Integer.sk:24*/
+  
+int compareTo_Integer (Object self, Object anotherInteger)/*Integer.sk:24*/
+  {
+    return compare_int_int(self.value_Integer, ((anotherInteger.__cid) == (Integer()) ? intValue@Integer(anotherInteger) : 0));
+  }
+  /*Integer.sk:28*/
+  
+int compare_int_int (int x, int y)/*Integer.sk:28*/
+  {
+    return (x < y ? -1 : (x == y ? 0 : 1));
+  }
+  /*Integer.sk:32*/
+  
+bit equals_Object (Object self, Object obj)/*Integer.sk:32*/
+  {
+    if((obj.__cid) == (Integer()))/*Integer.sk:33*/
+    {
+      {
+        return (self.value_Integer) == (((obj.__cid) == (Integer()) ? intValue@Integer(obj) : 0));
+      }
+    }
+    return 0;
+  }
+  /*Integer.sk:69*/
+  
+int hashCode (Object self)/*Integer.sk:69*/
+  {
+    return self.value_Integer;
+  }
+  /*Integer.sk:20*/
+  
+int intValue (Object self)/*Integer.sk:20*/
+  {
+    return self.value_Integer;
+  }
+  /*Integer.sk:39*/
+  
+Object toString (Object self)/*Integer.sk:39*/
+  {
+    return toString_int(self.value_Integer);
+  }
+  /*Integer.sk:43*/
+  
+Object toString_int (int i)/*Integer.sk:43*/
+  {
+    if(i == 0)/*Integer.sk:44*/
+    {
+      {
+        return String_String_char_int_int(new Object(__cid=String()), new Array_char(length=2, A={'0','\0'}), 0, 1);
+      }
+    }
+    int index = 0;
+    int temp = i;
+    int j;
+    Array_char ret = new Array_char(length=32);
+    Array_char ret2 = new Array_char(length=32);
+    Array_char nums = new Array_char(length=10, A={'0','1','2','3','4','5','6','7','8','9'});
+    if(temp < 0)/*Integer.sk:51*/
+    {
+      {
+        temp = temp * -1;
+      }
+    }
+    while(temp > 0)
+    {
+      {
+        ret.A[(index)++] = nums.A[temp % 10];
+        temp = temp / 10;
+      }
+    }
+    if(i < 0)/*Integer.sk:58*/
+    {
+      {
+        ret.A[(index)++] = '-';
+      }
+    }
+    int size = index;
+    for(j = 0; j < size; (j)++)
+    {
+      {
+        ret2.A[j] = ret.A[index - 1];
+        (index)--;
+      }
+    }
+    return String_String_char_int_int(new Object(__cid=String()), ret2, 0, size);
+  }
+  /* END PACKAGE Integer*/
+}
+/* BEGIN PACKAGE Float*/
+package Float{
+  /*Float.sk:3*/
+  
+Object Float_Float (Object self)/*Float.sk:3*/
+  {
+    return self;
+  }
+  /*Float.sk:12*/
+  
+Object Float_Float_double (Object self, double value)/*Float.sk:12*/
+  {
+    self.value_Float = value;
+    return self;
+  }
+  /*Float.sk:7*/
+  
+Object Float_Float_float (Object self, float value)/*Float.sk:7*/
+  {
+    self.value_Float = value;
+    return self;
+  }
+  /*Float.sk:21*/
+  
+int compareTo_Float (Object self, Object anotherFloat)/*Float.sk:21*/
+  {
+    return compare_float_float(self.value_Float, anotherFloat.value_Float);
+  }
+  /*Float.sk:25*/
+  
+int compare_float_float (float x, float y)/*Float.sk:25*/
+  {
+    return (x < y ? -1 : (x == y ? 0 : 1));
+  }
+  /*Float.sk:29*/
+  
+bit equals_Object (Object self, Object anotherFloat)/*Float.sk:29*/
+  {
+    if((anotherFloat.__cid) == (Float()))/*Float.sk:30*/
+    {
+      {
+        Object x = anotherFloat;
+        if((x.value_Float) == (self.value_Float))/*Float.sk:32*/
+        {
+          {
+            return 1;
+          }
+        }
+      }
+    }
+    return 0;
+  }
+  /*Float.sk:17*/
+  
+float floatValue (Object self)/*Float.sk:17*/
+  {
+    return self.value_Float;
+  }
+  /*Float.sk:39*/
+  
+int intValue (Object self)/*Float.sk:39*/
+  {
+    return ((int)self.value_Float);
+  }
+  /*Float.sk:43*/
+  
+Object toString (Object self)/*Float.sk:43*/
+  {
+    return toString_float(self.value_Float);
+  }
+  /*Float.sk:47*/
+  
+Object toString_float (float i)/*Float.sk:47*/
+  {
+    int index = 0;
+    int j;
+    int temp2 = ((int)i);
+    float temp = i - (((float)((int)i)));
+    Array_char ret = new Array_char(length=32, A={'\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0'});
+    Array_char ret2 = new Array_char(length=32, A={'\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0'});
+    Array_char nums = new Array_char(length=10, A={'0','1','2','3','4','5','6','7','8','9'});
+    if(temp2 < 0)/*Float.sk:53*/
+    {
+      {
+        temp2 = temp2 * -1;
+      }
+    }
+    ret.A[(index)++] = '.';
+    while(temp2 > 0)
+    {
+      {
+        ret.A[(index)++] = nums.A[temp2 % 10];
+        temp2 = temp2 / 10;
+      }
+    }
+    if(i < (0.0))/*Float.sk:61*/
+    {
+      {
+        ret.A[(index)++] = '-';
+      }
+    }
+    int size = index;
+    for(j = 0; j < size; (j)++)
+    {
+      {
+        ret2.A[j] = ret.A[index - 1];
+        (index)--;
+      }
+    }
+    index = size;
+    while(temp > (0.0))
+    {
+      {
+        temp = temp * (10.0);
+        ret2.A[(index)++] = nums.A[((int)temp)];
+        temp = temp - (((float)((int)temp)));
+      }
+    }
+    return String_String_char_int_int(new Object(__cid=String()), ret2, 0, index);
+  }
+  /* END PACKAGE Float*/
+}
+/* BEGIN PACKAGE Map_Entry*/
+package Map_Entry{
+  Object self0;
+  /*Map_Entry.sk:5*/
+  
+Object Map_Entry_Map_Entry_Map (Object self, Object self_0)/*Map_Entry.sk:5*/
+  {
+    self0 = self_0;
+    return self;
+  }
+  /* END PACKAGE Map_Entry*/
+}
+/* BEGIN PACKAGE StringBuffer*/
+package StringBuffer{
+  /*StringBuffer.sk:3*/
+  
+Object StringBuffer_StringBuffer (Object self)/*StringBuffer.sk:3*/
+  {
+    return self;
+  }
+  /*StringBuffer.sk:7*/
+  
+Object StringBuffer_StringBuffer_String (Object self, Object str)/*StringBuffer.sk:7*/
+  {
+    self._value_StringBuffer = str._value_String;
+    self._count_StringBuffer = ((str.__cid) == (String()) ? length@String(str) : 0);
+    return self;
+  }
+  /*StringBuffer.sk:13*/
+  
+char charAt_int (Object self, int index)/*StringBuffer.sk:13*/
+  {
+    if((0 <= index) && (index < (self._count_StringBuffer)))/*StringBuffer.sk:14*/
+    {
+      return self._value_StringBuffer.A[index];
+    }
+  }
+  /*StringBuffer.sk:17*/
+  
+int length (Object self)/*StringBuffer.sk:17*/
+  {
+    return self._count_StringBuffer;
+  }
+  /*StringBuffer.sk:25*/
+  
+void setCharAt_int_char (Object self, int i, char c)/*StringBuffer.sk:25*/
+  {
+    self._value_StringBuffer.A[i] = c;
+  }
+  /*StringBuffer.sk:21*/
+  
+Object toString (Object self)/*StringBuffer.sk:21*/
+  {
+    return String_String_char_int_int(new Object(__cid=String()), self._value_StringBuffer, 0, self._count_StringBuffer);
+  }
+  /* END PACKAGE StringBuffer*/
+}
+/* BEGIN PACKAGE meta*/
+package meta{
+  /*meta.sk:4*/
+  
+int AbstractQueue ()/*meta.sk:4*/
+  {
+    return 19;
+  }
+  /*meta.sk:5*/
+  
+int ArrayDeque ()/*meta.sk:5*/
+  {
+    return 13;
+  }
+  /*meta.sk:6*/
+  
+int ArrayDeque_DequeNode ()/*meta.sk:6*/
+  {
+    return 14;
+  }
+  /*meta.sk:7*/
+  
+int ArrayList ()/*meta.sk:7*/
+  {
+    return 20;
+  }
+  /*meta.sk:8*/
+  
+int Arrays ()/*meta.sk:8*/
+  {
+    return 5;
+  }
+  /*meta.sk:9*/
+  
+int Assert ()/*meta.sk:9*/
+  {
+    return 32;
+  }
+  /*meta.sk:10*/
+  
+int Boolean ()/*meta.sk:10*/
+  {
+    return 15;
+  }
+  /*meta.sk:11*/
+  
+int BufferedWriter ()/*meta.sk:11*/
+  {
+    return 26;
+  }
+  /*meta.sk:12*/
+  
+int CharSequence ()/*meta.sk:12*/
+  {
+    return 31;
+  }
+  /*meta.sk:13*/
+  
+int Character ()/*meta.sk:13*/
+  {
+    return 16;
+  }
+  /*meta.sk:14*/
+  
+int Comparable ()/*meta.sk:14*/
+  {
+    return 28;
+  }
+  /*meta.sk:15*/
+  
+int Deque ()/*meta.sk:15*/
+  {
+    return 11;
+  }
+  /*meta.sk:16*/
+  
+int File ()/*meta.sk:16*/
+  {
+    return 39;
+  }
+  /*meta.sk:17*/
+  
+int FileReaderr ()/*meta.sk:17*/
+  {
+    return 38;
+  }
+  /*meta.sk:18*/
+  
+int FileWriterr ()/*meta.sk:18*/
+  {
+    return 35;
+  }
+  /*meta.sk:19*/
+  
+int Float ()/*meta.sk:19*/
+  {
+    return 10;
+  }
+  /*meta.sk:20*/
+  
+int HashMap ()/*meta.sk:20*/
+  {
+    return 29;
+  }
+  /*meta.sk:21*/
+  
+int HashMap_Node ()/*meta.sk:21*/
+  {
+    return 30;
+  }
+  /*meta.sk:22*/
+  
+int HashSet ()/*meta.sk:22*/
+  {
+    return 21;
+  }
+  /*meta.sk:23*/
+  
+int Integer ()/*meta.sk:23*/
+  {
+    return 24;
+  }
+  /*meta.sk:24*/
+  
+int LinkedList ()/*meta.sk:24*/
+  {
+    return 12;
+  }
+  /*meta.sk:25*/
+  
+int List ()/*meta.sk:25*/
+  {
+    return 27;
+  }
+  /*meta.sk:26*/
+  
+int Map ()/*meta.sk:26*/
+  {
+    return 8;
+  }
+  /*meta.sk:27*/
+  
+int Map_Entry ()/*meta.sk:27*/
+  {
+    return 9;
+  }
+  /*meta.sk:28*/
+  
+int Number ()/*meta.sk:28*/
+  {
+    return 37;
+  }
+  /*meta.sk:29*/
+  
+int Object ()/*meta.sk:29*/
+  {
+    return 1;
+  }
+  /*meta.sk:30*/
+  
+int Queue ()/*meta.sk:30*/
+  {
+    return 23;
+  }
+  /*meta.sk:31*/
+  
+int Scanner ()/*meta.sk:31*/
+  {
+    return 7;
+  }
+  /*meta.sk:32*/
+  
+int Set ()/*meta.sk:32*/
+  {
+    return 25;
+  }
+  /*meta.sk:33*/
+  
+int Stack ()/*meta.sk:33*/
+  {
+    return 34;
+  }
+  /*meta.sk:34*/
+  
+int String ()/*meta.sk:34*/
+  {
+    return 36;
+  }
+  /*meta.sk:35*/
+  
+int StringBuffer ()/*meta.sk:35*/
+  {
+    return 17;
+  }
+  /*meta.sk:36*/
+  
+int StringBuilder ()/*meta.sk:36*/
+  {
+    return 22;
+  }
+  /*meta.sk:37*/
+  
+int SuffixArray ()/*meta.sk:37*/
+  {
+    return 3;
+  }
+  /*meta.sk:38*/
+  
+int SuffixArrayTest ()/*meta.sk:38*/
+  {
+    return 2;
+  }
+  /*meta.sk:39*/
+  
+int SuffixRankTuple ()/*meta.sk:39*/
+  {
+    return 6;
+  }
+  /*meta.sk:40*/
+  
+int TreeMap ()/*meta.sk:40*/
+  {
+    return 18;
+  }
+  /*meta.sk:41*/
+  
+int TreeSet ()/*meta.sk:41*/
+  {
+    return 33;
+  }
+  /*meta.sk:42*/
+  
+int TwoDArray ()/*meta.sk:42*/
+  {
+    return 4;
+  }
+  /* END PACKAGE meta*/
+}
+/* BEGIN PACKAGE Object*/
+package Object{
+  struct Object {
+      int __cid;
+      Array_Object set_TreeSet;
+      int capacity_TreeSet;
+      int size_TreeSet;
+      int N_SuffixArray;
+      Array_int T_SuffixArray;
+      Array_int sa_SuffixArray;
+      Array_int lcp_SuffixArray;
+      Object key_HashMap_Node;
+      Object value_HashMap_Node;
+      int hash_HashMap_Node;
+      Array_char _value_String;
+      int _count_String;
+      Object file_Scanner;
+      int originalIndex_SuffixRankTuple;
+      int secondHalf_SuffixRankTuple;
+      int firstHalf_SuffixRankTuple;
+      Object fname_FileWriterr;
+      int M_TwoDArray;
+      Array_int arr_TwoDArray;
+      int N_TwoDArray;
+      Array_Object elementData_AbstractQueue;
+      int size_AbstractQueue;
+      int capacity_AbstractQueue;
+      Array_Object elementData_Stack;
+      int size_Stack;
+      int capacity_Stack;
+      Object writer_BufferedWriter;
+      int value_Integer;
+      char value_Character;
+      Array_Object set_HashSet;
+      int capacity_HashSet;
+      int size_HashSet;
+      Object file_FileReaderr;
+      Array_Object elementData_ArrayList;
+      int DEFAULT_CAPACITY_ArrayList;
+      int capacity_ArrayList;
+      int size_ArrayList;
+      float value_Float;
+      Array_char _value_StringBuilder;
+      int _count_StringBuilder;
+      Array_Object elementData_HashMap;
+      int numPairs_HashMap;
+      int capacity_HashMap;
+      bit bool_Boolean;
+      Object currentHead_ArrayDeque;
+      Object currentTail_ArrayDeque;
+      int size_ArrayDeque;
+      Object val_ArrayDeque_DequeNode;
+      Object prev_ArrayDeque_DequeNode;
+      Object next_ArrayDeque_DequeNode;
+      Object fname_File;
+      int size_File;
+      Array_char _value_StringBuffer;
+      int _count_StringBuffer;
+  }
+  Object fs;
+  /*Object.sk:7*/
+  
+Object Object_Object (Object self)/*Object.sk:7*/
+  {
+    return self;
+  }
+  /*Object.sk:29*/
+  
+bit equals_Object (Object self, Object obj)/*Object.sk:29*/
+  {
+    return self == obj;
+  }
+  /*Object.sk:11*/
+  
+bit equals_Object_Object (Object a, Object b)/*Object.sk:11*/
+  {
+    if(a == (null))/*Object.sk:12*/
+    {
+      {
+        if(b == (null))/*Object.sk:13*/
+        {
+          {
+            return 1;
+          }
+        }
+        return 0;
+      }
+    }
+    return ((a.__cid) == (Arrays()) ? equals_Object@Object(a, b) : ((a.__cid) == (StringBuffer()) ? equals_Object@Object(a, b) : ((a.__cid) == (File()) ? equals_Object@Object(a, b) : ((a.__cid) == (ArrayDeque_DequeNode()) ? equals_Object@Object(a, b) : ((a.__cid) == (ArrayDeque()) ? equals_Object@Object(a, b) : ((a.__cid) == (Boolean()) ? equals_Object@Object(a, b) : ((a.__cid) == (HashMap()) ? equals_Object@Object(a, b) : ((a.__cid) == (StringBuilder()) ? equals_Object@Object(a, b) : ((a.__cid) == (Float()) ? equals_Object@Float(a, b) : ((a.__cid) == (ArrayList()) ? equals_Object@Object(a, b) : ((a.__cid) == (FileReaderr()) ? equals_Object@Object(a, b) : ((a.__cid) == (HashSet()) ? equals_Object@Object(a, b) : ((a.__cid) == (Character()) ? equals_Object@Character(a, b) : ((a.__cid) == (Assert()) ? equals_Object@Object(a, b) : ((a.__cid) == (Integer()) ? equals_Object@Integer(a, b) : ((a.__cid) == (BufferedWriter()) ? equals_Object@Object(a, b) : ((a.__cid) == (LinkedList()) ? equals_Object@Object(a, b) : ((a.__cid) == (Stack()) ? equals_Object@Object(a, b) : ((a.__cid) == (AbstractQueue()) ? equals_Object@Object(a, b) : ((a.__cid) == (TwoDArray()) ? equals_Object@Object(a, b) : ((a.__cid) == (FileWriterr()) ? equals_Object@Object(a, b) : ((a.__cid) == (Number()) ? equals_Object@Object(a, b) : ((a.__cid) == (SuffixRankTuple()) ? equals_Object@Object(a, b) : ((a.__cid) == (SuffixArrayTest()) ? equals_Object@Object(a, b) : ((a.__cid) == (Scanner()) ? equals_Object@Object(a, b) : ((a.__cid) == (TreeMap()) ? equals_Object@Object(a, b) : ((a.__cid) == (String()) ? equals_Object@String(a, b) : ((a.__cid) == (HashMap_Node()) ? equals_Object@Object(a, b) : ((a.__cid) == (SuffixArray()) ? equals_Object@Object(a, b) : ((a.__cid) == (TreeSet()) ? equals_Object@Object(a, b) : ((a.__cid) == (Object()) ? equals_Object@Object(a, b) : 0)))))))))))))))))))))))))))))));
+  }
+  /*Object.sk:4*/
+  
+Object fs_g ()/*Object.sk:4*/
+  {
+    return fs;
+  }
+  /*Object.sk:5*/
+  
+void fs_s (Object fs_s)/*Object.sk:5*/
+  {
+    fs = fs_s;
+  }
+  /*Object.sk:33*/
+  
+int hashCode (Object self)/*Object.sk:33*/
+  {
+    return 0;
+  }
+  /*Object.sk:21*/
+  
+int hashCode_Object (Object o)/*Object.sk:21*/
+  {
+    return (o != (null) ? ((o.__cid) == (Arrays()) ? hashCode@Object(o) : ((o.__cid) == (StringBuffer()) ? hashCode@Object(o) : ((o.__cid) == (File()) ? hashCode@Object(o) : ((o.__cid) == (ArrayDeque_DequeNode()) ? hashCode@Object(o) : ((o.__cid) == (ArrayDeque()) ? hashCode@Object(o) : ((o.__cid) == (Boolean()) ? hashCode@Object(o) : ((o.__cid) == (HashMap()) ? hashCode@Object(o) : ((o.__cid) == (StringBuilder()) ? hashCode@Object(o) : ((o.__cid) == (Float()) ? hashCode@Object(o) : ((o.__cid) == (ArrayList()) ? hashCode@Object(o) : ((o.__cid) == (FileReaderr()) ? hashCode@Object(o) : ((o.__cid) == (HashSet()) ? hashCode@Object(o) : ((o.__cid) == (Character()) ? hashCode@Object(o) : ((o.__cid) == (Assert()) ? hashCode@Object(o) : ((o.__cid) == (Integer()) ? hashCode@Integer(o) : ((o.__cid) == (BufferedWriter()) ? hashCode@Object(o) : ((o.__cid) == (LinkedList()) ? hashCode@Object(o) : ((o.__cid) == (Stack()) ? hashCode@Object(o) : ((o.__cid) == (AbstractQueue()) ? hashCode@Object(o) : ((o.__cid) == (TwoDArray()) ? hashCode@Object(o) : ((o.__cid) == (FileWriterr()) ? hashCode@Object(o) : ((o.__cid) == (Number()) ? hashCode@Object(o) : ((o.__cid) == (SuffixRankTuple()) ? hashCode@Object(o) : ((o.__cid) == (SuffixArrayTest()) ? hashCode@Object(o) : ((o.__cid) == (Scanner()) ? hashCode@Object(o) : ((o.__cid) == (TreeMap()) ? hashCode@Object(o) : ((o.__cid) == (String()) ? hashCode@String(o) : ((o.__cid) == (HashMap_Node()) ? hashCode@Object(o) : ((o.__cid) == (SuffixArray()) ? hashCode@Object(o) : ((o.__cid) == (TreeSet()) ? hashCode@Object(o) : ((o.__cid) == (Object()) ? hashCode@Object(o) : 0))))))))))))))))))))))))))))))) : 0);
+  }
+  /*Object.sk:25*/
+  
+Object toString (Object self)/*Object.sk:25*/
+  {
+    return String_String_char_int_int(new Object(__cid=String()), new Array_char(length=18, A={'O','b','j','e','c','t',' ','t','o','S','t','r','i','n','g','(',')','\0'}), 0, 17);
+  }
+  /* END PACKAGE Object*/
+}
+/* BEGIN PACKAGE Arrays*/
+package Arrays{
+  /*Arrays.sk:3*/
+  
+Object Arrays_Arrays (Object self)/*Arrays.sk:3*/
+  {
+    return self;
+  }
+  /*Arrays.sk:14*/
+  
+Array_Object sort_SuffixRankTuple_int (Array_Object a, int n)/*Arrays.sk:14*/
+  {
+    for(int j = 0; j < (n - 1); (j)++)
+    {
+      {
+        int iMin = j;
+        for(int i = j + 1; i < n; (i)++)
+        {
+          {
+            Object a1 = a.A[i];
+            Object a2 = a.A[iMin];
+            int cmp = ((a1.__cid) == (SuffixRankTuple()) ? compareTo_SuffixRankTuple@SuffixRankTuple(a1, a2) : 0);
+            if(cmp < 0)/*Arrays.sk:21*/
+            {
+              {
+                iMin = i;
+              }
+            }
+          }
+        }
+        if(iMin != j)/*Arrays.sk:25*/
+        {
+          {
+            a = swap_SuffixRankTuple_int_int(a, j, iMin);
+          }
+        }
+      }
+    }
+    return a;
+  }
+  /*Arrays.sk:7*/
+  
+Array_Object swap_SuffixRankTuple_int_int (Array_Object a, int i, int j)/*Arrays.sk:7*/
+  {
+    Object tmp = a.A[i];
+    a.A[i] = a.A[j];
+    a.A[j] = tmp;
+    return a;
+  }
+  /* END PACKAGE Arrays*/
+}
+/* BEGIN PACKAGE Map*/
+package Map{
+  /*Map.sk:3*/
+  
+Object Map_Map (Object self)/*Map.sk:3*/
+  {
+    return self;
+  }
+  /* END PACKAGE Map*/
+}
+/* BEGIN PACKAGE File*/
+package File{
+  /*File.sk:3*/
+  
+Object File_File (Object self)/*File.sk:3*/
+  {
+    return self;
+  }
+  /*File.sk:7*/
+  
+Object File_File_String (Object self, Object fname)/*File.sk:7*/
+  {
+    self.fname_File = fname;
+    self.size_File = 0;
+    return self;
+  }
+  /*File.sk:13*/
+  
+int size (Object self)/*File.sk:13*/
+  {
+    return self.size_File;
+  }
+  /* END PACKAGE File*/
+}

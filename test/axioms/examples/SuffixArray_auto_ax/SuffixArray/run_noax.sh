@@ -5,5 +5,5 @@ cd ../../../../../
 
 # ./jsk.sh $@ "${pwd}/SuffixArray.java model/ ${pwd}/tests/SuffixArrayTest.java ${pwd}/SuffixRankTuple.java ${pwd}/../libs"
 
-./jsk.sh $@ "${pwd}/tests/SuffixArrayTest.java ${pwd}/SuffixArray.java ${pwd}/../libs/ -o ${pwd}/../result/ --no-lib"
+./jsk.sh $@ "${pwd}/tests/SuffixArrayTest.java ${pwd}/SuffixArray.java ${pwd}/../libs/jsketch/ model/ -o ${pwd}/../result_noax/ --no-lib"
 
