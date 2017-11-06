@@ -221,7 +221,7 @@ Object lcs_String_int(Array_Object strs, int K) {
 	isEmp_adt = (deque.__cid == ArrayDeque() ? isempty_Object@ArrayDeque(deque) : null);
 	isEmp = booleanValue@Boolean(xform_ArrayDeque(isEmp_adt._arraydeque));
         while (!(isEmp) && sa.lcp_SuffixArray.A[deqPeekLast_int] > sa.lcp_SuffixArray.A[hi - 1]) {
-          deque = (deque.__cid == ArrayDeque() ? removelast_Object@ArrayDeque(deque) : null);
+          deque = (deque.__cid == ArrayDeque() ? removelastb_Object@ArrayDeque(deque) : null);
   	  isEmp_adt = (deque.__cid == ArrayDeque() ? isempty_Object@ArrayDeque(deque) : null);
 	  isEmp = booleanValue@Boolean(xform_ArrayDeque(isEmp_adt._arraydeque));
           if (!(isEmp)) {
