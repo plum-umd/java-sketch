@@ -1,0 +1,17 @@
+pragma options "--bnd-cbits 7";
+pragma options "--bnd-unroll-amnt 35";
+pragma options "--fe-fpencoding AS_FIXPOINT";
+include "meta.sk";
+include "Object.sk";
+include "array.sk";
+include "HashTable.sk";
+include "HashTableTest.sk";
+include "HashTableNode.sk";
+include "Boolean.sk";
+include "CharSequence.sk";
+include "Integer.sk";
+include "ArrayList.sk";
+include "String.sk";
+include "Object.sk";
+include "Character.sk";
+include "Assert.sk";

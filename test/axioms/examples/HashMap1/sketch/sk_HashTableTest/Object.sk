@@ -1,0 +1,43 @@
+package Object;
+
+Object Object_Object(Object self) {
+    return self;
+}
+
+bit equals_Object_Object(Object a, Object b) {
+  if (a == null) {
+    if (b == null) {
+      return true;
+    }
+    return false;
+  }
+  return (a.__cid == HashTable() ? equals_Object@Object(a, b) : a.__cid == Assert() ? equals_Object@Object(a, b) : a.__cid == Boolean() ? equals_Object@Object(a, b) : a.__cid == Character() ? equals_Object@Character(a, b) : a.__cid == HashTableTest() ? equals_Object@Object(a, b) : a.__cid == Integer() ? equals_Object@Integer(a, b) : a.__cid == ArrayList() ? equals_Object@Object(a, b) : a.__cid == HashTableNode() ? equals_Object@Object(a, b) : a.__cid == String() ? equals_Object@String(a, b) : a.__cid == Object() ? equals_Object@Object(a, b) : 0);
+}
+
+bit equals_Object(Object self, Object obj) {
+  return self == obj;
+}
+
+int hashCode(Object self) {
+  return 0;
+}
+
+struct Object {
+  int         __cid;
+  Array_char  _value_String;
+  int         _count_String;
+  Object      key_HashTableNode;
+  Object      value_HashTableNode;
+  Object      next_HashTableNode;
+  int         value_Integer;
+  Object      classUnderTest_HashTableTest;
+  char        value_Character;
+  bit         bool_Boolean;
+  double      maxLoadFactor_HashTable;
+  int         capacityGrowth_HashTable;
+  int         initialCapacity_HashTable;
+  int         size_HashTable;
+  int         currentCapacity_HashTable;
+  Object      buckets_HashTable;
+  ArrayList   _arraylist;
+}
