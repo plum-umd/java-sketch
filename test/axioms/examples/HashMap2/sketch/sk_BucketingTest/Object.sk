@@ -1,0 +1,47 @@
+package Object;
+
+Object Object_Object(Object self) {
+    return self;
+}
+
+bit equals_Object_Object(Object a, Object b) {
+  if (a == null) {
+    if (b == null) {
+      return true;
+    }
+    return false;
+  }
+  return (a.__cid == ArrayList() ? equals_Object@Object(a, b) : a.__cid == Boolean() ? equals_Object@Object(a, b) : a.__cid == Assert() ? equals_Object@Object(a, b) : a.__cid == Pair() ? equals_Object@Object(a, b) : a.__cid == Character() ? equals_Object@Character(a, b) : a.__cid == BucketingTest() ? equals_Object@Object(a, b) : a.__cid == Bucketing() ? equals_Object@Object(a, b) : a.__cid == Integer() ? equals_Object@Integer(a, b) : a.__cid == String() ? equals_Object@String(a, b) : a.__cid == Object() ? equals_Object@Object(a, b) : 0);
+}
+
+bit equals_Object(Object self, Object obj) {
+  return self == obj;
+}
+
+int hashCode(Object self) {
+  return 0;
+}
+
+struct Object {
+  int           __cid;
+  Array_char    _value_String;
+  int           _count_String;
+  int           value_Integer;
+  int           integerKey_Bucketing;
+  int           numberOfSlots_Bucketing;
+  Array_Object  bucketHash_Bucketing;
+  Object        overflow_Bucketing;
+  Array_int     sizeBucket_Bucketing;
+  int           numberOfElements_Bucketing;
+  int           index_Bucketing;
+  int           size_Bucketing;
+  int           mod_Bucketing;
+  ArrayList     ilterator_Bucketing;
+  double        rehash_Bucketing;
+  Object        classUnderTest_BucketingTest;
+  char          value_Character;
+  Object        key_Pair;
+  Object        value_Pair;
+  bit           bool_Boolean;
+  ArrayList     _arraylist;
+}

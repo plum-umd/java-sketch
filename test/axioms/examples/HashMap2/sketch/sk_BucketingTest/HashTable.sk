@@ -1,0 +1,13 @@
+package HashTable;
+
+Object HashTable_HashTable(Object self) {
+    return self;
+}
+
+
+
+
+
+
+
+

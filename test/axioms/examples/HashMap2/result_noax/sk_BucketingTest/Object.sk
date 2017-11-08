@@ -1,0 +1,61 @@
+package Object;
+
+Object fs;
+Object fs_g() { return fs; }
+void fs_s(Object fs_s) { fs = fs_s; }
+
+Object Object_Object(Object self) {
+    return self;
+}
+
+bit equals_Object_Object(Object a, Object b) {
+  if (a == null) {
+    if (b == null) {
+      return true;
+    }
+    return false;
+  }
+  return (a.__cid == String() ? equals_Object@String(a, b) : a.__cid == Character() ? equals_Object@Character(a, b) : a.__cid == Number() ? equals_Object@Object(a, b) : a.__cid == Bucketing() ? equals_Object@Object(a, b) : a.__cid == Integer() ? equals_Object@Integer(a, b) : a.__cid == ArrayList() ? equals_Object@Object(a, b) : a.__cid == BucketingTest() ? equals_Object@Object(a, b) : a.__cid == Pair() ? equals_Object@Object(a, b) : a.__cid == Assert() ? equals_Object@Object(a, b) : a.__cid == Object() ? equals_Object@Object(a, b) : 0);
+}
+
+int hashCode_Object(Object o) {
+  return (o != null ? (o.__cid == String() ? hashCode@String(o) : o.__cid == Character() ? hashCode@Object(o) : o.__cid == Number() ? hashCode@Object(o) : o.__cid == Bucketing() ? hashCode@Object(o) : o.__cid == Integer() ? hashCode@Integer(o) : o.__cid == ArrayList() ? hashCode@Object(o) : o.__cid == BucketingTest() ? hashCode@Object(o) : o.__cid == Pair() ? hashCode@Object(o) : o.__cid == Assert() ? hashCode@Object(o) : o.__cid == Object() ? hashCode@Object(o) : 0) : 0);
+}
+
+Object toString(Object self) {
+  return String_String_char_int_int(new Object(__cid=String()), new Array_char(length=17+1, A="Object toString()"), 0, 17);
+}
+
+bit equals_Object(Object self, Object obj) {
+  return self == obj;
+}
+
+int hashCode(Object self) {
+  return 0;
+}
+
+struct Object {
+  int           __cid;
+  Object        key_Pair;
+  Object        value_Pair;
+  Object        classUnderTest_BucketingTest;
+  Array_Object  elementData_ArrayList;
+  int           DEFAULT_CAPACITY_ArrayList;
+  int           capacity_ArrayList;
+  int           size_ArrayList;
+  int           value_Integer;
+  int           integerKey_Bucketing;
+  int           numberOfSlots_Bucketing;
+  Array_Object  bucketHash_Bucketing;
+  Object        overflow_Bucketing;
+  Array_int     sizeBucket_Bucketing;
+  int           numberOfElements_Bucketing;
+  int           index_Bucketing;
+  int           size_Bucketing;
+  int           mod_Bucketing;
+  Object        ilterator_Bucketing;
+  double        rehash_Bucketing;
+  char          value_Character;
+  Array_char    _value_String;
+  int           _count_String;
+}

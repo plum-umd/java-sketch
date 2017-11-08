@@ -1,0 +1,12 @@
+package Pair;
+
+Object Pair_Pair(Object self) {
+    return self;
+}
+
+Object Pair_Pair_K_V(Object self, Object key, Object value) {
+  self.key_Pair = key;
+  self.value_Pair = value;
+  return self;
+}
+
