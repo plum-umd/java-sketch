@@ -1,0 +1,10 @@
+package PrivateExample;
+
+Object PrivateExample_PrivateExample(Object self) {
+    return self;
+}
+
+harness void test_privateExample() {
+  Object self = Object_Object(new Object(__cid=Object()));
+}
+

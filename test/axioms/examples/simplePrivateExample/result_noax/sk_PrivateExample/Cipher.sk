@@ -1,0 +1,22 @@
+package Cipher;
+
+Object Cipher_Cipher(Object self) {
+    return self;
+}
+
+Object Cipher_Cipher_String(Object self, Object mode) {
+  self.mode_Cipher = mode;
+  return self;
+}
+
+Object getInstance_String(Object mode) {
+  return Cipher_Cipher_String(new Object(__cid=Cipher()), mode);
+}
+
+void init_int_Certificate(Object self, int opmode, Object certificate) {
+}
+
+Array_char doFinal_byte(Object self, Array_char text) {
+  return text;
+}
+
