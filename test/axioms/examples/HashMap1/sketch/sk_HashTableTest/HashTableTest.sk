@@ -16,18 +16,18 @@ harness void mn_int_int_int(int x, int y, int z) {
   Object zz = Integer_Integer_int(new Object(__cid=Integer()), z);
   setUp@HashTableTest(self);
   testClear_Integer_Integer@HashTableTest(self, xx, yy);
-  testPutAndGet_Integer_Integer_Integer@HashTableTest(self, xx, yy, zz);
-  testGetEmpty@HashTableTest(self);
-  testReplacing_Integer_Integer_Integer@HashTableTest(self, xx, yy, zz);
-  testKeys_Integer_Integer@HashTableTest(self, xx, yy);
-  testValues_Integer_Integer@HashTableTest(self, xx, yy);
-  testContainsValue_Integer_Integer@HashTableTest(self, xx, yy);
-  testContainsKey_Integer_Integer@HashTableTest(self, xx, yy);
-  testRemoveNonExistent_Integer_Integer@HashTableTest(self, xx, yy);
-  testRemove_Integer_Integer@HashTableTest(self, xx, yy);
-  if (x >= INITIAL_SIZE && x < 0) {
-    testSize_int_int@HashTableTest(self, x, y);
-  }
+  /* testPutAndGet_Integer_Integer_Integer@HashTableTest(self, xx, yy, zz); */
+  /* testGetEmpty@HashTableTest(self); */
+  /* testReplacing_Integer_Integer_Integer@HashTableTest(self, xx, yy, zz); */
+  /* testKeys_Integer_Integer@HashTableTest(self, xx, yy); */
+  /* testValues_Integer_Integer@HashTableTest(self, xx, yy); */
+  /* testContainsValue_Integer_Integer@HashTableTest(self, xx, yy); */
+  /* testContainsKey_Integer_Integer@HashTableTest(self, xx, yy); */
+  /* testRemoveNonExistent_Integer_Integer@HashTableTest(self, xx, yy); */
+  /* testRemove_Integer_Integer@HashTableTest(self, xx, yy); */
+  /* if (x >= INITIAL_SIZE && x < 0) { */
+  /*   testSize_int_int@HashTableTest(self, x, y); */
+  /* } */
 }
 
 Array_Object makeInts_Integer(Object self, Object i1) {

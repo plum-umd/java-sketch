@@ -149,7 +149,9 @@ Object xform_getb_ArrayList_int(ArrayList self, int i) {
 }
 Object xform_get_ArrayList_int(ArrayList self, int i) {
   switch(self) {
-  case Arraylist: { assert false; }
+  case Arraylist: {
+    return null;
+  }
   case Add: { assert false; }
   case Addb: {
     return ((xform_size_ArrayList(self.self).__cid == Integer() ? intValue@Integer(xform_size_ArrayList(self.self)) : 0) == i - 1 ? self.e : xform_get_ArrayList_int(self.self, i));
