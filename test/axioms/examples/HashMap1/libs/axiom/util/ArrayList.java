@@ -36,4 +36,8 @@ class ArrayList {
     axiom Object get(Object set!(ArrayList a, int j, Object e), int i) {
 	return i==j ? e : get(a, i);
     }
+
+    axiom Object get(Object ArrayList(), int i) {
+	return null;
+    }
 }
