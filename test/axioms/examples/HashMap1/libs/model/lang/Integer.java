@@ -25,4 +25,8 @@ public class Integer {
     	}
     	return false;
     }
+
+    public int hashCode() {
+	return this.value;
+    }
 }
