@@ -40,6 +40,15 @@ public class String implements CharSequence{
     	_count = count;	
     }
 
+    public String(byte[] bytes) {
+    	int len = bytes.length;
+    	_value = new char[len];
+    	for(int i = 0; i < len; i++) {
+    	    _value[i] = (char)(bytes[i]);
+    	}
+    	_count = len;
+    }
+    
     public char charAt(int index) {
 	if (0 <= index && index < _count) return _value[index];
 	return '\0';
@@ -221,6 +230,19 @@ public class String implements CharSequence{
 	return this;
     }
 
+    public byte[] getBytes() {
+    	return getBytes(this.toString());
+    }
+    
+    public static byte[] getBytes(String str) {
+    	int len = str.length();
+    	byte[] bytes = new byte[len];
+    	for (int i = 0; i < len; i++) {
+    	    bytes[i] = (byte)(str.charAt(i));
+    	}
+    	return bytes;
+    }
+    
     public String substring(int beginIndex) {
 	int subLen = _count - beginIndex;
 	assert subLen > 0;
