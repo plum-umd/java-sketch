@@ -1,6 +1,6 @@
 package java.util;
 
-public class ArrayList<E> {
+public class ArrayList<E> implements List<E>{
 
     Object[] elementData;
 
