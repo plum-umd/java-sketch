@@ -56,6 +56,7 @@ public class ArrayList<E> implements List<E>{
     }
 
     public <E> void add(int index, E e) {
+    // public <E> void add(int index, E e) {
 	checkAdjustSize();
 	createSpace(index);
 	elementData[index] = e;
@@ -63,6 +64,7 @@ public class ArrayList<E> implements List<E>{
     }
 
     public <E> boolean add(E e) {
+    // public <E> boolean add(E e) {
 	checkAdjustSize();
 	elementData[size++] = e;
 	return true;
