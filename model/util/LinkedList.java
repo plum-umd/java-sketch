@@ -4,7 +4,8 @@ public class LinkedList<E> implements List<E> {
     public LinkedList() { };
     
     /* These are translated to uninterpreted functions in Sketch which doesn't work */
-    public boolean add(Object e) {
+    public boolean add(E e) {
+    // previous: public boolean add(Object e) 2017-11-13
     	return false;
     }
     public boolean isEmpty() {
