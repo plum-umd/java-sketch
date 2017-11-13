@@ -325,7 +325,10 @@ class Encoder(object):
         #   i.e. user didn't write constructor at top of Java file
         default = filter(lambda m: cname == m.name, adt_mtds)
         if not default:
-            m = MethodDeclaration({u'@t':u'MethodDeclaration', u'name':cname.lower(),
+            default_name = cname.lower();
+            if cname == cname.lower().capitalize():
+                default_name += "__"
+            m = MethodDeclaration({u'@t':u'MethodDeclaration', u'name':default_name,
                                    u'type':{u'@t':u'ClassOrInterfaceType',u'name':u'Object',},},)
             # set this to pure so we don't generate a bang constructor and default...
             # so we know it's default
