@@ -3,7 +3,9 @@
 public class TreeSet<E> implements Set{
     E[] set;
     int capacity;
-    int size;
+
+	
+	int size;
 
     static int INITIAL_CAPACITY = 16;
     static int RESIZE_FACTOR = 2;
@@ -81,4 +83,13 @@ public class TreeSet<E> implements Set{
     public boolean isEmpty() {
 	return size == 0;
     }
+	
+    public E last()
+    {
+	if (!isEmpty())
+            return set[size - 1];
+        else
+	    return null;     
+    }
+    
 }
