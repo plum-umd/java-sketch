@@ -19,4 +19,8 @@ public class LinkedList<E> implements List<E> {
     public boolean remove(int index) {
     	return false;
     }
+
+    public <E> E set (int index, E element) {
+	return null;
+    }
 }
