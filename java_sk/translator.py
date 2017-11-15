@@ -1398,7 +1398,7 @@ class Translator(object):
             logging.error('{} wrapper not found. Perhaps jsketch was run without including it.'.format(boxName))
             sys.exit()
         objCreExpr.symtab = prim.symtab
-        objCreExpr.symtab[prim.name] = prim
+        # objCreExpr.symtab[prim.name] = prim
         objCreExpr.args = [prim]
         
         return objCreExpr
