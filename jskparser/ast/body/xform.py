@@ -13,6 +13,8 @@ from ..stmt.returnstmt import ReturnStmt
 from ..expr.conditionalexpr import ConditionalExpr
 from ..expr.binaryexpr import BinaryExpr
 
+from axiomparameter import AxiomParameter
+
 # This is just going to be a child of MethodDeclaration and allow for special handling of
 # the switch statements
 class Xform(BodyDeclaration):
@@ -39,7 +41,7 @@ class Xform(BodyDeclaration):
     def typee(self): return self._type
     @typee.setter
     def typee(self, v): self._type = v
-
+    
     # this is just a helper cuz I'm not about having this all over the place
     @staticmethod
     def gen_xform(cls, name, adt_mtds, params):
@@ -59,15 +61,20 @@ class Xform(BodyDeclaration):
                                   u'body':{u'@t':u'BlockStmt',
                                            u'stmts':{u'@e':[xform, ret_none],},},
                                   u'parameters':{u'@e':params},},)
-    def gen_switch(self, adt_mtds, depth):
+    def gen_switch(self, adt_mtds, depth, arg):
         entries = []
         for a in adt_mtds:
             entries.append({u'@t':u'SwitchEntryStmt',
                             u'label':{u'@t':u'NameExpr',
                                       u'name':a.name.capitalize(),},},)
+        name = str(arg.name)
+            
+        slf = name+((u'_'+name)*depth)
 
-        slf = u'self'+(u'_self'*depth)
-        slf_dot = (u'self_'*(depth-1))+u'self.self'
+        if name != "self" and depth == 1:
+            slf_dot = name+u'._'+str(self.typee).lower()
+        else:
+            slf_dot = ((name+u'_')*(depth-1))+name+u'.self'            
 
         assn = {u'@t':u'AssignExpr',
                 u'target':{u'@t':u'LiteralExpr', u'name':slf,},
@@ -94,22 +101,28 @@ class Xform(BodyDeclaration):
 
         xform = {u'@t':u'Xform',u'stmt':switch,u'name':self.name,
                  u'type':{u'@t':u'ClassOrInterfaceType',u'name':self.name,},}
-        
+
         block = BlockStmt({u'@t':u'BlockStmt',
                            u'stmts':{u'@e':[vdec_expr, assn_expr, xform],},},)
-        
+            
         return block
 
-    def build_switch(self, cases, body, adt_mtds, depth, switch):
+    def build_switch(self, cases, body, adt_mtds, depth, arg_num, args, switch):
         new_switch = None
+
+        if len(cases) > 0:
+            if cases[0][1] != arg_num:
+                arg_num = cases[0][1]
+                depth = 1
+
         if not switch:
-            new_block = self.gen_switch(adt_mtds, depth)
+            new_block = self.gen_switch(adt_mtds, depth, args[arg_num])
             new_switch = new_block.stmts[2]
         else:
             new_switch = switch
             
         for s in new_switch.stmt.entries:
-            if str(s.label) == cases[0]:
+            if str(s.label) == cases[0][0]:
                 if len(cases) == 1:
                     if s.stmts:
                         raise Exception('Are we overwriting an axiom??')
@@ -122,7 +135,7 @@ class Xform(BodyDeclaration):
                 else:
                     b = BlockStmt()
                     switch2 = s.stmts[0].stmts[0] if len(s.stmts) > 0 else None
-                    body2 = self.build_switch(cases[1:], body, adt_mtds, depth+1, switch2)
+                    body2 = self.build_switch(cases[1:], body, adt_mtds, depth+1, arg_num, args, switch2)
                     body = [body2] if not isinstance(body2, list) else body2
                     b.stmts = body
                     s.stmts = [b]
@@ -149,14 +162,37 @@ class Xform(BodyDeclaration):
                     s.stmts = [b]
                     b.add_parent_post(s, True)
                     map(lambda s: s.add_parent_post(b), body)                       
+
+    def add_body_nested(self, casess, body, adt_mtds, args):
+        cases = []
+        for i in range(0, len(casess)):
+            for c in casess[i]:
+                cases.append((c,i))
+                
+        # i dont think i know what this means yet...but it's probably not good
+        if len(cases) == 0:
+            raise Exception('Length of cases == 0')
+
+        for s in self.stmt.entries:
+            if str(s.label) == cases[0][0]:                
+                if len(cases) == 1:
+                    if s.stmts:
+                        raise Exception('Are we overwriting an axiom??')
+                    b = BlockStmt()
+                    body = [body] if not isinstance(body, list) else body
+                    b.stmts = body
+                    s.stmts = [b]
+                    b.add_parent_post(s, True)
+                    map(lambda s: s.add_parent_post(b), body)                       
                 else:
                     b = BlockStmt()
                     switch = s.stmts[0].stmts[0] if len(s.stmts) > 0 else None
-                    body2 = self.build_switch(cases[1:], body, adt_mtds, 1, switch)
+                    body2 = self.build_switch(cases[1:], body, adt_mtds, 1, 0, args, switch)
                     body = [body2] if not isinstance(body2, list) else body2
                     b.stmts = body
                     s.stmts = [b]
                     b.add_parent_post(s, True)
                     map(lambda s: s.add_parent_post(b), body)                       
+        
                     
     def __str__(self): return self._name

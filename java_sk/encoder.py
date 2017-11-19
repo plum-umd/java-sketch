@@ -470,18 +470,22 @@ class Encoder(object):
             #    them to appropriate IRs (i.e. JSON dicts)
             a.body.stmts = self.tltr.trans_xform(a.name, body, a.body.stmts)
 
-            # Find the right instance for which case this should be in the
-            #    resulting switch statement
-            decs = utils.extract_nodes([AxiomDeclaration], a.parameters[0])
+            casess = []
             
-            # Add the empty constructor to the declarations if needed
-            if not a.parameters[0].method:
-                decs.append(adt_mtds[0])
+            for i in range(0, len(a.parameters)):
+                # Find the right instance for which case this should be in the
+                #    resulting switch statement
+                decs = utils.extract_nodes([AxiomDeclaration], a.parameters[i])
 
-            cases = map(lambda d: d.name.capitalize(), decs)                
+                # Add the empty constructor to the declarations if needed
+                if not a.parameters[0].method:
+                    decs.append(adt_mtds[0])
+
+                cases = map(lambda d: d.name.capitalize(), decs)
+                casess.append(cases)
 
             # add cases to body
-            body.add_body(cases, a.body.stmts, adt_mtds)                    
+            body.add_body_nested(casess, a.body.stmts, adt_mtds, xf.parameters)
                     
         for v in xforms.values():
             buf.write(self.tltr.trans(v))        
