@@ -278,7 +278,7 @@ class Encoder(object):
         # Generates Object Wrapper Functions for ADT Constructors
         def gen_obj_constructor(mtd):
             name = mtd.name
-            (ptyps, pnms) = (map(str, mtd.param_typs()), map(str, mtd.param_names()))
+            (ptyps, pnms) = (map(lambda t: self.tltr.trans_ty(t), mtd.param_typs()), map(str, mtd.param_names()))
             params = ', '.join(map(lambda p: ' '.join(p), zip(ptyps, pnms)))
             c = 'Object '
             if name == cname.lower():
