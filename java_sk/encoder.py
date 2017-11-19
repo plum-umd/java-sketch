@@ -414,23 +414,26 @@ class Encoder(object):
             xf = xforms[xnm]
             xf.name = 'xform_{}'.format(a.name)
 
-            fst_param = a.parameters[0]
-            xf2 = []
-            # if fst_param.method:
-            #     if fst_param.method.parameters:
-            depth = 1
-            while fst_param.method and fst_param.method.parameters:
-                xf2 = filter(lambda m: m.name == fst_param.method.name, adt_mtds)
-                xf2 = xf2[0]
-                for (xp, ap) in zip(xf2.parameters, fst_param.method.parameters[1:]):
-                    old_name = '#'+ap.name+"_axparam#"
-                    if not old_name in xf.symtab: 
-                        xf.symtab[old_name] = (u'self_'*(depth-1))+u'self.'+xp.name
+            index = 0
+            for (param,xparam) in zip(a.parameters, xf.parameters):
+                xf2 = []
+                # if param.method:
+                #     if param.method.parameters:
+                depth = 1 if index == 0 else 2
+                index += 1
+                while param.method and param.method.parameters:
+                    xf2 = filter(lambda m: m.name == param.method.name, adt_mtds)
+                    xf2 = xf2[0]
+                    for (xp, ap) in zip(xf2.parameters, param.method.parameters[1:]):
+                        name = xparam.name
+                        old_name = '#'+ap.name+"_axparam#"
+                        if not old_name in xf.symtab: 
+                            xf.symtab[old_name] = ((name+u'_')*(depth-1))+name+u'.'+xp.name
 
-                ap_name = fst_param.method.parameters[0].name
-                xf.symtab['#'+ap_name+"_axparam#"] = (u'self_'*(depth-1))+u'self.self'
-                fst_param = fst_param.method.parameters[0]
-                depth += 1
+                    ap_name = param.method.parameters[0].name
+                    xf.symtab['#'+ap_name+"_axparam#"] = ((name+u'_')*(depth-1))+name+u'.self'
+                    param = param.method.parameters[0]
+                    depth += 1
                 
         # populate individual xforms with axioms
         #   
