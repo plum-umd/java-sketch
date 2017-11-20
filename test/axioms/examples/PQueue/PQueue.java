@@ -33,6 +33,9 @@ class PQueue {
   // Construct a priority queue with an initial capacity
   public PQueue(int sz) {
     heap = new ArrayList<>(sz);
+    map = new HashMap<>();
+    heapSize = 0;
+    heapCapacity = 0;
   }
   
   
