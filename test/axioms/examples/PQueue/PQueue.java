@@ -1,6 +1,7 @@
 /**
  * A min priority queue implementation using a binary heap.
  * @author William Fiset, william.alexandre.fiset@gmail.com
+ * @author Siyuan Xu, code adapted or modified from exisiting repo
  **/
 
 import java.util.*;
