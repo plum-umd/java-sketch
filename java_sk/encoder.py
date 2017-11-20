@@ -431,7 +431,7 @@ class Encoder(object):
                             xf.symtab[old_name] = ((name+u'_')*(depth-1))+name+u'.'+xp.name
 
                     ap_name = param.method.parameters[0].name
-                    name = ap_name
+                    name = u'self' #ap_name
                     xf.symtab['#'+ap_name+"_axparam#"] = ((name+u'_')*(depth-1))+name+u'.self'
                     param = param.method.parameters[0]
                     depth += 1
