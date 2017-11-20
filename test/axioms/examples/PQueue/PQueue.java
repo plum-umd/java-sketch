@@ -353,22 +353,21 @@ class PQueue {
 
     PQueue q = new PQueue();
 
-  //  Integer[] nums = { new Integer(3),new Integer(2), new Integer(5), new Integer(6), new Integer(7), new Integer(9), new Integer(4), new Integer(8), new Integer(1) };
+    Integer[] nums = { new Integer(3),new Integer(2), new Integer(5), new Integer(6), new Integer(7), new Integer(9), new Integer(4), new Integer(8), new Integer(1) };
 
      // Try manually creating heap
      
-    Integer tmp = new Integer(3);
+   
      //for (int n : nums) q.add(n);
-     q.add(tmp);
-    //for (int i = 0; i <= 8; i++ )
-    //{
-	// q.add(nums[i]);
-    //}
+    for (int i = 0; i <= 8; i++ )
+    {
+	 q.add(nums[i]);
+    }
 
-   // for (int i = 1; i <= 9; i++)
-   //     assert ( i == (int) q.poll() );
-
-    assert q.size()== 1;
+    for (int i = 1; i <= 9; i++)
+    {
+        assert ( new Integer(i) ==  q.poll() );
+    }
 
   //   assert q.isEmpty();
 
@@ -378,7 +377,6 @@ class PQueue {
 
   }
 }
-
 
 
 
