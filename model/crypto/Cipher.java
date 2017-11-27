@@ -10,11 +10,15 @@ public class Cipher {
     public Cipher(String type) {
 	this.type = type;
 	this.ENCRYPT_MODE = 1;
-	this.ENCRYPT_MODE = 2;
+	this.DECRYPT_MODE = 2;
     }
 
     public static Cipher getInstance(String type) {
     	return new Cipher(type);
+    }
+
+    public static Cipher getInstance(String type, String extra) {
+	return new Cipher(type);
     }
 
     public void init(int opmode, Key key) {
@@ -22,6 +26,11 @@ public class Cipher {
 	this.mode = opmode;
     }
 
+    public void init(int opmode, SecretKey key, IvParameterSpec i) {
+	this.key = key;
+	this.mode = opmode;
+    }
+    
     public byte[] doFinal(byte[] text) {
 	byte[] k = key.getEncoded();
 	byte[] result = new byte[text.length];
