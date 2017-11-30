@@ -58,7 +58,7 @@ public class TreeSet<E> implements Set{
     
     public boolean remove(Object o) {
 	int index = get_Index(o);
-	if (index > 0) {
+	if (index >= 0) {
 	    for (int j=index; j<size-1; j++) {
 		set[j] = set[j+1];
 	    }
