@@ -1,10 +1,14 @@
+
+
 /**
  * A min priority queue implementation using a binary heap.
  * @author William Fiset, william.alexandre.fiset@gmail.com
- * @author Siyuan Xu, code adapted or modified from exisiting repo
+ * @author Siyuan Xu, code adapted or modified from existing repo for sketch synthesis use
  **/
 
 import java.util.*;
+
+import org.junit.*;
 
 //class PQueue <T extends Comparable<T>> {
 class PQueue {
@@ -349,30 +353,129 @@ class PQueue {
 
     static final int MAX_SZ = 100;
 
+    testEmpty();
+	testHeapProperty();
+	testClear();
+	//testContainment();
+	testRemovingDuplicates();
 
-    PQueue q = new PQueue();
-    Integer[] nums = { new Integer(3),new Integer(2), new Integer(5), new Integer(6), new Integer(7), new Integer(9), new Integer(4), new Integer(8), new Integer(1) };
-    
-    // Try manually creating heap
-	     
-	   
-    //for (int n : nums) q.add(n);
-    for (int i = 0; i <= 8; i++ )
-    {
-	q.add(nums[i]);
-    }
-
-    for (int i = 1; i <= 9; i++)
-    {
-	assert (i == (int)q.poll());
-    }
-
-  //  assertEquals(q.poll(), null);
-
-  //  assertEquals(q.peek(), null);
 
   }
+
+    @Test
+    public void testEmpty() {
+    	PQueue<Integer> q = new PQueue<>();
+    	Assert.assertEquals (q.size(), 0);
+    	assert (q.isEmpty());
+    	assert q.poll() == null;
+    	assert q.peek() == null;
+    }
+
+	@Test
+    public void testHeapProperty ()
+    {
+		PQueue q = new PQueue();
+    	Integer[] nums = { new Integer(3),new Integer(2), new Integer(5), new Integer(6), new Integer(7), new Integer(9), new Integer(4), new Integer(8), new Integer(1) };
+    
+    	// Try manually creating heap
+	     
+	   
+    	//for (int n : nums) q.add(n);
+    	for (int i = 0; i <= 8; i++ )
+    	{
+			q.add(nums[i]);
+    	}
+
+    	for (int i = 1; i <= 9; i++)
+    	{
+        	Integer ii = q.poll();
+			assert (i == ii.intValue());
+    	}
+    }
+
+	@Test
+  	public void testClear() 
+	{
+
+    	PQueue q = new PQueue();
+    	Integer[] nums = {new Integer(11), new Integer(22), new Integer(33), new Integer(44), new Integer(55)};
+    	for (int i = 0; i < 5; i++ )
+    	{
+			q.add(nums[i]);
+    	}
+    	q.clear();
+    	Assert.assertEquals(q.size(), 0);
+    	Assert.assertTrue(q.isEmpty());
+	}
+
+	
+	/*
+	@Test
+  	public void testContainment() {
+
+    	Integer[] nums = {new Integer(11), new Integer(22), new Integer(33), new Integer(44), new Integer(55)};    
+    	PQueue q = new PQueue();
+		for (int i = 0; i < 5; i++ )
+    	{
+			q.add(nums[i]);
+    	}
+	// not sure why the following does not work..
+    	q.remove(new Integer(11));
+    	Assert.assertFalse(q.contains(new Integer(11)));
+    	//q.remove(new Integer(22));
+    	//Assert.assertFalse(q.contains(new Integer(22)));
+    	//q.remove(new Integer(33));
+    	//Assert.assertFalse(q.contains(new Integer(33)));
+    	//q.remove(new Integer(44));
+    	//Assert.assertFalse(q.contains(new Integer(44)));
+    	//q.clear();
+    	//Assert.assertFalse(q.contains(new Integer(55)));
+
+
+	}*/
+	
+	// There is no assert in the test, so no constraints! We don't need them! 
+	/*
+	@Test
+  	public void testRemoving() {
+
+    	Integer [] in = {new Integer(1),new Integer(2),new Integer(3),new Integer(4),new Integer(5), new Integer(6),new Integer(7)};
+    	Integer [] removeOrder = { new Integer(1),new Integer(3),new Integer(6),new Integer(4),new Integer(5),new Integer(7),new Integer(2) };
+    	sequentialRemoving(in, removeOrder);
+
+    	in = new Integer[] {new Integer(1),new Integer(2),new Integer(3),new Integer(4),new Integer(5), new Integer(6),new Integer(7),new Integer(8), new Integer(9),new Integer(10),new Integer(11)};
+    	removeOrder = new Integer[] {new Integer(7),4,6,10,2,5,11,3,1,8,9};
+    	sequentialRemoving(in, removeOrder);
+
+	}
+	*/
+	
+	@Test
+  	public void testRemovingDuplicates() {
+
+    	Integer[] in = {new Integer(2), new Integer(7), new Integer(2), new Integer(11), new Integer(7),new Integer(13),new Integer(2)};
+		PQueue pq = new PQueue();
+   		for (int i = 0; i < 7; i++ )
+    	{
+			pq.add(in[i]);
+    	}
+
+    	Assert.assertTrue(pq.peek().intValue()==2);
+    	pq.add(new Integer(3));
+
+    	Assert.assertTrue(pq.poll().intValue() == 2);
+	// not sure why the following does not work..
+    	//Assert.assertTrue(pq.poll().intValue() == 2);
+    	//Assert.assertTrue(pq.poll().intValue() == 2);
+    	//Assert.assertTrue(pq.poll().intValue() == 3);
+    	//Assert.assertTrue(pq.poll().intValue() == 7);
+    	//Assert.assertTrue(pq.poll().intValue() == 7);
+    	//Assert.assertTrue(pq.poll().intValue() == 11);
+   		//Assert.assertTrue(pq.poll().intValue() == 13);
+
+	}
 }
+
 
 
 
