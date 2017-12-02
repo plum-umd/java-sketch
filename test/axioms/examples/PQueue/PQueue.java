@@ -212,9 +212,6 @@ class PQueue {
   }
 
 
-//---------------------------------------------------------Below does not work---------------------------------------------
-
-
   // Removes a node at particular index, O(log(n))
   private Integer removeAt(int i) {
     
@@ -409,7 +406,6 @@ class PQueue {
 	}
 
 	
-	/*
 	@Test
   	public void testContainment() {
 
@@ -419,20 +415,19 @@ class PQueue {
     	{
 			q.add(nums[i]);
     	}
-	// not sure why the following does not work..
     	q.remove(new Integer(11));
     	Assert.assertFalse(q.contains(new Integer(11)));
-    	//q.remove(new Integer(22));
-    	//Assert.assertFalse(q.contains(new Integer(22)));
-    	//q.remove(new Integer(33));
-    	//Assert.assertFalse(q.contains(new Integer(33)));
-    	//q.remove(new Integer(44));
-    	//Assert.assertFalse(q.contains(new Integer(44)));
-    	//q.clear();
-    	//Assert.assertFalse(q.contains(new Integer(55)));
+    	q.remove(new Integer(22));
+    	Assert.assertFalse(q.contains(new Integer(22)));
+    	q.remove(new Integer(33));
+    	Assert.assertFalse(q.contains(new Integer(33)));
+    	q.remove(new Integer(44));
+    	Assert.assertFalse(q.contains(new Integer(44)));
+    	q.clear();
+    	Assert.assertFalse(q.contains(new Integer(55)));
 
 
-	}*/
+	}
 	
 	// There is no assert in the test, so no constraints! We don't need them! 
 	/*
@@ -460,22 +455,31 @@ class PQueue {
 			pq.add(in[i]);
     	}
 
-    	Assert.assertTrue(pq.peek().intValue()==2);
-    	pq.add(new Integer(3));
+	// the double dot does not work(function_a().function_b()), so needs a temporary variable
 
-    	Assert.assertTrue(pq.poll().intValue() == 2);
-	// not sure why the following does not work..
-    	//Assert.assertTrue(pq.poll().intValue() == 2);
-    	//Assert.assertTrue(pq.poll().intValue() == 2);
-    	//Assert.assertTrue(pq.poll().intValue() == 3);
-    	//Assert.assertTrue(pq.poll().intValue() == 7);
-    	//Assert.assertTrue(pq.poll().intValue() == 7);
-    	//Assert.assertTrue(pq.poll().intValue() == 11);
-   		//Assert.assertTrue(pq.poll().intValue() == 13);
+	Integer tmp = pq.peek();
+    	Assert.assertTrue(tmp.intValue()==2);
+    	pq.add(new Integer(3));
+	
+	tmp = pq.poll();
+    	Assert.assertTrue(tmp.intValue() == 2);
+	tmp = pq.poll();
+    	Assert.assertTrue(tmp.intValue() == 2);
+	tmp = pq.poll();
+    	Assert.assertTrue(tmp.intValue() == 2);
+	tmp = pq.poll();    	
+	Assert.assertTrue(tmp.intValue() == 3);
+	tmp = pq.poll();
+    	Assert.assertTrue(tmp.intValue() == 7);
+	tmp = pq.poll();
+    	Assert.assertTrue(tmp.intValue() == 7);
+	tmp = pq.poll();
+    	Assert.assertTrue(tmp.intValue() == 11);
+	tmp = pq.poll();
+   	Assert.assertTrue(tmp.intValue() == 13);
 
 	}
 }
-
 
 
 
