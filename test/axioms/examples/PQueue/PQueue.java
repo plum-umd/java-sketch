@@ -113,7 +113,7 @@ class PQueue {
 
     // Logarithmic removal with map, O(log(n))
     Integer index = mapGet(element);
-    int indexTmp = (int) index;
+    int indexTmp = index.intValue();
     if (index != null) 
        removeAt(indexTmp);
     return index != null;
@@ -220,6 +220,7 @@ class PQueue {
     heapSize--;
     Integer removed_data = heap.get(i);
     swap(i, heapSize);
+	
 
     // Obliterate the value
     heap.set(heapSize, null);
@@ -232,10 +233,25 @@ class PQueue {
 
     // intry sinking element
     sink(i);
+	
 
+	/*	The newer synthesized version Verified Works! 2017-11-31
+	generator example
+	boolean b = k.equals(key);
+
+            if ({|b, k == key|}) {
+    */
     // If sinking did not work try swimming
-    if ( heap.get(i).equals(elem) )
+	Integer res = heap.get(i);
+	boolean b = res.equals(elem);
+	if ({|b,res == elem|})
+		swim(i);
+    
+	// original code!!!!!! 
+	/*
+	if ( heap.get(i).equals(elem) )
       swim(i);
+	*/
 
     return removed_data;
 
@@ -251,7 +267,8 @@ class PQueue {
 
   // Clears everything inside the heap, O(n)
   public void clear() {
-    for (int i = 0; i < heapCapacity; i++)
+	for (int i = 0; i < heapCapacity; i++)
+    //for (int i = ??; i < heapCapacity; i++)
       heap.set(i, null);
     heapSize = 0;
     map.clear();
@@ -281,11 +298,7 @@ class PQueue {
     if (elem == null) return false;
     return map.containsKey(elem);
 
-    // Linear scan to check containment, O(n)
-    // for(int i = 0; i < heapSize; i++)
-    //   if (heap.get(i).equals(elem))
-    //     return true;
-    // return false;
+   
 
   }
 
@@ -353,7 +366,7 @@ class PQueue {
     testEmpty();
 	testHeapProperty();
 	testClear();
-	//testContainment();
+	testContainment();
 	testRemovingDuplicates();
 
 
@@ -377,8 +390,8 @@ class PQueue {
     	// Try manually creating heap
 	     
 	   
-    	//for (int n : nums) q.add(n);
     	for (int i = 0; i <= 8; i++ )
+    	//for (int i = ??; i <= 8; i++ )
     	{
 			q.add(nums[i]);
     	}
