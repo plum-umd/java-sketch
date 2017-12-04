@@ -267,8 +267,8 @@ class PQueue {
 
   // Clears everything inside the heap, O(n)
   public void clear() {
-	for (int i = 0; i < heapCapacity; i++)
-    //for (int i = ??; i < heapCapacity; i++)
+	//for (int i = 0; i < heapCapacity; i++)
+    for (int i = ??; i < heapCapacity; i++)
       heap.set(i, null);
     heapSize = 0;
     map.clear();
@@ -392,11 +392,13 @@ class PQueue {
 	   
     	for (int i = 0; i <= 8; i++ )
     	//for (int i = ??; i <= 8; i++ )
-    	{
+    	{sketch --fe-tempdir result --fe-keep-tmp --fe-output sk_PQueue --fe-inc result/sk_PQueue result/sk_PQueue/main.sk --bnd-unroll-amnt 10 --bnd-inline-amnt 3
+
 			q.add(nums[i]);
     	}
 
-    	for (int i = 1; i <= 9; i++)
+    	//for (int i = 1; i <= 9; i++)
+		for (int i = 1; i <= 9; i++)
     	{
         	Integer ii = q.poll();
 			assert (i == ii.intValue());
@@ -406,7 +408,6 @@ class PQueue {
 	@Test
   	public void testClear() 
 	{
-
     	PQueue q = new PQueue();
     	Integer[] nums = {new Integer(11), new Integer(22), new Integer(33), new Integer(44), new Integer(55)};
     	for (int i = 0; i < 5; i++ )
