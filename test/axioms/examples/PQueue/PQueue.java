@@ -392,8 +392,7 @@ class PQueue {
 	   
     	for (int i = 0; i <= 8; i++ )
     	//for (int i = ??; i <= 8; i++ )
-    	{sketch --fe-tempdir result --fe-keep-tmp --fe-output sk_PQueue --fe-inc result/sk_PQueue result/sk_PQueue/main.sk --bnd-unroll-amnt 10 --bnd-inline-amnt 3
-
+    	{
 			q.add(nums[i]);
     	}
 
