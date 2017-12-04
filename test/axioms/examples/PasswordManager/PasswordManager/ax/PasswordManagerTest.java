@@ -29,6 +29,8 @@ public class PasswordManagerTest {
 		pasman.addPassword("yahoo", "12345");
 		pasman.addPassword("google", "5441944");
 		String pass1 = pasman.getPass("google");
+
+		assert pass1.equals("5441944");
 		
 		// testAddGet();
 
