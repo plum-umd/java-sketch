@@ -34,12 +34,14 @@ public class Cipher {
     public byte[] doFinal(byte[] text) {
 	byte[] k = key.getEncoded();
 	byte[] result = new byte[text.length];
-	if (k.length == 0) return result;
+	if (k.length == 0) {
+	    return result;
+	}
 	if (mode == ENCRYPT_MODE) {
 	    for (int i = 0; i < text.length; i++) {
 		result[i] = text[i] + k[i%k.length];
 	    }
-	} else {
+	} else if (mode == DECRYPT_MODE) {
 	    for (int i = 0; i < text.length; i++) {
 		result[i] = text[i] - k[i%k.length];
 	    }
