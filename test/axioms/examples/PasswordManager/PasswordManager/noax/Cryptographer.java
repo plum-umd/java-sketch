@@ -38,8 +38,6 @@ public class Cryptographer {
 	IvParameterSpec ivParameterSpec;
 	// final int MAX_LENGTH_PASSWORD = 16;    
 	private int MAX_LENGTH_PASSWORD;
-
-    harness public void mn() {}
     
         public Cryptographer() // throws NoSuchAlgorithmException,
 			// NoSuchPaddingException, NoSuchProviderException,

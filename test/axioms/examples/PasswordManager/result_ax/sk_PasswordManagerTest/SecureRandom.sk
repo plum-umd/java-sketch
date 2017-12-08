@@ -1,0 +1,55 @@
+package SecureRandom;
+
+adt SecureRandom {
+    Securerandom  { }
+    Nextbytes     { SecureRandom self; Object k; }
+}
+
+Object SecureRandom_SecureRandom() {
+    return new Object(__cid=SecureRandom(), _securerandom=new Securerandom());
+}
+
+Object nextbytes_Object_Object(Object self, Object k) {
+    return new Object(__cid=SecureRandom(), _securerandom=new Nextbytes(self=self._securerandom, k=k));
+}
+
+Object xform_SecureRandom(SecureRandom self) {
+  switch(self) {
+  case Securerandom: {
+    return xform_securerandom_SecureRandom(self);
+  }
+  case Nextbytes: {
+    return xform_nextBytes_SecureRandom_Object(self.self, self.k);
+  }
+  }
+
+  return null;
+}
+Object xform_nextBytes_SecureRandom_Object(SecureRandom self, Object k) {
+  switch(self) {
+  case Securerandom: {
+    {
+      SecureRandom k_k;
+      k_k = k._securerandom;
+      switch(k_k) {
+      case Securerandom: {
+        return Byte_Byte_byte(new Object(__cid=Byte()), new Array_char(length=16));
+      }
+      case Nextbytes: { assert false; }
+      }
+
+    }
+  }
+  case Nextbytes: { assert false; }
+  }
+
+  return null;
+}
+Object xform_securerandom_SecureRandom(SecureRandom self) {
+  switch(self) {
+  case Securerandom: { assert false; }
+  case Nextbytes: { assert false; }
+  }
+
+  return null;
+}

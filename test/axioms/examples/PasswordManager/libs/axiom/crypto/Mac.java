@@ -5,9 +5,9 @@ public class Mac {
 
     @adt
     @pure
-    byte[] doFinal(byte text);
+    Object doFinal(Object text);
 
-    axiom Object doFinal(Object init!(Mac m, SecretKeySpec s), byte text) {
+    axiom Object doFinal(Object init!(Mac m, SecretKeySpec s), Object text) {
 	return text;
     }
 }

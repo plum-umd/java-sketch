@@ -1,0 +1,134 @@
+package Cipher;
+
+adt Cipher {
+    Cipher__  { }
+    Init      { Cipher self; int mode; Object k; Object iv; }
+    Initb     { Cipher self; int mode; Object k; Object iv; }
+    Dofinalb  { Cipher self; Object text; }
+    Dofinal   { Cipher self; Object text; }
+}
+
+Object cipher__() {
+    return new Object(__cid=Cipher(), _cipher=new Cipher__());
+}
+
+Object init_Object_int_Object_Object(Object self, int mode, Object k, Object iv) {
+    return new Object(__cid=Cipher(), _cipher=new Init(self=self._cipher, mode=mode, k=k, iv=iv));
+}
+
+Object initb_Object_int_Object_Object(Object self, int mode, Object k, Object iv) {
+    return new Object(__cid=Cipher(), _cipher=new Initb(self=self._cipher, mode=mode, k=k, iv=iv));
+}
+
+Object dofinalb_Object_Object(Object self, Object text) {
+    return new Object(__cid=Cipher(), _cipher=new Dofinalb(self=self._cipher, text=text));
+}
+
+Object dofinal_Object_Object(Object self, Object text) {
+    return new Object(__cid=Cipher(), _cipher=new Dofinal(self=self._cipher, text=text));
+}
+
+Object xform_Cipher(Cipher self) {
+  switch(self) {
+  case Cipher__: {
+    return xform_cipher___Cipher(self);
+  }
+  case Init: {
+    return xform_init_Cipher_int_Object_Object(self.self, self.mode, self.k, self.iv);
+  }
+  case Initb: {
+    return xform_initb_Cipher_int_Object_Object(self.self, self.mode, self.k, self.iv);
+  }
+  case Dofinalb: {
+    return xform_doFinalb_Cipher_Object(self.self, self.text);
+  }
+  case Dofinal: {
+    return xform_doFinal_Cipher_Object(self.self, self.text);
+  }
+  }
+
+  return null;
+}
+Object xform_initb_Cipher_int_Object_Object(Cipher self, int mode, Object k, Object iv) {
+  switch(self) {
+  case Cipher__: { assert false; }
+  case Init: { assert false; }
+  case Initb: { assert false; }
+  case Dofinalb: { assert false; }
+  case Dofinal: { assert false; }
+  }
+
+  return null;
+}
+Object xform_doFinal_Cipher_Object(Cipher self, Object text) {
+  switch(self) {
+  case Cipher__: { assert false; }
+  case Init: { assert false; }
+  case Initb: {
+    {
+      Cipher text_text;
+      text_text = text._cipher;
+      switch(text_text) {
+      case Cipher__: { assert false; }
+      case Init: { assert false; }
+      case Initb: { assert false; }
+      case Dofinalb: { assert false; }
+      case Dofinal: {
+        {
+          Cipher text_text_text;
+          text_text_text = text_text.self;
+          switch(text_text_text) {
+          case Cipher__: { assert false; }
+          case Init: { assert false; }
+          case Initb: {
+            return ((self.k.__cid == PasswordManager() ? equals_Object@Object(self.k, text_text_text.k) : self.k.__cid == Assert() ? equals_Object@Object(self.k, text_text_text.k) : self.k.__cid == Integer() ? equals_Object@Integer(self.k, text_text_text.k) : self.k.__cid == Character() ? equals_Object@Character(self.k, text_text_text.k) : self.k.__cid == PasswordManagerTest() ? equals_Object@Object(self.k, text_text_text.k) : self.k.__cid == Byte() ? equals_Object@Object(self.k, text_text_text.k) : self.k.__cid == ArrayList() ? equals_Object@Object(self.k, text_text_text.k) : self.k.__cid == Boolean() ? equals_Object@Object(self.k, text_text_text.k) : self.k.__cid == HashMap() ? equals_Object@Object(self.k, text_text_text.k) : self.k.__cid == Mac() ? equals_Object@Object(self.k, text_text_text.k) : self.k.__cid == PasswordMap() ? equals_Object@Object(self.k, text_text_text.k) : self.k.__cid == Cipher() ? equals_Object@Object(self.k, text_text_text.k) : self.k.__cid == IvParameterSpec() ? equals_Object@Object(self.k, text_text_text.k) : self.k.__cid == SecretKeySpec() ? equals_Object@Object(self.k, text_text_text.k) : self.k.__cid == String() ? equals_Object@String(self.k, text_text_text.k) : self.k.__cid == Cryptographer() ? equals_Object@Object(self.k, text_text_text.k) : self.k.__cid == SecureRandom() ? equals_Object@Object(self.k, text_text_text.k) : self.k.__cid == Object() ? equals_Object@Object(self.k, text_text_text.k) : 0) ? (((self.mode == 2 && text_text_text.mode == 1) ? text_text.text : null)) : null);
+          }
+          case Dofinalb: { assert false; }
+          case Dofinal: { assert false; }
+          }
+
+        }
+      }
+      }
+
+    }
+  }
+  case Dofinalb: { assert false; }
+  case Dofinal: { assert false; }
+  }
+
+  return null;
+}
+Object xform_cipher___Cipher(Cipher self) {
+  switch(self) {
+  case Cipher__: { assert false; }
+  case Init: { assert false; }
+  case Initb: { assert false; }
+  case Dofinalb: { assert false; }
+  case Dofinal: { assert false; }
+  }
+
+  return null;
+}
+Object xform_init_Cipher_int_Object_Object(Cipher self, int mode, Object k, Object iv) {
+  switch(self) {
+  case Cipher__: { assert false; }
+  case Init: { assert false; }
+  case Initb: { assert false; }
+  case Dofinalb: { assert false; }
+  case Dofinal: { assert false; }
+  }
+
+  return null;
+}
+Object xform_doFinalb_Cipher_Object(Cipher self, Object text) {
+  switch(self) {
+  case Cipher__: { assert false; }
+  case Init: { assert false; }
+  case Initb: { assert false; }
+  case Dofinalb: { assert false; }
+  case Dofinal: { assert false; }
+  }
+
+  return null;
+}

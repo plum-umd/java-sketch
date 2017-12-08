@@ -38,8 +38,6 @@ public class Cryptographer {
 	IvParameterSpec ivParameterSpec;
 	// final int MAX_LENGTH_PASSWORD = 16;    
 	private int MAX_LENGTH_PASSWORD;
-
-    harness public void mn() {}
     
         public Cryptographer() // throws NoSuchAlgorithmException,
 			// NoSuchPaddingException, NoSuchProviderException,
@@ -76,7 +74,8 @@ public class Cryptographer {
 
     	public String hash(String plainTxt) {
     		// return toHexString(sha256_HMAC.doFinal(plainTxt.getBytes()));
-    	    return new String(sha256_HMAC.doFinal(plainTxt.getBytes()));
+    	    // return new String(sha256_HMAC.doFinal(plainTxt));
+	    return sha256_HMAC.doFinal(plainTxt);
     	}
 
     // throws InvalidKeyException,

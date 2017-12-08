@@ -2,9 +2,9 @@
 public class SecureRandom {
     @adt
     @pure
-    void nextBytes(byte k);
+    void nextBytes(Object k);
 
-    axiom Object nextBytes(SecureRandom s, byte k) {
+    axiom Object nextBytes(SecureRandom s, Object k) {
 	return new byte[16];
     }
 }

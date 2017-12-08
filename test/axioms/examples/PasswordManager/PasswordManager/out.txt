@@ -1,0 +1,4553 @@
+SKETCH version 1.7.4
+Benchmark = /Users/grumpy/Research/java-sketch/test/axioms/examples/PasswordManager/PasswordManager/../result_noax/sk_PasswordManagerTest/main.sk
+array.sk:5: Making final Array_bit@array.length
+array.sk:10: Making final Array_char@array.length
+array.sk:15: Making final Array_int@array.length
+array.sk:20: Making final Array_float@array.length
+array.sk:25: Making final Array_double@array.length
+array.sk:30: Making final Array_Object@array.length
+[SATBackend] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[SATBackend] MAX LOOP UNROLLING = 35
+[SATBackend] MAX FUNC INLINING  = 5
+estimated size of main__Wrapper_PasswordManagerTest
+stmt cnt: 3
+callee glblInit_DEFAULT_INITIAL_CAPACITY__HashMap_s4163_HashMap : 1
+callee main_PasswordManagerTest : 246
+
+[SATBackend] After prog.accept(partialEval)
+[SATBackend] OFILE = sk_PasswordManagerTest
+searching for file null
+searching for file /Users/grumpy/Research/sketch-from-source/sketch-frontend/target/sketch-1.7.4-noarch-launchers/cegis/src/SketchSolver/cegis
+searching for file /Users/grumpy/Research/sketch-from-source/sketch-frontend/target/sketch-1.7.4-noarch-launchers/cegis
+searching for file cegis/src/SketchSolver/cegis
+searching for file ../sketch-backend/src/SketchSolver/cegis
+searching for file ../sketch-backend/bindings/cegis
+searching for file /Users/grumpy/Research/java-sketch/test/axioms/examples/PasswordManager/PasswordManager/../result_noax/cegis-1.7.4
+searching for file /Users/grumpy/Research/java-sketch/test/axioms/examples/PasswordManager/PasswordManager/../result_noax/cegis
+searching for file /usr/local/bin/cegis
+searching for file /usr/local/bin/src/SketchSolver/cegis
+searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/bin/../sketch-backend/bindings/cegis
+searching for file /usr/bin/cegis
+searching for file /usr/bin/src/SketchSolver/cegis
+searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/bin/../sketch-backend/bindings/cegis
+searching for file /bin/cegis
+searching for file /bin/src/SketchSolver/cegis
+searching for file /bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /bin/../sketch-backend/bindings/cegis
+searching for file /usr/sbin/cegis
+searching for file /usr/sbin/src/SketchSolver/cegis
+searching for file /usr/sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/sbin/../sketch-backend/bindings/cegis
+searching for file /sbin/cegis
+searching for file /sbin/src/SketchSolver/cegis
+searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /sbin/../sketch-backend/bindings/cegis
+searching for file /Library/TeX/texbin/cegis
+searching for file /Library/TeX/texbin/src/SketchSolver/cegis
+searching for file /Library/TeX/texbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /Library/TeX/texbin/../sketch-backend/bindings/cegis
+searching for file /Users/grumpy/Research/sketch-from-source/sketch-frontend/target/sketch-1.7.4-noarch-launchers/cegis
+searching for file /Users/grumpy/Research/sketch-from-source/sketch-frontend/target/sketch-1.7.4-noarch-launchers/src/SketchSolver/cegis
+searching for file /Users/grumpy/Research/sketch-from-source/sketch-frontend/target/sketch-1.7.4-noarch-launchers/../sketch-backend/src/SketchSolver/cegis
+searching for file /Users/grumpy/Research/sketch-from-source/sketch-frontend/target/sketch-1.7.4-noarch-launchers/../sketch-backend/bindings/cegis
+searching for file /Users/grumpy/School/CMSC818/llvm_prebuilt/clang+llvm-5.0.0-x86_64-apple-darwin/bin/cegis
+searching for file /Users/grumpy/School/CMSC818/llvm_prebuilt/clang+llvm-5.0.0-x86_64-apple-darwin/bin/src/SketchSolver/cegis
+searching for file /Users/grumpy/School/CMSC818/llvm_prebuilt/clang+llvm-5.0.0-x86_64-apple-darwin/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /Users/grumpy/School/CMSC818/llvm_prebuilt/clang+llvm-5.0.0-x86_64-apple-darwin/bin/../sketch-backend/bindings/cegis
+searching for file /Users/grumpy/.cabal/bin/cegis
+searching for file /Users/grumpy/.cabal/bin/src/SketchSolver/cegis
+searching for file /Users/grumpy/.cabal/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /Users/grumpy/.cabal/bin/../sketch-backend/bindings/cegis
+searching for file /Users/grumpy/Research/sketch-from-source/sketch-frontend/cegis
+searching for file /Users/grumpy/Research/sketch-from-source/sketch-frontend/src/SketchSolver/cegis
+searching for file /Users/grumpy/Research/sketch-from-source/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
+resolved cegis to path /Users/grumpy/Research/sketch-from-source/sketch-backend/src/SketchSolver/cegis
+[SATBackend] Launching: /Users/grumpy/Research/sketch-from-source/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 5 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/grumpy/Research/java-sketch/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/grumpy/Research/java-sketch/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp 
+Overriding inputs with 5
+boundmode = CALLNAME
+assuming  bounds checks
+SOLVER RAND SEED = 1512576859
+ optimization level = 6
+Reading SKETCH Program in File /Users/grumpy/Research/java-sketch/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp
+CREATING glblInit_DEFAULT_INITIAL_CAPACITY__HashMap_s4163_HashMap
+size = 3
+after ba size = 3
+CREATING main__Wrapper_PasswordManagerTest
+size = 6
+after ba size = 6
+CREATING main__WrapperNospec_PasswordManagerTest
+size = 0
+after ba size = 0
+CREATING main_PasswordManagerTest
+Found Cycle of size 5; Breaking.
+size = 1351
+after ba size = 1351
+CREATING Object_meta
+size = 3
+after ba size = 3
+CREATING Object_Object_Object
+size = 68
+after ba size = 68
+CREATING PasswordManager_meta
+size = 3
+after ba size = 3
+CREATING String_meta
+size = 3
+after ba size = 3
+CREATING String_String_char_int_int_String
+size = 798
+after ba size = 798
+CREATING PasswordManager_PasswordManager_String_PasswordManager
+size = 243
+after ba size = 243
+CREATING addPassword_String_String_PasswordManager
+size = 559
+after ba size = 559
+CREATING getPass_String_PasswordManager
+size = 416
+after ba size = 416
+CREATING equals_Object_String
+Found Cycle of size 5; Breaking.
+size = 8310
+after ba size = 8310
+CREATING Cryptographer_meta
+size = 3
+after ba size = 3
+CREATING Cryptographer_Cryptographer_Cryptographer
+size = 1222
+after ba size = 1222
+CREATING PasswordMap_meta
+size = 3
+after ba size = 3
+CREATING PasswordMap_PasswordMap_PasswordMap
+size = 299
+after ba size = 299
+CREATING encrypt_String_Cryptographer
+size = 355
+after ba size = 355
+CREATING hash_String_Cryptographer
+size = 197
+after ba size = 197
+CREATING add_String_String_PasswordMap
+size = 240
+after ba size = 240
+CREATING get_String_PasswordMap
+size = 96
+after ba size = 96
+CREATING decrypt_String_Cryptographer
+size = 355
+after ba size = 355
+CREATING length_String
+size = 75
+after ba size = 75
+CREATING SecureRandom_meta
+size = 3
+after ba size = 3
+CREATING SecureRandom_SecureRandom_SecureRandom
+size = 68
+after ba size = 68
+CREATING nextBytes_byte_SecureRandom
+size = 820
+after ba size = 820
+CREATING SecretKeySpec_meta
+size = 3
+after ba size = 3
+CREATING SecretKeySpec_SecretKeySpec_byte_String_SecretKeySpec
+size = 79
+after ba size = 79
+CREATING IvParameterSpec_meta
+size = 3
+after ba size = 3
+CREATING IvParameterSpec_IvParameterSpec_byte_IvParameterSpec
+size = 71
+after ba size = 71
+CREATING getInstance_String_String_Cipher
+size = 143
+after ba size = 143
+CREATING Cipher_meta
+size = 3
+after ba size = 3
+CREATING init_int_SecretKey_IvParameterSpec_Cipher
+size = 82
+after ba size = 82
+CREATING getInstance_String_Mac
+size = 77
+after ba size = 77
+CREATING getBytes_String
+size = 90
+after ba size = 90
+CREATING Mac_meta
+size = 3
+after ba size = 3
+CREATING init_SecretKeySpec_Mac
+size = 67
+after ba size = 67
+CREATING HashMap_meta
+size = 3
+after ba size = 3
+CREATING HashMap_HashMap_HashMap
+size = 91
+after ba size = 91
+CREATING doFinal_byte_Cipher
+size = 2027
+after ba size = 2027
+CREATING String_String_byte_String
+size = 407
+after ba size = 407
+CREATING doFinal_byte_Mac
+size = 71
+after ba size = 71
+CREATING put_K_V_HashMap
+size = 600
+after ba size = 600
+CREATING get_K_HashMap
+Found Cycle of size 14; Breaking.
+Found Cycle of size 64; Breaking.
+Found Cycle of size 49; Breaking.
+Found Cycle of size 58; Breaking.
+Found Cycle of size 62; Breaking.
+Found Cycle of size 64; Breaking.
+Found Cycle of size 107; Breaking.
+Found Cycle of size 108; Breaking.
+Found Cycle of size 88; Breaking.
+Found Cycle of size 86; Breaking.
+Found Cycle of size 85; Breaking.
+Found Cycle of size 80; Breaking.
+Found Cycle of size 80; Breaking.
+Found Cycle of size 80; Breaking.
+Found Cycle of size 80; Breaking.
+Found Cycle of size 85; Breaking.
+Found Cycle of size 83; Breaking.
+Found Cycle of size 80; Breaking.
+Found Cycle of size 80; Breaking.
+Found Cycle of size 75; Breaking.
+Found Cycle of size 70; Breaking.
+Found Cycle of size 70; Breaking.
+Found Cycle of size 63; Breaking.
+Found Cycle of size 70; Breaking.
+Found Cycle of size 55; Breaking.
+Found Cycle of size 70; Breaking.
+Found Cycle of size 45; Breaking.
+Found Cycle of size 70; Breaking.
+Found Cycle of size 65; Breaking.
+Found Cycle of size 38; Breaking.
+Found Cycle of size 65; Breaking.
+Found Cycle of size 39; Breaking.
+Found Cycle of size 38; Breaking.
+Found Cycle of size 65; Breaking.
+Found Cycle of size 34; Breaking.
+Found Cycle of size 27; Breaking.
+Found Cycle of size 55; Breaking.
+Found Cycle of size 55; Breaking.
+Found Cycle of size 55; Breaking.
+size = 959
+after ba size = 959
+CREATING Cipher_Cipher_String_Cipher
+size = 86
+after ba size = 86
+CREATING Mac_Mac_Mac
+size = 68
+after ba size = 68
+CREATING toString_String
+size = 68
+after ba size = 68
+CREATING getBytes_String_String
+Found Cycle of size 12; Breaking.
+size = 561
+after ba size = 561
+CREATING KerberosKey_meta
+size = 3
+after ba size = 3
+CREATING getEncoded_KerberosKey
+size = 77
+after ba size = 77
+CREATING getEncoded_SecretKeySpec
+size = 77
+after ba size = 77
+CREATING LinkedList_meta
+size = 3
+after ba size = 3
+CREATING hashCode_Object
+size = 69
+after ba size = 69
+CREATING HashSet_meta
+size = 3
+after ba size = 3
+CREATING Character_meta
+size = 3
+after ba size = 3
+CREATING ArrayDeque_DequeNode_meta
+size = 3
+after ba size = 3
+CREATING TreeMap_meta
+size = 3
+after ba size = 3
+CREATING Integer_meta
+size = 3
+after ba size = 3
+CREATING hashCode_Integer
+size = 75
+after ba size = 75
+CREATING StringBuffer_meta
+size = 3
+after ba size = 3
+CREATING ArrayDeque_meta
+size = 3
+after ba size = 3
+CREATING PasswordManagerTest_meta
+size = 3
+after ba size = 3
+CREATING KeyGenerator_meta
+size = 3
+after ba size = 3
+CREATING Assert_meta
+size = 3
+after ba size = 3
+CREATING Scanner_meta
+size = 3
+after ba size = 3
+CREATING TreeSet_meta
+size = 3
+after ba size = 3
+CREATING StringBuilder_meta
+size = 3
+after ba size = 3
+CREATING File_meta
+size = 3
+after ba size = 3
+CREATING Stack_meta
+size = 3
+after ba size = 3
+CREATING HashMap_Node_meta
+size = 3
+after ba size = 3
+CREATING FileWriterr_meta
+size = 3
+after ba size = 3
+CREATING Number_meta
+size = 3
+after ba size = 3
+CREATING AbstractQueue_meta
+size = 3
+after ba size = 3
+CREATING FileReaderr_meta
+size = 3
+after ba size = 3
+CREATING Boolean_meta
+size = 3
+after ba size = 3
+CREATING Float_meta
+size = 3
+after ba size = 3
+CREATING BufferedWriter_meta
+size = 3
+after ba size = 3
+CREATING ArrayList_meta
+size = 3
+after ba size = 3
+CREATING hashCode_String
+size = 3174
+after ba size = 3174
+CREATING putVal_int_K_V_HashMap
+size = 1109
+after ba size = 1109
+CREATING equals_Object_Object
+size = 70
+after ba size = 70
+CREATING equals_Object_Character
+Found Cycle of size 5; Breaking.
+size = 101
+after ba size = 101
+CREATING equals_Object_Integer
+Found Cycle of size 5; Breaking.
+size = 101
+after ba size = 101
+CREATING equals_Object_Float
+size = 93
+after ba size = 93
+CREATING charAt_int_String
+size = 116
+after ba size = 116
+CREATING resize_int_HashMap
+Found Cycle of size 16; Breaking.
+size = 24787
+after ba size = 24787
+CREATING HashMap_Node_HashMap_Node_HashMap_K_V_int_HashMap_Node
+size = 88
+after ba size = 88
+CREATING charValue_Character
+size = 75
+after ba size = 75
+CREATING intValue_Integer
+size = 75
+after ba size = 75
+* before  EVERYTHING: main__WrapperNospec_PasswordManagerTest::SPEC nodes = 0	 main__Wrapper_PasswordManagerTest::SKETCH nodes = 6
+ INBITS = 5
+ CBITS  = 5
+ input_ints = 0 	 input_bits = 0
+ Inlining amount = 5
+ Inlining functions in the sketch.
+inlined 2 new size =1166
+inlined 18 new size =2955
+Found Cycle of size 16; Breaking.
+inlined 20 new size =3475
+Found Cycle of size 34; Breaking.
+Found Cycle of size 156; Breaking.
+Found Cycle of size 120; Breaking.
+Found Cycle of size 156; Breaking.
+Found Cycle of size 162; Breaking.
+Found Cycle of size 157; Breaking.
+Found Cycle of size 163; Breaking.
+Found Cycle of size 134; Breaking.
+Found Cycle of size 157; Breaking.
+Found Cycle of size 158; Breaking.
+Found Cycle of size 164; Breaking.
+Found Cycle of size 163; Breaking.
+Found Cycle of size 158; Breaking.
+Found Cycle of size 146; Breaking.
+Found Cycle of size 148; Breaking.
+Found Cycle of size 159; Breaking.
+Found Cycle of size 158; Breaking.
+Found Cycle of size 156; Breaking.
+Found Cycle of size 159; Breaking.
+Found Cycle of size 181; Breaking.
+Found Cycle of size 173; Breaking.
+Found Cycle of size 137; Breaking.
+Found Cycle of size 159; Breaking.
+Found Cycle of size 162; Breaking.
+Found Cycle of size 165; Breaking.
+Found Cycle of size 160; Breaking.
+Found Cycle of size 161; Breaking.
+Found Cycle of size 172; Breaking.
+Found Cycle of size 159; Breaking.
+Found Cycle of size 166; Breaking.
+Found Cycle of size 159; Breaking.
+Found Cycle of size 158; Breaking.
+Found Cycle of size 138; Breaking.
+Found Cycle of size 159; Breaking.
+Found Cycle of size 134; Breaking.
+Found Cycle of size 158; Breaking.
+Found Cycle of size 158; Breaking.
+inlined 248 new size =5939
+Found Cycle of size 139; Breaking.
+inlined 99 new size =18781
+inlined 106 new size =11409
+inlined 0 new size =11269
+END OF STEP 0
+ Inlining functions in the spec.
+inlined 0 new size =0
+END OF STEP 0
+Bailing out
+after Creating Miter: Problem nodes = 11269
+* Final Problem size: Problem nodes = 11269
+  # OF CONTROLS:    2
+ control_ints = 2 	 control_bits = 0
+inputSize = 0	ctrlSize = 16
+Random seeds = 1
+!+ 0000100010000100
+!+ H__1:16
+H__2:33
+
+BEG CHECK
+ * After optims it became = 2 was 11269
+Assert at Passwor..erTest.sk:15 (0)
+Simulation found a cex by random testing:  0 ms 
+END CHECK
+********  0	ftime= 0	ctime= 0.016
+!% 
+!% 
+BEG FIND
+Level 1  intsize = 2
+ * After optims it became = 11269 was 11269
+ * After all optims it became = 11269
+ finder  hits = 95	 bstoreObjs=15	 sstorePages=1
+hitcount 	0	3	0
+hitcount 	6	9	0
+hitcount 	11	2	0
+hitcount 	19	1	0
+bucketsPerDepth 	0	15
+* TIME TO ADD INPUT :  0.057 ms 
+DECISIONS START = 0
+f# %assign: 1 clauses: 29 learn: 0 restart: 1 decision: 5 propagated: 542
+END FIND
+!+ 0100000010000000
+!+ H__1:2
+H__2:1
+
+BEG CHECK
+ * After optims it became = 0 was 11269
+Simulation no cex:  0 ms 
+CONTROL: growing l=2 inputs to size 3
+Simulation no cex:  0 ms 
+CONTROL: growing l=2 inputs to size 4
+Simulation no cex:  0 ms 
+CONTROL: growing l=2 inputs to size 5
+Simulation no cex:  0 ms 
+END CHECK
+********  1	ftime= 0.057	ctime= 0.018
+ *GOT THE CORRECT ANSWER IN 2 iterations.
+ *FIND TIME 0.057 CHECK TIME 0.034 TOTAL TIME 0.091
+VALUES H__1: 2, H__2: 1, 
+RESULT = 2  
+**ROUND 0 : 0 Round time:  0.226 ms 
+RNDDEG = -1
+return 0
+
+----- Statistics -----
+Total elapsed time (ms):  999.914
+Model building time (ms): 999.651
+Solution time (ms):       0.226
+Max virtual mem (bytes):  0
+Max resident mem (bytes): 0
+Max private mem (bytes):  0
+ALL CORRECT
+[SATBackend] Stats for last run:
+      [solution stats]
+      successful? ---------------------> true
+      elapsed time (s) ----------------> 1.044
+      model building time (s) ---------> 0.999
+      solution time (s) ---------------> 0.0
+      max memory usage (MiB) ----------> 0.0
+      [SAT-specific solution stats]
+      initial number of nodes ---------> -1
+      number of nodes after opts ------> 11269
+      number of controls --------------> 2
+      total number of control bits ----> 16
+
+[SATBackend] Solver exit value: 0
+[SATBackend] Not Deleting
+/* BEGIN PACKAGE Cryptographer*/
+package Cryptographer{
+  /*Cryptographer.sk:3*/
+  
+void Cryptographer_Cryptographer (Object self, ref Object _out)/*Cryptographer.sk:3*/
+  {
+    _out = null;
+    int random_s132 = 0;
+    SecureRandom@meta(random_s132);
+    Object@Object random_s134 = null;
+    SecureRandom_SecureRandom@SecureRandom(new Object@Object(__cid=random_s132), random_s134);
+    Array_char@array randomKey = new Array_char@array(length=16);
+    int _out_s136 = 0;
+    SecureRandom@meta(_out_s136);
+    if((random_s134.__cid) == _out_s136)/*Cryptographer.sk:6*/
+    {
+      nextBytes_byte@SecureRandom(random_s134, randomKey);
+    }
+    int _out_s138 = 0;
+    SecretKeySpec@meta(_out_s138);
+    int _out_s140 = 0;
+    String@meta(_out_s140);
+    Object@Object _out_s142 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=_out_s140), new Array_char@array(length=4, A={'A','E','S','\0'}), 0, 3, _out_s142);
+    Object@Object _out_s144 = null;
+    SecretKeySpec_SecretKeySpec_byte_String@SecretKeySpec(new Object@Object(__cid=_out_s138), randomKey, _out_s142, _out_s144);
+    self.GCMSecretKey_Cryptographer = _out_s144;
+    self.randomIv_Cryptographer = new Array_char@array(length=16);
+    int _out_s146 = 0;
+    SecureRandom@meta(_out_s146);
+    if((random_s134.__cid) == _out_s146)/*Cryptographer.sk:10*/
+    {
+      nextBytes_byte@SecureRandom(random_s134, self.randomIv_Cryptographer);
+    }
+    int _out_s148 = 0;
+    IvParameterSpec@meta(_out_s148);
+    Object@Object _out_s150 = null;
+    IvParameterSpec_IvParameterSpec_byte@IvParameterSpec(new Object@Object(__cid=_out_s148), self.randomIv_Cryptographer, _out_s150);
+    self.ivParameterSpec_Cryptographer = _out_s150;
+    int _out_s152 = 0;
+    String@meta(_out_s152);
+    Object@Object _out_s154 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=_out_s152), new Array_char@array(length=18, A={'A','E','S','/','G','C','M','/','N','o','P','a','d','d','i','n','g','\0'}), 0, 17, _out_s154);
+    int _out_s156 = 0;
+    String@meta(_out_s156);
+    Object@Object _out_s158 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=_out_s156), new Array_char@array(length=3, A={'B','C','\0'}), 0, 2, _out_s158);
+    Object@Object _out_s160 = null;
+    getInstance_String_String@Cipher(_out_s154, _out_s158, _out_s160);
+    self.myCypherOut_Cryptographer = _out_s160;
+    int _out_s162 = 0;
+    Cipher@meta(_out_s162);
+    if((self.myCypherOut_Cryptographer.__cid) == _out_s162)/*Cryptographer.sk:14*/
+    {
+      init_int_SecretKey_IvParameterSpec@Cipher(self.myCypherOut_Cryptographer, 0, self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer);
+    }
+    int secret_s164 = 0;
+    String@meta(secret_s164);
+    Object@Object secret_s166 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=secret_s164), new Array_char@array(length=7, A={'s','e','c','r','e','t','\0'}), 0, 6, secret_s166);
+    int _out_s168 = 0;
+    String@meta(_out_s168);
+    Object@Object _out_s170 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=_out_s168), new Array_char@array(length=11, A={'H','m','a','c','S','H','A','2','5','6','\0'}), 0, 10, _out_s170);
+    Object@Object _out_s172 = null;
+    getInstance_String@Mac(_out_s170, _out_s172);
+    self.sha256_HMAC_Cryptographer = _out_s172;
+    int _out_s174 = 0;
+    SecretKeySpec@meta(_out_s174);
+    int _out_s176 = 0;
+    String@meta(_out_s176);
+    Array_char@array _pac_sc_s177 = null;
+    if((secret_s166.__cid) == _out_s176)/*Cryptographer.sk:18*/
+    {
+      Array_char@array _out_s179 = null;
+      getBytes@String(secret_s166, _out_s179);
+      _pac_sc_s177 = _out_s179;
+    }
+    else
+    {
+      _pac_sc_s177 = null;
+    }
+    int _out_s181 = 0;
+    String@meta(_out_s181);
+    Object@Object _out_s183 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=_out_s181), new Array_char@array(length=11, A={'H','m','a','c','S','H','A','2','5','6','\0'}), 0, 10, _out_s183);
+    Object@Object _out_s185 = null;
+    SecretKeySpec_SecretKeySpec_byte_String@SecretKeySpec(new Object@Object(__cid=_out_s174), _pac_sc_s177, _out_s183, _out_s185);
+    self.Hash_secret_key_Cryptographer = _out_s185;
+    int _out_s187 = 0;
+    Mac@meta(_out_s187);
+    if((self.sha256_HMAC_Cryptographer.__cid) == _out_s187)/*Cryptographer.sk:19*/
+    {
+      init_SecretKeySpec@Mac(self.sha256_HMAC_Cryptographer, self.Hash_secret_key_Cryptographer);
+    }
+    self.MAX_LENGTH_PASSWORD_Cryptographer = 16;
+    _out = self;
+    return;
+  }
+  /*Cryptographer.sk:36*/
+  
+void decrypt_String (Object self, Object cipherText, ref Object _out)/*Cryptographer.sk:36*/
+  {
+    _out = null;
+    int _out_s86 = 0;
+    Cipher@meta(_out_s86);
+    if((self.myCypherOut_Cryptographer.__cid) == _out_s86)/*Cryptographer.sk:37*/
+    {
+      init_int_SecretKey_IvParameterSpec@Cipher(self.myCypherOut_Cryptographer, 1, self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer);
+    }
+    int plainText_s88 = 0;
+    Cipher@meta(plainText_s88);
+    Array_char@array _pac_sc_s89 = null;
+    if((self.myCypherOut_Cryptographer.__cid) == plainText_s88)/*Cryptographer.sk:39*/
+    {
+      int plainText_s91 = 0;
+      String@meta(plainText_s91);
+      Array_char@array _pac_sc_s92 = null;
+      if((cipherText.__cid) == plainText_s91)/*Cryptographer.sk:39*/
+      {
+        Array_char@array plainText_s94 = null;
+        getBytes@String(cipherText, plainText_s94);
+        _pac_sc_s92 = plainText_s94;
+      }
+      else
+      {
+        _pac_sc_s92 = null;
+      }
+      Array_char@array plainText_s96 = null;
+      doFinal_byte@Cipher(self.myCypherOut_Cryptographer, _pac_sc_s92, plainText_s96);
+      _pac_sc_s89 = plainText_s96;
+    }
+    else
+    {
+      _pac_sc_s89 = null;
+    }
+    int decryptText_s98 = 0;
+    String@meta(decryptText_s98);
+    Object@Object decryptText_s100 = null;
+    String_String_byte@String(new Object@Object(__cid=decryptText_s98), _pac_sc_s89, decryptText_s100);
+    _out = decryptText_s100;
+    return;
+  }
+  /*Cryptographer.sk:29*/
+  
+void encrypt_String (Object self, Object plainText, ref Object _out)/*Cryptographer.sk:29*/
+  {
+    _out = null;
+    int _out_s116 = 0;
+    Cipher@meta(_out_s116);
+    if((self.myCypherOut_Cryptographer.__cid) == _out_s116)/*Cryptographer.sk:30*/
+    {
+      init_int_SecretKey_IvParameterSpec@Cipher(self.myCypherOut_Cryptographer, 2, self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer);
+    }
+    int cipherText_s118 = 0;
+    Cipher@meta(cipherText_s118);
+    Array_char@array _pac_sc_s119 = null;
+    if((self.myCypherOut_Cryptographer.__cid) == cipherText_s118)/*Cryptographer.sk:32*/
+    {
+      int cipherText_s121 = 0;
+      String@meta(cipherText_s121);
+      Array_char@array _pac_sc_s122 = null;
+      if((plainText.__cid) == cipherText_s121)/*Cryptographer.sk:32*/
+      {
+        Array_char@array cipherText_s124 = null;
+        getBytes@String(plainText, cipherText_s124);
+        _pac_sc_s122 = cipherText_s124;
+      }
+      else
+      {
+        _pac_sc_s122 = null;
+      }
+      Array_char@array cipherText_s126 = null;
+      doFinal_byte@Cipher(self.myCypherOut_Cryptographer, _pac_sc_s122, cipherText_s126);
+      _pac_sc_s119 = cipherText_s126;
+    }
+    else
+    {
+      _pac_sc_s119 = null;
+    }
+    int _out_s128 = 0;
+    String@meta(_out_s128);
+    Object@Object _out_s130 = null;
+    String_String_byte@String(new Object@Object(__cid=_out_s128), _pac_sc_s119, _out_s130);
+    _out = _out_s130;
+    return;
+  }
+  /*Cryptographer.sk:25*/
+  
+void hash_String (Object self, Object plainTxt, ref Object _out)/*Cryptographer.sk:25*/
+  {
+    _out = null;
+    int _out_s102 = 0;
+    String@meta(_out_s102);
+    int _out_s104 = 0;
+    Mac@meta(_out_s104);
+    Array_char@array _pac_sc_s105 = null;
+    if((self.sha256_HMAC_Cryptographer.__cid) == _out_s104)/*Cryptographer.sk:26*/
+    {
+      int _out_s107 = 0;
+      String@meta(_out_s107);
+      Array_char@array _pac_sc_s108 = null;
+      if((plainTxt.__cid) == _out_s107)/*Cryptographer.sk:26*/
+      {
+        Array_char@array _out_s110 = null;
+        getBytes@String(plainTxt, _out_s110);
+        _pac_sc_s108 = _out_s110;
+      }
+      else
+      {
+        _pac_sc_s108 = null;
+      }
+      Array_char@array _out_s112 = null;
+      doFinal_byte@Mac(self.sha256_HMAC_Cryptographer, _pac_sc_s108, _out_s112);
+      _pac_sc_s105 = _out_s112;
+    }
+    else
+    {
+      _pac_sc_s105 = null;
+    }
+    Object@Object _out_s114 = null;
+    String_String_byte@String(new Object@Object(__cid=_out_s102), _pac_sc_s105, _out_s114);
+    _out = _out_s114;
+    return;
+  }
+  /* END PACKAGE Cryptographer*/
+}
+/* BEGIN PACKAGE FileWriterr*/
+package FileWriterr{
+  /* END PACKAGE FileWriterr*/
+}
+/* BEGIN PACKAGE Comparable*/
+package Comparable{
+  /* END PACKAGE Comparable*/
+}
+/* BEGIN PACKAGE HashMap*/
+package HashMap{
+  /*HashMap.sk:7*/
+  
+void HashMap_HashMap (Object self, ref Object _out, ref global int DEFAULT_INITIAL_CAPACITY__HashMap_s4045)/*HashMap.sk:7*/
+  {
+    _out = null;
+    self.elementData_HashMap = new Array_Object@array(length=DEFAULT_INITIAL_CAPACITY__HashMap_s4045);
+    self.numPairs_HashMap = 0;
+    self.capacity_HashMap = DEFAULT_INITIAL_CAPACITY__HashMap_s4045;
+    _out = self;
+    return;
+  }
+  /*HashMap.sk:62*/
+  
+void get_K (Object self, Object key, ref Object _out)/*HashMap.sk:62*/
+  {
+    _out = null;
+    int hashMod_s189 = 0;
+    LinkedList@meta(hashMod_s189);
+    int _pac_sc_s190 = 0;
+    if((key.__cid) == hashMod_s189)/*HashMap.sk:63*/
+    {
+      int hashMod_s192 = 0;
+      hashCode@Object(key, hashMod_s192);
+      _pac_sc_s190 = hashMod_s192;
+    }
+    else
+    {
+      int hashMod_s194 = 0;
+      HashMap@meta(hashMod_s194);
+      int _pac_sc_s195 = 0;
+      if((key.__cid) == hashMod_s194)/*HashMap.sk:63*/
+      {
+        int hashMod_s197 = 0;
+        hashCode@Object(key, hashMod_s197);
+        _pac_sc_s195 = hashMod_s197;
+      }
+      else
+      {
+        int hashMod_s199 = 0;
+        HashSet@meta(hashMod_s199);
+        int _pac_sc_s200 = 0;
+        if((key.__cid) == hashMod_s199)/*HashMap.sk:63*/
+        {
+          int hashMod_s202 = 0;
+          hashCode@Object(key, hashMod_s202);
+          _pac_sc_s200 = hashMod_s202;
+        }
+        else
+        {
+          int hashMod_s204 = 0;
+          SecureRandom@meta(hashMod_s204);
+          int _pac_sc_s205 = 0;
+          if((key.__cid) == hashMod_s204)/*HashMap.sk:63*/
+          {
+            int hashMod_s207 = 0;
+            hashCode@Object(key, hashMod_s207);
+            _pac_sc_s205 = hashMod_s207;
+          }
+          else
+          {
+            int hashMod_s209 = 0;
+            Character@meta(hashMod_s209);
+            int _pac_sc_s210 = 0;
+            if((key.__cid) == hashMod_s209)/*HashMap.sk:63*/
+            {
+              int hashMod_s212 = 0;
+              hashCode@Object(key, hashMod_s212);
+              _pac_sc_s210 = hashMod_s212;
+            }
+            else
+            {
+              int hashMod_s214 = 0;
+              Cipher@meta(hashMod_s214);
+              int _pac_sc_s215 = 0;
+              if((key.__cid) == hashMod_s214)/*HashMap.sk:63*/
+              {
+                int hashMod_s217 = 0;
+                hashCode@Object(key, hashMod_s217);
+                _pac_sc_s215 = hashMod_s217;
+              }
+              else
+              {
+                int hashMod_s219 = 0;
+                ArrayDeque_DequeNode@meta(hashMod_s219);
+                int _pac_sc_s220 = 0;
+                if((key.__cid) == hashMod_s219)/*HashMap.sk:63*/
+                {
+                  int hashMod_s222 = 0;
+                  hashCode@Object(key, hashMod_s222);
+                  _pac_sc_s220 = hashMod_s222;
+                }
+                else
+                {
+                  int hashMod_s224 = 0;
+                  PasswordManager@meta(hashMod_s224);
+                  int _pac_sc_s225 = 0;
+                  if((key.__cid) == hashMod_s224)/*HashMap.sk:63*/
+                  {
+                    int hashMod_s227 = 0;
+                    hashCode@Object(key, hashMod_s227);
+                    _pac_sc_s225 = hashMod_s227;
+                  }
+                  else
+                  {
+                    int hashMod_s229 = 0;
+                    TreeMap@meta(hashMod_s229);
+                    int _pac_sc_s230 = 0;
+                    if((key.__cid) == hashMod_s229)/*HashMap.sk:63*/
+                    {
+                      int hashMod_s232 = 0;
+                      hashCode@Object(key, hashMod_s232);
+                      _pac_sc_s230 = hashMod_s232;
+                    }
+                    else
+                    {
+                      int hashMod_s234 = 0;
+                      Integer@meta(hashMod_s234);
+                      int _pac_sc_s235 = 0;
+                      if((key.__cid) == hashMod_s234)/*HashMap.sk:63*/
+                      {
+                        int hashMod_s237 = 0;
+                        hashCode@Integer(key, hashMod_s237);
+                        _pac_sc_s235 = hashMod_s237;
+                      }
+                      else
+                      {
+                        int hashMod_s239 = 0;
+                        StringBuffer@meta(hashMod_s239);
+                        int _pac_sc_s240 = 0;
+                        if((key.__cid) == hashMod_s239)/*HashMap.sk:63*/
+                        {
+                          int hashMod_s242 = 0;
+                          hashCode@Object(key, hashMod_s242);
+                          _pac_sc_s240 = hashMod_s242;
+                        }
+                        else
+                        {
+                          int hashMod_s244 = 0;
+                          ArrayDeque@meta(hashMod_s244);
+                          int _pac_sc_s245 = 0;
+                          if((key.__cid) == hashMod_s244)/*HashMap.sk:63*/
+                          {
+                            int hashMod_s247 = 0;
+                            hashCode@Object(key, hashMod_s247);
+                            _pac_sc_s245 = hashMod_s247;
+                          }
+                          else
+                          {
+                            int hashMod_s249 = 0;
+                            PasswordMap@meta(hashMod_s249);
+                            int _pac_sc_s250 = 0;
+                            if((key.__cid) == hashMod_s249)/*HashMap.sk:63*/
+                            {
+                              int hashMod_s252 = 0;
+                              hashCode@Object(key, hashMod_s252);
+                              _pac_sc_s250 = hashMod_s252;
+                            }
+                            else
+                            {
+                              int hashMod_s254 = 0;
+                              IvParameterSpec@meta(hashMod_s254);
+                              int _pac_sc_s255 = 0;
+                              if((key.__cid) == hashMod_s254)/*HashMap.sk:63*/
+                              {
+                                int hashMod_s257 = 0;
+                                hashCode@Object(key, hashMod_s257);
+                                _pac_sc_s255 = hashMod_s257;
+                              }
+                              else
+                              {
+                                int hashMod_s259 = 0;
+                                PasswordManagerTest@meta(hashMod_s259);
+                                int _pac_sc_s260 = 0;
+                                if((key.__cid) == hashMod_s259)/*HashMap.sk:63*/
+                                {
+                                  int hashMod_s262 = 0;
+                                  hashCode@Object(key, hashMod_s262);
+                                  _pac_sc_s260 = hashMod_s262;
+                                }
+                                else
+                                {
+                                  int hashMod_s264 = 0;
+                                  KeyGenerator@meta(hashMod_s264);
+                                  int _pac_sc_s265 = 0;
+                                  if((key.__cid) == hashMod_s264)/*HashMap.sk:63*/
+                                  {
+                                    int hashMod_s267 = 0;
+                                    hashCode@Object(key, hashMod_s267);
+                                    _pac_sc_s265 = hashMod_s267;
+                                  }
+                                  else
+                                  {
+                                    int hashMod_s269 = 0;
+                                    Assert@meta(hashMod_s269);
+                                    int _pac_sc_s270 = 0;
+                                    if((key.__cid) == hashMod_s269)/*HashMap.sk:63*/
+                                    {
+                                      int hashMod_s272 = 0;
+                                      hashCode@Object(key, hashMod_s272);
+                                      _pac_sc_s270 = hashMod_s272;
+                                    }
+                                    else
+                                    {
+                                      int hashMod_s274 = 0;
+                                      Mac@meta(hashMod_s274);
+                                      int _pac_sc_s275 = 0;
+                                      if((key.__cid) == hashMod_s274)/*HashMap.sk:63*/
+                                      {
+                                        int hashMod_s277 = 0;
+                                        hashCode@Object(key, hashMod_s277);
+                                        _pac_sc_s275 = hashMod_s277;
+                                      }
+                                      else
+                                      {
+                                        int hashMod_s279 = 0;
+                                        Cryptographer@meta(hashMod_s279);
+                                        int _pac_sc_s280 = 0;
+                                        if((key.__cid) == hashMod_s279)/*HashMap.sk:63*/
+                                        {
+                                          int hashMod_s282 = 0;
+                                          hashCode@Object(key, hashMod_s282);
+                                          _pac_sc_s280 = hashMod_s282;
+                                        }
+                                        else
+                                        {
+                                          int hashMod_s284 = 0;
+                                          Scanner@meta(hashMod_s284);
+                                          int _pac_sc_s285 = 0;
+                                          if((key.__cid) == hashMod_s284)/*HashMap.sk:63*/
+                                          {
+                                            int hashMod_s287 = 0;
+                                            hashCode@Object(key, hashMod_s287);
+                                            _pac_sc_s285 = hashMod_s287;
+                                          }
+                                          else
+                                          {
+                                            int hashMod_s289 = 0;
+                                            TreeSet@meta(hashMod_s289);
+                                            int _pac_sc_s290 = 0;
+                                            if((key.__cid) == hashMod_s289)/*HashMap.sk:63*/
+                                            {
+                                              int hashMod_s292 = 0;
+                                              hashCode@Object(key, hashMod_s292);
+                                              _pac_sc_s290 = hashMod_s292;
+                                            }
+                                            else
+                                            {
+                                              int hashMod_s294 = 0;
+                                              StringBuilder@meta(hashMod_s294);
+                                              int _pac_sc_s295 = 0;
+                                              if((key.__cid) == hashMod_s294)/*HashMap.sk:63*/
+                                              {
+                                                int hashMod_s297 = 0;
+                                                hashCode@Object(key, hashMod_s297);
+                                                _pac_sc_s295 = hashMod_s297;
+                                              }
+                                              else
+                                              {
+                                                int hashMod_s299 = 0;
+                                                File@meta(hashMod_s299);
+                                                int _pac_sc_s300 = 0;
+                                                if((key.__cid) == hashMod_s299)/*HashMap.sk:63*/
+                                                {
+                                                  int hashMod_s302 = 0;
+                                                  hashCode@Object(key, hashMod_s302);
+                                                  _pac_sc_s300 = hashMod_s302;
+                                                }
+                                                else
+                                                {
+                                                  int hashMod_s304 = 0;
+                                                  Stack@meta(hashMod_s304);
+                                                  int _pac_sc_s305 = 0;
+                                                  if((key.__cid) == hashMod_s304)/*HashMap.sk:63*/
+                                                  {
+                                                    int hashMod_s307 = 0;
+                                                    hashCode@Object(key, hashMod_s307);
+                                                    _pac_sc_s305 = hashMod_s307;
+                                                  }
+                                                  else
+                                                  {
+                                                    int hashMod_s309 = 0;
+                                                    KerberosKey@meta(hashMod_s309);
+                                                    int _pac_sc_s310 = 0;
+                                                    if((key.__cid) == hashMod_s309)/*HashMap.sk:63*/
+                                                    {
+                                                      int hashMod_s312 = 0;
+                                                      hashCode@Object(key, hashMod_s312);
+                                                      _pac_sc_s310 = hashMod_s312;
+                                                    }
+                                                    else
+                                                    {
+                                                      int hashMod_s314 = 0;
+                                                      HashMap_Node@meta(hashMod_s314);
+                                                      int _pac_sc_s315 = 0;
+                                                      if((key.__cid) == hashMod_s314)/*HashMap.sk:63*/
+                                                      {
+                                                        int hashMod_s317 = 0;
+                                                        hashCode@Object(key, hashMod_s317);
+                                                        _pac_sc_s315 = hashMod_s317;
+                                                      }
+                                                      else
+                                                      {
+                                                        int hashMod_s319 = 0;
+                                                        FileWriterr@meta(hashMod_s319);
+                                                        int _pac_sc_s320 = 0;
+                                                        if((key.__cid) == hashMod_s319)/*HashMap.sk:63*/
+                                                        {
+                                                          int hashMod_s322 = 0;
+                                                          hashCode@Object(key, hashMod_s322);
+                                                          _pac_sc_s320 = hashMod_s322;
+                                                        }
+                                                        else
+                                                        {
+                                                          int hashMod_s324 = 0;
+                                                          Number@meta(hashMod_s324);
+                                                          int _pac_sc_s325 = 0;
+                                                          if((key.__cid) == hashMod_s324)/*HashMap.sk:63*/
+                                                          {
+                                                            int hashMod_s327 = 0;
+                                                            hashCode@Object(key, hashMod_s327);
+                                                            _pac_sc_s325 = hashMod_s327;
+                                                          }
+                                                          else
+                                                          {
+                                                            int hashMod_s329 = 0;
+                                                            AbstractQueue@meta(hashMod_s329);
+                                                            int _pac_sc_s330 = 0;
+                                                            if((key.__cid) == hashMod_s329)/*HashMap.sk:63*/
+                                                            {
+                                                              int hashMod_s332 = 0;
+                                                              hashCode@Object(key, hashMod_s332);
+                                                              _pac_sc_s330 = hashMod_s332;
+                                                            }
+                                                            else
+                                                            {
+                                                              int hashMod_s334 = 0;
+                                                              SecretKeySpec@meta(hashMod_s334);
+                                                              int _pac_sc_s335 = 0;
+                                                              if((key.__cid) == hashMod_s334)/*HashMap.sk:63*/
+                                                              {
+                                                                int hashMod_s337 = 0;
+                                                                hashCode@Object(key, hashMod_s337);
+                                                                _pac_sc_s335 = hashMod_s337;
+                                                              }
+                                                              else
+                                                              {
+                                                                int hashMod_s339 = 0;
+                                                                FileReaderr@meta(hashMod_s339);
+                                                                int _pac_sc_s340 = 0;
+                                                                if((key.__cid) == hashMod_s339)/*HashMap.sk:63*/
+                                                                {
+                                                                  int hashMod_s342 = 0;
+                                                                  hashCode@Object(key, hashMod_s342);
+                                                                  _pac_sc_s340 = hashMod_s342;
+                                                                }
+                                                                else
+                                                                {
+                                                                  int hashMod_s344 = 0;
+                                                                  Boolean@meta(hashMod_s344);
+                                                                  int _pac_sc_s345 = 0;
+                                                                  if((key.__cid) == hashMod_s344)/*HashMap.sk:63*/
+                                                                  {
+                                                                    int hashMod_s347 = 0;
+                                                                    hashCode@Object(key, hashMod_s347);
+                                                                    _pac_sc_s345 = hashMod_s347;
+                                                                  }
+                                                                  else
+                                                                  {
+                                                                    int hashMod_s349 = 0;
+                                                                    Float@meta(hashMod_s349);
+                                                                    int _pac_sc_s350 = 0;
+                                                                    if((key.__cid) == hashMod_s349)/*HashMap.sk:63*/
+                                                                    {
+                                                                      int hashMod_s352 = 0;
+                                                                      hashCode@Object(key, hashMod_s352);
+                                                                      _pac_sc_s350 = hashMod_s352;
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                      int hashMod_s354 = 0;
+                                                                      BufferedWriter@meta(hashMod_s354);
+                                                                      int _pac_sc_s355 = 0;
+                                                                      if((key.__cid) == hashMod_s354)/*HashMap.sk:63*/
+                                                                      {
+                                                                        int hashMod_s357 = 0;
+                                                                        hashCode@Object(key, hashMod_s357);
+                                                                        _pac_sc_s355 = hashMod_s357;
+                                                                      }
+                                                                      else
+                                                                      {
+                                                                        int hashMod_s359 = 0;
+                                                                        ArrayList@meta(hashMod_s359);
+                                                                        int _pac_sc_s360 = 0;
+                                                                        if((key.__cid) == hashMod_s359)/*HashMap.sk:63*/
+                                                                        {
+                                                                          int hashMod_s362 = 0;
+                                                                          hashCode@Object(key, hashMod_s362);
+                                                                          _pac_sc_s360 = hashMod_s362;
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                          int hashMod_s364 = 0;
+                                                                          String@meta(hashMod_s364);
+                                                                          int _pac_sc_s365 = 0;
+                                                                          if((key.__cid) == hashMod_s364)/*HashMap.sk:63*/
+                                                                          {
+                                                                            int hashMod_s367 = 0;
+                                                                            hashCode@String(key, hashMod_s367);
+                                                                            _pac_sc_s365 = hashMod_s367;
+                                                                          }
+                                                                          else
+                                                                          {
+                                                                            int hashMod_s369 = 0;
+                                                                            Object@meta(hashMod_s369);
+                                                                            int _pac_sc_s370 = 0;
+                                                                            if((key.__cid) == hashMod_s369)/*HashMap.sk:63*/
+                                                                            {
+                                                                              int hashMod_s372 = 0;
+                                                                              hashCode@Object(key, hashMod_s372);
+                                                                              _pac_sc_s370 = hashMod_s372;
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                              _pac_sc_s370 = 0;
+                                                                            }
+                                                                            _pac_sc_s365 = _pac_sc_s370;
+                                                                          }
+                                                                          _pac_sc_s360 = _pac_sc_s365;
+                                                                        }
+                                                                        _pac_sc_s355 = _pac_sc_s360;
+                                                                      }
+                                                                      _pac_sc_s350 = _pac_sc_s355;
+                                                                    }
+                                                                    _pac_sc_s345 = _pac_sc_s350;
+                                                                  }
+                                                                  _pac_sc_s340 = _pac_sc_s345;
+                                                                }
+                                                                _pac_sc_s335 = _pac_sc_s340;
+                                                              }
+                                                              _pac_sc_s330 = _pac_sc_s335;
+                                                            }
+                                                            _pac_sc_s325 = _pac_sc_s330;
+                                                          }
+                                                          _pac_sc_s320 = _pac_sc_s325;
+                                                        }
+                                                        _pac_sc_s315 = _pac_sc_s320;
+                                                      }
+                                                      _pac_sc_s310 = _pac_sc_s315;
+                                                    }
+                                                    _pac_sc_s305 = _pac_sc_s310;
+                                                  }
+                                                  _pac_sc_s300 = _pac_sc_s305;
+                                                }
+                                                _pac_sc_s295 = _pac_sc_s300;
+                                              }
+                                              _pac_sc_s290 = _pac_sc_s295;
+                                            }
+                                            _pac_sc_s285 = _pac_sc_s290;
+                                          }
+                                          _pac_sc_s280 = _pac_sc_s285;
+                                        }
+                                        _pac_sc_s275 = _pac_sc_s280;
+                                      }
+                                      _pac_sc_s270 = _pac_sc_s275;
+                                    }
+                                    _pac_sc_s265 = _pac_sc_s270;
+                                  }
+                                  _pac_sc_s260 = _pac_sc_s265;
+                                }
+                                _pac_sc_s255 = _pac_sc_s260;
+                              }
+                              _pac_sc_s250 = _pac_sc_s255;
+                            }
+                            _pac_sc_s245 = _pac_sc_s250;
+                          }
+                          _pac_sc_s240 = _pac_sc_s245;
+                        }
+                        _pac_sc_s235 = _pac_sc_s240;
+                      }
+                      _pac_sc_s230 = _pac_sc_s235;
+                    }
+                    _pac_sc_s225 = _pac_sc_s230;
+                  }
+                  _pac_sc_s220 = _pac_sc_s225;
+                }
+                _pac_sc_s215 = _pac_sc_s220;
+              }
+              _pac_sc_s210 = _pac_sc_s215;
+            }
+            _pac_sc_s205 = _pac_sc_s210;
+          }
+          _pac_sc_s200 = _pac_sc_s205;
+        }
+        _pac_sc_s195 = _pac_sc_s200;
+      }
+      _pac_sc_s190 = _pac_sc_s195;
+    }
+    int hashMod = _pac_sc_s190 % (self.capacity_HashMap);
+    if(hashMod < 0)/*HashMap.sk:64*/
+    {
+      hashMod = hashMod + (self.capacity_HashMap);
+    }
+    Object@Object node = self.elementData_HashMap.A[hashMod];
+    if(node != (null))/*HashMap.sk:68*/
+    {
+      int _out_s374 = 0;
+      LinkedList@meta(_out_s374);
+      bit _pac_sc_s375 = 0;
+      if((key.__cid) == _out_s374)/*HashMap.sk:69*/
+      {
+        bit _out_s377 = 0;
+        equals_Object@Object(key, node.key_HashMap_Node, _out_s377);
+        _pac_sc_s375 = _out_s377;
+      }
+      else
+      {
+        int _out_s379 = 0;
+        HashMap@meta(_out_s379);
+        bit _pac_sc_s380 = 0;
+        if((key.__cid) == _out_s379)/*HashMap.sk:69*/
+        {
+          bit _out_s382 = 0;
+          equals_Object@Object(key, node.key_HashMap_Node, _out_s382);
+          _pac_sc_s380 = _out_s382;
+        }
+        else
+        {
+          int _out_s384 = 0;
+          HashSet@meta(_out_s384);
+          bit _pac_sc_s385 = 0;
+          if((key.__cid) == _out_s384)/*HashMap.sk:69*/
+          {
+            bit _out_s387 = 0;
+            equals_Object@Object(key, node.key_HashMap_Node, _out_s387);
+            _pac_sc_s385 = _out_s387;
+          }
+          else
+          {
+            int _out_s389 = 0;
+            SecureRandom@meta(_out_s389);
+            bit _pac_sc_s390 = 0;
+            if((key.__cid) == _out_s389)/*HashMap.sk:69*/
+            {
+              bit _out_s392 = 0;
+              equals_Object@Object(key, node.key_HashMap_Node, _out_s392);
+              _pac_sc_s390 = _out_s392;
+            }
+            else
+            {
+              int _out_s394 = 0;
+              Character@meta(_out_s394);
+              bit _pac_sc_s395 = 0;
+              if((key.__cid) == _out_s394)/*HashMap.sk:69*/
+              {
+                bit _out_s397 = 0;
+                equals_Object@Character(key, node.key_HashMap_Node, _out_s397);
+                _pac_sc_s395 = _out_s397;
+              }
+              else
+              {
+                int _out_s399 = 0;
+                Cipher@meta(_out_s399);
+                bit _pac_sc_s400 = 0;
+                if((key.__cid) == _out_s399)/*HashMap.sk:69*/
+                {
+                  bit _out_s402 = 0;
+                  equals_Object@Object(key, node.key_HashMap_Node, _out_s402);
+                  _pac_sc_s400 = _out_s402;
+                }
+                else
+                {
+                  int _out_s404 = 0;
+                  ArrayDeque_DequeNode@meta(_out_s404);
+                  bit _pac_sc_s405 = 0;
+                  if((key.__cid) == _out_s404)/*HashMap.sk:69*/
+                  {
+                    bit _out_s407 = 0;
+                    equals_Object@Object(key, node.key_HashMap_Node, _out_s407);
+                    _pac_sc_s405 = _out_s407;
+                  }
+                  else
+                  {
+                    int _out_s409 = 0;
+                    PasswordManager@meta(_out_s409);
+                    bit _pac_sc_s410 = 0;
+                    if((key.__cid) == _out_s409)/*HashMap.sk:69*/
+                    {
+                      bit _out_s412 = 0;
+                      equals_Object@Object(key, node.key_HashMap_Node, _out_s412);
+                      _pac_sc_s410 = _out_s412;
+                    }
+                    else
+                    {
+                      int _out_s414 = 0;
+                      TreeMap@meta(_out_s414);
+                      bit _pac_sc_s415 = 0;
+                      if((key.__cid) == _out_s414)/*HashMap.sk:69*/
+                      {
+                        bit _out_s417 = 0;
+                        equals_Object@Object(key, node.key_HashMap_Node, _out_s417);
+                        _pac_sc_s415 = _out_s417;
+                      }
+                      else
+                      {
+                        int _out_s419 = 0;
+                        Integer@meta(_out_s419);
+                        bit _pac_sc_s420 = 0;
+                        if((key.__cid) == _out_s419)/*HashMap.sk:69*/
+                        {
+                          bit _out_s422 = 0;
+                          equals_Object@Integer(key, node.key_HashMap_Node, _out_s422);
+                          _pac_sc_s420 = _out_s422;
+                        }
+                        else
+                        {
+                          int _out_s424 = 0;
+                          StringBuffer@meta(_out_s424);
+                          bit _pac_sc_s425 = 0;
+                          if((key.__cid) == _out_s424)/*HashMap.sk:69*/
+                          {
+                            bit _out_s427 = 0;
+                            equals_Object@Object(key, node.key_HashMap_Node, _out_s427);
+                            _pac_sc_s425 = _out_s427;
+                          }
+                          else
+                          {
+                            int _out_s429 = 0;
+                            ArrayDeque@meta(_out_s429);
+                            bit _pac_sc_s430 = 0;
+                            if((key.__cid) == _out_s429)/*HashMap.sk:69*/
+                            {
+                              bit _out_s432 = 0;
+                              equals_Object@Object(key, node.key_HashMap_Node, _out_s432);
+                              _pac_sc_s430 = _out_s432;
+                            }
+                            else
+                            {
+                              int _out_s434 = 0;
+                              PasswordMap@meta(_out_s434);
+                              bit _pac_sc_s435 = 0;
+                              if((key.__cid) == _out_s434)/*HashMap.sk:69*/
+                              {
+                                bit _out_s437 = 0;
+                                equals_Object@Object(key, node.key_HashMap_Node, _out_s437);
+                                _pac_sc_s435 = _out_s437;
+                              }
+                              else
+                              {
+                                int _out_s439 = 0;
+                                IvParameterSpec@meta(_out_s439);
+                                bit _pac_sc_s440 = 0;
+                                if((key.__cid) == _out_s439)/*HashMap.sk:69*/
+                                {
+                                  bit _out_s442 = 0;
+                                  equals_Object@Object(key, node.key_HashMap_Node, _out_s442);
+                                  _pac_sc_s440 = _out_s442;
+                                }
+                                else
+                                {
+                                  int _out_s444 = 0;
+                                  PasswordManagerTest@meta(_out_s444);
+                                  bit _pac_sc_s445 = 0;
+                                  if((key.__cid) == _out_s444)/*HashMap.sk:69*/
+                                  {
+                                    bit _out_s447 = 0;
+                                    equals_Object@Object(key, node.key_HashMap_Node, _out_s447);
+                                    _pac_sc_s445 = _out_s447;
+                                  }
+                                  else
+                                  {
+                                    int _out_s449 = 0;
+                                    KeyGenerator@meta(_out_s449);
+                                    bit _pac_sc_s450 = 0;
+                                    if((key.__cid) == _out_s449)/*HashMap.sk:69*/
+                                    {
+                                      bit _out_s452 = 0;
+                                      equals_Object@Object(key, node.key_HashMap_Node, _out_s452);
+                                      _pac_sc_s450 = _out_s452;
+                                    }
+                                    else
+                                    {
+                                      int _out_s454 = 0;
+                                      Assert@meta(_out_s454);
+                                      bit _pac_sc_s455 = 0;
+                                      if((key.__cid) == _out_s454)/*HashMap.sk:69*/
+                                      {
+                                        bit _out_s457 = 0;
+                                        equals_Object@Object(key, node.key_HashMap_Node, _out_s457);
+                                        _pac_sc_s455 = _out_s457;
+                                      }
+                                      else
+                                      {
+                                        int _out_s459 = 0;
+                                        Mac@meta(_out_s459);
+                                        bit _pac_sc_s460 = 0;
+                                        if((key.__cid) == _out_s459)/*HashMap.sk:69*/
+                                        {
+                                          bit _out_s462 = 0;
+                                          equals_Object@Object(key, node.key_HashMap_Node, _out_s462);
+                                          _pac_sc_s460 = _out_s462;
+                                        }
+                                        else
+                                        {
+                                          int _out_s464 = 0;
+                                          Cryptographer@meta(_out_s464);
+                                          bit _pac_sc_s465 = 0;
+                                          if((key.__cid) == _out_s464)/*HashMap.sk:69*/
+                                          {
+                                            bit _out_s467 = 0;
+                                            equals_Object@Object(key, node.key_HashMap_Node, _out_s467);
+                                            _pac_sc_s465 = _out_s467;
+                                          }
+                                          else
+                                          {
+                                            int _out_s469 = 0;
+                                            Scanner@meta(_out_s469);
+                                            bit _pac_sc_s470 = 0;
+                                            if((key.__cid) == _out_s469)/*HashMap.sk:69*/
+                                            {
+                                              bit _out_s472 = 0;
+                                              equals_Object@Object(key, node.key_HashMap_Node, _out_s472);
+                                              _pac_sc_s470 = _out_s472;
+                                            }
+                                            else
+                                            {
+                                              int _out_s474 = 0;
+                                              TreeSet@meta(_out_s474);
+                                              bit _pac_sc_s475 = 0;
+                                              if((key.__cid) == _out_s474)/*HashMap.sk:69*/
+                                              {
+                                                bit _out_s477 = 0;
+                                                equals_Object@Object(key, node.key_HashMap_Node, _out_s477);
+                                                _pac_sc_s475 = _out_s477;
+                                              }
+                                              else
+                                              {
+                                                int _out_s479 = 0;
+                                                StringBuilder@meta(_out_s479);
+                                                bit _pac_sc_s480 = 0;
+                                                if((key.__cid) == _out_s479)/*HashMap.sk:69*/
+                                                {
+                                                  bit _out_s482 = 0;
+                                                  equals_Object@Object(key, node.key_HashMap_Node, _out_s482);
+                                                  _pac_sc_s480 = _out_s482;
+                                                }
+                                                else
+                                                {
+                                                  int _out_s484 = 0;
+                                                  File@meta(_out_s484);
+                                                  bit _pac_sc_s485 = 0;
+                                                  if((key.__cid) == _out_s484)/*HashMap.sk:69*/
+                                                  {
+                                                    bit _out_s487 = 0;
+                                                    equals_Object@Object(key, node.key_HashMap_Node, _out_s487);
+                                                    _pac_sc_s485 = _out_s487;
+                                                  }
+                                                  else
+                                                  {
+                                                    int _out_s489 = 0;
+                                                    Stack@meta(_out_s489);
+                                                    bit _pac_sc_s490 = 0;
+                                                    if((key.__cid) == _out_s489)/*HashMap.sk:69*/
+                                                    {
+                                                      bit _out_s492 = 0;
+                                                      equals_Object@Object(key, node.key_HashMap_Node, _out_s492);
+                                                      _pac_sc_s490 = _out_s492;
+                                                    }
+                                                    else
+                                                    {
+                                                      int _out_s494 = 0;
+                                                      KerberosKey@meta(_out_s494);
+                                                      bit _pac_sc_s495 = 0;
+                                                      if((key.__cid) == _out_s494)/*HashMap.sk:69*/
+                                                      {
+                                                        bit _out_s497 = 0;
+                                                        equals_Object@Object(key, node.key_HashMap_Node, _out_s497);
+                                                        _pac_sc_s495 = _out_s497;
+                                                      }
+                                                      else
+                                                      {
+                                                        int _out_s499 = 0;
+                                                        HashMap_Node@meta(_out_s499);
+                                                        bit _pac_sc_s500 = 0;
+                                                        if((key.__cid) == _out_s499)/*HashMap.sk:69*/
+                                                        {
+                                                          bit _out_s502 = 0;
+                                                          equals_Object@Object(key, node.key_HashMap_Node, _out_s502);
+                                                          _pac_sc_s500 = _out_s502;
+                                                        }
+                                                        else
+                                                        {
+                                                          int _out_s504 = 0;
+                                                          FileWriterr@meta(_out_s504);
+                                                          bit _pac_sc_s505 = 0;
+                                                          if((key.__cid) == _out_s504)/*HashMap.sk:69*/
+                                                          {
+                                                            bit _out_s507 = 0;
+                                                            equals_Object@Object(key, node.key_HashMap_Node, _out_s507);
+                                                            _pac_sc_s505 = _out_s507;
+                                                          }
+                                                          else
+                                                          {
+                                                            int _out_s509 = 0;
+                                                            Number@meta(_out_s509);
+                                                            bit _pac_sc_s510 = 0;
+                                                            if((key.__cid) == _out_s509)/*HashMap.sk:69*/
+                                                            {
+                                                              bit _out_s512 = 0;
+                                                              equals_Object@Object(key, node.key_HashMap_Node, _out_s512);
+                                                              _pac_sc_s510 = _out_s512;
+                                                            }
+                                                            else
+                                                            {
+                                                              int _out_s514 = 0;
+                                                              AbstractQueue@meta(_out_s514);
+                                                              bit _pac_sc_s515 = 0;
+                                                              if((key.__cid) == _out_s514)/*HashMap.sk:69*/
+                                                              {
+                                                                bit _out_s517 = 0;
+                                                                equals_Object@Object(key, node.key_HashMap_Node, _out_s517);
+                                                                _pac_sc_s515 = _out_s517;
+                                                              }
+                                                              else
+                                                              {
+                                                                int _out_s519 = 0;
+                                                                SecretKeySpec@meta(_out_s519);
+                                                                bit _pac_sc_s520 = 0;
+                                                                if((key.__cid) == _out_s519)/*HashMap.sk:69*/
+                                                                {
+                                                                  bit _out_s522 = 0;
+                                                                  equals_Object@Object(key, node.key_HashMap_Node, _out_s522);
+                                                                  _pac_sc_s520 = _out_s522;
+                                                                }
+                                                                else
+                                                                {
+                                                                  int _out_s524 = 0;
+                                                                  FileReaderr@meta(_out_s524);
+                                                                  bit _pac_sc_s525 = 0;
+                                                                  if((key.__cid) == _out_s524)/*HashMap.sk:69*/
+                                                                  {
+                                                                    bit _out_s527 = 0;
+                                                                    equals_Object@Object(key, node.key_HashMap_Node, _out_s527);
+                                                                    _pac_sc_s525 = _out_s527;
+                                                                  }
+                                                                  else
+                                                                  {
+                                                                    int _out_s529 = 0;
+                                                                    Boolean@meta(_out_s529);
+                                                                    bit _pac_sc_s530 = 0;
+                                                                    if((key.__cid) == _out_s529)/*HashMap.sk:69*/
+                                                                    {
+                                                                      bit _out_s532 = 0;
+                                                                      equals_Object@Object(key, node.key_HashMap_Node, _out_s532);
+                                                                      _pac_sc_s530 = _out_s532;
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                      int _out_s534 = 0;
+                                                                      Float@meta(_out_s534);
+                                                                      bit _pac_sc_s535 = 0;
+                                                                      if((key.__cid) == _out_s534)/*HashMap.sk:69*/
+                                                                      {
+                                                                        bit _out_s537 = 0;
+                                                                        equals_Object@Float(key, node.key_HashMap_Node, _out_s537);
+                                                                        _pac_sc_s535 = _out_s537;
+                                                                      }
+                                                                      else
+                                                                      {
+                                                                        int _out_s539 = 0;
+                                                                        BufferedWriter@meta(_out_s539);
+                                                                        bit _pac_sc_s540 = 0;
+                                                                        if((key.__cid) == _out_s539)/*HashMap.sk:69*/
+                                                                        {
+                                                                          bit _out_s542 = 0;
+                                                                          equals_Object@Object(key, node.key_HashMap_Node, _out_s542);
+                                                                          _pac_sc_s540 = _out_s542;
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                          int _out_s544 = 0;
+                                                                          ArrayList@meta(_out_s544);
+                                                                          bit _pac_sc_s545 = 0;
+                                                                          if((key.__cid) == _out_s544)/*HashMap.sk:69*/
+                                                                          {
+                                                                            bit _out_s547 = 0;
+                                                                            equals_Object@Object(key, node.key_HashMap_Node, _out_s547);
+                                                                            _pac_sc_s545 = _out_s547;
+                                                                          }
+                                                                          else
+                                                                          {
+                                                                            int _out_s549 = 0;
+                                                                            String@meta(_out_s549);
+                                                                            bit _pac_sc_s550 = 0;
+                                                                            if((key.__cid) == _out_s549)/*HashMap.sk:69*/
+                                                                            {
+                                                                              bit _out_s552 = 0;
+                                                                              equals_Object@String(key, node.key_HashMap_Node, _out_s552);
+                                                                              _pac_sc_s550 = _out_s552;
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                              int _out_s554 = 0;
+                                                                              Object@meta(_out_s554);
+                                                                              bit _pac_sc_s555 = 0;
+                                                                              if((key.__cid) == _out_s554)/*HashMap.sk:69*/
+                                                                              {
+                                                                                bit _out_s557 = 0;
+                                                                                equals_Object@Object(key, node.key_HashMap_Node, _out_s557);
+                                                                                _pac_sc_s555 = _out_s557;
+                                                                              }
+                                                                              else
+                                                                              {
+                                                                                _pac_sc_s555 = 0;
+                                                                              }
+                                                                              _pac_sc_s550 = _pac_sc_s555;
+                                                                            }
+                                                                            _pac_sc_s545 = _pac_sc_s550;
+                                                                          }
+                                                                          _pac_sc_s540 = _pac_sc_s545;
+                                                                        }
+                                                                        _pac_sc_s535 = _pac_sc_s540;
+                                                                      }
+                                                                      _pac_sc_s530 = _pac_sc_s535;
+                                                                    }
+                                                                    _pac_sc_s525 = _pac_sc_s530;
+                                                                  }
+                                                                  _pac_sc_s520 = _pac_sc_s525;
+                                                                }
+                                                                _pac_sc_s515 = _pac_sc_s520;
+                                                              }
+                                                              _pac_sc_s510 = _pac_sc_s515;
+                                                            }
+                                                            _pac_sc_s505 = _pac_sc_s510;
+                                                          }
+                                                          _pac_sc_s500 = _pac_sc_s505;
+                                                        }
+                                                        _pac_sc_s495 = _pac_sc_s500;
+                                                      }
+                                                      _pac_sc_s490 = _pac_sc_s495;
+                                                    }
+                                                    _pac_sc_s485 = _pac_sc_s490;
+                                                  }
+                                                  _pac_sc_s480 = _pac_sc_s485;
+                                                }
+                                                _pac_sc_s475 = _pac_sc_s480;
+                                              }
+                                              _pac_sc_s470 = _pac_sc_s475;
+                                            }
+                                            _pac_sc_s465 = _pac_sc_s470;
+                                          }
+                                          _pac_sc_s460 = _pac_sc_s465;
+                                        }
+                                        _pac_sc_s455 = _pac_sc_s460;
+                                      }
+                                      _pac_sc_s450 = _pac_sc_s455;
+                                    }
+                                    _pac_sc_s445 = _pac_sc_s450;
+                                  }
+                                  _pac_sc_s440 = _pac_sc_s445;
+                                }
+                                _pac_sc_s435 = _pac_sc_s440;
+                              }
+                              _pac_sc_s430 = _pac_sc_s435;
+                            }
+                            _pac_sc_s425 = _pac_sc_s430;
+                          }
+                          _pac_sc_s420 = _pac_sc_s425;
+                        }
+                        _pac_sc_s415 = _pac_sc_s420;
+                      }
+                      _pac_sc_s410 = _pac_sc_s415;
+                    }
+                    _pac_sc_s405 = _pac_sc_s410;
+                  }
+                  _pac_sc_s400 = _pac_sc_s405;
+                }
+                _pac_sc_s395 = _pac_sc_s400;
+              }
+              _pac_sc_s390 = _pac_sc_s395;
+            }
+            _pac_sc_s385 = _pac_sc_s390;
+          }
+          _pac_sc_s380 = _pac_sc_s385;
+        }
+        _pac_sc_s375 = _pac_sc_s380;
+      }
+      if(_pac_sc_s375)/*HashMap.sk:69*/
+      {
+        _out = node.value_HashMap_Node;
+        return;
+      }
+    }
+    _out = null;
+    return;
+  }
+  /*HashMap.sk:3*/
+  
+void glblInit_DEFAULT_INITIAL_CAPACITY__HashMap_s4163 (ref int DEFAULT_INITIAL_CAPACITY__HashMap_s4162)/*HashMap.sk:3*/
+  {
+    DEFAULT_INITIAL_CAPACITY__HashMap_s4162 = 16;
+  }
+  /*HashMap.sk:115*/
+  
+void putVal_int_K_V (Object self, int hash, Object key, Object value, ref Object _out, ref global Object@Object self0__HashMap_Node_s4149)/*HashMap.sk:115*/
+  {
+    _out = null;
+    int hashMod = hash % (self.capacity_HashMap);
+    if(hashMod < 0)/*HashMap.sk:117*/
+    {
+      hashMod = hashMod + (self.capacity_HashMap);
+    }
+    Object@Object node = self.elementData_HashMap.A[hashMod];
+    if(node != (null))/*HashMap.sk:121*/
+    {
+      bit _pac_sc_s745 = (node.hash_HashMap_Node) != hash;
+      if(!(_pac_sc_s745))/*HashMap.sk:122*/
+      {
+        int _pac_sc_s745_s747 = 0;
+        LinkedList@meta(_pac_sc_s745_s747);
+        bit _pac_sc_s748 = 0;
+        if((key.__cid) == _pac_sc_s745_s747)/*HashMap.sk:122*/
+        {
+          bit _pac_sc_s745_s750 = 0;
+          equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s750);
+          _pac_sc_s748 = _pac_sc_s745_s750;
+        }
+        else
+        {
+          int _pac_sc_s745_s752 = 0;
+          HashMap@meta(_pac_sc_s745_s752);
+          bit _pac_sc_s753 = 0;
+          if((key.__cid) == _pac_sc_s745_s752)/*HashMap.sk:122*/
+          {
+            bit _pac_sc_s745_s755 = 0;
+            equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s755);
+            _pac_sc_s753 = _pac_sc_s745_s755;
+          }
+          else
+          {
+            int _pac_sc_s745_s757 = 0;
+            HashSet@meta(_pac_sc_s745_s757);
+            bit _pac_sc_s758 = 0;
+            if((key.__cid) == _pac_sc_s745_s757)/*HashMap.sk:122*/
+            {
+              bit _pac_sc_s745_s760 = 0;
+              equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s760);
+              _pac_sc_s758 = _pac_sc_s745_s760;
+            }
+            else
+            {
+              int _pac_sc_s745_s762 = 0;
+              SecureRandom@meta(_pac_sc_s745_s762);
+              bit _pac_sc_s763 = 0;
+              if((key.__cid) == _pac_sc_s745_s762)/*HashMap.sk:122*/
+              {
+                bit _pac_sc_s745_s765 = 0;
+                equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s765);
+                _pac_sc_s763 = _pac_sc_s745_s765;
+              }
+              else
+              {
+                int _pac_sc_s745_s767 = 0;
+                Character@meta(_pac_sc_s745_s767);
+                bit _pac_sc_s768 = 0;
+                if((key.__cid) == _pac_sc_s745_s767)/*HashMap.sk:122*/
+                {
+                  bit _pac_sc_s745_s770 = 0;
+                  equals_Object@Character(key, node.key_HashMap_Node, _pac_sc_s745_s770);
+                  _pac_sc_s768 = _pac_sc_s745_s770;
+                }
+                else
+                {
+                  int _pac_sc_s745_s772 = 0;
+                  Cipher@meta(_pac_sc_s745_s772);
+                  bit _pac_sc_s773 = 0;
+                  if((key.__cid) == _pac_sc_s745_s772)/*HashMap.sk:122*/
+                  {
+                    bit _pac_sc_s745_s775 = 0;
+                    equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s775);
+                    _pac_sc_s773 = _pac_sc_s745_s775;
+                  }
+                  else
+                  {
+                    int _pac_sc_s745_s777 = 0;
+                    ArrayDeque_DequeNode@meta(_pac_sc_s745_s777);
+                    bit _pac_sc_s778 = 0;
+                    if((key.__cid) == _pac_sc_s745_s777)/*HashMap.sk:122*/
+                    {
+                      bit _pac_sc_s745_s780 = 0;
+                      equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s780);
+                      _pac_sc_s778 = _pac_sc_s745_s780;
+                    }
+                    else
+                    {
+                      int _pac_sc_s745_s782 = 0;
+                      PasswordManager@meta(_pac_sc_s745_s782);
+                      bit _pac_sc_s783 = 0;
+                      if((key.__cid) == _pac_sc_s745_s782)/*HashMap.sk:122*/
+                      {
+                        bit _pac_sc_s745_s785 = 0;
+                        equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s785);
+                        _pac_sc_s783 = _pac_sc_s745_s785;
+                      }
+                      else
+                      {
+                        int _pac_sc_s745_s787 = 0;
+                        TreeMap@meta(_pac_sc_s745_s787);
+                        bit _pac_sc_s788 = 0;
+                        if((key.__cid) == _pac_sc_s745_s787)/*HashMap.sk:122*/
+                        {
+                          bit _pac_sc_s745_s790 = 0;
+                          equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s790);
+                          _pac_sc_s788 = _pac_sc_s745_s790;
+                        }
+                        else
+                        {
+                          int _pac_sc_s745_s792 = 0;
+                          Integer@meta(_pac_sc_s745_s792);
+                          bit _pac_sc_s793 = 0;
+                          if((key.__cid) == _pac_sc_s745_s792)/*HashMap.sk:122*/
+                          {
+                            bit _pac_sc_s745_s795 = 0;
+                            equals_Object@Integer(key, node.key_HashMap_Node, _pac_sc_s745_s795);
+                            _pac_sc_s793 = _pac_sc_s745_s795;
+                          }
+                          else
+                          {
+                            int _pac_sc_s745_s797 = 0;
+                            StringBuffer@meta(_pac_sc_s745_s797);
+                            bit _pac_sc_s798 = 0;
+                            if((key.__cid) == _pac_sc_s745_s797)/*HashMap.sk:122*/
+                            {
+                              bit _pac_sc_s745_s800 = 0;
+                              equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s800);
+                              _pac_sc_s798 = _pac_sc_s745_s800;
+                            }
+                            else
+                            {
+                              int _pac_sc_s745_s802 = 0;
+                              ArrayDeque@meta(_pac_sc_s745_s802);
+                              bit _pac_sc_s803 = 0;
+                              if((key.__cid) == _pac_sc_s745_s802)/*HashMap.sk:122*/
+                              {
+                                bit _pac_sc_s745_s805 = 0;
+                                equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s805);
+                                _pac_sc_s803 = _pac_sc_s745_s805;
+                              }
+                              else
+                              {
+                                int _pac_sc_s745_s807 = 0;
+                                PasswordMap@meta(_pac_sc_s745_s807);
+                                bit _pac_sc_s808 = 0;
+                                if((key.__cid) == _pac_sc_s745_s807)/*HashMap.sk:122*/
+                                {
+                                  bit _pac_sc_s745_s810 = 0;
+                                  equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s810);
+                                  _pac_sc_s808 = _pac_sc_s745_s810;
+                                }
+                                else
+                                {
+                                  int _pac_sc_s745_s812 = 0;
+                                  IvParameterSpec@meta(_pac_sc_s745_s812);
+                                  bit _pac_sc_s813 = 0;
+                                  if((key.__cid) == _pac_sc_s745_s812)/*HashMap.sk:122*/
+                                  {
+                                    bit _pac_sc_s745_s815 = 0;
+                                    equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s815);
+                                    _pac_sc_s813 = _pac_sc_s745_s815;
+                                  }
+                                  else
+                                  {
+                                    int _pac_sc_s745_s817 = 0;
+                                    PasswordManagerTest@meta(_pac_sc_s745_s817);
+                                    bit _pac_sc_s818 = 0;
+                                    if((key.__cid) == _pac_sc_s745_s817)/*HashMap.sk:122*/
+                                    {
+                                      bit _pac_sc_s745_s820 = 0;
+                                      equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s820);
+                                      _pac_sc_s818 = _pac_sc_s745_s820;
+                                    }
+                                    else
+                                    {
+                                      int _pac_sc_s745_s822 = 0;
+                                      KeyGenerator@meta(_pac_sc_s745_s822);
+                                      bit _pac_sc_s823 = 0;
+                                      if((key.__cid) == _pac_sc_s745_s822)/*HashMap.sk:122*/
+                                      {
+                                        bit _pac_sc_s745_s825 = 0;
+                                        equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s825);
+                                        _pac_sc_s823 = _pac_sc_s745_s825;
+                                      }
+                                      else
+                                      {
+                                        int _pac_sc_s745_s827 = 0;
+                                        Assert@meta(_pac_sc_s745_s827);
+                                        bit _pac_sc_s828 = 0;
+                                        if((key.__cid) == _pac_sc_s745_s827)/*HashMap.sk:122*/
+                                        {
+                                          bit _pac_sc_s745_s830 = 0;
+                                          equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s830);
+                                          _pac_sc_s828 = _pac_sc_s745_s830;
+                                        }
+                                        else
+                                        {
+                                          int _pac_sc_s745_s832 = 0;
+                                          Mac@meta(_pac_sc_s745_s832);
+                                          bit _pac_sc_s833 = 0;
+                                          if((key.__cid) == _pac_sc_s745_s832)/*HashMap.sk:122*/
+                                          {
+                                            bit _pac_sc_s745_s835 = 0;
+                                            equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s835);
+                                            _pac_sc_s833 = _pac_sc_s745_s835;
+                                          }
+                                          else
+                                          {
+                                            int _pac_sc_s745_s837 = 0;
+                                            Cryptographer@meta(_pac_sc_s745_s837);
+                                            bit _pac_sc_s838 = 0;
+                                            if((key.__cid) == _pac_sc_s745_s837)/*HashMap.sk:122*/
+                                            {
+                                              bit _pac_sc_s745_s840 = 0;
+                                              equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s840);
+                                              _pac_sc_s838 = _pac_sc_s745_s840;
+                                            }
+                                            else
+                                            {
+                                              int _pac_sc_s745_s842 = 0;
+                                              Scanner@meta(_pac_sc_s745_s842);
+                                              bit _pac_sc_s843 = 0;
+                                              if((key.__cid) == _pac_sc_s745_s842)/*HashMap.sk:122*/
+                                              {
+                                                bit _pac_sc_s745_s845 = 0;
+                                                equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s845);
+                                                _pac_sc_s843 = _pac_sc_s745_s845;
+                                              }
+                                              else
+                                              {
+                                                int _pac_sc_s745_s847 = 0;
+                                                TreeSet@meta(_pac_sc_s745_s847);
+                                                bit _pac_sc_s848 = 0;
+                                                if((key.__cid) == _pac_sc_s745_s847)/*HashMap.sk:122*/
+                                                {
+                                                  bit _pac_sc_s745_s850 = 0;
+                                                  equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s850);
+                                                  _pac_sc_s848 = _pac_sc_s745_s850;
+                                                }
+                                                else
+                                                {
+                                                  int _pac_sc_s745_s852 = 0;
+                                                  StringBuilder@meta(_pac_sc_s745_s852);
+                                                  bit _pac_sc_s853 = 0;
+                                                  if((key.__cid) == _pac_sc_s745_s852)/*HashMap.sk:122*/
+                                                  {
+                                                    bit _pac_sc_s745_s855 = 0;
+                                                    equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s855);
+                                                    _pac_sc_s853 = _pac_sc_s745_s855;
+                                                  }
+                                                  else
+                                                  {
+                                                    int _pac_sc_s745_s857 = 0;
+                                                    File@meta(_pac_sc_s745_s857);
+                                                    bit _pac_sc_s858 = 0;
+                                                    if((key.__cid) == _pac_sc_s745_s857)/*HashMap.sk:122*/
+                                                    {
+                                                      bit _pac_sc_s745_s860 = 0;
+                                                      equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s860);
+                                                      _pac_sc_s858 = _pac_sc_s745_s860;
+                                                    }
+                                                    else
+                                                    {
+                                                      int _pac_sc_s745_s862 = 0;
+                                                      Stack@meta(_pac_sc_s745_s862);
+                                                      bit _pac_sc_s863 = 0;
+                                                      if((key.__cid) == _pac_sc_s745_s862)/*HashMap.sk:122*/
+                                                      {
+                                                        bit _pac_sc_s745_s865 = 0;
+                                                        equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s865);
+                                                        _pac_sc_s863 = _pac_sc_s745_s865;
+                                                      }
+                                                      else
+                                                      {
+                                                        int _pac_sc_s745_s867 = 0;
+                                                        KerberosKey@meta(_pac_sc_s745_s867);
+                                                        bit _pac_sc_s868 = 0;
+                                                        if((key.__cid) == _pac_sc_s745_s867)/*HashMap.sk:122*/
+                                                        {
+                                                          bit _pac_sc_s745_s870 = 0;
+                                                          equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s870);
+                                                          _pac_sc_s868 = _pac_sc_s745_s870;
+                                                        }
+                                                        else
+                                                        {
+                                                          int _pac_sc_s745_s872 = 0;
+                                                          HashMap_Node@meta(_pac_sc_s745_s872);
+                                                          bit _pac_sc_s873 = 0;
+                                                          if((key.__cid) == _pac_sc_s745_s872)/*HashMap.sk:122*/
+                                                          {
+                                                            bit _pac_sc_s745_s875 = 0;
+                                                            equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s875);
+                                                            _pac_sc_s873 = _pac_sc_s745_s875;
+                                                          }
+                                                          else
+                                                          {
+                                                            int _pac_sc_s745_s877 = 0;
+                                                            FileWriterr@meta(_pac_sc_s745_s877);
+                                                            bit _pac_sc_s878 = 0;
+                                                            if((key.__cid) == _pac_sc_s745_s877)/*HashMap.sk:122*/
+                                                            {
+                                                              bit _pac_sc_s745_s880 = 0;
+                                                              equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s880);
+                                                              _pac_sc_s878 = _pac_sc_s745_s880;
+                                                            }
+                                                            else
+                                                            {
+                                                              int _pac_sc_s745_s882 = 0;
+                                                              Number@meta(_pac_sc_s745_s882);
+                                                              bit _pac_sc_s883 = 0;
+                                                              if((key.__cid) == _pac_sc_s745_s882)/*HashMap.sk:122*/
+                                                              {
+                                                                bit _pac_sc_s745_s885 = 0;
+                                                                equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s885);
+                                                                _pac_sc_s883 = _pac_sc_s745_s885;
+                                                              }
+                                                              else
+                                                              {
+                                                                int _pac_sc_s745_s887 = 0;
+                                                                AbstractQueue@meta(_pac_sc_s745_s887);
+                                                                bit _pac_sc_s888 = 0;
+                                                                if((key.__cid) == _pac_sc_s745_s887)/*HashMap.sk:122*/
+                                                                {
+                                                                  bit _pac_sc_s745_s890 = 0;
+                                                                  equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s890);
+                                                                  _pac_sc_s888 = _pac_sc_s745_s890;
+                                                                }
+                                                                else
+                                                                {
+                                                                  int _pac_sc_s745_s892 = 0;
+                                                                  SecretKeySpec@meta(_pac_sc_s745_s892);
+                                                                  bit _pac_sc_s893 = 0;
+                                                                  if((key.__cid) == _pac_sc_s745_s892)/*HashMap.sk:122*/
+                                                                  {
+                                                                    bit _pac_sc_s745_s895 = 0;
+                                                                    equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s895);
+                                                                    _pac_sc_s893 = _pac_sc_s745_s895;
+                                                                  }
+                                                                  else
+                                                                  {
+                                                                    int _pac_sc_s745_s897 = 0;
+                                                                    FileReaderr@meta(_pac_sc_s745_s897);
+                                                                    bit _pac_sc_s898 = 0;
+                                                                    if((key.__cid) == _pac_sc_s745_s897)/*HashMap.sk:122*/
+                                                                    {
+                                                                      bit _pac_sc_s745_s900 = 0;
+                                                                      equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s900);
+                                                                      _pac_sc_s898 = _pac_sc_s745_s900;
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                      int _pac_sc_s745_s902 = 0;
+                                                                      Boolean@meta(_pac_sc_s745_s902);
+                                                                      bit _pac_sc_s903 = 0;
+                                                                      if((key.__cid) == _pac_sc_s745_s902)/*HashMap.sk:122*/
+                                                                      {
+                                                                        bit _pac_sc_s745_s905 = 0;
+                                                                        equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s905);
+                                                                        _pac_sc_s903 = _pac_sc_s745_s905;
+                                                                      }
+                                                                      else
+                                                                      {
+                                                                        int _pac_sc_s745_s907 = 0;
+                                                                        Float@meta(_pac_sc_s745_s907);
+                                                                        bit _pac_sc_s908 = 0;
+                                                                        if((key.__cid) == _pac_sc_s745_s907)/*HashMap.sk:122*/
+                                                                        {
+                                                                          bit _pac_sc_s745_s910 = 0;
+                                                                          equals_Object@Float(key, node.key_HashMap_Node, _pac_sc_s745_s910);
+                                                                          _pac_sc_s908 = _pac_sc_s745_s910;
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                          int _pac_sc_s745_s912 = 0;
+                                                                          BufferedWriter@meta(_pac_sc_s745_s912);
+                                                                          bit _pac_sc_s913 = 0;
+                                                                          if((key.__cid) == _pac_sc_s745_s912)/*HashMap.sk:122*/
+                                                                          {
+                                                                            bit _pac_sc_s745_s915 = 0;
+                                                                            equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s915);
+                                                                            _pac_sc_s913 = _pac_sc_s745_s915;
+                                                                          }
+                                                                          else
+                                                                          {
+                                                                            int _pac_sc_s745_s917 = 0;
+                                                                            ArrayList@meta(_pac_sc_s745_s917);
+                                                                            bit _pac_sc_s918 = 0;
+                                                                            if((key.__cid) == _pac_sc_s745_s917)/*HashMap.sk:122*/
+                                                                            {
+                                                                              bit _pac_sc_s745_s920 = 0;
+                                                                              equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s920);
+                                                                              _pac_sc_s918 = _pac_sc_s745_s920;
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                              int _pac_sc_s745_s922 = 0;
+                                                                              String@meta(_pac_sc_s745_s922);
+                                                                              bit _pac_sc_s923 = 0;
+                                                                              if((key.__cid) == _pac_sc_s745_s922)/*HashMap.sk:122*/
+                                                                              {
+                                                                                bit _pac_sc_s745_s925 = 0;
+                                                                                equals_Object@String(key, node.key_HashMap_Node, _pac_sc_s745_s925);
+                                                                                _pac_sc_s923 = _pac_sc_s745_s925;
+                                                                              }
+                                                                              else
+                                                                              {
+                                                                                int _pac_sc_s745_s927 = 0;
+                                                                                Object@meta(_pac_sc_s745_s927);
+                                                                                bit _pac_sc_s928 = 0;
+                                                                                if((key.__cid) == _pac_sc_s745_s927)/*HashMap.sk:122*/
+                                                                                {
+                                                                                  bit _pac_sc_s745_s930 = 0;
+                                                                                  equals_Object@Object(key, node.key_HashMap_Node, _pac_sc_s745_s930);
+                                                                                  _pac_sc_s928 = _pac_sc_s745_s930;
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                  _pac_sc_s928 = 0;
+                                                                                }
+                                                                                _pac_sc_s923 = _pac_sc_s928;
+                                                                              }
+                                                                              _pac_sc_s918 = _pac_sc_s923;
+                                                                            }
+                                                                            _pac_sc_s913 = _pac_sc_s918;
+                                                                          }
+                                                                          _pac_sc_s908 = _pac_sc_s913;
+                                                                        }
+                                                                        _pac_sc_s903 = _pac_sc_s908;
+                                                                      }
+                                                                      _pac_sc_s898 = _pac_sc_s903;
+                                                                    }
+                                                                    _pac_sc_s893 = _pac_sc_s898;
+                                                                  }
+                                                                  _pac_sc_s888 = _pac_sc_s893;
+                                                                }
+                                                                _pac_sc_s883 = _pac_sc_s888;
+                                                              }
+                                                              _pac_sc_s878 = _pac_sc_s883;
+                                                            }
+                                                            _pac_sc_s873 = _pac_sc_s878;
+                                                          }
+                                                          _pac_sc_s868 = _pac_sc_s873;
+                                                        }
+                                                        _pac_sc_s863 = _pac_sc_s868;
+                                                      }
+                                                      _pac_sc_s858 = _pac_sc_s863;
+                                                    }
+                                                    _pac_sc_s853 = _pac_sc_s858;
+                                                  }
+                                                  _pac_sc_s848 = _pac_sc_s853;
+                                                }
+                                                _pac_sc_s843 = _pac_sc_s848;
+                                              }
+                                              _pac_sc_s838 = _pac_sc_s843;
+                                            }
+                                            _pac_sc_s833 = _pac_sc_s838;
+                                          }
+                                          _pac_sc_s828 = _pac_sc_s833;
+                                        }
+                                        _pac_sc_s823 = _pac_sc_s828;
+                                      }
+                                      _pac_sc_s818 = _pac_sc_s823;
+                                    }
+                                    _pac_sc_s813 = _pac_sc_s818;
+                                  }
+                                  _pac_sc_s808 = _pac_sc_s813;
+                                }
+                                _pac_sc_s803 = _pac_sc_s808;
+                              }
+                              _pac_sc_s798 = _pac_sc_s803;
+                            }
+                            _pac_sc_s793 = _pac_sc_s798;
+                          }
+                          _pac_sc_s788 = _pac_sc_s793;
+                        }
+                        _pac_sc_s783 = _pac_sc_s788;
+                      }
+                      _pac_sc_s778 = _pac_sc_s783;
+                    }
+                    _pac_sc_s773 = _pac_sc_s778;
+                  }
+                  _pac_sc_s768 = _pac_sc_s773;
+                }
+                _pac_sc_s763 = _pac_sc_s768;
+              }
+              _pac_sc_s758 = _pac_sc_s763;
+            }
+            _pac_sc_s753 = _pac_sc_s758;
+          }
+          _pac_sc_s748 = _pac_sc_s753;
+        }
+        _pac_sc_s745 = !(_pac_sc_s748);
+      }
+      if(_pac_sc_s745)/*HashMap.sk:122*/
+      {
+        resize_int@HashMap(self, hash + 1, self0__HashMap_Node_s4149);
+        hashMod = hash % (self.capacity_HashMap);
+        if(hashMod < 0)/*HashMap.sk:125*/
+        {
+          hashMod = hashMod + (self.capacity_HashMap);
+        }
+        node = self.elementData_HashMap.A[hashMod];
+        self.numPairs_HashMap = (self.numPairs_HashMap) + 1;
+      }
+      int _out_s932 = 0;
+      HashMap_Node@meta(_out_s932);
+      Object@Object _out_s934 = null;
+      HashMap_Node_HashMap_Node_HashMap_K_V_int@HashMap_Node(new Object@Object(__cid=_out_s932), self, key, value, hash, _out_s934, self0__HashMap_Node_s4149);
+      self.elementData_HashMap.A[hashMod] = _out_s934;
+      if(node != (null))/*HashMap.sk:132*/
+      {
+        _out = node.value_HashMap_Node;
+        return;
+      }
+      else
+      {
+        _out = null;
+        return;
+      }
+    }
+    int _out_s936 = 0;
+    HashMap_Node@meta(_out_s936);
+    Object@Object _out_s938 = null;
+    HashMap_Node_HashMap_Node_HashMap_K_V_int@HashMap_Node(new Object@Object(__cid=_out_s936), self, key, value, hash, _out_s938, self0__HashMap_Node_s4149);
+    self.elementData_HashMap.A[hashMod] = _out_s938;
+    self.numPairs_HashMap = (self.numPairs_HashMap) + 1;
+    _out = null;
+    return;
+  }
+  /*HashMap.sk:95*/
+  
+void put_K_V (Object self, Object key, Object value, ref Object _out, ref global Object@Object self0__HashMap_Node_s4132)/*HashMap.sk:95*/
+  {
+    _out = null;
+    int h_s559 = 0;
+    LinkedList@meta(h_s559);
+    int _pac_sc_s560 = 0;
+    if((key.__cid) == h_s559)/*HashMap.sk:96*/
+    {
+      int h_s562 = 0;
+      hashCode@Object(key, h_s562);
+      _pac_sc_s560 = h_s562;
+    }
+    else
+    {
+      int h_s564 = 0;
+      HashMap@meta(h_s564);
+      int _pac_sc_s565 = 0;
+      if((key.__cid) == h_s564)/*HashMap.sk:96*/
+      {
+        int h_s567 = 0;
+        hashCode@Object(key, h_s567);
+        _pac_sc_s565 = h_s567;
+      }
+      else
+      {
+        int h_s569 = 0;
+        HashSet@meta(h_s569);
+        int _pac_sc_s570 = 0;
+        if((key.__cid) == h_s569)/*HashMap.sk:96*/
+        {
+          int h_s572 = 0;
+          hashCode@Object(key, h_s572);
+          _pac_sc_s570 = h_s572;
+        }
+        else
+        {
+          int h_s574 = 0;
+          SecureRandom@meta(h_s574);
+          int _pac_sc_s575 = 0;
+          if((key.__cid) == h_s574)/*HashMap.sk:96*/
+          {
+            int h_s577 = 0;
+            hashCode@Object(key, h_s577);
+            _pac_sc_s575 = h_s577;
+          }
+          else
+          {
+            int h_s579 = 0;
+            Character@meta(h_s579);
+            int _pac_sc_s580 = 0;
+            if((key.__cid) == h_s579)/*HashMap.sk:96*/
+            {
+              int h_s582 = 0;
+              hashCode@Object(key, h_s582);
+              _pac_sc_s580 = h_s582;
+            }
+            else
+            {
+              int h_s584 = 0;
+              Cipher@meta(h_s584);
+              int _pac_sc_s585 = 0;
+              if((key.__cid) == h_s584)/*HashMap.sk:96*/
+              {
+                int h_s587 = 0;
+                hashCode@Object(key, h_s587);
+                _pac_sc_s585 = h_s587;
+              }
+              else
+              {
+                int h_s589 = 0;
+                ArrayDeque_DequeNode@meta(h_s589);
+                int _pac_sc_s590 = 0;
+                if((key.__cid) == h_s589)/*HashMap.sk:96*/
+                {
+                  int h_s592 = 0;
+                  hashCode@Object(key, h_s592);
+                  _pac_sc_s590 = h_s592;
+                }
+                else
+                {
+                  int h_s594 = 0;
+                  PasswordManager@meta(h_s594);
+                  int _pac_sc_s595 = 0;
+                  if((key.__cid) == h_s594)/*HashMap.sk:96*/
+                  {
+                    int h_s597 = 0;
+                    hashCode@Object(key, h_s597);
+                    _pac_sc_s595 = h_s597;
+                  }
+                  else
+                  {
+                    int h_s599 = 0;
+                    TreeMap@meta(h_s599);
+                    int _pac_sc_s600 = 0;
+                    if((key.__cid) == h_s599)/*HashMap.sk:96*/
+                    {
+                      int h_s602 = 0;
+                      hashCode@Object(key, h_s602);
+                      _pac_sc_s600 = h_s602;
+                    }
+                    else
+                    {
+                      int h_s604 = 0;
+                      Integer@meta(h_s604);
+                      int _pac_sc_s605 = 0;
+                      if((key.__cid) == h_s604)/*HashMap.sk:96*/
+                      {
+                        int h_s607 = 0;
+                        hashCode@Integer(key, h_s607);
+                        _pac_sc_s605 = h_s607;
+                      }
+                      else
+                      {
+                        int h_s609 = 0;
+                        StringBuffer@meta(h_s609);
+                        int _pac_sc_s610 = 0;
+                        if((key.__cid) == h_s609)/*HashMap.sk:96*/
+                        {
+                          int h_s612 = 0;
+                          hashCode@Object(key, h_s612);
+                          _pac_sc_s610 = h_s612;
+                        }
+                        else
+                        {
+                          int h_s614 = 0;
+                          ArrayDeque@meta(h_s614);
+                          int _pac_sc_s615 = 0;
+                          if((key.__cid) == h_s614)/*HashMap.sk:96*/
+                          {
+                            int h_s617 = 0;
+                            hashCode@Object(key, h_s617);
+                            _pac_sc_s615 = h_s617;
+                          }
+                          else
+                          {
+                            int h_s619 = 0;
+                            PasswordMap@meta(h_s619);
+                            int _pac_sc_s620 = 0;
+                            if((key.__cid) == h_s619)/*HashMap.sk:96*/
+                            {
+                              int h_s622 = 0;
+                              hashCode@Object(key, h_s622);
+                              _pac_sc_s620 = h_s622;
+                            }
+                            else
+                            {
+                              int h_s624 = 0;
+                              IvParameterSpec@meta(h_s624);
+                              int _pac_sc_s625 = 0;
+                              if((key.__cid) == h_s624)/*HashMap.sk:96*/
+                              {
+                                int h_s627 = 0;
+                                hashCode@Object(key, h_s627);
+                                _pac_sc_s625 = h_s627;
+                              }
+                              else
+                              {
+                                int h_s629 = 0;
+                                PasswordManagerTest@meta(h_s629);
+                                int _pac_sc_s630 = 0;
+                                if((key.__cid) == h_s629)/*HashMap.sk:96*/
+                                {
+                                  int h_s632 = 0;
+                                  hashCode@Object(key, h_s632);
+                                  _pac_sc_s630 = h_s632;
+                                }
+                                else
+                                {
+                                  int h_s634 = 0;
+                                  KeyGenerator@meta(h_s634);
+                                  int _pac_sc_s635 = 0;
+                                  if((key.__cid) == h_s634)/*HashMap.sk:96*/
+                                  {
+                                    int h_s637 = 0;
+                                    hashCode@Object(key, h_s637);
+                                    _pac_sc_s635 = h_s637;
+                                  }
+                                  else
+                                  {
+                                    int h_s639 = 0;
+                                    Assert@meta(h_s639);
+                                    int _pac_sc_s640 = 0;
+                                    if((key.__cid) == h_s639)/*HashMap.sk:96*/
+                                    {
+                                      int h_s642 = 0;
+                                      hashCode@Object(key, h_s642);
+                                      _pac_sc_s640 = h_s642;
+                                    }
+                                    else
+                                    {
+                                      int h_s644 = 0;
+                                      Mac@meta(h_s644);
+                                      int _pac_sc_s645 = 0;
+                                      if((key.__cid) == h_s644)/*HashMap.sk:96*/
+                                      {
+                                        int h_s647 = 0;
+                                        hashCode@Object(key, h_s647);
+                                        _pac_sc_s645 = h_s647;
+                                      }
+                                      else
+                                      {
+                                        int h_s649 = 0;
+                                        Cryptographer@meta(h_s649);
+                                        int _pac_sc_s650 = 0;
+                                        if((key.__cid) == h_s649)/*HashMap.sk:96*/
+                                        {
+                                          int h_s652 = 0;
+                                          hashCode@Object(key, h_s652);
+                                          _pac_sc_s650 = h_s652;
+                                        }
+                                        else
+                                        {
+                                          int h_s654 = 0;
+                                          Scanner@meta(h_s654);
+                                          int _pac_sc_s655 = 0;
+                                          if((key.__cid) == h_s654)/*HashMap.sk:96*/
+                                          {
+                                            int h_s657 = 0;
+                                            hashCode@Object(key, h_s657);
+                                            _pac_sc_s655 = h_s657;
+                                          }
+                                          else
+                                          {
+                                            int h_s659 = 0;
+                                            TreeSet@meta(h_s659);
+                                            int _pac_sc_s660 = 0;
+                                            if((key.__cid) == h_s659)/*HashMap.sk:96*/
+                                            {
+                                              int h_s662 = 0;
+                                              hashCode@Object(key, h_s662);
+                                              _pac_sc_s660 = h_s662;
+                                            }
+                                            else
+                                            {
+                                              int h_s664 = 0;
+                                              StringBuilder@meta(h_s664);
+                                              int _pac_sc_s665 = 0;
+                                              if((key.__cid) == h_s664)/*HashMap.sk:96*/
+                                              {
+                                                int h_s667 = 0;
+                                                hashCode@Object(key, h_s667);
+                                                _pac_sc_s665 = h_s667;
+                                              }
+                                              else
+                                              {
+                                                int h_s669 = 0;
+                                                File@meta(h_s669);
+                                                int _pac_sc_s670 = 0;
+                                                if((key.__cid) == h_s669)/*HashMap.sk:96*/
+                                                {
+                                                  int h_s672 = 0;
+                                                  hashCode@Object(key, h_s672);
+                                                  _pac_sc_s670 = h_s672;
+                                                }
+                                                else
+                                                {
+                                                  int h_s674 = 0;
+                                                  Stack@meta(h_s674);
+                                                  int _pac_sc_s675 = 0;
+                                                  if((key.__cid) == h_s674)/*HashMap.sk:96*/
+                                                  {
+                                                    int h_s677 = 0;
+                                                    hashCode@Object(key, h_s677);
+                                                    _pac_sc_s675 = h_s677;
+                                                  }
+                                                  else
+                                                  {
+                                                    int h_s679 = 0;
+                                                    KerberosKey@meta(h_s679);
+                                                    int _pac_sc_s680 = 0;
+                                                    if((key.__cid) == h_s679)/*HashMap.sk:96*/
+                                                    {
+                                                      int h_s682 = 0;
+                                                      hashCode@Object(key, h_s682);
+                                                      _pac_sc_s680 = h_s682;
+                                                    }
+                                                    else
+                                                    {
+                                                      int h_s684 = 0;
+                                                      HashMap_Node@meta(h_s684);
+                                                      int _pac_sc_s685 = 0;
+                                                      if((key.__cid) == h_s684)/*HashMap.sk:96*/
+                                                      {
+                                                        int h_s687 = 0;
+                                                        hashCode@Object(key, h_s687);
+                                                        _pac_sc_s685 = h_s687;
+                                                      }
+                                                      else
+                                                      {
+                                                        int h_s689 = 0;
+                                                        FileWriterr@meta(h_s689);
+                                                        int _pac_sc_s690 = 0;
+                                                        if((key.__cid) == h_s689)/*HashMap.sk:96*/
+                                                        {
+                                                          int h_s692 = 0;
+                                                          hashCode@Object(key, h_s692);
+                                                          _pac_sc_s690 = h_s692;
+                                                        }
+                                                        else
+                                                        {
+                                                          int h_s694 = 0;
+                                                          Number@meta(h_s694);
+                                                          int _pac_sc_s695 = 0;
+                                                          if((key.__cid) == h_s694)/*HashMap.sk:96*/
+                                                          {
+                                                            int h_s697 = 0;
+                                                            hashCode@Object(key, h_s697);
+                                                            _pac_sc_s695 = h_s697;
+                                                          }
+                                                          else
+                                                          {
+                                                            int h_s699 = 0;
+                                                            AbstractQueue@meta(h_s699);
+                                                            int _pac_sc_s700 = 0;
+                                                            if((key.__cid) == h_s699)/*HashMap.sk:96*/
+                                                            {
+                                                              int h_s702 = 0;
+                                                              hashCode@Object(key, h_s702);
+                                                              _pac_sc_s700 = h_s702;
+                                                            }
+                                                            else
+                                                            {
+                                                              int h_s704 = 0;
+                                                              SecretKeySpec@meta(h_s704);
+                                                              int _pac_sc_s705 = 0;
+                                                              if((key.__cid) == h_s704)/*HashMap.sk:96*/
+                                                              {
+                                                                int h_s707 = 0;
+                                                                hashCode@Object(key, h_s707);
+                                                                _pac_sc_s705 = h_s707;
+                                                              }
+                                                              else
+                                                              {
+                                                                int h_s709 = 0;
+                                                                FileReaderr@meta(h_s709);
+                                                                int _pac_sc_s710 = 0;
+                                                                if((key.__cid) == h_s709)/*HashMap.sk:96*/
+                                                                {
+                                                                  int h_s712 = 0;
+                                                                  hashCode@Object(key, h_s712);
+                                                                  _pac_sc_s710 = h_s712;
+                                                                }
+                                                                else
+                                                                {
+                                                                  int h_s714 = 0;
+                                                                  Boolean@meta(h_s714);
+                                                                  int _pac_sc_s715 = 0;
+                                                                  if((key.__cid) == h_s714)/*HashMap.sk:96*/
+                                                                  {
+                                                                    int h_s717 = 0;
+                                                                    hashCode@Object(key, h_s717);
+                                                                    _pac_sc_s715 = h_s717;
+                                                                  }
+                                                                  else
+                                                                  {
+                                                                    int h_s719 = 0;
+                                                                    Float@meta(h_s719);
+                                                                    int _pac_sc_s720 = 0;
+                                                                    if((key.__cid) == h_s719)/*HashMap.sk:96*/
+                                                                    {
+                                                                      int h_s722 = 0;
+                                                                      hashCode@Object(key, h_s722);
+                                                                      _pac_sc_s720 = h_s722;
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                      int h_s724 = 0;
+                                                                      BufferedWriter@meta(h_s724);
+                                                                      int _pac_sc_s725 = 0;
+                                                                      if((key.__cid) == h_s724)/*HashMap.sk:96*/
+                                                                      {
+                                                                        int h_s727 = 0;
+                                                                        hashCode@Object(key, h_s727);
+                                                                        _pac_sc_s725 = h_s727;
+                                                                      }
+                                                                      else
+                                                                      {
+                                                                        int h_s729 = 0;
+                                                                        ArrayList@meta(h_s729);
+                                                                        int _pac_sc_s730 = 0;
+                                                                        if((key.__cid) == h_s729)/*HashMap.sk:96*/
+                                                                        {
+                                                                          int h_s732 = 0;
+                                                                          hashCode@Object(key, h_s732);
+                                                                          _pac_sc_s730 = h_s732;
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                          int h_s734 = 0;
+                                                                          String@meta(h_s734);
+                                                                          int _pac_sc_s735 = 0;
+                                                                          if((key.__cid) == h_s734)/*HashMap.sk:96*/
+                                                                          {
+                                                                            int h_s737 = 0;
+                                                                            hashCode@String(key, h_s737);
+                                                                            _pac_sc_s735 = h_s737;
+                                                                          }
+                                                                          else
+                                                                          {
+                                                                            int h_s739 = 0;
+                                                                            Object@meta(h_s739);
+                                                                            int _pac_sc_s740 = 0;
+                                                                            if((key.__cid) == h_s739)/*HashMap.sk:96*/
+                                                                            {
+                                                                              int h_s742 = 0;
+                                                                              hashCode@Object(key, h_s742);
+                                                                              _pac_sc_s740 = h_s742;
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                              _pac_sc_s740 = 0;
+                                                                            }
+                                                                            _pac_sc_s735 = _pac_sc_s740;
+                                                                          }
+                                                                          _pac_sc_s730 = _pac_sc_s735;
+                                                                        }
+                                                                        _pac_sc_s725 = _pac_sc_s730;
+                                                                      }
+                                                                      _pac_sc_s720 = _pac_sc_s725;
+                                                                    }
+                                                                    _pac_sc_s715 = _pac_sc_s720;
+                                                                  }
+                                                                  _pac_sc_s710 = _pac_sc_s715;
+                                                                }
+                                                                _pac_sc_s705 = _pac_sc_s710;
+                                                              }
+                                                              _pac_sc_s700 = _pac_sc_s705;
+                                                            }
+                                                            _pac_sc_s695 = _pac_sc_s700;
+                                                          }
+                                                          _pac_sc_s690 = _pac_sc_s695;
+                                                        }
+                                                        _pac_sc_s685 = _pac_sc_s690;
+                                                      }
+                                                      _pac_sc_s680 = _pac_sc_s685;
+                                                    }
+                                                    _pac_sc_s675 = _pac_sc_s680;
+                                                  }
+                                                  _pac_sc_s670 = _pac_sc_s675;
+                                                }
+                                                _pac_sc_s665 = _pac_sc_s670;
+                                              }
+                                              _pac_sc_s660 = _pac_sc_s665;
+                                            }
+                                            _pac_sc_s655 = _pac_sc_s660;
+                                          }
+                                          _pac_sc_s650 = _pac_sc_s655;
+                                        }
+                                        _pac_sc_s645 = _pac_sc_s650;
+                                      }
+                                      _pac_sc_s640 = _pac_sc_s645;
+                                    }
+                                    _pac_sc_s635 = _pac_sc_s640;
+                                  }
+                                  _pac_sc_s630 = _pac_sc_s635;
+                                }
+                                _pac_sc_s625 = _pac_sc_s630;
+                              }
+                              _pac_sc_s620 = _pac_sc_s625;
+                            }
+                            _pac_sc_s615 = _pac_sc_s620;
+                          }
+                          _pac_sc_s610 = _pac_sc_s615;
+                        }
+                        _pac_sc_s605 = _pac_sc_s610;
+                      }
+                      _pac_sc_s600 = _pac_sc_s605;
+                    }
+                    _pac_sc_s595 = _pac_sc_s600;
+                  }
+                  _pac_sc_s590 = _pac_sc_s595;
+                }
+                _pac_sc_s585 = _pac_sc_s590;
+              }
+              _pac_sc_s580 = _pac_sc_s585;
+            }
+            _pac_sc_s575 = _pac_sc_s580;
+          }
+          _pac_sc_s570 = _pac_sc_s575;
+        }
+        _pac_sc_s565 = _pac_sc_s570;
+      }
+      _pac_sc_s560 = _pac_sc_s565;
+    }
+    Object@Object _out_s744 = null;
+    putVal_int_K_V@HashMap(self, _pac_sc_s560, key, value, _out_s744, self0__HashMap_Node_s4132);
+    _out = _out_s744;
+    return;
+  }
+  /*HashMap.sk:22*/
+  
+void resize_int (Object self, int newSize, ref global Object@Object self0__HashMap_Node_s4126)/*HashMap.sk:22*/
+  {
+    int i = 0;
+    int h = 0;
+    int hashMod = 0;
+    Array_Object@array oldElementData = self.elementData_HashMap;
+    Array_Object@array newElementData = new Array_Object@array(length=newSize);
+    i = 0;
+    bit __sa0 = 0 < (self.capacity_HashMap);
+    Object@Object k = null;
+    Object@Object v = null;
+    while(__sa0)
+    {
+      {
+        {
+          {
+            if((oldElementData.A[i]) != (null))/*HashMap.sk:30*/
+            {
+              h = oldElementData.A[i].hash_HashMap_Node;
+              k = oldElementData.A[i].key_HashMap_Node;
+              v = oldElementData.A[i].value_HashMap_Node;
+              hashMod = h % newSize;
+              if(hashMod < 0)/*HashMap.sk:35*/
+              {
+                hashMod = hashMod + newSize;
+              }
+              int _out_s940 = 0;
+              HashMap_Node@meta(_out_s940);
+              Object@Object _out_s942 = null;
+              HashMap_Node_HashMap_Node_HashMap_K_V_int@HashMap_Node(new Object@Object(__cid=_out_s940), self, k, v, h, _out_s942, self0__HashMap_Node_s4126);
+              newElementData.A[hashMod] = _out_s942;
+            }
+            i = i + 1;
+            __sa0 = i < (self.capacity_HashMap);
+          }
+        }
+      }
+    }
+    self.elementData_HashMap = newElementData;
+    self.capacity_HashMap = newSize;
+  }
+  /* END PACKAGE HashMap*/
+}
+/* BEGIN PACKAGE ArrayList*/
+package ArrayList{
+  /*ArrayList.sk:3*/
+  
+void glblInit_EMPTY_ELEMENTDATA__ArrayList_s4205 (ref Array_Object@array EMPTY_ELEMENTDATA__ArrayList_s4204)/*ArrayList.sk:3*/
+  {
+    EMPTY_ELEMENTDATA__ArrayList_s4204 = new Array_Object@array(length=0, A={});
+  }
+  /*ArrayList.sk:7*/
+  
+void glblInit_MAX_ARRAY_SIZE__ArrayList_s4227 (ref int MAX_ARRAY_SIZE__ArrayList_s4226)/*ArrayList.sk:7*/
+  {
+    MAX_ARRAY_SIZE__ArrayList_s4226 = 1000000;
+  }
+  /* END PACKAGE ArrayList*/
+}
+/* BEGIN PACKAGE String*/
+package String{
+  /*String.sk:22*/
+  
+void String_String_byte (Object self, Array_char bytes, ref Object _out)/*String.sk:22*/
+  {
+    _out = null;
+    int len;
+    len = bytes.length;
+    self._value_String = new Array_char@array(length=len);
+    for(int i = 0; i < len; i = i + 1)/*Canonical*/
+    {
+      self._value_String.A[i] = bytes.A[i];
+    }
+    self._count_String = len;
+    _out = self;
+    return;
+  }
+  /*String.sk:7*/
+  
+void String_String_char_int_int (Object self, Array_char ca, int offset, int count, ref Object _out)/*String.sk:7*/
+  {
+    _out = null;
+    if((offset > 0) && (offset < (ca.length)))/*String.sk:8*/
+    {
+      Array_char@array tmp = new Array_char@array(length=count);
+      for(int i = 0; i < count; i = i + 1)/*Canonical*/
+      {
+        tmp.A[i] = ca.A[i + offset];
+      }
+      self._value_String = tmp;
+    }
+    else
+    {
+      self._value_String = ca;
+    }
+    self._count_String = count;
+    _out = self;
+    return;
+  }
+  /*String.sk:32*/
+  
+void charAt_int (Object self, int index, ref char _out)/*String.sk:32*/
+  {
+    _out = '\0';
+    if((0 <= index) && (index < (self._count_String)))/*String.sk:33*/
+    {
+      _out = self._value_String.A[index];
+      return;
+    }
+    _out = '\0';
+    return;
+  }
+  /*String.sk:139*/
+  
+void equals_Object (Object self, Object obj, ref bit _out)/*String.sk:139*/
+  {
+    _out = 0;
+    _out = 0;
+    int _out_s2077 = 0;
+    String@meta(_out_s2077);
+    if((obj.__cid) == _out_s2077)/*String.sk:141*/
+    {
+      _out = 1;
+      int sLen_s2079 = 0;
+      String@meta(sLen_s2079);
+      int _pac_sc_s2080 = 0;
+      if((obj.__cid) == sLen_s2079)/*String.sk:144*/
+      {
+        int sLen_s2082 = 0;
+        length@String(obj, sLen_s2082);
+        _pac_sc_s2080 = sLen_s2082;
+      }
+      else
+      {
+        _pac_sc_s2080 = 0;
+      }
+      int tLen_s2084 = 0;
+      String@meta(tLen_s2084);
+      int _pac_sc_s2085 = 0;
+      if((self.__cid) == tLen_s2084)/*String.sk:145*/
+      {
+        int tLen_s2087 = 0;
+        length@String(self, tLen_s2087);
+        _pac_sc_s2085 = tLen_s2087;
+      }
+      else
+      {
+        _pac_sc_s2085 = 0;
+      }
+      if(_pac_sc_s2080 != _pac_sc_s2085)/*String.sk:146*/
+      {
+        _out = 0;
+      }
+      for(int i = 0; (i < _pac_sc_s2080) && (_out == 1); i = i + 1)
+      {
+        if((obj._value_String.A[i]) != (self._value_String.A[i]))/*String.sk:148*/
+        {
+          _out = 0;
+        }
+      }
+    }
+    return;
+  }
+  /*String.sk:198*/
+  
+void getBytes (Object self, ref Array_char _out)/*String.sk:198*/
+  {
+    _out = null;
+    int _out_s2089 = 0;
+    String@meta(_out_s2089);
+    Object@Object _pac_sc_s2090 = null;
+    if((self.__cid) == _out_s2089)/*String.sk:199*/
+    {
+      Object@Object _out_s2092 = null;
+      toString@String(self, _out_s2092);
+      _pac_sc_s2090 = _out_s2092;
+    }
+    else
+    {
+      _pac_sc_s2090 = null;
+    }
+    Array_char@array _out_s2094 = null;
+    getBytes_String(_pac_sc_s2090, _out_s2094);
+    _out = _out_s2094;
+    return;
+  }
+  /*String.sk:202*/
+  
+void getBytes_String (Object str, ref Array_char _out)/*String.sk:202*/
+  {
+    _out = null;
+    int len_s2096 = 0;
+    String@meta(len_s2096);
+    int _pac_sc_s2097 = 0;
+    if((str.__cid) == len_s2096)/*String.sk:203*/
+    {
+      int len_s2099 = 0;
+      length@String(str, len_s2099);
+      _pac_sc_s2097 = len_s2099;
+    }
+    else
+    {
+      _pac_sc_s2097 = 0;
+    }
+    _out = new Array_char@array(length=_pac_sc_s2097);
+    for(int i = 0; i < _pac_sc_s2097; i = i + 1)/*Canonical*/
+    {
+      int _out_s2101 = 0;
+      String@meta(_out_s2101);
+      char _pac_sc_s2102 = '\0';
+      if((str.__cid) == _out_s2101)/*String.sk:206*/
+      {
+        char _out_s2104 = '\0';
+        charAt_int@String(str, i, _out_s2104);
+        _pac_sc_s2102 = _out_s2104;
+      }
+      else
+      {
+        _pac_sc_s2102 = '\0';
+      }
+      _out.A[i] = _pac_sc_s2102;
+    }
+    return;
+  }
+  /*String.sk:156*/
+  
+void hashCode (Object self, ref int _out)/*String.sk:156*/
+  {
+    _out = 0;
+    int n;
+    int hash;
+    int temp;
+    n = self._count_String;
+    hash = 0;
+    if(n == 0)/*String.sk:158*/
+    {
+      _out = 0;
+      return;
+    }
+    for(int i = 0; i < n; i = i + 1)/*Canonical*/
+    {
+      int temp_s2106 = 0;
+      String@meta(temp_s2106);
+      char _pac_sc_s2107 = '\0';
+      if((self.__cid) == temp_s2106)/*String.sk:162*/
+      {
+        char temp_s2109 = '\0';
+        charAt_int@String(self, i, temp_s2109);
+        _pac_sc_s2107 = temp_s2109;
+      }
+      else
+      {
+        _pac_sc_s2107 = '\0';
+      }
+      temp = _pac_sc_s2107;
+      for(int j = 0; j < ((n - 1) - i); j = j + 1)/*Canonical*/
+      {
+        temp = temp * 31;
+      }
+      hash = hash + temp;
+    }
+    _out = hash;
+    return;
+  }
+  /*String.sk:37*/
+  
+void length (Object self, ref int _out)/*String.sk:37*/
+  {
+    _out = 0;
+    _out = self._count_String;
+    return;
+  }
+  /*String.sk:41*/
+  
+void toString (Object self, ref Object _out)/*String.sk:41*/
+  {
+    _out = null;
+    _out = self;
+    return;
+  }
+  /* END PACKAGE String*/
+}
+/* BEGIN PACKAGE Assert*/
+package Assert{
+  /* END PACKAGE Assert*/
+}
+/* BEGIN PACKAGE TreeSet*/
+package TreeSet{
+  /*TreeSet.sk:3*/
+  
+void glblInit_INITIAL_CAPACITY__TreeSet_s4217 (ref int INITIAL_CAPACITY__TreeSet_s4216)/*TreeSet.sk:3*/
+  {
+    INITIAL_CAPACITY__TreeSet_s4216 = 16;
+  }
+  /*TreeSet.sk:7*/
+  
+void glblInit_RESIZE_FACTOR__TreeSet_s4257 (ref int RESIZE_FACTOR__TreeSet_s4256)/*TreeSet.sk:7*/
+  {
+    RESIZE_FACTOR__TreeSet_s4256 = 2;
+  }
+  /* END PACKAGE TreeSet*/
+}
+/* BEGIN PACKAGE SecretKeySpec*/
+package SecretKeySpec{
+  /*SecretKeySpec.sk:7*/
+  
+void SecretKeySpec_SecretKeySpec_byte_String (Object self, Array_char key, Object type, ref Object _out)/*SecretKeySpec.sk:7*/
+  {
+    _out = null;
+    self.key_SecretKeySpec = key;
+    _out = self;
+    return;
+  }
+  /*SecretKeySpec.sk:12*/
+  
+void getEncoded (Object self, ref Array_char _out)/*SecretKeySpec.sk:12*/
+  {
+    _out = null;
+    _out = self.key_SecretKeySpec;
+    return;
+  }
+  /* END PACKAGE SecretKeySpec*/
+}
+/* BEGIN PACKAGE List*/
+package List{
+  /* END PACKAGE List*/
+}
+/* BEGIN PACKAGE Boolean*/
+package Boolean{
+  /* END PACKAGE Boolean*/
+}
+/* BEGIN PACKAGE HashSet*/
+package HashSet{
+  /*HashSet.sk:3*/
+  
+void glblInit_INITIAL_CAPACITY__HashSet_s4215 (ref int INITIAL_CAPACITY__HashSet_s4214)/*HashSet.sk:3*/
+  {
+    INITIAL_CAPACITY__HashSet_s4214 = 16;
+  }
+  /*HashSet.sk:7*/
+  
+void glblInit_RESIZE_FACTOR__HashSet_s4255 (ref int RESIZE_FACTOR__HashSet_s4254)/*HashSet.sk:7*/
+  {
+    RESIZE_FACTOR__HashSet_s4254 = 2;
+  }
+  /* END PACKAGE HashSet*/
+}
+/* BEGIN PACKAGE Character*/
+package Character{
+  /*Character.sk:216*/
+  
+void charValue (Object self, ref char _out)/*Character.sk:216*/
+  {
+    _out = '\0';
+    _out = self.value_Character;
+    return;
+  }
+  /*Character.sk:220*/
+  
+void equals_Object (Object self, Object obj, ref bit _out)/*Character.sk:220*/
+  {
+    _out = 0;
+    int _out_s3067 = 0;
+    Character@meta(_out_s3067);
+    if((obj.__cid) == _out_s3067)/*Character.sk:221*/
+    {
+      int _out_s3069 = 0;
+      Character@meta(_out_s3069);
+      char _pac_sc_s3070 = '\0';
+      if((obj.__cid) == _out_s3069)/*Character.sk:222*/
+      {
+        char _out_s3072 = '\0';
+        charValue@Character(obj, _out_s3072);
+        _pac_sc_s3070 = _out_s3072;
+      }
+      else
+      {
+        _pac_sc_s3070 = '\0';
+      }
+      _out = (self.value_Character) == _pac_sc_s3070;
+      return;
+    }
+    _out = 0;
+    return;
+  }
+  /*Character.sk:43*/
+  
+void glblInit_COMBINING_SPACING_MARK__Character_s4151 (ref char COMBINING_SPACING_MARK__Character_s4150)/*Character.sk:43*/
+  {
+    COMBINING_SPACING_MARK__Character_s4150 = 8;
+  }
+  /*Character.sk:99*/
+  
+void glblInit_CONNECTOR_PUNCTUATION__Character_s4153 (ref char CONNECTOR_PUNCTUATION__Character_s4152)/*Character.sk:99*/
+  {
+    CONNECTOR_PUNCTUATION__Character_s4152 = 23;
+  }
+  /*Character.sk:71*/
+  
+void glblInit_CONTROL__Character_s4155 (ref char CONTROL__Character_s4154)/*Character.sk:71*/
+  {
+    CONTROL__Character_s4154 = 15;
+  }
+  /*Character.sk:111*/
+  
+void glblInit_CURRENCY_SYMBOL__Character_s4157 (ref char CURRENCY_SYMBOL__Character_s4156)/*Character.sk:111*/
+  {
+    CURRENCY_SYMBOL__Character_s4156 = 26;
+  }
+  /*Character.sk:87*/
+  
+void glblInit_DASH_PUNCTUATION__Character_s4159 (ref char DASH_PUNCTUATION__Character_s4158)/*Character.sk:87*/
+  {
+    DASH_PUNCTUATION__Character_s4158 = 20;
+  }
+  /*Character.sk:47*/
+  
+void glblInit_DECIMAL_DIGIT_NUMBER__Character_s4161 (ref char DECIMAL_DIGIT_NUMBER__Character_s4160)/*Character.sk:47*/
+  {
+    DECIMAL_DIGIT_NUMBER__Character_s4160 = 9;
+  }
+  /*Character.sk:155*/
+  
+void glblInit_DIRECTIONALITY_ARABIC_NUMBER__Character_s4165 (ref char DIRECTIONALITY_ARABIC_NUMBER__Character_s4164)/*Character.sk:155*/
+  {
+    DIRECTIONALITY_ARABIC_NUMBER__Character_s4164 = 6;
+  }
+  /*Character.sk:167*/
+  
+void glblInit_DIRECTIONALITY_BOUNDARY_NEUTRAL__Character_s4167 (ref char DIRECTIONALITY_BOUNDARY_NEUTRAL__Character_s4166)/*Character.sk:167*/
+  {
+    DIRECTIONALITY_BOUNDARY_NEUTRAL__Character_s4166 = 9;
+  }
+  /*Character.sk:159*/
+  
+void glblInit_DIRECTIONALITY_COMMON_NUMBER_SEPARATOR__Character_s4169 (ref char DIRECTIONALITY_COMMON_NUMBER_SEPARATOR__Character_s4168)/*Character.sk:159*/
+  {
+    DIRECTIONALITY_COMMON_NUMBER_SEPARATOR__Character_s4168 = 7;
+  }
+  /*Character.sk:147*/
+  
+void glblInit_DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR__Character_s4171 (ref char DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR__Character_s4170)/*Character.sk:147*/
+  {
+    DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR__Character_s4170 = 4;
+  }
+  /*Character.sk:151*/
+  
+void glblInit_DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR__Character_s4173 (ref char DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR__Character_s4172)/*Character.sk:151*/
+  {
+    DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR__Character_s4172 = 5;
+  }
+  /*Character.sk:143*/
+  
+void glblInit_DIRECTIONALITY_EUROPEAN_NUMBER__Character_s4175 (ref char DIRECTIONALITY_EUROPEAN_NUMBER__Character_s4174)/*Character.sk:143*/
+  {
+    DIRECTIONALITY_EUROPEAN_NUMBER__Character_s4174 = 3;
+  }
+  /*Character.sk:187*/
+  
+void glblInit_DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING__Character_s4177 (ref char DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING__Character_s4176)/*Character.sk:187*/
+  {
+    DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING__Character_s4176 = 14;
+  }
+  /*Character.sk:191*/
+  
+void glblInit_DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE__Character_s4179 (ref char DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE__Character_s4178)/*Character.sk:191*/
+  {
+    DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE__Character_s4178 = 15;
+  }
+  /*Character.sk:131*/
+  
+void glblInit_DIRECTIONALITY_LEFT_TO_RIGHT__Character_s4181 (ref char DIRECTIONALITY_LEFT_TO_RIGHT__Character_s4180)/*Character.sk:131*/
+  {
+    DIRECTIONALITY_LEFT_TO_RIGHT__Character_s4180 = 0;
+  }
+  /*Character.sk:163*/
+  
+void glblInit_DIRECTIONALITY_NONSPACING_MARK__Character_s4183 (ref char DIRECTIONALITY_NONSPACING_MARK__Character_s4182)/*Character.sk:163*/
+  {
+    DIRECTIONALITY_NONSPACING_MARK__Character_s4182 = 8;
+  }
+  /*Character.sk:183*/
+  
+void glblInit_DIRECTIONALITY_OTHER_NEUTRALS__Character_s4185 (ref char DIRECTIONALITY_OTHER_NEUTRALS__Character_s4184)/*Character.sk:183*/
+  {
+    DIRECTIONALITY_OTHER_NEUTRALS__Character_s4184 = 13;
+  }
+  /*Character.sk:171*/
+  
+void glblInit_DIRECTIONALITY_PARAGRAPH_SEPARATOR__Character_s4187 (ref char DIRECTIONALITY_PARAGRAPH_SEPARATOR__Character_s4186)/*Character.sk:171*/
+  {
+    DIRECTIONALITY_PARAGRAPH_SEPARATOR__Character_s4186 = 10;
+  }
+  /*Character.sk:203*/
+  
+void glblInit_DIRECTIONALITY_POP_DIRECTIONAL_FORMAT__Character_s4189 (ref char DIRECTIONALITY_POP_DIRECTIONAL_FORMAT__Character_s4188)/*Character.sk:203*/
+  {
+    DIRECTIONALITY_POP_DIRECTIONAL_FORMAT__Character_s4188 = 18;
+  }
+  /*Character.sk:139*/
+  
+void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC__Character_s4191 (ref char DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC__Character_s4190)/*Character.sk:139*/
+  {
+    DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC__Character_s4190 = 2;
+  }
+  /*Character.sk:195*/
+  
+void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING__Character_s4193 (ref char DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING__Character_s4192)/*Character.sk:195*/
+  {
+    DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING__Character_s4192 = 16;
+  }
+  /*Character.sk:199*/
+  
+void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE__Character_s4195 (ref char DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE__Character_s4194)/*Character.sk:199*/
+  {
+    DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE__Character_s4194 = 17;
+  }
+  /*Character.sk:135*/
+  
+void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT__Character_s4197 (ref char DIRECTIONALITY_RIGHT_TO_LEFT__Character_s4196)/*Character.sk:135*/
+  {
+    DIRECTIONALITY_RIGHT_TO_LEFT__Character_s4196 = 1;
+  }
+  /*Character.sk:175*/
+  
+void glblInit_DIRECTIONALITY_SEGMENT_SEPARATOR__Character_s4199 (ref char DIRECTIONALITY_SEGMENT_SEPARATOR__Character_s4198)/*Character.sk:175*/
+  {
+    DIRECTIONALITY_SEGMENT_SEPARATOR__Character_s4198 = 11;
+  }
+  /*Character.sk:127*/
+  
+void glblInit_DIRECTIONALITY_UNDEFINED__Character_s4201 (ref char DIRECTIONALITY_UNDEFINED__Character_s4200)/*Character.sk:127*/
+  {
+    DIRECTIONALITY_UNDEFINED__Character_s4200 = -1;
+  }
+  /*Character.sk:179*/
+  
+void glblInit_DIRECTIONALITY_WHITESPACE__Character_s4203 (ref char DIRECTIONALITY_WHITESPACE__Character_s4202)/*Character.sk:179*/
+  {
+    DIRECTIONALITY_WHITESPACE__Character_s4202 = 12;
+  }
+  /*Character.sk:39*/
+  
+void glblInit_ENCLOSING_MARK__Character_s4207 (ref char ENCLOSING_MARK__Character_s4206)/*Character.sk:39*/
+  {
+    ENCLOSING_MARK__Character_s4206 = 7;
+  }
+  /*Character.sk:95*/
+  
+void glblInit_END_PUNCTUATION__Character_s4209 (ref char END_PUNCTUATION__Character_s4208)/*Character.sk:95*/
+  {
+    END_PUNCTUATION__Character_s4208 = 22;
+  }
+  /*Character.sk:123*/
+  
+void glblInit_FINAL_QUOTE_PUNCTUATION__Character_s4211 (ref char FINAL_QUOTE_PUNCTUATION__Character_s4210)/*Character.sk:123*/
+  {
+    FINAL_QUOTE_PUNCTUATION__Character_s4210 = 30;
+  }
+  /*Character.sk:75*/
+  
+void glblInit_FORMAT__Character_s4213 (ref char FORMAT__Character_s4212)/*Character.sk:75*/
+  {
+    FORMAT__Character_s4212 = 16;
+  }
+  /*Character.sk:51*/
+  
+void glblInit_LETTER_NUMBER__Character_s4219 (ref char LETTER_NUMBER__Character_s4218)/*Character.sk:51*/
+  {
+    LETTER_NUMBER__Character_s4218 = 10;
+  }
+  /*Character.sk:63*/
+  
+void glblInit_LINE_SEPARATOR__Character_s4221 (ref char LINE_SEPARATOR__Character_s4220)/*Character.sk:63*/
+  {
+    LINE_SEPARATOR__Character_s4220 = 13;
+  }
+  /*Character.sk:19*/
+  
+void glblInit_LOWERCASE_LETTER__Character_s4223 (ref char LOWERCASE_LETTER__Character_s4222)/*Character.sk:19*/
+  {
+    LOWERCASE_LETTER__Character_s4222 = 2;
+  }
+  /*Character.sk:107*/
+  
+void glblInit_MATH_SYMBOL__Character_s4225 (ref char MATH_SYMBOL__Character_s4224)/*Character.sk:107*/
+  {
+    MATH_SYMBOL__Character_s4224 = 25;
+  }
+  /*Character.sk:7*/
+  
+void glblInit_MAX_RADIX__Character_s4229 (ref int MAX_RADIX__Character_s4228)/*Character.sk:7*/
+  {
+    MAX_RADIX__Character_s4228 = 36;
+  }
+  /*Character.sk:3*/
+  
+void glblInit_MIN_RADIX__Character_s4233 (ref int MIN_RADIX__Character_s4232)/*Character.sk:3*/
+  {
+    MIN_RADIX__Character_s4232 = 2;
+  }
+  /*Character.sk:27*/
+  
+void glblInit_MODIFIER_LETTER__Character_s4237 (ref char MODIFIER_LETTER__Character_s4236)/*Character.sk:27*/
+  {
+    MODIFIER_LETTER__Character_s4236 = 4;
+  }
+  /*Character.sk:115*/
+  
+void glblInit_MODIFIER_SYMBOL__Character_s4239 (ref char MODIFIER_SYMBOL__Character_s4238)/*Character.sk:115*/
+  {
+    MODIFIER_SYMBOL__Character_s4238 = 27;
+  }
+  /*Character.sk:35*/
+  
+void glblInit_NON_SPACING_MARK__Character_s4241 (ref char NON_SPACING_MARK__Character_s4240)/*Character.sk:35*/
+  {
+    NON_SPACING_MARK__Character_s4240 = 6;
+  }
+  /*Character.sk:31*/
+  
+void glblInit_OTHER_LETTER__Character_s4243 (ref char OTHER_LETTER__Character_s4242)/*Character.sk:31*/
+  {
+    OTHER_LETTER__Character_s4242 = 5;
+  }
+  /*Character.sk:55*/
+  
+void glblInit_OTHER_NUMBER__Character_s4245 (ref char OTHER_NUMBER__Character_s4244)/*Character.sk:55*/
+  {
+    OTHER_NUMBER__Character_s4244 = 11;
+  }
+  /*Character.sk:103*/
+  
+void glblInit_OTHER_PUNCTUATION__Character_s4247 (ref char OTHER_PUNCTUATION__Character_s4246)/*Character.sk:103*/
+  {
+    OTHER_PUNCTUATION__Character_s4246 = 24;
+  }
+  /*Character.sk:119*/
+  
+void glblInit_OTHER_SYMBOL__Character_s4249 (ref char OTHER_SYMBOL__Character_s4248)/*Character.sk:119*/
+  {
+    OTHER_SYMBOL__Character_s4248 = 28;
+  }
+  /*Character.sk:67*/
+  
+void glblInit_PARAGRAPH_SEPARATOR__Character_s4251 (ref char PARAGRAPH_SEPARATOR__Character_s4250)/*Character.sk:67*/
+  {
+    PARAGRAPH_SEPARATOR__Character_s4250 = 14;
+  }
+  /*Character.sk:79*/
+  
+void glblInit_PRIVATE_USE__Character_s4253 (ref char PRIVATE_USE__Character_s4252)/*Character.sk:79*/
+  {
+    PRIVATE_USE__Character_s4252 = 18;
+  }
+  /*Character.sk:59*/
+  
+void glblInit_SPACE_SEPARATOR__Character_s4259 (ref char SPACE_SEPARATOR__Character_s4258)/*Character.sk:59*/
+  {
+    SPACE_SEPARATOR__Character_s4258 = 12;
+  }
+  /*Character.sk:91*/
+  
+void glblInit_START_PUNCTUATION__Character_s4261 (ref char START_PUNCTUATION__Character_s4260)/*Character.sk:91*/
+  {
+    START_PUNCTUATION__Character_s4260 = 21;
+  }
+  /*Character.sk:83*/
+  
+void glblInit_SURROGATE__Character_s4263 (ref char SURROGATE__Character_s4262)/*Character.sk:83*/
+  {
+    SURROGATE__Character_s4262 = 19;
+  }
+  /*Character.sk:23*/
+  
+void glblInit_TITLECASE_LETTER__Character_s4265 (ref char TITLECASE_LETTER__Character_s4264)/*Character.sk:23*/
+  {
+    TITLECASE_LETTER__Character_s4264 = 3;
+  }
+  /*Character.sk:11*/
+  
+void glblInit_UNASSIGNED__Character_s4267 (ref char UNASSIGNED__Character_s4266)/*Character.sk:11*/
+  {
+    UNASSIGNED__Character_s4266 = 0;
+  }
+  /*Character.sk:15*/
+  
+void glblInit_UPPERCASE_LETTER__Character_s4269 (ref char UPPERCASE_LETTER__Character_s4268)/*Character.sk:15*/
+  {
+    UPPERCASE_LETTER__Character_s4268 = 1;
+  }
+  /* END PACKAGE Character*/
+}
+/* BEGIN PACKAGE PasswordManagerTest*/
+package PasswordManagerTest{
+  /*Passwor..erTest.sk:7*/
+  
+void _main (ref global int DEFAULT_INITIAL_CAPACITY__HashMap_s4139, ref global Object@Object self0__HashMap_Node_s4129)/*Passwor..erTest.sk:7*/
+  {
+    int self_s3074 = 0;
+    Object@meta(self_s3074);
+    Object@Object self_s3076 = null;
+    Object_Object@Object(new Object@Object(__cid=self_s3074), self_s3076);
+    int pasman_s3078 = 0;
+    PasswordManager@meta(pasman_s3078);
+    int pasman_s3080 = 0;
+    String@meta(pasman_s3080);
+    Object@Object pasman_s3082 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=pasman_s3080), new Array_char@array(length=5, A={'1','2','3','4','\0'}), 0, 4, pasman_s3082);
+    Object@Object pasman_s3084 = null;
+    PasswordManager_PasswordManager_String@PasswordManager(new Object@Object(__cid=pasman_s3078), pasman_s3082, pasman_s3084, DEFAULT_INITIAL_CAPACITY__HashMap_s4139);
+    int _out_s3086 = 0;
+    PasswordManager@meta(_out_s3086);
+    if((pasman_s3084.__cid) == _out_s3086)/*Passwor..erTest.sk:10*/
+    {
+      int _out_s3088 = 0;
+      String@meta(_out_s3088);
+      Object@Object _out_s3090 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_out_s3088), new Array_char@array(length=6, A={'y','a','h','o','o','\0'}), 0, 5, _out_s3090);
+      int _out_s3092 = 0;
+      String@meta(_out_s3092);
+      Object@Object _out_s3094 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_out_s3092), new Array_char@array(length=6, A={'1','2','3','4','5','\0'}), 0, 5, _out_s3094);
+      addPassword_String_String@PasswordManager(pasman_s3084, _out_s3090, _out_s3094, self0__HashMap_Node_s4129);
+    }
+    int _out_s3096 = 0;
+    PasswordManager@meta(_out_s3096);
+    if((pasman_s3084.__cid) == _out_s3096)/*Passwor..erTest.sk:12*/
+    {
+      int _out_s3098 = 0;
+      String@meta(_out_s3098);
+      Object@Object _out_s3100 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_out_s3098), new Array_char@array(length=7, A={'g','o','o','g','l','e','\0'}), 0, 6, _out_s3100);
+      int _out_s3102 = 0;
+      String@meta(_out_s3102);
+      Object@Object _out_s3104 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_out_s3102), new Array_char@array(length=8, A={'5','4','4','1','9','4','4','\0'}), 0, 7, _out_s3104);
+      addPassword_String_String@PasswordManager(pasman_s3084, _out_s3100, _out_s3104, self0__HashMap_Node_s4129);
+    }
+    int pass1_s3106 = 0;
+    PasswordManager@meta(pass1_s3106);
+    Object@Object _pac_sc_s3107 = null;
+    if((pasman_s3084.__cid) == pass1_s3106)/*Passwor..erTest.sk:14*/
+    {
+      int pass1_s3109 = 0;
+      String@meta(pass1_s3109);
+      Object@Object pass1_s3111 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=pass1_s3109), new Array_char@array(length=7, A={'g','o','o','g','l','e','\0'}), 0, 6, pass1_s3111);
+      Object@Object pass1_s3113 = null;
+      getPass_String@PasswordManager(pasman_s3084, pass1_s3111, pass1_s3113);
+      _pac_sc_s3107 = pass1_s3113;
+    }
+    else
+    {
+      _pac_sc_s3107 = null;
+    }
+    int _out_s3115 = 0;
+    String@meta(_out_s3115);
+    bit _pac_sc_s3116 = 0;
+    if((_pac_sc_s3107.__cid) == _out_s3115)/*Passwor..erTest.sk:15*/
+    {
+      int _out_s3118 = 0;
+      String@meta(_out_s3118);
+      Object@Object _out_s3120 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_out_s3118), new Array_char@array(length=8, A={'5','4','4','1','9','4','4','\0'}), 0, 7, _out_s3120);
+      bit _out_s3122 = 0;
+      equals_Object@String(_pac_sc_s3107, _out_s3120, _out_s3122);
+      _pac_sc_s3116 = _out_s3122;
+    }
+    else
+    {
+      _pac_sc_s3116 = 0;
+    }
+    assert (_pac_sc_s3116); //Assert at Passwor..erTest.sk:15 (0)
+  }
+  /*Passwor..erTest.sk:7*/
+  
+void main__Wrapper ()  implements main__WrapperNospec/*Passwor..erTest.sk:7*/
+  {
+    global int DEFAULT_INITIAL_CAPACITY__HashMap_s4140 = 0;
+    glblInit_DEFAULT_INITIAL_CAPACITY__HashMap_s4163@HashMap(DEFAULT_INITIAL_CAPACITY__HashMap_s4140);
+    global Object@Object self0__HashMap_Node_s4128 = null;
+    _main(DEFAULT_INITIAL_CAPACITY__HashMap_s4140, self0__HashMap_Node_s4128);
+  }
+  /*Passwor..erTest.sk:7*/
+  
+void main__WrapperNospec ()/*Passwor..erTest.sk:7*/
+  { }
+  /* END PACKAGE PasswordManagerTest*/
+}
+/* BEGIN PACKAGE CharSequence*/
+package CharSequence{
+  /* END PACKAGE CharSequence*/
+}
+/* BEGIN PACKAGE PasswordManager*/
+package PasswordManager{
+  /*Passwor..anager.sk:11*/
+  
+void PasswordManager_PasswordManager_String (Object self, Object masterPassword, ref Object _out, ref global int DEFAULT_INITIAL_CAPACITY__HashMap_s4127)/*Passwor..anager.sk:11*/
+  {
+    _out = null;
+    int _out_s3151 = 0;
+    Cryptographer@meta(_out_s3151);
+    Object@Object _out_s3153 = null;
+    Cryptographer_Cryptographer@Cryptographer(new Object@Object(__cid=_out_s3151), _out_s3153);
+    self.cryptographer_PasswordManager = _out_s3153;
+    int _out_s3155 = 0;
+    PasswordMap@meta(_out_s3155);
+    Object@Object _out_s3157 = null;
+    PasswordMap_PasswordMap@PasswordMap(new Object@Object(__cid=_out_s3155), _out_s3157, DEFAULT_INITIAL_CAPACITY__HashMap_s4127);
+    self.passMap_PasswordManager = _out_s3157;
+    _out = self;
+    return;
+  }
+  /*Passwor..anager.sk:31*/
+  
+void addPassword_String_String (Object self, Object domain, Object passWord, ref global Object@Object self0__HashMap_Node_s4133)/*Passwor..anager.sk:31*/
+  {
+    int PassEncryption_s3139 = 0;
+    Cryptographer@meta(PassEncryption_s3139);
+    Object@Object _pac_sc_s3140 = null;
+    if((self.cryptographer_PasswordManager.__cid) == PassEncryption_s3139)/*Passwor..anager.sk:32*/
+    {
+      Object@Object PassEncryption_s3142 = null;
+      encrypt_String@Cryptographer(self.cryptographer_PasswordManager, passWord, PassEncryption_s3142);
+      _pac_sc_s3140 = PassEncryption_s3142;
+    }
+    else
+    {
+      _pac_sc_s3140 = null;
+    }
+    int domainHash_s3144 = 0;
+    Cryptographer@meta(domainHash_s3144);
+    Object@Object _pac_sc_s3145 = null;
+    if((self.cryptographer_PasswordManager.__cid) == domainHash_s3144)/*Passwor..anager.sk:33*/
+    {
+      Object@Object domainHash_s3147 = null;
+      hash_String@Cryptographer(self.cryptographer_PasswordManager, domain, domainHash_s3147);
+      _pac_sc_s3145 = domainHash_s3147;
+    }
+    else
+    {
+      _pac_sc_s3145 = null;
+    }
+    int _out_s3149 = 0;
+    PasswordMap@meta(_out_s3149);
+    if((self.passMap_PasswordManager.__cid) == _out_s3149)/*Passwor..anager.sk:34*/
+    {
+      add_String_String@PasswordMap(self.passMap_PasswordManager, _pac_sc_s3145, _pac_sc_s3140, self0__HashMap_Node_s4133);
+    }
+  }
+  /*Passwor..anager.sk:51*/
+  
+void getPass_String (Object self, Object domain, ref Object _out)/*Passwor..anager.sk:51*/
+  {
+    _out = null;
+    int domainHash_s3124 = 0;
+    Cryptographer@meta(domainHash_s3124);
+    Object@Object _pac_sc_s3125 = null;
+    if((self.cryptographer_PasswordManager.__cid) == domainHash_s3124)/*Passwor..anager.sk:52*/
+    {
+      Object@Object domainHash_s3127 = null;
+      hash_String@Cryptographer(self.cryptographer_PasswordManager, domain, domainHash_s3127);
+      _pac_sc_s3125 = domainHash_s3127;
+    }
+    else
+    {
+      _pac_sc_s3125 = null;
+    }
+    int PassEncryption_s3129 = 0;
+    PasswordMap@meta(PassEncryption_s3129);
+    Object@Object _pac_sc_s3130 = null;
+    if((self.passMap_PasswordManager.__cid) == PassEncryption_s3129)/*Passwor..anager.sk:53*/
+    {
+      Object@Object PassEncryption_s3132 = null;
+      get_String@PasswordMap(self.passMap_PasswordManager, _pac_sc_s3125, PassEncryption_s3132);
+      _pac_sc_s3130 = PassEncryption_s3132;
+    }
+    else
+    {
+      _pac_sc_s3130 = null;
+    }
+    int _out_s3134 = 0;
+    Cryptographer@meta(_out_s3134);
+    Object@Object _pac_sc_s3135 = null;
+    if((self.cryptographer_PasswordManager.__cid) == _out_s3134)/*Passwor..anager.sk:54*/
+    {
+      Object@Object _out_s3137 = null;
+      decrypt_String@Cryptographer(self.cryptographer_PasswordManager, _pac_sc_s3130, _out_s3137);
+      _pac_sc_s3135 = _out_s3137;
+    }
+    else
+    {
+      _pac_sc_s3135 = null;
+    }
+    _out = _pac_sc_s3135;
+    return;
+  }
+  /* END PACKAGE PasswordManager*/
+}
+/* BEGIN PACKAGE SecureRandom*/
+package SecureRandom{
+  /*SecureRandom.sk:3*/
+  
+void SecureRandom_SecureRandom (Object self, ref Object _out)/*SecureRandom.sk:3*/
+  {
+    _out = null;
+    _out = self;
+    return;
+  }
+  /*SecureRandom.sk:7*/
+  
+void nextBytes_byte (Object self, Array_char buf)/*SecureRandom.sk:7*/
+  {
+    bit __sa18 = 0 < (buf.length);
+    int i = 0;
+    while(__sa18)
+    {
+      {
+        {
+          {
+            buf.A[i] = ((char)i);
+            i = i + 1;
+            __sa18 = i < (buf.length);
+          }
+        }
+      }
+    }
+  }
+  /* END PACKAGE SecureRandom*/
+}
+/* BEGIN PACKAGE HashMap_Node*/
+package HashMap_Node{
+  /*HashMap_Node.sk:10*/
+  
+void HashMap_Node_HashMap_Node_HashMap_K_V_int (Object self, Object self_0, Object key, Object value, int hash, ref Object _out, ref global Object@Object self0__HashMap_Node_s4029)/*HashMap_Node.sk:10*/
+  {
+    _out = null;
+    self0__HashMap_Node_s4029 = self_0;
+    self.key_HashMap_Node = key;
+    self.value_HashMap_Node = value;
+    self.hash_HashMap_Node = hash;
+    _out = self;
+    return;
+  }
+  /* END PACKAGE HashMap_Node*/
+}
+/* BEGIN PACKAGE LinkedList*/
+package LinkedList{
+  /* END PACKAGE LinkedList*/
+}
+/* BEGIN PACKAGE Mac*/
+package Mac{
+  /*Mac.sk:3*/
+  
+void Mac_Mac (Object self, ref Object _out)/*Mac.sk:3*/
+  {
+    _out = null;
+    _out = self;
+    return;
+  }
+  /*Mac.sk:14*/
+  
+void doFinal_byte (Object self, Array_char text, ref Array_char _out)/*Mac.sk:14*/
+  {
+    _out = null;
+    _out = text;
+    return;
+  }
+  /*Mac.sk:7*/
+  
+void getInstance_String (Object type, ref Object _out)/*Mac.sk:7*/
+  {
+    _out = null;
+    int _out_s3197 = 0;
+    Mac@meta(_out_s3197);
+    Object@Object _out_s3199 = null;
+    Mac_Mac(new Object@Object(__cid=_out_s3197), _out_s3199);
+    _out = _out_s3199;
+    return;
+  }
+  /*Mac.sk:11*/
+  
+void init_SecretKeySpec (Object self, Object key)/*Mac.sk:11*/
+  { }
+  /* END PACKAGE Mac*/
+}
+/* BEGIN PACKAGE Stack*/
+package Stack{
+  /* END PACKAGE Stack*/
+}
+/* BEGIN PACKAGE FileReaderr*/
+package FileReaderr{
+  /* END PACKAGE FileReaderr*/
+}
+/* BEGIN PACKAGE Float*/
+package Float{
+  /*Float.sk:29*/
+  
+void equals_Object (Object self, Object anotherFloat, ref bit _out)/*Float.sk:29*/
+  {
+    _out = 0;
+    int _out_s3391 = 0;
+    Float@meta(_out_s3391);
+    if((anotherFloat.__cid) == _out_s3391)/*Float.sk:30*/
+    {
+      if((anotherFloat.value_Float) == (self.value_Float))/*Float.sk:32*/
+      {
+        _out = 1;
+        return;
+      }
+    }
+    _out = 0;
+    return;
+  }
+  /* END PACKAGE Float*/
+}
+/* BEGIN PACKAGE Map_Entry*/
+package Map_Entry{
+  /* END PACKAGE Map_Entry*/
+}
+/* BEGIN PACKAGE SecretKey*/
+package SecretKey{
+  /* END PACKAGE SecretKey*/
+}
+/* BEGIN PACKAGE KerberosKey*/
+package KerberosKey{
+  /*KerberosKey.sk:12*/
+  
+void getEncoded (Object self, ref Array_char _out)/*KerberosKey.sk:12*/
+  {
+    _out = null;
+    _out = self.key_KerberosKey;
+    return;
+  }
+  /* END PACKAGE KerberosKey*/
+}
+/* BEGIN PACKAGE PasswordMap*/
+package PasswordMap{
+  /*PasswordMap.sk:3*/
+  
+void PasswordMap_PasswordMap (Object self, ref Object _out, ref global int DEFAULT_INITIAL_CAPACITY__HashMap_s4147)/*PasswordMap.sk:3*/
+  {
+    _out = null;
+    int _out_s3411 = 0;
+    HashMap@meta(_out_s3411);
+    Object@Object _out_s3413 = null;
+    HashMap_HashMap@HashMap(new Object@Object(__cid=_out_s3411), _out_s3413, DEFAULT_INITIAL_CAPACITY__HashMap_s4147);
+    self.passMap_PasswordMap = _out_s3413;
+    int _out_s3415 = 0;
+    String@meta(_out_s3415);
+    Object@Object _out_s3417 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=_out_s3415), new Array_char@array(length=16, A={'S','e','c','r','e','t',' ','P','a','s','s','w','o','r','d','\0'}), 0, 15, _out_s3417);
+    self.masterHash_PasswordMap = _out_s3417;
+    _out = self;
+    return;
+  }
+  /*PasswordMap.sk:9*/
+  
+void add_String_String (Object self, Object tag, Object passEncryption, ref global Object@Object self0__HashMap_Node_s4134)/*PasswordMap.sk:9*/
+  {
+    int _out_s3406 = 0;
+    HashMap@meta(_out_s3406);
+    if((self.passMap_PasswordMap.__cid) == _out_s3406)/*PasswordMap.sk:10*/
+    {
+      Object@Object _out_s3409 = null;
+      put_K_V@HashMap(self.passMap_PasswordMap, tag, passEncryption, _out_s3409, self0__HashMap_Node_s4134);
+    }
+  }
+  /*PasswordMap.sk:17*/
+  
+void get_String (Object self, Object domainHash, ref Object _out)/*PasswordMap.sk:17*/
+  {
+    _out = null;
+    int _out_s3401 = 0;
+    HashMap@meta(_out_s3401);
+    Object@Object _pac_sc_s3402 = null;
+    if((self.passMap_PasswordMap.__cid) == _out_s3401)/*PasswordMap.sk:18*/
+    {
+      Object@Object _out_s3404 = null;
+      get_K@HashMap(self.passMap_PasswordMap, domainHash, _out_s3404);
+      _pac_sc_s3402 = _out_s3404;
+    }
+    else
+    {
+      _pac_sc_s3402 = null;
+    }
+    _out = _pac_sc_s3402;
+    return;
+  }
+  /* END PACKAGE PasswordMap*/
+}
+/* BEGIN PACKAGE meta*/
+package meta{
+  /*meta.sk:4*/
+  
+void AbstractQueue (ref int _out)/*meta.sk:4*/
+  {
+    _out = 0;
+    _out = 20;
+    return;
+  }
+  /*meta.sk:5*/
+  
+void ArrayDeque (ref int _out)/*meta.sk:5*/
+  {
+    _out = 0;
+    _out = 12;
+    return;
+  }
+  /*meta.sk:6*/
+  
+void ArrayDeque_DequeNode (ref int _out)/*meta.sk:6*/
+  {
+    _out = 0;
+    _out = 13;
+    return;
+  }
+  /*meta.sk:7*/
+  
+void ArrayList (ref int _out)/*meta.sk:7*/
+  {
+    _out = 0;
+    _out = 21;
+    return;
+  }
+  /*meta.sk:8*/
+  
+void Assert (ref int _out)/*meta.sk:8*/
+  {
+    _out = 0;
+    _out = 37;
+    return;
+  }
+  /*meta.sk:9*/
+  
+void Boolean (ref int _out)/*meta.sk:9*/
+  {
+    _out = 0;
+    _out = 14;
+    return;
+  }
+  /*meta.sk:10*/
+  
+void BufferedWriter (ref int _out)/*meta.sk:10*/
+  {
+    _out = 0;
+    _out = 30;
+    return;
+  }
+  /*meta.sk:12*/
+  
+void Character (ref int _out)/*meta.sk:12*/
+  {
+    _out = 0;
+    _out = 15;
+    return;
+  }
+  /*meta.sk:13*/
+  
+void Cipher (ref int _out)/*meta.sk:13*/
+  {
+    _out = 0;
+    _out = 17;
+    return;
+  }
+  /*meta.sk:15*/
+  
+void Cryptographer (ref int _out)/*meta.sk:15*/
+  {
+    _out = 0;
+    _out = 2;
+    return;
+  }
+  /*meta.sk:17*/
+  
+void File (ref int _out)/*meta.sk:17*/
+  {
+    _out = 0;
+    _out = 47;
+    return;
+  }
+  /*meta.sk:18*/
+  
+void FileReaderr (ref int _out)/*meta.sk:18*/
+  {
+    _out = 0;
+    _out = 45;
+    return;
+  }
+  /*meta.sk:19*/
+  
+void FileWriterr (ref int _out)/*meta.sk:19*/
+  {
+    _out = 0;
+    _out = 40;
+    return;
+  }
+  /*meta.sk:20*/
+  
+void Float (ref int _out)/*meta.sk:20*/
+  {
+    _out = 0;
+    _out = 9;
+    return;
+  }
+  /*meta.sk:21*/
+  
+void HashMap (ref int _out)/*meta.sk:21*/
+  {
+    _out = 0;
+    _out = 33;
+    return;
+  }
+  /*meta.sk:22*/
+  
+void HashMap_Node (ref int _out)/*meta.sk:22*/
+  {
+    _out = 0;
+    _out = 34;
+    return;
+  }
+  /*meta.sk:23*/
+  
+void HashSet (ref int _out)/*meta.sk:23*/
+  {
+    _out = 0;
+    _out = 22;
+    return;
+  }
+  /*meta.sk:24*/
+  
+void Integer (ref int _out)/*meta.sk:24*/
+  {
+    _out = 0;
+    _out = 27;
+    return;
+  }
+  /*meta.sk:25*/
+  
+void IvParameterSpec (ref int _out)/*meta.sk:25*/
+  {
+    _out = 0;
+    _out = 28;
+    return;
+  }
+  /*meta.sk:26*/
+  
+void KerberosKey (ref int _out)/*meta.sk:26*/
+  {
+    _out = 0;
+    _out = 25;
+    return;
+  }
+  /*meta.sk:28*/
+  
+void KeyGenerator (ref int _out)/*meta.sk:28*/
+  {
+    _out = 0;
+    _out = 43;
+    return;
+  }
+  /*meta.sk:29*/
+  
+void LinkedList (ref int _out)/*meta.sk:29*/
+  {
+    _out = 0;
+    _out = 11;
+    return;
+  }
+  /*meta.sk:31*/
+  
+void Mac (ref int _out)/*meta.sk:31*/
+  {
+    _out = 0;
+    _out = 24;
+    return;
+  }
+  /*meta.sk:34*/
+  
+void Number (ref int _out)/*meta.sk:34*/
+  {
+    _out = 0;
+    _out = 44;
+    return;
+  }
+  /*meta.sk:35*/
+  
+void Object (ref int _out)/*meta.sk:35*/
+  {
+    _out = 0;
+    _out = 1;
+    return;
+  }
+  /*meta.sk:36*/
+  
+void PasswordManager (ref int _out)/*meta.sk:36*/
+  {
+    _out = 0;
+    _out = 3;
+    return;
+  }
+  /*meta.sk:37*/
+  
+void PasswordManagerTest (ref int _out)/*meta.sk:37*/
+  {
+    _out = 0;
+    _out = 5;
+    return;
+  }
+  /*meta.sk:38*/
+  
+void PasswordMap (ref int _out)/*meta.sk:38*/
+  {
+    _out = 0;
+    _out = 4;
+    return;
+  }
+  /*meta.sk:40*/
+  
+void Scanner (ref int _out)/*meta.sk:40*/
+  {
+    _out = 0;
+    _out = 6;
+    return;
+  }
+  /*meta.sk:42*/
+  
+void SecretKeySpec (ref int _out)/*meta.sk:42*/
+  {
+    _out = 0;
+    _out = 42;
+    return;
+  }
+  /*meta.sk:43*/
+  
+void SecureRandom (ref int _out)/*meta.sk:43*/
+  {
+    _out = 0;
+    _out = 46;
+    return;
+  }
+  /*meta.sk:45*/
+  
+void Stack (ref int _out)/*meta.sk:45*/
+  {
+    _out = 0;
+    _out = 39;
+    return;
+  }
+  /*meta.sk:46*/
+  
+void String (ref int _out)/*meta.sk:46*/
+  {
+    _out = 0;
+    _out = 41;
+    return;
+  }
+  /*meta.sk:47*/
+  
+void StringBuffer (ref int _out)/*meta.sk:47*/
+  {
+    _out = 0;
+    _out = 16;
+    return;
+  }
+  /*meta.sk:48*/
+  
+void StringBuilder (ref int _out)/*meta.sk:48*/
+  {
+    _out = 0;
+    _out = 23;
+    return;
+  }
+  /*meta.sk:49*/
+  
+void TreeMap (ref int _out)/*meta.sk:49*/
+  {
+    _out = 0;
+    _out = 18;
+    return;
+  }
+  /*meta.sk:50*/
+  
+void TreeSet (ref int _out)/*meta.sk:50*/
+  {
+    _out = 0;
+    _out = 38;
+    return;
+  }
+  /* END PACKAGE meta*/
+}
+/* BEGIN PACKAGE Object*/
+package Object{
+  struct Object {
+      int __cid;
+      Array_char _value_String;
+      int _count_String;
+      Array_Object elementData_ArrayList;
+      int DEFAULT_CAPACITY_ArrayList;
+      int capacity_ArrayList;
+      int size_ArrayList;
+      Object writer_BufferedWriter;
+      float value_Float;
+      bit bool_Boolean;
+      Object file_FileReaderr;
+      Array_char key_SecretKeySpec;
+      Array_Object elementData_AbstractQueue;
+      int size_AbstractQueue;
+      int capacity_AbstractQueue;
+      Object fname_FileWriterr;
+      Object key_HashMap_Node;
+      Object value_HashMap_Node;
+      int hash_HashMap_Node;
+      Array_char key_KerberosKey;
+      int KEYSIZE_KerberosKey;
+      Array_Object elementData_Stack;
+      int size_Stack;
+      int capacity_Stack;
+      Object fname_File;
+      int size_File;
+      Array_char _value_StringBuilder;
+      int _count_StringBuilder;
+      Array_Object set_TreeSet;
+      int capacity_TreeSet;
+      int size_TreeSet;
+      Object file_Scanner;
+      Object GCMSecretKey_Cryptographer;
+      Object Hash_secret_key_Cryptographer;
+      Object sha256_HMAC_Cryptographer;
+      Object myCypherOut_Cryptographer;
+      Array_char randomIv_Cryptographer;
+      Object ivParameterSpec_Cryptographer;
+      int MAX_LENGTH_PASSWORD_Cryptographer;
+      Object mode_KeyGenerator;
+      Object passMap_PasswordMap;
+      Object masterHash_PasswordMap;
+      Object currentHead_ArrayDeque;
+      Object currentTail_ArrayDeque;
+      int size_ArrayDeque;
+      Array_char _value_StringBuffer;
+      int _count_StringBuffer;
+      int value_Integer;
+      Object cryptographer_PasswordManager;
+      Object passMap_PasswordManager;
+      Object val_ArrayDeque_DequeNode;
+      Object prev_ArrayDeque_DequeNode;
+      Object next_ArrayDeque_DequeNode;
+      Object type_Cipher;
+      Object key_Cipher;
+      int mode_Cipher;
+      int ENCRYPT_MODE_Cipher;
+      int DECRYPT_MODE_Cipher;
+      char value_Character;
+      Array_Object set_HashSet;
+      int capacity_HashSet;
+      int size_HashSet;
+      Array_Object elementData_HashMap;
+      int numPairs_HashMap;
+      int capacity_HashMap;
+  }
+  /*Object.sk:7*/
+  
+void Object_Object (Object self, ref Object _out)/*Object.sk:7*/
+  {
+    _out = null;
+    _out = self;
+    return;
+  }
+  /*Object.sk:29*/
+  
+void equals_Object (Object self, Object obj, ref bit _out)/*Object.sk:29*/
+  {
+    _out = 0;
+    _out = self == obj;
+    return;
+  }
+  /*Object.sk:33*/
+  
+void hashCode (Object self, ref int _out)/*Object.sk:33*/
+  {
+    _out = 0;
+    _out = 0;
+    return;
+  }
+  /* END PACKAGE Object*/
+}
+/* BEGIN PACKAGE Map*/
+package Map{
+  /* END PACKAGE Map*/
+}
+/* BEGIN PACKAGE File*/
+package File{
+  /* END PACKAGE File*/
+}
+/* BEGIN PACKAGE Key*/
+package Key{
+  /* END PACKAGE Key*/
+}
+/* BEGIN PACKAGE Scanner*/
+package Scanner{
+  /* END PACKAGE Scanner*/
+}
+/* BEGIN PACKAGE Set*/
+package Set{
+  /* END PACKAGE Set*/
+}
+/* BEGIN PACKAGE StringBuilder*/
+package StringBuilder{
+  /* END PACKAGE StringBuilder*/
+}
+/* BEGIN PACKAGE ArrayDeque_DequeNode*/
+package ArrayDeque_DequeNode{
+  /* END PACKAGE ArrayDeque_DequeNode*/
+}
+/* BEGIN PACKAGE BufferedWriter*/
+package BufferedWriter{
+  /* END PACKAGE BufferedWriter*/
+}
+/* BEGIN PACKAGE AbstractQueue*/
+package AbstractQueue{
+  /* END PACKAGE AbstractQueue*/
+}
+/* BEGIN PACKAGE Number*/
+package Number{
+  /*Number.sk:7*/
+  
+uninterp void intValue (Object self, ref int _out)/*Number.sk:7*/
+  /* END PACKAGE Number*/
+}
+/* BEGIN PACKAGE array*/
+package array{
+  struct Array_bit {
+      int length;
+      bit[length] A;
+  }
+  struct Array_char {
+      int length;
+      char[length] A;
+  }
+  struct Array_int {
+      int length;
+      int[length] A;
+  }
+  struct Array_float {
+      int length;
+      float[length] A;
+  }
+  struct Array_double {
+      int length;
+      double[length] A;
+  }
+  struct Array_Object {
+      int length;
+      Object[length] A;
+  }
+  /* END PACKAGE array*/
+}
+/* BEGIN PACKAGE Queue*/
+package Queue{
+  /* END PACKAGE Queue*/
+}
+/* BEGIN PACKAGE KeyGenerator*/
+package KeyGenerator{
+  /* END PACKAGE KeyGenerator*/
+}
+/* BEGIN PACKAGE ANONYMOUS*/
+/* END PACKAGE ANONYMOUS*/
+/* BEGIN PACKAGE TreeMap*/
+package TreeMap{
+  /* END PACKAGE TreeMap*/
+}
+/* BEGIN PACKAGE Deque*/
+package Deque{
+  /* END PACKAGE Deque*/
+}
+/* BEGIN PACKAGE ArrayDeque*/
+package ArrayDeque{
+  /* END PACKAGE ArrayDeque*/
+}
+/* BEGIN PACKAGE Integer*/
+package Integer{
+  /*Integer.sk:32*/
+  
+void equals_Object (Object self, Object obj, ref bit _out)/*Integer.sk:32*/
+  {
+    _out = 0;
+    int _out_s3934 = 0;
+    Integer@meta(_out_s3934);
+    if((obj.__cid) == _out_s3934)/*Integer.sk:33*/
+    {
+      int _out_s3936 = 0;
+      Integer@meta(_out_s3936);
+      int _pac_sc_s3937 = 0;
+      if((obj.__cid) == _out_s3936)/*Integer.sk:34*/
+      {
+        int _out_s3939 = 0;
+        intValue@Integer(obj, _out_s3939);
+        _pac_sc_s3937 = _out_s3939;
+      }
+      else
+      {
+        _pac_sc_s3937 = 0;
+      }
+      _out = (self.value_Integer) == _pac_sc_s3937;
+      return;
+    }
+    _out = 0;
+    return;
+  }
+  /*Integer.sk:7*/
+  
+void glblInit_MAX_VALUE__Integer_s4231 (ref int MAX_VALUE__Integer_s4230)/*Integer.sk:7*/
+  {
+    MAX_VALUE__Integer_s4230 = 2147483647;
+  }
+  /*Integer.sk:3*/
+  
+void glblInit_MIN_VALUE__Integer_s4235 (ref int MIN_VALUE__Integer_s4234)/*Integer.sk:3*/
+  {
+    MIN_VALUE__Integer_s4234 = -2147483648;
+  }
+  /*Integer.sk:69*/
+  
+void hashCode (Object self, ref int _out)/*Integer.sk:69*/
+  {
+    _out = 0;
+    _out = self.value_Integer;
+    return;
+  }
+  /*Integer.sk:20*/
+  
+void intValue (Object self, ref int _out)/*Integer.sk:20*/
+  {
+    _out = 0;
+    _out = self.value_Integer;
+    return;
+  }
+  /* END PACKAGE Integer*/
+}
+/* BEGIN PACKAGE StringBuffer*/
+package StringBuffer{
+  /* END PACKAGE StringBuffer*/
+}
+/* BEGIN PACKAGE IvParameterSpec*/
+package IvParameterSpec{
+  /*IvParam..erSpec.sk:7*/
+  
+void IvParameterSpec_IvParameterSpec_byte (Object self, Array_char val, ref Object _out)/*IvParam..erSpec.sk:7*/
+  {
+    _out = null;
+    _out = self;
+    return;
+  }
+  /* END PACKAGE IvParameterSpec*/
+}
+/* BEGIN PACKAGE Cipher*/
+package Cipher{
+  /*Cipher.sk:7*/
+  
+void Cipher_Cipher_String (Object self, Object type, ref Object _out)/*Cipher.sk:7*/
+  {
+    _out = null;
+    self.type_Cipher = type;
+    self.ENCRYPT_MODE_Cipher = 1;
+    self.DECRYPT_MODE_Cipher = 2;
+    _out = self;
+    return;
+  }
+  /*Cipher.sk:32*/
+  
+void doFinal_byte (Object self, Array_char text, ref Array_char _out)/*Cipher.sk:32*/
+  {
+    _out = null;
+    int k_s3967 = 0;
+    KerberosKey@meta(k_s3967);
+    Array_char@array _pac_sc_s3968 = null;
+    if((self.key_Cipher.__cid) == k_s3967)/*Cipher.sk:33*/
+    {
+      Array_char@array k_s3970 = null;
+      getEncoded@KerberosKey(self.key_Cipher, k_s3970);
+      _pac_sc_s3968 = k_s3970;
+    }
+    else
+    {
+      int k_s3972 = 0;
+      SecretKeySpec@meta(k_s3972);
+      Array_char@array _pac_sc_s3973 = null;
+      if((self.key_Cipher.__cid) == k_s3972)/*Cipher.sk:33*/
+      {
+        Array_char@array k_s3975 = null;
+        getEncoded@SecretKeySpec(self.key_Cipher, k_s3975);
+        _pac_sc_s3973 = k_s3975;
+      }
+      else
+      {
+        _pac_sc_s3973 = null;
+      }
+      _pac_sc_s3968 = _pac_sc_s3973;
+    }
+    _out = new Array_char@array(length=text.length);
+    if((_pac_sc_s3968.length) == 0)/*Cipher.sk:35*/
+    {
+      return;
+    }
+    if((self.mode_Cipher) == (self.ENCRYPT_MODE_Cipher))/*Cipher.sk:38*/
+    {
+      bit __sa25 = 0 < (text.length);
+      int i = 0;
+      while(__sa25)
+      {
+        {
+          {
+            {
+              _out.A[i] = (text.A[i]) + (_pac_sc_s3968.A[i % (_pac_sc_s3968.length)]);
+              i = i + 1;
+              __sa25 = i < (text.length);
+            }
+          }
+        }
+      }
+    }
+    else
+    {
+      if((self.mode_Cipher) == (self.DECRYPT_MODE_Cipher))/*Cipher.sk:43*/
+      {
+        bit __sa26 = 0 < (text.length);
+        int i_0 = 0;
+        while(__sa26)
+        {
+          {
+            {
+              {
+                _out.A[i_0] = (text.A[i_0]) - (_pac_sc_s3968.A[i_0 % (_pac_sc_s3968.length)]);
+                i_0 = i_0 + 1;
+                __sa26 = i_0 < (text.length);
+              }
+            }
+          }
+        }
+      }
+    }
+    return;
+  }
+  /*Cipher.sk:18*/
+  
+void getInstance_String_String (Object type, Object extra, ref Object _out)/*Cipher.sk:18*/
+  {
+    _out = null;
+    int _out_s3977 = 0;
+    Cipher@meta(_out_s3977);
+    Object@Object _out_s3979 = null;
+    Cipher_Cipher_String(new Object@Object(__cid=_out_s3977), type, _out_s3979);
+    _out = _out_s3979;
+    return;
+  }
+  /*Cipher.sk:27*/
+  
+void init_int_SecretKey_IvParameterSpec (Object self, int opmode, Object key, Object i)/*Cipher.sk:27*/
+  {
+    self.key_Cipher = key;
+    self.mode_Cipher = opmode;
+  }
+  /* END PACKAGE Cipher*/
+}
+[SKETCH] DONE
+Total time = 5136

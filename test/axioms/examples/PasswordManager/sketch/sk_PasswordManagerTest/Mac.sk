@@ -1,0 +1,85 @@
+package Mac;
+
+adt Mac {
+    Mac__    { }
+    Init     { Mac self; SecretKeySpec key; }
+    Initb    { Mac self; SecretKeySpec key; }
+    Dofinal  { Mac self; Object text; }
+}
+
+Object mac__() {
+    return new Object(__cid=Mac(), _mac=new Mac__());
+}
+
+Object init_Object_SecretKeySpec(Object self, SecretKeySpec key) {
+    return new Object(__cid=Mac(), _mac=new Init(self=self._mac, key=key));
+}
+
+Object initb_Object_SecretKeySpec(Object self, SecretKeySpec key) {
+    return new Object(__cid=Mac(), _mac=new Initb(self=self._mac, key=key));
+}
+
+Object dofinal_Object_Object(Object self, Object text) {
+    return new Object(__cid=Mac(), _mac=new Dofinal(self=self._mac, text=text));
+}
+
+Object xform_Mac(Mac self) {
+  switch(self) {
+  case Mac__: {
+    return xform_mac___Mac(self);
+  }
+  case Init: {
+    return xform_init_Mac_SecretKeySpec(self.self, self.key);
+  }
+  case Initb: {
+    return xform_initb_Mac_SecretKeySpec(self.self, self.key);
+  }
+  case Dofinal: {
+    return xform_doFinal_Mac_Object(self.self, self.text);
+  }
+  }
+
+  return null;
+}
+Object xform_doFinal_Mac_Object(Mac self, Object text) {
+  switch(self) {
+  case Mac__: { assert false; }
+  case Init: { assert false; }
+  case Initb: {
+    return text;
+  }
+  case Dofinal: { assert false; }
+  }
+
+  return null;
+}
+Object xform_initb_Mac_SecretKeySpec(Mac self, SecretKeySpec key) {
+  switch(self) {
+  case Mac__: { assert false; }
+  case Init: { assert false; }
+  case Initb: { assert false; }
+  case Dofinal: { assert false; }
+  }
+
+  return null;
+}
+Object xform_init_Mac_SecretKeySpec(Mac self, SecretKeySpec key) {
+  switch(self) {
+  case Mac__: { assert false; }
+  case Init: { assert false; }
+  case Initb: { assert false; }
+  case Dofinal: { assert false; }
+  }
+
+  return null;
+}
+Object xform_mac___Mac(Mac self) {
+  switch(self) {
+  case Mac__: { assert false; }
+  case Init: { assert false; }
+  case Initb: { assert false; }
+  case Dofinal: { assert false; }
+  }
+
+  return null;
+}

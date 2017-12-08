@@ -1,0 +1,52 @@
+package meta;
+
+// distinct class IDs
+int AbstractQueue()         { return 20; }
+int ArrayDeque()            { return 12; }
+int ArrayDeque_DequeNode()  { return 13; }
+int ArrayList()             { return 21; }
+int Assert()                { return 37; }
+int Boolean()               { return 14; }
+int BufferedWriter()        { return 30; }
+int CharSequence()          { return 35; }
+int Character()             { return 15; }
+int Cipher()                { return 17; }
+int Comparable()            { return 32; }
+int Cryptographer()         { return 2; }
+int Deque()                 { return 10; }
+int File()                  { return 47; }
+int FileReaderr()           { return 45; }
+int FileWriterr()           { return 40; }
+int Float()                 { return 9; }
+int HashMap()               { return 33; }
+int HashMap_Node()          { return 34; }
+int HashSet()               { return 22; }
+int Integer()               { return 27; }
+int IvParameterSpec()       { return 28; }
+int KerberosKey()           { return 25; }
+int Key()                   { return 36; }
+int KeyGenerator()          { return 43; }
+int LinkedList()            { return 11; }
+int List()                  { return 31; }
+int Mac()                   { return 24; }
+int Map()                   { return 7; }
+int Map_Entry()             { return 8; }
+int Number()                { return 44; }
+int Object()                { return 1; }
+int PasswordManager()       { return 3; }
+int PasswordManagerTest()   { return 5; }
+int PasswordMap()           { return 4; }
+int Queue()                 { return 26; }
+int Scanner()               { return 6; }
+int SecretKey()             { return 19; }
+int SecretKeySpec()         { return 42; }
+int SecureRandom()          { return 46; }
+int Set()                   { return 29; }
+int Stack()                 { return 39; }
+int String()                { return 41; }
+int StringBuffer()          { return 16; }
+int StringBuilder()         { return 23; }
+int TreeMap()               { return 18; }
+int TreeSet()               { return 38; }
+
+// Uninterpreted functions

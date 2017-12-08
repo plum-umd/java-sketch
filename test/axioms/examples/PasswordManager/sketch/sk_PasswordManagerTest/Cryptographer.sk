@@ -1,0 +1,44 @@
+package Cryptographer;
+
+Object Cryptographer_Cryptographer(Object self) {
+  Object random = SecureRandom_SecureRandom();
+  Object randomKey = new Object();
+  if (random.__cid == SecureRandom()) { randomKey = nextbytes_Object_Object@SecureRandom(random, randomKey); }
+  else { 0; };
+  self.GCMSecretKey_Cryptographer = SecretKeySpec_SecretKeySpec();
+  /* self.randomIv_Cryptographer = new Array_char(length=16); */
+  if (random.__cid == SecureRandom()) { randomKey = nextbytes_Object_Object@SecureRandom(random, randomKey); }
+  else { 0; };
+  self.ivParameterSpec_Cryptographer = IvParameterSpec_IvParameterSpec_byte(new Object(__cid=IvParameterSpec()), self.randomIv_Cryptographer);
+  self.myCypherOut_Cryptographer = cipher__();
+  if (self.myCypherOut_Cryptographer.__cid == Cipher()) { self.myCypherOut_Cryptographer = initb_Object_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, 2, self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer); }
+  else { 0; };
+  Object secret = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=6+1, A="secret"), 0, 6);
+  self.sha256_HMAC_Cryptographer = mac__();
+  self.Hash_secret_key_Cryptographer = SecretKeySpec_SecretKeySpec();
+  if (self.sha256_HMAC_Cryptographer.__cid == Mac()) { self.sha256_HMAC_Cryptographer = initb_Object_SecretKeySpec@Mac(self.sha256_HMAC_Cryptographer, self.Hash_secret_key_Cryptographer._secretkeyspec); }
+  else { 0; };
+  self.MAX_LENGTH_PASSWORD_Cryptographer = 16;
+  return self;
+}
+
+Object hash_String(Object self, Object plainTxt) {
+  return (self.sha256_HMAC_Cryptographer.__cid == Mac() ? xform_doFinal_Mac_Object@Mac(self.sha256_HMAC_Cryptographer._mac, plainTxt) : null);
+}
+
+Object encrypt_String(Object self, Object plainText) {
+  if (self.myCypherOut_Cryptographer.__cid == Cipher()) { self.myCypherOut_Cryptographer = initb_Object_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, 1, self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer); }
+  else { 0; };
+  /* Object cipherText = xform_doFinal_Cipher_Object(self.myCypherOut_Cryptographer._cipher, plainText); */
+  Object cipherText = dofinal_Object_Object@Cipher(self.myCypherOut_Cryptographer, plainText);
+  return cipherText;
+}
+
+Object decrypt_String(Object self, Object cipherText) {
+  if (self.myCypherOut_Cryptographer.__cid == Cipher()) {
+    self.myCypherOut_Cryptographer = initb_Object_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, 2, self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer);
+  } else { 0; };
+  Object plainText = xform_doFinal_Cipher_Object(self.myCypherOut_Cryptographer._cipher, cipherText);
+  return plainText;
+}
+

@@ -27,7 +27,9 @@ public class PasswordMap {
 		// loadMapFromFile();
 		// loadMasterPassword();
 	    passMap = new HashMap<String, String>();
-	    masterHash = "Secret Password";
+	    // masterHash = "Secret Password";
+	    Cryptographer c = new Cryptographer();
+	    masterHash = c.hash("1234");
 	}
 
 	// private void loadMasterPassword() throws IOException,
