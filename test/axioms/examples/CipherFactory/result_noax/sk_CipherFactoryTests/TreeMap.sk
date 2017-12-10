@@ -1,0 +1,6 @@
+package TreeMap;
+
+Object TreeMap_TreeMap(Object self) {
+  return self;
+}
+

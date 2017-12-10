@@ -1,0 +1,11 @@
+package CipherFactoryTester;
+
+Object CipherFactoryTester_CipherFactoryTester(Object self) {
+    return self;
+}
+
+harness void mn() {
+  Object self = Object_Object(new Object(__cid=Object()));
+  assert true;
+}
+

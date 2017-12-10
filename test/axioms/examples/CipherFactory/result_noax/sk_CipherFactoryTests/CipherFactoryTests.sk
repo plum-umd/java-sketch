@@ -1,0 +1,15 @@
+package CipherFactoryTests;
+
+Object CipherFactoryTests_CipherFactoryTests(Object self) {
+    return self;
+}
+
+harness void main() {
+  Object self = Object_Object(new Object(__cid=Object()));
+  Object cft = DefaultCipherFactoryTest_DefaultCipherFactoryTest(new Object(__cid=DefaultCipherFactoryTest()));
+  if (cft.__cid == DefaultCipherFactoryTest()) { setUp@DefaultCipherFactoryTest(cft); }
+  else { 0; };
+  if (cft.__cid == DefaultCipherFactoryTest()) { testEncryptionCipher@DefaultCipherFactoryTest(cft); }
+  else { 0; };
+}
+

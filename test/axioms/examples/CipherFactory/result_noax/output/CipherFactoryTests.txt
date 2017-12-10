@@ -1,0 +1,3 @@
+SKETCH version 1.7.4
+Benchmark = /Users/grumpy/Research/java-sketch/test/axioms/examples/CipherFactory/CipherFactory/../result_noax/sk_CipherFactoryTests/main.sk
+Total time = 3604
