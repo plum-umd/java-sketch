@@ -1,0 +1,20 @@
+package Mac;
+
+Object Mac_Mac(Object self) {
+  return self;
+}
+
+Object getInstance_String(Object type) {
+  return Mac_Mac(new Object(__cid=Mac()));
+}
+
+void init_SecretKeySpec(Object self, Object key) {
+}
+
+void init_SecretKey(Object self, Object key) {
+}
+
+Array_char doFinal_byte(Object self, Array_char text) {
+  return text;
+}
+

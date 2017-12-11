@@ -1,0 +1,31 @@
+package Arrays;
+
+Object Arrays_Arrays(Object self) {
+    return self;
+}
+
+Array_char copyOf_byte_int(Array_char in, int len) {
+  Array_char n = new Array_char(length=len);
+  for (int i = 0; i < len; i++) {
+    if (i >= in.length) {
+      n.A[i] = 0;
+    }
+    else {
+      n.A[i] = in.A[i];
+    }
+  }
+  return n;
+}
+
+bit arraysEquals_byte_byte(Array_char b1, Array_char b2) {
+  if (b1.length == b2.length) {
+    for (int i = 0; i < b1.length; i++) {
+      if (b1.A[i] != b2.A[i]) return false;
+    }
+  }
+  else {
+    return false;
+  }
+  return true;
+}
+

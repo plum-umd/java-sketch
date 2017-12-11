@@ -1,0 +1,16 @@
+package CipherFactory;
+
+Object CipherFactory_CipherFactory(Object self) {
+    return self;
+}
+
+Object getCipher_String_String(Object provider, Object transformation) {
+  Object algorithm = (transformation.__cid == String() ? split_String@String(transformation, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="/"), 0, 1)) : null).A[0];
+  if ((provider.__cid == String() ? equals_Object@String(provider, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=13+1, A="BOUNCY_CASTLE"), 0, 13)) : 0)) {
+    return JCECipher_JCECipher_String_String_String(new Object(__cid=JCECipher()), provider, algorithm, transformation);
+  }
+  else if ((provider.__cid == String() ? equals_Object@String(provider, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=7+1, A="OPENSLL"), 0, 7)) : 0)) {
+    return OpenSSLCipher_OpenSSLCipher_String_String(new Object(__cid=OpenSSLCipher()), algorithm, transformation);
+  }
+}
+

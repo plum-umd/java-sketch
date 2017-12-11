@@ -1,0 +1,13 @@
+package CryptoCipherFactory_CipherProvider;
+
+Object self0;
+
+Object CryptoCipherFactory_CipherProvider_CryptoCipherFactory_CipherProvider_CryptoCipherFactory(Object self, Object self_0) {
+  self0 = self_0;
+  return self;
+}
+
+Object getClassName() {
+  return String_String_char_int_int(new Object(__cid=String()), new Array_char(length=7+1, A="OPENSSL"), 0, 7);
+}
+

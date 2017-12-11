@@ -1,0 +1,44 @@
+package Tester;
+
+Object Tester_Tester(Object self) {
+    return self;
+}
+
+harness void main() {
+  Object self = Object_Object(new Object(__cid=Object()));
+  testOpenSSL@Tester(self);
+  testJCECipher@Tester(self);
+}
+
+void testOpenSSL(Object self) {
+  Object oc = OpenSSLCipher_OpenSSLCipher_String_String(new Object(__cid=OpenSSLCipher()), String_String_char_int_int(new Object(__cid=String()), new Array_char(length=3+1, A="AES"), 0, 3), String_String_char_int_int(new Object(__cid=String()), new Array_char(length=14+1, A="TRANSFORMATION"), 0, 14));
+  Array_char plaintext = new Array_char(length=32);
+  Array_char IV = new Array_char(length=8);
+  Array_char key = new Array_char(length=128);
+  for (int i = 0; i < 128; i++) {
+    key.A[i] = i;
+    if (i < 32) plaintext.A[i] = i;
+    if (i < 8) IV.A[i] = i;
+  }
+  Object sk = SecretKeySpec_SecretKeySpec_byte_String(new Object(__cid=SecretKeySpec()), key, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=3+1, A="AES"), 0, 3));
+  Array_char cipherText = (oc.__cid == OpenSSLCipher() ? encrypt_byte_Key_byte@OpenSSLCipher(oc, plaintext, sk, IV) : null);
+  Array_char plaintext2 = (oc.__cid == OpenSSLCipher() ? decrypt_byte_Key_byte@OpenSSLCipher(oc, cipherText, sk, IV) : null);
+  assert arraysEquals_byte_byte@Arrays(plaintext, plaintext2);
+}
+
+void testJCECipher(Object self) {
+  Object oc = JCECipher_JCECipher_String_String_String(new Object(__cid=JCECipher()), String_String_char_int_int(new Object(__cid=String()), new Array_char(length=8+1, A="PROVIDER"), 0, 8), String_String_char_int_int(new Object(__cid=String()), new Array_char(length=3+1, A="AES"), 0, 3), String_String_char_int_int(new Object(__cid=String()), new Array_char(length=14+1, A="TRANSFORMATION"), 0, 14));
+  Array_char plaintext = new Array_char(length=32);
+  Array_char IV = new Array_char(length=8);
+  Array_char key = new Array_char(length=128);
+  for (int i = 0; i < 128; i++) {
+    key.A[i] = i;
+    if (i < 32) plaintext.A[i] = i;
+    if (i < 8) IV.A[i] = i;
+  }
+  Object sk = SecretKeySpec_SecretKeySpec_byte_String(new Object(__cid=SecretKeySpec()), key, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=3+1, A="AES"), 0, 3));
+  Array_char cipherText = (oc.__cid == JCECipher() ? encrypt_byte_Key_byte@JCECipher(oc, plaintext, sk, IV) : null);
+  Array_char plaintext2 = (oc.__cid == JCECipher() ? decrypt_byte_Key_byte@JCECipher(oc, cipherText, sk, IV) : null);
+  assert arraysEquals_byte_byte@Arrays(plaintext, plaintext2);
+}
+

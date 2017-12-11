@@ -1,0 +1,151 @@
+package HashMap;
+
+int DEFAULT_INITIAL_CAPACITY = 1 << 4;
+int DEFAULT_INITIAL_CAPACITY_g() { return DEFAULT_INITIAL_CAPACITY; }
+void DEFAULT_INITIAL_CAPACITY_s(int DEFAULT_INITIAL_CAPACITY_s) { DEFAULT_INITIAL_CAPACITY = DEFAULT_INITIAL_CAPACITY_s; }
+
+Object HashMap_HashMap(Object self) {
+  self.elementData_HashMap = new Array_Object(length=DEFAULT_INITIAL_CAPACITY);
+  self.numPairs_HashMap = 0;
+  self.capacity_HashMap = DEFAULT_INITIAL_CAPACITY;
+  return self;
+}
+
+int size(Object self) {
+  return self.numPairs_HashMap;
+}
+
+bit isEmpty(Object self) {
+  return self.numPairs_HashMap == 0;
+}
+
+void resize_int(Object self, int newSize) {
+  int i,  h,  hashMod;
+  Object n;
+  Array_Object oldElementData = self.elementData_HashMap;
+  Array_Object newElementData = new Array_Object(length=newSize);
+  Object k;
+  Object v;
+  for (i = 0; i < self.capacity_HashMap; i++) {
+    if (oldElementData.A[i] != null) {
+      h = oldElementData.A[i].hash_HashMap_Node;
+      k = oldElementData.A[i].key_HashMap_Node;
+      v = oldElementData.A[i].value_HashMap_Node;
+      hashMod = h % newSize;
+      if (hashMod < 0) {
+        hashMod = hashMod + newSize;
+      }
+      newElementData.A[hashMod] = HashMap_Node_HashMap_Node_HashMap_K_V_int(new Object(__cid=HashMap_Node()), self, k, v, h);
+    }
+  }
+  self.elementData_HashMap = newElementData;
+  self.capacity_HashMap = newSize;
+}
+
+bit containsValue_V(Object self, Object value) {
+  int i;
+  for (i = 0; i < self.capacity_HashMap; i++) {
+    if (self.elementData_HashMap.A[i] != null) {
+      Object v = self.elementData_HashMap.A[i].value_HashMap_Node;
+      if ((value.__cid == KerberosKey() ? equals_Object@Object(value, v) : value.__cid == HashMap_Node() ? equals_Object@Object(value, v) : value.__cid == Properties() ? equals_Object@Object(value, v) : value.__cid == File() ? equals_Object@Object(value, v) : value.__cid == CryptoCipherFactory_CipherProvider() ? equals_Object@Object(value, v) : value.__cid == StringBuffer() ? equals_Object@Object(value, v) : value.__cid == OpenSSLCipher() ? equals_Object@Object(value, v) : value.__cid == AbstractQueue() ? equals_Object@Object(value, v) : value.__cid == JCECipher() ? equals_Object@Object(value, v) : value.__cid == Mac() ? equals_Object@Object(value, v) : value.__cid == KeyGenerator() ? equals_Object@Object(value, v) : value.__cid == ArrayList() ? equals_Object@Object(value, v) : value.__cid == KeyStore() ? equals_Object@Object(value, v) : value.__cid == Cipher() ? equals_Object@Object(value, v) : value.__cid == LinkedList() ? equals_Object@Object(value, v) : value.__cid == System() ? equals_Object@Object(value, v) : value.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(value, v) : value.__cid == SecretKeySpec() ? equals_Object@Object(value, v) : value.__cid == CipherFactory() ? equals_Object@Object(value, v) : value.__cid == Integer() ? equals_Object@Integer(value, v) : value.__cid == Character() ? equals_Object@Character(value, v) : value.__cid == Tester() ? equals_Object@Object(value, v) : value.__cid == Arrays() ? equals_Object@Object(value, v) : value.__cid == TreeMap() ? equals_Object@Object(value, v) : value.__cid == FileWriterr() ? equals_Object@Object(value, v) : value.__cid == SecureRandom() ? equals_Object@Object(value, v) : value.__cid == ArrayDeque() ? equals_Object@Object(value, v) : value.__cid == Stack() ? equals_Object@Object(value, v) : value.__cid == StringBuilder() ? equals_Object@Object(value, v) : value.__cid == TreeSet() ? equals_Object@Object(value, v) : value.__cid == String() ? equals_Object@String(value, v) : value.__cid == IvParameterSpec() ? equals_Object@Object(value, v) : value.__cid == Assert() ? equals_Object@Object(value, v) : value.__cid == Boolean() ? equals_Object@Object(value, v) : value.__cid == HashSet() ? equals_Object@Object(value, v) : value.__cid == BufferedWriter() ? equals_Object@Object(value, v) : value.__cid == Utils() ? equals_Object@Object(value, v) : value.__cid == Float() ? equals_Object@Float(value, v) : value.__cid == HashMap() ? equals_Object@Object(value, v) : value.__cid == Number() ? equals_Object@Object(value, v) : value.__cid == FileReaderr() ? equals_Object@Object(value, v) : value.__cid == CryptoCipherFactory() ? equals_Object@Object(value, v) : value.__cid == Scanner() ? equals_Object@Object(value, v) : value.__cid == Object() ? equals_Object@Object(value, v) : 0)) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+bit containsKey_K(Object self, Object key) {
+  return get_K@HashMap(self, key) != null;
+}
+
+Object get_K(Object self, Object key) {
+  int hashMod = (key.__cid == KerberosKey() ? hashCode@Object(key) : key.__cid == HashMap_Node() ? hashCode@Object(key) : key.__cid == Properties() ? hashCode@Object(key) : key.__cid == File() ? hashCode@Object(key) : key.__cid == CryptoCipherFactory_CipherProvider() ? hashCode@Object(key) : key.__cid == StringBuffer() ? hashCode@Object(key) : key.__cid == OpenSSLCipher() ? hashCode@Object(key) : key.__cid == AbstractQueue() ? hashCode@Object(key) : key.__cid == JCECipher() ? hashCode@Object(key) : key.__cid == Mac() ? hashCode@Object(key) : key.__cid == KeyGenerator() ? hashCode@Object(key) : key.__cid == ArrayList() ? hashCode@Object(key) : key.__cid == KeyStore() ? hashCode@Object(key) : key.__cid == Cipher() ? hashCode@Object(key) : key.__cid == LinkedList() ? hashCode@Object(key) : key.__cid == System() ? hashCode@Object(key) : key.__cid == ArrayDeque_DequeNode() ? hashCode@Object(key) : key.__cid == SecretKeySpec() ? hashCode@Object(key) : key.__cid == CipherFactory() ? hashCode@Object(key) : key.__cid == Integer() ? hashCode@Integer(key) : key.__cid == Character() ? hashCode@Object(key) : key.__cid == Tester() ? hashCode@Object(key) : key.__cid == Arrays() ? hashCode@Object(key) : key.__cid == TreeMap() ? hashCode@Object(key) : key.__cid == FileWriterr() ? hashCode@Object(key) : key.__cid == SecureRandom() ? hashCode@Object(key) : key.__cid == ArrayDeque() ? hashCode@Object(key) : key.__cid == Stack() ? hashCode@Object(key) : key.__cid == StringBuilder() ? hashCode@Object(key) : key.__cid == TreeSet() ? hashCode@Object(key) : key.__cid == String() ? hashCode@String(key) : key.__cid == IvParameterSpec() ? hashCode@Object(key) : key.__cid == Assert() ? hashCode@Object(key) : key.__cid == Boolean() ? hashCode@Object(key) : key.__cid == HashSet() ? hashCode@Object(key) : key.__cid == BufferedWriter() ? hashCode@Object(key) : key.__cid == Utils() ? hashCode@Object(key) : key.__cid == Float() ? hashCode@Object(key) : key.__cid == HashMap() ? hashCode@Object(key) : key.__cid == Number() ? hashCode@Object(key) : key.__cid == FileReaderr() ? hashCode@Object(key) : key.__cid == CryptoCipherFactory() ? hashCode@Object(key) : key.__cid == Scanner() ? hashCode@Object(key) : key.__cid == Object() ? hashCode@Object(key) : 0) % self.capacity_HashMap;
+  if (hashMod < 0) {
+    hashMod = hashMod + self.capacity_HashMap;
+  }
+  Object node = self.elementData_HashMap.A[hashMod];
+  if (node != null) {
+    if ((key.__cid == KerberosKey() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == HashMap_Node() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Properties() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == File() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == CryptoCipherFactory_CipherProvider() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == StringBuffer() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == OpenSSLCipher() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == AbstractQueue() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == JCECipher() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Mac() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == KeyGenerator() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == ArrayList() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == KeyStore() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Cipher() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == LinkedList() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == System() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == SecretKeySpec() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == CipherFactory() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Integer() ? equals_Object@Integer(key, node.key_HashMap_Node) : key.__cid == Character() ? equals_Object@Character(key, node.key_HashMap_Node) : key.__cid == Tester() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Arrays() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == TreeMap() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == FileWriterr() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == SecureRandom() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == ArrayDeque() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Stack() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == StringBuilder() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == TreeSet() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == String() ? equals_Object@String(key, node.key_HashMap_Node) : key.__cid == IvParameterSpec() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Assert() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Boolean() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == HashSet() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == BufferedWriter() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Utils() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Float() ? equals_Object@Float(key, node.key_HashMap_Node) : key.__cid == HashMap() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Number() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == FileReaderr() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == CryptoCipherFactory() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Scanner() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Object() ? equals_Object@Object(key, node.key_HashMap_Node) : 0)) {
+      return node.value_HashMap_Node;
+    }
+  }
+  return null;
+}
+
+void clear(Object self) {
+  self.elementData_HashMap = new Array_Object(length=DEFAULT_INITIAL_CAPACITY);
+  self.capacity_HashMap = DEFAULT_INITIAL_CAPACITY;
+  self.numPairs_HashMap = 0;
+}
+
+Object remove_K(Object self, Object key) {
+  Object val = get_K@HashMap(self, key);
+  int hashMod = (key.__cid == KerberosKey() ? hashCode@Object(key) : key.__cid == HashMap_Node() ? hashCode@Object(key) : key.__cid == Properties() ? hashCode@Object(key) : key.__cid == File() ? hashCode@Object(key) : key.__cid == CryptoCipherFactory_CipherProvider() ? hashCode@Object(key) : key.__cid == StringBuffer() ? hashCode@Object(key) : key.__cid == OpenSSLCipher() ? hashCode@Object(key) : key.__cid == AbstractQueue() ? hashCode@Object(key) : key.__cid == JCECipher() ? hashCode@Object(key) : key.__cid == Mac() ? hashCode@Object(key) : key.__cid == KeyGenerator() ? hashCode@Object(key) : key.__cid == ArrayList() ? hashCode@Object(key) : key.__cid == KeyStore() ? hashCode@Object(key) : key.__cid == Cipher() ? hashCode@Object(key) : key.__cid == LinkedList() ? hashCode@Object(key) : key.__cid == System() ? hashCode@Object(key) : key.__cid == ArrayDeque_DequeNode() ? hashCode@Object(key) : key.__cid == SecretKeySpec() ? hashCode@Object(key) : key.__cid == CipherFactory() ? hashCode@Object(key) : key.__cid == Integer() ? hashCode@Integer(key) : key.__cid == Character() ? hashCode@Object(key) : key.__cid == Tester() ? hashCode@Object(key) : key.__cid == Arrays() ? hashCode@Object(key) : key.__cid == TreeMap() ? hashCode@Object(key) : key.__cid == FileWriterr() ? hashCode@Object(key) : key.__cid == SecureRandom() ? hashCode@Object(key) : key.__cid == ArrayDeque() ? hashCode@Object(key) : key.__cid == Stack() ? hashCode@Object(key) : key.__cid == StringBuilder() ? hashCode@Object(key) : key.__cid == TreeSet() ? hashCode@Object(key) : key.__cid == String() ? hashCode@String(key) : key.__cid == IvParameterSpec() ? hashCode@Object(key) : key.__cid == Assert() ? hashCode@Object(key) : key.__cid == Boolean() ? hashCode@Object(key) : key.__cid == HashSet() ? hashCode@Object(key) : key.__cid == BufferedWriter() ? hashCode@Object(key) : key.__cid == Utils() ? hashCode@Object(key) : key.__cid == Float() ? hashCode@Object(key) : key.__cid == HashMap() ? hashCode@Object(key) : key.__cid == Number() ? hashCode@Object(key) : key.__cid == FileReaderr() ? hashCode@Object(key) : key.__cid == CryptoCipherFactory() ? hashCode@Object(key) : key.__cid == Scanner() ? hashCode@Object(key) : key.__cid == Object() ? hashCode@Object(key) : 0) % self.capacity_HashMap;
+  if (hashMod < 0) {
+    hashMod = hashMod + self.capacity_HashMap;
+  }
+  self.elementData_HashMap.A[hashMod] = null;
+  if (val != null) {
+    self.numPairs_HashMap--;
+  }
+  return val;
+}
+
+Object put_K_V(Object self, Object key, Object value) {
+  int h = (key.__cid == KerberosKey() ? hashCode@Object(key) : key.__cid == HashMap_Node() ? hashCode@Object(key) : key.__cid == Properties() ? hashCode@Object(key) : key.__cid == File() ? hashCode@Object(key) : key.__cid == CryptoCipherFactory_CipherProvider() ? hashCode@Object(key) : key.__cid == StringBuffer() ? hashCode@Object(key) : key.__cid == OpenSSLCipher() ? hashCode@Object(key) : key.__cid == AbstractQueue() ? hashCode@Object(key) : key.__cid == JCECipher() ? hashCode@Object(key) : key.__cid == Mac() ? hashCode@Object(key) : key.__cid == KeyGenerator() ? hashCode@Object(key) : key.__cid == ArrayList() ? hashCode@Object(key) : key.__cid == KeyStore() ? hashCode@Object(key) : key.__cid == Cipher() ? hashCode@Object(key) : key.__cid == LinkedList() ? hashCode@Object(key) : key.__cid == System() ? hashCode@Object(key) : key.__cid == ArrayDeque_DequeNode() ? hashCode@Object(key) : key.__cid == SecretKeySpec() ? hashCode@Object(key) : key.__cid == CipherFactory() ? hashCode@Object(key) : key.__cid == Integer() ? hashCode@Integer(key) : key.__cid == Character() ? hashCode@Object(key) : key.__cid == Tester() ? hashCode@Object(key) : key.__cid == Arrays() ? hashCode@Object(key) : key.__cid == TreeMap() ? hashCode@Object(key) : key.__cid == FileWriterr() ? hashCode@Object(key) : key.__cid == SecureRandom() ? hashCode@Object(key) : key.__cid == ArrayDeque() ? hashCode@Object(key) : key.__cid == Stack() ? hashCode@Object(key) : key.__cid == StringBuilder() ? hashCode@Object(key) : key.__cid == TreeSet() ? hashCode@Object(key) : key.__cid == String() ? hashCode@String(key) : key.__cid == IvParameterSpec() ? hashCode@Object(key) : key.__cid == Assert() ? hashCode@Object(key) : key.__cid == Boolean() ? hashCode@Object(key) : key.__cid == HashSet() ? hashCode@Object(key) : key.__cid == BufferedWriter() ? hashCode@Object(key) : key.__cid == Utils() ? hashCode@Object(key) : key.__cid == Float() ? hashCode@Object(key) : key.__cid == HashMap() ? hashCode@Object(key) : key.__cid == Number() ? hashCode@Object(key) : key.__cid == FileReaderr() ? hashCode@Object(key) : key.__cid == CryptoCipherFactory() ? hashCode@Object(key) : key.__cid == Scanner() ? hashCode@Object(key) : key.__cid == Object() ? hashCode@Object(key) : 0);
+  return putVal_int_K_V@HashMap(self, h, key, value);
+}
+
+Object replace_K_V(Object self, Object key, Object newVal) {
+  int hashMod = (key.__cid == KerberosKey() ? hashCode@Object(key) : key.__cid == HashMap_Node() ? hashCode@Object(key) : key.__cid == Properties() ? hashCode@Object(key) : key.__cid == File() ? hashCode@Object(key) : key.__cid == CryptoCipherFactory_CipherProvider() ? hashCode@Object(key) : key.__cid == StringBuffer() ? hashCode@Object(key) : key.__cid == OpenSSLCipher() ? hashCode@Object(key) : key.__cid == AbstractQueue() ? hashCode@Object(key) : key.__cid == JCECipher() ? hashCode@Object(key) : key.__cid == Mac() ? hashCode@Object(key) : key.__cid == KeyGenerator() ? hashCode@Object(key) : key.__cid == ArrayList() ? hashCode@Object(key) : key.__cid == KeyStore() ? hashCode@Object(key) : key.__cid == Cipher() ? hashCode@Object(key) : key.__cid == LinkedList() ? hashCode@Object(key) : key.__cid == System() ? hashCode@Object(key) : key.__cid == ArrayDeque_DequeNode() ? hashCode@Object(key) : key.__cid == SecretKeySpec() ? hashCode@Object(key) : key.__cid == CipherFactory() ? hashCode@Object(key) : key.__cid == Integer() ? hashCode@Integer(key) : key.__cid == Character() ? hashCode@Object(key) : key.__cid == Tester() ? hashCode@Object(key) : key.__cid == Arrays() ? hashCode@Object(key) : key.__cid == TreeMap() ? hashCode@Object(key) : key.__cid == FileWriterr() ? hashCode@Object(key) : key.__cid == SecureRandom() ? hashCode@Object(key) : key.__cid == ArrayDeque() ? hashCode@Object(key) : key.__cid == Stack() ? hashCode@Object(key) : key.__cid == StringBuilder() ? hashCode@Object(key) : key.__cid == TreeSet() ? hashCode@Object(key) : key.__cid == String() ? hashCode@String(key) : key.__cid == IvParameterSpec() ? hashCode@Object(key) : key.__cid == Assert() ? hashCode@Object(key) : key.__cid == Boolean() ? hashCode@Object(key) : key.__cid == HashSet() ? hashCode@Object(key) : key.__cid == BufferedWriter() ? hashCode@Object(key) : key.__cid == Utils() ? hashCode@Object(key) : key.__cid == Float() ? hashCode@Object(key) : key.__cid == HashMap() ? hashCode@Object(key) : key.__cid == Number() ? hashCode@Object(key) : key.__cid == FileReaderr() ? hashCode@Object(key) : key.__cid == CryptoCipherFactory() ? hashCode@Object(key) : key.__cid == Scanner() ? hashCode@Object(key) : key.__cid == Object() ? hashCode@Object(key) : 0) % self.capacity_HashMap;
+  if (hashMod < 0) {
+    hashMod = hashMod + self.capacity_HashMap;
+  }
+  Object node = self.elementData_HashMap.A[hashMod];
+  if (node != null) {
+    if ((key.__cid == KerberosKey() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == HashMap_Node() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Properties() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == File() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == CryptoCipherFactory_CipherProvider() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == StringBuffer() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == OpenSSLCipher() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == AbstractQueue() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == JCECipher() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Mac() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == KeyGenerator() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == ArrayList() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == KeyStore() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Cipher() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == LinkedList() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == System() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == SecretKeySpec() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == CipherFactory() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Integer() ? equals_Object@Integer(key, node.key_HashMap_Node) : key.__cid == Character() ? equals_Object@Character(key, node.key_HashMap_Node) : key.__cid == Tester() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Arrays() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == TreeMap() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == FileWriterr() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == SecureRandom() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == ArrayDeque() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Stack() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == StringBuilder() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == TreeSet() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == String() ? equals_Object@String(key, node.key_HashMap_Node) : key.__cid == IvParameterSpec() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Assert() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Boolean() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == HashSet() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == BufferedWriter() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Utils() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Float() ? equals_Object@Float(key, node.key_HashMap_Node) : key.__cid == HashMap() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Number() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == FileReaderr() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == CryptoCipherFactory() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Scanner() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Object() ? equals_Object@Object(key, node.key_HashMap_Node) : 0)) {
+      node.value_HashMap_Node = newVal;
+      return node.value_HashMap_Node;
+    }
+  }
+  return null;
+}
+
+Object putVal_int_K_V(Object self, int hash, Object key, Object value) {
+  int hashMod = hash % self.capacity_HashMap;
+  if (hashMod < 0) {
+    hashMod = hashMod + self.capacity_HashMap;
+  }
+  Object node = self.elementData_HashMap.A[hashMod];
+  if (node != null) {
+    if (node.hash_HashMap_Node != hash || !(key.__cid == KerberosKey() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == HashMap_Node() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Properties() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == File() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == CryptoCipherFactory_CipherProvider() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == StringBuffer() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == OpenSSLCipher() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == AbstractQueue() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == JCECipher() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Mac() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == KeyGenerator() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == ArrayList() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == KeyStore() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Cipher() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == LinkedList() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == System() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == SecretKeySpec() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == CipherFactory() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Integer() ? equals_Object@Integer(key, node.key_HashMap_Node) : key.__cid == Character() ? equals_Object@Character(key, node.key_HashMap_Node) : key.__cid == Tester() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Arrays() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == TreeMap() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == FileWriterr() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == SecureRandom() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == ArrayDeque() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Stack() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == StringBuilder() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == TreeSet() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == String() ? equals_Object@String(key, node.key_HashMap_Node) : key.__cid == IvParameterSpec() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Assert() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Boolean() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == HashSet() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == BufferedWriter() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Utils() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Float() ? equals_Object@Float(key, node.key_HashMap_Node) : key.__cid == HashMap() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Number() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == FileReaderr() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == CryptoCipherFactory() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Scanner() ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == Object() ? equals_Object@Object(key, node.key_HashMap_Node) : 0)) {
+      resize_int@HashMap(self, hash + 1);
+      hashMod = hash % self.capacity_HashMap;
+      if (hashMod < 0) {
+        hashMod = hashMod + self.capacity_HashMap;
+      }
+      node = self.elementData_HashMap.A[hashMod];
+      self.numPairs_HashMap++;
+    }
+    self.elementData_HashMap.A[hashMod] = HashMap_Node_HashMap_Node_HashMap_K_V_int(new Object(__cid=HashMap_Node()), self, key, value, hash);
+    if (node != null) {
+      return node.value_HashMap_Node;
+    }
+    else {
+      return null;
+    }
+  }
+  self.elementData_HashMap.A[hashMod] = HashMap_Node_HashMap_Node_HashMap_K_V_int(new Object(__cid=HashMap_Node()), self, key, value, hash);
+  self.numPairs_HashMap++;
+  return null;
+}
+
+void putValNoResize_int_K_V(Object self, int hash, Object key, Object value) {
+  int hashMod = hash % self.capacity_HashMap;
+  if (hashMod < 0) {
+    hashMod = hashMod + self.capacity_HashMap;
+  }
+  self.elementData_HashMap.A[hashMod] = HashMap_Node_HashMap_Node_HashMap_K_V_int(new Object(__cid=HashMap_Node()), self, key, value, hash);
+}
+

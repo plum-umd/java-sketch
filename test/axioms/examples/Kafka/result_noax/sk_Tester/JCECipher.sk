@@ -1,0 +1,49 @@
+package JCECipher;
+
+Object JCECipher_JCECipher(Object self) {
+    return self;
+}
+
+Object JCECipher_JCECipher_String_String_String(Object self, Object provider, Object algorithm, Object transformation) {
+  self.provider_JCECipher = provider;
+  self.algorithm_JCECipher = algorithm;
+  self.transformation_JCECipher = transformation;
+  return self;
+}
+
+Object getCipher_boolean_Key_byte(Object self, bit isEncryption, Object key, Array_char IV) {
+  Object cipher;
+  cipher = getInstance_String_String@Cipher(self.transformation_JCECipher, self.provider_JCECipher);
+  Object keyValue = SecretKeySpec_SecretKeySpec_byte_String(new Object(__cid=SecretKeySpec()), (key.__cid == SecretKeySpec() ? getEncoded@SecretKeySpec(key) : key.__cid == KerberosKey() ? getEncoded@KerberosKey(key) : null), self.algorithm_JCECipher);
+  Object IVspec = IvParameterSpec_IvParameterSpec_byte(new Object(__cid=IvParameterSpec()), IV);
+  if (isEncryption) {
+    if (cipher.__cid == Cipher()) { init_int_SecretKey_AlgorithmParameterSpec@Cipher(cipher, 1, keyValue, IVspec); }
+    else { 0; };
+  }
+  else {
+    if (cipher.__cid == Cipher()) { init_int_SecretKey_AlgorithmParameterSpec@Cipher(cipher, 2, keyValue, IVspec); }
+    else { 0; };
+  }
+  return cipher;
+}
+
+Array_char encrypt_byte_Key_byte(Object self, Array_char data, Object key, Array_char IV) {
+  return translate_boolean_byte_Key_byte@JCECipher(self, true, data, key, IV);
+}
+
+Array_char decrypt_byte_Key_byte(Object self, Array_char data, Object key, Array_char IV) {
+  return translate_boolean_byte_Key_byte@JCECipher(self, false, data, key, IV);
+}
+
+Array_char translate_boolean_byte_Key_byte(Object self, bit isEncryption, Array_char data, Object key, Array_char IV) {
+  Object cipher = getCipher_boolean_Key_byte@JCECipher(self, isEncryption, key, IV);
+  Array_char output = new Array_char(length=(cipher.__cid == Cipher() ? getOutputSize_int@Cipher(cipher, data.length) : 0));
+  int updateBytes = (cipher.__cid == Cipher() ? update_byte_int_int_byte_int@Cipher(cipher, data, 0, data.length, output, 0) : 0);
+  int finalBytes = (cipher.__cid == Cipher() ? doFinal_byte_int_int_byte_int@Cipher(cipher, data, 0, 0, output, updateBytes) : 0);
+  output = (cipher.__cid == Cipher() ? doFinal_byte@Cipher(cipher, data) : null);
+  if (updateBytes + finalBytes < output.length) {
+    output = copyOf_byte_int@Arrays(output, updateBytes + finalBytes);
+  }
+  return output;
+}
+
