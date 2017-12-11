@@ -1,5 +1,3 @@
-
-
 /**
  * A min priority queue implementation using a binary heap.
  * @author William Fiset, william.alexandre.fiset@gmail.com
@@ -238,7 +236,6 @@ class PQueue {
 	/*	The newer synthesized version Verified Works! 2017-11-31
 	generator example
 	boolean b = k.equals(key);
-
             if ({|b, k == key|}) {
     */
     // If sinking did not work try swimming
@@ -446,15 +443,12 @@ class PQueue {
 	/*
 	@Test
   	public void testRemoving() {
-
     	Integer [] in = {new Integer(1),new Integer(2),new Integer(3),new Integer(4),new Integer(5), new Integer(6),new Integer(7)};
     	Integer [] removeOrder = { new Integer(1),new Integer(3),new Integer(6),new Integer(4),new Integer(5),new Integer(7),new Integer(2) };
     	sequentialRemoving(in, removeOrder);
-
     	in = new Integer[] {new Integer(1),new Integer(2),new Integer(3),new Integer(4),new Integer(5), new Integer(6),new Integer(7),new Integer(8), new Integer(9),new Integer(10),new Integer(11)};
     	removeOrder = new Integer[] {new Integer(7),4,6,10,2,5,11,3,1,8,9};
     	sequentialRemoving(in, removeOrder);
-
 	}
 	*/
 	
@@ -493,13 +487,3 @@ class PQueue {
 
 	}
 }
-
-
-
-
-
-
-
-
-
-
