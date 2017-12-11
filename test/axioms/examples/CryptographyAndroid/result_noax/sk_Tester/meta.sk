@@ -1,0 +1,62 @@
+package meta;
+
+// distinct class IDs
+int AbstractQueue()                                { return 30; }
+int ArrayDeque()                                   { return 20; }
+int ArrayDeque_DequeNode()                         { return 21; }
+int ArrayList()                                    { return 24; }
+int Assert()                                       { return 47; }
+int Boolean()                                      { return 23; }
+int BufferedWriter()                               { return 40; }
+int CharSequence()                                 { return 45; }
+int Character()                                    { return 25; }
+int Cipher()                                       { return 27; }
+int CipherTextContainer()                          { return 4; }
+int Comparable()                                   { return 42; }
+int CryptographyManager()                          { return 5; }
+int CryptographyManager_AES()                      { return 6; }
+int CryptographyManager_HMAC()                     { return 8; }
+int CryptographyManager_KeyStoreConstants()        { return 9; }
+int CryptographyManager_KeyStoreConstants_Alias()  { return 10; }
+int CryptographyManager_RSA()                      { return 7; }
+int Deque()                                        { return 18; }
+int File()                                         { return 57; }
+int FileReaderr()                                  { return 55; }
+int FileWriterr()                                  { return 50; }
+int Float()                                        { return 17; }
+int HashMap()                                      { return 43; }
+int HashMap_Node()                                 { return 44; }
+int HashSet()                                      { return 32; }
+int Integer()                                      { return 37; }
+int IvParameterSpec()                              { return 38; }
+int KerberosKey()                                  { return 35; }
+int Key()                                          { return 46; }
+int KeyGenerator()                                 { return 53; }
+int KeyStore()                                     { return 12; }
+int KeyStore_Entry()                               { return 13; }
+int KeyStore_SecretKeyEntry()                      { return 14; }
+int LinkedList()                                   { return 19; }
+int List()                                         { return 41; }
+int Mac()                                          { return 34; }
+int Map()                                          { return 15; }
+int Map_Entry()                                    { return 16; }
+int Number()                                       { return 54; }
+int Object()                                       { return 1; }
+int PrivateKey()                                   { return 31; }
+int Queue()                                        { return 36; }
+int Scanner()                                      { return 11; }
+int SecretKey()                                    { return 29; }
+int SecretKeySpec()                                { return 52; }
+int SecureRandom()                                 { return 56; }
+int Set()                                          { return 39; }
+int Stack()                                        { return 49; }
+int String()                                       { return 51; }
+int StringBuffer()                                 { return 26; }
+int StringBuilder()                                { return 33; }
+int System()                                       { return 22; }
+int Tester()                                       { return 2; }
+int TreeMap()                                      { return 28; }
+int TreeSet()                                      { return 48; }
+int Utils()                                        { return 3; }
+
+// Uninterpreted functions

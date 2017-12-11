@@ -1,0 +1,57 @@
+package Utils;
+
+Object Utils_Utils(Object self) {
+  return self;
+}
+
+bit constantTimeEq_byte_byte(Array_char a, Array_char b) {
+  if (a.length == b.length) {
+    for (int i = 0; i < a.length; i++) {
+      if (a.A[i] != b.A[i]) return false;
+    }
+  }
+  else {
+    return false;
+  }
+  return true;
+}
+
+Array_char bytesConcat_byte_byte(Array_char iv, Array_char cipherText) {
+  Array_char combined = new Array_char(length=iv.length + cipherText.length);
+  arraycopy_byte_int_byte_int_int@System(iv, 0, combined, 0, iv.length);
+  arraycopy_byte_int_byte_int_int@System(cipherText, 0, combined, iv.length, cipherText.length);
+  return combined;
+}
+
+Array_char decodeWithBuffer_Cipher_byte_int(Object cipher, Array_char plainData, int bufferLength) {
+  Array_char scrambled;
+  Array_char toReturn = new Array_char(length=0);
+  Array_char buffer = new Array_char(length=((plainData.length > bufferLength ? bufferLength : plainData.length)));
+  for (int i = 0; i < plainData.length; i++) {
+    if ((i > 0) && (i % bufferLength == 0)) {
+      scrambled = (cipher.__cid == Cipher() ? doFinal_byte@Cipher(cipher, buffer) : null);
+      toReturn = append_byte_byte(toReturn, scrambled);
+      int newLength = bufferLength;
+      if (i + bufferLength > plainData.length) {
+        newLength = plainData.length - i;
+      }
+      buffer = new Array_char(length=newLength);
+    }
+    buffer.A[i % bufferLength] = plainData.A[i];
+  }
+  scrambled = (cipher.__cid == Cipher() ? doFinal_byte@Cipher(cipher, buffer) : null);
+  toReturn = append_byte_byte(toReturn, scrambled);
+  return toReturn;
+}
+
+Array_char append_byte_byte(Array_char prefix, Array_char suffix) {
+  Array_char toReturn = new Array_char(length=prefix.length + suffix.length);
+  for (int i = 0; i < prefix.length; i++) {
+    toReturn.A[i] = prefix.A[i];
+  }
+  for (int i = 0; i < suffix.length; i++) {
+    toReturn.A[i + prefix.length] = suffix.A[i];
+  }
+  return toReturn;
+}
+

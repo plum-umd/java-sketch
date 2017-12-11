@@ -1,0 +1,50 @@
+package CipherTextContainer;
+
+Object CipherTextContainer_CipherTextContainer(Object self) {
+  self.cipherText_CipherTextContainer = new Array_char(length=0);
+  self.iv_CipherTextContainer = new Array_char(length=0);
+  self.mac_CipherTextContainer = new Array_char(length=0);
+  return self;
+}
+
+Object CipherTextContainer_CipherTextContainer_byte_byte_byte(Object self, Array_char ct, Array_char iv, Array_char mc) {
+  self.cipherText_CipherTextContainer = new Array_char(length=ct.length);
+  arraycopy_byte_int_byte_int_int@System(ct, 0, self.cipherText_CipherTextContainer, 0, ct.length);
+  self.iv_CipherTextContainer = new Array_char(length=iv.length);
+  arraycopy_byte_int_byte_int_int@System(iv, 0, self.iv_CipherTextContainer, 0, iv.length);
+  self.mac_CipherTextContainer = new Array_char(length=mc.length);
+  arraycopy_byte_int_byte_int_int@System(mc, 0, self.mac_CipherTextContainer, 0, mc.length);
+  return self;
+}
+
+Object CipherTextContainer_CipherTextContainer_String(Object self, Object base64CipherText) {
+  Array_Object civArray = (base64CipherText.__cid == String() ? split_String@String(base64CipherText, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A=":"), 0, 1)) : null);
+  if (civArray.length != 3) {
+  }
+  else {
+    self.iv_CipherTextContainer = (civArray.A[0].__cid == String() ? getBytes@String(civArray.A[0]) : null);
+    self.mac_CipherTextContainer = (civArray.A[1].__cid == String() ? getBytes@String(civArray.A[1]) : null);
+    self.cipherText_CipherTextContainer = (civArray.A[2].__cid == String() ? getBytes@String(civArray.A[2]) : null);
+  }
+  return self;
+}
+
+Array_char getCipherText(Object self) {
+  return self.cipherText_CipherTextContainer;
+}
+
+Array_char getIv(Object self) {
+  return self.iv_CipherTextContainer;
+}
+
+Array_char getMac(Object self) {
+  return self.mac_CipherTextContainer;
+}
+
+Object toString(Object self) {
+  Object ivString = String_String_byte(new Object(__cid=String()), self.iv_CipherTextContainer);
+  Object macString = String_String_byte(new Object(__cid=String()), self.mac_CipherTextContainer);
+  Object cipherTextString = String_String_byte(new Object(__cid=String()), self.cipherText_CipherTextContainer);
+  return ((((ivString.__cid == String() ? concat_String@String(ivString, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A=":"), 0, 1)) : null).__cid == String() ? concat_String@String((ivString.__cid == String() ? concat_String@String(ivString, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A=":"), 0, 1)) : null), macString) : null).__cid == String() ? concat_String@String(((ivString.__cid == String() ? concat_String@String(ivString, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A=":"), 0, 1)) : null).__cid == String() ? concat_String@String((ivString.__cid == String() ? concat_String@String(ivString, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A=":"), 0, 1)) : null), macString) : null), String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A=":"), 0, 1)) : null).__cid == String() ? concat_String@String((((ivString.__cid == String() ? concat_String@String(ivString, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A=":"), 0, 1)) : null).__cid == String() ? concat_String@String((ivString.__cid == String() ? concat_String@String(ivString, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A=":"), 0, 1)) : null), macString) : null).__cid == String() ? concat_String@String(((ivString.__cid == String() ? concat_String@String(ivString, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A=":"), 0, 1)) : null).__cid == String() ? concat_String@String((ivString.__cid == String() ? concat_String@String(ivString, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A=":"), 0, 1)) : null), macString) : null), String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A=":"), 0, 1)) : null), cipherTextString) : null);
+}
+
