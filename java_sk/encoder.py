@@ -281,8 +281,11 @@ class Encoder(object):
             (ptyps, pnms) = (map(lambda t: self.tltr.trans_ty(t), mtd.param_typs()), map(str, mtd.param_names()))
             params = ', '.join(map(lambda p: ' '.join(p), zip(ptyps, pnms)))
             c = 'Object '
+            
             if name == cname.lower():
                 mtd_name = cname + "_" + cname
+            elif len(name) > 2 and name[len(name)-2:] == "__" and name[0:len(name)-2] == cname.lower():
+                mtd_name = cname + "_" + cname                
             else:
                 mtd_name = str(name.lower())
             typ_params = '_'.join(ptyps)
