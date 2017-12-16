@@ -7,6 +7,8 @@ from .bodydeclaration import BodyDeclaration
 from ..typeparameter import TypeParameter
 from ..comments.comment import Comment
 
+from ..stmt.switchstmt import SwitchStmt
+
 class MethodDeclaration(BodyDeclaration):
     def __init__(self, kwargs={}):
         super(MethodDeclaration, self).__init__(kwargs)
@@ -144,6 +146,26 @@ class MethodDeclaration(BodyDeclaration):
     def sig(self):
         return 'm{}'.format(str(self))
 
+    @staticmethod
+    def add_switch(adt_mtds, param, entries1):
+        for e in entries1:
+            if len(e.stmts) > 0:
+                MethodDeclaration.add_switch(adt_mtds, param, e.stmts[0].entries)
+            else:                
+                entries2 = []
+                for a in adt_mtds:
+                    entries2.append({u'@t':u'SwitchEntryStmt',
+                                     u'label':{u'@t':u'NameExpr',u'name':a.name.capitalize(),},},)
+                switch = SwitchStmt({u'@t':u'SwitchStmt', u'selector':{u'@t':u'NameExpr',u'name':param.name},
+                                     u'entries':{u'@e':entries2,},},)
+                e.stmts.append(switch)
+                    
+    def add_switch_depth(self, adt_mtds, param):
+        MethodDeclaration.add_switch(adt_mtds, param, self.body.stmts[0].stmt.entries)
+    
     def __str__(self):
         params = map(self.sanitize_ty, map(lambda p: p.typee.name, self.parameters))
+        if self.adt:
+            params = ["Object"]+params
+            
         return u'_'.join([self.sanitize_ty(self.name)] + params)
