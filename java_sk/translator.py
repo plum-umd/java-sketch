@@ -484,8 +484,15 @@ class Translator(object):
 
     @v.when(VariableDeclarationExpr)
     def visit(self, n, **kwargs):
-        # print 'VariableDeclarationExpr', n.typee, type(n.typee)
-        n.typee.accept(self, **kwargs)
+        typ = n.varss[0].typee if len(n.varss) > 0 else None
+        cls = None
+        if typ and isinstance(typ, ClassOrInterfaceType) or isinstance(typ, ReferenceType):
+            cls = typ.symtab.get(typ.name)
+            
+        if cls and isinstance(cls, ClassOrInterfaceDeclaration) and cls.axiom:
+            self.printt('Object')
+        else:
+            n.typee.accept(self, **kwargs)
         # self.printt(' ')
         self.printSepList(n.varss)
 
@@ -944,47 +951,7 @@ class Translator(object):
         logging.debug('searching in class: {}'.format(cls))
         if isinstance(cls, TypeParameter):
             cls = callexpr.symtab.get(cls.typeBound[0].name)
-            
-        # # added to deal with calls to axiom constructor method
-        # #   I SHOULD MOVE THIS TO trans_xform
-        # if not callexpr.pure and not callexpr.name.startswith('xform_'):
-        #     nameb = callexpr.name + "b"
-        #     mtd = cls.symtab[nameb]
-        #     object_wrapper = 'new Object(__cid={}(), _{}='.format(str(cls), str(cls).lower())
-        #     tmp_symtab = {}
-        #     for p in mtd.parameters[1:]:
-        #         for key,val in p.symtab.items():
-        #             tmp_symtab[str(val)] = str(key)
-        #     self.printt('{}@{}'.format(str(mtd).replace(str(cls), 'Object'), str(cls)))
-        #     adtArg = callexpr.args[0]
-        #     adtArgName = str(adtArg).replace('xform_', '', 1).replace(str(cls), 'Object')
-        #     self.printt('(')
-        #     self.printt(adtArgName)            
-
-        #     # Internal adt args
-        #     adtAdtArg = adtArg.args[0]
-        #     self.printt('(')
-
-        #     self.printt(object_wrapper)
-        #     adtArg.args[0].accept(self)
-        #     self.printt(')')
-        #     if len(adtArg.args[1:]) > 0:
-        #         self.printt(', ')
-
-        #     new_args = []
-        #     for p in mtd.parameters[1:]:
-        #         v = LiteralExpr({u'name':u'self.{}'.format(tmp_symtab[p.name]),},)
-        #         new_args.append(v)
-        #     # non-self-args
-        #     self.printSepList(new_args)
-        #     self.printt(')')
-            
-        #     if len(callexpr.args[1:]) > 0:
-        #         self.printt(', ')
-        #     self.printSepList(callexpr.args[1:])
-        #     self.printt(')')
-        #     return
-        
+                    
         # Compile-Time Step 2: Determine Method Signature
         # 15.12.2.1. Identify Potentially Applicable Methods
         pots = self.identify_potentials(callexpr, cls)
@@ -1067,7 +1034,7 @@ class Translator(object):
             if type(mtd.typee) != VoidType: self.printt(')')
 
         logging.debug('**END CALL***\n')
-
+        
     def identify_potentials(self, callexpr, cls):
         mtds = []
         call_arg_typs = callexpr.arg_typs()
