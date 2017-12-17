@@ -1,0 +1,22 @@
+package KeyGenerator;
+
+Object KeyGenerator_KeyGenerator(Object self) {
+    return self;
+}
+
+Object KeyGenerator_KeyGenerator_String(Object self, Object mode) {
+  self.mode_KeyGenerator = mode;
+  return self;
+}
+
+Object generateKey(Object self) {
+  return KerberosKey_KerberosKey(new Object(__cid=KerberosKey()));
+}
+
+void init_int(Object self, int keysize) {
+}
+
+Object getInstance_String(Object mode) {
+  return KeyGenerator_KeyGenerator_String(new Object(__cid=KeyGenerator()), mode);
+}
+

@@ -1,0 +1,10 @@
+package PQueue;
+
+Object PQueue_PQueue(Object self) {
+    return self;
+}
+
+harness void main() {
+  Object self = Object_Object(new Object(__cid=Object()));
+}
+

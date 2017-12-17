@@ -1,0 +1,15 @@
+package KerberosKey;
+
+Object KerberosKey_KerberosKey(Object self) {
+  self.KEYSIZE_KerberosKey = 32;
+  self.key_KerberosKey = new Array_char(length=self.KEYSIZE_KerberosKey);
+  for (int i = 0; i < self.KEYSIZE_KerberosKey; i++) {
+    self.key_KerberosKey.A[i] = 1;
+  }
+  return self;
+}
+
+Array_char getEncoded(Object self) {
+  return self.key_KerberosKey;
+}
+

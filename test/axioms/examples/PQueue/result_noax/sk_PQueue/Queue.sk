@@ -1,0 +1,13 @@
+package Queue;
+
+Object Queue_Queue(Object self) {
+    return self;
+}
+
+
+
+
+
+
+
+

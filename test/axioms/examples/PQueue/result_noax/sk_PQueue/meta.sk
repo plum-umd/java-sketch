@@ -1,0 +1,50 @@
+package meta;
+
+// distinct class IDs
+int AbstractQueue()         { return 21; }
+int ArrayDeque()            { return 23; }
+int ArrayDeque_DequeNode()  { return 24; }
+int ArrayList()             { return 40; }
+int Assert()                { return 28; }
+int Boolean()               { return 9; }
+int BufferedWriter()        { return 31; }
+int CharSequence()          { return 13; }
+int Character()             { return 26; }
+int Cipher()                { return 36; }
+int Comparable()            { return 7; }
+int Deque()                 { return 12; }
+int File()                  { return 34; }
+int FileReaderr()           { return 43; }
+int FileWriterr()           { return 15; }
+int Float()                 { return 14; }
+int HashMap()               { return 5; }
+int HashMap_Node()          { return 6; }
+int HashSet()               { return 30; }
+int Integer()               { return 22; }
+int IvParameterSpec()       { return 42; }
+int KerberosKey()           { return 18; }
+int Key()                   { return 4; }
+int KeyGenerator()          { return 41; }
+int LinkedList()            { return 20; }
+int List()                  { return 10; }
+int Mac()                   { return 38; }
+int Map()                   { return 44; }
+int Map_Entry()             { return 45; }
+int Number()                { return 17; }
+int Object()                { return 1; }
+int PQueue()                { return 2; }
+int Queue()                 { return 3; }
+int Scanner()               { return 39; }
+int SecretKey()             { return 35; }
+int SecretKeySpec()         { return 25; }
+int SecureRandom()          { return 11; }
+int Set()                   { return 29; }
+int Stack()                 { return 27; }
+int String()                { return 16; }
+int StringBuffer()          { return 37; }
+int StringBuilder()         { return 19; }
+int System()                { return 32; }
+int TreeMap()               { return 8; }
+int TreeSet()               { return 33; }
+
+// Uninterpreted functions

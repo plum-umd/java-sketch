@@ -1,0 +1,92 @@
+package Object;
+
+Object fs;
+Object fs_g() { return fs; }
+void fs_s(Object fs_s) { fs = fs_s; }
+
+Object Object_Object(Object self) {
+    return self;
+}
+
+bit equals_Object_Object(Object a, Object b) {
+  if (a == null) {
+    if (b == null) {
+      return true;
+    }
+    return false;
+  }
+  return (a.__cid == Cipher() ? equals_Object@Object(a, b) : a.__cid == SecureRandom() ? equals_Object@Object(a, b) : a.__cid == TreeSet() ? equals_Object@Object(a, b) : a.__cid == KeyGenerator() ? equals_Object@Object(a, b) : a.__cid == Number() ? equals_Object@Object(a, b) : a.__cid == FileWriterr() ? equals_Object@Object(a, b) : a.__cid == Float() ? equals_Object@Float(a, b) : a.__cid == HashMap_Node() ? equals_Object@Object(a, b) : a.__cid == FileReaderr() ? equals_Object@Object(a, b) : a.__cid == SecretKeySpec() ? equals_Object@Object(a, b) : a.__cid == StringBuffer() ? equals_Object@Object(a, b) : a.__cid == Assert() ? equals_Object@Object(a, b) : a.__cid == AbstractQueue() ? equals_Object@Object(a, b) : a.__cid == KerberosKey() ? equals_Object@Object(a, b) : a.__cid == IvParameterSpec() ? equals_Object@Object(a, b) : a.__cid == HashSet() ? equals_Object@Object(a, b) : a.__cid == ArrayDeque() ? equals_Object@Object(a, b) : a.__cid == TreeMap() ? equals_Object@Object(a, b) : a.__cid == LinkedList() ? equals_Object@Object(a, b) : a.__cid == String() ? equals_Object@String(a, b) : a.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(a, b) : a.__cid == File() ? equals_Object@Object(a, b) : a.__cid == Mac() ? equals_Object@Object(a, b) : a.__cid == ArrayList() ? equals_Object@Object(a, b) : a.__cid == StringBuilder() ? equals_Object@Object(a, b) : a.__cid == PQueue() ? equals_Object@Object(a, b) : a.__cid == System() ? equals_Object@Object(a, b) : a.__cid == Boolean() ? equals_Object@Object(a, b) : a.__cid == Integer() ? equals_Object@Integer(a, b) : a.__cid == BufferedWriter() ? equals_Object@Object(a, b) : a.__cid == Scanner() ? equals_Object@Object(a, b) : a.__cid == Character() ? equals_Object@Character(a, b) : a.__cid == Stack() ? equals_Object@Object(a, b) : a.__cid == Object() ? equals_Object@Object(a, b) : 0);
+}
+
+int hashCode_Object(Object o) {
+  return (o != null ? (o.__cid == Cipher() ? hashCode@Object(o) : o.__cid == SecureRandom() ? hashCode@Object(o) : o.__cid == TreeSet() ? hashCode@Object(o) : o.__cid == KeyGenerator() ? hashCode@Object(o) : o.__cid == Number() ? hashCode@Object(o) : o.__cid == FileWriterr() ? hashCode@Object(o) : o.__cid == Float() ? hashCode@Object(o) : o.__cid == HashMap_Node() ? hashCode@Object(o) : o.__cid == FileReaderr() ? hashCode@Object(o) : o.__cid == SecretKeySpec() ? hashCode@Object(o) : o.__cid == StringBuffer() ? hashCode@Object(o) : o.__cid == Assert() ? hashCode@Object(o) : o.__cid == AbstractQueue() ? hashCode@Object(o) : o.__cid == KerberosKey() ? hashCode@Object(o) : o.__cid == IvParameterSpec() ? hashCode@Object(o) : o.__cid == HashSet() ? hashCode@Object(o) : o.__cid == ArrayDeque() ? hashCode@Object(o) : o.__cid == TreeMap() ? hashCode@Object(o) : o.__cid == LinkedList() ? hashCode@Object(o) : o.__cid == String() ? hashCode@String(o) : o.__cid == ArrayDeque_DequeNode() ? hashCode@Object(o) : o.__cid == File() ? hashCode@Object(o) : o.__cid == Mac() ? hashCode@Object(o) : o.__cid == ArrayList() ? hashCode@Object(o) : o.__cid == StringBuilder() ? hashCode@Object(o) : o.__cid == PQueue() ? hashCode@Object(o) : o.__cid == System() ? hashCode@Object(o) : o.__cid == Boolean() ? hashCode@Object(o) : o.__cid == Integer() ? hashCode@Integer(o) : o.__cid == BufferedWriter() ? hashCode@Object(o) : o.__cid == Scanner() ? hashCode@Object(o) : o.__cid == Character() ? hashCode@Object(o) : o.__cid == Stack() ? hashCode@Object(o) : o.__cid == Object() ? hashCode@Object(o) : 0) : 0);
+}
+
+Object toString(Object self) {
+  return String_String_char_int_int(new Object(__cid=String()), new Array_char(length=17+1, A="Object toString()"), 0, 17);
+}
+
+bit equals_Object(Object self, Object obj) {
+  return self == obj;
+}
+
+int hashCode(Object self) {
+  return 0;
+}
+
+struct Object {
+  int           __cid;
+  Array_Object  elementData_Stack;
+  int           size_Stack;
+  int           capacity_Stack;
+  char          value_Character;
+  Object        file_Scanner;
+  Object        writer_BufferedWriter;
+  int           value_Integer;
+  bit           bool_Boolean;
+  Array_char    _value_StringBuilder;
+  int           _count_StringBuilder;
+  Array_Object  elementData_ArrayList;
+  int           DEFAULT_CAPACITY_ArrayList;
+  int           capacity_ArrayList;
+  int           size_ArrayList;
+  Object        fname_File;
+  int           size_File;
+  Object        val_ArrayDeque_DequeNode;
+  Object        prev_ArrayDeque_DequeNode;
+  Object        next_ArrayDeque_DequeNode;
+  Array_char    _value_String;
+  int           _count_String;
+  Array_Object  elementData_HashMap;
+  int           numPairs_HashMap;
+  int           capacity_HashMap;
+  Object        currentHead_ArrayDeque;
+  Object        currentTail_ArrayDeque;
+  int           size_ArrayDeque;
+  Array_Object  set_HashSet;
+  int           capacity_HashSet;
+  int           size_HashSet;
+  Array_char    key_KerberosKey;
+  int           KEYSIZE_KerberosKey;
+  Array_Object  elementData_AbstractQueue;
+  int           size_AbstractQueue;
+  int           capacity_AbstractQueue;
+  Array_char    _value_StringBuffer;
+  int           _count_StringBuffer;
+  Array_char    key_SecretKeySpec;
+  Object        file_FileReaderr;
+  Object        key_HashMap_Node;
+  Object        value_HashMap_Node;
+  int           hash_HashMap_Node;
+  float         value_Float;
+  Object        fname_FileWriterr;
+  Object        mode_KeyGenerator;
+  Array_Object  set_TreeSet;
+  int           capacity_TreeSet;
+  int           size_TreeSet;
+  Object        type_Cipher;
+  Object        key_Cipher;
+  int           mode_Cipher;
+  int           ENCRYPT_MODE_Cipher;
+  int           DECRYPT_MODE_Cipher;
+}

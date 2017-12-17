@@ -356,6 +356,7 @@ class PQueue {
 
   harness static void m()
   {
+	
     static final int LOOPS = 1000;
 
     static final int MAX_SZ = 100;
@@ -439,18 +440,7 @@ class PQueue {
 
 	}
 	
-	// There is no assert in the test, so no constraints! We don't need them! 
-	/*
-	@Test
-  	public void testRemoving() {
-    	Integer [] in = {new Integer(1),new Integer(2),new Integer(3),new Integer(4),new Integer(5), new Integer(6),new Integer(7)};
-    	Integer [] removeOrder = { new Integer(1),new Integer(3),new Integer(6),new Integer(4),new Integer(5),new Integer(7),new Integer(2) };
-    	sequentialRemoving(in, removeOrder);
-    	in = new Integer[] {new Integer(1),new Integer(2),new Integer(3),new Integer(4),new Integer(5), new Integer(6),new Integer(7),new Integer(8), new Integer(9),new Integer(10),new Integer(11)};
-    	removeOrder = new Integer[] {new Integer(7),4,6,10,2,5,11,3,1,8,9};
-    	sequentialRemoving(in, removeOrder);
-	}
-	*/
+	
 	
 	@Test
   	public void testRemovingDuplicates() {

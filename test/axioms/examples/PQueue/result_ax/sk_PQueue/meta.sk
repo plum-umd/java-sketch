@@ -1,0 +1,22 @@
+package meta;
+
+// distinct class IDs
+int ArrayList()      { return 8; }
+int Assert()         { return 13; }
+int Boolean()        { return 3; }
+int Byte()           { return 9; }
+int CharSequence()   { return 4; }
+int Character()      { return 10; }
+int Comparable()     { return 14; }
+int Float()          { return 5; }
+int HashMap()        { return 11; }
+int Integer()        { return 16; }
+int Number()         { return 7; }
+int Object()         { return 1; }
+int PQueue()         { return 2; }
+int String()         { return 6; }
+int StringBuffer()   { return 12; }
+int StringBuilder()  { return 17; }
+int System()         { return 15; }
+
+// Uninterpreted functions
