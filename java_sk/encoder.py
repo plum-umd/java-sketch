@@ -549,6 +549,47 @@ class Encoder(object):
 
             cls_v.members.append(fd)
             cls_v.childrenNodes.append(fd)
+
+        arrs = ['Array_bit', 'Array_char', 'Array_int', 'Array_float', 'Array_double', 'Array_Object', 'Primitive_bit', 'Primitive_char', 'Primitive_int', 'Primitivie_float', 'Primitive_double']
+
+        primToBox = {
+            u'int':u'Integer',
+            u'bit':u'Boolean',
+            u'float':u'Float',
+            u'double':u'Double',
+            u'char':u'Character'
+        }
+
+        for a in arrs:
+            parts = a.split('_')
+            typ = parts[1]
+            if parts[0] == 'Array':
+                if not (typ == 'Object'):
+                    fd = FieldDeclaration(
+                        {u'variables':{u'@e': [{u'@t': u'VariableDeclarator',
+                                                u'id': {u'name': '_{}'.format(str(a).lower()),},},],},
+                         u'type':{u'@t': u'ReferenceType', u'type':
+                                  {u'@t': u'PrimitiveType', u'type':
+                                   {u'nameOfBoxedType': primToBox[typ], u'name': typ.capitalize(),},},
+                                  u'arrayCount':str(1),},},)
+                else:
+                    fd = FieldDeclaration(
+                        {u'variables':{u'@e': [{u'@t': u'VariableDeclarator',
+                                                u'id': {u'name': '_{}'.format(str(a).lower()),},},],},
+                         u'type':{u'@t': u'ReferenceType', u'type':
+                                  {u'@t': u'ClassOrInterfaceType', u'name':str(a),},
+                                  u'arrayCount':str(1),},},)
+            else:
+                fd = FieldDeclaration(
+                    {u'variables':{u'@e': [{u'@t': u'VariableDeclarator',
+                                            u'id': {u'name': '_{}'.format(str(typ).lower()),},},],},
+                     u'type':{u'@t': u'ReferenceType', u'type':
+                              {u'@t': u'PrimitiveType', u'type':
+                               {u'nameOfBoxedType': primToBox[typ], u'name': typ.capitalize(),},},},},)
+                
+            cls_v.members.append(fd)
+            cls_v.childrenNodes.append(fd)
+
         return cls_v
 
     @property
