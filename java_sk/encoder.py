@@ -287,7 +287,7 @@ class Encoder(object):
             elif len(name) > 2 and name[len(name)-2:] == "__" and name[0:len(name)-2] == cname.lower():
                 mtd_name = cname + "_" + cname                
             else:
-                mtd_name = str(name.lower())
+                mtd_name = name #str(name.lower())
             typ_params = '_'.join(ptyps)
             if not mtd.default:
                 mtd_name += '_Object'
