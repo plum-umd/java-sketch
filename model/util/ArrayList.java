@@ -7,7 +7,7 @@ public class ArrayList<E> implements List<E>{
     private int DEFAULT_CAPACITY;
     private int capacity;
     private int size;
-    private static Object[] EMPTY_ELEMENTDATA = {};
+    private static Object[] EMPTY_ELEMENTDATA;
     private static final int MAX_ARRAY_SIZE = 1000000; // other value causing weird problem in Sketch
     // private static final int MAX_ARRAY_SIZE = 0x7fffffff - 8;
 
@@ -16,6 +16,7 @@ public class ArrayList<E> implements List<E>{
 	this.elementData = new Object[this.DEFAULT_CAPACITY];
 	this.capacity = this.DEFAULT_CAPACITY;
 	this.size = 0;
+	this.EMPTY_ELEMENTDATA = new Object[0];	
     }
 
     public ArrayList(int initialCapacity) {
@@ -23,6 +24,7 @@ public class ArrayList<E> implements List<E>{
 	this.elementData = new Object[initialCapacity];
 	this.capacity = initialCapacity;	
 	this.size = 0;
+	this.EMPTY_ELEMENTDATA = new Object[0];	
     }
 
     // Expand capacity to size while keeping old elements of elementData
