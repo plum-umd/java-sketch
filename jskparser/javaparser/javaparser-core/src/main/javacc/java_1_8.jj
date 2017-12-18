@@ -1650,7 +1650,7 @@ AxiomParameter AxiomParameter():
 }
 {
   (
-	LOOKAHEAD(3)
+	LOOKAHEAD(5)
 	modifier = Modifiers()
         method = AxiomDeclaration(modifier)
 	{ ret = new AxiomParameter(modifier.beginLine, modifier.beginColumn, token.endLine, token.endColumn, modifier.modifiers, modifier.annotations, type, id, method); }
