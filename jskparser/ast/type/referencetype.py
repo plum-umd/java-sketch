@@ -8,7 +8,7 @@ class ReferenceType(Type):
     def __init__(self, kwargs={}):
         super(ReferenceType, self).__init__(kwargs)
         locs = _import()
-
+        
         typdct = kwargs.get('type')
         self._type = locs[typdct['@t']](typdct)
 
@@ -27,10 +27,12 @@ class ReferenceType(Type):
 
         aa = kwargs.get(u'arraysAnnotations', {})
         ad = [None] if not aa else aa.get(u'@e')
-        if ad[0]:
-            print 'ReferenceType annotations not implemented'
-            for a in aa:
-                self._arraysAnnotations.append(locs[u'AnnotationExpr'](a) if a else None)
+
+        if ad:
+            if ad[0]:
+                print 'ReferenceType annotations not implemented'
+                for a in aa:
+                    self._arraysAnnotations.append(locs[u'AnnotationExpr'](a) if a else None)
 
     @property
     def typee(self): return self._type
