@@ -578,7 +578,7 @@ class Encoder(object):
             cls_v.members.append(fd)
             cls_v.childrenNodes.append(fd)
 
-        wrappers = gen_arr_wrappers()
+        wrappers = self.gen_arr_wrappers()
 
         for w in wrappers:
             cls_v.members.append(w)
@@ -586,7 +586,7 @@ class Encoder(object):
 
         return cls_v
 
-    def gen_arr_wrappers():
+    def gen_arr_wrappers(self):
         arrs = ['Array_bit', 'Array_char', 'Array_int', 'Array_float', 'Array_double', 'Array_Object', 'Primitive_bit', 'Primitive_char', 'Primitive_int', 'Primitivie_float', 'Primitive_double']
 
         primToBox = {
