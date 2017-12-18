@@ -148,15 +148,27 @@ class Encoder(object):
     def print_obj_struct(self):
         buf = cStringIO.StringIO()
 
-        # pretty print
-        i_flds = filter(lambda m: type(m) == FieldDeclaration, self.tltr.obj_struct.members)
-        flds = map(self.tltr.trans_fld, i_flds)
-        lens = map(lambda f: len(f[0]), flds)
-        m = max(lens) + 1
-        buf.write("struct " + str(self.tltr.obj_struct) + " {\n")
-        for f in flds:
-            buf.write('  {} {}{}{};\n'.format(f[0],' '*(m-len(f[0])), f[1], f[2]))
-        buf.write("}\n")
+        if self.tltr.obj_struct:            
+            # pretty print
+            i_flds = filter(lambda m: type(m) == FieldDeclaration, self.tltr.obj_struct.members) 
+            flds = map(self.tltr.trans_fld, i_flds)
+            lens = map(lambda f: len(f[0]), flds)
+            m = max(lens) + 1
+            buf.write("struct " + str(self.tltr.obj_struct) + " {\n")
+            for f in flds:
+                buf.write('  {} {}{}{};\n'.format(f[0],' '*(m-len(f[0])), f[1], f[2]))
+            buf.write("}\n")
+        else:
+            buf.write("struct Object {\n")
+            buf.write("  int __cid;\n")
+            buf.write("  Array_bit _array_bit;\n")            
+            buf.write("  Array_char _array_char;\n")
+            buf.write("  Array_int _array_int;\n")
+            buf.write("  Array_float _array_float;\n")
+            buf.write("  Array_double _array_double;\n")
+            buf.write("  Array_Object _array_object;\n")            
+            buf.write("}\n")
+            
         with open(os.path.join(self.sk_dir, "Object.sk"), 'a') as f:
             f.write(util.get_and_close(buf))
 
@@ -566,6 +578,15 @@ class Encoder(object):
             cls_v.members.append(fd)
             cls_v.childrenNodes.append(fd)
 
+        wrappers = gen_arr_wrappers()
+
+        for w in wrappers:
+            cls_v.members.append(w)
+            cls_v.childrenNodes.append(w)
+
+        return cls_v
+
+    def gen_arr_wrappers():
         arrs = ['Array_bit', 'Array_char', 'Array_int', 'Array_float', 'Array_double', 'Array_Object', 'Primitive_bit', 'Primitive_char', 'Primitive_int', 'Primitivie_float', 'Primitive_double']
 
         primToBox = {
@@ -576,6 +597,8 @@ class Encoder(object):
             u'char':u'Character'
         }
 
+        wrappers = []
+        
         for a in arrs:
             parts = a.split('_')
             typ = parts[1]
@@ -602,12 +625,12 @@ class Encoder(object):
                      u'type':{u'@t': u'ReferenceType', u'type':
                               {u'@t': u'PrimitiveType', u'type':
                                {u'nameOfBoxedType': primToBox[typ], u'name': typ.capitalize(),},},},},)
+
+            wrappers.append(fd)
                 
-            cls_v.members.append(fd)
-            cls_v.childrenNodes.append(fd)
-
-        return cls_v
-
+        return wrappers
+                
+    
     @property
     def prg(self): return self._prg
     @prg.setter
