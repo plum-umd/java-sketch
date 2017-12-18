@@ -137,10 +137,13 @@ class Encoder(object):
     def gen_array_sk(self):
         types = [u'bit', u'char', u'int', u'float', u'double', u'Object',]
         array_struct = 'struct Array_{0} {{\n  int length;\n  {0}[length] A;\n}}\n\n'
+        array_wrapper = 'Object Wrap_Array_{0}(Array_{0} arr) {{\n  return new Object(__cid=Array(), _array_{1}=arr); \n}}\n\n'
         with open(os.path.join(self.sk_dir, "array.sk"), 'w') as f:
             f.write("package array;\n\n")
             for t in types:
                 f.write(array_struct.format(t))
+            for t in types:
+                f.write(array_wrapper.format(t, t.lower())) 
 
     def print_obj_struct(self):
         buf = cStringIO.StringIO()
@@ -193,9 +196,14 @@ class Encoder(object):
         items = sorted(self.CLASS_NUMS.items())
         lens = map(lambda i: len(i[0]), items)
         m = max(lens)
+        mx = 0
         for k,v in items:
             if k not in utils.narrow:
                 buf.write("int {k}() {s} {{ return {v}; }}\n".format(k=k, v=v, s=' '*(m-len(k))))
+            if (v > mx): mx = v
+
+        buf.write("int {k}() {s} {{ return {v}; }}\n".format(k="Array", v=mx, s=' '*(m-len(k))))        
+            
         buf.write('\n// Uninterpreted functions\n')
         with open(os.path.join(self.sk_dir, "meta.sk"), 'w') as f:
             f.write(util.get_and_close(buf))
@@ -272,13 +280,21 @@ class Encoder(object):
                     c += '; '
             if mtd.parameters: c += '; '
             for t,n in zip(mtd.param_typs(), mtd.param_names()):
-                c += '{} {}; '.format(self.tltr.trans_ty(t), n)
+                typ = self.tltr.trans_ty(t)
+                if isinstance(t, ReferenceType) and t.arrayCount > 0:
+                    typ = "Array_"+typ
+                c += '{} {}; '.format(typ, n)
             c += '}\n'
             return c
         # Generates Object Wrapper Functions for ADT Constructors
         def gen_obj_constructor(mtd):
             name = mtd.name
             (ptyps, pnms) = (map(lambda t: self.tltr.trans_ty(t), mtd.param_typs()), map(str, mtd.param_names()))
+            mtd_param_typs = mtd.param_typs()
+            for i in range(0,len(ptyps)):
+                if isinstance(mtd_param_typs[i], ReferenceType):
+                    if mtd_param_typs[i].arrayCount > 0:
+                        ptyps[i] = "Array_"+ptyps[i]
             params = ', '.join(map(lambda p: ' '.join(p), zip(ptyps, pnms)))
             c = 'Object '
             
