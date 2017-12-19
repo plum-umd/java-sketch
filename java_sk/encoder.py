@@ -316,7 +316,7 @@ class Encoder(object):
             
             if name == cname.lower():
                 mtd_name = cname + "_" + cname
-            elif len(name) > 2 and name[len(name)-2:] == "__" and name[0:len(name)-2] == cname.lower():
+            elif len(name) > 6 and name[len(name)-6:] == "_Empty" and name[0:len(name)-6] == cname.lower():
                 mtd_name = cname + "_" + cname                
             else:
                 mtd_name = name #str(name.lower())
@@ -368,9 +368,9 @@ class Encoder(object):
                     mtd.name = m.name + 'b'
                     mtd.pure = True
                     adt_mtds.insert(i+1, mtd)
-                else:
-                    m.name += 'b'
-                    m.pure = False
+                # else:
+                #     m.name += 'b'
+                #     m.pure = False
 
         # add default constructor if one isn't provided
         #   i.e. user didn't write constructor at top of Java file
@@ -379,7 +379,7 @@ class Encoder(object):
         if not default:
             default_name = cname.lower();
             if cname == cname.lower().capitalize():
-                default_name += "__"
+                default_name += "_Empty"
             m = MethodDeclaration({u'@t':u'MethodDeclaration', u'name':default_name,
                                    u'type':{u'@t':u'ClassOrInterfaceType',u'name':u'Object',},},)
             # set this to pure so we don't generate a bang constructor and default...
@@ -481,7 +481,13 @@ class Encoder(object):
                 depth = 1 if index == 0 else 2
                 index += 1
                 while param.method and param.method.parameters:
-                    xf2 = filter(lambda m: m.name == param.method.name, adt_mtds)
+                    # print("HERE: "+str(m.name)+", "+str(param.method.name))
+                    # print("HERE2: "+str(m.name[len(m.name)-2:])+", "+str(m.name[0:len(m.name)-2].capitalize()))
+                    # for adt_mtd in adt_mtds:
+                        # if m.name == param.method.name or (len(m.name)> 2 and m.name[len(m.name)-2:] == '__' and m.name[0:len(m.name)-2].capitalize == param.method.name):
+                            
+                    xf2 = filter(lambda m: m.name == param.method.name or (len(m.name)> 6 and m.name[len(m.name)-6:] == '_Empty' and m.name[0:len(m.name)-6].capitalize() == param.method.name), adt_mtds)
+                    # xf2 = filter(lambda m: m.name == param.method.name, adt_mtds)
                     xf2 = xf2[0]
                     for (xp, ap) in zip(xf2.parameters, param.method.parameters[1:]):
                         name = xparam.name
@@ -540,11 +546,24 @@ class Encoder(object):
                 #    resulting switch statement
                 decs = utils.extract_nodes([AxiomDeclaration], a.parameters[i])
 
+                decs2 = filter(lambda m: m.name.split('_')[0] == a.parameters[i].name, adt_mtds)
+                
                 # Add the empty constructor to the declarations if needed
                 if not a.parameters[0].method:
                     decs.append(adt_mtds[0])
 
-                cases = map(lambda d: d.name.capitalize(), decs)
+                cases = []
+                    
+                if a.parameters[i].method and len(decs2) > 0:
+                    for d in decs2:
+                        params = a.parameters[i].method.parameters
+                        name = a.parameters[i].method.name
+                        for p in params:
+                            name += '_'+self.tltr.trans_ty(p.typee).lower()
+                        cases.append(name.capitalize())                    
+                else:
+                    cases = map(lambda d: d.name.capitalize(), decs)
+                    
                 casess.append(cases)
 
             # add cases to body

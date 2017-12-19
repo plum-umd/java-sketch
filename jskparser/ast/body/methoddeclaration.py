@@ -51,10 +51,12 @@ class MethodDeclaration(BodyDeclaration):
         self._adt = False
         self._pure = False
         self._default = False
+        self._constructor = False
         if self.annotations:
             self._adt = any(map(lambda a: str(a) == 'adt', self.annotations))
             self._pure = any(map(lambda a: str(a) == 'pure', self.annotations))
             self._default = any(map(lambda a: str(a) == 'default', self.annotations))
+            self._constructor = any(map(lambda a: str(a) == 'constructor', self.annotations))            
 
         self._bang = kwargs.get(u'bang', False)
         self._adtType = kwargs.get(u'adtType', False)
@@ -113,6 +115,11 @@ class MethodDeclaration(BodyDeclaration):
     @adt.setter
     def adt(self, v): self._adt = v
 
+    @property
+    def constructor(self): return self._constructor
+    @constructor.setter
+    def constructor(self, v): self._constructor = v
+    
     @property
     def pure(self): return self._pure
     @pure.setter
