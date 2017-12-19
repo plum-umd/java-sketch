@@ -481,23 +481,29 @@ class Encoder(object):
                 depth = 1 if index == 0 else 2
                 index += 1
                 while param.method and param.method.parameters:
-                    # print("HERE: "+str(m.name)+", "+str(param.method.name))
-                    # print("HERE2: "+str(m.name[len(m.name)-2:])+", "+str(m.name[0:len(m.name)-2].capitalize()))
-                    # for adt_mtd in adt_mtds:
-                        # if m.name == param.method.name or (len(m.name)> 2 and m.name[len(m.name)-2:] == '__' and m.name[0:len(m.name)-2].capitalize == param.method.name):
-                            
-                    xf2 = filter(lambda m: m.name == param.method.name or (len(m.name)> 6 and m.name[len(m.name)-6:] == '_Empty' and m.name[0:len(m.name)-6].capitalize() == param.method.name), adt_mtds)
-                    # xf2 = filter(lambda m: m.name == param.method.name, adt_mtds)
+                    name_with_args = param.method.name
+                    if name_with_args == cls.name:
+                        # name_with_args += '_Object_Object'
+                        if len(param.method.parameters) > 0:
+                            for param2 in param.method.parameters:                        
+                                # name_with_args += '_'+str(param2.typee)
+                                name_with_args += '_'+self.tltr.trans_ty(param2.typee)
+                        else:
+                            name_with_args += '_Empty'
+                    xf2 = filter(lambda m: m.name == name_with_args, adt_mtds)
                     xf2 = xf2[0]
-                    for (xp, ap) in zip(xf2.parameters, param.method.parameters[1:]):
+                    params2 = param.method.parameters[1:]
+                    if xf2.constructor:
+                        params2 = param.method.parameters
+                    for (xp, ap) in zip(xf2.parameters, params2):
                         name = xparam.name
                         old_name = '#'+ap.name+"_axparam#"
                         if not old_name in xf.symtab: 
                             xf.symtab[old_name] = ((name+u'_')*(depth-1))+name+u'.'+xp.name
-
-                    ap_name = param.method.parameters[0].name
-                    name = u'self' #ap_name
-                    xf.symtab['#'+ap_name+"_axparam#"] = ((name+u'_')*(depth-1))+name+u'.self'
+                    if not xf2.constructor:
+                        ap_name = param.method.parameters[0].name
+                        name = u'self' #ap_name
+                        xf.symtab['#'+ap_name+"_axparam#"] = ((name+u'_')*(depth-1))+name+u'.self'
                     param = param.method.parameters[0]
                     depth += 1
                 
