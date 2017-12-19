@@ -292,7 +292,8 @@ class Encoder(object):
             for t,n in zip(mtd.param_typs(), mtd.param_names()):
                 typ = self.tltr.trans_ty(t)
                 if isinstance(t, ReferenceType) and t.arrayCount > 0:
-                    typ = "Array_"+typ
+                    # typ = "Array_"+typ
+                    typ = 'Object'
                 c += '{} {}; '.format(typ, n)
             c += '}\n'
             return c
@@ -304,7 +305,8 @@ class Encoder(object):
             for i in range(0,len(ptyps)):
                 if isinstance(mtd_param_typs[i], ReferenceType):
                     if mtd_param_typs[i].arrayCount > 0:
-                        ptyps[i] = "Array_"+ptyps[i]
+                        # ptyps[i] = "Array_"+ptyps[i]
+                        ptyps[i] = 'Object'                        
             params = ', '.join(map(lambda p: ' '.join(p), zip(ptyps, pnms)))
             c = 'Object '
             
