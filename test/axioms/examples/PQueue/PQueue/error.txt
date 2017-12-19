@@ -1,0 +1,10 @@
+04:55:33 [INFO] /home/simon/java-sketch/java_sk/main.py:36 => parsing ['/home/simon/java-sketch/test/axioms/examples/PQueue/PQueue/ax/PQueue.java', '/home/simon/java-sketch/test/axioms/examples/PQueue/PQueue/../libs/']
+04:55:33 [INFO] /home/simon/java-sketch/jskparser/jskparser/jskparser.py:32 => parsing file...
+04:55:34 [INFO] /home/simon/java-sketch/jskparser/jskparser/jskparser.py:36 => generating symbol table...
+04:55:34 [INFO] /home/simon/java-sketch/jskparser/jskparser/jskparser.py:38 => building class heirarchy...
+04:55:34 [INFO] /home/simon/java-sketch/java_sk/main.py:41 => encoding to Sketch
+04:55:34 [INFO] java_sk/encoder.py:114 => generating Object.sk
+04:55:34 [INFO] java_sk/encoder.py:117 => generating meta.sk
+04:55:34 [INFO] java_sk/encoder.py:121 => generating cls.sk
+04:55:34 [INFO] java_sk/translator.py:844 => calling: get_Integer from PQueue
+04:55:34 [DEBUG] java_sk/translator.py:876 => scope: map_PQueue Map <class 'ast.body.fielddeclaration.FieldDeclaration'>
