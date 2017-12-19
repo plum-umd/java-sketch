@@ -18,13 +18,13 @@ class PQueue {
   private int heapCapacity = 0;
 
   // A dynamic list to track the elements inside the heap
-  private List <Integer> heap = null;
+  private ArrayList <Integer> heap = null;
 
   // This map keeps track of the possible indices a particular 
   // node value is found in the heap. Having this mapping lets
   // us have O(log(n)) removals and O(1) element containment check
   // at the cost of some additional space and minor overhead
-  private Map <Integer, TreeSet<Integer>> map = new HashMap<>();
+  private HashMap <Integer, TreeSet<Integer>> map = new HashMap<>();
 
   // Construct and initially empty priority queue
   public PQueue() {
@@ -158,8 +158,8 @@ class PQueue {
   private void mapSwap(Integer val1, Integer val2, int val1Index, int val2Index) {
 
     
-    Set <Integer> set1 = map.get(val1);
-    Set <Integer> set2 = map.get(val2);
+    TreeSet <Integer> set1 = map.get(val1);
+    TreeSet <Integer> set2 = map.get(val2);
 
     Integer val1IndexTmp =  new Integer(val1Index);
     Integer val2IndexTmp = new Integer(val2Index);
