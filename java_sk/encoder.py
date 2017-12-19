@@ -281,14 +281,15 @@ class Encoder(object):
 
     def gen_axiom_cls_sk(self, cls):
         cname = str(cls)
-
+        
         def gen_adt_constructor(mtd):
-            c = '    {}{} {{ '.format(mtd.name.capitalize(), ' '*(max_len+1-len(mtd.name)))
-            if not mtd.default:
+            name = mtd.name.capitalize()
+            c = '    {}{} {{ '.format(name, ' '*(max_len+1-len(mtd.name)))
+            if not mtd.default and not mtd.constructor:
                 c += '{} self'.format(cls.name)
                 if not mtd.parameters:
                     c += '; '
-            if mtd.parameters: c += '; '
+            if mtd.parameters and not mtd.constructor: c += '; '
             for t,n in zip(mtd.param_typs(), mtd.param_names()):
                 typ = self.tltr.trans_ty(t)
                 if isinstance(t, ReferenceType) and t.arrayCount > 0:
@@ -299,9 +300,12 @@ class Encoder(object):
             return c
         # Generates Object Wrapper Functions for ADT Constructors
         def gen_obj_constructor(mtd):
+            mtd_param_typs = mtd.param_typs()
+            if mtd.constructor:
+                for t in mtd_param_typs:
+                    mtd.name += '_'+self.tltr.trans_ty(t)
             name = mtd.name
             (ptyps, pnms) = (map(lambda t: self.tltr.trans_ty(t), mtd.param_typs()), map(str, mtd.param_names()))
-            mtd_param_typs = mtd.param_typs()
             for i in range(0,len(ptyps)):
                 if isinstance(mtd_param_typs[i], ReferenceType):
                     if mtd_param_typs[i].arrayCount > 0:
@@ -317,23 +321,29 @@ class Encoder(object):
             else:
                 mtd_name = name #str(name.lower())
             typ_params = '_'.join(ptyps)
-            if not mtd.default:
+            if not mtd.default and not mtd.constructor:
                 mtd_name += '_Object'
                 if mtd.parameters:
                     mtd_name += '_{}'.format(typ_params)
+                
             c += '{}'.format(mtd_name)
             c += '('
             if not mtd.default:
-                c += 'Object self'
-                if mtd.parameters: c += ', '
+                if not mtd.constructor:
+                    c += 'Object self'
+                    if mtd.parameters: c += ', '
                 c += '{}) {{\n    '.format(params)
             else:
                 c += ') {\n    '
             c += 'return new Object(__cid={}(), _{}=new {}('.format(cls.name, cls.name.lower(), name.capitalize())
-            if not mtd.default:
+            if not mtd.default and not mtd.constructor:
                 c += 'self=self._{}'.format(cls.name.lower())
-            for n in pnms:
-                c += ', {0}={0}'.format(n)
+            for i in range(0, len(pnms)):
+                n = pnms[i]
+                if i == 0 and mtd.constructor:
+                    c += '{0}={0}'.format(n)
+                else:
+                    c += ', {0}={0}'.format(n)
             c += '));\n}\n\n'
             return c
 
@@ -346,20 +356,26 @@ class Encoder(object):
         adt_mtds = filter(lambda m: m.adt, mtds)
         non_adt_mtds = filter(lambda m: not m.adt, mtds)
 
+        # Write all non axiom / adt functions to file (like static functions)
         for m in non_adt_mtds:
             buf.write(self.to_func(m) + os.linesep)        
         
         # add bang functions for non-pure methods
         for (m,i) in zip(adt_mtds, xrange(len(adt_mtds))):
             if not m.pure:
-                mtd = cp.copy(m)
-                mtd.name = m.name + 'b'
-                mtd.pure = True
-                adt_mtds.insert(i+1, mtd)
+                if not m.constructor:
+                    mtd = cp.copy(m)
+                    mtd.name = m.name + 'b'
+                    mtd.pure = True
+                    adt_mtds.insert(i+1, mtd)
+                else:
+                    m.name += 'b'
+                    m.pure = False
 
         # add default constructor if one isn't provided
         #   i.e. user didn't write constructor at top of Java file
-        default = filter(lambda m: cname == m.name, adt_mtds)
+        # default = filter(lambda m: cname == m.name, adt_mtds)
+        default = None
         if not default:
             default_name = cname.lower();
             if cname == cname.lower().capitalize():
@@ -399,10 +415,12 @@ class Encoder(object):
                                 [{u'@t':u'Parameter',
                                   u'type':{u'@t':u'ClassOrInterfaceType',u'name':cname},
                                   u'id':{u'name':u'self',},},],)
+
             _self = Parameter({u'id':{u'name':u'self'},
-                               u'type':{u'@t':u'ClassOrInterfaceType', u'name':cname},},)
+                                   u'type':{u'@t':u'ClassOrInterfaceType', u'name':cname},},)
             x.childrenNodes.append(_self)
             x.parameters = [_self] + map(cp.copy, a.parameters)
+                
             x.adtName = str(a)
             x.add_parent_post(cls, True)
             xforms[xnm] = x
@@ -428,14 +446,19 @@ class Encoder(object):
                                        u'name':xnm,u'type':{u'@t':u'ClassOrInterfaceType',
                                                             u'name':'Object',},
                                        u'args':[],},},)
+
             for p in xf.parameters:
-                if not a.default:
-                    v = LiteralExpr({u'name':u'self.{}'.format(p.idd.name),},)
-                else:
+                if p.idd.name == 'self' and a.constructor:
                     v = LiteralExpr({u'name':u'{}'.format(p.idd.name),},)
+                else:
+                    if not a.default:
+                        v = LiteralExpr({u'name':u'self.{}'.format(p.idd.name),},)
+                    else:
+                        v = LiteralExpr({u'name':u'{}'.format(p.idd.name),},)
                 v.typee = p.typee
                 ret.expr.childrenNodes.append(v)
                 ret.expr.args.append(v)
+                
             body = dispatch.get_xform()
             body.add_body([a.name.capitalize()], [ret], adt_mtds)
 
