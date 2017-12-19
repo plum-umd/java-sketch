@@ -208,13 +208,11 @@ class Encoder(object):
         items = sorted(self.CLASS_NUMS.items())
         lens = map(lambda i: len(i[0]), items)
         m = max(lens)
-        mx = 0
         for k,v in items:
             if k not in utils.narrow:
                 buf.write("int {k}() {s} {{ return {v}; }}\n".format(k=k, v=v, s=' '*(m-len(k))))
-            if (v > mx): mx = v
 
-        buf.write("int {k}() {s} {{ return {v}; }}\n".format(k="Array", v=mx, s=' '*(m-len(k))))        
+        buf.write("int {k}(){s}{{ return {v}; }}\n".format(k="Array", v="-1", s=' '*(m-len(k))))        
             
         buf.write('\n// Uninterpreted functions\n')
         with open(os.path.join(self.sk_dir, "meta.sk"), 'w') as f:
@@ -249,7 +247,7 @@ class Encoder(object):
             if cls == self.mcls and fld.variable.init and type(fld.variable.init) == GeneratorExpr: continue
             typ = self.tltr.trans_ty(fld.typee)
             if isinstance(fld.typee, ReferenceType) and fld.typee.arrayCount > 0:
-                typ = 'Array_{}'.format(typ)
+                typ = 'Object'
             buf.write("{0} {1}_g() {{ return {1}; }}\n".format(typ, fld.name))
             buf.write("void {1}_s({0} {1}_s) {{ {1} = {1}_s; }}\n".format(typ, fld.name))
             buf.write('\n')

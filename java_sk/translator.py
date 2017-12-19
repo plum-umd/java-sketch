@@ -248,10 +248,14 @@ class Translator(object):
             n.idd.accept(self, **kwargs)
             self.printt(' = ')
             if isinstance(n.init, ArrayInitializerExpr):
-                self.printt('new ')
-                n.typee.accept(self, **kwargs)
+                typ = self.trans_ty(n.typee)
+                self.printt('Wrap_Array_{}('.format(typ))
+                self.printt('new ')                
+                # n.typee.accept(self, **kwargs)
+                self.printt('Array_{}'.format(typ))
                 self.printt('(')
             n.init.accept(self, **kwargs)
+            if isinstance(n.init, ArrayInitializerExpr): self.printt(')')            
         else:
             self.printt(' ')
             n.idd.accept(self, **kwargs)
@@ -541,6 +545,8 @@ class Translator(object):
     @v.when(ObjectCreationExpr)
     def visit(self, n, **kwargs):
         obj_cls = n.symtab.get(n.typee.name)
+        if not obj_cls:
+            raise Exception('ObjectCreationExpr: Cannot find {} '.format(n.typee.name))
         cls = obj_cls.symtab.get(obj_cls.name)
         if isinstance(obj_cls, ImportDeclaration): obj_cls = obj_cls.cname()
         if isinstance(obj_cls, ReferenceType): obj_cls = self.trans_ty(obj_cls)
@@ -607,7 +613,8 @@ class Translator(object):
     @v.when(ArrayCreationExpr)
     def visit(self, n, **kwargs):
         # print 'arraycreationexpr'
-        self.printt('new Array_{}('.format(self.trans_ty(n.typee)))
+        typ = self.trans_ty(n.typee)
+        self.printt('Wrap_Array_{0}(new Array_{0}('.format(typ))
         if n.dimensions:
             for d in n.dimensions:
                 self.printt('length=')
@@ -618,6 +625,8 @@ class Translator(object):
         else:
             n.initializer.accept(self, **kwargs)
 
+        self.printt(')')
+
     @v.when(ArrayInitializerExpr)
     def visit(self, n, **kwargs):
         # print 'arrayinitializerexpr'
@@ -625,10 +634,29 @@ class Translator(object):
         self.printSepList(n.values)
         self.printt('})')
 
+    def findType(self, n, name):
+        if name in n.symtab:
+            return n.symtab[name]
+        elif n.parentNode:
+            return self.findType(n.parentNode, name)
+        return None
+            
     @v.when(ArrayAccessExpr)
     def visit(self, n, **kwargs):
         # print 'arrayaccessexpr'
+        typ = self.trans_ty(n.nameExpr.typee)
+        # typ = ""
+        # typ = self.findType(n, n.nameExpr.name)
+        # if not typ: typ = self.findType(n.nameExpr, n.nameExpr.name)
+        # if not typ: print("AHHHH")
+        # print("HERE: "+str(n.parentNode)+", "+str(type(n.parentNode)))
+        if n.nameExpr.name in n.nameExpr.symtab:
+            typ = self.trans_ty(n.nameExpr.symtab[n.nameExpr.name].typee)
+        else:
+            typ = self.trans_ty(utils.find_fld(n.nameExpr, self.obj_struct).typee) 
+        if typ == 'byte': typ = 'bit'
         n.nameExpr.accept(self, **kwargs)
+        self.printt('._array_{}'.format(typ.lower()))
         self.printt('.A[')
         n.index.accept(self, **kwargs)
         self.printt(']')
@@ -705,7 +733,7 @@ class Translator(object):
 
     @v.when(StringLiteralExpr)
     def visit(self, n, **kwargs):
-        self.printt('String_String_char_int_int(new Object(__cid=String()), new Array_char(length={1}+1, A="{0}"), 0, {1})'.format(n.value, len(n.value)))
+        self.printt('String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length={1}+1, A="{0}")), 0, {1})'.format(n.value, len(n.value)))
 
     @v.when(CharLiteralExpr)
     def visit(self, n, **kwargs):
@@ -747,6 +775,7 @@ class Translator(object):
 
     @v.when(PrimitiveType)
     def visit(self, n, **kwargs):
+        # self.printt('Object')
         self.printt(self.trans_ty(n))
 
     @v.when(VoidType)
@@ -756,10 +785,12 @@ class Translator(object):
     @v.when(ReferenceType)
     def visit(self, n, **kwargs):
         # print 'ReferenceType -- type: {} arrayCount: {}'.format(n, n.arrayCount)
-        if n.arrayCount:
-            self.printt('Array_{}'.format(self.trans_ty(n.typee)))
-        else:
-            n.typee.accept(self, **kwargs)
+        self.printt('Object')
+        
+        # if n.arrayCount:
+        #     self.printt('Array_{}'.format(self.trans_ty(n.typee)))
+        # else:
+        #     n.typee.accept(self, **kwargs)
 
     def trans(self, s, **kwargs):
         self.buf = cStringIO.StringIO()
@@ -785,7 +816,15 @@ class Translator(object):
 
     def trans_faccess(self, n, **kwargs):
         logging.debug('accessing {}.{}:{}'.format(n.scope.name, n.field.name, n.beginLine))
+        
+        arr_access = False
+        if isinstance(n, FieldAccessExpr):
+            if isinstance(n.scope.typee, ReferenceType) and n.scope.typee.arrayCount > 0 and n.field.name == 'length':
+                arr_access = True
+                # self.printt('._array_{}'.format(n.typee))
+                
         fld = utils.find_fld(n, self.obj_struct)
+
         logging.debug('found field: {}'.format(str(fld)))
         if td.isStatic(fld):
             if isinstance(n.scope, ThisExpr) or n.scope.name == n.get_coid().name:
@@ -797,9 +836,15 @@ class Translator(object):
                 return False
             else:
                 self.printt('{}_g@{}()'.format(fld.name, str(fld.get_coid())))
-        else:
+        else:            
             logging.debug('non-static field - type(n.scope): {}'.format(type(n.scope)))
             n.scope.accept(self, **kwargs)
+            if arr_access:
+                # typ = self.trans_ty(n.scope.typee)
+                typ = str(n.scope.typee)
+                # typ = str(n.typee)
+                if typ == 'byte': typ = 'bit'
+                self.printt('._array_{}'.format(typ.lower())) 
             self.printt('.{}'.format(str(fld)))
 
         logging.debug('***END FIELD ACCESS***\n')
@@ -813,11 +858,17 @@ class Translator(object):
             if fld.variable.init:
                 init = ' = '
                 if isinstance(fld.variable.init, ArrayInitializerExpr):
-                    init += 'new Array_{}('.format(self.trans_ty(fld.typee))
+                    # init += 'Wrap_Array_{0}(new Array_{0}('.format(self.trans_ty(fld.typee))
+                    init += 'new Object(__cid=-1, _array_{0}=new Array_{0}('.format(self.trans_ty(fld.typee).lower())
                 init += self.trans(fld.variable.init)
+                if isinstance(fld.variable.init, ArrayInitializerExpr): init += ')'
         ty = self.trans_ty(fld.typee)
         if isinstance(fld.typee, ReferenceType) and fld.typee.arrayCount > 0:
-            ty = 'Array_{}'.format(ty)
+            # ty = 'Array_{}'.format(ty)
+            if len(fld.name) > 7 and fld.name[0:7]=='_array_':
+                ty = 'Array_{}'.format(self.trans_ty(fld.typee))                    
+            else:
+                ty = 'Object'
         return (ty, nm, init)
 
     def trans_params(self, (ty, nm)):
