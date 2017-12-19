@@ -344,6 +344,11 @@ class Encoder(object):
         #   including bang functions
         mtds = utils.extract_nodes([MethodDeclaration], cls, recurse=False)
         adt_mtds = filter(lambda m: m.adt, mtds)
+        non_adt_mtds = filter(lambda m: not m.adt, mtds)
+
+        for m in non_adt_mtds:
+            buf.write(self.to_func(m) + os.linesep)        
+        
         # add bang functions for non-pure methods
         for (m,i) in zip(adt_mtds, xrange(len(adt_mtds))):
             if not m.pure:
