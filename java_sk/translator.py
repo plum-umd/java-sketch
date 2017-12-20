@@ -654,7 +654,7 @@ class Translator(object):
             typ = self.trans_ty(n.nameExpr.symtab[n.nameExpr.name].typee)
         else:
             typ = self.trans_ty(utils.find_fld(n.nameExpr, self.obj_struct).typee) 
-        if typ == 'byte': typ = 'bit'
+        if typ == 'byte': typ = 'char'
         n.nameExpr.accept(self, **kwargs)
         self.printt('._array_{}'.format(typ.lower()))
         self.printt('.A[')
@@ -843,7 +843,7 @@ class Translator(object):
                 # typ = self.trans_ty(n.scope.typee)
                 typ = str(n.scope.typee)
                 # typ = str(n.typee)
-                if typ == 'byte': typ = 'bit'
+                if typ == 'byte': typ = 'char'
                 self.printt('._array_{}'.format(typ.lower())) 
             self.printt('.{}'.format(str(fld)))
 
