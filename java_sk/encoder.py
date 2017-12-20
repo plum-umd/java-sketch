@@ -306,10 +306,13 @@ class Encoder(object):
                     mtd.name += '_'+self.tltr.trans_ty(t)
             name = mtd.name
             (ptyps, pnms) = (map(lambda t: self.tltr.trans_ty(t), mtd.param_typs()), map(str, mtd.param_names()))
+            ptyps_name = cp.deepcopy(ptyps)
             for i in range(0,len(ptyps)):
                 if isinstance(mtd_param_typs[i], ReferenceType):
                     if mtd_param_typs[i].arrayCount > 0:
                         # ptyps[i] = "Array_"+ptyps[i]
+                        if str(mtd_param_typs[i]) == 'byte':
+                            ptyps_name[i] = 'byte'
                         ptyps[i] = 'Object'                        
             params = ', '.join(map(lambda p: ' '.join(p), zip(ptyps, pnms)))
             c = 'Object '
@@ -320,7 +323,7 @@ class Encoder(object):
                 mtd_name = cname + "_" + cname                
             else:
                 mtd_name = name #str(name.lower())
-            typ_params = '_'.join(ptyps)
+            typ_params = '_'.join(ptyps_name)
             if not mtd.default and not mtd.constructor:
                 mtd_name += '_Object'
                 if mtd.parameters:
