@@ -555,7 +555,7 @@ class Encoder(object):
                 #    resulting switch statement
                 decs = utils.extract_nodes([AxiomDeclaration], a.parameters[i])
 
-                decs2 = filter(lambda m: m.name.split('_')[0] == a.parameters[i].name, adt_mtds)
+                decs2 = filter(lambda m: m.name.split('_')[0] == a.parameters[i].name and a.parameters[i].name == cls.name, adt_mtds)
                 
                 # Add the empty constructor to the declarations if needed
                 if not a.parameters[0].method:
@@ -572,9 +572,11 @@ class Encoder(object):
                         cases.append(name.capitalize())                    
                 else:
                     cases = map(lambda d: d.name.capitalize(), decs)
-                    
+                
                 casess.append(cases)
 
+            print("HERE: "+str(casess))
+                
             # add cases to body
             body.add_body_nested(casess, a.body.stmts, adt_mtds, xf.parameters)
                     
