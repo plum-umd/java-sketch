@@ -290,11 +290,16 @@ class Encoder(object):
                 if not mtd.parameters:
                     c += '; '
             if mtd.parameters and not mtd.constructor: c += '; '
-            for t,n in zip(mtd.param_typs(), mtd.param_names()):
+            for p,t,n in zip(mtd.parameters, mtd.param_typs(), mtd.param_names()):
                 typ = self.tltr.trans_ty(t)
                 if isinstance(t, ReferenceType) and t.arrayCount > 0:
                     # typ = "Array_"+typ
-                    typ = 'Object'
+                    typ = u'Object'
+                if p.typee.name in p.symtab:
+                    typ_cls = p.symtab[p.typee.name]
+                    if isinstance(typ_cls, ClassOrInterfaceDeclaration) and typ_cls.axiom:
+                        typ = u'Object'
+
                 c += '{} {}; '.format(typ, n)
             c += '}\n'
             return c
@@ -307,6 +312,13 @@ class Encoder(object):
             name = mtd.name
             (ptyps, pnms) = (map(lambda t: self.tltr.trans_ty(t), mtd.param_typs()), map(str, mtd.param_names()))
             ptyps_name = cp.deepcopy(ptyps)
+            for i in range(0, len(ptyps)):
+                ptyp = ptyps[i]
+                p = mtd.parameters[i]
+                if p.typee.name in p.symtab:
+                    typ_cls = p.symtab[p.typee.name]
+                    if isinstance(typ_cls, ClassOrInterfaceDeclaration) and typ_cls.axiom:
+                        ptyps[i] = u'Object'
             for i in range(0,len(ptyps)):
                 if isinstance(mtd_param_typs[i], ReferenceType):
                     if mtd_param_typs[i].arrayCount > 0:
@@ -574,8 +586,6 @@ class Encoder(object):
                     cases = map(lambda d: d.name.capitalize(), decs)
                 
                 casess.append(cases)
-
-            print("HERE: "+str(casess))
                 
             # add cases to body
             body.add_body_nested(casess, a.body.stmts, adt_mtds, xf.parameters)

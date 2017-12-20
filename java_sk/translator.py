@@ -645,11 +645,6 @@ class Translator(object):
     def visit(self, n, **kwargs):
         # print 'arrayaccessexpr'
         typ = self.trans_ty(n.nameExpr.typee)
-        # typ = ""
-        # typ = self.findType(n, n.nameExpr.name)
-        # if not typ: typ = self.findType(n.nameExpr, n.nameExpr.name)
-        # if not typ: print("AHHHH")
-        # print("HERE: "+str(n.parentNode)+", "+str(type(n.parentNode)))
         if n.nameExpr.name in n.nameExpr.symtab:
             typ = self.trans_ty(n.nameExpr.symtab[n.nameExpr.name].typee)
         else:
@@ -811,7 +806,7 @@ class Translator(object):
         elif r_ty in CONVERSION_TYPES: r_ty = CONVERSION_TYPES[r_ty]
         # Unknown type, cast as Object for now
         else: r_ty = u'Object'
-        # print 'typ {} -> {}'.format(repr(str(typ)), r_ty)
+        # print('typ {} -> {}'.format(repr(str(typ)), r_ty))
         return r_ty
 
     def trans_faccess(self, n, **kwargs):
@@ -863,6 +858,11 @@ class Translator(object):
                 init += self.trans(fld.variable.init)
                 if isinstance(fld.variable.init, ArrayInitializerExpr): init += ')'
         ty = self.trans_ty(fld.typee)
+        if fld.typee.name in fld.symtab:
+            typ_cls = fld.symtab[fld.typee.name]
+            if isinstance(typ_cls, ClassOrInterfaceDeclaration) and typ_cls.axiom:
+                ty = u'Object'
+                
         if isinstance(fld.typee, ReferenceType) and fld.typee.arrayCount > 0:
             # ty = 'Array_{}'.format(ty)
             if len(fld.name) > 7 and fld.name[0:7]=='_array_':
@@ -1408,13 +1408,18 @@ class Translator(object):
             u'double':u'Double',
             u'char':u'Character'
         }
-        boxName = primToBox[str(prim.typee)]        
-        # Only create the expr if wrapper library included
-        if boxName in prim.symtab:
-            objCreExpr = ObjectCreationExpr({u'type':prim.symtab[boxName],u'box':True,},)
+
+        boxName = primToBox[str(prim.typee)]
+        
+        if (isinstance(prim.typee, ReferenceType) and prim.typee.arrayCount > 0) or isinstance(prim, ArrayCreationExpr):
+            return prim
         else:
-            logging.error('{} wrapper not found. Perhaps jsketch was run without including it.'.format(boxName))
-            sys.exit()
+            # Only create the expr if wrapper library included
+            if boxName in prim.symtab:
+                objCreExpr = ObjectCreationExpr({u'type':prim.symtab[boxName],u'box':True,},)
+            else:
+                logging.error('{} wrapper not found. Perhaps jsketch was run without including it.'.format(boxName))
+                sys.exit()
         objCreExpr.symtab = prim.symtab
         # objCreExpr.symtab[prim.name] = prim
         objCreExpr.args = [prim]
