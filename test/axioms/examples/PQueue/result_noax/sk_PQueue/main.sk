@@ -1,4 +1,4 @@
-pragma options "--bnd-cbits 8";
+pragma options "--bnd-cbits 9";
 pragma options "--bnd-unroll-amnt 35";
 pragma options "--fe-fpencoding AS_FIXPOINT";
 include "meta.sk";

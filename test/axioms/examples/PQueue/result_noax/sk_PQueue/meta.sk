@@ -46,5 +46,6 @@ int StringBuilder()         { return 19; }
 int System()                { return 32; }
 int TreeMap()               { return 8; }
 int TreeSet()               { return 33; }
+int Array()                   { return 47; }
 
 // Uninterpreted functions

@@ -60,7 +60,8 @@ class TreeSet {
     
     axiom Object last(Object add!(Treeset s, Object e1))
     {
-	return last(s).compareTo(e1) > 0 ? last(s) : e1;
+	Object tmp = last(s);
+	return tmp.compareTo(e1) > 0 ? last(s) : e1;
     }
 
     axiom Object size(Object remove!(TreeSet s, Object e)){

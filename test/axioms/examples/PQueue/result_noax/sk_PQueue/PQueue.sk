@@ -1,10 +1,256 @@
 package PQueue;
 
 Object PQueue_PQueue(Object self) {
-    return self;
+  PQueue_PQueue_int(self, 1);
+  return self;
 }
 
-harness void main() {
+Object PQueue_PQueue_int(Object self, int sz) {
+  self.heap_PQueue = ArrayList_ArrayList_int(new Object(__cid=ArrayList()), sz);
+  self.map_PQueue = HashMap_HashMap(new Object(__cid=HashMap()));
+  self.heapSize_PQueue = 0;
+  self.heapCapacity_PQueue = 0;
+  return self;
+}
+
+int size(Object self) {
+  return self.heapSize_PQueue;
+}
+
+bit isEmpty(Object self) {
+  return self.heapSize_PQueue == 0;
+}
+
+void mapAdd_Integer_int(Object self, Object value, int index) {
+  Object indexTmp = Integer_Integer_int(new Object(__cid=Integer()), index);
+  Object set = (self.map_PQueue.__cid == HashMap() ? get_K@HashMap(self.map_PQueue, value) : null);
+  if (set == null) {
+    set = TreeSet_TreeSet(new Object(__cid=TreeSet()));
+    (set.__cid == TreeSet() ? add_E@TreeSet(set, indexTmp) : 0);
+    (self.map_PQueue.__cid == HashMap() ? put_K_V@HashMap(self.map_PQueue, value, set) : null);
+  }
+  else
+    (set.__cid == TreeSet() ? add_E@TreeSet(set, indexTmp) : 0);
+}
+
+void mapRemove_Integer_int(Object self, Object value, int index) {
+  Object indexTmp = Integer_Integer_int(new Object(__cid=Integer()), index);
+  Object set = (self.map_PQueue.__cid == HashMap() ? get_K@HashMap(self.map_PQueue, value) : null);
+  (set.__cid == TreeSet() ? remove_Object@TreeSet(set, indexTmp) : 0);
+  if ((set.__cid == TreeSet() ? size@TreeSet(set) : 0) == 0) (self.map_PQueue.__cid == HashMap() ? remove_K@HashMap(self.map_PQueue, value) : null);
+}
+
+Object mapGet_Integer(Object self, Object value) {
+  Object set = (self.map_PQueue.__cid == HashMap() ? get_K@HashMap(self.map_PQueue, value) : null);
+  if (set != null) return (set.__cid == TreeSet() ? last@TreeSet(set) : null);
+  return null;
+}
+
+bit remove_Integer(Object self, Object element) {
+  if (element == null) return false;
+  Object index = mapGet_Integer@PQueue(self, element);
+  int indexTmp = (index.__cid == Integer() ? intValue@Integer(index) : 0);
+  if (index != null) removeAt_int@PQueue(self, indexTmp);
+  return index != null;
+}
+
+bit less_int_int(Object self, int i, int j) {
+  Object node1 = (self.heap_PQueue.__cid == ArrayList() ? get_int@ArrayList(self.heap_PQueue, i) : self.heap_PQueue.__cid == LinkedList() ? get_int@LinkedList(self.heap_PQueue, i) : null);
+  Object node2 = (self.heap_PQueue.__cid == ArrayList() ? get_int@ArrayList(self.heap_PQueue, j) : self.heap_PQueue.__cid == LinkedList() ? get_int@LinkedList(self.heap_PQueue, j) : null);
+  return (node1.__cid == Integer() ? compareTo_Integer@Integer(node1, node2) : 0) <= 0;
+}
+
+void sink_int(Object self, int k) {
+  while (true) {
+    int left = 2 * k + 1;
+    int right = 2 * k + 2;
+    int smallest = left;
+    if (right < self.heapSize_PQueue && less_int_int@PQueue(self, right, left)) smallest = right;
+    if (left >= self.heapSize_PQueue || less_int_int@PQueue(self, k, smallest)) return;
+    swap_int_int@PQueue(self, smallest, k);
+    k = smallest;
+  }
+}
+
+void mapSwap_Integer_Integer_int_int(Object self, Object val1, Object val2, int val1Index, int val2Index) {
+  Object set1 = (self.map_PQueue.__cid == HashMap() ? get_K@HashMap(self.map_PQueue, val1) : null);
+  Object set2 = (self.map_PQueue.__cid == HashMap() ? get_K@HashMap(self.map_PQueue, val2) : null);
+  Object val1IndexTmp = Integer_Integer_int(new Object(__cid=Integer()), val1Index);
+  Object val2IndexTmp = Integer_Integer_int(new Object(__cid=Integer()), val2Index);
+  (set1.__cid == TreeSet() ? remove_Object@TreeSet(set1, val1IndexTmp) : set1.__cid == HashSet() ? remove_Object@HashSet(set1, val1IndexTmp) : 0);
+  (set2.__cid == TreeSet() ? remove_Object@TreeSet(set2, val2IndexTmp) : set2.__cid == HashSet() ? remove_Object@HashSet(set2, val2IndexTmp) : 0);
+  (set1.__cid == TreeSet() ? add_E@TreeSet(set1, val2IndexTmp) : set1.__cid == HashSet() ? add_E@HashSet(set1, val2IndexTmp) : 0);
+  (set2.__cid == TreeSet() ? add_E@TreeSet(set2, val1IndexTmp) : set2.__cid == HashSet() ? add_E@HashSet(set2, val1IndexTmp) : 0);
+}
+
+void swap_int_int(Object self, int i, int j) {
+  Object i_elem = (self.heap_PQueue.__cid == ArrayList() ? get_int@ArrayList(self.heap_PQueue, i) : self.heap_PQueue.__cid == LinkedList() ? get_int@LinkedList(self.heap_PQueue, i) : null);
+  Object j_elem = (self.heap_PQueue.__cid == ArrayList() ? get_int@ArrayList(self.heap_PQueue, j) : self.heap_PQueue.__cid == LinkedList() ? get_int@LinkedList(self.heap_PQueue, j) : null);
+  (self.heap_PQueue.__cid == ArrayList() ? set_int_E@ArrayList(self.heap_PQueue, i, j_elem) : self.heap_PQueue.__cid == LinkedList() ? set_int_E@LinkedList(self.heap_PQueue, i, j_elem) : null);
+  (self.heap_PQueue.__cid == ArrayList() ? set_int_E@ArrayList(self.heap_PQueue, j, i_elem) : self.heap_PQueue.__cid == LinkedList() ? set_int_E@LinkedList(self.heap_PQueue, j, i_elem) : null);
+  mapSwap_Integer_Integer_int_int@PQueue(self, i_elem, j_elem, i, j);
+}
+
+void swim_int(Object self, int k) {
+  int parent = (k - 1) / 2;
+  while (k > 0 && less_int_int@PQueue(self, k, parent)) {
+    swap_int_int@PQueue(self, parent, k);
+    k = parent;
+    parent = (k - 1) / 2;
+  }
+}
+
+Object removeAt_int(Object self, int i) {
+  if (isEmpty@PQueue(self)) return null;
+  self.heapSize_PQueue--;
+  Object removed_data = (self.heap_PQueue.__cid == ArrayList() ? get_int@ArrayList(self.heap_PQueue, i) : self.heap_PQueue.__cid == LinkedList() ? get_int@LinkedList(self.heap_PQueue, i) : null);
+  swap_int_int@PQueue(self, i, self.heapSize_PQueue);
+  (self.heap_PQueue.__cid == ArrayList() ? set_int_E@ArrayList(self.heap_PQueue, self.heapSize_PQueue, null) : self.heap_PQueue.__cid == LinkedList() ? set_int_E@LinkedList(self.heap_PQueue, self.heapSize_PQueue, null) : null);
+  mapRemove_Integer_int@PQueue(self, removed_data, self.heapSize_PQueue);
+  if (i == self.heapSize_PQueue) return removed_data;
+  Object elem = (self.heap_PQueue.__cid == ArrayList() ? get_int@ArrayList(self.heap_PQueue, i) : self.heap_PQueue.__cid == LinkedList() ? get_int@LinkedList(self.heap_PQueue, i) : null);
+  sink_int@PQueue(self, i);
+  Object res = (self.heap_PQueue.__cid == ArrayList() ? get_int@ArrayList(self.heap_PQueue, i) : self.heap_PQueue.__cid == LinkedList() ? get_int@LinkedList(self.heap_PQueue, i) : null);
+  bit b = (res.__cid == Integer() ? equals_Object@Integer(res, elem) : 0);
+  if ({|b | res == elem|}) swim_int@PQueue(self, i);
+  return removed_data;
+}
+
+void clear(Object self) {
+  for (int i = ??; i < self.heapCapacity_PQueue; i++) (self.heap_PQueue.__cid == ArrayList() ? set_int_E@ArrayList(self.heap_PQueue, i, null) : self.heap_PQueue.__cid == LinkedList() ? set_int_E@LinkedList(self.heap_PQueue, i, null) : null);
+  self.heapSize_PQueue = 0;
+  if (self.map_PQueue.__cid == HashMap()) { clear@HashMap(self.map_PQueue); }
+  else { 0; };
+}
+
+Object peek(Object self) {
+  if (isEmpty@PQueue(self)) return null;
+  return (self.heap_PQueue.__cid == ArrayList() ? get_int@ArrayList(self.heap_PQueue, 0) : self.heap_PQueue.__cid == LinkedList() ? get_int@LinkedList(self.heap_PQueue, 0) : null);
+}
+
+Object poll(Object self) {
+  return removeAt_int@PQueue(self, 0);
+}
+
+bit contains_Integer(Object self, Object elem) {
+  if (elem == null) return false;
+  return (self.map_PQueue.__cid == HashMap() ? containsKey_K@HashMap(self.map_PQueue, elem) : 0);
+}
+
+void add_Integer(Object self, Object elem) {
+  if (elem == null) return;
+  if (self.heapSize_PQueue < self.heapCapacity_PQueue) {
+    (self.heap_PQueue.__cid == ArrayList() ? set_int_E@ArrayList(self.heap_PQueue, self.heapSize_PQueue, elem) : self.heap_PQueue.__cid == LinkedList() ? set_int_E@LinkedList(self.heap_PQueue, self.heapSize_PQueue, elem) : null);
+  }
+  else {
+    (self.heap_PQueue.__cid == ArrayList() ? add_E@ArrayList(self.heap_PQueue, elem) : self.heap_PQueue.__cid == LinkedList() ? add_E@LinkedList(self.heap_PQueue, elem) : 0);
+    self.heapCapacity_PQueue++;
+  }
+  mapAdd_Integer_int@PQueue(self, elem, self.heapSize_PQueue);
+  swim_int@PQueue(self, self.heapSize_PQueue);
+  self.heapSize_PQueue++;
+}
+
+bit isMinHeap_int(Object self, int k) {
+  if (k >= self.heapSize_PQueue) return true;
+  int left = 2 * k + 1;
+  int right = 2 * k + 2;
+  if (left < self.heapSize_PQueue && !less_int_int@PQueue(self, k, left)) return false;
+  if (right < self.heapSize_PQueue && !less_int_int@PQueue(self, k, right)) return false;
+  return isMinHeap_int@PQueue(self, left) && isMinHeap_int@PQueue(self, right);
+}
+
+harness void m() {
   Object self = Object_Object(new Object(__cid=Object()));
+  int LOOPS = 1000;
+  int MAX_SZ = 100;
+  testEmpty@PQueue(self);
+  testHeapProperty@PQueue(self);
+  testClear@PQueue(self);
+  testContainment@PQueue(self);
+  testRemovingDuplicates@PQueue(self);
+}
+
+void testEmpty(Object self) {
+  Object q = PQueue_PQueue(new Object(__cid=PQueue()));
+  assertEquals_int_int@Assert((q.__cid == PQueue() ? size@PQueue(q) : 0), 0);
+  assert ((q.__cid == PQueue() ? isEmpty@PQueue(q) : 0));
+  assert (q.__cid == PQueue() ? poll@PQueue(q) : null) == null;
+  assert (q.__cid == PQueue() ? peek@PQueue(q) : null) == null;
+}
+
+void testHeapProperty(Object self) {
+  Object q = PQueue_PQueue(new Object(__cid=PQueue()));
+  Array_Object nums = new Array_Object(length=9, A={Integer_Integer_int(new Object(__cid=Integer()), 3), Integer_Integer_int(new Object(__cid=Integer()), 2), Integer_Integer_int(new Object(__cid=Integer()), 5), Integer_Integer_int(new Object(__cid=Integer()), 6), Integer_Integer_int(new Object(__cid=Integer()), 7), Integer_Integer_int(new Object(__cid=Integer()), 9), Integer_Integer_int(new Object(__cid=Integer()), 4), Integer_Integer_int(new Object(__cid=Integer()), 8), Integer_Integer_int(new Object(__cid=Integer()), 1)});
+  for (int i = 0; i <= 8; i++) {
+    if (q.__cid == PQueue()) { add_Integer@PQueue(q, nums.A[i]); }
+    else { 0; };
+  }
+  for (int i = 1; i <= 9; i++) {
+    Object ii = (q.__cid == PQueue() ? poll@PQueue(q) : null);
+    assert (i == (ii.__cid == Integer() ? intValue@Integer(ii) : 0));
+  }
+}
+
+void testClear(Object self) {
+  Object q = PQueue_PQueue(new Object(__cid=PQueue()));
+  Array_Object nums = new Array_Object(length=5, A={Integer_Integer_int(new Object(__cid=Integer()), 11), Integer_Integer_int(new Object(__cid=Integer()), 22), Integer_Integer_int(new Object(__cid=Integer()), 33), Integer_Integer_int(new Object(__cid=Integer()), 44), Integer_Integer_int(new Object(__cid=Integer()), 55)});
+  for (int i = 0; i < 5; i++) {
+    if (q.__cid == PQueue()) { add_Integer@PQueue(q, nums.A[i]); }
+    else { 0; };
+  }
+  if (q.__cid == PQueue()) { clear@PQueue(q); }
+  else { 0; };
+  assertEquals_int_int@Assert((q.__cid == PQueue() ? size@PQueue(q) : 0), 0);
+  assertTrue_boolean@Assert((q.__cid == PQueue() ? isEmpty@PQueue(q) : 0));
+}
+
+void testContainment(Object self) {
+  Array_Object nums = new Array_Object(length=5, A={Integer_Integer_int(new Object(__cid=Integer()), 11), Integer_Integer_int(new Object(__cid=Integer()), 22), Integer_Integer_int(new Object(__cid=Integer()), 33), Integer_Integer_int(new Object(__cid=Integer()), 44), Integer_Integer_int(new Object(__cid=Integer()), 55)});
+  Object q = PQueue_PQueue(new Object(__cid=PQueue()));
+  for (int i = 0; i < 5; i++) {
+    if (q.__cid == PQueue()) { add_Integer@PQueue(q, nums.A[i]); }
+    else { 0; };
+  }
+  (q.__cid == PQueue() ? remove_Integer@PQueue(q, Integer_Integer_int(new Object(__cid=Integer()), 11)) : 0);
+  assertFalse_boolean@Assert((q.__cid == PQueue() ? contains_Integer@PQueue(q, Integer_Integer_int(new Object(__cid=Integer()), 11)) : 0));
+  (q.__cid == PQueue() ? remove_Integer@PQueue(q, Integer_Integer_int(new Object(__cid=Integer()), 22)) : 0);
+  assertFalse_boolean@Assert((q.__cid == PQueue() ? contains_Integer@PQueue(q, Integer_Integer_int(new Object(__cid=Integer()), 22)) : 0));
+  (q.__cid == PQueue() ? remove_Integer@PQueue(q, Integer_Integer_int(new Object(__cid=Integer()), 33)) : 0);
+  assertFalse_boolean@Assert((q.__cid == PQueue() ? contains_Integer@PQueue(q, Integer_Integer_int(new Object(__cid=Integer()), 33)) : 0));
+  (q.__cid == PQueue() ? remove_Integer@PQueue(q, Integer_Integer_int(new Object(__cid=Integer()), 44)) : 0);
+  assertFalse_boolean@Assert((q.__cid == PQueue() ? contains_Integer@PQueue(q, Integer_Integer_int(new Object(__cid=Integer()), 44)) : 0));
+  if (q.__cid == PQueue()) { clear@PQueue(q); }
+  else { 0; };
+  assertFalse_boolean@Assert((q.__cid == PQueue() ? contains_Integer@PQueue(q, Integer_Integer_int(new Object(__cid=Integer()), 55)) : 0));
+}
+
+void testRemovingDuplicates(Object self) {
+  Array_Object in = new Array_Object(length=7, A={Integer_Integer_int(new Object(__cid=Integer()), 2), Integer_Integer_int(new Object(__cid=Integer()), 7), Integer_Integer_int(new Object(__cid=Integer()), 2), Integer_Integer_int(new Object(__cid=Integer()), 11), Integer_Integer_int(new Object(__cid=Integer()), 7), Integer_Integer_int(new Object(__cid=Integer()), 13), Integer_Integer_int(new Object(__cid=Integer()), 2)});
+  Object pq = PQueue_PQueue(new Object(__cid=PQueue()));
+  for (int i = 0; i < 7; i++) {
+    if (pq.__cid == PQueue()) { add_Integer@PQueue(pq, in.A[i]); }
+    else { 0; };
+  }
+  Object tmp = (pq.__cid == PQueue() ? peek@PQueue(pq) : null);
+  assertTrue_boolean@Assert((tmp.__cid == Integer() ? intValue@Integer(tmp) : 0) == 2);
+  if (pq.__cid == PQueue()) { add_Integer@PQueue(pq, Integer_Integer_int(new Object(__cid=Integer()), 3)); }
+  else { 0; };
+  tmp = (pq.__cid == PQueue() ? poll@PQueue(pq) : null);
+  assertTrue_boolean@Assert((tmp.__cid == Integer() ? intValue@Integer(tmp) : 0) == 2);
+  tmp = (pq.__cid == PQueue() ? poll@PQueue(pq) : null);
+  assertTrue_boolean@Assert((tmp.__cid == Integer() ? intValue@Integer(tmp) : 0) == 2);
+  tmp = (pq.__cid == PQueue() ? poll@PQueue(pq) : null);
+  assertTrue_boolean@Assert((tmp.__cid == Integer() ? intValue@Integer(tmp) : 0) == 2);
+  tmp = (pq.__cid == PQueue() ? poll@PQueue(pq) : null);
+  assertTrue_boolean@Assert((tmp.__cid == Integer() ? intValue@Integer(tmp) : 0) == 3);
+  tmp = (pq.__cid == PQueue() ? poll@PQueue(pq) : null);
+  assertTrue_boolean@Assert((tmp.__cid == Integer() ? intValue@Integer(tmp) : 0) == 7);
+  tmp = (pq.__cid == PQueue() ? poll@PQueue(pq) : null);
+  assertTrue_boolean@Assert((tmp.__cid == Integer() ? intValue@Integer(tmp) : 0) == 7);
+  tmp = (pq.__cid == PQueue() ? poll@PQueue(pq) : null);
+  assertTrue_boolean@Assert((tmp.__cid == Integer() ? intValue@Integer(tmp) : 0) == 11);
+  tmp = (pq.__cid == PQueue() ? poll@PQueue(pq) : null);
+  assertTrue_boolean@Assert((tmp.__cid == Integer() ? intValue@Integer(tmp) : 0) == 13);
 }
 

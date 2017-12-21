@@ -19,5 +19,6 @@ int StringBuffer()   { return 13; }
 int StringBuilder()  { return 18; }
 int System()         { return 16; }
 int TreeSet()        { return 7; }
+int Array()            { return 20; }
 
 // Uninterpreted functions

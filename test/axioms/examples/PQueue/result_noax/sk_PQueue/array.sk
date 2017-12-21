@@ -30,3 +30,27 @@ struct Array_Object {
   Object[length] A;
 }
 
+Object Wrap_Array_bit(Array_bit arr) {
+  return new Object(__cid=Array(), _array_bit=arr); 
+}
+
+Object Wrap_Array_char(Array_char arr) {
+  return new Object(__cid=Array(), _array_char=arr); 
+}
+
+Object Wrap_Array_int(Array_int arr) {
+  return new Object(__cid=Array(), _array_int=arr); 
+}
+
+Object Wrap_Array_float(Array_float arr) {
+  return new Object(__cid=Array(), _array_float=arr); 
+}
+
+Object Wrap_Array_double(Array_double arr) {
+  return new Object(__cid=Array(), _array_double=arr); 
+}
+
+Object Wrap_Array_Object(Array_Object arr) {
+  return new Object(__cid=Array(), _array_object=arr); 
+}
+
