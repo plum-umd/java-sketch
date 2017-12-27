@@ -1039,6 +1039,11 @@ class Translator(object):
         logging.debug('most_specific - name: {}, qualifying type: {}, invocation_mode: {}'. \
             format(str(mtd), type(mtd.typee), invocation_mode))
 
+        is_ax = False
+        mtd_call = None
+        is_ax2 = callexpr.add_bang
+        is_adt = False
+        
         # 15.12.4. Run-Time Evaluation of Method Invocation
         # 15.12.4.1. Compute Target Reference (If Necessary)
         if invocation_mode == 'static':
@@ -1066,9 +1071,18 @@ class Translator(object):
             scp = tltr.trans(callexpr.scope)
             args = [NameExpr({u'name':scp})] + callexpr.args
             conexprs = []
+            conexprs2 = []
             for c in reversed(clss): # start from bottom of hierarchy
                 (_, mdec) = self.find_mtd(c, mtd.sig())
-                if mdec: conexprs.append(self.make_dispatch(scp, c, mdec, args))
+                if mdec:
+                    if is_ax2: mdec.add_bang = True;
+                    conexprs.append(self.make_dispatch(scp, c, mdec, args))
+                    mdec.add_bang = False;
+                if mdec and mdec.adt and not mdec.pure:
+                    is_ax = not callexpr.add_bang
+                    callexpr.add_bang = is_ax
+                elif mdec and mdec.adt:
+                    is_adt = True
             if invocation_mode == 'uninterpreted':
                 (_, mdec) = self.find_mtd(cls, str(mtd))
                 conexprs[-1].elseExpr = copy.copy(conexprs[-1].thenExpr)
@@ -1081,9 +1095,14 @@ class Translator(object):
                 return r
             conexprs = reduce(combine, reversed(conexprs))
             if type(mtd.typee) != VoidType: self.printt('(')
-            self.print_dispatch(conexprs, **kwargs)
-            if type(mtd.typee) != VoidType: self.printt(')')
-
+            self.print_dispatch(conexprs, is_adt, is_ax2, **kwargs)
+            if type(mtd.typee) != VoidType: self.printt(')')                
+            if is_ax:
+                self.printt('; ')
+                callexpr.scope.accept(self, **kwargs)
+                self.printt(' = ')
+                callexpr.accept(self, **kwargs)
+            
         logging.debug('**END CALL***\n')
         
     def identify_potentials(self, callexpr, cls):
@@ -1183,7 +1202,7 @@ class Translator(object):
         elif s: return self.find_mtd(s[0], descriptor) # nope, check superclasses
         else: return (None, None) # doesn't exist
 
-    def print_dispatch(self, c, **kwargs):
+    def print_dispatch(self, c, is_adt, is_ax, **kwargs):
         # we need to do this b/c the elseExpr's are going to have MethodCallExpr which
         # get handled differently
         if isinstance(c, ConditionalExpr):
@@ -1194,32 +1213,49 @@ class Translator(object):
             self.printt(' : ')
             if isinstance(c.elseExpr, IntegerLiteralExpr): self.printt('0')
             elif isinstance(c.elseExpr, PrimitiveType):
-                if c.elseExpr.name == u'double' or c.elseExpr.name == u'float' or \
-                   c.elseExpr.name == u'long': self.printt('0.0')
-                if c.elseExpr.name == u'int' or c.elseExpr.name == u'boolean' or c.\
-                   elseExpr.name == u'bit' or c.elseExpr.name == u'short': self.printt('0')
-                if c.elseExpr.name == u'char' or c.elseExpr.name == u'byte': self.printt("'\\0'")
+                if is_adt:
+                    self.printt('null')
+                else:
+                    if c.elseExpr.name == u'double' or c.elseExpr.name == u'float' or \
+                       c.elseExpr.name == u'long': self.printt('0.0')
+                    if c.elseExpr.name == u'int' or c.elseExpr.name == u'boolean' or c.\
+                       elseExpr.name == u'bit' or c.elseExpr.name == u'short': self.printt('0')
+                    if c.elseExpr.name == u'char' or c.elseExpr.name == u'byte': self.printt("'\\0'")
             elif isinstance(c.elseExpr, (ClassOrInterfaceType, ReferenceType)): self.printt('null')
-            else: self.print_dispatch(c.elseExpr)
+            else: self.print_dispatch(c.elseExpr, is_adt, is_ax)
         elif isinstance(c, MethodCallExpr):
             self.printt('{}('.format(c.name))
             self.printArguments(c.args)
             self.printt(')')
         else:
-            self.printt('if (')
-            c.condition.accept(self, **kwargs)
-            self.printt(') { ')
-            self.printt('{}'.format(c.thenStmt.name))
-            self.printArguments(c.thenStmt.args)
-            self.printt(';')
-            self.printt(' }')
-            if type(c.elseStmt) == IntegerLiteralExpr:
-                self.printLn()
-                self.printt('else {{ 0; }}'.format(c.elseStmt.value))
+            if is_ax:
+                self.printt('(')
+                c.condition.accept(self, **kwargs)
+                self.printt(' ? ')
+                self.printt('{}'.format(c.thenStmt.name))
+                self.printArguments(c.thenStmt.args)
+                self.printt(' : ')
+                if type(c.elseStmt) == IntegerLiteralExpr:
+                    self.printt('null)'.format(c.elseStmt.value))
+                else:
+                    # self.printLn()
+                    # self.printt('else ')
+                    self.print_dispatch(c.elseStmt, is_adt, is_ax)
             else:
-                self.printLn()
-                self.printt('else ')
-                self.print_dispatch(c.elseStmt)
+                self.printt('if (')
+                c.condition.accept(self, **kwargs)
+                self.printt(') { ')
+                self.printt('{}'.format(c.thenStmt.name))
+                self.printArguments(c.thenStmt.args)
+                self.printt(';')
+                self.printt(' }')
+                if type(c.elseStmt) == IntegerLiteralExpr:
+                    self.printLn()
+                    self.printt('else {{ 0; }}'.format(c.elseStmt.value))
+                else:
+                    self.printLn()
+                    self.printt('else ')
+                    self.print_dispatch(c.elseStmt, is_adt, is_ax)
 
     def make_dispatch(self, scope, S, mdec, args, **kwargs):
         d = {
