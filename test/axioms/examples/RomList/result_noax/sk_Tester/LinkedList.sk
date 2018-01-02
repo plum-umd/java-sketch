@@ -1,0 +1,33 @@
+package LinkedList;
+
+Object LinkedList_LinkedList(Object self) {
+  return self;
+}
+
+bit add_E(Object self, Object e) {
+  return false;
+}
+
+bit isEmpty(Object self) {
+  return false;
+}
+
+Object get_int(Object self, int index) {
+  return null;
+}
+
+void remove_Object(Object self, Object e) {
+}
+
+bit remove_int(Object self, int index) {
+  return false;
+}
+
+Object set_int_E(Object self, int index, Object element) {
+  return null;
+}
+
+int size(Object self) {
+  return 0;
+}
+

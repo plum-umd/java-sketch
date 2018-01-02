@@ -1,0 +1,745 @@
+SKETCH version 1.7.4
+Benchmark = /Users/grumpy/Research/java-sketch/test/axioms/examples/RomList/RomList/../result_noax/sk_Tester/main.sk
+/* BEGIN PACKAGE FileWriterr*/
+package FileWriterr{
+  /* END PACKAGE FileWriterr*/
+}
+/* BEGIN PACKAGE Comparable*/
+package Comparable{
+  /* END PACKAGE Comparable*/
+}
+/* BEGIN PACKAGE HashMap*/
+package HashMap{
+  /*HashMap.sk:3*/
+  
+void glblInit_DEFAULT_INITIAL_CAPACITY__HashMap_s4369 (ref int DEFAULT_INITIAL_CAPACITY__HashMap_s4368)/*HashMap.sk:3*/
+  {
+    DEFAULT_INITIAL_CAPACITY__HashMap_s4368 = 16;
+  }
+  /* END PACKAGE HashMap*/
+}
+/* BEGIN PACKAGE ArrayList*/
+package ArrayList{
+  /*ArrayList.sk:7*/
+  
+void glblInit_MAX_ARRAY_SIZE__ArrayList_s4431 (ref int MAX_ARRAY_SIZE__ArrayList_s4430)/*ArrayList.sk:7*/
+  {
+    MAX_ARRAY_SIZE__ArrayList_s4430 = 1000000;
+  }
+  /* END PACKAGE ArrayList*/
+}
+/* BEGIN PACKAGE RomlistGame*/
+package RomlistGame{
+  /* END PACKAGE RomlistGame*/
+}
+/* BEGIN PACKAGE String*/
+package String{
+  /* END PACKAGE String*/
+}
+/* BEGIN PACKAGE Assert*/
+package Assert{
+  /* END PACKAGE Assert*/
+}
+/* BEGIN PACKAGE TreeSet*/
+package TreeSet{
+  /*TreeSet.sk:3*/
+  
+void glblInit_INITIAL_CAPACITY__TreeSet_s4421 (ref int INITIAL_CAPACITY__TreeSet_s4420)/*TreeSet.sk:3*/
+  {
+    INITIAL_CAPACITY__TreeSet_s4420 = 16;
+  }
+  /*TreeSet.sk:7*/
+  
+void glblInit_RESIZE_FACTOR__TreeSet_s4461 (ref int RESIZE_FACTOR__TreeSet_s4460)/*TreeSet.sk:7*/
+  {
+    RESIZE_FACTOR__TreeSet_s4460 = 2;
+  }
+  /* END PACKAGE TreeSet*/
+}
+/* BEGIN PACKAGE SecretKeySpec*/
+package SecretKeySpec{
+  /* END PACKAGE SecretKeySpec*/
+}
+/* BEGIN PACKAGE List*/
+package List{
+  /* END PACKAGE List*/
+}
+/* BEGIN PACKAGE Boolean*/
+package Boolean{
+  /* END PACKAGE Boolean*/
+}
+/* BEGIN PACKAGE Collections*/
+package Collections{
+  /* END PACKAGE Collections*/
+}
+/* BEGIN PACKAGE HashSet*/
+package HashSet{
+  /*HashSet.sk:3*/
+  
+void glblInit_INITIAL_CAPACITY__HashSet_s4419 (ref int INITIAL_CAPACITY__HashSet_s4418)/*HashSet.sk:3*/
+  {
+    INITIAL_CAPACITY__HashSet_s4418 = 16;
+  }
+  /*HashSet.sk:7*/
+  
+void glblInit_RESIZE_FACTOR__HashSet_s4459 (ref int RESIZE_FACTOR__HashSet_s4458)/*HashSet.sk:7*/
+  {
+    RESIZE_FACTOR__HashSet_s4458 = 2;
+  }
+  /* END PACKAGE HashSet*/
+}
+/* BEGIN PACKAGE Character*/
+package Character{
+  /*Character.sk:43*/
+  
+void glblInit_COMBINING_SPACING_MARK__Character_s4357 (ref char COMBINING_SPACING_MARK__Character_s4356)/*Character.sk:43*/
+  {
+    COMBINING_SPACING_MARK__Character_s4356 = 8;
+  }
+  /*Character.sk:99*/
+  
+void glblInit_CONNECTOR_PUNCTUATION__Character_s4359 (ref char CONNECTOR_PUNCTUATION__Character_s4358)/*Character.sk:99*/
+  {
+    CONNECTOR_PUNCTUATION__Character_s4358 = 23;
+  }
+  /*Character.sk:71*/
+  
+void glblInit_CONTROL__Character_s4361 (ref char CONTROL__Character_s4360)/*Character.sk:71*/
+  {
+    CONTROL__Character_s4360 = 15;
+  }
+  /*Character.sk:111*/
+  
+void glblInit_CURRENCY_SYMBOL__Character_s4363 (ref char CURRENCY_SYMBOL__Character_s4362)/*Character.sk:111*/
+  {
+    CURRENCY_SYMBOL__Character_s4362 = 26;
+  }
+  /*Character.sk:87*/
+  
+void glblInit_DASH_PUNCTUATION__Character_s4365 (ref char DASH_PUNCTUATION__Character_s4364)/*Character.sk:87*/
+  {
+    DASH_PUNCTUATION__Character_s4364 = 20;
+  }
+  /*Character.sk:47*/
+  
+void glblInit_DECIMAL_DIGIT_NUMBER__Character_s4367 (ref char DECIMAL_DIGIT_NUMBER__Character_s4366)/*Character.sk:47*/
+  {
+    DECIMAL_DIGIT_NUMBER__Character_s4366 = 9;
+  }
+  /*Character.sk:155*/
+  
+void glblInit_DIRECTIONALITY_ARABIC_NUMBER__Character_s4371 (ref char DIRECTIONALITY_ARABIC_NUMBER__Character_s4370)/*Character.sk:155*/
+  {
+    DIRECTIONALITY_ARABIC_NUMBER__Character_s4370 = 6;
+  }
+  /*Character.sk:167*/
+  
+void glblInit_DIRECTIONALITY_BOUNDARY_NEUTRAL__Character_s4373 (ref char DIRECTIONALITY_BOUNDARY_NEUTRAL__Character_s4372)/*Character.sk:167*/
+  {
+    DIRECTIONALITY_BOUNDARY_NEUTRAL__Character_s4372 = 9;
+  }
+  /*Character.sk:159*/
+  
+void glblInit_DIRECTIONALITY_COMMON_NUMBER_SEPARATOR__Character_s4375 (ref char DIRECTIONALITY_COMMON_NUMBER_SEPARATOR__Character_s4374)/*Character.sk:159*/
+  {
+    DIRECTIONALITY_COMMON_NUMBER_SEPARATOR__Character_s4374 = 7;
+  }
+  /*Character.sk:147*/
+  
+void glblInit_DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR__Character_s4377 (ref char DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR__Character_s4376)/*Character.sk:147*/
+  {
+    DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR__Character_s4376 = 4;
+  }
+  /*Character.sk:151*/
+  
+void glblInit_DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR__Character_s4379 (ref char DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR__Character_s4378)/*Character.sk:151*/
+  {
+    DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR__Character_s4378 = 5;
+  }
+  /*Character.sk:143*/
+  
+void glblInit_DIRECTIONALITY_EUROPEAN_NUMBER__Character_s4381 (ref char DIRECTIONALITY_EUROPEAN_NUMBER__Character_s4380)/*Character.sk:143*/
+  {
+    DIRECTIONALITY_EUROPEAN_NUMBER__Character_s4380 = 3;
+  }
+  /*Character.sk:187*/
+  
+void glblInit_DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING__Character_s4383 (ref char DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING__Character_s4382)/*Character.sk:187*/
+  {
+    DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING__Character_s4382 = 14;
+  }
+  /*Character.sk:191*/
+  
+void glblInit_DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE__Character_s4385 (ref char DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE__Character_s4384)/*Character.sk:191*/
+  {
+    DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE__Character_s4384 = 15;
+  }
+  /*Character.sk:131*/
+  
+void glblInit_DIRECTIONALITY_LEFT_TO_RIGHT__Character_s4387 (ref char DIRECTIONALITY_LEFT_TO_RIGHT__Character_s4386)/*Character.sk:131*/
+  {
+    DIRECTIONALITY_LEFT_TO_RIGHT__Character_s4386 = 0;
+  }
+  /*Character.sk:163*/
+  
+void glblInit_DIRECTIONALITY_NONSPACING_MARK__Character_s4389 (ref char DIRECTIONALITY_NONSPACING_MARK__Character_s4388)/*Character.sk:163*/
+  {
+    DIRECTIONALITY_NONSPACING_MARK__Character_s4388 = 8;
+  }
+  /*Character.sk:183*/
+  
+void glblInit_DIRECTIONALITY_OTHER_NEUTRALS__Character_s4391 (ref char DIRECTIONALITY_OTHER_NEUTRALS__Character_s4390)/*Character.sk:183*/
+  {
+    DIRECTIONALITY_OTHER_NEUTRALS__Character_s4390 = 13;
+  }
+  /*Character.sk:171*/
+  
+void glblInit_DIRECTIONALITY_PARAGRAPH_SEPARATOR__Character_s4393 (ref char DIRECTIONALITY_PARAGRAPH_SEPARATOR__Character_s4392)/*Character.sk:171*/
+  {
+    DIRECTIONALITY_PARAGRAPH_SEPARATOR__Character_s4392 = 10;
+  }
+  /*Character.sk:203*/
+  
+void glblInit_DIRECTIONALITY_POP_DIRECTIONAL_FORMAT__Character_s4395 (ref char DIRECTIONALITY_POP_DIRECTIONAL_FORMAT__Character_s4394)/*Character.sk:203*/
+  {
+    DIRECTIONALITY_POP_DIRECTIONAL_FORMAT__Character_s4394 = 18;
+  }
+  /*Character.sk:139*/
+  
+void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC__Character_s4397 (ref char DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC__Character_s4396)/*Character.sk:139*/
+  {
+    DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC__Character_s4396 = 2;
+  }
+  /*Character.sk:195*/
+  
+void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING__Character_s4399 (ref char DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING__Character_s4398)/*Character.sk:195*/
+  {
+    DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING__Character_s4398 = 16;
+  }
+  /*Character.sk:199*/
+  
+void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE__Character_s4401 (ref char DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE__Character_s4400)/*Character.sk:199*/
+  {
+    DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE__Character_s4400 = 17;
+  }
+  /*Character.sk:135*/
+  
+void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT__Character_s4403 (ref char DIRECTIONALITY_RIGHT_TO_LEFT__Character_s4402)/*Character.sk:135*/
+  {
+    DIRECTIONALITY_RIGHT_TO_LEFT__Character_s4402 = 1;
+  }
+  /*Character.sk:175*/
+  
+void glblInit_DIRECTIONALITY_SEGMENT_SEPARATOR__Character_s4405 (ref char DIRECTIONALITY_SEGMENT_SEPARATOR__Character_s4404)/*Character.sk:175*/
+  {
+    DIRECTIONALITY_SEGMENT_SEPARATOR__Character_s4404 = 11;
+  }
+  /*Character.sk:127*/
+  
+void glblInit_DIRECTIONALITY_UNDEFINED__Character_s4407 (ref char DIRECTIONALITY_UNDEFINED__Character_s4406)/*Character.sk:127*/
+  {
+    DIRECTIONALITY_UNDEFINED__Character_s4406 = -1;
+  }
+  /*Character.sk:179*/
+  
+void glblInit_DIRECTIONALITY_WHITESPACE__Character_s4409 (ref char DIRECTIONALITY_WHITESPACE__Character_s4408)/*Character.sk:179*/
+  {
+    DIRECTIONALITY_WHITESPACE__Character_s4408 = 12;
+  }
+  /*Character.sk:39*/
+  
+void glblInit_ENCLOSING_MARK__Character_s4411 (ref char ENCLOSING_MARK__Character_s4410)/*Character.sk:39*/
+  {
+    ENCLOSING_MARK__Character_s4410 = 7;
+  }
+  /*Character.sk:95*/
+  
+void glblInit_END_PUNCTUATION__Character_s4413 (ref char END_PUNCTUATION__Character_s4412)/*Character.sk:95*/
+  {
+    END_PUNCTUATION__Character_s4412 = 22;
+  }
+  /*Character.sk:123*/
+  
+void glblInit_FINAL_QUOTE_PUNCTUATION__Character_s4415 (ref char FINAL_QUOTE_PUNCTUATION__Character_s4414)/*Character.sk:123*/
+  {
+    FINAL_QUOTE_PUNCTUATION__Character_s4414 = 30;
+  }
+  /*Character.sk:75*/
+  
+void glblInit_FORMAT__Character_s4417 (ref char FORMAT__Character_s4416)/*Character.sk:75*/
+  {
+    FORMAT__Character_s4416 = 16;
+  }
+  /*Character.sk:51*/
+  
+void glblInit_LETTER_NUMBER__Character_s4423 (ref char LETTER_NUMBER__Character_s4422)/*Character.sk:51*/
+  {
+    LETTER_NUMBER__Character_s4422 = 10;
+  }
+  /*Character.sk:63*/
+  
+void glblInit_LINE_SEPARATOR__Character_s4425 (ref char LINE_SEPARATOR__Character_s4424)/*Character.sk:63*/
+  {
+    LINE_SEPARATOR__Character_s4424 = 13;
+  }
+  /*Character.sk:19*/
+  
+void glblInit_LOWERCASE_LETTER__Character_s4427 (ref char LOWERCASE_LETTER__Character_s4426)/*Character.sk:19*/
+  {
+    LOWERCASE_LETTER__Character_s4426 = 2;
+  }
+  /*Character.sk:107*/
+  
+void glblInit_MATH_SYMBOL__Character_s4429 (ref char MATH_SYMBOL__Character_s4428)/*Character.sk:107*/
+  {
+    MATH_SYMBOL__Character_s4428 = 25;
+  }
+  /*Character.sk:7*/
+  
+void glblInit_MAX_RADIX__Character_s4433 (ref int MAX_RADIX__Character_s4432)/*Character.sk:7*/
+  {
+    MAX_RADIX__Character_s4432 = 36;
+  }
+  /*Character.sk:3*/
+  
+void glblInit_MIN_RADIX__Character_s4437 (ref int MIN_RADIX__Character_s4436)/*Character.sk:3*/
+  {
+    MIN_RADIX__Character_s4436 = 2;
+  }
+  /*Character.sk:27*/
+  
+void glblInit_MODIFIER_LETTER__Character_s4441 (ref char MODIFIER_LETTER__Character_s4440)/*Character.sk:27*/
+  {
+    MODIFIER_LETTER__Character_s4440 = 4;
+  }
+  /*Character.sk:115*/
+  
+void glblInit_MODIFIER_SYMBOL__Character_s4443 (ref char MODIFIER_SYMBOL__Character_s4442)/*Character.sk:115*/
+  {
+    MODIFIER_SYMBOL__Character_s4442 = 27;
+  }
+  /*Character.sk:35*/
+  
+void glblInit_NON_SPACING_MARK__Character_s4445 (ref char NON_SPACING_MARK__Character_s4444)/*Character.sk:35*/
+  {
+    NON_SPACING_MARK__Character_s4444 = 6;
+  }
+  /*Character.sk:31*/
+  
+void glblInit_OTHER_LETTER__Character_s4447 (ref char OTHER_LETTER__Character_s4446)/*Character.sk:31*/
+  {
+    OTHER_LETTER__Character_s4446 = 5;
+  }
+  /*Character.sk:55*/
+  
+void glblInit_OTHER_NUMBER__Character_s4449 (ref char OTHER_NUMBER__Character_s4448)/*Character.sk:55*/
+  {
+    OTHER_NUMBER__Character_s4448 = 11;
+  }
+  /*Character.sk:103*/
+  
+void glblInit_OTHER_PUNCTUATION__Character_s4451 (ref char OTHER_PUNCTUATION__Character_s4450)/*Character.sk:103*/
+  {
+    OTHER_PUNCTUATION__Character_s4450 = 24;
+  }
+  /*Character.sk:119*/
+  
+void glblInit_OTHER_SYMBOL__Character_s4453 (ref char OTHER_SYMBOL__Character_s4452)/*Character.sk:119*/
+  {
+    OTHER_SYMBOL__Character_s4452 = 28;
+  }
+  /*Character.sk:67*/
+  
+void glblInit_PARAGRAPH_SEPARATOR__Character_s4455 (ref char PARAGRAPH_SEPARATOR__Character_s4454)/*Character.sk:67*/
+  {
+    PARAGRAPH_SEPARATOR__Character_s4454 = 14;
+  }
+  /*Character.sk:79*/
+  
+void glblInit_PRIVATE_USE__Character_s4457 (ref char PRIVATE_USE__Character_s4456)/*Character.sk:79*/
+  {
+    PRIVATE_USE__Character_s4456 = 18;
+  }
+  /*Character.sk:59*/
+  
+void glblInit_SPACE_SEPARATOR__Character_s4463 (ref char SPACE_SEPARATOR__Character_s4462)/*Character.sk:59*/
+  {
+    SPACE_SEPARATOR__Character_s4462 = 12;
+  }
+  /*Character.sk:91*/
+  
+void glblInit_START_PUNCTUATION__Character_s4465 (ref char START_PUNCTUATION__Character_s4464)/*Character.sk:91*/
+  {
+    START_PUNCTUATION__Character_s4464 = 21;
+  }
+  /*Character.sk:83*/
+  
+void glblInit_SURROGATE__Character_s4467 (ref char SURROGATE__Character_s4466)/*Character.sk:83*/
+  {
+    SURROGATE__Character_s4466 = 19;
+  }
+  /*Character.sk:23*/
+  
+void glblInit_TITLECASE_LETTER__Character_s4469 (ref char TITLECASE_LETTER__Character_s4468)/*Character.sk:23*/
+  {
+    TITLECASE_LETTER__Character_s4468 = 3;
+  }
+  /*Character.sk:11*/
+  
+void glblInit_UNASSIGNED__Character_s4471 (ref char UNASSIGNED__Character_s4470)/*Character.sk:11*/
+  {
+    UNASSIGNED__Character_s4470 = 0;
+  }
+  /*Character.sk:15*/
+  
+void glblInit_UPPERCASE_LETTER__Character_s4473 (ref char UPPERCASE_LETTER__Character_s4472)/*Character.sk:15*/
+  {
+    UPPERCASE_LETTER__Character_s4472 = 1;
+  }
+  /* END PACKAGE Character*/
+}
+/* BEGIN PACKAGE CharSequence*/
+package CharSequence{
+  /* END PACKAGE CharSequence*/
+}
+/* BEGIN PACKAGE SecureRandom*/
+package SecureRandom{
+  /* END PACKAGE SecureRandom*/
+}
+/* BEGIN PACKAGE HashMap_Node*/
+package HashMap_Node{
+  /* END PACKAGE HashMap_Node*/
+}
+/* BEGIN PACKAGE LinkedList*/
+package LinkedList{
+  /* END PACKAGE LinkedList*/
+}
+/* BEGIN PACKAGE Mac*/
+package Mac{
+  /* END PACKAGE Mac*/
+}
+/* BEGIN PACKAGE Stack*/
+package Stack{
+  /* END PACKAGE Stack*/
+}
+/* BEGIN PACKAGE FileReaderr*/
+package FileReaderr{
+  /* END PACKAGE FileReaderr*/
+}
+/* BEGIN PACKAGE Float*/
+package Float{
+  /* END PACKAGE Float*/
+}
+/* BEGIN PACKAGE Map_Entry*/
+package Map_Entry{
+  /* END PACKAGE Map_Entry*/
+}
+/* BEGIN PACKAGE SecretKey*/
+package SecretKey{
+  /* END PACKAGE SecretKey*/
+}
+/* BEGIN PACKAGE KerberosKey*/
+package KerberosKey{
+  /* END PACKAGE KerberosKey*/
+}
+/* BEGIN PACKAGE meta*/
+package meta{
+  /*meta.sk:36*/
+  
+void Object (ref int _out)/*meta.sk:36*/
+  {
+    _out = 0;
+    _out = 1;
+    return;
+  }
+  /* END PACKAGE meta*/
+}
+/* BEGIN PACKAGE Object*/
+package Object{
+  struct Object {
+      int __cid;
+      Object type_Cipher;
+      Object key_Cipher;
+      int mode_Cipher;
+      int ENCRYPT_MODE_Cipher;
+      int DECRYPT_MODE_Cipher;
+      char value_Character;
+      Object _value_StringBuilder;
+      int _count_StringBuilder;
+      Object name_RomlistGame;
+      Object title_RomlistGame;
+      Object emulator_RomlistGame;
+      Object cloneOf_RomlistGame;
+      Object year_RomlistGame;
+      Object manufacturer_RomlistGame;
+      Object category_RomlistGame;
+      Object players_RomlistGame;
+      Object rotation_RomlistGame;
+      Object control_RomlistGame;
+      Object status_RomlistGame;
+      Object displayCount_RomlistGame;
+      Object displayType_RomlistGame;
+      Object altRomname_RomlistGame;
+      Object altTitle_RomlistGame;
+      Object extra_RomlistGame;
+      Object buttons_RomlistGame;
+      bit isAvailable_RomlistGame;
+      bit hasWheel_RomlistGame;
+      bit hasVideo_RomlistGame;
+      bit hasSnap_RomlistGame;
+      bit hasBox_RomlistGame;
+      bit hasCart_RomlistGame;
+      bit hasDatabase_RomlistGame;
+      bit complete_RomlistGame;
+      Object romlist_RomlistGame;
+      Object fileName_RomlistGame;
+      Object wheelFileName_RomlistGame;
+      Object boxFileName_RomlistGame;
+      Object cartFileName_RomlistGame;
+      Object snapFileName_RomlistGame;
+      Object description_RomlistGame;
+      Object rating_RomlistGame;
+      Object releaseDate_RomlistGame;
+      Object developer_RomlistGame;
+      Object publisher_RomlistGame;
+      Object genre_RomlistGame;
+      Object pi3Status_RomlistGame;
+      Object pcStatus_RomlistGame;
+      Object size_RomlistGame;
+      Object elementData_ArrayList;
+      int DEFAULT_CAPACITY_ArrayList;
+      int capacity_ArrayList;
+      int size_ArrayList;
+      Object fname_File;
+      int size_File;
+      Object key_SecretKeySpec;
+      int value_Integer;
+      Object key_HashMap_Node;
+      Object value_HashMap_Node;
+      int hash_HashMap_Node;
+      Object elementData_HashMap;
+      int numPairs_HashMap;
+      int capacity_HashMap;
+      Object val_ArrayDeque_DequeNode;
+      Object prev_ArrayDeque_DequeNode;
+      Object next_ArrayDeque_DequeNode;
+      Object elementData_AbstractQueue;
+      int size_AbstractQueue;
+      int capacity_AbstractQueue;
+      Object file_FileReaderr;
+      Object set_TreeSet;
+      int capacity_TreeSet;
+      int size_TreeSet;
+      Object fname_FileWriterr;
+      int totalGames_RomlistParser;
+      int totalGamesAvailable_RomlistParser;
+      int missingWheel_RomlistParser;
+      int missingVideo_RomlistParser;
+      int missingCart_RomlistParser;
+      int missingBox_RomlistParser;
+      Object missingGames_RomlistParser;
+      Object games_RomlistParser;
+      bit complete_RomlistParser;
+      Object description_RomlistParser;
+      Object romPath_RomlistParser;
+      Object key_KerberosKey;
+      int KEYSIZE_KerberosKey;
+      Object mode_KeyGenerator;
+      Object file_Scanner;
+      Object writer_BufferedWriter;
+      Object elementData_Stack;
+      int size_Stack;
+      int capacity_Stack;
+      Object set_HashSet;
+      int capacity_HashSet;
+      int size_HashSet;
+      float value_Float;
+      bit bool_Boolean;
+      Object _value_String;
+      int _count_String;
+      Object _value_StringBuffer;
+      int _count_StringBuffer;
+      Object currentHead_ArrayDeque;
+      Object currentTail_ArrayDeque;
+      int size_ArrayDeque;
+      Object reader_BufferedReader;
+      Array_bit _array_bit;
+      Array_char _array_char;
+      Array_int _array_int;
+      Array_float _array_float;
+      Array_double _array_double;
+      Array_Object _array_object;
+      bit _bit;
+      char _char;
+      int _int;
+      float _float;
+      double _double;
+  }
+  /*Object.sk:7*/
+  
+void Object_Object (Object self, ref Object _out)/*Object.sk:7*/
+  {
+    _out = null;
+    _out = self;
+    return;
+  }
+  /* END PACKAGE Object*/
+}
+/* BEGIN PACKAGE Map*/
+package Map{
+  /* END PACKAGE Map*/
+}
+/* BEGIN PACKAGE File*/
+package File{
+  /* END PACKAGE File*/
+}
+/* BEGIN PACKAGE Key*/
+package Key{
+  /* END PACKAGE Key*/
+}
+/* BEGIN PACKAGE Scanner*/
+package Scanner{
+  /* END PACKAGE Scanner*/
+}
+/* BEGIN PACKAGE Tester*/
+package Tester{
+  /*Tester.sk:7*/
+  
+void mn ()/*Tester.sk:7*/
+  {
+    int self_s3831 = 0;
+    Object@meta(self_s3831);
+    Object@Object self_s3833 = null;
+    Object_Object@Object(new Object@Object(__cid=self_s3831), self_s3833);
+  }
+  /*Tester.sk:7*/
+  
+void mn__Wrapper ()  implements mn__WrapperNospec/*Tester.sk:7*/
+  {
+    mn();
+  }
+  /*Tester.sk:7*/
+  
+void mn__WrapperNospec ()/*Tester.sk:7*/
+  { }
+  /* END PACKAGE Tester*/
+}
+/* BEGIN PACKAGE Set*/
+package Set{
+  /* END PACKAGE Set*/
+}
+/* BEGIN PACKAGE StringBuilder*/
+package StringBuilder{
+  /* END PACKAGE StringBuilder*/
+}
+/* BEGIN PACKAGE ArrayDeque_DequeNode*/
+package ArrayDeque_DequeNode{
+  /* END PACKAGE ArrayDeque_DequeNode*/
+}
+/* BEGIN PACKAGE System*/
+package System{
+  /* END PACKAGE System*/
+}
+/* BEGIN PACKAGE BufferedWriter*/
+package BufferedWriter{
+  /* END PACKAGE BufferedWriter*/
+}
+/* BEGIN PACKAGE AbstractQueue*/
+package AbstractQueue{
+  /* END PACKAGE AbstractQueue*/
+}
+/* BEGIN PACKAGE Number*/
+package Number{
+  /*Number.sk:7*/
+  
+uninterp void intValue (Object self, ref int _out)/*Number.sk:7*/
+  /* END PACKAGE Number*/
+}
+/* BEGIN PACKAGE array*/
+package array{
+  struct Array_bit {
+      int length;
+      bit[length] A;
+  }
+  struct Array_char {
+      int length;
+      char[length] A;
+  }
+  struct Array_int {
+      int length;
+      int[length] A;
+  }
+  struct Array_float {
+      int length;
+      float[length] A;
+  }
+  struct Array_double {
+      int length;
+      double[length] A;
+  }
+  struct Array_Object {
+      int length;
+      Object[length] A;
+  }
+  /* END PACKAGE array*/
+}
+/* BEGIN PACKAGE Queue*/
+package Queue{
+  /* END PACKAGE Queue*/
+}
+/* BEGIN PACKAGE KeyGenerator*/
+package KeyGenerator{
+  /* END PACKAGE KeyGenerator*/
+}
+/* BEGIN PACKAGE ANONYMOUS*/
+/* END PACKAGE ANONYMOUS*/
+/* BEGIN PACKAGE TreeMap*/
+package TreeMap{
+  /* END PACKAGE TreeMap*/
+}
+/* BEGIN PACKAGE Deque*/
+package Deque{
+  /* END PACKAGE Deque*/
+}
+/* BEGIN PACKAGE ArrayDeque*/
+package ArrayDeque{
+  /* END PACKAGE ArrayDeque*/
+}
+/* BEGIN PACKAGE Integer*/
+package Integer{
+  /*Integer.sk:7*/
+  
+void glblInit_MAX_VALUE__Integer_s4435 (ref int MAX_VALUE__Integer_s4434)/*Integer.sk:7*/
+  {
+    MAX_VALUE__Integer_s4434 = 2147483647;
+  }
+  /*Integer.sk:3*/
+  
+void glblInit_MIN_VALUE__Integer_s4439 (ref int MIN_VALUE__Integer_s4438)/*Integer.sk:3*/
+  {
+    MIN_VALUE__Integer_s4438 = -2147483648;
+  }
+  /* END PACKAGE Integer*/
+}
+/* BEGIN PACKAGE StringBuffer*/
+package StringBuffer{
+  /* END PACKAGE StringBuffer*/
+}
+/* BEGIN PACKAGE BufferedReader*/
+package BufferedReader{
+  /* END PACKAGE BufferedReader*/
+}
+/* BEGIN PACKAGE IvParameterSpec*/
+package IvParameterSpec{
+  /* END PACKAGE IvParameterSpec*/
+}
+/* BEGIN PACKAGE RomlistParser*/
+package RomlistParser{
+  /* END PACKAGE RomlistParser*/
+}
+/* BEGIN PACKAGE Cipher*/
+package Cipher{
+  /* END PACKAGE Cipher*/
+}
+[SKETCH] DONE
+Total time = 3082

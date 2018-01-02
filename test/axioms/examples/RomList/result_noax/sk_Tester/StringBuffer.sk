@@ -1,0 +1,28 @@
+package StringBuffer;
+
+Object StringBuffer_StringBuffer(Object self) {
+    return self;
+}
+
+Object StringBuffer_StringBuffer_String(Object self, Object str) {
+  self._value_StringBuffer = str._value_String;
+  self._count_StringBuffer = (str.__cid == String() ? length@String(str) : 0);
+  return self;
+}
+
+char charAt_int(Object self, int index) {
+  if (0 <= index && index < self._count_StringBuffer) return self._value_StringBuffer._array_char.A[index];
+}
+
+int length(Object self) {
+  return self._count_StringBuffer;
+}
+
+Object toString(Object self) {
+  return String_String_char_int_int(new Object(__cid=String()), self._value_StringBuffer, 0, self._count_StringBuffer);
+}
+
+void setCharAt_int_char(Object self, int i, char c) {
+  self._value_StringBuffer._array_char.A[i] = c;
+}
+

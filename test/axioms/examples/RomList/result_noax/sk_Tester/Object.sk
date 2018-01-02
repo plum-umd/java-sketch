@@ -1,0 +1,155 @@
+package Object;
+
+Object fs;
+Object fs_g() { return fs; }
+void fs_s(Object fs_s) { fs = fs_s; }
+
+Object Object_Object(Object self) {
+    return self;
+}
+
+bit equals_Object_Object(Object a, Object b) {
+  if (a == null) {
+    if (b == null) {
+      return true;
+    }
+    return false;
+  }
+  return (a.__cid == BufferedReader() ? equals_Object@Object(a, b) : a.__cid == ArrayDeque() ? equals_Object@Object(a, b) : a.__cid == Tester() ? equals_Object@Object(a, b) : a.__cid == StringBuffer() ? equals_Object@Object(a, b) : a.__cid == LinkedList() ? equals_Object@Object(a, b) : a.__cid == String() ? equals_Object@String(a, b) : a.__cid == Boolean() ? equals_Object@Object(a, b) : a.__cid == Float() ? equals_Object@Float(a, b) : a.__cid == HashSet() ? equals_Object@Object(a, b) : a.__cid == Stack() ? equals_Object@Object(a, b) : a.__cid == BufferedWriter() ? equals_Object@Object(a, b) : a.__cid == Scanner() ? equals_Object@Object(a, b) : a.__cid == KeyGenerator() ? equals_Object@Object(a, b) : a.__cid == KerberosKey() ? equals_Object@Object(a, b) : a.__cid == RomlistParser() ? equals_Object@Object(a, b) : a.__cid == FileWriterr() ? equals_Object@Object(a, b) : a.__cid == TreeSet() ? equals_Object@Object(a, b) : a.__cid == FileReaderr() ? equals_Object@Object(a, b) : a.__cid == IvParameterSpec() ? equals_Object@Object(a, b) : a.__cid == SecureRandom() ? equals_Object@Object(a, b) : a.__cid == AbstractQueue() ? equals_Object@Object(a, b) : a.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(a, b) : a.__cid == HashMap() ? equals_Object@Object(a, b) : a.__cid == HashMap_Node() ? equals_Object@Object(a, b) : a.__cid == Integer() ? equals_Object@Integer(a, b) : a.__cid == SecretKeySpec() ? equals_Object@Object(a, b) : a.__cid == File() ? equals_Object@Object(a, b) : a.__cid == ArrayList() ? equals_Object@Object(a, b) : a.__cid == Collections() ? equals_Object@Object(a, b) : a.__cid == System() ? equals_Object@Object(a, b) : a.__cid == Mac() ? equals_Object@Object(a, b) : a.__cid == Number() ? equals_Object@Object(a, b) : a.__cid == RomlistGame() ? equals_Object@Object(a, b) : a.__cid == TreeMap() ? equals_Object@Object(a, b) : a.__cid == StringBuilder() ? equals_Object@Object(a, b) : a.__cid == Assert() ? equals_Object@Object(a, b) : a.__cid == Character() ? equals_Object@Character(a, b) : a.__cid == Cipher() ? equals_Object@Object(a, b) : a.__cid == Object() ? equals_Object@Object(a, b) : 0);
+}
+
+int hashCode_Object(Object o) {
+  return (o != null ? (o.__cid == BufferedReader() ? hashCode@Object(o) : o.__cid == ArrayDeque() ? hashCode@Object(o) : o.__cid == Tester() ? hashCode@Object(o) : o.__cid == StringBuffer() ? hashCode@Object(o) : o.__cid == LinkedList() ? hashCode@Object(o) : o.__cid == String() ? hashCode@String(o) : o.__cid == Boolean() ? hashCode@Object(o) : o.__cid == Float() ? hashCode@Object(o) : o.__cid == HashSet() ? hashCode@Object(o) : o.__cid == Stack() ? hashCode@Object(o) : o.__cid == BufferedWriter() ? hashCode@Object(o) : o.__cid == Scanner() ? hashCode@Object(o) : o.__cid == KeyGenerator() ? hashCode@Object(o) : o.__cid == KerberosKey() ? hashCode@Object(o) : o.__cid == RomlistParser() ? hashCode@Object(o) : o.__cid == FileWriterr() ? hashCode@Object(o) : o.__cid == TreeSet() ? hashCode@Object(o) : o.__cid == FileReaderr() ? hashCode@Object(o) : o.__cid == IvParameterSpec() ? hashCode@Object(o) : o.__cid == SecureRandom() ? hashCode@Object(o) : o.__cid == AbstractQueue() ? hashCode@Object(o) : o.__cid == ArrayDeque_DequeNode() ? hashCode@Object(o) : o.__cid == HashMap() ? hashCode@Object(o) : o.__cid == HashMap_Node() ? hashCode@Object(o) : o.__cid == Integer() ? hashCode@Integer(o) : o.__cid == SecretKeySpec() ? hashCode@Object(o) : o.__cid == File() ? hashCode@Object(o) : o.__cid == ArrayList() ? hashCode@Object(o) : o.__cid == Collections() ? hashCode@Object(o) : o.__cid == System() ? hashCode@Object(o) : o.__cid == Mac() ? hashCode@Object(o) : o.__cid == Number() ? hashCode@Object(o) : o.__cid == RomlistGame() ? hashCode@Object(o) : o.__cid == TreeMap() ? hashCode@Object(o) : o.__cid == StringBuilder() ? hashCode@Object(o) : o.__cid == Assert() ? hashCode@Object(o) : o.__cid == Character() ? hashCode@Object(o) : o.__cid == Cipher() ? hashCode@Object(o) : o.__cid == Object() ? hashCode@Object(o) : 0) : 0);
+}
+
+Object toString(Object self) {
+  return String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=17+1, A="Object toString()")), 0, 17);
+}
+
+bit equals_Object(Object self, Object obj) {
+  return self == obj;
+}
+
+int hashCode(Object self) {
+  return 0;
+}
+
+struct Object {
+  int           __cid;
+  Object        type_Cipher;
+  Object        key_Cipher;
+  int           mode_Cipher;
+  int           ENCRYPT_MODE_Cipher;
+  int           DECRYPT_MODE_Cipher;
+  char          value_Character;
+  Object        _value_StringBuilder;
+  int           _count_StringBuilder;
+  Object        name_RomlistGame;
+  Object        title_RomlistGame;
+  Object        emulator_RomlistGame;
+  Object        cloneOf_RomlistGame;
+  Object        year_RomlistGame;
+  Object        manufacturer_RomlistGame;
+  Object        category_RomlistGame;
+  Object        players_RomlistGame;
+  Object        rotation_RomlistGame;
+  Object        control_RomlistGame;
+  Object        status_RomlistGame;
+  Object        displayCount_RomlistGame;
+  Object        displayType_RomlistGame;
+  Object        altRomname_RomlistGame;
+  Object        altTitle_RomlistGame;
+  Object        extra_RomlistGame;
+  Object        buttons_RomlistGame;
+  bit           isAvailable_RomlistGame;
+  bit           hasWheel_RomlistGame;
+  bit           hasVideo_RomlistGame;
+  bit           hasSnap_RomlistGame;
+  bit           hasBox_RomlistGame;
+  bit           hasCart_RomlistGame;
+  bit           hasDatabase_RomlistGame;
+  bit           complete_RomlistGame;
+  Object        romlist_RomlistGame;
+  Object        fileName_RomlistGame;
+  Object        wheelFileName_RomlistGame;
+  Object        boxFileName_RomlistGame;
+  Object        cartFileName_RomlistGame;
+  Object        snapFileName_RomlistGame;
+  Object        description_RomlistGame;
+  Object        rating_RomlistGame;
+  Object        releaseDate_RomlistGame;
+  Object        developer_RomlistGame;
+  Object        publisher_RomlistGame;
+  Object        genre_RomlistGame;
+  Object        pi3Status_RomlistGame;
+  Object        pcStatus_RomlistGame;
+  Object        size_RomlistGame;
+  Object        elementData_ArrayList;
+  int           DEFAULT_CAPACITY_ArrayList;
+  int           capacity_ArrayList;
+  int           size_ArrayList;
+  Object        fname_File;
+  int           size_File;
+  Object        key_SecretKeySpec;
+  int           value_Integer;
+  Object        key_HashMap_Node;
+  Object        value_HashMap_Node;
+  int           hash_HashMap_Node;
+  Object        elementData_HashMap;
+  int           numPairs_HashMap;
+  int           capacity_HashMap;
+  Object        val_ArrayDeque_DequeNode;
+  Object        prev_ArrayDeque_DequeNode;
+  Object        next_ArrayDeque_DequeNode;
+  Object        elementData_AbstractQueue;
+  int           size_AbstractQueue;
+  int           capacity_AbstractQueue;
+  Object        file_FileReaderr;
+  Object        set_TreeSet;
+  int           capacity_TreeSet;
+  int           size_TreeSet;
+  Object        fname_FileWriterr;
+  int           totalGames_RomlistParser;
+  int           totalGamesAvailable_RomlistParser;
+  int           missingWheel_RomlistParser;
+  int           missingVideo_RomlistParser;
+  int           missingCart_RomlistParser;
+  int           missingBox_RomlistParser;
+  Object        missingGames_RomlistParser;
+  Object        games_RomlistParser;
+  bit           complete_RomlistParser;
+  Object        description_RomlistParser;
+  Object        romPath_RomlistParser;
+  Object        key_KerberosKey;
+  int           KEYSIZE_KerberosKey;
+  Object        mode_KeyGenerator;
+  Object        file_Scanner;
+  Object        writer_BufferedWriter;
+  Object        elementData_Stack;
+  int           size_Stack;
+  int           capacity_Stack;
+  Object        set_HashSet;
+  int           capacity_HashSet;
+  int           size_HashSet;
+  float         value_Float;
+  bit           bool_Boolean;
+  Object        _value_String;
+  int           _count_String;
+  Object        _value_StringBuffer;
+  int           _count_StringBuffer;
+  Object        currentHead_ArrayDeque;
+  Object        currentTail_ArrayDeque;
+  int           size_ArrayDeque;
+  Object        reader_BufferedReader;
+  Array_bit     _array_bit;
+  Array_char    _array_char;
+  Array_int     _array_int;
+  Array_float   _array_float;
+  Array_double  _array_double;
+  Array_Object  _array_object;
+  bit           _bit;
+  char          _char;
+  int           _int;
+  float         _float;
+  double        _double;
+}

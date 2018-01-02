@@ -1,0 +1,273 @@
+package String;
+
+Object String_String(Object self) {
+    return self;
+}
+
+Object String_String_char_int_int(Object self, Object ca, int offset, int count) {
+  if (offset > 0 && offset < ca._array_char.length) {
+    Object tmp = Wrap_Array_char(new Array_char(length=count));
+    for (int i = 0; i < count; i++) {
+      tmp._array_char.A[i] = ca._array_char.A[i + offset];
+    }
+    self._value_String = tmp;
+  }
+  else {
+    self._value_String = ca;
+  }
+  self._count_String = count;
+  return self;
+}
+
+Object String_String_byte(Object self, Object bytes) {
+  int len = bytes._array_char.length;
+  self._value_String = Wrap_Array_char(new Array_char(length=len));
+  for (int i = 0; i < len; i++) {
+    self._value_String._array_char.A[i] = (char)(bytes._array_char.A[i]);
+  }
+  self._count_String = len;
+  return self;
+}
+
+bit startsWith_String(Object self, Object suffix) {
+  int len = (suffix.__cid == String() ? length@String(suffix) : 0);
+  if (len > (self.__cid == String() ? length@String(self) : 0)) return false;
+  for (int i = 0; i < len; i++) {
+    if ((self.__cid == String() ? charAt_int@String(self, i) : '\0') != (suffix.__cid == String() ? charAt_int@String(suffix, i) : '\0')) {
+      return false;
+    }
+  }
+  return true;
+}
+
+char charAt_int(Object self, int index) {
+  if (0 <= index && index < self._count_String) return self._value_String._array_char.A[index];
+  return '\0';
+}
+
+int length(Object self) {
+  return self._count_String;
+}
+
+Object toString(Object self) {
+  return self;
+}
+
+void setCharAt_int_char(Object self, int i, char c) {
+  self._value_String._array_char.A[i] = c;
+}
+
+int indexOf_String(Object self, Object s) {
+  return indexOf_String_int@String(self, s, 0);
+}
+
+int indexOf_String_int(Object self, Object s, int i) {
+  int tLen = (self.__cid == String() ? length@String(self) : 0);
+  int sLen = (s.__cid == String() ? length@String(s) : 0);
+  int index = i;
+  int mLen = 0;
+  int j;
+  if (i >= tLen || i < 0 || sLen == 0) {
+    return -1;
+  }
+  for (j = i; (j < tLen) && (mLen < sLen) && ((j - index) < sLen); ) {
+    if ((self.__cid == String() ? charAt_int@String(self, j) : '\0') != (s.__cid == String() ? charAt_int@String(s, j - index) : '\0')) {
+      mLen = 0;
+      index++;
+      j = index;
+    }
+    else {
+      mLen++;
+      j++;
+    }
+  }
+  if (mLen != sLen) {
+    index = -1;
+  }
+  return index;
+}
+
+int indexOf_char(Object self, char c) {
+  return indexOf_char_int@String(self, c, 0);
+}
+
+int indexOf_char_int(Object self, char c, int i) {
+  int len = (self.__cid == String() ? length@String(self) : 0);
+  int index = -1;
+  if (i >= len || i < 0) {
+    return index;
+  }
+  for (int j = i; j < len; j++) {
+    if ((self.__cid == String() ? charAt_int@String(self, j) : '\0') == c) {
+      return j;
+    }
+  }
+  return index;
+}
+
+int compareTo_String(Object self, Object str) {
+  return compare_String_String((self.__cid == String() ? toString@String(self) : null), str);
+}
+
+int compare_String_String(Object s1, Object s2) {
+  int l1 = (s1.__cid == String() ? length@String(s1) : 0);
+  int l2 = (s2.__cid == String() ? length@String(s2) : 0);
+  int lendiff = l1 - l2;
+  int smaller = l1;
+  if (l1 > l2) {
+    smaller = l2;
+  }
+  else {
+    for (int i = 0; i < smaller; i++) {
+      char c1 = (s1.__cid == String() ? charAt_int@String(s1, i) : '\0');
+      char c2 = (s2.__cid == String() ? charAt_int@String(s2, i) : '\0');
+      if (c1 != c2) {
+        return c1 - c2;
+      }
+    }
+    if (lendiff != 0) return lendiff;
+    return 0;
+  }
+}
+
+Object concat_String(Object self, Object str) {
+  int otherLen = (str.__cid == String() ? length@String(str) : 0);
+  if (otherLen == 0) {
+    return self;
+  }
+  int thisLen = (self.__cid == String() ? length@String(self) : 0);
+  int totalLen = (self.__cid == String() ? length@String(self) : 0) + otherLen;
+  Object ret = Wrap_Array_char(new Array_char(length=totalLen));
+  for (int i = 0; i < thisLen; i++) {
+    ret._array_char.A[i] = (self.__cid == String() ? charAt_int@String(self, i) : '\0');
+  }
+  for (int i = thisLen; i < totalLen; i++) {
+    ret._array_char.A[i] = (str.__cid == String() ? charAt_int@String(str, i - thisLen) : '\0');
+  }
+  return String_String_char_int_int(new Object(__cid=String()), ret, 0, totalLen);
+}
+
+bit equals_Object(Object self, Object obj) {
+  bit isEqual = false;
+  if (obj.__cid == String()) {
+    isEqual = true;
+    Object s = obj;
+    int sLen = (s.__cid == String() ? length@String(s) : 0);
+    int tLen = (self.__cid == String() ? length@String(self) : 0);
+    if (sLen != tLen) isEqual = false;
+    for (int i = 0; (i < sLen) && (isEqual == true); i++) {
+      if (s._value_String._array_char.A[i] != self._value_String._array_char.A[i]) {
+        isEqual = false;
+      }
+    }
+  }
+  return isEqual;
+}
+
+int hashCode(Object self) {
+  int n = self._count_String,  hash = 0,  temp = 0;
+  if (n == 0) {
+    return 0;
+  }
+  for (int i = 0; i < n; i++) {
+    temp = (self.__cid == String() ? charAt_int@String(self, i) : '\0');
+    for (int j = 0; j < n - 1 - i; j++) {
+      temp = temp * 31;
+    }
+    hash = hash + temp;
+  }
+  return hash;
+}
+
+Object replace_char_char(Object self, char oldChar, char newChar) {
+  if (oldChar != newChar) {
+    int len = self._count_String;
+    int i = -1;
+    int stop = 0;
+    Object val = self._value_String;
+    while (++i < len) {
+      if (val._array_char.A[i] == oldChar && stop == 0) {
+        stop = i;
+      }
+    }
+    if (stop < len) {
+      Object buf = Wrap_Array_char(new Array_char(length=len));
+      for (int j = 0; j < stop; j++) {
+        buf._array_char.A[j] = val._array_char.A[j];
+      }
+      while (stop < len) {
+        char c = val._array_char.A[stop];
+        buf._array_char.A[stop] = ((c == oldChar) ? newChar : c);
+        stop++;
+      }
+      return String_String_char_int_int(new Object(__cid=String()), buf, 0, len);
+    }
+  }
+  return self;
+}
+
+Object getBytes(Object self) {
+  return getBytes_String((self.__cid == String() ? toString@String(self) : null));
+}
+
+Object getBytes_String(Object str) {
+  int len = (str.__cid == String() ? length@String(str) : 0);
+  Object bytes = Wrap_Array_char(new Array_char(length=len));
+  for (int i = 0; i < len; i++) {
+    bytes._array_char.A[i] = (char)((str.__cid == String() ? charAt_int@String(str, i) : '\0'));
+  }
+  return bytes;
+}
+
+Object substring_int(Object self, int beginIndex) {
+  int subLen = self._count_String - beginIndex;
+  assert subLen > 0;
+  return ((beginIndex == 0) ? self : String_String_char_int_int(new Object(__cid=String()), self._value_String, beginIndex, subLen));
+}
+
+Object substring_int_int(Object self, int beginIndex, int endIndex) {
+  assert beginIndex >= 0 && endIndex <= self._value_String._array_char.length;
+  int subLen = endIndex - beginIndex;
+  assert subLen > 0;
+  return ((beginIndex == 0 && endIndex == self._count_String) ? self : String_String_char_int_int(new Object(__cid=String()), self._value_String, beginIndex, subLen));
+}
+
+Object split_String(Object self, Object regex) {
+  return split_String_int@String(self, regex, 0);
+}
+
+Object split_String_int(Object self, Object regex, int limit) {
+  int off = 0;
+  char ch = (regex.__cid == String() ? charAt_int@String(regex, 0) : '\0');
+  int next = indexOf_char_int@String(self, ch, off);
+  bit limited = limit > 0;
+  Object list = ArrayList_ArrayList(new Object(__cid=ArrayList()));
+  while (next != -1) {
+    if (!limited || (list.__cid == ArrayList() ? size@ArrayList(list) : 0) < limit - 1) {
+      (list.__cid == ArrayList() ? add_E@ArrayList(list, substring_int_int@String(self, off, next)) : 0);
+      off = next + 1;
+      next = indexOf_char_int@String(self, ch, off);
+    }
+    else {
+      (list.__cid == ArrayList() ? add_E@ArrayList(list, substring_int_int@String(self, off, self._count_String)) : 0);
+      off = self._value_String._array_char.length;
+      next = -1;
+    }
+  }
+  if (off == 0) return Wrap_Array_Object(new Array_Object(length=1, A={self}));
+  if (!limited || (list.__cid == ArrayList() ? size@ArrayList(list) : 0) < limit) {
+    (list.__cid == ArrayList() ? add_E@ArrayList(list, substring_int_int@String(self, off, self._count_String)) : 0);
+  }
+  int resultSize = (list.__cid == ArrayList() ? size@ArrayList(list) : 0);
+  if (limit == 0) {
+    Object tmp = (list.__cid == ArrayList() ? get_int@ArrayList(list, resultSize - 1) : null);
+    while (resultSize > 0 && (tmp.__cid == String() ? length@String(tmp) : 0) == 0) {
+      resultSize--;
+    }
+  }
+  Object result = Wrap_Array_Object(new Array_Object(length=resultSize));
+  list = (list.__cid == ArrayList() ? subList_int_int@ArrayList(list, 0, resultSize) : null);
+  result = (list.__cid == ArrayList() ? toArray@ArrayList(list) : null);
+  return result;
+}
+

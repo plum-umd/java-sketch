@@ -1,0 +1,61 @@
+package AbstractQueue;
+
+Object AbstractQueue_AbstractQueue(Object self) {
+  self.elementData_AbstractQueue = Wrap_Array_Object(new Array_Object(length=10));
+  self.size_AbstractQueue = 0;
+  self.capacity_AbstractQueue = 10;
+  return self;
+}
+
+void resize(Object self) {
+  if (self.size_AbstractQueue >= self.capacity_AbstractQueue) {
+    self.capacity_AbstractQueue = self.capacity_AbstractQueue * 2;
+    Object newElementData = Wrap_Array_Object(new Array_Object(length=self.capacity_AbstractQueue));
+    for (int i = 0; i < self.size_AbstractQueue; i++) {
+      newElementData._array_object.A[i] = self.elementData_AbstractQueue._array_object.A[i];
+      self.elementData_AbstractQueue._array_object.A[i] = null;
+    }
+    self.elementData_AbstractQueue = newElementData;
+  }
+}
+
+bit add_E(Object self, Object e) {
+  resize@AbstractQueue(self);
+  self.size_AbstractQueue++;
+  self.elementData_AbstractQueue._array_object.A[self.size_AbstractQueue - 1] = e;
+  return true;
+}
+
+void clear(Object self) {
+  for (int i = 0; i < self.size_AbstractQueue; i++) {
+    self.elementData_AbstractQueue._array_object.A[i] = null;
+  }
+  self.elementData_AbstractQueue = Wrap_Array_Object(new Array_Object(length=10));
+  self.size_AbstractQueue = 0;
+  self.capacity_AbstractQueue = 10;
+}
+
+Object element(Object self) {
+  if (self.size_AbstractQueue <= 0) {
+    return null;
+  }
+  return self.elementData_AbstractQueue._array_object.A[0];
+}
+
+Object remove(Object self) {
+  if (self.size_AbstractQueue <= 0) {
+    return null;
+  }
+  Object e = self.elementData_AbstractQueue._array_object.A[0];
+  for (int i = 0; i < self.size_AbstractQueue - 1; i++) {
+    self.elementData_AbstractQueue._array_object.A[i] = self.elementData_AbstractQueue._array_object.A[i + 1];
+  }
+  self.elementData_AbstractQueue._array_object.A[self.size_AbstractQueue - 1] = null;
+  self.size_AbstractQueue--;
+  return e;
+}
+
+bit isEmpty(Object self) {
+  return self.size_AbstractQueue == 0;
+}
+

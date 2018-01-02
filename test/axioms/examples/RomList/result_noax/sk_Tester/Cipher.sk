@@ -1,0 +1,50 @@
+package Cipher;
+
+Object Cipher_Cipher(Object self) {
+    return self;
+}
+
+Object Cipher_Cipher_String(Object self, Object type) {
+  self.type_Cipher = type;
+  self.ENCRYPT_MODE_Cipher = 1;
+  self.DECRYPT_MODE_Cipher = 2;
+  return self;
+}
+
+Object getInstance_String(Object type) {
+  return Cipher_Cipher_String(new Object(__cid=Cipher()), type);
+}
+
+Object getInstance_String_String(Object type, Object extra) {
+  return Cipher_Cipher_String(new Object(__cid=Cipher()), type);
+}
+
+void init_int_Key(Object self, int opmode, Object key) {
+  self.key_Cipher = key;
+  self.mode_Cipher = opmode;
+}
+
+void init_int_SecretKey_IvParameterSpec(Object self, int opmode, Object key, Object i) {
+  self.key_Cipher = key;
+  self.mode_Cipher = opmode;
+}
+
+Object doFinal_byte(Object self, Object text) {
+  Object k = (self.key_Cipher.__cid == KerberosKey() ? getEncoded@KerberosKey(self.key_Cipher) : self.key_Cipher.__cid == SecretKeySpec() ? getEncoded@SecretKeySpec(self.key_Cipher) : null);
+  Object result = Wrap_Array_char(new Array_char(length=text._array_char.length));
+  if (k._array_char.length == 0) {
+    return result;
+  }
+  if (self.mode_Cipher == self.ENCRYPT_MODE_Cipher) {
+    for (int i = 0; i < text._array_char.length; i++) {
+      result._array_char.A[i] = text._array_char.A[i] + k._array_char.A[i % k._array_char.length];
+    }
+  }
+  else if (self.mode_Cipher == self.DECRYPT_MODE_Cipher) {
+    for (int i = 0; i < text._array_char.length; i++) {
+      result._array_char.A[i] = text._array_char.A[i] - k._array_char.A[i % k._array_char.length];
+    }
+  }
+  return result;
+}
+
