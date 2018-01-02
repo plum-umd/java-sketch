@@ -1,0 +1,72 @@
+package Integer;
+
+int MIN_VALUE = 0x80000000;
+int MIN_VALUE_g() { return MIN_VALUE; }
+void MIN_VALUE_s(int MIN_VALUE_s) { MIN_VALUE = MIN_VALUE_s; }
+
+int MAX_VALUE = 0x7fffffff;
+int MAX_VALUE_g() { return MAX_VALUE; }
+void MAX_VALUE_s(int MAX_VALUE_s) { MAX_VALUE = MAX_VALUE_s; }
+
+Object Integer_Integer(Object self) {
+    return self;
+}
+
+Object Integer_Integer_int(Object self, int value) {
+  self.value_Integer = value;
+  return self;
+}
+
+int intValue(Object self) {
+  return self.value_Integer;
+}
+
+int compareTo_Integer(Object self, Object anotherInteger) {
+  return compare_int_int(self.value_Integer, (anotherInteger.__cid == Integer() ? intValue@Integer(anotherInteger) : 0));
+}
+
+int compare_int_int(int x, int y) {
+  return ((x < y) ? -1 : (((x == y) ? 0 : 1)));
+}
+
+bit equals_Object(Object self, Object obj) {
+  if (obj.__cid == Integer()) {
+    return self.value_Integer == ((obj).__cid == Integer() ? intValue@Integer((obj)) : 0);
+  }
+  return false;
+}
+
+Object toString(Object self) {
+  return toString_int(self.value_Integer);
+}
+
+Object toString_int(int i) {
+  if (i == 0) {
+    return String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=1+1, A="0")), 0, 1);
+  }
+  int index = 0,  temp = i,  j;
+  Object ret = Wrap_Array_char(new Array_char(length=32));
+  Object ret2 = Wrap_Array_char(new Array_char(length=32));
+  Object nums = Wrap_Array_char(new Array_char(length=10, A={'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'}));
+  if (temp < 0) {
+    temp = temp * -1;
+  }
+  while (temp > 0) {
+    ret._array_char.A[index++] = nums._array_char.A[temp % 10];
+    temp = temp / 10;
+  }
+  if (i < 0) {
+    ret._array_char.A[index++] = '-';
+  }
+  int size = index;
+  for (j = 0; j < size; j++) {
+    ret2._array_char.A[j] = ret._array_char.A[index - 1];
+    index--;
+  }
+  return String_String_char_int_int(new Object(__cid=String()), ret2, 0, size);
+}
+
+int hashCode(Object self) {
+  return self.value_Integer;
+}
+

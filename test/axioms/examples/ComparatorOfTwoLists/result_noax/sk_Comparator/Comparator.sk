@@ -1,0 +1,23 @@
+package Comparator;
+
+Object Comparator_Comparator(Object self) {
+    return self;
+}
+
+void main_String(Object args) {
+  Object communication = CommunicationWithFiles_CommunicationWithFiles(new Object(__cid=CommunicationWithFiles()));
+  Object File1 = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=6+1, A="f1.txt")), 0, 6);
+  Object File2 = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=6+1, A="f2.txt")), 0, 6);
+  Object inFile1 = ArrayList_ArrayList(new Object(__cid=ArrayList()));
+  Object inFile2 = ArrayList_ArrayList(new Object(__cid=ArrayList()));
+  inFile1 = (communication.__cid == CommunicationWithFiles() ? ReadToArray_String_boolean@CommunicationWithFiles(communication, File1, false) : null);
+  inFile2 = (communication.__cid == CommunicationWithFiles() ? ReadToArray_String_boolean@CommunicationWithFiles(communication, File2, false) : null);
+  if (inFile1.__cid == ArrayList()) { addAll_ArrayList@ArrayList(inFile1, inFile2); }
+  else { 0; };
+  Object o1 = (File1.__cid == String() ? concat_String@String(File1, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=4+1, A="_vs_")), 0, 4)) : null);
+  Object o2 = (o1.__cid == String() ? concat_String@String(o1, File2) : null);
+  Object outputFileName = (o2.__cid == String() ? concat_String@String(o2, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=4+1, A=".txt")), 0, 4)) : null);
+  if (communication.__cid == CommunicationWithFiles()) { createFile_ArrayList_String@CommunicationWithFiles(communication, (communication.__cid == CommunicationWithFiles() ? RemoveDuplicates_ArrayList@CommunicationWithFiles(communication, inFile1) : null), outputFileName); }
+  else { 0; };
+}
+

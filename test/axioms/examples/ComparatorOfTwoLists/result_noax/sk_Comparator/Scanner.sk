@@ -1,0 +1,27 @@
+package Scanner;
+
+Object Scanner_Scanner(Object self) {
+    return self;
+}
+
+Object Scanner_Scanner_File(Object self, Object file) {
+  self.file_Scanner = file;
+  return self;
+}
+
+bit hasNext(Object self) {
+  return true;
+}
+
+Object next(Object self) {
+  return String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=0+1, A="")), 0, 0);
+}
+
+bit hasNextLine(Object self) {
+  return true;
+}
+
+Object nextLine(Object self) {
+  return String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=0+1, A="")), 0, 0);
+}
+

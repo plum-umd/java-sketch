@@ -1,0 +1,21 @@
+package Deque;
+
+Object Deque_Deque(Object self) {
+    return self;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

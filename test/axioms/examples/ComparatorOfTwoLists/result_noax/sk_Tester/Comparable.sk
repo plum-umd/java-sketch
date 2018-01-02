@@ -1,0 +1,7 @@
+package Comparable;
+
+Object Comparable_Comparable(Object self) {
+    return self;
+}
+
+

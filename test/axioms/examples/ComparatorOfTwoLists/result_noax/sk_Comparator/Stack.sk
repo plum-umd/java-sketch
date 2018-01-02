@@ -1,0 +1,57 @@
+package Stack;
+
+Object Stack_Stack(Object self) {
+  self.elementData_Stack = Wrap_Array_Object(new Array_Object(length=10));
+  self.size_Stack = 0;
+  self.capacity_Stack = 10;
+  return self;
+}
+
+void resize(Object self) {
+  if (self.size_Stack >= self.capacity_Stack) {
+    self.capacity_Stack = self.capacity_Stack * 2;
+    Object newElementData = Wrap_Array_Object(new Array_Object(length=self.capacity_Stack));
+    for (int i = 0; i < self.size_Stack; i++) {
+      newElementData._array_object.A[i] = self.elementData_Stack._array_object.A[i];
+      self.elementData_Stack._array_object.A[i] = null;
+    }
+    self.elementData_Stack = newElementData;
+  }
+}
+
+bit empty(Object self) {
+  return self.size_Stack == 0;
+}
+
+Object peek(Object self) {
+  if (self.size_Stack <= 0) {
+    return null;
+  }
+  return self.elementData_Stack._array_object.A[self.size_Stack - 1];
+}
+
+Object push_E(Object self, Object e) {
+  resize@Stack(self);
+  self.size_Stack++;
+  self.elementData_Stack._array_object.A[self.size_Stack - 1] = e;
+  return e;
+}
+
+Object pop(Object self) {
+  if (self.size_Stack <= 0) {
+    return null;
+  }
+  Object e = self.elementData_Stack._array_object.A[self.size_Stack - 1];
+  self.elementData_Stack._array_object.A[--self.size_Stack] = null;
+  return e;
+}
+
+int search_Object(Object self, Object o) {
+  for (int i = 0; i < self.size_Stack; i++) {
+    if ((self.elementData_Stack._array_object.A[i].__cid == TreeSet() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == System() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == HashMap() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == StringBuilder() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == Mac() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == Character() ? equals_Object@Character(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == IvParameterSpec() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == Number() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == KerberosKey() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == Cipher() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == BufferedReader() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == Float() ? equals_Object@Float(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == KeyGenerator() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == HashSet() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == TreeMap() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == StringBuffer() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == HashMap_Node() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == FileWriterr() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == Boolean() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == Scanner() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == Integer() ? equals_Object@Integer(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == Collections() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == CommunicationWithFiles() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == Stack() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == ArrayDeque() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == SecretKeySpec() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == File() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == Comparator() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == Assert() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == Tester() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == String() ? equals_Object@String(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == ArrayDeque_DequeNode() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == AbstractQueue() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == SecureRandom() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == FileReaderr() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == BufferedWriter() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == LinkedList() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == ArrayList() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : self.elementData_Stack._array_object.A[i].__cid == Object() ? equals_Object@Object(self.elementData_Stack._array_object.A[i], o) : 0)) {
+      return i;
+    }
+  }
+  return -1;
+}
+
