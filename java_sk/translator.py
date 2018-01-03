@@ -716,6 +716,7 @@ class Translator(object):
                 self.printt('._'+self.trans_ty(n.typee))
                 typ = self.trans_ty(n.typee)                
         elif isinstance(n, FieldAccessExpr):
+            print("HERE45: "+str(n.name)+", "+str(n.typee))
             if isinstance(n.typee, PrimitiveType):
                 self.printt('._'+self.trans_ty(n.typee))
                 typ = self.trans_ty(n.typee)
@@ -723,8 +724,9 @@ class Translator(object):
                 self.printt('._int')
                 typ = u'int'
             elif 'BinOp' in kwargs:
-                self.printt('._int')
-                typ = u'int'                                
+                if kwargs['BinOp'] in ['+', '-', '/', '*']:
+                    self.printt('._int')
+                    typ = u'int'                                
         elif isinstance(n, MethodCallExpr):
             if n.ax_typ != '':
                 self.printt('._'+n.ax_typ)
