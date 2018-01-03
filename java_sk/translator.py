@@ -476,10 +476,12 @@ class Translator(object):
 
         self.printt('if (')
         n.selector.accept(self, **kwargs)
+        self.unboxPrimitive(n.selector)
         # take care of the first case
         if n.entries:
             self.printt(' == ')
             n.entries[0].label.accept(self, **kwargs)
+            self.unboxPrimitive(n.entries[0].label)
             self.printLn(') {')
             if n.entries[0].stmts: print_stmts(n.entries[0].stmts)
             if len(n.entries) > 0: self.printt('else if (')
@@ -489,14 +491,18 @@ class Translator(object):
                 if e > 1 and n.entries[e-1].stmts: self.printt('else if (')
                 if n.entries[e].stmts:
                     n.selector.accept(self, **kwargs)
+                    self.unboxPrimitive(n.selector)
                     self.printt(' == ')
                     n.entries[e].label.accept(self, **kwargs)
+                    self.unboxPrimitive(n.entries[e].label)
                     self.printLn(') {')
                     print_stmts(n.entries[e].stmts)
                 else:
                     n.selector.accept(self, **kwargs)
+                    self.unboxPrimitive(n.selector)
                     self.printt(' == ')
                     n.entries[e].label.accept(self, **kwargs)
+                    self.unboxPrimitive(n.entries[e].label)
                     self.printt(' || ')
             else:
                 self.printLn('else {')
@@ -1243,10 +1249,14 @@ class Translator(object):
             nm = fld.name
             if fld.variable.init:
                 init = ' = '
+                kwargs = {}
                 if isinstance(fld.variable.init, ArrayInitializerExpr):
                     # init += 'Wrap_Array_{0}(new Array_{0}('.format(self.trans_ty(fld.typee))
-                    init += 'new Object(__cid=-1, _array_{0}=new Array_{0}('.format(self.trans_ty(fld.typee).lower())
-                init += self.trans(fld.variable.init)
+                    kwargs['ArrayName'] = nm
+                    kwargs['ArrayType'] = self.trans_ty(fld.typee)
+                    init += 'new Object(__cid=-1, _array_{0}=new Array_{0}('.format(self.trans_ty(fld.typee))
+                init += self.trans(fld.variable.init, **kwargs)
+                
                 if isinstance(fld.variable.init, ArrayInitializerExpr): init += ')'
         ty = self.trans_ty(fld.typee)
         if fld.typee.name in fld.symtab:
