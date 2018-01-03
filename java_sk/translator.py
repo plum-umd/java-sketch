@@ -736,6 +736,10 @@ class Translator(object):
             if isinstance(n.typee, PrimitiveType):
                 self.printt('._'+self.trans_ty(n.typee))
                 typ = self.trans_ty(n.typee)                
+        elif isinstance(n, CastExpr):
+            if isinstance(n.expr.typee, PrimitiveType):
+                self.printt('._'+self.trans_ty(n.expr.typee))
+                typ = self.trans_ty(n.expr.typee)                                
         elif isinstance(n, FieldAccessExpr):
             fld = utils.find_fld(n, self.obj_struct)            
             if isinstance(fld.typee, PrimitiveType):
