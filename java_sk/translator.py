@@ -201,21 +201,34 @@ class Translator(object):
             self.printt('{} self'.format(ty))
             if n.parameters: self.printt(', ')
 
-        if not td.isADT(n): self.printSepList(n.parameters)
-        elif n.parameters:
-            self.printt(n.parameters[0].typee.name)
-            self.printt(' ')
-            self.printt(n.parameters[0].name)
-            if len(n.parameters) > 1: self.printt(', ')
-            self.printSepList(n.parameters[1:])
+        if not td.isHarness(n):
+            if not td.isADT(n): self.printSepList(n.parameters)
+            elif n.parameters:
+                self.printt(n.parameters[0].typee.name)
+                self.printt(' ')
+                self.printt(n.parameters[0].name)
+                if len(n.parameters) > 1: self.printt(', ')
+                self.printSepList(n.parameters[1:])
+        else:
+            self.printSepListHarness(n.parameters, **kwargs)
         self.printt(')')
 
         for i in xrange(n.arrayCount): self.printt('[]')
 
         if not n.body: self.printt(';')
         else:
-            self.printt(' ')
+            self.printt(' ')            
+            if td.isHarness(n):
+                for p in n.parameters:
+                    if isinstance(p.typee, PrimitiveType):
+                        if 'HasCurly' not in kwargs or not kwargs['HasCurly']:
+                            self.printt('{\n');                            
+                        typ = self.trans_ty(p.typee)
+                        cid = self.primitiveIds[typ]                        
+                        self.printt('  Object {0} = new Object(__cid={1}, _{2}={3}); \n'.format(p.name, cid, typ, '__'+p.name))
+                        kwargs['HasCurly'] = True
             n.body.accept(self, **kwargs)
+            kwargs['HasCurly'] = False            
         self.printLn()
 
     @v.when(Xform)
@@ -298,7 +311,10 @@ class Translator(object):
     # stmt
     @v.when(BlockStmt)
     def visit(self, n, **kwargs):
-        self.printLn('{')
+        if 'HasCurly' not in kwargs or not kwargs['HasCurly']:
+            self.printLn('{')
+        else:
+            kwargs['HasCurly'] = False            
         if n.stmts:
             self.indent()
             for s in n.stmts:
@@ -1133,7 +1149,6 @@ class Translator(object):
     @v.when(PrimitiveType)
     def visit(self, n, **kwargs):
         self.printt('Object')
-        # self.printt(self.trans_ty(n))
 
     @v.when(VoidType)
     def visit(self, n, **kwargs):
@@ -1923,6 +1938,16 @@ class Translator(object):
                 args[i].accept(self, **kwargs)
                 if i+1 < lenn: self.printt('{} '.format(kwargs.get('sep', ',')))
 
+    def printSepListHarness(self, args, **kwargs):
+        if args:
+            lenn = len(args)
+            for i in xrange(lenn):
+                if isinstance(args[i].typee, PrimitiveType):
+                    self.buf.write('{0} {1}'.format(self.trans_ty(args[i].typee), '__'+str(args[i].idd)))
+                else:
+                    args[i].accept(self, **kwargs)
+                if i+1 < lenn: self.printt('{} '.format(kwargs.get('sep', ',')))   
+                
     def printArguments(self, args, **kwargs):
         self.printt('(')
         if args:
