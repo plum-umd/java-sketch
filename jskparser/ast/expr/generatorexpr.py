@@ -21,11 +21,18 @@ class GeneratorExpr(Expression):
                           exprs.get(u'@e', [])) if exprs else []
 
         self.add_as_parent(self.exprs)
-                    
+
+        self._my_typ = PrimitiveType({u'type': {u'name': u'int'}})
+        
     @property
     def isHole(self): return self._isHole
     @isHole.setter
     def isHole(self, v): self._isHole = v
+  
+    @property
+    def my_typ(self): return self._my_typ
+    @my_typ.setter
+    def my_typ(self, v): self._my_typ = v
   
     @property
     def exprs(self): return self._exprs
@@ -34,7 +41,7 @@ class GeneratorExpr(Expression):
 
     @property
     def typee(self):
-        return PrimitiveType({u'type': {u'name': u'int'}}) if self.isHole else \
+        return self.my_typ if self.isHole else \
             self.symtab.get(self._exprs[0].name).typee
     @typee.setter
     def typee(self, v): self._typee = v

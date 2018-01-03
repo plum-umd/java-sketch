@@ -290,7 +290,10 @@ class Translator(object):
                     self.printt('))')
                 else:
                     n.init.accept(self, **kwargs)
-            else:                                
+            elif isinstance(n.init, GeneratorExpr):
+                n.init.my_typ = n.typee
+                n.init.accept(self, **kwargs)                
+            else:
                 if isinstance(n.init, ArrayInitializerExpr):
                     typ = self.trans_ty(n.typee)
                     kwargs['ArrayType'] = typ
@@ -838,7 +841,7 @@ class Translator(object):
     @v.when(BinaryExpr)
     def visit(self, n, **kwargs):
         n.left.accept(self, **kwargs)
-        kwargs['BinOp'] = op[n.op.upper()]               
+        kwargs['BinOp'] = op[n.op.upper()]
         self.unboxPrimitive(n.left, **kwargs)
         self.printt(' ')
         self.printt(op[n.op.upper()])
