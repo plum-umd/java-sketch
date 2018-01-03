@@ -643,7 +643,6 @@ class Translator(object):
                     if isinstance(n.value, ArrayInitializerExpr) or isinstance(n.value, ArrayCreationExpr):
                         kwargs['ArrayName'] = n.target.name                        
                         kwargs['ArrayType'] = self.trans_ty(self.getUnboxPrimitiveType(n.value))
-                        print("HERE44: "+str(n.target)+", "+str(n.value)) 
                     n.value.accept(self, **kwargs)
                     self.unboxPrimitive(n.value)                    
                     self.printt('))')
@@ -716,17 +715,17 @@ class Translator(object):
                 self.printt('._'+self.trans_ty(n.typee))
                 typ = self.trans_ty(n.typee)                
         elif isinstance(n, FieldAccessExpr):
-            print("HERE45: "+str(n.name)+", "+str(n.typee))
-            if isinstance(n.typee, PrimitiveType):
-                self.printt('._'+self.trans_ty(n.typee))
-                typ = self.trans_ty(n.typee)
-            elif n.name == 'length' and n.typee == None:
-                self.printt('._int')
-                typ = u'int'
-            elif 'BinOp' in kwargs:
-                if kwargs['BinOp'] in ['+', '-', '/', '*']:
-                    self.printt('._int')
-                    typ = u'int'                                
+            fld = utils.find_fld(n, self.obj_struct)            
+            if isinstance(fld.typee, PrimitiveType):
+                self.printt('._'+self.trans_ty(fld.typee))
+                typ = self.trans_ty(fld.typee)
+            # elif n.name == 'length' and n.typee == None:
+            #     self.printt('._int')
+            #     typ = u'int'
+            # elif 'BinOp' in kwargs:
+            #     if kwargs['BinOp'] in ['+', '-', '/', '*']:
+            #         self.printt('._int')
+            #         typ = u'int'                                
         elif isinstance(n, MethodCallExpr):
             if n.ax_typ != '':
                 self.printt('._'+n.ax_typ)
