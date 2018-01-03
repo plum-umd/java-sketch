@@ -811,15 +811,18 @@ class Translator(object):
 
     @v.when(UnaryExpr)
     def visit(self, n, **kwargs):
-        self.printt(UnaryExpr.PRE_OPS.get(n.op, ''))
-        # self.printt('(new Object(__cid={0}(), _{0}='.format(self.getUnboxPrimitiveType(n.expr)))
-        op = UnaryExpr.POST_OPS.get(n.op, '')
-        if op != '':
+        op_after = UnaryExpr.POST_OPS.get(n.op, '')
+        op_before = UnaryExpr.PRE_OPS.get(n.op, '')
+
+        if op_before not in ['++', '--']:
+            self.printt(UnaryExpr.PRE_OPS.get(n.op, ''))
+
+        if op_after != '' or op_before in ['++', '--']:
             n.expr.accept(self, **kwargs)
             self.printt(' = new Object(__cid=-2, _int=') 
             n.expr.accept(self, **kwargs)
             self.unboxPrimitive(n.expr)
-            if op == '++':
+            if op_after == '++':
                 self.printt(' + 1')
             else:
                 self.printt(' - 1')
@@ -827,25 +830,6 @@ class Translator(object):
         else:
             n.expr.accept(self, **kwargs)
             self.unboxPrimitive(n.expr)
-        # self.printt('))')
-        # if isinstance(n.expr, NameExpr):
-        #     if isinstance(n.expr.typee, PrimitiveType):
-        #         self.printt('._'+self.trans_ty(n.expr.typee))
-        # elif isinstance(n.expr, MethodCallExpr):
-        #     if n.expr.scope:
-        #         if utils.node_to_obj(n.expr.scope):
-        #             if isinstance(n.expr.typee, PrimitiveType):
-        #                 self.printt('._'+self.trans_ty(n.expr.typee))
-        # elif isinstance(n.expr, BooleanLiteralExpr):
-        #     self.printt('._bit')
-        # elif isinstance(n.expr, IntegerLiteralExpr):
-        #     self.printt('._int')
-        # elif isinstance(n.expr, DoubleLiteralExpr):
-        #     self.printt('._double')
-        # elif isinstance(n.expr, CharLiteralExpr):
-        #     self.printt('._char')
-            
-        # self.printt(UnaryExpr.POST_OPS.get(n.op, ''))
 
     @v.when(BinaryExpr)
     def visit(self, n, **kwargs):
