@@ -435,7 +435,9 @@ class Translator(object):
     @v.when(WhileStmt)
     def visit(self, n, **kwargs):
         self.printt('while (')
-        if n.condition: n.condition.accept(self, **kwargs)
+        if n.condition:
+            n.condition.accept(self, **kwargs)
+            self.unboxPrimitive(n.condition)
         self.printt(') ')
         n.body.accept(self, **kwargs)
 
@@ -1358,8 +1360,8 @@ class Translator(object):
                         sig = '{}.{}'.format(fun[0], callexpr.name)
                     if sig in self.unfuns: continue
                     self.unfuns.append(sig)
-                    rtyp = self.trans_ty(fun.pop())
-                    f.write('{} {}('.format(rtyp, str(callexpr)))
+                    rtyp = self.trans_ty(fun.pop())                    
+                    f.write('{} {}('.format(rtyp, str(callexpr)+'__uninterp'))
                     if not isinstance(scope, ClassOrInterfaceType):
                         f.write('{} p0'.format(self.trans_ty(scope.typee)))
                         if len(fun) > 0: f.write(', ')
@@ -1370,6 +1372,28 @@ class Translator(object):
                     f.write(';')
                     f.write('\n')
 
+                    args = []
+                    
+                    f.write('Object {}('.format(str(callexpr)))
+                    if not isinstance(scope, ClassOrInterfaceType):
+                        args.append('p0');
+                        f.write('{} p0'.format(self.trans_ty(scope.typee)))
+                        if len(fun) > 0: f.write(', ')
+                    for i in range(len(fun)-1):
+                        args.append(self.trans_ty(fun[i]))
+                        f.write('{} {}, '.format(self.trans_ty(fun[i]), 'p'+str(i+1)))
+                    if len(fun) > 0: f.write('{} {}'.format(self.trans_ty(fun[-1]), 'p'+str(len(fun))))
+                    f.write(') {\n  ')
+                    cid = self.primitiveIds[rtyp]
+                    f.write('return new Object(__cid={0}, _{1}='.format(cid, rtyp))
+                    f.write('{}('.format(str(callexpr)+'__uninterp'))
+                    if len(args) > 0:
+                        f.write(args[0])
+                    if len(args) > 1:
+                        for a in args:                        
+                            f.write(', {}'.format(a))
+                    f.write('));\n}')
+                            
                     typ = {u'@t':u'PrimitiveType',u'type':{u'name':rtyp},} if rtyp in CONVERSION_TYPES \
                           else {u'@t':u'ClassOrInterfaceType',u'name': rtyp,}
                     mtd = MethodDeclaration({u'@t':u'MethodDeclaration',
