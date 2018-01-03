@@ -36,3 +36,9 @@ class ArrayAccessExpr(Expression):
     def lbl(self): return (self._name.name, self.ati)
     @lbl.setter
     def lbl(self, v): self._lbl = v
+
+    @property
+    def typee(self):
+        if self.name in self.symtab:
+            return self.symtab[self.name].typee
+        return None

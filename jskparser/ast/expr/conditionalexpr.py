@@ -37,3 +37,18 @@ class ConditionalExpr(Expression):
     def elseExpr(self): return self._elseExpr
     @elseExpr.setter
     def elseExpr(self, v): self._elseExpr = v
+
+    @property
+    def typee(self):
+        expr = self.thenExpr
+        # for expr in [thenExpr, elseExpr]:
+        while expr:
+            if expr.typee:
+                return expr.typee
+            else:
+                if isinstance(expr, ConditionalExpr):                       
+                    expr = expr.thenExpr
+                else:
+                    expr = None
+                    
+        return None

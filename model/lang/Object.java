@@ -14,9 +14,10 @@ public class Object {
     public static int hashCode(Object o) {
         return o != null ? o.hashCode() : 0;
     }
-    public String toString() {
-    	return "Object toString()";
-    }
+
+    // public String toString() {
+    // 	return "Object toString()";
+    // }
 
     public boolean equals(Object obj) {
     	return this == obj;

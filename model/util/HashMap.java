@@ -1,5 +1,6 @@
-public class HashMap<K,V> extends Map {
-    static final int DEFAULT_INITIAL_CAPACITY = 1 << 4; // aka 16
+// public class HashMap<K,V> extends Map {
+public class HashMap<K,V> {
+    static final int DEFAULT_INITIAL_CAPACITY;// = 1 << 4; // aka 16
     Node[] elementData;
     int numPairs;
     int capacity;
@@ -17,6 +18,7 @@ public class HashMap<K,V> extends Map {
     }
 
     public HashMap() {
+	this.DEFAULT_INITIAL_CAPACITY = 16;
     	this.elementData = new Node[DEFAULT_INITIAL_CAPACITY];
     	this.numPairs = 0;
     	this.capacity = DEFAULT_INITIAL_CAPACITY;

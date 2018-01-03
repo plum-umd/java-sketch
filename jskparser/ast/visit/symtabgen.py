@@ -104,7 +104,7 @@ class SymtabGen(object):
                                          isinstance(n, ClassOrInterfaceDeclaration) else \
                                          {n.sig():n}), node.members)
         map(lambda n: n.accept(self), node.members)
-
+        
     @v.when(MethodDeclaration)
     def visit(self, node):
         # The scope of a formal parameter of a method is the entire body of the method

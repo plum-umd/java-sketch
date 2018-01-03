@@ -11,6 +11,10 @@ public class Mac {
 
     }
 
+    // public void init(SecretKey key) {
+
+    // }
+    
     public byte[] doFinal(byte[] text) {
 	return text;
     }

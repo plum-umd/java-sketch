@@ -24,4 +24,8 @@ public class LinkedList<E> implements List<E> {
     public <E> E set (int index, E element) {
 	return null;
     }
+
+    public int size() {
+	return 0;
+    }
 }

@@ -27,9 +27,14 @@ public class Cipher {
     }
 
     public void init(int opmode, SecretKey key, IvParameterSpec i) {
-	this.key = key;
-	this.mode = opmode;
+    	this.key = key;
+    	this.mode = opmode;
     }
+
+    // public void init(int opmode, SecretKey key, AlgorithmParameterSpec i) {
+    // 	this.key = key;
+    // 	this.mode = opmode;
+    // }
     
     public byte[] doFinal(byte[] text) {
 	byte[] k = key.getEncoded();
@@ -47,6 +52,19 @@ public class Cipher {
 	    }
 	}
 	return result;
+    }
+
+    public int getOutputSize(int length) {
+	return length;
+    }
+
+    public int update(byte[] data, int i, int l, byte[] out, int j) {
+	return 0;
+    }
+
+    public int doFinal(byte[] data, int i, int l, byte[] out, int j) {
+	out = doFinal(data);
+	return data.length;
     }
     
 }

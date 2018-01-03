@@ -3,6 +3,7 @@
 from .expression import Expression
 
 from . import _import
+from ..type.referencetype import ReferenceType
 
 class FieldAccessExpr(Expression):
     def __init__(self, kwargs={}):
@@ -35,3 +36,11 @@ class FieldAccessExpr(Expression):
     def name(self): return self.field.name
     @name.setter
     def name(self, v): self.field.name = v
+
+    @property
+    def typee(self):
+        if self.field:
+            if self.field.name in self.field.symtab:
+                return self.field.symtab[self.field.name].typee
+            
+        return None

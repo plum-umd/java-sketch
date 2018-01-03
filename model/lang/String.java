@@ -163,6 +163,10 @@ public class String implements CharSequence{
 	return new String(ret, 0, totalLen);
     }
 
+    public boolean equalsIgnoreCase(Object obj) {
+	return equals(obj);
+    }
+    
     // Should be boolean but that isn't parsing right!
     public boolean equals(Object obj) {
 	boolean isEqual = false;
@@ -257,52 +261,56 @@ public class String implements CharSequence{
     	    new String(_value, beginIndex, subLen);
     }
 
-    public String[] split(String regex) {
-        return split(regex, 0);
-    }
 
-    public String[] split(String regex, int limit) {
-	int off = 0;
-    	char ch = regex.charAt(0);
-    	int next = indexOf(ch, off);
-    	boolean limited = limit > 0;
-    	ArrayList<String> list = new ArrayList<>();
-    	while (next != -1) {
-	    if (!limited || list.size() < limit - 1) {
-		list.add(substring(off, next));
-		off = next + 1;
-		next = indexOf(ch, off);
-	    }
-	    else {    // last one
-		list.add(substring(off, _count));
-		off = _value.length;
-		next = -1;
-	    }
-    	}
 
-	// If no match was found, return this
-	if (off == 0)
-	    return new String[]{this};
+    // public String[] split(String regex) {
+    //     return split(regex, 0);
+    // }
 
-	// Add remaining segment
-	if (!limited || list.size() < limit) {
-	    list.add(substring(off, _count));
-	}
+    // public String[] split(String regex, int limit) {
+    // 	int off = 0;
+    // 	char ch = regex.charAt(0);
+    // 	int next = indexOf(ch, off);
+    // 	boolean limited = limit > 0;
+    // 	ArrayList<String> list = new ArrayList<>();
+    // 	while (next != -1) {
+    // 	    if (!limited || list.size() < limit - 1) {
+    // 		list.add(substring(off, next));
+    // 		off = next + 1;
+    // 		next = indexOf(ch, off);
+    // 	    }
+    // 	    else {    // last one
+    // 		list.add(substring(off, _count));
+    // 		off = _value.length;
+    // 		next = -1;
+    // 	    }
+    // 	}
 
-	// // Construct result
-	int resultSize = list.size();
-	if (limit == 0) {
-	    String tmp = list.get(resultSize - 1);
-	    while (resultSize > 0 && tmp.length() == 0) {
-		resultSize--;
-	    }
-	}
-	String[] result = new String[resultSize];
-	list = list.subList(0, resultSize);
-	result = list.toArray();
-	return result;
-	// return list.toArray();
-    }
+    // 	// If no match was found, return this
+    // 	if (off == 0)
+    // 	    return new String[]{this};
+
+    // 	// Add remaining segment
+    // 	if (!limited || list.size() < limit) {
+    // 	    list.add(substring(off, _count));
+    // 	}
+
+    // 	// // Construct result
+    // 	int resultSize = list.size();
+    // 	if (limit == 0) {
+    // 	    String tmp = list.get(resultSize - 1);
+    // 	    while (resultSize > 0 && tmp.length() == 0) {
+    // 		resultSize--;
+    // 	    }
+    // 	}
+    // 	String[] result = new String[resultSize];
+    // 	list = list.subList(0, resultSize);
+    // 	result = list.toArray();
+    // 	return result;
+    // 	// return list.toArray();
+    // }
+
+
     // 	// If no match was found, return this
     // 	if (off == 0)
     // 	    return new String[]{this};

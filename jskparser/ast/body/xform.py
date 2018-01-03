@@ -174,7 +174,8 @@ class Xform(BodyDeclaration):
             raise Exception('Length of cases == 0')
 
         for s in self.stmt.entries:
-            if str(s.label) == cases[0][0]:                
+            s_label = str(s.label)
+            if s_label == cases[0][0] or (len(s_label)> 6 and s_label[len(s_label)-6:] == '_empty' and s_label[0:len(s_label)-6].capitalize() == cases[0][0]):  
                 if len(cases) == 1:
                     if s.stmts:
                         raise Exception('Are we overwriting an axiom??')
@@ -193,6 +194,7 @@ class Xform(BodyDeclaration):
                     s.stmts = [b]
                     b.add_parent_post(s, True)
                     map(lambda s: s.add_parent_post(b), body)                       
-        
+
+    # def areNamesEqual(self, 
                     
     def __str__(self): return self._name

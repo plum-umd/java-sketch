@@ -62,8 +62,15 @@ class MethodDeclaration(BodyDeclaration):
         self._adtType = kwargs.get(u'adtType', False)
 
         self._adtName = kwargs.get(u'adtName', None)
+
+        self._add_bang = False
         
         self.add_as_parent(self.parameters+self.typeParameters+[self.typee]+self.throws+[self.body])
+
+    @property
+    def add_bang(self): return self._add_bang
+    @add_bang.setter
+    def add_bang(self, v): self._add_bang = v
 
     @property
     def params(self): return self._params
@@ -174,5 +181,7 @@ class MethodDeclaration(BodyDeclaration):
         params = map(self.sanitize_ty, map(lambda p: p.typee.name, self.parameters))
         if self.adt:
             params = ["Object"]+params
+
+        name = self.name+'b' if self.add_bang else self.name
             
-        return u'_'.join([self.sanitize_ty(self.name)] + params)
+        return u'_'.join([self.sanitize_ty(name)] + params)

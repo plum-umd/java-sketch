@@ -7,10 +7,12 @@ public class TreeSet<E> implements Set{
 	
 	int size;
 
-    static int INITIAL_CAPACITY = 16;
-    static int RESIZE_FACTOR = 2;
+    static int INITIAL_CAPACITY;
+    static int RESIZE_FACTOR;
     
     public TreeSet() {
+	this.INITIAL_CAPACITY = 16;
+	this.RESIZE_FACTOR = 2;
 	set = new E[INITIAL_CAPACITY];
 	size = 0;
 	capacity = INITIAL_CAPACITY;

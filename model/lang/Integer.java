@@ -1,15 +1,17 @@
 package java.lang;
 
 public class Integer extends Number {
-    public static final int   MIN_VALUE = 0x80000000;    
+    public static final int   MIN_VALUE;
 
     // public static int MAX_VALUE = 2147483647;
-    public static final int   MAX_VALUE = 0x7fffffff;
+    public static final int   MAX_VALUE;
 
     private final int value;
     
     public Integer(int value) {
     	this.value = value;
+	this.MIN_VALUE = 0x80000000;
+	this.MAX_VALUE = 0x7fffffff;
     }
 
     public int intValue() {
@@ -53,13 +55,15 @@ public class Integer extends Number {
     	}
 
     	while (temp > 0) {
-    	    ret[index++] = nums[temp%10];
+	    index++;
+    	    ret[index] = nums[temp%10];
     	    temp /= 10;
     	}
 
     	// Seems to be causing problems 
     	if (i < 0) {
-    	    ret[index++] = '-';
+	    index++;
+    	    ret[index] = '-';
     	}
        
     	int size = index;

@@ -29,6 +29,16 @@ public class Assert {
     protected Assert() {
     }
 
+    public static void assertArrayEquals(byte[] b1, byte[] b2) {
+	if (b1.length == b2.length) {
+	    for (int i = 0; i < b1.length; i ++) {
+		if (b1[i] != b2[i]) assert false;
+	    }
+	} else {
+	    assert false;
+	}	
+    }
+    
     // /**
     //  * Asserts that a condition is true. If it isn't it throws an
     //  * {@link AssertionError} with the given message.

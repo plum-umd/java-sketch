@@ -43,7 +43,7 @@ class BinaryExpr(Expression):
     def typee(self):
         if self.op == u'or' or self.op == u'and' or self.op == u'equals' or \
            self.op == u'notequals' or self.op == u'less' or self.op == u'greater' or \
-           self.op == u'lessequals' or self.op == u'greaterequals':
+           self.op == u'lessequals' or self.op == u'greaterequals' or self.op == u'notEquals':
             return PrimitiveType({u'type': {u'name':u'boolean'}})
         else:
             return self.right.typee

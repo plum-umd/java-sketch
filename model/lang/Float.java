@@ -46,62 +46,68 @@ public class Float extends Number {
     }
 
     public int intValue() {
-	return (int)this.value;
+	// return (int)this.value;
+	return this.value;
     }
 
     public String toString() {
-	return toString(this.value);
+    	return toString(this.value);
     }
 
     public static String toString(float i) {
-	int index = 0, j, temp2 = (int)i;
-	float temp = i - (float)((int)i);
-	char [32] ret = {
-	    '\0', '\0', '\0', '\0','\0', '\0', '\0', '\0',
-	    '\0', '\0', '\0', '\0','\0', '\0', '\0', '\0',
-	    '\0', '\0', '\0', '\0','\0', '\0', '\0', '\0',
-	    '\0', '\0', '\0', '\0','\0', '\0', '\0', '\0'
-	};
-	char [32] ret2 = {
-	    '\0', '\0', '\0', '\0','\0', '\0', '\0', '\0',
-	    '\0', '\0', '\0', '\0','\0', '\0', '\0', '\0',
-	    '\0', '\0', '\0', '\0','\0', '\0', '\0', '\0',
-	    '\0', '\0', '\0', '\0','\0', '\0', '\0', '\0'
-	};
-	char [] nums = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+    	// int index = 0, j, temp2 = (int)i;
+    	int index = 0, j, temp2 = i;
+    	float temp = i - (float)((int)i);
+    	char [32] ret = {
+    	    '\0', '\0', '\0', '\0','\0', '\0', '\0', '\0',
+    	    '\0', '\0', '\0', '\0','\0', '\0', '\0', '\0',
+    	    '\0', '\0', '\0', '\0','\0', '\0', '\0', '\0',
+    	    '\0', '\0', '\0', '\0','\0', '\0', '\0', '\0'
+    	};
+    	char [32] ret2 = {
+    	    '\0', '\0', '\0', '\0','\0', '\0', '\0', '\0',
+    	    '\0', '\0', '\0', '\0','\0', '\0', '\0', '\0',
+    	    '\0', '\0', '\0', '\0','\0', '\0', '\0', '\0',
+    	    '\0', '\0', '\0', '\0','\0', '\0', '\0', '\0'
+    	};
+    	char [] nums = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
-	if (temp2 < 0) {
-	    temp2 *= -1;
-	}
+    	if (temp2 < 0) {
+    	    temp2 *= -1;
+    	}
 
-	ret[index++] = '.';
+	index++;
+    	ret[index] = '.';
 
-	while (temp2 > 0) {
-	    ret[index++] = nums[temp2%10];
-	    temp2 /= 10;
-	}
+    	while (temp2 > 0) {
+	    index++;
+    	    ret[index] = nums[temp2%10];
+    	    temp2 /= 10;
+    	}
 
-	// Seems to be causing problems 
-	if (i < 0.0) {
-	    ret[index++] = '-';
-	}
+    	// Seems to be causing problems 
+    	if (i < 0.0) {
+	    index++;
+    	    ret[index] = '-';
+    	}
        
-	int size = index;
+    	int size = index;
 
-	for (j=0; j<size; j++) {
-	    ret2[j] = ret[index-1];
-	    index --;
-	}
+    	for (j=0; j<size; j++) {
+    	    ret2[j] = ret[index-1];
+    	    index --;
+    	}
 
-	index = size;
+    	index = size;
 
-	while (temp > 0.0) {
-	    temp *= 10.0;
-	    ret2[index++] = nums[(int)temp];
-	    temp = temp - (float)((int)temp);
-	}
+    	while (temp > 0.0) {
+    	    temp *= 10.0;
+	    index++;
+    	    ret2[index] = nums[(int)temp];
+    	    temp = temp - (float)((int)temp);
+    	}
 
-	return new String(ret2, 0, index);
+    	return new String(ret2, 0, index);
     }
 
 }

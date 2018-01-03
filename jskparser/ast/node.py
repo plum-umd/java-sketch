@@ -265,7 +265,8 @@ class Node(object):
         from .body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
         if self.parentNode:
             if isinstance(self.parentNode, ClassOrInterfaceDeclaration):
-                return self.parentNode
+                # print("\t"+str(self.parentNode))
+                return self.parentNode            
             else:
                 return self.parentNode.get_coid()
         else: return None

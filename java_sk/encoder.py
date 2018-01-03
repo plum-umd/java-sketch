@@ -36,6 +36,7 @@ from ast.expr.conditionalexpr import ConditionalExpr
 from ast.expr.binaryexpr import BinaryExpr
 
 from ast.type.referencetype import ReferenceType
+from ast.type.primitivetype import PrimitiveType
 
 class Encoder(object):
     def __init__(self, program, out_dir, fs):
@@ -136,10 +137,15 @@ class Encoder(object):
 
     def gen_array_sk(self):
         types = [u'bit', u'char', u'int', u'float', u'double', u'Object',]
-        array_struct = 'struct Array_{0} {{\n  int length;\n  {0}[length] A;\n}}\n\n'
+        array_struct = 'struct Array_{0} {{\n  Object length;\n  {0}[length._int] A;\n}}\n\n'
+        # array_struct = 'struct Array_Object {{\n  Object length;\n  Object[length._int] A;\n}}\n\n'
+        # array_struct = 'struct Array_{0} {{\n  int length;\n  {0}[length] A;\n}}\n\n'
         array_wrapper = 'Object Wrap_Array_{0}(Array_{0} arr) {{\n  return new Object(__cid=Array(), _array_{1}=arr); \n}}\n\n'
+        # array_wrapper = 'Object Wrap_Array_Object(Array_Object arr) {{\n  return new Object(__cid=Array(), _array=arr); \n}}\n\n'
         with open(os.path.join(self.sk_dir, "array.sk"), 'w') as f:
             f.write("package array;\n\n")
+            # f.write(array_struct)
+            # f.write(array_wrapper)
             for t in types:
                 f.write(array_struct.format(t))
             for t in types:
@@ -155,8 +161,12 @@ class Encoder(object):
             lens = map(lambda f: len(f[0]), flds)
             m = max(lens) + 1
             buf.write("struct " + str(self.tltr.obj_struct) + " {\n")
-            for f in flds:
-                buf.write('  {} {}{}{};\n'.format(f[0],' '*(m-len(f[0])), f[1], f[2]))
+            for i in range(0, len(flds)):
+                f = flds[i]
+                typ = f[0]
+                if isinstance(i_flds[i].typee, PrimitiveType) and not(f[1] == '__cid' or f[1] == '_int' or f[1] == '_bit' or f[1] == '_double' or f[1] == '_float' or f[1] == '_char'):
+                    typ = u'Object'
+                buf.write('  {} {}{}{};\n'.format(typ,' '*(m-len(typ)), f[1], f[2]))
             buf.write("}\n")
         else:
             buf.write("struct Object {\n")
@@ -166,7 +176,12 @@ class Encoder(object):
             buf.write("  Array_int _array_int;\n")
             buf.write("  Array_float _array_float;\n")
             buf.write("  Array_double _array_double;\n")
-            buf.write("  Array_Object _array_object;\n")            
+            buf.write("  Array_Object _array_object;\n")
+            buf.write("  int _int;\n")
+            buf.write("  bit _bit;\n")
+            buf.write("  double _double;\n")
+            buf.write("  char _char;\n")
+            buf.write("  float _float;\n")            
             buf.write("}\n")
             
         with open(os.path.join(self.sk_dir, "Object.sk"), 'a') as f:
@@ -213,6 +228,11 @@ class Encoder(object):
                 buf.write("int {k}() {s} {{ return {v}; }}\n".format(k=k, v=v, s=' '*(m-len(k))))
 
         buf.write("int {k}(){s}{{ return {v}; }}\n".format(k="Array", v="-1", s=' '*(m-len(k))))        
+        buf.write("int {k}(){s} {{ return {v}; }}\n".format(k="_int", v="-2", s=' '*(m-len(k))))        
+        buf.write("int {k}(){s}{{ return {v}; }}\n".format(k="_char", v="-3", s=' '*(m-len(k))))        
+        buf.write("int {k}(){s} {{ return {v}; }}\n".format(k="_bit", v="-4", s=' '*(m-len(k))))        
+        buf.write("int {k}(){s}{{ return {v}; }}\n".format(k="_float", v="-5", s=' '*(m-len(k)-1)))        
+        buf.write("int {k}(){s}{{ return {v}; }}\n".format(k="_double", v="-6", s=' '*(m-len(k)-2)))        
             
         buf.write('\n// Uninterpreted functions\n')
         with open(os.path.join(self.sk_dir, "meta.sk"), 'w') as f:
@@ -243,11 +263,12 @@ class Encoder(object):
 
         for fld in s_flds:
             f = self.tltr.trans_fld(fld)
-            buf.write('{} {}{};\n'.format(f[0], f[1], f[2]))
+            typ = u'Object'            
+            buf.write('{} {}{};\n'.format(typ, f[1], f[2]))
             if cls == self.mcls and fld.variable.init and type(fld.variable.init) == GeneratorExpr: continue
-            typ = self.tltr.trans_ty(fld.typee)
-            if isinstance(fld.typee, ReferenceType) and fld.typee.arrayCount > 0:
-                typ = 'Object'
+            # typ = self.tltr.trans_ty(fld.typee)
+            # if isinstance(fld.typee, ReferenceType) and fld.typee.arrayCount > 0:
+            #     typ = 'Object'
             buf.write("{0} {1}_g() {{ return {1}; }}\n".format(typ, fld.name))
             buf.write("void {1}_s({0} {1}_s) {{ {1} = {1}_s; }}\n".format(typ, fld.name))
             buf.write('\n')
@@ -291,14 +312,15 @@ class Encoder(object):
                     c += '; '
             if mtd.parameters and not mtd.constructor: c += '; '
             for p,t,n in zip(mtd.parameters, mtd.param_typs(), mtd.param_names()):
-                typ = self.tltr.trans_ty(t)
-                if isinstance(t, ReferenceType) and t.arrayCount > 0:
-                    # typ = "Array_"+typ
-                    typ = u'Object'
-                if p.typee.name in p.symtab:
-                    typ_cls = p.symtab[p.typee.name]
-                    if isinstance(typ_cls, ClassOrInterfaceDeclaration) and typ_cls.axiom:
-                        typ = u'Object'
+                typ = u'Object'
+                # typ = self.tltr.trans_ty(t)
+                # if isinstance(t, ReferenceType) and t.arrayCount > 0:
+                #     # typ = "Array_"+typ
+                #     typ = u'Object'
+                # if p.typee.name in p.symtab:
+                #     typ_cls = p.symtab[p.typee.name]
+                #     if isinstance(typ_cls, ClassOrInterfaceDeclaration) and typ_cls.axiom:
+                #         typ = u'Object'
 
                 c += '{} {}; '.format(typ, n)
             c += '}\n'
@@ -313,19 +335,20 @@ class Encoder(object):
             (ptyps, pnms) = (map(lambda t: self.tltr.trans_ty(t), mtd.param_typs()), map(str, mtd.param_names()))
             ptyps_name = cp.deepcopy(ptyps)
             for i in range(0, len(ptyps)):
-                ptyp = ptyps[i]
-                p = mtd.parameters[i]
-                if p.typee.name in p.symtab:
-                    typ_cls = p.symtab[p.typee.name]
-                    if isinstance(typ_cls, ClassOrInterfaceDeclaration) and typ_cls.axiom:
-                        ptyps[i] = u'Object'
-            for i in range(0,len(ptyps)):
-                if isinstance(mtd_param_typs[i], ReferenceType):
-                    if mtd_param_typs[i].arrayCount > 0:
-                        # ptyps[i] = "Array_"+ptyps[i]
-                        if str(mtd_param_typs[i]) == 'byte':
-                            ptyps_name[i] = 'byte'
-                        ptyps[i] = 'Object'                        
+                ptyps[i] = u'Object'
+            #     ptyp = ptyps[i]
+            #     p = mtd.parameters[i]
+            #     if p.typee.name in p.symtab:
+            #         typ_cls = p.symtab[p.typee.name]
+            #         if isinstance(typ_cls, ClassOrInterfaceDeclaration) and typ_cls.axiom:
+            #             ptyps[i] = u'Object'
+            # for i in range(0,len(ptyps)):
+            #     if isinstance(mtd_param_typs[i], ReferenceType):
+            #         if mtd_param_typs[i].arrayCount > 0:
+            #             # ptyps[i] = "Array_"+ptyps[i]
+            #             if str(mtd_param_typs[i]) == 'byte':
+            #                 ptyps_name[i] = 'byte'
+            #             ptyps[i] = 'Object'                        
             params = ', '.join(map(lambda p: ' '.join(p), zip(ptyps, pnms)))
             c = 'Object '
             

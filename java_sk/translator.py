@@ -85,6 +85,8 @@ from ast.type.classorinterfacetype import ClassOrInterfaceType
 
 from . import CONVERSION_TYPES
 
+from ast.utils import utils
+
 class Translator(object):
     SELF = NameExpr({u'@t':u'NameExpr',u'name':u'self'})
     _cid = {u'@t': u'AssignExpr', u'op': {u'name': u'assign'},
@@ -121,6 +123,12 @@ class Translator(object):
         # anything that needs to get written post-translation (e.g., anonymous class mtds)
         self._post_mtds = ''
         self.anon_ids = -1
+
+        self.primitiveIds = { u'int':-2,
+                              u'char':-3,
+                              u'bit':-4,
+                              u'float':-5,
+                              u'double':-6 }
 
     @v.on('node')
     def visit(self, node):
@@ -243,19 +251,42 @@ class Translator(object):
         
     @v.when(VariableDeclarator)
     def visit(self, n, **kwargs):
+        kwargs['ArrayName'] = n.idd
         if n.init:
             self.printt(' ')
             n.idd.accept(self, **kwargs)
             self.printt(' = ')
-            if isinstance(n.init, ArrayInitializerExpr):
-                typ = self.trans_ty(n.typee)
-                self.printt('Wrap_Array_{}('.format(typ))
-                self.printt('new ')                
-                # n.typee.accept(self, **kwargs)
-                self.printt('Array_{}'.format(typ))
-                self.printt('(')
-            n.init.accept(self, **kwargs)
-            if isinstance(n.init, ArrayInitializerExpr): self.printt(')')            
+            if isinstance(n.init, UnaryExpr):
+                typ = self.getUnboxPrimitiveType(n.init.expr)
+                cid = self.primitiveIds[typ]
+                self.printt('(new Object(__cid={0}, _{1}='.format(cid, typ))
+                n.init.accept(self, **kwargs)
+                self.printt('))')
+            elif isinstance(n.init, BinaryExpr):
+                typ = self.getUnboxPrimitiveType(n.init.left)
+                cid = self.primitiveIds[typ]
+                self.printt('(new Object(__cid={0}, _{1}='.format(cid, typ))      
+                n.init.accept(self, **kwargs)
+                self.printt('))')
+            elif isinstance(n.init, ArrayAccessExpr):
+                if isinstance(n.typee, PrimitiveType):
+                    typ = self.trans_ty(n.typee)
+                    cid = self.primitiveIds[typ]
+                    self.printt('(new Object(__cid={0}, _{1}='.format(cid, typ))   
+                    n.init.accept(self, **kwargs)
+                    self.printt('))')
+                else:
+                    n.init.accept(self, **kwargs)
+            else:                                
+                if isinstance(n.init, ArrayInitializerExpr):
+                    typ = self.trans_ty(n.typee)
+                    kwargs['ArrayType'] = typ
+                    self.printt('Wrap_Array_{}('.format(typ))
+                    self.printt('new ')                
+                    # n.typee.accept(self, **kwargs)
+                    self.printt('Array_{}'.format(typ))
+                    self.printt('(')
+                n.init.accept(self, **kwargs)
         else:
             self.printt(' ')
             n.idd.accept(self, **kwargs)
@@ -281,16 +312,65 @@ class Translator(object):
 
     @v.when(ReturnStmt)
     def visit(self, n, **kwargs):
+        kwargs['Return'] = True
         self.printt('return')
         if n.expr:
             self.printt(' ')
-            n.expr.accept(self, **kwargs)
+            typ = ''
+            # if isinstance(n.expr, NameExpr):
+            #     if isinstance(n.expr.typee, PrimitiveType):
+            #         # self.printt('._'+self.trans_ty(n.expr.typee))
+            #         typ = self.trans_ty(n.expr.typee)
+            if isinstance(n.expr, BinaryExpr) or isinstance(n.expr, UnaryExpr):
+                if isinstance(n.expr.typee, PrimitiveType):
+                    typ = self.trans_ty(n.expr.typee)
+            elif isinstance(n.expr, ArrayAccessExpr):
+                typ = self.trans_ty(n.expr.nameExpr.typee)
+                if n.expr.nameExpr.name in n.expr.nameExpr.symtab:
+                    typ = self.trans_ty(n.expr.nameExpr.symtab[n.expr.nameExpr.name].typee)
+                else:
+                    typ = self.trans_ty(utils.find_fld(n.expr.nameExpr, self.obj_struct).typee)
+                if typ == 'Object': typ = ''
+                if typ == 'byte': typ = 'char'                
+                
+            # elif isinstance(n.expr, BooleanLiteralExpr):
+            #     # self.printt('._bit')
+            #     typ = u'bit'
+            # elif isinstance(n.expr, IntegerLiteralExpr):
+            #     # self.printt('._int')
+            #     typ = u'int'
+            # elif isinstance(n.expr, DoubleLiteralExpr):
+            #     # self.printt('._double')
+            #     typ = u'double'
+            # elif isinstance(n.expr, CharLiteralExpr):
+            #     # self.printt('._char')
+            #     typ = u'char'
+
+            if typ != '':
+                cid = self.primitiveIds[typ]
+                self.printt('(new Object(__cid={0}, _{1}='.format(cid, typ))       
+                n.expr.accept(self, **kwargs)
+                self.printt('))')
+            else:
+                n.expr.accept(self, **kwargs)
+        kwargs['Return'] = True        
         self.printt(';')
 
     @v.when(IfStmt)
     def visit(self, n, **kwargs):
         self.printt('if (')
         n.condition.accept(self, **kwargs)
+        if isinstance(n.condition, NameExpr) or isinstance(n.condition, FieldAccessExpr):
+            if isinstance(n.condition.typee, PrimitiveType):
+                self.printt('._'+self.trans_ty(n.condition.typee))     
+        elif isinstance(n.condition, MethodCallExpr):
+            # try:
+            #     if isinstance(n.condition.typee, PrimitiveType):
+            #         self.printt('._'+self.trans_ty(n.condition.typee))     
+            # except:
+            #     self.printt('._'+self.trans_ty(n.condition.typee))     
+            self.printt('._bit')
+            
         thenBlock = isinstance(n.thenStmt, BlockStmt)
         self.printt(') ')
         if not thenBlock: self.indent()
@@ -354,6 +434,8 @@ class Translator(object):
     def visit(self, n, **kwargs):
         self.printt('assert ')
         n.check.accept(self, **kwargs)
+        if not isinstance(n.check, BinaryExpr):
+            self.printt('._bit')
         # There are no messages in Sketch, I think
         # if n.msg:
         #     self.printt(' : ')
@@ -488,6 +570,7 @@ class Translator(object):
 
     @v.when(VariableDeclarationExpr)
     def visit(self, n, **kwargs):
+        kwargs['VariableDeclarationExpr'] = True        
         typ = n.varss[0].typee if len(n.varss) > 0 else None
         cls = None
         if typ and isinstance(typ, ClassOrInterfaceType) or isinstance(typ, ReferenceType):
@@ -505,42 +588,249 @@ class Translator(object):
         def print_op():
             self.printt(' ')
             o = n.op.upper()
+            not_ass = False
             if o == u'ASSIGN': self.printt(assignop[o])
             else:
                 self.printt('=')
                 self.printt(' ')
+                typ = self.getUnboxPrimitiveType(n.target)
+                cid = self.primitiveIds[typ]
+                self.printt('(new Object(__cid={0}, _{1}='.format(cid, typ)) 
                 n.target.accept(self, **kwargs)
+                self.unboxPrimitive(n.target)
                 self.printt(' ')
                 self.printt(assignop['_{}'.format(o)])
+                not_ass = True
             self.printt(' ')
+            return not_ass
         # print 'AssignExpr'
+        already_unboxed = False
         if type(n.target) == FieldAccessExpr:
             v = self.trans_faccess(n.target)
             if v:
-                print_op()
-                n.value.accept(self, **kwargs)
+                not_ass = print_op()
+                if not not_ass:
+                    if isinstance(n.value, UnaryExpr):
+                        typ = self.getUnboxPrimitiveType(n.value.expr)
+                        cid = self.primitiveIds[typ]
+                        self.printt('(new Object(__cid={0}, _{1}='.format(cid, typ)) 
+                        n.value.accept(self, **kwargs)
+                        self.printt('))')
+                    elif isinstance(n.value, BinaryExpr):
+                        typ = self.getUnboxPrimitiveType(n.value.left)
+                        cid = self.primitiveIds[typ]
+                        self.printt('(new Object(__cid={0}, _{1}='.format(cid, typ)) 
+                        n.value.accept(self, **kwargs)
+                        self.printt('))')
+                    elif isinstance(n.value, ArrayAccessExpr) and not isinstance(n.target, ArrayAccessExpr):                        
+                        if isinstance(n.target.typee, PrimitiveType) or isinstance(n.value.typee, PrimitiveType):
+                            typ = self.getUnboxPrimitiveType(n.value)
+                            cid = self.primitiveIds[typ]
+                            self.printt('(new Object(__cid={0}, _{1}='.format(cid, typ)) 
+                            n.value.accept(self, **kwargs)
+                            self.printt('))')
+                        else:
+                            n.value.accept(self, **kwargs)
+                    else:                    
+                        if isinstance(n.value, ArrayInitializerExpr) or isinstance(n.value, ArrayCreationExpr):
+                            kwargs['ArrayName'] = self.trans_faccess_no_print(n.target)
+                            kwargs['ArrayType'] = self.trans_ty(self.getUnboxPrimitiveType(n.value))
+                        n.value.accept(self, **kwargs)
+                        if isinstance(n.value, ArrayInitializerExpr) or isinstance(n.value, ArrayCreationExpr):
+                            kwargs['ArrayType'] = None
+                            kwargs['ArrayName'] = None
+                else:
+                    if isinstance(n.value, ArrayInitializerExpr) or isinstance(n.value, ArrayCreationExpr):
+                        kwargs['ArrayName'] = n.target.name                        
+                        kwargs['ArrayType'] = self.trans_ty(self.getUnboxPrimitiveType(n.value))
+                        print("HERE44: "+str(n.target)+", "+str(n.value)) 
+                    n.value.accept(self, **kwargs)
+                    self.unboxPrimitive(n.value)                    
+                    self.printt('))')
+                    already_unboxed = True
+                    if isinstance(n.value, ArrayInitializerExpr) or isinstance(n.value, ArrayCreationExpr):
+                        kwargs['ArrayType'] = None
+                        kwargs['ArrayName'] = None                                                
         else:
             n.target.accept(self, **kwargs)
-            print_op()
-            n.value.accept(self, **kwargs)
+            not_ass = print_op()
+            if not not_ass and not (isinstance(n.target, ArrayAccessExpr) and str(n.target.typee) in [u'bit', u'byte', u'int', u'float', u'double']):
+                if isinstance(n.value, UnaryExpr):
+                    typ = self.getUnboxPrimitiveType(n.value.expr)
+                    cid = self.primitiveIds[typ]
+                    self.printt('(new Object(__cid={0}, _{1}='.format(cid, typ)) 
+                    n.value.accept(self, **kwargs)
+                    self.printt('))')
+                elif isinstance(n.value, BinaryExpr):
+                    typ = self.getUnboxPrimitiveType(n.value.left)
+                    cid = self.primitiveIds[typ]
+                    self.printt('(new Object(__cid={0}, _{1}='.format(cid, typ)) 
+                    n.value.accept(self, **kwargs)
+                    self.printt('))')
+                elif isinstance(n.value, ArrayAccessExpr) and not isinstance(n.target, ArrayAccessExpr):
+                    if isinstance(n.target.typee, PrimitiveType) or isinstance(n.value.typee, PrimitiveType):
+                        typ = self.getUnboxPrimitiveType(n.value)
+                        cid = self.primitiveIds[typ]
+                        self.printt('(new Object(__cid={0}, _{1}='.format(cid, typ)) 
+                        n.value.accept(self, **kwargs)
+                        self.printt('))')
+                    else:
+                        n.value.accept(self, **kwargs)
+                else:
+                    if isinstance(n.value, ArrayInitializerExpr) or isinstance(n.value, ArrayCreationExpr):
+                        kwargs['ArrayName'] = n.target.name                        
+                        kwargs['ArrayType'] = self.trans_ty(self.getUnboxPrimitiveType(n.value))
+                    n.value.accept(self, **kwargs)
+                    if isinstance(n.value, ArrayInitializerExpr) or isinstance(n.value, ArrayCreationExpr):
+                        kwargs['ArrayType'] = None
+                        kwargs['ArrayName'] = None
+            else:
+                if isinstance(n.value, ArrayInitializerExpr) or isinstance(n.value, ArrayCreationExpr):                
+                    kwargs['ArrayName'] = n.target.name
+                    kwargs['ArrayType'] = self.trans_ty(self.getUnboxPrimitiveType(n.value))
+                n.value.accept(self, **kwargs)
+                if isinstance(n.value, ArrayInitializerExpr) or isinstance(n.value, ArrayCreationExpr):                
+                    kwargs['ArrayType'] = None
+                    kwargs['ArrayName'] = None
+                self.unboxPrimitive(n.value)
+                if not_ass:# or (isinstance(n.target, ArrayAccessExpr) and str(n.target.typee) in [u'bit', u'byte', u'int', u'float', u'double']):                
+                    self.printt('))')
+                already_unboxed = True                                        
+
+        if isinstance(n.target, ArrayAccessExpr) and not isinstance(n.value, ArrayAccessExpr) and not isinstance(n.value, CastExpr) and not isinstance(n.value, NullLiteralExpr) and not already_unboxed:
+            if isinstance(n.value.typee, PrimitiveType) or isinstance(n.target.typee, PrimitiveType):
+                self.printt('._'+self.trans_ty(n.value.typee))
 
     @v.when(FieldAccessExpr)
     def visit(self, n, **kwargs):
         self.trans_faccess(n)
 
+    def unboxPrimitive(self, n, **kwargs):
+        typ = ''
+        if isinstance(n, NameExpr):
+            if isinstance(n.typee, PrimitiveType):
+                self.printt('._'+self.trans_ty(n.typee))
+                typ = self.trans_ty(n.typee)
+        elif isinstance(n, FieldAccessExpr):
+            if isinstance(n.typee, PrimitiveType):
+                self.printt('._'+self.trans_ty(n.typee))
+                typ = self.trans_ty(n.typee)
+            elif n.name == 'length' and n.typee == None:
+                self.printt('._int')
+                typ = u'int'
+            elif 'BinOp' in kwargs:
+                self.printt('._int')
+                typ = u'int'                                
+        elif isinstance(n, MethodCallExpr):
+            if n.ax_typ != '':
+                self.printt('._'+n.ax_typ)
+                typ = n.ax_typ
+            else:                
+                # print("HERE33: "+str(n.name)+", "+str(n.typee))
+                # scp = n.scope if n.scope else n
+                # if utils.node_to_obj(scp):
+                #     print("\t\tHERE33: "+str(n.name))                    
+                if isinstance(n.typee, PrimitiveType):
+                    self.printt('._'+self.trans_ty(n.typee))
+                    typ = self.trans_ty(n.typee)
+        elif isinstance(n, BooleanLiteralExpr):
+            self.printt('._bit')
+            typ = u'bit'
+        elif isinstance(n, IntegerLiteralExpr):
+            self.printt('._int')
+            typ = u'int'
+        elif isinstance(n, DoubleLiteralExpr):
+            self.printt('._double')
+            typ = u'double'
+        elif isinstance(n, CharLiteralExpr):
+            self.printt('._char')
+            typ = u'char'
+
+        return typ
+
+    def getUnboxPrimitiveType(self, n, **kwargs):
+        typ = ''
+        if isinstance(n, NameExpr):
+            if isinstance(n.typee, PrimitiveType):
+                typ = self.trans_ty(n.typee)
+        elif isinstance(n, FieldAccessExpr):
+            if isinstance(n.typee, PrimitiveType):
+                typ = self.trans_ty(n.typee)                
+            elif n.name == 'length' and n.typee == None:
+                typ = u'int'
+        elif isinstance(n, MethodCallExpr):
+            if n.ax_typ != '':
+                typ = n.ax_typ
+            else:
+                if n.scope:
+                    if utils.node_to_obj(n.scope):
+                        if isinstance(n.typee, PrimitiveType):
+                            typ = self.trans_ty(n.typee)
+        elif isinstance(n, ArrayAccessExpr):            
+            if str(n.typee) in [u'byte', u'bit', u'int', u'double', u'float']:
+                typ = self.trans_ty(n.typee)
+        elif isinstance(n, BinaryExpr):
+            typ = self.getUnboxPrimitiveType(n.left)
+        elif isinstance(n, BooleanLiteralExpr):
+            typ = u'bit'
+        elif isinstance(n, IntegerLiteralExpr):
+            typ = u'int'
+        elif isinstance(n, DoubleLiteralExpr):
+            typ = u'double'
+        elif isinstance(n, CharLiteralExpr):
+            typ = u'char'
+
+        return typ
+
     @v.when(UnaryExpr)
     def visit(self, n, **kwargs):
         self.printt(UnaryExpr.PRE_OPS.get(n.op, ''))
-        n.expr.accept(self, **kwargs)
-        self.printt(UnaryExpr.POST_OPS.get(n.op, ''))
+        # self.printt('(new Object(__cid={0}(), _{0}='.format(self.getUnboxPrimitiveType(n.expr)))
+        op = UnaryExpr.POST_OPS.get(n.op, '')
+        if op != '':
+            n.expr.accept(self, **kwargs)
+            self.printt(' = new Object(__cid=-2, _int=') 
+            n.expr.accept(self, **kwargs)
+            self.unboxPrimitive(n.expr)
+            if op == '++':
+                self.printt(' + 1')
+            else:
+                self.printt(' - 1')
+            self.printt(')')
+        else:
+            n.expr.accept(self, **kwargs)
+            self.unboxPrimitive(n.expr)
+        # self.printt('))')
+        # if isinstance(n.expr, NameExpr):
+        #     if isinstance(n.expr.typee, PrimitiveType):
+        #         self.printt('._'+self.trans_ty(n.expr.typee))
+        # elif isinstance(n.expr, MethodCallExpr):
+        #     if n.expr.scope:
+        #         if utils.node_to_obj(n.expr.scope):
+        #             if isinstance(n.expr.typee, PrimitiveType):
+        #                 self.printt('._'+self.trans_ty(n.expr.typee))
+        # elif isinstance(n.expr, BooleanLiteralExpr):
+        #     self.printt('._bit')
+        # elif isinstance(n.expr, IntegerLiteralExpr):
+        #     self.printt('._int')
+        # elif isinstance(n.expr, DoubleLiteralExpr):
+        #     self.printt('._double')
+        # elif isinstance(n.expr, CharLiteralExpr):
+        #     self.printt('._char')
+            
+        # self.printt(UnaryExpr.POST_OPS.get(n.op, ''))
 
     @v.when(BinaryExpr)
     def visit(self, n, **kwargs):
         n.left.accept(self, **kwargs)
+        kwargs['BinOp'] = op[n.op.upper()]               
+        self.unboxPrimitive(n.left, **kwargs)
         self.printt(' ')
         self.printt(op[n.op.upper()])
         self.printt(' ')
         n.right.accept(self, **kwargs)
+        self.unboxPrimitive(n.right, **kwargs)
+        kwargs['BinOp'] = None                       
 
     @v.when(ObjectCreationExpr)
     def visit(self, n, **kwargs):
@@ -619,20 +909,30 @@ class Translator(object):
             for d in n.dimensions:
                 self.printt('length=')
                 d.accept(self, **kwargs)
-            self.printt(')')
+            self.printt('))')
             # for c in xrange(n.arrayCount):
             #     self.printt('[]')
         else:
+            kwargs['ArrayType'] = typ
             n.initializer.accept(self, **kwargs)
-
-        self.printt(')')
+            kwargs['ArrayType'] = None
+            
+        # self.printt(')')
 
     @v.when(ArrayInitializerExpr)
     def visit(self, n, **kwargs):
         # print 'arrayinitializerexpr'
-        self.printt('length={}, A={{'.format(len(n.values)))
-        self.printSepList(n.values)
-        self.printt('})')
+        name = kwargs['ArrayName']
+        typ = kwargs['ArrayType']
+        self.printt('length=new Object(__cid=-2, _int={})))'.format(len(n.values)))
+        for i in range(0, len(n.values)):
+            v = n.values[i]
+            self.printt('; {0}._array_{1}.A[{2}] = '.format(name, typ.lower(), str(i)))
+            v.accept(self, **kwargs)
+            if typ in ['int', 'bit', 'char', 'double', 'float']:
+                self.printt('._{}'.format(typ))
+        # self.printSepList(n.values)
+        # self.printt('})')
 
     def findType(self, n, name):
         if name in n.symtab:
@@ -652,8 +952,10 @@ class Translator(object):
         if typ == 'byte': typ = 'char'
         n.nameExpr.accept(self, **kwargs)
         self.printt('._array_{}'.format(typ.lower()))
+        # self.printt('._array.A[')
         self.printt('.A[')
         n.index.accept(self, **kwargs)
+        self.unboxPrimitive(n.index)        
         self.printt(']')
 
     @v.when(MethodCallExpr)
@@ -668,20 +970,42 @@ class Translator(object):
 
     @v.when(GeneratorExpr)
     def visit(self, n, **kwargs):
-        if n.isHole: self.printt('??')
+        if n.isHole:
+            typ = self.trans_ty(n.typee)
+            cid = self.primitiveIds[typ]
+            self.printt('(new Object(__cid={0}, _{1}=??))'.format(cid, typ))
         else:
-            self.printt('{|')
-            self.printSepList(n.exprs, sep=' |')
+            self.printt('{|')            
+            if 'Return' in kwargs:
+                self.printArguments(n.exprs, sep=' |')
+            else:
+                self.printSepList(n.exprs, sep=' |')
             self.printt('|}')
 
+    def boxPrimitiveType(self, expr, **kwargs):
+        if isinstance(expr, UnaryExpr) and isinstance(expr.typee, PrimitiveType):
+            typ = self.getUnboxPrimitiveType(expr.expr)
+            cid = self.primitiveIds[typ]
+            self.printt('(new Object(__cid={0}, _{1}='.format(cid, typ))
+            expr.accept(self, **kwargs)
+            self.printt('))')
+        else:
+            expr.accept(self, **kwargs)
+            
+            
     @v.when(ConditionalExpr)
     def visit(self, n, **kwargs):
         self.printt('(')
         n.condition.accept(self, **kwargs)
+        if isinstance(n.condition, NameExpr) or isinstance(n.condition, MethodCallExpr):
+            if isinstance(n.condition.typee, PrimitiveType):
+                self.printt('._'+self.trans_ty(n.condition.typee))        
         self.printt(' ? ')
-        n.thenExpr.accept(self, **kwargs)
+        self.boxPrimitiveType(n.thenExpr, **kwargs)
+        # n.thenExpr.accept(self, **kwargs)
         self.printt(' : ')
-        n.elseExpr.accept(self, **kwargs)
+        self.boxPrimitiveType(n.elseExpr, **kwargs)        
+        # n.elseExpr.accept(self, **kwargs)
         self.printt(')')
 
     @v.when(ThisExpr)
@@ -702,7 +1026,11 @@ class Translator(object):
     def visit(self, n, **kwargs):
         if isinstance(n.typee, PrimitiveType):
             self.printt('(')
-            n.typee.accept(self, **kwargs)
+            typ = str(n.typee)
+            if typ == 'byte': typ = u'char'
+            self.printt(typ)
+            # self.trans_ty(n.typee, **kwargs)
+            # n.typee.accept(self, **kwargs)
             self.printt(')')
         n.expr.accept(self, **kwargs)
 
@@ -712,29 +1040,58 @@ class Translator(object):
 
     @v.when(BooleanLiteralExpr)
     def visit(self, n, **kwargs):
+        # self.printt(n.value)
+        # if 'VariableDeclarationExpr' in kwargs or 'AssignExpr' in kwargs or 'MethodCallExpr' in kwargs:        
+        self.printt('(new Object(__cid=-4, _bit=')
         self.printt(n.value)
-
+        self.printt('))')
+        # else:
+        #     self.printt(n.value)
+        
     @v.when(IntegerLiteralExpr)
     def visit(self, n, **kwargs):
+        # self.printt(n.value)
+        # if 'VariableDeclarationExpr' in kwargs or 'AssignExpr' in kwargs:        
+        self.printt('(new Object(__cid=-2, _int=')
         self.printt(n.value)
+        self.printt('))')
+        # else:
+        #     self.printt(n.value)
 
     @v.when(DoubleLiteralExpr)
     def visit(self, n, **kwargs):
+        # self.printt(n.value)
+        # if 'VariableDeclarationExpr' in kwargs or 'AssignExpr' in kwargs:  
+        self.printt('(new Object(__cid=-6, _double=')
         self.printt(n.value)
-
+        self.printt('))')
+        # else:
+        #     self.printt(n.value)
+        
     @v.when(NullLiteralExpr)
     def visit(self, n, **kwargs):
         self.printt('null')
 
     @v.when(StringLiteralExpr)
     def visit(self, n, **kwargs):
-        self.printt('String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length={1}+1, A="{0}")), 0, {1})'.format(n.value, len(n.value)))
+        # self.printt('String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length={1}+1, A="{0}")), 0, {1})'.format(n.value, len(n.value)))
+        self.printt('String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int={1}+1), A="{0}")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int={1}))'.format(n.value, len(n.value)))
 
     @v.when(CharLiteralExpr)
     def visit(self, n, **kwargs):
+        # self.printt("'")
+        # self.printt(n.value)
+        # self.printt("'")
+        # if 'VariableDeclarationExpr' in kwargs or 'AssignExpr' in kwargs:  
+        self.printt('(new Object(__cid=-3, _char=')        
         self.printt("'")
         self.printt(n.value)
         self.printt("'")
+        self.printt('))')
+        # else:
+        #     self.printt("'")
+        #     self.printt(n.value)
+        #     self.printt("'")
 
     @v.when(InstanceOfExpr)
     def visit(self, n, **kwargs):
@@ -770,8 +1127,8 @@ class Translator(object):
 
     @v.when(PrimitiveType)
     def visit(self, n, **kwargs):
-        # self.printt('Object')
-        self.printt(self.trans_ty(n))
+        self.printt('Object')
+        # self.printt(self.trans_ty(n))
 
     @v.when(VoidType)
     def visit(self, n, **kwargs):
@@ -845,6 +1202,20 @@ class Translator(object):
         logging.debug('***END FIELD ACCESS***\n')
         return True
 
+    def trans_faccess_no_print(self, n, **kwargs):
+        field_name = ''
+        
+        if isinstance(n, FieldAccessExpr):
+            fld = utils.find_fld(n, self.obj_struct)
+            name = self.trans_fld(fld)[1]
+        else:
+            name = n.name
+            
+        if isinstance(n, FieldAccessExpr) and (isinstance(n.scope, FieldAccessExpr) or isinstance(n.scope, NameExpr)):
+            # (ty, nm, init) = self.trans_fld(n.scope)
+            field_name += self.trans_faccess_no_print(n.scope) + '.'
+        return field_name + name
+    
     def trans_fld(self, fld):
         init = ''
         nm = str(fld)
@@ -1213,14 +1584,15 @@ class Translator(object):
             self.printt(' : ')
             if isinstance(c.elseExpr, IntegerLiteralExpr): self.printt('0')
             elif isinstance(c.elseExpr, PrimitiveType):
-                if is_adt:
-                    self.printt('null')
-                else:
-                    if c.elseExpr.name == u'double' or c.elseExpr.name == u'float' or \
-                       c.elseExpr.name == u'long': self.printt('0.0')
-                    if c.elseExpr.name == u'int' or c.elseExpr.name == u'boolean' or c.\
-                       elseExpr.name == u'bit' or c.elseExpr.name == u'short': self.printt('0')
-                    if c.elseExpr.name == u'char' or c.elseExpr.name == u'byte': self.printt("'\\0'")
+                self.printt('null')
+                # if is_adt:
+                #     self.printt('null')
+                # else:
+                #     if c.elseExpr.name == u'double' or c.elseExpr.name == u'float' or \
+                #        c.elseExpr.name == u'long': self.printt('0.0')
+                #     if c.elseExpr.name == u'int' or c.elseExpr.name == u'boolean' or c.\
+                #        elseExpr.name == u'bit' or c.elseExpr.name == u'short': self.printt('0')
+                #     if c.elseExpr.name == u'char' or c.elseExpr.name == u'byte': self.printt("'\\0'")
             elif isinstance(c.elseExpr, (ClassOrInterfaceType, ReferenceType)): self.printt('null')
             else: self.print_dispatch(c.elseExpr, is_adt, is_ax)
         elif isinstance(c, MethodCallExpr):
@@ -1333,14 +1705,15 @@ class Translator(object):
                     
                     # get method declaration for corresponding Axiom Method Call
                     ax_mtd = mdec.symtab.get('m'+mdec.adtName)
-                    if not isDirectParentReturn(s):
-                        if isinstance(ax_mtd.typee, PrimitiveType):
-                            s = self.unwrapBox(s, ax_mtd.typee.name)
+                    # if not isDirectParentReturn(s):
+                    if isinstance(ax_mtd.typee, PrimitiveType):
+                        # s = self.unwrapBox(s, ax_mtd.typee.name)
+                        s.ax_typ = self.trans_ty(ax_mtd.typee)
                             
-            # Handle primitive wrapping
-            if isDirectParentReturn(s):
-                if isinstance(s.typee, PrimitiveType) and s.typee.name != 'null':
-                    s = self.wrapPrimitive(s)
+            # # Handle primitive wrapping
+            # if isDirectParentReturn(s):
+            #     if isinstance(s.typee, PrimitiveType) and s.typee.name != 'null':
+            #         s = self.wrapPrimitive(s)
                     
             return s
 
@@ -1348,6 +1721,9 @@ class Translator(object):
         #    n's children with wrapUnwrap'ed versions. Finally, for specific n's
         #    it replaces other relavent values with newly updated children
         def wrapUnwrapPrimitives(n, *args):
+            # wrapUnwrap(n, *args)
+            # for c in n.childrenNodes:
+            #     wrapUnwrap(c, *args)
             prevChildren = n.childrenNodes
             n = wrapUnwrap(n, *args)
             children = []
@@ -1544,7 +1920,20 @@ class Translator(object):
 
     def printArguments(self, args, **kwargs):
         self.printt('(')
-        self.printSepList(args)
+        if args:
+            lenn = len(args)
+            for i in xrange(lenn):
+                if isinstance(args[i], BinaryExpr) or isinstance(args[i], UnaryExpr):
+                    if isinstance(args[i].typee, PrimitiveType):
+                        typ = self.trans_ty(args[i].typee)
+                        cid = self.primitiveIds[typ]
+                        self.printt('(new Object(__cid={0}, _{1}='.format(cid, typ))
+                        args[i].accept(self, **kwargs)                        
+                        self.printt('))')
+                else:
+                    args[i].accept(self, **kwargs)
+                if i+1 < lenn: self.printt('{} '.format(kwargs.get('sep', ',')))
+        # self.printSepList(args)
         self.printt(')')
         
     def printMods(self, mods, **kwargs):

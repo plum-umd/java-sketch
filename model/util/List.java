@@ -7,4 +7,5 @@ public interface List <E> {
   public void remove(Object e);
   public boolean remove(int index);
   public <E> E set (int index, E element);
+  public int size();
 }
