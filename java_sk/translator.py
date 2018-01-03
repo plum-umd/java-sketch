@@ -711,6 +711,10 @@ class Translator(object):
             if isinstance(n.typee, PrimitiveType):
                 self.printt('._'+self.trans_ty(n.typee))
                 typ = self.trans_ty(n.typee)
+        elif isinstance(n, GeneratorExpr):
+            if isinstance(n.typee, PrimitiveType):
+                self.printt('._'+self.trans_ty(n.typee))
+                typ = self.trans_ty(n.typee)                
         elif isinstance(n, FieldAccessExpr):
             if isinstance(n.typee, PrimitiveType):
                 self.printt('._'+self.trans_ty(n.typee))
@@ -732,7 +736,7 @@ class Translator(object):
                 #     print("\t\tHERE33: "+str(n.name))                    
                 if isinstance(n.typee, PrimitiveType):
                     self.printt('._'+self.trans_ty(n.typee))
-                    typ = self.trans_ty(n.typee)
+                    typ = self.trans_ty(n.typee)        
         elif isinstance(n, BooleanLiteralExpr):
             self.printt('._bit')
             typ = u'bit'
