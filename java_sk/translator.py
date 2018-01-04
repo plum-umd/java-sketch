@@ -378,6 +378,8 @@ class Translator(object):
     @v.when(IfStmt)
     def visit(self, n, **kwargs):
         self.printt('if (')
+        if isinstance(n.condition, GeneratorExpr):
+            n.condition.my_typ = PrimitiveType({u'type': {u'name': u'bit'}})
         n.condition.accept(self, **kwargs)
         if isinstance(n.condition, NameExpr) or isinstance(n.condition, FieldAccessExpr):
             if isinstance(n.condition.typee, PrimitiveType):
@@ -389,6 +391,9 @@ class Translator(object):
             # except:
             #     self.printt('._'+self.trans_ty(n.condition.typee))     
             self.printt('._bit')
+        elif isinstance(n.condition, GeneratorExpr):
+            self.printt('._bit')
+        
             
         thenBlock = isinstance(n.thenStmt, BlockStmt)
         self.printt(') ')
