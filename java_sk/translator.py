@@ -836,7 +836,7 @@ class Translator(object):
         if op_before not in ['++', '--']:
             self.printt(UnaryExpr.PRE_OPS.get(n.op, ''))
 
-        if op_after != '' or op_before in ['++', '--']:
+        if (op_after != '' or op_before in ['++', '--']) and not isinstance(n.expr, ArrayAccessExpr):
             n.expr.accept(self, **kwargs)
             self.printt(' = new Object(__cid=-2, _int=') 
             n.expr.accept(self, **kwargs)
