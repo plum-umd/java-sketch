@@ -1,0 +1,56 @@
+package array;
+
+struct Array_bit {
+  Object length;
+  bit[length._int] A;
+}
+
+struct Array_char {
+  Object length;
+  char[length._int] A;
+}
+
+struct Array_int {
+  Object length;
+  int[length._int] A;
+}
+
+struct Array_float {
+  Object length;
+  float[length._int] A;
+}
+
+struct Array_double {
+  Object length;
+  double[length._int] A;
+}
+
+struct Array_Object {
+  Object length;
+  Object[length._int] A;
+}
+
+Object Wrap_Array_bit(Array_bit arr) {
+  return new Object(__cid=Array(), _array_bit=arr); 
+}
+
+Object Wrap_Array_char(Array_char arr) {
+  return new Object(__cid=Array(), _array_char=arr); 
+}
+
+Object Wrap_Array_int(Array_int arr) {
+  return new Object(__cid=Array(), _array_int=arr); 
+}
+
+Object Wrap_Array_float(Array_float arr) {
+  return new Object(__cid=Array(), _array_float=arr); 
+}
+
+Object Wrap_Array_double(Array_double arr) {
+  return new Object(__cid=Array(), _array_double=arr); 
+}
+
+Object Wrap_Array_Object(Array_Object arr) {
+  return new Object(__cid=Array(), _array_object=arr); 
+}
+

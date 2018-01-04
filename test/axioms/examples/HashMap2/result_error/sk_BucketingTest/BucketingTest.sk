@@ -1,0 +1,25 @@
+package BucketingTest;
+
+Object BucketingTest_BucketingTest(Object self) {
+    return self;
+}
+
+harness void mn_int_int_int(int __x, int __y, int __z) {
+  Object x = new Object(__cid=-2, _int=__x); 
+  Object y = new Object(__cid=-2, _int=__y); 
+  Object z = new Object(__cid=-2, _int=__z); 
+Object self = Object_Object(new Object(__cid=Object()));
+  assume x._int != y._int && x._int != z._int && y._int != z._int;
+  Object xx = Integer_Integer_int(new Object(__cid=Integer()), x);
+  Object yy = Integer_Integer_int(new Object(__cid=Integer()), y);
+  Object zz = Integer_Integer_int(new Object(__cid=Integer()), z);
+  assert xx.__cid == Integer();  
+  setUp@BucketingTest(self);
+  assert xx.__cid == Integer();  
+}
+
+void setUp(Object self) {
+  self.classUnderTest_BucketingTest = Bucketing_Bucketing(new Object(__cid=Bucketing()));
+}
+
+

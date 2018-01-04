@@ -1,0 +1,2 @@
+SKETCH version 1.7.4
+Benchmark = /Users/grumpy/Research/java-sketch2/test/axioms/examples/HashMap2/HashMap/../result_noax/sk_BucketingTest/main.sk

@@ -1,0 +1,10 @@
+package Bucketing;
+
+Object Bucketing_Bucketing(Object self) {
+  self.size_Bucketing = (new Object(__cid=-2, _int=4));
+  self.mod_Bucketing = (new Object(__cid=-2, _int=2));
+  self.numberOfSlots_Bucketing = (new Object(__cid=-2, _int=2));
+  self.numberOfElements_Bucketing = (new Object(__cid=-2, _int=0));
+  return self;
+}
+
