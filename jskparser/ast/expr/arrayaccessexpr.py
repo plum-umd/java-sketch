@@ -41,4 +41,4 @@ class ArrayAccessExpr(Expression):
     def typee(self):
         if self.name in self.symtab:
             return self.symtab[self.name].typee
-        return None
+        return super(ArrayAccessExpr, self).typee

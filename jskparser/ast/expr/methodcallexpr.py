@@ -279,6 +279,10 @@ class MethodCallExpr(Expression):
             elif isinstance(a, ThisExpr):
                 typ = utils.get_coid(self)
             elif not a.typee:
+                print("HERE333: "+str(a)+", "+str(self.name))
+                for key,val in self.symtab.items():
+                    print("\tHERE333: "+str(key)+", "+str(val))
+                print("HERE333: END")                    
                 typ = self.symtab[a.name].typee
             else:
                 typ = a.typee

@@ -799,6 +799,11 @@ class Translator(object):
                 typ = self.trans_ty(n.typee)                
             elif n.name == 'length' and n.typee == None:
                 typ = u'int'
+        elif isinstance(n, CastExpr):
+            # if isinstance(n.expr.typee, PrimitiveType):
+                # typ = self.trans_ty(n.expr.typee)                                
+            if isinstance(n.typee, PrimitiveType):
+                typ = self.trans_ty(n.typee)                                
         elif isinstance(n, MethodCallExpr):
             if n.ax_typ != '':
                 typ = n.ax_typ
@@ -972,7 +977,7 @@ class Translator(object):
         typ = self.trans_ty(n.nameExpr.typee)
         if n.nameExpr.name in n.nameExpr.symtab:
             typ = self.trans_ty(n.nameExpr.symtab[n.nameExpr.name].typee)
-        else:
+        elif not isinstance(n.nameExpr, MethodCallExpr):
             typ = self.trans_ty(utils.find_fld(n.nameExpr, self.obj_struct).typee) 
         if typ == 'byte': typ = 'char'
         n.nameExpr.accept(self, **kwargs)
@@ -1983,13 +1988,15 @@ class Translator(object):
         if args:
             lenn = len(args)
             for i in xrange(lenn):
-                if isinstance(args[i], BinaryExpr) or isinstance(args[i], UnaryExpr):
-                    if isinstance(args[i].typee, PrimitiveType):
+                if isinstance(args[i], BinaryExpr) or isinstance(args[i], UnaryExpr) or isinstance(args[i], ArrayAccessExpr):
+                    if isinstance(args[i].typee, PrimitiveType) or str(args[i].typee) in [u'int', u'bit', u'float', u'double']:
                         typ = self.trans_ty(args[i].typee)
                         cid = self.primitiveIds[typ]
                         self.printt('(new Object(__cid={0}, _{1}='.format(cid, typ))
                         args[i].accept(self, **kwargs)                        
                         self.printt('))')
+                    else:
+                        args[i].accept(self, **kwargs)                        
                 else:
                     args[i].accept(self, **kwargs)
                 if i+1 < lenn: self.printt('{} '.format(kwargs.get('sep', ',')))
