@@ -455,7 +455,7 @@ class Translator(object):
     def visit(self, n, **kwargs):
         self.printt('assert ')
         n.check.accept(self, **kwargs)
-        if not isinstance(n.check, BinaryExpr):
+        if not isinstance(n.check, BinaryExpr) and not isinstance(n.check, UnaryExpr):
             self.printt('._bit')
         # There are no messages in Sketch, I think
         # if n.msg:
