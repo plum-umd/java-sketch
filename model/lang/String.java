@@ -213,7 +213,8 @@ public class String implements CharSequence{
 	    int i = -1;
 	    int stop = 0;
 	    char[_count] val = _value;
-	    while (++i < len) {
+	    while (i < len) {
+		i += 1;
 		if (val[i] == oldChar && stop == 0) {
 		    stop = i;
 		}

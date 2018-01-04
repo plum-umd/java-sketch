@@ -49,7 +49,8 @@ public class Stack<E> {
 	    return null;
 	}
 	E e = elementData[size-1];
-	elementData[--size] = null;
+	elementData[size] = null;
+	size -= 1;
 	return e;
     }
 

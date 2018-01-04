@@ -927,7 +927,8 @@ class Translator(object):
             self.printt('new Object(__cid={}())'.format(str(obj_cls)))
             if cls.isinner(): self.printt(', self')
             if n.args: self.printt(', ')
-        self.printSepList(n.args)
+        self.printSepListObjectCreationExpr(n.args)
+        # self.printSepList(n.args)
         self.printt(')')
 
     @v.when(ArrayCreationExpr)
@@ -1979,6 +1980,23 @@ class Translator(object):
             for i in xrange(lenn):
                 if isinstance(args[i].typee, PrimitiveType):
                     self.buf.write('{0} {1}'.format(self.trans_ty(args[i].typee), '__'+str(args[i].idd)))
+                else:
+                    args[i].accept(self, **kwargs)
+                if i+1 < lenn: self.printt('{} '.format(kwargs.get('sep', ',')))   
+
+    def printSepListObjectCreationExpr(self, args, **kwargs):
+        if args:
+            lenn = len(args)
+            for i in xrange(lenn):
+                if isinstance(args[i], BinaryExpr) or isinstance(args[i], UnaryExpr) or isinstance(args[i], ArrayAccessExpr):
+                    if isinstance(args[i].typee, PrimitiveType) or str(args[i].typee) in [u'int', u'bit', u'float', u'double']:
+                        typ = self.trans_ty(args[i].typee)
+                        cid = self.primitiveIds[typ]
+                        self.printt('(new Object(__cid={0}, _{1}='.format(cid, typ))
+                        args[i].accept(self, **kwargs)                        
+                        self.printt('))')
+                    else:
+                        args[i].accept(self, **kwargs)                        
                 else:
                     args[i].accept(self, **kwargs)
                 if i+1 < lenn: self.printt('{} '.format(kwargs.get('sep', ',')))   
