@@ -783,13 +783,14 @@ class Translator(object):
                 self.printt('._'+n.ax_typ)
                 typ = n.ax_typ
             else:                
-                # print("HERE33: "+str(n.name)+", "+str(n.typee))
                 # scp = n.scope if n.scope else n
                 # if utils.node_to_obj(scp):
                 #     print("\t\tHERE33: "+str(n.name))                    
                 if isinstance(n.typee, PrimitiveType):
                     self.printt('._'+self.trans_ty(n.typee))
-                    typ = self.trans_ty(n.typee)        
+                    typ = self.trans_ty(n.typee)
+        elif isinstance(n, EnclosedExpr):
+            self.unboxPrimitive(n.inner)        
         elif isinstance(n, BooleanLiteralExpr):
             self.printt('._bit')
             typ = u'bit'
@@ -851,7 +852,7 @@ class Translator(object):
     def visit(self, n, **kwargs):
         op_after = UnaryExpr.POST_OPS.get(n.op, '')
         op_before = UnaryExpr.PRE_OPS.get(n.op, '')
-
+        
         if op_before not in ['++', '--']:
             self.printt(UnaryExpr.PRE_OPS.get(n.op, ''))
 
@@ -1313,7 +1314,7 @@ class Translator(object):
         semi = kwargs.get('semi', True)
         tltr = copy.copy(self)
         tltr.indentation = ''
-        
+
         def write_call():
             tltr.buf = cStringIO.StringIO()
             if callexpr.scope:
