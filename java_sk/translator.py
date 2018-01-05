@@ -799,6 +799,9 @@ class Translator(object):
                 typ = self.trans_ty(n.typee)                
             elif n.name == 'length' and n.typee == None:
                 typ = u'int'
+        elif isinstance(n, EnclosedExpr):
+            if isinstance(n.inner.typee, PrimitiveType):
+                typ = self.trans_ty(n.inner.typee)
         elif isinstance(n, CastExpr):
             # if isinstance(n.expr.typee, PrimitiveType):
                 # typ = self.trans_ty(n.expr.typee)                                
@@ -939,7 +942,12 @@ class Translator(object):
         if n.dimensions:
             for d in n.dimensions:
                 self.printt('length=')
-                d.accept(self, **kwargs)
+                if isinstance(d, BinaryExpr) and isinstance(d.typee, PrimitiveType):
+                    self.printt('(new Object(__cid=-2, _int=')
+                    d.accept(self, **kwargs)
+                    self.printt('))')
+                else:
+                    d.accept(self, **kwargs)
             self.printt('))')
             # for c in xrange(n.arrayCount):
             #     self.printt('[]')
@@ -976,7 +984,10 @@ class Translator(object):
     def visit(self, n, **kwargs):
         # print 'arrayaccessexpr'
         typ = self.trans_ty(n.nameExpr.typee)
-        if n.nameExpr.name in n.nameExpr.symtab:
+        if isinstance(n.nameExpr, FieldAccessExpr):
+            fld = utils.find_fld(n.nameExpr, self.obj_struct)
+            typ = self.trans_ty(fld.typee)
+        elif n.nameExpr.name in n.nameExpr.symtab:
             typ = self.trans_ty(n.nameExpr.symtab[n.nameExpr.name].typee)
         elif not isinstance(n.nameExpr, MethodCallExpr):
             typ = self.trans_ty(utils.find_fld(n.nameExpr, self.obj_struct).typee) 
@@ -1226,6 +1237,8 @@ class Translator(object):
                 typ = str(n.scope.typee)
                 # typ = str(n.typee)
                 if typ == 'byte': typ = 'char'
+                if typ not in [u'int', u'bit', u'float', u'double']:
+                    typ = u'Object'
                 self.printt('._array_{}'.format(typ.lower())) 
             self.printt('.{}'.format(str(fld)))
 
