@@ -654,6 +654,14 @@ class Translator(object):
                         self.printt('(new Object(__cid={0}, _{1}='.format(cid, typ)) 
                         n.value.accept(self, **kwargs)
                         self.printt('))')
+                    elif isinstance(n.value, CastExpr):
+                        if isinstance(n.value.typee, PrimitiveType):
+                            typ = self.trans_ty(n.value.typee)
+                            cid = self.primitiveIds[typ]
+                            self.printt('(new Object(__cid={0}, _{1}=('.format(cid, typ)) 
+                            n.value.accept(self, **kwargs)
+                            self.unboxPrimitive(n.value.expr)
+                            self.printt(')))')                        
                     elif isinstance(n.value, ArrayAccessExpr) and not isinstance(n.target, ArrayAccessExpr):                        
                         if isinstance(n.target.typee, PrimitiveType) or isinstance(n.value.typee, PrimitiveType):
                             typ = self.getUnboxPrimitiveType(n.value)
@@ -698,6 +706,14 @@ class Translator(object):
                     self.printt('(new Object(__cid={0}, _{1}='.format(cid, typ)) 
                     n.value.accept(self, **kwargs)
                     self.printt('))')
+                elif isinstance(n.value, CastExpr):
+                    if isinstance(n.value.typee, PrimitiveType):
+                        typ = self.trans_ty(n.value.typee)
+                        cid = self.primitiveIds[typ]
+                        self.printt('(new Object(__cid={0}, _{1}=('.format(cid, typ)) 
+                        n.value.accept(self, **kwargs)
+                        self.unboxPrimitive(n.value.expr)
+                        self.printt(')))')                        
                 elif isinstance(n.value, ArrayAccessExpr) and not isinstance(n.target, ArrayAccessExpr):
                     if isinstance(n.target.typee, PrimitiveType) or isinstance(n.value.typee, PrimitiveType):
                         typ = self.getUnboxPrimitiveType(n.value)
@@ -728,7 +744,7 @@ class Translator(object):
                     self.printt('))')
                 already_unboxed = True                                        
 
-        if isinstance(n.target, ArrayAccessExpr) and not isinstance(n.value, ArrayAccessExpr) and not isinstance(n.value, CastExpr) and not isinstance(n.value, NullLiteralExpr) and not already_unboxed:
+        if isinstance(n.target, ArrayAccessExpr) and not isinstance(n.value, ArrayAccessExpr) and not isinstance(n.value, NullLiteralExpr) and not already_unboxed:
             if isinstance(n.value.typee, PrimitiveType) or isinstance(n.target.typee, PrimitiveType):
                 self.printt('._'+self.trans_ty(n.value.typee))
 
@@ -1018,10 +1034,11 @@ class Translator(object):
             self.printt('(new Object(__cid={0}, _{1}=??))'.format(cid, typ))
         else:
             self.printt('{|')            
-            if 'Return' in kwargs:
-                self.printArguments(n.exprs, sep=' |')
-            else:
-                self.printSepList(n.exprs, sep=' |')
+            # if 'Return' in kwargs:
+            #     self.printArguments(n.exprs, sep=' |')
+            # else:
+            #     self.printSepList(n.exprs, sep=' |')
+            self.printArguments(n.exprs, sep=' |')
             self.printt('|}')
 
     def boxPrimitiveType(self, expr, **kwargs):
