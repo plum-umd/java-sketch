@@ -150,7 +150,6 @@ class Xform(BodyDeclaration):
         # i dont think i know what this means yet...but it's probably not good
         if len(cases) == 0:
             raise Exception('Length of cases == 0')
-
         for s in self.stmt.entries:
             if str(s.label) == cases[0]:                
                 if len(cases) == 1:

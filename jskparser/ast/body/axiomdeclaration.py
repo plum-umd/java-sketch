@@ -84,3 +84,16 @@ class AxiomDeclaration(BodyDeclaration):
                 else: params.append(str(p.method))
             return params
         return u'_'.join([self.name] + ptypes())
+
+    def name_no_nested(self, isCons):
+        def ptypes():
+            params = []
+            ps = self.parameters
+            if not isCons:
+                ps = ps[1:]
+            for p in ps:
+                if p.idd: params.append(p.typee.name)
+                else: params.append(str(p.method.typee))
+            return params
+        return u'_'.join([self.name] + ptypes())
+    

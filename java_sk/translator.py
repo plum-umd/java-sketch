@@ -739,7 +739,8 @@ class Translator(object):
                 if isinstance(n.value, ArrayInitializerExpr) or isinstance(n.value, ArrayCreationExpr):                
                     kwargs['ArrayType'] = None
                     kwargs['ArrayName'] = None
-                self.unboxPrimitive(n.value)
+                if not isinstance(n.value, CastExpr):
+                    self.unboxPrimitive(n.value)
                 if not_ass:# or (isinstance(n.target, ArrayAccessExpr) and str(n.target.typee) in [u'bit', u'byte', u'int', u'float', u'double']):                
                     self.printt('))')
                 already_unboxed = True                                        
@@ -762,10 +763,13 @@ class Translator(object):
             if isinstance(n.typee, PrimitiveType):
                 self.printt('._'+self.trans_ty(n.typee))
                 typ = self.trans_ty(n.typee)                
-        elif isinstance(n, CastExpr):
-            if isinstance(n.expr.typee, PrimitiveType):
-                self.printt('._'+self.trans_ty(n.expr.typee))
-                typ = self.trans_ty(n.expr.typee)                                
+        # elif isinstance(n, CastExpr):
+        #     # if isinstance(n.expr, EnclosedExpr):
+        #     #     typ = self.unboxPrimitive(n.expr.inner)
+        #     # elif 
+        #     if isinstance(n.expr.typee, PrimitiveType):
+        #         self.printt('._'+self.trans_ty(n.expr.typee))
+        #         typ = self.trans_ty(n.expr.typee)                                
         elif isinstance(n, FieldAccessExpr):
             fld = utils.find_fld(n, self.obj_struct)            
             if isinstance(fld.typee, PrimitiveType):
@@ -897,6 +901,8 @@ class Translator(object):
             typs = []
             tparam_nms = map(lambda t: t.name, cls.typeParameters)
             cons = utils.extract_nodes([ConstructorDeclaration], cls)
+            if cls.axiom:
+                cons += filter(lambda m: m.constructor, utils.extract_nodes([MethodDeclaration], cls))
             for a in n.args:
                 if type(a) == FieldAccessExpr:
                     tname = utils.find_fld(a, self.obj_struct).typee
@@ -1084,16 +1090,28 @@ class Translator(object):
 
     @v.when(CastExpr)
     def visit(self, n, **kwargs):
+        typ = str(n.typee)        
         if isinstance(n.typee, PrimitiveType):
             self.printt('(')
-            typ = str(n.typee)
             if typ == 'byte': typ = u'char'
             self.printt(typ)
             # self.trans_ty(n.typee, **kwargs)
             # n.typee.accept(self, **kwargs)
             self.printt(')')
-        n.expr.accept(self, **kwargs)
-
+        expr = n.expr
+        count = 0
+        while isinstance(expr, EnclosedExpr):
+            self.printt('(')
+            expr = expr.inner
+            count += 1
+        expr.accept(self, **kwargs)
+        if isinstance(expr.typee, PrimitiveType) and not isinstance(expr, CastExpr):
+            typ = str(expr.typee)
+            if typ == u'byte': typ = u'char'
+            self.printt('._'+typ)
+        self.printt(')'*count)
+        # n.expr.accept(self, **kwargs)
+        
     @v.when(LiteralExpr)
     def visit(self, n, **kwargs):
         self.printt(n.name)
@@ -1255,7 +1273,7 @@ class Translator(object):
                 typ = str(n.scope.typee)
                 # typ = str(n.typee)
                 if typ == 'byte': typ = 'char'
-                if typ not in [u'int', u'bit', u'float', u'double']:
+                if typ not in [u'int', u'bit', u'float', u'double', u'char']:
                     typ = u'Object'
                 self.printt('._array_{}'.format(typ.lower())) 
             self.printt('.{}'.format(str(fld)))
@@ -1314,7 +1332,7 @@ class Translator(object):
         semi = kwargs.get('semi', True)
         tltr = copy.copy(self)
         tltr.indentation = ''
-
+        
         def write_call():
             tltr.buf = cStringIO.StringIO()
             if callexpr.scope:
@@ -1520,7 +1538,7 @@ class Translator(object):
                 self.printt('{}@{}'.format(str(mtd), str(cls)))
                 self.printArguments([NameExpr({u'name':u'self'})] + callexpr.args)
                 logging.debug('**END CALL***\n')
-                return
+                return            
             clss = [cls] + utils.all_subClasses(cls) if invocation_mode != 'uninterpreted' else \
                    utils.all_subClasses(cls)
             clss = filter(lambda c: not c.interface, clss)
@@ -1529,7 +1547,7 @@ class Translator(object):
             scp = tltr.trans(callexpr.scope)
             args = [NameExpr({u'name':scp})] + callexpr.args
             conexprs = []
-            conexprs2 = []
+            conexprs2 = []            
             for c in reversed(clss): # start from bottom of hierarchy
                 (_, mdec) = self.find_mtd(c, mtd.sig())
                 if mdec:

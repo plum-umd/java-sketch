@@ -103,7 +103,7 @@ class Encoder(object):
         self.mcls = main if main else harness
         self.demo_name = str(self.mcls)
         self.sk_dir = os.path.join(self.out_dir, '_'.join(["sk", self.demo_name]))
-
+        
     def to_sk(self):
         # clean up result directory
         if os.path.isdir(self.sk_dir): util.clean_dir(self.sk_dir)
@@ -328,11 +328,22 @@ class Encoder(object):
         # Generates Object Wrapper Functions for ADT Constructors
         def gen_obj_constructor(mtd):
             mtd_param_typs = mtd.param_typs()
+            name = mtd.name            
             if mtd.constructor:
-                for t in mtd_param_typs:
-                    mtd.name += '_'+self.tltr.trans_ty(t)
-            name = mtd.name
-            (ptyps, pnms) = (map(lambda t: self.tltr.trans_ty(t), mtd.param_typs()), map(str, mtd.param_names()))
+                name += u'_Object'
+            for t in mtd_param_typs:
+                typ = self.tltr.trans_ty(t)
+                if typ == u'Object' or str(t) == u'byte': typ = str(t)
+                mtd.name += '_'+typ
+                if mtd.constructor:
+                    name += '_'+typ
+            ptyps = []
+            for t in mtd_param_typs:
+                typ = self.tltr.trans_ty(t)
+                if typ == u'Object': typ = str(t)
+                ptyps.append(typ)
+            pnms = map(str, mtd.param_names())
+            # (ptyps, pnms) = (map(lambda t: self.tltr.trans_ty(t), mtd.param_typs()), map(str, mtd.param_names()))
             ptyps_name = cp.deepcopy(ptyps)
             for i in range(0, len(ptyps)):
                 ptyps[i] = u'Object'
@@ -373,7 +384,7 @@ class Encoder(object):
                 c += '{}) {{\n    '.format(params)
             else:
                 c += ') {\n    '
-            c += 'return new Object(__cid={}(), _{}=new {}('.format(cls.name, cls.name.lower(), name.capitalize())
+            c += 'return new Object(__cid={}(), _{}=new {}('.format(cls.name, cls.name.lower(), mtd.name.capitalize())
             if not mtd.default and not mtd.constructor:
                 c += 'self=self._{}'.format(cls.name.lower())
             for i in range(0, len(pnms)):
@@ -507,6 +518,9 @@ class Encoder(object):
         ax_mtds = utils.extract_nodes([AxiomDeclaration], cls, recurse=False)
 
         for a in ax_mtds:
+            a.name = a.name_no_nested(False)            
+
+        for a in ax_mtds:
             xnm = 'xform_{}'.format(a.name)
             xf = xforms[xnm]
             xf.name = 'xform_{}'.format(a.name)
@@ -520,14 +534,19 @@ class Encoder(object):
                 index += 1
                 while param.method and param.method.parameters:
                     name_with_args = param.method.name
-                    if name_with_args == cls.name:
-                        # name_with_args += '_Object_Object'
-                        if len(param.method.parameters) > 0:
-                            for param2 in param.method.parameters:                        
-                                # name_with_args += '_'+str(param2.typee)
-                                name_with_args += '_'+self.tltr.trans_ty(param2.typee)
-                        else:
-                            name_with_args += '_Empty'
+                    # name_with_args += '_Object_Object'
+                    if len(param.method.parameters) > 0:
+                        params2 = param.method.parameters
+                        if name_with_args != cls.name:
+                            params2 = params2[1:]
+                        for param2 in params2:
+                            # name_with_args += '_'+str(param2.typee)
+                            t = param2.typee
+                            typ = self.tltr.trans_ty(t)
+                            if typ == u'Object' or str(t) == u'byte': typ = str(t)
+                            name_with_args += '_'+typ
+                    if name_with_args == cls.name and len(param.method.parameters) == 0:
+                        name_with_args += '_Empty'
                     xf2 = filter(lambda m: m.name == name_with_args, adt_mtds)
                     xf2 = xf2[0]
                     params2 = param.method.parameters[1:]
@@ -584,29 +603,34 @@ class Encoder(object):
             a.body.stmts = self.tltr.trans_xform(a.name, body, a.body.stmts)
 
             casess = []
-            
+
             for i in range(0, len(a.parameters)):
                 # Find the right instance for which case this should be in the
                 #    resulting switch statement
                 decs = utils.extract_nodes([AxiomDeclaration], a.parameters[i])
 
+                # decs = filter(lambda m: m.adt and m.name_no_nested() == a.parameters[i].name_no_nested(), adt_mtds)
+                                
+                # cases = map(lambda d: d.name_no_nested().capitalize(), decs)
+                
                 decs2 = filter(lambda m: m.name.split('_')[0] == a.parameters[i].name and a.parameters[i].name == cls.name, adt_mtds)
                 
                 # Add the empty constructor to the declarations if needed
                 if not a.parameters[0].method:
                     decs.append(adt_mtds[0])
-
+                    
                 cases = []
                     
                 if a.parameters[i].method and len(decs2) > 0:
                     for d in decs2:
-                        params = a.parameters[i].method.parameters
-                        name = a.parameters[i].method.name
-                        for p in params:
-                            name += '_'+self.tltr.trans_ty(p.typee).lower()
-                        cases.append(name.capitalize())                    
+                        # params = a.parameters[i].method.parameters
+                        # name = a.parameters[i].method.name
+                        # for p in params:
+                        #     name += '_'+self.tltr.trans_ty(p.typee).lower()
+                        name = a.parameters[i].method.name_no_nested(d.constructor).capitalize()
+                        cases.append(name)
                 else:
-                    cases = map(lambda d: d.name.capitalize(), decs)
+                    cases = map(lambda d: d.name_no_nested(False).capitalize(), decs)
                 
                 casess.append(cases)
                 
