@@ -4,7 +4,7 @@ Object IvParameterSpec_IvParameterSpec(Object self) {
     return self;
 }
 
-Object IvParameterSpec_IvParameterSpec_byte(Object self, Array_char val) {
+Object IvParameterSpec_IvParameterSpec_byte(Object self, Object val) {
   return self;
 }
 

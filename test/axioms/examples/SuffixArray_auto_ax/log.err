@@ -1,0 +1,68 @@
+Traceback (most recent call last):
+  File "/usr/local/Cellar/python/2.7.13/Frameworks/Python.framework/Versions/2.7/lib/python2.7/runpy.py", line 174, in _run_module_as_main
+    "__main__", fname, loader, pkg_name)
+  File "/usr/local/Cellar/python/2.7.13/Frameworks/Python.framework/Versions/2.7/lib/python2.7/runpy.py", line 72, in _run_code
+    exec code in run_globals
+  File "/Users/grumpy/Research/java-sketch/java_sk/main.py", line 125, in <module>
+    sys.exit(translate(**vars(OPT)))
+  File "/Users/grumpy/Research/java-sketch/java_sk/main.py", line 42, in translate
+    encoder.to_sk()
+  File "java_sk/encoder.py", line 125, in to_sk
+    cls_sk = self.gen_cls_sk(cls)
+  File "java_sk/encoder.py", line 257, in gen_cls_sk
+    buf.write(self.to_func(m) + os.linesep)
+  File "java_sk/encoder.py", line 493, in to_func
+    buf.write(self.tltr.trans(mtd))
+  File "java_sk/translator.py", line 760, in trans
+    s.accept(self, **kwargs)
+  File "/Users/grumpy/Research/java-sketch/jskparser/ast/node.py", line 257, in accept
+    def accept(self, v, **kwargs): v.visit(self, **kwargs)
+  File "java_sk/visit.py", line 26, in ff
+    return dispatcher(*args, **kw)
+  File "java_sk/visit.py", line 44, in __call__
+    return d(*args, **kw)
+  File "java_sk/translator.py", line 210, in visit
+    n.body.accept(self, **kwargs)
+  File "/Users/grumpy/Research/java-sketch/jskparser/ast/node.py", line 257, in accept
+    def accept(self, v, **kwargs): v.visit(self, **kwargs)
+  File "java_sk/visit.py", line 26, in ff
+    return dispatcher(*args, **kw)
+  File "java_sk/visit.py", line 44, in __call__
+    return d(*args, **kw)
+  File "java_sk/translator.py", line 273, in visit
+    s.accept(self, **kwargs)
+  File "/Users/grumpy/Research/java-sketch/jskparser/ast/node.py", line 257, in accept
+    def accept(self, v, **kwargs): v.visit(self, **kwargs)
+  File "java_sk/visit.py", line 26, in ff
+    return dispatcher(*args, **kw)
+  File "java_sk/visit.py", line 44, in __call__
+    return d(*args, **kw)
+  File "java_sk/translator.py", line 346, in visit
+    if n.expr: n.expr.accept(self, **kwargs)
+  File "/Users/grumpy/Research/java-sketch/jskparser/ast/node.py", line 257, in accept
+    def accept(self, v, **kwargs): v.visit(self, **kwargs)
+  File "java_sk/visit.py", line 26, in ff
+    return dispatcher(*args, **kw)
+  File "java_sk/visit.py", line 44, in __call__
+    return d(*args, **kw)
+  File "java_sk/translator.py", line 490, in visit
+    self.printSepList(n.varss)
+  File "java_sk/translator.py", line 1485, in printSepList
+    args[i].accept(self, **kwargs)
+  File "/Users/grumpy/Research/java-sketch/jskparser/ast/node.py", line 257, in accept
+    def accept(self, v, **kwargs): v.visit(self, **kwargs)
+  File "java_sk/visit.py", line 26, in ff
+    return dispatcher(*args, **kw)
+  File "java_sk/visit.py", line 44, in __call__
+    return d(*args, **kw)
+  File "java_sk/translator.py", line 254, in visit
+    n.init.accept(self, **kwargs)
+  File "/Users/grumpy/Research/java-sketch/jskparser/ast/node.py", line 257, in accept
+    def accept(self, v, **kwargs): v.visit(self, **kwargs)
+  File "java_sk/visit.py", line 26, in ff
+    return dispatcher(*args, **kw)
+  File "java_sk/visit.py", line 44, in __call__
+    return d(*args, **kw)
+  File "java_sk/translator.py", line 594, in visit
+    if not cls.axiom:
+AttributeError: 'NoneType' object has no attribute 'axiom'

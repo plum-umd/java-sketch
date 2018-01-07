@@ -1,0 +1,68 @@
+package Object;
+
+Object fs;
+Object fs_g() { return fs; }
+void fs_s(Object fs_s) { fs = fs_s; }
+
+Object Object_Object(Object self) {
+    return self;
+}
+
+Object equals_Object_Object(Object a, Object b) {
+  if (a == null) {
+    if (b == null) {
+      return (new Object(__cid=-4, _bit=true));
+    }
+    return (new Object(__cid=-4, _bit=false));
+  }
+  return (a.__cid == (new Object(__cid=-2, _int=CsvDocumentTest_Person()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=CsvDocument()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=CsvRow()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=StringBuffer()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=CsvColumnTest()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=FileReaderr()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=StringBuilder()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=CsvConfiguration()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=PrintStream()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(a, b) : a.__cid == (new Object(__cid=-2, _int=CsvDocumentTest()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=CodeAssertion()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=CsvRowTest()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=CsvColumn()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(a, b) : a.__cid == (new Object(__cid=-2, _int=Tester()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(a, b) : a.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=FileOutputStream()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Number()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(a, b) : null);
+}
+
+Object hashCode_Object(Object o) {
+  return (o != null ? (o.__cid == (new Object(__cid=-2, _int=CsvDocumentTest_Person()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=CsvDocument()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=CsvRow()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=StringBuffer()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=CsvColumnTest()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=FileReaderr()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=StringBuilder()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=CsvConfiguration()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=PrintStream()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Character()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=CsvDocumentTest()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=CodeAssertion()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=CsvRowTest()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=CsvColumn()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Integer()))._int ? hashCode@Integer(o) : o.__cid == (new Object(__cid=-2, _int=Tester()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=String()))._int ? hashCode@String(o) : o.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=FileOutputStream()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Number()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Object()))._int ? hashCode@Object(o) : null) : (new Object(__cid=-2, _int=0)));
+}
+
+Object equals_Object(Object self, Object obj) {
+  return (new Object(__cid=-4, _bit=self == obj));
+}
+
+Object hashCode(Object self) {
+  return (new Object(__cid=-2, _int=0));
+}
+
+struct Object {
+  int               __cid;
+  Object            _value_String;
+  Object            _count_String;
+  Object            bool_Boolean;
+  Object            value_Integer;
+  Object            columnValue_CsvColumn;
+  Object            value_Character;
+  Object            skipHeader_CsvConfiguration;
+  Object            columnIndexesToParse_CsvConfiguration;
+  Object            _value_StringBuilder;
+  Object            _count_StringBuilder;
+  Object            _value_StringBuffer;
+  Object            _count_StringBuffer;
+  Object            columns_CsvRow;
+  Object            csvRows_CsvDocument;
+  Object            name_CsvDocumentTest_Person;
+  Object            age_CsvDocumentTest_Person;
+  Object            isEmployed_CsvDocumentTest_Person;
+  FileOutputStream  _fileoutputstream;
+  ArrayList         _arraylist;
+  PrintStream       _printstream;
+  FileReaderr       _filereaderr;
+  BufferedReader    _bufferedreader;
+  Array_bit         _array_bit;
+  Array_char        _array_char;
+  Array_int         _array_int;
+  Array_float       _array_float;
+  Array_double      _array_double;
+  Array_Object      _array_object;
+  bit               _bit;
+  char              _char;
+  int               _int;
+  float             _float;
+  double            _double;
+}

@@ -1,0 +1,11 @@
+package Properties;
+
+Object Properties_Properties(Object self) {
+  self.map_Properties = HashMap_HashMap();
+  return self;
+}
+
+void setProperty_String_String(Object self, Object key, Object value) {
+  (self.map_Properties.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? put_Object_Object_Object@HashMap(self.map_Properties, key, value) : null); self.map_Properties = (self.map_Properties.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? putb_Object_Object_Object@HashMap(self.map_Properties, key, value) : null);
+}
+

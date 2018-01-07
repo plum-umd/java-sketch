@@ -98,12 +98,14 @@ Array_Object values(Object self) {
   Array_Object values = new Array_Object(length=size@HashTable(self));
   if (size@HashTable(self) > 0) {
     int index = 0;
-    Object bs_adt = (self.buckets_HashTable.__cid == ArrayList() ? size_Object@ArrayList(self.buckets_HashTable) : null);
-    int bs = intValue@Integer(xform_ArrayList(bs_adt._arraylist));
+    /* Object bs_adt = (self.buckets_HashTable.__cid == ArrayList() ? size_Object@ArrayList(self.buckets_HashTable) : null); */
+    /* int bs = intValue@Integer(xform_ArrayList(bs_adt._arraylist)); */
+    int bs = intValue@Integer(xform_size_ArrayList(self.buckets_HashTable._arraylist));
     int g = {|self.size_HashTable | self.currentCapacity_HashTable | self.capacityGrowth_HashTable | self.initialCapacity_HashTable | bs|};
-    for (int i = 0; i < g; i++) {
-      Object current_adt = (self.buckets_HashTable.__cid == ArrayList() ? get_Object_int@ArrayList(self.buckets_HashTable, i) : null);
-      Object current = xform_ArrayList(current_adt._arraylist);
+    for (int i = ??, t = g; i < t; i++) {
+      /* Object current_adt = (self.buckets_HashTable.__cid == ArrayList() ? get_Object_int@ArrayList(self.buckets_HashTable, i) : null); */
+      /* Object current = xform_ArrayList(current_adt._arraylist); */
+      Object current = xform_get_ArrayList_int(self.buckets_HashTable._arraylist, i);
       while (current != null) {
         values.A[index] = (current.__cid == HashTableNode() ? getValue@HashTableNode(current) : null);
         index++;

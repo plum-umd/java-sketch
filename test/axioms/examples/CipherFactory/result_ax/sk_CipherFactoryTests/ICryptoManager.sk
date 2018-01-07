@@ -1,0 +1,10 @@
+package ICryptoManager;
+
+Object ICryptoManager_ICryptoManager(Object self) {
+    return self;
+}
+
+
+
+
+

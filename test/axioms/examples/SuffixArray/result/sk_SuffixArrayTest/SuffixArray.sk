@@ -1,0 +1,262 @@
+package SuffixArray;
+
+Object SuffixArray_SuffixArray(Object self) {
+    return self;
+}
+
+Object SuffixArray_SuffixArray_String(Object self, Object text) {
+  SuffixArray_SuffixArray_int(self, toIntArray_String(text));
+  return self;
+}
+
+Object SuffixArray_SuffixArray_int(Object self, Object text) {
+  self.T_SuffixArray = clone_int@SuffixArray(self, text);
+  self.N_SuffixArray = text._array_int.length;
+  construct@SuffixArray(self);
+  kasai@SuffixArray(self);
+  return self;
+}
+
+Object clone_int(Object self, Object arr) {
+  Object l = arr._array_int.length;
+  Object arr_cp = Wrap_Array_int(new Array_int(length=l));
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < l._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    arr_cp._array_int.A[i._int] = arr._array_int.A[i._int];
+  }
+  return arr_cp;
+}
+
+Object intArrToString_int(Object text) {
+  Object tmp = Wrap_Array_char(new Array_char(length=text._array_int.length));
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < text._array_int.length._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    tmp._array_char.A[i._int] = (char)text._array_int.A[i._int];
+  }
+  return String_String_char_int_int(new Object(__cid=String()), tmp, (new Object(__cid=-2, _int=0)), text._array_int.length);
+}
+
+Object toIntArray_String(Object s) {
+  Object text = Wrap_Array_int(new Array_int(length=(s.__cid == (new Object(__cid=-2, _int=String()))._int ? length@String(s) : null)));
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < (s.__cid == (new Object(__cid=-2, _int=String()))._int ? length@String(s) : null)._int; i = new Object(__cid=-2, _int=i._int + 1)) text._array_int.A[i._int] = (s.__cid == (new Object(__cid=-2, _int=String()))._int ? charAt_int@String(s, i) : null)._char;
+  return text;
+}
+
+void construct(Object self) {
+  self.sa_SuffixArray = Wrap_Array_int(new Array_int(length=self.N_SuffixArray));
+  Object suffixRanks = TwoDArray_TwoDArray_int_int(new Object(__cid=TwoDArray()), (new Object(__cid=-2, _int=2)), self.N_SuffixArray);
+  Object ranks = Wrap_Array_Object(new Array_Object(length=self.N_SuffixArray));
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < self.N_SuffixArray._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    if (suffixRanks.__cid == (new Object(__cid=-2, _int=TwoDArray()))._int) { set_int_int_int@TwoDArray(suffixRanks, (new Object(__cid=-2, _int=0)), i, (new Object(__cid=-2, _int=self.T_SuffixArray._array_int.A[i._int]))); }
+    else { 0; };
+    ranks._array_object.A[i._int] = SuffixRankTuple_SuffixRankTuple(new Object(__cid=SuffixRankTuple()));
+  }
+  for (Object pos = (new Object(__cid=-2, _int=1)); pos._int < self.N_SuffixArray._int; pos = (new Object(__cid=-2, _int=pos._int * (new Object(__cid=-2, _int=2))._int))) {
+    for (Object i = (new Object(__cid=-2, _int=0)); i._int < self.N_SuffixArray._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+      Object suffixRank = ranks._array_object.A[i._int];
+      suffixRank.firstHalf_SuffixRankTuple = (suffixRanks.__cid == (new Object(__cid=-2, _int=TwoDArray()))._int ? get_int_int@TwoDArray(suffixRanks, (new Object(__cid=-2, _int=0)), i) : null);
+      suffixRank.secondHalf_SuffixRankTuple = (i._int + pos._int < self.N_SuffixArray._int ? (suffixRanks.__cid == (new Object(__cid=-2, _int=TwoDArray()))._int ? get_int_int@TwoDArray(suffixRanks, (new Object(__cid=-2, _int=0)), (new Object(__cid=-2, _int=i._int + pos._int))) : null) : (new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1))._int)));
+      suffixRank.originalIndex_SuffixRankTuple = i;
+    }
+    ranks = sort_SuffixRankTuple_int@Arrays(ranks, ranks._array_object.length);
+    Object newRank = (new Object(__cid=-2, _int=0));
+    if (suffixRanks.__cid == (new Object(__cid=-2, _int=TwoDArray()))._int) { set_int_int_int@TwoDArray(suffixRanks, (new Object(__cid=-2, _int=1)), ranks._array_object.A[(new Object(__cid=-2, _int=0))._int].originalIndex_SuffixRankTuple, (new Object(__cid=-2, _int=0))); }
+    else { 0; };
+    for (Object i = (new Object(__cid=-2, _int=1)); i._int < self.N_SuffixArray._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+      Object lastSuffixRank = ranks._array_object.A[i._int - (new Object(__cid=-2, _int=1))._int];
+      Object currSuffixRank = ranks._array_object.A[i._int];
+      if (currSuffixRank.firstHalf_SuffixRankTuple._int != lastSuffixRank.firstHalf_SuffixRankTuple._int || currSuffixRank.secondHalf_SuffixRankTuple._int != lastSuffixRank.secondHalf_SuffixRankTuple._int) newRank = new Object(__cid=-2, _int=newRank._int + 1);
+      if (suffixRanks.__cid == (new Object(__cid=-2, _int=TwoDArray()))._int) { set_int_int_int@TwoDArray(suffixRanks, (new Object(__cid=-2, _int=1)), currSuffixRank.originalIndex_SuffixRankTuple, newRank); }
+      else { 0; };
+    }
+    if (suffixRanks.__cid == (new Object(__cid=-2, _int=TwoDArray()))._int) { setRow_int_int@TwoDArray(suffixRanks, (new Object(__cid=-2, _int=0)), (suffixRanks.__cid == (new Object(__cid=-2, _int=TwoDArray()))._int ? getRow_int@TwoDArray(suffixRanks, (new Object(__cid=-2, _int=1))) : null)); }
+    else { 0; };
+    if (newRank._int == self.N_SuffixArray._int - (new Object(__cid=-2, _int=1))._int) pos = self.N_SuffixArray;
+  }
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < self.N_SuffixArray._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    self.sa_SuffixArray._array_int.A[i._int] = ranks._array_object.A[i._int].originalIndex_SuffixRankTuple._int;
+    ranks._array_object.A[i._int] = null;
+  }
+  suffixRanks = null;
+  suffixRanks = null;
+  ranks = null;
+}
+
+void kasai(Object self) {
+  self.lcp_SuffixArray = Wrap_Array_int(new Array_int(length=self.N_SuffixArray));
+  Object inv = Wrap_Array_int(new Array_int(length=self.N_SuffixArray));
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < self.N_SuffixArray._int; i = new Object(__cid=-2, _int=i._int + 1)) inv._array_int.A[self.sa_SuffixArray._array_int.A[i._int]] = i._int;
+  Object len = (new Object(__cid=-2, _int=0));
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < self.N_SuffixArray._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    if (inv._array_int.A[i._int] > (new Object(__cid=-2, _int=0))._int) {
+      Object k = (new Object(__cid=-2, _int=self.sa_SuffixArray._array_int.A[inv._array_int.A[i._int] - (new Object(__cid=-2, _int=1))._int]));
+      while ((i._int + len._int < self.N_SuffixArray._int) && (k._int + len._int < self.N_SuffixArray._int) && self.T_SuffixArray._array_int.A[i._int + len._int] == self.T_SuffixArray._array_int.A[k._int + len._int]) len = new Object(__cid=-2, _int=len._int + 1);
+      self.lcp_SuffixArray._array_int.A[inv._array_int.A[i._int] - (new Object(__cid=-2, _int=1))._int] = len._int;
+      if (len._int > (new Object(__cid=-2, _int=0))._int) len = new Object(__cid=-2, _int=len._int - 1);
+    }
+  }
+}
+
+Object contains_String(Object self, Object substr) {
+  if (substr == null) return (new Object(__cid=-4, _bit=false));
+  if ((substr.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(substr, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=0+1), A="")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=0))) : null)._bit) return (new Object(__cid=-4, _bit=true));
+  Object suffix_str;
+  Object lo = (new Object(__cid=-2, _int=0)),  hi = (new Object(__cid=-2, _int=self.N_SuffixArray._int - (new Object(__cid=-2, _int=1))._int));
+  Object substr_len = (substr.__cid == (new Object(__cid=-2, _int=String()))._int ? length@String(substr) : null);
+  while (lo._int <= hi._int) {
+    Object mid = (new Object(__cid=-2, _int=(lo._int + hi._int) / (new Object(__cid=-2, _int=2))._int));
+    Object suffix_index = (new Object(__cid=-2, _int=self.sa_SuffixArray._array_int.A[mid._int]));
+    Object suffix_len = (new Object(__cid=-2, _int=self.N_SuffixArray._int - suffix_index._int));
+    Object tmp = Wrap_Array_char(new Array_char(length=self.T_SuffixArray._array_int.length));
+    for (Object i = (new Object(__cid=-2, _int=0)); i._int < self.T_SuffixArray._array_int.length._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+      tmp._array_char.A[i._int] = (char)self.T_SuffixArray._array_int.A[i._int];
+    }
+    if (suffix_len._int <= substr_len._int) suffix_str = String_String_char_int_int(new Object(__cid=String()), tmp, suffix_index, suffix_len);
+    else
+      suffix_str = String_String_char_int_int(new Object(__cid=String()), tmp, suffix_index, substr_len);
+    Object cmp = (suffix_str.__cid == (new Object(__cid=-2, _int=String()))._int ? compareTo_String@String(suffix_str, substr) : null);
+    if (cmp._int == (new Object(__cid=-2, _int=0))._int) {
+      return (new Object(__cid=-4, _bit=true));
+    }
+    else if (cmp._int < (new Object(__cid=-2, _int=0))._int) {
+      lo = (new Object(__cid=-2, _int=mid._int + (new Object(__cid=-2, _int=1))._int));
+    }
+    else {
+      hi = (new Object(__cid=-2, _int=mid._int - (new Object(__cid=-2, _int=1))._int));
+    }
+  }
+  return (new Object(__cid=-4, _bit=false));
+}
+
+Object lrs(Object self) {
+  Object max_len = (new Object(__cid=-2, _int=0));
+  Object lrss = TreeSet_TreeSet(new Object(__cid=TreeSet()));
+  Object tmp = Wrap_Array_char(new Array_char(length=self.T_SuffixArray._array_int.length));
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < self.T_SuffixArray._array_int.length._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    tmp._array_char.A[i._int] = (char)self.T_SuffixArray._array_int.A[i._int];
+  }
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < self.N_SuffixArray._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    if (self.lcp_SuffixArray._array_int.A[i._int] > (new Object(__cid=-2, _int=0))._int && self.lcp_SuffixArray._array_int.A[i._int] >= max_len._int) {
+      if (self.lcp_SuffixArray._array_int.A[i._int] > max_len._int) if (lrss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int) { clear@TreeSet(lrss); }
+        else { 0; };
+      max_len = (new Object(__cid=-2, _int=self.lcp_SuffixArray._array_int.A[i._int]));
+      (lrss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? add_E@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), tmp, (new Object(__cid=-2, _int=self.sa_SuffixArray._array_int.A[i._int])), max_len)) : null);
+    }
+  }
+  return lrss;
+}
+
+Object lcs_String_int(Object strs, Object K) {
+  if (K._int <= (new Object(__cid=-2, _int=1))._int) {
+    return null;
+  }
+  Object lcss = TreeSet_TreeSet(new Object(__cid=TreeSet()));
+  if (strs == null || strs._array_object.length._int <= (new Object(__cid=-2, _int=1))._int) return lcss;
+  Object L = (new Object(__cid=-2, _int=0));
+  Object NUM_SENTINELS = strs._array_object.length,  N = strs._array_object.length;
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < N._int; i = new Object(__cid=-2, _int=i._int + 1)) L = (new Object(__cid=-2, _int=L._int + (strs._array_object.A[i._int].__cid == (new Object(__cid=-2, _int=String()))._int ? length@String(strs._array_object.A[i._int]) : null)._int + (new Object(__cid=-2, _int=1))._int));
+  Object indexMap = Wrap_Array_int(new Array_int(length=L));
+  Object LOWEST_ASCII = (new Object(__cid=-2, _int=1000));
+  Object k = (new Object(__cid=-2, _int=0));
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < strs._array_object.length._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    Object str = strs._array_object.A[i._int];
+    for (Object j = (new Object(__cid=-2, _int=0)); j._int < (str.__cid == (new Object(__cid=-2, _int=String()))._int ? length@String(str) : null)._int; j = new Object(__cid=-2, _int=j._int + 1)) {
+      Object asciiVal = (str.__cid == (new Object(__cid=-2, _int=String()))._int ? charAt_int@String(str, j) : null);
+      if (asciiVal._int < LOWEST_ASCII._int) LOWEST_ASCII = asciiVal;
+      k = new Object(__cid=-2, _int=k._int + 1);
+      indexMap._array_int.A[k._int] = i._int;
+    }
+    k = new Object(__cid=-2, _int=k._int + 1);
+    indexMap._array_int.A[k._int] = i._int;
+  }
+  Object SHIFT = (new Object(__cid=-2, _int=LOWEST_ASCII._int + NUM_SENTINELS._int + (new Object(__cid=-2, _int=1))._int));
+  Object sentinel = (new Object(__cid=-2, _int=0));
+  Object T = Wrap_Array_int(new Array_int(length=L));
+  k = (new Object(__cid=-2, _int=0));
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < N._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    Object str = strs._array_object.A[i._int];
+    for (Object j = (new Object(__cid=-2, _int=0)); j._int < (str.__cid == (new Object(__cid=-2, _int=String()))._int ? length@String(str) : null)._int; j = new Object(__cid=-2, _int=j._int + 1)) {
+      k = new Object(__cid=-2, _int=k._int + 1);
+      T._array_int.A[k._int] = ((int)(str.__cid == (new Object(__cid=-2, _int=String()))._int ? charAt_int@String(str, j) : null)) + SHIFT._int;
+    }
+    k = new Object(__cid=-2, _int=k._int + 1);
+    sentinel = new Object(__cid=-2, _int=sentinel._int + 1);
+    T._array_int.A[k._int] = sentinel._int;
+  }
+  Object tmp = intArrToString_int(T);
+  Object sa = SuffixArray_SuffixArray_String(new Object(__cid=SuffixArray()), tmp);
+  Object deque = ArrayDeque_ArrayDeque(new Object(__cid=ArrayDeque()));
+  Object windowColorCount = HashMap_HashMap(new Object(__cid=HashMap()));
+  Object windowColors = HashSet_HashSet(new Object(__cid=HashSet()));
+  Object lo = NUM_SENTINELS,  hi = NUM_SENTINELS,  bestLCSLength = (new Object(__cid=-2, _int=0));
+  Object firstColor = (new Object(__cid=-2, _int=indexMap._array_int.A[sa.sa_SuffixArray._array_int.A[hi._int]]));
+  (windowColors.__cid == (new Object(__cid=-2, _int=HashSet()))._int ? add_E@HashSet(windowColors, Integer_Integer_int(new Object(__cid=Integer()), firstColor)) : windowColors.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? add_E@TreeSet(windowColors, Integer_Integer_int(new Object(__cid=Integer()), firstColor)) : null);
+  (windowColorCount.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? put_K_V@HashMap(windowColorCount, Integer_Integer_int(new Object(__cid=Integer()), firstColor), Integer_Integer_int(new Object(__cid=Integer()), (new Object(__cid=-2, _int=1)))) : null);
+  Object count = (new Object(__cid=-2, _int=0));
+  while (hi._int < L._int) {
+    Object uniqueColors = (windowColors.__cid == (new Object(__cid=-2, _int=HashSet()))._int ? size@HashSet(windowColors) : windowColors.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? size@TreeSet(windowColors) : null);
+    if (uniqueColors._int >= K._int) {
+      Object deqPeekFirst = (deque.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? peekFirst@ArrayDeque(deque) : null);
+      Object deqPeekFirst_int = (deqPeekFirst.__cid == (new Object(__cid=-2, _int=Integer()))._int ? intValue@Integer(deqPeekFirst) : null);
+      Object windowLCP = (new Object(__cid=-2, _int=sa.lcp_SuffixArray._array_int.A[deqPeekFirst_int._int]));
+      if (windowLCP._int > (new Object(__cid=-2, _int=0))._int && bestLCSLength._int < windowLCP._int) {
+        bestLCSLength = windowLCP;
+        if (lcss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int) { clear@TreeSet(lcss); }
+        else { 0; };
+      }
+      if (windowLCP._int > (new Object(__cid=-2, _int=0))._int && bestLCSLength._int == windowLCP._int) {
+        Object pos = (new Object(__cid=-2, _int=sa.sa_SuffixArray._array_int.A[lo._int]));
+        Object lcs = Wrap_Array_char(new Array_char(length=windowLCP));
+        for (Object i = (new Object(__cid=-2, _int=0)); i._int < windowLCP._int; i = new Object(__cid=-2, _int=i._int + 1)) lcs._array_char.A[i._int] = (char)(T._array_int.A[pos._int + i._int] - SHIFT._int);
+        (lcss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? add_E@TreeSet(lcss, String_String_char_int_int(new Object(__cid=String()), lcs, (new Object(__cid=-2, _int=0)), lcs._array_object.length)) : null);
+      }
+      Object lastColor = (new Object(__cid=-2, _int=indexMap._array_int.A[sa.sa_SuffixArray._array_int.A[lo._int]]));
+      Object colorCount = (windowColorCount.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? get_K@HashMap(windowColorCount, Integer_Integer_int(new Object(__cid=Integer()), lastColor)) : null);
+      Object check = (colorCount.__cid == (new Object(__cid=-2, _int=Integer()))._int ? intValue@Integer(colorCount) : null);
+      Object removed = (new Object(__cid=-4, _bit=false));
+      if ((colorCount.__cid == (new Object(__cid=-2, _int=Integer()))._int ? intValue@Integer(colorCount) : null)._int == (new Object(__cid=-2, _int=1))._int) {
+        (windowColors.__cid == (new Object(__cid=-2, _int=HashSet()))._int ? remove_Object@HashSet(windowColors, Integer_Integer_int(new Object(__cid=Integer()), lastColor)) : windowColors.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? remove_Object@TreeSet(windowColors, Integer_Integer_int(new Object(__cid=Integer()), lastColor)) : null);
+        removed = (new Object(__cid=-4, _bit=true));
+      }
+      (windowColorCount.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? put_K_V@HashMap(windowColorCount, Integer_Integer_int(new Object(__cid=Integer()), lastColor), Integer_Integer_int(new Object(__cid=Integer()), (new Object(__cid=-2, _int=(colorCount.__cid == (new Object(__cid=-2, _int=Integer()))._int ? intValue@Integer(colorCount) : null)._int - (new Object(__cid=-2, _int=1))._int)))) : null);
+      if (!(deque.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? isEmpty@ArrayDeque(deque) : null)._bit) {
+        deqPeekFirst = (deque.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? peekFirst@ArrayDeque(deque) : null);
+        Object deqPeekLessThanLo = (new Object(__cid=-2, _int=(deqPeekFirst.__cid == (new Object(__cid=-2, _int=Integer()))._int ? intValue@Integer(deqPeekFirst) : null)._int <= lo._int));
+        while (!(deque.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? isEmpty@ArrayDeque(deque) : null)._bit && deqPeekLessThanLo._bit) {
+          (deque.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? removeFirst@ArrayDeque(deque) : null);
+          deqPeekFirst = (deque.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? peekFirst@ArrayDeque(deque) : null);
+          if (deqPeekFirst != null) {
+            deqPeekLessThanLo = (new Object(__cid=-2, _int=(deqPeekFirst.__cid == (new Object(__cid=-2, _int=Integer()))._int ? intValue@Integer(deqPeekFirst) : null)._int <= lo._int));
+          }
+          else {
+            deqPeekLessThanLo = (new Object(__cid=-4, _bit=false));
+          }
+        }
+      }
+      lo = new Object(__cid=-2, _int=lo._int + 1);
+    }
+    else if (hi._int < L._int) {
+      hi = new Object(__cid=-2, _int=hi._int + 1);
+      Object nextColor = (new Object(__cid=-2, _int=indexMap._array_int.A[sa.sa_SuffixArray._array_int.A[hi._int]]));
+      Object nextColor_Int = Integer_Integer_int(new Object(__cid=Integer()), nextColor);
+      (windowColors.__cid == (new Object(__cid=-2, _int=HashSet()))._int ? add_E@HashSet(windowColors, nextColor_Int) : windowColors.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? add_E@TreeSet(windowColors, nextColor_Int) : null);
+      Object colorCount = (windowColorCount.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? get_K@HashMap(windowColorCount, nextColor_Int) : null);
+      if (colorCount == null) colorCount = Integer_Integer_int(new Object(__cid=Integer()), (new Object(__cid=-2, _int=0)));
+      (windowColorCount.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? put_K_V@HashMap(windowColorCount, nextColor_Int, Integer_Integer_int(new Object(__cid=Integer()), (new Object(__cid=-2, _int=(colorCount.__cid == (new Object(__cid=-2, _int=Integer()))._int ? intValue@Integer(colorCount) : null)._int + (new Object(__cid=-2, _int=1))._int)))) : null);
+      if (!(deque.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? isEmpty@ArrayDeque(deque) : null)._bit) {
+        Object deqPeekLast = (deque.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? peekLast@ArrayDeque(deque) : null);
+        Object deqPeekLast_int = (deqPeekLast.__cid == (new Object(__cid=-2, _int=Integer()))._int ? intValue@Integer(deqPeekLast) : null);
+        while (!(deque.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? isEmpty@ArrayDeque(deque) : null)._bit && sa.lcp_SuffixArray._array_int.A[deqPeekLast_int._int] > sa.lcp_SuffixArray._array_int.A[hi._int - (new Object(__cid=-2, _int=1))._int]) {
+          (deque.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? removeLast@ArrayDeque(deque) : null);
+          if (!(deque.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? isEmpty@ArrayDeque(deque) : null)._bit) {
+            deqPeekLast = (deque.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? peekLast@ArrayDeque(deque) : null);
+            deqPeekLast_int = (deqPeekLast.__cid == (new Object(__cid=-2, _int=Integer()))._int ? intValue@Integer(deqPeekLast) : null);
+          }
+        }
+      }
+      if (deque.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int) { addLast_E@ArrayDeque(deque, Integer_Integer_int(new Object(__cid=Integer()), (new Object(__cid=-2, _int=hi._int - (new Object(__cid=-2, _int=1))._int)))); }
+      else { 0; };
+    }
+    count = new Object(__cid=-2, _int=count._int + 1);
+  }
+  return lcss;
+}
+

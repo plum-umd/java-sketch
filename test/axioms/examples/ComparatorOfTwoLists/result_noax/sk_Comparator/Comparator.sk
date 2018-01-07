@@ -1,0 +1,23 @@
+package Comparator;
+
+Object Comparator_Comparator(Object self) {
+    return self;
+}
+
+void main_String(Object args) {
+  Object communication = CommunicationWithFiles_CommunicationWithFiles(new Object(__cid=CommunicationWithFiles()));
+  Object File1 = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=6+1), A="f1.txt")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=6));
+  Object File2 = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=6+1), A="f2.txt")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=6));
+  Object inFile1 = ArrayList_ArrayList(new Object(__cid=ArrayList()));
+  Object inFile2 = ArrayList_ArrayList(new Object(__cid=ArrayList()));
+  inFile1 = (communication.__cid == (new Object(__cid=-2, _int=CommunicationWithFiles()))._int ? ReadToArray_String_boolean@CommunicationWithFiles(communication, File1, (new Object(__cid=-4, _bit=false))) : null);
+  inFile2 = (communication.__cid == (new Object(__cid=-2, _int=CommunicationWithFiles()))._int ? ReadToArray_String_boolean@CommunicationWithFiles(communication, File2, (new Object(__cid=-4, _bit=false))) : null);
+  if (inFile1.__cid == (new Object(__cid=-2, _int=ArrayList()))._int) { addAll_ArrayList@ArrayList(inFile1, inFile2); }
+  else { 0; };
+  Object o1 = (File1.__cid == (new Object(__cid=-2, _int=String()))._int ? concat_String@String(File1, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=4+1), A="_vs_")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=4))) : null);
+  Object o2 = (o1.__cid == (new Object(__cid=-2, _int=String()))._int ? concat_String@String(o1, File2) : null);
+  Object outputFileName = (o2.__cid == (new Object(__cid=-2, _int=String()))._int ? concat_String@String(o2, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=4+1), A=".txt")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=4))) : null);
+  if (communication.__cid == (new Object(__cid=-2, _int=CommunicationWithFiles()))._int) { createFile_ArrayList_String@CommunicationWithFiles(communication, (communication.__cid == (new Object(__cid=-2, _int=CommunicationWithFiles()))._int ? RemoveDuplicates_ArrayList@CommunicationWithFiles(communication, inFile1) : null), outputFileName); }
+  else { 0; };
+}
+

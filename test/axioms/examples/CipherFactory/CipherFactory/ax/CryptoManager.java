@@ -21,6 +21,14 @@ public class CryptoManager implements ICryptoManager {
 
     private ICipherFactory cipherFactory;
 
+    public CryptoManager() {
+	basicCharset = "US-ASCII";	
+	charset = "UTF-8";	
+	encryptedMark = (byte) 129;	
+	useEncryptionStrict = true;
+	cipherFactory = new DefaultCipherFactory();
+    }
+    
     /**
      * Performs message encryption.
      * @param message message
@@ -28,7 +36,8 @@ public class CryptoManager implements ICryptoManager {
      */
     @Override
     public String encrypt(String message) {
-        Cipher cipher = getCipherFactory().encryptionCipher();
+	ICipherFactory cf = getCipherFactory();
+        Cipher cipher = cf.encryptionCipher();
         byte[] bytes = encode(message, getCharset());
         bytes = appendEncryptionMark(bytes);
         bytes = cryptInCipher(cipher, bytes);
@@ -49,11 +58,11 @@ public class CryptoManager implements ICryptoManager {
         return message;
     }
 
-    /**
-     * Appends encryption mark at first position of byte array.
-     * @param bytesArray initial byte array
-     * @return new extended byte array with appended encryption mark
-     */
+    //**
+    //  * Appends encryption mark at first position of byte array.
+    //  * @param bytesArray initial byte array
+    //  * @return new extended byte array with appended encryption mark
+    //  */
     protected byte[] appendEncryptionMark(byte[] bytesArray) {
         byte[] extendedBytes = new byte[bytesArray.length + 1];
         extendedBytes[0] = getEncryptedMark();
@@ -74,7 +83,8 @@ public class CryptoManager implements ICryptoManager {
         return processEscape(bytes, false);
     }
 
-    protected boolean isEncrypted(byte[] data) {
+    // protected boolean isEncrypted(byte[] data) {
+    protected boolean isEncryptedByte(byte[] data) {	
         return data[0] == getEncryptedMark();
     }
 
@@ -90,11 +100,13 @@ public class CryptoManager implements ICryptoManager {
         if(!isEncrypted(encryptedMessage)){
             return encryptedMessage;
         }
-        Cipher cipher = getCipherFactory().decryptionCipher();
+	ICipherFactory cf = getCipherFactory();
+        Cipher cipher = cf.decryptionCipher();
         byte[] bytes = readEncoded(encryptedMessage);
         byte[] data = cryptInCipher(cipher, bytes);
         // cut encryption mark if required
-        if (isEncrypted(data)) {
+        // if (isEncrypted(data)) {
+        if (isEncryptedByte(data)) {
             data = cutEncryptionMark(data);
         }
         return decode(data, getCharset());
@@ -107,45 +119,56 @@ public class CryptoManager implements ICryptoManager {
      */
     @Override
     public boolean isEncrypted(String message) {
-        Cipher cipher = getCipherFactory().decryptionCipher();
+	ICipherFactory cf = getCipherFactory();
+        Cipher cipher = cf.decryptionCipher();
         byte[] bytes = readEncoded(message);
-        try {
-            byte[] data = cryptInCipher(cipher, bytes);
-            return !isUseEncryptionStrict() || isEncrypted(data);
-        } catch (XlpRuntimeException e) {
-            if (e.getCause() instanceof IllegalBlockSizeException || e.getCause() instanceof BadPaddingException) {
-                return false;
-            }
-            throw e;
-        }
+    	byte[] data = cryptInCipher(cipher, bytes);
+    	// return !isUseEncryptionStrict() || isEncrypted(data);
+    	return !isUseEncryptionStrict() || isEncryptedByte(data);
+	
+        // try {
+        //     byte[] data = cryptInCipher(cipher, bytes);
+        //     return !isUseEncryptionStrict() || isEncrypted(data);
+        // } catch (XlpRuntimeException e) {
+        //     if (e.getCause() instanceof IllegalBlockSizeException || e.getCause() instanceof BadPaddingException) {
+        //         return false;
+        //     }
+        //     throw e;
+        // }
     }
 
     protected byte[] cryptInCipher(Cipher cipher, byte[] data) {
-        try {
-            return cipher.doFinal(data);
-        } catch (Exception e) {
-            throw new XlpRuntimeException(new I18nMessage("E_SRVC_CANNOT_CIPHER"), e);
-        }
+    	return cipher.doFinal(data);	
+        // try {
+        //     return cipher.doFinal(data);
+        // } catch (Exception e) {
+        //     throw new XlpRuntimeException(new I18nMessage("E_SRVC_CANNOT_CIPHER"), e);
+        // }
     }
 
     protected byte[] processEscape(byte[] data, boolean escape) {
-        return escape ? Base64.encodeBase64(data, false, true) : Base64.decodeBase64(data);
+        // return escape ? Base64.encodeBase64(data, false, true) : Base64.decodeBase64(data);
+    	return data;
     }
 
     protected byte[] encode(String string, String charset) {
-        try {
-            return string.getBytes(charset);
-        } catch (Exception e) {
-            return string.getBytes();
-        }
+    	// return string.getBytes(charset);
+	return string.getBytes();
+        // try {
+        //     return string.getBytes(charset);
+        // } catch (Exception e) {
+        //     return string.getBytes();
+        // }
     }
 
     protected String decode(byte[] string, String charset) {
-        try {
-            return new String(string, charset);
-        } catch (Exception e) {
-            return new String(string);
-        }
+    	// return new String(string, charset);
+	return new String(string);
+        // try {
+        //     return new String(string, charset);
+        // } catch (Exception e) {
+        //     return new String(string);
+        // }
     }
 
     public String getBasicCharset() {

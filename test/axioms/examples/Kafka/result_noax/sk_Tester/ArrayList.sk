@@ -1,222 +1,235 @@
 package ArrayList;
 
-Array_Object EMPTY_ELEMENTDATA = new Array_Object(length=0, A={});
-Array_Object EMPTY_ELEMENTDATA_g() { return EMPTY_ELEMENTDATA; }
-void EMPTY_ELEMENTDATA_s(Array_Object EMPTY_ELEMENTDATA_s) { EMPTY_ELEMENTDATA = EMPTY_ELEMENTDATA_s; }
+Object EMPTY_ELEMENTDATA;
+Object EMPTY_ELEMENTDATA_g() { return EMPTY_ELEMENTDATA; }
+void EMPTY_ELEMENTDATA_s(Object EMPTY_ELEMENTDATA_s) { EMPTY_ELEMENTDATA = EMPTY_ELEMENTDATA_s; }
 
-int MAX_ARRAY_SIZE = 1000000;
-int MAX_ARRAY_SIZE_g() { return MAX_ARRAY_SIZE; }
-void MAX_ARRAY_SIZE_s(int MAX_ARRAY_SIZE_s) { MAX_ARRAY_SIZE = MAX_ARRAY_SIZE_s; }
+Object MAX_ARRAY_SIZE = (new Object(__cid=-2, _int=1000000));
+Object MAX_ARRAY_SIZE_g() { return MAX_ARRAY_SIZE; }
+void MAX_ARRAY_SIZE_s(Object MAX_ARRAY_SIZE_s) { MAX_ARRAY_SIZE = MAX_ARRAY_SIZE_s; }
 
 Object ArrayList_ArrayList(Object self) {
-  self.DEFAULT_CAPACITY_ArrayList = 10;
-  self.elementData_ArrayList = new Array_Object(length=self.DEFAULT_CAPACITY_ArrayList);
+  self.DEFAULT_CAPACITY_ArrayList = (new Object(__cid=-2, _int=10));
+  self.elementData_ArrayList = Wrap_Array_Object(new Array_Object(length=self.DEFAULT_CAPACITY_ArrayList));
   self.capacity_ArrayList = self.DEFAULT_CAPACITY_ArrayList;
-  self.size_ArrayList = 0;
+  self.size_ArrayList = (new Object(__cid=-2, _int=0));
+  EMPTY_ELEMENTDATA = Wrap_Array_Object(new Array_Object(length=(new Object(__cid=-2, _int=0))));
   return self;
 }
 
-Object ArrayList_ArrayList_int(Object self, int initialCapacity) {
-  self.DEFAULT_CAPACITY_ArrayList = 10;
-  self.elementData_ArrayList = new Array_Object(length=initialCapacity);
+Object ArrayList_ArrayList_int(Object self, Object initialCapacity) {
+  self.DEFAULT_CAPACITY_ArrayList = (new Object(__cid=-2, _int=10));
+  self.elementData_ArrayList = Wrap_Array_Object(new Array_Object(length=initialCapacity));
   self.capacity_ArrayList = initialCapacity;
-  self.size_ArrayList = 0;
+  self.size_ArrayList = (new Object(__cid=-2, _int=0));
+  EMPTY_ELEMENTDATA = Wrap_Array_Object(new Array_Object(length=(new Object(__cid=-2, _int=0))));
   return self;
 }
 
-void copyNewElementData_int(Object self, int size) {
-  Array_Object newElementData = new Array_Object(length=size);
-  int i = 0;
-  for (i = 0; i < self.size_ArrayList; i++) {
-    newElementData.A[i] = self.elementData_ArrayList.A[i];
+void addAll_ArrayList(Object self, Object a2) {
+  Object len = (a2.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? size@ArrayList(a2) : null);
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < len._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    (self.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? add_E@ArrayList(self, a2._array_object.A[i._int]) : null);
+  }
+}
+
+void sort_Object(Object self, Object c) {
+}
+
+void copyNewElementData_int(Object self, Object size) {
+  Object newElementData = Wrap_Array_Object(new Array_Object(length=size));
+  Object i = (new Object(__cid=-2, _int=0));
+  for (i = (new Object(__cid=-2, _int=0)); i._int < self.size_ArrayList._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    newElementData._array_object.A[i._int] = self.elementData_ArrayList._array_object.A[i._int];
   }
   self.elementData_ArrayList = newElementData;
   self.capacity_ArrayList = size;
 }
 
 void checkAdjustSize(Object self) {
-  if (self.size_ArrayList + 1 >= self.capacity_ArrayList) {
-    copyNewElementData_int@ArrayList(self, self.capacity_ArrayList + 10);
+  if (self.size_ArrayList._int + (new Object(__cid=-2, _int=1))._int >= self.capacity_ArrayList._int) {
+    copyNewElementData_int@ArrayList(self, (new Object(__cid=-2, _int=self.capacity_ArrayList._int + (new Object(__cid=-2, _int=10))._int)));
   }
 }
 
-void createSpace_int(Object self, int index) {
-  int j = 0;
-  for (j = self.size_ArrayList; j > index; j--) {
-    self.elementData_ArrayList.A[j] = self.elementData_ArrayList.A[j - 1];
+void createSpace_int(Object self, Object index) {
+  Object j = (new Object(__cid=-2, _int=0));
+  for (j = self.size_ArrayList; j._int > index._int; j = new Object(__cid=-2, _int=j._int - 1)) {
+    self.elementData_ArrayList._array_object.A[j._int] = self.elementData_ArrayList._array_object.A[j._int - (new Object(__cid=-2, _int=1))._int];
   }
 }
 
-void add_int_E(Object self, int index, Object e) {
+void add_int_E(Object self, Object index, Object e) {
   checkAdjustSize@ArrayList(self);
   createSpace_int@ArrayList(self, index);
-  self.elementData_ArrayList.A[index] = e;
-  self.size_ArrayList++;
+  self.elementData_ArrayList._array_object.A[index._int] = e;
+  self.size_ArrayList = new Object(__cid=-2, _int=self.size_ArrayList._int + 1);
 }
 
-bit add_E(Object self, Object e) {
+Object add_E(Object self, Object e) {
   checkAdjustSize@ArrayList(self);
-  self.elementData_ArrayList.A[self.size_ArrayList++] = e;
-  return true;
+  self.size_ArrayList = new Object(__cid=-2, _int=self.size_ArrayList._int + 1);
+  self.elementData_ArrayList._array_object.A[self.size_ArrayList._int] = e;
+  return (new Object(__cid=-4, _bit=true));
 }
 
 void clear(Object self) {
-  for (int i = 0; i < self.size_ArrayList; i++) {
-    self.elementData_ArrayList.A[i] = null;
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < self.size_ArrayList._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    self.elementData_ArrayList._array_object.A[i._int] = null;
   }
-  self.capacity_ArrayList = 10;
-  self.size_ArrayList = 0;
+  self.capacity_ArrayList = (new Object(__cid=-2, _int=10));
+  self.size_ArrayList = (new Object(__cid=-2, _int=0));
 }
 
-bit contains_Object(Object self, Object o) {
-  return indexOf_Object@ArrayList(self, o) >= 0;
+Object contains_Object(Object self, Object o) {
+  return (new Object(__cid=-2, _int=indexOf_Object@ArrayList(self, o)._int >= (new Object(__cid=-2, _int=0))._int));
 }
 
-Object get_int(Object self, int index) {
-  if (index < 0 || index >= self.size_ArrayList) {
+Object get_int(Object self, Object index) {
+  if (index._int < (new Object(__cid=-2, _int=0))._int || index._int >= self.size_ArrayList._int) {
     return null;
   }
-  return self.elementData_ArrayList.A[index];
+  return self.elementData_ArrayList._array_object.A[index._int];
 }
 
-int indexOf_Object(Object self, Object o) {
-  int i = 0;
+Object indexOf_Object(Object self, Object o) {
+  Object i = (new Object(__cid=-2, _int=0));
   if (o == null) {
-    for (i = 0; i < self.capacity_ArrayList; i++) {
-      if (self.elementData_ArrayList.A[i] == null) {
+    for (i = (new Object(__cid=-2, _int=0)); i._int < self.capacity_ArrayList._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+      if (self.elementData_ArrayList._array_object.A[i._int] == null) {
         return i;
       }
     }
   }
   else {
-    for (i = 0; i < self.size_ArrayList; i++) {
-      if ((o.__cid == KerberosKey() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == HashMap_Node() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Properties() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == File() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == CryptoCipherFactory_CipherProvider() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == StringBuffer() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == OpenSSLCipher() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == AbstractQueue() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == JCECipher() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Mac() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == KeyGenerator() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == ArrayList() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == KeyStore() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Cipher() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == LinkedList() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == System() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == SecretKeySpec() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == CipherFactory() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Integer() ? equals_Object@Integer(o, self.elementData_ArrayList.A[i]) : o.__cid == Character() ? equals_Object@Character(o, self.elementData_ArrayList.A[i]) : o.__cid == Tester() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Arrays() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == TreeMap() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == FileWriterr() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == SecureRandom() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == ArrayDeque() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Stack() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == StringBuilder() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == TreeSet() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == String() ? equals_Object@String(o, self.elementData_ArrayList.A[i]) : o.__cid == IvParameterSpec() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Assert() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Boolean() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == HashSet() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == BufferedWriter() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Utils() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Float() ? equals_Object@Float(o, self.elementData_ArrayList.A[i]) : o.__cid == HashMap() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Number() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == FileReaderr() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == CryptoCipherFactory() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Scanner() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Object() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : 0)) {
+    for (i = (new Object(__cid=-2, _int=0)); i._int < self.size_ArrayList._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+      if ((o.__cid == (new Object(__cid=-2, _int=CryptoCipherFactory()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Utils()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Stack()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=StringBuilder()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=SecureRandom()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Mac()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=FileReaderr()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=IvParameterSpec()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Float()))._int ? equals_Object@Float(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Properties()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=FileWriterr()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=TreeMap()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=PrintStream()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=System()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=CryptoCipherFactory_CipherProvider()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=KerberosKey()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=OpenSSLCipher()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=LinkedList()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=SecretKeySpec()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=HashSet()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=JCECipher()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=StringBuffer()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Collections()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=File()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=FileOutputStream()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=KeyGenerator()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Number()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=AbstractQueue()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Arrays()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Scanner()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=ArrayDeque_DequeNode()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=CipherFactory()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Tester()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=KeyStore()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=HashMap_Node()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=BufferedWriter()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : null)._bit) {
         return i;
       }
     }
   }
-  return -1;
+  return (new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1))._int));
 }
 
-void removeElement_int(Object self, int index) {
-  int j = 0;
-  for (j = index; j < self.size_ArrayList - 1; j++) {
-    self.elementData_ArrayList.A[j] = self.elementData_ArrayList.A[j + 1];
+void removeElement_int(Object self, Object index) {
+  Object j = (new Object(__cid=-2, _int=0));
+  for (j = index; j._int < self.size_ArrayList._int - (new Object(__cid=-2, _int=1))._int; j = new Object(__cid=-2, _int=j._int + 1)) {
+    self.elementData_ArrayList._array_object.A[j._int] = self.elementData_ArrayList._array_object.A[j._int + (new Object(__cid=-2, _int=1))._int];
   }
-  self.elementData_ArrayList.A[self.size_ArrayList - 1] = null;
-  self.size_ArrayList--;
+  self.elementData_ArrayList._array_object.A[self.size_ArrayList._int - (new Object(__cid=-2, _int=1))._int] = null;
+  self.size_ArrayList = new Object(__cid=-2, _int=self.size_ArrayList._int - 1);
 }
 
-Object remove_int(Object self, int index) {
+Object remove_int(Object self, Object index) {
   Object e;
-  if (index < 0 || index >= self.size_ArrayList) {
+  if (index._int < (new Object(__cid=-2, _int=0))._int || index._int >= self.size_ArrayList._int) {
     return null;
   }
-  e = self.elementData_ArrayList.A[index];
+  e = self.elementData_ArrayList._array_object.A[index._int];
   removeElement_int@ArrayList(self, index);
   return e;
 }
 
-bit remove_Object(Object self, Object o) {
-  int i = 0;
+Object remove_Object(Object self, Object o) {
+  Object i = (new Object(__cid=-2, _int=0));
   if (o == null) {
-    for (i = 0; i < self.capacity_ArrayList; i++) {
-      if (self.elementData_ArrayList.A[i] == null) {
+    for (i = (new Object(__cid=-2, _int=0)); i._int < self.capacity_ArrayList._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+      if (self.elementData_ArrayList._array_object.A[i._int] == null) {
         removeElement_int@ArrayList(self, i);
-        return true;
+        return (new Object(__cid=-4, _bit=true));
       }
     }
   }
   else {
-    for (i = 0; i < self.size_ArrayList; i++) {
-      if ((o.__cid == KerberosKey() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == HashMap_Node() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Properties() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == File() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == CryptoCipherFactory_CipherProvider() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == StringBuffer() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == OpenSSLCipher() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == AbstractQueue() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == JCECipher() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Mac() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == KeyGenerator() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == ArrayList() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == KeyStore() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Cipher() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == LinkedList() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == System() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == SecretKeySpec() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == CipherFactory() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Integer() ? equals_Object@Integer(o, self.elementData_ArrayList.A[i]) : o.__cid == Character() ? equals_Object@Character(o, self.elementData_ArrayList.A[i]) : o.__cid == Tester() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Arrays() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == TreeMap() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == FileWriterr() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == SecureRandom() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == ArrayDeque() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Stack() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == StringBuilder() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == TreeSet() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == String() ? equals_Object@String(o, self.elementData_ArrayList.A[i]) : o.__cid == IvParameterSpec() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Assert() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Boolean() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == HashSet() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == BufferedWriter() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Utils() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Float() ? equals_Object@Float(o, self.elementData_ArrayList.A[i]) : o.__cid == HashMap() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Number() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == FileReaderr() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == CryptoCipherFactory() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Scanner() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Object() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : 0)) {
+    for (i = (new Object(__cid=-2, _int=0)); i._int < self.size_ArrayList._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+      if ((o.__cid == (new Object(__cid=-2, _int=CryptoCipherFactory()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Utils()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Stack()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=StringBuilder()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=SecureRandom()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Mac()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=FileReaderr()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=IvParameterSpec()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Float()))._int ? equals_Object@Float(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Properties()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=FileWriterr()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=TreeMap()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=PrintStream()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=System()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=CryptoCipherFactory_CipherProvider()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=KerberosKey()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=OpenSSLCipher()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=LinkedList()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=SecretKeySpec()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=HashSet()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=JCECipher()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=StringBuffer()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Collections()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=File()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=FileOutputStream()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=KeyGenerator()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Number()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=AbstractQueue()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Arrays()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Scanner()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=ArrayDeque_DequeNode()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=CipherFactory()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Tester()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=KeyStore()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=HashMap_Node()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=BufferedWriter()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : null)._bit) {
         removeElement_int@ArrayList(self, i);
-        return true;
+        return (new Object(__cid=-4, _bit=true));
       }
     }
   }
-  return false;
+  return (new Object(__cid=-4, _bit=false));
 }
 
-Object set_int_E(Object self, int index, Object element) {
+Object set_int_E(Object self, Object index, Object element) {
   Object oldElement;
-  if (index < 0 || index >= self.size_ArrayList) {
+  if (index._int < (new Object(__cid=-2, _int=0))._int || index._int >= self.size_ArrayList._int) {
     return null;
   }
-  oldElement = self.elementData_ArrayList.A[index];
-  self.elementData_ArrayList.A[index] = element;
+  oldElement = self.elementData_ArrayList._array_object.A[index._int];
+  self.elementData_ArrayList._array_object.A[index._int] = element;
   return oldElement;
 }
 
-int size(Object self) {
+Object size(Object self) {
   return self.size_ArrayList;
 }
 
-int length(Object self) {
+Object length(Object self) {
   return size@ArrayList(self);
 }
 
-bit isEmpty(Object self) {
-  return self.size_ArrayList == 0;
+Object isEmpty(Object self) {
+  return (new Object(__cid=-4, _bit=self.size_ArrayList._int == (new Object(__cid=-2, _int=0))._int));
 }
 
-Array_Object toArray(Object self) {
-  Array_Object arr = new Array_Object(length=self.size_ArrayList);
-  int i = 0;
-  for (i = 0; i < self.size_ArrayList; i++) {
-    arr.A[i] = self.elementData_ArrayList.A[i];
+Object toArray(Object self) {
+  Object arr = Wrap_Array_Object(new Array_Object(length=self.size_ArrayList));
+  Object i = (new Object(__cid=-2, _int=0));
+  for (i = (new Object(__cid=-2, _int=0)); i._int < self.size_ArrayList._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    arr._array_object.A[i._int] = self.elementData_ArrayList._array_object.A[i._int];
   }
   return arr;
 }
 
-void ensureCapacity_int(Object self, int minCapacity) {
-  int minExpand;
+void ensureCapacity_int(Object self, Object minCapacity) {
+  Object minExpand;
   if (self.elementData_ArrayList != EMPTY_ELEMENTDATA) {
-    minExpand = 0;
+    minExpand = (new Object(__cid=-2, _int=0));
   }
   else {
     minExpand = self.DEFAULT_CAPACITY_ArrayList;
   }
-  if (minCapacity > minExpand) {
+  if (minCapacity._int > minExpand._int) {
     ensureExplicitCapacity_int@ArrayList(self, minCapacity);
   }
 }
 
-Object subList_int_int(Object self, int fromIndex, int toIndex) {
+Object subList_int_int(Object self, Object fromIndex, Object toIndex) {
   subListRangeCheck_int_int_int(fromIndex, toIndex, self.size_ArrayList);
   Object a = ArrayList_ArrayList(new Object(__cid=ArrayList()));
-  for (int i = 0; i < toIndex - fromIndex; i++) (a.__cid == ArrayList() ? add_E@ArrayList(a, self.elementData_ArrayList.A[i]) : 0);
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < toIndex._int - fromIndex._int; i = new Object(__cid=-2, _int=i._int + 1)) (a.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? add_E@ArrayList(a, self.elementData_ArrayList._array_object.A[i._int]) : null);
   return a;
 }
 
-void subListRangeCheck_int_int_int(int fromIndex, int toIndex, int size) {
-  assert fromIndex >= 0;
-  assert toIndex <= size;
-  assert fromIndex < toIndex;
+void subListRangeCheck_int_int_int(Object fromIndex, Object toIndex, Object size) {
+  assert fromIndex._int >= (new Object(__cid=-2, _int=0))._int;
+  assert toIndex._int <= size._int;
+  assert fromIndex._int < toIndex._int;
 }
 
-void ensureCapacityInternal_int(Object self, int minCapacity) {
+void ensureCapacityInternal_int(Object self, Object minCapacity) {
   if (self.elementData_ArrayList == EMPTY_ELEMENTDATA) {
-    if (self.DEFAULT_CAPACITY_ArrayList > minCapacity) {
+    if (self.DEFAULT_CAPACITY_ArrayList._int > minCapacity._int) {
       minCapacity = self.DEFAULT_CAPACITY_ArrayList;
     }
   }
   ensureExplicitCapacity_int@ArrayList(self, minCapacity);
 }
 
-void ensureExplicitCapacity_int(Object self, int minCapacity) {
-  if (minCapacity - self.elementData_ArrayList.length > 0) grow_int@ArrayList(self, minCapacity);
+void ensureExplicitCapacity_int(Object self, Object minCapacity) {
+  if (minCapacity._int - self.elementData_ArrayList._array_object.length._int > (new Object(__cid=-2, _int=0))._int) grow_int@ArrayList(self, minCapacity);
 }
 
-void grow_int(Object self, int minCapacity) {
-  int oldCapacity = self.elementData_ArrayList.length;
-  int newCapacity = oldCapacity + (oldCapacity / 2);
-  if (newCapacity - minCapacity < 0) newCapacity = minCapacity;
-  if (newCapacity - MAX_ARRAY_SIZE > 0) newCapacity = hugeCapacity_int(minCapacity);
+void grow_int(Object self, Object minCapacity) {
+  Object oldCapacity = self.elementData_ArrayList._array_object.length;
+  Object newCapacity = (new Object(__cid=-2, _int=oldCapacity._int + (oldCapacity._int / (new Object(__cid=-2, _int=2))._int)));
+  if (newCapacity._int - minCapacity._int < (new Object(__cid=-2, _int=0))._int) newCapacity = minCapacity;
+  if (newCapacity._int - MAX_ARRAY_SIZE._int > (new Object(__cid=-2, _int=0))._int) newCapacity = hugeCapacity_int(minCapacity);
   copyNewElementData_int@ArrayList(self, newCapacity);
 }
 
-int hugeCapacity_int(int minCapacity) {
-  return ((minCapacity > MAX_ARRAY_SIZE) ? 0x7fffffff : MAX_ARRAY_SIZE);
+Object hugeCapacity_int(Object minCapacity) {
+  return ((minCapacity._int > MAX_ARRAY_SIZE._int) ? (new Object(__cid=-2, _int=0x7fffffff)) : MAX_ARRAY_SIZE);
 }
 

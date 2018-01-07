@@ -4,5 +4,3 @@ Object Number_Number(Object self) {
     return self;
 }
 
-int intValue(Object self);
-

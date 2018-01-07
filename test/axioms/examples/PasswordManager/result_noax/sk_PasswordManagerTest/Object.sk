@@ -8,96 +8,111 @@ Object Object_Object(Object self) {
     return self;
 }
 
-bit equals_Object_Object(Object a, Object b) {
+Object equals_Object_Object(Object a, Object b) {
   if (a == null) {
     if (b == null) {
-      return true;
+      return (new Object(__cid=-4, _bit=true));
     }
-    return false;
+    return (new Object(__cid=-4, _bit=false));
   }
-  return (a.__cid == SecretKeySpec() ? equals_Object@Object(a, b) : a.__cid == Scanner() ? equals_Object@Object(a, b) : a.__cid == Cipher() ? equals_Object@Object(a, b) : a.__cid == StringBuilder() ? equals_Object@Object(a, b) : a.__cid == File() ? equals_Object@Object(a, b) : a.__cid == PasswordManagerTest() ? equals_Object@Object(a, b) : a.__cid == SecureRandom() ? equals_Object@Object(a, b) : a.__cid == FileWriterr() ? equals_Object@Object(a, b) : a.__cid == Stack() ? equals_Object@Object(a, b) : a.__cid == PasswordManager() ? equals_Object@Object(a, b) : a.__cid == Assert() ? equals_Object@Object(a, b) : a.__cid == AbstractQueue() ? equals_Object@Object(a, b) : a.__cid == IvParameterSpec() ? equals_Object@Object(a, b) : a.__cid == Integer() ? equals_Object@Integer(a, b) : a.__cid == PasswordMap() ? equals_Object@Object(a, b) : a.__cid == HashMap_Node() ? equals_Object@Object(a, b) : a.__cid == KerberosKey() ? equals_Object@Object(a, b) : a.__cid == HashSet() ? equals_Object@Object(a, b) : a.__cid == Float() ? equals_Object@Float(a, b) : a.__cid == Cryptographer() ? equals_Object@Object(a, b) : a.__cid == Boolean() ? equals_Object@Object(a, b) : a.__cid == Number() ? equals_Object@Object(a, b) : a.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(a, b) : a.__cid == Character() ? equals_Object@Character(a, b) : a.__cid == BufferedWriter() ? equals_Object@Object(a, b) : a.__cid == ArrayList() ? equals_Object@Object(a, b) : a.__cid == String() ? equals_Object@String(a, b) : a.__cid == TreeMap() ? equals_Object@Object(a, b) : a.__cid == LinkedList() ? equals_Object@Object(a, b) : a.__cid == StringBuffer() ? equals_Object@Object(a, b) : a.__cid == ArrayDeque() ? equals_Object@Object(a, b) : a.__cid == TreeSet() ? equals_Object@Object(a, b) : a.__cid == FileReaderr() ? equals_Object@Object(a, b) : a.__cid == KeyGenerator() ? equals_Object@Object(a, b) : a.__cid == HashMap() ? equals_Object@Object(a, b) : a.__cid == Mac() ? equals_Object@Object(a, b) : a.__cid == Object() ? equals_Object@Object(a, b) : 0);
+  return (a.__cid == (new Object(__cid=-2, _int=File()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=SecretKeySpec()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=HashMap_Node()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Properties()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=FileWriterr()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Collections()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Utils()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=PrintStream()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=TreeMap()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=System()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Stack()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(a, b) : a.__cid == (new Object(__cid=-2, _int=IvParameterSpec()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Arrays()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=BufferedWriter()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=PasswordManagerTest()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=KeyGenerator()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Cryptographer()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=CryptoCipherFactory()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=KeyStore()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=KerberosKey()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(a, b) : a.__cid == (new Object(__cid=-2, _int=HashSet()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Float()))._int ? equals_Object@Float(a, b) : a.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Scanner()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=AbstractQueue()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=StringBuilder()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=LinkedList()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=PasswordMap()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(a, b) : a.__cid == (new Object(__cid=-2, _int=SecureRandom()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=StringBuffer()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=FileOutputStream()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=FileReaderr()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Number()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Mac()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=ArrayDeque_DequeNode()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=CryptoCipherFactory_CipherProvider()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=PasswordManager()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(a, b) : null);
 }
 
-int hashCode_Object(Object o) {
-  return (o != null ? (o.__cid == SecretKeySpec() ? hashCode@Object(o) : o.__cid == Scanner() ? hashCode@Object(o) : o.__cid == Cipher() ? hashCode@Object(o) : o.__cid == StringBuilder() ? hashCode@Object(o) : o.__cid == File() ? hashCode@Object(o) : o.__cid == PasswordManagerTest() ? hashCode@Object(o) : o.__cid == SecureRandom() ? hashCode@Object(o) : o.__cid == FileWriterr() ? hashCode@Object(o) : o.__cid == Stack() ? hashCode@Object(o) : o.__cid == PasswordManager() ? hashCode@Object(o) : o.__cid == Assert() ? hashCode@Object(o) : o.__cid == AbstractQueue() ? hashCode@Object(o) : o.__cid == IvParameterSpec() ? hashCode@Object(o) : o.__cid == Integer() ? hashCode@Integer(o) : o.__cid == PasswordMap() ? hashCode@Object(o) : o.__cid == HashMap_Node() ? hashCode@Object(o) : o.__cid == KerberosKey() ? hashCode@Object(o) : o.__cid == HashSet() ? hashCode@Object(o) : o.__cid == Float() ? hashCode@Object(o) : o.__cid == Cryptographer() ? hashCode@Object(o) : o.__cid == Boolean() ? hashCode@Object(o) : o.__cid == Number() ? hashCode@Object(o) : o.__cid == ArrayDeque_DequeNode() ? hashCode@Object(o) : o.__cid == Character() ? hashCode@Object(o) : o.__cid == BufferedWriter() ? hashCode@Object(o) : o.__cid == ArrayList() ? hashCode@Object(o) : o.__cid == String() ? hashCode@String(o) : o.__cid == TreeMap() ? hashCode@Object(o) : o.__cid == LinkedList() ? hashCode@Object(o) : o.__cid == StringBuffer() ? hashCode@Object(o) : o.__cid == ArrayDeque() ? hashCode@Object(o) : o.__cid == TreeSet() ? hashCode@Object(o) : o.__cid == FileReaderr() ? hashCode@Object(o) : o.__cid == KeyGenerator() ? hashCode@Object(o) : o.__cid == HashMap() ? hashCode@Object(o) : o.__cid == Mac() ? hashCode@Object(o) : o.__cid == Object() ? hashCode@Object(o) : 0) : 0);
+Object hashCode_Object(Object o) {
+  return (o != null ? (o.__cid == (new Object(__cid=-2, _int=File()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=SecretKeySpec()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=HashMap_Node()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Properties()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=FileWriterr()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Collections()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Utils()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=PrintStream()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=TreeMap()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=System()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Stack()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Character()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=IvParameterSpec()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Arrays()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=BufferedWriter()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=PasswordManagerTest()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=KeyGenerator()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Cryptographer()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=CryptoCipherFactory()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=KeyStore()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=KerberosKey()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Integer()))._int ? hashCode@Integer(o) : o.__cid == (new Object(__cid=-2, _int=HashSet()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Float()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Assert()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Scanner()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=AbstractQueue()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=StringBuilder()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=LinkedList()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=PasswordMap()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=String()))._int ? hashCode@String(o) : o.__cid == (new Object(__cid=-2, _int=SecureRandom()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=StringBuffer()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=FileOutputStream()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=FileReaderr()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Number()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Mac()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=ArrayDeque_DequeNode()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=CryptoCipherFactory_CipherProvider()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=PasswordManager()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Object()))._int ? hashCode@Object(o) : null) : (new Object(__cid=-2, _int=0)));
 }
 
-Object toString(Object self) {
-  return String_String_char_int_int(new Object(__cid=String()), new Array_char(length=17+1, A="Object toString()"), 0, 17);
+Object equals_Object(Object self, Object obj) {
+  return (new Object(__cid=-4, _bit=self == obj));
 }
 
-bit equals_Object(Object self, Object obj) {
-  return self == obj;
-}
-
-int hashCode(Object self) {
-  return 0;
+Object hashCode(Object self) {
+  return (new Object(__cid=-2, _int=0));
 }
 
 struct Object {
   int           __cid;
-  Array_Object  elementData_HashMap;
-  int           numPairs_HashMap;
-  int           capacity_HashMap;
-  Object        mode_KeyGenerator;
-  Object        file_FileReaderr;
-  Array_Object  set_TreeSet;
-  int           capacity_TreeSet;
-  int           size_TreeSet;
-  Object        currentHead_ArrayDeque;
-  Object        currentTail_ArrayDeque;
-  int           size_ArrayDeque;
-  Array_char    _value_StringBuffer;
-  int           _count_StringBuffer;
-  Array_char    _value_String;
-  int           _count_String;
-  Array_Object  elementData_ArrayList;
-  int           DEFAULT_CAPACITY_ArrayList;
-  int           capacity_ArrayList;
-  int           size_ArrayList;
-  Object        writer_BufferedWriter;
-  char          value_Character;
+  Object        cryptographer_PasswordManager;
+  Object        passMap_PasswordManager;
   Object        val_ArrayDeque_DequeNode;
   Object        prev_ArrayDeque_DequeNode;
   Object        next_ArrayDeque_DequeNode;
-  bit           bool_Boolean;
+  Object        path_FileReaderr;
+  Object        data_FileReaderr;
+  Object        position_FileReaderr;
+  Object        type_Cipher;
+  Object        key_Cipher;
+  Object        mode_Cipher;
+  Object        ENCRYPT_MODE_Cipher;
+  Object        DECRYPT_MODE_Cipher;
+  Object        path_FileOutputStream;
+  Object        _value_StringBuffer;
+  Object        _count_StringBuffer;
+  Object        _value_String;
+  Object        _count_String;
+  Object        passMap_PasswordMap;
+  Object        masterHash_PasswordMap;
+  Object        _value_StringBuilder;
+  Object        _count_StringBuilder;
+  Object        elementData_AbstractQueue;
+  Object        size_AbstractQueue;
+  Object        capacity_AbstractQueue;
+  Object        file_Scanner;
+  Object        bool_Boolean;
+  Object        value_Float;
+  Object        elementData_ArrayList;
+  Object        DEFAULT_CAPACITY_ArrayList;
+  Object        capacity_ArrayList;
+  Object        size_ArrayList;
+  Object        set_TreeSet;
+  Object        capacity_TreeSet;
+  Object        size_TreeSet;
+  Object        set_HashSet;
+  Object        capacity_HashSet;
+  Object        size_HashSet;
+  Object        value_Integer;
+  Object        key_KerberosKey;
+  Object        KEYSIZE_KerberosKey;
+  Object        instance_KeyStore;
+  Object        CLASSES_KEY_CryptoCipherFactory;
+  Object        elementData_HashMap;
+  Object        numPairs_HashMap;
+  Object        capacity_HashMap;
   Object        GCMSecretKey_Cryptographer;
   Object        Hash_secret_key_Cryptographer;
   Object        sha256_HMAC_Cryptographer;
   Object        myCypherOut_Cryptographer;
-  Array_char    randomIv_Cryptographer;
+  Object        randomIv_Cryptographer;
   Object        ivParameterSpec_Cryptographer;
-  int           MAX_LENGTH_PASSWORD_Cryptographer;
-  float         value_Float;
-  Array_Object  set_HashSet;
-  int           capacity_HashSet;
-  int           size_HashSet;
-  Array_char    key_KerberosKey;
-  int           KEYSIZE_KerberosKey;
+  Object        MAX_LENGTH_PASSWORD_Cryptographer;
+  Object        mode_KeyGenerator;
+  Object        writer_BufferedWriter;
+  Object        value_Character;
+  Object        reader_BufferedReader;
+  Object        elementData_Stack;
+  Object        size_Stack;
+  Object        capacity_Stack;
+  Object        out_PrintStream;
+  Object        fname_FileWriterr;
+  Object        map_Properties;
   Object        key_HashMap_Node;
   Object        value_HashMap_Node;
-  int           hash_HashMap_Node;
-  Object        passMap_PasswordMap;
-  Object        masterHash_PasswordMap;
-  int           value_Integer;
-  Array_Object  elementData_AbstractQueue;
-  int           size_AbstractQueue;
-  int           capacity_AbstractQueue;
-  Object        cryptographer_PasswordManager;
-  Object        passMap_PasswordManager;
-  Array_Object  elementData_Stack;
-  int           size_Stack;
-  int           capacity_Stack;
-  Object        fname_FileWriterr;
+  Object        hash_HashMap_Node;
+  Object        key_SecretKeySpec;
+  Object        currentHead_ArrayDeque;
+  Object        currentTail_ArrayDeque;
+  Object        size_ArrayDeque;
   Object        fname_File;
-  int           size_File;
-  Array_char    _value_StringBuilder;
-  int           _count_StringBuilder;
-  Object        type_Cipher;
-  Object        key_Cipher;
-  int           mode_Cipher;
-  int           ENCRYPT_MODE_Cipher;
-  int           DECRYPT_MODE_Cipher;
-  Object        file_Scanner;
-  Array_char    key_SecretKeySpec;
+  Object        size_File;
+  Array_bit     _array_bit;
+  Array_char    _array_char;
+  Array_int     _array_int;
+  Array_float   _array_float;
+  Array_double  _array_double;
+  Array_Object  _array_object;
+  bit           _bit;
+  char          _char;
+  int           _int;
+  float         _float;
+  double        _double;
 }

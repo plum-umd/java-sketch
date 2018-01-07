@@ -1,0 +1,6 @@
+package AlgorithmParameterSpec;
+
+Object AlgorithmParameterSpec_AlgorithmParameterSpec(Object self) {
+    return self;
+}
+

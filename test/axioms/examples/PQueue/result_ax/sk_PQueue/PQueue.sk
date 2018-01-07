@@ -180,9 +180,9 @@ void testEmpty(Object self) {
 
 void testHeapProperty(Object self) {
   Object q = PQueue_PQueue(new Object(__cid=PQueue()));
-  Array_Object nums = new Array_Object(length=9, A={Integer_Integer_int(new Object(__cid=Integer()), 3), Integer_Integer_int(new Object(__cid=Integer()), 2), Integer_Integer_int(new Object(__cid=Integer()), 5), Integer_Integer_int(new Object(__cid=Integer()), 6), Integer_Integer_int(new Object(__cid=Integer()), 7), Integer_Integer_int(new Object(__cid=Integer()), 9), Integer_Integer_int(new Object(__cid=Integer()), 4), Integer_Integer_int(new Object(__cid=Integer()), 8), Integer_Integer_int(new Object(__cid=Integer()), 1)});
+  Object nums = Wrap_Array_Object(new Array_Object(length=9, A={Integer_Integer_int(new Object(__cid=Integer()), 3), Integer_Integer_int(new Object(__cid=Integer()), 2), Integer_Integer_int(new Object(__cid=Integer()), 5), Integer_Integer_int(new Object(__cid=Integer()), 6), Integer_Integer_int(new Object(__cid=Integer()), 7), Integer_Integer_int(new Object(__cid=Integer()), 9), Integer_Integer_int(new Object(__cid=Integer()), 4), Integer_Integer_int(new Object(__cid=Integer()), 8), Integer_Integer_int(new Object(__cid=Integer()), 1)}));
   for (int i = 0; i <= 8; i++) {
-    if (q.__cid == PQueue()) { add_Integer@PQueue(q, nums.A[i]); }
+    if (q.__cid == PQueue()) { add_Integer@PQueue(q, nums._array_object.A[i]); }
     else { 0; };
   }
   for (int i = 1; i <= 9; i++) {
@@ -193,9 +193,9 @@ void testHeapProperty(Object self) {
 
 void testClear(Object self) {
   Object q = PQueue_PQueue(new Object(__cid=PQueue()));
-  Array_Object nums = new Array_Object(length=5, A={Integer_Integer_int(new Object(__cid=Integer()), 11), Integer_Integer_int(new Object(__cid=Integer()), 22), Integer_Integer_int(new Object(__cid=Integer()), 33), Integer_Integer_int(new Object(__cid=Integer()), 44), Integer_Integer_int(new Object(__cid=Integer()), 55)});
+  Object nums = Wrap_Array_Object(new Array_Object(length=5, A={Integer_Integer_int(new Object(__cid=Integer()), 11), Integer_Integer_int(new Object(__cid=Integer()), 22), Integer_Integer_int(new Object(__cid=Integer()), 33), Integer_Integer_int(new Object(__cid=Integer()), 44), Integer_Integer_int(new Object(__cid=Integer()), 55)}));
   for (int i = 0; i < 5; i++) {
-    if (q.__cid == PQueue()) { add_Integer@PQueue(q, nums.A[i]); }
+    if (q.__cid == PQueue()) { add_Integer@PQueue(q, nums._array_object.A[i]); }
     else { 0; };
   }
   if (q.__cid == PQueue()) { clear@PQueue(q); }
@@ -205,10 +205,10 @@ void testClear(Object self) {
 }
 
 void testContainment(Object self) {
-  Array_Object nums = new Array_Object(length=5, A={Integer_Integer_int(new Object(__cid=Integer()), 11), Integer_Integer_int(new Object(__cid=Integer()), 22), Integer_Integer_int(new Object(__cid=Integer()), 33), Integer_Integer_int(new Object(__cid=Integer()), 44), Integer_Integer_int(new Object(__cid=Integer()), 55)});
+  Object nums = Wrap_Array_Object(new Array_Object(length=5, A={Integer_Integer_int(new Object(__cid=Integer()), 11), Integer_Integer_int(new Object(__cid=Integer()), 22), Integer_Integer_int(new Object(__cid=Integer()), 33), Integer_Integer_int(new Object(__cid=Integer()), 44), Integer_Integer_int(new Object(__cid=Integer()), 55)}));
   Object q = PQueue_PQueue(new Object(__cid=PQueue()));
   for (int i = 0; i < 5; i++) {
-    if (q.__cid == PQueue()) { add_Integer@PQueue(q, nums.A[i]); }
+    if (q.__cid == PQueue()) { add_Integer@PQueue(q, nums._array_object.A[i]); }
     else { 0; };
   }
   (q.__cid == PQueue() ? remove_Integer@PQueue(q, Integer_Integer_int(new Object(__cid=Integer()), 11)) : 0);
@@ -225,10 +225,10 @@ void testContainment(Object self) {
 }
 
 void testRemovingDuplicates(Object self) {
-  Array_Object in = new Array_Object(length=7, A={Integer_Integer_int(new Object(__cid=Integer()), 2), Integer_Integer_int(new Object(__cid=Integer()), 7), Integer_Integer_int(new Object(__cid=Integer()), 2), Integer_Integer_int(new Object(__cid=Integer()), 11), Integer_Integer_int(new Object(__cid=Integer()), 7), Integer_Integer_int(new Object(__cid=Integer()), 13), Integer_Integer_int(new Object(__cid=Integer()), 2)});
+  Object in = Wrap_Array_Object(new Array_Object(length=7, A={Integer_Integer_int(new Object(__cid=Integer()), 2), Integer_Integer_int(new Object(__cid=Integer()), 7), Integer_Integer_int(new Object(__cid=Integer()), 2), Integer_Integer_int(new Object(__cid=Integer()), 11), Integer_Integer_int(new Object(__cid=Integer()), 7), Integer_Integer_int(new Object(__cid=Integer()), 13), Integer_Integer_int(new Object(__cid=Integer()), 2)}));
   Object pq = PQueue_PQueue(new Object(__cid=PQueue()));
   for (int i = 0; i < 7; i++) {
-    if (pq.__cid == PQueue()) { add_Integer@PQueue(pq, in.A[i]); }
+    if (pq.__cid == PQueue()) { add_Integer@PQueue(pq, in._array_object.A[i]); }
     else { 0; };
   }
   Object tmp = (pq.__cid == PQueue() ? peek@PQueue(pq) : null);

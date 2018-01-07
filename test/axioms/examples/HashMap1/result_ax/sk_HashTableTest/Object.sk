@@ -4,40 +4,51 @@ Object Object_Object(Object self) {
     return self;
 }
 
-bit equals_Object_Object(Object a, Object b) {
+Object equals_Object_Object(Object a, Object b) {
   if (a == null) {
     if (b == null) {
-      return true;
+      return (new Object(__cid=-4, _bit=true));
     }
-    return false;
+    return (new Object(__cid=-4, _bit=false));
   }
-  return (a.__cid == HashTable() ? equals_Object@Object(a, b) : a.__cid == Assert() ? equals_Object@Object(a, b) : a.__cid == Boolean() ? equals_Object@Object(a, b) : a.__cid == Character() ? equals_Object@Character(a, b) : a.__cid == HashTableTest() ? equals_Object@Object(a, b) : a.__cid == Integer() ? equals_Object@Integer(a, b) : a.__cid == ArrayList() ? equals_Object@Object(a, b) : a.__cid == HashTableNode() ? equals_Object@Object(a, b) : a.__cid == String() ? equals_Object@String(a, b) : a.__cid == Object() ? equals_Object@Object(a, b) : 0);
+  return (a.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=HashTableTest()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(a, b) : a.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(a, b) : a.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(a, b) : a.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(a, b) : null);
 }
 
-bit equals_Object(Object self, Object obj) {
-  return self == obj;
+Object equals_Object(Object self, Object obj) {
+  return (new Object(__cid=-4, _bit=self == obj));
 }
 
-int hashCode(Object self) {
-  return 0;
+Object hashCode(Object self) {
+  return (new Object(__cid=-2, _int=0));
 }
 
 struct Object {
-  int         __cid;
-  Array_char  _value_String;
-  int         _count_String;
-  Object      key_HashTableNode;
-  Object      value_HashTableNode;
-  Object      next_HashTableNode;
-  int         value_Integer;
-  Object      classUnderTest_HashTableTest;
-  char        value_Character;
-  bit         bool_Boolean;
-  double      maxLoadFactor_HashTable;
-  int         capacityGrowth_HashTable;
-  int         initialCapacity_HashTable;
-  int         size_HashTable;
-  int         currentCapacity_HashTable;
-  ArrayList   buckets_HashTable;
-  ArrayList   _arraylist;
+  int           __cid;
+  Object        _value_String;
+  Object        _count_String;
+  Object        bool_Boolean;
+  Object        value_Character;
+  Object        maxLoadFactor_HashTable;
+  Object        capacityGrowth_HashTable;
+  Object        initialCapacity_HashTable;
+  Object        size_HashTable;
+  Object        currentCapacity_HashTable;
+  Object        buckets_HashTable;
+  Object        value_Integer;
+  Object        classUnderTest_HashTableTest;
+  Object        key_HashTableNode;
+  Object        value_HashTableNode;
+  Object        next_HashTableNode;
+  ArrayList     _arraylist;
+  Array_bit     _array_bit;
+  Array_char    _array_char;
+  Array_int     _array_int;
+  Array_float   _array_float;
+  Array_double  _array_double;
+  Array_Object  _array_object;
+  bit           _bit;
+  char          _char;
+  int           _int;
+  float         _float;
+  double        _double;
 }

@@ -1,0 +1,8 @@
+package ICipher;
+
+Object ICipher_ICipher(Object self) {
+    return self;
+}
+
+
+

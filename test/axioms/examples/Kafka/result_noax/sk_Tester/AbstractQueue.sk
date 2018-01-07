@@ -1,61 +1,61 @@
 package AbstractQueue;
 
 Object AbstractQueue_AbstractQueue(Object self) {
-  self.elementData_AbstractQueue = new Array_Object(length=10);
-  self.size_AbstractQueue = 0;
-  self.capacity_AbstractQueue = 10;
+  self.elementData_AbstractQueue = Wrap_Array_Object(new Array_Object(length=(new Object(__cid=-2, _int=10))));
+  self.size_AbstractQueue = (new Object(__cid=-2, _int=0));
+  self.capacity_AbstractQueue = (new Object(__cid=-2, _int=10));
   return self;
 }
 
 void resize(Object self) {
-  if (self.size_AbstractQueue >= self.capacity_AbstractQueue) {
-    self.capacity_AbstractQueue = self.capacity_AbstractQueue * 2;
-    Array_Object newElementData = new Array_Object(length=self.capacity_AbstractQueue);
-    for (int i = 0; i < self.size_AbstractQueue; i++) {
-      newElementData.A[i] = self.elementData_AbstractQueue.A[i];
-      self.elementData_AbstractQueue.A[i] = null;
+  if (self.size_AbstractQueue._int >= self.capacity_AbstractQueue._int) {
+    self.capacity_AbstractQueue = (new Object(__cid=-2, _int=self.capacity_AbstractQueue._int * (new Object(__cid=-2, _int=2))._int));
+    Object newElementData = Wrap_Array_Object(new Array_Object(length=self.capacity_AbstractQueue));
+    for (Object i = (new Object(__cid=-2, _int=0)); i._int < self.size_AbstractQueue._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+      newElementData._array_object.A[i._int] = self.elementData_AbstractQueue._array_object.A[i._int];
+      self.elementData_AbstractQueue._array_object.A[i._int] = null;
     }
     self.elementData_AbstractQueue = newElementData;
   }
 }
 
-bit add_E(Object self, Object e) {
+Object add_E(Object self, Object e) {
   resize@AbstractQueue(self);
-  self.size_AbstractQueue++;
-  self.elementData_AbstractQueue.A[self.size_AbstractQueue - 1] = e;
-  return true;
+  self.size_AbstractQueue = new Object(__cid=-2, _int=self.size_AbstractQueue._int + 1);
+  self.elementData_AbstractQueue._array_object.A[self.size_AbstractQueue._int - (new Object(__cid=-2, _int=1))._int] = e;
+  return (new Object(__cid=-4, _bit=true));
 }
 
 void clear(Object self) {
-  for (int i = 0; i < self.size_AbstractQueue; i++) {
-    self.elementData_AbstractQueue.A[i] = null;
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < self.size_AbstractQueue._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    self.elementData_AbstractQueue._array_object.A[i._int] = null;
   }
-  self.elementData_AbstractQueue = new Array_Object(length=10);
-  self.size_AbstractQueue = 0;
-  self.capacity_AbstractQueue = 10;
+  self.elementData_AbstractQueue = Wrap_Array_Object(new Array_Object(length=(new Object(__cid=-2, _int=10))));
+  self.size_AbstractQueue = (new Object(__cid=-2, _int=0));
+  self.capacity_AbstractQueue = (new Object(__cid=-2, _int=10));
 }
 
 Object element(Object self) {
-  if (self.size_AbstractQueue <= 0) {
+  if (self.size_AbstractQueue._int <= (new Object(__cid=-2, _int=0))._int) {
     return null;
   }
-  return self.elementData_AbstractQueue.A[0];
+  return self.elementData_AbstractQueue._array_object.A[(new Object(__cid=-2, _int=0))._int];
 }
 
 Object remove(Object self) {
-  if (self.size_AbstractQueue <= 0) {
+  if (self.size_AbstractQueue._int <= (new Object(__cid=-2, _int=0))._int) {
     return null;
   }
-  Object e = self.elementData_AbstractQueue.A[0];
-  for (int i = 0; i < self.size_AbstractQueue - 1; i++) {
-    self.elementData_AbstractQueue.A[i] = self.elementData_AbstractQueue.A[i + 1];
+  Object e = self.elementData_AbstractQueue._array_object.A[(new Object(__cid=-2, _int=0))._int];
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < self.size_AbstractQueue._int - (new Object(__cid=-2, _int=1))._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    self.elementData_AbstractQueue._array_object.A[i._int] = self.elementData_AbstractQueue._array_object.A[i._int + (new Object(__cid=-2, _int=1))._int];
   }
-  self.elementData_AbstractQueue.A[self.size_AbstractQueue - 1] = null;
-  self.size_AbstractQueue--;
+  self.elementData_AbstractQueue._array_object.A[self.size_AbstractQueue._int - (new Object(__cid=-2, _int=1))._int] = null;
+  self.size_AbstractQueue = new Object(__cid=-2, _int=self.size_AbstractQueue._int - 1);
   return e;
 }
 
-bit isEmpty(Object self) {
-  return self.size_AbstractQueue == 0;
+Object isEmpty(Object self) {
+  return (new Object(__cid=-4, _bit=self.size_AbstractQueue._int == (new Object(__cid=-2, _int=0))._int));
 }
 

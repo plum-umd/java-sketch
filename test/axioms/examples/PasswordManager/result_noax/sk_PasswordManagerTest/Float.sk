@@ -4,74 +4,78 @@ Object Float_Float(Object self) {
     return self;
 }
 
-Object Float_Float_float(Object self, float value) {
+Object Float_Float_float(Object self, Object value) {
   self.value_Float = value;
   return self;
 }
 
-Object Float_Float_double(Object self, double value) {
+Object Float_Float_double(Object self, Object value) {
   self.value_Float = value;
   return self;
 }
 
-float floatValue(Object self) {
+Object floatValue(Object self) {
   return self.value_Float;
 }
 
-int compareTo_Float(Object self, Object anotherFloat) {
+Object compareTo_Float(Object self, Object anotherFloat) {
   return compare_float_float(self.value_Float, anotherFloat.value_Float);
 }
 
-int compare_float_float(float x, float y) {
-  return ((x < y) ? -1 : (((x == y) ? 0 : 1)));
+Object compare_float_float(Object x, Object y) {
+  return ((x._float < y._float) ? (new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1))._int)) : (((x._float == y._float) ? (new Object(__cid=-2, _int=0)) : (new Object(__cid=-2, _int=1)))));
 }
 
-bit equals_Object(Object self, Object anotherFloat) {
+Object equals_Object(Object self, Object anotherFloat) {
   if (anotherFloat.__cid == Float()) {
     Object x = anotherFloat;
-    if (x.value_Float == self.value_Float) {
-      return true;
+    if (x.value_Float._float == self.value_Float._float) {
+      return (new Object(__cid=-4, _bit=true));
     }
   }
-  return false;
+  return (new Object(__cid=-4, _bit=false));
 }
 
-int intValue(Object self) {
-  return (int)self.value_Float;
+Object intValue(Object self) {
+  return self.value_Float;
 }
 
 Object toString(Object self) {
   return toString_float(self.value_Float);
 }
 
-Object toString_float(float i) {
-  int index = 0,  j,  temp2 = (int)i;
-  float temp = i - (float)((int)i);
-  Array_char ret = new Array_char(length=32, A={'\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0'});
-  Array_char ret2 = new Array_char(length=32, A={'\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0'});
-  Array_char nums = new Array_char(length=10, A={'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'});
-  if (temp2 < 0) {
-    temp2 = temp2 * -1;
+Object toString_float(Object i) {
+  Object index = (new Object(__cid=-2, _int=0)),  j,  temp2 = i;
+  Object temp = (new Object(__cid=-5, _float=i._float - (float)((int)i._float)));
+  Object ret = Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=32))); ret._array_char.A[0] = (new Object(__cid=-3, _char='\0'))._char; ret._array_char.A[1] = (new Object(__cid=-3, _char='\0'))._char; ret._array_char.A[2] = (new Object(__cid=-3, _char='\0'))._char; ret._array_char.A[3] = (new Object(__cid=-3, _char='\0'))._char; ret._array_char.A[4] = (new Object(__cid=-3, _char='\0'))._char; ret._array_char.A[5] = (new Object(__cid=-3, _char='\0'))._char; ret._array_char.A[6] = (new Object(__cid=-3, _char='\0'))._char; ret._array_char.A[7] = (new Object(__cid=-3, _char='\0'))._char; ret._array_char.A[8] = (new Object(__cid=-3, _char='\0'))._char; ret._array_char.A[9] = (new Object(__cid=-3, _char='\0'))._char; ret._array_char.A[10] = (new Object(__cid=-3, _char='\0'))._char; ret._array_char.A[11] = (new Object(__cid=-3, _char='\0'))._char; ret._array_char.A[12] = (new Object(__cid=-3, _char='\0'))._char; ret._array_char.A[13] = (new Object(__cid=-3, _char='\0'))._char; ret._array_char.A[14] = (new Object(__cid=-3, _char='\0'))._char; ret._array_char.A[15] = (new Object(__cid=-3, _char='\0'))._char; ret._array_char.A[16] = (new Object(__cid=-3, _char='\0'))._char; ret._array_char.A[17] = (new Object(__cid=-3, _char='\0'))._char; ret._array_char.A[18] = (new Object(__cid=-3, _char='\0'))._char; ret._array_char.A[19] = (new Object(__cid=-3, _char='\0'))._char; ret._array_char.A[20] = (new Object(__cid=-3, _char='\0'))._char; ret._array_char.A[21] = (new Object(__cid=-3, _char='\0'))._char; ret._array_char.A[22] = (new Object(__cid=-3, _char='\0'))._char; ret._array_char.A[23] = (new Object(__cid=-3, _char='\0'))._char; ret._array_char.A[24] = (new Object(__cid=-3, _char='\0'))._char; ret._array_char.A[25] = (new Object(__cid=-3, _char='\0'))._char; ret._array_char.A[26] = (new Object(__cid=-3, _char='\0'))._char; ret._array_char.A[27] = (new Object(__cid=-3, _char='\0'))._char; ret._array_char.A[28] = (new Object(__cid=-3, _char='\0'))._char; ret._array_char.A[29] = (new Object(__cid=-3, _char='\0'))._char; ret._array_char.A[30] = (new Object(__cid=-3, _char='\0'))._char; ret._array_char.A[31] = (new Object(__cid=-3, _char='\0'))._char;
+  Object ret2 = Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=32))); ret2._array_char.A[0] = (new Object(__cid=-3, _char='\0'))._char; ret2._array_char.A[1] = (new Object(__cid=-3, _char='\0'))._char; ret2._array_char.A[2] = (new Object(__cid=-3, _char='\0'))._char; ret2._array_char.A[3] = (new Object(__cid=-3, _char='\0'))._char; ret2._array_char.A[4] = (new Object(__cid=-3, _char='\0'))._char; ret2._array_char.A[5] = (new Object(__cid=-3, _char='\0'))._char; ret2._array_char.A[6] = (new Object(__cid=-3, _char='\0'))._char; ret2._array_char.A[7] = (new Object(__cid=-3, _char='\0'))._char; ret2._array_char.A[8] = (new Object(__cid=-3, _char='\0'))._char; ret2._array_char.A[9] = (new Object(__cid=-3, _char='\0'))._char; ret2._array_char.A[10] = (new Object(__cid=-3, _char='\0'))._char; ret2._array_char.A[11] = (new Object(__cid=-3, _char='\0'))._char; ret2._array_char.A[12] = (new Object(__cid=-3, _char='\0'))._char; ret2._array_char.A[13] = (new Object(__cid=-3, _char='\0'))._char; ret2._array_char.A[14] = (new Object(__cid=-3, _char='\0'))._char; ret2._array_char.A[15] = (new Object(__cid=-3, _char='\0'))._char; ret2._array_char.A[16] = (new Object(__cid=-3, _char='\0'))._char; ret2._array_char.A[17] = (new Object(__cid=-3, _char='\0'))._char; ret2._array_char.A[18] = (new Object(__cid=-3, _char='\0'))._char; ret2._array_char.A[19] = (new Object(__cid=-3, _char='\0'))._char; ret2._array_char.A[20] = (new Object(__cid=-3, _char='\0'))._char; ret2._array_char.A[21] = (new Object(__cid=-3, _char='\0'))._char; ret2._array_char.A[22] = (new Object(__cid=-3, _char='\0'))._char; ret2._array_char.A[23] = (new Object(__cid=-3, _char='\0'))._char; ret2._array_char.A[24] = (new Object(__cid=-3, _char='\0'))._char; ret2._array_char.A[25] = (new Object(__cid=-3, _char='\0'))._char; ret2._array_char.A[26] = (new Object(__cid=-3, _char='\0'))._char; ret2._array_char.A[27] = (new Object(__cid=-3, _char='\0'))._char; ret2._array_char.A[28] = (new Object(__cid=-3, _char='\0'))._char; ret2._array_char.A[29] = (new Object(__cid=-3, _char='\0'))._char; ret2._array_char.A[30] = (new Object(__cid=-3, _char='\0'))._char; ret2._array_char.A[31] = (new Object(__cid=-3, _char='\0'))._char;
+  Object nums = Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=10))); nums._array_char.A[0] = (new Object(__cid=-3, _char='0'))._char; nums._array_char.A[1] = (new Object(__cid=-3, _char='1'))._char; nums._array_char.A[2] = (new Object(__cid=-3, _char='2'))._char; nums._array_char.A[3] = (new Object(__cid=-3, _char='3'))._char; nums._array_char.A[4] = (new Object(__cid=-3, _char='4'))._char; nums._array_char.A[5] = (new Object(__cid=-3, _char='5'))._char; nums._array_char.A[6] = (new Object(__cid=-3, _char='6'))._char; nums._array_char.A[7] = (new Object(__cid=-3, _char='7'))._char; nums._array_char.A[8] = (new Object(__cid=-3, _char='8'))._char; nums._array_char.A[9] = (new Object(__cid=-3, _char='9'))._char;
+  if (temp2._int < (new Object(__cid=-2, _int=0))._int) {
+    temp2 = (new Object(__cid=-2, _int=temp2._int * -(new Object(__cid=-2, _int=1))._int));
   }
-  ret.A[index++] = '.';
-  while (temp2 > 0) {
-    ret.A[index++] = nums.A[temp2 % 10];
-    temp2 = temp2 / 10;
+  index = new Object(__cid=-2, _int=index._int + 1);
+  ret._array_char.A[index._int] = (new Object(__cid=-3, _char='.'))._char;
+  while (temp2._int > (new Object(__cid=-2, _int=0))._int) {
+    index = new Object(__cid=-2, _int=index._int + 1);
+    ret._array_char.A[index._int] = nums._array_char.A[temp2._int % (new Object(__cid=-2, _int=10))._int];
+    temp2 = (new Object(__cid=-2, _int=temp2._int / (new Object(__cid=-2, _int=10))._int));
   }
-  if (i < 0.0) {
-    ret.A[index++] = '-';
+  if (i._float < (new Object(__cid=-6, _double=0.0))._double) {
+    index = new Object(__cid=-2, _int=index._int + 1);
+    ret._array_char.A[index._int] = (new Object(__cid=-3, _char='-'))._char;
   }
-  int size = index;
-  for (j = 0; j < size; j++) {
-    ret2.A[j] = ret.A[index - 1];
-    index--;
+  Object size = index;
+  for (j = (new Object(__cid=-2, _int=0)); j._int < size._int; j = new Object(__cid=-2, _int=j._int + 1)) {
+    ret2._array_char.A[j._int] = ret._array_char.A[index._int - (new Object(__cid=-2, _int=1))._int];
+    index = new Object(__cid=-2, _int=index._int - 1);
   }
   index = size;
-  while (temp > 0.0) {
-    temp = temp * 10.0;
-    ret2.A[index++] = nums.A[(int)temp];
-    temp = temp - (float)((int)temp);
+  while (temp._float > (new Object(__cid=-6, _double=0.0))._double) {
+    temp = (new Object(__cid=-5, _float=temp._float * (new Object(__cid=-6, _double=10.0))._double));
+    index = new Object(__cid=-2, _int=index._int + 1);
+    ret2._array_char.A[index._int] = nums._array_char.A[(int)temp._float];
+    temp = (new Object(__cid=-5, _float=temp._float - (float)((int)temp._float)));
   }
-  return String_String_char_int_int(new Object(__cid=String()), ret2, 0, index);
+  return String_String_char_int_int(new Object(__cid=String()), ret2, (new Object(__cid=-2, _int=0)), index);
 }
 

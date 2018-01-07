@@ -13,36 +13,44 @@ import java.security.GeneralSecurityException;
  */
 public class DefaultCipherFactory implements ICipherFactory {
 
-    protected static final String ALGORITHM = "AES";
-    protected static final String PADDING = "AES/ECB/PKCS5Padding";
+    // protected static final String ALGORITHM = "AES";
+    // protected static final String PADDING = "AES/ECB/PKCS5Padding";
 
+    protected String ALGORITHM;
+    protected String PADDING;
+    
     protected String algorithm;
     protected String padding;
     protected String key;
     protected boolean keyBase64;
 
     public DefaultCipherFactory() {
+	ALGORITHM = "AES";
+	PADDING = "AES/ECB/PKCS5Padding";
         algorithm = ALGORITHM;
         padding = PADDING;
     }
 
     @Override
     public Cipher encryptionCipher() {
-        return initCipher(Cipher.ENCRYPT_MODE);
+        // return initCipher(Cipher.ENCRYPT_MODE);
+        return initCipher(1);
     }
 
     @Override
     public Cipher decryptionCipher() {
-        return initCipher(Cipher.DECRYPT_MODE);
+        return initCipher(2);
+        // return initCipher(Cipher.DECRYPT_MODE);
     }
 
     protected Cipher initCipher(int mode) {
         Cipher cipher;
-        try {
-            cipher = obtainCipher(mode);
-        } catch (Exception e) {
-            throw new XlpRuntimeException(new I18nMessage("E_SRVC_CANNOT_INIT_CIPHER"), e);
-        }
+    	cipher = obtainCipher(mode);	    
+        // try {
+        //     cipher = obtainCipher(mode);
+        // } catch (Exception e) {
+        //     throw new XlpRuntimeException(new I18nMessage("E_SRVC_CANNOT_INIT_CIPHER"), e);
+        // }
         return cipher;
     }
 
@@ -54,7 +62,9 @@ public class DefaultCipherFactory implements ICipherFactory {
     }
 
     protected byte[] key() {
-        return isKeyBase64() ? Base64.decodeBase64(getKey()) : getKey().getBytes();
+	// return isKeyBase64() ? Base64.decodeBase64(getKey()) : getKey().getBytes();
+	String k = getKey();
+    	return k.getBytes();
     }
 
     public String getAlgorithm() {

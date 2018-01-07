@@ -4,26 +4,30 @@ Object LinkedList_LinkedList(Object self) {
   return self;
 }
 
-bit add_E(Object self, Object e) {
-  return false;
+Object add_E(Object self, Object e) {
+  return (new Object(__cid=-4, _bit=false));
 }
 
-bit isEmpty(Object self) {
-  return false;
+Object isEmpty(Object self) {
+  return (new Object(__cid=-4, _bit=false));
 }
 
-Object get_int(Object self, int index) {
+Object get_int(Object self, Object index) {
   return null;
 }
 
 void remove_Object(Object self, Object e) {
 }
 
-bit remove_int(Object self, int index) {
-  return false;
+Object remove_int(Object self, Object index) {
+  return (new Object(__cid=-4, _bit=false));
 }
 
-Object set_int_E(Object self, int index, Object element) {
+Object set_int_E(Object self, Object index, Object element) {
   return null;
+}
+
+Object size(Object self) {
+  return (new Object(__cid=-2, _int=0));
 }
 

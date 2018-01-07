@@ -1,0 +1,152 @@
+package HashMap;
+
+Object DEFAULT_INITIAL_CAPACITY;
+Object DEFAULT_INITIAL_CAPACITY_g() { return DEFAULT_INITIAL_CAPACITY; }
+void DEFAULT_INITIAL_CAPACITY_s(Object DEFAULT_INITIAL_CAPACITY_s) { DEFAULT_INITIAL_CAPACITY = DEFAULT_INITIAL_CAPACITY_s; }
+
+Object HashMap_HashMap(Object self) {
+  DEFAULT_INITIAL_CAPACITY = (new Object(__cid=-2, _int=16));
+  self.elementData_HashMap = Wrap_Array_Object(new Array_Object(length=DEFAULT_INITIAL_CAPACITY));
+  self.numPairs_HashMap = (new Object(__cid=-2, _int=0));
+  self.capacity_HashMap = DEFAULT_INITIAL_CAPACITY;
+  return self;
+}
+
+Object size(Object self) {
+  return self.numPairs_HashMap;
+}
+
+Object isEmpty(Object self) {
+  return (new Object(__cid=-4, _bit=self.numPairs_HashMap._int == (new Object(__cid=-2, _int=0))._int));
+}
+
+void resize_int(Object self, Object newSize) {
+  Object i,  h,  hashMod;
+  Object n;
+  Object oldElementData = self.elementData_HashMap;
+  Object newElementData = Wrap_Array_Object(new Array_Object(length=newSize));
+  Object k;
+  Object v;
+  for (i = (new Object(__cid=-2, _int=0)); i._int < self.capacity_HashMap._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    if (oldElementData._array_object.A[i._int] != null) {
+      h = oldElementData._array_object.A[i._int].hash_HashMap_Node;
+      k = oldElementData._array_object.A[i._int].key_HashMap_Node;
+      v = oldElementData._array_object.A[i._int].value_HashMap_Node;
+      hashMod = (new Object(__cid=-2, _int=h._int % newSize._int));
+      if (hashMod._int < (new Object(__cid=-2, _int=0))._int) {
+        hashMod = (new Object(__cid=-2, _int=hashMod._int + newSize._int));
+      }
+      newElementData._array_object.A[hashMod._int] = HashMap_Node_HashMap_Node_HashMap_K_V_int(new Object(__cid=HashMap_Node()), self, k, v, h);
+    }
+  }
+  self.elementData_HashMap = newElementData;
+  self.capacity_HashMap = newSize;
+}
+
+Object containsValue_V(Object self, Object value) {
+  Object i;
+  for (i = (new Object(__cid=-2, _int=0)); i._int < self.capacity_HashMap._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    if (self.elementData_HashMap._array_object.A[i._int] != null) {
+      Object v = self.elementData_HashMap._array_object.A[i._int].value_HashMap_Node;
+      if ((value.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? equals_Object@Object(value, v) : value.__cid == (new Object(__cid=-2, _int=SuffixRankTuple()))._int ? equals_Object@Object(value, v) : value.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(value, v) : value.__cid == (new Object(__cid=-2, _int=TwoDArray()))._int ? equals_Object@Object(value, v) : value.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(value, v) : value.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(value, v) : value.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? equals_Object@Object(value, v) : value.__cid == (new Object(__cid=-2, _int=HashMap_Node()))._int ? equals_Object@Object(value, v) : value.__cid == (new Object(__cid=-2, _int=Arrays()))._int ? equals_Object@Object(value, v) : value.__cid == (new Object(__cid=-2, _int=SuffixArray()))._int ? equals_Object@Object(value, v) : value.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(value, v) : value.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(value, v) : value.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(value, v) : value.__cid == (new Object(__cid=-2, _int=Number()))._int ? equals_Object@Object(value, v) : value.__cid == (new Object(__cid=-2, _int=ArrayDeque_DequeNode()))._int ? equals_Object@Object(value, v) : value.__cid == (new Object(__cid=-2, _int=HashSet()))._int ? equals_Object@Object(value, v) : value.__cid == (new Object(__cid=-2, _int=SuffixArrayTest()))._int ? equals_Object@Object(value, v) : value.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(value, v) : null)._bit) {
+        return (new Object(__cid=-4, _bit=true));
+      }
+    }
+  }
+  return (new Object(__cid=-4, _bit=false));
+}
+
+Object containsKey_K(Object self, Object key) {
+  return (new Object(__cid=-4, _bit=get_K@HashMap(self, key) != null));
+}
+
+Object get_K(Object self, Object key) {
+  Object hashMod = (new Object(__cid=-2, _int=(key.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=SuffixRankTuple()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Integer()))._int ? hashCode@Integer(key) : key.__cid == (new Object(__cid=-2, _int=TwoDArray()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Character()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=String()))._int ? hashCode@String(key) : key.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=HashMap_Node()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Arrays()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=SuffixArray()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Assert()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Assert()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Number()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=ArrayDeque_DequeNode()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=HashSet()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=SuffixArrayTest()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Object()))._int ? hashCode@Object(key) : null)._int % self.capacity_HashMap._int));
+  if (hashMod._int < (new Object(__cid=-2, _int=0))._int) {
+    hashMod = (new Object(__cid=-2, _int=hashMod._int + self.capacity_HashMap._int));
+  }
+  Object node = self.elementData_HashMap._array_object.A[hashMod._int];
+  if (node != null) {
+    if ((key.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=SuffixRankTuple()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=TwoDArray()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=HashMap_Node()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=Arrays()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=SuffixArray()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=Number()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=ArrayDeque_DequeNode()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=HashSet()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=SuffixArrayTest()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : null)._bit) {
+      return node.value_HashMap_Node;
+    }
+  }
+  return null;
+}
+
+void clear(Object self) {
+  self.elementData_HashMap = Wrap_Array_Object(new Array_Object(length=DEFAULT_INITIAL_CAPACITY));
+  self.capacity_HashMap = DEFAULT_INITIAL_CAPACITY;
+  self.numPairs_HashMap = (new Object(__cid=-2, _int=0));
+}
+
+Object remove_K(Object self, Object key) {
+  Object val = get_K@HashMap(self, key);
+  Object hashMod = (new Object(__cid=-2, _int=(key.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=SuffixRankTuple()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Integer()))._int ? hashCode@Integer(key) : key.__cid == (new Object(__cid=-2, _int=TwoDArray()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Character()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=String()))._int ? hashCode@String(key) : key.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=HashMap_Node()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Arrays()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=SuffixArray()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Assert()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Assert()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Number()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=ArrayDeque_DequeNode()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=HashSet()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=SuffixArrayTest()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Object()))._int ? hashCode@Object(key) : null)._int % self.capacity_HashMap._int));
+  if (hashMod._int < (new Object(__cid=-2, _int=0))._int) {
+    hashMod = (new Object(__cid=-2, _int=hashMod._int + self.capacity_HashMap._int));
+  }
+  self.elementData_HashMap._array_object.A[hashMod._int] = null;
+  if (val != null) {
+    self.numPairs_HashMap = new Object(__cid=-2, _int=self.numPairs_HashMap._int - 1);
+  }
+  return val;
+}
+
+Object put_K_V(Object self, Object key, Object value) {
+  Object h = (key.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=SuffixRankTuple()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Integer()))._int ? hashCode@Integer(key) : key.__cid == (new Object(__cid=-2, _int=TwoDArray()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Character()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=String()))._int ? hashCode@String(key) : key.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=HashMap_Node()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Arrays()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=SuffixArray()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Assert()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Assert()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Number()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=ArrayDeque_DequeNode()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=HashSet()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=SuffixArrayTest()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Object()))._int ? hashCode@Object(key) : null);
+  return putVal_int_K_V@HashMap(self, h, key, value);
+}
+
+Object replace_K_V(Object self, Object key, Object newVal) {
+  Object hashMod = (new Object(__cid=-2, _int=(key.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=SuffixRankTuple()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Integer()))._int ? hashCode@Integer(key) : key.__cid == (new Object(__cid=-2, _int=TwoDArray()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Character()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=String()))._int ? hashCode@String(key) : key.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=HashMap_Node()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Arrays()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=SuffixArray()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Assert()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Assert()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Number()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=ArrayDeque_DequeNode()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=HashSet()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=SuffixArrayTest()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Object()))._int ? hashCode@Object(key) : null)._int % self.capacity_HashMap._int));
+  if (hashMod._int < (new Object(__cid=-2, _int=0))._int) {
+    hashMod = (new Object(__cid=-2, _int=hashMod._int + self.capacity_HashMap._int));
+  }
+  Object node = self.elementData_HashMap._array_object.A[hashMod._int];
+  if (node != null) {
+    if ((key.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=SuffixRankTuple()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=TwoDArray()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=HashMap_Node()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=Arrays()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=SuffixArray()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=Number()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=ArrayDeque_DequeNode()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=HashSet()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=SuffixArrayTest()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : null)._bit) {
+      node.value_HashMap_Node = newVal;
+      return node.value_HashMap_Node;
+    }
+  }
+  return null;
+}
+
+Object putVal_int_K_V(Object self, Object hash, Object key, Object value) {
+  Object hashMod = (new Object(__cid=-2, _int=hash._int % self.capacity_HashMap._int));
+  if (hashMod._int < (new Object(__cid=-2, _int=0))._int) {
+    hashMod = (new Object(__cid=-2, _int=hashMod._int + self.capacity_HashMap._int));
+  }
+  Object node = self.elementData_HashMap._array_object.A[hashMod._int];
+  if (node != null) {
+    if (node.hash_HashMap_Node._int != hash._int || !(key.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=SuffixRankTuple()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=TwoDArray()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=HashMap_Node()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=Arrays()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=SuffixArray()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=Number()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=ArrayDeque_DequeNode()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=HashSet()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=SuffixArrayTest()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : key.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(key, node.key_HashMap_Node) : null)._bit) {
+      resize_int@HashMap(self, (new Object(__cid=-2, _int=hash._int + (new Object(__cid=-2, _int=1))._int)));
+      hashMod = (new Object(__cid=-2, _int=hash._int % self.capacity_HashMap._int));
+      if (hashMod._int < (new Object(__cid=-2, _int=0))._int) {
+        hashMod = (new Object(__cid=-2, _int=hashMod._int + self.capacity_HashMap._int));
+      }
+      node = self.elementData_HashMap._array_object.A[hashMod._int];
+      self.numPairs_HashMap = new Object(__cid=-2, _int=self.numPairs_HashMap._int + 1);
+    }
+    self.elementData_HashMap._array_object.A[hashMod._int] = HashMap_Node_HashMap_Node_HashMap_K_V_int(new Object(__cid=HashMap_Node()), self, key, value, hash);
+    if (node != null) {
+      return node.value_HashMap_Node;
+    }
+    else {
+      return null;
+    }
+  }
+  self.elementData_HashMap._array_object.A[hashMod._int] = HashMap_Node_HashMap_Node_HashMap_K_V_int(new Object(__cid=HashMap_Node()), self, key, value, hash);
+  self.numPairs_HashMap = new Object(__cid=-2, _int=self.numPairs_HashMap._int + 1);
+  return null;
+}
+
+void putValNoResize_int_K_V(Object self, Object hash, Object key, Object value) {
+  Object hashMod = (new Object(__cid=-2, _int=hash._int % self.capacity_HashMap._int));
+  if (hashMod._int < (new Object(__cid=-2, _int=0))._int) {
+    hashMod = (new Object(__cid=-2, _int=hashMod._int + self.capacity_HashMap._int));
+  }
+  self.elementData_HashMap._array_object.A[hashMod._int] = HashMap_Node_HashMap_Node_HashMap_K_V_int(new Object(__cid=HashMap_Node()), self, key, value, hash);
+}
+

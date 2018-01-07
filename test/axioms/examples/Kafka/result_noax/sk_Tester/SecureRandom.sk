@@ -4,9 +4,9 @@ Object SecureRandom_SecureRandom(Object self) {
   return self;
 }
 
-void nextBytes_byte(Object self, Array_char buf) {
-  for (int i = 0; i < buf.length; i++) {
-    buf.A[i] = (char)i;
+void nextBytes_byte(Object self, Object buf) {
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < buf._array_object.length._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    buf._array_char.A[i._int] = (char)i._int;
   }
 }
 

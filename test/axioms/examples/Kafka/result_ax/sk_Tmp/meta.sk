@@ -1,0 +1,7 @@
+package meta;
+
+// distinct class IDs
+int Object()  { return 1; }
+int Tmp()     { return 2; }
+
+// Uninterpreted functions

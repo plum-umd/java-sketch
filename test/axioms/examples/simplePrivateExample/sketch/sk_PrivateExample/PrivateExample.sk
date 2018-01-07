@@ -1,0 +1,28 @@
+package PrivateExample;
+
+Object PrivateExample_PrivateExample(Object self) {
+    return self;
+}
+
+harness void test_privateExample() {
+  Object self = Object_Object(new Object(__cid=Object()));
+  Object plainText = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=15+1, A="Secret Message!"), 0, 15);
+  Object newPlainText = privateExample_String(plainText);
+  /* Object plainText2 = String_String_byte(new Object(__cid=String()), newPlainText); */
+  assert (plainText.__cid == String() ? equals_Object@String(plainText, newPlainText) : 0);
+}
+
+Object privateExample_String(Object plainTextString) {
+  /* Array_char plainText = (plainTextString.__cid == String() ? getBytes@String(plainTextString) : null); */
+  Object key = Object_Object(new Object(__cid=Object()));
+  Object cipher = cipher__();
+  if (cipher.__cid == Cipher()) { cipher = initb_Object_int_Object@Cipher(cipher, 1, key); }
+  else { 0; };
+  Object cipherText_adt = (cipher.__cid == Cipher() ? dofinal_Object_Object@Cipher(cipher, plainTextString) : null);
+  if (cipher.__cid == Cipher()) { cipher = initb_Object_int_Object@Cipher(cipher, 2, key); }
+  else { 0; };
+  Object newPlainText_adt = (cipher.__cid == Cipher() ? dofinal_Object_Object@Cipher(cipher, cipherText_adt) : null);
+  Object newPlainText = xform_Cipher(newPlainText_adt._cipher);
+  return newPlainText;
+}
+

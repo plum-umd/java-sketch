@@ -30,43 +30,43 @@ import javax.crypto.spec.SecretKeySpec;
  */
 public class Cryptographer {
 
-	public SecretKey GCMSecretKey; // AES/GCM key
-	public SecretKeySpec Hash_secret_key; // HMAC secret key
-	private Mac sha256_HMAC;
-	private Cipher myCypherOut;
-	byte[] randomIv;
-	IvParameterSpec ivParameterSpec;
-	// final int MAX_LENGTH_PASSWORD = 16;    
-	private int MAX_LENGTH_PASSWORD;
+    	public SecretKey GCMSecretKey; // AES/GCM key
+    	public SecretKeySpec Hash_secret_key; // HMAC secret key
+    	private Mac sha256_HMAC;
+    	private Cipher myCypherOut;
+    	byte[] randomIv;
+    	IvParameterSpec ivParameterSpec;
+    	// final int MAX_LENGTH_PASSWORD = 16;    
+    	private int MAX_LENGTH_PASSWORD;
     
         public Cryptographer() // throws NoSuchAlgorithmException,
-			// NoSuchPaddingException, NoSuchProviderException,
-			// InvalidKeyException, InvalidAlgorithmParameterException
+    			// NoSuchPaddingException, NoSuchProviderException,
+    			// InvalidKeyException, InvalidAlgorithmParameterException
         {
-		// // Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
-		SecureRandom random = new SecureRandom();
+    		// // Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+    		SecureRandom random = new SecureRandom();
 
-		byte[] randomKey = new byte[16];
-		random.nextBytes(randomKey);
+    		byte[] randomKey = new byte[16];
+    		random.nextBytes(randomKey);
 		
-		GCMSecretKey = new SecretKeySpec(randomKey, "AES");
+    		GCMSecretKey = new SecretKeySpec(randomKey, "AES");
 		
-		randomIv = new byte[16];
-		random.nextBytes(randomIv);
-		ivParameterSpec = new IvParameterSpec(randomIv);
+    		randomIv = new byte[16];
+    		random.nextBytes(randomIv);
+    		ivParameterSpec = new IvParameterSpec(randomIv);
 				
-		myCypherOut = Cipher.getInstance("AES/GCM/NoPadding", "BC");
-		// // myCypherOut.init(Cipher.DECRYPT_MODE, GCMSecretKey,ivParameterSpec);
-		myCypherOut.init(2, GCMSecretKey,ivParameterSpec);
+    		myCypherOut = Cipher.getInstance("AES/GCM/NoPadding", "BC");
+    		// // myCypherOut.init(Cipher.DECRYPT_MODE, GCMSecretKey,ivParameterSpec);
+    		myCypherOut.init(2, GCMSecretKey,ivParameterSpec);
 		
-		// init HMAC
-		String secret = "secret";
-		sha256_HMAC = Mac.getInstance("HmacSHA256");
-		Hash_secret_key = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
-		sha256_HMAC.init(Hash_secret_key);
+    		// init HMAC
+    		String secret = "secret";
+    		sha256_HMAC = Mac.getInstance("HmacSHA256");
+    		Hash_secret_key = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
+    		sha256_HMAC.init(Hash_secret_key);
 
-		MAX_LENGTH_PASSWORD = 16;
-	}
+    		MAX_LENGTH_PASSWORD = 16;
+    	}
 
     	public String hash(String plainTxt) {
     		// return toHexString(sha256_HMAC.doFinal(plainTxt.getBytes()));
@@ -102,7 +102,7 @@ public class Cryptographer {
     		myCypherOut.init(2, GCMSecretKey,ivParameterSpec);
     		// String decryptText = new String(
     		// 		myCypherOut.doFinal(hexStringToByteArray(cipherText)));
-		byte[] plainText = myCypherOut.doFinal(cipherText.getBytes());
+    		byte[] plainText = myCypherOut.doFinal(cipherText.getBytes());
     		String decryptText = new String(plainText);  			
 
     		// if(decryptText.charAt(decryptText.length()-1)<='9'&&decryptText.charAt(decryptText.length()-1)>='0')

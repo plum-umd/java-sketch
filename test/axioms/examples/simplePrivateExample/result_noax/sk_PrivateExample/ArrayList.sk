@@ -1,8 +1,8 @@
 package ArrayList;
 
-Array_Object EMPTY_ELEMENTDATA = new Array_Object(length=0, A={});
-Array_Object EMPTY_ELEMENTDATA_g() { return EMPTY_ELEMENTDATA; }
-void EMPTY_ELEMENTDATA_s(Array_Object EMPTY_ELEMENTDATA_s) { EMPTY_ELEMENTDATA = EMPTY_ELEMENTDATA_s; }
+Object EMPTY_ELEMENTDATA;
+Object EMPTY_ELEMENTDATA_g() { return EMPTY_ELEMENTDATA; }
+void EMPTY_ELEMENTDATA_s(Object EMPTY_ELEMENTDATA_s) { EMPTY_ELEMENTDATA = EMPTY_ELEMENTDATA_s; }
 
 int MAX_ARRAY_SIZE = 1000000;
 int MAX_ARRAY_SIZE_g() { return MAX_ARRAY_SIZE; }
@@ -10,25 +10,27 @@ void MAX_ARRAY_SIZE_s(int MAX_ARRAY_SIZE_s) { MAX_ARRAY_SIZE = MAX_ARRAY_SIZE_s;
 
 Object ArrayList_ArrayList(Object self) {
   self.DEFAULT_CAPACITY_ArrayList = 10;
-  self.elementData_ArrayList = new Array_Object(length=self.DEFAULT_CAPACITY_ArrayList);
+  self.elementData_ArrayList = Wrap_Array_Object(new Array_Object(length=self.DEFAULT_CAPACITY_ArrayList));
   self.capacity_ArrayList = self.DEFAULT_CAPACITY_ArrayList;
   self.size_ArrayList = 0;
+  EMPTY_ELEMENTDATA = Wrap_Array_Object(new Array_Object(length=0));
   return self;
 }
 
 Object ArrayList_ArrayList_int(Object self, int initialCapacity) {
   self.DEFAULT_CAPACITY_ArrayList = 10;
-  self.elementData_ArrayList = new Array_Object(length=initialCapacity);
+  self.elementData_ArrayList = Wrap_Array_Object(new Array_Object(length=initialCapacity));
   self.capacity_ArrayList = initialCapacity;
   self.size_ArrayList = 0;
+  EMPTY_ELEMENTDATA = Wrap_Array_Object(new Array_Object(length=0));
   return self;
 }
 
 void copyNewElementData_int(Object self, int size) {
-  Array_Object newElementData = new Array_Object(length=size);
+  Object newElementData = Wrap_Array_Object(new Array_Object(length=size));
   int i = 0;
   for (i = 0; i < self.size_ArrayList; i++) {
-    newElementData.A[i] = self.elementData_ArrayList.A[i];
+    newElementData._array_object.A[i] = self.elementData_ArrayList._array_object.A[i];
   }
   self.elementData_ArrayList = newElementData;
   self.capacity_ArrayList = size;
@@ -43,26 +45,26 @@ void checkAdjustSize(Object self) {
 void createSpace_int(Object self, int index) {
   int j = 0;
   for (j = self.size_ArrayList; j > index; j--) {
-    self.elementData_ArrayList.A[j] = self.elementData_ArrayList.A[j - 1];
+    self.elementData_ArrayList._array_object.A[j] = self.elementData_ArrayList._array_object.A[j - 1];
   }
 }
 
 void add_int_E(Object self, int index, Object e) {
   checkAdjustSize@ArrayList(self);
   createSpace_int@ArrayList(self, index);
-  self.elementData_ArrayList.A[index] = e;
+  self.elementData_ArrayList._array_object.A[index] = e;
   self.size_ArrayList++;
 }
 
 bit add_E(Object self, Object e) {
   checkAdjustSize@ArrayList(self);
-  self.elementData_ArrayList.A[self.size_ArrayList++] = e;
+  self.elementData_ArrayList._array_object.A[self.size_ArrayList++] = e;
   return true;
 }
 
 void clear(Object self) {
   for (int i = 0; i < self.size_ArrayList; i++) {
-    self.elementData_ArrayList.A[i] = null;
+    self.elementData_ArrayList._array_object.A[i] = null;
   }
   self.capacity_ArrayList = 10;
   self.size_ArrayList = 0;
@@ -76,21 +78,21 @@ Object get_int(Object self, int index) {
   if (index < 0 || index >= self.size_ArrayList) {
     return null;
   }
-  return self.elementData_ArrayList.A[index];
+  return self.elementData_ArrayList._array_object.A[index];
 }
 
 int indexOf_Object(Object self, Object o) {
   int i = 0;
   if (o == null) {
     for (i = 0; i < self.capacity_ArrayList; i++) {
-      if (self.elementData_ArrayList.A[i] == null) {
+      if (self.elementData_ArrayList._array_object.A[i] == null) {
         return i;
       }
     }
   }
   else {
     for (i = 0; i < self.size_ArrayList; i++) {
-      if ((o.__cid == Character() ? equals_Object@Character(o, self.elementData_ArrayList.A[i]) : o.__cid == Number() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == ArrayList() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == PrivateExample() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Cipher() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Integer() ? equals_Object@Integer(o, self.elementData_ArrayList.A[i]) : o.__cid == String() ? equals_Object@String(o, self.elementData_ArrayList.A[i]) : o.__cid == Assert() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Object() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : 0)) {
+      if ((o.__cid == IvParameterSpec() ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i]) : o.__cid == ArrayList() ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i]) : o.__cid == KeyGenerator() ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i]) : o.__cid == Cipher() ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i]) : o.__cid == PrivateExample() ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i]) : o.__cid == SecretKeySpec() ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i]) : o.__cid == Assert() ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i]) : o.__cid == Character() ? equals_Object@Character(o, self.elementData_ArrayList._array_object.A[i]) : o.__cid == Integer() ? equals_Object@Integer(o, self.elementData_ArrayList._array_object.A[i]) : o.__cid == KerberosKey() ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i]) : o.__cid == String() ? equals_Object@String(o, self.elementData_ArrayList._array_object.A[i]) : o.__cid == Number() ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i]) : o.__cid == Mac() ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i]) : o.__cid == Object() ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i]) : 0)) {
         return i;
       }
     }
@@ -101,9 +103,9 @@ int indexOf_Object(Object self, Object o) {
 void removeElement_int(Object self, int index) {
   int j = 0;
   for (j = index; j < self.size_ArrayList - 1; j++) {
-    self.elementData_ArrayList.A[j] = self.elementData_ArrayList.A[j + 1];
+    self.elementData_ArrayList._array_object.A[j] = self.elementData_ArrayList._array_object.A[j + 1];
   }
-  self.elementData_ArrayList.A[self.size_ArrayList - 1] = null;
+  self.elementData_ArrayList._array_object.A[self.size_ArrayList - 1] = null;
   self.size_ArrayList--;
 }
 
@@ -112,7 +114,7 @@ Object remove_int(Object self, int index) {
   if (index < 0 || index >= self.size_ArrayList) {
     return null;
   }
-  e = self.elementData_ArrayList.A[index];
+  e = self.elementData_ArrayList._array_object.A[index];
   removeElement_int@ArrayList(self, index);
   return e;
 }
@@ -121,7 +123,7 @@ bit remove_Object(Object self, Object o) {
   int i = 0;
   if (o == null) {
     for (i = 0; i < self.capacity_ArrayList; i++) {
-      if (self.elementData_ArrayList.A[i] == null) {
+      if (self.elementData_ArrayList._array_object.A[i] == null) {
         removeElement_int@ArrayList(self, i);
         return true;
       }
@@ -129,7 +131,7 @@ bit remove_Object(Object self, Object o) {
   }
   else {
     for (i = 0; i < self.size_ArrayList; i++) {
-      if ((o.__cid == Character() ? equals_Object@Character(o, self.elementData_ArrayList.A[i]) : o.__cid == Number() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == ArrayList() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == PrivateExample() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Cipher() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Integer() ? equals_Object@Integer(o, self.elementData_ArrayList.A[i]) : o.__cid == String() ? equals_Object@String(o, self.elementData_ArrayList.A[i]) : o.__cid == Assert() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : o.__cid == Object() ? equals_Object@Object(o, self.elementData_ArrayList.A[i]) : 0)) {
+      if ((o.__cid == IvParameterSpec() ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i]) : o.__cid == ArrayList() ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i]) : o.__cid == KeyGenerator() ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i]) : o.__cid == Cipher() ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i]) : o.__cid == PrivateExample() ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i]) : o.__cid == SecretKeySpec() ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i]) : o.__cid == Assert() ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i]) : o.__cid == Character() ? equals_Object@Character(o, self.elementData_ArrayList._array_object.A[i]) : o.__cid == Integer() ? equals_Object@Integer(o, self.elementData_ArrayList._array_object.A[i]) : o.__cid == KerberosKey() ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i]) : o.__cid == String() ? equals_Object@String(o, self.elementData_ArrayList._array_object.A[i]) : o.__cid == Number() ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i]) : o.__cid == Mac() ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i]) : o.__cid == Object() ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i]) : 0)) {
         removeElement_int@ArrayList(self, i);
         return true;
       }
@@ -143,8 +145,8 @@ Object set_int_E(Object self, int index, Object element) {
   if (index < 0 || index >= self.size_ArrayList) {
     return null;
   }
-  oldElement = self.elementData_ArrayList.A[index];
-  self.elementData_ArrayList.A[index] = element;
+  oldElement = self.elementData_ArrayList._array_object.A[index];
+  self.elementData_ArrayList._array_object.A[index] = element;
   return oldElement;
 }
 
@@ -160,11 +162,11 @@ bit isEmpty(Object self) {
   return self.size_ArrayList == 0;
 }
 
-Array_Object toArray(Object self) {
-  Array_Object arr = new Array_Object(length=self.size_ArrayList);
+Object toArray(Object self) {
+  Object arr = Wrap_Array_Object(new Array_Object(length=self.size_ArrayList));
   int i = 0;
   for (i = 0; i < self.size_ArrayList; i++) {
-    arr.A[i] = self.elementData_ArrayList.A[i];
+    arr._array_object.A[i] = self.elementData_ArrayList._array_object.A[i];
   }
   return arr;
 }
@@ -185,7 +187,7 @@ void ensureCapacity_int(Object self, int minCapacity) {
 Object subList_int_int(Object self, int fromIndex, int toIndex) {
   subListRangeCheck_int_int_int(fromIndex, toIndex, self.size_ArrayList);
   Object a = ArrayList_ArrayList(new Object(__cid=ArrayList()));
-  for (int i = 0; i < toIndex - fromIndex; i++) (a.__cid == ArrayList() ? add_E@ArrayList(a, self.elementData_ArrayList.A[i]) : 0);
+  for (int i = 0; i < toIndex - fromIndex; i++) (a.__cid == ArrayList() ? add_E@ArrayList(a, self.elementData_ArrayList._array_object.A[i]) : 0);
   return a;
 }
 
@@ -205,11 +207,11 @@ void ensureCapacityInternal_int(Object self, int minCapacity) {
 }
 
 void ensureExplicitCapacity_int(Object self, int minCapacity) {
-  if (minCapacity - self.elementData_ArrayList.length > 0) grow_int@ArrayList(self, minCapacity);
+  if (minCapacity - self.elementData_ArrayList._array_object.length > 0) grow_int@ArrayList(self, minCapacity);
 }
 
 void grow_int(Object self, int minCapacity) {
-  int oldCapacity = self.elementData_ArrayList.length;
+  int oldCapacity = self.elementData_ArrayList._array_object.length;
   int newCapacity = oldCapacity + (oldCapacity / 2);
   if (newCapacity - minCapacity < 0) newCapacity = minCapacity;
   if (newCapacity - MAX_ARRAY_SIZE > 0) newCapacity = hugeCapacity_int(minCapacity);

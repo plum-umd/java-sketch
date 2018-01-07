@@ -1,42 +1,49 @@
 package Cryptographer;
 
 Object Cryptographer_Cryptographer(Object self) {
-  SecureRandom random = SecureRandom_SecureRandom();
-  Array_char randomKey = new Array_char(length=16);
-  if (random.__cid == SecureRandom()) { nextBytes_Object@SecureRandom(random, randomKey); }
-  else { 0; };
+  Object random = SecureRandom_SecureRandom();
+  Object randomKey = Wrap_Array_char(new Array_char(length=(new Object(__cid=-2, _int=16))));
+  (random.__cid == (new Object(__cid=-2, _int=SecureRandom()))._int ? nextBytes_Object_Object@SecureRandom(random, randomKey) : null);
   self.GCMSecretKey_Cryptographer = SecretKeySpec_SecretKeySpec();
-  self.randomIv_Cryptographer = new Array_char(length=16);
-  if (random.__cid == SecureRandom()) { nextBytes_Object@SecureRandom(random, self.randomIv_Cryptographer); }
-  else { 0; };
+  self.randomIv_Cryptographer = Wrap_Array_char(new Array_char(length=(new Object(__cid=-2, _int=16))));
+  (random.__cid == (new Object(__cid=-2, _int=SecureRandom()))._int ? nextBytes_Object_Object@SecureRandom(random, self.randomIv_Cryptographer) : null);
   self.ivParameterSpec_Cryptographer = IvParameterSpec_IvParameterSpec_byte(new Object(__cid=IvParameterSpec()), self.randomIv_Cryptographer);
   self.myCypherOut_Cryptographer = Cipher_Cipher();
-  if (self.myCypherOut_Cryptographer.__cid == Cipher()) { init_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, 2, self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer); }
-  else { 0; };
-  Object secret = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=6+1, A="secret"), 0, 6);
+  if (self.myCypherOut_Cryptographer.__cid == (new Object(__cid=-2, _int=Cipher()))._int) { init_Object_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, (new Object(__cid=-2, _int=2)), self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer); }
+  else { 0; }; self.myCypherOut_Cryptographer = (self.myCypherOut_Cryptographer.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? initb_Object_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, (new Object(__cid=-2, _int=2)), self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer) : null);
+  Object secret = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=6+1), A="secret")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=6));
   self.sha256_HMAC_Cryptographer = Mac_Mac();
   self.Hash_secret_key_Cryptographer = SecretKeySpec_SecretKeySpec();
-  if (self.sha256_HMAC_Cryptographer.__cid == Mac()) { init_SecretKeySpec@Mac(self.sha256_HMAC_Cryptographer, self.Hash_secret_key_Cryptographer); }
-  else { 0; };
-  self.MAX_LENGTH_PASSWORD_Cryptographer = 16;
+  if (self.sha256_HMAC_Cryptographer.__cid == (new Object(__cid=-2, _int=Mac()))._int) { init_Object_SecretKeySpec@Mac(self.sha256_HMAC_Cryptographer, self.Hash_secret_key_Cryptographer); }
+  else { 0; }; self.sha256_HMAC_Cryptographer = (self.sha256_HMAC_Cryptographer.__cid == (new Object(__cid=-2, _int=Mac()))._int ? initb_Object_SecretKeySpec@Mac(self.sha256_HMAC_Cryptographer, self.Hash_secret_key_Cryptographer) : null);
+  self.MAX_LENGTH_PASSWORD_Cryptographer = (new Object(__cid=-2, _int=16));
   return self;
 }
 
 Object hash_String(Object self, Object plainTxt) {
-  return (self.sha256_HMAC_Cryptographer.__cid == Mac() ? doFinal_Object@Mac(self.sha256_HMAC_Cryptographer, plainTxt) : null);
+  return (self.sha256_HMAC_Cryptographer.__cid == (new Object(__cid=-2, _int=Mac()))._int ? doFinal_Object_Object@Mac(self.sha256_HMAC_Cryptographer, plainTxt) : null);
+}
+
+generator Object genCipherText_String(Object self, Object plainText) {
+  Object cipherText;
+  if ((new Object(__cid=-4, _bit=??))._bit) if (self.myCypherOut_Cryptographer.__cid == (new Object(__cid=-2, _int=Cipher()))._int) { init_Object_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, (new Object(__cid=-2, _int=??)), self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer); }
+    else { 0; }; self.myCypherOut_Cryptographer = (self.myCypherOut_Cryptographer.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? initb_Object_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, (new Object(__cid=-2, _int=??)), self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer) : null);
+  if ((new Object(__cid=-4, _bit=??))._bit) cipherText = (self.myCypherOut_Cryptographer.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? doFinal_Object_Object@Cipher(self.myCypherOut_Cryptographer, (plainText.__cid == (new Object(__cid=-2, _int=String()))._int ? getBytes@String(plainText) : null)) : null); self.myCypherOut_Cryptographer = (self.myCypherOut_Cryptographer.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? doFinalb_Object_Object@Cipher(self.myCypherOut_Cryptographer, (plainText.__cid == (new Object(__cid=-2, _int=String()))._int ? getBytes@String(plainText) : null)) : null);
+  if ((new Object(__cid=-4, _bit=??))._bit) cipherText = genCipherText_String@Cryptographer(self, plainText);
+  return cipherText;
 }
 
 Object encrypt_String(Object self, Object plainText) {
-  if (self.myCypherOut_Cryptographer.__cid == Cipher()) { init_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, 1, self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer); }
-  else { 0; };
-  Array_char cipherText = (self.myCypherOut_Cryptographer.__cid == Cipher() ? doFinal_Object@Cipher(self.myCypherOut_Cryptographer, (plainText.__cid == String() ? getBytes@String(plainText) : null)) : null);
+  if (self.myCypherOut_Cryptographer.__cid == (new Object(__cid=-2, _int=Cipher()))._int) { init_Object_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, (new Object(__cid=-2, _int=1)), self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer); }
+  else { 0; }; self.myCypherOut_Cryptographer = (self.myCypherOut_Cryptographer.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? initb_Object_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, (new Object(__cid=-2, _int=1)), self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer) : null);
+  Object cipherText = (self.myCypherOut_Cryptographer.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? doFinal_Object_Object@Cipher(self.myCypherOut_Cryptographer, (plainText.__cid == (new Object(__cid=-2, _int=String()))._int ? getBytes@String(plainText) : null)) : null); self.myCypherOut_Cryptographer = (self.myCypherOut_Cryptographer.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? doFinalb_Object_Object@Cipher(self.myCypherOut_Cryptographer, (plainText.__cid == (new Object(__cid=-2, _int=String()))._int ? getBytes@String(plainText) : null)) : null);
   return String_String_byte(new Object(__cid=String()), cipherText);
 }
 
 Object decrypt_String(Object self, Object cipherText) {
-  if (self.myCypherOut_Cryptographer.__cid == Cipher()) { init_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, 2, self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer); }
-  else { 0; };
-  Array_char plainText = (self.myCypherOut_Cryptographer.__cid == Cipher() ? doFinal_Object@Cipher(self.myCypherOut_Cryptographer, (cipherText.__cid == String() ? getBytes@String(cipherText) : null)) : null);
+  if (self.myCypherOut_Cryptographer.__cid == (new Object(__cid=-2, _int=Cipher()))._int) { init_Object_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, (new Object(__cid=-2, _int=2)), self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer); }
+  else { 0; }; self.myCypherOut_Cryptographer = (self.myCypherOut_Cryptographer.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? initb_Object_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, (new Object(__cid=-2, _int=2)), self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer) : null);
+  Object plainText = (self.myCypherOut_Cryptographer.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? doFinal_Object_Object@Cipher(self.myCypherOut_Cryptographer, (cipherText.__cid == (new Object(__cid=-2, _int=String()))._int ? getBytes@String(cipherText) : null)) : null); self.myCypherOut_Cryptographer = (self.myCypherOut_Cryptographer.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? doFinalb_Object_Object@Cipher(self.myCypherOut_Cryptographer, (cipherText.__cid == (new Object(__cid=-2, _int=String()))._int ? getBytes@String(cipherText) : null)) : null);
   Object decryptText = String_String_byte(new Object(__cid=String()), plainText);
   return decryptText;
 }

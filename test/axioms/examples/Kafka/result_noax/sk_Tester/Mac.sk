@@ -11,10 +11,7 @@ Object getInstance_String(Object type) {
 void init_SecretKeySpec(Object self, Object key) {
 }
 
-void init_SecretKey(Object self, Object key) {
-}
-
-Array_char doFinal_byte(Object self, Array_char text) {
+Object doFinal_byte(Object self, Object text) {
   return text;
 }
 

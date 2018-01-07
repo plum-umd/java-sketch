@@ -6,5 +6,25 @@ Object PrivateExample_PrivateExample(Object self) {
 
 harness void test_privateExample() {
   Object self = Object_Object(new Object(__cid=Object()));
+  Object plainText = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=15+1, A="Secret Message!")), 0, 15);
+  Object newPlainText = privateExample_String(plainText);
+  Object plainText2 = String_String_byte(new Object(__cid=String()), newPlainText);
+  assert (plainText.__cid == String() ? equals_Object@String(plainText, plainText2) : 0);
+}
+
+Object privateExample_String(Object plainTextString) {
+  Object plainText = (plainTextString.__cid == String() ? getBytes@String(plainTextString) : null);
+  Object keyGen = getInstance_String@KeyGenerator(String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=3+1, A="DES")), 0, 3));
+  if (keyGen.__cid == KeyGenerator()) { init_int@KeyGenerator(keyGen, 56); }
+  else { 0; };
+  Object key = (keyGen.__cid == KeyGenerator() ? generateKey@KeyGenerator(keyGen) : null);
+  Object cipher = getInstance_String@Cipher(String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=20+1, A="DES/ECB/PKCS5Padding")), 0, 20));
+  if (cipher.__cid == Cipher()) { init_int_Key@Cipher(cipher, 1, key); }
+  else { 0; };
+  Object cipherText = (cipher.__cid == Cipher() ? doFinal_byte@Cipher(cipher, plainText) : null);
+  if (cipher.__cid == Cipher()) { init_int_Key@Cipher(cipher, 2, key); }
+  else { 0; };
+  Object newPlainText = (cipher.__cid == Cipher() ? doFinal_byte@Cipher(cipher, cipherText) : null);
+  return newPlainText;
 }
 

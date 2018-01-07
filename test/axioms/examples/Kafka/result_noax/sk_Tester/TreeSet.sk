@@ -1,92 +1,94 @@
 package TreeSet;
 
-int INITIAL_CAPACITY = 16;
-int INITIAL_CAPACITY_g() { return INITIAL_CAPACITY; }
-void INITIAL_CAPACITY_s(int INITIAL_CAPACITY_s) { INITIAL_CAPACITY = INITIAL_CAPACITY_s; }
+Object INITIAL_CAPACITY;
+Object INITIAL_CAPACITY_g() { return INITIAL_CAPACITY; }
+void INITIAL_CAPACITY_s(Object INITIAL_CAPACITY_s) { INITIAL_CAPACITY = INITIAL_CAPACITY_s; }
 
-int RESIZE_FACTOR = 2;
-int RESIZE_FACTOR_g() { return RESIZE_FACTOR; }
-void RESIZE_FACTOR_s(int RESIZE_FACTOR_s) { RESIZE_FACTOR = RESIZE_FACTOR_s; }
+Object RESIZE_FACTOR;
+Object RESIZE_FACTOR_g() { return RESIZE_FACTOR; }
+void RESIZE_FACTOR_s(Object RESIZE_FACTOR_s) { RESIZE_FACTOR = RESIZE_FACTOR_s; }
 
 Object TreeSet_TreeSet(Object self) {
-  self.set_TreeSet = new Array_Object(length=INITIAL_CAPACITY);
-  self.size_TreeSet = 0;
+  INITIAL_CAPACITY = (new Object(__cid=-2, _int=16));
+  RESIZE_FACTOR = (new Object(__cid=-2, _int=2));
+  self.set_TreeSet = Wrap_Array_Object(new Array_Object(length=INITIAL_CAPACITY));
+  self.size_TreeSet = (new Object(__cid=-2, _int=0));
   self.capacity_TreeSet = INITIAL_CAPACITY;
   return self;
 }
 
 void resize(Object self) {
-  int new_size = self.capacity_TreeSet * RESIZE_FACTOR;
-  Array_Object new_set = new Array_Object(length=new_size);
-  for (int i = 0; i < self.capacity_TreeSet; i++) {
-    new_set.A[i] = self.set_TreeSet.A[i];
+  Object new_size = (new Object(__cid=-2, _int=self.capacity_TreeSet._int * RESIZE_FACTOR._int));
+  Object new_set = Wrap_Array_Object(new Array_Object(length=new_size));
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < self.capacity_TreeSet._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    new_set._array_object.A[i._int] = self.set_TreeSet._array_object.A[i._int];
   }
   self.set_TreeSet = new_set;
-  self.capacity_TreeSet = self.capacity_TreeSet * RESIZE_FACTOR;
+  self.capacity_TreeSet = (new Object(__cid=-2, _int=self.capacity_TreeSet._int * RESIZE_FACTOR._int));
 }
 
 void check_size(Object self) {
-  if (self.size_TreeSet >= self.capacity_TreeSet) {
+  if (self.size_TreeSet._int >= self.capacity_TreeSet._int) {
     resize@TreeSet(self);
   }
 }
 
-bit add_E(Object self, Object e) {
-  if (contains_Object@TreeSet(self, e) || e == null) {
-    return false;
+Object add_E(Object self, Object e) {
+  if (contains_Object@TreeSet(self, e)._bit || e == null) {
+    return (new Object(__cid=-4, _bit=false));
   }
   else {
-    self.set_TreeSet.A[self.size_TreeSet] = e;
-    self.size_TreeSet++;
+    self.set_TreeSet._array_object.A[self.size_TreeSet._int] = e;
+    self.size_TreeSet = new Object(__cid=-2, _int=self.size_TreeSet._int + 1);
     check_size@TreeSet(self);
-    return true;
+    return (new Object(__cid=-4, _bit=true));
   }
 }
 
-int get_Index_Object(Object self, Object o) {
-  for (int i = 0; i < self.size_TreeSet; i++) {
-    if ((o.__cid == KerberosKey() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == HashMap_Node() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == Properties() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == File() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == CryptoCipherFactory_CipherProvider() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == StringBuffer() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == OpenSSLCipher() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == AbstractQueue() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == JCECipher() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == Mac() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == KeyGenerator() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == ArrayList() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == KeyStore() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == Cipher() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == LinkedList() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == System() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == ArrayDeque_DequeNode() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == SecretKeySpec() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == CipherFactory() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == Integer() ? equals_Object@Integer(o, self.set_TreeSet.A[i]) : o.__cid == Character() ? equals_Object@Character(o, self.set_TreeSet.A[i]) : o.__cid == Tester() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == Arrays() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == TreeMap() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == FileWriterr() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == SecureRandom() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == ArrayDeque() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == Stack() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == StringBuilder() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == TreeSet() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == String() ? equals_Object@String(o, self.set_TreeSet.A[i]) : o.__cid == IvParameterSpec() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == Assert() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == Boolean() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == HashSet() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == BufferedWriter() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == Utils() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == Float() ? equals_Object@Float(o, self.set_TreeSet.A[i]) : o.__cid == HashMap() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == Number() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == FileReaderr() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == CryptoCipherFactory() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == Scanner() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : o.__cid == Object() ? equals_Object@Object(o, self.set_TreeSet.A[i]) : 0)) {
+Object get_Index_Object(Object self, Object o) {
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < self.size_TreeSet._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    if ((o.__cid == (new Object(__cid=-2, _int=CryptoCipherFactory()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Utils()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Stack()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=StringBuilder()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=SecureRandom()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Mac()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=FileReaderr()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=IvParameterSpec()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Float()))._int ? equals_Object@Float(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Properties()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=FileWriterr()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=TreeMap()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=PrintStream()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=System()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=CryptoCipherFactory_CipherProvider()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=KerberosKey()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=OpenSSLCipher()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=LinkedList()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=SecretKeySpec()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=HashSet()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=JCECipher()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=StringBuffer()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Collections()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=File()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=FileOutputStream()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=KeyGenerator()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Number()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=AbstractQueue()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Arrays()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Scanner()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=ArrayDeque_DequeNode()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=CipherFactory()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Tester()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=KeyStore()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=HashMap_Node()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=BufferedWriter()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(o, self.set_TreeSet._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(o, self.set_TreeSet._array_object.A[i._int]) : null)._bit) {
       return i;
     }
   }
-  return -1;
+  return (new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1))._int));
 }
 
-bit contains_Object(Object self, Object o) {
-  return get_Index_Object@TreeSet(self, o) >= 0;
+Object contains_Object(Object self, Object o) {
+  return (new Object(__cid=-2, _int=get_Index_Object@TreeSet(self, o)._int >= (new Object(__cid=-2, _int=0))._int));
 }
 
-bit remove_Object(Object self, Object o) {
-  int index = get_Index_Object@TreeSet(self, o);
-  if (index >= 0) {
-    for (int j = index; j < self.size_TreeSet - 1; j++) {
-      self.set_TreeSet.A[j] = self.set_TreeSet.A[j + 1];
+Object remove_Object(Object self, Object o) {
+  Object index = get_Index_Object@TreeSet(self, o);
+  if (index._int >= (new Object(__cid=-2, _int=0))._int) {
+    for (Object j = index; j._int < self.size_TreeSet._int - (new Object(__cid=-2, _int=1))._int; j = new Object(__cid=-2, _int=j._int + 1)) {
+      self.set_TreeSet._array_object.A[j._int] = self.set_TreeSet._array_object.A[j._int + (new Object(__cid=-2, _int=1))._int];
     }
-    self.set_TreeSet.A[self.size_TreeSet - 1] = null;
-    self.size_TreeSet--;
-    return true;
+    self.set_TreeSet._array_object.A[self.size_TreeSet._int - (new Object(__cid=-2, _int=1))._int] = null;
+    self.size_TreeSet = new Object(__cid=-2, _int=self.size_TreeSet._int - 1);
+    return (new Object(__cid=-4, _bit=true));
   }
   else {
-    return false;
+    return (new Object(__cid=-4, _bit=false));
   }
 }
 
 void clear(Object self) {
-  self.set_TreeSet = new Array_Object(length=INITIAL_CAPACITY);
-  self.size_TreeSet = 0;
+  self.set_TreeSet = Wrap_Array_Object(new Array_Object(length=INITIAL_CAPACITY));
+  self.size_TreeSet = (new Object(__cid=-2, _int=0));
   self.capacity_TreeSet = INITIAL_CAPACITY;
 }
 
-int size(Object self) {
+Object size(Object self) {
   return self.size_TreeSet;
 }
 
-bit isEmpty(Object self) {
-  return self.size_TreeSet == 0;
+Object isEmpty(Object self) {
+  return (new Object(__cid=-4, _bit=self.size_TreeSet._int == (new Object(__cid=-2, _int=0))._int));
 }
 
 Object last(Object self) {
-  if (!isEmpty@TreeSet(self)) return self.set_TreeSet.A[self.size_TreeSet - 1];
+  if (!isEmpty@TreeSet(self)._bit) return self.set_TreeSet._array_object.A[self.size_TreeSet._int - (new Object(__cid=-2, _int=1))._int];
   else
     return null;
 }

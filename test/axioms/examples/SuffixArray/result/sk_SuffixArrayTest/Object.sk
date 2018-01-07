@@ -1,0 +1,82 @@
+package Object;
+
+Object fs;
+Object fs_g() { return fs; }
+void fs_s(Object fs_s) { fs = fs_s; }
+
+Object Object_Object(Object self) {
+    return self;
+}
+
+Object equals_Object_Object(Object a, Object b) {
+  if (a == null) {
+    if (b == null) {
+      return (new Object(__cid=-4, _bit=true));
+    }
+    return (new Object(__cid=-4, _bit=false));
+  }
+  return (a.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=SuffixRankTuple()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(a, b) : a.__cid == (new Object(__cid=-2, _int=TwoDArray()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(a, b) : a.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(a, b) : a.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=HashMap_Node()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Arrays()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=SuffixArray()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Number()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=ArrayDeque_DequeNode()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=HashSet()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=SuffixArrayTest()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(a, b) : null);
+}
+
+Object hashCode_Object(Object o) {
+  return (o != null ? (o.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=SuffixRankTuple()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Integer()))._int ? hashCode@Integer(o) : o.__cid == (new Object(__cid=-2, _int=TwoDArray()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Character()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=String()))._int ? hashCode@String(o) : o.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=HashMap_Node()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Arrays()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=SuffixArray()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Assert()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Assert()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Number()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=ArrayDeque_DequeNode()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=HashSet()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=SuffixArrayTest()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Object()))._int ? hashCode@Object(o) : null) : (new Object(__cid=-2, _int=0)));
+}
+
+Object equals_Object(Object self, Object obj) {
+  return (new Object(__cid=-4, _bit=self == obj));
+}
+
+Object hashCode(Object self) {
+  return (new Object(__cid=-2, _int=0));
+}
+
+struct Object {
+  int           __cid;
+  Object        set_HashSet;
+  Object        capacity_HashSet;
+  Object        size_HashSet;
+  Object        val_ArrayDeque_DequeNode;
+  Object        prev_ArrayDeque_DequeNode;
+  Object        next_ArrayDeque_DequeNode;
+  Object        elementData_ArrayList;
+  Object        DEFAULT_CAPACITY_ArrayList;
+  Object        capacity_ArrayList;
+  Object        size_ArrayList;
+  Object        N_SuffixArray;
+  Object        T_SuffixArray;
+  Object        sa_SuffixArray;
+  Object        lcp_SuffixArray;
+  Object        elementData_HashMap;
+  Object        numPairs_HashMap;
+  Object        capacity_HashMap;
+  Object        key_HashMap_Node;
+  Object        value_HashMap_Node;
+  Object        hash_HashMap_Node;
+  Object        set_TreeSet;
+  Object        capacity_TreeSet;
+  Object        size_TreeSet;
+  Object        _value_String;
+  Object        _count_String;
+  Object        value_Character;
+  Object        M_TwoDArray;
+  Object        arr_TwoDArray;
+  Object        N_TwoDArray;
+  Object        value_Integer;
+  Object        originalIndex_SuffixRankTuple;
+  Object        secondHalf_SuffixRankTuple;
+  Object        firstHalf_SuffixRankTuple;
+  Object        currentHead_ArrayDeque;
+  Object        currentTail_ArrayDeque;
+  Object        size_ArrayDeque;
+  Array_bit     _array_bit;
+  Array_char    _array_char;
+  Array_int     _array_int;
+  Array_float   _array_float;
+  Array_double  _array_double;
+  Array_Object  _array_object;
+  bit           _bit;
+  char          _char;
+  int           _int;
+  float         _float;
+  double        _double;
+}

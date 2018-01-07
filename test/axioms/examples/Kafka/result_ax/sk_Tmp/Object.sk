@@ -1,0 +1,6 @@
+package Object;
+
+Object Object_Object(Object self){
+ return self;
+}
+

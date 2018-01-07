@@ -8,5 +8,9 @@ then
 elif [ "$1" == "2" ]
 then
     shift
-    ./jsk.sh $@ "${pwd}/PrivateExample.java ${pwd}/../libs/ --no-lib -o ${pwd}/../result_ax/"
+    ./jsk.sh $@ "${pwd}/PrivateExample_ax.java ${pwd}/../libs/ --no-lib -o ${pwd}/../result_ax/"
+elif [ "$1" == "3" ]
+then
+    shift
+    ./jsk.sh $@ "${pwd}/PrivateExample_ax.java ${pwd}/../libs/ --no-lib -o ${pwd}/../result_ax/" | grep "TYPE"
 fi

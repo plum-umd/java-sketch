@@ -6,11 +6,23 @@ Object File_File(Object self) {
 
 Object File_File_String(Object self, Object fname) {
   self.fname_File = fname;
-  self.size_File = 0;
+  self.size_File = (new Object(__cid=-2, _int=0));
   return self;
 }
 
-int size(Object self) {
+Object size(Object self) {
   return self.size_File;
+}
+
+Object exists(Object self) {
+  return (new Object(__cid=-4, _bit=true));
+}
+
+Object getName(Object self) {
+  return self.fname_File;
+}
+
+Object getParent(Object self) {
+  return String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=4+1), A="PATH")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=4));
 }
 

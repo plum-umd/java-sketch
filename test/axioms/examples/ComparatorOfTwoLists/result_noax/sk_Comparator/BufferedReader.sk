@@ -1,0 +1,22 @@
+package BufferedReader;
+
+Object BufferedReader_BufferedReader(Object self) {
+    return self;
+}
+
+Object BufferedReader_BufferedReader_FileReaderr(Object self, Object reader) {
+  self.reader_BufferedReader = reader;
+  return self;
+}
+
+Object readLine(Object self) {
+  Object c = (self.reader_BufferedReader.__cid == (new Object(__cid=-2, _int=FileReaderr()))._int ? read@FileReaderr(self.reader_BufferedReader) : null);
+  Object sb = StringBuilder_StringBuilder(new Object(__cid=StringBuilder()));
+  while (c._char != (new Object(__cid=-3, _char='\n'))._char) {
+    if (sb.__cid == (new Object(__cid=-2, _int=StringBuilder()))._int) { append_char@StringBuilder(sb, c); }
+    else { 0; };
+    c = (self.reader_BufferedReader.__cid == (new Object(__cid=-2, _int=FileReaderr()))._int ? read@FileReaderr(self.reader_BufferedReader) : null);
+  }
+  return (sb.__cid == (new Object(__cid=-2, _int=StringBuilder()))._int ? toString@StringBuilder(sb) : null);
+}
+

@@ -1,0 +1,17 @@
+package PrintStream;
+
+Object PrintStream_PrintStream(Object self) {
+    return self;
+}
+
+Object PrintStream_PrintStream_FileOutputStream(Object self, Object out) {
+  self.out_PrintStream = out;
+  return self;
+}
+
+void print(Object self) {
+}
+
+void close(Object self) {
+}
+

@@ -1,0 +1,24 @@
+package BufferedReader;
+
+Object BufferedReader_BufferedReader(Object self) {
+    return self;
+}
+
+Object BufferedReader_BufferedReader_FileReaderr(Object self, Object reader) {
+  self.reader_BufferedReader = reader;
+  return self;
+}
+
+void read(Object self) {
+}
+
+Object readLine(Object self) {
+  return String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=0+1, A="")), 0, 0);
+}
+
+void newLine(Object self) {
+}
+
+void close(Object self) {
+}
+

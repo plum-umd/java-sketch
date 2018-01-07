@@ -25,13 +25,13 @@ import java.util.Properties;
  */
 public class OpenSSLCipher implements ICipher {
 
-    static {
-        try {
-            System.loadLibrary("crypto");
-        } catch (UnsatisfiedLinkError e) {
-            System.loadLibrary("libcrypto");
-        }
-    }
+    // static {
+    //     try {
+    //         System.loadLibrary("crypto");
+    //     } catch (UnsatisfiedLinkError e) {
+    //         System.loadLibrary("libcrypto");
+    //     }
+    // }
 
     private String transformation;
     private String algorithm;
@@ -45,26 +45,38 @@ public class OpenSSLCipher implements ICipher {
         this.transformation = transformation;
     }
 
-    private CryptoCipher getCipher(boolean isEncryption, Key key, byte[] IV) {
+    // private CryptoCipher getCipher(boolean isEncryption, Key key, byte[] IV) {
+    private Cipher getCipher(boolean isEncryption, SecretKeySpec key, byte[] IV) {
         Properties properties = new Properties();
-        properties.setProperty(CryptoCipherFactory.CLASSES_KEY,
-                CryptoCipherFactory.CipherProvider.OPENSSL.getClassName());
-        CryptoCipher cipher;
-        try {
-            cipher = Utils.getCipherInstance(transformation, properties);
-        } catch (IOException ex) {
-            throw new CommonException(ex);
-        }
+        // properties.setProperty(CryptoCipherFactory.CLASSES_KEY,
+        //         CryptoCipherFactory.CipherProvider.OPENSSL.getClassName());
+        properties.setProperty("CLASSES_KEY", CryptoCipherFactory.CipherProvider.getClassName());
+        // CryptoCipher cipher;
+        Cipher cipher;
+	cipher = Utils.getCipherInstance(transformation, properties);	
+	// try {
+        //     cipher = Utils.getCipherInstance(transformation, properties);
+        // } catch (IOException ex) {
+        //     throw new CommonException(ex);
+        // }
 
-        SecretKey keyValue = new SecretKeySpec(key.getEncoded(), algorithm);
+        SecretKeySpec keyValue = new SecretKeySpec(key.getEncoded(), algorithm);
         AlgorithmParameterSpec IVspec = new IvParameterSpec(IV);
 
-        try {
-            cipher.init(isEncryption ? Cipher.ENCRYPT_MODE : Cipher.DECRYPT_MODE,
-                    keyValue, IVspec);
-        } catch (InvalidKeyException | InvalidAlgorithmParameterException ex) {
-            throw new CommonException("Unable to initialize Cipher", ex);
-        }
+	// cipher.init(isEncryption ? Cipher.ENCRYPT_MODE : Cipher.DECRYPT_MODE,
+        //             keyValue, IVspec);
+	if (isEncryption) {
+	    cipher.init(1, keyValue, IVspec);		
+	} else {
+	    cipher.init(2, keyValue, IVspec);		
+	}
+
+        // try {
+        //     cipher.init(isEncryption ? Cipher.ENCRYPT_MODE : Cipher.DECRYPT_MODE,
+        //             keyValue, IVspec);
+        // } catch (InvalidKeyException | InvalidAlgorithmParameterException ex) {
+        //     throw new CommonException("Unable to initialize Cipher", ex);
+        // }
         return cipher;
     }
 
@@ -76,7 +88,7 @@ public class OpenSSLCipher implements ICipher {
      * @param IV   initialization vector
      * @return encrypted data
      */
-    public byte[] encrypt(byte[] data, Key key, byte[] IV) {
+    public byte[] encrypt(byte[] data, SecretKeySpec key, byte[] IV) {
         return translate(true, data, key, IV);
     }
 
@@ -88,22 +100,32 @@ public class OpenSSLCipher implements ICipher {
      * @param IV   initialization vector
      * @return decrypted data
      */
-    public byte[] decrypt(byte[] data, Key key, byte[] IV) {
+    public byte[] decrypt(byte[] data, SecretKeySpec key, byte[] IV) {
         return translate(false, data, key, IV);
     }
 
-    private byte[] translate(boolean isEncryption, byte[] data, Key key, byte[] IV) {
+    private byte[] translate(boolean isEncryption, byte[] data, SecretKeySpec key, byte[] IV) {
         byte[] output = new byte[2 * data.length];
-        try (CryptoCipher cipher = getCipher(isEncryption, key, IV)) {
-            int updateBytes = cipher.update(data, 0, data.length, output, 0);
-            int finalBytes = cipher.doFinal(data, 0, 0, output, updateBytes);
-            return Arrays.copyOf(output, updateBytes + finalBytes);
-        } catch (IOException |
-                ShortBufferException |
-                BadPaddingException |
-                IllegalBlockSizeException ex) {
-            throw new CommonException("Unable to cipher", ex);
-        }
+
+	// CryptoCipher cipher = getCipher(isEncryption, key, IV);	
+	Cipher cipher = getCipher(isEncryption, key, IV);	
+	int updateBytes = cipher.update(data, 0, data.length, output, 0);
+	int finalBytes = cipher.doFinal(data, 0, 0, output, updateBytes);
+
+	output = cipher.doFinal(data);	
+	
+	return Arrays.copyOf(output, updateBytes + finalBytes);
+
+        // try (CryptoCipher cipher = getCipher(isEncryption, key, IV)) {
+        //     int updateBytes = cipher.update(data, 0, data.length, output, 0);
+        //     int finalBytes = cipher.doFinal(data, 0, 0, output, updateBytes);
+        //     return Arrays.copyOf(output, updateBytes + finalBytes);
+        // } catch (IOException |
+        //         ShortBufferException |
+        //         BadPaddingException |
+        //         IllegalBlockSizeException ex) {
+        //     throw new CommonException("Unable to cipher", ex);
+        // }
     }
 
 }

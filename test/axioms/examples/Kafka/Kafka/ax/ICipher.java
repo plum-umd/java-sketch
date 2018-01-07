@@ -1,6 +1,6 @@
 package com.nucypher.kafka.cipher;
 
-import java.security.Key;
+// import java.security.Key;
 
 /**
  * Cipher
@@ -15,7 +15,7 @@ public interface ICipher {
      * @param IV   initialization vector
      * @return encrypted data
      */
-    public byte[] encrypt(byte[] data, Key key, byte[] IV);
+    public byte[] encrypt(byte[] data, SecretKeySpec key, byte[] IV);
 
     /**
      * Decrypt data using DEK and IV
@@ -25,6 +25,6 @@ public interface ICipher {
      * @param IV   initialization vector
      * @return decrypted data
      */
-    public byte[] decrypt(byte[] data, Key key, byte[] IV);
+    public byte[] decrypt(byte[] data, SecretKeySpec key, byte[] IV);
 
 }

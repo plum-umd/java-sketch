@@ -1,0 +1,11 @@
+package Tester;
+
+Object Tester_Tester(Object self) {
+    return self;
+}
+
+harness void mn() {
+  Object self = Object_Object(new Object(__cid=Object()));
+  runTests@CsvRowTest();
+}
+

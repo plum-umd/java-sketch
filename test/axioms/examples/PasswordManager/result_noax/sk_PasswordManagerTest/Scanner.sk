@@ -9,19 +9,19 @@ Object Scanner_Scanner_File(Object self, Object file) {
   return self;
 }
 
-bit hasNext(Object self) {
-  return true;
+Object hasNext(Object self) {
+  return (new Object(__cid=-4, _bit=true));
 }
 
 Object next(Object self) {
-  return String_String_char_int_int(new Object(__cid=String()), new Array_char(length=0+1, A=""), 0, 0);
+  return String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=0+1), A="")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=0));
 }
 
-bit hasNextLine(Object self) {
-  return true;
+Object hasNextLine(Object self) {
+  return (new Object(__cid=-4, _bit=true));
 }
 
 Object nextLine(Object self) {
-  return String_String_char_int_int(new Object(__cid=String()), new Array_char(length=0+1, A=""), 0, 0);
+  return String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=0+1), A="")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=0));
 }
 

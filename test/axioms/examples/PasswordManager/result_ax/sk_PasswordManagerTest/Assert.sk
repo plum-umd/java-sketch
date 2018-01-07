@@ -4,20 +4,20 @@ Object Assert_Assert(Object self) {
   return self;
 }
 
-void assertTrue_String_boolean(Object message, bit condition) {
-  assert condition;
+void assertTrue_String_boolean(Object message, Object condition) {
+  assert condition._bit;
 }
 
-void assertTrue_boolean(bit condition) {
-  assertTrue_String_boolean(String_String_char_int_int(new Object(__cid=String()), new Array_char(length=0+1, A=""), 0, 0), condition);
+void assertTrue_boolean(Object condition) {
+  assertTrue_String_boolean(String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=0+1), A="")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=0)), condition);
 }
 
-void assertFalse_String_boolean(Object message, bit condition) {
-  assertTrue_String_boolean(message, !condition);
+void assertFalse_String_boolean(Object message, Object condition) {
+  assertTrue_String_boolean(message, (new Object(__cid=-4, _bit=!condition._bit)));
 }
 
-void assertFalse_boolean(bit condition) {
-  assertFalse_String_boolean(String_String_char_int_int(new Object(__cid=String()), new Array_char(length=0+1, A=""), 0, 0), condition);
+void assertFalse_boolean(Object condition) {
+  assertFalse_String_boolean(String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=0+1), A="")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=0)), condition);
 }
 
 void fail_String(Object message) {
@@ -28,26 +28,26 @@ void fail_String(Object message) {
 }
 
 void assertEquals_String_Object_Object(Object message, Object expected, Object actual) {
-  assert (expected.__cid == PasswordManager() ? equals_Object@Object(expected, actual) : expected.__cid == Assert() ? equals_Object@Object(expected, actual) : expected.__cid == Integer() ? equals_Object@Integer(expected, actual) : expected.__cid == Character() ? equals_Object@Character(expected, actual) : expected.__cid == PasswordManagerTest() ? equals_Object@Object(expected, actual) : expected.__cid == Byte() ? equals_Object@Object(expected, actual) : expected.__cid == ArrayList() ? equals_Object@Object(expected, actual) : expected.__cid == Boolean() ? equals_Object@Object(expected, actual) : expected.__cid == HashMap() ? equals_Object@Object(expected, actual) : expected.__cid == Mac() ? equals_Object@Object(expected, actual) : expected.__cid == PasswordMap() ? equals_Object@Object(expected, actual) : expected.__cid == Cipher() ? equals_Object@Object(expected, actual) : expected.__cid == IvParameterSpec() ? equals_Object@Object(expected, actual) : expected.__cid == SecretKeySpec() ? equals_Object@Object(expected, actual) : expected.__cid == String() ? equals_Object@String(expected, actual) : expected.__cid == Cryptographer() ? equals_Object@Object(expected, actual) : expected.__cid == SecureRandom() ? equals_Object@Object(expected, actual) : expected.__cid == Object() ? equals_Object@Object(expected, actual) : 0);
+  assert (expected.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=IvParameterSpec()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Mac()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=PasswordMap()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=PasswordManager()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=SecureRandom()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=SecretKeySpec()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Byte()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=PasswordManagerTest()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Cryptographer()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(expected, actual) : null)._bit;
 }
 
-bit equalsRegardingNull_Object_Object(Object expected, Object actual) {
+Object equalsRegardingNull_Object_Object(Object expected, Object actual) {
   if (expected == null) {
-    return actual == null;
+    return (new Object(__cid=-4, _bit=actual == null));
   }
   return isEquals_Object_Object(expected, actual);
 }
 
-bit isEquals_Object_Object(Object expected, Object actual) {
-  return (expected.__cid == PasswordManager() ? equals_Object@Object(expected, actual) : expected.__cid == Assert() ? equals_Object@Object(expected, actual) : expected.__cid == Integer() ? equals_Object@Integer(expected, actual) : expected.__cid == Character() ? equals_Object@Character(expected, actual) : expected.__cid == PasswordManagerTest() ? equals_Object@Object(expected, actual) : expected.__cid == Byte() ? equals_Object@Object(expected, actual) : expected.__cid == ArrayList() ? equals_Object@Object(expected, actual) : expected.__cid == Boolean() ? equals_Object@Object(expected, actual) : expected.__cid == HashMap() ? equals_Object@Object(expected, actual) : expected.__cid == Mac() ? equals_Object@Object(expected, actual) : expected.__cid == PasswordMap() ? equals_Object@Object(expected, actual) : expected.__cid == Cipher() ? equals_Object@Object(expected, actual) : expected.__cid == IvParameterSpec() ? equals_Object@Object(expected, actual) : expected.__cid == SecretKeySpec() ? equals_Object@Object(expected, actual) : expected.__cid == String() ? equals_Object@String(expected, actual) : expected.__cid == Cryptographer() ? equals_Object@Object(expected, actual) : expected.__cid == SecureRandom() ? equals_Object@Object(expected, actual) : expected.__cid == Object() ? equals_Object@Object(expected, actual) : 0);
+Object isEquals_Object_Object(Object expected, Object actual) {
+  return (expected.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=IvParameterSpec()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Mac()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=PasswordMap()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=PasswordManager()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=SecureRandom()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=SecretKeySpec()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Byte()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=PasswordManagerTest()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Cryptographer()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(expected, actual) : null);
 }
 
 void assertEquals_Object_Object(Object expected, Object actual) {
   assertEquals_String_Object_Object(null, expected, actual);
 }
 
-void assertEquals_int_int(int expected, int actual) {
-  assert expected == actual;
+void assertEquals_int_int(Object expected, Object actual) {
+  assert expected._int == actual._int;
 }
 
 void assertNull_String_Object(Object message, Object object) {
@@ -62,7 +62,7 @@ void assertNull_Object(Object object) {
 }
 
 void failNotNull_String_Object(Object message, Object actual) {
-  assert false;
+  assert (new Object(__cid=-4, _bit=false))._bit;
 }
 
 void failNotEquals_String_Object_Object(Object message, Object expected, Object actual) {
@@ -70,6 +70,6 @@ void failNotEquals_String_Object_Object(Object message, Object expected, Object 
 }
 
 Object format_String_Object_Object(Object message, Object expected, Object actual) {
-  return String_String_char_int_int(new Object(__cid=String()), new Array_char(length=0+1, A=""), 0, 0);
+  return String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=0+1), A="")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=0));
 }
 

@@ -7,7 +7,7 @@ Object HashMap_Node_HashMap_Node_HashMap(Object self, Object self_0) {
     return self;
 }
 
-Object HashMap_Node_HashMap_Node_HashMap_K_V_int(Object self, Object self_0, Object key, Object value, int hash) {
+Object HashMap_Node_HashMap_Node_HashMap_K_V_int(Object self, Object self_0, Object key, Object value, Object hash) {
   self0 = self_0;
   self.key_HashMap_Node = key;
   self.value_HashMap_Node = value;

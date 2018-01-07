@@ -1,0 +1,232 @@
+package HashMap;
+
+adt HashMap {
+    Hashmap      { }
+    Put          { HashMap self; Object k; Object v; }
+    Putb         { HashMap self; Object k; Object v; }
+    Removeb      { HashMap self; Object k; }
+    Remove       { HashMap self; Object k; }
+    Get          { HashMap self; Object k; }
+    Clearb       { HashMap self; }
+    Containskey  { HashMap self; Object k; }
+    Clear        { HashMap self; }
+}
+
+Object HashMap_HashMap() {
+    return new Object(__cid=HashMap(), _hashmap=new Hashmap());
+}
+
+Object put_Object_Object_Object(Object self, Object k, Object v) {
+    return new Object(__cid=HashMap(), _hashmap=new Put(self=self._hashmap, k=k, v=v));
+}
+
+Object putb_Object_Object_Object(Object self, Object k, Object v) {
+    return new Object(__cid=HashMap(), _hashmap=new Putb(self=self._hashmap, k=k, v=v));
+}
+
+Object removeb_Object_Object(Object self, Object k) {
+    return new Object(__cid=HashMap(), _hashmap=new Removeb(self=self._hashmap, k=k));
+}
+
+Object remove_Object_Object(Object self, Object k) {
+    return new Object(__cid=HashMap(), _hashmap=new Remove(self=self._hashmap, k=k));
+}
+
+Object get_Object_Object(Object self, Object k) {
+    return new Object(__cid=HashMap(), _hashmap=new Get(self=self._hashmap, k=k));
+}
+
+Object clearb_Object(Object self) {
+    return new Object(__cid=HashMap(), _hashmap=new Clearb(self=self._hashmap));
+}
+
+Object containsKey_Object_Object(Object self, Object k) {
+    return new Object(__cid=HashMap(), _hashmap=new Containskey(self=self._hashmap, k=k));
+}
+
+Object clear_Object(Object self) {
+    return new Object(__cid=HashMap(), _hashmap=new Clear(self=self._hashmap));
+}
+
+Object xform_HashMap(HashMap self) {
+  switch(self) {
+  case Hashmap: {
+    return xform_hashmap_HashMap(self);
+  }
+  case Put: {
+    return xform_put_HashMap_Object_Object(self.self, self.k, self.v);
+  }
+  case Putb: {
+    return xform_putb_HashMap_Object_Object(self.self, self.k, self.v);
+  }
+  case Removeb: {
+    return xform_removeb_HashMap_Object(self.self, self.k);
+  }
+  case Remove: {
+    return xform_remove_HashMap_Object(self.self, self.k);
+  }
+  case Get: {
+    return xform_get_HashMap_Object(self.self, self.k);
+  }
+  case Clearb: {
+    return xform_clearb_HashMap(self.self);
+  }
+  case Containskey: {
+    return xform_containsKey_HashMap_Object(self.self, self.k);
+  }
+  case Clear: {
+    return xform_clear_HashMap(self.self);
+  }
+  }
+
+  return null;
+}
+Object xform_removeb_HashMap_Object(HashMap self, Object k) {
+  switch(self) {
+  case Hashmap: { assert false; }
+  case Put: { assert false; }
+  case Putb: { assert false; }
+  case Removeb: { assert false; }
+  case Remove: { assert false; }
+  case Get: { assert false; }
+  case Clearb: { assert false; }
+  case Containskey: { assert false; }
+  case Clear: { assert false; }
+  }
+
+  return null;
+}
+Object xform_clearb_HashMap(HashMap self) {
+  switch(self) {
+  case Hashmap: { assert false; }
+  case Put: { assert false; }
+  case Putb: { assert false; }
+  case Removeb: { assert false; }
+  case Remove: { assert false; }
+  case Get: { assert false; }
+  case Clearb: { assert false; }
+  case Containskey: { assert false; }
+  case Clear: { assert false; }
+  }
+
+  return null;
+}
+Object xform_putb_HashMap_Object_Object(HashMap self, Object k, Object v) {
+  switch(self) {
+  case Hashmap: { assert false; }
+  case Put: { assert false; }
+  case Putb: { assert false; }
+  case Removeb: { assert false; }
+  case Remove: { assert false; }
+  case Get: { assert false; }
+  case Clearb: { assert false; }
+  case Containskey: { assert false; }
+  case Clear: { assert false; }
+  }
+
+  return null;
+}
+Object xform_put_HashMap_Object_Object(HashMap self, Object k, Object v) {
+  switch(self) {
+  case Hashmap: { assert false; }
+  case Put: { assert false; }
+  case Putb: { assert false; }
+  case Removeb: { assert false; }
+  case Remove: { assert false; }
+  case Get: { assert false; }
+  case Clearb: { assert false; }
+  case Containskey: { assert false; }
+  case Clear: { assert false; }
+  }
+
+  return null;
+}
+Object xform_clear_HashMap(HashMap self) {
+  switch(self) {
+  case Hashmap: { assert false; }
+  case Put: { assert false; }
+  case Putb: { assert false; }
+  case Removeb: { assert false; }
+  case Remove: { assert false; }
+  case Get: { assert false; }
+  case Clearb: { assert false; }
+  case Containskey: { assert false; }
+  case Clear: { assert false; }
+  }
+
+  return null;
+}
+Object xform_get_HashMap_Object(HashMap self, Object k) {
+  switch(self) {
+  case Hashmap: {
+    return null;
+  }
+  case Put: { assert false; }
+  case Putb: {
+    return ((k.__cid == Integer() ? equals_Object@Integer(k, self.k) : k.__cid == Number() ? equals_Object@Object(k, self.k) : k.__cid == System() ? equals_Object@Object(k, self.k) : k.__cid == PQueue() ? equals_Object@Object(k, self.k) : k.__cid == TreeSet() ? equals_Object@Object(k, self.k) : k.__cid == Character() ? equals_Object@Character(k, self.k) : k.__cid == ArrayList() ? equals_Object@Object(k, self.k) : k.__cid == HashMap() ? equals_Object@Object(k, self.k) : k.__cid == StringBuffer() ? equals_Object@Object(k, self.k) : k.__cid == Float() ? equals_Object@Float(k, self.k) : k.__cid == String() ? equals_Object@String(k, self.k) : k.__cid == StringBuilder() ? equals_Object@Object(k, self.k) : k.__cid == Assert() ? equals_Object@Object(k, self.k) : k.__cid == Boolean() ? equals_Object@Object(k, self.k) : k.__cid == Byte() ? equals_Object@Object(k, self.k) : k.__cid == Object() ? equals_Object@Object(k, self.k) : 0) ? self.v : xform_get_HashMap_Object(self.self, k));
+  }
+  case Removeb: {
+    return ((k.__cid == Integer() ? equals_Object@Integer(k, self.k) : k.__cid == Number() ? equals_Object@Object(k, self.k) : k.__cid == System() ? equals_Object@Object(k, self.k) : k.__cid == PQueue() ? equals_Object@Object(k, self.k) : k.__cid == TreeSet() ? equals_Object@Object(k, self.k) : k.__cid == Character() ? equals_Object@Character(k, self.k) : k.__cid == ArrayList() ? equals_Object@Object(k, self.k) : k.__cid == HashMap() ? equals_Object@Object(k, self.k) : k.__cid == StringBuffer() ? equals_Object@Object(k, self.k) : k.__cid == Float() ? equals_Object@Float(k, self.k) : k.__cid == String() ? equals_Object@String(k, self.k) : k.__cid == StringBuilder() ? equals_Object@Object(k, self.k) : k.__cid == Assert() ? equals_Object@Object(k, self.k) : k.__cid == Boolean() ? equals_Object@Object(k, self.k) : k.__cid == Byte() ? equals_Object@Object(k, self.k) : k.__cid == Object() ? equals_Object@Object(k, self.k) : 0) ? null : xform_get_HashMap_Object(self.self, k));
+  }
+  case Remove: { assert false; }
+  case Get: { assert false; }
+  case Clearb: {
+    return null;
+  }
+  case Containskey: { assert false; }
+  case Clear: { assert false; }
+  }
+
+  return null;
+}
+Object xform_remove_HashMap_Object(HashMap self, Object k) {
+  switch(self) {
+  case Hashmap: { assert false; }
+  case Put: { assert false; }
+  case Putb: { assert false; }
+  case Removeb: { assert false; }
+  case Remove: { assert false; }
+  case Get: { assert false; }
+  case Clearb: { assert false; }
+  case Containskey: { assert false; }
+  case Clear: { assert false; }
+  }
+
+  return null;
+}
+Object xform_containsKey_HashMap_Object(HashMap self, Object k) {
+  switch(self) {
+  case Hashmap: {
+    return Boolean_Boolean_boolean(new Object(__cid=Boolean()), false);
+  }
+  case Put: { assert false; }
+  case Putb: {
+    return ((self.k.__cid == Integer() ? equals_Object@Integer(self.k, k) : self.k.__cid == Number() ? equals_Object@Object(self.k, k) : self.k.__cid == System() ? equals_Object@Object(self.k, k) : self.k.__cid == PQueue() ? equals_Object@Object(self.k, k) : self.k.__cid == TreeSet() ? equals_Object@Object(self.k, k) : self.k.__cid == Character() ? equals_Object@Character(self.k, k) : self.k.__cid == ArrayList() ? equals_Object@Object(self.k, k) : self.k.__cid == HashMap() ? equals_Object@Object(self.k, k) : self.k.__cid == StringBuffer() ? equals_Object@Object(self.k, k) : self.k.__cid == Float() ? equals_Object@Float(self.k, k) : self.k.__cid == String() ? equals_Object@String(self.k, k) : self.k.__cid == StringBuilder() ? equals_Object@Object(self.k, k) : self.k.__cid == Assert() ? equals_Object@Object(self.k, k) : self.k.__cid == Boolean() ? equals_Object@Object(self.k, k) : self.k.__cid == Byte() ? equals_Object@Object(self.k, k) : self.k.__cid == Object() ? equals_Object@Object(self.k, k) : 0) ? Boolean_Boolean_boolean(new Object(__cid=Boolean()), true) : xform_containsKey_HashMap_Object(self.self, k));
+  }
+  case Removeb: {
+    return ((k.__cid == Integer() ? equals_Object@Integer(k, self.k) : k.__cid == Number() ? equals_Object@Object(k, self.k) : k.__cid == System() ? equals_Object@Object(k, self.k) : k.__cid == PQueue() ? equals_Object@Object(k, self.k) : k.__cid == TreeSet() ? equals_Object@Object(k, self.k) : k.__cid == Character() ? equals_Object@Character(k, self.k) : k.__cid == ArrayList() ? equals_Object@Object(k, self.k) : k.__cid == HashMap() ? equals_Object@Object(k, self.k) : k.__cid == StringBuffer() ? equals_Object@Object(k, self.k) : k.__cid == Float() ? equals_Object@Float(k, self.k) : k.__cid == String() ? equals_Object@String(k, self.k) : k.__cid == StringBuilder() ? equals_Object@Object(k, self.k) : k.__cid == Assert() ? equals_Object@Object(k, self.k) : k.__cid == Boolean() ? equals_Object@Object(k, self.k) : k.__cid == Byte() ? equals_Object@Object(k, self.k) : k.__cid == Object() ? equals_Object@Object(k, self.k) : 0) ? Boolean_Boolean_boolean(new Object(__cid=Boolean()), false) : xform_containsKey_HashMap_Object(self.self, k));
+  }
+  case Remove: { assert false; }
+  case Get: { assert false; }
+  case Clearb: { assert false; }
+  case Containskey: { assert false; }
+  case Clear: { assert false; }
+  }
+
+  return null;
+}
+Object xform_hashmap_HashMap(HashMap self) {
+  switch(self) {
+  case Hashmap: { assert false; }
+  case Put: { assert false; }
+  case Putb: { assert false; }
+  case Removeb: { assert false; }
+  case Remove: { assert false; }
+  case Get: { assert false; }
+  case Clearb: { assert false; }
+  case Containskey: { assert false; }
+  case Clear: { assert false; }
+  }
+
+  return null;
+}

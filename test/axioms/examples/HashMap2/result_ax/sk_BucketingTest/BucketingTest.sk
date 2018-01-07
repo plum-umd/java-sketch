@@ -4,9 +4,12 @@ Object BucketingTest_BucketingTest(Object self) {
     return self;
 }
 
-harness void mn_int_int_int(int x, int y, int z) {
-  Object self = Object_Object(new Object(__cid=Object()));
-  assume x != y && x != z && y != z;
+harness void mn_int_int_int(int __x, int __y, int __z) {
+  Object x = new Object(__cid=-2, _int=__x); 
+  Object y = new Object(__cid=-2, _int=__y); 
+  Object z = new Object(__cid=-2, _int=__z); 
+Object self = Object_Object(new Object(__cid=Object()));
+  assume x._int != y._int && x._int != z._int && y._int != z._int;
   Object xx = Integer_Integer_int(new Object(__cid=Integer()), x);
   Object yy = Integer_Integer_int(new Object(__cid=Integer()), y);
   Object zz = Integer_Integer_int(new Object(__cid=Integer()), z);
@@ -19,9 +22,9 @@ void setUp(Object self) {
 }
 
 void testClear_Integer_Integer(Object self, Object x, Object y) {
-  if (self.classUnderTest_BucketingTest.__cid == Bucketing()) { put_K_V@Bucketing(self.classUnderTest_BucketingTest, x, y); }
+  if (self.classUnderTest_BucketingTest.__cid == (new Object(__cid=-2, _int=Bucketing()))._int) { put_K_V@Bucketing(self.classUnderTest_BucketingTest, x, y); }
   else { 0; };
-  if (self.classUnderTest_BucketingTest.__cid == Bucketing()) { put_K_V@Bucketing(self.classUnderTest_BucketingTest, y, x); }
+  if (self.classUnderTest_BucketingTest.__cid == (new Object(__cid=-2, _int=Bucketing()))._int) { put_K_V@Bucketing(self.classUnderTest_BucketingTest, y, x); }
   else { 0; };
 }
 

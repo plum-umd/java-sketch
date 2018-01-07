@@ -29,8 +29,8 @@ public class HashTableTest {
 	Integer yy = new Integer(y);
 	Integer zz = new Integer(z);
 	setUp();
-	testClear(xx, yy);
-	// testPutAndGet(xx, yy, zz);
+	// testClear(xx, yy);
+	testPutAndGet(xx, yy, zz);
 	// testGetEmpty();
 	// testReplacing(xx, yy, zz);
 	// testKeys(xx, yy);
@@ -65,23 +65,23 @@ public class HashTableTest {
     }
 
     public void testPutAndGet(Integer x, Integer y, Integer z) {
-	Integer[3] is = makeInts(x, y, z);
+    	Integer[3] is = makeInts(x, y, z);
         classUnderTest.clear();
 
         classUnderTest.put(x, y);
         classUnderTest.put(y, x);
         classUnderTest.put(z, x);
         Assert.assertEquals(classUnderTest.get(is[0]), is[1]);
-        Assert.assertEquals(classUnderTest.get(is[1]), is[0]);
-        Assert.assertEquals(classUnderTest.get(is[2]), is[0]);
+        // Assert.assertEquals(classUnderTest.get(is[1]), is[0]);
+        // Assert.assertEquals(classUnderTest.get(is[2]), is[0]);
 
-    	Integer i = new Integer(x.intValue()+INITIAL_SIZE);
-        classUnderTest.put(i, y);
-        Assert.assertEquals(classUnderTest.get(i), y);
+    	// Integer i = new Integer(x.intValue()+INITIAL_SIZE);
+        // classUnderTest.put(i, y);
+        // Assert.assertEquals(classUnderTest.get(i), y);
     }
 
     public void testReplacing(Integer x, Integer y, Integer z) {
-	Integer[3] is = makeInts(x, y, z);
+    	Integer[3] is = makeInts(x, y, z);
         classUnderTest.clear();
     	Integer i0 = new Integer(x.intValue()+INITIAL_SIZE);
     	Integer i1 = new Integer(x.intValue()+INITIAL_SIZE);
@@ -119,13 +119,13 @@ public class HashTableTest {
 
     // @Test
     public void testValues(Integer x, Integer y) {
-	Integer[2] is = makeInts(x, y);
+    	Integer[2] is = makeInts(x, y);
         classUnderTest.clear();
 
     	classUnderTest.put(x, y);
     	Object v = classUnderTest.values()[0];
     	Assert.assertEquals(v, is[1]);
-
+	
         // Assert.assertTrue(k.equals(y));
     	// TODO: array access from method call as argument to assertTrue
         // Assert.assertEquals(classUnderTest.values()[0], k);
@@ -133,7 +133,7 @@ public class HashTableTest {
 
     //TODO: why the heck is this so slow?! containsValue()????
     public void testContainsValue(Integer x, Integer y) {
-	Integer[2] is = makeInts(x, y);
+    	Integer[2] is = makeInts(x, y);
         classUnderTest.clear();
 
         classUnderTest.put(x, y);
@@ -141,12 +141,12 @@ public class HashTableTest {
     }
 
     public void testContainsKey(Integer x, Integer y) {
-	Integer[2] is = makeInts(x, y);
+    	Integer[2] is = makeInts(x, y);
         classUnderTest.clear();
 
         Assert.assertFalse(classUnderTest.containsKey(x));
         classUnderTest.put(x, y);
-	// Integer i = new Integer(x.intValue());
+    	// Integer i = new Integer(x.intValue());
     	Assert.assertTrue(classUnderTest.containsKey(is[0]));
     }
 
@@ -162,7 +162,7 @@ public class HashTableTest {
     }
 
     public void testRemoveNonExistent(Integer x, Integer y) {
-	Integer[2] is = makeInts(x, y);
+    	Integer[2] is = makeInts(x, y);
         classUnderTest.clear();
 
         classUnderTest.put(x, y);
@@ -172,7 +172,7 @@ public class HashTableTest {
     }
 
     public void testRemove(Integer x, Integer y) {
-	Integer[2] is = makeInts(x, y);
+    	Integer[2] is = makeInts(x, y);
         classUnderTest.clear();
 
         int size = classUnderTest.size();

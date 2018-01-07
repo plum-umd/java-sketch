@@ -1,38 +1,38 @@
 package DefaultCipherFactory;
 
 Object DefaultCipherFactory_DefaultCipherFactory(Object self) {
-  self.ALGORITHM_DefaultCipherFactory = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=3+1, A="AES"), 0, 3);
-  self.PADDING_DefaultCipherFactory = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=20+1, A="AES/ECB/PKCS5Padding"), 0, 20);
+  self.ALGORITHM_DefaultCipherFactory = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=3+1), A="AES")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=3));
+  self.PADDING_DefaultCipherFactory = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=20+1), A="AES/ECB/PKCS5Padding")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=20));
   self.algorithm_DefaultCipherFactory = self.ALGORITHM_DefaultCipherFactory;
   self.padding_DefaultCipherFactory = self.PADDING_DefaultCipherFactory;
   return self;
 }
 
 Object encryptionCipher(Object self) {
-  return initCipher_int@DefaultCipherFactory(self, 1);
+  return initCipher_int@DefaultCipherFactory(self, (new Object(__cid=-2, _int=1)));
 }
 
 Object decryptionCipher(Object self) {
-  return initCipher_int@DefaultCipherFactory(self, 2);
+  return initCipher_int@DefaultCipherFactory(self, (new Object(__cid=-2, _int=2)));
 }
 
-Object initCipher_int(Object self, int mode) {
+Object initCipher_int(Object self, Object mode) {
   Object cipher;
   cipher = obtainCipher_int@DefaultCipherFactory(self, mode);
   return cipher;
 }
 
-Object obtainCipher_int(Object self, int mode) {
+Object obtainCipher_int(Object self, Object mode) {
   Object secretKeySpec = SecretKeySpec_SecretKeySpec_byte_String(new Object(__cid=SecretKeySpec()), key@DefaultCipherFactory(self), getAlgorithm@DefaultCipherFactory(self));
   Object cipher = getInstance_String@Cipher(getPadding@DefaultCipherFactory(self));
-  if (cipher.__cid == Cipher()) { init_int_Key@Cipher(cipher, mode, secretKeySpec); }
+  if (cipher.__cid == (new Object(__cid=-2, _int=Cipher()))._int) { init_int_Key@Cipher(cipher, mode, secretKeySpec); }
   else { 0; };
   return cipher;
 }
 
-Array_char key(Object self) {
+Object key(Object self) {
   Object k = getKey@DefaultCipherFactory(self);
-  return (k.__cid == String() ? getBytes@String(k) : null);
+  return (k.__cid == (new Object(__cid=-2, _int=String()))._int ? getBytes@String(k) : null);
 }
 
 Object getAlgorithm(Object self) {
@@ -51,11 +51,11 @@ void setKey_String(Object self, Object key) {
   self.key_DefaultCipherFactory = key;
 }
 
-bit isKeyBase64(Object self) {
+Object isKeyBase64(Object self) {
   return self.keyBase64_DefaultCipherFactory;
 }
 
-void setKeyBase64_boolean(Object self, bit keyBase64) {
+void setKeyBase64_boolean(Object self, Object keyBase64) {
   self.keyBase64_DefaultCipherFactory = keyBase64;
 }
 

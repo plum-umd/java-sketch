@@ -15,15 +15,11 @@ bit equals_Object_Object(Object a, Object b) {
     }
     return false;
   }
-  return (a.__cid == Character() ? equals_Object@Character(a, b) : a.__cid == Number() ? equals_Object@Object(a, b) : a.__cid == ArrayList() ? equals_Object@Object(a, b) : a.__cid == PrivateExample() ? equals_Object@Object(a, b) : a.__cid == Cipher() ? equals_Object@Object(a, b) : a.__cid == Integer() ? equals_Object@Integer(a, b) : a.__cid == String() ? equals_Object@String(a, b) : a.__cid == Assert() ? equals_Object@Object(a, b) : a.__cid == Object() ? equals_Object@Object(a, b) : 0);
+  return (a.__cid == IvParameterSpec() ? equals_Object@Object(a, b) : a.__cid == ArrayList() ? equals_Object@Object(a, b) : a.__cid == KeyGenerator() ? equals_Object@Object(a, b) : a.__cid == Cipher() ? equals_Object@Object(a, b) : a.__cid == PrivateExample() ? equals_Object@Object(a, b) : a.__cid == SecretKeySpec() ? equals_Object@Object(a, b) : a.__cid == Assert() ? equals_Object@Object(a, b) : a.__cid == Character() ? equals_Object@Character(a, b) : a.__cid == Integer() ? equals_Object@Integer(a, b) : a.__cid == KerberosKey() ? equals_Object@Object(a, b) : a.__cid == String() ? equals_Object@String(a, b) : a.__cid == Number() ? equals_Object@Object(a, b) : a.__cid == Mac() ? equals_Object@Object(a, b) : a.__cid == Object() ? equals_Object@Object(a, b) : 0);
 }
 
 int hashCode_Object(Object o) {
-  return (o != null ? (o.__cid == Character() ? hashCode@Object(o) : o.__cid == Number() ? hashCode@Object(o) : o.__cid == ArrayList() ? hashCode@Object(o) : o.__cid == PrivateExample() ? hashCode@Object(o) : o.__cid == Cipher() ? hashCode@Object(o) : o.__cid == Integer() ? hashCode@Integer(o) : o.__cid == String() ? hashCode@String(o) : o.__cid == Assert() ? hashCode@Object(o) : o.__cid == Object() ? hashCode@Object(o) : 0) : 0);
-}
-
-Object toString(Object self) {
-  return String_String_char_int_int(new Object(__cid=String()), new Array_char(length=17+1, A="Object toString()"), 0, 17);
+  return (o != null ? (o.__cid == IvParameterSpec() ? hashCode@Object(o) : o.__cid == ArrayList() ? hashCode@Object(o) : o.__cid == KeyGenerator() ? hashCode@Object(o) : o.__cid == Cipher() ? hashCode@Object(o) : o.__cid == PrivateExample() ? hashCode@Object(o) : o.__cid == SecretKeySpec() ? hashCode@Object(o) : o.__cid == Assert() ? hashCode@Object(o) : o.__cid == Character() ? hashCode@Object(o) : o.__cid == Integer() ? hashCode@Integer(o) : o.__cid == KerberosKey() ? hashCode@Object(o) : o.__cid == String() ? hashCode@String(o) : o.__cid == Number() ? hashCode@Object(o) : o.__cid == Mac() ? hashCode@Object(o) : o.__cid == Object() ? hashCode@Object(o) : 0) : 0);
 }
 
 bit equals_Object(Object self, Object obj) {
@@ -36,13 +32,32 @@ int hashCode(Object self) {
 
 struct Object {
   int           __cid;
-  Array_char    _value_String;
+  Object        _value_String;
   int           _count_String;
+  Object        key_KerberosKey;
+  int           KEYSIZE_KerberosKey;
   int           value_Integer;
-  Object        mode_Cipher;
-  Array_Object  elementData_ArrayList;
+  char          value_Character;
+  Object        key_SecretKeySpec;
+  Object        type_Cipher;
+  Object        key_Cipher;
+  int           mode_Cipher;
+  int           ENCRYPT_MODE_Cipher;
+  int           DECRYPT_MODE_Cipher;
+  Object        mode_KeyGenerator;
+  Object        elementData_ArrayList;
   int           DEFAULT_CAPACITY_ArrayList;
   int           capacity_ArrayList;
   int           size_ArrayList;
-  char          value_Character;
+  Array_bit     _array_bit;
+  Array_char    _array_char;
+  Array_int     _array_int;
+  Array_float   _array_float;
+  Array_double  _array_double;
+  Array_Object  _array_object;
+  bit           _bit;
+  char          _char;
+  int           _int;
+  float         _float;
+  double        _double;
 }

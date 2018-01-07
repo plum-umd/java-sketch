@@ -13,5 +13,11 @@ int Number()         { return 8; }
 int Object()         { return 1; }
 int Pair()           { return 5; }
 int String()         { return 10; }
+int Array()          { return -1; }
+int _int()           { return -2; }
+int _char()          { return -3; }
+int _bit()           { return -4; }
+int _float()         { return -5; }
+int _double()        { return -6; }
 
 // Uninterpreted functions

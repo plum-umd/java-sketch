@@ -1,0 +1,16 @@
+package meta;
+
+// distinct class IDs
+int ArrayList()       { return 4; }
+int Assert()          { return 6; }
+int Boolean()         { return 9; }
+int CharSequence()    { return 5; }
+int Character()       { return 3; }
+int Cipher()          { return 7; }
+int Integer()         { return 8; }
+int Object()          { return 1; }
+int PrivateExample()  { return 2; }
+int String()          { return 10; }
+int Array()           { return -1; }
+
+// Uninterpreted functions

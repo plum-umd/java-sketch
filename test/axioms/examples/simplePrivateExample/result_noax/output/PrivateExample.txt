@@ -1,352 +1,576 @@
 SKETCH version 1.7.4
-Benchmark = /Users/kathymariano/Research/java-sketch/test/axioms/examples/simplePrivateExample/PrivateExample/../result_noax/sk_PrivateExample/main.sk
+Benchmark = /Users/grumpy/Research/java-sketch/test/axioms/examples/simplePrivateExample/PrivateExample/../result_noax/sk_PrivateExample/main.sk
 /* BEGIN PACKAGE ANONYMOUS*/
 /* END PACKAGE ANONYMOUS*/
 /* BEGIN PACKAGE Character*/
 package Character{
   /*Character.sk:43*/
   
-void glblInit_COMBINING_SPACING_MARK__Character_s713 (ref char COMBINING_SPACING_MARK__Character_s712)/*Character.sk:43*/
+void glblInit_COMBINING_SPACING_MARK__Character_s1048 (ref char COMBINING_SPACING_MARK__Character_s1047)/*Character.sk:43*/
   {
-    COMBINING_SPACING_MARK__Character_s712 = 8;
+    COMBINING_SPACING_MARK__Character_s1047 = 8;
   }
   /*Character.sk:99*/
   
-void glblInit_CONNECTOR_PUNCTUATION__Character_s715 (ref char CONNECTOR_PUNCTUATION__Character_s714)/*Character.sk:99*/
+void glblInit_CONNECTOR_PUNCTUATION__Character_s1050 (ref char CONNECTOR_PUNCTUATION__Character_s1049)/*Character.sk:99*/
   {
-    CONNECTOR_PUNCTUATION__Character_s714 = 23;
+    CONNECTOR_PUNCTUATION__Character_s1049 = 23;
   }
   /*Character.sk:71*/
   
-void glblInit_CONTROL__Character_s717 (ref char CONTROL__Character_s716)/*Character.sk:71*/
+void glblInit_CONTROL__Character_s1052 (ref char CONTROL__Character_s1051)/*Character.sk:71*/
   {
-    CONTROL__Character_s716 = 15;
+    CONTROL__Character_s1051 = 15;
   }
   /*Character.sk:111*/
   
-void glblInit_CURRENCY_SYMBOL__Character_s719 (ref char CURRENCY_SYMBOL__Character_s718)/*Character.sk:111*/
+void glblInit_CURRENCY_SYMBOL__Character_s1054 (ref char CURRENCY_SYMBOL__Character_s1053)/*Character.sk:111*/
   {
-    CURRENCY_SYMBOL__Character_s718 = 26;
+    CURRENCY_SYMBOL__Character_s1053 = 26;
   }
   /*Character.sk:87*/
   
-void glblInit_DASH_PUNCTUATION__Character_s721 (ref char DASH_PUNCTUATION__Character_s720)/*Character.sk:87*/
+void glblInit_DASH_PUNCTUATION__Character_s1056 (ref char DASH_PUNCTUATION__Character_s1055)/*Character.sk:87*/
   {
-    DASH_PUNCTUATION__Character_s720 = 20;
+    DASH_PUNCTUATION__Character_s1055 = 20;
   }
   /*Character.sk:47*/
   
-void glblInit_DECIMAL_DIGIT_NUMBER__Character_s723 (ref char DECIMAL_DIGIT_NUMBER__Character_s722)/*Character.sk:47*/
+void glblInit_DECIMAL_DIGIT_NUMBER__Character_s1058 (ref char DECIMAL_DIGIT_NUMBER__Character_s1057)/*Character.sk:47*/
   {
-    DECIMAL_DIGIT_NUMBER__Character_s722 = 9;
+    DECIMAL_DIGIT_NUMBER__Character_s1057 = 9;
   }
   /*Character.sk:155*/
   
-void glblInit_DIRECTIONALITY_ARABIC_NUMBER__Character_s725 (ref char DIRECTIONALITY_ARABIC_NUMBER__Character_s724)/*Character.sk:155*/
+void glblInit_DIRECTIONALITY_ARABIC_NUMBER__Character_s1060 (ref char DIRECTIONALITY_ARABIC_NUMBER__Character_s1059)/*Character.sk:155*/
   {
-    DIRECTIONALITY_ARABIC_NUMBER__Character_s724 = 6;
+    DIRECTIONALITY_ARABIC_NUMBER__Character_s1059 = 6;
   }
   /*Character.sk:167*/
   
-void glblInit_DIRECTIONALITY_BOUNDARY_NEUTRAL__Character_s727 (ref char DIRECTIONALITY_BOUNDARY_NEUTRAL__Character_s726)/*Character.sk:167*/
+void glblInit_DIRECTIONALITY_BOUNDARY_NEUTRAL__Character_s1062 (ref char DIRECTIONALITY_BOUNDARY_NEUTRAL__Character_s1061)/*Character.sk:167*/
   {
-    DIRECTIONALITY_BOUNDARY_NEUTRAL__Character_s726 = 9;
+    DIRECTIONALITY_BOUNDARY_NEUTRAL__Character_s1061 = 9;
   }
   /*Character.sk:159*/
   
-void glblInit_DIRECTIONALITY_COMMON_NUMBER_SEPARATOR__Character_s729 (ref char DIRECTIONALITY_COMMON_NUMBER_SEPARATOR__Character_s728)/*Character.sk:159*/
+void glblInit_DIRECTIONALITY_COMMON_NUMBER_SEPARATOR__Character_s1064 (ref char DIRECTIONALITY_COMMON_NUMBER_SEPARATOR__Character_s1063)/*Character.sk:159*/
   {
-    DIRECTIONALITY_COMMON_NUMBER_SEPARATOR__Character_s728 = 7;
+    DIRECTIONALITY_COMMON_NUMBER_SEPARATOR__Character_s1063 = 7;
   }
   /*Character.sk:147*/
   
-void glblInit_DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR__Character_s731 (ref char DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR__Character_s730)/*Character.sk:147*/
+void glblInit_DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR__Character_s1066 (ref char DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR__Character_s1065)/*Character.sk:147*/
   {
-    DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR__Character_s730 = 4;
+    DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR__Character_s1065 = 4;
   }
   /*Character.sk:151*/
   
-void glblInit_DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR__Character_s733 (ref char DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR__Character_s732)/*Character.sk:151*/
+void glblInit_DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR__Character_s1068 (ref char DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR__Character_s1067)/*Character.sk:151*/
   {
-    DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR__Character_s732 = 5;
+    DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR__Character_s1067 = 5;
   }
   /*Character.sk:143*/
   
-void glblInit_DIRECTIONALITY_EUROPEAN_NUMBER__Character_s735 (ref char DIRECTIONALITY_EUROPEAN_NUMBER__Character_s734)/*Character.sk:143*/
+void glblInit_DIRECTIONALITY_EUROPEAN_NUMBER__Character_s1070 (ref char DIRECTIONALITY_EUROPEAN_NUMBER__Character_s1069)/*Character.sk:143*/
   {
-    DIRECTIONALITY_EUROPEAN_NUMBER__Character_s734 = 3;
+    DIRECTIONALITY_EUROPEAN_NUMBER__Character_s1069 = 3;
   }
   /*Character.sk:187*/
   
-void glblInit_DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING__Character_s737 (ref char DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING__Character_s736)/*Character.sk:187*/
+void glblInit_DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING__Character_s1072 (ref char DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING__Character_s1071)/*Character.sk:187*/
   {
-    DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING__Character_s736 = 14;
+    DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING__Character_s1071 = 14;
   }
   /*Character.sk:191*/
   
-void glblInit_DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE__Character_s739 (ref char DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE__Character_s738)/*Character.sk:191*/
+void glblInit_DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE__Character_s1074 (ref char DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE__Character_s1073)/*Character.sk:191*/
   {
-    DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE__Character_s738 = 15;
+    DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE__Character_s1073 = 15;
   }
   /*Character.sk:131*/
   
-void glblInit_DIRECTIONALITY_LEFT_TO_RIGHT__Character_s741 (ref char DIRECTIONALITY_LEFT_TO_RIGHT__Character_s740)/*Character.sk:131*/
+void glblInit_DIRECTIONALITY_LEFT_TO_RIGHT__Character_s1076 (ref char DIRECTIONALITY_LEFT_TO_RIGHT__Character_s1075)/*Character.sk:131*/
   {
-    DIRECTIONALITY_LEFT_TO_RIGHT__Character_s740 = 0;
+    DIRECTIONALITY_LEFT_TO_RIGHT__Character_s1075 = 0;
   }
   /*Character.sk:163*/
   
-void glblInit_DIRECTIONALITY_NONSPACING_MARK__Character_s743 (ref char DIRECTIONALITY_NONSPACING_MARK__Character_s742)/*Character.sk:163*/
+void glblInit_DIRECTIONALITY_NONSPACING_MARK__Character_s1078 (ref char DIRECTIONALITY_NONSPACING_MARK__Character_s1077)/*Character.sk:163*/
   {
-    DIRECTIONALITY_NONSPACING_MARK__Character_s742 = 8;
+    DIRECTIONALITY_NONSPACING_MARK__Character_s1077 = 8;
   }
   /*Character.sk:183*/
   
-void glblInit_DIRECTIONALITY_OTHER_NEUTRALS__Character_s745 (ref char DIRECTIONALITY_OTHER_NEUTRALS__Character_s744)/*Character.sk:183*/
+void glblInit_DIRECTIONALITY_OTHER_NEUTRALS__Character_s1080 (ref char DIRECTIONALITY_OTHER_NEUTRALS__Character_s1079)/*Character.sk:183*/
   {
-    DIRECTIONALITY_OTHER_NEUTRALS__Character_s744 = 13;
+    DIRECTIONALITY_OTHER_NEUTRALS__Character_s1079 = 13;
   }
   /*Character.sk:171*/
   
-void glblInit_DIRECTIONALITY_PARAGRAPH_SEPARATOR__Character_s747 (ref char DIRECTIONALITY_PARAGRAPH_SEPARATOR__Character_s746)/*Character.sk:171*/
+void glblInit_DIRECTIONALITY_PARAGRAPH_SEPARATOR__Character_s1082 (ref char DIRECTIONALITY_PARAGRAPH_SEPARATOR__Character_s1081)/*Character.sk:171*/
   {
-    DIRECTIONALITY_PARAGRAPH_SEPARATOR__Character_s746 = 10;
+    DIRECTIONALITY_PARAGRAPH_SEPARATOR__Character_s1081 = 10;
   }
   /*Character.sk:203*/
   
-void glblInit_DIRECTIONALITY_POP_DIRECTIONAL_FORMAT__Character_s749 (ref char DIRECTIONALITY_POP_DIRECTIONAL_FORMAT__Character_s748)/*Character.sk:203*/
+void glblInit_DIRECTIONALITY_POP_DIRECTIONAL_FORMAT__Character_s1084 (ref char DIRECTIONALITY_POP_DIRECTIONAL_FORMAT__Character_s1083)/*Character.sk:203*/
   {
-    DIRECTIONALITY_POP_DIRECTIONAL_FORMAT__Character_s748 = 18;
+    DIRECTIONALITY_POP_DIRECTIONAL_FORMAT__Character_s1083 = 18;
   }
   /*Character.sk:139*/
   
-void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC__Character_s751 (ref char DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC__Character_s750)/*Character.sk:139*/
+void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC__Character_s1086 (ref char DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC__Character_s1085)/*Character.sk:139*/
   {
-    DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC__Character_s750 = 2;
+    DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC__Character_s1085 = 2;
   }
   /*Character.sk:195*/
   
-void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING__Character_s753 (ref char DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING__Character_s752)/*Character.sk:195*/
+void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING__Character_s1088 (ref char DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING__Character_s1087)/*Character.sk:195*/
   {
-    DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING__Character_s752 = 16;
+    DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING__Character_s1087 = 16;
   }
   /*Character.sk:199*/
   
-void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE__Character_s755 (ref char DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE__Character_s754)/*Character.sk:199*/
+void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE__Character_s1090 (ref char DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE__Character_s1089)/*Character.sk:199*/
   {
-    DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE__Character_s754 = 17;
+    DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE__Character_s1089 = 17;
   }
   /*Character.sk:135*/
   
-void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT__Character_s757 (ref char DIRECTIONALITY_RIGHT_TO_LEFT__Character_s756)/*Character.sk:135*/
+void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT__Character_s1092 (ref char DIRECTIONALITY_RIGHT_TO_LEFT__Character_s1091)/*Character.sk:135*/
   {
-    DIRECTIONALITY_RIGHT_TO_LEFT__Character_s756 = 1;
+    DIRECTIONALITY_RIGHT_TO_LEFT__Character_s1091 = 1;
   }
   /*Character.sk:175*/
   
-void glblInit_DIRECTIONALITY_SEGMENT_SEPARATOR__Character_s759 (ref char DIRECTIONALITY_SEGMENT_SEPARATOR__Character_s758)/*Character.sk:175*/
+void glblInit_DIRECTIONALITY_SEGMENT_SEPARATOR__Character_s1094 (ref char DIRECTIONALITY_SEGMENT_SEPARATOR__Character_s1093)/*Character.sk:175*/
   {
-    DIRECTIONALITY_SEGMENT_SEPARATOR__Character_s758 = 11;
+    DIRECTIONALITY_SEGMENT_SEPARATOR__Character_s1093 = 11;
   }
   /*Character.sk:127*/
   
-void glblInit_DIRECTIONALITY_UNDEFINED__Character_s761 (ref char DIRECTIONALITY_UNDEFINED__Character_s760)/*Character.sk:127*/
+void glblInit_DIRECTIONALITY_UNDEFINED__Character_s1096 (ref char DIRECTIONALITY_UNDEFINED__Character_s1095)/*Character.sk:127*/
   {
-    DIRECTIONALITY_UNDEFINED__Character_s760 = -1;
+    DIRECTIONALITY_UNDEFINED__Character_s1095 = -1;
   }
   /*Character.sk:179*/
   
-void glblInit_DIRECTIONALITY_WHITESPACE__Character_s763 (ref char DIRECTIONALITY_WHITESPACE__Character_s762)/*Character.sk:179*/
+void glblInit_DIRECTIONALITY_WHITESPACE__Character_s1098 (ref char DIRECTIONALITY_WHITESPACE__Character_s1097)/*Character.sk:179*/
   {
-    DIRECTIONALITY_WHITESPACE__Character_s762 = 12;
+    DIRECTIONALITY_WHITESPACE__Character_s1097 = 12;
   }
   /*Character.sk:39*/
   
-void glblInit_ENCLOSING_MARK__Character_s767 (ref char ENCLOSING_MARK__Character_s766)/*Character.sk:39*/
+void glblInit_ENCLOSING_MARK__Character_s1100 (ref char ENCLOSING_MARK__Character_s1099)/*Character.sk:39*/
   {
-    ENCLOSING_MARK__Character_s766 = 7;
+    ENCLOSING_MARK__Character_s1099 = 7;
   }
   /*Character.sk:95*/
   
-void glblInit_END_PUNCTUATION__Character_s769 (ref char END_PUNCTUATION__Character_s768)/*Character.sk:95*/
+void glblInit_END_PUNCTUATION__Character_s1102 (ref char END_PUNCTUATION__Character_s1101)/*Character.sk:95*/
   {
-    END_PUNCTUATION__Character_s768 = 22;
+    END_PUNCTUATION__Character_s1101 = 22;
   }
   /*Character.sk:123*/
   
-void glblInit_FINAL_QUOTE_PUNCTUATION__Character_s771 (ref char FINAL_QUOTE_PUNCTUATION__Character_s770)/*Character.sk:123*/
+void glblInit_FINAL_QUOTE_PUNCTUATION__Character_s1104 (ref char FINAL_QUOTE_PUNCTUATION__Character_s1103)/*Character.sk:123*/
   {
-    FINAL_QUOTE_PUNCTUATION__Character_s770 = 30;
+    FINAL_QUOTE_PUNCTUATION__Character_s1103 = 30;
   }
   /*Character.sk:75*/
   
-void glblInit_FORMAT__Character_s773 (ref char FORMAT__Character_s772)/*Character.sk:75*/
+void glblInit_FORMAT__Character_s1106 (ref char FORMAT__Character_s1105)/*Character.sk:75*/
   {
-    FORMAT__Character_s772 = 16;
+    FORMAT__Character_s1105 = 16;
   }
   /*Character.sk:51*/
   
-void glblInit_LETTER_NUMBER__Character_s775 (ref char LETTER_NUMBER__Character_s774)/*Character.sk:51*/
+void glblInit_LETTER_NUMBER__Character_s1108 (ref char LETTER_NUMBER__Character_s1107)/*Character.sk:51*/
   {
-    LETTER_NUMBER__Character_s774 = 10;
+    LETTER_NUMBER__Character_s1107 = 10;
   }
   /*Character.sk:63*/
   
-void glblInit_LINE_SEPARATOR__Character_s777 (ref char LINE_SEPARATOR__Character_s776)/*Character.sk:63*/
+void glblInit_LINE_SEPARATOR__Character_s1110 (ref char LINE_SEPARATOR__Character_s1109)/*Character.sk:63*/
   {
-    LINE_SEPARATOR__Character_s776 = 13;
+    LINE_SEPARATOR__Character_s1109 = 13;
   }
   /*Character.sk:19*/
   
-void glblInit_LOWERCASE_LETTER__Character_s779 (ref char LOWERCASE_LETTER__Character_s778)/*Character.sk:19*/
+void glblInit_LOWERCASE_LETTER__Character_s1112 (ref char LOWERCASE_LETTER__Character_s1111)/*Character.sk:19*/
   {
-    LOWERCASE_LETTER__Character_s778 = 2;
+    LOWERCASE_LETTER__Character_s1111 = 2;
   }
   /*Character.sk:107*/
   
-void glblInit_MATH_SYMBOL__Character_s781 (ref char MATH_SYMBOL__Character_s780)/*Character.sk:107*/
+void glblInit_MATH_SYMBOL__Character_s1114 (ref char MATH_SYMBOL__Character_s1113)/*Character.sk:107*/
   {
-    MATH_SYMBOL__Character_s780 = 25;
+    MATH_SYMBOL__Character_s1113 = 25;
   }
   /*Character.sk:7*/
   
-void glblInit_MAX_RADIX__Character_s785 (ref int MAX_RADIX__Character_s784)/*Character.sk:7*/
+void glblInit_MAX_RADIX__Character_s1118 (ref int MAX_RADIX__Character_s1117)/*Character.sk:7*/
   {
-    MAX_RADIX__Character_s784 = 36;
+    MAX_RADIX__Character_s1117 = 36;
   }
   /*Character.sk:3*/
   
-void glblInit_MIN_RADIX__Character_s789 (ref int MIN_RADIX__Character_s788)/*Character.sk:3*/
+void glblInit_MIN_RADIX__Character_s1122 (ref int MIN_RADIX__Character_s1121)/*Character.sk:3*/
   {
-    MIN_RADIX__Character_s788 = 2;
+    MIN_RADIX__Character_s1121 = 2;
   }
   /*Character.sk:27*/
   
-void glblInit_MODIFIER_LETTER__Character_s793 (ref char MODIFIER_LETTER__Character_s792)/*Character.sk:27*/
+void glblInit_MODIFIER_LETTER__Character_s1126 (ref char MODIFIER_LETTER__Character_s1125)/*Character.sk:27*/
   {
-    MODIFIER_LETTER__Character_s792 = 4;
+    MODIFIER_LETTER__Character_s1125 = 4;
   }
   /*Character.sk:115*/
   
-void glblInit_MODIFIER_SYMBOL__Character_s795 (ref char MODIFIER_SYMBOL__Character_s794)/*Character.sk:115*/
+void glblInit_MODIFIER_SYMBOL__Character_s1128 (ref char MODIFIER_SYMBOL__Character_s1127)/*Character.sk:115*/
   {
-    MODIFIER_SYMBOL__Character_s794 = 27;
+    MODIFIER_SYMBOL__Character_s1127 = 27;
   }
   /*Character.sk:35*/
   
-void glblInit_NON_SPACING_MARK__Character_s797 (ref char NON_SPACING_MARK__Character_s796)/*Character.sk:35*/
+void glblInit_NON_SPACING_MARK__Character_s1130 (ref char NON_SPACING_MARK__Character_s1129)/*Character.sk:35*/
   {
-    NON_SPACING_MARK__Character_s796 = 6;
+    NON_SPACING_MARK__Character_s1129 = 6;
   }
   /*Character.sk:31*/
   
-void glblInit_OTHER_LETTER__Character_s799 (ref char OTHER_LETTER__Character_s798)/*Character.sk:31*/
+void glblInit_OTHER_LETTER__Character_s1132 (ref char OTHER_LETTER__Character_s1131)/*Character.sk:31*/
   {
-    OTHER_LETTER__Character_s798 = 5;
+    OTHER_LETTER__Character_s1131 = 5;
   }
   /*Character.sk:55*/
   
-void glblInit_OTHER_NUMBER__Character_s801 (ref char OTHER_NUMBER__Character_s800)/*Character.sk:55*/
+void glblInit_OTHER_NUMBER__Character_s1134 (ref char OTHER_NUMBER__Character_s1133)/*Character.sk:55*/
   {
-    OTHER_NUMBER__Character_s800 = 11;
+    OTHER_NUMBER__Character_s1133 = 11;
   }
   /*Character.sk:103*/
   
-void glblInit_OTHER_PUNCTUATION__Character_s803 (ref char OTHER_PUNCTUATION__Character_s802)/*Character.sk:103*/
+void glblInit_OTHER_PUNCTUATION__Character_s1136 (ref char OTHER_PUNCTUATION__Character_s1135)/*Character.sk:103*/
   {
-    OTHER_PUNCTUATION__Character_s802 = 24;
+    OTHER_PUNCTUATION__Character_s1135 = 24;
   }
   /*Character.sk:119*/
   
-void glblInit_OTHER_SYMBOL__Character_s805 (ref char OTHER_SYMBOL__Character_s804)/*Character.sk:119*/
+void glblInit_OTHER_SYMBOL__Character_s1138 (ref char OTHER_SYMBOL__Character_s1137)/*Character.sk:119*/
   {
-    OTHER_SYMBOL__Character_s804 = 28;
+    OTHER_SYMBOL__Character_s1137 = 28;
   }
   /*Character.sk:67*/
   
-void glblInit_PARAGRAPH_SEPARATOR__Character_s807 (ref char PARAGRAPH_SEPARATOR__Character_s806)/*Character.sk:67*/
+void glblInit_PARAGRAPH_SEPARATOR__Character_s1140 (ref char PARAGRAPH_SEPARATOR__Character_s1139)/*Character.sk:67*/
   {
-    PARAGRAPH_SEPARATOR__Character_s806 = 14;
+    PARAGRAPH_SEPARATOR__Character_s1139 = 14;
   }
   /*Character.sk:79*/
   
-void glblInit_PRIVATE_USE__Character_s809 (ref char PRIVATE_USE__Character_s808)/*Character.sk:79*/
+void glblInit_PRIVATE_USE__Character_s1142 (ref char PRIVATE_USE__Character_s1141)/*Character.sk:79*/
   {
-    PRIVATE_USE__Character_s808 = 18;
+    PRIVATE_USE__Character_s1141 = 18;
   }
   /*Character.sk:59*/
   
-void glblInit_SPACE_SEPARATOR__Character_s811 (ref char SPACE_SEPARATOR__Character_s810)/*Character.sk:59*/
+void glblInit_SPACE_SEPARATOR__Character_s1144 (ref char SPACE_SEPARATOR__Character_s1143)/*Character.sk:59*/
   {
-    SPACE_SEPARATOR__Character_s810 = 12;
+    SPACE_SEPARATOR__Character_s1143 = 12;
   }
   /*Character.sk:91*/
   
-void glblInit_START_PUNCTUATION__Character_s813 (ref char START_PUNCTUATION__Character_s812)/*Character.sk:91*/
+void glblInit_START_PUNCTUATION__Character_s1146 (ref char START_PUNCTUATION__Character_s1145)/*Character.sk:91*/
   {
-    START_PUNCTUATION__Character_s812 = 21;
+    START_PUNCTUATION__Character_s1145 = 21;
   }
   /*Character.sk:83*/
   
-void glblInit_SURROGATE__Character_s815 (ref char SURROGATE__Character_s814)/*Character.sk:83*/
+void glblInit_SURROGATE__Character_s1148 (ref char SURROGATE__Character_s1147)/*Character.sk:83*/
   {
-    SURROGATE__Character_s814 = 19;
+    SURROGATE__Character_s1147 = 19;
   }
   /*Character.sk:23*/
   
-void glblInit_TITLECASE_LETTER__Character_s817 (ref char TITLECASE_LETTER__Character_s816)/*Character.sk:23*/
+void glblInit_TITLECASE_LETTER__Character_s1150 (ref char TITLECASE_LETTER__Character_s1149)/*Character.sk:23*/
   {
-    TITLECASE_LETTER__Character_s816 = 3;
+    TITLECASE_LETTER__Character_s1149 = 3;
   }
   /*Character.sk:11*/
   
-void glblInit_UNASSIGNED__Character_s819 (ref char UNASSIGNED__Character_s818)/*Character.sk:11*/
+void glblInit_UNASSIGNED__Character_s1152 (ref char UNASSIGNED__Character_s1151)/*Character.sk:11*/
   {
-    UNASSIGNED__Character_s818 = 0;
+    UNASSIGNED__Character_s1151 = 0;
   }
   /*Character.sk:15*/
   
-void glblInit_UPPERCASE_LETTER__Character_s821 (ref char UPPERCASE_LETTER__Character_s820)/*Character.sk:15*/
+void glblInit_UPPERCASE_LETTER__Character_s1154 (ref char UPPERCASE_LETTER__Character_s1153)/*Character.sk:15*/
   {
-    UPPERCASE_LETTER__Character_s820 = 1;
+    UPPERCASE_LETTER__Character_s1153 = 1;
   }
   /* END PACKAGE Character*/
 }
 /* BEGIN PACKAGE ArrayList*/
 package ArrayList{
-  /*ArrayList.sk:3*/
-  
-void glblInit_EMPTY_ELEMENTDATA__ArrayList_s765 (ref Array_Object@array EMPTY_ELEMENTDATA__ArrayList_s764)/*ArrayList.sk:3*/
-  {
-    EMPTY_ELEMENTDATA__ArrayList_s764 = new Array_Object@array(length=0, A={});
-  }
   /*ArrayList.sk:7*/
   
-void glblInit_MAX_ARRAY_SIZE__ArrayList_s783 (ref int MAX_ARRAY_SIZE__ArrayList_s782)/*ArrayList.sk:7*/
+void glblInit_MAX_ARRAY_SIZE__ArrayList_s1116 (ref int MAX_ARRAY_SIZE__ArrayList_s1115)/*ArrayList.sk:7*/
   {
-    MAX_ARRAY_SIZE__ArrayList_s782 = 1000000;
+    MAX_ARRAY_SIZE__ArrayList_s1115 = 1000000;
   }
   /* END PACKAGE ArrayList*/
 }
 /* BEGIN PACKAGE String*/
 package String{
+  /*String.sk:22*/
+  
+void String_String_byte (Object self, Object bytes, ref Object _out)/*String.sk:22*/
+  {
+    _out = null;
+    int len;
+    len = bytes._array_char.length;
+    Object@Object _out_s225 = null;
+    Wrap_Array_char@array(new Array_char@array(length=len), _out_s225);
+    self._value_String = _out_s225;
+    for(int i = 0; i < len; i = i + 1)/*Canonical*/
+    {
+      self._value_String._array_char.A[i] = bytes._array_char.A[i];
+    }
+    self._count_String = len;
+    _out = self;
+    return;
+  }
+  /*String.sk:7*/
+  
+void String_String_char_int_int (Object self, Object ca, int offset, int count, ref Object _out)/*String.sk:7*/
+  {
+    _out = null;
+    if((offset > 0) && (offset < (ca._array_char.length)))/*String.sk:8*/
+    {
+      Object@Object tmp_s227 = null;
+      Wrap_Array_char@array(new Array_char@array(length=count), tmp_s227);
+      for(int i = 0; i < count; i = i + 1)/*Canonical*/
+      {
+        tmp_s227._array_char.A[i] = ca._array_char.A[i + offset];
+      }
+      self._value_String = tmp_s227;
+    }
+    else
+    {
+      self._value_String = ca;
+    }
+    self._count_String = count;
+    _out = self;
+    return;
+  }
+  /*String.sk:32*/
+  
+void charAt_int (Object self, int index, ref char _out)/*String.sk:32*/
+  {
+    _out = '\0';
+    if((0 <= index) && (index < (self._count_String)))/*String.sk:33*/
+    {
+      _out = self._value_String._array_char.A[index];
+      return;
+    }
+    _out = '\0';
+    return;
+  }
+  /*String.sk:143*/
+  
+void equals_Object (Object self, Object obj, ref bit _out)/*String.sk:143*/
+  {
+    _out = 0;
+    _out = 0;
+    int _out_s213 = 0;
+    String@meta(_out_s213);
+    if((obj.__cid) == _out_s213)/*String.sk:145*/
+    {
+      _out = 1;
+      int sLen_s215 = 0;
+      String@meta(sLen_s215);
+      int _pac_sc_s216 = 0;
+      if((obj.__cid) == sLen_s215)/*String.sk:148*/
+      {
+        int sLen_s218 = 0;
+        length@String(obj, sLen_s218);
+        _pac_sc_s216 = sLen_s218;
+      }
+      else
+      {
+        _pac_sc_s216 = 0;
+      }
+      int tLen_s220 = 0;
+      String@meta(tLen_s220);
+      int _pac_sc_s221 = 0;
+      if((self.__cid) == tLen_s220)/*String.sk:149*/
+      {
+        int tLen_s223 = 0;
+        length@String(self, tLen_s223);
+        _pac_sc_s221 = tLen_s223;
+      }
+      else
+      {
+        _pac_sc_s221 = 0;
+      }
+      if(_pac_sc_s216 != _pac_sc_s221)/*String.sk:150*/
+      {
+        _out = 0;
+      }
+      for(int i = 0; (i < _pac_sc_s216) && (_out == 1); i = i + 1)
+      {
+        if((obj._value_String._array_char.A[i]) != (self._value_String._array_char.A[i]))/*String.sk:152*/
+        {
+          _out = 0;
+        }
+      }
+    }
+    return;
+  }
+  /*String.sk:202*/
+  
+void getBytes (Object self, ref Object _out)/*String.sk:202*/
+  {
+    _out = null;
+    int _out_s229 = 0;
+    String@meta(_out_s229);
+    Object@Object _pac_sc_s230 = null;
+    if((self.__cid) == _out_s229)/*String.sk:203*/
+    {
+      Object@Object _out_s232 = null;
+      toString@String(self, _out_s232);
+      _pac_sc_s230 = _out_s232;
+    }
+    else
+    {
+      _pac_sc_s230 = null;
+    }
+    Object@Object _out_s234 = null;
+    getBytes_String(_pac_sc_s230, _out_s234);
+    _out = _out_s234;
+    return;
+  }
+  /*String.sk:206*/
+  
+void getBytes_String (Object str, ref Object _out)/*String.sk:206*/
+  {
+    _out = null;
+    int len_s236 = 0;
+    String@meta(len_s236);
+    int _pac_sc_s237 = 0;
+    if((str.__cid) == len_s236)/*String.sk:207*/
+    {
+      int len_s239 = 0;
+      length@String(str, len_s239);
+      _pac_sc_s237 = len_s239;
+    }
+    else
+    {
+      _pac_sc_s237 = 0;
+    }
+    Object@Object bytes_s241 = null;
+    Wrap_Array_char@array(new Array_char@array(length=_pac_sc_s237), bytes_s241);
+    _out = bytes_s241;
+    for(int i = 0; i < _pac_sc_s237; i = i + 1)/*Canonical*/
+    {
+      int _out_s243 = 0;
+      String@meta(_out_s243);
+      char _pac_sc_s244 = '\0';
+      if((str.__cid) == _out_s243)/*String.sk:210*/
+      {
+        char _out_s246 = '\0';
+        charAt_int@String(str, i, _out_s246);
+        _pac_sc_s244 = _out_s246;
+      }
+      else
+      {
+        _pac_sc_s244 = '\0';
+      }
+      bytes_s241._array_char.A[i] = _pac_sc_s244;
+    }
+    return;
+  }
+  /*String.sk:37*/
+  
+void length (Object self, ref int _out)/*String.sk:37*/
+  {
+    _out = 0;
+    _out = self._count_String;
+    return;
+  }
+  /*String.sk:41*/
+  
+void toString (Object self, ref Object _out)/*String.sk:41*/
+  {
+    _out = null;
+    _out = self;
+    return;
+  }
   /* END PACKAGE String*/
+}
+/* BEGIN PACKAGE Mac*/
+package Mac{
+  /* END PACKAGE Mac*/
 }
 /* BEGIN PACKAGE Integer*/
 package Integer{
   /*Integer.sk:7*/
   
-void glblInit_MAX_VALUE__Integer_s787 (ref int MAX_VALUE__Integer_s786)/*Integer.sk:7*/
+void glblInit_MAX_VALUE__Integer_s1120 (ref int MAX_VALUE__Integer_s1119)/*Integer.sk:7*/
   {
-    MAX_VALUE__Integer_s786 = 2147483647;
+    MAX_VALUE__Integer_s1119 = 2147483647;
   }
   /*Integer.sk:3*/
   
-void glblInit_MIN_VALUE__Integer_s791 (ref int MIN_VALUE__Integer_s790)/*Integer.sk:3*/
+void glblInit_MIN_VALUE__Integer_s1124 (ref int MIN_VALUE__Integer_s1123)/*Integer.sk:3*/
   {
-    MIN_VALUE__Integer_s790 = -2147483648;
+    MIN_VALUE__Integer_s1123 = -2147483648;
   }
   /* END PACKAGE Integer*/
+}
+/* BEGIN PACKAGE SecretKey*/
+package SecretKey{
+  /* END PACKAGE SecretKey*/
+}
+/* BEGIN PACKAGE KerberosKey*/
+package KerberosKey{
+  /*KerberosKey.sk:3*/
+  
+void KerberosKey_KerberosKey (Object self, ref Object _out)/*KerberosKey.sk:3*/
+  {
+    _out = null;
+    self.KEYSIZE_KerberosKey = 32;
+    Object@Object _out_s514 = null;
+    Wrap_Array_char@array(new Array_char@array(length=self.KEYSIZE_KerberosKey), _out_s514);
+    self.key_KerberosKey = _out_s514;
+    bit __sa10 = 0 < (self.KEYSIZE_KerberosKey);
+    int i = 0;
+    while(__sa10)
+    {
+      {
+        {
+          {
+            self.key_KerberosKey._array_char.A[i] = 1;
+            i = i + 1;
+            __sa10 = i < (self.KEYSIZE_KerberosKey);
+          }
+        }
+      }
+    }
+    _out = self;
+    return;
+  }
+  /*KerberosKey.sk:12*/
+  
+void getEncoded (Object self, ref Object _out)/*KerberosKey.sk:12*/
+  {
+    _out = null;
+    _out = self.key_KerberosKey;
+    return;
+  }
+  /* END PACKAGE KerberosKey*/
 }
 /* BEGIN PACKAGE Assert*/
 package Assert{
@@ -385,33 +609,122 @@ package array{
       int length;
       Object[length] A;
   }
+  /*array.sk:37*/
+  
+void Wrap_Array_char (Array_char arr, ref Object _out)/*array.sk:37*/
+  {
+    _out = null;
+    int _out_s678 = 0;
+    Array@meta(_out_s678);
+    _out = new Object@Object(__cid=_out_s678, _array_char=arr);
+    return;
+  }
   /* END PACKAGE array*/
 }
 /* BEGIN PACKAGE meta*/
 package meta{
-  /*meta.sk:11*/
+  /*meta.sk:21*/
   
-void Object (ref int _out)/*meta.sk:11*/
+void Array (ref int _out)/*meta.sk:21*/
+  {
+    _out = 0;
+    _out = -1;
+    return;
+  }
+  /*meta.sk:7*/
+  
+void Cipher (ref int _out)/*meta.sk:7*/
+  {
+    _out = 0;
+    _out = 6;
+    return;
+  }
+  /*meta.sk:10*/
+  
+void KerberosKey (ref int _out)/*meta.sk:10*/
+  {
+    _out = 0;
+    _out = 12;
+    return;
+  }
+  /*meta.sk:12*/
+  
+void KeyGenerator (ref int _out)/*meta.sk:12*/
+  {
+    _out = 0;
+    _out = 8;
+    return;
+  }
+  /*meta.sk:16*/
+  
+void Object (ref int _out)/*meta.sk:16*/
   {
     _out = 0;
     _out = 1;
     return;
   }
+  /*meta.sk:19*/
+  
+void SecretKeySpec (ref int _out)/*meta.sk:19*/
+  {
+    _out = 0;
+    _out = 7;
+    return;
+  }
+  /*meta.sk:20*/
+  
+void String (ref int _out)/*meta.sk:20*/
+  {
+    _out = 0;
+    _out = 14;
+    return;
+  }
   /* END PACKAGE meta*/
+}
+/* BEGIN PACKAGE SecretKeySpec*/
+package SecretKeySpec{
+  /*SecretKeySpec.sk:12*/
+  
+void getEncoded (Object self, ref Object _out)/*SecretKeySpec.sk:12*/
+  {
+    _out = null;
+    _out = self.key_SecretKeySpec;
+    return;
+  }
+  /* END PACKAGE SecretKeySpec*/
 }
 /* BEGIN PACKAGE Object*/
 package Object{
   struct Object {
       int __cid;
-      Array_char _value_String;
+      Object _value_String;
       int _count_String;
+      Object key_KerberosKey;
+      int KEYSIZE_KerberosKey;
       int value_Integer;
-      Object mode_Cipher;
-      Array_Object elementData_ArrayList;
+      char value_Character;
+      Object key_SecretKeySpec;
+      Object type_Cipher;
+      Object key_Cipher;
+      int mode_Cipher;
+      int ENCRYPT_MODE_Cipher;
+      int DECRYPT_MODE_Cipher;
+      Object mode_KeyGenerator;
+      Object elementData_ArrayList;
       int DEFAULT_CAPACITY_ArrayList;
       int capacity_ArrayList;
       int size_ArrayList;
-      char value_Character;
+      Array_bit _array_bit;
+      Array_char _array_char;
+      Array_int _array_int;
+      Array_float _array_float;
+      Array_double _array_double;
+      Array_Object _array_object;
+      bit _bit;
+      char _char;
+      int _int;
+      float _float;
+      double _double;
   }
   /*Object.sk:7*/
   
@@ -423,24 +736,296 @@ void Object_Object (Object self, ref Object _out)/*Object.sk:7*/
   }
   /* END PACKAGE Object*/
 }
+/* BEGIN PACKAGE IvParameterSpec*/
+package IvParameterSpec{
+  /* END PACKAGE IvParameterSpec*/
+}
 /* BEGIN PACKAGE List*/
 package List{
   /* END PACKAGE List*/
 }
 /* BEGIN PACKAGE Cipher*/
 package Cipher{
+  /*Cipher.sk:7*/
+  
+void Cipher_Cipher_String (Object self, Object type, ref Object _out)/*Cipher.sk:7*/
+  {
+    _out = null;
+    self.type_Cipher = type;
+    self.ENCRYPT_MODE_Cipher = 1;
+    self.DECRYPT_MODE_Cipher = 2;
+    _out = self;
+    return;
+  }
+  /*Cipher.sk:32*/
+  
+void doFinal_byte (Object self, Object text, ref Object _out)/*Cipher.sk:32*/
+  {
+    _out = null;
+    int k_s831 = 0;
+    KerberosKey@meta(k_s831);
+    Object@Object _pac_sc_s832 = null;
+    if((self.key_Cipher.__cid) == k_s831)/*Cipher.sk:33*/
+    {
+      Object@Object k_s834 = null;
+      getEncoded@KerberosKey(self.key_Cipher, k_s834);
+      _pac_sc_s832 = k_s834;
+    }
+    else
+    {
+      int k_s836 = 0;
+      SecretKeySpec@meta(k_s836);
+      Object@Object _pac_sc_s837 = null;
+      if((self.key_Cipher.__cid) == k_s836)/*Cipher.sk:33*/
+      {
+        Object@Object k_s839 = null;
+        getEncoded@SecretKeySpec(self.key_Cipher, k_s839);
+        _pac_sc_s837 = k_s839;
+      }
+      else
+      {
+        _pac_sc_s837 = null;
+      }
+      _pac_sc_s832 = _pac_sc_s837;
+    }
+    Object@Object result_s841 = null;
+    Wrap_Array_char@array(new Array_char@array(length=text._array_char.length), result_s841);
+    _out = result_s841;
+    if((_pac_sc_s832._array_char.length) == 0)/*Cipher.sk:35*/
+    {
+      return;
+    }
+    if((self.mode_Cipher) == (self.ENCRYPT_MODE_Cipher))/*Cipher.sk:38*/
+    {
+      bit __sa12 = 0 < (text._array_char.length);
+      int i = 0;
+      while(__sa12)
+      {
+        {
+          {
+            {
+              result_s841._array_char.A[i] = (text._array_char.A[i]) + (_pac_sc_s832._array_char.A[i % (_pac_sc_s832._array_char.length)]);
+              i = i + 1;
+              __sa12 = i < (text._array_char.length);
+            }
+          }
+        }
+      }
+    }
+    else
+    {
+      if((self.mode_Cipher) == (self.DECRYPT_MODE_Cipher))/*Cipher.sk:43*/
+      {
+        bit __sa13 = 0 < (text._array_char.length);
+        int i_0 = 0;
+        while(__sa13)
+        {
+          {
+            {
+              {
+                result_s841._array_char.A[i_0] = (text._array_char.A[i_0]) - (_pac_sc_s832._array_char.A[i_0 % (_pac_sc_s832._array_char.length)]);
+                i_0 = i_0 + 1;
+                __sa13 = i_0 < (text._array_char.length);
+              }
+            }
+          }
+        }
+      }
+    }
+    return;
+  }
+  /*Cipher.sk:14*/
+  
+void getInstance_String (Object type, ref Object _out)/*Cipher.sk:14*/
+  {
+    _out = null;
+    int _out_s843 = 0;
+    Cipher@meta(_out_s843);
+    Object@Object _out_s845 = null;
+    Cipher_Cipher_String(new Object@Object(__cid=_out_s843), type, _out_s845);
+    _out = _out_s845;
+    return;
+  }
+  /*Cipher.sk:22*/
+  
+void init_int_Key (Object self, int opmode, Object key)/*Cipher.sk:22*/
+  {
+    self.key_Cipher = key;
+    self.mode_Cipher = opmode;
+  }
   /* END PACKAGE Cipher*/
+}
+/* BEGIN PACKAGE KeyGenerator*/
+package KeyGenerator{
+  /*KeyGenerator.sk:7*/
+  
+void KeyGenerator_KeyGenerator_String (Object self, Object mode, ref Object _out)/*KeyGenerator.sk:7*/
+  {
+    _out = null;
+    self.mode_KeyGenerator = mode;
+    _out = self;
+    return;
+  }
+  /*KeyGenerator.sk:12*/
+  
+void generateKey (Object self, ref Object _out)/*KeyGenerator.sk:12*/
+  {
+    _out = null;
+    int _out_s853 = 0;
+    KerberosKey@meta(_out_s853);
+    Object@Object _out_s855 = null;
+    KerberosKey_KerberosKey@KerberosKey(new Object@Object(__cid=_out_s853), _out_s855);
+    _out = _out_s855;
+    return;
+  }
+  /*KeyGenerator.sk:19*/
+  
+void getInstance_String (Object mode, ref Object _out)/*KeyGenerator.sk:19*/
+  {
+    _out = null;
+    int _out_s857 = 0;
+    KeyGenerator@meta(_out_s857);
+    Object@Object _out_s859 = null;
+    KeyGenerator_KeyGenerator_String(new Object@Object(__cid=_out_s857), mode, _out_s859);
+    _out = _out_s859;
+    return;
+  }
+  /*KeyGenerator.sk:16*/
+  
+void init_int (Object self, int keysize)/*KeyGenerator.sk:16*/
+  { }
+  /* END PACKAGE KeyGenerator*/
 }
 /* BEGIN PACKAGE PrivateExample*/
 package PrivateExample{
+  /*PrivateExample.sk:15*/
+  
+void privateExample_String (Object plainTextString, ref Object _out)/*PrivateExample.sk:15*/
+  {
+    _out = null;
+    int plainText_s882 = 0;
+    String@meta(plainText_s882);
+    Object@Object _pac_sc_s883 = null;
+    if((plainTextString.__cid) == plainText_s882)/*PrivateExample.sk:16*/
+    {
+      Object@Object plainText_s885 = null;
+      getBytes@String(plainTextString, plainText_s885);
+      _pac_sc_s883 = plainText_s885;
+    }
+    else
+    {
+      _pac_sc_s883 = null;
+    }
+    int keyGen_s887 = 0;
+    String@meta(keyGen_s887);
+    Object@Object keyGen_s889 = null;
+    Wrap_Array_char@array(new Array_char@array(length=4, A={'D','E','S','\0'}), keyGen_s889);
+    Object@Object keyGen_s891 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=keyGen_s887), keyGen_s889, 0, 3, keyGen_s891);
+    Object@Object keyGen_s893 = null;
+    getInstance_String@KeyGenerator(keyGen_s891, keyGen_s893);
+    int _out_s895 = 0;
+    KeyGenerator@meta(_out_s895);
+    if((keyGen_s893.__cid) == _out_s895)/*PrivateExample.sk:18*/
+    {
+      init_int@KeyGenerator(keyGen_s893, 56);
+    }
+    int key_s897 = 0;
+    KeyGenerator@meta(key_s897);
+    Object@Object _pac_sc_s898 = null;
+    if((keyGen_s893.__cid) == key_s897)/*PrivateExample.sk:20*/
+    {
+      Object@Object key_s900 = null;
+      generateKey@KeyGenerator(keyGen_s893, key_s900);
+      _pac_sc_s898 = key_s900;
+    }
+    else
+    {
+      _pac_sc_s898 = null;
+    }
+    int cipher_s902 = 0;
+    String@meta(cipher_s902);
+    Object@Object cipher_s904 = null;
+    Wrap_Array_char@array(new Array_char@array(length=21, A={'D','E','S','/','E','C','B','/','P','K','C','S','5','P','a','d','d','i','n','g','\0'}), cipher_s904);
+    Object@Object cipher_s906 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=cipher_s902), cipher_s904, 0, 20, cipher_s906);
+    Object@Object cipher_s908 = null;
+    getInstance_String@Cipher(cipher_s906, cipher_s908);
+    int _out_s910 = 0;
+    Cipher@meta(_out_s910);
+    if((cipher_s908.__cid) == _out_s910)/*PrivateExample.sk:22*/
+    {
+      init_int_Key@Cipher(cipher_s908, 1, _pac_sc_s898);
+    }
+    int cipherText_s912 = 0;
+    Cipher@meta(cipherText_s912);
+    Object@Object _pac_sc_s913 = null;
+    if((cipher_s908.__cid) == cipherText_s912)/*PrivateExample.sk:24*/
+    {
+      Object@Object cipherText_s915 = null;
+      doFinal_byte@Cipher(cipher_s908, _pac_sc_s883, cipherText_s915);
+      _pac_sc_s913 = cipherText_s915;
+    }
+    else
+    {
+      _pac_sc_s913 = null;
+    }
+    int _out_s917 = 0;
+    Cipher@meta(_out_s917);
+    if((cipher_s908.__cid) == _out_s917)/*PrivateExample.sk:25*/
+    {
+      init_int_Key@Cipher(cipher_s908, 2, _pac_sc_s898);
+    }
+    int newPlainText_s919 = 0;
+    Cipher@meta(newPlainText_s919);
+    Object@Object _pac_sc_s920 = null;
+    if((cipher_s908.__cid) == newPlainText_s919)/*PrivateExample.sk:27*/
+    {
+      Object@Object newPlainText_s922 = null;
+      doFinal_byte@Cipher(cipher_s908, _pac_sc_s913, newPlainText_s922);
+      _pac_sc_s920 = newPlainText_s922;
+    }
+    else
+    {
+      _pac_sc_s920 = null;
+    }
+    _out = _pac_sc_s920;
+    return;
+  }
   /*PrivateExample.sk:7*/
   
 void test_privateExample ()/*PrivateExample.sk:7*/
   {
-    int self_s590 = 0;
-    Object@meta(self_s590);
-    Object@Object self_s592 = null;
-    Object_Object@Object(new Object@Object(__cid=self_s590), self_s592);
+    int self_s861 = 0;
+    Object@meta(self_s861);
+    Object@Object self_s863 = null;
+    Object_Object@Object(new Object@Object(__cid=self_s861), self_s863);
+    int plainText_s865 = 0;
+    String@meta(plainText_s865);
+    Object@Object plainText_s867 = null;
+    Wrap_Array_char@array(new Array_char@array(length=16, A={'S','e','c','r','e','t',' ','M','e','s','s','a','g','e','!','\0'}), plainText_s867);
+    Object@Object plainText_s869 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=plainText_s865), plainText_s867, 0, 15, plainText_s869);
+    Object@Object newPlainText_s871 = null;
+    privateExample_String(plainText_s869, newPlainText_s871);
+    int plainText2_s873 = 0;
+    String@meta(plainText2_s873);
+    Object@Object plainText2_s875 = null;
+    String_String_byte@String(new Object@Object(__cid=plainText2_s873), newPlainText_s871, plainText2_s875);
+    int _out_s877 = 0;
+    String@meta(_out_s877);
+    bit _pac_sc_s878 = 0;
+    if((plainText_s869.__cid) == _out_s877)/*PrivateExample.sk:12*/
+    {
+      bit _out_s880 = 0;
+      equals_Object@String(plainText_s869, plainText2_s875, _out_s880);
+      _pac_sc_s878 = _out_s880;
+    }
+    else
+    {
+      _pac_sc_s878 = 0;
+    }
+    assert (_pac_sc_s878); //Assert at PrivateExample.sk:12 (0)
   }
   /*PrivateExample.sk:7*/
   
@@ -454,5 +1039,9 @@ void test_privateExample__WrapperNospec ()/*PrivateExample.sk:7*/
   { }
   /* END PACKAGE PrivateExample*/
 }
+/* BEGIN PACKAGE Key*/
+package Key{
+  /* END PACKAGE Key*/
+}
 [SKETCH] DONE
-Total time = 1315
+Total time = 2332

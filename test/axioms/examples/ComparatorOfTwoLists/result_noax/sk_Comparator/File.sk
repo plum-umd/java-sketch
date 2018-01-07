@@ -1,0 +1,16 @@
+package File;
+
+Object File_File(Object self) {
+    return self;
+}
+
+Object File_File_String(Object self, Object fname) {
+  self.fname_File = fname;
+  self.size_File = (new Object(__cid=-2, _int=0));
+  return self;
+}
+
+Object size(Object self) {
+  return self.size_File;
+}
+

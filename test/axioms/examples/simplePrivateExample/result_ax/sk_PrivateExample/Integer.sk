@@ -1,0 +1,34 @@
+package Integer;
+
+Object Integer_Integer(Object self) {
+    return self;
+}
+
+Object Integer_Integer_int(Object self, int value) {
+  self.value_Integer = value;
+  return self;
+}
+
+int intValue(Object self) {
+  return self.value_Integer;
+}
+
+int compareTo_Integer(Object self, Object anotherInteger) {
+  return compare_int_int(self.value_Integer, (anotherInteger.__cid == Integer() ? intValue@Integer(anotherInteger) : 0));
+}
+
+int compare_int_int(int x, int y) {
+  return ((x < y) ? -1 : (((x == y) ? 0 : 1)));
+}
+
+bit equals_Object(Object self, Object obj) {
+  if (obj.__cid == Integer()) {
+    return self.value_Integer == ((obj).__cid == Integer() ? intValue@Integer((obj)) : 0);
+  }
+  return false;
+}
+
+int hashCode(Object self) {
+  return self.value_Integer;
+}
+

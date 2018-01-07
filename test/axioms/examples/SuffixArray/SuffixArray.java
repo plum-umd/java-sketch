@@ -29,12 +29,12 @@ class SuffixArray {
 
     // CHANGE
     public int[] clone(int[] arr) {
-	int l = arr.length;
-	int[] arr_cp = new int[l];
-	for(int i=0; i<l; i++) {
-	    arr_cp[i] = arr[i];
-	}
-	return arr_cp;
+  	int l = arr.length;
+  	int[] arr_cp = new int[l];
+  	for(int i=0; i<l; i++) {
+  	    arr_cp[i] = arr[i];
+  	}
+  	return arr_cp;
     }
 
   public SuffixArray(String text) {
@@ -43,12 +43,12 @@ class SuffixArray {
 
     //CHANGE
     private static String intArrToString(int [] text) {
-	char[] tmp = new char[text.length];      
-	for (int i=0; i<text.length; i++) {
-	    tmp[i] = (char) text[i];
-	}
+  	char[] tmp = new char[text.length];      
+  	for (int i=0; i<text.length; i++) {
+  	    tmp[i] = (char) text[i];
+  	}
 	
-	// Extract part of the suffix we need to compare
+  	// Extract part of the suffix we need to compare
         return new String(tmp, 0, text.length);
     }
     
@@ -82,10 +82,10 @@ class SuffixArray {
 
     // Assign a numerical value to each character in the text
     for (int i = 0; i < N; i++) {
-	// CHANGE
-	// suffixRanks[0][i] = T[i];
-	suffixRanks.set(0, i, T[i]);
-	ranks[i] = new SuffixRankTuple();
+  	// CHANGE
+  	// suffixRanks[0][i] = T[i];
+  	suffixRanks.set(0, i, T[i]);
+  	ranks[i] = new SuffixRankTuple();
     }
 
     // O(logn)
@@ -94,10 +94,10 @@ class SuffixArray {
       for(int i = 0; i < N; i++) {
         SuffixRankTuple suffixRank = ranks[i];
         suffixRank.firstHalf  = suffixRanks.get(0, i);
-	// CHANGE
+  	// CHANGE
         // suffixRank.firstHalf  = suffixRanks[0][i];
         suffixRank.secondHalf = i+pos < N ? suffixRanks.get(0, i+pos) : -1;
-	// CHANGE
+  	// CHANGE
         // suffixRank.secondHalf = i+pos < N ? suffixRanks[0][i+pos] : -1;	
         suffixRank.originalIndex = i;
       }
@@ -125,7 +125,7 @@ class SuffixArray {
 
         suffixRanks.set(1, currSuffixRank.originalIndex, newRank);
 
-	// CHANGE
+  	// CHANGE
         // suffixRanks[1][currSuffixRank.originalIndex] = newRank;
 
       }
@@ -210,7 +210,7 @@ class SuffixArray {
       // CHANGE
       char[] tmp = new char[T.length];      
       for (int i=0; i<T.length; i++) {
-	  tmp[i] = (char) T[i];
+      	  tmp[i] = (char) T[i];
       }
 
       // Extract part of the suffix we need to compare
@@ -255,7 +255,7 @@ class SuffixArray {
     // CHANGE
     char[] tmp = new char[T.length];      
     for (int i=0; i<T.length; i++) {
-	tmp[i] = (char) T[i];
+  	tmp[i] = (char) T[i];
     }
     
     for (int i = 0; i < N; i++) {
@@ -267,9 +267,9 @@ class SuffixArray {
         
         // Append substring to the list and update max
         max_len = lcp[i];
-	// CHANGE
+  	// CHANGE
         lrss.add( new String(tmp, sa[i], max_len) );
-	// lrss.add( new String(T, sa[i], max_len) );
+  	// lrss.add( new String(T, sa[i], max_len) );
       }
     }
 
@@ -318,11 +318,13 @@ class SuffixArray {
       for (int j = 0; j < str.length(); j++) {
         int asciiVal = str.charAt(j);
         if (asciiVal < LOWEST_ASCII) LOWEST_ASCII = asciiVal;
-        indexMap[k++] = i;
+	k++;
+        indexMap[k] = i;
       }
 
       // Record that the sentinel belongs to string i
-      indexMap[k++] = i;
+      k++;
+      indexMap[k] = i;
 
     }
 
@@ -337,9 +339,13 @@ class SuffixArray {
     for(int i = 0; i < N; i++) {
     // for(int i = 0, k = 0; i < N; i++) {
       String str = strs[i];
-      for (int j = 0; j < str.length(); j++)
-        T[k++] = ((int)str.charAt(j)) + SHIFT;
-      T[k++] = sentinel++;
+      for (int j = 0; j < str.length(); j++) {	  
+	  k++;
+	  T[k] = ((int)str.charAt(j)) + SHIFT;
+      }
+      k++;
+      sentinel++;
+      T[k] = sentinel;
     }
 
     // CHANGE
@@ -347,7 +353,8 @@ class SuffixArray {
     SuffixArray sa = new SuffixArray(tmp);
     // SuffixArray sa = new SuffixArray(T);
     Deque <Integer> deque = new ArrayDeque<>();
-    Map <Integer, Integer> windowColorCount = new HashMap_Simple<>();
+    // Map <Integer, Integer> windowColorCount = new HashMap_Simple<>();
+    Map <Integer, Integer> windowColorCount = new HashMap<>();
     Set <Integer> windowColors = new HashSet<>();
     
     // Start the sliding window at the number of sentinels because those
@@ -370,10 +377,10 @@ class SuffixArray {
       if (uniqueColors >= K) {
 	
         // CHANGE
-    	Integer deqPeekFirst = deque.peekFirst();
-    	int deqPeekFirst_int = deqPeekFirst.intValue();	
-    	int windowLCP = sa.lcp[deqPeekFirst_int];
-    	// int windowLCP = sa.lcp[deque.peekFirst()];
+      	Integer deqPeekFirst = deque.peekFirst();
+      	int deqPeekFirst_int = deqPeekFirst.intValue();	
+      	int windowLCP = sa.lcp[deqPeekFirst_int];
+      	// int windowLCP = sa.lcp[deque.peekFirst()];
 
         if (windowLCP > 0 && bestLCSLength < windowLCP) {
           bestLCSLength = windowLCP;
@@ -387,7 +394,7 @@ class SuffixArray {
           char[] lcs = new char[windowLCP];
           for (int i = 0; i < windowLCP; i++) lcs[i] = (char)(T[pos+i] - SHIFT);
 
-    	  // CHANGE
+      	  // CHANGE
           lcss.add(new String(lcs, 0, lcs.length));
           // lcss.add(new String(lcs));
 
@@ -399,84 +406,85 @@ class SuffixArray {
 
         // Update the colors in our window
         int lastColor = indexMap[sa.sa[lo]];
-    	// CHANGE
+      	// CHANGE
         Integer colorCount = windowColorCount.get(new Integer(lastColor));
         // Integer colorCount = windowColorCount.get(lastColor);
-	int check = colorCount.intValue();
-    	// CHANGE
-    	boolean removed = false;
+      	int check = colorCount.intValue();
+      	// CHANGE
+      	boolean removed = false;
         if (colorCount.intValue() == 1) {
-    	    windowColors.remove(new Integer(lastColor));
-    	    removed = true;
-    	} 
-    	// if (colorCount == 1) windowColors.remove(lastColor);
-    	// CHANGE
+      	    windowColors.remove(new Integer(lastColor));
+      	    removed = true;
+      	} 
+      	// if (colorCount == 1) windowColors.remove(lastColor);
+      	// CHANGE
         windowColorCount.put(new Integer(lastColor), new Integer(colorCount.intValue() - 1));
         // windowColorCount.put(lastColor, colorCount - 1);
 	
-    	// CHANGE
-    	if (!deque.isEmpty()) {
-    	    // CHANGE
-    	    deqPeekFirst = deque.peekFirst();
-    	    boolean deqPeekLessThanLo = deqPeekFirst.intValue() <= lo;
+      	// CHANGE
+      	if (!deque.isEmpty()) {
+      	    // CHANGE
+      	    deqPeekFirst = deque.peekFirst();
+      	    boolean deqPeekLessThanLo = deqPeekFirst.intValue() <= lo;
 	    	    
-    	    // Remove the head if it's outside the new range: [lo+1, hi)
-    	    while (!deque.isEmpty() && deqPeekLessThanLo) {
-    		deque.removeFirst();
-    		deqPeekFirst = deque.peekFirst();
-    		if (deqPeekFirst != null) {
-    		    deqPeekLessThanLo = deqPeekFirst.intValue() <= lo;
-    		} else {
-    		    deqPeekLessThanLo = false;
-    		}
-    	    }
+      	    // Remove the head if it's outside the new range: [lo+1, hi)
+      	    while (!deque.isEmpty() && deqPeekLessThanLo) {
+      		deque.removeFirst();
+      		deqPeekFirst = deque.peekFirst();
+      		if (deqPeekFirst != null) {
+      		    deqPeekLessThanLo = deqPeekFirst.intValue() <= lo;
+      		} else {
+      		    deqPeekLessThanLo = false;
+      		}
+      	    }
 
-    	}
+      	}
 		
         // Decrease the window size
         lo++;
 
       // Increase the window size because we don't have enough colors
-      } else if(++hi < L) {
-
-	int nextColor = indexMap[sa.sa[hi]];
-    	// CHANGE 
-    	Integer nextColor_Int = new Integer(nextColor);
+      } else if(hi < L) {
+	hi++;
+	  
+      	int nextColor = indexMap[sa.sa[hi]];
+      	// CHANGE 
+      	Integer nextColor_Int = new Integer(nextColor);
 	
         // Update the colors in our window
-    	// CHANGE
+      	// CHANGE
         windowColors.add(nextColor_Int);
         // windowColors.add(nextColor);
-    	// CHANGE
+      	// CHANGE
         Integer colorCount = windowColorCount.get(nextColor_Int);
         // Integer colorCount = windowColorCount.get(nextColor);
-    	// CHANGE
+      	// CHANGE
         if (colorCount == null) colorCount = new Integer(0);
         // if (colorCount == null) colorCount = 0;
-    	// CHANGE
+      	// CHANGE
         windowColorCount.put(nextColor_Int, new Integer(colorCount.intValue() + 1));
         // windowColorCount.put(nextColor, colorCount + 1);
 
-    	// CHANGE
-    	if (!deque.isEmpty()) {	
-    	    // CHANGE
-    	    Integer deqPeekLast = deque.peekLast();
-    	    int deqPeekLast_int = deqPeekLast.intValue();	    
+      	// CHANGE
+      	if (!deque.isEmpty()) {	
+      	    // CHANGE
+      	    Integer deqPeekLast = deque.peekLast();
+      	    int deqPeekLast_int = deqPeekLast.intValue();	    
 	    
-    	    // CHANGE
-    	    // Remove all the worse values in the back of the deque
-    	    while(!deque.isEmpty() && sa.lcp[deqPeekLast_int] > sa.lcp[hi-1]) {
-    		// while(!deque.isEmpty() && sa.lcp[deque.peekLast()] > sa.lcp[hi-1])
-    		deque.removeLast();
-    		// CHANGE
-    		if (!deque.isEmpty()) {
-    		    deqPeekLast = deque.peekLast();
-    		    deqPeekLast_int = deqPeekLast.intValue();
-    		}
-    	    }
-    	}
+      	    // CHANGE
+      	    // Remove all the worse values in the back of the deque
+      	    while(!deque.isEmpty() && sa.lcp[deqPeekLast_int] > sa.lcp[hi-1]) {
+      		// while(!deque.isEmpty() && sa.lcp[deque.peekLast()] > sa.lcp[hi-1])
+      		deque.removeLast();
+      		// CHANGE
+      		if (!deque.isEmpty()) {
+      		    deqPeekLast = deque.peekLast();
+      		    deqPeekLast_int = deqPeekLast.intValue();
+      		}
+      	    }
+      	}
 
-    	// CHANGE
+      	// CHANGE
         deque.addLast(new Integer(hi-1));
         // deque.addLast(hi-1);
 
@@ -488,41 +496,41 @@ class SuffixArray {
 
   }
 
-  // public void display() {
-  //   System.out.printf("-----i-----SA-----LCP---Suffix\n");
-  //   for(int i = 0; i < N; i++) {
-  //     int suffixLen = N - sa[i];
-  //     String suffix = new String(T, sa[i], suffixLen);
-  //     System.out.printf("% 7d % 7d % 7d %s\n", i, sa[i],lcp[i], suffix );
-  //   }
-  // }
+  // // public void display() {
+  // //   System.out.printf("-----i-----SA-----LCP---Suffix\n");
+  // //   for(int i = 0; i < N; i++) {
+  // //     int suffixLen = N - sa[i];
+  // //     String suffix = new String(T, sa[i], suffixLen);
+  // //     System.out.printf("% 7d % 7d % 7d %s\n", i, sa[i],lcp[i], suffix );
+  // //   }
+  // // }
 
-    // CHANGE
-  //   // public static void main(String[] args){
-  //   harness public static void main() {      
+  //   // CHANGE
+  // //   // public static void main(String[] args){
+  // //   harness public static void main() {      
         	
-  //   // String[] strs = { "GAGL", "RGAG", "TGAGE" };
+  // //   // String[] strs = { "GAGL", "RGAG", "TGAGE" };
     
-  //   String[] strs = { "AAGAAGC", "AGAAGT", "CGAAGC" };
-  //   // String[] strs = { "abca", "bcad", "daca" };
-  //   // String[] strs = { "abca", "bcad", "daca" };
-  //   // String[] strs = { "AABC", "BCDC", "BCDE", "CDED" };
-  //   // String[] strs = { "abcdefg", "bcdefgh", "cdefghi" };
-  //   // String[] strs = { "xxx", "yyy", "zzz" };
-  //   TreeSet <String> lcss = SuffixArray.lcs(strs, 2);
-  //   // System.out.println(lcss);
+  // //   String[] strs = { "AAGAAGC", "AGAAGT", "CGAAGC" };
+  // //   // String[] strs = { "abca", "bcad", "daca" };
+  // //   // String[] strs = { "abca", "bcad", "daca" };
+  // //   // String[] strs = { "AABC", "BCDC", "BCDE", "CDED" };
+  // //   // String[] strs = { "abcdefg", "bcdefgh", "cdefghi" };
+  // //   // String[] strs = { "xxx", "yyy", "zzz" };
+  // //   TreeSet <String> lcss = SuffixArray.lcs(strs, 2);
+  // //   // System.out.println(lcss);
 
-  //   // SuffixArray sa = new SuffixArray("abracadabra");
-  //   // System.out.println(sa);
-  //   // System.out.println(java.util.Arrays.toString(sa.sa));
-  //   // System.out.println(java.util.Arrays.toString(sa.lcp));
+  // //   // SuffixArray sa = new SuffixArray("abracadabra");
+  // //   // System.out.println(sa);
+  // //   // System.out.println(java.util.Arrays.toString(sa.sa));
+  // //   // System.out.println(java.util.Arrays.toString(sa.lcp));
 
-  //   // SuffixArray sa = new SuffixArray("ababcabaa");
-  //   // sa.display();
+  // //   // SuffixArray sa = new SuffixArray("ababcabaa");
+  // //   // sa.display();
     
   
 
-  // }
+  // // }
 
 }
 

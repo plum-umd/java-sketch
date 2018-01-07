@@ -4,11 +4,11 @@ adt ArrayList {
     Arraylist       { }
     Add             { ArrayList self; Object e; }
     Addb            { ArrayList self; Object e; }
-    Getb            { ArrayList self; int i; }
-    Setb            { ArrayList self; int i; Object e; }
-    Get             { ArrayList self; int i; }
-    Set             { ArrayList self; int i; Object e; }
-    Ensurecapacity  { ArrayList self; int n; }
+    Getb            { ArrayList self; Object i; }
+    Setb            { ArrayList self; Object i; Object e; }
+    Get             { ArrayList self; Object i; }
+    Set             { ArrayList self; Object i; Object e; }
+    Ensurecapacity  { ArrayList self; Object n; }
     Size            { ArrayList self; }
 }
 
@@ -24,23 +24,23 @@ Object addb_Object_Object(Object self, Object e) {
     return new Object(__cid=ArrayList(), _arraylist=new Addb(self=self._arraylist, e=e));
 }
 
-Object getb_Object_int(Object self, int i) {
+Object getb_Object_int(Object self, Object i) {
     return new Object(__cid=ArrayList(), _arraylist=new Getb(self=self._arraylist, i=i));
 }
 
-Object setb_Object_int_Object(Object self, int i, Object e) {
+Object setb_Object_int_Object(Object self, Object i, Object e) {
     return new Object(__cid=ArrayList(), _arraylist=new Setb(self=self._arraylist, i=i, e=e));
 }
 
-Object get_Object_int(Object self, int i) {
+Object get_Object_int(Object self, Object i) {
     return new Object(__cid=ArrayList(), _arraylist=new Get(self=self._arraylist, i=i));
 }
 
-Object set_Object_int_Object(Object self, int i, Object e) {
+Object set_Object_int_Object(Object self, Object i, Object e) {
     return new Object(__cid=ArrayList(), _arraylist=new Set(self=self._arraylist, i=i, e=e));
 }
 
-Object ensurecapacity_Object_int(Object self, int n) {
+Object ensureCapacity_Object_int(Object self, Object n) {
     return new Object(__cid=ArrayList(), _arraylist=new Ensurecapacity(self=self._arraylist, n=n));
 }
 
@@ -81,7 +81,7 @@ Object xform_ArrayList(ArrayList self) {
 
   return null;
 }
-Object xform_ensureCapacity_ArrayList_int(ArrayList self, int n) {
+Object xform_ensureCapacity_ArrayList_int(ArrayList self, Object n) {
   switch(self) {
   case Arraylist: { assert false; }
   case Add: { assert false; }
@@ -99,11 +99,11 @@ Object xform_ensureCapacity_ArrayList_int(ArrayList self, int n) {
 Object xform_size_ArrayList(ArrayList self) {
   switch(self) {
   case Arraylist: {
-    return Integer_Integer_int(new Object(__cid=Integer()), 0);
+    return (new Object(__cid=-2, _int=0));
   }
   case Add: { assert false; }
   case Addb: {
-    return Integer_Integer_int(new Object(__cid=Integer()), (xform_size_ArrayList(self.self).__cid == Integer() ? intValue@Integer(xform_size_ArrayList(self.self)) : 0) + 1);
+    return (new Object(__cid=-2, _int=xform_size_ArrayList(self.self)._int + (new Object(__cid=-2, _int=1))._int));
   }
   case Getb: { assert false; }
   case Setb: {
@@ -117,7 +117,7 @@ Object xform_size_ArrayList(ArrayList self) {
 
   return null;
 }
-Object xform_set_ArrayList_int_Object(ArrayList self, int i, Object e) {
+Object xform_set_ArrayList_int_Object(ArrayList self, Object i, Object e) {
   switch(self) {
   case Arraylist: { assert false; }
   case Add: { assert false; }
@@ -132,7 +132,7 @@ Object xform_set_ArrayList_int_Object(ArrayList self, int i, Object e) {
 
   return null;
 }
-Object xform_getb_ArrayList_int(ArrayList self, int i) {
+Object xform_getb_ArrayList_int(ArrayList self, Object i) {
   switch(self) {
   case Arraylist: { assert false; }
   case Add: { assert false; }
@@ -147,18 +147,18 @@ Object xform_getb_ArrayList_int(ArrayList self, int i) {
 
   return null;
 }
-Object xform_get_ArrayList_int(ArrayList self, int i) {
+Object xform_get_ArrayList_int(ArrayList self, Object i) {
   switch(self) {
   case Arraylist: {
     return null;
   }
   case Add: { assert false; }
   case Addb: {
-    return ((xform_size_ArrayList(self.self).__cid == Integer() ? intValue@Integer(xform_size_ArrayList(self.self)) : 0) == i - 1 ? self.e : xform_get_ArrayList_int(self.self, i));
+    return (xform_size_ArrayList(self.self)._int == i._int - (new Object(__cid=-2, _int=1))._int ? self.e : xform_get_ArrayList_int(self.self, i));
   }
   case Getb: { assert false; }
   case Setb: {
-    return (i == self.i ? self.e : xform_get_ArrayList_int(self.self, i));
+    return (i._int == self.i._int ? self.e : xform_get_ArrayList_int(self.self, i));
   }
   case Get: { assert false; }
   case Set: { assert false; }
@@ -168,7 +168,7 @@ Object xform_get_ArrayList_int(ArrayList self, int i) {
 
   return null;
 }
-Object xform_setb_ArrayList_int_Object(ArrayList self, int i, Object e) {
+Object xform_setb_ArrayList_int_Object(ArrayList self, Object i, Object e) {
   switch(self) {
   case Arraylist: { assert false; }
   case Add: { assert false; }

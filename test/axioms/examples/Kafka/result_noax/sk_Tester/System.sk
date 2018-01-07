@@ -4,9 +4,9 @@ Object System_System(Object self) {
     return self;
 }
 
-void arraycopy_byte_int_byte_int_int(Array_char src, int srcPos, Array_char dst, int dstPos, int length) {
-  for (int i = srcPos; i < srcPos + length; i++) {
-    dst.A[dstPos + i] = src.A[i];
+void arraycopy_byte_int_byte_int_int(Object src, Object srcPos, Object dst, Object dstPos, Object length) {
+  for (Object i = srcPos; i._int < srcPos._int + length._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    dst._array_char.A[dstPos._int + i._int] = src._array_char.A[i._int];
   }
 }
 

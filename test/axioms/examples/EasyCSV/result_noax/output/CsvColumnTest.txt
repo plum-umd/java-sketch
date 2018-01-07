@@ -1,0 +1,755 @@
+SKETCH version 1.7.4
+Benchmark = /Users/grumpy/Research/java-sketch/test/axioms/examples/EasyCSV/EasyCSV/../result_noax/sk_CsvColumnTest/main.sk
+/* BEGIN PACKAGE FileWriterr*/
+package FileWriterr{
+  /* END PACKAGE FileWriterr*/
+}
+/* BEGIN PACKAGE Comparable*/
+package Comparable{
+  /* END PACKAGE Comparable*/
+}
+/* BEGIN PACKAGE PrivateKey*/
+package PrivateKey{
+  /* END PACKAGE PrivateKey*/
+}
+/* BEGIN PACKAGE HashMap*/
+package HashMap{
+  /*HashMap.sk:3*/
+  
+void glblInit_DEFAULT_INITIAL_CAPACITY__HashMap_s5190 (ref int DEFAULT_INITIAL_CAPACITY__HashMap_s5189)/*HashMap.sk:3*/
+  {
+    DEFAULT_INITIAL_CAPACITY__HashMap_s5189 = 16;
+  }
+  /* END PACKAGE HashMap*/
+}
+/* BEGIN PACKAGE ArrayList*/
+package ArrayList{
+  /*ArrayList.sk:3*/
+  
+void glblInit_EMPTY_ELEMENTDATA__ArrayList_s5232 (ref Array_Object@array EMPTY_ELEMENTDATA__ArrayList_s5231)/*ArrayList.sk:3*/
+  {
+    EMPTY_ELEMENTDATA__ArrayList_s5231 = new Array_Object@array(length=0, A={});
+  }
+  /*ArrayList.sk:7*/
+  
+void glblInit_MAX_ARRAY_SIZE__ArrayList_s5254 (ref int MAX_ARRAY_SIZE__ArrayList_s5253)/*ArrayList.sk:7*/
+  {
+    MAX_ARRAY_SIZE__ArrayList_s5253 = 1000000;
+  }
+  /* END PACKAGE ArrayList*/
+}
+/* BEGIN PACKAGE String*/
+package String{
+  /* END PACKAGE String*/
+}
+/* BEGIN PACKAGE CsvColumn*/
+package CsvColumn{
+  /* END PACKAGE CsvColumn*/
+}
+/* BEGIN PACKAGE Assert*/
+package Assert{
+  /* END PACKAGE Assert*/
+}
+/* BEGIN PACKAGE TreeSet*/
+package TreeSet{
+  /*TreeSet.sk:3*/
+  
+void glblInit_INITIAL_CAPACITY__TreeSet_s5244 (ref int INITIAL_CAPACITY__TreeSet_s5243)/*TreeSet.sk:3*/
+  {
+    INITIAL_CAPACITY__TreeSet_s5243 = 16;
+  }
+  /*TreeSet.sk:7*/
+  
+void glblInit_RESIZE_FACTOR__TreeSet_s5284 (ref int RESIZE_FACTOR__TreeSet_s5283)/*TreeSet.sk:7*/
+  {
+    RESIZE_FACTOR__TreeSet_s5283 = 2;
+  }
+  /* END PACKAGE TreeSet*/
+}
+/* BEGIN PACKAGE SecretKeySpec*/
+package SecretKeySpec{
+  /* END PACKAGE SecretKeySpec*/
+}
+/* BEGIN PACKAGE List*/
+package List{
+  /* END PACKAGE List*/
+}
+/* BEGIN PACKAGE Boolean*/
+package Boolean{
+  /* END PACKAGE Boolean*/
+}
+/* BEGIN PACKAGE CodeAssertion*/
+package CodeAssertion{
+  /* END PACKAGE CodeAssertion*/
+}
+/* BEGIN PACKAGE HashSet*/
+package HashSet{
+  /*HashSet.sk:3*/
+  
+void glblInit_INITIAL_CAPACITY__HashSet_s5242 (ref int INITIAL_CAPACITY__HashSet_s5241)/*HashSet.sk:3*/
+  {
+    INITIAL_CAPACITY__HashSet_s5241 = 16;
+  }
+  /*HashSet.sk:7*/
+  
+void glblInit_RESIZE_FACTOR__HashSet_s5282 (ref int RESIZE_FACTOR__HashSet_s5281)/*HashSet.sk:7*/
+  {
+    RESIZE_FACTOR__HashSet_s5281 = 2;
+  }
+  /* END PACKAGE HashSet*/
+}
+/* BEGIN PACKAGE Character*/
+package Character{
+  /*Character.sk:43*/
+  
+void glblInit_COMBINING_SPACING_MARK__Character_s5178 (ref char COMBINING_SPACING_MARK__Character_s5177)/*Character.sk:43*/
+  {
+    COMBINING_SPACING_MARK__Character_s5177 = 8;
+  }
+  /*Character.sk:99*/
+  
+void glblInit_CONNECTOR_PUNCTUATION__Character_s5180 (ref char CONNECTOR_PUNCTUATION__Character_s5179)/*Character.sk:99*/
+  {
+    CONNECTOR_PUNCTUATION__Character_s5179 = 23;
+  }
+  /*Character.sk:71*/
+  
+void glblInit_CONTROL__Character_s5182 (ref char CONTROL__Character_s5181)/*Character.sk:71*/
+  {
+    CONTROL__Character_s5181 = 15;
+  }
+  /*Character.sk:111*/
+  
+void glblInit_CURRENCY_SYMBOL__Character_s5184 (ref char CURRENCY_SYMBOL__Character_s5183)/*Character.sk:111*/
+  {
+    CURRENCY_SYMBOL__Character_s5183 = 26;
+  }
+  /*Character.sk:87*/
+  
+void glblInit_DASH_PUNCTUATION__Character_s5186 (ref char DASH_PUNCTUATION__Character_s5185)/*Character.sk:87*/
+  {
+    DASH_PUNCTUATION__Character_s5185 = 20;
+  }
+  /*Character.sk:47*/
+  
+void glblInit_DECIMAL_DIGIT_NUMBER__Character_s5188 (ref char DECIMAL_DIGIT_NUMBER__Character_s5187)/*Character.sk:47*/
+  {
+    DECIMAL_DIGIT_NUMBER__Character_s5187 = 9;
+  }
+  /*Character.sk:155*/
+  
+void glblInit_DIRECTIONALITY_ARABIC_NUMBER__Character_s5192 (ref char DIRECTIONALITY_ARABIC_NUMBER__Character_s5191)/*Character.sk:155*/
+  {
+    DIRECTIONALITY_ARABIC_NUMBER__Character_s5191 = 6;
+  }
+  /*Character.sk:167*/
+  
+void glblInit_DIRECTIONALITY_BOUNDARY_NEUTRAL__Character_s5194 (ref char DIRECTIONALITY_BOUNDARY_NEUTRAL__Character_s5193)/*Character.sk:167*/
+  {
+    DIRECTIONALITY_BOUNDARY_NEUTRAL__Character_s5193 = 9;
+  }
+  /*Character.sk:159*/
+  
+void glblInit_DIRECTIONALITY_COMMON_NUMBER_SEPARATOR__Character_s5196 (ref char DIRECTIONALITY_COMMON_NUMBER_SEPARATOR__Character_s5195)/*Character.sk:159*/
+  {
+    DIRECTIONALITY_COMMON_NUMBER_SEPARATOR__Character_s5195 = 7;
+  }
+  /*Character.sk:147*/
+  
+void glblInit_DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR__Character_s5198 (ref char DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR__Character_s5197)/*Character.sk:147*/
+  {
+    DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR__Character_s5197 = 4;
+  }
+  /*Character.sk:151*/
+  
+void glblInit_DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR__Character_s5200 (ref char DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR__Character_s5199)/*Character.sk:151*/
+  {
+    DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR__Character_s5199 = 5;
+  }
+  /*Character.sk:143*/
+  
+void glblInit_DIRECTIONALITY_EUROPEAN_NUMBER__Character_s5202 (ref char DIRECTIONALITY_EUROPEAN_NUMBER__Character_s5201)/*Character.sk:143*/
+  {
+    DIRECTIONALITY_EUROPEAN_NUMBER__Character_s5201 = 3;
+  }
+  /*Character.sk:187*/
+  
+void glblInit_DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING__Character_s5204 (ref char DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING__Character_s5203)/*Character.sk:187*/
+  {
+    DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING__Character_s5203 = 14;
+  }
+  /*Character.sk:191*/
+  
+void glblInit_DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE__Character_s5206 (ref char DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE__Character_s5205)/*Character.sk:191*/
+  {
+    DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE__Character_s5205 = 15;
+  }
+  /*Character.sk:131*/
+  
+void glblInit_DIRECTIONALITY_LEFT_TO_RIGHT__Character_s5208 (ref char DIRECTIONALITY_LEFT_TO_RIGHT__Character_s5207)/*Character.sk:131*/
+  {
+    DIRECTIONALITY_LEFT_TO_RIGHT__Character_s5207 = 0;
+  }
+  /*Character.sk:163*/
+  
+void glblInit_DIRECTIONALITY_NONSPACING_MARK__Character_s5210 (ref char DIRECTIONALITY_NONSPACING_MARK__Character_s5209)/*Character.sk:163*/
+  {
+    DIRECTIONALITY_NONSPACING_MARK__Character_s5209 = 8;
+  }
+  /*Character.sk:183*/
+  
+void glblInit_DIRECTIONALITY_OTHER_NEUTRALS__Character_s5212 (ref char DIRECTIONALITY_OTHER_NEUTRALS__Character_s5211)/*Character.sk:183*/
+  {
+    DIRECTIONALITY_OTHER_NEUTRALS__Character_s5211 = 13;
+  }
+  /*Character.sk:171*/
+  
+void glblInit_DIRECTIONALITY_PARAGRAPH_SEPARATOR__Character_s5214 (ref char DIRECTIONALITY_PARAGRAPH_SEPARATOR__Character_s5213)/*Character.sk:171*/
+  {
+    DIRECTIONALITY_PARAGRAPH_SEPARATOR__Character_s5213 = 10;
+  }
+  /*Character.sk:203*/
+  
+void glblInit_DIRECTIONALITY_POP_DIRECTIONAL_FORMAT__Character_s5216 (ref char DIRECTIONALITY_POP_DIRECTIONAL_FORMAT__Character_s5215)/*Character.sk:203*/
+  {
+    DIRECTIONALITY_POP_DIRECTIONAL_FORMAT__Character_s5215 = 18;
+  }
+  /*Character.sk:139*/
+  
+void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC__Character_s5218 (ref char DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC__Character_s5217)/*Character.sk:139*/
+  {
+    DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC__Character_s5217 = 2;
+  }
+  /*Character.sk:195*/
+  
+void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING__Character_s5220 (ref char DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING__Character_s5219)/*Character.sk:195*/
+  {
+    DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING__Character_s5219 = 16;
+  }
+  /*Character.sk:199*/
+  
+void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE__Character_s5222 (ref char DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE__Character_s5221)/*Character.sk:199*/
+  {
+    DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE__Character_s5221 = 17;
+  }
+  /*Character.sk:135*/
+  
+void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT__Character_s5224 (ref char DIRECTIONALITY_RIGHT_TO_LEFT__Character_s5223)/*Character.sk:135*/
+  {
+    DIRECTIONALITY_RIGHT_TO_LEFT__Character_s5223 = 1;
+  }
+  /*Character.sk:175*/
+  
+void glblInit_DIRECTIONALITY_SEGMENT_SEPARATOR__Character_s5226 (ref char DIRECTIONALITY_SEGMENT_SEPARATOR__Character_s5225)/*Character.sk:175*/
+  {
+    DIRECTIONALITY_SEGMENT_SEPARATOR__Character_s5225 = 11;
+  }
+  /*Character.sk:127*/
+  
+void glblInit_DIRECTIONALITY_UNDEFINED__Character_s5228 (ref char DIRECTIONALITY_UNDEFINED__Character_s5227)/*Character.sk:127*/
+  {
+    DIRECTIONALITY_UNDEFINED__Character_s5227 = -1;
+  }
+  /*Character.sk:179*/
+  
+void glblInit_DIRECTIONALITY_WHITESPACE__Character_s5230 (ref char DIRECTIONALITY_WHITESPACE__Character_s5229)/*Character.sk:179*/
+  {
+    DIRECTIONALITY_WHITESPACE__Character_s5229 = 12;
+  }
+  /*Character.sk:39*/
+  
+void glblInit_ENCLOSING_MARK__Character_s5234 (ref char ENCLOSING_MARK__Character_s5233)/*Character.sk:39*/
+  {
+    ENCLOSING_MARK__Character_s5233 = 7;
+  }
+  /*Character.sk:95*/
+  
+void glblInit_END_PUNCTUATION__Character_s5236 (ref char END_PUNCTUATION__Character_s5235)/*Character.sk:95*/
+  {
+    END_PUNCTUATION__Character_s5235 = 22;
+  }
+  /*Character.sk:123*/
+  
+void glblInit_FINAL_QUOTE_PUNCTUATION__Character_s5238 (ref char FINAL_QUOTE_PUNCTUATION__Character_s5237)/*Character.sk:123*/
+  {
+    FINAL_QUOTE_PUNCTUATION__Character_s5237 = 30;
+  }
+  /*Character.sk:75*/
+  
+void glblInit_FORMAT__Character_s5240 (ref char FORMAT__Character_s5239)/*Character.sk:75*/
+  {
+    FORMAT__Character_s5239 = 16;
+  }
+  /*Character.sk:51*/
+  
+void glblInit_LETTER_NUMBER__Character_s5246 (ref char LETTER_NUMBER__Character_s5245)/*Character.sk:51*/
+  {
+    LETTER_NUMBER__Character_s5245 = 10;
+  }
+  /*Character.sk:63*/
+  
+void glblInit_LINE_SEPARATOR__Character_s5248 (ref char LINE_SEPARATOR__Character_s5247)/*Character.sk:63*/
+  {
+    LINE_SEPARATOR__Character_s5247 = 13;
+  }
+  /*Character.sk:19*/
+  
+void glblInit_LOWERCASE_LETTER__Character_s5250 (ref char LOWERCASE_LETTER__Character_s5249)/*Character.sk:19*/
+  {
+    LOWERCASE_LETTER__Character_s5249 = 2;
+  }
+  /*Character.sk:107*/
+  
+void glblInit_MATH_SYMBOL__Character_s5252 (ref char MATH_SYMBOL__Character_s5251)/*Character.sk:107*/
+  {
+    MATH_SYMBOL__Character_s5251 = 25;
+  }
+  /*Character.sk:7*/
+  
+void glblInit_MAX_RADIX__Character_s5256 (ref int MAX_RADIX__Character_s5255)/*Character.sk:7*/
+  {
+    MAX_RADIX__Character_s5255 = 36;
+  }
+  /*Character.sk:3*/
+  
+void glblInit_MIN_RADIX__Character_s5260 (ref int MIN_RADIX__Character_s5259)/*Character.sk:3*/
+  {
+    MIN_RADIX__Character_s5259 = 2;
+  }
+  /*Character.sk:27*/
+  
+void glblInit_MODIFIER_LETTER__Character_s5264 (ref char MODIFIER_LETTER__Character_s5263)/*Character.sk:27*/
+  {
+    MODIFIER_LETTER__Character_s5263 = 4;
+  }
+  /*Character.sk:115*/
+  
+void glblInit_MODIFIER_SYMBOL__Character_s5266 (ref char MODIFIER_SYMBOL__Character_s5265)/*Character.sk:115*/
+  {
+    MODIFIER_SYMBOL__Character_s5265 = 27;
+  }
+  /*Character.sk:35*/
+  
+void glblInit_NON_SPACING_MARK__Character_s5268 (ref char NON_SPACING_MARK__Character_s5267)/*Character.sk:35*/
+  {
+    NON_SPACING_MARK__Character_s5267 = 6;
+  }
+  /*Character.sk:31*/
+  
+void glblInit_OTHER_LETTER__Character_s5270 (ref char OTHER_LETTER__Character_s5269)/*Character.sk:31*/
+  {
+    OTHER_LETTER__Character_s5269 = 5;
+  }
+  /*Character.sk:55*/
+  
+void glblInit_OTHER_NUMBER__Character_s5272 (ref char OTHER_NUMBER__Character_s5271)/*Character.sk:55*/
+  {
+    OTHER_NUMBER__Character_s5271 = 11;
+  }
+  /*Character.sk:103*/
+  
+void glblInit_OTHER_PUNCTUATION__Character_s5274 (ref char OTHER_PUNCTUATION__Character_s5273)/*Character.sk:103*/
+  {
+    OTHER_PUNCTUATION__Character_s5273 = 24;
+  }
+  /*Character.sk:119*/
+  
+void glblInit_OTHER_SYMBOL__Character_s5276 (ref char OTHER_SYMBOL__Character_s5275)/*Character.sk:119*/
+  {
+    OTHER_SYMBOL__Character_s5275 = 28;
+  }
+  /*Character.sk:67*/
+  
+void glblInit_PARAGRAPH_SEPARATOR__Character_s5278 (ref char PARAGRAPH_SEPARATOR__Character_s5277)/*Character.sk:67*/
+  {
+    PARAGRAPH_SEPARATOR__Character_s5277 = 14;
+  }
+  /*Character.sk:79*/
+  
+void glblInit_PRIVATE_USE__Character_s5280 (ref char PRIVATE_USE__Character_s5279)/*Character.sk:79*/
+  {
+    PRIVATE_USE__Character_s5279 = 18;
+  }
+  /*Character.sk:59*/
+  
+void glblInit_SPACE_SEPARATOR__Character_s5286 (ref char SPACE_SEPARATOR__Character_s5285)/*Character.sk:59*/
+  {
+    SPACE_SEPARATOR__Character_s5285 = 12;
+  }
+  /*Character.sk:91*/
+  
+void glblInit_START_PUNCTUATION__Character_s5288 (ref char START_PUNCTUATION__Character_s5287)/*Character.sk:91*/
+  {
+    START_PUNCTUATION__Character_s5287 = 21;
+  }
+  /*Character.sk:83*/
+  
+void glblInit_SURROGATE__Character_s5290 (ref char SURROGATE__Character_s5289)/*Character.sk:83*/
+  {
+    SURROGATE__Character_s5289 = 19;
+  }
+  /*Character.sk:23*/
+  
+void glblInit_TITLECASE_LETTER__Character_s5292 (ref char TITLECASE_LETTER__Character_s5291)/*Character.sk:23*/
+  {
+    TITLECASE_LETTER__Character_s5291 = 3;
+  }
+  /*Character.sk:11*/
+  
+void glblInit_UNASSIGNED__Character_s5294 (ref char UNASSIGNED__Character_s5293)/*Character.sk:11*/
+  {
+    UNASSIGNED__Character_s5293 = 0;
+  }
+  /*Character.sk:15*/
+  
+void glblInit_UPPERCASE_LETTER__Character_s5296 (ref char UPPERCASE_LETTER__Character_s5295)/*Character.sk:15*/
+  {
+    UPPERCASE_LETTER__Character_s5295 = 1;
+  }
+  /* END PACKAGE Character*/
+}
+/* BEGIN PACKAGE CharSequence*/
+package CharSequence{
+  /* END PACKAGE CharSequence*/
+}
+/* BEGIN PACKAGE SecureRandom*/
+package SecureRandom{
+  /* END PACKAGE SecureRandom*/
+}
+/* BEGIN PACKAGE CryptoCipherFactory*/
+package CryptoCipherFactory{
+  /* END PACKAGE CryptoCipherFactory*/
+}
+/* BEGIN PACKAGE HashMap_Node*/
+package HashMap_Node{
+  /* END PACKAGE HashMap_Node*/
+}
+/* BEGIN PACKAGE LinkedList*/
+package LinkedList{
+  /* END PACKAGE LinkedList*/
+}
+/* BEGIN PACKAGE Mac*/
+package Mac{
+  /* END PACKAGE Mac*/
+}
+/* BEGIN PACKAGE Stack*/
+package Stack{
+  /* END PACKAGE Stack*/
+}
+/* BEGIN PACKAGE FileReaderr*/
+package FileReaderr{
+  /* END PACKAGE FileReaderr*/
+}
+/* BEGIN PACKAGE Float*/
+package Float{
+  /* END PACKAGE Float*/
+}
+/* BEGIN PACKAGE Map_Entry*/
+package Map_Entry{
+  /* END PACKAGE Map_Entry*/
+}
+/* BEGIN PACKAGE SecretKey*/
+package SecretKey{
+  /* END PACKAGE SecretKey*/
+}
+/* BEGIN PACKAGE KerberosKey*/
+package KerberosKey{
+  /* END PACKAGE KerberosKey*/
+}
+/* BEGIN PACKAGE meta*/
+package meta{
+  /*meta.sk:46*/
+  
+void Object (ref int _out)/*meta.sk:46*/
+  {
+    _out = 0;
+    _out = 1;
+    return;
+  }
+  /* END PACKAGE meta*/
+}
+/* BEGIN PACKAGE FileOutputStream*/
+package FileOutputStream{
+  /* END PACKAGE FileOutputStream*/
+}
+/* BEGIN PACKAGE Object*/
+package Object{
+  struct Object {
+      int __cid;
+      Array_Object set_HashSet;
+      int capacity_HashSet;
+      int size_HashSet;
+      bit skipHeader_CsvConfiguration;
+      Object columnIndexesToParse_CsvConfiguration;
+      Array_char _value_String;
+      int _count_String;
+      Object mode_KeyGenerator;
+      Array_char key_SecretKeySpec;
+      Object currentHead_ArrayDeque;
+      Object currentTail_ArrayDeque;
+      int size_ArrayDeque;
+      Array_char _value_StringBuilder;
+      int _count_StringBuilder;
+      Object type_Cipher;
+      Object key_Cipher;
+      int mode_Cipher;
+      int ENCRYPT_MODE_Cipher;
+      int DECRYPT_MODE_Cipher;
+      Object CLASSES_KEY_CryptoCipherFactory;
+      Object columnValue_CsvColumn;
+      int value_Integer;
+      Object columns_CsvRow;
+      Object map_Properties;
+      Object out_PrintStream;
+      Array_Object set_TreeSet;
+      int capacity_TreeSet;
+      int size_TreeSet;
+      Array_Object elementData_HashMap;
+      int numPairs_HashMap;
+      int capacity_HashMap;
+      Array_char _value_StringBuffer;
+      int _count_StringBuffer;
+      Object path_FileReaderr;
+      Object data_FileReaderr;
+      int position_FileReaderr;
+      Array_Object elementData_ArrayList;
+      int DEFAULT_CAPACITY_ArrayList;
+      int capacity_ArrayList;
+      int size_ArrayList;
+      Object reader_BufferedReader;
+      Object path_FileOutputStream;
+      Object fname_File;
+      int size_File;
+      Object key_HashMap_Node;
+      Object value_HashMap_Node;
+      int hash_HashMap_Node;
+      Object fname_FileWriterr;
+      Array_Object elementData_AbstractQueue;
+      int size_AbstractQueue;
+      int capacity_AbstractQueue;
+      Object instance_KeyStore;
+      float value_Float;
+      Array_Object elementData_Stack;
+      int size_Stack;
+      int capacity_Stack;
+      Object writer_BufferedWriter;
+      Array_char key_KerberosKey;
+      int KEYSIZE_KerberosKey;
+      Object file_Scanner;
+      Object val_ArrayDeque_DequeNode;
+      Object prev_ArrayDeque_DequeNode;
+      Object next_ArrayDeque_DequeNode;
+      bit bool_Boolean;
+      char value_Character;
+      Array_bit _array_bit;
+      Array_char _array_char;
+      Array_int _array_int;
+      Array_float _array_float;
+      Array_double _array_double;
+      Array_Object _array_object;
+      bit _bit;
+      char _char;
+      int _int;
+      float _float;
+      double _double;
+  }
+  /*Object.sk:7*/
+  
+void Object_Object (Object self, ref Object _out)/*Object.sk:7*/
+  {
+    _out = null;
+    _out = self;
+    return;
+  }
+  /* END PACKAGE Object*/
+}
+/* BEGIN PACKAGE Arrays*/
+package Arrays{
+  /* END PACKAGE Arrays*/
+}
+/* BEGIN PACKAGE Map*/
+package Map{
+  /* END PACKAGE Map*/
+}
+/* BEGIN PACKAGE AlgorithmParameterSpec*/
+package AlgorithmParameterSpec{
+  /* END PACKAGE AlgorithmParameterSpec*/
+}
+/* BEGIN PACKAGE File*/
+package File{
+  /* END PACKAGE File*/
+}
+/* BEGIN PACKAGE Key*/
+package Key{
+  /* END PACKAGE Key*/
+}
+/* BEGIN PACKAGE Scanner*/
+package Scanner{
+  /* END PACKAGE Scanner*/
+}
+/* BEGIN PACKAGE Set*/
+package Set{
+  /* END PACKAGE Set*/
+}
+/* BEGIN PACKAGE StringBuilder*/
+package StringBuilder{
+  /* END PACKAGE StringBuilder*/
+}
+/* BEGIN PACKAGE CryptoCipherFactory_CipherProvider*/
+package CryptoCipherFactory_CipherProvider{
+  /* END PACKAGE CryptoCipherFactory_CipherProvider*/
+}
+/* BEGIN PACKAGE Properties*/
+package Properties{
+  /* END PACKAGE Properties*/
+}
+/* BEGIN PACKAGE ArrayDeque_DequeNode*/
+package ArrayDeque_DequeNode{
+  /* END PACKAGE ArrayDeque_DequeNode*/
+}
+/* BEGIN PACKAGE System*/
+package System{
+  /* END PACKAGE System*/
+}
+/* BEGIN PACKAGE BufferedWriter*/
+package BufferedWriter{
+  /* END PACKAGE BufferedWriter*/
+}
+/* BEGIN PACKAGE AbstractQueue*/
+package AbstractQueue{
+  /* END PACKAGE AbstractQueue*/
+}
+/* BEGIN PACKAGE Number*/
+package Number{
+  /*Number.sk:7*/
+  
+uninterp void intValue (Object self, ref int _out)/*Number.sk:7*/
+  /* END PACKAGE Number*/
+}
+/* BEGIN PACKAGE array*/
+package array{
+  struct Array_bit {
+      int length;
+      bit[length] A;
+  }
+  struct Array_char {
+      int length;
+      char[length] A;
+  }
+  struct Array_int {
+      int length;
+      int[length] A;
+  }
+  struct Array_float {
+      int length;
+      float[length] A;
+  }
+  struct Array_double {
+      int length;
+      double[length] A;
+  }
+  struct Array_Object {
+      int length;
+      Object[length] A;
+  }
+  /* END PACKAGE array*/
+}
+/* BEGIN PACKAGE CsvColumnTest*/
+package CsvColumnTest{
+  /*CsvColumnTest.sk:7*/
+  
+void mn ()/*CsvColumnTest.sk:7*/
+  {
+    int self_s4660 = 0;
+    Object@meta(self_s4660);
+    Object@Object self_s4662 = null;
+    Object_Object@Object(new Object@Object(__cid=self_s4660), self_s4662);
+  }
+  /*CsvColumnTest.sk:7*/
+  
+void mn__Wrapper ()  implements mn__WrapperNospec/*CsvColumnTest.sk:7*/
+  {
+    mn();
+  }
+  /*CsvColumnTest.sk:7*/
+  
+void mn__WrapperNospec ()/*CsvColumnTest.sk:7*/
+  { }
+  /* END PACKAGE CsvColumnTest*/
+}
+/* BEGIN PACKAGE Queue*/
+package Queue{
+  /* END PACKAGE Queue*/
+}
+/* BEGIN PACKAGE KeyGenerator*/
+package KeyGenerator{
+  /* END PACKAGE KeyGenerator*/
+}
+/* BEGIN PACKAGE PrintStream*/
+package PrintStream{
+  /* END PACKAGE PrintStream*/
+}
+/* BEGIN PACKAGE ANONYMOUS*/
+/* END PACKAGE ANONYMOUS*/
+/* BEGIN PACKAGE TreeMap*/
+package TreeMap{
+  /* END PACKAGE TreeMap*/
+}
+/* BEGIN PACKAGE KeyStore*/
+package KeyStore{
+  /* END PACKAGE KeyStore*/
+}
+/* BEGIN PACKAGE Deque*/
+package Deque{
+  /* END PACKAGE Deque*/
+}
+/* BEGIN PACKAGE ArrayDeque*/
+package ArrayDeque{
+  /* END PACKAGE ArrayDeque*/
+}
+/* BEGIN PACKAGE Integer*/
+package Integer{
+  /*Integer.sk:7*/
+  
+void glblInit_MAX_VALUE__Integer_s5258 (ref int MAX_VALUE__Integer_s5257)/*Integer.sk:7*/
+  {
+    MAX_VALUE__Integer_s5257 = 2147483647;
+  }
+  /*Integer.sk:3*/
+  
+void glblInit_MIN_VALUE__Integer_s5262 (ref int MIN_VALUE__Integer_s5261)/*Integer.sk:3*/
+  {
+    MIN_VALUE__Integer_s5261 = -2147483648;
+  }
+  /* END PACKAGE Integer*/
+}
+/* BEGIN PACKAGE StringBuffer*/
+package StringBuffer{
+  /* END PACKAGE StringBuffer*/
+}
+/* BEGIN PACKAGE CsvRow*/
+package CsvRow{
+  /* END PACKAGE CsvRow*/
+}
+/* BEGIN PACKAGE Utils*/
+package Utils{
+  /* END PACKAGE Utils*/
+}
+/* BEGIN PACKAGE BufferedReader*/
+package BufferedReader{
+  /* END PACKAGE BufferedReader*/
+}
+/* BEGIN PACKAGE IvParameterSpec*/
+package IvParameterSpec{
+  /* END PACKAGE IvParameterSpec*/
+}
+/* BEGIN PACKAGE CsvConfiguration*/
+package CsvConfiguration{
+  /* END PACKAGE CsvConfiguration*/
+}
+/* BEGIN PACKAGE Cipher*/
+package Cipher{
+  /* END PACKAGE Cipher*/
+}
+[SKETCH] DONE
+Total time = 4763

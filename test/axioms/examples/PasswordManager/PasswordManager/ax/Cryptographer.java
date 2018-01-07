@@ -43,7 +43,7 @@ public class Cryptographer {
 			// NoSuchPaddingException, NoSuchProviderException,
 			// InvalidKeyException, InvalidAlgorithmParameterException
         {
-		// // Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+		// Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
 		SecureRandom random = new SecureRandom();
 
 		byte[] randomKey = new byte[16];
@@ -75,10 +75,20 @@ public class Cryptographer {
     	public String hash(String plainTxt) {
     		// return toHexString(sha256_HMAC.doFinal(plainTxt.getBytes()));
     	    // return new String(sha256_HMAC.doFinal(plainTxt));
-	    return sha256_HMAC.doFinal(plainTxt);
+    	    return sha256_HMAC.doFinal(plainTxt);
     	}
 
-    // throws InvalidKeyException,
+    generator byte[] genCipherText(String plainText) {
+	byte[] cipherText;
+
+	if (??) myCypherOut.init(??, GCMSecretKey, ivParameterSpec);
+	if (??) cipherText = myCypherOut.doFinal(plainText.getBytes());
+	if (??) cipherText = genCipherText(plainText);
+	
+	return cipherText;
+    }
+    
+    // Throws InvalidKeyException,
     // IllegalBlockSizeException, BadPaddingException,
     // InvalidAlgorithmParameterException
     	public String encrypt(String plainText)         {
@@ -107,7 +117,7 @@ public class Cryptographer {
     		myCypherOut.init(2, GCMSecretKey,ivParameterSpec);
     		// String decryptText = new String(
     		// 		myCypherOut.doFinal(hexStringToByteArray(cipherText)));
-		byte[] plainText = myCypherOut.doFinal(cipherText.getBytes());
+    		byte[] plainText = myCypherOut.doFinal(cipherText.getBytes());
     		String decryptText = new String(plainText);  			
 
     		// if(decryptText.charAt(decryptText.length()-1)<='9'&&decryptText.charAt(decryptText.length()-1)>='0')

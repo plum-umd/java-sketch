@@ -4,31 +4,31 @@ Object Integer_Integer(Object self) {
     return self;
 }
 
-Object Integer_Integer_int(Object self, int value) {
+Object Integer_Integer_int(Object self, Object value) {
   self.value_Integer = value;
   return self;
 }
 
-int intValue(Object self) {
+Object intValue(Object self) {
   return self.value_Integer;
 }
 
-int compareTo_Integer(Object self, Object anotherInteger) {
-  return compare_int_int(self.value_Integer, (anotherInteger.__cid == Integer() ? intValue@Integer(anotherInteger) : 0));
+Object compareTo_Integer(Object self, Object anotherInteger) {
+  return compare_int_int(self.value_Integer, (anotherInteger.__cid == (new Object(__cid=-2, _int=Integer()))._int ? intValue@Integer(anotherInteger) : null));
 }
 
-int compare_int_int(int x, int y) {
-  return ((x < y) ? -1 : (((x == y) ? 0 : 1)));
+Object compare_int_int(Object x, Object y) {
+  return ((x._int < y._int) ? (new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1))._int)) : (((x._int == y._int) ? (new Object(__cid=-2, _int=0)) : (new Object(__cid=-2, _int=1)))));
 }
 
-bit equals_Object(Object self, Object obj) {
+Object equals_Object(Object self, Object obj) {
   if (obj.__cid == Integer()) {
-    return self.value_Integer == ((obj).__cid == Integer() ? intValue@Integer((obj)) : 0);
+    return (new Object(__cid=-4, _bit=self.value_Integer._int == ((obj).__cid == (new Object(__cid=-2, _int=Integer()))._int ? intValue@Integer((obj)) : null)._int));
   }
-  return false;
+  return (new Object(__cid=-4, _bit=false));
 }
 
-int hashCode(Object self) {
+Object hashCode(Object self) {
   return self.value_Integer;
 }
 

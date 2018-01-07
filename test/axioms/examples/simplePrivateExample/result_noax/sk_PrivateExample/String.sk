@@ -4,11 +4,11 @@ Object String_String(Object self) {
     return self;
 }
 
-Object String_String_char_int_int(Object self, Array_char ca, int offset, int count) {
-  if (offset > 0 && offset < ca.length) {
-    Array_char tmp = new Array_char(length=count);
+Object String_String_char_int_int(Object self, Object ca, int offset, int count) {
+  if (offset > 0 && offset < ca._array_char.length) {
+    Object tmp = Wrap_Array_char(new Array_char(length=count));
     for (int i = 0; i < count; i++) {
-      tmp.A[i] = ca.A[i + offset];
+      tmp._array_char.A[i] = ca._array_char.A[i + offset];
     }
     self._value_String = tmp;
   }
@@ -19,18 +19,18 @@ Object String_String_char_int_int(Object self, Array_char ca, int offset, int co
   return self;
 }
 
-Object String_String_byte(Object self, Array_char bytes) {
-  int len = bytes.length;
-  self._value_String = new Array_char(length=len);
+Object String_String_byte(Object self, Object bytes) {
+  int len = bytes._array_char.length;
+  self._value_String = Wrap_Array_char(new Array_char(length=len));
   for (int i = 0; i < len; i++) {
-    self._value_String.A[i] = (char)(bytes.A[i]);
+    self._value_String._array_char.A[i] = (char)(bytes._array_char.A[i]);
   }
   self._count_String = len;
   return self;
 }
 
 char charAt_int(Object self, int index) {
-  if (0 <= index && index < self._count_String) return self._value_String.A[index];
+  if (0 <= index && index < self._count_String) return self._value_String._array_char.A[index];
   return '\0';
 }
 
@@ -43,7 +43,7 @@ Object toString(Object self) {
 }
 
 void setCharAt_int_char(Object self, int i, char c) {
-  self._value_String.A[i] = c;
+  self._value_String._array_char.A[i] = c;
 }
 
 int indexOf_String(Object self, Object s) {
@@ -126,14 +126,18 @@ Object concat_String(Object self, Object str) {
   }
   int thisLen = (self.__cid == String() ? length@String(self) : 0);
   int totalLen = (self.__cid == String() ? length@String(self) : 0) + otherLen;
-  Array_char ret = new Array_char(length=totalLen);
+  Object ret = Wrap_Array_char(new Array_char(length=totalLen));
   for (int i = 0; i < thisLen; i++) {
-    ret.A[i] = (self.__cid == String() ? charAt_int@String(self, i) : '\0');
+    ret._array_char.A[i] = (self.__cid == String() ? charAt_int@String(self, i) : '\0');
   }
   for (int i = thisLen; i < totalLen; i++) {
-    ret.A[i] = (str.__cid == String() ? charAt_int@String(str, i - thisLen) : '\0');
+    ret._array_char.A[i] = (str.__cid == String() ? charAt_int@String(str, i - thisLen) : '\0');
   }
   return String_String_char_int_int(new Object(__cid=String()), ret, 0, totalLen);
+}
+
+bit equalsIgnoreCase_Object(Object self, Object obj) {
+  return equals_Object@String(self, obj);
 }
 
 bit equals_Object(Object self, Object obj) {
@@ -145,7 +149,7 @@ bit equals_Object(Object self, Object obj) {
     int tLen = (self.__cid == String() ? length@String(self) : 0);
     if (sLen != tLen) isEqual = false;
     for (int i = 0; (i < sLen) && (isEqual == true); i++) {
-      if (s._value_String.A[i] != self._value_String.A[i]) {
+      if (s._value_String._array_char.A[i] != self._value_String._array_char.A[i]) {
         isEqual = false;
       }
     }
@@ -173,20 +177,20 @@ Object replace_char_char(Object self, char oldChar, char newChar) {
     int len = self._count_String;
     int i = -1;
     int stop = 0;
-    Array_char val = self._value_String;
+    Object val = self._value_String;
     while (++i < len) {
-      if (val.A[i] == oldChar && stop == 0) {
+      if (val._array_char.A[i] == oldChar && stop == 0) {
         stop = i;
       }
     }
     if (stop < len) {
-      Array_char buf = new Array_char(length=len);
+      Object buf = Wrap_Array_char(new Array_char(length=len));
       for (int j = 0; j < stop; j++) {
-        buf.A[j] = val.A[j];
+        buf._array_char.A[j] = val._array_char.A[j];
       }
       while (stop < len) {
-        char c = val.A[stop];
-        buf.A[stop] = ((c == oldChar) ? newChar : c);
+        char c = val._array_char.A[stop];
+        buf._array_char.A[stop] = ((c == oldChar) ? newChar : c);
         stop++;
       }
       return String_String_char_int_int(new Object(__cid=String()), buf, 0, len);
@@ -195,15 +199,15 @@ Object replace_char_char(Object self, char oldChar, char newChar) {
   return self;
 }
 
-Array_char getBytes(Object self) {
+Object getBytes(Object self) {
   return getBytes_String((self.__cid == String() ? toString@String(self) : null));
 }
 
-Array_char getBytes_String(Object str) {
+Object getBytes_String(Object str) {
   int len = (str.__cid == String() ? length@String(str) : 0);
-  Array_char bytes = new Array_char(length=len);
+  Object bytes = Wrap_Array_char(new Array_char(length=len));
   for (int i = 0; i < len; i++) {
-    bytes.A[i] = (char)((str.__cid == String() ? charAt_int@String(str, i) : '\0'));
+    bytes._array_char.A[i] = (char)((str.__cid == String() ? charAt_int@String(str, i) : '\0'));
   }
   return bytes;
 }
@@ -215,17 +219,17 @@ Object substring_int(Object self, int beginIndex) {
 }
 
 Object substring_int_int(Object self, int beginIndex, int endIndex) {
-  assert beginIndex >= 0 && endIndex <= self._value_String.length;
+  assert beginIndex >= 0 && endIndex <= self._value_String._array_char.length;
   int subLen = endIndex - beginIndex;
   assert subLen > 0;
   return ((beginIndex == 0 && endIndex == self._count_String) ? self : String_String_char_int_int(new Object(__cid=String()), self._value_String, beginIndex, subLen));
 }
 
-Array_Object split_String(Object self, Object regex) {
+Object split_String(Object self, Object regex) {
   return split_String_int@String(self, regex, 0);
 }
 
-Array_Object split_String_int(Object self, Object regex, int limit) {
+Object split_String_int(Object self, Object regex, int limit) {
   int off = 0;
   char ch = (regex.__cid == String() ? charAt_int@String(regex, 0) : '\0');
   int next = indexOf_char_int@String(self, ch, off);
@@ -239,11 +243,11 @@ Array_Object split_String_int(Object self, Object regex, int limit) {
     }
     else {
       (list.__cid == ArrayList() ? add_E@ArrayList(list, substring_int_int@String(self, off, self._count_String)) : 0);
-      off = self._value_String.length;
+      off = self._value_String._array_char.length;
       next = -1;
     }
   }
-  if (off == 0) return new Array_Object(length=1, A={self});
+  if (off == 0) return Wrap_Array_Object(new Array_Object(length=1, A={self}));
   if (!limited || (list.__cid == ArrayList() ? size@ArrayList(list) : 0) < limit) {
     (list.__cid == ArrayList() ? add_E@ArrayList(list, substring_int_int@String(self, off, self._count_String)) : 0);
   }
@@ -254,7 +258,7 @@ Array_Object split_String_int(Object self, Object regex, int limit) {
       resultSize--;
     }
   }
-  Array_Object result = new Array_Object(length=resultSize);
+  Object result = Wrap_Array_Object(new Array_Object(length=resultSize));
   list = (list.__cid == ArrayList() ? subList_int_int@ArrayList(list, 0, resultSize) : null);
   result = (list.__cid == ArrayList() ? toArray@ArrayList(list) : null);
   return result;

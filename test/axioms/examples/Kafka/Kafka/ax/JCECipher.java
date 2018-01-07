@@ -38,51 +38,69 @@ public class JCECipher implements ICipher {
         this.transformation = transformation;
     }
 
-    private Cipher getCipher(boolean isEncryption, Key key, byte[] IV) {
+    private Cipher getCipher(boolean isEncryption, SecretKeySpec key, byte[] IV) {
         Cipher cipher;
-        try {
-            cipher = Cipher.getInstance(transformation, provider);
-        } catch (NoSuchAlgorithmException | NoSuchProviderException | NoSuchPaddingException ex) {
-            throw new CommonException(
-                    ex,
-                    "Unable to get instance of Cipher for %s for security provider: %s",
-                    transformation, provider);
-        }
+	cipher = Cipher.getInstance(transformation, provider);
+        // try {
+        //     cipher = Cipher.getInstance(transformation, provider);
+        // } catch (NoSuchAlgorithmException | NoSuchProviderException | NoSuchPaddingException ex) {
+        //     throw new CommonException(
+        //             ex,
+        //             "Unable to get instance of Cipher for %s for security provider: %s",
+        //             transformation, provider);
+        // }
 
-        SecretKey keyValue = new SecretKeySpec(key.getEncoded(), algorithm);
+        // secretkey keyValue = new SecretKeySpec(key.getEncoded(), algorithm);
+        SecretKeySpec keyValue = new SecretKeySpec(key.getEncoded(), algorithm);
         AlgorithmParameterSpec IVspec = new IvParameterSpec(IV);
 
-        try {
-            cipher.init(isEncryption ? Cipher.ENCRYPT_MODE : Cipher.DECRYPT_MODE,
-                    keyValue, IVspec);
-        } catch (InvalidKeyException | InvalidAlgorithmParameterException ex) {
-            throw new CommonException("Unable to initialize Cipher", ex);
-        }
+	// cipher.init(isEncryption ? Cipher.ENCRYPT_MODE : Cipher.DECRYPT_MODE,
+        //             keyValue, IVspec);
+	if (isEncryption) {
+	    cipher.init(1, keyValue, IVspec);
+	} else {
+	    cipher.init(2, keyValue, IVspec);	    
+	}
+	
+        // try {
+        //     cipher.init(isEncryption ? Cipher.ENCRYPT_MODE : Cipher.DECRYPT_MODE,
+        //             keyValue, IVspec);
+        // } catch (InvalidKeyException | InvalidAlgorithmParameterException ex) {
+        //     throw new CommonException("Unable to initialize Cipher", ex);
+        // }
         return cipher;
     }
 
     @Override
-    public byte[] encrypt(byte[] data, Key key, byte[] IV) {
+    public byte[] encrypt(byte[] data, SecretKeySpec key, byte[] IV) {
         return translate(true, data, key, IV);
     }
 
     @Override
-    public byte[] decrypt(byte[] data, Key key, byte[] IV) {
+    public byte[] decrypt(byte[] data, SecretKeySpec key, byte[] IV) {
         return translate(false, data, key, IV);
     }
 
-    private byte[] translate(boolean isEncryption, byte[] data, Key key, byte[] IV) {
+    private byte[] translate(boolean isEncryption, byte[] data, SecretKeySpec key, byte[] IV) {
         Cipher cipher = getCipher(isEncryption, key, IV);
         byte[] output = new byte[cipher.getOutputSize(data.length)];
-        try {
-            int updateBytes = cipher.update(data, 0, data.length, output, 0);
-            int finalBytes = cipher.doFinal(data, 0, 0, output, updateBytes);
-            if (updateBytes + finalBytes < output.length) {
-                output = Arrays.copyOf(output, updateBytes + finalBytes);
-            }
-        } catch (ShortBufferException | IllegalBlockSizeException | BadPaddingException e) {
-            throw new CommonException(e);
-        }
+
+	int updateBytes = cipher.update(data, 0, data.length, output, 0);
+	int finalBytes = cipher.doFinal(data, 0, 0, output, updateBytes);
+	output = cipher.doFinal(data);
+	if (updateBytes + finalBytes < output.length) {
+	    output = Arrays.copyOf(output, updateBytes + finalBytes);
+	}	
+	
+        // try {
+        //     int updateBytes = cipher.update(data, 0, data.length, output, 0);
+        //     int finalBytes = cipher.doFinal(data, 0, 0, output, updateBytes);
+        //     if (updateBytes + finalBytes < output.length) {
+        //         output = Arrays.copyOf(output, updateBytes + finalBytes);
+        //     }
+        // } catch (ShortBufferException | IllegalBlockSizeException | BadPaddingException e) {
+        //     throw new CommonException(e);
+        // }
         return output;
     }
 

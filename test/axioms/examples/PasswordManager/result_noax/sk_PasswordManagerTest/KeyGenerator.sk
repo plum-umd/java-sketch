@@ -13,7 +13,7 @@ Object generateKey(Object self) {
   return KerberosKey_KerberosKey(new Object(__cid=KerberosKey()));
 }
 
-void init_int(Object self, int keysize) {
+void init_int(Object self, Object keysize) {
 }
 
 Object getInstance_String(Object mode) {

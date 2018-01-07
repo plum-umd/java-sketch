@@ -11,7 +11,7 @@ bit equals_Object_Object(Object a, Object b) {
     }
     return false;
   }
-  return (a.__cid == TreeSet() ? equals_Object@Object(a, b) : a.__cid == Arrays() ? equals_Object@Object(a, b) : a.__cid == HashMap() ? equals_Object@Object(a, b) : a.__cid == SuffixArray() ? equals_Object@Object(a, b) : a.__cid == Boolean() ? equals_Object@Object(a, b) : a.__cid == TwoDArray() ? equals_Object@Object(a, b) : a.__cid == SuffixRankTuple() ? equals_Object@Object(a, b) : a.__cid == String() ? equals_Object@String(a, b) : a.__cid == Assert() ? equals_Object@Object(a, b) : a.__cid == Integer() ? equals_Object@Integer(a, b) : a.__cid == Character() ? equals_Object@Character(a, b) : a.__cid == SuffixArrayTest() ? equals_Object@Object(a, b) : a.__cid == ArrayList() ? equals_Object@Object(a, b) : a.__cid == HashSet() ? equals_Object@Object(a, b) : a.__cid == ArrayDeque() ? equals_Object@Object(a, b) : a.__cid == Object() ? equals_Object@Object(a, b) : 0);
+  return (a.__cid == ArrayList() ? equals_Object@Object(a, b) : a.__cid == String() ? equals_Object@String(a, b) : a.__cid == SuffixArrayTest() ? equals_Object@Object(a, b) : a.__cid == TreeSet() ? equals_Object@Object(a, b) : a.__cid == Arrays() ? equals_Object@Object(a, b) : a.__cid == ArrayDeque() ? equals_Object@Object(a, b) : a.__cid == SuffixRankTuple() ? equals_Object@Object(a, b) : a.__cid == HashMap() ? equals_Object@Object(a, b) : a.__cid == Boolean() ? equals_Object@Object(a, b) : a.__cid == SuffixArray() ? equals_Object@Object(a, b) : a.__cid == TwoDArray() ? equals_Object@Object(a, b) : a.__cid == Integer() ? equals_Object@Integer(a, b) : a.__cid == Assert() ? equals_Object@Object(a, b) : a.__cid == Character() ? equals_Object@Character(a, b) : a.__cid == HashSet() ? equals_Object@Object(a, b) : a.__cid == Object() ? equals_Object@Object(a, b) : 0);
 }
 
 bit equals_Object(Object self, Object obj) {
@@ -22,22 +22,22 @@ struct Object {
   int         __cid;
   char        value_Character;
   int         value_Integer;
-  Array_char  _value_String;
-  int         _count_String;
-  int         originalIndex_SuffixRankTuple;
-  int         secondHalf_SuffixRankTuple;
-  int         firstHalf_SuffixRankTuple;
   int         M_TwoDArray;
   Array_int   arr_TwoDArray;
   int         N_TwoDArray;
-  bit         bool_Boolean;
   int         N_SuffixArray;
   Array_int   T_SuffixArray;
   Array_int   sa_SuffixArray;
   Array_int   lcp_SuffixArray;
-  ArrayDeque  _arraydeque;
+  bit         bool_Boolean;
+  int         originalIndex_SuffixRankTuple;
+  int         secondHalf_SuffixRankTuple;
+  int         firstHalf_SuffixRankTuple;
+  Array_char  _value_String;
+  int         _count_String;
   HashSet     _hashset;
-  ArrayList   _arraylist;
   HashMap     _hashmap;
+  ArrayDeque  _arraydeque;
   TreeSet     _treeset;
+  ArrayList   _arraylist;
 }

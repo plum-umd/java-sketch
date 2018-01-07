@@ -1,0 +1,18 @@
+package CodeAssertion;
+
+Object CodeAssertion_CodeAssertion(Object self) {
+    return self;
+}
+
+void verifyThat_boolean(Object expression) {
+  if (!expression._bit) {
+
+  }
+}
+
+void verifyThat_boolean_String(Object expression, Object message) {
+  if (!expression._bit) {
+
+  }
+}
+
