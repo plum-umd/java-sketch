@@ -1,0 +1,14 @@
+package ConfigurableCipherFactory;
+
+Object ConfigurableCipherFactory_ConfigurableCipherFactory(Object self) {
+    return self;
+}
+
+void setAlgorithm_String(Object self, Object algorithm) {
+  self.algorithm_DefaultCipherFactory = algorithm;
+}
+
+void setPadding_String(Object self, Object padding) {
+  self.padding_DefaultCipherFactory = padding;
+}
+

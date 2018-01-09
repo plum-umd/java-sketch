@@ -29,6 +29,7 @@ public class DefaultCipherFactory implements ICipherFactory {
 	PADDING = "AES/ECB/PKCS5Padding";
         algorithm = ALGORITHM;
         padding = PADDING;
+	key = "KEY";
     }
 
     @Override

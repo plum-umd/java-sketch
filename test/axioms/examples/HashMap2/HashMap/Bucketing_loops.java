@@ -34,25 +34,32 @@ public class Bucketing<K, V> implements HashTable<K, V> {
     public void rehashng() {
     	ArrayList<Pair<K, V>> temp1 = new ArrayList<>();
 
-    	for (int i = 0; i < 2; i++) {
-    	    for (int j = 0; j < sizeBucket[i]; j++) {
+    	for (int i = ??; i < ??; i++) {
+	    int szbkt = sizeBucket[i];
+	    int g1 = {| szbkt , size, mod, numberOfSlots, numberOfElements |};
+    	    for (int j = ??; j < g1; j++) {
     		int index = i * numberOfSlots + j;
     		temp1.add(new Pair(bucketHash[index].key,bucketHash[index].value));
     	    }
     	}
-    	for (int i = 0; i < overflow.size(); i++) {
+	int sz = overflow.size();
+	int g2 = {| size, mod, numberOfSlots, numberOfElements, sz |};   
+    	for (int i = ??; i < g2; i++) {
 	    Pair<K,V> tmp = overflow.get(i);
 	    temp1.add(tmp);
     	}
 
-    	size *= 4;
-    	numberOfSlots *= 2;
-    	mod *= 2;
+    	size *= ??;
+    	numberOfSlots *= ??;
+    	mod *= ??;
     	bucketHash = new Pair[size];
     	sizeBucket = new int[mod];
-    	numberOfElements = 0;
+    	numberOfElements = ??;
 
-    	for (int i = 0; i < temp1.size(); i++) {
+	int sz2 = temp1.size();
+	int g3 = {| size, mod, numberOfSlots, numberOfElements, sz2 |};   
+	
+    	for (int i = ??; i < temp1.size(); i++) {
 	    Pair<K,V> tmp = temp1.get(i);
 	    K key = tmp.key;
 	    V val = tmp.value;			
@@ -63,7 +70,7 @@ public class Bucketing<K, V> implements HashTable<K, V> {
     public void put(K key, V value) {
 	delete(key);
     	integerKey = key.hashCode() % mod;
-	if (integerKey < 0) { integerKey *= -1; }
+	if (integerKey < ??) { integerKey *= ??; }
 
     	// check if there is a place in buckting array or not
     	if (sizeBucket[integerKey] != numberOfSlots) {
@@ -82,21 +89,27 @@ public class Bucketing<K, V> implements HashTable<K, V> {
     }
 
     public V get(K key) {
-	if (key == null) return null;
     	integerKey = key.hashCode() % mod;
-	if (integerKey < 0) { integerKey *= -1; }
+	if (integerKey < ??) { integerKey *= ??; }
 
     	index = numberOfSlots * integerKey;
-    	for (int i = index; i < index + sizeBucket[integerKey]; i++) {
+	int g3 = {| size, mod, numberOfSlots, numberOfElements, integerKey, index |};
+	int add = index + sizeBucket[integerKey];
+	int g4 = {| size, mod, numberOfSlots, numberOfElements, integerKey, index, add |}; 
+    	for (int i = g3; i < g4; i++) {
 	    Pair<K,V> tmp = bucketHash[i];
 	    K tmp_key = tmp.key;
-	    if (tmp_key.equals(key)) { return tmp.value; }
+	    boolean b = tmp_key.equals(key);
+	    if ({| b, tmp_key == key |}) { return tmp.value; }
     	}
     	if (sizeBucket[integerKey] == numberOfSlots) {
-    	    for (int i = 0; i < overflow.size(); i++) {
+	    int sz = overflow.size();
+	    int g5 = {| size, mod, numberOfSlots, numberOfElements, integerKey, index, sz |};	    
+    	    for (int i = ??; i < g5; i++) {
 		Pair<K,V> tmp = overflow.get(i);
 		K tmp_key = tmp.key;				
-		if (tmp_key.equals(key)) { return tmp.value; }
+		boolean b = tmp_key.equals(key);
+		if ({| b, tmp_key == key |}) { return tmp.value; }
     	    }
     	}
     	return null;
@@ -108,15 +121,20 @@ public class Bucketing<K, V> implements HashTable<K, V> {
 
     	index = numberOfSlots * integerKey;
     	boolean flag = false;
+	int g3 = {| size, mod, numberOfSlots, numberOfElements, integerKey, index |};
+	int add = index + sizeBucket[integerKey];	
+	int g4 = {| size, mod, numberOfSlots, numberOfElements, integerKey, index, add |}; 
 
-    	for (int i = index; i < index + sizeBucket[integerKey]; i++) {
+    	for (int i = g3; i < g4; i++) {
 	    Pair<K,V> tmp = bucketHash[i];
 	    K tmp_key = tmp.key;
-    	    if (tmp_key.equals(key)) {
+	    boolean b = tmp_key.equals(key);
+	    if ({| b, tmp_key == key |}) { 
+    	    // if (tmp_key.equals(key)) {
 		flag = true;
 	    }
 	    else if (flag) {
-    		bucketHash[i-1] = new Pair(bucketHash[i].key, bucketHash[i].value);
+    		bucketHash[i-??] = new Pair(bucketHash[i].key, bucketHash[i].value);
     	    }
     	}
     	if (flag) {
@@ -124,14 +142,18 @@ public class Bucketing<K, V> implements HashTable<K, V> {
     	    sizeBucket[integerKey]--;
     	}
 	else if (sizeBucket[integerKey] == numberOfSlots) {
-    	    for (int i = 0; i < overflow.size(); i++) {
-		Pair<K,V> tmp = overflow.get(i);
-		K tmp_key = tmp.key;				
-    		if (tmp_key.equals(key)) {
-    		    overflow.remove(i);
-    		    numberOfElements--;
-		    return;
-    		}
+	    int sz = overflow.size();
+	    int g5 = {| size, mod, numberOfSlots, numberOfElements, integerKey, index, sz |};
+    	    for (int i = ??; i < g5; i++) {
+	    	Pair<K,V> tmp = overflow.get(i);
+	    	K tmp_key = tmp.key;				
+	    	boolean b = tmp_key.equals(key);
+	    	if ({| b, tmp_key == key |}) { 
+    	    	// if (tmp_key.equals(key)) {
+    	    	    overflow.remove(i);
+    	    	    numberOfElements--;
+	    	    return;
+    	    	}
     	    }
     	}
     }
@@ -144,7 +166,7 @@ public class Bucketing<K, V> implements HashTable<K, V> {
     }
 
     public boolean isEmpty() {
-    	if (numberOfElements == 0)
+    	if (numberOfElements == ??)
     	    return true;
     	return false;
     }

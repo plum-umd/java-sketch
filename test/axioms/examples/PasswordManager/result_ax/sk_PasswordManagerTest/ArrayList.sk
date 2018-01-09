@@ -40,7 +40,7 @@ Object set_Object_int_Object(Object self, int i, Object e) {
     return new Object(__cid=ArrayList(), _arraylist=new Set(self=self._arraylist, i=i, e=e));
 }
 
-Object ensurecapacity_Object_int(Object self, int n) {
+Object ensureCapacity_Object_int(Object self, int n) {
     return new Object(__cid=ArrayList(), _arraylist=new Ensurecapacity(self=self._arraylist, n=n));
 }
 

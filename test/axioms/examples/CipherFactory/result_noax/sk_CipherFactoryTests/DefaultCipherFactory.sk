@@ -5,6 +5,7 @@ Object DefaultCipherFactory_DefaultCipherFactory(Object self) {
   self.PADDING_DefaultCipherFactory = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=20+1, A="AES/ECB/PKCS5Padding"), 0, 20);
   self.algorithm_DefaultCipherFactory = self.ALGORITHM_DefaultCipherFactory;
   self.padding_DefaultCipherFactory = self.PADDING_DefaultCipherFactory;
+  self.key_DefaultCipherFactory = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=3+1, A="KEY"), 0, 3);
   return self;
 }
 

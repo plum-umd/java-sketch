@@ -6,10 +6,10 @@ Object CipherFactoryTests_CipherFactoryTests(Object self) {
 
 harness void main() {
   Object self = Object_Object(new Object(__cid=Object()));
-  Object cft = DefaultCipherFactoryTest_DefaultCipherFactoryTest(new Object(__cid=DefaultCipherFactoryTest()));
-  if (cft.__cid == DefaultCipherFactoryTest()) { setUp@DefaultCipherFactoryTest(cft); }
-  else { 0; };
-  if (cft.__cid == DefaultCipherFactoryTest()) { testEncryptionCipher@DefaultCipherFactoryTest(cft); }
-  else { 0; };
+  Object cm = CryptoManager_CryptoManager(new Object(__cid=CryptoManager()));
+  Object m = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=14+1, A="Secret message"), 0, 14);
+  Object d = (cm.__cid == CryptoManager() ? encrypt_String@CryptoManager(cm, m) : null);
+  Object p = (cm.__cid == CryptoManager() ? decrypt_String@CryptoManager(cm, d) : null);
+  assert (p.__cid == String() ? equals_Object@String(p, m) : 0);
 }
 

@@ -9,7 +9,7 @@ Object SecureRandom_SecureRandom() {
     return new Object(__cid=SecureRandom(), _securerandom=new Securerandom());
 }
 
-Object nextbytes_Object_Object(Object self, Object k) {
+Object nextBytes_Object_Object(Object self, Object k) {
     return new Object(__cid=SecureRandom(), _securerandom=new Nextbytes(self=self._securerandom, k=k));
 }
 

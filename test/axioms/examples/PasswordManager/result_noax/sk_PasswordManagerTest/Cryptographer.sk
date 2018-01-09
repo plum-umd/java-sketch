@@ -26,18 +26,22 @@ Object hash_String(Object self, Object plainTxt) {
   return String_String_byte(new Object(__cid=String()), (self.sha256_HMAC_Cryptographer.__cid == Mac() ? doFinal_byte@Mac(self.sha256_HMAC_Cryptographer, (plainTxt.__cid == String() ? getBytes@String(plainTxt) : null)) : null));
 }
 
+generator Array_char genCipherText_String(Object self, Object plainText) {
+  Array_char cipherText;
+  if (??) if (self.myCypherOut_Cryptographer.__cid == Cipher()) { init_int_SecretKey_IvParameterSpec@Cipher(self.myCypherOut_Cryptographer, ??, self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer); }
+    else { 0; };
+  if (??) cipherText = (self.myCypherOut_Cryptographer.__cid == Cipher() ? doFinal_byte@Cipher(self.myCypherOut_Cryptographer, (plainText.__cid == String() ? getBytes@String(plainText) : null)) : null);
+  if (??) cipherText = genCipherText_String@Cryptographer(self, plainText);
+  return cipherText;
+}
+
 Object encrypt_String(Object self, Object plainText) {
-  if (self.myCypherOut_Cryptographer.__cid == Cipher()) { init_int_SecretKey_IvParameterSpec@Cipher(self.myCypherOut_Cryptographer, ??, self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer); }
-  else { 0; };
-  Array_char cipherText = (self.myCypherOut_Cryptographer.__cid == Cipher() ? doFinal_byte@Cipher(self.myCypherOut_Cryptographer, (plainText.__cid == String() ? getBytes@String(plainText) : null)) : null);
+  Array_char cipherText = genCipherText_String@Cryptographer(self, plainText);
   return String_String_byte(new Object(__cid=String()), cipherText);
 }
 
-Object decrypt_String(Object self, Object cipherText) {
-  if (self.myCypherOut_Cryptographer.__cid == Cipher()) { init_int_SecretKey_IvParameterSpec@Cipher(self.myCypherOut_Cryptographer, ??, self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer); }
-  else { 0; };
-  Array_char plainText = (self.myCypherOut_Cryptographer.__cid == Cipher() ? doFinal_byte@Cipher(self.myCypherOut_Cryptographer, (cipherText.__cid == String() ? getBytes@String(cipherText) : null)) : null);
-  Object decryptText = String_String_byte(new Object(__cid=String()), plainText);
-  return decryptText;
+Object decrypt_String(Object self, Object plainText) {
+  Array_char cipherText = genCipherText_String@Cryptographer(self, plainText);
+  return String_String_byte(new Object(__cid=String()), cipherText);
 }
 

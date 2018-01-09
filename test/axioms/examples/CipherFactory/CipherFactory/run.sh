@@ -4,7 +4,9 @@ cd ../../../../../
 if [ "$1" == "1" ]
 then
     shift
-    ./jsk.sh $@ "${pwd}/noax/tests/DefaultCipherFactoryTest.java ${pwd}/noax/tests/CipherFactoryTester.java ${pwd}/noax/ConfigurableCipherFactor.java ${pwd}/noax/DefaultCipherFactory.java ${pwd}/noax/CryptoManager.java ${pwd}/noax/ICipherFactory.java ${pwd}/noax/ICryptoManager.java model/ -o ${pwd}/../result_noax"
+    # ./jsk.sh $@ "${pwd}/noax/tests/DefaultCipherFactoryTest.java ${pwd}/noax/tests/CipherFactoryTester.java ${pwd}/noax/ConfigurableCipherFactor.java ${pwd}/noax/DefaultCipherFactory.java ${pwd}/noax/CryptoManager.java ${pwd}/noax/ICipherFactory.java ${pwd}/noax/ICryptoManager.java model/ -o ${pwd}/../result_noax"
+    ./jsk.sh $@ "${pwd}/noax/ConfigurableCipherFactory.java ${pwd}/noax/CryptoManager.java ${pwd}/noax/ICipherFactory.java ${pwd}/noax/ICryptoManager.java ${pwd}/noax/DefaultCipherFactory.java ${pwd}/noax/tests/CipherFactoryTester.java model/ -o ${pwd}/../result_noax"
+    # ./jsk.sh $@ "${pwd}/noax/*.java ${pwd}/noax/tests/CipherFactoryTester.java model/ -o ${pwd}/../result_noax"
 elif [ "$1" == "2" ]
 then
     shift
@@ -12,7 +14,8 @@ then
 elif [ "$1" == "3" ]
 then
     shift
-    ./jsk.sh $@ "${pwd}/noax/Cryptographer_syn.java ${pwd}/noax/PasswordManager_syn.java ${pwd}/noax/PasswordMap.java ${pwd}/noax/PasswordManagerTest.java model/ -o ${pwd}/../result_noax"
+    ./jsk.sh $@ "${pwd}/noax/ConfigurableCipherFactory.java ${pwd}/noax/CryptoManager_syn.java ${pwd}/noax/ICipherFactory.java ${pwd}/noax/ICryptoManager.java ${pwd}/noax/DefaultCipherFactory.java ${pwd}/noax/tests/CipherFactoryTester.java model/ -o ${pwd}/../result_noax"
+    # ./jsk.sh $@ "${pwd}/noax/Cryptographer_syn.java ${pwd}/noax/PasswordManager_syn.java ${pwd}/noax/PasswordMap.java ${pwd}/noax/PasswordManagerTest.java model/ -o ${pwd}/../result_noax"
 fi
 
 

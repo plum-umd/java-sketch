@@ -25,9 +25,6 @@ harness void mn_int_int_int(int x, int y, int z) {
   testContainsKey_Integer_Integer@HashTableTest(self, xx, yy);
   testRemoveNonExistent_Integer_Integer@HashTableTest(self, xx, yy);
   testRemove_Integer_Integer@HashTableTest(self, xx, yy);
-  if (x >= INITIAL_SIZE && x < 0) {
-    testSize_int_int@HashTableTest(self, x, y);
-  }
 }
 
 Array_Object makeInts_Integer(Object self, Object i1) {

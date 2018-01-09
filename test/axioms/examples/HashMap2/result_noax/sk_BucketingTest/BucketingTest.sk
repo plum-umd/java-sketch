@@ -4,9 +4,11 @@ Object BucketingTest_BucketingTest(Object self) {
     return self;
 }
 
-harness void mn_int_int_int(int x, int y, int z) {
+harness void mn() {
   Object self = Object_Object(new Object(__cid=Object()));
-  assume x != y && x != z && y != z;
+  int x = 1;
+  int y = 2;
+  int z = 3;
   Object xx = Integer_Integer_int(new Object(__cid=Integer()), x);
   Object yy = Integer_Integer_int(new Object(__cid=Integer()), y);
   Object zz = Integer_Integer_int(new Object(__cid=Integer()), z);
@@ -23,5 +25,58 @@ void testClear_Integer_Integer(Object self, Object x, Object y) {
   else { 0; };
   if (self.classUnderTest_BucketingTest.__cid == Bucketing()) { put_K_V@Bucketing(self.classUnderTest_BucketingTest, y, x); }
   else { 0; };
+  assertTrue_boolean@Assert((self.classUnderTest_BucketingTest.__cid == Bucketing() ? size@Bucketing(self.classUnderTest_BucketingTest) : 0) > 0);
+  if (self.classUnderTest_BucketingTest.__cid == Bucketing()) { clear@Bucketing(self.classUnderTest_BucketingTest); }
+  else { 0; };
+  assertFalse_boolean@Assert((self.classUnderTest_BucketingTest.__cid == Bucketing() ? size@Bucketing(self.classUnderTest_BucketingTest) : 0) > 0);
+}
+
+void testGetEmpty(Object self) {
+  if (self.classUnderTest_BucketingTest.__cid == Bucketing()) { clear@Bucketing(self.classUnderTest_BucketingTest); }
+  else { 0; };
+  assertNull_Object@Assert((self.classUnderTest_BucketingTest.__cid == Bucketing() ? get_K@Bucketing(self.classUnderTest_BucketingTest, null) : null));
+}
+
+void testPutAndGet_Integer_Integer_Integer(Object self, Object x, Object y, Object z) {
+  if (self.classUnderTest_BucketingTest.__cid == Bucketing()) { clear@Bucketing(self.classUnderTest_BucketingTest); }
+  else { 0; };
+  if (self.classUnderTest_BucketingTest.__cid == Bucketing()) { put_K_V@Bucketing(self.classUnderTest_BucketingTest, x, y); }
+  else { 0; };
+  if (self.classUnderTest_BucketingTest.__cid == Bucketing()) { put_K_V@Bucketing(self.classUnderTest_BucketingTest, y, x); }
+  else { 0; };
+  if (self.classUnderTest_BucketingTest.__cid == Bucketing()) { put_K_V@Bucketing(self.classUnderTest_BucketingTest, z, x); }
+  else { 0; };
+  assertEquals_Object_Object@Assert((self.classUnderTest_BucketingTest.__cid == Bucketing() ? get_K@Bucketing(self.classUnderTest_BucketingTest, x) : null), y);
+  assertEquals_Object_Object@Assert((self.classUnderTest_BucketingTest.__cid == Bucketing() ? get_K@Bucketing(self.classUnderTest_BucketingTest, y) : null), x);
+  assertEquals_Object_Object@Assert((self.classUnderTest_BucketingTest.__cid == Bucketing() ? get_K@Bucketing(self.classUnderTest_BucketingTest, z) : null), x);
+  int i2 = (x.__cid == Integer() ? intValue@Integer(x) : 0) + 1;
+  Object i = Integer_Integer_int(new Object(__cid=Integer()), i2);
+  if (self.classUnderTest_BucketingTest.__cid == Bucketing()) { put_K_V@Bucketing(self.classUnderTest_BucketingTest, i, y); }
+  else { 0; };
+  assertEquals_Object_Object@Assert((self.classUnderTest_BucketingTest.__cid == Bucketing() ? get_K@Bucketing(self.classUnderTest_BucketingTest, i) : null), y);
+}
+
+void testReplacing_Integer_Integer_Integer(Object self, Object x, Object y, Object z) {
+}
+
+void testKeys_Integer_Integer(Object self, Object x, Object y) {
+}
+
+void testValues_Integer_Integer(Object self, Object x, Object y) {
+}
+
+void testContainsValue_Integer_Integer(Object self, Object x, Object y) {
+}
+
+void testContainsKey_Integer_Integer(Object self, Object x, Object y) {
+}
+
+void testSize_int_int(Object self, int x, int y) {
+}
+
+void testRemoveNonExistent_Integer_Integer(Object self, Object x, Object y) {
+}
+
+void testRemove_Integer_Integer(Object self, Object x, Object y) {
 }
 

@@ -19,6 +19,16 @@ Object String_String_char_int_int(Object self, Array_char ca, int offset, int co
   return self;
 }
 
+Object String_String_byte(Object self, Array_char bytes) {
+  int len = bytes.length;
+  self._value_String = new Array_char(length=len);
+  for (int i = 0; i < len; i++) {
+    self._value_String.A[i] = (char)(bytes.A[i]);
+  }
+  self._count_String = len;
+  return self;
+}
+
 char charAt_int(Object self, int index) {
   if (0 <= index && index < self._count_String) return self._value_String.A[index];
   return '\0';
@@ -183,6 +193,19 @@ Object replace_char_char(Object self, char oldChar, char newChar) {
     }
   }
   return self;
+}
+
+Array_char getBytes(Object self) {
+  return getBytes_String((self.__cid == String() ? toString@String(self) : null));
+}
+
+Array_char getBytes_String(Object str) {
+  int len = (str.__cid == String() ? length@String(str) : 0);
+  Array_char bytes = new Array_char(length=len);
+  for (int i = 0; i < len; i++) {
+    bytes.A[i] = (char)((str.__cid == String() ? charAt_int@String(str, i) : '\0'));
+  }
+  return bytes;
 }
 
 Object substring_int(Object self, int beginIndex) {

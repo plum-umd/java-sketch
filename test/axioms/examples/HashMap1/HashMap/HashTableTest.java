@@ -30,15 +30,15 @@ public class HashTableTest {
 	Integer zz = new Integer(z);
 	setUp();
 	testClear(xx, yy);
-	// testPutAndGet(xx, yy, zz);
-	// testGetEmpty();
-	// testReplacing(xx, yy, zz);
-	// testKeys(xx, yy);
-	// testValues(xx, yy);
-	// testContainsValue(xx, yy);
-	// testContainsKey(xx, yy);
-	// testRemoveNonExistent(xx, yy);
-	// testRemove(xx, yy);
+	testPutAndGet(xx, yy, zz);
+	testGetEmpty();
+	testReplacing(xx, yy, zz);
+	testKeys(xx, yy);
+	testValues(xx, yy);
+	testContainsValue(xx, yy);
+	testContainsKey(xx, yy);
+	testRemoveNonExistent(xx, yy);
+	testRemove(xx, yy);
 	// if (x >= INITIAL_SIZE && x < 0) { testSize(x, y); }
 
 	// testEnsureCapacity(vv, ww, xx, yy, zz);

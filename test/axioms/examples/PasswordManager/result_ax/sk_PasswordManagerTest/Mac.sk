@@ -7,7 +7,7 @@ adt Mac {
     Dofinal  { Mac self; Object text; }
 }
 
-Object mac__() {
+Object Mac_Mac() {
     return new Object(__cid=Mac(), _mac=new Mac__());
 }
 
@@ -19,7 +19,7 @@ Object initb_Object_SecretKeySpec(Object self, SecretKeySpec key) {
     return new Object(__cid=Mac(), _mac=new Initb(self=self._mac, key=key));
 }
 
-Object dofinal_Object_Object(Object self, Object text) {
+Object doFinal_Object_Object(Object self, Object text) {
     return new Object(__cid=Mac(), _mac=new Dofinal(self=self._mac, text=text));
 }
 

@@ -11,7 +11,7 @@ bit equals_Object_Object(Object a, Object b) {
     }
     return false;
   }
-  return (a.__cid == PasswordManager() ? equals_Object@Object(a, b) : a.__cid == Assert() ? equals_Object@Object(a, b) : a.__cid == Integer() ? equals_Object@Integer(a, b) : a.__cid == Character() ? equals_Object@Character(a, b) : a.__cid == PasswordManagerTest() ? equals_Object@Object(a, b) : a.__cid == Byte() ? equals_Object@Object(a, b) : a.__cid == ArrayList() ? equals_Object@Object(a, b) : a.__cid == Boolean() ? equals_Object@Object(a, b) : a.__cid == HashMap() ? equals_Object@Object(a, b) : a.__cid == Mac() ? equals_Object@Object(a, b) : a.__cid == PasswordMap() ? equals_Object@Object(a, b) : a.__cid == Cipher() ? equals_Object@Object(a, b) : a.__cid == IvParameterSpec() ? equals_Object@Object(a, b) : a.__cid == SecretKeySpec() ? equals_Object@Object(a, b) : a.__cid == String() ? equals_Object@String(a, b) : a.__cid == Cryptographer() ? equals_Object@Object(a, b) : a.__cid == SecureRandom() ? equals_Object@Object(a, b) : a.__cid == Object() ? equals_Object@Object(a, b) : 0);
+  return (a.__cid == ArrayList() ? equals_Object@Object(a, b) : a.__cid == PasswordMap() ? equals_Object@Object(a, b) : a.__cid == SecureRandom() ? equals_Object@Object(a, b) : a.__cid == HashMap() ? equals_Object@Object(a, b) : a.__cid == Character() ? equals_Object@Character(a, b) : a.__cid == Cryptographer() ? equals_Object@Object(a, b) : a.__cid == SecretKeySpec() ? equals_Object@Object(a, b) : a.__cid == PasswordManager() ? equals_Object@Object(a, b) : a.__cid == IvParameterSpec() ? equals_Object@Object(a, b) : a.__cid == Cipher() ? equals_Object@Object(a, b) : a.__cid == PasswordManagerTest() ? equals_Object@Object(a, b) : a.__cid == Byte() ? equals_Object@Object(a, b) : a.__cid == Integer() ? equals_Object@Integer(a, b) : a.__cid == Assert() ? equals_Object@Object(a, b) : a.__cid == String() ? equals_Object@String(a, b) : a.__cid == Mac() ? equals_Object@Object(a, b) : a.__cid == Boolean() ? equals_Object@Object(a, b) : a.__cid == Object() ? equals_Object@Object(a, b) : 0);
 }
 
 bit equals_Object(Object self, Object obj) {
@@ -24,6 +24,13 @@ int hashCode(Object self) {
 
 struct Object {
   int            __cid;
+  bit            bool_Boolean;
+  Array_char     _value_String;
+  int            _count_String;
+  int            value_Integer;
+  char           b_Byte;
+  Object         cryptographer_PasswordManager;
+  Object         passMap_PasswordManager;
   Object         GCMSecretKey_Cryptographer;
   SecretKeySpec  Hash_secret_key_Cryptographer;
   Mac            sha256_HMAC_Cryptographer;
@@ -31,20 +38,13 @@ struct Object {
   Array_char     randomIv_Cryptographer;
   Object         ivParameterSpec_Cryptographer;
   int            MAX_LENGTH_PASSWORD_Cryptographer;
-  Array_char     _value_String;
-  int            _count_String;
+  char           value_Character;
   HashMap        passMap_PasswordMap;
   Object         masterHash_PasswordMap;
-  bit            bool_Boolean;
-  char           b_Byte;
-  char           value_Character;
-  int            value_Integer;
-  Object         cryptographer_PasswordManager;
-  Object         passMap_PasswordManager;
-  SecureRandom   _securerandom;
-  SecretKeySpec  _secretkeyspec;
-  Cipher         _cipher;
   Mac            _mac;
+  Cipher         _cipher;
+  SecretKeySpec  _secretkeyspec;
   HashMap        _hashmap;
+  SecureRandom   _securerandom;
   ArrayList      _arraylist;
 }

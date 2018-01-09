@@ -9,13 +9,45 @@ Object CryptoManager_CryptoManager(Object self) {
   return self;
 }
 
+generator Array_char genCipherText_String_byte_ICipherFactory_Cipher(Object self, Object plainText, Array_char bytes, Object cf, Object cipher) {
+  Array_char cipherText;
+  if (??) {
+    cipherText = encode_String_String@CryptoManager(self, plainText, getCharset@CryptoManager(self));
+  }
+  if (??) {
+    cf = getCipherFactory@CryptoManager(self);
+  }
+  if (??) {
+    cipher = (cf.__cid == ConfigurableCipherFactory() ? encryptionCipher@DefaultCipherFactory(cf) : cf.__cid == DefaultCipherFactory() ? encryptionCipher@DefaultCipherFactory(cf) : null);
+  }
+  if (??) {
+    cipher = (cf.__cid == ConfigurableCipherFactory() ? decryptionCipher@DefaultCipherFactory(cf) : cf.__cid == DefaultCipherFactory() ? decryptionCipher@DefaultCipherFactory(cf) : null);
+  }
+  if (??) {
+    cipherText = readEncoded_String@CryptoManager(self, plainText);
+  }
+  if (??) {
+    if (isEncryptedByte_byte@CryptoManager(self, cipherText)) {
+      cipherText = cutEncryptionMark_byte@CryptoManager(self, cipherText);
+    }
+  }
+  if (??) {
+    cipherText = appendEncryptionMark_byte@CryptoManager(self, cipherText);
+  }
+  if (??) {
+    cipherText = cryptInCipher_Cipher_byte@CryptoManager(self, cipher, cipherText);
+  }
+  if (??) {
+    cipherText = processEscape_byte_boolean@CryptoManager(self, cipherText, true);
+  }
+  if (??) {
+    cipherText = genCipherText_String_byte_ICipherFactory_Cipher@CryptoManager(self, plainText, cipherText, cf, cipher);
+  }
+  return cipherText;
+}
+
 Object encrypt_String(Object self, Object message) {
-  Object cf = getCipherFactory@CryptoManager(self);
-  Object cipher = (cf.__cid == DefaultCipherFactory() ? encryptionCipher@DefaultCipherFactory(cf) : null);
-  Array_char bytes = encode_String_String@CryptoManager(self, message, getCharset@CryptoManager(self));
-  bytes = appendEncryptionMark_byte@CryptoManager(self, bytes);
-  bytes = cryptInCipher_Cipher_byte@CryptoManager(self, cipher, bytes);
-  Array_char data = processEscape_byte_boolean@CryptoManager(self, bytes, true);
+  Array_char data = genCipherText_String_byte_ICipherFactory_Cipher@CryptoManager(self, message, new Array_char(length=1), null, null);
   return decode_byte_String@CryptoManager(self, data, getBasicCharset@CryptoManager(self));
 }
 
@@ -27,15 +59,17 @@ Object encryptIfNotEncrypted_String(Object self, Object message) {
 }
 
 Array_char appendEncryptionMark_byte(Object self, Array_char bytesArray) {
-  Array_char extendedBytes = new Array_char(length=bytesArray.length + 1);
+  Array_char extendedBytes = new Array_char(length=bytesArray.length + ??);
   extendedBytes.A[0] = getEncryptedMark@CryptoManager(self);
-  arraycopy_byte_int_byte_int_int@System(bytesArray, 0, extendedBytes, 1, bytesArray.length);
+  arraycopy_byte_int_byte_int_int@System(bytesArray, ??, extendedBytes, ??, bytesArray.length);
   return extendedBytes;
 }
 
 Array_char cutEncryptionMark_byte(Object self, Array_char bytesArray) {
-  Array_char trimmedBytes = new Array_char(length=bytesArray.length - 1);
-  arraycopy_byte_int_byte_int_int@System(bytesArray, 1, trimmedBytes, 0, bytesArray.length - 1);
+  Array_char trimmedBytes = new Array_char(length=bytesArray.length - ??);
+  for (int i = ??; i < bytesArray.length; i++) {
+    trimmedBytes.A[i - ??] = bytesArray.A[i];
+  }
   return trimmedBytes;
 }
 
@@ -45,26 +79,20 @@ Array_char readEncoded_String(Object self, Object encrypted) {
 }
 
 bit isEncryptedByte_byte(Object self, Array_char data) {
-  return data.A[0] == getEncryptedMark@CryptoManager(self);
+  return data.A[??] == getEncryptedMark@CryptoManager(self);
 }
 
 Object decrypt_String(Object self, Object encryptedMessage) {
   if (!isEncrypted_String@CryptoManager(self, encryptedMessage)) {
     return encryptedMessage;
   }
-  Object cf = getCipherFactory@CryptoManager(self);
-  Object cipher = (cf.__cid == DefaultCipherFactory() ? decryptionCipher@DefaultCipherFactory(cf) : null);
-  Array_char bytes = readEncoded_String@CryptoManager(self, encryptedMessage);
-  Array_char data = cryptInCipher_Cipher_byte@CryptoManager(self, cipher, bytes);
-  if (isEncryptedByte_byte@CryptoManager(self, data)) {
-    data = cutEncryptionMark_byte@CryptoManager(self, data);
-  }
+  Array_char data = genCipherText_String_byte_ICipherFactory_Cipher@CryptoManager(self, encryptedMessage, new Array_char(length=1), null, null);
   return decode_byte_String@CryptoManager(self, data, getCharset@CryptoManager(self));
 }
 
 bit isEncrypted_String(Object self, Object message) {
   Object cf = getCipherFactory@CryptoManager(self);
-  Object cipher = (cf.__cid == DefaultCipherFactory() ? decryptionCipher@DefaultCipherFactory(cf) : null);
+  Object cipher = (cf.__cid == ConfigurableCipherFactory() ? decryptionCipher@DefaultCipherFactory(cf) : cf.__cid == DefaultCipherFactory() ? decryptionCipher@DefaultCipherFactory(cf) : null);
   Array_char bytes = readEncoded_String@CryptoManager(self, message);
   Array_char data = cryptInCipher_Cipher_byte@CryptoManager(self, cipher, bytes);
   return !isUseEncryptionStrict@CryptoManager(self) || isEncryptedByte_byte@CryptoManager(self, data);

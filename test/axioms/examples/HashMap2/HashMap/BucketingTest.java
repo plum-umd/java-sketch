@@ -5,17 +5,22 @@ import org.junit.Assert;
 public class BucketingTest {
     private Bucketing<Object, Object> classUnderTest;
 
-    harness void mn(int x, int y, int z) {
-	assume x != y && x != z && y != z;
-	    
+    harness void mn() {
+    // harness void mn(int x, int y, int z) {      
+	// assume x != y && x != z && y != z;
+
+	int x = 1;
+	int y = 2;
+	int z = 3;
+	
 	Integer xx = new Integer(x);
 	Integer yy = new Integer(y);
 	Integer zz = new Integer(z);
 
 	setUp();
 	testClear(xx, yy);
-	// testGetEmpty();
-	// testPutAndGet(xx, yy, zz);
+	testGetEmpty();
+	testPutAndGet(xx, yy, zz);
 	// testReplacing(xx, yy, zz);
 	// testKeys(xx, yy);
 	// testValues(xx, yy);
@@ -37,130 +42,131 @@ public class BucketingTest {
 
         classUnderTest.put(x, y);
         classUnderTest.put(y, x);
-        // Assert.assertTrue(classUnderTest.size() > 0);
+        Assert.assertTrue(classUnderTest.size() > 0);
         
-	// classUnderTest.clear();
-	// Assert.assertFalse(classUnderTest.size() > 0);
+	classUnderTest.clear();
+	Assert.assertFalse(classUnderTest.size() > 0);
     }
 
-    // public void testGetEmpty() {
-    //     classUnderTest.clear();
-    //     Assert.assertNull(classUnderTest.get(null));
-    // }
+    public void testGetEmpty() {
+        classUnderTest.clear();
+        Assert.assertNull(classUnderTest.get(null));
+    }
 
-    // public void testPutAndGet(Integer x, Integer y, Integer z) {
-    //     classUnderTest.clear();
+    public void testPutAndGet(Integer x, Integer y, Integer z) {
+        classUnderTest.clear();
 
-    //     classUnderTest.put(x, y);
-    //     classUnderTest.put(y, x);
-    //     classUnderTest.put(z, x);
-    //     Assert.assertEquals(classUnderTest.get(x), y);
-    //     Assert.assertEquals(classUnderTest.get(y), x);
-    //     Assert.assertEquals(classUnderTest.get(z), x);
+        classUnderTest.put(x, y);
+        classUnderTest.put(y, x);
+        classUnderTest.put(z, x);
+        Assert.assertEquals(classUnderTest.get(x), y);
+        Assert.assertEquals(classUnderTest.get(y), x);
+        Assert.assertEquals(classUnderTest.get(z), x);
 
-    // 	Integer i = new Integer(x.intValue()+INITIAL_SIZE);
-    //     classUnderTest.put(i, y);
-    //     Assert.assertEquals(classUnderTest.get(i), y);
-    // }
+	int i2 = x.intValue()+1;
+    	Integer i = new Integer(i2);
+        classUnderTest.put(i, y);
+        Assert.assertEquals(classUnderTest.get(i), y);
+    }
 
-    // public void testReplacing(Integer x, Integer y, Integer z) {
-    //     classUnderTest.clear();
-    // 	Integer i = new Integer(x.intValue()+INITIAL_SIZE);
-    //     classUnderTest.put(i, z);
-    //     Assert.assertEquals(classUnderTest.get(i), z);
+    public void testReplacing(Integer x, Integer y, Integer z) {
+        // classUnderTest.clear();
+    	// Integer i = new Integer(x.intValue()+INITIAL_SIZE);
+        // classUnderTest.put(i, z);
+        // Assert.assertEquals(classUnderTest.get(i), z);
 
-    //     classUnderTest.put(x, y);
-    //     Assert.assertEquals(classUnderTest.get(x), y);
+        // classUnderTest.put(x, y);
+        // Assert.assertEquals(classUnderTest.get(x), y);
 
-    //     int size = classUnderTest.size();
+        // int size = classUnderTest.size();
 
-    //     classUnderTest.put(x, z);
-    //     Assert.assertEquals(classUnderTest.get(x), z);
+        // classUnderTest.put(x, z);
+        // Assert.assertEquals(classUnderTest.get(x), z);
 
-    // 	classUnderTest.put(i, z);
-    //     Assert.assertEquals(classUnderTest.get(i), z);
+    	// classUnderTest.put(i, z);
+        // Assert.assertEquals(classUnderTest.get(i), z);
 
-    //     Assert.assertEquals(classUnderTest.size(), size);
+        // Assert.assertEquals(classUnderTest.size(), size);
 
-    // }
+    }
 
-    // public void testKeys(Integer x, Integer y) {
-    //     classUnderTest.clear();
+    public void testKeys(Integer x, Integer y) {
+        // classUnderTest.clear();
 
-    //     classUnderTest.put(x, y);
-    // 	Object k = classUnderTest.keys()[0];
-    //     Assert.assertTrue(k.equals(x));
-    // 	// TODO: array access from method call as argument to assertTrue
-    //     // Assert.assertEquals(classUnderTest.keys()[0], k);
+        // classUnderTest.put(x, y);
+    	// Object k = classUnderTest.keys()[0];
+        // Assert.assertTrue(k.equals(x));
+    	// // TODO: array access from method call as argument to assertTrue
+        // // Assert.assertEquals(classUnderTest.keys()[0], k);
 
-    // 	Object[] keys = classUnderTest.keys();
-    //     Assert.assertTrue(keys.length == 1);
-    //  }
+    	// Object[] keys = classUnderTest.keys();
+        // Assert.assertTrue(keys.length == 1);
+     }
 
-    // // @Test
-    // public void testValues(Integer x, Integer y) {
-    //     classUnderTest.clear();
-    // 	for (int i = 0; i < INITIAL_SIZE; i++) {
-    // 	    Integer xx = new Integer(x.intValue() + i);
-    // 	    Integer yy = new Integer(y.intValue() + i);
-    // 	    classUnderTest.put(xx, yy);
-    // 	}
+    // @Test
+    public void testValues(Integer x, Integer y) {
+        // classUnderTest.clear();
+    	// for (int i = 0; i < INITIAL_SIZE; i++) {
+    	//     Integer xx = new Integer(x.intValue() + i);
+    	//     Integer yy = new Integer(y.intValue() + i);
+    	//     classUnderTest.put(xx, yy);
+    	// }
 
-    // 	Object[] k = classUnderTest.values();
-    //     // Assert.assertTrue(k.equals(y));
-    // 	// TODO: array access from method call as argument to assertTrue
-    //     // Assert.assertEquals(classUnderTest.values()[0], k);
-    // }
+    	// Object[] k = classUnderTest.values();
+        // // Assert.assertTrue(k.equals(y));
+    	// // TODO: array access from method call as argument to assertTrue
+        // // Assert.assertEquals(classUnderTest.values()[0], k);
+    }
 
-    //TODO: why the heck is this so slow?! containsValue()????
-    // public void testContainsValue(Integer x, Integer y) {
-    //     classUnderTest.clear();
+    // TODO: why the heck is this so slow?! containsValue()????
+    public void testContainsValue(Integer x, Integer y) {
+        // classUnderTest.clear();
 
-    //     Assert.assertFalse(classUnderTest.containsValue(y));
-    //     classUnderTest.put(x, y);
-    // 	Assert.assertTrue(classUnderTest.containsValue(y));
-    // }
+        // Assert.assertFalse(classUnderTest.containsValue(y));
+        // classUnderTest.put(x, y);
+    	// Assert.assertTrue(classUnderTest.containsValue(y));
+    }
 
-    // public void testContainsKey(Integer x, Integer y) {
-    //     classUnderTest.clear();
+    public void testContainsKey(Integer x, Integer y) {
+        // classUnderTest.clear();
 
-    //     Assert.assertFalse(classUnderTest.containsKey(x));
-    //     classUnderTest.put(x, y);
-    // 	Assert.assertTrue(classUnderTest.containsKey(x));
-    // }
+        // Assert.assertFalse(classUnderTest.containsKey(x));
+        // classUnderTest.put(x, y);
+    	// Assert.assertTrue(classUnderTest.containsKey(x));
+    }
 
-    // public void testSize(int x, int y) {
-    // 	assume x >= INITIAL_SIZE && x < 0;
-    //     classUnderTest.clear();
+    public void testSize(int x, int y) {
+    	// assume x >= INITIAL_SIZE && x < 0;
+        // classUnderTest.clear();
 
-    // 	// had to reduce loop size from original (2048)
-    // 	for (int i = 0; i < INITIAL_SIZE; i++) { classUnderTest.put(new Integer(i), null); }
-    //     Assert.assertEquals(classUnderTest.size(), INITIAL_SIZE);
-    //     classUnderTest.put(new Integer(x), new Integer(y));
-    //     Assert.assertEquals(classUnderTest.size(), 17);
-    // }
+    	// // had to reduce loop size from original (2048)
+    	// for (int i = 0; i < INITIAL_SIZE; i++) { classUnderTest.put(new Integer(i), null); }
+        // Assert.assertEquals(classUnderTest.size(), INITIAL_SIZE);
+        // classUnderTest.put(new Integer(x), new Integer(y));
+        // Assert.assertEquals(classUnderTest.size(), 17);
+    }
 
-    // public void testRemoveNonExistent(Integer x, Integer y) {
-    //     classUnderTest.clear();
+    public void testRemoveNonExistent(Integer x, Integer y) {
+        // classUnderTest.clear();
 
-    //     classUnderTest.put(x, y);
-    //     int size = classUnderTest.size();
-    //     classUnderTest.remove(y);
-    //     Assert.assertEquals(classUnderTest.size(), size);
-    // }
+        // classUnderTest.put(x, y);
+        // int size = classUnderTest.size();
+        // classUnderTest.remove(y);
+        // Assert.assertEquals(classUnderTest.size(), size);
+    }
 
-    // public void testRemove(Integer x, Integer y) {
-    //     classUnderTest.clear();
+    public void testRemove(Integer x, Integer y) {
+        // classUnderTest.clear();
 
-    //     int size = classUnderTest.size();
-    //     classUnderTest.put(x, y);
+        // int size = classUnderTest.size();
+        // classUnderTest.put(x, y);
 
-    //     Assert.assertEquals(classUnderTest.get(x), y);
-    //     Assert.assertEquals(classUnderTest.size(), size + 1);
+        // Assert.assertEquals(classUnderTest.get(x), y);
+        // Assert.assertEquals(classUnderTest.size(), size + 1);
 
-    //     classUnderTest.remove(x);
-    //     Assert.assertNull(classUnderTest.get(x));
-    // }
+        // classUnderTest.remove(x);
+        // Assert.assertNull(classUnderTest.get(x));
+    }
 
     // Doesn't exist in HashMap2
     // public void testEnsureCapacity(Integer v, Integer w, Integer x, Integer y, Integer z) {
