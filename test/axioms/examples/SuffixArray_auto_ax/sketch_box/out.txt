@@ -1,0 +1,316 @@
+SKETCH version 1.7.5
+Benchmark = /Users/grumpy/Research/java-sketch2/test/axioms/examples/SuffixArray_auto_ax/SuffixArray/../sketch_box/sk_SuffixArrayTest/main.sk
+array.sk:5: Making final Array_bit@array.length
+array.sk:5: Making final Object._int
+array.sk:10: Making final Array_char@array.length
+array.sk:15: Making final Array_int@array.length
+array.sk:20: Making final Array_float@array.length
+array.sk:25: Making final Array_double@array.length
+array.sk:30: Making final Array_Object@array.length
+[SATBackend] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[SATBackend] MAX LOOP UNROLLING = 10
+[SATBackend] MAX FUNC INLINING  = 5
+estimated size of main__Wrapper_SuffixArrayTest
+stmt cnt: 4
+callee main_SuffixArrayTest : 15
+
+[SATBackend] After prog.accept(partialEval)
+[SATBackend] OFILE = sk_SuffixArrayTest
+searching for file null
+searching for file /Users/grumpy/Research/sketch-from-source/sketch-frontend/target/sketch-1.7.5-noarch-launchers/cegis/src/SketchSolver/cegis
+searching for file /Users/grumpy/Research/sketch-from-source/sketch-frontend/target/sketch-1.7.5-noarch-launchers/cegis
+searching for file cegis/src/SketchSolver/cegis
+searching for file ../sketch-backend/src/SketchSolver/cegis
+searching for file ../sketch-backend/bindings/cegis
+searching for file /Users/grumpy/Research/java-sketch2/test/axioms/examples/SuffixArray_auto_ax/SuffixArray/../sketch_box/cegis-1.7.5
+searching for file /Users/grumpy/Research/java-sketch2/test/axioms/examples/SuffixArray_auto_ax/SuffixArray/../sketch_box/cegis
+searching for file /usr/local/bin/cegis
+searching for file /usr/local/bin/src/SketchSolver/cegis
+searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/bin/../sketch-backend/bindings/cegis
+searching for file /usr/bin/cegis
+searching for file /usr/bin/src/SketchSolver/cegis
+searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/bin/../sketch-backend/bindings/cegis
+searching for file /bin/cegis
+searching for file /bin/src/SketchSolver/cegis
+searching for file /bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /bin/../sketch-backend/bindings/cegis
+searching for file /usr/sbin/cegis
+searching for file /usr/sbin/src/SketchSolver/cegis
+searching for file /usr/sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/sbin/../sketch-backend/bindings/cegis
+searching for file /sbin/cegis
+searching for file /sbin/src/SketchSolver/cegis
+searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /sbin/../sketch-backend/bindings/cegis
+searching for file /Library/TeX/texbin/cegis
+searching for file /Library/TeX/texbin/src/SketchSolver/cegis
+searching for file /Library/TeX/texbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /Library/TeX/texbin/../sketch-backend/bindings/cegis
+searching for file /Users/grumpy/Research/sketch-from-source/sketch-frontend/target/sketch-1.7.5-noarch-launchers/cegis
+searching for file /Users/grumpy/Research/sketch-from-source/sketch-frontend/target/sketch-1.7.5-noarch-launchers/src/SketchSolver/cegis
+searching for file /Users/grumpy/Research/sketch-from-source/sketch-frontend/target/sketch-1.7.5-noarch-launchers/../sketch-backend/src/SketchSolver/cegis
+searching for file /Users/grumpy/Research/sketch-from-source/sketch-frontend/target/sketch-1.7.5-noarch-launchers/../sketch-backend/bindings/cegis
+searching for file /Users/grumpy/School/CMSC818/llvm_prebuilt/clang+llvm-5.0.0-x86_64-apple-darwin/bin/cegis
+searching for file /Users/grumpy/School/CMSC818/llvm_prebuilt/clang+llvm-5.0.0-x86_64-apple-darwin/bin/src/SketchSolver/cegis
+searching for file /Users/grumpy/School/CMSC818/llvm_prebuilt/clang+llvm-5.0.0-x86_64-apple-darwin/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /Users/grumpy/School/CMSC818/llvm_prebuilt/clang+llvm-5.0.0-x86_64-apple-darwin/bin/../sketch-backend/bindings/cegis
+searching for file /Users/grumpy/.cabal/bin/cegis
+searching for file /Users/grumpy/.cabal/bin/src/SketchSolver/cegis
+searching for file /Users/grumpy/.cabal/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /Users/grumpy/.cabal/bin/../sketch-backend/bindings/cegis
+searching for file /Users/grumpy/Research/sketch-from-source/sketch-frontend/cegis
+searching for file /Users/grumpy/Research/sketch-from-source/sketch-frontend/src/SketchSolver/cegis
+searching for file /Users/grumpy/Research/sketch-from-source/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
+resolved cegis to path /Users/grumpy/Research/sketch-from-source/sketch-backend/src/SketchSolver/cegis
+[SATBackend] Launching: /Users/grumpy/Research/sketch-from-source/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 5 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/grumpy/Research/java-sketch2/test/axioms/examples/SuffixArray_auto_ax/sketch_box/tmp/sk_SuffixArrayTest/solution0-0 /Users/grumpy/Research/java-sketch2/test/axioms/examples/SuffixArray_auto_ax/sketch_box/tmp/sk_SuffixArrayTest/input0.tmp 
+Overriding inputs with 5
+boundmode = CALLNAME
+assuming  bounds checks
+SOLVER RAND SEED = 1515521868
+ optimization level = 6
+Reading SKETCH Program in File /Users/grumpy/Research/java-sketch2/test/axioms/examples/SuffixArray_auto_ax/sketch_box/tmp/sk_SuffixArrayTest/input0.tmp
+CREATING main__Wrapper_SuffixArrayTest
+size = 4
+after ba size = 4
+CREATING main__WrapperNospec_SuffixArrayTest
+size = 0
+after ba size = 0
+CREATING main_SuffixArrayTest
+size = 95
+after ba size = 95
+CREATING Object_meta
+size = 3
+after ba size = 3
+CREATING Object_Object_Object
+size = 35
+after ba size = 35
+CREATING testLRS_SuffixArrayTest
+size = 2408
+after ba size = 2408
+CREATING String_meta
+size = 3
+after ba size = 3
+CREATING Wrap_Array_char_array
+size = 45
+after ba size = 45
+CREATING String_String_char_int_int_String
+size = 801
+after ba size = 801
+CREATING SuffixArray_meta
+size = 3
+after ba size = 3
+CREATING SuffixArray_SuffixArray_String_SuffixArray
+size = 124
+after ba size = 124
+CREATING lrs_SuffixArray
+Found Cycle of size 75; Breaking.
+Found Cycle of size 39; Breaking.
+size = 8286
+after ba size = 8286
+CREATING xform_size_TreeSet_TreeSet
+size = 383
+after ba size = 383
+CREATING xform_contains_TreeSet_Object_TreeSet
+size = 1761
+after ba size = 1761
+CREATING Array_meta
+size = 3
+after ba size = 3
+CREATING toIntArray_String_SuffixArray
+Found Cycle of size 25; Breaking.
+size = 1949
+after ba size = 1949
+CREATING SuffixArray_SuffixArray_int_SuffixArray
+size = 176
+after ba size = 176
+CREATING TreeSet_TreeSet_TreeSet
+size = 45
+after ba size = 45
+CREATING TreeSet_meta
+size = 3
+after ba size = 3
+CREATING clear_Object_TreeSet
+size = 51
+after ba size = 51
+CREATING clearb_Object_TreeSet
+size = 51
+after ba size = 51
+CREATING add_Object_Object_TreeSet
+size = 51
+after ba size = 51
+CREATING addb_Object_Object_TreeSet
+size = 52
+after ba size = 52
+CREATING TwoDArray_meta
+size = 3
+after ba size = 3
+CREATING equals_Object_Object
+size = 43
+after ba size = 43
+CREATING ArrayDeque_meta
+size = 3
+after ba size = 3
+CREATING ArrayList_meta
+size = 3
+after ba size = 3
+CREATING HashSet_meta
+size = 3
+after ba size = 3
+CREATING SuffixArrayTest_meta
+size = 3
+after ba size = 3
+CREATING HashMap_meta
+size = 3
+after ba size = 3
+CREATING Arrays_meta
+size = 3
+after ba size = 3
+CREATING Assert_meta
+size = 3
+after ba size = 3
+CREATING Boolean_meta
+size = 3
+after ba size = 3
+CREATING SuffixRankTuple_meta
+size = 3
+after ba size = 3
+CREATING Integer_meta
+size = 3
+after ba size = 3
+CREATING equals_Object_Integer
+Found Cycle of size 5; Breaking.
+size = 98
+after ba size = 98
+CREATING Character_meta
+size = 3
+after ba size = 3
+CREATING equals_Object_Character
+Found Cycle of size 5; Breaking.
+size = 98
+after ba size = 98
+CREATING equals_Object_String
+Found Cycle of size 5; Breaking.
+size = 1073
+after ba size = 1073
+CREATING length_String
+size = 42
+after ba size = 42
+CREATING Wrap_Array_int_array
+size = 45
+after ba size = 45
+CREATING charAt_int_String
+size = 113
+after ba size = 113
+CREATING clone_int_SuffixArray
+size = 641
+after ba size = 641
+CREATING construct_SuffixArray
+Found Cycle of size 155; Breaking.
+Found Cycle of size 35; Breaking.
+size = 51463
+after ba size = 51463
+CREATING kasai_SuffixArray
+size = 12314
+after ba size = 12314
+CREATING intValue_Integer
+size = 42
+after ba size = 42
+CREATING charValue_Character
+size = 42
+after ba size = 42
+CREATING TwoDArray_TwoDArray_int_int_TwoDArray
+size = 103
+after ba size = 103
+CREATING Wrap_Array_Object_array
+size = 45
+after ba size = 45
+CREATING set_int_int_int_TwoDArray
+size = 97
+after ba size = 97
+CREATING SuffixRankTuple_SuffixRankTuple_SuffixRankTuple
+size = 35
+after ba size = 35
+CREATING get_int_int_TwoDArray
+size = 97
+after ba size = 97
+CREATING sort_SuffixRankTuple_int_Arrays
+Found Cycle of size 90; Breaking.
+size = 19688
+after ba size = 19688
+CREATING getRow_int_TwoDArray
+size = 929
+after ba size = 929
+CREATING setRow_int_int_TwoDArray
+size = 888
+after ba size = 888
+CREATING compareTo_SuffixRankTuple_SuffixRankTuple
+size = 271
+after ba size = 271
+CREATING swap_SuffixRankTuple_int_int_Arrays
+size = 88
+after ba size = 88
+CREATING compare_int_int_Integer
+size = 81
+after ba size = 81
+* before  EVERYTHING: main__WrapperNospec_SuffixArrayTest::SPEC nodes = 0	 main__Wrapper_SuffixArrayTest::SKETCH nodes = 4
+ INBITS = 5
+ CBITS  = 5
+ input_ints = 0 	 input_bits = 0
+ Inlining amount = 5
+ Inlining functions in the sketch.
+inlined 1 new size =9
+inlined 3 new size =2239
+Found Cycle of size 300; Breaking.
+Found Cycle of size 304; Breaking.
+Found Cycle of size 302; Breaking.
+Found Cycle of size 300; Breaking.
+Found Cycle of size 302; Breaking.
+Found Cycle of size 304; Breaking.
+Found Cycle of size 409; Breaking.
+Found Cycle of size 402; Breaking.
+Found Cycle of size 396; Breaking.
+Found Cycle of size 34; Breaking.
+Found Cycle of size 414; Breaking.
+Found Cycle of size 692; Breaking.
+Found Cycle of size 408; Breaking.
+Found Cycle of size 702; Breaking.
+Found Cycle of size 412; Breaking.
+Found Cycle of size 414; Breaking.
+Found Cycle of size 706; Breaking.
+Found Cycle of size 418; Breaking.
+Found Cycle of size 418; Breaking.
+Found Cycle of size 402; Breaking.
+Found Cycle of size 407; Breaking.
+Found Cycle of size 36; Breaking.
+Found Cycle of size 672; Breaking.
+inlined 166 new size =382064
+Found Cycle of size 255; Breaking.
+Found Cycle of size 251; Breaking.
+Found Cycle of size 861; Breaking.
+Found Cycle of size 297; Breaking.
+Found Cycle of size 604; Breaking.
+Found Cycle of size 272; Breaking.
+Found Cycle of size 271; Breaking.
+Found Cycle of size 324; Breaking.
+Found Cycle of size 720; Breaking.
+Found Cycle of size 309; Breaking.
+Found Cycle of size 695; Breaking.
+Found Cycle of size 277; Breaking.
+Found Cycle of size 315; Breaking.
+Found Cycle of size 75; Breaking.
+Found Cycle of size 598; Breaking.
+Found Cycle of size 600; Breaking.
+Found Cycle of size 249; Breaking.
+Found Cycle of size 664; Breaking.
+inlined 2361 new size =1468533
+Got too big, trying harder to concretize before=0  after =0
+
+----- Statistics -----
+Total elapsed time (ms):  10000.1
+Model building time (ms): 2999.83
+Solution time (ms):       0
+Max virtual mem (bytes):  0
+Max resident mem (bytes): 0
+Max private mem (bytes):  0
