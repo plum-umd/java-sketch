@@ -1,0 +1,535 @@
+SKETCH version 1.7.4
+Benchmark = /Users/grumpy/Research/java-sketch/test/axioms/examples/SuffixArray_auto_ax/SuffixArray/../result/sk_Blah/main.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/* END PACKAGE ANONYMOUS*/
+/* BEGIN PACKAGE Character*/
+package Character{
+  /*Character.sk:43*/
+  
+void glblInit_COMBINING_SPACING_MARK__Character_s726 (ref char COMBINING_SPACING_MARK__Character_s725)/*Character.sk:43*/
+  {
+    COMBINING_SPACING_MARK__Character_s725 = 8;
+  }
+  /*Character.sk:99*/
+  
+void glblInit_CONNECTOR_PUNCTUATION__Character_s728 (ref char CONNECTOR_PUNCTUATION__Character_s727)/*Character.sk:99*/
+  {
+    CONNECTOR_PUNCTUATION__Character_s727 = 23;
+  }
+  /*Character.sk:71*/
+  
+void glblInit_CONTROL__Character_s730 (ref char CONTROL__Character_s729)/*Character.sk:71*/
+  {
+    CONTROL__Character_s729 = 15;
+  }
+  /*Character.sk:111*/
+  
+void glblInit_CURRENCY_SYMBOL__Character_s732 (ref char CURRENCY_SYMBOL__Character_s731)/*Character.sk:111*/
+  {
+    CURRENCY_SYMBOL__Character_s731 = 26;
+  }
+  /*Character.sk:87*/
+  
+void glblInit_DASH_PUNCTUATION__Character_s734 (ref char DASH_PUNCTUATION__Character_s733)/*Character.sk:87*/
+  {
+    DASH_PUNCTUATION__Character_s733 = 20;
+  }
+  /*Character.sk:47*/
+  
+void glblInit_DECIMAL_DIGIT_NUMBER__Character_s736 (ref char DECIMAL_DIGIT_NUMBER__Character_s735)/*Character.sk:47*/
+  {
+    DECIMAL_DIGIT_NUMBER__Character_s735 = 9;
+  }
+  /*Character.sk:155*/
+  
+void glblInit_DIRECTIONALITY_ARABIC_NUMBER__Character_s738 (ref char DIRECTIONALITY_ARABIC_NUMBER__Character_s737)/*Character.sk:155*/
+  {
+    DIRECTIONALITY_ARABIC_NUMBER__Character_s737 = 6;
+  }
+  /*Character.sk:167*/
+  
+void glblInit_DIRECTIONALITY_BOUNDARY_NEUTRAL__Character_s740 (ref char DIRECTIONALITY_BOUNDARY_NEUTRAL__Character_s739)/*Character.sk:167*/
+  {
+    DIRECTIONALITY_BOUNDARY_NEUTRAL__Character_s739 = 9;
+  }
+  /*Character.sk:159*/
+  
+void glblInit_DIRECTIONALITY_COMMON_NUMBER_SEPARATOR__Character_s742 (ref char DIRECTIONALITY_COMMON_NUMBER_SEPARATOR__Character_s741)/*Character.sk:159*/
+  {
+    DIRECTIONALITY_COMMON_NUMBER_SEPARATOR__Character_s741 = 7;
+  }
+  /*Character.sk:147*/
+  
+void glblInit_DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR__Character_s744 (ref char DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR__Character_s743)/*Character.sk:147*/
+  {
+    DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR__Character_s743 = 4;
+  }
+  /*Character.sk:151*/
+  
+void glblInit_DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR__Character_s746 (ref char DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR__Character_s745)/*Character.sk:151*/
+  {
+    DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR__Character_s745 = 5;
+  }
+  /*Character.sk:143*/
+  
+void glblInit_DIRECTIONALITY_EUROPEAN_NUMBER__Character_s748 (ref char DIRECTIONALITY_EUROPEAN_NUMBER__Character_s747)/*Character.sk:143*/
+  {
+    DIRECTIONALITY_EUROPEAN_NUMBER__Character_s747 = 3;
+  }
+  /*Character.sk:187*/
+  
+void glblInit_DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING__Character_s750 (ref char DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING__Character_s749)/*Character.sk:187*/
+  {
+    DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING__Character_s749 = 14;
+  }
+  /*Character.sk:191*/
+  
+void glblInit_DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE__Character_s752 (ref char DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE__Character_s751)/*Character.sk:191*/
+  {
+    DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE__Character_s751 = 15;
+  }
+  /*Character.sk:131*/
+  
+void glblInit_DIRECTIONALITY_LEFT_TO_RIGHT__Character_s754 (ref char DIRECTIONALITY_LEFT_TO_RIGHT__Character_s753)/*Character.sk:131*/
+  {
+    DIRECTIONALITY_LEFT_TO_RIGHT__Character_s753 = 0;
+  }
+  /*Character.sk:163*/
+  
+void glblInit_DIRECTIONALITY_NONSPACING_MARK__Character_s756 (ref char DIRECTIONALITY_NONSPACING_MARK__Character_s755)/*Character.sk:163*/
+  {
+    DIRECTIONALITY_NONSPACING_MARK__Character_s755 = 8;
+  }
+  /*Character.sk:183*/
+  
+void glblInit_DIRECTIONALITY_OTHER_NEUTRALS__Character_s758 (ref char DIRECTIONALITY_OTHER_NEUTRALS__Character_s757)/*Character.sk:183*/
+  {
+    DIRECTIONALITY_OTHER_NEUTRALS__Character_s757 = 13;
+  }
+  /*Character.sk:171*/
+  
+void glblInit_DIRECTIONALITY_PARAGRAPH_SEPARATOR__Character_s760 (ref char DIRECTIONALITY_PARAGRAPH_SEPARATOR__Character_s759)/*Character.sk:171*/
+  {
+    DIRECTIONALITY_PARAGRAPH_SEPARATOR__Character_s759 = 10;
+  }
+  /*Character.sk:203*/
+  
+void glblInit_DIRECTIONALITY_POP_DIRECTIONAL_FORMAT__Character_s762 (ref char DIRECTIONALITY_POP_DIRECTIONAL_FORMAT__Character_s761)/*Character.sk:203*/
+  {
+    DIRECTIONALITY_POP_DIRECTIONAL_FORMAT__Character_s761 = 18;
+  }
+  /*Character.sk:139*/
+  
+void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC__Character_s764 (ref char DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC__Character_s763)/*Character.sk:139*/
+  {
+    DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC__Character_s763 = 2;
+  }
+  /*Character.sk:195*/
+  
+void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING__Character_s766 (ref char DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING__Character_s765)/*Character.sk:195*/
+  {
+    DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING__Character_s765 = 16;
+  }
+  /*Character.sk:199*/
+  
+void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE__Character_s768 (ref char DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE__Character_s767)/*Character.sk:199*/
+  {
+    DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE__Character_s767 = 17;
+  }
+  /*Character.sk:135*/
+  
+void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT__Character_s770 (ref char DIRECTIONALITY_RIGHT_TO_LEFT__Character_s769)/*Character.sk:135*/
+  {
+    DIRECTIONALITY_RIGHT_TO_LEFT__Character_s769 = 1;
+  }
+  /*Character.sk:175*/
+  
+void glblInit_DIRECTIONALITY_SEGMENT_SEPARATOR__Character_s772 (ref char DIRECTIONALITY_SEGMENT_SEPARATOR__Character_s771)/*Character.sk:175*/
+  {
+    DIRECTIONALITY_SEGMENT_SEPARATOR__Character_s771 = 11;
+  }
+  /*Character.sk:127*/
+  
+void glblInit_DIRECTIONALITY_UNDEFINED__Character_s774 (ref char DIRECTIONALITY_UNDEFINED__Character_s773)/*Character.sk:127*/
+  {
+    DIRECTIONALITY_UNDEFINED__Character_s773 = -1;
+  }
+  /*Character.sk:179*/
+  
+void glblInit_DIRECTIONALITY_WHITESPACE__Character_s776 (ref char DIRECTIONALITY_WHITESPACE__Character_s775)/*Character.sk:179*/
+  {
+    DIRECTIONALITY_WHITESPACE__Character_s775 = 12;
+  }
+  /*Character.sk:39*/
+  
+void glblInit_ENCLOSING_MARK__Character_s778 (ref char ENCLOSING_MARK__Character_s777)/*Character.sk:39*/
+  {
+    ENCLOSING_MARK__Character_s777 = 7;
+  }
+  /*Character.sk:95*/
+  
+void glblInit_END_PUNCTUATION__Character_s780 (ref char END_PUNCTUATION__Character_s779)/*Character.sk:95*/
+  {
+    END_PUNCTUATION__Character_s779 = 22;
+  }
+  /*Character.sk:123*/
+  
+void glblInit_FINAL_QUOTE_PUNCTUATION__Character_s782 (ref char FINAL_QUOTE_PUNCTUATION__Character_s781)/*Character.sk:123*/
+  {
+    FINAL_QUOTE_PUNCTUATION__Character_s781 = 30;
+  }
+  /*Character.sk:75*/
+  
+void glblInit_FORMAT__Character_s784 (ref char FORMAT__Character_s783)/*Character.sk:75*/
+  {
+    FORMAT__Character_s783 = 16;
+  }
+  /*Character.sk:51*/
+  
+void glblInit_LETTER_NUMBER__Character_s786 (ref char LETTER_NUMBER__Character_s785)/*Character.sk:51*/
+  {
+    LETTER_NUMBER__Character_s785 = 10;
+  }
+  /*Character.sk:63*/
+  
+void glblInit_LINE_SEPARATOR__Character_s788 (ref char LINE_SEPARATOR__Character_s787)/*Character.sk:63*/
+  {
+    LINE_SEPARATOR__Character_s787 = 13;
+  }
+  /*Character.sk:19*/
+  
+void glblInit_LOWERCASE_LETTER__Character_s790 (ref char LOWERCASE_LETTER__Character_s789)/*Character.sk:19*/
+  {
+    LOWERCASE_LETTER__Character_s789 = 2;
+  }
+  /*Character.sk:107*/
+  
+void glblInit_MATH_SYMBOL__Character_s792 (ref char MATH_SYMBOL__Character_s791)/*Character.sk:107*/
+  {
+    MATH_SYMBOL__Character_s791 = 25;
+  }
+  /*Character.sk:7*/
+  
+void glblInit_MAX_RADIX__Character_s794 (ref int MAX_RADIX__Character_s793)/*Character.sk:7*/
+  {
+    MAX_RADIX__Character_s793 = 36;
+  }
+  /*Character.sk:3*/
+  
+void glblInit_MIN_RADIX__Character_s796 (ref int MIN_RADIX__Character_s795)/*Character.sk:3*/
+  {
+    MIN_RADIX__Character_s795 = 2;
+  }
+  /*Character.sk:27*/
+  
+void glblInit_MODIFIER_LETTER__Character_s798 (ref char MODIFIER_LETTER__Character_s797)/*Character.sk:27*/
+  {
+    MODIFIER_LETTER__Character_s797 = 4;
+  }
+  /*Character.sk:115*/
+  
+void glblInit_MODIFIER_SYMBOL__Character_s800 (ref char MODIFIER_SYMBOL__Character_s799)/*Character.sk:115*/
+  {
+    MODIFIER_SYMBOL__Character_s799 = 27;
+  }
+  /*Character.sk:35*/
+  
+void glblInit_NON_SPACING_MARK__Character_s802 (ref char NON_SPACING_MARK__Character_s801)/*Character.sk:35*/
+  {
+    NON_SPACING_MARK__Character_s801 = 6;
+  }
+  /*Character.sk:31*/
+  
+void glblInit_OTHER_LETTER__Character_s804 (ref char OTHER_LETTER__Character_s803)/*Character.sk:31*/
+  {
+    OTHER_LETTER__Character_s803 = 5;
+  }
+  /*Character.sk:55*/
+  
+void glblInit_OTHER_NUMBER__Character_s806 (ref char OTHER_NUMBER__Character_s805)/*Character.sk:55*/
+  {
+    OTHER_NUMBER__Character_s805 = 11;
+  }
+  /*Character.sk:103*/
+  
+void glblInit_OTHER_PUNCTUATION__Character_s808 (ref char OTHER_PUNCTUATION__Character_s807)/*Character.sk:103*/
+  {
+    OTHER_PUNCTUATION__Character_s807 = 24;
+  }
+  /*Character.sk:119*/
+  
+void glblInit_OTHER_SYMBOL__Character_s810 (ref char OTHER_SYMBOL__Character_s809)/*Character.sk:119*/
+  {
+    OTHER_SYMBOL__Character_s809 = 28;
+  }
+  /*Character.sk:67*/
+  
+void glblInit_PARAGRAPH_SEPARATOR__Character_s812 (ref char PARAGRAPH_SEPARATOR__Character_s811)/*Character.sk:67*/
+  {
+    PARAGRAPH_SEPARATOR__Character_s811 = 14;
+  }
+  /*Character.sk:79*/
+  
+void glblInit_PRIVATE_USE__Character_s814 (ref char PRIVATE_USE__Character_s813)/*Character.sk:79*/
+  {
+    PRIVATE_USE__Character_s813 = 18;
+  }
+  /*Character.sk:59*/
+  
+void glblInit_SPACE_SEPARATOR__Character_s816 (ref char SPACE_SEPARATOR__Character_s815)/*Character.sk:59*/
+  {
+    SPACE_SEPARATOR__Character_s815 = 12;
+  }
+  /*Character.sk:91*/
+  
+void glblInit_START_PUNCTUATION__Character_s818 (ref char START_PUNCTUATION__Character_s817)/*Character.sk:91*/
+  {
+    START_PUNCTUATION__Character_s817 = 21;
+  }
+  /*Character.sk:83*/
+  
+void glblInit_SURROGATE__Character_s820 (ref char SURROGATE__Character_s819)/*Character.sk:83*/
+  {
+    SURROGATE__Character_s819 = 19;
+  }
+  /*Character.sk:23*/
+  
+void glblInit_TITLECASE_LETTER__Character_s822 (ref char TITLECASE_LETTER__Character_s821)/*Character.sk:23*/
+  {
+    TITLECASE_LETTER__Character_s821 = 3;
+  }
+  /*Character.sk:11*/
+  
+void glblInit_UNASSIGNED__Character_s824 (ref char UNASSIGNED__Character_s823)/*Character.sk:11*/
+  {
+    UNASSIGNED__Character_s823 = 0;
+  }
+  /*Character.sk:15*/
+  
+void glblInit_UPPERCASE_LETTER__Character_s826 (ref char UPPERCASE_LETTER__Character_s825)/*Character.sk:15*/
+  {
+    UPPERCASE_LETTER__Character_s825 = 1;
+  }
+  /* END PACKAGE Character*/
+}
+/* BEGIN PACKAGE SuffixRankTuple*/
+package SuffixRankTuple{
+  /* END PACKAGE SuffixRankTuple*/
+}
+/* BEGIN PACKAGE HashMap*/
+package HashMap{
+  struct HashMap {
+  }
+  struct Hashmap extends HashMap@HashMap {
+  }
+  struct Put extends HashMap@HashMap {
+      HashMap self;
+      Object k;
+      Object v;
+  }
+  struct Putb extends HashMap@HashMap {
+      HashMap self;
+      Object k;
+      Object v;
+  }
+  struct Get extends HashMap@HashMap {
+      HashMap self;
+      Object k;
+  }
+  /* END PACKAGE HashMap*/
+}
+/* BEGIN PACKAGE TwoDArray*/
+package TwoDArray{
+  /* END PACKAGE TwoDArray*/
+}
+/* BEGIN PACKAGE ArrayList*/
+package ArrayList{
+  struct ArrayList {
+  }
+  struct Arraylist extends ArrayList@ArrayList {
+  }
+  struct Add extends ArrayList@ArrayList {
+      ArrayList self;
+      Object e;
+  }
+  struct Addb extends ArrayList@ArrayList {
+      ArrayList self;
+      Object e;
+  }
+  struct Getb extends ArrayList@ArrayList {
+      ArrayList self;
+      int i;
+  }
+  struct Get extends ArrayList@ArrayList {
+      ArrayList self;
+      int i;
+  }
+  struct Size extends ArrayList@ArrayList {
+      ArrayList self;
+  }
+  /* END PACKAGE ArrayList*/
+}
+/* BEGIN PACKAGE CharSequence*/
+package CharSequence{
+  /* END PACKAGE CharSequence*/
+}
+/* BEGIN PACKAGE String*/
+package String{
+  /* END PACKAGE String*/
+}
+/* BEGIN PACKAGE Blah*/
+package Blah{
+  /*Blah.sk:7*/
+  
+void _main ()/*Blah.sk:7*/
+  {
+    int self_s344 = 0;
+    Object@meta(self_s344);
+    Object@Object self_s346 = null;
+    Object_Object@Object(new Object@Object(__cid=self_s344), self_s346);
+  }
+  /*Blah.sk:7*/
+  
+void main__Wrapper ()  implements main__WrapperNospec/*Blah.sk:7*/
+  {
+    _main();
+  }
+  /*Blah.sk:7*/
+  
+void main__WrapperNospec ()/*Blah.sk:7*/
+  { }
+  /* END PACKAGE Blah*/
+}
+/* BEGIN PACKAGE ArrayDeque*/
+package ArrayDeque{
+  struct ArrayDeque {
+  }
+  struct Arraydeque extends ArrayDeque@ArrayDeque {
+  }
+  struct Peekfirst extends ArrayDeque@ArrayDeque {
+      ArrayDeque self;
+  }
+  struct Peekfirst_help extends ArrayDeque@ArrayDeque {
+      ArrayDeque self;
+      int i;
+      int j;
+  }
+  struct Isempty extends ArrayDeque@ArrayDeque {
+      ArrayDeque self;
+  }
+  struct Removefirst extends ArrayDeque@ArrayDeque {
+      ArrayDeque self;
+  }
+  struct Removefirstb extends ArrayDeque@ArrayDeque {
+      ArrayDeque self;
+  }
+  struct Peeklast extends ArrayDeque@ArrayDeque {
+      ArrayDeque self;
+  }
+  struct Peeklast_help extends ArrayDeque@ArrayDeque {
+      ArrayDeque self;
+      int i;
+      int j;
+  }
+  struct Removelastb extends ArrayDeque@ArrayDeque {
+      ArrayDeque self;
+  }
+  struct Addlastb extends ArrayDeque@ArrayDeque {
+      ArrayDeque self;
+      Object e;
+  }
+  struct Removelast extends ArrayDeque@ArrayDeque {
+      ArrayDeque self;
+  }
+  struct Addlast extends ArrayDeque@ArrayDeque {
+      ArrayDeque self;
+      Object e;
+  }
+  struct Size extends ArrayDeque@ArrayDeque {
+      ArrayDeque self;
+  }
+  /* END PACKAGE ArrayDeque*/
+}
+/* BEGIN PACKAGE Integer*/
+package Integer{
+  /* END PACKAGE Integer*/
+}
+/* BEGIN PACKAGE array*/
+package array{
+  struct Array_bit {
+      int length;
+      bit[length] A;
+  }
+  struct Array_char {
+      int length;
+      char[length] A;
+  }
+  struct Array_int {
+      int length;
+      int[length] A;
+  }
+  struct Array_float {
+      int length;
+      float[length] A;
+  }
+  struct Array_double {
+      int length;
+      double[length] A;
+  }
+  struct Array_Object {
+      int length;
+      Object[length] A;
+  }
+  /* END PACKAGE array*/
+}
+/* BEGIN PACKAGE meta*/
+package meta{
+  /*meta.sk:13*/
+  
+void Object (ref int _out)/*meta.sk:13*/
+  {
+    _out = 0;
+    _out = 1;
+    return;
+  }
+  /* END PACKAGE meta*/
+}
+/* BEGIN PACKAGE Object*/
+package Object{
+  struct Object {
+      int __cid;
+      Array_char _value_String;
+      int _count_String;
+      int originalIndex_SuffixRankTuple;
+      int secondHalf_SuffixRankTuple;
+      int firstHalf_SuffixRankTuple;
+      int M_TwoDArray;
+      Array_int arr_TwoDArray;
+      int N_TwoDArray;
+      bit bool_Boolean;
+      int value_Integer;
+      char value_Character;
+      ArrayDeque _arraydeque;
+      HashMap _hashmap;
+      ArrayList _arraylist;
+  }
+  /*Object.sk:3*/
+  
+void Object_Object (Object self, ref Object _out)/*Object.sk:3*/
+  {
+    _out = null;
+    _out = self;
+    return;
+  }
+  /* END PACKAGE Object*/
+}
+/* BEGIN PACKAGE Boolean*/
+package Boolean{
+  /* END PACKAGE Boolean*/
+}
+/* BEGIN PACKAGE Arrays*/
+package Arrays{
+  /* END PACKAGE Arrays*/
+}
+[SKETCH] DONE
+Total time = 1254

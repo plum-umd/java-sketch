@@ -1,0 +1,408 @@
+package ArrayDeque;
+
+adt ArrayDeque {
+    Arraydeque     { }
+    Peekfirst      { ArrayDeque self; }
+    Peekfirsthelp_int_int  { ArrayDeque self; Object i; Object j; }
+    Isempty        { ArrayDeque self; }
+    Removefirst    { ArrayDeque self; }
+    Removefirstb   { ArrayDeque self; }
+    Peeklast       { ArrayDeque self; }
+    Peeklasthelp_int_int   { ArrayDeque self; Object i; Object j; }
+    Removelastb    { ArrayDeque self; }
+    Addlastb_object       { ArrayDeque self; Object e; }
+    Removelast     { ArrayDeque self; }
+    Addlast_object        { ArrayDeque self; Object e; }
+    Size           { ArrayDeque self; }
+}
+
+Object ArrayDeque_ArrayDeque() {
+    return new Object(__cid=ArrayDeque(), _arraydeque=new Arraydeque());
+}
+
+Object peekFirst_Object(Object self) {
+    return new Object(__cid=ArrayDeque(), _arraydeque=new Peekfirst(self=self._arraydeque));
+}
+
+Object peekFirstHelp_Object_int_int(Object self, Object i, Object j) {
+    return new Object(__cid=ArrayDeque(), _arraydeque=new Peekfirsthelp_int_int(self=self._arraydeque, i=i, j=j));
+}
+
+Object isEmpty_Object(Object self) {
+    return new Object(__cid=ArrayDeque(), _arraydeque=new Isempty(self=self._arraydeque));
+}
+
+Object removeFirst_Object(Object self) {
+    return new Object(__cid=ArrayDeque(), _arraydeque=new Removefirst(self=self._arraydeque));
+}
+
+Object removeFirstb_Object(Object self) {
+    return new Object(__cid=ArrayDeque(), _arraydeque=new Removefirstb(self=self._arraydeque));
+}
+
+Object peekLast_Object(Object self) {
+    return new Object(__cid=ArrayDeque(), _arraydeque=new Peeklast(self=self._arraydeque));
+}
+
+Object peekLastHelp_Object_int_int(Object self, Object i, Object j) {
+    return new Object(__cid=ArrayDeque(), _arraydeque=new Peeklasthelp_int_int(self=self._arraydeque, i=i, j=j));
+}
+
+Object removeLastb_Object(Object self) {
+    return new Object(__cid=ArrayDeque(), _arraydeque=new Removelastb(self=self._arraydeque));
+}
+
+Object addLastb_Object_Object(Object self, Object e) {
+    return new Object(__cid=ArrayDeque(), _arraydeque=new Addlastb_object(self=self._arraydeque, e=e));
+}
+
+Object removeLast_Object(Object self) {
+    return new Object(__cid=ArrayDeque(), _arraydeque=new Removelast(self=self._arraydeque));
+}
+
+Object addLast_Object_Object(Object self, Object e) {
+    return new Object(__cid=ArrayDeque(), _arraydeque=new Addlast_object(self=self._arraydeque, e=e));
+}
+
+Object size_Object(Object self) {
+    return new Object(__cid=ArrayDeque(), _arraydeque=new Size(self=self._arraydeque));
+}
+
+Object xform_ArrayDeque(ArrayDeque self) {
+  switch(self) {
+  case Arraydeque: {
+    return xform_arraydeque_ArrayDeque(self);
+  }
+  case Peekfirst: {
+    return xform_peekFirst_ArrayDeque(self.self);
+  }
+  case Peekfirsthelp_int_int: { assert false; }
+  case Isempty: {
+    return xform_isEmpty_ArrayDeque(self.self);
+  }
+  case Removefirst: {
+    return xform_removeFirst_ArrayDeque(self.self);
+  }
+  case Removefirstb: {
+    return xform_removeFirstb_ArrayDeque(self.self);
+  }
+  case Peeklast: {
+    return xform_peekLast_ArrayDeque(self.self);
+  }
+  case Peeklasthelp_int_int: { assert false; }
+  case Removelastb: {
+    return xform_removeLastb_ArrayDeque(self.self);
+  }
+  case Addlastb_object: { assert false; }
+  case Removelast: {
+    return xform_removeLast_ArrayDeque(self.self);
+  }
+  case Addlast_object: { assert false; }
+  case Size: {
+    return xform_size_ArrayDeque(self.self);
+  }
+  }
+
+  return null;
+}
+Object xform_addLastb_ArrayDeque_Object(ArrayDeque self, Object e) {
+  switch(self) {
+  case Arraydeque: { assert false; }
+  case Peekfirst: { assert false; }
+  case Peekfirsthelp_int_int: { assert false; }
+  case Isempty: { assert false; }
+  case Removefirst: { assert false; }
+  case Removefirstb: { assert false; }
+  case Peeklast: { assert false; }
+  case Peeklasthelp_int_int: { assert false; }
+  case Removelastb: { assert false; }
+  case Addlastb_object: { assert false; }
+  case Removelast: { assert false; }
+  case Addlast_object: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}
+Object xform_removeLast_ArrayDeque(ArrayDeque self) {
+  switch(self) {
+  case Arraydeque: {
+    return xform_peekLast_ArrayDeque(self);
+  }
+  case Peekfirst: { assert false; }
+  case Peekfirsthelp_int_int: { assert false; }
+  case Isempty: { assert false; }
+  case Removefirst: { assert false; }
+  case Removefirstb: { assert false; }
+  case Peeklast: { assert false; }
+  case Peeklasthelp_int_int: { assert false; }
+  case Removelastb: { assert false; }
+  case Addlastb_object: { assert false; }
+  case Removelast: { assert false; }
+  case Addlast_object: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}
+Object xform_arraydeque_ArrayDeque(ArrayDeque self) {
+  switch(self) {
+  case Arraydeque: { assert false; }
+  case Peekfirst: { assert false; }
+  case Peekfirsthelp_int_int: { assert false; }
+  case Isempty: { assert false; }
+  case Removefirst: { assert false; }
+  case Removefirstb: { assert false; }
+  case Peeklast: { assert false; }
+  case Peeklasthelp_int_int: { assert false; }
+  case Removelastb: { assert false; }
+  case Addlastb_object: { assert false; }
+  case Removelast: { assert false; }
+  case Addlast_object: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}
+Object xform_removeFirstb_ArrayDeque(ArrayDeque self) {
+  switch(self) {
+  case Arraydeque: { assert false; }
+  case Peekfirst: { assert false; }
+  case Peekfirsthelp_int_int: { assert false; }
+  case Isempty: { assert false; }
+  case Removefirst: { assert false; }
+  case Removefirstb: { assert false; }
+  case Peeklast: { assert false; }
+  case Peeklasthelp_int_int: { assert false; }
+  case Removelastb: { assert false; }
+  case Addlastb_object: { assert false; }
+  case Removelast: { assert false; }
+  case Addlast_object: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}
+Object xform_peekFirstHelp_ArrayDeque_int_int(ArrayDeque self, Object i, Object j) {
+  switch(self) {
+  case Arraydeque: { assert false; }
+  case Peekfirst: { assert false; }
+  case Peekfirsthelp_int_int: { assert false; }
+  case Isempty: { assert false; }
+  case Removefirst: { assert false; }
+  case Removefirstb: {
+    return xform_peekFirstHelp_ArrayDeque_int_int(self.self, (new Object(__cid=-2, _int=i._int + (new Object(__cid=-2, _int=1))._int)), j);
+  }
+  case Peeklast: { assert false; }
+  case Peeklasthelp_int_int: { assert false; }
+  case Removelastb: {
+    return xform_peekFirstHelp_ArrayDeque_int_int(self.self, i, (new Object(__cid=-2, _int=j._int + (new Object(__cid=-2, _int=1))._int)));
+  }
+  case Addlastb_object: {
+    if (xform_size_ArrayDeque(self.self)._int == i._int) {
+      if (j._int > (new Object(__cid=-2, _int=0))._int) {
+        return null;
+      }
+      return self.e;
+    }
+    else {
+      return xform_peekFirstHelp_ArrayDeque_int_int(self.self, i, (new Object(__cid=-2, _int=j._int - (new Object(__cid=-2, _int=1))._int)));
+    }
+  }
+  case Removelast: { assert false; }
+  case Addlast_object: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}
+Object xform_peekFirst_ArrayDeque(ArrayDeque self) {
+  switch(self) {
+  case Arraydeque: {
+    return null;
+  }
+  case Peekfirst: { assert false; }
+  case Peekfirsthelp_int_int: { assert false; }
+  case Isempty: { assert false; }
+  case Removefirst: { assert false; }
+  case Removefirstb: {
+    return xform_peekFirstHelp_ArrayDeque_int_int(self.self, (new Object(__cid=-2, _int=1)), (new Object(__cid=-2, _int=0)));
+  }
+  case Peeklast: { assert false; }
+  case Peeklasthelp_int_int: { assert false; }
+  case Removelastb: {
+    return xform_peekFirstHelp_ArrayDeque_int_int(self.self, (new Object(__cid=-2, _int=0)), (new Object(__cid=-2, _int=1)));
+  }
+  case Addlastb_object: {
+    return (xform_size_ArrayDeque(self.self)._int == (new Object(__cid=-2, _int=0))._int ? self.e : xform_peekFirst_ArrayDeque(self.self));
+  }
+  case Removelast: { assert false; }
+  case Addlast_object: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}
+Object xform_peekLastHelp_ArrayDeque_int_int(ArrayDeque self, Object i, Object j) {
+  switch(self) {
+  case Arraydeque: { assert false; }
+  case Peekfirst: { assert false; }
+  case Peekfirsthelp_int_int: { assert false; }
+  case Isempty: { assert false; }
+  case Removefirst: { assert false; }
+  case Removefirstb: {
+    return xform_peekLastHelp_ArrayDeque_int_int(self.self, (new Object(__cid=-2, _int=i._int + (new Object(__cid=-2, _int=1))._int)), j);
+  }
+  case Peeklast: { assert false; }
+  case Peeklasthelp_int_int: { assert false; }
+  case Removelastb: {
+    return xform_peekLastHelp_ArrayDeque_int_int(self.self, i, (new Object(__cid=-2, _int=j._int + (new Object(__cid=-2, _int=1))._int)));
+  }
+  case Addlastb_object: {
+    if (j._int > (new Object(__cid=-2, _int=0))._int) {
+      return xform_peekLastHelp_ArrayDeque_int_int(self.self, i, (new Object(__cid=-2, _int=j._int - (new Object(__cid=-2, _int=1))._int)));
+    }
+    else if (i._int > (new Object(__cid=-2, _int=0))._int) {
+      return (xform_size_ArrayDeque(self.self)._int == (new Object(__cid=-2, _int=0))._int ? null : self.e);
+    }
+    else {
+      return self.e;
+    }
+  }
+  case Removelast: { assert false; }
+  case Addlast_object: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}
+Object xform_addLast_ArrayDeque_Object(ArrayDeque self, Object e) {
+  switch(self) {
+  case Arraydeque: { assert false; }
+  case Peekfirst: { assert false; }
+  case Peekfirsthelp_int_int: { assert false; }
+  case Isempty: { assert false; }
+  case Removefirst: { assert false; }
+  case Removefirstb: { assert false; }
+  case Peeklast: { assert false; }
+  case Peeklasthelp_int_int: { assert false; }
+  case Removelastb: { assert false; }
+  case Addlastb_object: { assert false; }
+  case Removelast: { assert false; }
+  case Addlast_object: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}
+Object xform_isEmpty_ArrayDeque(ArrayDeque self) {
+  switch(self) {
+  case Arraydeque: {
+    return (new Object(__cid=-4, _bit=xform_size_ArrayDeque(self)._int == (new Object(__cid=-2, _int=0))._int));
+  }
+  case Peekfirst: { assert false; }
+  case Peekfirsthelp_int_int: { assert false; }
+  case Isempty: { assert false; }
+  case Removefirst: { assert false; }
+  case Removefirstb: { assert false; }
+  case Peeklast: { assert false; }
+  case Peeklasthelp_int_int: { assert false; }
+  case Removelastb: { assert false; }
+  case Addlastb_object: { assert false; }
+  case Removelast: { assert false; }
+  case Addlast_object: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}
+Object xform_peekLast_ArrayDeque(ArrayDeque self) {
+  switch(self) {
+  case Arraydeque: {
+    return null;
+  }
+  case Peekfirst: { assert false; }
+  case Peekfirsthelp_int_int: { assert false; }
+  case Isempty: { assert false; }
+  case Removefirst: { assert false; }
+  case Removefirstb: {
+    return xform_peekLastHelp_ArrayDeque_int_int(self.self, (new Object(__cid=-2, _int=1)), (new Object(__cid=-2, _int=0)));
+  }
+  case Peeklast: { assert false; }
+  case Peeklasthelp_int_int: { assert false; }
+  case Removelastb: {
+    return xform_peekLastHelp_ArrayDeque_int_int(self.self, (new Object(__cid=-2, _int=0)), (new Object(__cid=-2, _int=1)));
+  }
+  case Addlastb_object: {
+    return self.e;
+  }
+  case Removelast: { assert false; }
+  case Addlast_object: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}
+Object xform_removeFirst_ArrayDeque(ArrayDeque self) {
+  switch(self) {
+  case Arraydeque: {
+    return xform_peekFirst_ArrayDeque(self);
+  }
+  case Peekfirst: { assert false; }
+  case Peekfirsthelp_int_int: { assert false; }
+  case Isempty: { assert false; }
+  case Removefirst: { assert false; }
+  case Removefirstb: { assert false; }
+  case Peeklast: { assert false; }
+  case Peeklasthelp_int_int: { assert false; }
+  case Removelastb: { assert false; }
+  case Addlastb_object: { assert false; }
+  case Removelast: { assert false; }
+  case Addlast_object: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}
+Object xform_removeLastb_ArrayDeque(ArrayDeque self) {
+  switch(self) {
+  case Arraydeque: { assert false; }
+  case Peekfirst: { assert false; }
+  case Peekfirsthelp_int_int: { assert false; }
+  case Isempty: { assert false; }
+  case Removefirst: { assert false; }
+  case Removefirstb: { assert false; }
+  case Peeklast: { assert false; }
+  case Peeklasthelp_int_int: { assert false; }
+  case Removelastb: { assert false; }
+  case Addlastb_object: { assert false; }
+  case Removelast: { assert false; }
+  case Addlast_object: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}
+Object xform_size_ArrayDeque(ArrayDeque self) {
+  switch(self) {
+  case Arraydeque: {
+    return (new Object(__cid=-2, _int=0));
+  }
+  case Peekfirst: { assert false; }
+  case Peekfirsthelp_int_int: { assert false; }
+  case Isempty: { assert false; }
+  case Removefirst: { assert false; }
+  case Removefirstb: { assert false; }
+  case Peeklast: { assert false; }
+  case Peeklasthelp_int_int: { assert false; }
+  case Removelastb: { assert false; }
+  case Addlastb_object: {
+    return (new Object(__cid=-2, _int=xform_size_ArrayDeque(self.self)._int + (new Object(__cid=-2, _int=1))._int));
+  }
+  case Removelast: { assert false; }
+  case Addlast_object: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}

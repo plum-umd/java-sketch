@@ -1,0 +1,30 @@
+package Integer;
+
+Object Integer_Integer(Object self) {
+    return self;
+}
+
+Object Integer_Integer_int(Object self, Object value) {
+  self.value_Integer = value;
+  return self;
+}
+
+Object intValue(Object self) {
+  return self.value_Integer;
+}
+
+Object compareTo_Integer(Object self, Object anotherInteger) {
+  return compare_int_int(self.value_Integer, (anotherInteger.__cid == (new Object(__cid=-2, _int=Integer()))._int ? intValue@Integer(anotherInteger) : null));
+}
+
+Object compare_int_int(Object x, Object y) {
+  return ((x._int < y._int) ? (new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1))._int)) : (((x._int == y._int) ? (new Object(__cid=-2, _int=0)) : (new Object(__cid=-2, _int=1)))));
+}
+
+Object equals_Object(Object self, Object obj) {
+  if (obj.__cid == Integer()) {
+    return (new Object(__cid=-4, _bit=self.value_Integer._int == ((obj).__cid == (new Object(__cid=-2, _int=Integer()))._int ? intValue@Integer((obj)) : null)._int));
+  }
+  return (new Object(__cid=-4, _bit=false));
+}
+
