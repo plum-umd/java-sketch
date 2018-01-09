@@ -246,7 +246,7 @@ class MethodCallExpr(Expression):
         return 'm{}'.format(str(self))
         # atyps = ','.join(map(str, self.arg_typs())) if self.args else ''
         # return '{} {}({});'.format(str(self.typee), str(self), atyps)
-
+        
     def arg_typs(self):
         typs = []
         for a in self.args:
@@ -279,14 +279,11 @@ class MethodCallExpr(Expression):
             elif isinstance(a, ThisExpr):
                 typ = utils.get_coid(self)
             elif not a.typee:
-                print("HERE333: "+str(a)+", "+str(self.name))
-                for key,val in self.symtab.items():
-                    print("\tHERE333: "+str(key)+", "+str(val))
-                print("HERE333: END")                    
                 typ = self.symtab[a.name].typee
             else:
                 typ = a.typee
-            typs.append(typ)
+
+            typs.append(typ) 
         return typs
 
     def __str__(self):
@@ -296,4 +293,4 @@ class MethodCallExpr(Expression):
             return '_'.join([self.sanitize_ty(name)] + \
                             map(lambda a: self.sanitize_ty(a.name), a))
         else:
-            return self.name
+            return self.name        

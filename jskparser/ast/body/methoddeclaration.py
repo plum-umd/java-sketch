@@ -176,12 +176,35 @@ class MethodDeclaration(BodyDeclaration):
                     
     def add_switch_depth(self, adt_mtds, param):
         MethodDeclaration.add_switch(adt_mtds, param, self.body.stmts[0].stmt.entries)
-    
+
+    def name_no_nested(self, isCons):
+        def ptypes():
+            params = []
+            ps = self.parameters
+            # if not isCons:
+            #     ps = ps[1:]
+            for p in ps:
+                typ = ''
+                if p.idd: typ = str(p.typee.name)
+                else: typ = str(p.method.typee)
+                # if typ.capitalize() in map(str, self.parentNode.typeParameters):
+                #     print("\t\tHERE43: "+str(typ.capitalize()))
+                #     typ = u'Object'
+                params.append(typ)
+            return params
+        return u'_'.join([self.name] + ptypes())
+        
     def __str__(self):
+        name = self.name
+        if self.adtType:
+            name = '_'.join(name.split('_')[:2])
+            # return self.name_no_nested(False)
+        
         params = map(self.sanitize_ty, map(lambda p: p.typee.name, self.parameters))
         if self.adt:
             params = ["Object"]+params
 
-        name = self.name+'b' if self.add_bang else self.name
+        # name = self.name+'b' if self.add_bang else self.name
+        name = name+'b' if self.add_bang else name
             
         return u'_'.join([self.sanitize_ty(name)] + params)

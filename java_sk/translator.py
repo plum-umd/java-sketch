@@ -1478,7 +1478,7 @@ class Translator(object):
         logging.debug('searching in class: {}'.format(cls))
         if isinstance(cls, TypeParameter):
             cls = callexpr.symtab.get(cls.typeBound[0].name)
-                    
+            
         # Compile-Time Step 2: Determine Method Signature
         # 15.12.2.1. Identify Potentially Applicable Methods
         pots = self.identify_potentials(callexpr, cls)
@@ -1588,8 +1588,10 @@ class Translator(object):
             if type(val) != MethodDeclaration: continue
             tparam_names = map(lambda t: t.name, val.typeParameters)
             tparam_names.extend(map(lambda t: t.name, val.get_coid().typeParameters))
-            
-            if callexpr.name == val.name and len(callexpr.args) == len(val.parameters):
+            name = callexpr.name
+            if val.adtType and callexpr.name != val.name and len(call_arg_typs) > 1:
+                name += '_'+'_'.join(map(str, call_arg_typs[1:]))
+            if name == val.name and len(callexpr.args) == len(val.parameters):
                 if all(map(lambda t: t[1].name in tparam_names or utils.is_subtype(t[0], t[1]),
                            zip(call_arg_typs, val.param_typs()))):
                     mtds.append(val)
@@ -1883,7 +1885,7 @@ class Translator(object):
                 name = 'xform_{}'.format(str(s))
                 mdec = s.symtab.get('m'+name)
                 if mdec or not s.pure:                 
-                    # alter method call name to be xform call
+                    # alter method call name to be xform call                    
                     s.name = 'xform_{}'.format(s.name)
                     if not s.pure:
                         s.name += "b"                                        

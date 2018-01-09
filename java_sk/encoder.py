@@ -304,7 +304,19 @@ class Encoder(object):
         cname = str(cls)
         
         def gen_adt_constructor(mtd):
-            name = mtd.name.capitalize()
+            name = mtd.name
+            mtd_param_typs = mtd.param_typs()            
+            # if mtd.constructor:
+            #     name += u'_Object'
+            for t in mtd_param_typs:
+                typ = self.tltr.trans_ty(t)
+                if typ == u'Object' or str(t) == u'byte': typ = str(t)
+                # if typ in map(str, cls.typeParameters):
+                #     typ = u'Object'
+                name += '_'+typ
+                # if mtd.constructor:
+                #     name += '_'+typ
+            name = name.capitalize()
             c = '    {}{} {{ '.format(name, ' '*(max_len+1-len(mtd.name)))
             if not mtd.default and not mtd.constructor:
                 c += '{} self'.format(cls.name)
@@ -328,13 +340,16 @@ class Encoder(object):
         # Generates Object Wrapper Functions for ADT Constructors
         def gen_obj_constructor(mtd):
             mtd_param_typs = mtd.param_typs()
-            name = mtd.name            
+            name = mtd.name
+            mtd_name2 = mtd.name
             if mtd.constructor:
                 name += u'_Object'
             for t in mtd_param_typs:
                 typ = self.tltr.trans_ty(t)
                 if typ == u'Object' or str(t) == u'byte': typ = str(t)
-                mtd.name += '_'+typ
+                # if typ in map(str, cls.typeParameters):
+                #     typ = u'Object'
+                mtd_name2 += '_'+typ
                 if mtd.constructor:
                     name += '_'+typ
             ptyps = []
@@ -384,7 +399,7 @@ class Encoder(object):
                 c += '{}) {{\n    '.format(params)
             else:
                 c += ') {\n    '
-            c += 'return new Object(__cid={}(), _{}=new {}('.format(cls.name, cls.name.lower(), mtd.name.capitalize())
+            c += 'return new Object(__cid={}(), _{}=new {}('.format(cls.name, cls.name.lower(), mtd_name2.capitalize())
             if not mtd.default and not mtd.constructor:
                 c += 'self=self._{}'.format(cls.name.lower())
             for i in range(0, len(pnms)):
@@ -448,7 +463,7 @@ class Encoder(object):
         adt = 'adt {} {{\n{}}}\n\n{}'.format(cname, ''.join(adt_cons), ''.join(cons))
         buf.write(adt)
 
-        # Updates n's symbol table to include parents symbol table items
+        # updates n's symbol table to include parents symbol table items
         def cpy_sym(n, *args):
             if n.parentNode: n.symtab = dict(n.parentNode.symtab.items() +
                                              n.symtab.items())
@@ -459,7 +474,7 @@ class Encoder(object):
         #   Values are MethodDeclarations with lots of ugly looking formatting 
         xforms = {}
         for a in adt_mtds:
-            xnm = u'xform_{}'.format(a.name)
+            xnm = u'xform_{}'.format(a.name_no_nested(False))
             x = Xform.gen_xform(a.get_coid(), xnm, adt_mtds,
                                 [{u'@t':u'Parameter',
                                   u'type':{u'@t':u'ClassOrInterfaceType',u'name':cname},
@@ -489,7 +504,7 @@ class Encoder(object):
 
         # Builds up return and body of dispatch function
         for a in adt_mtds:
-            xnm = 'xform_{}'.format(a.name)
+            xnm = 'xform_{}'.format(a.name_no_nested(False))
             xf = xforms[xnm]
             ret = ReturnStmt({u'expr':{u'@t':u'MethodCallExpr',
                                        u'name':xnm,u'type':{u'@t':u'ClassOrInterfaceType',
@@ -517,10 +532,11 @@ class Encoder(object):
         # Gets all the axiom declarations 
         ax_mtds = utils.extract_nodes([AxiomDeclaration], cls, recurse=False)
 
+        # for a in adt_mtds:
+        #     print("HERE22: "+str(a.name_no_nested(False)))
+            
         for a in ax_mtds:
-            a.name = a.name_no_nested(False)            
-
-        for a in ax_mtds:
+            a.name = a.name_no_nested(False, [])            
             xnm = 'xform_{}'.format(a.name)
             xf = xforms[xnm]
             xf.name = 'xform_{}'.format(a.name)
@@ -547,7 +563,8 @@ class Encoder(object):
                             name_with_args += '_'+typ
                     if name_with_args == cls.name and len(param.method.parameters) == 0:
                         name_with_args += '_Empty'
-                    xf2 = filter(lambda m: m.name == name_with_args, adt_mtds)
+                    # xf2 = filter(lambda m: m.name == name_with_args, adt_mtds)
+                    xf2 = filter(lambda m: name_with_args.startswith(m.name), adt_mtds)
                     xf2 = xf2[0]
                     params2 = param.method.parameters[1:]
                     if xf2.constructor:
@@ -580,7 +597,7 @@ class Encoder(object):
                     # xp.name = ap.name
                     # ap.name = xp.name
                     a.symtab[ap.name].name = xp.name
-                    
+
             # add a symbol table items to xf
             #   this will give it access to the argument names of a
             #   then updates xf children with 
@@ -627,24 +644,28 @@ class Encoder(object):
                         # name = a.parameters[i].method.name
                         # for p in params:
                         #     name += '_'+self.tltr.trans_ty(p.typee).lower()
-                        name = a.parameters[i].method.name_no_nested(d.constructor).capitalize()
+                        name = a.parameters[i].method.name_no_nested(d.constructor, adt_mtds).capitalize()
                         cases.append(name)
                 else:
-                    cases = map(lambda d: d.name_no_nested(False).capitalize(), decs)
-                
+                    for d in decs:
+                        if isinstance(d, AxiomDeclaration):
+                            cases.append(d.name_no_nested(False, adt_mtds).capitalize())
+                        else:
+                            cases.append(d.name_no_nested(False).capitalize())
+                    # cases = map(lambda d: d.name_no_nested(False, adt_mtds).capitalize(), decs)
+                    
                 casess.append(cases)
                 
             # add cases to body
             body.add_body_nested(casess, a.body.stmts, adt_mtds, xf.parameters)
-                    
+
         for v in xforms.values():
             buf.write(self.tltr.trans(v))        
         cls_sk = cname + ".sk"
         with open(os.path.join(self.sk_dir, cls_sk), 'w') as f:
             f.write(util.get_and_close(buf))
         return cls_sk
-        
-            
+                    
     def to_func(self, mtd):
         buf = cStringIO.StringIO()
         buf.write(self.tltr.trans(mtd))

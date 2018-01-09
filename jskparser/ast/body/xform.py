@@ -50,7 +50,7 @@ class Xform(BodyDeclaration):
         entries = []
         for a in adt_mtds:
             entries.append({u'@t':u'SwitchEntryStmt',
-                            u'label':{u'@t':u'NameExpr',u'name':a.name.capitalize(),},},)
+                            u'label':{u'@t':u'NameExpr',u'name':a.name_no_nested(False).capitalize(),},},)
         switch = {u'@t':u'SwitchStmt', u'selector':{u'@t':u'NameExpr',u'name':u'self'},
                   u'entries':{u'@e':entries,},}
         xform = {u'@t':u'Xform',u'stmt':switch,u'name':name,
@@ -66,7 +66,7 @@ class Xform(BodyDeclaration):
         for a in adt_mtds:
             entries.append({u'@t':u'SwitchEntryStmt',
                             u'label':{u'@t':u'NameExpr',
-                                      u'name':a.name.capitalize(),},},)
+                                      u'name':a.name_no_nested(False).capitalize(),},},)
         name = str(arg.name)
             
         slf = name+((u'_'+name)*depth)

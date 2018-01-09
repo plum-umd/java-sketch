@@ -20,6 +20,11 @@ class AxiomDeclaration(BodyDeclaration):
         params = kwargs.get(u'parameters', [])
         self._parameters = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
                                params.get(u'@e', [])) if params else []
+
+        # List<TypeParameter>
+        typeParameters = kwargs.get(u'typeParameters', [])
+        self._typeParameters = map(lambda x: TypeParameter(x) if u'@t' in x else [],
+                                   typeParameters.get(u'@e', [])) if typeParameters else []
         
         # BlockStmt body;
         body = kwargs.get(u'body')
@@ -33,6 +38,11 @@ class AxiomDeclaration(BodyDeclaration):
         #     chs = filter(lambda c: not isinstance(c, Comment), self._body.childrenNodes)
         #     if chs: chs[0].in_set = set(map(lambda x: x.lbl, self._parameters))
 
+    @property
+    def typeParameters(self): return self._typeParameters
+    @typeParameters.setter
+    def typeParameters(self, v): self._typeParameters = v
+        
     @property
     def modifiers(self): return self._modifiers
     @modifiers.setter
@@ -85,7 +95,7 @@ class AxiomDeclaration(BodyDeclaration):
             return params
         return u'_'.join([self.name] + ptypes())
 
-    def name_no_nested(self, isCons):
+    def name_no_nested(self, isCons, adt_mtds):
         def ptypes():
             params = []
             ps = self.parameters
@@ -95,5 +105,15 @@ class AxiomDeclaration(BodyDeclaration):
                 if p.idd: params.append(p.typee.name)
                 else: params.append(str(p.method.typee))
             return params
+
+        pots = filter(lambda m: m.name == self.name and len(m.parameters) == len(self.parameters)-1, adt_mtds)
+
+        name1 = u'_'.join([self.name] + ptypes())
+        name2 = pots[0].name_no_nested(False) if len(pots) > 0 else ''
+        
+        if len(pots) == 1: return pots[0].name_no_nested(False)
+
+        # TODO: HANDLE MORE THAN 1 POT!
+        
         return u'_'.join([self.name] + ptypes())
     
