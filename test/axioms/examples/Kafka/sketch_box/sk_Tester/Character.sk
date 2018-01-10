@@ -1,0 +1,22 @@
+package Character;
+
+Object Character_Character(Object self) {
+    return self;
+}
+
+Object Character_Character_char(Object self, Object value) {
+  self.value_Character = value;
+  return self;
+}
+
+Object charValue(Object self) {
+  return self.value_Character;
+}
+
+Object equals_Object(Object self, Object obj) {
+  if (obj.__cid == Character()) {
+    return (new Object(__cid=-4, _bit=self.value_Character._char == ((obj).__cid == (new Object(__cid=-2, _int=Character()))._int ? charValue@Character((obj)) : null)._char));
+  }
+  return (new Object(__cid=-4, _bit=false));
+}
+

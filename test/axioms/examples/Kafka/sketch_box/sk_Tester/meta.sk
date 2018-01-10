@@ -1,0 +1,37 @@
+package meta;
+
+// distinct class IDs
+int ArrayList()                           { return 26; }
+int Arrays()                              { return 9; }
+int Assert()                              { return 21; }
+int Boolean()                             { return 15; }
+int Byte()                                { return 25; }
+int CharSequence()                        { return 14; }
+int Character()                           { return 16; }
+int Cipher()                              { return 18; }
+int CipherFactory()                       { return 5; }
+int CryptoCipherFactory()                 { return 19; }
+int CryptoCipherFactory_CipherProvider()  { return 20; }
+int HashMap()                             { return 11; }
+int ICipher()                             { return 3; }
+int Integer()                             { return 10; }
+int IvParameterSpec()                     { return 23; }
+int JCECipher()                           { return 4; }
+int Mac()                                 { return 13; }
+int Object()                              { return 1; }
+int OpenSSLCipher()                       { return 6; }
+int Properties()                          { return 12; }
+int SecretKey()                           { return 24; }
+int SecretKeySpec()                       { return 22; }
+int SecureRandom()                        { return 8; }
+int String()                              { return 7; }
+int Tester()                              { return 2; }
+int Utils()                               { return 17; }
+int Array()                               { return -1; }
+int _int()                                { return -2; }
+int _char()                               { return -3; }
+int _bit()                                { return -4; }
+int _float()                              { return -5; }
+int _double()                             { return -6; }
+
+// Uninterpreted functions

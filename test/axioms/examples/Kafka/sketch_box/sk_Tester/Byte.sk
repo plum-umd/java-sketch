@@ -1,0 +1,15 @@
+package Byte;
+
+Object Byte_Byte(Object self) {
+    return self;
+}
+
+Object Byte_Byte_byte(Object self, Object b) {
+  self.b_Byte = b;
+  return self;
+}
+
+Object byteValue(Object self) {
+  return self.b_Byte;
+}
+

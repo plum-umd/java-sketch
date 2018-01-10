@@ -1,0 +1,10 @@
+package Utils;
+
+Object Utils_Utils(Object self) {
+    return self;
+}
+
+Object getCipherInstance_String_Properties(Object trans, Object props) {
+  return (trans);
+}
+

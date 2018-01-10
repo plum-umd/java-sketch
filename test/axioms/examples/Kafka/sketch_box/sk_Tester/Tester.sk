@@ -1,0 +1,46 @@
+package Tester;
+
+Object Tester_Tester(Object self) {
+    return self;
+}
+
+harness void main() {
+  Object self = Object_Object(new Object(__cid=Object()));
+  testOpenSSL@Tester(self);
+  testJCECipher@Tester(self);
+}
+
+void testOpenSSL(Object self) {
+  Object oc = OpenSSLCipher_OpenSSLCipher_String_String(new Object(__cid=OpenSSLCipher()), String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=3+1), A="AES")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=3)), String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=14+1), A="TRANSFORMATION")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=14)));
+  Object plaintext = Wrap_Array_char(new Array_char(length=(new Object(__cid=-2, _int=32))));
+  Object IV = Wrap_Array_char(new Array_char(length=(new Object(__cid=-2, _int=8))));
+  Object key = Wrap_Array_char(new Array_char(length=(new Object(__cid=-2, _int=128))));
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < (new Object(__cid=-2, _int=8))._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    key._array_char.A[i._int] = i._int;
+    if (i._int < (new Object(__cid=-2, _int=8))._int) plaintext._array_char.A[i._int] = i._int;
+    if (i._int < (new Object(__cid=-2, _int=8))._int) IV._array_char.A[i._int] = i._int;
+  }
+  Object sk = SecretKeySpec_SecretKeySpec();
+  Object cipherText = (oc.__cid == (new Object(__cid=-2, _int=OpenSSLCipher()))._int ? encrypt_byte_SecretKeySpec_byte@OpenSSLCipher(oc, plaintext, sk, IV) : null);
+  Object plaintext2 = (oc.__cid == (new Object(__cid=-2, _int=OpenSSLCipher()))._int ? decrypt_byte_SecretKeySpec_byte@OpenSSLCipher(oc, cipherText, sk, IV) : null);
+  assert arraysEquals_byte_byte@Arrays(plaintext, plaintext2)._bit;
+  assert cipherText.__cid != Array(); //!arraysEquals_byte_byte@Arrays(plaintext, cipherText)._bit;
+}
+
+void testJCECipher(Object self) {
+  Object oc = JCECipher_JCECipher_String_String_String(new Object(__cid=JCECipher()), String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=8+1), A="PROVIDER")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=8)), String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=3+1), A="AES")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=3)), String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=14+1), A="TRANSFORMATION")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=14)));
+  Object plaintext = Wrap_Array_char(new Array_char(length=(new Object(__cid=-2, _int=32))));
+  Object IV = Wrap_Array_char(new Array_char(length=(new Object(__cid=-2, _int=8))));
+  Object key = Wrap_Array_char(new Array_char(length=(new Object(__cid=-2, _int=128))));
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < (new Object(__cid=-2, _int=8))._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    key._array_char.A[i._int] = i._int;
+    if (i._int < (new Object(__cid=-2, _int=8))._int) plaintext._array_char.A[i._int] = i._int;
+    if (i._int < (new Object(__cid=-2, _int=8))._int) IV._array_char.A[i._int] = i._int;
+  }
+  Object sk = SecretKeySpec_SecretKeySpec();
+  Object cipherText = (oc.__cid == (new Object(__cid=-2, _int=JCECipher()))._int ? encrypt_byte_SecretKeySpec_byte@JCECipher(oc, plaintext, sk, IV) : null);
+  Object plaintext2 = (oc.__cid == (new Object(__cid=-2, _int=JCECipher()))._int ? decrypt_byte_SecretKeySpec_byte@JCECipher(oc, cipherText, sk, IV) : null);
+  assert arraysEquals_byte_byte@Arrays(plaintext, plaintext2)._bit;
+  assert cipherText.__cid != Array(); //!arraysEquals_byte_byte@Arrays(plaintext, cipherText)._bit;
+}
+

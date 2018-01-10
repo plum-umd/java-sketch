@@ -1,0 +1,16 @@
+package CipherFactory;
+
+Object CipherFactory_CipherFactory(Object self) {
+    return self;
+}
+
+Object getCipher_String_String(Object provider, Object transformation) {
+  Object algorithm = (transformation.__cid == (new Object(__cid=-2, _int=String()))._int ? split_String@String(transformation, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="/")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null)._array_object.A[(new Object(__cid=-2, _int=0))._int];
+  if ((provider.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(provider, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=13+1), A="BOUNCY_CASTLE")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=13))) : null)._bit) {
+    return JCECipher_JCECipher_String_String_String(new Object(__cid=JCECipher()), provider, algorithm, transformation);
+  }
+  else if ((provider.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(provider, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=7+1), A="OPENSLL")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=7))) : null)._bit) {
+    return OpenSSLCipher_OpenSSLCipher_String_String(new Object(__cid=OpenSSLCipher()), algorithm, transformation);
+  }
+}
+
