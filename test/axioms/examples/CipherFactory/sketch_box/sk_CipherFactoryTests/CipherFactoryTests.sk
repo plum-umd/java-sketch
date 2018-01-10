@@ -1,0 +1,17 @@
+package CipherFactoryTests;
+
+Object CipherFactoryTests_CipherFactoryTests(Object self) {
+    return self;
+}
+
+harness void main() {
+  Object self = Object_Object(new Object(__cid=Object()));
+  Object cm = CryptoManager_CryptoManager(new Object(__cid=CryptoManager()));
+  Object m = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=14+1), A="Secret message")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=14));
+  Object d = (cm.__cid == (new Object(__cid=-2, _int=CryptoManager()))._int ? encrypt_String@CryptoManager(cm, m) : null);
+  Object p = (cm.__cid == (new Object(__cid=-2, _int=CryptoManager()))._int ? decrypt_String@CryptoManager(cm, d) : null);
+  Object cond = (p.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(p, m) : null);
+  assert cond._bit;
+  /* assert (p.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(p, m) : null)._bit; */
+}
+

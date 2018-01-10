@@ -1,0 +1,8 @@
+package ICipherFactory;
+
+Object ICipherFactory_ICipherFactory(Object self) {
+    return self;
+}
+
+
+
