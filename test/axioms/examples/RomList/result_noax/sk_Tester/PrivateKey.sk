@@ -1,0 +1,6 @@
+package PrivateKey;
+
+Object PrivateKey_PrivateKey(Object self) {
+    return self;
+}
+

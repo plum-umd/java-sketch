@@ -1,0 +1,167 @@
+package RomlistParser;
+
+Object RomlistParser_RomlistParser(Object self) {
+  self.totalGames_RomlistParser = 0;
+  self.totalGamesAvailable_RomlistParser = 0;
+  self.missingWheel_RomlistParser = 0;
+  self.missingVideo_RomlistParser = 0;
+  self.missingCart_RomlistParser = 0;
+  self.missingBox_RomlistParser = 0;
+  self.missingGames_RomlistParser = ArrayList_ArrayList(new Object(__cid=ArrayList()));
+  self.games_RomlistParser = ArrayList_ArrayList(new Object(__cid=ArrayList()));
+  self.complete_RomlistParser = false;
+  self.description_RomlistParser = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=0+1, A=""), 0, 0);
+  self.romPath_RomlistParser = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=0+1, A=""), 0, 0);
+  return self;
+}
+
+Object parse_File(Object self, Object romlistFile) {
+  return parse_File_String@RomlistParser(self, romlistFile, null);
+}
+
+Object parse_File_String(Object self, Object romlistFile, Object folderToSearch) {
+  return parse_File_String_boolean@RomlistParser(self, romlistFile, folderToSearch, true);
+}
+
+Object parse_File_String_boolean(Object self, Object romlistFile, Object folderToSearch, bit lookAvailable) {
+  if (!(romlistFile.__cid == File() ? exists@File(romlistFile) : 0)) {
+    return ArrayList_ArrayList(new Object(__cid=ArrayList()));
+  }
+  Object line;
+  self.games_RomlistParser = ArrayList_ArrayList(new Object(__cid=ArrayList()));
+  self.missingGames_RomlistParser = ArrayList_ArrayList(new Object(__cid=ArrayList()));
+  int gamesAvailable = 0;
+  self.complete_RomlistParser = true;
+  Object br = BufferedReader_BufferedReader_File(new Object(__cid=BufferedReader()), romlistFile);
+  line = (br.__cid == BufferedReader() ? readLine@BufferedReader(br) : null);
+  while (line != null) {
+    if (!(line.__cid == String() ? startsWith_String@String(line, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="#"), 0, 1)) : 0)) {
+      Array_Object data = (line.__cid == String() ? split_String_int@String(line, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A=";"), 0, 1), -1) : null);
+      if (data.length >= 10) {
+        Object game = RomlistGame_RomlistGame(new Object(__cid=RomlistGame()));
+        if (game.__cid == RomlistGame()) { setRomlist_String@RomlistGame(game, (romlistFile.__cid == File() ? getName@File(romlistFile) : null)); }
+        else { 0; };
+        if (game.__cid == RomlistGame()) { setName_String@RomlistGame(game, data.A[0]); }
+        else { 0; };
+        if (game.__cid == RomlistGame()) { setTitle_String@RomlistGame(game, data.A[1]); }
+        else { 0; };
+        if (game.__cid == RomlistGame()) { setEmulator_String@RomlistGame(game, data.A[2]); }
+        else { 0; };
+        if (game.__cid == RomlistGame()) { setCloneOf_String@RomlistGame(game, data.A[3]); }
+        else { 0; };
+        if (game.__cid == RomlistGame()) { setYear_String@RomlistGame(game, data.A[4]); }
+        else { 0; };
+        if (game.__cid == RomlistGame()) { setManufacturer_String@RomlistGame(game, data.A[5]); }
+        else { 0; };
+        if (game.__cid == RomlistGame()) { setCategory_String@RomlistGame(game, data.A[6]); }
+        else { 0; };
+        if (game.__cid == RomlistGame()) { setPlayers_String@RomlistGame(game, data.A[7]); }
+        else { 0; };
+        if (game.__cid == RomlistGame()) { setRotation_String@RomlistGame(game, data.A[8]); }
+        else { 0; };
+        if (game.__cid == RomlistGame()) { setControl_String@RomlistGame(game, data.A[9]); }
+        else { 0; };
+        if (data.length > 10) {
+          if (game.__cid == RomlistGame()) { setStatus_String@RomlistGame(game, data.A[10]); }
+          else { 0; };
+        }
+        if (data.length > 11) {
+          if (game.__cid == RomlistGame()) { setDisplayCount_String@RomlistGame(game, data.A[11]); }
+          else { 0; };
+        }
+        if (data.length > 12) {
+          if (game.__cid == RomlistGame()) { setDisplayType_String@RomlistGame(game, data.A[12]); }
+          else { 0; };
+        }
+        if (data.length > 13) {
+          if (game.__cid == RomlistGame()) { setAltRomname_String@RomlistGame(game, data.A[13]); }
+          else { 0; };
+        }
+        if (data.length > 14) {
+          if (game.__cid == RomlistGame()) { setAltTitle_String@RomlistGame(game, data.A[14]); }
+          else { 0; };
+        }
+        if (data.length > 15) {
+          if (game.__cid == RomlistGame()) { setExtra_String@RomlistGame(game, data.A[15]); }
+          else { 0; };
+        }
+        if (data.length > 16) {
+          if (game.__cid == RomlistGame()) { setButtons_String@RomlistGame(game, data.A[16]); }
+          else { 0; };
+        }
+        if (game.__cid == RomlistGame()) { setAvailable_boolean@RomlistGame(game, false); }
+        else { 0; };
+        (self.games_RomlistParser.__cid == LinkedList() ? add_E@LinkedList(self.games_RomlistParser, game) : self.games_RomlistParser.__cid == ArrayList() ? add_E@ArrayList(self.games_RomlistParser, game) : 0);
+      }
+    }
+    line = (br.__cid == BufferedReader() ? readLine@BufferedReader(br) : null);
+  }
+  self.totalGames_RomlistParser = (self.games_RomlistParser.__cid == LinkedList() ? size@LinkedList(self.games_RomlistParser) : self.games_RomlistParser.__cid == ArrayList() ? size@ArrayList(self.games_RomlistParser) : 0);
+  self.totalGamesAvailable_RomlistParser = gamesAvailable;
+  Object a1 = (romlistFile.__cid == File() ? getParent@File(romlistFile) : null);
+  Object a2 = (a1.__cid == String() ? concat_String@String(a1, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=10+1, A="/database/"), 0, 10)) : null);
+  Object a3 = (a2.__cid == String() ? concat_String@String(a2, (romlistFile.__cid == File() ? getName@File(romlistFile) : null)) : null);
+  Object nf = File_File_String(new Object(__cid=File()), a3);
+  return self.games_RomlistParser;
+}
+
+bit isComplete(Object self) {
+  return self.complete_RomlistParser;
+}
+
+void setComplete_boolean(Object self, bit complete) {
+  self.complete_RomlistParser = complete;
+}
+
+int getTotalGames(Object self) {
+  return self.totalGames_RomlistParser;
+}
+
+void setTotalGames_int(Object self, int totalGames) {
+  self.totalGames_RomlistParser = totalGames;
+}
+
+int getTotalGamesAvailable(Object self) {
+  return self.totalGamesAvailable_RomlistParser;
+}
+
+void setTotalGamesAvailable_int(Object self, int totalGamesAvailable) {
+  self.totalGamesAvailable_RomlistParser = totalGamesAvailable;
+}
+
+int getMissingWheel(Object self) {
+  return self.missingWheel_RomlistParser;
+}
+
+Object getGames(Object self) {
+  return self.games_RomlistParser;
+}
+
+void setMissingWheel_int(Object self, int missingWheel) {
+  self.missingWheel_RomlistParser = missingWheel;
+}
+
+int getMissingVideo(Object self) {
+  return self.missingVideo_RomlistParser;
+}
+
+int getMissingCart(Object self) {
+  return self.missingCart_RomlistParser;
+}
+
+int getMissingBox(Object self) {
+  return self.missingBox_RomlistParser;
+}
+
+void setMissingVideo_int(Object self, int missingVideo) {
+  self.missingVideo_RomlistParser = missingVideo;
+}
+
+Object getMissingGames(Object self) {
+  return self.missingGames_RomlistParser;
+}
+
+void setMissingGames_List(Object self, Object missingGames) {
+  self.missingGames_RomlistParser = missingGames;
+}
+

@@ -1,0 +1,55 @@
+package StringBuilder;
+
+Object StringBuilder_StringBuilder(Object self) {
+  self._value_StringBuilder = new Array_char(length=1);
+  self._count_StringBuilder = 0;
+  return self;
+}
+
+Object StringBuilder_StringBuilder_String(Object self, Object str) {
+  self._value_StringBuilder = str._value_String;
+  self._count_StringBuilder = (str.__cid == String() ? length@String(str) : 0);
+  return self;
+}
+
+char charAt_int(Object self, int index) {
+  if (0 <= index && index < self._count_StringBuilder) return self._value_StringBuilder.A[index];
+}
+
+int length(Object self) {
+  return self._count_StringBuilder;
+}
+
+Object toString(Object self) {
+  return String_String_char_int_int(new Object(__cid=String()), self._value_StringBuilder, 0, self._count_StringBuilder);
+}
+
+void setCharAt_int_char(Object self, int i, char c) {
+  self._value_StringBuilder.A[i] = c;
+}
+
+void append_String(Object self, Object s) {
+  int len = (s.__cid == String() ? length@String(s) : 0);
+  int new_value_len = self._count_StringBuilder + len;
+  Array_char new_value = new Array_char(length=new_value_len);
+  for (int i = 0; i < self._count_StringBuilder; i++) {
+    new_value.A[i] = self._value_StringBuilder.A[i];
+  }
+  for (int i = 0; i < len; i++) {
+    new_value.A[self._count_StringBuilder + i] = (s.__cid == String() ? charAt_int@String(s, i) : '\0');
+  }
+  self._value_StringBuilder = new_value;
+  self._count_StringBuilder = new_value_len;
+}
+
+void append_char(Object self, char c) {
+  int new_value_len = self._count_StringBuilder + 1;
+  Array_char new_value = new Array_char(length=new_value_len);
+  for (int i = 0; i < self._count_StringBuilder; i++) {
+    new_value.A[i] = self._value_StringBuilder.A[i];
+  }
+  new_value.A[self._count_StringBuilder] = c;
+  self._value_StringBuilder = new_value;
+  self._count_StringBuilder = new_value_len;
+}
+

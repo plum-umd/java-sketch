@@ -1,0 +1,12 @@
+package SecureRandom;
+
+Object SecureRandom_SecureRandom(Object self) {
+  return self;
+}
+
+void nextBytes_byte(Object self, Array_char buf) {
+  for (int i = 0; i < buf.length; i++) {
+    buf.A[i] = (char)i;
+  }
+}
+

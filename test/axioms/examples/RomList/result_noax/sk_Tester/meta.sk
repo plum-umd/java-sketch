@@ -1,0 +1,63 @@
+package meta;
+
+// distinct class IDs
+int AbstractQueue()                       { return 33; }
+int AlgorithmParameterSpec()              { return 28; }
+int ArrayDeque()                          { return 38; }
+int ArrayDeque_DequeNode()                { return 39; }
+int ArrayList()                           { return 5; }
+int Arrays()                              { return 40; }
+int Assert()                              { return 11; }
+int Boolean()                             { return 50; }
+int BufferedReader()                      { return 12; }
+int BufferedWriter()                      { return 24; }
+int CharSequence()                        { return 32; }
+int Character()                           { return 37; }
+int Cipher()                              { return 56; }
+int Comparable()                          { return 54; }
+int CryptoCipherFactory()                 { return 57; }
+int CryptoCipherFactory_CipherProvider()  { return 58; }
+int Deque()                               { return 23; }
+int File()                                { return 16; }
+int FileOutputStream()                    { return 9; }
+int FileReaderr()                         { return 34; }
+int FileWriterr()                         { return 48; }
+int Float()                               { return 10; }
+int HashMap()                             { return 6; }
+int HashMap_Node()                        { return 7; }
+int HashSet()                             { return 25; }
+int Integer()                             { return 17; }
+int IvParameterSpec()                     { return 19; }
+int KerberosKey()                         { return 36; }
+int Key()                                 { return 35; }
+int KeyGenerator()                        { return 21; }
+int KeyStore()                            { return 46; }
+int LinkedList()                          { return 55; }
+int List()                                { return 8; }
+int Mac()                                 { return 52; }
+int Map()                                 { return 13; }
+int Map_Entry()                           { return 14; }
+int Number()                              { return 15; }
+int Object()                              { return 1; }
+int PrintStream()                         { return 42; }
+int PrivateKey()                          { return 51; }
+int Properties()                          { return 45; }
+int Queue()                               { return 20; }
+int RomlistGame()                         { return 3; }
+int RomlistParser()                       { return 4; }
+int Scanner()                             { return 18; }
+int SecretKey()                           { return 41; }
+int SecretKeySpec()                       { return 44; }
+int SecureRandom()                        { return 29; }
+int Set()                                 { return 22; }
+int Stack()                               { return 49; }
+int String()                              { return 26; }
+int StringBuffer()                        { return 30; }
+int StringBuilder()                       { return 53; }
+int System()                              { return 43; }
+int Tester()                              { return 2; }
+int TreeMap()                             { return 27; }
+int TreeSet()                             { return 31; }
+int Utils()                               { return 47; }
+
+// Uninterpreted functions
