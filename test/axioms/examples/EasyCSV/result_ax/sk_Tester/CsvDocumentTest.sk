@@ -1,0 +1,14 @@
+package CsvDocumentTest;
+
+Object CsvDocumentTest_CsvDocumentTest(Object self) {
+    return self;
+}
+
+void with_no_config_options_should_parse_csv_file_and_create_csv_document(Object self) {
+  Object csvPath = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=17+1), A="csv_test_file.csv")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=17));
+  Object document = read_String@CsvDocument(csvPath);
+  Object rs = (document.__cid == (new Object(__cid=-2, _int=CsvDocument()))._int ? getCsvRows@CsvDocument(document) : null);
+  assert (new Object(__cid=-2, _int=3))._int == (rs.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? size_Object@ArrayList(rs) : null)._int;
+  assert (new Object(__cid=-2, _int=0))._int == (new Object(__cid=-2, _int=1))._int;
+}
+

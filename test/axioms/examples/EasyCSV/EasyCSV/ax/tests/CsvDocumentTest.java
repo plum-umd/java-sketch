@@ -31,7 +31,8 @@ public class CsvDocumentTest {
 	// String csvPath = "csv_test_file.csv";
 
 	// String csvPath = "Header 1,Header 2,Header 3,Header 4,Header\n1,1.1,abc,TRUE,11/1/2014\n2,2.2,def,FALSE,11/2/2014";
-	String csvPath = "Hdr 1,Hdr 2\n1,True\n2,False\n";
+	// String csvPath = "Hdr 1,Hdr 2\n1,True\n2,False\n";
+	String csvPath = "A,B\n1,T\n2,F\n";
 	
         //act
         CsvDocument document = CsvDocument.read(csvPath);
@@ -50,9 +51,12 @@ public class CsvDocumentTest {
 	String r1str = r1.toString();
 	String r2str = r2.toString();
 
-	assert hstr.equals("Hdr 1,Hdr 2");
-	assert r1str.equals("1,True");
-	assert r2str.equals("2,False");	
+	// assert hstr.equals("Hdr 1,Hdr 2");
+	// assert r1str.equals("1,True");
+	// assert r2str.equals("2,False");	
+	assert hstr.equals("A,B");
+	assert r1str.equals("1,T");
+	assert r2str.equals("2,F");	
 	
         // CsvRow header = document.getCsvRows().get(0);
         // assertEquals("Header 1,Header 2,Header 3,Header 4,Header 5", header.toString());

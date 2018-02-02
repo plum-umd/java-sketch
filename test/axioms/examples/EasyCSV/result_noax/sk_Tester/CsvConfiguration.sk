@@ -1,0 +1,36 @@
+package CsvConfiguration;
+
+Object CsvConfiguration_CsvConfiguration(Object self) {
+  self.skipHeader_CsvConfiguration = false;
+  self.columnIndexesToParse_CsvConfiguration = ArrayList_ArrayList(new Object(__cid=ArrayList()));
+  return self;
+}
+
+bit skipHeader(Object self) {
+  return self.skipHeader_CsvConfiguration;
+}
+
+void setSkipHeader_boolean(Object self, bit skipHeader) {
+  self.skipHeader_CsvConfiguration = skipHeader;
+}
+
+Object getColumnIndexesToParse(Object self) {
+  return self.columnIndexesToParse_CsvConfiguration;
+}
+
+void setColumnIndexesToParse_ArrayList(Object self, Object columnIndexesToParse) {
+  self.columnIndexesToParse_CsvConfiguration = columnIndexesToParse;
+}
+
+void setColumnIndexesToParse_int(Object self, Array_int columnIndexesToParse) {
+  int size = columnIndexesToParse.length;
+  for (int i = 0; i < size; i++) {
+    int columnIndex = columnIndexesToParse.A[i];
+    (self.columnIndexesToParse_CsvConfiguration.__cid == ArrayList() ? add_E@ArrayList(self.columnIndexesToParse_CsvConfiguration, Integer_Integer_int(new Object(__cid=Integer()), columnIndex)) : 0);
+  }
+}
+
+bit parseAllColumns(Object self) {
+  return (self.columnIndexesToParse_CsvConfiguration.__cid == ArrayList() ? size@ArrayList(self.columnIndexesToParse_CsvConfiguration) : 0) == 0;
+}
+

@@ -9,7 +9,8 @@ then
 elif [ "$1" == "2" ]
 then
     shift
-    ./jsk.sh $@ "${pwd}/ax/tests/Tester.java ${pwd}/ax/CsvDocument.java ${pwd}/ax/tests/CsvDocumentTest.java ${pwd}/ax/tests/CsvRowTest.java ${pwd}/ax/tests/CsvColumnTest.java ${pwd}/ax/CodeAssertion.java ${pwd}/ax/CsvColumn.java ${pwd}/ax/CsvRow.java ${pwd}/ax/CsvConfiguration.java --no-lib ${pwd}/../libs/ -o ${pwd}/../result_ax"
+    ./jsk.sh $@ "${pwd}/ax/tests/Tester.java ${pwd}/ax/CsvDocument_syn.java ${pwd}/ax/tests/CsvDocumentTest.java ${pwd}/ax/tests/CsvRowTest.java ${pwd}/ax/tests/CsvColumnTest.java ${pwd}/ax/CodeAssertion.java ${pwd}/ax/CsvColumn.java ${pwd}/ax/CsvRow.java ${pwd}/ax/CsvConfiguration.java model/ -o ${pwd}/../result_noax"
+    # ./jsk.sh $@ "${pwd}/ax/tests/Tester.java ${pwd}/ax/CsvDocument.java ${pwd}/ax/tests/CsvDocumentTest.java ${pwd}/ax/tests/CsvRowTest.java ${pwd}/ax/tests/CsvColumnTest.java ${pwd}/ax/CodeAssertion.java ${pwd}/ax/CsvColumn.java ${pwd}/ax/CsvRow.java ${pwd}/ax/CsvConfiguration.java --no-lib ${pwd}/../libs/ -o ${pwd}/../result_ax"
 elif [ "$1" == "3" ]
 then
     shift

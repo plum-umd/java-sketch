@@ -1,0 +1,61 @@
+package CsvRowTest;
+
+Object CsvRowTest_CsvRowTest(Object self) {
+    return self;
+}
+
+void runTests() {
+  the_constructor_with_column_values_argument_should_build_row();
+  the_constructor_with_variable_columns_argument_should_build_row();
+  the_constructor_with_column_list_argument_should_build_row();
+}
+
+void the_constructor_with_column_values_argument_should_build_row() {
+  Object someValue = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="1"), 0, 1);
+  Object anotherValue = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=5+1, A="value"), 0, 5);
+  Object someRow = CsvRow_CsvRow_String_String(new Object(__cid=CsvRow()), someValue, anotherValue);
+  assert 2 == (someRow.__cid == CsvRow() ? getNumberOfColumns@CsvRow(someRow) : 0);
+  assert !((someRow.__cid == CsvRow() ? isEmpty@CsvRow(someRow) : 0));
+  Object c1 = (someRow.__cid == CsvRow() ? getColumnAtIndex_int@CsvRow(someRow, 0) : null);
+  Object i1 = (c1.__cid == CsvColumn() ? getColumnValue@CsvColumn(c1) : null);
+  assert (i1.__cid == String() ? equals_Object@String(i1, someValue) : 0);
+  Object c2 = (someRow.__cid == CsvRow() ? getColumnAtIndex_int@CsvRow(someRow, 1) : null);
+  Object i2 = (c2.__cid == CsvColumn() ? getColumnValue@CsvColumn(c2) : null);
+  assert (i2.__cid == String() ? equals_Object@String(i2, anotherValue) : 0);
+}
+
+void the_constructor_with_variable_columns_argument_should_build_row() {
+  Object someValue = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="1"), 0, 1);
+  Object anotherValue = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=5+1, A="value"), 0, 5);
+  Object someColumn = CsvColumn_CsvColumn_String(new Object(__cid=CsvColumn()), someValue);
+  Object anotherColumn = CsvColumn_CsvColumn_String(new Object(__cid=CsvColumn()), anotherValue);
+  Object someRow = CsvRow_CsvRow_CsvColumn_CsvColumn(new Object(__cid=CsvRow()), someColumn, anotherColumn);
+  assert 2 == (someRow.__cid == CsvRow() ? getNumberOfColumns@CsvRow(someRow) : 0);
+  assert !((someRow.__cid == CsvRow() ? isEmpty@CsvRow(someRow) : 0));
+  Object c1 = (someRow.__cid == CsvRow() ? getColumnAtIndex_int@CsvRow(someRow, 0) : null);
+  Object i1 = (c1.__cid == CsvColumn() ? getColumnValue@CsvColumn(c1) : null);
+  assert (i1.__cid == String() ? equals_Object@String(i1, someValue) : 0);
+  Object c2 = (someRow.__cid == CsvRow() ? getColumnAtIndex_int@CsvRow(someRow, 1) : null);
+  Object i2 = (c2.__cid == CsvColumn() ? getColumnValue@CsvColumn(c2) : null);
+  assert (i2.__cid == String() ? equals_Object@String(i2, anotherValue) : 0);
+}
+
+void the_constructor_with_column_list_argument_should_build_row() {
+  Object someValue = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="1"), 0, 1);
+  Object anotherValue = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=5+1, A="value"), 0, 5);
+  Object someColumn = CsvColumn_CsvColumn_String(new Object(__cid=CsvColumn()), someValue);
+  Object anotherColumn = CsvColumn_CsvColumn_String(new Object(__cid=CsvColumn()), anotherValue);
+  Object rowColumns = ArrayList_ArrayList(new Object(__cid=ArrayList()));
+  (rowColumns.__cid == ArrayList() ? add_E@ArrayList(rowColumns, someColumn) : 0);
+  (rowColumns.__cid == ArrayList() ? add_E@ArrayList(rowColumns, anotherColumn) : 0);
+  Object someRow = CsvRow_CsvRow_ArrayList(new Object(__cid=CsvRow()), rowColumns);
+  assert 2 == (someRow.__cid == CsvRow() ? getNumberOfColumns@CsvRow(someRow) : 0);
+  assert !((someRow.__cid == CsvRow() ? isEmpty@CsvRow(someRow) : 0));
+  Object c1 = (someRow.__cid == CsvRow() ? getColumnAtIndex_int@CsvRow(someRow, 0) : null);
+  Object i1 = (c1.__cid == CsvColumn() ? getColumnValue@CsvColumn(c1) : null);
+  assert (i1.__cid == String() ? equals_Object@String(i1, someValue) : 0);
+  Object c2 = (someRow.__cid == CsvRow() ? getColumnAtIndex_int@CsvRow(someRow, 1) : null);
+  Object i2 = (c2.__cid == CsvColumn() ? getColumnValue@CsvColumn(c2) : null);
+  assert (i2.__cid == String() ? equals_Object@String(i2, anotherValue) : 0);
+}
+

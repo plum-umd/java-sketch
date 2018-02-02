@@ -1,0 +1,131 @@
+package FileReaderr;
+
+adt FileReaderr {
+    Filereaderr  { }
+    Filereaderr_string { Object path; }
+    Read         { FileReaderr self; }
+    Readb        { FileReaderr self; }
+    Closeb       { FileReaderr self; }
+    Close        { FileReaderr self; }
+}
+
+Object FileReaderr_FileReaderr() {
+    return new Object(__cid=FileReaderr(), _filereaderr=new Filereaderr());
+}
+
+Object FileReaderr_String(Object path) {
+    return new Object(__cid=FileReaderr(), _filereaderr=new Filereaderr_string(path=path));
+}
+
+Object read_Object(Object self) {
+    return new Object(__cid=FileReaderr(), _filereaderr=new Read(self=self._filereaderr));
+}
+
+Object readb_Object(Object self) {
+    return new Object(__cid=FileReaderr(), _filereaderr=new Readb(self=self._filereaderr));
+}
+
+Object closeb_Object(Object self) {
+    return new Object(__cid=FileReaderr(), _filereaderr=new Closeb(self=self._filereaderr));
+}
+
+Object close_Object(Object self) {
+    return new Object(__cid=FileReaderr(), _filereaderr=new Close(self=self._filereaderr));
+}
+
+Object xform_FileReaderr(FileReaderr self) {
+  switch(self) {
+  case Filereaderr: {
+    return xform_filereaderr_FileReaderr(self);
+  }
+  case Filereaderr_string: {
+    return xform_FileReaderr_String_FileReaderr_String(self, self.path);
+  }
+  case Read: {
+    return xform_read_FileReaderr(self.self);
+  }
+  case Readb: {
+    return xform_readb_FileReaderr(self.self);
+  }
+  case Closeb: {
+    return xform_closeb_FileReaderr(self.self);
+  }
+  case Close: {
+    return xform_close_FileReaderr(self.self);
+  }
+  }
+
+  return null;
+}
+Object xform_closeb_FileReaderr(FileReaderr self) {
+  switch(self) {
+  case Filereaderr: { assert false; }
+  case Filereaderr_string: { assert false; }
+  case Read: { assert false; }
+  case Readb: { assert false; }
+  case Closeb: { assert false; }
+  case Close: { assert false; }
+  }
+
+  return null;
+}
+Object xform_close_FileReaderr(FileReaderr self) {
+  switch(self) {
+  case Filereaderr: { assert false; }
+  case Filereaderr_string: { assert false; }
+  case Read: { assert false; }
+  case Readb: { assert false; }
+  case Closeb: { assert false; }
+  case Close: { assert false; }
+  }
+
+  return null;
+}
+Object xform_FileReaderr_String_FileReaderr_String(FileReaderr self, Object path) {
+  switch(self) {
+  case Filereaderr: { assert false; }
+  case Filereaderr_string: { assert false; }
+  case Read: { assert false; }
+  case Readb: { assert false; }
+  case Closeb: { assert false; }
+  case Close: { assert false; }
+  }
+
+  return null;
+}
+Object xform_filereaderr_FileReaderr(FileReaderr self) {
+  switch(self) {
+  case Filereaderr: { assert false; }
+  case Filereaderr_string: { assert false; }
+  case Read: { assert false; }
+  case Readb: { assert false; }
+  case Closeb: { assert false; }
+  case Close: { assert false; }
+  }
+
+  return null;
+}
+Object xform_read_FileReaderr(FileReaderr self) {
+  switch(self) {
+  case Filereaderr: { assert false; }
+  case Filereaderr_string: { assert false; }
+  case Read: { assert false; }
+  case Readb: { assert false; }
+  case Closeb: { assert false; }
+  case Close: { assert false; }
+  }
+
+  return null;
+}
+Object xform_readb_FileReaderr(FileReaderr self) {
+  switch(self) {
+  case Filereaderr: { assert false; }
+  case Filereaderr_string: { assert false; }
+  case Read: { assert false; }
+  case Readb: { assert false; }
+  case Closeb: { assert false; }
+  case Close: { assert false; }
+  }
+
+  return null;
+}

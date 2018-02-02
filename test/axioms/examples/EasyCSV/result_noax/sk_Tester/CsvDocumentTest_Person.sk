@@ -1,0 +1,29 @@
+package CsvDocumentTest_Person;
+
+Object self0;
+
+Object CsvDocumentTest_Person_CsvDocumentTest_Person_CsvDocumentTest(Object self, Object self_0) {
+    self0 = self_0;
+    return self;
+}
+
+Object CsvDocumentTest_Person_CsvDocumentTest_Person_CsvDocumentTest_String_int_boolean(Object self, Object self_0, Object name, int age, bit isEmployed) {
+  self0 = self_0;
+  self.name_CsvDocumentTest_Person = name;
+  self.age_CsvDocumentTest_Person = age;
+  self.isEmployed_CsvDocumentTest_Person = isEmployed;
+  return self;
+}
+
+Object getName(Object self) {
+  return self.name_CsvDocumentTest_Person;
+}
+
+int getAge(Object self) {
+  return self.age_CsvDocumentTest_Person;
+}
+
+bit isEmployed(Object self) {
+  return self.isEmployed_CsvDocumentTest_Person;
+}
+
