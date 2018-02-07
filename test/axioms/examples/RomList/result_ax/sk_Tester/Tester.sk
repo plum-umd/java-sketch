@@ -1,0 +1,36 @@
+package Tester;
+
+Object Tester_Tester(Object self) {
+    return self;
+}
+
+harness void mn() {
+  Object self = Object_Object(new Object(__cid=Object()));
+  /* Object f = File_File_String(new Object(__cid=File()), String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=25+1), A="#A\na;b;c;d;e;f;g;h;i;j\n")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=25))); */
+  Object f = File_File_String(new Object(__cid=File()), String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=5+1), A="a;b\n")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=5)));
+  Object p = RomlistParser_RomlistParser(new Object(__cid=RomlistParser()));
+  Object games = (p.__cid == (new Object(__cid=-2, _int=RomlistParser()))._int ? parse_File@RomlistParser(p, f) : null);
+  /* Object g1 = (games.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_Object_int@ArrayList(games, (new Object(__cid=-2, _int=0))) : null); */
+  Object g1 = xform_get_ArrayList_int(games._arraylist, (new Object(__cid=-2, _int=0)));
+  Object name1 = (g1.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int ? getName@RomlistGame(g1) : null);
+  Object title1 = (g1.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int ? getTitle@RomlistGame(g1) : null);
+  /* Object emul1 = (g1.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int ? getEmulator@RomlistGame(g1) : null); */
+  /* Object clone1 = (g1.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int ? getCloneOf@RomlistGame(g1) : null); */
+  /* Object year1 = (g1.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int ? getYear@RomlistGame(g1) : null); */
+  /* Object man1 = (g1.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int ? getManufacturer@RomlistGame(g1) : null); */
+  /* Object cat1 = (g1.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int ? getCategory@RomlistGame(g1) : null); */
+  /* Object plays1 = (g1.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int ? getPlayers@RomlistGame(g1) : null); */
+  /* Object rot1 = (g1.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int ? getRotation@RomlistGame(g1) : null); */
+  /* Object cont1 = (g1.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int ? getControl@RomlistGame(g1) : null); */
+  assert (name1.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(name1, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="a")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null)._bit;
+  assert (title1.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(title1, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="b")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null)._bit;
+  /* assert (emul1.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(emul1, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="c")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null)._bit; */
+  /* assert (clone1.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(clone1, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="d")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null)._bit; */
+  /* assert (year1.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(year1, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="e")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null)._bit; */
+  /* assert (man1.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(man1, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="f")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null)._bit; */
+  /* assert (cat1.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(cat1, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="g")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null)._bit; */
+  /* assert (plays1.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(plays1, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="h")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null)._bit; */
+  /* assert (rot1.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(rot1, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="i")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null)._bit; */
+  /* assert (cont1.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(cont1, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="j")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null)._bit; */
+}
+

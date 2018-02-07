@@ -1,7 +1,0 @@
-package Iterator;
-
-Object Iterator_Iterator(Object self) {
-    return self;
-}
-
-

@@ -1,0 +1,112 @@
+package Object;
+
+Object fs;
+Object fs_g() { return fs; }
+void fs_s(Object fs_s) { fs = fs_s; }
+
+Object Object_Object(Object self) {
+    return self;
+}
+
+Object equals_Object_Object(Object a, Object b) {
+  if (a == null) {
+    if (b == null) {
+      return (new Object(__cid=-4, _bit=true));
+    }
+    return (new Object(__cid=-4, _bit=false));
+  }
+  return (a.__cid == (new Object(__cid=-2, _int=StringBuilder()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=File()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=FileOutputStream()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=RomlistParser()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=PrintStream()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(a, b) : a.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(a, b) : a.__cid == (new Object(__cid=-2, _int=Tester()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(a, b) : a.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Number()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=FileReaderr()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=StringBuffer()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(a, b) : null);
+}
+
+Object hashCode_Object(Object o) {
+  return (o != null ? (o.__cid == (new Object(__cid=-2, _int=StringBuilder()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=File()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=FileOutputStream()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=RomlistParser()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=PrintStream()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Integer()))._int ? hashCode@Integer(o) : o.__cid == (new Object(__cid=-2, _int=Character()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Tester()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=String()))._int ? hashCode@String(o) : o.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Number()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=FileReaderr()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=StringBuffer()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Object()))._int ? hashCode@Object(o) : null) : (new Object(__cid=-2, _int=0)));
+}
+
+Object equals_Object(Object self, Object obj) {
+  return (new Object(__cid=-4, _bit=self == obj));
+}
+
+Object hashCode(Object self) {
+  return (new Object(__cid=-2, _int=0));
+}
+
+struct Object {
+  int               __cid;
+  Object            _value_StringBuffer;
+  Object            _count_StringBuffer;
+  Object            data_FileReaderr;
+  Object            name_RomlistGame;
+  Object            title_RomlistGame;
+  Object            emulator_RomlistGame;
+  Object            cloneOf_RomlistGame;
+  Object            year_RomlistGame;
+  Object            manufacturer_RomlistGame;
+  Object            category_RomlistGame;
+  Object            players_RomlistGame;
+  Object            rotation_RomlistGame;
+  Object            control_RomlistGame;
+  Object            status_RomlistGame;
+  Object            displayCount_RomlistGame;
+  Object            displayType_RomlistGame;
+  Object            altRomname_RomlistGame;
+  Object            altTitle_RomlistGame;
+  Object            extra_RomlistGame;
+  Object            buttons_RomlistGame;
+  Object            isAvailable_RomlistGame;
+  Object            hasWheel_RomlistGame;
+  Object            hasVideo_RomlistGame;
+  Object            hasSnap_RomlistGame;
+  Object            hasBox_RomlistGame;
+  Object            hasCart_RomlistGame;
+  Object            hasDatabase_RomlistGame;
+  Object            complete_RomlistGame;
+  Object            romlist_RomlistGame;
+  Object            fileName_RomlistGame;
+  Object            wheelFileName_RomlistGame;
+  Object            boxFileName_RomlistGame;
+  Object            cartFileName_RomlistGame;
+  Object            snapFileName_RomlistGame;
+  Object            description_RomlistGame;
+  Object            rating_RomlistGame;
+  Object            releaseDate_RomlistGame;
+  Object            developer_RomlistGame;
+  Object            publisher_RomlistGame;
+  Object            genre_RomlistGame;
+  Object            pi3Status_RomlistGame;
+  Object            pcStatus_RomlistGame;
+  Object            size_RomlistGame;
+  Object            _value_String;
+  Object            _count_String;
+  Object            value_Character;
+  Object            value_Integer;
+  Object            totalGames_RomlistParser;
+  Object            totalGamesAvailable_RomlistParser;
+  Object            missingWheel_RomlistParser;
+  Object            missingVideo_RomlistParser;
+  Object            missingCart_RomlistParser;
+  Object            missingBox_RomlistParser;
+  Object            missingGames_RomlistParser;
+  Object            games_RomlistParser;
+  Object            complete_RomlistParser;
+  Object            description_RomlistParser;
+  Object            romPath_RomlistParser;
+  Object            path_File;
+  Object            bool_Boolean;
+  Object            _value_StringBuilder;
+  Object            _count_StringBuilder;
+  ArrayList         _arraylist;
+  PrintStream       _printstream;
+  BufferedReader    _bufferedreader;
+  FileOutputStream  _fileoutputstream;
+  Array_bit         _array_bit;
+  Array_char        _array_char;
+  Array_int         _array_int;
+  Array_float       _array_float;
+  Array_double      _array_double;
+  Array_Object      _array_object;
+  bit               _bit;
+  char              _char;
+  int               _int;
+  float             _float;
+  double            _double;
+}

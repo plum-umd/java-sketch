@@ -1,7 +1,0 @@
-package CryptoCipherFactory;
-
-Object CryptoCipherFactory_CryptoCipherFactory(Object self) {
-  self.CLASSES_KEY_CryptoCipherFactory = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=11+1), A="CLASSES_KEY")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=11));
-  return self;
-}
-

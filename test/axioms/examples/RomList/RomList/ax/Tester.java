@@ -1,7 +1,7 @@
 public class Tester {
     harness public void mn() {
-	File f = new File("#A\na;b;c;d;e;f;g;h;i;j\n");
-	// File f = new File("#A\na;b\n");
+	// File f = new File("#A\na;b;c;d;e;f;g;h;i;j\n");
+	File f = new File("#A\na;b\n");
 
 	RomlistParser p = new RomlistParser();
 

@@ -56,6 +56,14 @@ public class RomlistParser {
 		return parse(romlistFile, folderToSearch, true);
 	}
 
+        generator public String genRead(BufferedReader br) {
+	    String line = null;
+	    if (??) {
+		line = br.readLine();
+	    }
+	    return line;
+	}
+    
 	/**
 	 * @param romlistFile
 	 * @param folderToSearch
@@ -75,11 +83,13 @@ public class RomlistParser {
 		// InputStream fis = new FileInputStream(romlistFile);
 		// InputStreamReader isr = new InputStreamReader(fis, Charset.forName("UTF-8"));
 		BufferedReader br = new BufferedReader(romlistFile);		
-		line = br.readLine();
+		// line = br.readLine();
+		line = genRead(br);
 		while (line != null) {
 			if (!line.startsWith("#")) {
 			        String[] data = line.split(";", -1);
 				if (data.length >= 10) {
+				// if (data.length >= 2) {
 				     RomlistGame game = new RomlistGame();
 				     game.setRomlist(romlistFile.getName());
 				     game.setName(data[0]);
