@@ -1,0 +1,29 @@
+package meta;
+
+// distinct class IDs
+int ArrayList()         { return 7; }
+int Boolean()           { return 12; }
+int BufferedReader()    { return 16; }
+int CharSequence()      { return 17; }
+int Character()         { return 8; }
+int File()              { return 10; }
+int FileOutputStream()  { return 14; }
+int FileReaderr()       { return 13; }
+int Integer()           { return 11; }
+int Number()            { return 18; }
+int Object()            { return 1; }
+int PrintStream()       { return 15; }
+int RomlistGame()       { return 3; }
+int RomlistParser()     { return 4; }
+int String()            { return 5; }
+int StringBuffer()      { return 6; }
+int StringBuilder()     { return 9; }
+int Tester()            { return 2; }
+int Array()             { return -1; }
+int _int()              { return -2; }
+int _char()             { return -3; }
+int _bit()              { return -4; }
+int _float()            { return -5; }
+int _double()           { return -6; }
+
+// Uninterpreted functions

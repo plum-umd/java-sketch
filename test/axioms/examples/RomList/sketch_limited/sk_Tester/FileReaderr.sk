@@ -1,0 +1,27 @@
+package FileReaderr;
+
+Object FileReaderr_FileReaderr(Object self) {
+    return self;
+}
+
+Object FileReaderr_FileReaderr_String(Object self, Object path) {
+  self.data_FileReaderr = path;
+  return self;
+}
+
+Object FileReaderr_FileReaderr_File(Object self, Object f) {
+  self.data_FileReaderr = f.path_File;
+  return self;
+}
+
+Object len_String(Object self, Object strs) {
+  return strs._array_object.length;
+}
+
+Object read(Object self) {
+  return (new Object(__cid=-2, _int=0));
+}
+
+void close(Object self) {
+}
+

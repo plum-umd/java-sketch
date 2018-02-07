@@ -1,0 +1,43 @@
+package FileOutputStream;
+
+adt FileOutputStream {
+    Fileoutputstream  { }
+    Fileoutputstream_string  { Object s; }
+}
+
+Object FileOutputStream_FileOutputStream() {
+    return new Object(__cid=FileOutputStream(), _fileoutputstream=new Fileoutputstream());
+}
+
+Object FileOutputStream_Object_String(Object s) {
+    return new Object(__cid=FileOutputStream(), _fileoutputstream=new Fileoutputstream_string(s=s));
+}
+
+Object xform_FileOutputStream(FileOutputStream self) {
+  switch(self) {
+  case Fileoutputstream: {
+    return xform_fileoutputstream_FileOutputStream(self);
+  }
+  case Fileoutputstream_string: {
+    return xform_FileOutputStream_FileOutputStream_String(self, self.s);
+  }
+  }
+
+  return null;
+}
+Object xform_FileOutputStream_FileOutputStream_String(FileOutputStream self, Object s) {
+  switch(self) {
+  case Fileoutputstream: { assert false; }
+  case Fileoutputstream_string: { assert false; }
+  }
+
+  return null;
+}
+Object xform_fileoutputstream_FileOutputStream(FileOutputStream self) {
+  switch(self) {
+  case Fileoutputstream: { assert false; }
+  case Fileoutputstream_string: { assert false; }
+  }
+
+  return null;
+}
