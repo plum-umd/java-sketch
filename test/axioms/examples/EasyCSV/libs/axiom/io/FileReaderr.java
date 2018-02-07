@@ -1,12 +1,28 @@
-@axiomClass
+// @axiomClass
+// public class FileReaderr {
+//     @adt
+//     @constructor
+//     FileReaderr FileReaderr(String path);
+
+//     @adt
+//     public char read();
+
+//     @adt
+//     public void close();
+// }
+
 public class FileReaderr {
-    @adt
-    @constructor
-    FileReaderr FileReaderr(String path);
+    String data;
 
-    @adt
-    public char read();
+    public FileReaderr(String path) {
+	this.data = path;
+    }
 
-    @adt
-    public void close();
+    public int len(String [] strs) {
+	return strs.length;
+    }
+    
+    public char read() { return 0; }
+
+    public void close() { }
 }

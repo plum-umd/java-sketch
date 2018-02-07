@@ -83,7 +83,7 @@ Object parseInt_String(Object s) {
     Object c = (s.__cid == (new Object(__cid=-2, _int=String()))._int ? charAt_int@String(s, i) : null);
     for (Object j = (new Object(__cid=-2, _int=0)); j._int < (new Object(__cid=-2, _int=10))._int; j = new Object(__cid=-2, _int=j._int + 1)) {
       if (c._char == nums._array_char.A[j._int]) {
-        num = (new Object(__cid=-2, _int=num._int + mult._int * nums._array_char.A[j._int]));
+        num = (new Object(__cid=-2, _int=num._int + mult._int * j._int));
       }
     }
     if (i._int == (new Object(__cid=-2, _int=0))._int && c._char == (new Object(__cid=-3, _char='-'))._char) num = (new Object(__cid=-2, _int=num._int * -(new Object(__cid=-2, _int=1))._int));

@@ -39,6 +39,7 @@ void append_String(Object self, Object s) {
     new_value._array_char.A[self._count_StringBuilder._int + i._int] = (s.__cid == (new Object(__cid=-2, _int=String()))._int ? charAt_int@String(s, i) : null)._char;
   }
   self._value_StringBuilder = new_value;
+  self._count_StringBuilder = new_value_len;
 }
 
 void append_char(Object self, Object c) {
@@ -49,5 +50,6 @@ void append_char(Object self, Object c) {
   }
   new_value._array_char.A[self._count_StringBuilder._int] = c._char;
   self._value_StringBuilder = new_value;
+  self._count_StringBuilder = new_value_len;
 }
 

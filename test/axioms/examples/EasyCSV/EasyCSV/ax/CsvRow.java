@@ -50,6 +50,13 @@ public class CsvRow {
     public CsvRow(String v1, String v2) {
 	columns = new ArrayList<>();
 
+	columns.add(new CsvColumn(v1));
+	columns.add(new CsvColumn(v2));
+    }
+
+    public CsvRow(CsvColumn v1, CsvColumn v2) {
+	columns = new ArrayList<>();
+
 	columns.add(v1);
 	columns.add(v2);
     }

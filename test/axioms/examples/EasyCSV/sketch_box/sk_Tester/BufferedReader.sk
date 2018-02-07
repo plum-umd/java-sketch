@@ -1,0 +1,83 @@
+package BufferedReader;
+
+adt BufferedReader {
+    Bufferedreader  { }
+    Bufferedreader_filereaderr  { Object type; }
+    Readline        { BufferedReader self; }
+    Readlineb       { BufferedReader self; }
+}
+
+Object BufferedReader_BufferedReader() {
+    return new Object(__cid=BufferedReader(), _bufferedreader=new Bufferedreader());
+}
+
+Object BufferedReader_Object_FileReaderr(Object type) {
+    return new Object(__cid=BufferedReader(), _bufferedreader=new Bufferedreader_filereaderr(type=type));
+}
+
+Object readLine_Object(Object self) {
+    return new Object(__cid=BufferedReader(), _bufferedreader=new Readline(self=self._bufferedreader));
+}
+
+Object readLineb_Object(Object self) {
+    return new Object(__cid=BufferedReader(), _bufferedreader=new Readlineb(self=self._bufferedreader));
+}
+
+Object xform_BufferedReader(BufferedReader self) {
+  switch(self) {
+  case Bufferedreader: {
+    return xform_bufferedreader_BufferedReader(self);
+  }
+  case Bufferedreader_filereaderr: {
+    return xform_BufferedReader_BufferedReader_FileReaderr(self, self.type);
+  }
+  case Readline: {
+    return xform_readLine_BufferedReader(self.self);
+  }
+  case Readlineb: {
+    return xform_readLineb_BufferedReader(self.self);
+  }
+  }
+
+  return null;
+}
+Object xform_readLineb_BufferedReader(BufferedReader self) {
+  switch(self) {
+  case Bufferedreader: { assert false; }
+  case Bufferedreader_filereaderr: { assert false; }
+  case Readline: { assert false; }
+  case Readlineb: { assert false; }
+  }
+
+  return null;
+}
+Object xform_readLine_BufferedReader(BufferedReader self) {
+  switch(self) {
+  case Bufferedreader: { assert false; }
+  case Bufferedreader_filereaderr: { assert false; }
+  case Readline: { assert false; }
+  case Readlineb: { assert false; }
+  }
+
+  return null;
+}
+Object xform_bufferedreader_BufferedReader(BufferedReader self) {
+  switch(self) {
+  case Bufferedreader: { assert false; }
+  case Bufferedreader_filereaderr: { assert false; }
+  case Readline: { assert false; }
+  case Readlineb: { assert false; }
+  }
+
+  return null;
+}
+Object xform_BufferedReader_BufferedReader_FileReaderr(BufferedReader self, Object type) {
+  switch(self) {
+  case Bufferedreader: { assert false; }
+  case Bufferedreader_filereaderr: { assert false; }
+  case Readline: { assert false; }
+  case Readlineb: { assert false; }
+  }
+
+  return null;
+}

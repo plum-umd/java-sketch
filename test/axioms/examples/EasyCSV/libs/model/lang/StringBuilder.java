@@ -44,6 +44,7 @@ public class StringBuilder implements CharSequence {
       }
 
       _value = new_value;
+      _count = new_value_len;
   }
 
   public void append(char c) {
@@ -57,5 +58,6 @@ public class StringBuilder implements CharSequence {
       new_value[_count] = c;
       
       _value = new_value;
+      _count = new_value_len;      
   }
 }

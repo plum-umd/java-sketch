@@ -1,0 +1,6 @@
+package Number;
+
+Object Number_Number(Object self) {
+    return self;
+}
+

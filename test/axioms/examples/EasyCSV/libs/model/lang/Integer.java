@@ -91,7 +91,7 @@ public class Integer extends Number {
 	    char c = s.charAt(i);
 	    for (int j = 0; j < 10; j++) {
 		if (c == nums[j]) {
-		    num += mult * nums[j];
+		    num += mult * j;
 		}
 	    }
 	    if (i == 0 && c == '-') num *= -1;

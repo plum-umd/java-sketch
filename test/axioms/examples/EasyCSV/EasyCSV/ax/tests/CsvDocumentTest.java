@@ -20,11 +20,21 @@ import static org.junit.Assert.assertTrue;
  */
 public class CsvDocumentTest {
 
+    public static void runTests() {
+	with_no_config_options_should_parse_csv_file_and_create_csv_document();	
+    }
+    
     @Test
-    public void with_no_config_options_should_parse_csv_file_and_create_csv_document() throws IOException {
+    public static void with_no_config_options_should_parse_csv_file_and_create_csv_document() throws IOException {
         //arrange
         // String csvPath = getClass().getClassLoader().getResource("csv_test_file.csv").getPath();
-	String csvPath = "csv_test_file.csv";
+	// String csvPath = "csv_test_file.csv";
+
+	// String csvPath = "Header 1,Header 2,Header 3,Header 4,Header\n1,1.1,abc,TRUE,11/1/2014\n2,2.2,def,FALSE,11/2/2014";
+	// String csvPath = "Hdr 1,Hdr 2\n1,True\n2,False\n";
+	// String csvPath = "A,B\n1,T\n2,F\n";
+	String csvPath = "A\n1\n2\n";
+	// String csvPath = "A,B\n";
 	
         //act
         CsvDocument document = CsvDocument.read(csvPath);
@@ -32,8 +42,28 @@ public class CsvDocumentTest {
         //assert
 	ArrayList<CsvRow> rs = document.getCsvRows();
         // assertEquals(3, rs.size());
-	assert 3 == rs.size();
-	assert 0 == 1;
+	// assert 3 == rs.size();
+	// assert 0 == 1;
+
+	CsvRow headers = rs.get(0);
+	CsvRow r1 = rs.get(1);
+	CsvRow r2 = rs.get(2);	
+
+	String hstr = headers.toString();
+	String r1str = r1.toString();
+	String r2str = r2.toString();
+
+	assert hstr.equals("A");
+	assert r1str.equals("1");
+	assert r2str.equals("2");	
+
+	// assert hstr.equals("A,B");
+	// assert r1str.equals("1,T");
+	// assert r2str.equals("2,F");	
+
+	// assert hstr.equals("Hdr 1,Hdr 2");
+	// assert r1str.equals("1,True");
+	// assert r2str.equals("2,False");	
 	
         // CsvRow header = document.getCsvRows().get(0);
         // assertEquals("Header 1,Header 2,Header 3,Header 4,Header 5", header.toString());

@@ -4,11 +4,29 @@ Object CsvDocumentTest_CsvDocumentTest(Object self) {
     return self;
 }
 
-void with_no_config_options_should_parse_csv_file_and_create_csv_document(Object self) {
-  Object csvPath = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=17+1), A="csv_test_file.csv")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=17));
+void runTests() {
+  with_no_config_options_should_parse_csv_file_and_create_csv_document();
+}
+
+void with_no_config_options_should_parse_csv_file_and_create_csv_document() {
+  Object csvPath = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=9+1), A="A\n1\n2\n")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=9));
   Object document = read_String@CsvDocument(csvPath);
   Object rs = (document.__cid == (new Object(__cid=-2, _int=CsvDocument()))._int ? getCsvRows@CsvDocument(document) : null);
-  assert (new Object(__cid=-2, _int=3))._int == (rs.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? size_Object@ArrayList(rs) : null)._int;
-  assert (new Object(__cid=-2, _int=0))._int == (new Object(__cid=-2, _int=1))._int;
+
+  Object sz = xform_size_ArrayList(rs._arraylist);
+  assert sz._int == 4;
+  
+  /* Object headers = (rs.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_Object_int@ArrayList(rs, (new Object(__cid=-2, _int=0))) : null); */
+  /* Object r1 = (rs.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_Object_int@ArrayList(rs, (new Object(__cid=-2, _int=1))) : null); */
+  /* Object r2 = (rs.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_Object_int@ArrayList(rs, (new Object(__cid=-2, _int=2))) : null); */
+  Object headers = xform_get_ArrayList_int(rs._arraylist, (new Object(__cid=-2, _int=0))); 
+  Object r1 = xform_get_ArrayList_int(rs._arraylist, (new Object(__cid=-2, _int=1)));
+  Object r2 = xform_get_ArrayList_int(rs._arraylist, (new Object(__cid=-2, _int=2)));
+  Object hstr = (headers.__cid == (new Object(__cid=-2, _int=CsvRow()))._int ? toString@CsvRow(headers) : null);
+  Object r1str = (r1.__cid == (new Object(__cid=-2, _int=CsvRow()))._int ? toString@CsvRow(r1) : null);
+  Object r2str = (r2.__cid == (new Object(__cid=-2, _int=CsvRow()))._int ? toString@CsvRow(r2) : null);
+  assert (hstr.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(hstr, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="A")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null)._bit;
+  assert (r1str.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(r1str, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="1")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null)._bit;
+  assert (r2str.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(r2str, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="2")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null)._bit;
 }
 

@@ -29,7 +29,7 @@ void the_constructor_with_variable_columns_argument_should_build_row() {
   Object anotherValue = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=5+1), A="value")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=5));
   Object someColumn = CsvColumn_CsvColumn_String(new Object(__cid=CsvColumn()), someValue);
   Object anotherColumn = CsvColumn_CsvColumn_String(new Object(__cid=CsvColumn()), anotherValue);
-  Object someRow = CsvRow_CsvRow_String_String(new Object(__cid=CsvRow()), someColumn, anotherColumn);
+  Object someRow = CsvRow_CsvRow_CsvColumn_CsvColumn(new Object(__cid=CsvRow()), someColumn, anotherColumn);
   assert (new Object(__cid=-2, _int=2))._int == (someRow.__cid == (new Object(__cid=-2, _int=CsvRow()))._int ? getNumberOfColumns@CsvRow(someRow) : null)._int;
   assert !((someRow.__cid == (new Object(__cid=-2, _int=CsvRow()))._int ? isEmpty@CsvRow(someRow) : null))._bit;
   Object c1 = (someRow.__cid == (new Object(__cid=-2, _int=CsvRow()))._int ? getColumnAtIndex_int@CsvRow(someRow, (new Object(__cid=-2, _int=0))) : null);

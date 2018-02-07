@@ -6,6 +6,6 @@ Object Tester_Tester(Object self) {
 
 harness void mn() {
   Object self = Object_Object(new Object(__cid=Object()));
-  runTests@CsvRowTest();
+  runTests@CsvDocumentTest();
 }
 

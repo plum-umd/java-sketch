@@ -121,7 +121,8 @@ public class CsvDocument {
 	   ArrayList<Integer> colInds = csvConfiguration.getColumnIndexesToParse();
 	   int size = colInds.size();
 	   for (int i = 0; i < size; i++) {
-	       int columnIndex = colInds.get(i);
+	       Integer columnIndexInt = colInds.get(i);
+	       int columnIndex = columnIndexInt.intValue();
 	       csvColumns.add(new CsvColumn(columns[columnIndex]));
            }
         }

@@ -5,6 +5,7 @@ class ArrayList<E> {
     boolean add(Object e);
 
     @adt
+    @pure
     Object get(int i);
 
     @adt
@@ -19,11 +20,11 @@ class ArrayList<E> {
     int size();
 
     axiom Object size(Object ArrayList()) {
-	return 0;
+    	return 0;
     }
 
     axiom Object size(Object add!(ArrayList a, Object e)) {
-	return size(a)+1;
+    	return size(a)+1;
     }
 
     axiom Object size(Object set!(ArrayList a, int i, Object e)) {
@@ -31,7 +32,8 @@ class ArrayList<E> {
     }
 
     axiom Object get(Object add!(ArrayList a, Object e1), int i) {
-	return size(a) == i-1 ? e1 : get(a, i);
+	int sz = size(a);
+    	return (sz == i) ? e1 : get(a, i);
     }
 
     axiom Object get(Object set!(ArrayList a, int j, Object e), int i) {

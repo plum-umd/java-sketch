@@ -17,8 +17,13 @@ import static org.junit.Assert.*;
 // @RunWith(JUnitParamsRunner.class)
 public class CsvColumnTest {
 
+    public static void runTests() {
+	the_getIntValue_method_when_column_is_integer_should_return_correct_result();
+	the_getBooleanValue_method_when_column_can_be_converted_to_boolean_should_return_correct_result(); 
+    }
+    
     @Test
-    public void the_getIntValue_method_when_column_is_integer_should_return_correct_result(){
+    public static void the_getIntValue_method_when_column_is_integer_should_return_correct_result(){
         //arrange
         String someIntValue = "20";
         CsvColumn someIntCsvColumn = new CsvColumn(someIntValue);
@@ -78,8 +83,12 @@ public class CsvColumnTest {
     //         "Y,N",
     //         "y,n",
     //         "1,0"})
-    public void the_getBooleanValue_method_when_column_can_be_converted_to_boolean_should_return_correct_result(String trueValue, String falseValue){
-        //arrange
+    // public void the_getBooleanValue_method_when_column_can_be_converted_to_boolean_should_return_correct_result(String trueValue, String falseValue){
+    public static void the_getBooleanValue_method_when_column_can_be_converted_to_boolean_should_return_correct_result(){
+	String trueValue = "true";
+	String falseValue = "false";
+
+	//arrange
         CsvColumn columnWithTrueResult = new CsvColumn(trueValue);
         CsvColumn columnWithFalseResult = new CsvColumn(falseValue);
 
@@ -92,7 +101,7 @@ public class CsvColumnTest {
         // assertFalse(resultThatShouldBeFalse);
 
 	assert resultThatShouldBeTrue;
-	assert resultThatShouldBeFalse;	
+	assert !resultThatShouldBeFalse;	
     }
 
     // @Test
