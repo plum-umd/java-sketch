@@ -1,0 +1,84 @@
+package CommunicationWithFiles;
+
+Object CommunicationWithFiles_CommunicationWithFiles(Object self) {
+  return self;
+}
+
+generator void genRead_BufferedReader_String_boolean_ArrayList_String(Object self, Object bfr, Object value, bit isAList, Object values, Object filename) {
+  Object vbar = null;
+  if (??) {
+    value = (bfr.__cid == BufferedReader() ? readLine@BufferedReader(bfr) : null);
+  }
+  if (??) {
+    vbar = (value.__cid == String() ? concat_String@String(value, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="|"), 0, 1)) : null);
+    vbar = (vbar.__cid == String() ? concat_String@String(vbar, filename) : null);
+  }
+  if (??) {
+    if (value != null && !isAList == true) {
+      (values.__cid == ArrayList() ? add_E@ArrayList(values, vbar) : 0);
+    }
+  }
+  if (??) {
+    genRead_BufferedReader_String_boolean_ArrayList_String@CommunicationWithFiles(self, bfr, value, isAList, values, filename);
+  }
+}
+
+Object ReadToArray_String_boolean(Object self, Object filename, bit isAList) {
+  Object fr = null;
+  Object value = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=0+1, A=""), 0, 0);
+  Object values = ArrayList_ArrayList(new Object(__cid=ArrayList()));
+  sort_ArrayList@Collections(values);
+  fr = FileReaderr_FileReaderr_String(new Object(__cid=FileReaderr()), filename);
+  Object bfr = BufferedReader_BufferedReader_FileReaderr(new Object(__cid=BufferedReader()), fr);
+  value = (bfr.__cid == BufferedReader() ? readLine@BufferedReader(bfr) : null);
+  while (value != null) {
+    genRead_BufferedReader_String_boolean_ArrayList_String@CommunicationWithFiles(self, bfr, value, isAList, values, filename);
+  }
+  if (fr.__cid == FileReaderr()) { close@FileReaderr(fr); }
+  else { 0; };
+  return values;
+}
+
+Object RemoveDuplicates_ArrayList(Object self, Object toBeSorted) {
+  int j = 1;
+  if (toBeSorted.__cid == ArrayList()) { sort_Object@ArrayList(toBeSorted, null); }
+  else { 0; };
+  while (j + 1 < (toBeSorted.__cid == ArrayList() ? size@ArrayList(toBeSorted) : 0)) {
+    Object get_j = (toBeSorted.__cid == ArrayList() ? get_int@ArrayList(toBeSorted, j) : null);
+    Object sstr = (get_j.__cid == String() ? substring_int_int@String(get_j, 0, (get_j.__cid == String() ? indexOf_String@String(get_j, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="|"), 0, 1)) : 0)) : null);
+    Object get_j1 = (toBeSorted.__cid == ArrayList() ? get_int@ArrayList(toBeSorted, j + 1) : null);
+    Object sstr1 = (get_j1.__cid == String() ? substring_int_int@String(get_j1, 0, (get_j1.__cid == String() ? indexOf_String@String(get_j1, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="|"), 0, 1)) : 0)) : null);
+    if ((sstr.__cid == String() ? equals_Object@String(sstr, sstr1) : 0)) {
+      (toBeSorted.__cid == ArrayList() ? remove_int@ArrayList(toBeSorted, j + 1) : null);
+      (toBeSorted.__cid == ArrayList() ? remove_int@ArrayList(toBeSorted, j) : null);
+    }
+    else {
+      j++;
+    }
+  }
+  if (toBeSorted.__cid == ArrayList()) { add_int_E@ArrayList(toBeSorted, 0, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=41+1, A="Values present in only one file|File name"), 0, 41)); }
+  else { 0; };
+  return toBeSorted;
+}
+
+void createFile_ArrayList_String(Object self, Object rows, Object filename) {
+  Object fileWriter = FileWriterr_FileWriterr_String(new Object(__cid=FileWriterr()), filename);
+  Object bufferedWriter = BufferedWriter_BufferedWriter_FileWriter(new Object(__cid=BufferedWriter()), fileWriter);
+  for (int k = 0; k <= (rows.__cid == ArrayList() ? size@ArrayList(rows) : 0) - 1; k++) {
+    Object v = (rows.__cid == ArrayList() ? get_int@ArrayList(rows, k) : null);
+    if (bufferedWriter.__cid == BufferedWriter()) { write_String@BufferedWriter(bufferedWriter, v); }
+    else { 0; };
+    if (bufferedWriter.__cid == BufferedWriter()) { newLine@BufferedWriter(bufferedWriter); }
+    else { 0; };
+  }
+  if (bufferedWriter.__cid == BufferedWriter()) { close@BufferedWriter(bufferedWriter); }
+  else { 0; };
+}
+
+void ClearFile_String(Object self, Object toBeCleared) {
+  Object fileWriter = FileWriterr_FileWriterr_String(new Object(__cid=FileWriterr()), toBeCleared);
+  Object bufferedWriter = BufferedWriter_BufferedWriter_FileWriter(new Object(__cid=BufferedWriter()), fileWriter);
+  if (bufferedWriter.__cid == BufferedWriter()) { close@BufferedWriter(bufferedWriter); }
+  else { 0; };
+}
+

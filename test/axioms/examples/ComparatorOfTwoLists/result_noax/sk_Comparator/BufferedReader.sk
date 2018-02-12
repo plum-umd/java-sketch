@@ -1,0 +1,28 @@
+package BufferedReader;
+
+Object BufferedReader_BufferedReader(Object self) {
+    return self;
+}
+
+Object BufferedReader_BufferedReader_File(Object self, Object f) {
+  self.reader_BufferedReader = FileReaderr_FileReaderr_String(new Object(__cid=FileReaderr()), (f.__cid == File() ? getName@File(f) : null));
+  return self;
+}
+
+Object BufferedReader_BufferedReader_FileReaderr(Object self, Object reader) {
+  self.reader_BufferedReader = reader;
+  return self;
+}
+
+Object readLine(Object self) {
+  char c = (self.reader_BufferedReader.__cid == FileReaderr() ? read@FileReaderr(self.reader_BufferedReader) : '\0');
+  Object sb = StringBuilder_StringBuilder(new Object(__cid=StringBuilder()));
+  while (c != '\n' && c != -1) {
+    if (sb.__cid == StringBuilder()) { append_char@StringBuilder(sb, c); }
+    else { 0; };
+    c = (self.reader_BufferedReader.__cid == FileReaderr() ? read@FileReaderr(self.reader_BufferedReader) : '\0');
+  }
+  Object str = (sb.__cid == StringBuilder() ? toString@StringBuilder(sb) : null);
+  return (c == -1 && (str.__cid == String() ? length@String(str) : 0) == 0 ? null : str);
+}
+

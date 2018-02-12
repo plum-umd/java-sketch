@@ -1,0 +1,11 @@
+package FileOutputStream;
+
+Object FileOutputStream_FileOutputStream(Object self) {
+    return self;
+}
+
+Object FileOutputStream_FileOutputStream_String(Object self, Object path) {
+  self.path_FileOutputStream = path;
+  return self;
+}
+

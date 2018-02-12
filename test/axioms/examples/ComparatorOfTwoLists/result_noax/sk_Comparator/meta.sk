@@ -1,0 +1,63 @@
+package meta;
+
+// distinct class IDs
+int AbstractQueue()                       { return 32; }
+int AlgorithmParameterSpec()              { return 27; }
+int ArrayDeque()                          { return 37; }
+int ArrayDeque_DequeNode()                { return 38; }
+int ArrayList()                           { return 4; }
+int Arrays()                              { return 39; }
+int Assert()                              { return 10; }
+int Boolean()                             { return 50; }
+int BufferedReader()                      { return 11; }
+int BufferedWriter()                      { return 23; }
+int CharSequence()                        { return 31; }
+int Character()                           { return 36; }
+int Cipher()                              { return 56; }
+int Collections()                         { return 43; }
+int CommunicationWithFiles()              { return 2; }
+int Comparable()                          { return 54; }
+int Comparator()                          { return 3; }
+int CryptoCipherFactory()                 { return 57; }
+int CryptoCipherFactory_CipherProvider()  { return 58; }
+int Deque()                               { return 22; }
+int File()                                { return 15; }
+int FileOutputStream()                    { return 8; }
+int FileReaderr()                         { return 33; }
+int FileWriterr()                         { return 48; }
+int Float()                               { return 9; }
+int HashMap()                             { return 5; }
+int HashMap_Node()                        { return 6; }
+int HashSet()                             { return 24; }
+int Integer()                             { return 16; }
+int IvParameterSpec()                     { return 18; }
+int KerberosKey()                         { return 35; }
+int Key()                                 { return 34; }
+int KeyGenerator()                        { return 20; }
+int KeyStore()                            { return 46; }
+int LinkedList()                          { return 55; }
+int List()                                { return 7; }
+int Mac()                                 { return 52; }
+int Map()                                 { return 12; }
+int Map_Entry()                           { return 13; }
+int Number()                              { return 14; }
+int Object()                              { return 1; }
+int PrintStream()                         { return 41; }
+int PrivateKey()                          { return 51; }
+int Properties()                          { return 45; }
+int Queue()                               { return 19; }
+int Scanner()                             { return 17; }
+int SecretKey()                           { return 40; }
+int SecretKeySpec()                       { return 44; }
+int SecureRandom()                        { return 28; }
+int Set()                                 { return 21; }
+int Stack()                               { return 49; }
+int String()                              { return 25; }
+int StringBuffer()                        { return 29; }
+int StringBuilder()                       { return 53; }
+int System()                              { return 42; }
+int TreeMap()                             { return 26; }
+int TreeSet()                             { return 30; }
+int Utils()                               { return 47; }
+
+// Uninterpreted functions

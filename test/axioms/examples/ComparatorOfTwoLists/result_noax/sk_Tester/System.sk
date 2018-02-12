@@ -1,0 +1,12 @@
+package System;
+
+Object System_System(Object self) {
+    return self;
+}
+
+void arraycopy_byte_int_byte_int_int(Object src, int srcPos, Object dst, int dstPos, int length) {
+  for (int i = srcPos; i < srcPos + length; i++) {
+    dst._array_char.A[dstPos + i] = src._array_char.A[i];
+  }
+}
+

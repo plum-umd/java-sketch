@@ -1,0 +1,2 @@
+SKETCH version 1.7.5
+Benchmark = /Users/grumpy/Research/java-sketch4/test/axioms/examples/ComparatorOfTwoLists/ComparatorOfTwoLists/../result_noax/sk_Comparator/main.sk

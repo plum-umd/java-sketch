@@ -1,0 +1,25 @@
+package FileReaderr;
+
+Object FileReaderr_FileReaderr(Object self) {
+    return self;
+}
+
+Object FileReaderr_FileReaderr_String(Object self, Object path) {
+  self.path_FileReaderr = path;
+  self.position_FileReaderr = 0;
+  self.data_FileReaderr = path;
+  return self;
+}
+
+char read(Object self) {
+  if (self.position_FileReaderr < (self.data_FileReaderr.__cid == String() ? length@String(self.data_FileReaderr) : 0)) {
+    char c = (self.data_FileReaderr.__cid == String() ? charAt_int@String(self.data_FileReaderr, self.position_FileReaderr) : '\0');
+    self.position_FileReaderr++;
+    return c;
+  }
+  return -1;
+}
+
+void close(Object self) {
+}
+
