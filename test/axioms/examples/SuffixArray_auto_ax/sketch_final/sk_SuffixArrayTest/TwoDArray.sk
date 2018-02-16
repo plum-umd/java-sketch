@@ -1,0 +1,39 @@
+package TwoDArray;
+
+Object TwoDArray_TwoDArray(Object self) {
+    return self;
+}
+
+Object TwoDArray_TwoDArray_int_int(Object self, Object n, Object m) {
+  self.N_TwoDArray = n;
+  self.M_TwoDArray = m;
+  self.arr_TwoDArray = Wrap_Array_int(new Array_int(length=(new Object(__cid=-2, _int=n._int * m._int))));
+  return self;
+}
+
+void set_int_int_int(Object self, Object i, Object j, Object val) {
+  self.arr_TwoDArray._array_int.A[(i._int * self.M_TwoDArray._int) + j._int] = val._int;
+}
+
+Object get_int_int(Object self, Object i, Object j) {
+  return (new Object(__cid=-2, _int=self.arr_TwoDArray._array_int.A[(i._int * self.M_TwoDArray._int) + j._int]));
+}
+
+void setRow_int_int(Object self, Object i, Object row) {
+  Object count = (new Object(__cid=-2, _int=0));
+  for (Object j = (new Object(__cid=-2, _int=i._int * self.M_TwoDArray._int)); j._int < (i._int * self.M_TwoDArray._int) + self.M_TwoDArray._int; j = new Object(__cid=-2, _int=j._int + 1)) {
+    self.arr_TwoDArray._array_int.A[j._int] = row._array_int.A[count._int];
+    count = new Object(__cid=-2, _int=count._int + 1);
+  }
+}
+
+Object getRow_int(Object self, Object i) {
+  Object count = (new Object(__cid=-2, _int=0));
+  Object row = Wrap_Array_int(new Array_int(length=self.M_TwoDArray));
+  for (Object j = (new Object(__cid=-2, _int=i._int * self.M_TwoDArray._int)); j._int < (i._int * self.M_TwoDArray._int) + self.M_TwoDArray._int; j = new Object(__cid=-2, _int=j._int + 1)) {
+    row._array_int.A[count._int] = self.arr_TwoDArray._array_int.A[j._int];
+    count = new Object(__cid=-2, _int=count._int + 1);
+  }
+  return row;
+}
+

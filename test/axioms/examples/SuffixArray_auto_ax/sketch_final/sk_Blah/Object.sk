@@ -1,0 +1,37 @@
+package Object;
+
+Object Object_Object(Object self) {
+    return self;
+}
+
+bit equals_Object_Object(Object a, Object b) {
+  if (a == null) {
+    if (b == null) {
+      return true;
+    }
+    return false;
+  }
+  return (a.__cid == Character() ? equals_Object@Character(a, b) : a.__cid == Integer() ? equals_Object@Integer(a, b) : a.__cid == ArrayList() ? equals_Object@Object(a, b) : a.__cid == Boolean() ? equals_Object@Object(a, b) : a.__cid == HashMap() ? equals_Object@Object(a, b) : a.__cid == Blah() ? equals_Object@Object(a, b) : a.__cid == TwoDArray() ? equals_Object@Object(a, b) : a.__cid == ArrayDeque() ? equals_Object@Object(a, b) : a.__cid == SuffixRankTuple() ? equals_Object@Object(a, b) : a.__cid == String() ? equals_Object@String(a, b) : a.__cid == Arrays() ? equals_Object@Object(a, b) : a.__cid == Object() ? equals_Object@Object(a, b) : 0);
+}
+
+bit equals_Object(Object self, Object obj) {
+  return self == obj;
+}
+
+struct Object {
+  int         __cid;
+  Array_char  _value_String;
+  int         _count_String;
+  int         originalIndex_SuffixRankTuple;
+  int         secondHalf_SuffixRankTuple;
+  int         firstHalf_SuffixRankTuple;
+  int         M_TwoDArray;
+  Array_int   arr_TwoDArray;
+  int         N_TwoDArray;
+  bit         bool_Boolean;
+  int         value_Integer;
+  char        value_Character;
+  ArrayDeque  _arraydeque;
+  HashMap     _hashmap;
+  ArrayList   _arraylist;
+}

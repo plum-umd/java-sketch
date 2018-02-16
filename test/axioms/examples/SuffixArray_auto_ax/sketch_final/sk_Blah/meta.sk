@@ -1,0 +1,18 @@
+package meta;
+
+// distinct class IDs
+int ArrayDeque()       { return 4; }
+int ArrayList()        { return 8; }
+int Arrays()           { return 12; }
+int Blah()             { return 2; }
+int Boolean()          { return 10; }
+int CharSequence()     { return 11; }
+int Character()        { return 6; }
+int HashMap()          { return 9; }
+int Integer()          { return 7; }
+int Object()           { return 1; }
+int String()           { return 5; }
+int SuffixRankTuple()  { return 13; }
+int TwoDArray()        { return 3; }
+
+// Uninterpreted functions
