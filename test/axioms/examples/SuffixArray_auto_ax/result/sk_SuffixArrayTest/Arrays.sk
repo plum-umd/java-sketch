@@ -4,25 +4,25 @@ Object Arrays_Arrays(Object self) {
     return self;
 }
 
-Array_Object swap_SuffixRankTuple_int_int(Array_Object a, int i, int j) {
-  Object tmp = a.A[i];
-  a.A[i] = a.A[j];
-  a.A[j] = tmp;
+Object swap_SuffixRankTuple_int_int(Object a, Object i, Object j) {
+  Object tmp = a._array_object.A[i._int];
+  a._array_object.A[i._int] = a._array_object.A[j._int];
+  a._array_object.A[j._int] = tmp;
   return a;
 }
 
-Array_Object sort_SuffixRankTuple_int(Array_Object a, int n) {
-  for (int j = 0; j < n - 1; j++) {
-    int iMin = j;
-    for (int i = j + 1; i < n; i++) {
-      Object a1 = a.A[i];
-      Object a2 = a.A[iMin];
-      int cmp = (a1.__cid == SuffixRankTuple() ? compareTo_SuffixRankTuple@SuffixRankTuple(a1, a2) : 0);
-      if (cmp < 0) {
+Object sort_SuffixRankTuple_int(Object a, Object n) {
+  for (Object j = (new Object(__cid=-2, _int=0)); j._int < n._int - (new Object(__cid=-2, _int=1))._int; j = new Object(__cid=-2, _int=j._int + 1)) {
+    Object iMin = j;
+    for (Object i = (new Object(__cid=-2, _int=j._int + (new Object(__cid=-2, _int=1))._int)); i._int < n._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+      Object a1 = a._array_object.A[i._int];
+      Object a2 = a._array_object.A[iMin._int];
+      Object cmp = (a1.__cid == (new Object(__cid=-2, _int=SuffixRankTuple()))._int ? compareTo_SuffixRankTuple@SuffixRankTuple(a1, a2) : null);
+      if (cmp._int < (new Object(__cid=-2, _int=0))._int) {
         iMin = i;
       }
     }
-    if (iMin != j) {
+    if (iMin._int != j._int) {
       a = swap_SuffixRankTuple_int_int(a, j, iMin);
     }
   }

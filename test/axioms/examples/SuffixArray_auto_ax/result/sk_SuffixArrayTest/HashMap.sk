@@ -2,9 +2,9 @@ package HashMap;
 
 adt HashMap {
     Hashmap  { }
-    Put      { HashMap self; Object k; Object v; }
-    Putb     { HashMap self; Object k; Object v; }
-    Get      { HashMap self; Object k; }
+    Put_object_object      { HashMap self; Object k; Object v; }
+    Putb_object_object     { HashMap self; Object k; Object v; }
+    Get_object      { HashMap self; Object k; }
 }
 
 Object HashMap_HashMap() {
@@ -12,15 +12,15 @@ Object HashMap_HashMap() {
 }
 
 Object put_Object_Object_Object(Object self, Object k, Object v) {
-    return new Object(__cid=HashMap(), _hashmap=new Put(self=self._hashmap, k=k, v=v));
+    return new Object(__cid=HashMap(), _hashmap=new Put_object_object(self=self._hashmap, k=k, v=v));
 }
 
 Object putb_Object_Object_Object(Object self, Object k, Object v) {
-    return new Object(__cid=HashMap(), _hashmap=new Putb(self=self._hashmap, k=k, v=v));
+    return new Object(__cid=HashMap(), _hashmap=new Putb_object_object(self=self._hashmap, k=k, v=v));
 }
 
 Object get_Object_Object(Object self, Object k) {
-    return new Object(__cid=HashMap(), _hashmap=new Get(self=self._hashmap, k=k));
+    return new Object(__cid=HashMap(), _hashmap=new Get_object(self=self._hashmap, k=k));
 }
 
 Object xform_HashMap(HashMap self) {
@@ -28,25 +28,15 @@ Object xform_HashMap(HashMap self) {
   case Hashmap: {
     return xform_hashmap_HashMap(self);
   }
-  case Put: {
+  case Put_object_object: {
     return xform_put_HashMap_Object_Object(self.self, self.k, self.v);
   }
-  case Putb: {
+  case Putb_object_object: {
     return xform_putb_HashMap_Object_Object(self.self, self.k, self.v);
   }
-  case Get: {
+  case Get_object: {
     return xform_get_HashMap_Object(self.self, self.k);
   }
-  }
-
-  return null;
-}
-Object xform_putb_HashMap_Object_Object(HashMap self, Object k, Object v) {
-  switch(self) {
-  case Hashmap: { assert false; }
-  case Put: { assert false; }
-  case Putb: { assert false; }
-  case Get: { assert false; }
   }
 
   return null;
@@ -56,11 +46,11 @@ Object xform_put_HashMap_Object_Object(HashMap self, Object k, Object v) {
   case Hashmap: {
     return null;
   }
-  case Put: { assert false; }
-  case Putb: {
-    return ((k.__cid == ArrayList() ? equals_Object@Object(k, self.k) : k.__cid == String() ? equals_Object@String(k, self.k) : k.__cid == SuffixArrayTest() ? equals_Object@Object(k, self.k) : k.__cid == TreeSet() ? equals_Object@Object(k, self.k) : k.__cid == Arrays() ? equals_Object@Object(k, self.k) : k.__cid == ArrayDeque() ? equals_Object@Object(k, self.k) : k.__cid == SuffixRankTuple() ? equals_Object@Object(k, self.k) : k.__cid == HashMap() ? equals_Object@Object(k, self.k) : k.__cid == Boolean() ? equals_Object@Object(k, self.k) : k.__cid == SuffixArray() ? equals_Object@Object(k, self.k) : k.__cid == TwoDArray() ? equals_Object@Object(k, self.k) : k.__cid == Integer() ? equals_Object@Integer(k, self.k) : k.__cid == Assert() ? equals_Object@Object(k, self.k) : k.__cid == Character() ? equals_Object@Character(k, self.k) : k.__cid == HashSet() ? equals_Object@Object(k, self.k) : k.__cid == Object() ? equals_Object@Object(k, self.k) : 0) ? self.v : xform_put_HashMap_Object_Object(self.self, k, v));
+  case Put_object_object: { assert false; }
+  case Putb_object_object: {
+    return ((k.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=SuffixRankTuple()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=SuffixArrayTest()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=SuffixArray()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=TwoDArray()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(k, self.k) : k.__cid == (new Object(__cid=-2, _int=HashSet()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Arrays()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(k, self.k) : null)._bit ? self.v : xform_put_HashMap_Object_Object(self.self, k, v));
   }
-  case Get: { assert false; }
+  case Get_object: { assert false; }
   }
 
   return null;
@@ -68,9 +58,19 @@ Object xform_put_HashMap_Object_Object(HashMap self, Object k, Object v) {
 Object xform_hashmap_HashMap(HashMap self) {
   switch(self) {
   case Hashmap: { assert false; }
-  case Put: { assert false; }
-  case Putb: { assert false; }
-  case Get: { assert false; }
+  case Put_object_object: { assert false; }
+  case Putb_object_object: { assert false; }
+  case Get_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_putb_HashMap_Object_Object(HashMap self, Object k, Object v) {
+  switch(self) {
+  case Hashmap: { assert false; }
+  case Put_object_object: { assert false; }
+  case Putb_object_object: { assert false; }
+  case Get_object: { assert false; }
   }
 
   return null;
@@ -80,11 +80,11 @@ Object xform_get_HashMap_Object(HashMap self, Object k) {
   case Hashmap: {
     return null;
   }
-  case Put: { assert false; }
-  case Putb: {
-    return ((k.__cid == ArrayList() ? equals_Object@Object(k, self.k) : k.__cid == String() ? equals_Object@String(k, self.k) : k.__cid == SuffixArrayTest() ? equals_Object@Object(k, self.k) : k.__cid == TreeSet() ? equals_Object@Object(k, self.k) : k.__cid == Arrays() ? equals_Object@Object(k, self.k) : k.__cid == ArrayDeque() ? equals_Object@Object(k, self.k) : k.__cid == SuffixRankTuple() ? equals_Object@Object(k, self.k) : k.__cid == HashMap() ? equals_Object@Object(k, self.k) : k.__cid == Boolean() ? equals_Object@Object(k, self.k) : k.__cid == SuffixArray() ? equals_Object@Object(k, self.k) : k.__cid == TwoDArray() ? equals_Object@Object(k, self.k) : k.__cid == Integer() ? equals_Object@Integer(k, self.k) : k.__cid == Assert() ? equals_Object@Object(k, self.k) : k.__cid == Character() ? equals_Object@Character(k, self.k) : k.__cid == HashSet() ? equals_Object@Object(k, self.k) : k.__cid == Object() ? equals_Object@Object(k, self.k) : 0) ? self.v : xform_get_HashMap_Object(self.self, k));
+  case Put_object_object: { assert false; }
+  case Putb_object_object: {
+    return ((k.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=SuffixRankTuple()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=SuffixArrayTest()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=SuffixArray()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=TwoDArray()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(k, self.k) : k.__cid == (new Object(__cid=-2, _int=HashSet()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Arrays()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(k, self.k) : null)._bit ? self.v : xform_get_HashMap_Object(self.self, k));
   }
-  case Get: { assert false; }
+  case Get_object: { assert false; }
   }
 
   return null;

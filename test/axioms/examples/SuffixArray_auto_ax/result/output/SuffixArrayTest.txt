@@ -1,3 +1,2 @@
-SKETCH version 1.7.4
-Benchmark = /Users/grumpy/Research/java-sketch/test/axioms/examples/SuffixArray_auto_ax/SuffixArray/../result/sk_SuffixArrayTest/main.sk
-Total time = 783
+SKETCH version 1.7.5
+Benchmark = /Users/grumpy/Research/java-sketch2/test/axioms/examples/SuffixArray_auto_ax/SuffixArray/../result/sk_SuffixArrayTest/main.sk

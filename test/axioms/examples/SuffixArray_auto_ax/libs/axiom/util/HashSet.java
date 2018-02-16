@@ -40,6 +40,12 @@ class HashSet {
     }
 
     axiom Object size(Object remove!(HashSet h, Object e1)) {
-	return remove(h, e1) ? size(h)-1 : size(h);
+	boolean b = remove(h, e1);
+	if (b) {
+	    return size(h)-1;
+	} else {
+	    return size(h);
+	}
+	// return remove(h, e1) ? size(h)-1 : size(h);
     }
 }

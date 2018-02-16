@@ -13,43 +13,61 @@ void setup(Object self) {
 }
 
 void testLRS(Object self) {
-  Object s = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=6+1, A="aabaab"), 0, 6);
+  Object s = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=6+1), A="aabaab")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=6));
+  Object cont1 = (new Object(__cid=-4, _bit=false));
+  Object cont2 = (new Object(__cid=-4, _bit=false));
   Object sa = SuffixArray_SuffixArray_String(new Object(__cid=SuffixArray()), s);
-  TreeSet lrss = (sa.__cid == SuffixArray() ? lrs@SuffixArray(sa) : null);
-  assert 1 == (lrss.__cid == TreeSet() ? size@TreeSet(lrss) : 0);
-  assert (lrss.__cid == TreeSet() ? contains_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=3+1, A="aab"), 0, 3)) : 0);
-  s = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=7+1, A="abcdefg"), 0, 7);
-  sa = SuffixArray_SuffixArray_String(new Object(__cid=SuffixArray()), s);
-  lrss = (sa.__cid == SuffixArray() ? lrs@SuffixArray(sa) : null);
-  assert (lrss.__cid == TreeSet() ? size@TreeSet(lrss) : 0) == 0;
-  s = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=4+1, A="abca"), 0, 4);
-  sa = SuffixArray_SuffixArray_String(new Object(__cid=SuffixArray()), s);
-  lrss = (sa.__cid == SuffixArray() ? lrs@SuffixArray(sa) : null);
-  assert (lrss.__cid == TreeSet() ? size@TreeSet(lrss) : 0) == 1;
-  assert (lrss.__cid == TreeSet() ? contains_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="a"), 0, 1)) : 0);
-  s = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=5+1, A="abcba"), 0, 5);
-  sa = SuffixArray_SuffixArray_String(new Object(__cid=SuffixArray()), s);
-  lrss = (sa.__cid == SuffixArray() ? lrs@SuffixArray(sa) : null);
-  assert (lrss.__cid == TreeSet() ? size@TreeSet(lrss) : 0) == 2;
-  assert (lrss.__cid == TreeSet() ? contains_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="a"), 0, 1)) : 0);
-  assert (lrss.__cid == TreeSet() ? contains_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="b"), 0, 1)) : 0);
-  s = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=13+1, A="aZZbZZcYYdYYe"), 0, 13);
-  sa = SuffixArray_SuffixArray_String(new Object(__cid=SuffixArray()), s);
-  lrss = (sa.__cid == SuffixArray() ? lrs@SuffixArray(sa) : null);
-  assert (lrss.__cid == TreeSet() ? size@TreeSet(lrss) : 0) == 2;
-  assert (lrss.__cid == TreeSet() ? contains_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=2+1, A="YY"), 0, 2)) : 0);
-  assert (lrss.__cid == TreeSet() ? contains_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=2+1, A="ZZ"), 0, 2)) : 0);
-  s = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=6+1, A="AAAAAA"), 0, 6);
-  sa = SuffixArray_SuffixArray_String(new Object(__cid=SuffixArray()), s);
-  lrss = (sa.__cid == SuffixArray() ? lrs@SuffixArray(sa) : null);
-  assert (lrss.__cid == TreeSet() ? size@TreeSet(lrss) : 0) == 1;
-  assert (lrss.__cid == TreeSet() ? contains_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=5+1, A="AAAAA"), 0, 5)) : 0);
-}
+  Object lrss = (sa.__cid == (new Object(__cid=-2, _int=SuffixArray()))._int ? lrs@SuffixArray(sa) : null);
+  int sz = xform_size_TreeSet(lrss._treeset)._int;
+  /* assert (new Object(__cid=-2, _int=1))._int == (lrss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? size_Object@TreeSet(lrss) : null)._int; */
+  assert sz == 1;
+  cont1 = xform_contains_TreeSet_Object(lrss._treeset, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=3+1), A="aab")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=3)));
+  /* cont1 = (lrss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? contains_Object_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=3+1), A="aab")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=3))) : null); lrss = (lrss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? containsb_Object_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=3+1), A="aab")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=3))) : null); */
+  assert cont1._bit;
 
-void testLCS(Object self) {
-  Array_Object strs = new Array_Object(length=3, A={String_String_char_int_int(new Object(__cid=String()), new Array_char(length=5+1, A="abcde"), 0, 5), String_String_char_int_int(new Object(__cid=String()), new Array_char(length=4+1, A="gear"), 0, 4), String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="#"), 0, 1)});
-  Object a = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="a"), 0, 1);
-  TreeSet lcss = lcs_String_int@SuffixArray(strs, 2);
-  assert (lcss.__cid == TreeSet() ? size@TreeSet(lcss) : 0) == 2;
+  s = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=7+1), A="abcdefg")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=7));
+  sa = SuffixArray_SuffixArray_String(new Object(__cid=SuffixArray()), s);
+  lrss = (sa.__cid == (new Object(__cid=-2, _int=SuffixArray()))._int ? lrs@SuffixArray(sa) : null);
+  sz = xform_size_TreeSet(lrss._treeset)._int;
+  assert sz == 0;
+  /* assert (lrss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? size_Object@TreeSet(lrss) : null)._int == (new Object(__cid=-2, _int=0))._int; */
+
+  s = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=4+1), A="abca")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=4));
+  sa = SuffixArray_SuffixArray_String(new Object(__cid=SuffixArray()), s);
+  lrss = (sa.__cid == (new Object(__cid=-2, _int=SuffixArray()))._int ? lrs@SuffixArray(sa) : null);
+  sz = xform_size_TreeSet(lrss._treeset)._int;
+  assert sz == 1;
+  /* assert (lrss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? size_Object@TreeSet(lrss) : null)._int == (new Object(__cid=-2, _int=1))._int; */
+  cont1 = xform_contains_TreeSet_Object(lrss._treeset, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="a")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1)));
+  /* cont1 = (lrss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? contains_Object_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="a")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null); lrss = (lrss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? containsb_Object_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="a")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null); */
+  assert cont1._bit;
+
+  /* s = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=5+1), A="abcba")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=5)); */
+  /* sa = SuffixArray_SuffixArray_String(new Object(__cid=SuffixArray()), s); */
+  /* lrss = (sa.__cid == (new Object(__cid=-2, _int=SuffixArray()))._int ? lrs@SuffixArray(sa) : null); */
+  /* sz = xform_size_TreeSet(lrss._treeset)._int; */
+  /* assert sz == 2;   */
+  /* /\* assert (lrss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? size_Object@TreeSet(lrss) : null)._int == (new Object(__cid=-2, _int=2))._int; *\/ */
+  /* cont1 = xform_contains_TreeSet_Object(lrss._treeset, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="a")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))); */
+  /* /\* cont1 = (lrss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? contains_Object_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="a")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null); lrss = (lrss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? containsb_Object_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="a")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null); *\/ */
+  /* cont1 = xform_contains_TreeSet_Object(lrss._treeset, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="b")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))); */
+  /* /\* cont2 = (lrss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? contains_Object_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="b")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null); lrss = (lrss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? containsb_Object_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="b")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null); *\/ */
+  /* assert cont1._bit; */
+  /* assert cont2._bit; */
+
+  /* s = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=13+1), A="aZZbZZcYYdYYe")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=13)); */
+  /* sa = SuffixArray_SuffixArray_String(new Object(__cid=SuffixArray()), s); */
+  /* lrss = (sa.__cid == (new Object(__cid=-2, _int=SuffixArray()))._int ? lrs@SuffixArray(sa) : null); */
+  /* assert (lrss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? size_Object@TreeSet(lrss) : null)._int == (new Object(__cid=-2, _int=2))._int; */
+  /* cont1 = (lrss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? contains_Object_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=2+1), A="YY")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=2))) : null); lrss = (lrss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? containsb_Object_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=2+1), A="YY")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=2))) : null); */
+  /* cont2 = (lrss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? contains_Object_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=2+1), A="ZZ")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=2))) : null); lrss = (lrss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? containsb_Object_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=2+1), A="ZZ")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=2))) : null); */
+  /* assert cont1._bit; */
+  /* assert cont2._bit; */
+  /* s = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=6+1), A="AAAAAA")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=6)); */
+  /* sa = SuffixArray_SuffixArray_String(new Object(__cid=SuffixArray()), s); */
+  /* lrss = (sa.__cid == (new Object(__cid=-2, _int=SuffixArray()))._int ? lrs@SuffixArray(sa) : null); */
+  /* assert (lrss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? size_Object@TreeSet(lrss) : null)._int == (new Object(__cid=-2, _int=1))._int; */
+  /* cont1 = (lrss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? contains_Object_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=5+1), A="AAAAA")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=5))) : null); lrss = (lrss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? containsb_Object_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=5+1), A="AAAAA")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=5))) : null); */
+  /* assert cont1._bit; */
 }
 

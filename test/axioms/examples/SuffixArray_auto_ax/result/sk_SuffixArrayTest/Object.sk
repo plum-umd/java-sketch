@@ -4,40 +4,51 @@ Object Object_Object(Object self) {
     return self;
 }
 
-bit equals_Object_Object(Object a, Object b) {
+Object equals_Object_Object(Object a, Object b) {
   if (a == null) {
     if (b == null) {
-      return true;
+      return (new Object(__cid=-4, _bit=true));
     }
-    return false;
+    return (new Object(__cid=-4, _bit=false));
   }
-  return (a.__cid == ArrayList() ? equals_Object@Object(a, b) : a.__cid == String() ? equals_Object@String(a, b) : a.__cid == SuffixArrayTest() ? equals_Object@Object(a, b) : a.__cid == TreeSet() ? equals_Object@Object(a, b) : a.__cid == Arrays() ? equals_Object@Object(a, b) : a.__cid == ArrayDeque() ? equals_Object@Object(a, b) : a.__cid == SuffixRankTuple() ? equals_Object@Object(a, b) : a.__cid == HashMap() ? equals_Object@Object(a, b) : a.__cid == Boolean() ? equals_Object@Object(a, b) : a.__cid == SuffixArray() ? equals_Object@Object(a, b) : a.__cid == TwoDArray() ? equals_Object@Object(a, b) : a.__cid == Integer() ? equals_Object@Integer(a, b) : a.__cid == Assert() ? equals_Object@Object(a, b) : a.__cid == Character() ? equals_Object@Character(a, b) : a.__cid == HashSet() ? equals_Object@Object(a, b) : a.__cid == Object() ? equals_Object@Object(a, b) : 0);
+  return (a.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=SuffixRankTuple()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=SuffixArrayTest()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=SuffixArray()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=TwoDArray()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(a, b) : a.__cid == (new Object(__cid=-2, _int=HashSet()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(a, b) : a.__cid == (new Object(__cid=-2, _int=Arrays()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(a, b) : a.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(a, b) : null);
 }
 
-bit equals_Object(Object self, Object obj) {
-  return self == obj;
+Object equals_Object(Object self, Object obj) {
+  return (new Object(__cid=-4, _bit=self == obj));
 }
 
 struct Object {
-  int         __cid;
-  char        value_Character;
-  int         value_Integer;
-  int         M_TwoDArray;
-  Array_int   arr_TwoDArray;
-  int         N_TwoDArray;
-  int         N_SuffixArray;
-  Array_int   T_SuffixArray;
-  Array_int   sa_SuffixArray;
-  Array_int   lcp_SuffixArray;
-  bit         bool_Boolean;
-  int         originalIndex_SuffixRankTuple;
-  int         secondHalf_SuffixRankTuple;
-  int         firstHalf_SuffixRankTuple;
-  Array_char  _value_String;
-  int         _count_String;
-  HashSet     _hashset;
-  HashMap     _hashmap;
-  ArrayDeque  _arraydeque;
-  TreeSet     _treeset;
-  ArrayList   _arraylist;
+  int           __cid;
+  Object        value_Character;
+  Object        _value_String;
+  Object        _count_String;
+  Object        bool_Boolean;
+  Object        value_Integer;
+  Object        M_TwoDArray;
+  Object        arr_TwoDArray;
+  Object        N_TwoDArray;
+  Object        N_SuffixArray;
+  Object        T_SuffixArray;
+  Object        sa_SuffixArray;
+  Object        lcp_SuffixArray;
+  Object        originalIndex_SuffixRankTuple;
+  Object        secondHalf_SuffixRankTuple;
+  Object        firstHalf_SuffixRankTuple;
+  TreeSet       _treeset;
+  HashSet       _hashset;
+  ArrayList     _arraylist;
+  HashMap       _hashmap;
+  ArrayDeque    _arraydeque;
+  Array_bit     _array_bit;
+  Array_char    _array_char;
+  Array_int     _array_int;
+  Array_float   _array_float;
+  Array_double  _array_double;
+  Array_Object  _array_object;
+  bit           _bit;
+  char          _char;
+  int           _int;
+  float         _float;
+  double        _double;
 }

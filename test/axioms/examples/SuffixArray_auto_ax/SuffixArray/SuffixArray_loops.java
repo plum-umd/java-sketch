@@ -259,7 +259,7 @@ class SuffixArray {
   // @return an ordered set of longest repeated substrings
   public TreeSet <String> lrs() {
 
-    int max_len = 0;
+    int max_len = ??;
     TreeSet <String> lrss = new TreeSet<>();
 
     // CHANGE
@@ -273,11 +273,12 @@ class SuffixArray {
     int g2 = {| T.length, N, max_len |};
     for (int i = ??; i < g2; i++) {
     // for (int i = 0; i < N; i++) {
-      if (lcp[i] > 0 && lcp[i] >= max_len) {
+      if (lcp[i] > ?? && lcp[i] >= max_len) {
         
         // We found a longer LRS
-        if ( lcp[i] > max_len )
-          lrss.clear();
+	  if ( lcp[i] > max_len ) {
+	      lrss.clear();
+	  }
         
         // Append substring to the list and update max
         max_len = lcp[i];
@@ -291,216 +292,221 @@ class SuffixArray {
 
   }
 
-  // /**
-  //  * Finds the Longest Common Substring (LCS) between a group of strings.
-  //  * The current implementation takes O(nlog(n)) bounded by the suffix array construction.
-  //  * @param strs - The strings you wish to find the longest common substring between
-  //  * @param K - The minimum number of strings to find the LCS between. K must be at least 2.
-  //  **/
-  public static TreeSet<String> lcs(String [] strs, int K) {
+  // // /**
+  // //  * Finds the Longest Common Substring (LCS) between a group of strings.
+  // //  * The current implementation takes O(nlog(n)) bounded by the suffix array construction.
+  // //  * @param strs - The strings you wish to find the longest common substring between
+  // //  * @param K - The minimum number of strings to find the LCS between. K must be at least 2.
+  // //  **/
+  // public static TreeSet<String> lcs(String [] strs, int K) {
 
-      // CHANGE
-      // if (K <= 1) throw new IllegalArgumentException("K must be greater than or equal to 2!");
+  //     // CHANGE
+  //     // if (K <= 1) throw new IllegalArgumentException("K must be greater than or equal to 2!");
       
-    if (K <= 1) {
-    	return null;
-    }
+  //   if (K <= 1) {
+  //   	return null;
+  //   }
 
-    TreeSet<String> lcss = new TreeSet();
+  //   TreeSet<String> lcss = new TreeSet();
     
-    if (strs == null || strs.length <= 1) return lcss;
+  //   if (strs == null || strs.length <= 1) return lcss;
     
-    // L is the concatenated length of all the strings and the sentinels
-    int L = 0;
+  //   // L is the concatenated length of all the strings and the sentinels
+  //   int L = 0;
     
-    final int NUM_SENTINELS = strs.length, N = strs.length;
-    for(int i = 0; i < N; i++) L += strs[i].length() + 1;
+  //   final int NUM_SENTINELS = strs.length, N = strs.length;
+  //   for(int i = 0; i < N; i++) L += strs[i].length() + 1;
 
-    int[] indexMap = new int[L];
-    // CHANGE
-    int LOWEST_ASCII = 1000;
-    // int LOWEST_ASCII = Integer.MAX_VALUE;
-    int k = 0;
+  //   int[] indexMap = new int[L];
+  //   // CHANGE
+  //   int LOWEST_ASCII = 1000;
+  //   // int LOWEST_ASCII = Integer.MAX_VALUE;
+  //   int k = 0;
     
-    // Find the lowest ASCII value within the strings.
-    // Also construct the index map to know which original 
-    // string a given suffix belongs to.
-    for (int i = 0; i < strs.length; i++) {
+  //   // Find the lowest ASCII value within the strings.
+  //   // Also construct the index map to know which original 
+  //   // string a given suffix belongs to.
+  //   for (int i = 0; i < strs.length; i++) {
       
-      String str = strs[i];
+  //     String str = strs[i];
       
-      for (int j = 0; j < str.length(); j++) {
-        int asciiVal = str.charAt(j);
-        if (asciiVal < LOWEST_ASCII) LOWEST_ASCII = asciiVal;
-        indexMap[k++] = i;
-      }
+  //     for (int j = 0; j < str.length(); j++) {
+  //       int asciiVal = str.charAt(j);
+  //       if (asciiVal < LOWEST_ASCII) LOWEST_ASCII = asciiVal;
+  //       indexMap[k] = i;
+  // 	k++;
+  //     }
 
-      // Record that the sentinel belongs to string i
-      indexMap[k++] = i;
+  //     // Record that the sentinel belongs to string i
+  //     indexMap[k] = i;
+  //     k++;
+  //   }
 
-    }
-
-    final int SHIFT = LOWEST_ASCII + NUM_SENTINELS + 1;
+  //   final int SHIFT = LOWEST_ASCII + NUM_SENTINELS + 1;
     
-    int sentinel = 0;
-    int[] T = new int[L];
+  //   int sentinel = 0;
+  //   int[] T = new int[L];
 
-    // CHANGE
-    k = 0;
-    // Construct the new text with the shifted values and the sentinels
-    for(int i = 0; i < N; i++) {
-    // for(int i = 0, k = 0; i < N; i++) {
-      String str = strs[i];
-      for (int j = 0; j < str.length(); j++)
-        T[k++] = ((int)str.charAt(j)) + SHIFT;
-      T[k++] = sentinel++;
-    }
+  //   // CHANGE
+  //   k = 0;
+  //   // Construct the new text with the shifted values and the sentinels
+  //   for(int i = 0; i < N; i++) {
+  //   // for(int i = 0, k = 0; i < N; i++) {
+  //     String str = strs[i];
+  //     for (int j = 0; j < str.length(); j++) {
+  //       T[k] = ((int)str.charAt(j)) + SHIFT;
+  // 	k++;
+  //     }
+  //     T[k] = sentinel;
+  //     sentinel++;
+  //     k++;
+  //   }
 
-    // CHANGE
-    String tmp = intArrToString(T);
-    SuffixArray sa = new SuffixArray(tmp);
-    // // SuffixArray sa = new SuffixArray(T);
-    ArrayDeque <Integer> deque = new ArrayDeque<>();
-    HashMap <Integer, Integer> windowColorCount = new HashMap<>();
-    HashSet <Integer> windowColors = new HashSet<>();
+  //   // CHANGE
+  //   String tmp = intArrToString(T);
+  //   SuffixArray sa = new SuffixArray(tmp);
+  //   // // SuffixArray sa = new SuffixArray(T);
+  //   ArrayDeque <Integer> deque = new ArrayDeque<>();
+  //   HashMap <Integer, Integer> windowColorCount = new HashMap<>();
+  //   HashSet <Integer> windowColors = new HashSet<>();
     
-    // Start the sliding window at the number of sentinels because those
-    // all get sorted first and we want to ignore them
-    int lo = NUM_SENTINELS, hi = NUM_SENTINELS, bestLCSLength = 0;
+  //   // Start the sliding window at the number of sentinels because those
+  //   // all get sorted first and we want to ignore them
+  //   int lo = NUM_SENTINELS, hi = NUM_SENTINELS, bestLCSLength = 0;
 
-    // Add the first color
-    int firstColor = indexMap[sa.sa[hi]];
-    windowColors.add(new Integer(firstColor));
-    windowColorCount.put(new Integer(firstColor), new Integer(1));
+  //   // Add the first color
+  //   int firstColor = indexMap[sa.sa[hi]];
+  //   windowColors.add(new Integer(firstColor));
+  //   windowColorCount.put(new Integer(firstColor), new Integer(1));
 
-    int count = 0;
+  //   int count = 0;
     
-    // Maintain a sliding window between lo and hi
-    while(hi < L) {
+  //   // Maintain a sliding window between lo and hi
+  //   while(hi < L) {
 
-      int uniqueColors = windowColors.size();
+  //     int uniqueColors = windowColors.size();
       
-      // Attempt to update the LCS
-      if (uniqueColors >= K) {
+  //     // Attempt to update the LCS
+  //     if (uniqueColors >= K) {
 	
-        // CHANGE
-    	Integer deqPeekFirst = deque.peekFirst();
-    	int deqPeekFirst_int = deqPeekFirst.intValue();	
-    	int windowLCP = sa.lcp[deqPeekFirst_int];
-    	// int windowLCP = sa.lcp[deque.peekFirst()];
+  //       // CHANGE
+  //   	Integer deqPeekFirst = deque.peekFirst();
+  //   	int deqPeekFirst_int = deqPeekFirst.intValue();	
+  //   	int windowLCP = sa.lcp[deqPeekFirst_int];
+  //   	// int windowLCP = sa.lcp[deque.peekFirst()];
 
-        if (windowLCP > 0 && bestLCSLength < windowLCP) {
-          bestLCSLength = windowLCP;
-          lcss.clear();
-        }
+  //       if (windowLCP > 0 && bestLCSLength < windowLCP) {
+  //         bestLCSLength = windowLCP;
+  //         lcss.clear();
+  //       }
 
-        if (windowLCP > 0 && bestLCSLength == windowLCP) {
+  //       if (windowLCP > 0 && bestLCSLength == windowLCP) {
 
-          // Construct the current LCS within the window interval
-          int pos = sa.sa[lo];
-          char[] lcs = new char[windowLCP];
-          for (int i = 0; i < windowLCP; i++) lcs[i] = (char)(T[pos+i] - SHIFT);
+  //         // Construct the current LCS within the window interval
+  //         int pos = sa.sa[lo];
+  //         char[] lcs = new char[windowLCP];
+  //         for (int i = 0; i < windowLCP; i++) lcs[i] = (char)(T[pos+i] - SHIFT);
 
-    	  // CHANGE
-          lcss.add(new String(lcs, 0, lcs.length));
-          // lcss.add(new String(lcs));
+  //   	  // CHANGE
+  //         lcss.add(new String(lcs, 0, lcs.length));
+  //         // lcss.add(new String(lcs));
 
-          // If you wish to find the original strings to which this longest 
-          // common substring belongs to the indexes of those strings can be
-          // found in the windowColors set, so just use those indexes on the 'strs' array
+  //         // If you wish to find the original strings to which this longest 
+  //         // common substring belongs to the indexes of those strings can be
+  //         // found in the windowColors set, so just use those indexes on the 'strs' array
 
-        }
+  //       }
 
-        // Update the colors in our window
-        int lastColor = indexMap[sa.sa[lo]];
-    	// CHANGE
-        Integer colorCount = windowColorCount.get(new Integer(lastColor));
-        // Integer colorCount = windowColorCount.get(lastColor);
-    	int check = colorCount.intValue();
-    	// CHANGE
-    	boolean removed = false;
-        if (colorCount.intValue() == 1) {
-    	    windowColors.remove(new Integer(lastColor));
-    	    removed = true;
-    	} 
-    	// if (colorCount == 1) windowColors.remove(lastColor);
-    	// CHANGE
-        windowColorCount.put(new Integer(lastColor), new Integer(colorCount.intValue() - 1));
-        // windowColorCount.put(lastColor, colorCount - 1);
+  //       // Update the colors in our window
+  //       int lastColor = indexMap[sa.sa[lo]];
+  //   	// CHANGE
+  //       Integer colorCount = windowColorCount.get(new Integer(lastColor));
+  //       // Integer colorCount = windowColorCount.get(lastColor);
+  //   	int check = colorCount.intValue();
+  //   	// CHANGE
+  //   	boolean removed = false;
+  //       if (colorCount.intValue() == 1) {
+  //   	    windowColors.remove(new Integer(lastColor));
+  //   	    removed = true;
+  //   	} 
+  //   	// if (colorCount == 1) windowColors.remove(lastColor);
+  //   	// CHANGE
+  //       windowColorCount.put(new Integer(lastColor), new Integer(colorCount.intValue() - 1));
+  //       // windowColorCount.put(lastColor, colorCount - 1);
 	
-    	// CHANGE
-    	if (!deque.isEmpty()) {
-    	    // CHANGE
-    	    deqPeekFirst = deque.peekFirst();
-    	    boolean deqPeekLessThanLo = deqPeekFirst.intValue() <= lo;
+  //   	// CHANGE
+  //   	if (!deque.isEmpty()) {
+  //   	    // CHANGE
+  //   	    deqPeekFirst = deque.peekFirst();
+  //   	    boolean deqPeekLessThanLo = deqPeekFirst.intValue() <= lo;
 	    	    
-    	    // Remove the head if it's outside the new range: [lo+1, hi)
-    	    while (!deque.isEmpty() && deqPeekLessThanLo) {
-    		deque.removeFirst();
-    		deqPeekFirst = deque.peekFirst();
-    		if (deqPeekFirst != null) {
-    		    deqPeekLessThanLo = deqPeekFirst.intValue() <= lo;
-    		} else {
-    		    deqPeekLessThanLo = false;
-    		}
-    	    }
+  //   	    // Remove the head if it's outside the new range: [lo+1, hi)
+  //   	    while (!deque.isEmpty() && deqPeekLessThanLo) {
+  //   		deque.removeFirst();
+  //   		deqPeekFirst = deque.peekFirst();
+  //   		if (deqPeekFirst != null) {
+  //   		    deqPeekLessThanLo = deqPeekFirst.intValue() <= lo;
+  //   		} else {
+  //   		    deqPeekLessThanLo = false;
+  //   		}
+  //   	    }
 
-    	}
+  //   	}
 		
-        // Decrease the window size
-        lo++;
+  //       // Decrease the window size
+  //       lo++;
 
-      // Increase the window size because we don't have enough colors
-      } else if(++hi < L) {
-
-    	int nextColor = indexMap[sa.sa[hi]];
-    	// CHANGE 
-    	Integer nextColor_Int = new Integer(nextColor);
+  //     // Increase the window size because we don't have enough colors
+  //     } else if(hi+1 < L) {
+  // 	  hi++;
+  //   	int nextColor = indexMap[sa.sa[hi]];
+  //   	// CHANGE 
+  //   	Integer nextColor_Int = new Integer(nextColor);
 	
-        // Update the colors in our window
-    	// CHANGE
-        windowColors.add(nextColor_Int);
-        // windowColors.add(nextColor);
-    	// CHANGE
-        Integer colorCount = windowColorCount.get(nextColor_Int);
-        // Integer colorCount = windowColorCount.get(nextColor);
-    	// CHANGE
-        if (colorCount == null) colorCount = new Integer(0);
-        // if (colorCount == null) colorCount = 0;
-    	// CHANGE
-        windowColorCount.put(nextColor_Int, new Integer(colorCount.intValue() + 1));
-        // windowColorCount.put(nextColor, colorCount + 1);
+  //       // Update the colors in our window
+  //   	// CHANGE
+  //       windowColors.add(nextColor_Int);
+  //       // windowColors.add(nextColor);
+  //   	// CHANGE
+  //       Integer colorCount = windowColorCount.get(nextColor_Int);
+  //       // Integer colorCount = windowColorCount.get(nextColor);
+  //   	// CHANGE
+  //       if (colorCount == null) colorCount = new Integer(0);
+  //       // if (colorCount == null) colorCount = 0;
+  //   	// CHANGE
+  //       windowColorCount.put(nextColor_Int, new Integer(colorCount.intValue() + 1));
+  //       // windowColorCount.put(nextColor, colorCount + 1);
 
-    	// CHANGE
-    	if (!deque.isEmpty()) {	
-    	    // CHANGE
-    	    Integer deqPeekLast = deque.peekLast();
-    	    int deqPeekLast_int = deqPeekLast.intValue();	    
+  //   	// CHANGE
+  //   	if (!deque.isEmpty()) {	
+  //   	    // CHANGE
+  //   	    Integer deqPeekLast = deque.peekLast();
+  //   	    int deqPeekLast_int = deqPeekLast.intValue();	    
 	    
-    	    // CHANGE
-    	    // Remove all the worse values in the back of the deque
-    	    while(!deque.isEmpty() && sa.lcp[deqPeekLast_int] > sa.lcp[hi-1]) {
-    		// while(!deque.isEmpty() && sa.lcp[deque.peekLast()] > sa.lcp[hi-1])
-    		deque.removeLast();
-    		// CHANGE
-    		if (!deque.isEmpty()) {
-    		    deqPeekLast = deque.peekLast();
-    		    deqPeekLast_int = deqPeekLast.intValue();
-    		}
-    	    }
-    	}
+  //   	    // CHANGE
+  //   	    // Remove all the worse values in the back of the deque
+  //   	    while(!deque.isEmpty() && sa.lcp[deqPeekLast_int] > sa.lcp[hi-1]) {
+  //   		// while(!deque.isEmpty() && sa.lcp[deque.peekLast()] > sa.lcp[hi-1])
+  //   		deque.removeLast();
+  //   		// CHANGE
+  //   		if (!deque.isEmpty()) {
+  //   		    deqPeekLast = deque.peekLast();
+  //   		    deqPeekLast_int = deqPeekLast.intValue();
+  //   		}
+  //   	    }
+  //   	}
 
-    	// CHANGE
-        deque.addLast(new Integer(hi-1));
-        // deque.addLast(hi-1);
+  //   	// CHANGE
+  //       deque.addLast(new Integer(hi-1));
+  //       // deque.addLast(hi-1);
 
-      }
-      count++;
-    }
+  //     }
+  //     count++;
+  //   }
 
-    return lcss;
+  //   return lcss;
 
-  }
+  // }
 
   // // public void display() {
   // //   System.out.printf("-----i-----SA-----LCP---Suffix\n");

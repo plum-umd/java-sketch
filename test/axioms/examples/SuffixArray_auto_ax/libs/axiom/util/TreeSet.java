@@ -19,7 +19,13 @@ class TreeSet {
     }
 
     axiom Object size(Object add!(TreeSet s, Object e)) {
-	return contains(s, e) ? size(s) : size(s)+1;
+	boolean b = contains(s, e);
+	if (b) {
+	    return size(s);
+	} else {
+	    return size(s)+1;
+	}
+	// return contains(s, e) ? size(s) : size(s)+1;
     }
 
     axiom Object size(Object clear!(TreeSet s)) {

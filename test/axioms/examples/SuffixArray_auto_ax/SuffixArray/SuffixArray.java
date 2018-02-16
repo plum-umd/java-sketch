@@ -318,11 +318,13 @@ class SuffixArray {
       for (int j = 0; j < str.length(); j++) {
         int asciiVal = str.charAt(j);
         if (asciiVal < LOWEST_ASCII) LOWEST_ASCII = asciiVal;
-        indexMap[k++] = i;
+	k++;
+        indexMap[k] = i;
       }
 
       // Record that the sentinel belongs to string i
-      indexMap[k++] = i;
+      k++;
+      indexMap[k] = i;
 
     }
 
@@ -337,9 +339,13 @@ class SuffixArray {
     for(int i = 0; i < N; i++) {
     // for(int i = 0, k = 0; i < N; i++) {
       String str = strs[i];
-      for (int j = 0; j < str.length(); j++)
-        T[k++] = ((int)str.charAt(j)) + SHIFT;
-      T[k++] = sentinel++;
+      for (int j = 0; j < str.length(); j++) {
+	  k++;
+	  T[k] = ((int)str.charAt(j)) + SHIFT;
+      }
+      k++;
+      sentinel++;
+      T[k] = sentinel;
     }
 
     // CHANGE
@@ -437,8 +443,8 @@ class SuffixArray {
         lo++;
 
       // Increase the window size because we don't have enough colors
-      } else if(++hi < L) {
-
+      } else if(hi < L) {
+	hi++;
     	int nextColor = indexMap[sa.sa[hi]];
     	// CHANGE 
     	Integer nextColor_Int = new Integer(nextColor);

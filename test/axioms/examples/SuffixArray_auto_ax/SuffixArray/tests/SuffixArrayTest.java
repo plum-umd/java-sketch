@@ -82,6 +82,8 @@ public class SuffixArrayTest {
     // List <String> list = new ArrayList<>();
 
     String s = "aabaab";
+    boolean cont1 = false;
+    boolean cont2 = false;
     SuffixArray sa = new SuffixArray(s);
     TreeSet <String> lrss = sa.lrs();
     // list.addAll(lrss);
@@ -89,7 +91,8 @@ public class SuffixArrayTest {
     assert 1 == lrss.size();
     // assertEquals(1, lrss.size());
     // // CHANGE
-    assert lrss.contains("aab");    
+    cont1 = lrss.contains("aab");
+    assert cont1;
     // // assertEquals("aab", list.get(0));
     // // list.clear();
 
@@ -110,7 +113,8 @@ public class SuffixArrayTest {
     assert lrss.size() == 1;
     // assertEquals(1, lrss.size());
     // CHANGE
-    assert lrss.contains("a");
+    cont1 = lrss.contains("a");
+    assert cont1;
     // assertEquals("a", list.get(0));
     // list.clear();
 
@@ -122,8 +126,10 @@ public class SuffixArrayTest {
     assert lrss.size() == 2;
     // assertEquals(2, lrss.size() );
     // CHANGE
-    assert lrss.contains("a");
-    assert lrss.contains("b");
+    cont1 = lrss.contains("a");
+    cont2 = lrss.contains("b");
+    assert cont1;
+    assert cont2;
     // assertEquals("a", list.get(0));
     // assertEquals("b", list.get(1));
     // list.clear();
@@ -135,8 +141,10 @@ public class SuffixArrayTest {
     assert lrss.size() == 2;
     // assertEquals(2, lrss.size() );
     // CHANGE
-    assert lrss.contains("YY");
-    assert lrss.contains("ZZ");
+    cont1 = lrss.contains("YY");
+    cont2 = lrss.contains("ZZ");
+    assert cont1;
+    assert cont2;
     // assertEquals("YY", list.get(0));
     // assertEquals("ZZ", list.get(1));
     // list.clear();
@@ -149,7 +157,8 @@ public class SuffixArrayTest {
     assert lrss.size() == 1;
     // assertEquals(1, lrss.size() );
     // CHANGE
-    assert lrss.contains("AAAAA");
+    cont1 = lrss.contains("AAAAA");
+    assert cont1;
     // assertEquals("AAAAA", list.get(0));
     // list.clear();
 
@@ -196,19 +205,19 @@ public class SuffixArrayTest {
 
   // }
 
-  @Test
-  public void testLCS() {
-    String[] strs = {"abcde", "gear", "#"};
-    String a = "a";
-    TreeSet <String> lcss = SuffixArray.lcs(strs, 2);
+  // @Test
+  // public void testLCS() {
+  //   String[] strs = {"abcde", "gear", "#"};
+  //   String a = "a";
+  //   TreeSet <String> lcss = SuffixArray.lcs(strs, 2);
     
-    assert lcss.size() == 2;
-      // assertEquals( SuffixArray.lcs(strs, 2), "a" );
-    // assertEquals( SuffixArray.lcs("abcde", "xzy", '#'), null );
-    // assertEquals( SuffixArray.lcs("cabbage", "garbage", '#'), "bage" );
-    // assertEquals( SuffixArray.lcs("123-345-4566", "4-345-4566-7653", '#'), "-345-4566" );
+  //   assert lcss.size() == 2;
+  //     // assertEquals( SuffixArray.lcs(strs, 2), "a" );
+  //   // assertEquals( SuffixArray.lcs("abcde", "xzy", '#'), null );
+  //   // assertEquals( SuffixArray.lcs("cabbage", "garbage", '#'), "bage" );
+  //   // assertEquals( SuffixArray.lcs("123-345-4566", "4-345-4566-7653", '#'), "-345-4566" );
 
-  }
+  // }
 
   // static int randNum(int min, int max) {
   //   int range = max - min + 1;

@@ -6,7 +6,7 @@ class ArrayDeque {
 
     @adt
     @pure
-    Object peekFirst_help(int i, int j);
+    Object peekFirstHelp(int i, int j);
     
     @adt
     @pure
@@ -21,7 +21,7 @@ class ArrayDeque {
 
     @adt
     @pure
-    Object peekLast_help(int i, int j);
+    Object peekLastHelp(int i, int j);
     
     @adt
     Object removeLast();
@@ -62,24 +62,24 @@ class ArrayDeque {
     }
 
     axiom Object peekLast(Object removeLast!(ArrayDeque d)) {
-	return peekLast_help(d, 0, 1);
+	return peekLastHelp(d, 0, 1);
     }
 
-    axiom Object peekLast_help(Object removeLast!(ArrayDeque d), int i, int j) {
-	return peekLast_help(d,i,j+1);
+    axiom Object peekLastHelp(Object removeLast!(ArrayDeque d), int i, int j) {
+	return peekLastHelp(d,i,j+1);
     }
 
     axiom Object peekLast(Object removeFirst!(ArrayDeque d)) {
-	return peekLast_help(d, 1, 0);
+	return peekLastHelp(d, 1, 0);
     }
 
-    axiom Object peekLast_help(Object removeFirst!(ArrayDeque d), int i, int j) {
-	return peekLast_help(d, i+1, j);
+    axiom Object peekLastHelp(Object removeFirst!(ArrayDeque d), int i, int j) {
+	return peekLastHelp(d, i+1, j);
     }
     
-    axiom Object peekLast_help(Object addLast!(ArrayDeque d, Object e), int i, int j) {
+    axiom Object peekLastHelp(Object addLast!(ArrayDeque d, Object e), int i, int j) {
 	if (j > 0) {
-	    return peekLast_help(d, i, j-1);
+	    return peekLastHelp(d, i, j-1);
 	} else if (i > 0) {
 	    return size(d) == 0 ? null : e;
 	} else {
@@ -96,29 +96,29 @@ class ArrayDeque {
     }
 
     axiom Object peekFirst(Object removeFirst!(ArrayDeque d)) {
-	return peekFirst_help(d, 1, 0);
+	return peekFirstHelp(d, 1, 0);
     }
 
     axiom Object peekFirst(Object removeLast!(ArrayDeque d)) {
-	return peekFirst_help(d, 0, 1);
+	return peekFirstHelp(d, 0, 1);
     }
 
-    axiom Object peekFirst_help(Object removeFirst!(ArrayDeque d), int i, int j) {
-	return peekFirst_help(d, i+1, j);
+    axiom Object peekFirstHelp(Object removeFirst!(ArrayDeque d), int i, int j) {
+	return peekFirstHelp(d, i+1, j);
     }
 
-    axiom Object peekFirst_help(Object removeLast!(ArrayDeque d), int i, int j) {
-	return peekFirst_help(d, i, j+1);
+    axiom Object peekFirstHelp(Object removeLast!(ArrayDeque d), int i, int j) {
+	return peekFirstHelp(d, i, j+1);
     }
 
-    axiom Object peekFirst_help(Object addLast!(ArrayDeque d, Object e), int i, int j) {
+    axiom Object peekFirstHelp(Object addLast!(ArrayDeque d, Object e), int i, int j) {
 	if (size(d) == i) {
 	    if (j > 0) {
 		return null;
 	    }
 	    return e;
 	} else {
-	    return peekFirst_help(d, i, j-1);
+	    return peekFirstHelp(d, i, j-1);
 	}
     }
 
