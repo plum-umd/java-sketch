@@ -566,10 +566,17 @@ class Translator(object):
                 typs.append(tname)
             nm = ''
             for c in cons:
-                if len(typs) == len(c.param_typs()) and \
-                   self.match_loose(typs, c.param_typs(), tparam_nms):
-                    nm = str(c)
-                    break
+                # print("\tHERE23: "+str(c))
+                if nm == '':
+                    if len(typs) == len(c.param_typs()) and \
+                       self.match_loose(typs, c.param_typs(), tparam_nms):
+                        nm = str(c)
+                        # break
+                else:
+                    if len(typs) == len(c.param_typs()) and \
+                       all(map(lambda (a,b): (str(a) == str(b)), zip(typs, c.param_typs()))):
+                        nm = str(c)
+                        break
             self.printt(nm)
         else:
             self.printt('{0}_{0}'.format(str(obj_cls)))
@@ -705,7 +712,8 @@ class Translator(object):
 
     @v.when(StringLiteralExpr)
     def visit(self, n, **kwargs):
-        self.printt('String_String_char_int_int(new Object(__cid=String()), new Array_char(length={1}+1, A="{0}"), 0, {1})'.format(n.value, len(n.value)))
+        length = len(n.value) - n.value.count("\\n")
+        self.printt('String_String_char_int_int(new Object(__cid=String()), new Array_char(length={1}+1, A="{0}"), 0, {1})'.format(n.value, length))
 
     @v.when(CharLiteralExpr)
     def visit(self, n, **kwargs):
@@ -1038,14 +1046,16 @@ class Translator(object):
     def identify_potentials(self, callexpr, cls):
         mtds = []
         call_arg_typs = callexpr.arg_typs()
+        # print("HERE23: "+str(callexpr.name)+", "+str(cls)+", "+str(map(lambda t: t.name, call_arg_typs)))
         for key,val in cls.symtab.items():
             if type(val) != MethodDeclaration: continue
             tparam_names = map(lambda t: t.name, val.typeParameters)
             tparam_names.extend(map(lambda t: t.name, val.get_coid().typeParameters))
-            
+            # print("\tHERE23: "+str(val.name)+", "+str(tparam_names))
             if callexpr.name == val.name and len(callexpr.args) == len(val.parameters):
                 if all(map(lambda t: t[1].name in tparam_names or utils.is_subtype(t[0], t[1]),
                            zip(call_arg_typs, val.param_typs()))):
+                    # print("\t\tHERE23: "+str(val.name)+", "+str(tparam_names))   
                     mtds.append(val)
         return mtds
 
