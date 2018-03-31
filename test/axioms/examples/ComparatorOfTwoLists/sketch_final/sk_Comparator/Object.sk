@@ -15,11 +15,11 @@ Object equals_Object_Object(Object a, Object b) {
     }
     return (new Object(__cid=-4, _bit=false));
   }
-  return (a.__cid == (new Object(__cid=-2, _int=FileReaderr()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=FileOutputStream()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=File()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=PrintStream()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Comparator()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=FileWriterr()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(a, b) : a.__cid == (new Object(__cid=-2, _int=Number()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=BufferedWriter()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=CommunicationWithFiles()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(a, b) : a.__cid == (new Object(__cid=-2, _int=StringBuffer()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Tester()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(a, b) : a.__cid == (new Object(__cid=-2, _int=StringBuilder()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(a, b) : null);
+  return (a.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=FileWriterr()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=FileOutputStream()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(a, b) : a.__cid == (new Object(__cid=-2, _int=PrintStream()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Comparator()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=FileReaderr()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=File()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=CommunicationWithFiles()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=BufferedWriter()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=StringBuffer()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(a, b) : a.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Tester()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Number()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(a, b) : a.__cid == (new Object(__cid=-2, _int=StringBuilder()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(a, b) : null);
 }
 
 Object hashCode_Object(Object o) {
-  return (o != null ? (o.__cid == (new Object(__cid=-2, _int=FileReaderr()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=FileOutputStream()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=File()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=PrintStream()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Comparator()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=FileWriterr()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Character()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Number()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=BufferedWriter()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=CommunicationWithFiles()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=String()))._int ? hashCode@String(o) : o.__cid == (new Object(__cid=-2, _int=StringBuffer()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Tester()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Integer()))._int ? hashCode@Integer(o) : o.__cid == (new Object(__cid=-2, _int=StringBuilder()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Object()))._int ? hashCode@Object(o) : null) : (new Object(__cid=-2, _int=0)));
+  return (o != null ? (o.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=FileWriterr()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=FileOutputStream()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Character()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=PrintStream()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Comparator()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=FileReaderr()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=File()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=CommunicationWithFiles()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=BufferedWriter()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=StringBuffer()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=String()))._int ? hashCode@String(o) : o.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Tester()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Number()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Integer()))._int ? hashCode@Integer(o) : o.__cid == (new Object(__cid=-2, _int=StringBuilder()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Object()))._int ? hashCode@Object(o) : null) : (new Object(__cid=-2, _int=0)));
 }
 
 Object equals_Object(Object self, Object obj) {
@@ -36,21 +36,21 @@ struct Object {
   Object            _count_StringBuilder;
   Object            value_Integer;
   Object            bool_Boolean;
-  Object            _value_StringBuffer;
-  Object            _count_StringBuffer;
   Object            _value_String;
   Object            _count_String;
+  Object            _value_StringBuffer;
+  Object            _count_StringBuffer;
   Object            writer_BufferedWriter;
-  Object            value_Character;
-  Object            fname_FileWriterr;
   Object            path_File;
   Object            data_File;
   Object            path_FileReaderr;
   Object            data_FileReaderr;
+  Object            value_Character;
+  Object            fname_FileWriterr;
   ArrayList         _arraylist;
-  BufferedReader    _bufferedreader;
   PrintStream       _printstream;
   FileOutputStream  _fileoutputstream;
+  BufferedReader    _bufferedreader;
   Array_bit         _array_bit;
   Array_char        _array_char;
   Array_int         _array_int;

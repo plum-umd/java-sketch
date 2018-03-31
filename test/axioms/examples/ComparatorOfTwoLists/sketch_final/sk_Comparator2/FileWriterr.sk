@@ -1,0 +1,11 @@
+package FileWriterr;
+
+Object FileWriterr_FileWriterr(Object self) {
+    return self;
+}
+
+Object FileWriterr_FileWriterr_String(Object self, Object fname) {
+  self.fname_FileWriterr = fname;
+  return self;
+}
+

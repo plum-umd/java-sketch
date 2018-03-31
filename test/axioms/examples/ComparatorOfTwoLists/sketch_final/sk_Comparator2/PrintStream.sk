@@ -1,0 +1,131 @@
+package PrintStream;
+
+adt PrintStream {
+    Printstream  { }
+    Printstream_fileoutputstream  { Object fos; }
+    Close        { PrintStream self; }
+    Closeb       { PrintStream self; }
+    Printb_string       { PrintStream self; Object s; }
+    Print_string        { PrintStream self; Object s; }
+}
+
+Object PrintStream_PrintStream() {
+    return new Object(__cid=PrintStream(), _printstream=new Printstream());
+}
+
+Object PrintStream_Object_FileOutputStream(Object fos) {
+    return new Object(__cid=PrintStream(), _printstream=new Printstream_fileoutputstream(fos=fos));
+}
+
+Object close_Object(Object self) {
+    return new Object(__cid=PrintStream(), _printstream=new Close(self=self._printstream));
+}
+
+Object closeb_Object(Object self) {
+    return new Object(__cid=PrintStream(), _printstream=new Closeb(self=self._printstream));
+}
+
+Object printb_Object_String(Object self, Object s) {
+    return new Object(__cid=PrintStream(), _printstream=new Printb_string(self=self._printstream, s=s));
+}
+
+Object print_Object_String(Object self, Object s) {
+    return new Object(__cid=PrintStream(), _printstream=new Print_string(self=self._printstream, s=s));
+}
+
+Object xform_PrintStream(PrintStream self) {
+  switch(self) {
+  case Printstream: {
+    return xform_printstream_PrintStream(self);
+  }
+  case Printstream_fileoutputstream: {
+    return xform_PrintStream_PrintStream_FileOutputStream(self, self.fos);
+  }
+  case Close: {
+    return xform_close_PrintStream(self.self);
+  }
+  case Closeb: {
+    return xform_closeb_PrintStream(self.self);
+  }
+  case Printb_string: {
+    return xform_printb_PrintStream_String(self.self, self.s);
+  }
+  case Print_string: {
+    return xform_print_PrintStream_String(self.self, self.s);
+  }
+  }
+
+  return null;
+}
+Object xform_closeb_PrintStream(PrintStream self) {
+  switch(self) {
+  case Printstream: { assert false; }
+  case Printstream_fileoutputstream: { assert false; }
+  case Close: { assert false; }
+  case Closeb: { assert false; }
+  case Printb_string: { assert false; }
+  case Print_string: { assert false; }
+  }
+
+  return null;
+}
+Object xform_close_PrintStream(PrintStream self) {
+  switch(self) {
+  case Printstream: { assert false; }
+  case Printstream_fileoutputstream: { assert false; }
+  case Close: { assert false; }
+  case Closeb: { assert false; }
+  case Printb_string: { assert false; }
+  case Print_string: { assert false; }
+  }
+
+  return null;
+}
+Object xform_PrintStream_PrintStream_FileOutputStream(PrintStream self, Object fos) {
+  switch(self) {
+  case Printstream: { assert false; }
+  case Printstream_fileoutputstream: { assert false; }
+  case Close: { assert false; }
+  case Closeb: { assert false; }
+  case Printb_string: { assert false; }
+  case Print_string: { assert false; }
+  }
+
+  return null;
+}
+Object xform_printb_PrintStream_String(PrintStream self, Object s) {
+  switch(self) {
+  case Printstream: { assert false; }
+  case Printstream_fileoutputstream: { assert false; }
+  case Close: { assert false; }
+  case Closeb: { assert false; }
+  case Printb_string: { assert false; }
+  case Print_string: { assert false; }
+  }
+
+  return null;
+}
+Object xform_print_PrintStream_String(PrintStream self, Object s) {
+  switch(self) {
+  case Printstream: { assert false; }
+  case Printstream_fileoutputstream: { assert false; }
+  case Close: { assert false; }
+  case Closeb: { assert false; }
+  case Printb_string: { assert false; }
+  case Print_string: { assert false; }
+  }
+
+  return null;
+}
+Object xform_printstream_PrintStream(PrintStream self) {
+  switch(self) {
+  case Printstream: { assert false; }
+  case Printstream_fileoutputstream: { assert false; }
+  case Close: { assert false; }
+  case Closeb: { assert false; }
+  case Printb_string: { assert false; }
+  case Print_string: { assert false; }
+  }
+
+  return null;
+}

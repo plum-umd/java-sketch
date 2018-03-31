@@ -1,0 +1,364 @@
+package String;
+
+Object String_String(Object self) {
+    return self;
+}
+
+Object String_String_char_int_int(Object self, Object ca, Object offset, Object count) {
+  if (offset._int > (new Object(__cid=-2, _int=0))._int && offset._int < ca._array_char.length._int) {
+    Object tmp = Wrap_Array_char(new Array_char(length=count));
+    for (Object i = (new Object(__cid=-2, _int=0)); i._int < count._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+      tmp._array_char.A[i._int] = ca._array_char.A[i._int + offset._int];
+    }
+    self._value_String = tmp;
+  }
+  else {
+    self._value_String = ca;
+  }
+  self._count_String = count;
+  return self;
+}
+
+Object String_String_byte(Object self, Object bytes) {
+  Object len = bytes._array_char.length;
+  self._value_String = Wrap_Array_char(new Array_char(length=len));
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < len._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    self._value_String._array_char.A[i._int] = (new Object(__cid=-3, _char=((char)(bytes._array_char.A[i._int]))))._char;
+  }
+  self._count_String = len;
+  return self;
+}
+
+Object startsWith_String(Object self, Object suffix) {
+  Object len = (suffix.__cid == (new Object(__cid=-2, _int=String()))._int ? length@String(suffix) : null);
+  if (len._int > (self.__cid == (new Object(__cid=-2, _int=String()))._int ? length@String(self) : null)._int) return (new Object(__cid=-4, _bit=false));
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < len._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    if ((self.__cid == (new Object(__cid=-2, _int=String()))._int ? charAt_int@String(self, i) : null)._char != (suffix.__cid == (new Object(__cid=-2, _int=String()))._int ? charAt_int@String(suffix, i) : null)._char) {
+      return (new Object(__cid=-4, _bit=false));
+    }
+  }
+  return (new Object(__cid=-4, _bit=true));
+}
+
+Object charAt_int(Object self, Object index) {
+  if ((new Object(__cid=-2, _int=0))._int <= index._int && index._int < self._count_String._int) return (new Object(__cid=-3, _char=self._value_String._array_char.A[index._int]));
+  return (new Object(__cid=-3, _char='\0'));
+}
+
+Object length(Object self) {
+  return self._count_String;
+}
+
+Object toString(Object self) {
+  return self;
+}
+
+void setCharAt_int_char(Object self, Object i, Object c) {
+  self._value_String._array_char.A[i._int] = c._char;
+}
+
+Object indexOf_String(Object self, Object s) {
+  return indexOf_String_int@String(self, s, (new Object(__cid=-2, _int=0)));
+}
+
+Object indexOf_String_int(Object self, Object s, Object i) {
+  Object tLen = (self.__cid == (new Object(__cid=-2, _int=String()))._int ? length@String(self) : null);
+  Object sLen = (s.__cid == (new Object(__cid=-2, _int=String()))._int ? length@String(s) : null);
+  Object index = i;
+  Object mLen = (new Object(__cid=-2, _int=0));
+  Object j;
+  if (i._int >= tLen._int || i._int < (new Object(__cid=-2, _int=0))._int || sLen._int == (new Object(__cid=-2, _int=0))._int) {
+    return (new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1))._int));
+  }
+  for (j = i; (j._int < tLen._int) && (mLen._int < sLen._int) && ((j._int - index._int) < sLen._int); ) {
+    if ((self.__cid == (new Object(__cid=-2, _int=String()))._int ? charAt_int@String(self, j) : null)._char != (s.__cid == (new Object(__cid=-2, _int=String()))._int ? charAt_int@String(s, (new Object(__cid=-2, _int=j._int - index._int))) : null)._char) {
+      mLen = (new Object(__cid=-2, _int=0));
+      index = new Object(__cid=-2, _int=index._int + 1);
+      j = index;
+    }
+    else {
+      mLen = new Object(__cid=-2, _int=mLen._int + 1);
+      j = new Object(__cid=-2, _int=j._int + 1);
+    }
+  }
+  if (mLen._int != sLen._int) {
+    index = (new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1))._int));
+  }
+  return index;
+}
+
+Object indexOf_char(Object self, Object c) {
+  return indexOf_char_int@String(self, c, (new Object(__cid=-2, _int=0)));
+}
+
+Object indexOf_char_int(Object self, Object c, Object i) {
+  Object len = (self.__cid == (new Object(__cid=-2, _int=String()))._int ? length@String(self) : null);
+  Object index = (new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1))._int));
+  if (i._int >= len._int || i._int < (new Object(__cid=-2, _int=0))._int) {
+    return index;
+  }
+  for (Object j = i; j._int < len._int; j = new Object(__cid=-2, _int=j._int + 1)) {
+    if ((self.__cid == (new Object(__cid=-2, _int=String()))._int ? charAt_int@String(self, j) : null)._char == c._char) {
+      return j;
+    }
+  }
+  return index;
+}
+
+Object compareTo_String(Object self, Object str) {
+  return compare_String_String((self.__cid == (new Object(__cid=-2, _int=String()))._int ? toString@String(self) : null), str);
+}
+
+Object compare_String_String(Object s1, Object s2) {
+  Object l1 = (s1.__cid == (new Object(__cid=-2, _int=String()))._int ? length@String(s1) : null);
+  Object l2 = (s2.__cid == (new Object(__cid=-2, _int=String()))._int ? length@String(s2) : null);
+  Object lendiff = (new Object(__cid=-2, _int=l1._int - l2._int));
+  Object smaller = l1;
+  if (l1._int > l2._int) {
+    smaller = l2;
+  }
+  else {
+    for (Object i = (new Object(__cid=-2, _int=0)); i._int < smaller._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+      Object c1 = (s1.__cid == (new Object(__cid=-2, _int=String()))._int ? charAt_int@String(s1, i) : null);
+      Object c2 = (s2.__cid == (new Object(__cid=-2, _int=String()))._int ? charAt_int@String(s2, i) : null);
+      if (c1._char != c2._char) {
+        return (new Object(__cid=-3, _int=c1._char - c2._char));
+      }
+    }
+    if (lendiff._int != (new Object(__cid=-2, _int=0))._int) return lendiff;
+    return (new Object(__cid=-2, _int=0));
+  }
+}
+
+Object concat_String(Object self, Object str) {
+  Object otherLen = (str.__cid == (new Object(__cid=-2, _int=String()))._int ? length@String(str) : null);
+  if (otherLen._int == (new Object(__cid=-2, _int=0))._int) {
+    return self;
+  }
+  Object thisLen = (self.__cid == (new Object(__cid=-2, _int=String()))._int ? length@String(self) : null);
+  Object totalLen = (new Object(__cid=-2, _int=(self.__cid == (new Object(__cid=-2, _int=String()))._int ? length@String(self) : null)._int + otherLen._int));
+  Object ret = Wrap_Array_char(new Array_char(length=totalLen));
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < thisLen._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    ret._array_char.A[i._int] = (self.__cid == (new Object(__cid=-2, _int=String()))._int ? charAt_int@String(self, i) : null)._char;
+  }
+  for (Object i = thisLen; i._int < totalLen._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    ret._array_char.A[i._int] = (str.__cid == (new Object(__cid=-2, _int=String()))._int ? charAt_int@String(str, (new Object(__cid=-2, _int=i._int - thisLen._int))) : null)._char;
+  }
+  return String_String_char_int_int(new Object(__cid=String()), ret, (new Object(__cid=-2, _int=0)), totalLen);
+}
+
+Object equalsIgnoreCase_Object(Object self, Object obj) {
+  return equals_Object@String(self, obj);
+}
+
+Object equals_Object(Object self, Object obj) {
+  Object isEqual = (new Object(__cid=-4, _bit=false));
+  if (obj.__cid == String()) {
+    isEqual = (new Object(__cid=-4, _bit=true));
+    Object s = obj;
+    Object sLen = (s.__cid == (new Object(__cid=-2, _int=String()))._int ? length@String(s) : null);
+    Object tLen = (self.__cid == (new Object(__cid=-2, _int=String()))._int ? length@String(self) : null);
+    if (sLen._int != tLen._int) isEqual = (new Object(__cid=-4, _bit=false));
+    for (Object i = (new Object(__cid=-2, _int=0)); (i._int < sLen._int) && (isEqual._bit == (new Object(__cid=-4, _bit=true))._bit); i = new Object(__cid=-2, _int=i._int + 1)) {
+      if (s._value_String._array_char.A[i._int] != self._value_String._array_char.A[i._int]) {
+        isEqual = (new Object(__cid=-4, _bit=false));
+      }
+    }
+  }
+  return isEqual;
+}
+
+Object hashCode(Object self) {
+  Object n = self._count_String,  hash = (new Object(__cid=-2, _int=0)),  temp = (new Object(__cid=-2, _int=0));
+  if (n._int == (new Object(__cid=-2, _int=0))._int) {
+    return (new Object(__cid=-2, _int=0));
+  }
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < n._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    temp = (self.__cid == (new Object(__cid=-2, _int=String()))._int ? charAt_int@String(self, i) : null);
+    for (Object j = (new Object(__cid=-2, _int=0)); j._int < n._int - (new Object(__cid=-2, _int=1))._int - i._int; j = new Object(__cid=-2, _int=j._int + 1)) {
+      temp = (new Object(__cid=-2, _int=temp._int * (new Object(__cid=-2, _int=31))._int));
+    }
+    hash = (new Object(__cid=-2, _int=hash._int + temp._int));
+  }
+  return hash;
+}
+
+Object replace_char_char(Object self, Object oldChar, Object newChar) {
+  if (oldChar._char != newChar._char) {
+    Object len = self._count_String;
+    Object i = (new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1))._int));
+    Object stop = (new Object(__cid=-2, _int=0));
+    Object val = self._value_String;
+    while (i._int < len._int) {
+      i = (new Object(__cid=-2, _int=i._int + (new Object(__cid=-2, _int=1))._int));
+      if (val._array_char.A[i._int] == oldChar._char && stop._int == (new Object(__cid=-2, _int=0))._int) {
+        stop = i;
+      }
+    }
+    if (stop._int < len._int) {
+      Object buf = Wrap_Array_char(new Array_char(length=len));
+      for (Object j = (new Object(__cid=-2, _int=0)); j._int < stop._int; j = new Object(__cid=-2, _int=j._int + 1)) {
+        buf._array_char.A[j._int] = val._array_char.A[j._int];
+      }
+      while (stop._int < len._int) {
+        Object c = (new Object(__cid=-3, _char=val._array_char.A[stop._int]));
+        buf._array_char.A[stop._int] = ((c._char == oldChar._char) ? newChar : c)._char;
+        stop = new Object(__cid=-2, _int=stop._int + 1);
+      }
+      return String_String_char_int_int(new Object(__cid=String()), buf, (new Object(__cid=-2, _int=0)), len);
+    }
+  }
+  return self;
+}
+
+Object getBytes(Object self) {
+  return getBytes_String((self.__cid == (new Object(__cid=-2, _int=String()))._int ? toString@String(self) : null));
+}
+
+Object getBytes_String(Object str) {
+  Object len = (str.__cid == (new Object(__cid=-2, _int=String()))._int ? length@String(str) : null);
+  Object bytes = Wrap_Array_char(new Array_char(length=len));
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < len._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    bytes._array_char.A[i._int] = (char)((str.__cid == (new Object(__cid=-2, _int=String()))._int ? charAt_int@String(str, i) : null)._char);
+  }
+  return bytes;
+}
+
+Object substring_int(Object self, Object beginIndex) {
+  Object subLen = (new Object(__cid=-2, _int=self._count_String._int - beginIndex._int));
+  assert subLen._int > (new Object(__cid=-2, _int=0))._int;
+  return ((beginIndex._int == (new Object(__cid=-2, _int=0))._int) ? self : String_String_char_int_int(new Object(__cid=String()), self._value_String, beginIndex, subLen));
+}
+
+Object substring_int_int(Object self, Object beginIndex, Object endIndex) {
+  assert beginIndex._int >= (new Object(__cid=-2, _int=0))._int && endIndex._int <= self._value_String._array_char.length._int;
+  Object subLen = (new Object(__cid=-2, _int=endIndex._int - beginIndex._int));
+  assert subLen._int > (new Object(__cid=-2, _int=0))._int;
+  return ((beginIndex._int == (new Object(__cid=-2, _int=0))._int && endIndex._int == self._count_String._int) ? self : String_String_char_int_int(new Object(__cid=String()), self._value_String, beginIndex, subLen));
+}
+
+Object splitGetEl_String_int(Object self, Object regex, Object i) {
+  Object strs = split_String@String(self, regex);
+  return (i._int < strs._array_object.length._int ? strs._array_object.A[i._int] : null);
+}
+
+Object split_String(Object self, Object regex) {
+  return split_String_int@String(self, regex, (new Object(__cid=-2, _int=0)));
+}
+
+Object split_String_int(Object self, Object regex, Object limit) {
+  Object off = (new Object(__cid=-2, _int=0));
+  Object ch = (regex.__cid == (new Object(__cid=-2, _int=String()))._int ? charAt_int@String(regex, (new Object(__cid=-2, _int=0))) : null);
+  Object next = indexOf_char_int@String(self, ch, off);
+  Object limited = (new Object(__cid=-2, _int=limit._int > (new Object(__cid=-2, _int=0))._int));
+  Object size = (new Object(__cid=-2, _int=0));
+  while (next._int != -(new Object(__cid=-2, _int=1))._int) {
+    if (!limited._bit || size._int < limit._int - (new Object(__cid=-2, _int=1))._int) {
+      off = (new Object(__cid=-2, _int=next._int + (new Object(__cid=-2, _int=1))._int));
+      next = indexOf_char_int@String(self, ch, off);
+    }
+    else {
+      off = self._value_String._array_char.length;
+      next = (new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1))._int));
+    }
+    size = new Object(__cid=-2, _int=size._int + 1);
+  }
+  if (!limited._bit || size._int < limit._int) size = new Object(__cid=-2, _int=size._int + 1);
+  off = (new Object(__cid=-2, _int=0));
+  ch = (regex.__cid == (new Object(__cid=-2, _int=String()))._int ? charAt_int@String(regex, (new Object(__cid=-2, _int=0))) : null);
+  next = indexOf_char_int@String(self, ch, off);
+  limited = (new Object(__cid=-2, _int=limit._int > (new Object(__cid=-2, _int=0))._int));
+  Object list = Wrap_Array_Object(new Array_Object(length=size));
+  size = (new Object(__cid=-2, _int=0));
+  while (next._int != -(new Object(__cid=-2, _int=1))._int) {
+    if (!limited._bit || size._int < limit._int - (new Object(__cid=-2, _int=1))._int) {
+      list._array_object.A[size._int] = substring_int_int@String(self, off, next);
+      off = (new Object(__cid=-2, _int=next._int + (new Object(__cid=-2, _int=1))._int));
+      next = indexOf_char_int@String(self, ch, off);
+    }
+    else {
+      list._array_object.A[size._int] = substring_int_int@String(self, off, self._count_String);
+      off = self._value_String._array_char.length;
+      next = (new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1))._int));
+    }
+    size = new Object(__cid=-2, _int=size._int + 1);
+  }
+  if (off._int == (new Object(__cid=-2, _int=0))._int) {
+    Object res = Wrap_Array_Object(new Array_Object(length=new Object(__cid=-2, _int=1))); res._array_object.A[0] = self;
+    return res;
+  }
+  if (!limited._bit || size._int < limit._int) {
+    list._array_object.A[size._int] = substring_int_int@String(self, off, self._count_String);
+    size = new Object(__cid=-2, _int=size._int + 1);
+  }
+  Object resultSize = list._array_object.length;
+  if (limit._int == (new Object(__cid=-2, _int=0))._int) {
+    Object tmp = list._array_object.A[resultSize._int - (new Object(__cid=-2, _int=1))._int];
+    while (resultSize._int > (new Object(__cid=-2, _int=0))._int && (tmp.__cid == (new Object(__cid=-2, _int=String()))._int ? length@String(tmp) : null)._int == (new Object(__cid=-2, _int=0))._int) {
+      resultSize = new Object(__cid=-2, _int=resultSize._int - 1);
+    }
+  }
+  Object result = Wrap_Array_Object(new Array_Object(length=resultSize));
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < resultSize._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    result._array_object.A[i._int] = list._array_object.A[i._int];
+  }
+  return result;
+}
+
+Object split_char_int(Object self, Object ch, Object limit) {
+  Object off = (new Object(__cid=-2, _int=0));
+  Object next = indexOf_char_int@String(self, ch, off);
+  Object limited = (new Object(__cid=-2, _int=limit._int > (new Object(__cid=-2, _int=0))._int));
+  Object size = (new Object(__cid=-2, _int=0));
+  while (next._int != -(new Object(__cid=-2, _int=1))._int) {
+    if (!limited._bit || size._int < limit._int - (new Object(__cid=-2, _int=1))._int) {
+      off = (new Object(__cid=-2, _int=next._int + (new Object(__cid=-2, _int=1))._int));
+      next = indexOf_char_int@String(self, ch, off);
+    }
+    else {
+      off = self._value_String._array_char.length;
+      next = (new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1))._int));
+    }
+    size = new Object(__cid=-2, _int=size._int + 1);
+  }
+  if (!limited._bit || size._int < limit._int) size = new Object(__cid=-2, _int=size._int + 1);
+  off = (new Object(__cid=-2, _int=0));
+  next = indexOf_char_int@String(self, ch, off);
+  limited = (new Object(__cid=-2, _int=limit._int > (new Object(__cid=-2, _int=0))._int));
+  Object list = Wrap_Array_Object(new Array_Object(length=size));
+  size = (new Object(__cid=-2, _int=0));
+  while (next._int != -(new Object(__cid=-2, _int=1))._int) {
+    if (!limited._bit || size._int < limit._int - (new Object(__cid=-2, _int=1))._int) {
+      list._array_object.A[size._int] = substring_int_int@String(self, off, next);
+      off = (new Object(__cid=-2, _int=next._int + (new Object(__cid=-2, _int=1))._int));
+      next = indexOf_char_int@String(self, ch, off);
+    }
+    else {
+      list._array_object.A[size._int] = substring_int_int@String(self, off, self._count_String);
+      off = self._value_String._array_char.length;
+      next = (new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1))._int));
+    }
+    size = new Object(__cid=-2, _int=size._int + 1);
+  }
+  if (off._int == (new Object(__cid=-2, _int=0))._int) {
+    Object res = Wrap_Array_Object(new Array_Object(length=new Object(__cid=-2, _int=1))); res._array_object.A[0] = self;
+    return res;
+  }
+  if (!limited._bit || size._int < limit._int) {
+    list._array_object.A[size._int] = substring_int_int@String(self, off, self._count_String);
+    size = new Object(__cid=-2, _int=size._int + 1);
+  }
+  Object resultSize = list._array_object.length;
+  if (limit._int == (new Object(__cid=-2, _int=0))._int) {
+    Object tmp = list._array_object.A[resultSize._int - (new Object(__cid=-2, _int=1))._int];
+    while (resultSize._int > (new Object(__cid=-2, _int=0))._int && (tmp.__cid == (new Object(__cid=-2, _int=String()))._int ? length@String(tmp) : null)._int == (new Object(__cid=-2, _int=0))._int) {
+      resultSize = new Object(__cid=-2, _int=resultSize._int - 1);
+    }
+  }
+  Object result = Wrap_Array_Object(new Array_Object(length=resultSize));
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < resultSize._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    result._array_object.A[i._int] = list._array_object.A[i._int];
+  }
+  return result;
+}
+
