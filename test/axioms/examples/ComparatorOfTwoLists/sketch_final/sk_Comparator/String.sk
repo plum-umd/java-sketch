@@ -122,7 +122,7 @@ Object compare_String_String(Object s1, Object s2) {
       Object c1 = (s1.__cid == (new Object(__cid=-2, _int=String()))._int ? charAt_int@String(s1, i) : null);
       Object c2 = (s2.__cid == (new Object(__cid=-2, _int=String()))._int ? charAt_int@String(s2, i) : null);
       if (c1._char != c2._char) {
-        return (new Object(__cid=-3, _char=c1._char - c2._char));
+        return (new Object(__cid=-3, _int=c1._char - c2._char));
       }
     }
     if (lendiff._int != (new Object(__cid=-2, _int=0))._int) return lendiff;

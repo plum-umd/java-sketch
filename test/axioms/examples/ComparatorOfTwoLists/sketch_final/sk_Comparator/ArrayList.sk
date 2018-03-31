@@ -29,7 +29,9 @@ Object add_Object_String(Object self, Object e) {
 }
 
 Object addb_Object_String(Object self, Object e) {
-    return new Object(__cid=ArrayList(), _arraylist=new Addb_string(self=self._arraylist, e=e));
+    /* return new Object(__cid=ArrayList(), _arraylist=new Addb_string(self=self._arraylist, e=e)); */
+  self._arraylist = new Addb_string(self=self._arraylist, e=e);
+  return self;
 }
 
 Object get_Object_int(Object self, Object i) {

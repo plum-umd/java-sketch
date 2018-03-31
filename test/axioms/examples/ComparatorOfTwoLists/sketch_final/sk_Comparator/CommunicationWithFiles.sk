@@ -4,6 +4,42 @@ Object CommunicationWithFiles_CommunicationWithFiles(Object self) {
   return self;
 }
 
+generator Object genRead_BufferedReader_String_boolean_ArrayList_String(Object self, Object bfr, Object value, Object isAList, Object values, Object filename) {
+
+  /* if (??) { */
+  /*     /\* value = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLine_Object@BufferedReader(bfr) : null); bfr = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLineb_Object@BufferedReader(bfr) : null); *\/ */
+  /*     value = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? xform_readLine_BufferedReader@BufferedReader(bfr._bufferedreader) : null); bfr = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLineb_Object@BufferedReader(bfr) : null); */
+  /*     while (value != null) { */
+  /* 	if (value != null && !isAList._bit == (new Object(__cid=-4, _bit=true))._bit) { */
+  /* 	  Object vbar = (value.__cid == (new Object(__cid=-2, _int=String()))._int ? concat_String@String(value, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="|")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null); */
+  /* 	  (values.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? add_Object_String@ArrayList(values, (vbar.__cid == (new Object(__cid=-2, _int=String()))._int ? concat_String@String(vbar, filename) : null)) : null); values = (values.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? addb_Object_String@ArrayList(values, (vbar.__cid == (new Object(__cid=-2, _int=String()))._int ? concat_String@String(vbar, filename) : null)) : null); */
+  /* 	} */
+  /* 	/\* value = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLine_Object@BufferedReader(bfr) : null); bfr = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLineb_Object@BufferedReader(bfr) : null); *\/ */
+  /* 	value = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? xform_readLine_BufferedReader@BufferedReader(bfr._bufferedreader) : null); bfr = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLineb_Object@BufferedReader(bfr) : null); */
+  /*     } */
+  /* } */
+      
+  if ((new Object(__cid=-4, _bit=??))._bit) {
+    /* value = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLine_Object@BufferedReader(bfr) : null); bfr = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLineb_Object@BufferedReader(bfr) : null); */
+  value = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? xform_readLine_BufferedReader@BufferedReader(bfr._bufferedreader) : null); bfr = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLineb_Object@BufferedReader(bfr) : null);
+  }
+  if ((new Object(__cid=-4, _bit=??))._bit) {
+    while (value != null) {
+      value = genRead_BufferedReader_String_boolean_ArrayList_String@CommunicationWithFiles(self, bfr, value, isAList, values, filename);
+    }
+  }
+  if ((new Object(__cid=-4, _bit=??))._bit) {
+    if (value != null && !isAList._bit == (new Object(__cid=-4, _bit=true))._bit) {
+      Object vbar = (value.__cid == (new Object(__cid=-2, _int=String()))._int ? concat_String@String(value, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="|")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null);
+      (values.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? add_Object_String@ArrayList(values, (vbar.__cid == (new Object(__cid=-2, _int=String()))._int ? concat_String@String(vbar, filename) : null)) : null); values = (values.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? addb_Object_String@ArrayList(values, (vbar.__cid == (new Object(__cid=-2, _int=String()))._int ? concat_String@String(vbar, filename) : null)) : null);
+    }
+  }
+  if ((new Object(__cid=-4, _bit=??))._bit) {
+    value = genRead_BufferedReader_String_boolean_ArrayList_String@CommunicationWithFiles(self, bfr, value, isAList, values, filename);
+  }
+  return value;
+}
+
 Object ReadToArray_String_boolean(Object self, Object filename, Object isAList) {
   Object fr = null;
   Object value = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=0+1), A="")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=0));
@@ -12,16 +48,9 @@ Object ReadToArray_String_boolean(Object self, Object filename, Object isAList) 
   else { 0; }; values = (values.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? sortb_Object_Object@ArrayList(values, null) : null);
   fr = FileReaderr_FileReaderr_String(new Object(__cid=FileReaderr()), filename);
   Object bfr = BufferedReader_Object_FileReaderr(fr);
-  /* value = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLine_Object@BufferedReader(bfr) : null); bfr = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLineb_Object@BufferedReader(bfr) : null); */
-  value = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? xform_readLine_BufferedReader@BufferedReader(bfr._bufferedreader) : null); bfr = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLineb_Object@BufferedReader(bfr) : null);
-  while (value != null) {
-    if (value != null && !isAList._bit == (new Object(__cid=-4, _bit=true))._bit) {
-      Object vbar = (value.__cid == (new Object(__cid=-2, _int=String()))._int ? concat_String@String(value, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="|")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null);
-      (values.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? add_Object_String@ArrayList(values, (vbar.__cid == (new Object(__cid=-2, _int=String()))._int ? concat_String@String(vbar, filename) : null)) : null); values = (values.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? addb_Object_String@ArrayList(values, (vbar.__cid == (new Object(__cid=-2, _int=String()))._int ? concat_String@String(vbar, filename) : null)) : null);
-    }
-    /* value = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLine_Object@BufferedReader(bfr) : null); bfr = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLineb_Object@BufferedReader(bfr) : null); */
-    value = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? xform_readLine_BufferedReader@BufferedReader(bfr._bufferedreader) : null); bfr = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLineb_Object@BufferedReader(bfr) : null);
-  }
+
+  genRead_BufferedReader_String_boolean_ArrayList_String@CommunicationWithFiles(self, bfr, value, isAList, values, filename);
+
   if (fr.__cid == (new Object(__cid=-2, _int=FileReaderr()))._int) { close@FileReaderr(fr); }
   else { 0; };
   return values;
