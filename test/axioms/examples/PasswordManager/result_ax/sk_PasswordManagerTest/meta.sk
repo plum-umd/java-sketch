@@ -1,27 +1,27 @@
 package meta;
 
 // distinct class IDs
-int ArrayList()            { return 9; }
-int Assert()               { return 11; }
-int Boolean()              { return 7; }
-int Byte()                 { return 13; }
+int ArrayList()            { return 20; }
+int Assert()               { return 14; }
+int Boolean()              { return 15; }
+int Byte()                 { return 17; }
 int CharSequence()         { return 6; }
-int Character()            { return 10; }
+int Character()            { return 21; }
 int Cipher()               { return 19; }
 int Cryptographer()        { return 5; }
-int HashMap()              { return 14; }
-int Integer()              { return 15; }
-int IvParameterSpec()      { return 20; }
-int Key()                  { return 18; }
-int Mac()                  { return 16; }
+int HashMap()              { return 9; }
+int Integer()              { return 7; }
+int IvParameterSpec()      { return 13; }
+int Key()                  { return 8; }
+int Mac()                  { return 10; }
 int Object()               { return 1; }
 int PasswordManager()      { return 3; }
 int PasswordManagerTest()  { return 2; }
 int PasswordMap()          { return 4; }
-int SecretKey()            { return 21; }
-int SecretKeySpec()        { return 17; }
-int SecureRandom()         { return 8; }
-int String()               { return 12; }
+int SecretKey()            { return 16; }
+int SecretKeySpec()        { return 12; }
+int SecureRandom()         { return 11; }
+int String()               { return 18; }
 int Array()                { return -1; }
 int _int()                 { return -2; }
 int _char()                { return -3; }

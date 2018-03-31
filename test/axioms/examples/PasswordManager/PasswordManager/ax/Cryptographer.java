@@ -78,15 +78,15 @@ public class Cryptographer {
     	    return sha256_HMAC.doFinal(plainTxt);
     	}
 
-    generator byte[] genCipherText(String plainText) {
-	byte[] cipherText;
+    // generator byte[] genCipherText(String plainText) {
+    // 	byte[] cipherText;
 
-	if (??) myCypherOut.init(??, GCMSecretKey, ivParameterSpec);
-	if (??) cipherText = myCypherOut.doFinal(plainText.getBytes());
-	if (??) cipherText = genCipherText(plainText);
+    // 	if (??) myCypherOut.init(??, GCMSecretKey, ivParameterSpec);
+    // 	if (??) cipherText = myCypherOut.doFinal(plainText.getBytes());
+    // 	if (??) cipherText = genCipherText(plainText);
 	
-	return cipherText;
-    }
+    // 	return cipherText;
+    // }
     
     // Throws InvalidKeyException,
     // IllegalBlockSizeException, BadPaddingException,
@@ -103,7 +103,8 @@ public class Cryptographer {
     		myCypherOut.init(1, GCMSecretKey,ivParameterSpec);
     		byte[] cipherText = myCypherOut.doFinal(plainText.getBytes());
     		// return toHexString(cipherText);
-    		return new String(cipherText);
+    		// return new String(cipherText);		
+		return myCypherOut.toString();
     	}
 
      // throws InvalidKeyException,

@@ -74,7 +74,8 @@ public class PasswordManager {
     
 	public void addPassword(String domain, String passWord){
 		String PassEncryption = cryptographer.encrypt(passWord);
-		String domainHash = cryptographer.hash(domain);
+		// String domainHash = cryptographer.hash(domain);
+		String domainHash = domain;
 		passMap.add(domainHash, PassEncryption);
 
 	}
@@ -85,7 +86,8 @@ public class PasswordManager {
     
 	public void modifyPassword(String domain, String passWord) {
 		String PassEncryption = cryptographer.encrypt(passWord);
-		String domainHash = cryptographer.hash(domain);
+		// String domainHash = cryptographer.hash(domain);
+		String domainHash = domain;
 		passMap.add(domainHash, PassEncryption);
 	}
 
@@ -100,8 +102,9 @@ public class PasswordManager {
 	//     ,BadPaddingException, DecoderException, InvalidAlgorithmParameterException
     
 	public String getPass(String domain) {
-		String domainHash = cryptographer.hash(domain);
-		String PassEncryption = passMap.get(domainHash);
+		// String domainHash = cryptographer.hash(domain);
+      	        String domainHash = domain;
+	        String PassEncryption = passMap.get(domainHash);
 		return cryptographer.decrypt(PassEncryption);
 	}
 

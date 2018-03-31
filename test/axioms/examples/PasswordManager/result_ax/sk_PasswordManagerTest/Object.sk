@@ -11,7 +11,7 @@ Object equals_Object_Object(Object a, Object b) {
     }
     return (new Object(__cid=-4, _bit=false));
   }
-  return (a.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(a, b) : a.__cid == (new Object(__cid=-2, _int=IvParameterSpec()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Mac()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=PasswordMap()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=PasswordManager()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=SecureRandom()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=SecretKeySpec()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Byte()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(a, b) : a.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(a, b) : a.__cid == (new Object(__cid=-2, _int=PasswordManagerTest()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Cryptographer()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(a, b) : null);
+  return (a.__cid == (new Object(__cid=-2, _int=IvParameterSpec()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=PasswordManagerTest()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=SecureRandom()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Mac()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Cryptographer()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Byte()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(a, b) : a.__cid == (new Object(__cid=-2, _int=PasswordManager()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(a, b) : a.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(a, b) : a.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=SecretKeySpec()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=PasswordMap()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(a, b) : null);
 }
 
 Object equals_Object(Object self, Object obj) {
@@ -24,6 +24,15 @@ Object hashCode(Object self) {
 
 struct Object {
   int            __cid;
+  Object         passMap_PasswordMap;
+  Object         masterHash_PasswordMap;
+  Object         value_Integer;
+  Object         value_Character;
+  Object         cryptographer_PasswordManager;
+  Object         passMap_PasswordManager;
+  Object         _value_String;
+  Object         _count_String;
+  Object         b_Byte;
   Object         GCMSecretKey_Cryptographer;
   Object         Hash_secret_key_Cryptographer;
   Object         sha256_HMAC_Cryptographer;
@@ -31,22 +40,13 @@ struct Object {
   Object         randomIv_Cryptographer;
   Object         ivParameterSpec_Cryptographer;
   Object         MAX_LENGTH_PASSWORD_Cryptographer;
-  Object         _value_String;
-  Object         _count_String;
-  Object         value_Integer;
-  Object         b_Byte;
   Object         bool_Boolean;
-  Object         cryptographer_PasswordManager;
-  Object         passMap_PasswordManager;
-  Object         passMap_PasswordMap;
-  Object         masterHash_PasswordMap;
-  Object         value_Character;
-  ArrayList      _arraylist;
-  Cipher         _cipher;
   SecretKeySpec  _secretkeyspec;
   HashMap        _hashmap;
-  SecureRandom   _securerandom;
+  Cipher         _cipher;
   Mac            _mac;
+  ArrayList      _arraylist;
+  SecureRandom   _securerandom;
   Array_bit      _array_bit;
   Array_char     _array_char;
   Array_int      _array_int;

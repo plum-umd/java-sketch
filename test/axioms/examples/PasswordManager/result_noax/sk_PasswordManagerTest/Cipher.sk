@@ -30,7 +30,7 @@ void init_int_SecretKey_IvParameterSpec(Object self, Object opmode, Object key, 
 }
 
 Object doFinal_byte(Object self, Object text) {
-  Object k = (self.key_Cipher.__cid == (new Object(__cid=-2, _int=KerberosKey()))._int ? getEncoded@KerberosKey(self.key_Cipher) : self.key_Cipher.__cid == (new Object(__cid=-2, _int=SecretKeySpec()))._int ? getEncoded@SecretKeySpec(self.key_Cipher) : null);
+  Object k = (self.key_Cipher.__cid == (new Object(__cid=-2, _int=SecretKeySpec()))._int ? getEncoded@SecretKeySpec(self.key_Cipher) : self.key_Cipher.__cid == (new Object(__cid=-2, _int=KerberosKey()))._int ? getEncoded@KerberosKey(self.key_Cipher) : null);
   Object result = Wrap_Array_char(new Array_char(length=text._array_char.length));
   if (k._array_char.length._int == (new Object(__cid=-2, _int=0))._int) {
     return result;

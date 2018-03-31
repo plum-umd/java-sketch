@@ -1,0 +1,3 @@
+SKETCH version 1.7.4
+Benchmark = /Users/grumpy/Research/java-sketch/test/axioms/examples/PasswordManager/PasswordManager/../result_ax/sk_Cryptographer/main.sk
+Total time = 669

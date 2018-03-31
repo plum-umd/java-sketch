@@ -74,48 +74,86 @@ public class Cryptographer {
     	    return new String(sha256_HMAC.doFinal(plainTxt.getBytes()));
     	}
 
-    // throws InvalidKeyException,
-    // IllegalBlockSizeException, BadPaddingException,
-    // InvalidAlgorithmParameterException
-    	public String encrypt(String plainText)         {
-    		// if(plainText.length()<MAX_LENGTH_PASSWORD){	
-    		// 	int paddedPart  = plainText.length(); 
-    		// 	for (int i = paddedPart  ; i < MAX_LENGTH_PASSWORD; i++) {
-    		// 		// plainText =plainText +  paddedPart;
-    		// 	    plainText = plainText.concat("0");
-    		// 	}
-    		// }
-    		// myCypherOut.init(Cipher.ENCRYPT_MODE, GCMSecretKey,ivParameterSpec);
-	        // should be 1
-    		myCypherOut.init(??, GCMSecretKey,ivParameterSpec);
-    		byte[] cipherText = myCypherOut.doFinal(plainText.getBytes());
-    		// return toHexString(cipherText);
-    		return new String(cipherText);
-    	}
+    generator public byte[] genCipherText(String plainText) {
+	byte[] cipherText;
+	if (??) myCypherOut.init(??, GCMSecretKey, ivParameterSpec);
+	if (??) cipherText = myCypherOut.doFinal(plainText.getBytes());
+	if (??) cipherText = genCipherText(plainText);
+	return cipherText;
+    }
 
-     // throws InvalidKeyException,
-     // 	    NoSuchAlgorithmException, NoSuchPaddingException,
-     // 	    UnsupportedEncodingException, IllegalBlockSizeException,
-     // 	    BadPaddingException, InvalidAlgorithmParameterException
+    public String encrypt(String plainText) {
+	byte[] cipherText = genCipherText(plainText);
+	return new String(cipherText);
+    }
     
-    	public String decrypt(String cipherText)    {
+    // // throws InvalidKeyException,
+    // // IllegalBlockSizeException, BadPaddingException,
+    // // InvalidAlgorithmParameterException
+    // 	public String encrypt(String plainText)         {
+    // 		// if(plainText.length()<MAX_LENGTH_PASSWORD){	
+    // 		// 	int paddedPart  = plainText.length(); 
+    // 		// 	for (int i = paddedPart  ; i < MAX_LENGTH_PASSWORD; i++) {
+    // 		// 		// plainText =plainText +  paddedPart;
+    // 		// 	    plainText = plainText.concat("0");
+    // 		// 	}
+    // 		// }
+    // 		// myCypherOut.init(Cipher.ENCRYPT_MODE, GCMSecretKey,ivParameterSpec);
+    // 	        // should be 1
+    // 		myCypherOut.init(??, GCMSecretKey,ivParameterSpec);
+    // 		byte[] cipherText = myCypherOut.doFinal(plainText.getBytes());
+    // 		// return toHexString(cipherText);
+    // 		return new String(cipherText);
+    // 	}
 
-    		// myCypherOut.init(Cipher.DECRYPT_MODE, GCMSecretKey,ivParameterSpec);
-	        // should be 2
-    		myCypherOut.init(??, GCMSecretKey,ivParameterSpec);
-    		// String decryptText = new String(
-    		// 		myCypherOut.doFinal(hexStringToByteArray(cipherText)));
-		byte[] plainText = myCypherOut.doFinal(cipherText.getBytes());
-    		String decryptText = new String(plainText);  			
+    public String decrypt(String plainText) {
+	byte[] cipherText = genCipherText(plainText);
+	return new String(cipherText);
+    }    
 
-    		// if(decryptText.charAt(decryptText.length()-1)<='9'&&decryptText.charAt(decryptText.length()-1)>='0')
-    		// {
-    		// 	int beforePad = Integer.parseInt(""+decryptText.charAt(decryptText.length()-1));
-    		// 	decryptText = decryptText.substring(0,beforePad);
-    		// }
+    
+    // // throws InvalidKeyException,
+    // // IllegalBlockSizeException, BadPaddingException,
+    // // InvalidAlgorithmParameterException
+    // 	public String encrypt(String plainText)         {
+    // 		// if(plainText.length()<MAX_LENGTH_PASSWORD){	
+    // 		// 	int paddedPart  = plainText.length(); 
+    // 		// 	for (int i = paddedPart  ; i < MAX_LENGTH_PASSWORD; i++) {
+    // 		// 		// plainText =plainText +  paddedPart;
+    // 		// 	    plainText = plainText.concat("0");
+    // 		// 	}
+    // 		// }
+    // 		// myCypherOut.init(Cipher.ENCRYPT_MODE, GCMSecretKey,ivParameterSpec);
+    // 	        // should be 1
+    // 		myCypherOut.init(??, GCMSecretKey,ivParameterSpec);
+    // 		byte[] cipherText = myCypherOut.doFinal(plainText.getBytes());
+    // 		// return toHexString(cipherText);
+    // 		return new String(cipherText);
+    // 	}
+
+    //  // throws InvalidKeyException,
+    //  // 	    NoSuchAlgorithmException, NoSuchPaddingException,
+    //  // 	    UnsupportedEncodingException, IllegalBlockSizeException,
+    //  // 	    BadPaddingException, InvalidAlgorithmParameterException
+    
+    // 	public String decrypt(String cipherText)    {
+
+    // 		// myCypherOut.init(Cipher.DECRYPT_MODE, GCMSecretKey,ivParameterSpec);
+    // 	        // should be 2
+    // 		myCypherOut.init(??, GCMSecretKey,ivParameterSpec);
+    // 		// String decryptText = new String(
+    // 		// 		myCypherOut.doFinal(hexStringToByteArray(cipherText)));
+    // 		byte[] plainText = myCypherOut.doFinal(cipherText.getBytes());
+    // 		String decryptText = new String(plainText);  			
+
+    // 		// if(decryptText.charAt(decryptText.length()-1)<='9'&&decryptText.charAt(decryptText.length()-1)>='0')
+    // 		// {
+    // 		// 	int beforePad = Integer.parseInt(""+decryptText.charAt(decryptText.length()-1));
+    // 		// 	decryptText = decryptText.substring(0,beforePad);
+    // 		// }
 		
-    		return decryptText;
-    	}
+    // 		return decryptText;
+    // 	}
 
     //    // harness public static void main()//String[] args) // throws NoSuchAlgorithmException,
     //    // 			// NoSuchPaddingException, NoSuchProviderException,

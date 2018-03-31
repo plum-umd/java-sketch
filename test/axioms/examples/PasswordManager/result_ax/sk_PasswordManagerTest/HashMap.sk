@@ -2,12 +2,12 @@ package HashMap;
 
 adt HashMap {
     Hashmap      { }
-    Put          { HashMap self; Object k; Object v; }
-    Putb         { HashMap self; Object k; Object v; }
-    Removeb      { HashMap self; Object k; }
-    Remove       { HashMap self; Object k; }
-    Get          { HashMap self; Object k; }
-    Containskey  { HashMap self; Object k; }
+    Put_object_object          { HashMap self; Object k; Object v; }
+    Putb_object_object         { HashMap self; Object k; Object v; }
+    Removeb_object      { HashMap self; Object k; }
+    Remove_object       { HashMap self; Object k; }
+    Get_object          { HashMap self; Object k; }
+    Containskey_object  { HashMap self; Object k; }
 }
 
 Object HashMap_HashMap() {
@@ -15,27 +15,27 @@ Object HashMap_HashMap() {
 }
 
 Object put_Object_Object_Object(Object self, Object k, Object v) {
-    return new Object(__cid=HashMap(), _hashmap=new Put(self=self._hashmap, k=k, v=v));
+    return new Object(__cid=HashMap(), _hashmap=new Put_object_object(self=self._hashmap, k=k, v=v));
 }
 
 Object putb_Object_Object_Object(Object self, Object k, Object v) {
-    return new Object(__cid=HashMap(), _hashmap=new Putb(self=self._hashmap, k=k, v=v));
+    return new Object(__cid=HashMap(), _hashmap=new Putb_object_object(self=self._hashmap, k=k, v=v));
 }
 
 Object removeb_Object_Object(Object self, Object k) {
-    return new Object(__cid=HashMap(), _hashmap=new Removeb(self=self._hashmap, k=k));
+    return new Object(__cid=HashMap(), _hashmap=new Removeb_object(self=self._hashmap, k=k));
 }
 
 Object remove_Object_Object(Object self, Object k) {
-    return new Object(__cid=HashMap(), _hashmap=new Remove(self=self._hashmap, k=k));
+    return new Object(__cid=HashMap(), _hashmap=new Remove_object(self=self._hashmap, k=k));
 }
 
 Object get_Object_Object(Object self, Object k) {
-    return new Object(__cid=HashMap(), _hashmap=new Get(self=self._hashmap, k=k));
+    return new Object(__cid=HashMap(), _hashmap=new Get_object(self=self._hashmap, k=k));
 }
 
 Object containsKey_Object_Object(Object self, Object k) {
-    return new Object(__cid=HashMap(), _hashmap=new Containskey(self=self._hashmap, k=k));
+    return new Object(__cid=HashMap(), _hashmap=new Containskey_object(self=self._hashmap, k=k));
 }
 
 Object xform_HashMap(HashMap self) {
@@ -43,82 +43,24 @@ Object xform_HashMap(HashMap self) {
   case Hashmap: {
     return xform_hashmap_HashMap(self);
   }
-  case Put: {
+  case Put_object_object: {
     return xform_put_HashMap_Object_Object(self.self, self.k, self.v);
   }
-  case Putb: {
+  case Putb_object_object: {
     return xform_putb_HashMap_Object_Object(self.self, self.k, self.v);
   }
-  case Removeb: {
+  case Removeb_object: {
     return xform_removeb_HashMap_Object(self.self, self.k);
   }
-  case Remove: {
+  case Remove_object: {
     return xform_remove_HashMap_Object(self.self, self.k);
   }
-  case Get: {
+  case Get_object: {
     return xform_get_HashMap_Object(self.self, self.k);
   }
-  case Containskey: {
+  case Containskey_object: {
     return xform_containsKey_HashMap_Object(self.self, self.k);
   }
-  }
-
-  return null;
-}
-Object xform_removeb_HashMap_Object(HashMap self, Object k) {
-  switch(self) {
-  case Hashmap: { assert false; }
-  case Put: { assert false; }
-  case Putb: { assert false; }
-  case Removeb: { assert false; }
-  case Remove: { assert false; }
-  case Get: { assert false; }
-  case Containskey: { assert false; }
-  }
-
-  return null;
-}
-Object xform_putb_HashMap_Object_Object(HashMap self, Object k, Object v) {
-  switch(self) {
-  case Hashmap: { assert false; }
-  case Put: { assert false; }
-  case Putb: { assert false; }
-  case Removeb: { assert false; }
-  case Remove: { assert false; }
-  case Get: { assert false; }
-  case Containskey: { assert false; }
-  }
-
-  return null;
-}
-Object xform_put_HashMap_Object_Object(HashMap self, Object k, Object v) {
-  switch(self) {
-  case Hashmap: { assert false; }
-  case Put: { assert false; }
-  case Putb: { assert false; }
-  case Removeb: { assert false; }
-  case Remove: { assert false; }
-  case Get: { assert false; }
-  case Containskey: { assert false; }
-  }
-
-  return null;
-}
-Object xform_get_HashMap_Object(HashMap self, Object k) {
-  switch(self) {
-  case Hashmap: {
-    return null;
-  }
-  case Put: { assert false; }
-  case Putb: {
-    return ((k.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(k, self.k) : k.__cid == (new Object(__cid=-2, _int=IvParameterSpec()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Mac()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=PasswordMap()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=PasswordManager()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=SecureRandom()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=SecretKeySpec()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Byte()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(k, self.k) : k.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(k, self.k) : k.__cid == (new Object(__cid=-2, _int=PasswordManagerTest()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Cryptographer()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(k, self.k) : null)._bit ? self.v : xform_get_HashMap_Object(self.self, k));
-  }
-  case Removeb: {
-    return ((k.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(k, self.k) : k.__cid == (new Object(__cid=-2, _int=IvParameterSpec()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Mac()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=PasswordMap()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=PasswordManager()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=SecureRandom()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=SecretKeySpec()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Byte()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(k, self.k) : k.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(k, self.k) : k.__cid == (new Object(__cid=-2, _int=PasswordManagerTest()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Cryptographer()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(k, self.k) : null)._bit ? null : xform_get_HashMap_Object(self.self, k));
-  }
-  case Remove: { assert false; }
-  case Get: { assert false; }
-  case Containskey: { assert false; }
   }
 
   return null;
@@ -126,12 +68,25 @@ Object xform_get_HashMap_Object(HashMap self, Object k) {
 Object xform_remove_HashMap_Object(HashMap self, Object k) {
   switch(self) {
   case Hashmap: { assert false; }
-  case Put: { assert false; }
-  case Putb: { assert false; }
-  case Removeb: { assert false; }
-  case Remove: { assert false; }
-  case Get: { assert false; }
-  case Containskey: { assert false; }
+  case Put_object_object: { assert false; }
+  case Putb_object_object: { assert false; }
+  case Removeb_object: { assert false; }
+  case Remove_object: { assert false; }
+  case Get_object: { assert false; }
+  case Containskey_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_removeb_HashMap_Object(HashMap self, Object k) {
+  switch(self) {
+  case Hashmap: { assert false; }
+  case Put_object_object: { assert false; }
+  case Putb_object_object: { assert false; }
+  case Removeb_object: { assert false; }
+  case Remove_object: { assert false; }
+  case Get_object: { assert false; }
+  case Containskey_object: { assert false; }
   }
 
   return null;
@@ -141,16 +96,48 @@ Object xform_containsKey_HashMap_Object(HashMap self, Object k) {
   case Hashmap: {
     return (new Object(__cid=-4, _bit=false));
   }
-  case Put: { assert false; }
-  case Putb: {
-    return ((self.k.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=IvParameterSpec()))._int ? equals_Object@Object(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=Mac()))._int ? equals_Object@Object(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=PasswordMap()))._int ? equals_Object@Object(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=PasswordManager()))._int ? equals_Object@Object(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=SecureRandom()))._int ? equals_Object@Object(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? equals_Object@Object(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=SecretKeySpec()))._int ? equals_Object@Object(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=Byte()))._int ? equals_Object@Object(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=PasswordManagerTest()))._int ? equals_Object@Object(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? equals_Object@Object(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=Cryptographer()))._int ? equals_Object@Object(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(self.k, k) : null)._bit ? (new Object(__cid=-4, _bit=true)) : xform_containsKey_HashMap_Object(self.self, k));
+  case Put_object_object: { assert false; }
+  case Putb_object_object: {
+    return ((self.k.__cid == (new Object(__cid=-2, _int=IvParameterSpec()))._int ? equals_Object@Object(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=PasswordManagerTest()))._int ? equals_Object@Object(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=SecureRandom()))._int ? equals_Object@Object(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=Mac()))._int ? equals_Object@Object(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? equals_Object@Object(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=Cryptographer()))._int ? equals_Object@Object(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=Byte()))._int ? equals_Object@Object(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=PasswordManager()))._int ? equals_Object@Object(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? equals_Object@Object(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=SecretKeySpec()))._int ? equals_Object@Object(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=PasswordMap()))._int ? equals_Object@Object(self.k, k) : self.k.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(self.k, k) : null)._bit ? (new Object(__cid=-4, _bit=true)) : xform_containsKey_HashMap_Object(self.self, k));
   }
-  case Removeb: {
-    return ((k.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(k, self.k) : k.__cid == (new Object(__cid=-2, _int=IvParameterSpec()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Mac()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=PasswordMap()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=PasswordManager()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=SecureRandom()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=SecretKeySpec()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Byte()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(k, self.k) : k.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(k, self.k) : k.__cid == (new Object(__cid=-2, _int=PasswordManagerTest()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Cryptographer()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(k, self.k) : null)._bit ? (new Object(__cid=-4, _bit=false)) : xform_containsKey_HashMap_Object(self.self, k));
+  case Removeb_object: {
+    return ((k.__cid == (new Object(__cid=-2, _int=IvParameterSpec()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=PasswordManagerTest()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=SecureRandom()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Mac()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Cryptographer()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Byte()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(k, self.k) : k.__cid == (new Object(__cid=-2, _int=PasswordManager()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(k, self.k) : k.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=SecretKeySpec()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=PasswordMap()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(k, self.k) : null)._bit ? (new Object(__cid=-4, _bit=false)) : xform_containsKey_HashMap_Object(self.self, k));
   }
-  case Remove: { assert false; }
-  case Get: { assert false; }
-  case Containskey: { assert false; }
+  case Remove_object: { assert false; }
+  case Get_object: { assert false; }
+  case Containskey_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_get_HashMap_Object(HashMap self, Object k) {
+  switch(self) {
+  case Hashmap: {
+    return null;
+  }
+  case Put_object_object: { assert false; }
+  case Putb_object_object: {
+    return ((k.__cid == (new Object(__cid=-2, _int=IvParameterSpec()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=PasswordManagerTest()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=SecureRandom()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Mac()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Cryptographer()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Byte()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(k, self.k) : k.__cid == (new Object(__cid=-2, _int=PasswordManager()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(k, self.k) : k.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=SecretKeySpec()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=PasswordMap()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(k, self.k) : null)._bit ? self.v : xform_get_HashMap_Object(self.self, k));
+  }
+  case Removeb_object: {
+    return ((k.__cid == (new Object(__cid=-2, _int=IvParameterSpec()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=PasswordManagerTest()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=SecureRandom()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Mac()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Cryptographer()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Byte()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(k, self.k) : k.__cid == (new Object(__cid=-2, _int=PasswordManager()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(k, self.k) : k.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=SecretKeySpec()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=PasswordMap()))._int ? equals_Object@Object(k, self.k) : k.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(k, self.k) : null)._bit ? null : xform_get_HashMap_Object(self.self, k));
+  }
+  case Remove_object: { assert false; }
+  case Get_object: { assert false; }
+  case Containskey_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_put_HashMap_Object_Object(HashMap self, Object k, Object v) {
+  switch(self) {
+  case Hashmap: { assert false; }
+  case Put_object_object: { assert false; }
+  case Putb_object_object: { assert false; }
+  case Removeb_object: { assert false; }
+  case Remove_object: { assert false; }
+  case Get_object: { assert false; }
+  case Containskey_object: { assert false; }
   }
 
   return null;
@@ -158,12 +145,25 @@ Object xform_containsKey_HashMap_Object(HashMap self, Object k) {
 Object xform_hashmap_HashMap(HashMap self) {
   switch(self) {
   case Hashmap: { assert false; }
-  case Put: { assert false; }
-  case Putb: { assert false; }
-  case Removeb: { assert false; }
-  case Remove: { assert false; }
-  case Get: { assert false; }
-  case Containskey: { assert false; }
+  case Put_object_object: { assert false; }
+  case Putb_object_object: { assert false; }
+  case Removeb_object: { assert false; }
+  case Remove_object: { assert false; }
+  case Get_object: { assert false; }
+  case Containskey_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_putb_HashMap_Object_Object(HashMap self, Object k, Object v) {
+  switch(self) {
+  case Hashmap: { assert false; }
+  case Put_object_object: { assert false; }
+  case Putb_object_object: { assert false; }
+  case Removeb_object: { assert false; }
+  case Remove_object: { assert false; }
+  case Get_object: { assert false; }
+  case Containskey_object: { assert false; }
   }
 
   return null;
