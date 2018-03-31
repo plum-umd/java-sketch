@@ -1,0 +1,58 @@
+Traceback (most recent call last):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/runpy.py", line 162, in _run_module_as_main
+    "__main__", fname, loader, pkg_name)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/runpy.py", line 72, in _run_code
+    exec code in run_globals
+  File "/Users/kathymariano/Research/java-sketch4/java_sk/main.py", line 125, in <module>
+    sys.exit(translate(**vars(OPT)))
+  File "/Users/kathymariano/Research/java-sketch4/java_sk/main.py", line 42, in translate
+    encoder.to_sk()
+  File "java_sk/encoder.py", line 125, in to_sk
+    cls_sk = self.gen_cls_sk(cls)
+  File "java_sk/encoder.py", line 257, in gen_cls_sk
+    buf.write(self.to_func(m) + os.linesep)
+  File "java_sk/encoder.py", line 507, in to_func
+    buf.write(self.tltr.trans(mtd))
+  File "java_sk/translator.py", line 774, in trans
+    s.accept(self, **kwargs)
+  File "/Users/kathymariano/Research/java-sketch4/jskparser/ast/node.py", line 257, in accept
+    def accept(self, v, **kwargs): v.visit(self, **kwargs)
+  File "java_sk/visit.py", line 26, in ff
+    return dispatcher(*args, **kw)
+  File "java_sk/visit.py", line 44, in __call__
+    return d(*args, **kw)
+  File "java_sk/translator.py", line 171, in visit
+    n.body.accept(self, **kwargs)
+  File "/Users/kathymariano/Research/java-sketch4/jskparser/ast/node.py", line 257, in accept
+    def accept(self, v, **kwargs): v.visit(self, **kwargs)
+  File "java_sk/visit.py", line 26, in ff
+    return dispatcher(*args, **kw)
+  File "java_sk/visit.py", line 44, in __call__
+    return d(*args, **kw)
+  File "java_sk/translator.py", line 273, in visit
+    s.accept(self, **kwargs)
+  File "/Users/kathymariano/Research/java-sketch4/jskparser/ast/node.py", line 257, in accept
+    def accept(self, v, **kwargs): v.visit(self, **kwargs)
+  File "java_sk/visit.py", line 26, in ff
+    return dispatcher(*args, **kw)
+  File "java_sk/visit.py", line 44, in __call__
+    return d(*args, **kw)
+  File "java_sk/translator.py", line 346, in visit
+    if n.expr: n.expr.accept(self, **kwargs)
+  File "/Users/kathymariano/Research/java-sketch4/jskparser/ast/node.py", line 257, in accept
+    def accept(self, v, **kwargs): v.visit(self, **kwargs)
+  File "java_sk/visit.py", line 26, in ff
+    return dispatcher(*args, **kw)
+  File "java_sk/visit.py", line 44, in __call__
+    return d(*args, **kw)
+  File "java_sk/translator.py", line 645, in visit
+    self.trans_call(n, **kwargs)
+  File "java_sk/translator.py", line 965, in trans_call
+    pots = self.identify_potentials(callexpr, cls)
+  File "java_sk/translator.py", line 1057, in identify_potentials
+    zip(call_arg_typs, val.param_typs()))):
+  File "java_sk/translator.py", line 1056, in <lambda>
+    if all(map(lambda t: t[1].name in tparam_names or utils.is_subtype(t[0], t[1]),
+  File "/Users/kathymariano/Research/java-sketch4/jskparser/ast/utils/utils.py", line 178, in is_subtype
+    raise Exception('Cant dereference {} or {}'.format(t1.name, t2.name))
+Exception: Cant dereference IvParameterSpec or AlgorithmParameterSpec
