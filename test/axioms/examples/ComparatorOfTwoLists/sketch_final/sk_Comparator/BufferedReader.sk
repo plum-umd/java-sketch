@@ -1,0 +1,139 @@
+package BufferedReader;
+
+adt BufferedReader {
+    Bufferedreader  { }
+    Bufferedreader_file  { Object type; }
+    Readline        { BufferedReader self; }
+    Readlineb       { BufferedReader self; }
+    Readlinehelpb_int   { BufferedReader self; Object i; }
+    Readlinehelp_int    { BufferedReader self; Object i; }
+}
+
+Object BufferedReader_BufferedReader() {
+    return new Object(__cid=BufferedReader(), _bufferedreader=new Bufferedreader());
+}
+
+Object BufferedReader_Object_File(Object type) {
+    return new Object(__cid=BufferedReader(), _bufferedreader=new Bufferedreader_file(type=type));
+}
+
+Object readLine_Object(Object self) {
+    return new Object(__cid=BufferedReader(), _bufferedreader=new Readline(self=self._bufferedreader));
+}
+
+Object readLineb_Object(Object self) {
+    return new Object(__cid=BufferedReader(), _bufferedreader=new Readlineb(self=self._bufferedreader));
+}
+
+Object readLineHelpb_Object_int(Object self, Object i) {
+    return new Object(__cid=BufferedReader(), _bufferedreader=new Readlinehelpb_int(self=self._bufferedreader, i=i));
+}
+
+Object readLineHelp_Object_int(Object self, Object i) {
+    return new Object(__cid=BufferedReader(), _bufferedreader=new Readlinehelp_int(self=self._bufferedreader, i=i));
+}
+
+Object xform_BufferedReader(BufferedReader self) {
+  switch(self) {
+  case Bufferedreader: {
+    return xform_bufferedreader_BufferedReader(self);
+  }
+  case Bufferedreader_file: {
+    return xform_BufferedReader_BufferedReader_File(self, self.type);
+  }
+  case Readline: {
+    return xform_readLine_BufferedReader(self.self);
+  }
+  case Readlineb: {
+    return xform_readLineb_BufferedReader(self.self);
+  }
+  case Readlinehelpb_int: {
+    return xform_readLineHelpb_BufferedReader_int(self.self, self.i);
+  }
+  case Readlinehelp_int: {
+    return xform_readLineHelp_BufferedReader_int(self.self, self.i);
+  }
+  }
+
+  return null;
+}
+Object xform_readLineHelp_BufferedReader_int(BufferedReader self, Object i) {
+  switch(self) {
+  case Bufferedreader: { assert false; }
+  case Bufferedreader_file: {
+    return (self.type.__cid == (new Object(__cid=-2, _int=File()))._int ? get_int@File(self.type, i) : null);
+  }
+  case Readline: { assert false; }
+  case Readlineb: {
+    return xform_readLineHelp_BufferedReader_int(self.self, (new Object(__cid=-2, _int=i._int + (new Object(__cid=-2, _int=1))._int)));
+  }
+  case Readlinehelpb_int: { assert false; }
+  case Readlinehelp_int: { assert false; }
+  }
+
+  return null;
+}
+Object xform_readLineb_BufferedReader(BufferedReader self) {
+  switch(self) {
+  case Bufferedreader: { assert false; }
+  case Bufferedreader_file: { assert false; }
+  case Readline: { assert false; }
+  case Readlineb: { assert false; }
+  case Readlinehelpb_int: { assert false; }
+  case Readlinehelp_int: { assert false; }
+  }
+
+  return null;
+}
+Object xform_readLineHelpb_BufferedReader_int(BufferedReader self, Object i) {
+  switch(self) {
+  case Bufferedreader: { assert false; }
+  case Bufferedreader_file: { assert false; }
+  case Readline: { assert false; }
+  case Readlineb: { assert false; }
+  case Readlinehelpb_int: { assert false; }
+  case Readlinehelp_int: { assert false; }
+  }
+
+  return null;
+}
+Object xform_BufferedReader_BufferedReader_File(BufferedReader self, Object type) {
+  switch(self) {
+  case Bufferedreader: { assert false; }
+  case Bufferedreader_file: { assert false; }
+  case Readline: { assert false; }
+  case Readlineb: { assert false; }
+  case Readlinehelpb_int: { assert false; }
+  case Readlinehelp_int: { assert false; }
+  }
+
+  return null;
+}
+Object xform_bufferedreader_BufferedReader(BufferedReader self) {
+  switch(self) {
+  case Bufferedreader: { assert false; }
+  case Bufferedreader_file: { assert false; }
+  case Readline: { assert false; }
+  case Readlineb: { assert false; }
+  case Readlinehelpb_int: { assert false; }
+  case Readlinehelp_int: { assert false; }
+  }
+
+  return null;
+}
+Object xform_readLine_BufferedReader(BufferedReader self) {
+  switch(self) {
+  case Bufferedreader: { assert false; }
+  case Bufferedreader_file: {
+    return (self.type.__cid == (new Object(__cid=-2, _int=File()))._int ? get_int@File(self.type, (new Object(__cid=-2, _int=0))) : null);
+  }
+  case Readline: { assert false; }
+  case Readlineb: {
+    return xform_readLineHelp_BufferedReader_int(self.self, (new Object(__cid=-2, _int=1)));
+  }
+  case Readlinehelpb_int: { assert false; }
+  case Readlinehelp_int: { assert false; }
+  }
+
+  return null;
+}

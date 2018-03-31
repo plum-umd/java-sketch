@@ -1,0 +1,3 @@
+SKETCH version 1.7.5
+Benchmark = /Users/kathymariano/Research/java-sketch2/test/axioms/examples/ComparatorOfTwoLists/ComparatorOfTwoLists/../result_ax/sk_Comparator/main.sk
+Total time = 1074

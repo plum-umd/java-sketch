@@ -1,0 +1,674 @@
+package ArrayList;
+
+adt ArrayList {
+    Arraylist       { }
+    Add_string             { ArrayList self; Object e; }
+    Addb_string            { ArrayList self; Object e; }
+    Get_int             { ArrayList self; Object i; }
+    Getfirsti_int_string_int_int       { ArrayList self; Object i; Object es; Object rs; Object r; }
+    Setb_int_string            { ArrayList self; Object i; Object e; }
+    Set_int_string             { ArrayList self; Object i; Object e; }
+    Ensurecapacity  { ArrayList self; }
+    Maxsizeb        { ArrayList self; }
+    Sortb_object           { ArrayList self; Object b; }
+    Removeb_int         { ArrayList self; Object i; }
+    Addallb_arraylist         { ArrayList self; Object e; }
+    Size            { ArrayList self; }
+    Maxsize         { ArrayList self; }
+    Sort_object            { ArrayList self; Object b; }
+    Remove_int          { ArrayList self; Object i; }
+    Addall_arraylist          { ArrayList self; Object e; }
+}
+
+Object ArrayList_ArrayList() {
+    return new Object(__cid=ArrayList(), _arraylist=new Arraylist());
+}
+
+Object add_Object_String(Object self, Object e) {
+    return new Object(__cid=ArrayList(), _arraylist=new Add_string(self=self._arraylist, e=e));
+}
+
+Object addb_Object_String(Object self, Object e) {
+    return new Object(__cid=ArrayList(), _arraylist=new Addb_string(self=self._arraylist, e=e));
+}
+
+Object get_Object_int(Object self, Object i) {
+    return new Object(__cid=ArrayList(), _arraylist=new Get_int(self=self._arraylist, i=i));
+}
+
+Object getFirstI_Object_int_String_int_int(Object self, Object i, Object es, Object rs, Object r) {
+    return new Object(__cid=ArrayList(), _arraylist=new Getfirsti_int_string_int_int(self=self._arraylist, i=i, es=es, rs=rs, r=r));
+}
+
+Object setb_Object_int_String(Object self, Object i, Object e) {
+    return new Object(__cid=ArrayList(), _arraylist=new Setb_int_string(self=self._arraylist, i=i, e=e));
+}
+
+Object set_Object_int_String(Object self, Object i, Object e) {
+    return new Object(__cid=ArrayList(), _arraylist=new Set_int_string(self=self._arraylist, i=i, e=e));
+}
+
+Object ensureCapacity_Object(Object self) {
+    return new Object(__cid=ArrayList(), _arraylist=new Ensurecapacity(self=self._arraylist));
+}
+
+Object maxSizeb_Object(Object self) {
+    return new Object(__cid=ArrayList(), _arraylist=new Maxsizeb(self=self._arraylist));
+}
+
+Object sortb_Object_Object(Object self, Object b) {
+    return new Object(__cid=ArrayList(), _arraylist=new Sortb_object(self=self._arraylist, b=b));
+}
+
+Object removeb_Object_int(Object self, Object i) {
+    return new Object(__cid=ArrayList(), _arraylist=new Removeb_int(self=self._arraylist, i=i));
+}
+
+Object addAllb_Object_ArrayList(Object self, Object e) {
+    return new Object(__cid=ArrayList(), _arraylist=new Addallb_arraylist(self=self._arraylist, e=e));
+}
+
+Object size_Object(Object self) {
+    return new Object(__cid=ArrayList(), _arraylist=new Size(self=self._arraylist));
+}
+
+Object maxSize_Object(Object self) {
+    return new Object(__cid=ArrayList(), _arraylist=new Maxsize(self=self._arraylist));
+}
+
+Object sort_Object_Object(Object self, Object b) {
+    return new Object(__cid=ArrayList(), _arraylist=new Sort_object(self=self._arraylist, b=b));
+}
+
+Object remove_Object_int(Object self, Object i) {
+    return new Object(__cid=ArrayList(), _arraylist=new Remove_int(self=self._arraylist, i=i));
+}
+
+Object addAll_Object_ArrayList(Object self, Object e) {
+    return new Object(__cid=ArrayList(), _arraylist=new Addall_arraylist(self=self._arraylist, e=e));
+}
+
+Object xform_ArrayList(ArrayList self) {
+  switch(self) {
+  case Arraylist: {
+    return xform_arraylist_ArrayList(self);
+  }
+  case Add_string: {
+    return xform_add_ArrayList_String(self.self, self.e);
+  }
+  case Addb_string: {
+    return xform_addb_ArrayList_String(self.self, self.e);
+  }
+  case Get_int: {
+    return xform_get_ArrayList_int(self.self, self.i);
+  }
+  case Getfirsti_int_string_int_int: {
+    return xform_getFirstI_ArrayList_int_String_int_int(self.self, self.i, self.es, self.rs, self.r);
+  }
+  case Setb_int_string: {
+    return xform_setb_ArrayList_int_String(self.self, self.i, self.e);
+  }
+  case Set_int_string: {
+    return xform_set_ArrayList_int_String(self.self, self.i, self.e);
+  }
+  case Ensurecapacity: {
+    return xform_ensureCapacity_ArrayList(self.self);
+  }
+  case Maxsizeb: {
+    return xform_maxSizeb_ArrayList(self.self);
+  }
+  case Sortb_object: {
+    return xform_sortb_ArrayList_Object(self.self, self.b);
+  }
+  case Removeb_int: {
+    return xform_removeb_ArrayList_int(self.self, self.i);
+  }
+  case Addallb_arraylist: {
+    return xform_addAllb_ArrayList_ArrayList(self.self, self.e);
+  }
+  case Size: {
+    return xform_size_ArrayList(self.self);
+  }
+  case Maxsize: {
+    return xform_maxSize_ArrayList(self.self);
+  }
+  case Sort_object: {
+    return xform_sort_ArrayList_Object(self.self, self.b);
+  }
+  case Remove_int: {
+    return xform_remove_ArrayList_int(self.self, self.i);
+  }
+  case Addall_arraylist: {
+    return xform_addAll_ArrayList_ArrayList(self.self, self.e);
+  }
+  }
+
+  return null;
+}
+Object xform_removeb_ArrayList_int(ArrayList self, Object i) {
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_string: { assert false; }
+  case Addb_string: { assert false; }
+  case Get_int: { assert false; }
+  case Getfirsti_int_string_int_int: { assert false; }
+  case Setb_int_string: { assert false; }
+  case Set_int_string: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Maxsizeb: { assert false; }
+  case Sortb_object: { assert false; }
+  case Removeb_int: { assert false; }
+  case Addallb_arraylist: { assert false; }
+  case Size: { assert false; }
+  case Maxsize: { assert false; }
+  case Sort_object: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_arraylist: { assert false; }
+  }
+
+  return null;
+}
+Object xform_ensureCapacity_ArrayList(ArrayList self) {
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_string: { assert false; }
+  case Addb_string: { assert false; }
+  case Get_int: { assert false; }
+  case Getfirsti_int_string_int_int: { assert false; }
+  case Setb_int_string: { assert false; }
+  case Set_int_string: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Maxsizeb: { assert false; }
+  case Sortb_object: { assert false; }
+  case Removeb_int: { assert false; }
+  case Addallb_arraylist: { assert false; }
+  case Size: { assert false; }
+  case Maxsize: { assert false; }
+  case Sort_object: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_arraylist: { assert false; }
+  }
+
+  return null;
+}
+Object xform_sort_ArrayList_Object(ArrayList self, Object b) {
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_string: { assert false; }
+  case Addb_string: { assert false; }
+  case Get_int: { assert false; }
+  case Getfirsti_int_string_int_int: { assert false; }
+  case Setb_int_string: { assert false; }
+  case Set_int_string: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Maxsizeb: { assert false; }
+  case Sortb_object: { assert false; }
+  case Removeb_int: { assert false; }
+  case Addallb_arraylist: { assert false; }
+  case Size: { assert false; }
+  case Maxsize: { assert false; }
+  case Sort_object: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_arraylist: { assert false; }
+  }
+
+  return null;
+}
+Object xform_remove_ArrayList_int(ArrayList self, Object i) {
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_string: { assert false; }
+  case Addb_string: { assert false; }
+  case Get_int: { assert false; }
+  case Getfirsti_int_string_int_int: { assert false; }
+  case Setb_int_string: { assert false; }
+  case Set_int_string: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Maxsizeb: { assert false; }
+  case Sortb_object: { assert false; }
+  case Removeb_int: { assert false; }
+  case Addallb_arraylist: { assert false; }
+  case Size: { assert false; }
+  case Maxsize: { assert false; }
+  case Sort_object: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_arraylist: { assert false; }
+  }
+
+  return null;
+}
+Object xform_size_ArrayList(ArrayList self) {
+  switch(self) {
+  case Arraylist: {
+    return (new Object(__cid=-2, _int=0));
+  }
+  case Add_string: { assert false; }
+  case Addb_string: {
+    return (new Object(__cid=-2, _int=xform_size_ArrayList(self.self)._int + (new Object(__cid=-2, _int=1))._int));
+  }
+  case Get_int: { assert false; }
+  case Getfirsti_int_string_int_int: { assert false; }
+  case Setb_int_string: {
+    return (new Object(__cid=-2, _int=xform_size_ArrayList(self.self)._int + (new Object(__cid=-2, _int=1))._int));
+  }
+  case Set_int_string: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Maxsizeb: { assert false; }
+  case Sortb_object: {
+    return xform_size_ArrayList(self.self);
+  }
+  case Removeb_int: {
+    return (new Object(__cid=-2, _int=xform_size_ArrayList(self.self)._int - (new Object(__cid=-2, _int=1))._int));
+  }
+  case Addallb_arraylist: {
+    Object s1 = xform_size_ArrayList(self.self);
+    Object s2 = xform_size_ArrayList(self.e._arraylist);
+    return (new Object(__cid=-2, _int=s1._int + s2._int));
+  }
+  case Size: { assert false; }
+  case Maxsize: { assert false; }
+  case Sort_object: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_arraylist: { assert false; }
+  }
+
+  return null;
+}
+Object xform_addAllb_ArrayList_ArrayList(ArrayList self, Object e) {
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_string: { assert false; }
+  case Addb_string: { assert false; }
+  case Get_int: { assert false; }
+  case Getfirsti_int_string_int_int: { assert false; }
+  case Setb_int_string: { assert false; }
+  case Set_int_string: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Maxsizeb: { assert false; }
+  case Sortb_object: { assert false; }
+  case Removeb_int: { assert false; }
+  case Addallb_arraylist: { assert false; }
+  case Size: { assert false; }
+  case Maxsize: { assert false; }
+  case Sort_object: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_arraylist: { assert false; }
+  }
+
+  return null;
+}
+Object xform_maxSize_ArrayList(ArrayList self) {
+  switch(self) {
+  case Arraylist: {
+    return (new Object(__cid=-2, _int=0));
+  }
+  case Add_string: { assert false; }
+  case Addb_string: {
+    return (new Object(__cid=-2, _int=xform_maxSize_ArrayList(self.self)._int + (new Object(__cid=-2, _int=1))._int));
+  }
+  case Get_int: { assert false; }
+  case Getfirsti_int_string_int_int: { assert false; }
+  case Setb_int_string: {
+    return (new Object(__cid=-2, _int=xform_maxSize_ArrayList(self.self)._int + (new Object(__cid=-2, _int=1))._int));
+  }
+  case Set_int_string: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Maxsizeb: { assert false; }
+  case Sortb_object: {
+    return xform_maxSize_ArrayList(self.self);
+  }
+  case Removeb_int: {
+    return xform_maxSize_ArrayList(self.self);
+  }
+  case Addallb_arraylist: {
+    Object s1 = xform_maxSize_ArrayList(self.self);
+    Object s2 = xform_maxSize_ArrayList(self.e._arraylist);
+    return (new Object(__cid=-2, _int=s1._int + s2._int));
+  }
+  case Size: { assert false; }
+  case Maxsize: { assert false; }
+  case Sort_object: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_arraylist: { assert false; }
+  }
+
+  return null;
+}
+Object xform_addb_ArrayList_String(ArrayList self, Object e) {
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_string: { assert false; }
+  case Addb_string: { assert false; }
+  case Get_int: { assert false; }
+  case Getfirsti_int_string_int_int: { assert false; }
+  case Setb_int_string: { assert false; }
+  case Set_int_string: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Maxsizeb: { assert false; }
+  case Sortb_object: { assert false; }
+  case Removeb_int: { assert false; }
+  case Addallb_arraylist: { assert false; }
+  case Size: { assert false; }
+  case Maxsize: { assert false; }
+  case Sort_object: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_arraylist: { assert false; }
+  }
+
+  return null;
+}
+
+Object xform_get_ArrayList_int(ArrayList self, Object i) {
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_string: { assert false; }
+  case Addb_string: {
+    Object sz = xform_size_ArrayList(self.self);
+    return ((sz._int == i._int) ? self.e : xform_get_ArrayList_int(self.self, i));
+  }
+  case Get_int: { assert false; }
+  case Getfirsti_int_string_int_int: { assert false; }
+  case Setb_int_string: {
+    if (i._int == self.i._int) {
+      return self.e;
+    } else {
+      if (self.i._int < i._int) {
+	return xform_get_ArrayList_int(self.self, (new Object(__cid=-2, _int=i._int-1)));
+      } else {
+	return xform_get_ArrayList_int(self.self, i);
+      }
+    }
+  }
+  case Set_int_string: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Maxsizeb: { assert false; }
+  case Sortb_object: {
+    Object j = xform_maxSize_ArrayList(self.self);
+    Object firstI = xform_getFirstI_ArrayList_int_String_int_int(self.self, (new Object(__cid=-2, _int=i._int+1)), Wrap_Array_Object(new Array_Object(length=(new Object(__cid=-2, _int=j._int + (new Object(__cid=-2, _int=1))._int)))), Wrap_Array_int(new Array_int(length=(new Object(__cid=-2, _int=j._int + (new Object(__cid=-2, _int=1))._int)))), (new Object(__cid=-2, _int=0)));
+
+    return firstI._array_object.A[i._int];
+  }
+  case Removeb_int: {
+    return ((self.i._int <= i._int) ? xform_get_ArrayList_int(self.self, (new Object(__cid=-2, _int=i._int + (new Object(__cid=-2, _int=1))._int))) : xform_get_ArrayList_int(self.self, i));
+  }
+  case Addallb_arraylist: {
+    Object s1 = xform_size_ArrayList(self.self);
+    return ((i._int < s1._int) ? xform_get_ArrayList_int(self.self, i) : xform_get_ArrayList_int(self.e._arraylist, (new Object(__cid=-2, _int=i._int - s1._int))));
+  }
+  case Size: { assert false; }
+  case Maxsize: { assert false; }
+  case Sort_object: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_arraylist: { assert false; }
+  }
+
+  return null;
+}
+Object xform_addAll_ArrayList_ArrayList(ArrayList self, Object e) {
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_string: { assert false; }
+  case Addb_string: { assert false; }
+  case Get_int: { assert false; }
+  case Getfirsti_int_string_int_int: { assert false; }
+  case Setb_int_string: { assert false; }
+  case Set_int_string: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Maxsizeb: { assert false; }
+  case Sortb_object: { assert false; }
+  case Removeb_int: { assert false; }
+  case Addallb_arraylist: { assert false; }
+  case Size: { assert false; }
+  case Maxsize: { assert false; }
+  case Sort_object: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_arraylist: { assert false; }
+  }
+
+  return null;
+}
+Object xform_set_ArrayList_int_String(ArrayList self, Object i, Object e) {
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_string: { assert false; }
+  case Addb_string: { assert false; }
+  case Get_int: { assert false; }
+  case Getfirsti_int_string_int_int: { assert false; }
+  case Setb_int_string: { assert false; }
+  case Set_int_string: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Maxsizeb: { assert false; }
+  case Sortb_object: { assert false; }
+  case Removeb_int: { assert false; }
+  case Addallb_arraylist: { assert false; }
+  case Size: { assert false; }
+  case Maxsize: { assert false; }
+  case Sort_object: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_arraylist: { assert false; }
+  }
+
+  return null;
+}
+Object xform_maxSizeb_ArrayList(ArrayList self) {
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_string: { assert false; }
+  case Addb_string: { assert false; }
+  case Get_int: { assert false; }
+  case Getfirsti_int_string_int_int: { assert false; }
+  case Setb_int_string: { assert false; }
+  case Set_int_string: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Maxsizeb: { assert false; }
+  case Sortb_object: { assert false; }
+  case Removeb_int: { assert false; }
+  case Addallb_arraylist: { assert false; }
+  case Size: { assert false; }
+  case Maxsize: { assert false; }
+  case Sort_object: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_arraylist: { assert false; }
+  }
+
+  return null;
+}
+Object xform_setb_ArrayList_int_String(ArrayList self, Object i, Object e) {
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_string: { assert false; }
+  case Addb_string: { assert false; }
+  case Get_int: { assert false; }
+  case Getfirsti_int_string_int_int: { assert false; }
+  case Setb_int_string: { assert false; }
+  case Set_int_string: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Maxsizeb: { assert false; }
+  case Sortb_object: { assert false; }
+  case Removeb_int: { assert false; }
+  case Addallb_arraylist: { assert false; }
+  case Size: { assert false; }
+  case Maxsize: { assert false; }
+  case Sort_object: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_arraylist: { assert false; }
+  }
+
+  return null;
+}
+Object xform_sortb_ArrayList_Object(ArrayList self, Object b) {
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_string: { assert false; }
+  case Addb_string: { assert false; }
+  case Get_int: { assert false; }
+  case Getfirsti_int_string_int_int: { assert false; }
+  case Setb_int_string: { assert false; }
+  case Set_int_string: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Maxsizeb: { assert false; }
+  case Sortb_object: { assert false; }
+  case Removeb_int: { assert false; }
+  case Addallb_arraylist: { assert false; }
+  case Size: { assert false; }
+  case Maxsize: { assert false; }
+  case Sort_object: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_arraylist: { assert false; }
+  }
+
+  return null;
+}
+Object xform_getFirstI_ArrayList_int_String_int_int(ArrayList self, Object i, Object es, Object rs, Object r) {
+  switch(self) {
+  case Arraylist: {
+    /* Object c0 = es._array_object.A[0]; */
+    /* assert charAt_int@String(c0, (new Object (__cid=-2, _int=0)))._char == '1'; */
+    
+    /* Object c1 = es._array_object.A[1]; */
+    /* assert c1.__cid == String(); */
+    /* assert charAt_int@String(c1, (new Object (__cid=-2, _int=1)))._char == '3'; */
+        
+    return es;
+  }
+  case Add_string: { assert false; }
+  case Addb_string: {
+    Object index = (new Object(__cid=-2, _int=i._int - (new Object(__cid=-2, _int=1))._int));
+    Object x = es._array_object.A[index._int];
+    Object sz = xform_size_ArrayList(self.self);
+    Object removed = (new Object(__cid=-4, _bit=false));
+    for (Object j = (new Object(__cid=-2, _int=0)); j._int < r._int; j = new Object(__cid=-2, _int=j._int + 1)) {
+      if (sz._int == j._int) {
+        removed = (new Object(__cid=-4, _bit=true));
+        j = r;
+      }
+    }
+    if (!removed._bit) {
+      /* if (equals_Object@String(self.e, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=5+1), A="1|1\n2")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=5)))._bit) { */
+      /* 	if (equals_Object@String(x, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=5+1), A="2|1\n2")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=5)))._bit) { */
+      /* 	    assert compareTo_String(x, self.e)._int > 0; */
+      /* 	  } */
+      /* } */
+      while ((x == null || (x.__cid == (new Object(__cid=-2, _int=String()))._int ? compareTo_String@String(x, self.e) : null)._int > (new Object(__cid=-2, _int=0))._int) && index._int >= (new Object(__cid=-2, _int=0))._int) {
+        es._array_object.A[index._int + (new Object(__cid=-2, _int=1))._int] = es._array_object.A[index._int];
+        index = (new Object(__cid=-2, _int=index._int - (new Object(__cid=-2, _int=1))._int));
+        if (index._int < (new Object(__cid=-2, _int=0))._int) {
+          x = null;
+        }
+        else {
+          x = es._array_object.A[index._int];
+        }
+      }
+      /* if (equals_Object@String(self.e, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=5+1), A="2|1\n2")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=5)))._bit) { */
+      /* 	assert index._int == -1; */
+      /* } */
+      /* if (equals_Object@String(self.e, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=5+1), A="1|1\n2")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=5)))._bit) { */
+      /* 	assert index._int == -1; */
+      /* } */
+      /* if (equals_Object@String(self.e, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=5+1), A="2|2\n3")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=5)))._bit) { */
+      /* 	assert index._int == 1; */
+      /* } */
+      /* if (equals_Object@String(self.e, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=5+1), A="3|2\n3")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=5)))._bit) { */
+      /* 	assert index._int == 1; */
+      /* } */
+      es._array_object.A[index._int + (new Object(__cid=-2, _int=1))._int] = self.e;
+    }
+    return xform_getFirstI_ArrayList_int_String_int_int(self.self, i, es, rs, r);
+  }
+  case Get_int: { assert false; }
+  case Getfirsti_int_string_int_int: { assert false; }
+  case Setb_int_string: {
+    Object index = (new Object(__cid=-2, _int=i._int - (new Object(__cid=-2, _int=1))._int));
+    Object x = es._array_object.A[index._int];
+    Object removed = (new Object(__cid=-4, _bit=false));
+    for (Object k = (new Object(__cid=-2, _int=0)); k._int < r._int; k = new Object(__cid=-2, _int=k._int + 1)) {
+      if (k._int == self.i._int) {
+        removed = (new Object(__cid=-4, _bit=true));
+        k = r;
+      }
+    }
+    if (!removed._bit) {
+      while ((x == null || (x.__cid == (new Object(__cid=-2, _int=String()))._int ? compareTo_String@String(x, self.e) : null)._int > (new Object(__cid=-2, _int=0))._int) && index._int >= (new Object(__cid=-2, _int=0))._int) {
+        es._array_object.A[index._int + (new Object(__cid=-2, _int=1))._int] = es._array_object.A[index._int];
+        index = (new Object(__cid=-2, _int=index._int - (new Object(__cid=-2, _int=1))._int));
+        if (index._int < (new Object(__cid=-2, _int=0))._int) {
+          x = null;
+        }
+        else {
+          x = es._array_object.A[index._int];
+        }
+      }
+      es._array_object.A[index._int + (new Object(__cid=-2, _int=1))._int] = self.e;
+    }
+    return xform_getFirstI_ArrayList_int_String_int_int(self.self, i, es, rs, r);
+  }
+  case Set_int_string: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Maxsizeb: { assert false; }
+  case Sortb_object: {
+    return xform_getFirstI_ArrayList_int_String_int_int(self.self, i, es, rs, r);
+  }
+  case Removeb_int: {
+    rs._array_int.A[r._int] = self.i._int;
+    r = new Object(__cid=-2, _int=r._int + 1);
+    return xform_getFirstI_ArrayList_int_String_int_int(self.self, i, es, rs, r);
+  }
+  case Addallb_arraylist: {
+    es = xform_getFirstI_ArrayList_int_String_int_int(self.self, i, es, rs, r);
+    return xform_getFirstI_ArrayList_int_String_int_int(self.e._arraylist, i, es, rs, r);
+  }
+  case Size: { assert false; }
+  case Maxsize: { assert false; }
+  case Sort_object: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_arraylist: { assert false; }
+  }
+
+  return null;
+}
+Object xform_add_ArrayList_String(ArrayList self, Object e) {
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_string: { assert false; }
+  case Addb_string: { assert false; }
+  case Get_int: { assert false; }
+  case Getfirsti_int_string_int_int: { assert false; }
+  case Setb_int_string: { assert false; }
+  case Set_int_string: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Maxsizeb: { assert false; }
+  case Sortb_object: { assert false; }
+  case Removeb_int: { assert false; }
+  case Addallb_arraylist: { assert false; }
+  case Size: { assert false; }
+  case Maxsize: { assert false; }
+  case Sort_object: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_arraylist: { assert false; }
+  }
+
+  return null;
+}
+Object xform_arraylist_ArrayList(ArrayList self) {
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_string: { assert false; }
+  case Addb_string: { assert false; }
+  case Get_int: { assert false; }
+  case Getfirsti_int_string_int_int: { assert false; }
+  case Setb_int_string: { assert false; }
+  case Set_int_string: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Maxsizeb: { assert false; }
+  case Sortb_object: { assert false; }
+  case Removeb_int: { assert false; }
+  case Addallb_arraylist: { assert false; }
+  case Size: { assert false; }
+  case Maxsize: { assert false; }
+  case Sort_object: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_arraylist: { assert false; }
+  }
+
+  return null;
+}
