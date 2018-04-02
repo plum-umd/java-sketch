@@ -3,46 +3,44 @@ public class Tester {
 	testOpenSSL();
 	testJCECipher();
     }
-
+    
     public void testOpenSSL() {
 	OpenSSLCipher oc = new OpenSSLCipher("AES", "TRANSFORMATION");
-	byte[] plaintext = new byte[32];
-	byte[] IV = new byte[8];
-	byte[] key = new byte[128];
-	
-	for (int i = 0; i < 128; i ++) {
-	    key[i] = i;
-	    if (i < 32) plaintext[i] = i;
-	    if (i < 8) IV[i] = i;
+
+	for (int x = 0; x < 666666; x = x + 111111) {	
+	    String p1 = Integer.toString(x);
+	    String p2 = Integer.toString(x+1);
+	    String p3 = Integer.toString(x+2);
+
+	    byte[] plaintext = p1.getBytes();
+	    byte[] IV = p2.getBytes();
+	    byte[] key = p3.getBytes();
+
+	    Key sk = new SecretKeySpec(key, "AES");
+	    byte[] cipherText = oc.encrypt(plaintext, sk, IV);
+	    byte[] plaintext2 = oc.decrypt(cipherText, sk, IV);	
+	    assert Arrays.arraysEquals(plaintext, plaintext2);
 	}
-
-	Key sk = new SecretKeySpec(key, "AES");
-
-	byte[] cipherText = oc.encrypt(plaintext, sk, IV);
-
-	byte[] plaintext2 = oc.decrypt(cipherText, sk, IV);
-	
-	assert Arrays.arraysEquals(plaintext, plaintext2);
     }
 
     public void testJCECipher() {
 	JCECipher oc = new JCECipher("PROVIDER", "AES", "TRANSFORMATION");
-	byte[] plaintext = new byte[32];
-	byte[] IV = new byte[8];
-	byte[] key = new byte[128];
-	
-	for (int i = 0; i < 128; i ++) {
-	    key[i] = i;
-	    if (i < 32) plaintext[i] = i;
-	    if (i < 8) IV[i] = i;
+
+	for (int x = 0; x < 666666; x = x + 111111) {	
+	    String p1 = Integer.toString(x);
+	    String p2 = Integer.toString(x+1);
+	    String p3 = Integer.toString(x+2);
+
+	    byte[] plaintext = p1.getBytes();
+	    byte[] IV = p2.getBytes();
+	    byte[] key = p3.getBytes();
+
+	    Key sk = new SecretKeySpec(key, "AES");
+	    byte[] cipherText = oc.encrypt(plaintext, sk, IV);
+	    byte[] plaintext2 = oc.decrypt(cipherText, sk, IV);
+
+	    assert Arrays.arraysEquals(plaintext, plaintext2);
 	}
-
-	Key sk = new SecretKeySpec(key, "AES");
-
-	byte[] cipherText = oc.encrypt(plaintext, sk, IV);
-
-	byte[] plaintext2 = oc.decrypt(cipherText, sk, IV);
-	
-	assert Arrays.arraysEquals(plaintext, plaintext2);
     }
+
 }

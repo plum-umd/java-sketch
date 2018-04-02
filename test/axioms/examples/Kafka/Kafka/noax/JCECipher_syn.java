@@ -57,9 +57,9 @@ public class JCECipher implements ICipher {
 	// cipher.init(isEncryption ? Cipher.ENCRYPT_MODE : Cipher.DECRYPT_MODE,
         //             keyValue, IVspec);
 	if (isEncryption) {
-	    cipher.init(1, keyValue, IVspec);
+	    cipher.init(??, keyValue, IVspec);
 	} else {
-	    cipher.init(2, keyValue, IVspec);	    
+	    cipher.init(??, keyValue, IVspec);	    
 	}
 	
         // try {
@@ -80,28 +80,51 @@ public class JCECipher implements ICipher {
     public byte[] decrypt(byte[] data, Key key, byte[] IV) {
         return translate(false, data, key, IV);
     }
+
+    generator public byte[] genCipherText(byte[] data, boolean isEncryption, Key key, byte[] IV) {
+	byte[] cipherText;
+	int updateBytes = 0;
+	int finalBytes = 0;
+	Cipher cipher;
+	if (??) {
+	    cipher = getCipher(isEncryption, key, IV);
+	}
+	if (??) { updateBytes = cipher.update(data, ??, cipherText.length, cipherText, ??); }
+	if (??) { finalBytes = cipher.doFinal(data, ??, ??, cipherText, updateBytes); }
+	if (??) { cipherText = cipher.doFinal(data); }
+	if (??) {
+	    if (updateBytes + finalBytes < cipherText.length) {
+		cipherText = Arrays.copyOf(cipherText, updateBytes + finalBytes);
+	    }
+	}
+	if (??) {
+	    cipherText = genCipherText(cipherText, isEncryption, key, IV);
+	}
+	return cipherText;
+    }
     
     private byte[] translate(boolean isEncryption, byte[] data, Key key, byte[] IV) {
-        Cipher cipher = getCipher(isEncryption, key, IV);
-        byte[] output = new byte[cipher.getOutputSize(data.length)];
+        // Cipher cipher = getCipher(isEncryption, key, IV);
+        // byte[] output = new byte[cipher.getOutputSize(data.length)];
 
-	int updateBytes = cipher.update(data, 0, data.length, output, 0);
-	int finalBytes = cipher.doFinal(data, 0, 0, output, updateBytes);
-	output = cipher.doFinal(data);
-	if (updateBytes + finalBytes < output.length) {
-	    output = Arrays.copyOf(output, updateBytes + finalBytes);
-	}	
+	// int updateBytes = cipher.update(data, 0, data.length, output, 0);
+	// int finalBytes = cipher.doFinal(data, 0, 0, output, updateBytes);
+	// output = cipher.doFinal(data);
+	// if (updateBytes + finalBytes < output.length) {
+	//     output = Arrays.copyOf(output, updateBytes + finalBytes);
+	// }	
 	
-        // try {
-        //     int updateBytes = cipher.update(data, 0, data.length, output, 0);
-        //     int finalBytes = cipher.doFinal(data, 0, 0, output, updateBytes);
-        //     if (updateBytes + finalBytes < output.length) {
-        //         output = Arrays.copyOf(output, updateBytes + finalBytes);
-        //     }
-        // } catch (ShortBufferException | IllegalBlockSizeException | BadPaddingException e) {
-        //     throw new CommonException(e);
-        // }
-        return output;
+        // // try {
+        // //     int updateBytes = cipher.update(data, 0, data.length, output, 0);
+        // //     int finalBytes = cipher.doFinal(data, 0, 0, output, updateBytes);
+        // //     if (updateBytes + finalBytes < output.length) {
+        // //         output = Arrays.copyOf(output, updateBytes + finalBytes);
+        // //     }
+        // // } catch (ShortBufferException | IllegalBlockSizeException | BadPaddingException e) {
+        // //     throw new CommonException(e);
+        // // }
+        // return output;
+	return genCipherText(data, isEncryption, key, IV);
     }
 
 }
