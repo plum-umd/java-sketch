@@ -83,24 +83,25 @@ public class CryptoManager implements ICryptoManager {
     }
 
     //**
+
     //  * Appends encryption mark at first position of byte array.
     //  * @param bytesArray initial byte array
     //  * @return new extended byte array with appended encryption mark
     //  */
     protected byte[] appendEncryptionMark(byte[] bytesArray) {
-        byte[] extendedBytes = new byte[bytesArray.length + ??];
+        byte[] extendedBytes = new byte[bytesArray.length + 1];
         extendedBytes[0] = getEncryptedMark();
         // copy bytesArray into position 1 of extendedBytes (from pos 0 of bytesArray to bytesArray.length )
-        System.arraycopy(bytesArray, ??, extendedBytes, ??, bytesArray.length);
+        System.arraycopy(bytesArray, 0, extendedBytes, 1, bytesArray.length);
         return extendedBytes;
     }
 
     protected byte[] cutEncryptionMark(byte[] bytesArray) {
-        byte[] trimmedBytes = new byte[bytesArray.length - ??];
+        byte[] trimmedBytes = new byte[bytesArray.length - 1];
         // cut first element of array
         // System.arraycopy(bytesArray, 1, trimmedBytes, 0, bytesArray.length - 1);
-	for (int i = ??; i < bytesArray.length; i++) {
-	    trimmedBytes[i-??] = bytesArray[i];
+	for (int i = 1; i < bytesArray.length; i++) {
+	    trimmedBytes[i-1] = bytesArray[i];
 	}
         return trimmedBytes;
     }
@@ -112,7 +113,7 @@ public class CryptoManager implements ICryptoManager {
 
     // protected boolean isEncrypted(byte[] data) {
     protected boolean isEncryptedByte(byte[] data) {	
-        return data[??] == getEncryptedMark();
+        return data[0] == getEncryptedMark();
     }
 
     /**
