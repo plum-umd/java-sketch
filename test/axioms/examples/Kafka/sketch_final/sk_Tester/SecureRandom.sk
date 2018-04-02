@@ -2,7 +2,7 @@ package SecureRandom;
 
 adt SecureRandom {
     Securerandom  { }
-    Nextbytes     { SecureRandom self; Object k; }
+    Nextbytes_object     { SecureRandom self; Object k; }
 }
 
 Object SecureRandom_SecureRandom() {
@@ -10,7 +10,7 @@ Object SecureRandom_SecureRandom() {
 }
 
 Object nextBytes_Object_Object(Object self, Object k) {
-    return new Object(__cid=SecureRandom(), _securerandom=new Nextbytes(self=self._securerandom, k=k));
+    return new Object(__cid=SecureRandom(), _securerandom=new Nextbytes_object(self=self._securerandom, k=k));
 }
 
 Object xform_SecureRandom(SecureRandom self) {
@@ -18,9 +18,15 @@ Object xform_SecureRandom(SecureRandom self) {
   case Securerandom: {
     return xform_securerandom_SecureRandom(self);
   }
-  case Nextbytes: {
-    return xform_nextBytes_SecureRandom_Object(self.self, self.k);
+  case Nextbytes_object: { assert false; }
   }
+
+  return null;
+}
+Object xform_securerandom_SecureRandom(SecureRandom self) {
+  switch(self) {
+  case Securerandom: { assert false; }
+  case Nextbytes_object: { assert false; }
   }
 
   return null;
@@ -35,20 +41,12 @@ Object xform_nextBytes_SecureRandom_Object(SecureRandom self, Object k) {
       case Securerandom: {
         return Wrap_Array_char(new Array_char(length=(new Object(__cid=-2, _int=16))));
       }
-      case Nextbytes: { assert false; }
+      case Nextbytes_object: { assert false; }
       }
 
     }
   }
-  case Nextbytes: { assert false; }
-  }
-
-  return null;
-}
-Object xform_securerandom_SecureRandom(SecureRandom self) {
-  switch(self) {
-  case Securerandom: { assert false; }
-  case Nextbytes: { assert false; }
+  case Nextbytes_object: { assert false; }
   }
 
   return null;

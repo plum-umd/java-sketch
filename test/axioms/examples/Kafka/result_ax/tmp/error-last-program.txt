@@ -1,0 +1,5963 @@
+/* BEGIN PACKAGE JCECipher*/
+package JCECipher{
+  /*JCECipher.sk:3*/
+  
+Object JCECipher_JCECipher (Object self)/*JCECipher.sk:3*/
+  {
+    return self;
+  }
+  /*JCECipher.sk:7*/
+  
+Object JCECipher_JCECipher_String_String_String (Object self, Object provider, Object algorithm, Object transformation)/*JCECipher.sk:7*/
+  {
+    self.provider_JCECipher = provider;
+    self.algorithm_JCECipher = algorithm;
+    self.transformation_JCECipher = transformation;
+    return self;
+  }
+  /*JCECipher.sk:34*/
+  
+Object decrypt_byte_SecretKeySpec_byte (Object self, Object data, Object key, Object IV)/*JCECipher.sk:34*/
+  {
+    return translate_boolean_byte_SecretKeySpec_byte@JCECipher(self, new Object(__cid=-4, _bit=0), data, key, IV);
+  }
+  /*JCECipher.sk:30*/
+  
+Object encrypt_byte_SecretKeySpec_byte (Object self, Object data, Object key, Object IV)/*JCECipher.sk:30*/
+  {
+    return translate_boolean_byte_SecretKeySpec_byte@JCECipher(self, new Object(__cid=-4, _bit=1), data, key, IV);
+  }
+  /*JCECipher.sk:38*/
+  
+generator Object genCipherText_byte_boolean_SecretKeySpec_byte (Object self, Object data, Object isEncryption, Object key, Object IV)/*JCECipher.sk:38*/
+  {
+    Object cipherText;
+    Object updateBytes = new Object(__cid=-2, _int=0);
+    Object finalBytes = new Object(__cid=-2, _int=0);
+    Object cipher;
+    if(new Object(__cid=-4, _bit=??/* H__4bit:1 */)._bit)/*JCECipher.sk:43*/
+    {
+      {
+        cipher = getCipher_boolean_SecretKeySpec_byte@JCECipher(self, isEncryption, key, IV);
+      }
+    }
+    if(new Object(__cid=-4, _bit=??/* H__5bit:1 */)._bit)/*JCECipher.sk:46*/
+    {
+      {
+        updateBytes = ((cipher.__cid) == (new Object(__cid=-2, _int=Cipher())._int) ? update_Object_byte_int_int_byte_int@Cipher(cipher, data, new Object(__cid=-2, _int=??/* H__6int:7 */), cipherText._array_char.length, cipherText, new Object(__cid=-2, _int=??/* H__7int:7 */)) : null);
+        cipher = ((cipher.__cid) == (new Object(__cid=-2, _int=Cipher())._int) ? updateb_Object_byte_int_int_byte_int@Cipher(cipher, data, new Object(__cid=-2, _int=??/* H__8int:7 */), cipherText._array_char.length, cipherText, new Object(__cid=-2, _int=??/* H__9int:7 */)) : null);
+      }
+    }
+    if(new Object(__cid=-4, _bit=??/* H__10bit:1 */)._bit)/*JCECipher.sk:49*/
+    {
+      {
+        finalBytes = ((cipher.__cid) == (new Object(__cid=-2, _int=Cipher())._int) ? doFinale_Object_byte_int_int_byte_int@Cipher(cipher, data, new Object(__cid=-2, _int=??/* H__11int:7 */), new Object(__cid=-2, _int=??/* H__12int:7 */), cipherText, updateBytes) : null);
+        cipher = ((cipher.__cid) == (new Object(__cid=-2, _int=Cipher())._int) ? doFinaleb_Object_byte_int_int_byte_int@Cipher(cipher, data, new Object(__cid=-2, _int=??/* H__13int:7 */), new Object(__cid=-2, _int=??/* H__14int:7 */), cipherText, updateBytes) : null);
+      }
+    }
+    if(new Object(__cid=-4, _bit=??/* H__15bit:1 */)._bit)/*JCECipher.sk:52*/
+    {
+      {
+        cipherText = ((cipher.__cid) == (new Object(__cid=-2, _int=Cipher())._int) ? doFinal_Object_Object@Cipher(cipher, data) : null);
+        cipher = ((cipher.__cid) == (new Object(__cid=-2, _int=Cipher())._int) ? doFinalb_Object_Object@Cipher(cipher, data) : null);
+      }
+    }
+    if(new Object(__cid=-4, _bit=??/* H__16bit:1 */)._bit)/*JCECipher.sk:55*/
+    {
+      {
+        if(((updateBytes._int) + (finalBytes._int)) < (cipherText._array_char.length._int))/*JCECipher.sk:56*/
+        {
+          {
+            cipherText = copyOf_byte_int@Arrays(cipherText, new Object(__cid=-2, _int=(updateBytes._int) + (finalBytes._int)));
+          }
+        }
+      }
+    }
+    if(new Object(__cid=-4, _bit=??/* H__17bit:1 */)._bit)/*JCECipher.sk:60*/
+    {
+      {
+        cipherText = genCipherText_byte_boolean_SecretKeySpec_byte@JCECipher(self, cipherText, isEncryption, key, IV);
+      }
+    }
+    return cipherText;
+  }
+  /*JCECipher.sk:14*/
+  
+Object getCipher_boolean_SecretKeySpec_byte (Object self, Object isEncryption, Object key, Object IV)/*JCECipher.sk:14*/
+  {
+    Object cipher;
+    cipher = getInstance_String_String@Cipher(self.transformation_JCECipher, self.provider_JCECipher);
+    Object keyValue = SecretKeySpec_SecretKeySpec();
+    Object IVspec = IvParameterSpec_IvParameterSpec_byte(new Object(__cid=IvParameterSpec()), IV);
+    if(isEncryption._bit)/*JCECipher.sk:19*/
+    {
+      {
+        if((cipher.__cid) == (new Object(__cid=-2, _int=Cipher())._int))/*JCECipher.sk:20*/
+        {
+          {
+            init_Object_int_SecretKeySpec_AlgorithmParameterSpec@Cipher(cipher, new Object(__cid=-2, _int=??/* H__0int:7 */), keyValue, IVspec);
+          }
+        }
+        else
+        {
+          {
+            0;
+          }
+        }
+        { }
+        cipher = ((cipher.__cid) == (new Object(__cid=-2, _int=Cipher())._int) ? initb_Object_int_SecretKeySpec_AlgorithmParameterSpec@Cipher(cipher, new Object(__cid=-2, _int=??/* H__1int:7 */), keyValue, IVspec) : null);
+      }
+    }
+    else
+    {
+      {
+        if((cipher.__cid) == (new Object(__cid=-2, _int=Cipher())._int))/*JCECipher.sk:24*/
+        {
+          {
+            init_Object_int_SecretKeySpec_AlgorithmParameterSpec@Cipher(cipher, new Object(__cid=-2, _int=??/* H__2int:7 */), keyValue, IVspec);
+          }
+        }
+        else
+        {
+          {
+            0;
+          }
+        }
+        { }
+        cipher = ((cipher.__cid) == (new Object(__cid=-2, _int=Cipher())._int) ? initb_Object_int_SecretKeySpec_AlgorithmParameterSpec@Cipher(cipher, new Object(__cid=-2, _int=??/* H__3int:7 */), keyValue, IVspec) : null);
+      }
+    }
+    return cipher;
+  }
+  /*JCECipher.sk:66*/
+  
+Object translate_boolean_byte_SecretKeySpec_byte (Object self, Object isEncryption, Object data, Object key, Object IV)/*JCECipher.sk:66*/
+  {
+    return genCipherText_byte_boolean_SecretKeySpec_byte@JCECipher(self, data, isEncryption, key, IV);
+  }
+  /* END PACKAGE JCECipher*/
+}
+/* BEGIN PACKAGE Tester*/
+package Tester{
+  /*Tester.sk:3*/
+  
+Object Tester_Tester (Object self)/*Tester.sk:3*/
+  {
+    return self;
+  }
+  /*Tester.sk:7*/
+  
+harness void main ()/*Tester.sk:7*/
+  {
+    Object self = Object_Object(new Object(__cid=Object()));
+    testOpenSSL@Tester(self);
+    testJCECipher@Tester(self);
+  }
+  /*Tester.sk:29*/
+  
+void testJCECipher (Object self)/*Tester.sk:29*/
+  {
+    Object oc = JCECipher_JCECipher_String_String_String(new Object(__cid=JCECipher()), String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=9), A={'P','R','O','V','I','D','E','R','\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=8)), String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=4), A={'A','E','S','\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=3)), String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=15), A={'T','R','A','N','S','F','O','R','M','A','T','I','O','N','\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=14)));
+    Object plaintext = Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=32)));
+    Object IV = Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=8)));
+    Object key = Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=128)));
+    {
+      Object i = new Object(__cid=-2, _int=0);
+      bit __sa1 = (i._int) < (new Object(__cid=-2, _int=128)._int);
+      while(__sa1)
+      {
+        {
+          {
+            key._array_char.A[i._int] = i._int;
+            if((i._int) < (new Object(__cid=-2, _int=32)._int))/*Tester.sk:36*/
+            {
+              plaintext._array_char.A[i._int] = i._int;
+            }
+            if((i._int) < (new Object(__cid=-2, _int=8)._int))/*Tester.sk:37*/
+            {
+              IV._array_char.A[i._int] = i._int;
+            }
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) + 1);
+        __sa1 = (i._int) < (new Object(__cid=-2, _int=128)._int);
+      }
+    }
+    Object sk = SecretKeySpec_SecretKeySpec();
+    Object cipherText = ((oc.__cid) == (new Object(__cid=-2, _int=JCECipher())._int) ? encrypt_byte_SecretKeySpec_byte@JCECipher(oc, plaintext, sk, IV) : null);
+    Object plaintext2 = ((oc.__cid) == (new Object(__cid=-2, _int=JCECipher())._int) ? decrypt_byte_SecretKeySpec_byte@JCECipher(oc, cipherText, sk, IV) : null);
+    assert (arraysEquals_byte_byte@Arrays(plaintext, plaintext2)._bit); //Assert at Tester.sk:42 (0)
+  }
+  /*Tester.sk:13*/
+  
+void testOpenSSL (Object self)/*Tester.sk:13*/
+  {
+    Object oc = OpenSSLCipher_OpenSSLCipher_String_String(new Object(__cid=OpenSSLCipher()), String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=4), A={'A','E','S','\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=3)), String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=15), A={'T','R','A','N','S','F','O','R','M','A','T','I','O','N','\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=14)));
+    Object plaintext = Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=32)));
+    Object IV = Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=8)));
+    Object key = Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=128)));
+    {
+      Object i = new Object(__cid=-2, _int=0);
+      bit __sa0 = (i._int) < (new Object(__cid=-2, _int=128)._int);
+      while(__sa0)
+      {
+        {
+          {
+            key._array_char.A[i._int] = i._int;
+            if((i._int) < (new Object(__cid=-2, _int=32)._int))/*Tester.sk:20*/
+            {
+              plaintext._array_char.A[i._int] = i._int;
+            }
+            if((i._int) < (new Object(__cid=-2, _int=8)._int))/*Tester.sk:21*/
+            {
+              IV._array_char.A[i._int] = i._int;
+            }
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) + 1);
+        __sa0 = (i._int) < (new Object(__cid=-2, _int=128)._int);
+      }
+    }
+    Object sk = SecretKeySpec_SecretKeySpec();
+    Object cipherText = ((oc.__cid) == (new Object(__cid=-2, _int=OpenSSLCipher())._int) ? encrypt_byte_SecretKeySpec_byte@OpenSSLCipher(oc, plaintext, sk, IV) : null);
+    Object plaintext2 = ((oc.__cid) == (new Object(__cid=-2, _int=OpenSSLCipher())._int) ? decrypt_byte_SecretKeySpec_byte@OpenSSLCipher(oc, cipherText, sk, IV) : null);
+    assert (arraysEquals_byte_byte@Arrays(plaintext, plaintext2)._bit); //Assert at Tester.sk:26 (0)
+  }
+  /* END PACKAGE Tester*/
+}
+/* BEGIN PACKAGE ICipher*/
+package ICipher{
+  /*ICipher.sk:3*/
+  
+Object ICipher_ICipher (Object self)/*ICipher.sk:3*/
+  {
+    return self;
+  }
+  /* END PACKAGE ICipher*/
+}
+/* BEGIN PACKAGE HashMap*/
+package HashMap{
+  @Immutable()
+  struct HashMap {
+      @Immutable()
+  }
+  @Immutable()
+  struct Hashmap extends HashMap@HashMap {
+      @Immutable()
+  }
+  @Immutable()
+  struct Put_object_object extends HashMap@HashMap {
+      HashMap self;
+      Object k;
+      Object v;
+      @Immutable()
+  }
+  @Immutable()
+  struct Putb_object_object extends HashMap@HashMap {
+      HashMap self;
+      Object k;
+      Object v;
+      @Immutable()
+  }
+  @Immutable()
+  struct Removeb_object extends HashMap@HashMap {
+      HashMap self;
+      Object k;
+      @Immutable()
+  }
+  @Immutable()
+  struct Remove_object extends HashMap@HashMap {
+      HashMap self;
+      Object k;
+      @Immutable()
+  }
+  @Immutable()
+  struct Get_object extends HashMap@HashMap {
+      HashMap self;
+      Object k;
+      @Immutable()
+  }
+  @Immutable()
+  struct Containskey_object extends HashMap@HashMap {
+      HashMap self;
+      Object k;
+      @Immutable()
+  }
+  /*HashMap.sk:13*/
+  
+Object HashMap_HashMap ()/*HashMap.sk:13*/
+  {
+    return new Object(__cid=HashMap(), _hashmap=new Hashmap());
+  }
+  /*HashMap.sk:37*/
+  
+Object containsKey_Object_Object (Object self, Object k)/*HashMap.sk:37*/
+  {
+    return new Object(__cid=HashMap(), _hashmap=new Containskey_object(self=self._hashmap, k=k));
+  }
+  /*HashMap.sk:33*/
+  
+Object get_Object_Object (Object self, Object k)/*HashMap.sk:33*/
+  {
+    return new Object(__cid=HashMap(), _hashmap=new Get_object(self=self._hashmap, k=k));
+  }
+  /*HashMap.sk:17*/
+  
+Object put_Object_Object_Object (Object self, Object k, Object v)/*HashMap.sk:17*/
+  {
+    return new Object(__cid=HashMap(), _hashmap=new Put_object_object(self=self._hashmap, k=k, v=v));
+  }
+  /*HashMap.sk:21*/
+  
+Object putb_Object_Object_Object (Object self, Object k, Object v)/*HashMap.sk:21*/
+  {
+    return new Object(__cid=HashMap(), _hashmap=new Putb_object_object(self=self._hashmap, k=k, v=v));
+  }
+  /*HashMap.sk:29*/
+  
+Object remove_Object_Object (Object self, Object k)/*HashMap.sk:29*/
+  {
+    return new Object(__cid=HashMap(), _hashmap=new Remove_object(self=self._hashmap, k=k));
+  }
+  /*HashMap.sk:25*/
+  
+Object removeb_Object_Object (Object self, Object k)/*HashMap.sk:25*/
+  {
+    return new Object(__cid=HashMap(), _hashmap=new Removeb_object(self=self._hashmap, k=k));
+  }
+  /*HashMap.sk:41*/
+  
+Object xform_HashMap (HashMap self)/*HashMap.sk:41*/
+  {
+    switch(self){/*HashMap.sk:42*/
+      case Hashmap:
+      {
+        {
+          return xform_hashmap_HashMap(self);
+        }
+      }
+      case Put_object_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:46 (0)
+        }
+      }
+      case Putb_object_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:47 (0)
+        }
+      }
+      case Removeb_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:48 (0)
+        }
+      }
+      case Remove_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:49 (0)
+        }
+      }
+      case Get_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:50 (0)
+        }
+      }
+      case Containskey_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:51 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*HashMap.sk:82*/
+  
+Object xform_containsKey_HashMap_Object (HashMap self, Object k)/*HashMap.sk:82*/
+  {
+    switch(self){/*HashMap.sk:83*/
+      case Hashmap:
+      {
+        {
+          return new Object(__cid=-4, _bit=0);
+        }
+      }
+      case Put_object_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:87 (0)
+        }
+      }
+      case Putb_object_object:
+      {
+        {
+          return (((self.k.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? equals_Object@Object(self.k, k) : ((self.k.__cid) == (new Object(__cid=-2, _int=Properties())._int) ? equals_Object@Object(self.k, k) : ((self.k.__cid) == (new Object(__cid=-2, _int=Arrays())._int) ? equals_Object@Object(self.k, k) : ((self.k.__cid) == (new Object(__cid=-2, _int=CryptoCipherFactory_CipherProvider())._int) ? equals_Object@Object(self.k, k) : ((self.k.__cid) == (new Object(__cid=-2, _int=SecureRandom())._int) ? equals_Object@Object(self.k, k) : ((self.k.__cid) == (new Object(__cid=-2, _int=CryptoCipherFactory())._int) ? equals_Object@Object(self.k, k) : ((self.k.__cid) == (new Object(__cid=-2, _int=SecretKeySpec())._int) ? equals_Object@Object(self.k, k) : ((self.k.__cid) == (new Object(__cid=-2, _int=Tester())._int) ? equals_Object@Object(self.k, k) : ((self.k.__cid) == (new Object(__cid=-2, _int=CipherFactory())._int) ? equals_Object@Object(self.k, k) : ((self.k.__cid) == (new Object(__cid=-2, _int=JCECipher())._int) ? equals_Object@Object(self.k, k) : ((self.k.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? equals_Object@Integer(self.k, k) : ((self.k.__cid) == (new Object(__cid=-2, _int=HashMap())._int) ? equals_Object@Object(self.k, k) : ((self.k.__cid) == (new Object(__cid=-2, _int=Boolean())._int) ? equals_Object@Object(self.k, k) : ((self.k.__cid) == (new Object(__cid=-2, _int=Character())._int) ? equals_Object@Character(self.k, k) : ((self.k.__cid) == (new Object(__cid=-2, _int=IvParameterSpec())._int) ? equals_Object@Object(self.k, k) : ((self.k.__cid) == (new Object(__cid=-2, _int=String())._int) ? equals_Object@String(self.k, k) : ((self.k.__cid) == (new Object(__cid=-2, _int=Utils())._int) ? equals_Object@Object(self.k, k) : ((self.k.__cid) == (new Object(__cid=-2, _int=Byte())._int) ? equals_Object@Object(self.k, k) : ((self.k.__cid) == (new Object(__cid=-2, _int=Cipher())._int) ? equals_Object@Object(self.k, k) : ((self.k.__cid) == (new Object(__cid=-2, _int=OpenSSLCipher())._int) ? equals_Object@Object(self.k, k) : ((self.k.__cid) == (new Object(__cid=-2, _int=Mac())._int) ? equals_Object@Object(self.k, k) : ((self.k.__cid) == (new Object(__cid=-2, _int=Assert())._int) ? equals_Object@Object(self.k, k) : ((self.k.__cid) == (new Object(__cid=-2, _int=Object())._int) ? equals_Object@Object(self.k, k) : null)))))))))))))))))))))))._bit ? new Object(__cid=-4, _bit=1) : xform_containsKey_HashMap_Object(self.self, k));
+        }
+      }
+      case Removeb_object:
+      {
+        {
+          return (((k.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Properties())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Arrays())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=CryptoCipherFactory_CipherProvider())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=SecureRandom())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=CryptoCipherFactory())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=SecretKeySpec())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Tester())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=CipherFactory())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=JCECipher())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? equals_Object@Integer(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=HashMap())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Boolean())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Character())._int) ? equals_Object@Character(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=IvParameterSpec())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=String())._int) ? equals_Object@String(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Utils())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Byte())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Cipher())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=OpenSSLCipher())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Mac())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Assert())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Object())._int) ? equals_Object@Object(k, self.k) : null)))))))))))))))))))))))._bit ? new Object(__cid=-4, _bit=0) : xform_containsKey_HashMap_Object(self.self, k));
+        }
+      }
+      case Remove_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:94 (0)
+        }
+      }
+      case Get_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:95 (0)
+        }
+      }
+      case Containskey_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:96 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*HashMap.sk:101*/
+  
+Object xform_get_HashMap_Object (HashMap self, Object k)/*HashMap.sk:101*/
+  {
+    switch(self){/*HashMap.sk:102*/
+      case Hashmap:
+      {
+        {
+          return null;
+        }
+      }
+      case Put_object_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:106 (0)
+        }
+      }
+      case Putb_object_object:
+      {
+        {
+          return (((k.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Properties())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Arrays())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=CryptoCipherFactory_CipherProvider())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=SecureRandom())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=CryptoCipherFactory())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=SecretKeySpec())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Tester())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=CipherFactory())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=JCECipher())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? equals_Object@Integer(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=HashMap())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Boolean())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Character())._int) ? equals_Object@Character(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=IvParameterSpec())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=String())._int) ? equals_Object@String(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Utils())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Byte())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Cipher())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=OpenSSLCipher())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Mac())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Assert())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Object())._int) ? equals_Object@Object(k, self.k) : null)))))))))))))))))))))))._bit ? self.v : xform_get_HashMap_Object(self.self, k));
+        }
+      }
+      case Removeb_object:
+      {
+        {
+          return (((k.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Properties())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Arrays())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=CryptoCipherFactory_CipherProvider())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=SecureRandom())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=CryptoCipherFactory())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=SecretKeySpec())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Tester())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=CipherFactory())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=JCECipher())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? equals_Object@Integer(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=HashMap())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Boolean())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Character())._int) ? equals_Object@Character(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=IvParameterSpec())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=String())._int) ? equals_Object@String(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Utils())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Byte())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Cipher())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=OpenSSLCipher())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Mac())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Assert())._int) ? equals_Object@Object(k, self.k) : ((k.__cid) == (new Object(__cid=-2, _int=Object())._int) ? equals_Object@Object(k, self.k) : null)))))))))))))))))))))))._bit ? null : xform_get_HashMap_Object(self.self, k));
+        }
+      }
+      case Remove_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:113 (0)
+        }
+      }
+      case Get_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:114 (0)
+        }
+      }
+      case Containskey_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:115 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*HashMap.sk:133*/
+  
+Object xform_hashmap_HashMap (HashMap self)/*HashMap.sk:133*/
+  {
+    switch(self){/*HashMap.sk:134*/
+      case Hashmap:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:135 (0)
+        }
+      }
+      case Put_object_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:136 (0)
+        }
+      }
+      case Putb_object_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:137 (0)
+        }
+      }
+      case Removeb_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:138 (0)
+        }
+      }
+      case Remove_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:139 (0)
+        }
+      }
+      case Get_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:140 (0)
+        }
+      }
+      case Containskey_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:141 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*HashMap.sk:120*/
+  
+Object xform_put_HashMap_Object_Object (HashMap self, Object k, Object v)/*HashMap.sk:120*/
+  {
+    switch(self){/*HashMap.sk:121*/
+      case Hashmap:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:122 (0)
+        }
+      }
+      case Put_object_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:123 (0)
+        }
+      }
+      case Putb_object_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:124 (0)
+        }
+      }
+      case Removeb_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:125 (0)
+        }
+      }
+      case Remove_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:126 (0)
+        }
+      }
+      case Get_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:127 (0)
+        }
+      }
+      case Containskey_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:128 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*HashMap.sk:146*/
+  
+Object xform_putb_HashMap_Object_Object (HashMap self, Object k, Object v)/*HashMap.sk:146*/
+  {
+    switch(self){/*HashMap.sk:147*/
+      case Hashmap:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:148 (0)
+        }
+      }
+      case Put_object_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:149 (0)
+        }
+      }
+      case Putb_object_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:150 (0)
+        }
+      }
+      case Removeb_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:151 (0)
+        }
+      }
+      case Remove_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:152 (0)
+        }
+      }
+      case Get_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:153 (0)
+        }
+      }
+      case Containskey_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:154 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*HashMap.sk:56*/
+  
+Object xform_remove_HashMap_Object (HashMap self, Object k)/*HashMap.sk:56*/
+  {
+    switch(self){/*HashMap.sk:57*/
+      case Hashmap:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:58 (0)
+        }
+      }
+      case Put_object_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:59 (0)
+        }
+      }
+      case Putb_object_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:60 (0)
+        }
+      }
+      case Removeb_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:61 (0)
+        }
+      }
+      case Remove_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:62 (0)
+        }
+      }
+      case Get_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:63 (0)
+        }
+      }
+      case Containskey_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:64 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*HashMap.sk:69*/
+  
+Object xform_removeb_HashMap_Object (HashMap self, Object k)/*HashMap.sk:69*/
+  {
+    switch(self){/*HashMap.sk:70*/
+      case Hashmap:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:71 (0)
+        }
+      }
+      case Put_object_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:72 (0)
+        }
+      }
+      case Putb_object_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:73 (0)
+        }
+      }
+      case Removeb_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:74 (0)
+        }
+      }
+      case Remove_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:75 (0)
+        }
+      }
+      case Get_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:76 (0)
+        }
+      }
+      case Containskey_object:
+      {
+        {
+          assert (0); //Assert at HashMap.sk:77 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /* END PACKAGE HashMap*/
+}
+/* BEGIN PACKAGE ArrayList*/
+package ArrayList{
+  @Immutable()
+  struct ArrayList {
+      @Immutable()
+  }
+  @Immutable()
+  struct Arraylist extends ArrayList@ArrayList {
+      @Immutable()
+  }
+  @Immutable()
+  struct Add_object extends ArrayList@ArrayList {
+      ArrayList self;
+      Object e;
+      @Immutable()
+  }
+  @Immutable()
+  struct Addb_object extends ArrayList@ArrayList {
+      ArrayList self;
+      Object e;
+      @Immutable()
+  }
+  @Immutable()
+  struct Getb_int extends ArrayList@ArrayList {
+      ArrayList self;
+      Object i;
+      @Immutable()
+  }
+  @Immutable()
+  struct Setb_int_object extends ArrayList@ArrayList {
+      ArrayList self;
+      Object i;
+      Object e;
+      @Immutable()
+  }
+  @Immutable()
+  struct Get_int extends ArrayList@ArrayList {
+      ArrayList self;
+      Object i;
+      @Immutable()
+  }
+  @Immutable()
+  struct Set_int_object extends ArrayList@ArrayList {
+      ArrayList self;
+      Object i;
+      Object e;
+      @Immutable()
+  }
+  @Immutable()
+  struct Ensurecapacity_int extends ArrayList@ArrayList {
+      ArrayList self;
+      Object n;
+      @Immutable()
+  }
+  @Immutable()
+  struct Size extends ArrayList@ArrayList {
+      ArrayList self;
+      @Immutable()
+  }
+  /*ArrayList.sk:15*/
+  
+Object ArrayList_ArrayList ()/*ArrayList.sk:15*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Arraylist());
+  }
+  /*ArrayList.sk:19*/
+  
+Object add_Object_Object (Object self, Object e)/*ArrayList.sk:19*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Add_object(self=self._arraylist, e=e));
+  }
+  /*ArrayList.sk:23*/
+  
+Object addb_Object_Object (Object self, Object e)/*ArrayList.sk:23*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Addb_object(self=self._arraylist, e=e));
+  }
+  /*ArrayList.sk:43*/
+  
+Object ensureCapacity_Object_int (Object self, Object n)/*ArrayList.sk:43*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Ensurecapacity_int(self=self._arraylist, n=n));
+  }
+  /*ArrayList.sk:35*/
+  
+Object get_Object_int (Object self, Object i)/*ArrayList.sk:35*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Get_int(self=self._arraylist, i=i));
+  }
+  /*ArrayList.sk:27*/
+  
+Object getb_Object_int (Object self, Object i)/*ArrayList.sk:27*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Getb_int(self=self._arraylist, i=i));
+  }
+  /*ArrayList.sk:39*/
+  
+Object set_Object_int_Object (Object self, Object i, Object e)/*ArrayList.sk:39*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Set_int_object(self=self._arraylist, i=i, e=e));
+  }
+  /*ArrayList.sk:31*/
+  
+Object setb_Object_int_Object (Object self, Object i, Object e)/*ArrayList.sk:31*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Setb_int_object(self=self._arraylist, i=i, e=e));
+  }
+  /*ArrayList.sk:47*/
+  
+Object size_Object (Object self)/*ArrayList.sk:47*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Size(self=self._arraylist));
+  }
+  /*ArrayList.sk:51*/
+  
+Object xform_ArrayList (ArrayList self)/*ArrayList.sk:51*/
+  {
+    switch(self){/*ArrayList.sk:52*/
+      case Arraylist:
+      {
+        {
+          return xform_arraylist_ArrayList(self);
+        }
+      }
+      case Add_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:56 (0)
+        }
+      }
+      case Addb_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:57 (0)
+        }
+      }
+      case Getb_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:58 (0)
+        }
+      }
+      case Setb_int_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:59 (0)
+        }
+      }
+      case Get_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:60 (0)
+        }
+      }
+      case Set_int_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:61 (0)
+        }
+      }
+      case Ensurecapacity_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:62 (0)
+        }
+      }
+      case Size:
+      {
+        {
+          return xform_size_ArrayList(self.self);
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:157*/
+  
+Object xform_add_ArrayList_Object (ArrayList self, Object e)/*ArrayList.sk:157*/
+  {
+    switch(self){/*ArrayList.sk:158*/
+      case Arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:159 (0)
+        }
+      }
+      case Add_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:160 (0)
+        }
+      }
+      case Addb_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:161 (0)
+        }
+      }
+      case Getb_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:162 (0)
+        }
+      }
+      case Setb_int_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:163 (0)
+        }
+      }
+      case Get_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:164 (0)
+        }
+      }
+      case Set_int_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:165 (0)
+        }
+      }
+      case Ensurecapacity_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:166 (0)
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:167 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:91*/
+  
+Object xform_addb_ArrayList_Object (ArrayList self, Object e)/*ArrayList.sk:91*/
+  {
+    switch(self){/*ArrayList.sk:92*/
+      case Arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:93 (0)
+        }
+      }
+      case Add_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:94 (0)
+        }
+      }
+      case Addb_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:95 (0)
+        }
+      }
+      case Getb_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:96 (0)
+        }
+      }
+      case Setb_int_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:97 (0)
+        }
+      }
+      case Get_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:98 (0)
+        }
+      }
+      case Set_int_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:99 (0)
+        }
+      }
+      case Ensurecapacity_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:100 (0)
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:101 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:202*/
+  
+Object xform_arraylist_ArrayList (ArrayList self)/*ArrayList.sk:202*/
+  {
+    switch(self){/*ArrayList.sk:203*/
+      case Arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:204 (0)
+        }
+      }
+      case Add_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:205 (0)
+        }
+      }
+      case Addb_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:206 (0)
+        }
+      }
+      case Getb_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:207 (0)
+        }
+      }
+      case Setb_int_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:208 (0)
+        }
+      }
+      case Get_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:209 (0)
+        }
+      }
+      case Set_int_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:210 (0)
+        }
+      }
+      case Ensurecapacity_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:211 (0)
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:212 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:187*/
+  
+Object xform_ensureCapacity_ArrayList_int (ArrayList self, Object n)/*ArrayList.sk:187*/
+  {
+    switch(self){/*ArrayList.sk:188*/
+      case Arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:189 (0)
+        }
+      }
+      case Add_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:190 (0)
+        }
+      }
+      case Addb_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:191 (0)
+        }
+      }
+      case Getb_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:192 (0)
+        }
+      }
+      case Setb_int_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:193 (0)
+        }
+      }
+      case Get_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:194 (0)
+        }
+      }
+      case Set_int_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:195 (0)
+        }
+      }
+      case Ensurecapacity_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:196 (0)
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:197 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:70*/
+  
+Object xform_get_ArrayList_int (ArrayList self, Object i)/*ArrayList.sk:70*/
+  {
+    switch(self){/*ArrayList.sk:71*/
+      case Arraylist:
+      {
+        {
+          return null;
+        }
+      }
+      case Add_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:75 (0)
+        }
+      }
+      case Addb_object:
+      {
+        {
+          return ((xform_size_ArrayList(self.self)._int) == ((i._int) - (new Object(__cid=-2, _int=1)._int)) ? self.e : xform_get_ArrayList_int(self.self, i));
+        }
+      }
+      case Getb_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:79 (0)
+        }
+      }
+      case Setb_int_object:
+      {
+        {
+          return ((i._int) == (self.i._int) ? self.e : xform_get_ArrayList_int(self.self, i));
+        }
+      }
+      case Get_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:83 (0)
+        }
+      }
+      case Set_int_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:84 (0)
+        }
+      }
+      case Ensurecapacity_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:85 (0)
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:86 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:172*/
+  
+Object xform_getb_ArrayList_int (ArrayList self, Object i)/*ArrayList.sk:172*/
+  {
+    switch(self){/*ArrayList.sk:173*/
+      case Arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:174 (0)
+        }
+      }
+      case Add_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:175 (0)
+        }
+      }
+      case Addb_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:176 (0)
+        }
+      }
+      case Getb_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:177 (0)
+        }
+      }
+      case Setb_int_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:178 (0)
+        }
+      }
+      case Get_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:179 (0)
+        }
+      }
+      case Set_int_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:180 (0)
+        }
+      }
+      case Ensurecapacity_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:181 (0)
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:182 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:106*/
+  
+Object xform_set_ArrayList_int_Object (ArrayList self, Object i, Object e)/*ArrayList.sk:106*/
+  {
+    switch(self){/*ArrayList.sk:107*/
+      case Arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:108 (0)
+        }
+      }
+      case Add_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:109 (0)
+        }
+      }
+      case Addb_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:110 (0)
+        }
+      }
+      case Getb_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:111 (0)
+        }
+      }
+      case Setb_int_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:112 (0)
+        }
+      }
+      case Get_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:113 (0)
+        }
+      }
+      case Set_int_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:114 (0)
+        }
+      }
+      case Ensurecapacity_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:115 (0)
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:116 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:142*/
+  
+Object xform_setb_ArrayList_int_Object (ArrayList self, Object i, Object e)/*ArrayList.sk:142*/
+  {
+    switch(self){/*ArrayList.sk:143*/
+      case Arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:144 (0)
+        }
+      }
+      case Add_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:145 (0)
+        }
+      }
+      case Addb_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:146 (0)
+        }
+      }
+      case Getb_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:147 (0)
+        }
+      }
+      case Setb_int_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:148 (0)
+        }
+      }
+      case Get_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:149 (0)
+        }
+      }
+      case Set_int_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:150 (0)
+        }
+      }
+      case Ensurecapacity_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:151 (0)
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:152 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:121*/
+  
+Object xform_size_ArrayList (ArrayList self)/*ArrayList.sk:121*/
+  {
+    switch(self){/*ArrayList.sk:122*/
+      case Arraylist:
+      {
+        {
+          return new Object(__cid=-2, _int=0);
+        }
+      }
+      case Add_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:126 (0)
+        }
+      }
+      case Addb_object:
+      {
+        {
+          return new Object(__cid=-2, _int=(xform_size_ArrayList(self.self)._int) + (new Object(__cid=-2, _int=1)._int));
+        }
+      }
+      case Getb_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:130 (0)
+        }
+      }
+      case Setb_int_object:
+      {
+        {
+          return xform_size_ArrayList(self.self);
+        }
+      }
+      case Get_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:134 (0)
+        }
+      }
+      case Set_int_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:135 (0)
+        }
+      }
+      case Ensurecapacity_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:136 (0)
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:137 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /* END PACKAGE ArrayList*/
+}
+/* BEGIN PACKAGE String*/
+package String{
+  /*String.sk:3*/
+  
+Object String_String (Object self)/*String.sk:3*/
+  {
+    return self;
+  }
+  /*String.sk:22*/
+  
+Object String_String_byte (Object self, Object bytes)/*String.sk:22*/
+  {
+    Object len = bytes._array_char.length;
+    self._value_String = Wrap_Array_char(new Array_char(length=len));
+    {
+      Object i = new Object(__cid=-2, _int=0);
+      bit __sa3 = (i._int) < (len._int);
+      while(__sa3)
+      {
+        {
+          {
+            self._value_String._array_char.A[i._int] = new Object(__cid=-3, _char=((char)bytes._array_char.A[i._int]))._char;
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) + 1);
+        __sa3 = (i._int) < (len._int);
+      }
+    }
+    self._count_String = len;
+    return self;
+  }
+  /*String.sk:7*/
+  
+Object String_String_char_int_int (Object self, Object ca, Object offset, Object count)/*String.sk:7*/
+  {
+    if(((offset._int) > (new Object(__cid=-2, _int=0)._int)) && ((offset._int) < (ca._array_char.length._int)))/*String.sk:8*/
+    {
+      {
+        Object tmp = Wrap_Array_char(new Array_char(length=count));
+        {
+          Object i = new Object(__cid=-2, _int=0);
+          bit __sa2 = (i._int) < (count._int);
+          while(__sa2)
+          {
+            {
+              {
+                tmp._array_char.A[i._int] = ca._array_char.A[(i._int) + (offset._int)];
+              }
+            }
+            i = new Object(__cid=-2, _int=(i._int) + 1);
+            __sa2 = (i._int) < (count._int);
+          }
+        }
+        self._value_String = tmp;
+      }
+    }
+    else
+    {
+      {
+        self._value_String = ca;
+      }
+    }
+    self._count_String = count;
+    return self;
+  }
+  /*String.sk:43*/
+  
+Object charAt_int (Object self, Object index)/*String.sk:43*/
+  {
+    if(((new Object(__cid=-2, _int=0)._int) <= (index._int)) && ((index._int) < (self._count_String._int)))/*String.sk:44*/
+    {
+      return new Object(__cid=-3, _char=self._value_String._array_char.A[index._int]);
+    }
+    return new Object(__cid=-3, _char='\0');
+  }
+  /*String.sk:108*/
+  
+Object compareTo_String (Object self, Object str)/*String.sk:108*/
+  {
+    return compare_String_String(((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? toString@String(self) : null), str);
+  }
+  /*String.sk:112*/
+  
+Object compare_String_String (Object s1, Object s2)/*String.sk:112*/
+  {
+    Object l1 = ((s1.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(s1) : null);
+    Object l2 = ((s2.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(s2) : null);
+    Object lendiff = new Object(__cid=-2, _int=(l1._int) - (l2._int));
+    Object smaller = l1;
+    if((l1._int) > (l2._int))/*String.sk:117*/
+    {
+      {
+        smaller = l2;
+      }
+    }
+    else
+    {
+      {
+        {
+          Object i = new Object(__cid=-2, _int=0);
+          bit __sa7 = (i._int) < (smaller._int);
+          while(__sa7)
+          {
+            {
+              {
+                Object c1 = ((s1.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(s1, i) : null);
+                Object c2 = ((s2.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(s2, i) : null);
+                if((c1._char) != (c2._char))/*String.sk:124*/
+                {
+                  {
+                    return new Object(__cid=-3, _char=(c1._char) - (c2._char));
+                  }
+                }
+              }
+            }
+            i = new Object(__cid=-2, _int=(i._int) + 1);
+            __sa7 = (i._int) < (smaller._int);
+          }
+        }
+        if((lendiff._int) != (new Object(__cid=-2, _int=0)._int))/*String.sk:128*/
+        {
+          return lendiff;
+        }
+        return new Object(__cid=-2, _int=0);
+      }
+    }
+  }
+  /*String.sk:133*/
+  
+Object concat_String (Object self, Object str)/*String.sk:133*/
+  {
+    Object otherLen = ((str.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(str) : null);
+    if((otherLen._int) == (new Object(__cid=-2, _int=0)._int))/*String.sk:135*/
+    {
+      {
+        return self;
+      }
+    }
+    Object thisLen = ((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(self) : null);
+    Object totalLen = new Object(__cid=-2, _int=(((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(self) : null)._int) + (otherLen._int));
+    Object ret = Wrap_Array_char(new Array_char(length=totalLen));
+    {
+      Object i = new Object(__cid=-2, _int=0);
+      bit __sa8 = (i._int) < (thisLen._int);
+      while(__sa8)
+      {
+        {
+          {
+            ret._array_char.A[i._int] = ((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(self, i) : null)._char;
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) + 1);
+        __sa8 = (i._int) < (thisLen._int);
+      }
+    }
+    {
+      Object i = thisLen;
+      bit __sa9 = (i._int) < (totalLen._int);
+      while(__sa9)
+      {
+        {
+          {
+            ret._array_char.A[i._int] = ((str.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(str, new Object(__cid=-2, _int=(i._int) - (thisLen._int))) : null)._char;
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) + 1);
+        __sa9 = (i._int) < (totalLen._int);
+      }
+    }
+    return String_String_char_int_int(new Object(__cid=String()), ret, new Object(__cid=-2, _int=0), totalLen);
+  }
+  /*String.sk:150*/
+  
+Object equalsIgnoreCase_Object (Object self, Object obj)/*String.sk:150*/
+  {
+    return equals_Object@String(self, obj);
+  }
+  /*String.sk:154*/
+  
+Object equals_Object (Object self, Object obj)/*String.sk:154*/
+  {
+    Object isEqual = new Object(__cid=-4, _bit=0);
+    if((obj.__cid) == (String()))/*String.sk:156*/
+    {
+      {
+        isEqual = new Object(__cid=-4, _bit=1);
+        Object s = obj;
+        Object sLen = ((s.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(s) : null);
+        Object tLen = ((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(self) : null);
+        if((sLen._int) != (tLen._int))/*String.sk:161*/
+        {
+          isEqual = new Object(__cid=-4, _bit=0);
+        }
+        {
+          Object i = new Object(__cid=-2, _int=0);
+          bit __sa10 = ((i._int) < (sLen._int)) && ((isEqual._bit) == (new Object(__cid=-4, _bit=1)._bit));
+          while(__sa10)
+          {
+            {
+              {
+                if((s._value_String._array_char.A[i._int]) != (self._value_String._array_char.A[i._int]))/*String.sk:163*/
+                {
+                  {
+                    isEqual = new Object(__cid=-4, _bit=0);
+                  }
+                }
+              }
+            }
+            i = new Object(__cid=-2, _int=(i._int) + 1);
+            __sa10 = ((i._int) < (sLen._int)) && ((isEqual._bit) == (new Object(__cid=-4, _bit=1)._bit));
+          }
+        }
+      }
+    }
+    return isEqual;
+  }
+  /*String.sk:214*/
+  
+Object getBytes (Object self)/*String.sk:214*/
+  {
+    return getBytes_String(((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? toString@String(self) : null));
+  }
+  /*String.sk:218*/
+  
+Object getBytes_String (Object str)/*String.sk:218*/
+  {
+    Object len = ((str.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(str) : null);
+    Object bytes = Wrap_Array_char(new Array_char(length=len));
+    {
+      Object i = new Object(__cid=-2, _int=0);
+      bit __sa16 = (i._int) < (len._int);
+      while(__sa16)
+      {
+        {
+          {
+            bytes._array_char.A[i._int] = ((char)((str.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(str, i) : null)._char);
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) + 1);
+        __sa16 = (i._int) < (len._int);
+      }
+    }
+    return bytes;
+  }
+  /*String.sk:171*/
+  
+Object hashCode (Object self)/*String.sk:171*/
+  {
+    Object n = self._count_String;
+    Object hash = new Object(__cid=-2, _int=0);
+    Object temp = new Object(__cid=-2, _int=0);
+    if((n._int) == (new Object(__cid=-2, _int=0)._int))/*String.sk:173*/
+    {
+      {
+        return new Object(__cid=-2, _int=0);
+      }
+    }
+    {
+      Object i = new Object(__cid=-2, _int=0);
+      bit __sa11 = (i._int) < (n._int);
+      while(__sa11)
+      {
+        {
+          {
+            temp = ((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(self, i) : null);
+            {
+              Object j = new Object(__cid=-2, _int=0);
+              bit __sa12 = (j._int) < (((n._int) - (new Object(__cid=-2, _int=1)._int)) - (i._int));
+              while(__sa12)
+              {
+                {
+                  {
+                    temp = new Object(__cid=-2, _int=(temp._int) * (new Object(__cid=-2, _int=31)._int));
+                  }
+                }
+                j = new Object(__cid=-2, _int=(j._int) + 1);
+                __sa12 = (j._int) < (((n._int) - (new Object(__cid=-2, _int=1)._int)) - (i._int));
+              }
+            }
+            hash = new Object(__cid=-2, _int=(hash._int) + (temp._int));
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) + 1);
+        __sa11 = (i._int) < (n._int);
+      }
+    }
+    return hash;
+  }
+  /*String.sk:60*/
+  
+Object indexOf_String (Object self, Object s)/*String.sk:60*/
+  {
+    return indexOf_String_int@String(self, s, new Object(__cid=-2, _int=0));
+  }
+  /*String.sk:64*/
+  
+Object indexOf_String_int (Object self, Object s, Object i)/*String.sk:64*/
+  {
+    Object tLen = ((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(self) : null);
+    Object sLen = ((s.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(s) : null);
+    Object index = i;
+    Object mLen = new Object(__cid=-2, _int=0);
+    Object j;
+    if((((i._int) >= (tLen._int)) || ((i._int) < (new Object(__cid=-2, _int=0)._int))) || ((sLen._int) == (new Object(__cid=-2, _int=0)._int)))/*String.sk:70*/
+    {
+      {
+        return new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1)._int));
+      }
+    }
+    {
+      j = i;
+      bit __sa5 = (((j._int) < (tLen._int)) && ((mLen._int) < (sLen._int))) && (((j._int) - (index._int)) < (sLen._int));
+      while(__sa5)
+      {
+        {
+          {
+            if((((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(self, j) : null)._char) != (((s.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(s, new Object(__cid=-2, _int=(j._int) - (index._int))) : null)._char))/*String.sk:74*/
+            {
+              {
+                mLen = new Object(__cid=-2, _int=0);
+                index = new Object(__cid=-2, _int=(index._int) + 1);
+                j = index;
+              }
+            }
+            else
+            {
+              {
+                mLen = new Object(__cid=-2, _int=(mLen._int) + 1);
+                j = new Object(__cid=-2, _int=(j._int) + 1);
+              }
+            }
+          }
+        }
+        { }
+        __sa5 = (((j._int) < (tLen._int)) && ((mLen._int) < (sLen._int))) && (((j._int) - (index._int)) < (sLen._int));
+      }
+    }
+    if((mLen._int) != (sLen._int))/*String.sk:84*/
+    {
+      {
+        index = new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1)._int));
+      }
+    }
+    return index;
+  }
+  /*String.sk:90*/
+  
+Object indexOf_char (Object self, Object c)/*String.sk:90*/
+  {
+    return indexOf_char_int@String(self, c, new Object(__cid=-2, _int=0));
+  }
+  /*String.sk:94*/
+  
+Object indexOf_char_int (Object self, Object c, Object i)/*String.sk:94*/
+  {
+    Object len = ((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(self) : null);
+    Object index = new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1)._int));
+    if(((i._int) >= (len._int)) || ((i._int) < (new Object(__cid=-2, _int=0)._int)))/*String.sk:97*/
+    {
+      {
+        return index;
+      }
+    }
+    {
+      Object j = i;
+      bit __sa6 = (j._int) < (len._int);
+      while(__sa6)
+      {
+        {
+          {
+            if((((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(self, j) : null)._char) == (c._char))/*String.sk:101*/
+            {
+              {
+                return j;
+              }
+            }
+          }
+        }
+        j = new Object(__cid=-2, _int=(j._int) + 1);
+        __sa6 = (j._int) < (len._int);
+      }
+    }
+    return index;
+  }
+  /*String.sk:48*/
+  
+Object length (Object self)/*String.sk:48*/
+  {
+    return self._count_String;
+  }
+  /*String.sk:186*/
+  
+Object replace_char_char (Object self, Object oldChar, Object newChar)/*String.sk:186*/
+  {
+    if((oldChar._char) != (newChar._char))/*String.sk:187*/
+    {
+      {
+        Object len = self._count_String;
+        Object i = new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1)._int));
+        Object stop = new Object(__cid=-2, _int=0);
+        Object val = self._value_String;
+        {
+          bit __sa13 = (i._int) < (len._int);
+          while(__sa13)
+          {
+            {
+              {
+                i = new Object(__cid=-2, _int=(i._int) + (new Object(__cid=-2, _int=1)._int));
+                if(((val._array_char.A[i._int]) == (oldChar._char)) && ((stop._int) == (new Object(__cid=-2, _int=0)._int)))/*String.sk:194*/
+                {
+                  {
+                    stop = i;
+                  }
+                }
+              }
+            }
+            __sa13 = (i._int) < (len._int);
+          }
+        }
+        if((stop._int) < (len._int))/*String.sk:198*/
+        {
+          {
+            Object buf = Wrap_Array_char(new Array_char(length=len));
+            {
+              Object j = new Object(__cid=-2, _int=0);
+              bit __sa14 = (j._int) < (stop._int);
+              while(__sa14)
+              {
+                {
+                  {
+                    buf._array_char.A[j._int] = val._array_char.A[j._int];
+                  }
+                }
+                j = new Object(__cid=-2, _int=(j._int) + 1);
+                __sa14 = (j._int) < (stop._int);
+              }
+            }
+            {
+              bit __sa15 = (stop._int) < (len._int);
+              while(__sa15)
+              {
+                {
+                  {
+                    Object c = new Object(__cid=-3, _char=val._array_char.A[stop._int]);
+                    buf._array_char.A[stop._int] = ((c._char) == (oldChar._char) ? newChar : c)._char;
+                    stop = new Object(__cid=-2, _int=(stop._int) + 1);
+                  }
+                }
+                __sa15 = (stop._int) < (len._int);
+              }
+            }
+            return String_String_char_int_int(new Object(__cid=String()), buf, new Object(__cid=-2, _int=0), len);
+          }
+        }
+      }
+    }
+    return self;
+  }
+  /*String.sk:56*/
+  
+void setCharAt_int_char (Object self, Object i, Object c)/*String.sk:56*/
+  {
+    self._value_String._array_char.A[i._int] = c._char;
+  }
+  /*String.sk:240*/
+  
+Object split_String (Object self, Object regex)/*String.sk:240*/
+  {
+    return split_String_int@String(self, regex, new Object(__cid=-2, _int=0));
+  }
+  /*String.sk:244*/
+  
+Object split_String_int (Object self, Object regex, Object limit)/*String.sk:244*/
+  {
+    Object off = new Object(__cid=-2, _int=0);
+    Object ch = ((regex.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(regex, new Object(__cid=-2, _int=0)) : null);
+    Object next = indexOf_char_int@String(self, ch, off);
+    Object limited = new Object(__cid=-2, _int=(limit._int) > (new Object(__cid=-2, _int=0)._int));
+    Object size = new Object(__cid=-2, _int=0);
+    {
+      bit __sa17 = (next._int) != (-(new Object(__cid=-2, _int=1)._int));
+      while(__sa17)
+      {
+        {
+          {
+            if((!(limited._bit)) || ((size._int) < ((limit._int) - (new Object(__cid=-2, _int=1)._int))))/*String.sk:251*/
+            {
+              {
+                off = new Object(__cid=-2, _int=(next._int) + (new Object(__cid=-2, _int=1)._int));
+                next = indexOf_char_int@String(self, ch, off);
+              }
+            }
+            else
+            {
+              {
+                off = self._value_String._array_char.length;
+                next = new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1)._int));
+              }
+            }
+            size = new Object(__cid=-2, _int=(size._int) + 1);
+          }
+        }
+        __sa17 = (next._int) != (-(new Object(__cid=-2, _int=1)._int));
+      }
+    }
+    off = new Object(__cid=-2, _int=0);
+    ch = ((regex.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(regex, new Object(__cid=-2, _int=0)) : null);
+    next = indexOf_char_int@String(self, ch, off);
+    limited = new Object(__cid=-2, _int=(limit._int) > (new Object(__cid=-2, _int=0)._int));
+    Object list = Wrap_Array_Object(new Array_Object(length=size));
+    size = new Object(__cid=-2, _int=0);
+    {
+      bit __sa18 = (next._int) != (-(new Object(__cid=-2, _int=1)._int));
+      while(__sa18)
+      {
+        {
+          {
+            if((!(limited._bit)) || ((size._int) < ((limit._int) - (new Object(__cid=-2, _int=1)._int))))/*String.sk:268*/
+            {
+              {
+                list._array_object.A[size._int] = substring_int_int@String(self, off, next);
+                off = new Object(__cid=-2, _int=(next._int) + (new Object(__cid=-2, _int=1)._int));
+                next = indexOf_char_int@String(self, ch, off);
+              }
+            }
+            else
+            {
+              {
+                list._array_object.A[size._int] = substring_int_int@String(self, off, self._count_String);
+                off = self._value_String._array_char.length;
+                next = new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1)._int));
+              }
+            }
+            size = new Object(__cid=-2, _int=(size._int) + 1);
+          }
+        }
+        __sa18 = (next._int) != (-(new Object(__cid=-2, _int=1)._int));
+      }
+    }
+    if((off._int) == (new Object(__cid=-2, _int=0)._int))/*String.sk:280*/
+    {
+      {
+        Object res = Wrap_Array_Object(new Array_Object(length=new Object(__cid=-2, _int=1)));
+        res._array_object.A[0] = self;
+        return res;
+      }
+    }
+    if((!(limited._bit)) || ((size._int) < (limit._int)))/*String.sk:284*/
+    {
+      {
+        list._array_object.A[size._int] = substring_int_int@String(self, off, self._count_String);
+        size = new Object(__cid=-2, _int=(size._int) + 1);
+      }
+    }
+    Object resultSize = list._array_object.length;
+    if((limit._int) == (new Object(__cid=-2, _int=0)._int))/*String.sk:289*/
+    {
+      {
+        Object tmp = list._array_object.A[(resultSize._int) - (new Object(__cid=-2, _int=1)._int)];
+        {
+          bit __sa19 = ((resultSize._int) > (new Object(__cid=-2, _int=0)._int)) && ((((tmp.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(tmp) : null)._int) == (new Object(__cid=-2, _int=0)._int));
+          while(__sa19)
+          {
+            {
+              {
+                resultSize = new Object(__cid=-2, _int=(resultSize._int) - 1);
+              }
+            }
+            __sa19 = ((resultSize._int) > (new Object(__cid=-2, _int=0)._int)) && ((((tmp.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(tmp) : null)._int) == (new Object(__cid=-2, _int=0)._int));
+          }
+        }
+      }
+    }
+    Object result = Wrap_Array_Object(new Array_Object(length=resultSize));
+    {
+      Object i = new Object(__cid=-2, _int=0);
+      bit __sa20 = (i._int) < (resultSize._int);
+      while(__sa20)
+      {
+        {
+          {
+            result._array_object.A[i._int] = list._array_object.A[i._int];
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) + 1);
+        __sa20 = (i._int) < (resultSize._int);
+      }
+    }
+    return result;
+  }
+  /*String.sk:32*/
+  
+Object startsWith_String (Object self, Object suffix)/*String.sk:32*/
+  {
+    Object len = ((suffix.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(suffix) : null);
+    if((len._int) > (((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(self) : null)._int))/*String.sk:34*/
+    {
+      return new Object(__cid=-4, _bit=0);
+    }
+    {
+      Object i = new Object(__cid=-2, _int=0);
+      bit __sa4 = (i._int) < (len._int);
+      while(__sa4)
+      {
+        {
+          {
+            if((((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(self, i) : null)._char) != (((suffix.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(suffix, i) : null)._char))/*String.sk:36*/
+            {
+              {
+                return new Object(__cid=-4, _bit=0);
+              }
+            }
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) + 1);
+        __sa4 = (i._int) < (len._int);
+      }
+    }
+    return new Object(__cid=-4, _bit=1);
+  }
+  /*String.sk:227*/
+  
+Object substring_int (Object self, Object beginIndex)/*String.sk:227*/
+  {
+    Object subLen = new Object(__cid=-2, _int=(self._count_String._int) - (beginIndex._int));
+    assert ((subLen._int) > (new Object(__cid=-2, _int=0)._int)); //Assert at String.sk:229 (0)
+    return ((beginIndex._int) == (new Object(__cid=-2, _int=0)._int) ? self : String_String_char_int_int(new Object(__cid=String()), self._value_String, beginIndex, subLen));
+  }
+  /*String.sk:233*/
+  
+Object substring_int_int (Object self, Object beginIndex, Object endIndex)/*String.sk:233*/
+  {
+    assert (((beginIndex._int) >= (new Object(__cid=-2, _int=0)._int)) && ((endIndex._int) <= (self._value_String._array_char.length._int))); //Assert at String.sk:234 (0)
+    Object subLen = new Object(__cid=-2, _int=(endIndex._int) - (beginIndex._int));
+    assert ((subLen._int) > (new Object(__cid=-2, _int=0)._int)); //Assert at String.sk:236 (0)
+    return (((beginIndex._int) == (new Object(__cid=-2, _int=0)._int)) && ((endIndex._int) == (self._count_String._int)) ? self : String_String_char_int_int(new Object(__cid=String()), self._value_String, beginIndex, subLen));
+  }
+  /*String.sk:52*/
+  
+Object toString (Object self)/*String.sk:52*/
+  {
+    return self;
+  }
+  /* END PACKAGE String*/
+}
+/* BEGIN PACKAGE CryptoCipherFactory_CipherProvider*/
+package CryptoCipherFactory_CipherProvider{
+  Object self0;
+  /*CryptoC..ovider.sk:5*/
+  
+Object CryptoCipherFactory_CipherProvider_CryptoCipherFactory_CipherProvider_CryptoCipherFactory (Object self, Object self_0)/*CryptoC..ovider.sk:5*/
+  {
+    self0 = self_0;
+    return self;
+  }
+  /*CryptoC..ovider.sk:10*/
+  
+Object getClassName ()/*CryptoC..ovider.sk:10*/
+  {
+    return String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=8), A={'O','P','E','N','S','S','L','\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=7));
+  }
+  /* END PACKAGE CryptoCipherFactory_CipherProvider*/
+}
+/* BEGIN PACKAGE Properties*/
+package Properties{
+  /*Properties.sk:3*/
+  
+Object Properties_Properties (Object self)/*Properties.sk:3*/
+  {
+    self.map_Properties = HashMap_HashMap();
+    return self;
+  }
+  /*Properties.sk:8*/
+  
+void setProperty_String_String (Object self, Object key, Object value)/*Properties.sk:8*/
+  {
+    ((self.map_Properties.__cid) == (new Object(__cid=-2, _int=HashMap())._int) ? put_Object_Object_Object@HashMap(self.map_Properties, key, value) : null);
+    self.map_Properties = ((self.map_Properties.__cid) == (new Object(__cid=-2, _int=HashMap())._int) ? putb_Object_Object_Object@HashMap(self.map_Properties, key, value) : null);
+  }
+  /* END PACKAGE Properties*/
+}
+/* BEGIN PACKAGE Assert*/
+package Assert{
+  /*Assert.sk:3*/
+  
+Object Assert_Assert (Object self)/*Assert.sk:3*/
+  {
+    return self;
+  }
+  /*Assert.sk:45*/
+  
+void assertEquals_Object_Object (Object expected, Object actual)/*Assert.sk:45*/
+  {
+    assertEquals_String_Object_Object(null, expected, actual);
+  }
+  /*Assert.sk:30*/
+  
+void assertEquals_String_Object_Object (Object message, Object expected, Object actual)/*Assert.sk:30*/
+  {
+    assert (((expected.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Properties())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Arrays())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=CryptoCipherFactory_CipherProvider())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=SecureRandom())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=CryptoCipherFactory())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=SecretKeySpec())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Tester())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=CipherFactory())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=JCECipher())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? equals_Object@Integer(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=HashMap())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Boolean())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Character())._int) ? equals_Object@Character(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=IvParameterSpec())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=String())._int) ? equals_Object@String(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Utils())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Byte())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Cipher())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=OpenSSLCipher())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Mac())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Assert())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Object())._int) ? equals_Object@Object(expected, actual) : null)))))))))))))))))))))))._bit); //Assert at Assert.sk:31 (0)
+  }
+  /*Assert.sk:49*/
+  
+void assertEquals_int_int (Object expected, Object actual)/*Assert.sk:49*/
+  {
+    assert ((expected._int) == (actual._int)); //Assert at Assert.sk:50 (0)
+  }
+  /*Assert.sk:15*/
+  
+void assertFalse_String_boolean (Object message, Object condition)/*Assert.sk:15*/
+  {
+    assertTrue_String_boolean(message, new Object(__cid=-4, _bit=!(condition._bit)));
+  }
+  /*Assert.sk:19*/
+  
+void assertFalse_boolean (Object condition)/*Assert.sk:19*/
+  {
+    assertFalse_String_boolean(String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1), A={'\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=0)), condition);
+  }
+  /*Assert.sk:60*/
+  
+void assertNull_Object (Object object)/*Assert.sk:60*/
+  {
+    assertNull_String_Object(null, object);
+  }
+  /*Assert.sk:53*/
+  
+void assertNull_String_Object (Object message, Object object)/*Assert.sk:53*/
+  {
+    if(object == (null))/*Assert.sk:54*/
+    {
+      {
+        return;
+      }
+    }
+    failNotNull_String_Object(message, object);
+  }
+  /*Assert.sk:7*/
+  
+void assertTrue_String_boolean (Object message, Object condition)/*Assert.sk:7*/
+  {
+    assert (condition._bit); //Assert at Assert.sk:8 (0)
+  }
+  /*Assert.sk:11*/
+  
+void assertTrue_boolean (Object condition)/*Assert.sk:11*/
+  {
+    assertTrue_String_boolean(String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1), A={'\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=0)), condition);
+  }
+  /*Assert.sk:34*/
+  
+Object equalsRegardingNull_Object_Object (Object expected, Object actual)/*Assert.sk:34*/
+  {
+    if(expected == (null))/*Assert.sk:35*/
+    {
+      {
+        return new Object(__cid=-4, _bit=actual == (null));
+      }
+    }
+    return isEquals_Object_Object(expected, actual);
+  }
+  /*Assert.sk:68*/
+  
+void failNotEquals_String_Object_Object (Object message, Object expected, Object actual)/*Assert.sk:68*/
+  {
+    fail_String(format_String_Object_Object(message, expected, actual));
+  }
+  /*Assert.sk:64*/
+  
+void failNotNull_String_Object (Object message, Object actual)/*Assert.sk:64*/
+  {
+    assert (new Object(__cid=-4, _bit=0)._bit); //Assert at Assert.sk:65 (0)
+  }
+  /*Assert.sk:23*/
+  
+void fail_String (Object message)/*Assert.sk:23*/
+  {
+    if(message == (null))/*Assert.sk:24*/
+    {
+      {
+      }
+    }
+  }
+  /*Assert.sk:72*/
+  
+Object format_String_Object_Object (Object message, Object expected, Object actual)/*Assert.sk:72*/
+  {
+    return String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1), A={'\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=0));
+  }
+  /*Assert.sk:41*/
+  
+Object isEquals_Object_Object (Object expected, Object actual)/*Assert.sk:41*/
+  {
+    return ((expected.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Properties())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Arrays())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=CryptoCipherFactory_CipherProvider())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=SecureRandom())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=CryptoCipherFactory())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=SecretKeySpec())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Tester())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=CipherFactory())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=JCECipher())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? equals_Object@Integer(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=HashMap())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Boolean())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Character())._int) ? equals_Object@Character(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=IvParameterSpec())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=String())._int) ? equals_Object@String(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Utils())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Byte())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Cipher())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=OpenSSLCipher())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Mac())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Assert())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Object())._int) ? equals_Object@Object(expected, actual) : null)))))))))))))))))))))));
+  }
+  /* END PACKAGE Assert*/
+}
+/* BEGIN PACKAGE array*/
+package array{
+  struct Array_bit {
+      Object length;
+      bit[length._int] A;
+  }
+  struct Array_char {
+      Object length;
+      char[length._int] A;
+  }
+  struct Array_int {
+      Object length;
+      int[length._int] A;
+  }
+  struct Array_float {
+      Object length;
+      float[length._int] A;
+  }
+  struct Array_double {
+      Object length;
+      double[length._int] A;
+  }
+  struct Array_Object {
+      Object length;
+      Object[length._int] A;
+  }
+  /*array.sk:53*/
+  
+Object Wrap_Array_Object (Array_Object arr)/*array.sk:53*/
+  {
+    return new Object(__cid=Array(), _array_object=arr);
+  }
+  /*array.sk:33*/
+  
+Object Wrap_Array_bit (Array_bit arr)/*array.sk:33*/
+  {
+    return new Object(__cid=Array(), _array_bit=arr);
+  }
+  /*array.sk:37*/
+  
+Object Wrap_Array_char (Array_char arr)/*array.sk:37*/
+  {
+    return new Object(__cid=Array(), _array_char=arr);
+  }
+  /*array.sk:49*/
+  
+Object Wrap_Array_double (Array_double arr)/*array.sk:49*/
+  {
+    return new Object(__cid=Array(), _array_double=arr);
+  }
+  /*array.sk:45*/
+  
+Object Wrap_Array_float (Array_float arr)/*array.sk:45*/
+  {
+    return new Object(__cid=Array(), _array_float=arr);
+  }
+  /*array.sk:41*/
+  
+Object Wrap_Array_int (Array_int arr)/*array.sk:41*/
+  {
+    return new Object(__cid=Array(), _array_int=arr);
+  }
+  /* END PACKAGE array*/
+}
+/* BEGIN PACKAGE SecretKeySpec*/
+package SecretKeySpec{
+  @Immutable()
+  struct SecretKeySpec {
+      @Immutable()
+  }
+  @Immutable()
+  struct Secretkeyspec extends SecretKeySpec@SecretKeySpec {
+      @Immutable()
+  }
+  @Immutable()
+  struct Getencoded extends SecretKeySpec@SecretKeySpec {
+      SecretKeySpec self;
+      @Immutable()
+  }
+  @Immutable()
+  struct Equals_object extends SecretKeySpec@SecretKeySpec {
+      SecretKeySpec self;
+      Object o;
+      @Immutable()
+  }
+  /*SecretKeySpec.sk:9*/
+  
+Object SecretKeySpec_SecretKeySpec ()/*SecretKeySpec.sk:9*/
+  {
+    return new Object(__cid=SecretKeySpec(), _secretkeyspec=new Secretkeyspec());
+  }
+  /*SecretKeySpec.sk:17*/
+  
+Object equals_Object_Object (Object self, Object o)/*SecretKeySpec.sk:17*/
+  {
+    return new Object(__cid=SecretKeySpec(), _secretkeyspec=new Equals_object(self=self._secretkeyspec, o=o));
+  }
+  /*SecretKeySpec.sk:13*/
+  
+Object getEncoded_Object (Object self)/*SecretKeySpec.sk:13*/
+  {
+    return new Object(__cid=SecretKeySpec(), _secretkeyspec=new Getencoded(self=self._secretkeyspec));
+  }
+  /*SecretKeySpec.sk:21*/
+  
+Object xform_SecretKeySpec (SecretKeySpec self)/*SecretKeySpec.sk:21*/
+  {
+    switch(self){/*SecretKeySpec.sk:22*/
+      case Secretkeyspec:
+      {
+        {
+          return xform_secretkeyspec_SecretKeySpec(self);
+        }
+      }
+      case Getencoded:
+      {
+        {
+          return xform_getEncoded_SecretKeySpec(self.self);
+        }
+      }
+      case Equals_object:
+      {
+        {
+          assert (0); //Assert at SecretKeySpec.sk:29 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*SecretKeySpec.sk:34*/
+  
+Object xform_equals_SecretKeySpec_Object (SecretKeySpec self, Object o)/*SecretKeySpec.sk:34*/
+  {
+    switch(self){/*SecretKeySpec.sk:35*/
+      case Secretkeyspec:
+      {
+        {
+          {
+            SecretKeySpec o_o;
+            o_o = o._secretkeyspec;
+            switch(o_o){/*SecretKeySpec.sk:40*/
+              case Secretkeyspec:
+              {
+                {
+                  {
+                    return new Object(__cid=-4, _bit=1);
+                  }
+                }
+              }
+              case Getencoded:
+              {
+                {
+                  assert (0); //Assert at SecretKeySpec.sk:56 (0)
+                }
+              }
+              case Equals_object:
+              {
+                {
+                  assert (0); //Assert at SecretKeySpec.sk:57 (0)
+                }
+              }
+            }
+          }
+        }
+      }
+      case Getencoded:
+      {
+        {
+          assert (0); //Assert at SecretKeySpec.sk:62 (0)
+        }
+      }
+      case Equals_object:
+      {
+        {
+          assert (0); //Assert at SecretKeySpec.sk:63 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*SecretKeySpec.sk:68*/
+  
+Object xform_getEncoded_SecretKeySpec (SecretKeySpec self)/*SecretKeySpec.sk:68*/
+  {
+    switch(self){/*SecretKeySpec.sk:69*/
+      case Secretkeyspec:
+      {
+        {
+          assert (0); //Assert at SecretKeySpec.sk:70 (0)
+        }
+      }
+      case Getencoded:
+      {
+        {
+          assert (0); //Assert at SecretKeySpec.sk:71 (0)
+        }
+      }
+      case Equals_object:
+      {
+        {
+          assert (0); //Assert at SecretKeySpec.sk:72 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*SecretKeySpec.sk:77*/
+  
+Object xform_secretkeyspec_SecretKeySpec (SecretKeySpec self)/*SecretKeySpec.sk:77*/
+  {
+    switch(self){/*SecretKeySpec.sk:78*/
+      case Secretkeyspec:
+      {
+        {
+          assert (0); //Assert at SecretKeySpec.sk:79 (0)
+        }
+      }
+      case Getencoded:
+      {
+        {
+          assert (0); //Assert at SecretKeySpec.sk:80 (0)
+        }
+      }
+      case Equals_object:
+      {
+        {
+          assert (0); //Assert at SecretKeySpec.sk:81 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /* END PACKAGE SecretKeySpec*/
+}
+/* BEGIN PACKAGE Boolean*/
+package Boolean{
+  /*Boolean.sk:3*/
+  
+Object Boolean_Boolean (Object self)/*Boolean.sk:3*/
+  {
+    return self;
+  }
+  /*Boolean.sk:7*/
+  
+Object Boolean_Boolean_boolean (Object self, Object bool)/*Boolean.sk:7*/
+  {
+    self.bool_Boolean = bool;
+    return self;
+  }
+  /*Boolean.sk:12*/
+  
+Object booleanValue (Object self)/*Boolean.sk:12*/
+  {
+    return self.bool_Boolean;
+  }
+  /* END PACKAGE Boolean*/
+}
+/* BEGIN PACKAGE OpenSSLCipher*/
+package OpenSSLCipher{
+  /*OpenSSLCipher.sk:3*/
+  
+Object OpenSSLCipher_OpenSSLCipher (Object self)/*OpenSSLCipher.sk:3*/
+  {
+    return self;
+  }
+  /*OpenSSLCipher.sk:7*/
+  
+Object OpenSSLCipher_OpenSSLCipher_String_String (Object self, Object algorithm, Object transformation)/*OpenSSLCipher.sk:7*/
+  {
+    self.algorithm_OpenSSLCipher = algorithm;
+    self.transformation_OpenSSLCipher = transformation;
+    return self;
+  }
+  /*OpenSSLCipher.sk:36*/
+  
+Object decrypt_byte_SecretKeySpec_byte (Object self, Object data, Object key, Object IV)/*OpenSSLCipher.sk:36*/
+  {
+    return translate_boolean_byte_SecretKeySpec_byte@OpenSSLCipher(self, new Object(__cid=-4, _bit=0), data, key, IV);
+  }
+  /*OpenSSLCipher.sk:32*/
+  
+Object encrypt_byte_SecretKeySpec_byte (Object self, Object data, Object key, Object IV)/*OpenSSLCipher.sk:32*/
+  {
+    return translate_boolean_byte_SecretKeySpec_byte@OpenSSLCipher(self, new Object(__cid=-4, _bit=1), data, key, IV);
+  }
+  /*OpenSSLCipher.sk:40*/
+  
+generator Object genCipherText_byte_boolean_SecretKeySpec_byte (Object self, Object data, Object isEncryption, Object key, Object IV)/*OpenSSLCipher.sk:40*/
+  {
+    Object cipherText;
+    Object updateBytes = new Object(__cid=-2, _int=0);
+    Object finalBytes = new Object(__cid=-2, _int=0);
+    Object cipher;
+    if(new Object(__cid=-4, _bit=??/* H__22bit:1 */)._bit)/*OpenSSLCipher.sk:45*/
+    {
+      {
+        cipher = getCipher_boolean_SecretKeySpec_byte@OpenSSLCipher(self, isEncryption, key, IV);
+      }
+    }
+    if(new Object(__cid=-4, _bit=??/* H__23bit:1 */)._bit)/*OpenSSLCipher.sk:48*/
+    {
+      {
+        updateBytes = ((cipher.__cid) == (new Object(__cid=-2, _int=Cipher())._int) ? update_Object_byte_int_int_byte_int@Cipher(cipher, data, new Object(__cid=-2, _int=??/* H__24int:7 */), data._array_char.length, cipherText, new Object(__cid=-2, _int=??/* H__25int:7 */)) : null);
+        cipher = ((cipher.__cid) == (new Object(__cid=-2, _int=Cipher())._int) ? updateb_Object_byte_int_int_byte_int@Cipher(cipher, data, new Object(__cid=-2, _int=??/* H__26int:7 */), data._array_char.length, cipherText, new Object(__cid=-2, _int=??/* H__27int:7 */)) : null);
+      }
+    }
+    if(new Object(__cid=-4, _bit=??/* H__28bit:1 */)._bit)/*OpenSSLCipher.sk:51*/
+    {
+      {
+        finalBytes = ((cipher.__cid) == (new Object(__cid=-2, _int=Cipher())._int) ? doFinale_Object_byte_int_int_byte_int@Cipher(cipher, data, new Object(__cid=-2, _int=??/* H__29int:7 */), new Object(__cid=-2, _int=??/* H__30int:7 */), cipherText, updateBytes) : null);
+        cipher = ((cipher.__cid) == (new Object(__cid=-2, _int=Cipher())._int) ? doFinaleb_Object_byte_int_int_byte_int@Cipher(cipher, data, new Object(__cid=-2, _int=??/* H__31int:7 */), new Object(__cid=-2, _int=??/* H__32int:7 */), cipherText, updateBytes) : null);
+      }
+    }
+    if(new Object(__cid=-4, _bit=??/* H__33bit:1 */)._bit)/*OpenSSLCipher.sk:54*/
+    {
+      {
+        cipherText = ((cipher.__cid) == (new Object(__cid=-2, _int=Cipher())._int) ? doFinal_Object_Object@Cipher(cipher, data) : null);
+        cipher = ((cipher.__cid) == (new Object(__cid=-2, _int=Cipher())._int) ? doFinalb_Object_Object@Cipher(cipher, data) : null);
+      }
+    }
+    if(new Object(__cid=-4, _bit=??/* H__34bit:1 */)._bit)/*OpenSSLCipher.sk:57*/
+    {
+      {
+        cipherText = copyOf_byte_int@Arrays(cipherText, new Object(__cid=-2, _int=(updateBytes._int) + (finalBytes._int)));
+      }
+    }
+    if(new Object(__cid=-4, _bit=??/* H__35bit:1 */)._bit)/*OpenSSLCipher.sk:60*/
+    {
+      {
+        cipherText = genCipherText_byte_boolean_SecretKeySpec_byte@OpenSSLCipher(self, cipherText, isEncryption, key, IV);
+      }
+    }
+    return cipherText;
+  }
+  /*OpenSSLCipher.sk:13*/
+  
+Object getCipher_boolean_SecretKeySpec_byte (Object self, Object isEncryption, Object key, Object IV)/*OpenSSLCipher.sk:13*/
+  {
+    Object properties = Properties_Properties(new Object(__cid=Properties()));
+    if((properties.__cid) == (new Object(__cid=-2, _int=Properties())._int))/*OpenSSLCipher.sk:15*/
+    {
+      {
+        setProperty_String_String@Properties(properties, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=12), A={'C','L','A','S','S','E','S','_','K','E','Y','\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=11)), getClassName@CryptoCipherFactory_CipherProvider());
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    Object cipher;
+    cipher = getCipherInstance_String_Properties@Utils(self.transformation_OpenSSLCipher, properties);
+    Object keyValue = SecretKeySpec_SecretKeySpec();
+    Object IVspec = IvParameterSpec_IvParameterSpec_byte(new Object(__cid=IvParameterSpec()), IV);
+    if(isEncryption._bit)/*OpenSSLCipher.sk:21*/
+    {
+      {
+        if((cipher.__cid) == (new Object(__cid=-2, _int=Cipher())._int))/*OpenSSLCipher.sk:22*/
+        {
+          {
+            init_Object_int_SecretKeySpec_AlgorithmParameterSpec@Cipher(cipher, new Object(__cid=-2, _int=??/* H__18int:7 */), keyValue, IVspec);
+          }
+        }
+        else
+        {
+          {
+            0;
+          }
+        }
+        { }
+        cipher = ((cipher.__cid) == (new Object(__cid=-2, _int=Cipher())._int) ? initb_Object_int_SecretKeySpec_AlgorithmParameterSpec@Cipher(cipher, new Object(__cid=-2, _int=??/* H__19int:7 */), keyValue, IVspec) : null);
+      }
+    }
+    else
+    {
+      {
+        if((cipher.__cid) == (new Object(__cid=-2, _int=Cipher())._int))/*OpenSSLCipher.sk:26*/
+        {
+          {
+            init_Object_int_SecretKeySpec_AlgorithmParameterSpec@Cipher(cipher, new Object(__cid=-2, _int=??/* H__20int:7 */), keyValue, IVspec);
+          }
+        }
+        else
+        {
+          {
+            0;
+          }
+        }
+        { }
+        cipher = ((cipher.__cid) == (new Object(__cid=-2, _int=Cipher())._int) ? initb_Object_int_SecretKeySpec_AlgorithmParameterSpec@Cipher(cipher, new Object(__cid=-2, _int=??/* H__21int:7 */), keyValue, IVspec) : null);
+      }
+    }
+    return cipher;
+  }
+  /*OpenSSLCipher.sk:66*/
+  
+Object translate_boolean_byte_SecretKeySpec_byte (Object self, Object isEncryption, Object data, Object key, Object IV)/*OpenSSLCipher.sk:66*/
+  {
+    return genCipherText_byte_boolean_SecretKeySpec_byte@OpenSSLCipher(self, data, isEncryption, key, IV);
+  }
+  /* END PACKAGE OpenSSLCipher*/
+}
+/* BEGIN PACKAGE ANONYMOUS*/
+/* END PACKAGE ANONYMOUS*/
+/* BEGIN PACKAGE Character*/
+package Character{
+  Object MIN_RADIX=new Object(__cid=-2, _int=2);
+  Object MAX_RADIX=new Object(__cid=-2, _int=36);
+  Object UNASSIGNED=new Object(__cid=-2, _int=0);
+  Object UPPERCASE_LETTER=new Object(__cid=-2, _int=1);
+  Object LOWERCASE_LETTER=new Object(__cid=-2, _int=2);
+  Object TITLECASE_LETTER=new Object(__cid=-2, _int=3);
+  Object MODIFIER_LETTER=new Object(__cid=-2, _int=4);
+  Object OTHER_LETTER=new Object(__cid=-2, _int=5);
+  Object NON_SPACING_MARK=new Object(__cid=-2, _int=6);
+  Object ENCLOSING_MARK=new Object(__cid=-2, _int=7);
+  Object COMBINING_SPACING_MARK=new Object(__cid=-2, _int=8);
+  Object DECIMAL_DIGIT_NUMBER=new Object(__cid=-2, _int=9);
+  Object LETTER_NUMBER=new Object(__cid=-2, _int=10);
+  Object OTHER_NUMBER=new Object(__cid=-2, _int=11);
+  Object SPACE_SEPARATOR=new Object(__cid=-2, _int=12);
+  Object LINE_SEPARATOR=new Object(__cid=-2, _int=13);
+  Object PARAGRAPH_SEPARATOR=new Object(__cid=-2, _int=14);
+  Object CONTROL=new Object(__cid=-2, _int=15);
+  Object FORMAT=new Object(__cid=-2, _int=16);
+  Object PRIVATE_USE=new Object(__cid=-2, _int=18);
+  Object SURROGATE=new Object(__cid=-2, _int=19);
+  Object DASH_PUNCTUATION=new Object(__cid=-2, _int=20);
+  Object START_PUNCTUATION=new Object(__cid=-2, _int=21);
+  Object END_PUNCTUATION=new Object(__cid=-2, _int=22);
+  Object CONNECTOR_PUNCTUATION=new Object(__cid=-2, _int=23);
+  Object OTHER_PUNCTUATION=new Object(__cid=-2, _int=24);
+  Object MATH_SYMBOL=new Object(__cid=-2, _int=25);
+  Object CURRENCY_SYMBOL=new Object(__cid=-2, _int=26);
+  Object MODIFIER_SYMBOL=new Object(__cid=-2, _int=27);
+  Object OTHER_SYMBOL=new Object(__cid=-2, _int=28);
+  Object FINAL_QUOTE_PUNCTUATION=new Object(__cid=-2, _int=30);
+  Object DIRECTIONALITY_UNDEFINED=-(new Object(__cid=-2, _int=1)._int);
+  Object DIRECTIONALITY_LEFT_TO_RIGHT=new Object(__cid=-2, _int=0);
+  Object DIRECTIONALITY_RIGHT_TO_LEFT=new Object(__cid=-2, _int=1);
+  Object DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC=new Object(__cid=-2, _int=2);
+  Object DIRECTIONALITY_EUROPEAN_NUMBER=new Object(__cid=-2, _int=3);
+  Object DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR=new Object(__cid=-2, _int=4);
+  Object DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR=new Object(__cid=-2, _int=5);
+  Object DIRECTIONALITY_ARABIC_NUMBER=new Object(__cid=-2, _int=6);
+  Object DIRECTIONALITY_COMMON_NUMBER_SEPARATOR=new Object(__cid=-2, _int=7);
+  Object DIRECTIONALITY_NONSPACING_MARK=new Object(__cid=-2, _int=8);
+  Object DIRECTIONALITY_BOUNDARY_NEUTRAL=new Object(__cid=-2, _int=9);
+  Object DIRECTIONALITY_PARAGRAPH_SEPARATOR=new Object(__cid=-2, _int=10);
+  Object DIRECTIONALITY_SEGMENT_SEPARATOR=new Object(__cid=-2, _int=11);
+  Object DIRECTIONALITY_WHITESPACE=new Object(__cid=-2, _int=12);
+  Object DIRECTIONALITY_OTHER_NEUTRALS=new Object(__cid=-2, _int=13);
+  Object DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING=new Object(__cid=-2, _int=14);
+  Object DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE=new Object(__cid=-2, _int=15);
+  Object DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING=new Object(__cid=-2, _int=16);
+  Object DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE=new Object(__cid=-2, _int=17);
+  Object DIRECTIONALITY_POP_DIRECTIONAL_FORMAT=new Object(__cid=-2, _int=18);
+  /*Character.sk:44*/
+  
+Object COMBINING_SPACING_MARK_g ()/*Character.sk:44*/
+  {
+    return COMBINING_SPACING_MARK;
+  }
+  /*Character.sk:45*/
+  
+void COMBINING_SPACING_MARK_s (Object COMBINING_SPACING_MARK_s)/*Character.sk:45*/
+  {
+    COMBINING_SPACING_MARK = COMBINING_SPACING_MARK_s;
+  }
+  /*Character.sk:100*/
+  
+Object CONNECTOR_PUNCTUATION_g ()/*Character.sk:100*/
+  {
+    return CONNECTOR_PUNCTUATION;
+  }
+  /*Character.sk:101*/
+  
+void CONNECTOR_PUNCTUATION_s (Object CONNECTOR_PUNCTUATION_s)/*Character.sk:101*/
+  {
+    CONNECTOR_PUNCTUATION = CONNECTOR_PUNCTUATION_s;
+  }
+  /*Character.sk:72*/
+  
+Object CONTROL_g ()/*Character.sk:72*/
+  {
+    return CONTROL;
+  }
+  /*Character.sk:73*/
+  
+void CONTROL_s (Object CONTROL_s)/*Character.sk:73*/
+  {
+    CONTROL = CONTROL_s;
+  }
+  /*Character.sk:112*/
+  
+Object CURRENCY_SYMBOL_g ()/*Character.sk:112*/
+  {
+    return CURRENCY_SYMBOL;
+  }
+  /*Character.sk:113*/
+  
+void CURRENCY_SYMBOL_s (Object CURRENCY_SYMBOL_s)/*Character.sk:113*/
+  {
+    CURRENCY_SYMBOL = CURRENCY_SYMBOL_s;
+  }
+  /*Character.sk:207*/
+  
+Object Character_Character (Object self)/*Character.sk:207*/
+  {
+    return self;
+  }
+  /*Character.sk:211*/
+  
+Object Character_Character_char (Object self, Object value)/*Character.sk:211*/
+  {
+    self.value_Character = value;
+    return self;
+  }
+  /*Character.sk:88*/
+  
+Object DASH_PUNCTUATION_g ()/*Character.sk:88*/
+  {
+    return DASH_PUNCTUATION;
+  }
+  /*Character.sk:89*/
+  
+void DASH_PUNCTUATION_s (Object DASH_PUNCTUATION_s)/*Character.sk:89*/
+  {
+    DASH_PUNCTUATION = DASH_PUNCTUATION_s;
+  }
+  /*Character.sk:48*/
+  
+Object DECIMAL_DIGIT_NUMBER_g ()/*Character.sk:48*/
+  {
+    return DECIMAL_DIGIT_NUMBER;
+  }
+  /*Character.sk:49*/
+  
+void DECIMAL_DIGIT_NUMBER_s (Object DECIMAL_DIGIT_NUMBER_s)/*Character.sk:49*/
+  {
+    DECIMAL_DIGIT_NUMBER = DECIMAL_DIGIT_NUMBER_s;
+  }
+  /*Character.sk:156*/
+  
+Object DIRECTIONALITY_ARABIC_NUMBER_g ()/*Character.sk:156*/
+  {
+    return DIRECTIONALITY_ARABIC_NUMBER;
+  }
+  /*Character.sk:157*/
+  
+void DIRECTIONALITY_ARABIC_NUMBER_s (Object DIRECTIONALITY_ARABIC_NUMBER_s)/*Character.sk:157*/
+  {
+    DIRECTIONALITY_ARABIC_NUMBER = DIRECTIONALITY_ARABIC_NUMBER_s;
+  }
+  /*Character.sk:168*/
+  
+Object DIRECTIONALITY_BOUNDARY_NEUTRAL_g ()/*Character.sk:168*/
+  {
+    return DIRECTIONALITY_BOUNDARY_NEUTRAL;
+  }
+  /*Character.sk:169*/
+  
+void DIRECTIONALITY_BOUNDARY_NEUTRAL_s (Object DIRECTIONALITY_BOUNDARY_NEUTRAL_s)/*Character.sk:169*/
+  {
+    DIRECTIONALITY_BOUNDARY_NEUTRAL = DIRECTIONALITY_BOUNDARY_NEUTRAL_s;
+  }
+  /*Character.sk:160*/
+  
+Object DIRECTIONALITY_COMMON_NUMBER_SEPARATOR_g ()/*Character.sk:160*/
+  {
+    return DIRECTIONALITY_COMMON_NUMBER_SEPARATOR;
+  }
+  /*Character.sk:161*/
+  
+void DIRECTIONALITY_COMMON_NUMBER_SEPARATOR_s (Object DIRECTIONALITY_COMMON_NUMBER_SEPARATOR_s)/*Character.sk:161*/
+  {
+    DIRECTIONALITY_COMMON_NUMBER_SEPARATOR = DIRECTIONALITY_COMMON_NUMBER_SEPARATOR_s;
+  }
+  /*Character.sk:148*/
+  
+Object DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR_g ()/*Character.sk:148*/
+  {
+    return DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR;
+  }
+  /*Character.sk:149*/
+  
+void DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR_s (Object DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR_s)/*Character.sk:149*/
+  {
+    DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR = DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR_s;
+  }
+  /*Character.sk:152*/
+  
+Object DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR_g ()/*Character.sk:152*/
+  {
+    return DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR;
+  }
+  /*Character.sk:153*/
+  
+void DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR_s (Object DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR_s)/*Character.sk:153*/
+  {
+    DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR = DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR_s;
+  }
+  /*Character.sk:144*/
+  
+Object DIRECTIONALITY_EUROPEAN_NUMBER_g ()/*Character.sk:144*/
+  {
+    return DIRECTIONALITY_EUROPEAN_NUMBER;
+  }
+  /*Character.sk:145*/
+  
+void DIRECTIONALITY_EUROPEAN_NUMBER_s (Object DIRECTIONALITY_EUROPEAN_NUMBER_s)/*Character.sk:145*/
+  {
+    DIRECTIONALITY_EUROPEAN_NUMBER = DIRECTIONALITY_EUROPEAN_NUMBER_s;
+  }
+  /*Character.sk:188*/
+  
+Object DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING_g ()/*Character.sk:188*/
+  {
+    return DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING;
+  }
+  /*Character.sk:189*/
+  
+void DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING_s (Object DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING_s)/*Character.sk:189*/
+  {
+    DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING = DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING_s;
+  }
+  /*Character.sk:192*/
+  
+Object DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE_g ()/*Character.sk:192*/
+  {
+    return DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE;
+  }
+  /*Character.sk:193*/
+  
+void DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE_s (Object DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE_s)/*Character.sk:193*/
+  {
+    DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE = DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE_s;
+  }
+  /*Character.sk:132*/
+  
+Object DIRECTIONALITY_LEFT_TO_RIGHT_g ()/*Character.sk:132*/
+  {
+    return DIRECTIONALITY_LEFT_TO_RIGHT;
+  }
+  /*Character.sk:133*/
+  
+void DIRECTIONALITY_LEFT_TO_RIGHT_s (Object DIRECTIONALITY_LEFT_TO_RIGHT_s)/*Character.sk:133*/
+  {
+    DIRECTIONALITY_LEFT_TO_RIGHT = DIRECTIONALITY_LEFT_TO_RIGHT_s;
+  }
+  /*Character.sk:164*/
+  
+Object DIRECTIONALITY_NONSPACING_MARK_g ()/*Character.sk:164*/
+  {
+    return DIRECTIONALITY_NONSPACING_MARK;
+  }
+  /*Character.sk:165*/
+  
+void DIRECTIONALITY_NONSPACING_MARK_s (Object DIRECTIONALITY_NONSPACING_MARK_s)/*Character.sk:165*/
+  {
+    DIRECTIONALITY_NONSPACING_MARK = DIRECTIONALITY_NONSPACING_MARK_s;
+  }
+  /*Character.sk:184*/
+  
+Object DIRECTIONALITY_OTHER_NEUTRALS_g ()/*Character.sk:184*/
+  {
+    return DIRECTIONALITY_OTHER_NEUTRALS;
+  }
+  /*Character.sk:185*/
+  
+void DIRECTIONALITY_OTHER_NEUTRALS_s (Object DIRECTIONALITY_OTHER_NEUTRALS_s)/*Character.sk:185*/
+  {
+    DIRECTIONALITY_OTHER_NEUTRALS = DIRECTIONALITY_OTHER_NEUTRALS_s;
+  }
+  /*Character.sk:172*/
+  
+Object DIRECTIONALITY_PARAGRAPH_SEPARATOR_g ()/*Character.sk:172*/
+  {
+    return DIRECTIONALITY_PARAGRAPH_SEPARATOR;
+  }
+  /*Character.sk:173*/
+  
+void DIRECTIONALITY_PARAGRAPH_SEPARATOR_s (Object DIRECTIONALITY_PARAGRAPH_SEPARATOR_s)/*Character.sk:173*/
+  {
+    DIRECTIONALITY_PARAGRAPH_SEPARATOR = DIRECTIONALITY_PARAGRAPH_SEPARATOR_s;
+  }
+  /*Character.sk:204*/
+  
+Object DIRECTIONALITY_POP_DIRECTIONAL_FORMAT_g ()/*Character.sk:204*/
+  {
+    return DIRECTIONALITY_POP_DIRECTIONAL_FORMAT;
+  }
+  /*Character.sk:205*/
+  
+void DIRECTIONALITY_POP_DIRECTIONAL_FORMAT_s (Object DIRECTIONALITY_POP_DIRECTIONAL_FORMAT_s)/*Character.sk:205*/
+  {
+    DIRECTIONALITY_POP_DIRECTIONAL_FORMAT = DIRECTIONALITY_POP_DIRECTIONAL_FORMAT_s;
+  }
+  /*Character.sk:140*/
+  
+Object DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC_g ()/*Character.sk:140*/
+  {
+    return DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC;
+  }
+  /*Character.sk:141*/
+  
+void DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC_s (Object DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC_s)/*Character.sk:141*/
+  {
+    DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC = DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC_s;
+  }
+  /*Character.sk:196*/
+  
+Object DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING_g ()/*Character.sk:196*/
+  {
+    return DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING;
+  }
+  /*Character.sk:197*/
+  
+void DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING_s (Object DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING_s)/*Character.sk:197*/
+  {
+    DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING = DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING_s;
+  }
+  /*Character.sk:200*/
+  
+Object DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE_g ()/*Character.sk:200*/
+  {
+    return DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE;
+  }
+  /*Character.sk:201*/
+  
+void DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE_s (Object DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE_s)/*Character.sk:201*/
+  {
+    DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE = DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE_s;
+  }
+  /*Character.sk:136*/
+  
+Object DIRECTIONALITY_RIGHT_TO_LEFT_g ()/*Character.sk:136*/
+  {
+    return DIRECTIONALITY_RIGHT_TO_LEFT;
+  }
+  /*Character.sk:137*/
+  
+void DIRECTIONALITY_RIGHT_TO_LEFT_s (Object DIRECTIONALITY_RIGHT_TO_LEFT_s)/*Character.sk:137*/
+  {
+    DIRECTIONALITY_RIGHT_TO_LEFT = DIRECTIONALITY_RIGHT_TO_LEFT_s;
+  }
+  /*Character.sk:176*/
+  
+Object DIRECTIONALITY_SEGMENT_SEPARATOR_g ()/*Character.sk:176*/
+  {
+    return DIRECTIONALITY_SEGMENT_SEPARATOR;
+  }
+  /*Character.sk:177*/
+  
+void DIRECTIONALITY_SEGMENT_SEPARATOR_s (Object DIRECTIONALITY_SEGMENT_SEPARATOR_s)/*Character.sk:177*/
+  {
+    DIRECTIONALITY_SEGMENT_SEPARATOR = DIRECTIONALITY_SEGMENT_SEPARATOR_s;
+  }
+  /*Character.sk:128*/
+  
+Object DIRECTIONALITY_UNDEFINED_g ()/*Character.sk:128*/
+  {
+    return DIRECTIONALITY_UNDEFINED;
+  }
+  /*Character.sk:129*/
+  
+void DIRECTIONALITY_UNDEFINED_s (Object DIRECTIONALITY_UNDEFINED_s)/*Character.sk:129*/
+  {
+    DIRECTIONALITY_UNDEFINED = DIRECTIONALITY_UNDEFINED_s;
+  }
+  /*Character.sk:180*/
+  
+Object DIRECTIONALITY_WHITESPACE_g ()/*Character.sk:180*/
+  {
+    return DIRECTIONALITY_WHITESPACE;
+  }
+  /*Character.sk:181*/
+  
+void DIRECTIONALITY_WHITESPACE_s (Object DIRECTIONALITY_WHITESPACE_s)/*Character.sk:181*/
+  {
+    DIRECTIONALITY_WHITESPACE = DIRECTIONALITY_WHITESPACE_s;
+  }
+  /*Character.sk:40*/
+  
+Object ENCLOSING_MARK_g ()/*Character.sk:40*/
+  {
+    return ENCLOSING_MARK;
+  }
+  /*Character.sk:41*/
+  
+void ENCLOSING_MARK_s (Object ENCLOSING_MARK_s)/*Character.sk:41*/
+  {
+    ENCLOSING_MARK = ENCLOSING_MARK_s;
+  }
+  /*Character.sk:96*/
+  
+Object END_PUNCTUATION_g ()/*Character.sk:96*/
+  {
+    return END_PUNCTUATION;
+  }
+  /*Character.sk:97*/
+  
+void END_PUNCTUATION_s (Object END_PUNCTUATION_s)/*Character.sk:97*/
+  {
+    END_PUNCTUATION = END_PUNCTUATION_s;
+  }
+  /*Character.sk:124*/
+  
+Object FINAL_QUOTE_PUNCTUATION_g ()/*Character.sk:124*/
+  {
+    return FINAL_QUOTE_PUNCTUATION;
+  }
+  /*Character.sk:125*/
+  
+void FINAL_QUOTE_PUNCTUATION_s (Object FINAL_QUOTE_PUNCTUATION_s)/*Character.sk:125*/
+  {
+    FINAL_QUOTE_PUNCTUATION = FINAL_QUOTE_PUNCTUATION_s;
+  }
+  /*Character.sk:76*/
+  
+Object FORMAT_g ()/*Character.sk:76*/
+  {
+    return FORMAT;
+  }
+  /*Character.sk:77*/
+  
+void FORMAT_s (Object FORMAT_s)/*Character.sk:77*/
+  {
+    FORMAT = FORMAT_s;
+  }
+  /*Character.sk:52*/
+  
+Object LETTER_NUMBER_g ()/*Character.sk:52*/
+  {
+    return LETTER_NUMBER;
+  }
+  /*Character.sk:53*/
+  
+void LETTER_NUMBER_s (Object LETTER_NUMBER_s)/*Character.sk:53*/
+  {
+    LETTER_NUMBER = LETTER_NUMBER_s;
+  }
+  /*Character.sk:64*/
+  
+Object LINE_SEPARATOR_g ()/*Character.sk:64*/
+  {
+    return LINE_SEPARATOR;
+  }
+  /*Character.sk:65*/
+  
+void LINE_SEPARATOR_s (Object LINE_SEPARATOR_s)/*Character.sk:65*/
+  {
+    LINE_SEPARATOR = LINE_SEPARATOR_s;
+  }
+  /*Character.sk:20*/
+  
+Object LOWERCASE_LETTER_g ()/*Character.sk:20*/
+  {
+    return LOWERCASE_LETTER;
+  }
+  /*Character.sk:21*/
+  
+void LOWERCASE_LETTER_s (Object LOWERCASE_LETTER_s)/*Character.sk:21*/
+  {
+    LOWERCASE_LETTER = LOWERCASE_LETTER_s;
+  }
+  /*Character.sk:108*/
+  
+Object MATH_SYMBOL_g ()/*Character.sk:108*/
+  {
+    return MATH_SYMBOL;
+  }
+  /*Character.sk:109*/
+  
+void MATH_SYMBOL_s (Object MATH_SYMBOL_s)/*Character.sk:109*/
+  {
+    MATH_SYMBOL = MATH_SYMBOL_s;
+  }
+  /*Character.sk:8*/
+  
+Object MAX_RADIX_g ()/*Character.sk:8*/
+  {
+    return MAX_RADIX;
+  }
+  /*Character.sk:9*/
+  
+void MAX_RADIX_s (Object MAX_RADIX_s)/*Character.sk:9*/
+  {
+    MAX_RADIX = MAX_RADIX_s;
+  }
+  /*Character.sk:4*/
+  
+Object MIN_RADIX_g ()/*Character.sk:4*/
+  {
+    return MIN_RADIX;
+  }
+  /*Character.sk:5*/
+  
+void MIN_RADIX_s (Object MIN_RADIX_s)/*Character.sk:5*/
+  {
+    MIN_RADIX = MIN_RADIX_s;
+  }
+  /*Character.sk:28*/
+  
+Object MODIFIER_LETTER_g ()/*Character.sk:28*/
+  {
+    return MODIFIER_LETTER;
+  }
+  /*Character.sk:29*/
+  
+void MODIFIER_LETTER_s (Object MODIFIER_LETTER_s)/*Character.sk:29*/
+  {
+    MODIFIER_LETTER = MODIFIER_LETTER_s;
+  }
+  /*Character.sk:116*/
+  
+Object MODIFIER_SYMBOL_g ()/*Character.sk:116*/
+  {
+    return MODIFIER_SYMBOL;
+  }
+  /*Character.sk:117*/
+  
+void MODIFIER_SYMBOL_s (Object MODIFIER_SYMBOL_s)/*Character.sk:117*/
+  {
+    MODIFIER_SYMBOL = MODIFIER_SYMBOL_s;
+  }
+  /*Character.sk:36*/
+  
+Object NON_SPACING_MARK_g ()/*Character.sk:36*/
+  {
+    return NON_SPACING_MARK;
+  }
+  /*Character.sk:37*/
+  
+void NON_SPACING_MARK_s (Object NON_SPACING_MARK_s)/*Character.sk:37*/
+  {
+    NON_SPACING_MARK = NON_SPACING_MARK_s;
+  }
+  /*Character.sk:32*/
+  
+Object OTHER_LETTER_g ()/*Character.sk:32*/
+  {
+    return OTHER_LETTER;
+  }
+  /*Character.sk:33*/
+  
+void OTHER_LETTER_s (Object OTHER_LETTER_s)/*Character.sk:33*/
+  {
+    OTHER_LETTER = OTHER_LETTER_s;
+  }
+  /*Character.sk:56*/
+  
+Object OTHER_NUMBER_g ()/*Character.sk:56*/
+  {
+    return OTHER_NUMBER;
+  }
+  /*Character.sk:57*/
+  
+void OTHER_NUMBER_s (Object OTHER_NUMBER_s)/*Character.sk:57*/
+  {
+    OTHER_NUMBER = OTHER_NUMBER_s;
+  }
+  /*Character.sk:104*/
+  
+Object OTHER_PUNCTUATION_g ()/*Character.sk:104*/
+  {
+    return OTHER_PUNCTUATION;
+  }
+  /*Character.sk:105*/
+  
+void OTHER_PUNCTUATION_s (Object OTHER_PUNCTUATION_s)/*Character.sk:105*/
+  {
+    OTHER_PUNCTUATION = OTHER_PUNCTUATION_s;
+  }
+  /*Character.sk:120*/
+  
+Object OTHER_SYMBOL_g ()/*Character.sk:120*/
+  {
+    return OTHER_SYMBOL;
+  }
+  /*Character.sk:121*/
+  
+void OTHER_SYMBOL_s (Object OTHER_SYMBOL_s)/*Character.sk:121*/
+  {
+    OTHER_SYMBOL = OTHER_SYMBOL_s;
+  }
+  /*Character.sk:68*/
+  
+Object PARAGRAPH_SEPARATOR_g ()/*Character.sk:68*/
+  {
+    return PARAGRAPH_SEPARATOR;
+  }
+  /*Character.sk:69*/
+  
+void PARAGRAPH_SEPARATOR_s (Object PARAGRAPH_SEPARATOR_s)/*Character.sk:69*/
+  {
+    PARAGRAPH_SEPARATOR = PARAGRAPH_SEPARATOR_s;
+  }
+  /*Character.sk:80*/
+  
+Object PRIVATE_USE_g ()/*Character.sk:80*/
+  {
+    return PRIVATE_USE;
+  }
+  /*Character.sk:81*/
+  
+void PRIVATE_USE_s (Object PRIVATE_USE_s)/*Character.sk:81*/
+  {
+    PRIVATE_USE = PRIVATE_USE_s;
+  }
+  /*Character.sk:60*/
+  
+Object SPACE_SEPARATOR_g ()/*Character.sk:60*/
+  {
+    return SPACE_SEPARATOR;
+  }
+  /*Character.sk:61*/
+  
+void SPACE_SEPARATOR_s (Object SPACE_SEPARATOR_s)/*Character.sk:61*/
+  {
+    SPACE_SEPARATOR = SPACE_SEPARATOR_s;
+  }
+  /*Character.sk:92*/
+  
+Object START_PUNCTUATION_g ()/*Character.sk:92*/
+  {
+    return START_PUNCTUATION;
+  }
+  /*Character.sk:93*/
+  
+void START_PUNCTUATION_s (Object START_PUNCTUATION_s)/*Character.sk:93*/
+  {
+    START_PUNCTUATION = START_PUNCTUATION_s;
+  }
+  /*Character.sk:84*/
+  
+Object SURROGATE_g ()/*Character.sk:84*/
+  {
+    return SURROGATE;
+  }
+  /*Character.sk:85*/
+  
+void SURROGATE_s (Object SURROGATE_s)/*Character.sk:85*/
+  {
+    SURROGATE = SURROGATE_s;
+  }
+  /*Character.sk:24*/
+  
+Object TITLECASE_LETTER_g ()/*Character.sk:24*/
+  {
+    return TITLECASE_LETTER;
+  }
+  /*Character.sk:25*/
+  
+void TITLECASE_LETTER_s (Object TITLECASE_LETTER_s)/*Character.sk:25*/
+  {
+    TITLECASE_LETTER = TITLECASE_LETTER_s;
+  }
+  /*Character.sk:12*/
+  
+Object UNASSIGNED_g ()/*Character.sk:12*/
+  {
+    return UNASSIGNED;
+  }
+  /*Character.sk:13*/
+  
+void UNASSIGNED_s (Object UNASSIGNED_s)/*Character.sk:13*/
+  {
+    UNASSIGNED = UNASSIGNED_s;
+  }
+  /*Character.sk:16*/
+  
+Object UPPERCASE_LETTER_g ()/*Character.sk:16*/
+  {
+    return UPPERCASE_LETTER;
+  }
+  /*Character.sk:17*/
+  
+void UPPERCASE_LETTER_s (Object UPPERCASE_LETTER_s)/*Character.sk:17*/
+  {
+    UPPERCASE_LETTER = UPPERCASE_LETTER_s;
+  }
+  /*Character.sk:216*/
+  
+Object charValue (Object self)/*Character.sk:216*/
+  {
+    return self.value_Character;
+  }
+  /*Character.sk:220*/
+  
+Object equals_Object (Object self, Object obj)/*Character.sk:220*/
+  {
+    if((obj.__cid) == (Character()))/*Character.sk:221*/
+    {
+      {
+        return new Object(__cid=-4, _bit=(self.value_Character._char) == (((obj.__cid) == (new Object(__cid=-2, _int=Character())._int) ? charValue@Character(obj) : null)._char));
+      }
+    }
+    return new Object(__cid=-4, _bit=0);
+  }
+  /* END PACKAGE Character*/
+}
+/* BEGIN PACKAGE CharSequence*/
+package CharSequence{
+  /*CharSequence.sk:3*/
+  
+Object CharSequence_CharSequence (Object self)/*CharSequence.sk:3*/
+  {
+    return self;
+  }
+  /* END PACKAGE CharSequence*/
+}
+/* BEGIN PACKAGE SecureRandom*/
+package SecureRandom{
+  @Immutable()
+  struct SecureRandom {
+      @Immutable()
+  }
+  @Immutable()
+  struct Securerandom extends SecureRandom@SecureRandom {
+      @Immutable()
+  }
+  @Immutable()
+  struct Nextbytes_object extends SecureRandom@SecureRandom {
+      SecureRandom self;
+      Object k;
+      @Immutable()
+  }
+  /*SecureRandom.sk:8*/
+  
+Object SecureRandom_SecureRandom ()/*SecureRandom.sk:8*/
+  {
+    return new Object(__cid=SecureRandom(), _securerandom=new Securerandom());
+  }
+  /*SecureRandom.sk:12*/
+  
+Object nextBytes_Object_Object (Object self, Object k)/*SecureRandom.sk:12*/
+  {
+    return new Object(__cid=SecureRandom(), _securerandom=new Nextbytes_object(self=self._securerandom, k=k));
+  }
+  /*SecureRandom.sk:16*/
+  
+Object xform_SecureRandom (SecureRandom self)/*SecureRandom.sk:16*/
+  {
+    switch(self){/*SecureRandom.sk:17*/
+      case Securerandom:
+      {
+        {
+          return xform_securerandom_SecureRandom(self);
+        }
+      }
+      case Nextbytes_object:
+      {
+        {
+          assert (0); //Assert at SecureRandom.sk:21 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*SecureRandom.sk:34*/
+  
+Object xform_nextBytes_SecureRandom_Object (SecureRandom self, Object k)/*SecureRandom.sk:34*/
+  {
+    switch(self){/*SecureRandom.sk:35*/
+      case Securerandom:
+      {
+        {
+          {
+            SecureRandom k_k;
+            k_k = k._securerandom;
+            switch(k_k){/*SecureRandom.sk:40*/
+              case Securerandom:
+              {
+                {
+                  return Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=16)));
+                }
+              }
+              case Nextbytes_object:
+              {
+                {
+                  assert (0); //Assert at SecureRandom.sk:44 (0)
+                }
+              }
+            }
+          }
+        }
+      }
+      case Nextbytes_object:
+      {
+        {
+          assert (0); //Assert at SecureRandom.sk:49 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*SecureRandom.sk:26*/
+  
+Object xform_securerandom_SecureRandom (SecureRandom self)/*SecureRandom.sk:26*/
+  {
+    switch(self){/*SecureRandom.sk:27*/
+      case Securerandom:
+      {
+        {
+          assert (0); //Assert at SecureRandom.sk:28 (0)
+        }
+      }
+      case Nextbytes_object:
+      {
+        {
+          assert (0); //Assert at SecureRandom.sk:29 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /* END PACKAGE SecureRandom*/
+}
+/* BEGIN PACKAGE CipherFactory*/
+package CipherFactory{
+  /*CipherFactory.sk:3*/
+  
+Object CipherFactory_CipherFactory (Object self)/*CipherFactory.sk:3*/
+  {
+    return self;
+  }
+  /*CipherFactory.sk:7*/
+  
+Object getCipher_String_String (Object provider, Object transformation)/*CipherFactory.sk:7*/
+  {
+    Object algorithm = ((transformation.__cid) == (new Object(__cid=-2, _int=String())._int) ? split_String@String(transformation, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=2), A={'/','\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null)._array_object.A[new Object(__cid=-2, _int=0)._int];
+    if(((provider.__cid) == (new Object(__cid=-2, _int=String())._int) ? equals_Object@String(provider, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=14), A={'B','O','U','N','C','Y','_','C','A','S','T','L','E','\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=13))) : null)._bit)/*CipherFactory.sk:9*/
+    {
+      {
+        return JCECipher_JCECipher_String_String_String(new Object(__cid=JCECipher()), provider, algorithm, transformation);
+      }
+    }
+    else
+    {
+      if(((provider.__cid) == (new Object(__cid=-2, _int=String())._int) ? equals_Object@String(provider, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=8), A={'O','P','E','N','S','L','L','\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=7))) : null)._bit)/*CipherFactory.sk:12*/
+      {
+        {
+          return OpenSSLCipher_OpenSSLCipher_String_String(new Object(__cid=OpenSSLCipher()), algorithm, transformation);
+        }
+      }
+    }
+  }
+  /* END PACKAGE CipherFactory*/
+}
+/* BEGIN PACKAGE CryptoCipherFactory*/
+package CryptoCipherFactory{
+  /*CryptoC..actory.sk:3*/
+  
+Object CryptoCipherFactory_CryptoCipherFactory (Object self)/*CryptoC..actory.sk:3*/
+  {
+    self.CLASSES_KEY_CryptoCipherFactory = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=12), A={'C','L','A','S','S','E','S','_','K','E','Y','\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=11));
+    return self;
+  }
+  /* END PACKAGE CryptoCipherFactory*/
+}
+/* BEGIN PACKAGE Mac*/
+package Mac{
+  @Immutable()
+  struct Mac {
+      @Immutable()
+  }
+  @Immutable()
+  struct Mac_empty extends Mac@Mac {
+      @Immutable()
+  }
+  @Immutable()
+  struct Init_secretkeyspec extends Mac@Mac {
+      Mac self;
+      Object key;
+      @Immutable()
+  }
+  @Immutable()
+  struct Initb_secretkeyspec extends Mac@Mac {
+      Mac self;
+      Object key;
+      @Immutable()
+  }
+  @Immutable()
+  struct Dofinal_object extends Mac@Mac {
+      Mac self;
+      Object text;
+      @Immutable()
+  }
+  /*Mac.sk:10*/
+  
+Object Mac_Mac ()/*Mac.sk:10*/
+  {
+    return new Object(__cid=Mac(), _mac=new Mac_empty());
+  }
+  /*Mac.sk:22*/
+  
+Object doFinal_Object_Object (Object self, Object text)/*Mac.sk:22*/
+  {
+    return new Object(__cid=Mac(), _mac=new Dofinal_object(self=self._mac, text=text));
+  }
+  /*Mac.sk:14*/
+  
+Object init_Object_SecretKeySpec (Object self, Object key)/*Mac.sk:14*/
+  {
+    return new Object(__cid=Mac(), _mac=new Init_secretkeyspec(self=self._mac, key=key));
+  }
+  /*Mac.sk:18*/
+  
+Object initb_Object_SecretKeySpec (Object self, Object key)/*Mac.sk:18*/
+  {
+    return new Object(__cid=Mac(), _mac=new Initb_secretkeyspec(self=self._mac, key=key));
+  }
+  /*Mac.sk:26*/
+  
+Object xform_Mac (Mac self)/*Mac.sk:26*/
+  {
+    switch(self){/*Mac.sk:27*/
+      case Mac_empty:
+      {
+        {
+          return xform_mac_Mac(self);
+        }
+      }
+      case Init_secretkeyspec:
+      {
+        {
+          assert (0); //Assert at Mac.sk:31 (0)
+        }
+      }
+      case Initb_secretkeyspec:
+      {
+        {
+          assert (0); //Assert at Mac.sk:32 (0)
+        }
+      }
+      case Dofinal_object:
+      {
+        {
+          assert (0); //Assert at Mac.sk:33 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*Mac.sk:38*/
+  
+Object xform_doFinal_Mac_Object (Mac self, Object text)/*Mac.sk:38*/
+  {
+    switch(self){/*Mac.sk:39*/
+      case Mac_empty:
+      {
+        {
+          assert (0); //Assert at Mac.sk:40 (0)
+        }
+      }
+      case Init_secretkeyspec:
+      {
+        {
+          assert (0); //Assert at Mac.sk:41 (0)
+        }
+      }
+      case Initb_secretkeyspec:
+      {
+        {
+          return text;
+        }
+      }
+      case Dofinal_object:
+      {
+        {
+          assert (0); //Assert at Mac.sk:45 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*Mac.sk:50*/
+  
+Object xform_init_Mac_SecretKeySpec (Mac self, Object key)/*Mac.sk:50*/
+  {
+    switch(self){/*Mac.sk:51*/
+      case Mac_empty:
+      {
+        {
+          assert (0); //Assert at Mac.sk:52 (0)
+        }
+      }
+      case Init_secretkeyspec:
+      {
+        {
+          assert (0); //Assert at Mac.sk:53 (0)
+        }
+      }
+      case Initb_secretkeyspec:
+      {
+        {
+          assert (0); //Assert at Mac.sk:54 (0)
+        }
+      }
+      case Dofinal_object:
+      {
+        {
+          assert (0); //Assert at Mac.sk:55 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*Mac.sk:60*/
+  
+Object xform_initb_Mac_SecretKeySpec (Mac self, Object key)/*Mac.sk:60*/
+  {
+    switch(self){/*Mac.sk:61*/
+      case Mac_empty:
+      {
+        {
+          assert (0); //Assert at Mac.sk:62 (0)
+        }
+      }
+      case Init_secretkeyspec:
+      {
+        {
+          assert (0); //Assert at Mac.sk:63 (0)
+        }
+      }
+      case Initb_secretkeyspec:
+      {
+        {
+          assert (0); //Assert at Mac.sk:64 (0)
+        }
+      }
+      case Dofinal_object:
+      {
+        {
+          assert (0); //Assert at Mac.sk:65 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*Mac.sk:70*/
+  
+Object xform_mac_Mac (Mac self)/*Mac.sk:70*/
+  {
+    switch(self){/*Mac.sk:71*/
+      case Mac_empty:
+      {
+        {
+          assert (0); //Assert at Mac.sk:72 (0)
+        }
+      }
+      case Init_secretkeyspec:
+      {
+        {
+          assert (0); //Assert at Mac.sk:73 (0)
+        }
+      }
+      case Initb_secretkeyspec:
+      {
+        {
+          assert (0); //Assert at Mac.sk:74 (0)
+        }
+      }
+      case Dofinal_object:
+      {
+        {
+          assert (0); //Assert at Mac.sk:75 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /* END PACKAGE Mac*/
+}
+/* BEGIN PACKAGE Integer*/
+package Integer{
+  /*Integer.sk:3*/
+  
+Object Integer_Integer (Object self)/*Integer.sk:3*/
+  {
+    return self;
+  }
+  /*Integer.sk:7*/
+  
+Object Integer_Integer_int (Object self, Object value)/*Integer.sk:7*/
+  {
+    self.value_Integer = value;
+    return self;
+  }
+  /*Integer.sk:16*/
+  
+Object compareTo_Integer (Object self, Object anotherInteger)/*Integer.sk:16*/
+  {
+    return compare_int_int(self.value_Integer, ((anotherInteger.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? intValue@Integer(anotherInteger) : null));
+  }
+  /*Integer.sk:20*/
+  
+Object compare_int_int (Object x, Object y)/*Integer.sk:20*/
+  {
+    return ((x._int) < (y._int) ? new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1)._int)) : ((x._int) == (y._int) ? new Object(__cid=-2, _int=0) : new Object(__cid=-2, _int=1)));
+  }
+  /*Integer.sk:24*/
+  
+Object equals_Object (Object self, Object obj)/*Integer.sk:24*/
+  {
+    if((obj.__cid) == (Integer()))/*Integer.sk:25*/
+    {
+      {
+        return new Object(__cid=-4, _bit=(self.value_Integer._int) == (((obj.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? intValue@Integer(obj) : null)._int));
+      }
+    }
+    return new Object(__cid=-4, _bit=0);
+  }
+  /*Integer.sk:31*/
+  
+Object hashCode (Object self)/*Integer.sk:31*/
+  {
+    return self.value_Integer;
+  }
+  /*Integer.sk:12*/
+  
+Object intValue (Object self)/*Integer.sk:12*/
+  {
+    return self.value_Integer;
+  }
+  /* END PACKAGE Integer*/
+}
+/* BEGIN PACKAGE SecretKey*/
+package SecretKey{
+  /*SecretKey.sk:3*/
+  
+Object SecretKey_SecretKey (Object self)/*SecretKey.sk:3*/
+  {
+    return self;
+  }
+  /* END PACKAGE SecretKey*/
+}
+/* BEGIN PACKAGE Utils*/
+package Utils{
+  /*Utils.sk:3*/
+  
+Object Utils_Utils (Object self)/*Utils.sk:3*/
+  {
+    return self;
+  }
+  /*Utils.sk:7*/
+  
+Object getCipherInstance_String_Properties (Object trans, Object props)/*Utils.sk:7*/
+  {
+    return trans;
+  }
+  /* END PACKAGE Utils*/
+}
+/* BEGIN PACKAGE meta*/
+package meta{
+  /*meta.sk:30*/
+  
+int Array ()/*meta.sk:30*/
+  {
+    return -1;
+  }
+  /*meta.sk:4*/
+  
+int ArrayList ()/*meta.sk:4*/
+  {
+    return 26;
+  }
+  /*meta.sk:5*/
+  
+int Arrays ()/*meta.sk:5*/
+  {
+    return 9;
+  }
+  /*meta.sk:6*/
+  
+int Assert ()/*meta.sk:6*/
+  {
+    return 21;
+  }
+  /*meta.sk:7*/
+  
+int Boolean ()/*meta.sk:7*/
+  {
+    return 15;
+  }
+  /*meta.sk:8*/
+  
+int Byte ()/*meta.sk:8*/
+  {
+    return 25;
+  }
+  /*meta.sk:9*/
+  
+int CharSequence ()/*meta.sk:9*/
+  {
+    return 14;
+  }
+  /*meta.sk:10*/
+  
+int Character ()/*meta.sk:10*/
+  {
+    return 16;
+  }
+  /*meta.sk:11*/
+  
+int Cipher ()/*meta.sk:11*/
+  {
+    return 18;
+  }
+  /*meta.sk:12*/
+  
+int CipherFactory ()/*meta.sk:12*/
+  {
+    return 5;
+  }
+  /*meta.sk:13*/
+  
+int CryptoCipherFactory ()/*meta.sk:13*/
+  {
+    return 19;
+  }
+  /*meta.sk:14*/
+  
+int CryptoCipherFactory_CipherProvider ()/*meta.sk:14*/
+  {
+    return 20;
+  }
+  /*meta.sk:15*/
+  
+int HashMap ()/*meta.sk:15*/
+  {
+    return 11;
+  }
+  /*meta.sk:16*/
+  
+int ICipher ()/*meta.sk:16*/
+  {
+    return 3;
+  }
+  /*meta.sk:17*/
+  
+int Integer ()/*meta.sk:17*/
+  {
+    return 10;
+  }
+  /*meta.sk:18*/
+  
+int IvParameterSpec ()/*meta.sk:18*/
+  {
+    return 23;
+  }
+  /*meta.sk:19*/
+  
+int JCECipher ()/*meta.sk:19*/
+  {
+    return 4;
+  }
+  /*meta.sk:20*/
+  
+int Mac ()/*meta.sk:20*/
+  {
+    return 13;
+  }
+  /*meta.sk:21*/
+  
+int Object ()/*meta.sk:21*/
+  {
+    return 1;
+  }
+  /*meta.sk:22*/
+  
+int OpenSSLCipher ()/*meta.sk:22*/
+  {
+    return 6;
+  }
+  /*meta.sk:23*/
+  
+int Properties ()/*meta.sk:23*/
+  {
+    return 12;
+  }
+  /*meta.sk:24*/
+  
+int SecretKey ()/*meta.sk:24*/
+  {
+    return 24;
+  }
+  /*meta.sk:25*/
+  
+int SecretKeySpec ()/*meta.sk:25*/
+  {
+    return 22;
+  }
+  /*meta.sk:26*/
+  
+int SecureRandom ()/*meta.sk:26*/
+  {
+    return 8;
+  }
+  /*meta.sk:27*/
+  
+int String ()/*meta.sk:27*/
+  {
+    return 7;
+  }
+  /*meta.sk:28*/
+  
+int Tester ()/*meta.sk:28*/
+  {
+    return 2;
+  }
+  /*meta.sk:29*/
+  
+int Utils ()/*meta.sk:29*/
+  {
+    return 17;
+  }
+  /*meta.sk:33*/
+  
+int _bit ()/*meta.sk:33*/
+  {
+    return -4;
+  }
+  /*meta.sk:32*/
+  
+int _char ()/*meta.sk:32*/
+  {
+    return -3;
+  }
+  /*meta.sk:35*/
+  
+int _double ()/*meta.sk:35*/
+  {
+    return -6;
+  }
+  /*meta.sk:34*/
+  
+int _float ()/*meta.sk:34*/
+  {
+    return -5;
+  }
+  /*meta.sk:31*/
+  
+int _int ()/*meta.sk:31*/
+  {
+    return -2;
+  }
+  /* END PACKAGE meta*/
+}
+/* BEGIN PACKAGE Byte*/
+package Byte{
+  /*Byte.sk:3*/
+  
+Object Byte_Byte (Object self)/*Byte.sk:3*/
+  {
+    return self;
+  }
+  /*Byte.sk:7*/
+  
+Object Byte_Byte_byte (Object self, Object b)/*Byte.sk:7*/
+  {
+    self.b_Byte = b;
+    return self;
+  }
+  /*Byte.sk:12*/
+  
+Object byteValue (Object self)/*Byte.sk:12*/
+  {
+    return self.b_Byte;
+  }
+  /* END PACKAGE Byte*/
+}
+/* BEGIN PACKAGE Object*/
+package Object{
+  struct Object {
+      int __cid;
+      Object transformation_OpenSSLCipher;
+      Object algorithm_OpenSSLCipher;
+      Object b_Byte;
+      Object _value_String;
+      Object _count_String;
+      Object value_Character;
+      Object bool_Boolean;
+      Object value_Integer;
+      Object transformation_JCECipher;
+      Object algorithm_JCECipher;
+      Object provider_JCECipher;
+      Object CLASSES_KEY_CryptoCipherFactory;
+      Object map_Properties;
+      Mac _mac;
+      Cipher _cipher;
+      HashMap _hashmap;
+      SecretKeySpec _secretkeyspec;
+      SecureRandom _securerandom;
+      ArrayList _arraylist;
+      Array_bit _array_bit;
+      Array_char _array_char;
+      Array_int _array_int;
+      Array_float _array_float;
+      Array_double _array_double;
+      Array_Object _array_object;
+      bit _bit;
+      char _char;
+      int _int;
+      float _float;
+      double _double;
+  }
+  /*Object.sk:3*/
+  
+Object Object_Object (Object self)/*Object.sk:3*/
+  {
+    return self;
+  }
+  /*Object.sk:17*/
+  
+Object equals_Object (Object self, Object obj)/*Object.sk:17*/
+  {
+    return new Object(__cid=-4, _bit=self == obj);
+  }
+  /*Object.sk:7*/
+  
+Object equals_Object_Object (Object a, Object b)/*Object.sk:7*/
+  {
+    if(a == (null))/*Object.sk:8*/
+    {
+      {
+        if(b == (null))/*Object.sk:9*/
+        {
+          {
+            return new Object(__cid=-4, _bit=1);
+          }
+        }
+        return new Object(__cid=-4, _bit=0);
+      }
+    }
+    return ((a.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=Properties())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=Arrays())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=CryptoCipherFactory_CipherProvider())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=SecureRandom())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=CryptoCipherFactory())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=SecretKeySpec())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=Tester())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=CipherFactory())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=JCECipher())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? equals_Object@Integer(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=HashMap())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=Boolean())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=Character())._int) ? equals_Object@Character(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=IvParameterSpec())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=String())._int) ? equals_Object@String(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=Utils())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=Byte())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=Cipher())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=OpenSSLCipher())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=Mac())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=Assert())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=Object())._int) ? equals_Object@Object(a, b) : null)))))))))))))))))))))));
+  }
+  /*Object.sk:21*/
+  
+Object hashCode (Object self)/*Object.sk:21*/
+  {
+    return new Object(__cid=-2, _int=0);
+  }
+  /* END PACKAGE Object*/
+}
+/* BEGIN PACKAGE IvParameterSpec*/
+package IvParameterSpec{
+  /*IvParam..erSpec.sk:3*/
+  
+Object IvParameterSpec_IvParameterSpec (Object self)/*IvParam..erSpec.sk:3*/
+  {
+    return self;
+  }
+  /*IvParam..erSpec.sk:7*/
+  
+Object IvParameterSpec_IvParameterSpec_byte (Object self, Object val)/*IvParam..erSpec.sk:7*/
+  {
+    return self;
+  }
+  /* END PACKAGE IvParameterSpec*/
+}
+/* BEGIN PACKAGE Cipher*/
+package Cipher{
+  @Immutable()
+  struct Cipher {
+      @Immutable()
+  }
+  @Immutable()
+  struct Cipher_empty extends Cipher@Cipher {
+      @Immutable()
+  }
+  @Immutable()
+  struct Cipher_string_string extends Cipher@Cipher {
+      Object t;
+      Object p;
+      @Immutable()
+  }
+  @Immutable()
+  struct Init_int_secretkeyspec_algorithmparameterspec extends Cipher@Cipher {
+      Cipher self;
+      Object mode;
+      Object s;
+      Object a;
+      @Immutable()
+  }
+  @Immutable()
+  struct Initb_int_secretkeyspec_algorithmparameterspec extends Cipher@Cipher {
+      Cipher self;
+      Object mode;
+      Object s;
+      Object a;
+      @Immutable()
+  }
+  @Immutable()
+  struct Updateb_byte_int_int_byte_int extends Cipher@Cipher {
+      Cipher self;
+      Object data;
+      Object a;
+      Object len;
+      Object out;
+      Object b;
+      @Immutable()
+  }
+  @Immutable()
+  struct Dofinalb_object extends Cipher@Cipher {
+      Cipher self;
+      Object data;
+      @Immutable()
+  }
+  @Immutable()
+  struct Dofinaleb_byte_int_int_byte_int extends Cipher@Cipher {
+      Cipher self;
+      Object data;
+      Object a;
+      Object b;
+      Object out;
+      Object c;
+      @Immutable()
+  }
+  @Immutable()
+  struct Update_byte_int_int_byte_int extends Cipher@Cipher {
+      Cipher self;
+      Object data;
+      Object a;
+      Object len;
+      Object out;
+      Object b;
+      @Immutable()
+  }
+  @Immutable()
+  struct Dofinal_object extends Cipher@Cipher {
+      Cipher self;
+      Object data;
+      @Immutable()
+  }
+  @Immutable()
+  struct Dofinale_byte_int_int_byte_int extends Cipher@Cipher {
+      Cipher self;
+      Object data;
+      Object a;
+      Object b;
+      Object out;
+      Object c;
+      @Immutable()
+  }
+  @Immutable()
+  struct Getoutputsize_int extends Cipher@Cipher {
+      Cipher self;
+      Object len;
+      @Immutable()
+  }
+  /*Cipher.sk:21*/
+  
+Object Cipher_Cipher ()/*Cipher.sk:21*/
+  {
+    return new Object(__cid=Cipher(), _cipher=new Cipher_empty());
+  }
+  /*Cipher.sk:25*/
+  
+Object Cipher_Object_String_String (Object t, Object p)/*Cipher.sk:25*/
+  {
+    return new Object(__cid=Cipher(), _cipher=new Cipher_string_string(t=t, p=p));
+  }
+  /*Cipher.sk:53*/
+  
+Object doFinal_Object_Object (Object self, Object data)/*Cipher.sk:53*/
+  {
+    return new Object(__cid=Cipher(), _cipher=new Dofinal_object(self=self._cipher, data=data));
+  }
+  /*Cipher.sk:41*/
+  
+Object doFinalb_Object_Object (Object self, Object data)/*Cipher.sk:41*/
+  {
+    return new Object(__cid=Cipher(), _cipher=new Dofinalb_object(self=self._cipher, data=data));
+  }
+  /*Cipher.sk:57*/
+  
+Object doFinale_Object_byte_int_int_byte_int (Object self, Object data, Object a, Object b, Object out, Object c)/*Cipher.sk:57*/
+  {
+    return new Object(__cid=Cipher(), _cipher=new Dofinale_byte_int_int_byte_int(self=self._cipher, data=data, a=a, b=b, out=out, c=c));
+  }
+  /*Cipher.sk:45*/
+  
+Object doFinaleb_Object_byte_int_int_byte_int (Object self, Object data, Object a, Object b, Object out, Object c)/*Cipher.sk:45*/
+  {
+    return new Object(__cid=Cipher(), _cipher=new Dofinaleb_byte_int_int_byte_int(self=self._cipher, data=data, a=a, b=b, out=out, c=c));
+  }
+  /*Cipher.sk:3*/
+  
+Object getInstance_String_String (Object type, Object prov)/*Cipher.sk:3*/
+  {
+    return Cipher_Object_String_String(type, prov);
+  }
+  /*Cipher.sk:61*/
+  
+Object getOutputSize_Object_int (Object self, Object len)/*Cipher.sk:61*/
+  {
+    return new Object(__cid=Cipher(), _cipher=new Getoutputsize_int(self=self._cipher, len=len));
+  }
+  /*Cipher.sk:29*/
+  
+Object init_Object_int_SecretKeySpec_AlgorithmParameterSpec (Object self, Object mode, Object s, Object a)/*Cipher.sk:29*/
+  {
+    return new Object(__cid=Cipher(), _cipher=new Init_int_secretkeyspec_algorithmparameterspec(self=self._cipher, mode=mode, s=s, a=a));
+  }
+  /*Cipher.sk:33*/
+  
+Object initb_Object_int_SecretKeySpec_AlgorithmParameterSpec (Object self, Object mode, Object s, Object a)/*Cipher.sk:33*/
+  {
+    return new Object(__cid=Cipher(), _cipher=new Initb_int_secretkeyspec_algorithmparameterspec(self=self._cipher, mode=mode, s=s, a=a));
+  }
+  /*Cipher.sk:49*/
+  
+Object update_Object_byte_int_int_byte_int (Object self, Object data, Object a, Object len, Object out, Object b)/*Cipher.sk:49*/
+  {
+    return new Object(__cid=Cipher(), _cipher=new Update_byte_int_int_byte_int(self=self._cipher, data=data, a=a, len=len, out=out, b=b));
+  }
+  /*Cipher.sk:37*/
+  
+Object updateb_Object_byte_int_int_byte_int (Object self, Object data, Object a, Object len, Object out, Object b)/*Cipher.sk:37*/
+  {
+    return new Object(__cid=Cipher(), _cipher=new Updateb_byte_int_int_byte_int(self=self._cipher, data=data, a=a, len=len, out=out, b=b));
+  }
+  /*Cipher.sk:65*/
+  
+Object xform_Cipher (Cipher self)/*Cipher.sk:65*/
+  {
+    switch(self){/*Cipher.sk:66*/
+      case Cipher_empty:
+      {
+        {
+          return xform_cipher_Cipher(self);
+        }
+      }
+      case Cipher_string_string:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:70 (0)
+        }
+      }
+      case Init_int_secretkeyspec_algorithmparameterspec:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:71 (0)
+        }
+      }
+      case Initb_int_secretkeyspec_algorithmparameterspec:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:72 (0)
+        }
+      }
+      case Updateb_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:73 (0)
+        }
+      }
+      case Dofinalb_object:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:74 (0)
+        }
+      }
+      case Dofinaleb_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:75 (0)
+        }
+      }
+      case Update_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:76 (0)
+        }
+      }
+      case Dofinal_object:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:77 (0)
+        }
+      }
+      case Dofinale_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:78 (0)
+        }
+      }
+      case Getoutputsize_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:79 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*Cipher.sk:198*/
+  
+Object xform_Cipher_Cipher_String_String (Cipher self, Object t, Object p)/*Cipher.sk:198*/
+  {
+    switch(self){/*Cipher.sk:199*/
+      case Cipher_empty:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:200 (0)
+        }
+      }
+      case Cipher_string_string:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:201 (0)
+        }
+      }
+      case Init_int_secretkeyspec_algorithmparameterspec:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:202 (0)
+        }
+      }
+      case Initb_int_secretkeyspec_algorithmparameterspec:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:203 (0)
+        }
+      }
+      case Updateb_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:204 (0)
+        }
+      }
+      case Dofinalb_object:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:205 (0)
+        }
+      }
+      case Dofinaleb_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:206 (0)
+        }
+      }
+      case Update_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:207 (0)
+        }
+      }
+      case Dofinal_object:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:208 (0)
+        }
+      }
+      case Dofinale_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:209 (0)
+        }
+      }
+      case Getoutputsize_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:210 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*Cipher.sk:416*/
+  
+Object xform_cipher_Cipher (Cipher self)/*Cipher.sk:416*/
+  {
+    switch(self){/*Cipher.sk:417*/
+      case Cipher_empty:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:418 (0)
+        }
+      }
+      case Cipher_string_string:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:419 (0)
+        }
+      }
+      case Init_int_secretkeyspec_algorithmparameterspec:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:420 (0)
+        }
+      }
+      case Initb_int_secretkeyspec_algorithmparameterspec:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:421 (0)
+        }
+      }
+      case Updateb_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:422 (0)
+        }
+      }
+      case Dofinalb_object:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:423 (0)
+        }
+      }
+      case Dofinaleb_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:424 (0)
+        }
+      }
+      case Update_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:425 (0)
+        }
+      }
+      case Dofinal_object:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:426 (0)
+        }
+      }
+      case Dofinale_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:427 (0)
+        }
+      }
+      case Getoutputsize_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:428 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*Cipher.sk:84*/
+  
+Object xform_doFinal_Cipher_Object (Cipher self, Object data)/*Cipher.sk:84*/
+  {
+    switch(self){/*Cipher.sk:85*/
+      case Cipher_empty:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:86 (0)
+        }
+      }
+      case Cipher_string_string:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:87 (0)
+        }
+      }
+      case Init_int_secretkeyspec_algorithmparameterspec:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:88 (0)
+        }
+      }
+      case Initb_int_secretkeyspec_algorithmparameterspec:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:89 (0)
+        }
+      }
+      case Updateb_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:90 (0)
+        }
+      }
+      case Dofinalb_object:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:91 (0)
+        }
+      }
+      case Dofinaleb_byte_int_int_byte_int:
+      {
+        {
+          {
+            Cipher self_self;
+            self_self = self.self;
+            switch(self_self){/*Cipher.sk:96*/
+              case Cipher_empty:
+              {
+                {
+                  assert (0); //Assert at Cipher.sk:97 (0)
+                }
+              }
+              case Cipher_string_string:
+              {
+                {
+                  assert (0); //Assert at Cipher.sk:98 (0)
+                }
+              }
+              case Init_int_secretkeyspec_algorithmparameterspec:
+              {
+                {
+                  assert (0); //Assert at Cipher.sk:99 (0)
+                }
+              }
+              case Initb_int_secretkeyspec_algorithmparameterspec:
+              {
+                {
+                  assert (0); //Assert at Cipher.sk:100 (0)
+                }
+              }
+              case Updateb_byte_int_int_byte_int:
+              {
+                {
+                  {
+                    Cipher self_self_self;
+                    self_self_self = self_self.self;
+                    switch(self_self_self){/*Cipher.sk:105*/
+                      case Cipher_empty:
+                      {
+                        {
+                          assert (0); //Assert at Cipher.sk:106 (0)
+                        }
+                      }
+                      case Cipher_string_string:
+                      {
+                        {
+                          assert (0); //Assert at Cipher.sk:107 (0)
+                        }
+                      }
+                      case Init_int_secretkeyspec_algorithmparameterspec:
+                      {
+                        {
+                          assert (0); //Assert at Cipher.sk:108 (0)
+                        }
+                      }
+                      case Initb_int_secretkeyspec_algorithmparameterspec:
+                      {
+                        {
+                          {
+                            Cipher data_data;
+                            data_data = data._cipher;
+                            switch(data_data){/*Cipher.sk:113*/
+                              case Cipher_empty:
+                              {
+                                {
+                                  assert (0); //Assert at Cipher.sk:114 (0)
+                                }
+                              }
+                              case Cipher_string_string:
+                              {
+                                {
+                                  assert (0); //Assert at Cipher.sk:115 (0)
+                                }
+                              }
+                              case Init_int_secretkeyspec_algorithmparameterspec:
+                              {
+                                {
+                                  assert (0); //Assert at Cipher.sk:116 (0)
+                                }
+                              }
+                              case Initb_int_secretkeyspec_algorithmparameterspec:
+                              {
+                                {
+                                  assert (0); //Assert at Cipher.sk:117 (0)
+                                }
+                              }
+                              case Updateb_byte_int_int_byte_int:
+                              {
+                                {
+                                  assert (0); //Assert at Cipher.sk:118 (0)
+                                }
+                              }
+                              case Dofinalb_object:
+                              {
+                                {
+                                  assert (0); //Assert at Cipher.sk:119 (0)
+                                }
+                              }
+                              case Dofinaleb_byte_int_int_byte_int:
+                              {
+                                {
+                                  {
+                                    Cipher data_data_data;
+                                    data_data_data = data_data.self;
+                                    switch(data_data_data){/*Cipher.sk:124*/
+                                      case Cipher_empty:
+                                      {
+                                        {
+                                          assert (0); //Assert at Cipher.sk:125 (0)
+                                        }
+                                      }
+                                      case Cipher_string_string:
+                                      {
+                                        {
+                                          assert (0); //Assert at Cipher.sk:126 (0)
+                                        }
+                                      }
+                                      case Init_int_secretkeyspec_algorithmparameterspec:
+                                      {
+                                        {
+                                          assert (0); //Assert at Cipher.sk:127 (0)
+                                        }
+                                      }
+                                      case Initb_int_secretkeyspec_algorithmparameterspec:
+                                      {
+                                        {
+                                          assert (0); //Assert at Cipher.sk:128 (0)
+                                        }
+                                      }
+                                      case Updateb_byte_int_int_byte_int:
+                                      {
+                                        {
+                                          {
+                                            Cipher data_data_data_data;
+                                            data_data_data_data = data_data_data.self;
+                                            switch(data_data_data_data){/*Cipher.sk:133*/
+                                              case Cipher_empty:
+                                              {
+                                                {
+                                                  assert (0); //Assert at Cipher.sk:134 (0)
+                                                }
+                                              }
+                                              case Cipher_string_string:
+                                              {
+                                                {
+                                                  assert (0); //Assert at Cipher.sk:135 (0)
+                                                }
+                                              }
+                                              case Init_int_secretkeyspec_algorithmparameterspec:
+                                              {
+                                                {
+                                                  assert (0); //Assert at Cipher.sk:136 (0)
+                                                }
+                                              }
+                                              case Initb_int_secretkeyspec_algorithmparameterspec:
+                                              {
+                                                {
+                                                  return data_data_data.data;
+                                                }
+                                              }
+                                              case Updateb_byte_int_int_byte_int:
+                                              {
+                                                {
+                                                  assert (0); //Assert at Cipher.sk:140 (0)
+                                                }
+                                              }
+                                              case Dofinalb_object:
+                                              {
+                                                {
+                                                  assert (0); //Assert at Cipher.sk:141 (0)
+                                                }
+                                              }
+                                              case Dofinaleb_byte_int_int_byte_int:
+                                              {
+                                                {
+                                                  assert (0); //Assert at Cipher.sk:142 (0)
+                                                }
+                                              }
+                                              case Update_byte_int_int_byte_int:
+                                              {
+                                                {
+                                                  assert (0); //Assert at Cipher.sk:143 (0)
+                                                }
+                                              }
+                                              case Dofinal_object:
+                                              {
+                                                {
+                                                  assert (0); //Assert at Cipher.sk:144 (0)
+                                                }
+                                              }
+                                              case Dofinale_byte_int_int_byte_int:
+                                              {
+                                                {
+                                                  assert (0); //Assert at Cipher.sk:145 (0)
+                                                }
+                                              }
+                                              case Getoutputsize_int:
+                                              {
+                                                {
+                                                  assert (0); //Assert at Cipher.sk:146 (0)
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                      case Dofinalb_object:
+                                      {
+                                        {
+                                          assert (0); //Assert at Cipher.sk:151 (0)
+                                        }
+                                      }
+                                      case Dofinaleb_byte_int_int_byte_int:
+                                      {
+                                        {
+                                          assert (0); //Assert at Cipher.sk:152 (0)
+                                        }
+                                      }
+                                      case Update_byte_int_int_byte_int:
+                                      {
+                                        {
+                                          assert (0); //Assert at Cipher.sk:153 (0)
+                                        }
+                                      }
+                                      case Dofinal_object:
+                                      {
+                                        {
+                                          assert (0); //Assert at Cipher.sk:154 (0)
+                                        }
+                                      }
+                                      case Dofinale_byte_int_int_byte_int:
+                                      {
+                                        {
+                                          assert (0); //Assert at Cipher.sk:155 (0)
+                                        }
+                                      }
+                                      case Getoutputsize_int:
+                                      {
+                                        {
+                                          assert (0); //Assert at Cipher.sk:156 (0)
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                              case Update_byte_int_int_byte_int:
+                              {
+                                {
+                                  assert (0); //Assert at Cipher.sk:161 (0)
+                                }
+                              }
+                              case Dofinal_object:
+                              {
+                                {
+                                  assert (0); //Assert at Cipher.sk:162 (0)
+                                }
+                              }
+                              case Dofinale_byte_int_int_byte_int:
+                              {
+                                {
+                                  assert (0); //Assert at Cipher.sk:163 (0)
+                                }
+                              }
+                              case Getoutputsize_int:
+                              {
+                                {
+                                  assert (0); //Assert at Cipher.sk:164 (0)
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                      case Updateb_byte_int_int_byte_int:
+                      {
+                        {
+                          assert (0); //Assert at Cipher.sk:169 (0)
+                        }
+                      }
+                      case Dofinalb_object:
+                      {
+                        {
+                          assert (0); //Assert at Cipher.sk:170 (0)
+                        }
+                      }
+                      case Dofinaleb_byte_int_int_byte_int:
+                      {
+                        {
+                          assert (0); //Assert at Cipher.sk:171 (0)
+                        }
+                      }
+                      case Update_byte_int_int_byte_int:
+                      {
+                        {
+                          assert (0); //Assert at Cipher.sk:172 (0)
+                        }
+                      }
+                      case Dofinal_object:
+                      {
+                        {
+                          assert (0); //Assert at Cipher.sk:173 (0)
+                        }
+                      }
+                      case Dofinale_byte_int_int_byte_int:
+                      {
+                        {
+                          assert (0); //Assert at Cipher.sk:174 (0)
+                        }
+                      }
+                      case Getoutputsize_int:
+                      {
+                        {
+                          assert (0); //Assert at Cipher.sk:175 (0)
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              case Dofinalb_object:
+              {
+                {
+                  assert (0); //Assert at Cipher.sk:180 (0)
+                }
+              }
+              case Dofinaleb_byte_int_int_byte_int:
+              {
+                {
+                  assert (0); //Assert at Cipher.sk:181 (0)
+                }
+              }
+              case Update_byte_int_int_byte_int:
+              {
+                {
+                  assert (0); //Assert at Cipher.sk:182 (0)
+                }
+              }
+              case Dofinal_object:
+              {
+                {
+                  assert (0); //Assert at Cipher.sk:183 (0)
+                }
+              }
+              case Dofinale_byte_int_int_byte_int:
+              {
+                {
+                  assert (0); //Assert at Cipher.sk:184 (0)
+                }
+              }
+              case Getoutputsize_int:
+              {
+                {
+                  assert (0); //Assert at Cipher.sk:185 (0)
+                }
+              }
+            }
+          }
+        }
+      }
+      case Update_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:190 (0)
+        }
+      }
+      case Dofinal_object:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:191 (0)
+        }
+      }
+      case Dofinale_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:192 (0)
+        }
+      }
+      case Getoutputsize_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:193 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*Cipher.sk:433*/
+  
+Object xform_doFinalb_Cipher_Object (Cipher self, Object data)/*Cipher.sk:433*/
+  {
+    switch(self){/*Cipher.sk:434*/
+      case Cipher_empty:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:435 (0)
+        }
+      }
+      case Cipher_string_string:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:436 (0)
+        }
+      }
+      case Init_int_secretkeyspec_algorithmparameterspec:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:437 (0)
+        }
+      }
+      case Initb_int_secretkeyspec_algorithmparameterspec:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:438 (0)
+        }
+      }
+      case Updateb_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:439 (0)
+        }
+      }
+      case Dofinalb_object:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:440 (0)
+        }
+      }
+      case Dofinaleb_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:441 (0)
+        }
+      }
+      case Update_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:442 (0)
+        }
+      }
+      case Dofinal_object:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:443 (0)
+        }
+      }
+      case Dofinale_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:444 (0)
+        }
+      }
+      case Getoutputsize_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:445 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*Cipher.sk:232*/
+  
+Object xform_doFinale_Cipher_byte_int_int_byte_int (Cipher self, Object data, Object a, Object b, Object out, Object c)/*Cipher.sk:232*/
+  {
+    switch(self){/*Cipher.sk:233*/
+      case Cipher_empty:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:234 (0)
+        }
+      }
+      case Cipher_string_string:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:235 (0)
+        }
+      }
+      case Init_int_secretkeyspec_algorithmparameterspec:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:236 (0)
+        }
+      }
+      case Initb_int_secretkeyspec_algorithmparameterspec:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:237 (0)
+        }
+      }
+      case Updateb_byte_int_int_byte_int:
+      {
+        {
+          return self.len;
+        }
+      }
+      case Dofinalb_object:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:241 (0)
+        }
+      }
+      case Dofinaleb_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:242 (0)
+        }
+      }
+      case Update_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:243 (0)
+        }
+      }
+      case Dofinal_object:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:244 (0)
+        }
+      }
+      case Dofinale_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:245 (0)
+        }
+      }
+      case Getoutputsize_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:246 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*Cipher.sk:215*/
+  
+Object xform_doFinaleb_Cipher_byte_int_int_byte_int (Cipher self, Object data, Object a, Object b, Object out, Object c)/*Cipher.sk:215*/
+  {
+    switch(self){/*Cipher.sk:216*/
+      case Cipher_empty:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:217 (0)
+        }
+      }
+      case Cipher_string_string:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:218 (0)
+        }
+      }
+      case Init_int_secretkeyspec_algorithmparameterspec:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:219 (0)
+        }
+      }
+      case Initb_int_secretkeyspec_algorithmparameterspec:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:220 (0)
+        }
+      }
+      case Updateb_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:221 (0)
+        }
+      }
+      case Dofinalb_object:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:222 (0)
+        }
+      }
+      case Dofinaleb_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:223 (0)
+        }
+      }
+      case Update_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:224 (0)
+        }
+      }
+      case Dofinal_object:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:225 (0)
+        }
+      }
+      case Dofinale_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:226 (0)
+        }
+      }
+      case Getoutputsize_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:227 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*Cipher.sk:251*/
+  
+Object xform_getOutputSize_Cipher_int (Cipher self, Object len)/*Cipher.sk:251*/
+  {
+    switch(self){/*Cipher.sk:252*/
+      case Cipher_empty:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:253 (0)
+        }
+      }
+      case Cipher_string_string:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:254 (0)
+        }
+      }
+      case Init_int_secretkeyspec_algorithmparameterspec:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:255 (0)
+        }
+      }
+      case Initb_int_secretkeyspec_algorithmparameterspec:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:256 (0)
+        }
+      }
+      case Updateb_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:257 (0)
+        }
+      }
+      case Dofinalb_object:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:258 (0)
+        }
+      }
+      case Dofinaleb_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:259 (0)
+        }
+      }
+      case Update_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:260 (0)
+        }
+      }
+      case Dofinal_object:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:261 (0)
+        }
+      }
+      case Dofinale_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:262 (0)
+        }
+      }
+      case Getoutputsize_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:263 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*Cipher.sk:399*/
+  
+Object xform_init_Cipher_int_SecretKeySpec_AlgorithmParameterSpec (Cipher self, Object mode, Object s, Object a)/*Cipher.sk:399*/
+  {
+    switch(self){/*Cipher.sk:400*/
+      case Cipher_empty:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:401 (0)
+        }
+      }
+      case Cipher_string_string:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:402 (0)
+        }
+      }
+      case Init_int_secretkeyspec_algorithmparameterspec:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:403 (0)
+        }
+      }
+      case Initb_int_secretkeyspec_algorithmparameterspec:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:404 (0)
+        }
+      }
+      case Updateb_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:405 (0)
+        }
+      }
+      case Dofinalb_object:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:406 (0)
+        }
+      }
+      case Dofinaleb_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:407 (0)
+        }
+      }
+      case Update_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:408 (0)
+        }
+      }
+      case Dofinal_object:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:409 (0)
+        }
+      }
+      case Dofinale_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:410 (0)
+        }
+      }
+      case Getoutputsize_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:411 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*Cipher.sk:382*/
+  
+Object xform_initb_Cipher_int_SecretKeySpec_AlgorithmParameterSpec (Cipher self, Object mode, Object s, Object a)/*Cipher.sk:382*/
+  {
+    switch(self){/*Cipher.sk:383*/
+      case Cipher_empty:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:384 (0)
+        }
+      }
+      case Cipher_string_string:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:385 (0)
+        }
+      }
+      case Init_int_secretkeyspec_algorithmparameterspec:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:386 (0)
+        }
+      }
+      case Initb_int_secretkeyspec_algorithmparameterspec:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:387 (0)
+        }
+      }
+      case Updateb_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:388 (0)
+        }
+      }
+      case Dofinalb_object:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:389 (0)
+        }
+      }
+      case Dofinaleb_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:390 (0)
+        }
+      }
+      case Update_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:391 (0)
+        }
+      }
+      case Dofinal_object:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:392 (0)
+        }
+      }
+      case Dofinale_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:393 (0)
+        }
+      }
+      case Getoutputsize_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:394 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*Cipher.sk:268*/
+  
+Object xform_update_Cipher_byte_int_int_byte_int (Cipher self, Object data, Object a, Object len, Object out, Object b)/*Cipher.sk:268*/
+  {
+    switch(self){/*Cipher.sk:269*/
+      case Cipher_empty:
+      {
+        {
+          {
+            Cipher data_data;
+            data_data = data._cipher;
+            switch(data_data){/*Cipher.sk:274*/
+              case Cipher_empty:
+              {
+                {
+                  {
+                    Cipher a_a;
+                    a_a = a._cipher;
+                    switch(a_a){/*Cipher.sk:279*/
+                      case Cipher_empty:
+                      {
+                        {
+                          {
+                            Cipher len_len;
+                            len_len = len._cipher;
+                            switch(len_len){/*Cipher.sk:284*/
+                              case Cipher_empty:
+                              {
+                                {
+                                  {
+                                    Cipher out_out;
+                                    out_out = out._cipher;
+                                    switch(out_out){/*Cipher.sk:289*/
+                                      case Cipher_empty:
+                                      {
+                                        {
+                                          {
+                                            Cipher b_b;
+                                            b_b = b._cipher;
+                                            switch(b_b){/*Cipher.sk:294*/
+                                              case Cipher_empty:
+                                              {
+                                                {
+                                                  return new Object(__cid=-2, _int=0);
+                                                }
+                                              }
+                                              case Cipher_string_string:
+                                              {
+                                                {
+                                                  assert (0); //Assert at Cipher.sk:298 (0)
+                                                }
+                                              }
+                                              case Init_int_secretkeyspec_algorithmparameterspec:
+                                              {
+                                                {
+                                                  assert (0); //Assert at Cipher.sk:299 (0)
+                                                }
+                                              }
+                                              case Initb_int_secretkeyspec_algorithmparameterspec:
+                                              {
+                                                {
+                                                  assert (0); //Assert at Cipher.sk:300 (0)
+                                                }
+                                              }
+                                              case Updateb_byte_int_int_byte_int:
+                                              {
+                                                {
+                                                  assert (0); //Assert at Cipher.sk:301 (0)
+                                                }
+                                              }
+                                              case Dofinalb_object:
+                                              {
+                                                {
+                                                  assert (0); //Assert at Cipher.sk:302 (0)
+                                                }
+                                              }
+                                              case Dofinaleb_byte_int_int_byte_int:
+                                              {
+                                                {
+                                                  assert (0); //Assert at Cipher.sk:303 (0)
+                                                }
+                                              }
+                                              case Update_byte_int_int_byte_int:
+                                              {
+                                                {
+                                                  assert (0); //Assert at Cipher.sk:304 (0)
+                                                }
+                                              }
+                                              case Dofinal_object:
+                                              {
+                                                {
+                                                  assert (0); //Assert at Cipher.sk:305 (0)
+                                                }
+                                              }
+                                              case Dofinale_byte_int_int_byte_int:
+                                              {
+                                                {
+                                                  assert (0); //Assert at Cipher.sk:306 (0)
+                                                }
+                                              }
+                                              case Getoutputsize_int:
+                                              {
+                                                {
+                                                  assert (0); //Assert at Cipher.sk:307 (0)
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                      case Cipher_string_string:
+                                      {
+                                        {
+                                          assert (0); //Assert at Cipher.sk:312 (0)
+                                        }
+                                      }
+                                      case Init_int_secretkeyspec_algorithmparameterspec:
+                                      {
+                                        {
+                                          assert (0); //Assert at Cipher.sk:313 (0)
+                                        }
+                                      }
+                                      case Initb_int_secretkeyspec_algorithmparameterspec:
+                                      {
+                                        {
+                                          assert (0); //Assert at Cipher.sk:314 (0)
+                                        }
+                                      }
+                                      case Updateb_byte_int_int_byte_int:
+                                      {
+                                        {
+                                          assert (0); //Assert at Cipher.sk:315 (0)
+                                        }
+                                      }
+                                      case Dofinalb_object:
+                                      {
+                                        {
+                                          assert (0); //Assert at Cipher.sk:316 (0)
+                                        }
+                                      }
+                                      case Dofinaleb_byte_int_int_byte_int:
+                                      {
+                                        {
+                                          assert (0); //Assert at Cipher.sk:317 (0)
+                                        }
+                                      }
+                                      case Update_byte_int_int_byte_int:
+                                      {
+                                        {
+                                          assert (0); //Assert at Cipher.sk:318 (0)
+                                        }
+                                      }
+                                      case Dofinal_object:
+                                      {
+                                        {
+                                          assert (0); //Assert at Cipher.sk:319 (0)
+                                        }
+                                      }
+                                      case Dofinale_byte_int_int_byte_int:
+                                      {
+                                        {
+                                          assert (0); //Assert at Cipher.sk:320 (0)
+                                        }
+                                      }
+                                      case Getoutputsize_int:
+                                      {
+                                        {
+                                          assert (0); //Assert at Cipher.sk:321 (0)
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                              case Cipher_string_string:
+                              {
+                                {
+                                  assert (0); //Assert at Cipher.sk:326 (0)
+                                }
+                              }
+                              case Init_int_secretkeyspec_algorithmparameterspec:
+                              {
+                                {
+                                  assert (0); //Assert at Cipher.sk:327 (0)
+                                }
+                              }
+                              case Initb_int_secretkeyspec_algorithmparameterspec:
+                              {
+                                {
+                                  assert (0); //Assert at Cipher.sk:328 (0)
+                                }
+                              }
+                              case Updateb_byte_int_int_byte_int:
+                              {
+                                {
+                                  assert (0); //Assert at Cipher.sk:329 (0)
+                                }
+                              }
+                              case Dofinalb_object:
+                              {
+                                {
+                                  assert (0); //Assert at Cipher.sk:330 (0)
+                                }
+                              }
+                              case Dofinaleb_byte_int_int_byte_int:
+                              {
+                                {
+                                  assert (0); //Assert at Cipher.sk:331 (0)
+                                }
+                              }
+                              case Update_byte_int_int_byte_int:
+                              {
+                                {
+                                  assert (0); //Assert at Cipher.sk:332 (0)
+                                }
+                              }
+                              case Dofinal_object:
+                              {
+                                {
+                                  assert (0); //Assert at Cipher.sk:333 (0)
+                                }
+                              }
+                              case Dofinale_byte_int_int_byte_int:
+                              {
+                                {
+                                  assert (0); //Assert at Cipher.sk:334 (0)
+                                }
+                              }
+                              case Getoutputsize_int:
+                              {
+                                {
+                                  assert (0); //Assert at Cipher.sk:335 (0)
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                      case Cipher_string_string:
+                      {
+                        {
+                          assert (0); //Assert at Cipher.sk:340 (0)
+                        }
+                      }
+                      case Init_int_secretkeyspec_algorithmparameterspec:
+                      {
+                        {
+                          assert (0); //Assert at Cipher.sk:341 (0)
+                        }
+                      }
+                      case Initb_int_secretkeyspec_algorithmparameterspec:
+                      {
+                        {
+                          assert (0); //Assert at Cipher.sk:342 (0)
+                        }
+                      }
+                      case Updateb_byte_int_int_byte_int:
+                      {
+                        {
+                          assert (0); //Assert at Cipher.sk:343 (0)
+                        }
+                      }
+                      case Dofinalb_object:
+                      {
+                        {
+                          assert (0); //Assert at Cipher.sk:344 (0)
+                        }
+                      }
+                      case Dofinaleb_byte_int_int_byte_int:
+                      {
+                        {
+                          assert (0); //Assert at Cipher.sk:345 (0)
+                        }
+                      }
+                      case Update_byte_int_int_byte_int:
+                      {
+                        {
+                          assert (0); //Assert at Cipher.sk:346 (0)
+                        }
+                      }
+                      case Dofinal_object:
+                      {
+                        {
+                          assert (0); //Assert at Cipher.sk:347 (0)
+                        }
+                      }
+                      case Dofinale_byte_int_int_byte_int:
+                      {
+                        {
+                          assert (0); //Assert at Cipher.sk:348 (0)
+                        }
+                      }
+                      case Getoutputsize_int:
+                      {
+                        {
+                          assert (0); //Assert at Cipher.sk:349 (0)
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              case Cipher_string_string:
+              {
+                {
+                  assert (0); //Assert at Cipher.sk:354 (0)
+                }
+              }
+              case Init_int_secretkeyspec_algorithmparameterspec:
+              {
+                {
+                  assert (0); //Assert at Cipher.sk:355 (0)
+                }
+              }
+              case Initb_int_secretkeyspec_algorithmparameterspec:
+              {
+                {
+                  assert (0); //Assert at Cipher.sk:356 (0)
+                }
+              }
+              case Updateb_byte_int_int_byte_int:
+              {
+                {
+                  assert (0); //Assert at Cipher.sk:357 (0)
+                }
+              }
+              case Dofinalb_object:
+              {
+                {
+                  assert (0); //Assert at Cipher.sk:358 (0)
+                }
+              }
+              case Dofinaleb_byte_int_int_byte_int:
+              {
+                {
+                  assert (0); //Assert at Cipher.sk:359 (0)
+                }
+              }
+              case Update_byte_int_int_byte_int:
+              {
+                {
+                  assert (0); //Assert at Cipher.sk:360 (0)
+                }
+              }
+              case Dofinal_object:
+              {
+                {
+                  assert (0); //Assert at Cipher.sk:361 (0)
+                }
+              }
+              case Dofinale_byte_int_int_byte_int:
+              {
+                {
+                  assert (0); //Assert at Cipher.sk:362 (0)
+                }
+              }
+              case Getoutputsize_int:
+              {
+                {
+                  assert (0); //Assert at Cipher.sk:363 (0)
+                }
+              }
+            }
+          }
+        }
+      }
+      case Cipher_string_string:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:368 (0)
+        }
+      }
+      case Init_int_secretkeyspec_algorithmparameterspec:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:369 (0)
+        }
+      }
+      case Initb_int_secretkeyspec_algorithmparameterspec:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:370 (0)
+        }
+      }
+      case Updateb_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:371 (0)
+        }
+      }
+      case Dofinalb_object:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:372 (0)
+        }
+      }
+      case Dofinaleb_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:373 (0)
+        }
+      }
+      case Update_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:374 (0)
+        }
+      }
+      case Dofinal_object:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:375 (0)
+        }
+      }
+      case Dofinale_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:376 (0)
+        }
+      }
+      case Getoutputsize_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:377 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*Cipher.sk:450*/
+  
+Object xform_updateb_Cipher_byte_int_int_byte_int (Cipher self, Object data, Object a, Object len, Object out, Object b)/*Cipher.sk:450*/
+  {
+    switch(self){/*Cipher.sk:451*/
+      case Cipher_empty:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:452 (0)
+        }
+      }
+      case Cipher_string_string:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:453 (0)
+        }
+      }
+      case Init_int_secretkeyspec_algorithmparameterspec:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:454 (0)
+        }
+      }
+      case Initb_int_secretkeyspec_algorithmparameterspec:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:455 (0)
+        }
+      }
+      case Updateb_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:456 (0)
+        }
+      }
+      case Dofinalb_object:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:457 (0)
+        }
+      }
+      case Dofinaleb_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:458 (0)
+        }
+      }
+      case Update_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:459 (0)
+        }
+      }
+      case Dofinal_object:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:460 (0)
+        }
+      }
+      case Dofinale_byte_int_int_byte_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:461 (0)
+        }
+      }
+      case Getoutputsize_int:
+      {
+        {
+          assert (0); //Assert at Cipher.sk:462 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /* END PACKAGE Cipher*/
+}
+/* BEGIN PACKAGE Arrays*/
+package Arrays{
+  /*Arrays.sk:3*/
+  
+Object Arrays_Arrays (Object self)/*Arrays.sk:3*/
+  {
+    return self;
+  }
+  /*Arrays.sk:20*/
+  
+Object arraysEquals_byte_byte (Object b1, Object b2)/*Arrays.sk:20*/
+  {
+    if((b1._array_char.length._int) == (b2._array_char.length._int))/*Arrays.sk:21*/
+    {
+      {
+        {
+          Object i = new Object(__cid=-2, _int=0);
+          bit __sa22 = (i._int) < (b1._array_char.length._int);
+          while(__sa22)
+          {
+            {
+              {
+                if((b1._array_char.A[i._int]) != (b2._array_char.A[i._int]))/*Arrays.sk:23*/
+                {
+                  return new Object(__cid=-4, _bit=0);
+                }
+              }
+            }
+            i = new Object(__cid=-2, _int=(i._int) + 1);
+            __sa22 = (i._int) < (b1._array_char.length._int);
+          }
+        }
+      }
+    }
+    else
+    {
+      {
+        return new Object(__cid=-4, _bit=0);
+      }
+    }
+    return new Object(__cid=-4, _bit=1);
+  }
+  /*Arrays.sk:7*/
+  
+Object copyOf_byte_int (Object in, Object len)/*Arrays.sk:7*/
+  {
+    Object n = Wrap_Array_char(new Array_char(length=len));
+    {
+      Object i = new Object(__cid=-2, _int=0);
+      bit __sa21 = (i._int) < (len._int);
+      while(__sa21)
+      {
+        {
+          {
+            if((i._int) >= (in._array_char.length._int))/*Arrays.sk:10*/
+            {
+              {
+                n._array_char.A[i._int] = new Object(__cid=-2, _int=0)._int;
+              }
+            }
+            else
+            {
+              {
+                n._array_char.A[i._int] = in._array_char.A[i._int];
+              }
+            }
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) + 1);
+        __sa21 = (i._int) < (len._int);
+      }
+    }
+    return n;
+  }
+  /* END PACKAGE Arrays*/
+}
