@@ -1,29 +1,29 @@
 package meta;
 
 // distinct class IDs
-int ArrayList()                 { return 18; }
-int Assert()                    { return 20; }
-int Boolean()                   { return 23; }
-int Byte()                      { return 10; }
-int CharSequence()              { return 14; }
-int Character()                 { return 22; }
-int Cipher()                    { return 17; }
+int ArrayList()                 { return 19; }
+int Assert()                    { return 21; }
+int Boolean()                   { return 14; }
+int Byte()                      { return 16; }
+int CharSequence()              { return 13; }
+int Character()                 { return 8; }
+int Cipher()                    { return 22; }
 int CipherFactoryTests()        { return 3; }
 int CryptoManager()             { return 5; }
 int DefaultCipherFactory()      { return 4; }
 int DefaultCipherFactoryTest()  { return 2; }
-int HashMap()                   { return 11; }
+int HashMap()                   { return 10; }
 int ICipherFactory()            { return 6; }
 int ICryptoManager()            { return 7; }
-int Integer()                   { return 21; }
-int IvParameterSpec()           { return 8; }
-int Key()                       { return 13; }
-int Mac()                       { return 16; }
+int Integer()                   { return 9; }
+int IvParameterSpec()           { return 18; }
+int Key()                       { return 11; }
+int Mac()                       { return 17; }
 int Object()                    { return 1; }
-int SecretKey()                 { return 9; }
-int SecretKeySpec()             { return 19; }
-int SecureRandom()              { return 12; }
-int String()                    { return 15; }
+int SecretKey()                 { return 15; }
+int SecretKeySpec()             { return 12; }
+int SecureRandom()              { return 20; }
+int String()                    { return 23; }
 int Array()                     { return -1; }
 int _int()                      { return -2; }
 int _char()                     { return -3; }

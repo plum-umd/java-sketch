@@ -2,9 +2,9 @@ package Mac;
 
 adt Mac {
     Mac_empty  { }
-    Init       { Mac self; Object key; }
-    Initb      { Mac self; Object key; }
-    Dofinal    { Mac self; Object text; }
+    Init_secretkeyspec       { Mac self; Object key; }
+    Initb_secretkeyspec      { Mac self; Object key; }
+    Dofinal_object    { Mac self; Object text; }
 }
 
 Object Mac_Mac() {
@@ -12,29 +12,29 @@ Object Mac_Mac() {
 }
 
 Object init_Object_SecretKeySpec(Object self, Object key) {
-    return new Object(__cid=Mac(), _mac=new Init(self=self._mac, key=key));
+    return new Object(__cid=Mac(), _mac=new Init_secretkeyspec(self=self._mac, key=key));
 }
 
 Object initb_Object_SecretKeySpec(Object self, Object key) {
-    return new Object(__cid=Mac(), _mac=new Initb(self=self._mac, key=key));
+    return new Object(__cid=Mac(), _mac=new Initb_secretkeyspec(self=self._mac, key=key));
 }
 
 Object doFinal_Object_Object(Object self, Object text) {
-    return new Object(__cid=Mac(), _mac=new Dofinal(self=self._mac, text=text));
+    return new Object(__cid=Mac(), _mac=new Dofinal_object(self=self._mac, text=text));
 }
 
 Object xform_Mac(Mac self) {
   switch(self) {
   case Mac_empty: {
-    return xform_mac_Empty_Mac(self);
+    return xform_mac_Mac(self);
   }
-  case Init: {
+  case Init_secretkeyspec: {
     return xform_init_Mac_SecretKeySpec(self.self, self.key);
   }
-  case Initb: {
+  case Initb_secretkeyspec: {
     return xform_initb_Mac_SecretKeySpec(self.self, self.key);
   }
-  case Dofinal: {
+  case Dofinal_object: {
     return xform_doFinal_Mac_Object(self.self, self.text);
   }
   }
@@ -44,21 +44,11 @@ Object xform_Mac(Mac self) {
 Object xform_doFinal_Mac_Object(Mac self, Object text) {
   switch(self) {
   case Mac_empty: { assert false; }
-  case Init: { assert false; }
-  case Initb: {
+  case Init_secretkeyspec: { assert false; }
+  case Initb_secretkeyspec: {
     return text;
   }
-  case Dofinal: { assert false; }
-  }
-
-  return null;
-}
-Object xform_initb_Mac_SecretKeySpec(Mac self, Object key) {
-  switch(self) {
-  case Mac_empty: { assert false; }
-  case Init: { assert false; }
-  case Initb: { assert false; }
-  case Dofinal: { assert false; }
+  case Dofinal_object: { assert false; }
   }
 
   return null;
@@ -66,19 +56,29 @@ Object xform_initb_Mac_SecretKeySpec(Mac self, Object key) {
 Object xform_init_Mac_SecretKeySpec(Mac self, Object key) {
   switch(self) {
   case Mac_empty: { assert false; }
-  case Init: { assert false; }
-  case Initb: { assert false; }
-  case Dofinal: { assert false; }
+  case Init_secretkeyspec: { assert false; }
+  case Initb_secretkeyspec: { assert false; }
+  case Dofinal_object: { assert false; }
   }
 
   return null;
 }
-Object xform_mac_Empty_Mac(Mac self) {
+Object xform_initb_Mac_SecretKeySpec(Mac self, Object key) {
   switch(self) {
   case Mac_empty: { assert false; }
-  case Init: { assert false; }
-  case Initb: { assert false; }
-  case Dofinal: { assert false; }
+  case Init_secretkeyspec: { assert false; }
+  case Initb_secretkeyspec: { assert false; }
+  case Dofinal_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_mac_Mac(Mac self) {
+  switch(self) {
+  case Mac_empty: { assert false; }
+  case Init_secretkeyspec: { assert false; }
+  case Initb_secretkeyspec: { assert false; }
+  case Dofinal_object: { assert false; }
   }
 
   return null;

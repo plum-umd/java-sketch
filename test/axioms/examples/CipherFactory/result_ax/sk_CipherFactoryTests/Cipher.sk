@@ -6,81 +6,73 @@ Object getInstance_String(Object type) {
 
 adt Cipher {
     Cipher_empty  { }
-    Cipher_object_string { Object t; }
-    Init          { Cipher self; Object mode; Object s; }
-    Initb         { Cipher self; Object mode; Object s; }
-    Dofinalb      { Cipher self; Object text; }
-    Dofinal       { Cipher self; Object text; }
+    Tostring_object      { Cipher self; Object str; }
+    Readencoded_string   { Cipher self; Object pt; }
+    Cipher_string        { Object t; }
+    Init_int_secretkeyspec          { Cipher self; Object mode; Object s; }
+    Initb_int_secretkeyspec         { Cipher self; Object mode; Object s; }
+    Dofinalb_object      { Cipher self; Object text; }
+    Dofinal_object       { Cipher self; Object text; }
 }
 
 Object Cipher_Cipher() {
     return new Object(__cid=Cipher(), _cipher=new Cipher_empty());
 }
 
+Object toString_Object_Object(Object self, Object str) {
+    return new Object(__cid=Cipher(), _cipher=new Tostring_object(self=self._cipher, str=str));
+}
+
+Object readEncoded_Object_String(Object self, Object pt) {
+    return new Object(__cid=Cipher(), _cipher=new Readencoded_string(self=self._cipher, pt=pt));
+}
+
 Object Cipher_Object_String(Object t) {
-    return new Object(__cid=Cipher(), _cipher=new Cipher_object_string(t=t));
+    return new Object(__cid=Cipher(), _cipher=new Cipher_string(t=t));
 }
 
 Object init_Object_int_SecretKeySpec(Object self, Object mode, Object s) {
-    return new Object(__cid=Cipher(), _cipher=new Init(self=self._cipher, mode=mode, s=s));
+    return new Object(__cid=Cipher(), _cipher=new Init_int_secretkeyspec(self=self._cipher, mode=mode, s=s));
 }
 
 Object initb_Object_int_SecretKeySpec(Object self, Object mode, Object s) {
-    return new Object(__cid=Cipher(), _cipher=new Initb(self=self._cipher, mode=mode, s=s));
+    return new Object(__cid=Cipher(), _cipher=new Initb_int_secretkeyspec(self=self._cipher, mode=mode, s=s));
 }
 
 Object doFinalb_Object_Object(Object self, Object text) {
-    return new Object(__cid=Cipher(), _cipher=new Dofinalb(self=self._cipher, text=text));
+    return new Object(__cid=Cipher(), _cipher=new Dofinalb_object(self=self._cipher, text=text));
 }
 
 Object doFinal_Object_Object(Object self, Object text) {
-    return new Object(__cid=Cipher(), _cipher=new Dofinal(self=self._cipher, text=text));
+    return new Object(__cid=Cipher(), _cipher=new Dofinal_object(self=self._cipher, text=text));
 }
 
 Object xform_Cipher(Cipher self) {
   switch(self) {
   case Cipher_empty: {
-    return xform_cipher_Empty_Cipher(self);
+    return xform_cipher_Cipher(self);
   }
-  case Cipher_object_string: {
-    return xform_Cipher_Object_String_Cipher_String(self, self.t);
+  case Tostring_object: {
+    return xform_toString_Cipher_Object(self.self, self.str);
   }
-  case Init: {
+  case Readencoded_string: {
+    return xform_readEncoded_Cipher_String(self.self, self.pt);
+  }
+  case Cipher_string: {
+    return xform_Cipher_Cipher_String(self, self.t);
+  }
+  case Init_int_secretkeyspec: {
     return xform_init_Cipher_int_SecretKeySpec(self.self, self.mode, self.s);
   }
-  case Initb: {
+  case Initb_int_secretkeyspec: {
     return xform_initb_Cipher_int_SecretKeySpec(self.self, self.mode, self.s);
   }
-  case Dofinalb: {
+  case Dofinalb_object: {
     return xform_doFinalb_Cipher_Object(self.self, self.text);
   }
-  case Dofinal: {
+  case Dofinal_object: {
     return xform_doFinal_Cipher_Object(self.self, self.text);
   }
-  }
-
-  return null;
-}
-Object xform_initb_Cipher_int_SecretKeySpec(Cipher self, Object mode, Object s) {
-  switch(self) {
-  case Cipher_empty: { assert false; }
-  case Cipher_object_string: { assert false; }
-  case Init: { assert false; }
-  case Initb: { assert false; }
-  case Dofinalb: { assert false; }
-  case Dofinal: { assert false; }
-  }
-
-  return null;
-}
-Object xform_init_Cipher_int_SecretKeySpec(Cipher self, Object mode, Object s) {
-  switch(self) {
-  case Cipher_empty: { assert false; }
-  case Cipher_object_string: { assert false; }
-  case Init: { assert false; }
-  case Initb: { assert false; }
-  case Dofinalb: { assert false; }
-  case Dofinal: { assert false; }
   }
 
   return null;
@@ -88,53 +80,79 @@ Object xform_init_Cipher_int_SecretKeySpec(Cipher self, Object mode, Object s) {
 Object xform_doFinal_Cipher_Object(Cipher self, Object text) {
   switch(self) {
   case Cipher_empty: { assert false; }
-  case Cipher_object_string: { assert false; }
-  case Init: { assert false; }
-  case Initb: {
+  case Tostring_object: { assert false; }
+  case Readencoded_string: { assert false; }
+  case Cipher_string: { assert false; }
+  case Init_int_secretkeyspec: { assert false; }
+  case Initb_int_secretkeyspec: {
     {
       Cipher text_text;
       text_text = text._cipher;
       switch(text_text) {
       case Cipher_empty: { assert false; }
-      case Cipher_object_string: { assert false; }
-      case Init: { assert false; }
-      case Initb: { assert false; }
-      case Dofinalb: { assert false; }
-      case Dofinal: {
+      case Tostring_object: { assert false; }
+      case Readencoded_string: {
         {
           Cipher text_text_text;
           text_text_text = text_text.self;
           switch(text_text_text) {
           case Cipher_empty: { assert false; }
-          case Cipher_object_string: { assert false; }
-          case Init: { assert false; }
-          case Initb: {
-            return ((self.s.__cid == (new Object(__cid=-2, _int=SecretKeySpec()))._int ? equals_Object@Object(self.s, text_text_text.s) : null)._bit ? (((self.mode._int == (new Object(__cid=-2, _int=2))._int && text_text_text.mode._int == (new Object(__cid=-2, _int=1))._int) ? text_text.text : null)) : null);
+          case Tostring_object: {
+            {
+              Cipher text_text_text_text;
+              text_text_text_text = text_text_text.self;
+              switch(text_text_text_text) {
+              case Cipher_empty: { assert false; }
+              case Tostring_object: { assert false; }
+              case Readencoded_string: { assert false; }
+              case Cipher_string: { assert false; }
+              case Init_int_secretkeyspec: { assert false; }
+              case Initb_int_secretkeyspec: { assert false; }
+              case Dofinalb_object: { assert false; }
+              case Dofinal_object: {
+                {
+                  Cipher text_text_text_text_text;
+                  text_text_text_text_text = text_text_text_text.self;
+                  switch(text_text_text_text_text) {
+                  case Cipher_empty: { assert false; }
+                  case Tostring_object: { assert false; }
+                  case Readencoded_string: { assert false; }
+                  case Cipher_string: { assert false; }
+                  case Init_int_secretkeyspec: { assert false; }
+                  case Initb_int_secretkeyspec: {
+                    return ((self.s.__cid == (new Object(__cid=-2, _int=SecretKeySpec()))._int ? equals_Object_Object@SecretKeySpec(self.s, k2) : null)._bit ? (((self.mode._int == (new Object(__cid=-2, _int=2))._int && m2._int == (new Object(__cid=-2, _int=1))._int) ? t : null)) : null);
+                  }
+                  case Dofinalb_object: { assert false; }
+                  case Dofinal_object: { assert false; }
+                  }
+
+                }
+              }
+              }
+
+            }
           }
-          case Dofinalb: { assert false; }
-          case Dofinal: { assert false; }
+          case Readencoded_string: { assert false; }
+          case Cipher_string: { assert false; }
+          case Init_int_secretkeyspec: { assert false; }
+          case Initb_int_secretkeyspec: { assert false; }
+          case Dofinalb_object: { assert false; }
+          case Dofinal_object: { assert false; }
           }
 
         }
       }
+      case Cipher_string: { assert false; }
+      case Init_int_secretkeyspec: { assert false; }
+      case Initb_int_secretkeyspec: { assert false; }
+      case Dofinalb_object: { assert false; }
+      case Dofinal_object: { assert false; }
       }
 
     }
   }
-  case Dofinalb: { assert false; }
-  case Dofinal: { assert false; }
-  }
-
-  return null;
-}
-Object xform_Cipher_Object_String_Cipher_String(Cipher self, Object t) {
-  switch(self) {
-  case Cipher_empty: { assert false; }
-  case Cipher_object_string: { assert false; }
-  case Init: { assert false; }
-  case Initb: { assert false; }
-  case Dofinalb: { assert false; }
-  case Dofinal: { assert false; }
+  case Dofinalb_object: { assert false; }
+  case Dofinal_object: { assert false; }
   }
 
   return null;
@@ -142,23 +160,97 @@ Object xform_Cipher_Object_String_Cipher_String(Cipher self, Object t) {
 Object xform_doFinalb_Cipher_Object(Cipher self, Object text) {
   switch(self) {
   case Cipher_empty: { assert false; }
-  case Cipher_object_string: { assert false; }
-  case Init: { assert false; }
-  case Initb: { assert false; }
-  case Dofinalb: { assert false; }
-  case Dofinal: { assert false; }
+  case Tostring_object: { assert false; }
+  case Readencoded_string: { assert false; }
+  case Cipher_string: { assert false; }
+  case Init_int_secretkeyspec: { assert false; }
+  case Initb_int_secretkeyspec: { assert false; }
+  case Dofinalb_object: { assert false; }
+  case Dofinal_object: { assert false; }
   }
 
   return null;
 }
-Object xform_cipher_Empty_Cipher(Cipher self) {
+Object xform_initb_Cipher_int_SecretKeySpec(Cipher self, Object mode, Object s) {
   switch(self) {
   case Cipher_empty: { assert false; }
-  case Cipher_object_string: { assert false; }
-  case Init: { assert false; }
-  case Initb: { assert false; }
-  case Dofinalb: { assert false; }
-  case Dofinal: { assert false; }
+  case Tostring_object: { assert false; }
+  case Readencoded_string: { assert false; }
+  case Cipher_string: { assert false; }
+  case Init_int_secretkeyspec: { assert false; }
+  case Initb_int_secretkeyspec: { assert false; }
+  case Dofinalb_object: { assert false; }
+  case Dofinal_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_init_Cipher_int_SecretKeySpec(Cipher self, Object mode, Object s) {
+  switch(self) {
+  case Cipher_empty: { assert false; }
+  case Tostring_object: { assert false; }
+  case Readencoded_string: { assert false; }
+  case Cipher_string: { assert false; }
+  case Init_int_secretkeyspec: { assert false; }
+  case Initb_int_secretkeyspec: { assert false; }
+  case Dofinalb_object: { assert false; }
+  case Dofinal_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_toString_Cipher_Object(Cipher self, Object str) {
+  switch(self) {
+  case Cipher_empty: { assert false; }
+  case Tostring_object: { assert false; }
+  case Readencoded_string: { assert false; }
+  case Cipher_string: { assert false; }
+  case Init_int_secretkeyspec: { assert false; }
+  case Initb_int_secretkeyspec: { assert false; }
+  case Dofinalb_object: { assert false; }
+  case Dofinal_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_readEncoded_Cipher_String(Cipher self, Object pt) {
+  switch(self) {
+  case Cipher_empty: { assert false; }
+  case Tostring_object: { assert false; }
+  case Readencoded_string: { assert false; }
+  case Cipher_string: { assert false; }
+  case Init_int_secretkeyspec: { assert false; }
+  case Initb_int_secretkeyspec: { assert false; }
+  case Dofinalb_object: { assert false; }
+  case Dofinal_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_cipher_Cipher(Cipher self) {
+  switch(self) {
+  case Cipher_empty: { assert false; }
+  case Tostring_object: { assert false; }
+  case Readencoded_string: { assert false; }
+  case Cipher_string: { assert false; }
+  case Init_int_secretkeyspec: { assert false; }
+  case Initb_int_secretkeyspec: { assert false; }
+  case Dofinalb_object: { assert false; }
+  case Dofinal_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_Cipher_Cipher_String(Cipher self, Object t) {
+  switch(self) {
+  case Cipher_empty: { assert false; }
+  case Tostring_object: { assert false; }
+  case Readencoded_string: { assert false; }
+  case Cipher_string: { assert false; }
+  case Init_int_secretkeyspec: { assert false; }
+  case Initb_int_secretkeyspec: { assert false; }
+  case Dofinalb_object: { assert false; }
+  case Dofinal_object: { assert false; }
   }
 
   return null;

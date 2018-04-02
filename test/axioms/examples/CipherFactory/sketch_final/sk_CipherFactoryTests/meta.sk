@@ -1,0 +1,33 @@
+package meta;
+
+// distinct class IDs
+int ArrayList()             { return 17; }
+int Assert()                { return 19; }
+int Boolean()               { return 22; }
+int Byte()                  { return 9; }
+int CharSequence()          { return 13; }
+int Character()             { return 21; }
+int Cipher()                { return 16; }
+int CipherFactoryTests()    { return 2; }
+int CryptoManager()         { return 4; }
+int DefaultCipherFactory()  { return 3; }
+int HashMap()               { return 10; }
+int ICipherFactory()        { return 5; }
+int ICryptoManager()        { return 6; }
+int Integer()               { return 20; }
+int IvParameterSpec()       { return 7; }
+int Key()                   { return 12; }
+int Mac()                   { return 15; }
+int Object()                { return 1; }
+int SecretKey()             { return 8; }
+int SecretKeySpec()         { return 18; }
+int SecureRandom()          { return 11; }
+int String()                { return 14; }
+int Array()                 { return -1; }
+int _int()                  { return -2; }
+int _char()                 { return -3; }
+int _bit()                  { return -4; }
+int _float()                { return -5; }
+int _double()               { return -6; }
+
+// Uninterpreted functions

@@ -6,6 +6,14 @@ class Cipher {
     }
 
     @adt
+    @pure
+    String toString(Object str);
+
+    @adt
+    @pure
+    byte[] readEncoded(String pt);
+    
+    @adt
     @constructor
     Cipher Cipher(String t);
 
@@ -21,7 +29,7 @@ class Cipher {
     @adt
     Object doFinal(Object text);
     
-    axiom Object doFinal(Object init!(Cipher c1, int m1, SecretKeySpec k1), Object doFinal(Object init!(Cipher c2, int m2, SecretKeySpec k2), Object t)) {
+    axiom Object doFinal(Object init!(Cipher c1, int m1, SecretKeySpec k1), Object readEncoded(Cipher c3, Object toString(Cipher c4, Object doFinal(Object init!(Cipher c2, int m2, SecretKeySpec k2), Object t)))) {
     	return k1.equals(k2) ? ((m1 == 2 && m2 == 1) ? t : null) : null;
     }
 

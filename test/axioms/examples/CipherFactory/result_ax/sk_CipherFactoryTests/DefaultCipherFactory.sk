@@ -23,7 +23,7 @@ Object initCipher_int(Object self, Object mode) {
 }
 
 Object obtainCipher_int(Object self, Object mode) {
-  Object secretKeySpec = SecretKeySpec_Object_byte_String(key@DefaultCipherFactory(self), getAlgorithm@DefaultCipherFactory(self));
+  Object secretKeySpec = SecretKeySpec_SecretKeySpec();
   Object cipher = getInstance_String@Cipher(getPadding@DefaultCipherFactory(self));
   if (cipher.__cid == (new Object(__cid=-2, _int=Cipher()))._int) { init_Object_int_SecretKeySpec@Cipher(cipher, mode, secretKeySpec); }
   else { 0; }; cipher = (cipher.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? initb_Object_int_SecretKeySpec@Cipher(cipher, mode, secretKeySpec) : null);

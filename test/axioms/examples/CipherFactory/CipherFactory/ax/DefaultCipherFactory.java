@@ -55,7 +55,8 @@ public class DefaultCipherFactory implements ICipherFactory {
     }
 
     protected Cipher obtainCipher(int mode) throws GeneralSecurityException {
-        SecretKeySpec secretKeySpec = new SecretKeySpec(key(), getAlgorithm());
+        // SecretKeySpec secretKeySpec = new SecretKeySpec(key(), getAlgorithm());
+        SecretKeySpec secretKeySpec = new SecretKeySpec();
         Cipher cipher = Cipher.getInstance(getPadding());
         cipher.init(mode, secretKeySpec);
         return cipher;
