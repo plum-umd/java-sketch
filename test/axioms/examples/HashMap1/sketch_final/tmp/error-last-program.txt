@@ -1,0 +1,3557 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/* END PACKAGE ANONYMOUS*/
+/* BEGIN PACKAGE HashTable*/
+package HashTable{
+  /*HashTable.sk:3*/
+  
+Object HashTable_HashTable (Object self)/*HashTable.sk:3*/
+  {
+    return self;
+  }
+  /*HashTable.sk:7*/
+  
+Object HashTable_HashTable_int (Object self, Object initialCapacity)/*HashTable.sk:7*/
+  {
+    self.initialCapacity_HashTable = initialCapacity;
+    self.capacityGrowth_HashTable = new Object(__cid=-2, _int=2);
+    self.maxLoadFactor_HashTable = new Object(__cid=-6, _double=0.75);
+    self.buckets_HashTable = ArrayList_ArrayList();
+    resetHashTable@HashTable(self);
+    return self;
+  }
+  /*HashTable.sk:139*/
+  
+void clear (Object self)/*HashTable.sk:139*/
+  {
+    resetHashTable@HashTable(self);
+  }
+  /*HashTable.sk:125*/
+  
+Object containsKey_K (Object self, Object key)/*HashTable.sk:125*/
+  {
+    Object result = getNodeWithKey_K@HashTable(self, key);
+    return new Object(__cid=-4, _bit=result != (null));
+  }
+  /*HashTable.sk:130*/
+  
+Object containsValue_V (Object self, Object value)/*HashTable.sk:130*/
+  {
+    Object result = getNodeWithValue_V@HashTable(self, value);
+    return new Object(__cid=-4, _bit=result != (null));
+  }
+  /*HashTable.sk:190*/
+  
+void ensureCapacity_int (Object self, Object intendedCapacity)/*HashTable.sk:190*/
+  {
+    Object loadFactor = new Object(__cid=-6, _double=(((double)intendedCapacity._int)) / (((double)self.currentCapacity_HashTable._int)));
+    if((loadFactor._double) < (self.maxLoadFactor_HashTable._double))/*HashTable.sk:192*/
+    {
+      {
+        return;
+      }
+    }
+    Object newCapacity = new Object(__cid=-2, _int=(self.currentCapacity_HashTable._int) * (self.capacityGrowth_HashTable._int));
+    if((self.buckets_HashTable.__cid) == (new Object(__cid=-2, _int=ArrayList())._int))/*HashTable.sk:196*/
+    {
+      {
+        ensureCapacity_Object_int@ArrayList(self.buckets_HashTable, newCapacity);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    {
+      Object i = self.currentCapacity_HashTable;
+      bit __sa6 = (i._int) < (newCapacity._int);
+      while(__sa6)
+      {
+        {
+          {
+            ((self.buckets_HashTable.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? add_Object_Object@ArrayList(self.buckets_HashTable, null) : null);
+            self.buckets_HashTable = ((self.buckets_HashTable.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? addb_Object_Object@ArrayList(self.buckets_HashTable, null) : null);
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) + 1);
+        __sa6 = (i._int) < (newCapacity._int);
+      }
+    }
+    self.currentCapacity_HashTable = newCapacity;
+  }
+  /*HashTable.sk:143*/
+  
+Object getBucketIndex_K (Object self, Object key)/*HashTable.sk:143*/
+  {
+    Object h = ((key.__cid) == (new Object(__cid=-2, _int=Character())._int) ? hashCode@Object(key) : ((key.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? hashCode@Integer(key) : ((key.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? hashCode@Object(key) : ((key.__cid) == (new Object(__cid=-2, _int=HashTableNode())._int) ? hashCode@Object(key) : ((key.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? hashCode@Object(key) : ((key.__cid) == (new Object(__cid=-2, _int=Assert())._int) ? hashCode@Object(key) : ((key.__cid) == (new Object(__cid=-2, _int=HashTableTest())._int) ? hashCode@Object(key) : ((key.__cid) == (new Object(__cid=-2, _int=String())._int) ? hashCode@String(key) : ((key.__cid) == (new Object(__cid=-2, _int=Boolean())._int) ? hashCode@Object(key) : ((key.__cid) == (new Object(__cid=-2, _int=Object())._int) ? hashCode@Object(key) : null))))))))));
+    Object c = new Object(__cid=-2, _int=(self.currentCapacity_HashTable._int) - (new Object(__cid=-2, _int=1)._int));
+    Object result = new Object(__cid=-2, _int=0);
+    Object s = new Object(__cid=-2, _int=1);
+    {
+      Object i = new Object(__cid=-2, _int=0);
+      bit __sa3 = (i._int) < (new Object(__cid=-2, _int=32)._int);
+      while(__sa3)
+      {
+        {
+          {
+            if((i._int) > (new Object(__cid=-2, _int=1)._int))/*HashTable.sk:148*/
+            {
+              {
+                {
+                  Object j = new Object(__cid=-2, _int=0);
+                  bit __sa4 = (j._int) < ((i._int) - (new Object(__cid=-2, _int=1)._int));
+                  while(__sa4)
+                  {
+                    {
+                      s = new Object(__cid=-2, _int=(s._int) * (new Object(__cid=-2, _int=2)._int));
+                    }
+                    j = new Object(__cid=-2, _int=(j._int) + 1);
+                    __sa4 = (j._int) < ((i._int) - (new Object(__cid=-2, _int=1)._int));
+                  }
+                }
+              }
+            }
+            result = new Object(__cid=-2, _int=(result._int) + (((((h._int) / (s._int)) % (new Object(__cid=-2, _int=2)._int)) * (((c._int) / (s._int)) % (new Object(__cid=-2, _int=2)._int))) * (s._int)));
+            s = new Object(__cid=-2, _int=2);
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) + 1);
+        __sa3 = (i._int) < (new Object(__cid=-2, _int=32)._int);
+      }
+    }
+    return result;
+  }
+  /*HashTable.sk:157*/
+  
+Object getNodeWithKey_K (Object self, Object key)/*HashTable.sk:157*/
+  {
+    if(((size@HashTable(self)._int) == (new Object(__cid=-2, _int=0)._int)) || (key == (null)))/*HashTable.sk:158*/
+    {
+      {
+        return null;
+      }
+    }
+    Object bucketIndex = getBucketIndex_K@HashTable(self, key);
+    Object current = ((self.buckets_HashTable.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? get_Object_int@ArrayList(self.buckets_HashTable, bucketIndex) : null);
+    self.buckets_HashTable = ((self.buckets_HashTable.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? getb_Object_int@ArrayList(self.buckets_HashTable, bucketIndex) : null);
+    while(current != (null))
+    {
+      {
+        Object k = ((current.__cid) == (new Object(__cid=-2, _int=HashTableNode())._int) ? getKey@HashTableNode(current) : null);
+        if(((k.__cid) == (new Object(__cid=-2, _int=Character())._int) ? equals_Object@Character(k, key) : ((k.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? equals_Object@Integer(k, key) : ((k.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? equals_Object@Object(k, key) : ((k.__cid) == (new Object(__cid=-2, _int=HashTableNode())._int) ? equals_Object@Object(k, key) : ((k.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? equals_Object@Object(k, key) : ((k.__cid) == (new Object(__cid=-2, _int=Assert())._int) ? equals_Object@Object(k, key) : ((k.__cid) == (new Object(__cid=-2, _int=HashTableTest())._int) ? equals_Object@Object(k, key) : ((k.__cid) == (new Object(__cid=-2, _int=String())._int) ? equals_Object@String(k, key) : ((k.__cid) == (new Object(__cid=-2, _int=Boolean())._int) ? equals_Object@Object(k, key) : ((k.__cid) == (new Object(__cid=-2, _int=Object())._int) ? equals_Object@Object(k, key) : null))))))))))._bit)/*HashTable.sk:165*/
+        {
+          {
+            return current;
+          }
+        }
+        current = ((current.__cid) == (new Object(__cid=-2, _int=HashTableNode())._int) ? getNext@HashTableNode(current) : null);
+      }
+    }
+    return null;
+  }
+  /*HashTable.sk:173*/
+  
+Object getNodeWithValue_V (Object self, Object value)/*HashTable.sk:173*/
+  {
+    if((size@HashTable(self)._int) == (new Object(__cid=-2, _int=0)._int))/*HashTable.sk:174*/
+    {
+      {
+        return null;
+      }
+    }
+    {
+      Object i = new Object(__cid=-2, _int=0);
+      bit __sa5 = (i._int) < (((self.buckets_HashTable.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? size_Object@ArrayList(self.buckets_HashTable) : null)._int);
+      while(__sa5)
+      {
+        {
+          {
+            Object current = ((self.buckets_HashTable.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? get_Object_int@ArrayList(self.buckets_HashTable, i) : null);
+            self.buckets_HashTable = ((self.buckets_HashTable.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? getb_Object_int@ArrayList(self.buckets_HashTable, i) : null);
+            while(current != (null))
+            {
+              {
+                Object v = ((current.__cid) == (new Object(__cid=-2, _int=HashTableNode())._int) ? getValue@HashTableNode(current) : null);
+                if(((v.__cid) == (new Object(__cid=-2, _int=Character())._int) ? equals_Object@Character(v, value) : ((v.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? equals_Object@Integer(v, value) : ((v.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? equals_Object@Object(v, value) : ((v.__cid) == (new Object(__cid=-2, _int=HashTableNode())._int) ? equals_Object@Object(v, value) : ((v.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? equals_Object@Object(v, value) : ((v.__cid) == (new Object(__cid=-2, _int=Assert())._int) ? equals_Object@Object(v, value) : ((v.__cid) == (new Object(__cid=-2, _int=HashTableTest())._int) ? equals_Object@Object(v, value) : ((v.__cid) == (new Object(__cid=-2, _int=String())._int) ? equals_Object@String(v, value) : ((v.__cid) == (new Object(__cid=-2, _int=Boolean())._int) ? equals_Object@Object(v, value) : ((v.__cid) == (new Object(__cid=-2, _int=Object())._int) ? equals_Object@Object(v, value) : null))))))))))._bit)/*HashTable.sk:181*/
+                {
+                  {
+                    return current;
+                  }
+                }
+                current = ((current.__cid) == (new Object(__cid=-2, _int=HashTableNode())._int) ? getNext@HashTableNode(current) : null);
+              }
+            }
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) + 1);
+        __sa5 = (i._int) < (((self.buckets_HashTable.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? size_Object@ArrayList(self.buckets_HashTable) : null)._int);
+      }
+    }
+    return null;
+  }
+  /*HashTable.sk:25*/
+  
+Object get_K (Object self, Object key)/*HashTable.sk:25*/
+  {
+    Object result = getNodeWithKey_K@HashTable(self, key);
+    return (result != (null) ? ((result.__cid) == (new Object(__cid=-2, _int=HashTableNode())._int) ? getValue@HashTableNode(result) : null) : null);
+  }
+  /*HashTable.sk:109*/
+  
+Object keys (Object self)/*HashTable.sk:109*/
+  {
+    Object keys = Wrap_Array_Object(new Array_Object(length=size@HashTable(self)));
+    if((size@HashTable(self)._int) > (new Object(__cid=-2, _int=0)._int))/*HashTable.sk:111*/
+    {
+      {
+        Object index = new Object(__cid=-2, _int=0);
+        {
+          Object i = new Object(__cid=-2, _int=0);
+          bit __sa2 = (i._int) < (((self.buckets_HashTable.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? size_Object@ArrayList(self.buckets_HashTable) : null)._int);
+          while(__sa2)
+          {
+            {
+              {
+                Object current = ((self.buckets_HashTable.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? get_Object_int@ArrayList(self.buckets_HashTable, i) : null);
+                self.buckets_HashTable = ((self.buckets_HashTable.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? getb_Object_int@ArrayList(self.buckets_HashTable, i) : null);
+                while(current != (null))
+                {
+                  {
+                    keys._array_object.A[index._int] = ((current.__cid) == (new Object(__cid=-2, _int=HashTableNode())._int) ? getKey@HashTableNode(current) : null);
+                    index = new Object(__cid=-2, _int=(index._int) + 1);
+                    current = ((current.__cid) == (new Object(__cid=-2, _int=HashTableNode())._int) ? getNext@HashTableNode(current) : null);
+                  }
+                }
+              }
+            }
+            i = new Object(__cid=-2, _int=(i._int) + 1);
+            __sa2 = (i._int) < (((self.buckets_HashTable.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? size_Object@ArrayList(self.buckets_HashTable) : null)._int);
+          }
+        }
+      }
+    }
+    return keys;
+  }
+  /*HashTable.sk:30*/
+  
+void put_K_V (Object self, Object key, Object value)/*HashTable.sk:30*/
+  {
+    ensureCapacity_int@HashTable(self, new Object(__cid=-2, _int=(size@HashTable(self)._int) + (new Object(__cid=-2, _int=1)._int)));
+    Object bucketIndex = getBucketIndex_K@HashTable(self, key);
+    Object newNode = HashTableNode_HashTableNode_K_V(new Object(__cid=HashTableNode()), key, value);
+    Object current = ((self.buckets_HashTable.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? get_Object_int@ArrayList(self.buckets_HashTable, bucketIndex) : null);
+    self.buckets_HashTable = ((self.buckets_HashTable.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? getb_Object_int@ArrayList(self.buckets_HashTable, bucketIndex) : null);
+    if(current == (null))/*HashTable.sk:35*/
+    {
+      {
+        ((self.buckets_HashTable.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? set_Object_int_Object@ArrayList(self.buckets_HashTable, bucketIndex, newNode) : null);
+        self.buckets_HashTable = ((self.buckets_HashTable.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? setb_Object_int_Object@ArrayList(self.buckets_HashTable, bucketIndex, newNode) : null);
+        self.size_HashTable = new Object(__cid=-2, _int=(self.size_HashTable._int) + 1);
+        return;
+      }
+    }
+    while(current != (null))
+    {
+      {
+        Object k = ((current.__cid) == (new Object(__cid=-2, _int=HashTableNode())._int) ? getKey@HashTableNode(current) : null);
+        if(((k.__cid) == (new Object(__cid=-2, _int=Character())._int) ? equals_Object@Character(k, key) : ((k.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? equals_Object@Integer(k, key) : ((k.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? equals_Object@Object(k, key) : ((k.__cid) == (new Object(__cid=-2, _int=HashTableNode())._int) ? equals_Object@Object(k, key) : ((k.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? equals_Object@Object(k, key) : ((k.__cid) == (new Object(__cid=-2, _int=Assert())._int) ? equals_Object@Object(k, key) : ((k.__cid) == (new Object(__cid=-2, _int=HashTableTest())._int) ? equals_Object@Object(k, key) : ((k.__cid) == (new Object(__cid=-2, _int=String())._int) ? equals_Object@String(k, key) : ((k.__cid) == (new Object(__cid=-2, _int=Boolean())._int) ? equals_Object@Object(k, key) : ((k.__cid) == (new Object(__cid=-2, _int=Object())._int) ? equals_Object@Object(k, key) : null))))))))))._bit)/*HashTable.sk:42*/
+        {
+          {
+            if((current.__cid) == (new Object(__cid=-2, _int=HashTableNode())._int))/*HashTable.sk:43*/
+            {
+              {
+                setValue_V@HashTableNode(current, value);
+              }
+            }
+            else
+            {
+              {
+                0;
+              }
+            }
+            { }
+            return;
+          }
+        }
+        else
+        {
+          if((((current.__cid) == (new Object(__cid=-2, _int=HashTableNode())._int) ? getNext@HashTableNode(current) : null)) == (null))/*HashTable.sk:47*/
+          {
+            {
+              if((current.__cid) == (new Object(__cid=-2, _int=HashTableNode())._int))/*HashTable.sk:48*/
+              {
+                {
+                  setNext_HashTableNode@HashTableNode(current, newNode);
+                }
+              }
+              else
+              {
+                {
+                  0;
+                }
+              }
+              { }
+              self.size_HashTable = new Object(__cid=-2, _int=(self.size_HashTable._int) + 1);
+              return;
+            }
+          }
+        }
+        current = ((current.__cid) == (new Object(__cid=-2, _int=HashTableNode())._int) ? getNext@HashTableNode(current) : null);
+      }
+    }
+  }
+  /*HashTable.sk:57*/
+  
+void remove_K (Object self, Object key)/*HashTable.sk:57*/
+  {
+    if(((size@HashTable(self)._int) == (new Object(__cid=-2, _int=0)._int)) || (key == (null)))/*HashTable.sk:58*/
+    {
+      {
+        return;
+      }
+    }
+    Object bucketIndex = getBucketIndex_K@HashTable(self, key);
+    Object current = ((self.buckets_HashTable.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? get_Object_int@ArrayList(self.buckets_HashTable, bucketIndex) : null);
+    self.buckets_HashTable = ((self.buckets_HashTable.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? getb_Object_int@ArrayList(self.buckets_HashTable, bucketIndex) : null);
+    Object previous = null;
+    while(current != (null))
+    {
+      {
+        Object k = ((current.__cid) == (new Object(__cid=-2, _int=HashTableNode())._int) ? getKey@HashTableNode(current) : null);
+        if(((k.__cid) == (new Object(__cid=-2, _int=Character())._int) ? equals_Object@Character(k, key) : ((k.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? equals_Object@Integer(k, key) : ((k.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? equals_Object@Object(k, key) : ((k.__cid) == (new Object(__cid=-2, _int=HashTableNode())._int) ? equals_Object@Object(k, key) : ((k.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? equals_Object@Object(k, key) : ((k.__cid) == (new Object(__cid=-2, _int=Assert())._int) ? equals_Object@Object(k, key) : ((k.__cid) == (new Object(__cid=-2, _int=HashTableTest())._int) ? equals_Object@Object(k, key) : ((k.__cid) == (new Object(__cid=-2, _int=String())._int) ? equals_Object@String(k, key) : ((k.__cid) == (new Object(__cid=-2, _int=Boolean())._int) ? equals_Object@Object(k, key) : ((k.__cid) == (new Object(__cid=-2, _int=Object())._int) ? equals_Object@Object(k, key) : null))))))))))._bit)/*HashTable.sk:66*/
+        {
+          {
+            if(previous == (null))/*HashTable.sk:67*/
+            {
+              {
+                if((((current.__cid) == (new Object(__cid=-2, _int=HashTableNode())._int) ? getNext@HashTableNode(current) : null)) != (null))/*HashTable.sk:68*/
+                {
+                  {
+                    ((self.buckets_HashTable.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? set_Object_int_Object@ArrayList(self.buckets_HashTable, bucketIndex, ((current.__cid) == (new Object(__cid=-2, _int=HashTableNode())._int) ? getNext@HashTableNode(current) : null)) : null);
+                    self.buckets_HashTable = ((self.buckets_HashTable.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? setb_Object_int_Object@ArrayList(self.buckets_HashTable, bucketIndex, ((current.__cid) == (new Object(__cid=-2, _int=HashTableNode())._int) ? getNext@HashTableNode(current) : null)) : null);
+                  }
+                }
+                else
+                {
+                  {
+                    ((self.buckets_HashTable.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? set_Object_int_Object@ArrayList(self.buckets_HashTable, bucketIndex, null) : null);
+                    self.buckets_HashTable = ((self.buckets_HashTable.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? setb_Object_int_Object@ArrayList(self.buckets_HashTable, bucketIndex, null) : null);
+                  }
+                }
+              }
+            }
+            else
+            {
+              {
+                if((((current.__cid) == (new Object(__cid=-2, _int=HashTableNode())._int) ? getNext@HashTableNode(current) : null)) == (null))/*HashTable.sk:76*/
+                {
+                  {
+                    if((previous.__cid) == (new Object(__cid=-2, _int=HashTableNode())._int))/*HashTable.sk:77*/
+                    {
+                      {
+                        setNext_HashTableNode@HashTableNode(previous, null);
+                      }
+                    }
+                    else
+                    {
+                      {
+                        0;
+                      }
+                    }
+                    { }
+                  }
+                }
+                else
+                {
+                  {
+                    if((previous.__cid) == (new Object(__cid=-2, _int=HashTableNode())._int))/*HashTable.sk:81*/
+                    {
+                      {
+                        setNext_HashTableNode@HashTableNode(previous, ((current.__cid) == (new Object(__cid=-2, _int=HashTableNode())._int) ? getNext@HashTableNode(current) : null));
+                      }
+                    }
+                    else
+                    {
+                      {
+                        0;
+                      }
+                    }
+                    { }
+                  }
+                }
+              }
+            }
+            self.size_HashTable = new Object(__cid=-2, _int=(self.size_HashTable._int) - 1);
+            return;
+          }
+        }
+        previous = current;
+        current = ((current.__cid) == (new Object(__cid=-2, _int=HashTableNode())._int) ? getNext@HashTableNode(current) : null);
+      }
+    }
+  }
+  /*HashTable.sk:16*/
+  
+void resetHashTable (Object self)/*HashTable.sk:16*/
+  {
+    self.size_HashTable = new Object(__cid=-2, _int=0);
+    self.currentCapacity_HashTable = self.initialCapacity_HashTable;
+    self.buckets_HashTable = ArrayList_ArrayList();
+    {
+      Object i = new Object(__cid=-2, _int=0);
+      bit __sa0 = (i._int) < (self.currentCapacity_HashTable._int);
+      while(__sa0)
+      {
+        {
+          {
+            ((self.buckets_HashTable.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? add_Object_Object@ArrayList(self.buckets_HashTable, null) : null);
+            self.buckets_HashTable = ((self.buckets_HashTable.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? addb_Object_Object@ArrayList(self.buckets_HashTable, null) : null);
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) + 1);
+        __sa0 = (i._int) < (self.currentCapacity_HashTable._int);
+      }
+    }
+  }
+  /*HashTable.sk:135*/
+  
+Object size (Object self)/*HashTable.sk:135*/
+  {
+    return self.size_HashTable;
+  }
+  /*HashTable.sk:93*/
+  
+Object values (Object self)/*HashTable.sk:93*/
+  {
+    Object values = Wrap_Array_Object(new Array_Object(length=size@HashTable(self)));
+    if((size@HashTable(self)._int) > (new Object(__cid=-2, _int=0)._int))/*HashTable.sk:95*/
+    {
+      {
+        Object index = new Object(__cid=-2, _int=0);
+        {
+          Object i = new Object(__cid=-2, _int=0);
+          bit __sa1 = (i._int) < (((self.buckets_HashTable.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? size_Object@ArrayList(self.buckets_HashTable) : null)._int);
+          while(__sa1)
+          {
+            {
+              {
+                Object current = ((self.buckets_HashTable.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? get_Object_int@ArrayList(self.buckets_HashTable, i) : null);
+                self.buckets_HashTable = ((self.buckets_HashTable.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? getb_Object_int@ArrayList(self.buckets_HashTable, i) : null);
+                while(current != (null))
+                {
+                  {
+                    values._array_object.A[index._int] = ((current.__cid) == (new Object(__cid=-2, _int=HashTableNode())._int) ? getValue@HashTableNode(current) : null);
+                    index = new Object(__cid=-2, _int=(index._int) + 1);
+                    current = ((current.__cid) == (new Object(__cid=-2, _int=HashTableNode())._int) ? getNext@HashTableNode(current) : null);
+                  }
+                }
+              }
+            }
+            i = new Object(__cid=-2, _int=(i._int) + 1);
+            __sa1 = (i._int) < (((self.buckets_HashTable.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? size_Object@ArrayList(self.buckets_HashTable) : null)._int);
+          }
+        }
+      }
+    }
+    return values;
+  }
+  /* END PACKAGE HashTable*/
+}
+/* BEGIN PACKAGE Character*/
+package Character{
+  Object MIN_RADIX=new Object(__cid=-2, _int=2);
+  Object MAX_RADIX=new Object(__cid=-2, _int=36);
+  Object UNASSIGNED=new Object(__cid=-2, _int=0);
+  Object UPPERCASE_LETTER=new Object(__cid=-2, _int=1);
+  Object LOWERCASE_LETTER=new Object(__cid=-2, _int=2);
+  Object TITLECASE_LETTER=new Object(__cid=-2, _int=3);
+  Object MODIFIER_LETTER=new Object(__cid=-2, _int=4);
+  Object OTHER_LETTER=new Object(__cid=-2, _int=5);
+  Object NON_SPACING_MARK=new Object(__cid=-2, _int=6);
+  Object ENCLOSING_MARK=new Object(__cid=-2, _int=7);
+  Object COMBINING_SPACING_MARK=new Object(__cid=-2, _int=8);
+  Object DECIMAL_DIGIT_NUMBER=new Object(__cid=-2, _int=9);
+  Object LETTER_NUMBER=new Object(__cid=-2, _int=10);
+  Object OTHER_NUMBER=new Object(__cid=-2, _int=11);
+  Object SPACE_SEPARATOR=new Object(__cid=-2, _int=12);
+  Object LINE_SEPARATOR=new Object(__cid=-2, _int=13);
+  Object PARAGRAPH_SEPARATOR=new Object(__cid=-2, _int=14);
+  Object CONTROL=new Object(__cid=-2, _int=15);
+  Object FORMAT=new Object(__cid=-2, _int=16);
+  Object PRIVATE_USE=new Object(__cid=-2, _int=18);
+  Object SURROGATE=new Object(__cid=-2, _int=19);
+  Object DASH_PUNCTUATION=new Object(__cid=-2, _int=20);
+  Object START_PUNCTUATION=new Object(__cid=-2, _int=21);
+  Object END_PUNCTUATION=new Object(__cid=-2, _int=22);
+  Object CONNECTOR_PUNCTUATION=new Object(__cid=-2, _int=23);
+  Object OTHER_PUNCTUATION=new Object(__cid=-2, _int=24);
+  Object MATH_SYMBOL=new Object(__cid=-2, _int=25);
+  Object CURRENCY_SYMBOL=new Object(__cid=-2, _int=26);
+  Object MODIFIER_SYMBOL=new Object(__cid=-2, _int=27);
+  Object OTHER_SYMBOL=new Object(__cid=-2, _int=28);
+  Object FINAL_QUOTE_PUNCTUATION=new Object(__cid=-2, _int=30);
+  Object DIRECTIONALITY_UNDEFINED=-(new Object(__cid=-2, _int=1)._int);
+  Object DIRECTIONALITY_LEFT_TO_RIGHT=new Object(__cid=-2, _int=0);
+  Object DIRECTIONALITY_RIGHT_TO_LEFT=new Object(__cid=-2, _int=1);
+  Object DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC=new Object(__cid=-2, _int=2);
+  Object DIRECTIONALITY_EUROPEAN_NUMBER=new Object(__cid=-2, _int=3);
+  Object DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR=new Object(__cid=-2, _int=4);
+  Object DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR=new Object(__cid=-2, _int=5);
+  Object DIRECTIONALITY_ARABIC_NUMBER=new Object(__cid=-2, _int=6);
+  Object DIRECTIONALITY_COMMON_NUMBER_SEPARATOR=new Object(__cid=-2, _int=7);
+  Object DIRECTIONALITY_NONSPACING_MARK=new Object(__cid=-2, _int=8);
+  Object DIRECTIONALITY_BOUNDARY_NEUTRAL=new Object(__cid=-2, _int=9);
+  Object DIRECTIONALITY_PARAGRAPH_SEPARATOR=new Object(__cid=-2, _int=10);
+  Object DIRECTIONALITY_SEGMENT_SEPARATOR=new Object(__cid=-2, _int=11);
+  Object DIRECTIONALITY_WHITESPACE=new Object(__cid=-2, _int=12);
+  Object DIRECTIONALITY_OTHER_NEUTRALS=new Object(__cid=-2, _int=13);
+  Object DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING=new Object(__cid=-2, _int=14);
+  Object DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE=new Object(__cid=-2, _int=15);
+  Object DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING=new Object(__cid=-2, _int=16);
+  Object DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE=new Object(__cid=-2, _int=17);
+  Object DIRECTIONALITY_POP_DIRECTIONAL_FORMAT=new Object(__cid=-2, _int=18);
+  /*Character.sk:44*/
+  
+Object COMBINING_SPACING_MARK_g ()/*Character.sk:44*/
+  {
+    return COMBINING_SPACING_MARK;
+  }
+  /*Character.sk:45*/
+  
+void COMBINING_SPACING_MARK_s (Object COMBINING_SPACING_MARK_s)/*Character.sk:45*/
+  {
+    COMBINING_SPACING_MARK = COMBINING_SPACING_MARK_s;
+  }
+  /*Character.sk:100*/
+  
+Object CONNECTOR_PUNCTUATION_g ()/*Character.sk:100*/
+  {
+    return CONNECTOR_PUNCTUATION;
+  }
+  /*Character.sk:101*/
+  
+void CONNECTOR_PUNCTUATION_s (Object CONNECTOR_PUNCTUATION_s)/*Character.sk:101*/
+  {
+    CONNECTOR_PUNCTUATION = CONNECTOR_PUNCTUATION_s;
+  }
+  /*Character.sk:72*/
+  
+Object CONTROL_g ()/*Character.sk:72*/
+  {
+    return CONTROL;
+  }
+  /*Character.sk:73*/
+  
+void CONTROL_s (Object CONTROL_s)/*Character.sk:73*/
+  {
+    CONTROL = CONTROL_s;
+  }
+  /*Character.sk:112*/
+  
+Object CURRENCY_SYMBOL_g ()/*Character.sk:112*/
+  {
+    return CURRENCY_SYMBOL;
+  }
+  /*Character.sk:113*/
+  
+void CURRENCY_SYMBOL_s (Object CURRENCY_SYMBOL_s)/*Character.sk:113*/
+  {
+    CURRENCY_SYMBOL = CURRENCY_SYMBOL_s;
+  }
+  /*Character.sk:207*/
+  
+Object Character_Character (Object self)/*Character.sk:207*/
+  {
+    return self;
+  }
+  /*Character.sk:211*/
+  
+Object Character_Character_char (Object self, Object value)/*Character.sk:211*/
+  {
+    self.value_Character = value;
+    return self;
+  }
+  /*Character.sk:88*/
+  
+Object DASH_PUNCTUATION_g ()/*Character.sk:88*/
+  {
+    return DASH_PUNCTUATION;
+  }
+  /*Character.sk:89*/
+  
+void DASH_PUNCTUATION_s (Object DASH_PUNCTUATION_s)/*Character.sk:89*/
+  {
+    DASH_PUNCTUATION = DASH_PUNCTUATION_s;
+  }
+  /*Character.sk:48*/
+  
+Object DECIMAL_DIGIT_NUMBER_g ()/*Character.sk:48*/
+  {
+    return DECIMAL_DIGIT_NUMBER;
+  }
+  /*Character.sk:49*/
+  
+void DECIMAL_DIGIT_NUMBER_s (Object DECIMAL_DIGIT_NUMBER_s)/*Character.sk:49*/
+  {
+    DECIMAL_DIGIT_NUMBER = DECIMAL_DIGIT_NUMBER_s;
+  }
+  /*Character.sk:156*/
+  
+Object DIRECTIONALITY_ARABIC_NUMBER_g ()/*Character.sk:156*/
+  {
+    return DIRECTIONALITY_ARABIC_NUMBER;
+  }
+  /*Character.sk:157*/
+  
+void DIRECTIONALITY_ARABIC_NUMBER_s (Object DIRECTIONALITY_ARABIC_NUMBER_s)/*Character.sk:157*/
+  {
+    DIRECTIONALITY_ARABIC_NUMBER = DIRECTIONALITY_ARABIC_NUMBER_s;
+  }
+  /*Character.sk:168*/
+  
+Object DIRECTIONALITY_BOUNDARY_NEUTRAL_g ()/*Character.sk:168*/
+  {
+    return DIRECTIONALITY_BOUNDARY_NEUTRAL;
+  }
+  /*Character.sk:169*/
+  
+void DIRECTIONALITY_BOUNDARY_NEUTRAL_s (Object DIRECTIONALITY_BOUNDARY_NEUTRAL_s)/*Character.sk:169*/
+  {
+    DIRECTIONALITY_BOUNDARY_NEUTRAL = DIRECTIONALITY_BOUNDARY_NEUTRAL_s;
+  }
+  /*Character.sk:160*/
+  
+Object DIRECTIONALITY_COMMON_NUMBER_SEPARATOR_g ()/*Character.sk:160*/
+  {
+    return DIRECTIONALITY_COMMON_NUMBER_SEPARATOR;
+  }
+  /*Character.sk:161*/
+  
+void DIRECTIONALITY_COMMON_NUMBER_SEPARATOR_s (Object DIRECTIONALITY_COMMON_NUMBER_SEPARATOR_s)/*Character.sk:161*/
+  {
+    DIRECTIONALITY_COMMON_NUMBER_SEPARATOR = DIRECTIONALITY_COMMON_NUMBER_SEPARATOR_s;
+  }
+  /*Character.sk:148*/
+  
+Object DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR_g ()/*Character.sk:148*/
+  {
+    return DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR;
+  }
+  /*Character.sk:149*/
+  
+void DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR_s (Object DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR_s)/*Character.sk:149*/
+  {
+    DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR = DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR_s;
+  }
+  /*Character.sk:152*/
+  
+Object DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR_g ()/*Character.sk:152*/
+  {
+    return DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR;
+  }
+  /*Character.sk:153*/
+  
+void DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR_s (Object DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR_s)/*Character.sk:153*/
+  {
+    DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR = DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR_s;
+  }
+  /*Character.sk:144*/
+  
+Object DIRECTIONALITY_EUROPEAN_NUMBER_g ()/*Character.sk:144*/
+  {
+    return DIRECTIONALITY_EUROPEAN_NUMBER;
+  }
+  /*Character.sk:145*/
+  
+void DIRECTIONALITY_EUROPEAN_NUMBER_s (Object DIRECTIONALITY_EUROPEAN_NUMBER_s)/*Character.sk:145*/
+  {
+    DIRECTIONALITY_EUROPEAN_NUMBER = DIRECTIONALITY_EUROPEAN_NUMBER_s;
+  }
+  /*Character.sk:188*/
+  
+Object DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING_g ()/*Character.sk:188*/
+  {
+    return DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING;
+  }
+  /*Character.sk:189*/
+  
+void DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING_s (Object DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING_s)/*Character.sk:189*/
+  {
+    DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING = DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING_s;
+  }
+  /*Character.sk:192*/
+  
+Object DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE_g ()/*Character.sk:192*/
+  {
+    return DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE;
+  }
+  /*Character.sk:193*/
+  
+void DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE_s (Object DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE_s)/*Character.sk:193*/
+  {
+    DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE = DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE_s;
+  }
+  /*Character.sk:132*/
+  
+Object DIRECTIONALITY_LEFT_TO_RIGHT_g ()/*Character.sk:132*/
+  {
+    return DIRECTIONALITY_LEFT_TO_RIGHT;
+  }
+  /*Character.sk:133*/
+  
+void DIRECTIONALITY_LEFT_TO_RIGHT_s (Object DIRECTIONALITY_LEFT_TO_RIGHT_s)/*Character.sk:133*/
+  {
+    DIRECTIONALITY_LEFT_TO_RIGHT = DIRECTIONALITY_LEFT_TO_RIGHT_s;
+  }
+  /*Character.sk:164*/
+  
+Object DIRECTIONALITY_NONSPACING_MARK_g ()/*Character.sk:164*/
+  {
+    return DIRECTIONALITY_NONSPACING_MARK;
+  }
+  /*Character.sk:165*/
+  
+void DIRECTIONALITY_NONSPACING_MARK_s (Object DIRECTIONALITY_NONSPACING_MARK_s)/*Character.sk:165*/
+  {
+    DIRECTIONALITY_NONSPACING_MARK = DIRECTIONALITY_NONSPACING_MARK_s;
+  }
+  /*Character.sk:184*/
+  
+Object DIRECTIONALITY_OTHER_NEUTRALS_g ()/*Character.sk:184*/
+  {
+    return DIRECTIONALITY_OTHER_NEUTRALS;
+  }
+  /*Character.sk:185*/
+  
+void DIRECTIONALITY_OTHER_NEUTRALS_s (Object DIRECTIONALITY_OTHER_NEUTRALS_s)/*Character.sk:185*/
+  {
+    DIRECTIONALITY_OTHER_NEUTRALS = DIRECTIONALITY_OTHER_NEUTRALS_s;
+  }
+  /*Character.sk:172*/
+  
+Object DIRECTIONALITY_PARAGRAPH_SEPARATOR_g ()/*Character.sk:172*/
+  {
+    return DIRECTIONALITY_PARAGRAPH_SEPARATOR;
+  }
+  /*Character.sk:173*/
+  
+void DIRECTIONALITY_PARAGRAPH_SEPARATOR_s (Object DIRECTIONALITY_PARAGRAPH_SEPARATOR_s)/*Character.sk:173*/
+  {
+    DIRECTIONALITY_PARAGRAPH_SEPARATOR = DIRECTIONALITY_PARAGRAPH_SEPARATOR_s;
+  }
+  /*Character.sk:204*/
+  
+Object DIRECTIONALITY_POP_DIRECTIONAL_FORMAT_g ()/*Character.sk:204*/
+  {
+    return DIRECTIONALITY_POP_DIRECTIONAL_FORMAT;
+  }
+  /*Character.sk:205*/
+  
+void DIRECTIONALITY_POP_DIRECTIONAL_FORMAT_s (Object DIRECTIONALITY_POP_DIRECTIONAL_FORMAT_s)/*Character.sk:205*/
+  {
+    DIRECTIONALITY_POP_DIRECTIONAL_FORMAT = DIRECTIONALITY_POP_DIRECTIONAL_FORMAT_s;
+  }
+  /*Character.sk:140*/
+  
+Object DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC_g ()/*Character.sk:140*/
+  {
+    return DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC;
+  }
+  /*Character.sk:141*/
+  
+void DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC_s (Object DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC_s)/*Character.sk:141*/
+  {
+    DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC = DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC_s;
+  }
+  /*Character.sk:196*/
+  
+Object DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING_g ()/*Character.sk:196*/
+  {
+    return DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING;
+  }
+  /*Character.sk:197*/
+  
+void DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING_s (Object DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING_s)/*Character.sk:197*/
+  {
+    DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING = DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING_s;
+  }
+  /*Character.sk:200*/
+  
+Object DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE_g ()/*Character.sk:200*/
+  {
+    return DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE;
+  }
+  /*Character.sk:201*/
+  
+void DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE_s (Object DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE_s)/*Character.sk:201*/
+  {
+    DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE = DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE_s;
+  }
+  /*Character.sk:136*/
+  
+Object DIRECTIONALITY_RIGHT_TO_LEFT_g ()/*Character.sk:136*/
+  {
+    return DIRECTIONALITY_RIGHT_TO_LEFT;
+  }
+  /*Character.sk:137*/
+  
+void DIRECTIONALITY_RIGHT_TO_LEFT_s (Object DIRECTIONALITY_RIGHT_TO_LEFT_s)/*Character.sk:137*/
+  {
+    DIRECTIONALITY_RIGHT_TO_LEFT = DIRECTIONALITY_RIGHT_TO_LEFT_s;
+  }
+  /*Character.sk:176*/
+  
+Object DIRECTIONALITY_SEGMENT_SEPARATOR_g ()/*Character.sk:176*/
+  {
+    return DIRECTIONALITY_SEGMENT_SEPARATOR;
+  }
+  /*Character.sk:177*/
+  
+void DIRECTIONALITY_SEGMENT_SEPARATOR_s (Object DIRECTIONALITY_SEGMENT_SEPARATOR_s)/*Character.sk:177*/
+  {
+    DIRECTIONALITY_SEGMENT_SEPARATOR = DIRECTIONALITY_SEGMENT_SEPARATOR_s;
+  }
+  /*Character.sk:128*/
+  
+Object DIRECTIONALITY_UNDEFINED_g ()/*Character.sk:128*/
+  {
+    return DIRECTIONALITY_UNDEFINED;
+  }
+  /*Character.sk:129*/
+  
+void DIRECTIONALITY_UNDEFINED_s (Object DIRECTIONALITY_UNDEFINED_s)/*Character.sk:129*/
+  {
+    DIRECTIONALITY_UNDEFINED = DIRECTIONALITY_UNDEFINED_s;
+  }
+  /*Character.sk:180*/
+  
+Object DIRECTIONALITY_WHITESPACE_g ()/*Character.sk:180*/
+  {
+    return DIRECTIONALITY_WHITESPACE;
+  }
+  /*Character.sk:181*/
+  
+void DIRECTIONALITY_WHITESPACE_s (Object DIRECTIONALITY_WHITESPACE_s)/*Character.sk:181*/
+  {
+    DIRECTIONALITY_WHITESPACE = DIRECTIONALITY_WHITESPACE_s;
+  }
+  /*Character.sk:40*/
+  
+Object ENCLOSING_MARK_g ()/*Character.sk:40*/
+  {
+    return ENCLOSING_MARK;
+  }
+  /*Character.sk:41*/
+  
+void ENCLOSING_MARK_s (Object ENCLOSING_MARK_s)/*Character.sk:41*/
+  {
+    ENCLOSING_MARK = ENCLOSING_MARK_s;
+  }
+  /*Character.sk:96*/
+  
+Object END_PUNCTUATION_g ()/*Character.sk:96*/
+  {
+    return END_PUNCTUATION;
+  }
+  /*Character.sk:97*/
+  
+void END_PUNCTUATION_s (Object END_PUNCTUATION_s)/*Character.sk:97*/
+  {
+    END_PUNCTUATION = END_PUNCTUATION_s;
+  }
+  /*Character.sk:124*/
+  
+Object FINAL_QUOTE_PUNCTUATION_g ()/*Character.sk:124*/
+  {
+    return FINAL_QUOTE_PUNCTUATION;
+  }
+  /*Character.sk:125*/
+  
+void FINAL_QUOTE_PUNCTUATION_s (Object FINAL_QUOTE_PUNCTUATION_s)/*Character.sk:125*/
+  {
+    FINAL_QUOTE_PUNCTUATION = FINAL_QUOTE_PUNCTUATION_s;
+  }
+  /*Character.sk:76*/
+  
+Object FORMAT_g ()/*Character.sk:76*/
+  {
+    return FORMAT;
+  }
+  /*Character.sk:77*/
+  
+void FORMAT_s (Object FORMAT_s)/*Character.sk:77*/
+  {
+    FORMAT = FORMAT_s;
+  }
+  /*Character.sk:52*/
+  
+Object LETTER_NUMBER_g ()/*Character.sk:52*/
+  {
+    return LETTER_NUMBER;
+  }
+  /*Character.sk:53*/
+  
+void LETTER_NUMBER_s (Object LETTER_NUMBER_s)/*Character.sk:53*/
+  {
+    LETTER_NUMBER = LETTER_NUMBER_s;
+  }
+  /*Character.sk:64*/
+  
+Object LINE_SEPARATOR_g ()/*Character.sk:64*/
+  {
+    return LINE_SEPARATOR;
+  }
+  /*Character.sk:65*/
+  
+void LINE_SEPARATOR_s (Object LINE_SEPARATOR_s)/*Character.sk:65*/
+  {
+    LINE_SEPARATOR = LINE_SEPARATOR_s;
+  }
+  /*Character.sk:20*/
+  
+Object LOWERCASE_LETTER_g ()/*Character.sk:20*/
+  {
+    return LOWERCASE_LETTER;
+  }
+  /*Character.sk:21*/
+  
+void LOWERCASE_LETTER_s (Object LOWERCASE_LETTER_s)/*Character.sk:21*/
+  {
+    LOWERCASE_LETTER = LOWERCASE_LETTER_s;
+  }
+  /*Character.sk:108*/
+  
+Object MATH_SYMBOL_g ()/*Character.sk:108*/
+  {
+    return MATH_SYMBOL;
+  }
+  /*Character.sk:109*/
+  
+void MATH_SYMBOL_s (Object MATH_SYMBOL_s)/*Character.sk:109*/
+  {
+    MATH_SYMBOL = MATH_SYMBOL_s;
+  }
+  /*Character.sk:8*/
+  
+Object MAX_RADIX_g ()/*Character.sk:8*/
+  {
+    return MAX_RADIX;
+  }
+  /*Character.sk:9*/
+  
+void MAX_RADIX_s (Object MAX_RADIX_s)/*Character.sk:9*/
+  {
+    MAX_RADIX = MAX_RADIX_s;
+  }
+  /*Character.sk:4*/
+  
+Object MIN_RADIX_g ()/*Character.sk:4*/
+  {
+    return MIN_RADIX;
+  }
+  /*Character.sk:5*/
+  
+void MIN_RADIX_s (Object MIN_RADIX_s)/*Character.sk:5*/
+  {
+    MIN_RADIX = MIN_RADIX_s;
+  }
+  /*Character.sk:28*/
+  
+Object MODIFIER_LETTER_g ()/*Character.sk:28*/
+  {
+    return MODIFIER_LETTER;
+  }
+  /*Character.sk:29*/
+  
+void MODIFIER_LETTER_s (Object MODIFIER_LETTER_s)/*Character.sk:29*/
+  {
+    MODIFIER_LETTER = MODIFIER_LETTER_s;
+  }
+  /*Character.sk:116*/
+  
+Object MODIFIER_SYMBOL_g ()/*Character.sk:116*/
+  {
+    return MODIFIER_SYMBOL;
+  }
+  /*Character.sk:117*/
+  
+void MODIFIER_SYMBOL_s (Object MODIFIER_SYMBOL_s)/*Character.sk:117*/
+  {
+    MODIFIER_SYMBOL = MODIFIER_SYMBOL_s;
+  }
+  /*Character.sk:36*/
+  
+Object NON_SPACING_MARK_g ()/*Character.sk:36*/
+  {
+    return NON_SPACING_MARK;
+  }
+  /*Character.sk:37*/
+  
+void NON_SPACING_MARK_s (Object NON_SPACING_MARK_s)/*Character.sk:37*/
+  {
+    NON_SPACING_MARK = NON_SPACING_MARK_s;
+  }
+  /*Character.sk:32*/
+  
+Object OTHER_LETTER_g ()/*Character.sk:32*/
+  {
+    return OTHER_LETTER;
+  }
+  /*Character.sk:33*/
+  
+void OTHER_LETTER_s (Object OTHER_LETTER_s)/*Character.sk:33*/
+  {
+    OTHER_LETTER = OTHER_LETTER_s;
+  }
+  /*Character.sk:56*/
+  
+Object OTHER_NUMBER_g ()/*Character.sk:56*/
+  {
+    return OTHER_NUMBER;
+  }
+  /*Character.sk:57*/
+  
+void OTHER_NUMBER_s (Object OTHER_NUMBER_s)/*Character.sk:57*/
+  {
+    OTHER_NUMBER = OTHER_NUMBER_s;
+  }
+  /*Character.sk:104*/
+  
+Object OTHER_PUNCTUATION_g ()/*Character.sk:104*/
+  {
+    return OTHER_PUNCTUATION;
+  }
+  /*Character.sk:105*/
+  
+void OTHER_PUNCTUATION_s (Object OTHER_PUNCTUATION_s)/*Character.sk:105*/
+  {
+    OTHER_PUNCTUATION = OTHER_PUNCTUATION_s;
+  }
+  /*Character.sk:120*/
+  
+Object OTHER_SYMBOL_g ()/*Character.sk:120*/
+  {
+    return OTHER_SYMBOL;
+  }
+  /*Character.sk:121*/
+  
+void OTHER_SYMBOL_s (Object OTHER_SYMBOL_s)/*Character.sk:121*/
+  {
+    OTHER_SYMBOL = OTHER_SYMBOL_s;
+  }
+  /*Character.sk:68*/
+  
+Object PARAGRAPH_SEPARATOR_g ()/*Character.sk:68*/
+  {
+    return PARAGRAPH_SEPARATOR;
+  }
+  /*Character.sk:69*/
+  
+void PARAGRAPH_SEPARATOR_s (Object PARAGRAPH_SEPARATOR_s)/*Character.sk:69*/
+  {
+    PARAGRAPH_SEPARATOR = PARAGRAPH_SEPARATOR_s;
+  }
+  /*Character.sk:80*/
+  
+Object PRIVATE_USE_g ()/*Character.sk:80*/
+  {
+    return PRIVATE_USE;
+  }
+  /*Character.sk:81*/
+  
+void PRIVATE_USE_s (Object PRIVATE_USE_s)/*Character.sk:81*/
+  {
+    PRIVATE_USE = PRIVATE_USE_s;
+  }
+  /*Character.sk:60*/
+  
+Object SPACE_SEPARATOR_g ()/*Character.sk:60*/
+  {
+    return SPACE_SEPARATOR;
+  }
+  /*Character.sk:61*/
+  
+void SPACE_SEPARATOR_s (Object SPACE_SEPARATOR_s)/*Character.sk:61*/
+  {
+    SPACE_SEPARATOR = SPACE_SEPARATOR_s;
+  }
+  /*Character.sk:92*/
+  
+Object START_PUNCTUATION_g ()/*Character.sk:92*/
+  {
+    return START_PUNCTUATION;
+  }
+  /*Character.sk:93*/
+  
+void START_PUNCTUATION_s (Object START_PUNCTUATION_s)/*Character.sk:93*/
+  {
+    START_PUNCTUATION = START_PUNCTUATION_s;
+  }
+  /*Character.sk:84*/
+  
+Object SURROGATE_g ()/*Character.sk:84*/
+  {
+    return SURROGATE;
+  }
+  /*Character.sk:85*/
+  
+void SURROGATE_s (Object SURROGATE_s)/*Character.sk:85*/
+  {
+    SURROGATE = SURROGATE_s;
+  }
+  /*Character.sk:24*/
+  
+Object TITLECASE_LETTER_g ()/*Character.sk:24*/
+  {
+    return TITLECASE_LETTER;
+  }
+  /*Character.sk:25*/
+  
+void TITLECASE_LETTER_s (Object TITLECASE_LETTER_s)/*Character.sk:25*/
+  {
+    TITLECASE_LETTER = TITLECASE_LETTER_s;
+  }
+  /*Character.sk:12*/
+  
+Object UNASSIGNED_g ()/*Character.sk:12*/
+  {
+    return UNASSIGNED;
+  }
+  /*Character.sk:13*/
+  
+void UNASSIGNED_s (Object UNASSIGNED_s)/*Character.sk:13*/
+  {
+    UNASSIGNED = UNASSIGNED_s;
+  }
+  /*Character.sk:16*/
+  
+Object UPPERCASE_LETTER_g ()/*Character.sk:16*/
+  {
+    return UPPERCASE_LETTER;
+  }
+  /*Character.sk:17*/
+  
+void UPPERCASE_LETTER_s (Object UPPERCASE_LETTER_s)/*Character.sk:17*/
+  {
+    UPPERCASE_LETTER = UPPERCASE_LETTER_s;
+  }
+  /*Character.sk:216*/
+  
+Object charValue (Object self)/*Character.sk:216*/
+  {
+    return self.value_Character;
+  }
+  /*Character.sk:220*/
+  
+Object equals_Object (Object self, Object obj)/*Character.sk:220*/
+  {
+    if((obj.__cid) == (Character()))/*Character.sk:221*/
+    {
+      {
+        return new Object(__cid=-4, _bit=(self.value_Character._char) == (((obj.__cid) == (new Object(__cid=-2, _int=Character())._int) ? charValue@Character(obj) : null)._char));
+      }
+    }
+    return new Object(__cid=-4, _bit=0);
+  }
+  /* END PACKAGE Character*/
+}
+/* BEGIN PACKAGE HashTableNode*/
+package HashTableNode{
+  /*HashTableNode.sk:3*/
+  
+Object HashTableNode_HashTableNode (Object self)/*HashTableNode.sk:3*/
+  {
+    return self;
+  }
+  /*HashTableNode.sk:7*/
+  
+Object HashTableNode_HashTableNode_K_V (Object self, Object key, Object value)/*HashTableNode.sk:7*/
+  {
+    self.key_HashTableNode = key;
+    self.value_HashTableNode = value;
+    self.next_HashTableNode = null;
+    return self;
+  }
+  /*HashTableNode.sk:14*/
+  
+Object getKey (Object self)/*HashTableNode.sk:14*/
+  {
+    return self.key_HashTableNode;
+  }
+  /*HashTableNode.sk:26*/
+  
+Object getNext (Object self)/*HashTableNode.sk:26*/
+  {
+    return self.next_HashTableNode;
+  }
+  /*HashTableNode.sk:18*/
+  
+Object getValue (Object self)/*HashTableNode.sk:18*/
+  {
+    return self.value_HashTableNode;
+  }
+  /*HashTableNode.sk:30*/
+  
+void setNext_HashTableNode (Object self, Object node)/*HashTableNode.sk:30*/
+  {
+    self.next_HashTableNode = node;
+  }
+  /*HashTableNode.sk:22*/
+  
+void setValue_V (Object self, Object value)/*HashTableNode.sk:22*/
+  {
+    self.value_HashTableNode = value;
+  }
+  /* END PACKAGE HashTableNode*/
+}
+/* BEGIN PACKAGE CharSequence*/
+package CharSequence{
+  /*CharSequence.sk:3*/
+  
+Object CharSequence_CharSequence (Object self)/*CharSequence.sk:3*/
+  {
+    return self;
+  }
+  /* END PACKAGE CharSequence*/
+}
+/* BEGIN PACKAGE ArrayList*/
+package ArrayList{
+  @Immutable()
+  struct ArrayList {
+      @Immutable()
+  }
+  @Immutable()
+  struct Arraylist extends ArrayList@ArrayList {
+      @Immutable()
+  }
+  @Immutable()
+  struct Add extends ArrayList@ArrayList {
+      ArrayList self;
+      Object e;
+      @Immutable()
+  }
+  @Immutable()
+  struct Addb extends ArrayList@ArrayList {
+      ArrayList self;
+      Object e;
+      @Immutable()
+  }
+  @Immutable()
+  struct Getb extends ArrayList@ArrayList {
+      ArrayList self;
+      Object i;
+      @Immutable()
+  }
+  @Immutable()
+  struct Setb extends ArrayList@ArrayList {
+      ArrayList self;
+      Object i;
+      Object e;
+      @Immutable()
+  }
+  @Immutable()
+  struct Get extends ArrayList@ArrayList {
+      ArrayList self;
+      Object i;
+      @Immutable()
+  }
+  @Immutable()
+  struct Set extends ArrayList@ArrayList {
+      ArrayList self;
+      Object i;
+      Object e;
+      @Immutable()
+  }
+  @Immutable()
+  struct Ensurecapacity extends ArrayList@ArrayList {
+      ArrayList self;
+      Object n;
+      @Immutable()
+  }
+  @Immutable()
+  struct Size extends ArrayList@ArrayList {
+      ArrayList self;
+      @Immutable()
+  }
+  /*ArrayList.sk:15*/
+  
+Object ArrayList_ArrayList ()/*ArrayList.sk:15*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Arraylist());
+  }
+  /*ArrayList.sk:19*/
+  
+Object add_Object_Object (Object self, Object e)/*ArrayList.sk:19*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Add(self=self._arraylist, e=e));
+  }
+  /*ArrayList.sk:23*/
+  
+Object addb_Object_Object (Object self, Object e)/*ArrayList.sk:23*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Addb(self=self._arraylist, e=e));
+  }
+  /*ArrayList.sk:43*/
+  
+Object ensureCapacity_Object_int (Object self, Object n)/*ArrayList.sk:43*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Ensurecapacity(self=self._arraylist, n=n));
+  }
+  /*ArrayList.sk:35*/
+  
+Object get_Object_int (Object self, Object i)/*ArrayList.sk:35*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Get(self=self._arraylist, i=i));
+  }
+  /*ArrayList.sk:27*/
+  
+Object getb_Object_int (Object self, Object i)/*ArrayList.sk:27*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Getb(self=self._arraylist, i=i));
+  }
+  /*ArrayList.sk:39*/
+  
+Object set_Object_int_Object (Object self, Object i, Object e)/*ArrayList.sk:39*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Set(self=self._arraylist, i=i, e=e));
+  }
+  /*ArrayList.sk:31*/
+  
+Object setb_Object_int_Object (Object self, Object i, Object e)/*ArrayList.sk:31*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Setb(self=self._arraylist, i=i, e=e));
+  }
+  /*ArrayList.sk:47*/
+  
+Object size_Object (Object self)/*ArrayList.sk:47*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Size(self=self._arraylist));
+  }
+  /*ArrayList.sk:51*/
+  
+Object xform_ArrayList (ArrayList self)/*ArrayList.sk:51*/
+  {
+    switch(self){/*ArrayList.sk:52*/
+      case Arraylist:
+      {
+        {
+          return xform_arraylist_ArrayList(self);
+        }
+      }
+      case Add:
+      {
+        {
+          return xform_add_ArrayList_Object(self.self, self.e);
+        }
+      }
+      case Addb:
+      {
+        {
+          return xform_addb_ArrayList_Object(self.self, self.e);
+        }
+      }
+      case Getb:
+      {
+        {
+          return xform_getb_ArrayList_int(self.self, self.i);
+        }
+      }
+      case Setb:
+      {
+        {
+          return xform_setb_ArrayList_int_Object(self.self, self.i, self.e);
+        }
+      }
+      case Get:
+      {
+        {
+          return xform_get_ArrayList_int(self.self, self.i);
+        }
+      }
+      case Set:
+      {
+        {
+          return xform_set_ArrayList_int_Object(self.self, self.i, self.e);
+        }
+      }
+      case Ensurecapacity:
+      {
+        {
+          return xform_ensureCapacity_ArrayList_int(self.self, self.n);
+        }
+      }
+      case Size:
+      {
+        {
+          return xform_size_ArrayList(self.self);
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:186*/
+  
+Object xform_add_ArrayList_Object (ArrayList self, Object e)/*ArrayList.sk:186*/
+  {
+    switch(self){/*ArrayList.sk:187*/
+      case Arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:188 (0)
+        }
+      }
+      case Add:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:189 (0)
+        }
+      }
+      case Addb:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:190 (0)
+        }
+      }
+      case Getb:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:191 (0)
+        }
+      }
+      case Setb:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:192 (0)
+        }
+      }
+      case Get:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:193 (0)
+        }
+      }
+      case Set:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:194 (0)
+        }
+      }
+      case Ensurecapacity:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:195 (0)
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:196 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:201*/
+  
+Object xform_addb_ArrayList_Object (ArrayList self, Object e)/*ArrayList.sk:201*/
+  {
+    switch(self){/*ArrayList.sk:202*/
+      case Arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:203 (0)
+        }
+      }
+      case Add:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:204 (0)
+        }
+      }
+      case Addb:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:205 (0)
+        }
+      }
+      case Getb:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:206 (0)
+        }
+      }
+      case Setb:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:207 (0)
+        }
+      }
+      case Get:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:208 (0)
+        }
+      }
+      case Set:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:209 (0)
+        }
+      }
+      case Ensurecapacity:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:210 (0)
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:211 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:216*/
+  
+Object xform_arraylist_ArrayList (ArrayList self)/*ArrayList.sk:216*/
+  {
+    switch(self){/*ArrayList.sk:217*/
+      case Arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:218 (0)
+        }
+      }
+      case Add:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:219 (0)
+        }
+      }
+      case Addb:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:220 (0)
+        }
+      }
+      case Getb:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:221 (0)
+        }
+      }
+      case Setb:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:222 (0)
+        }
+      }
+      case Get:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:223 (0)
+        }
+      }
+      case Set:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:224 (0)
+        }
+      }
+      case Ensurecapacity:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:225 (0)
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:226 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:84*/
+  
+Object xform_ensureCapacity_ArrayList_int (ArrayList self, Object n)/*ArrayList.sk:84*/
+  {
+    switch(self){/*ArrayList.sk:85*/
+      case Arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:86 (0)
+        }
+      }
+      case Add:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:87 (0)
+        }
+      }
+      case Addb:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:88 (0)
+        }
+      }
+      case Getb:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:89 (0)
+        }
+      }
+      case Setb:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:90 (0)
+        }
+      }
+      case Get:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:91 (0)
+        }
+      }
+      case Set:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:92 (0)
+        }
+      }
+      case Ensurecapacity:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:93 (0)
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:94 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:150*/
+  
+Object xform_get_ArrayList_int (ArrayList self, Object i)/*ArrayList.sk:150*/
+  {
+    switch(self){/*ArrayList.sk:151*/
+      case Arraylist:
+      {
+        {
+          return null;
+        }
+      }
+      case Add:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:155 (0)
+        }
+      }
+      case Addb:
+      {
+        {
+          return ((xform_size_ArrayList(self.self)._int) == ((i._int) - (new Object(__cid=-2, _int=1)._int)) ? self.e : xform_get_ArrayList_int(self.self, i));
+        }
+      }
+      case Getb:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:159 (0)
+        }
+      }
+      case Setb:
+      {
+        {
+          return ((i._int) == (self.i._int) ? self.e : xform_get_ArrayList_int(self.self, i));
+        }
+      }
+      case Get:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:163 (0)
+        }
+      }
+      case Set:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:164 (0)
+        }
+      }
+      case Ensurecapacity:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:165 (0)
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:166 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:135*/
+  
+Object xform_getb_ArrayList_int (ArrayList self, Object i)/*ArrayList.sk:135*/
+  {
+    switch(self){/*ArrayList.sk:136*/
+      case Arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:137 (0)
+        }
+      }
+      case Add:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:138 (0)
+        }
+      }
+      case Addb:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:139 (0)
+        }
+      }
+      case Getb:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:140 (0)
+        }
+      }
+      case Setb:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:141 (0)
+        }
+      }
+      case Get:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:142 (0)
+        }
+      }
+      case Set:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:143 (0)
+        }
+      }
+      case Ensurecapacity:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:144 (0)
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:145 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:120*/
+  
+Object xform_set_ArrayList_int_Object (ArrayList self, Object i, Object e)/*ArrayList.sk:120*/
+  {
+    switch(self){/*ArrayList.sk:121*/
+      case Arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:122 (0)
+        }
+      }
+      case Add:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:123 (0)
+        }
+      }
+      case Addb:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:124 (0)
+        }
+      }
+      case Getb:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:125 (0)
+        }
+      }
+      case Setb:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:126 (0)
+        }
+      }
+      case Get:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:127 (0)
+        }
+      }
+      case Set:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:128 (0)
+        }
+      }
+      case Ensurecapacity:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:129 (0)
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:130 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:171*/
+  
+Object xform_setb_ArrayList_int_Object (ArrayList self, Object i, Object e)/*ArrayList.sk:171*/
+  {
+    switch(self){/*ArrayList.sk:172*/
+      case Arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:173 (0)
+        }
+      }
+      case Add:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:174 (0)
+        }
+      }
+      case Addb:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:175 (0)
+        }
+      }
+      case Getb:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:176 (0)
+        }
+      }
+      case Setb:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:177 (0)
+        }
+      }
+      case Get:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:178 (0)
+        }
+      }
+      case Set:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:179 (0)
+        }
+      }
+      case Ensurecapacity:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:180 (0)
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:181 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:99*/
+  
+Object xform_size_ArrayList (ArrayList self)/*ArrayList.sk:99*/
+  {
+    switch(self){/*ArrayList.sk:100*/
+      case Arraylist:
+      {
+        {
+          return new Object(__cid=-2, _int=0);
+        }
+      }
+      case Add:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:104 (0)
+        }
+      }
+      case Addb:
+      {
+        {
+          return new Object(__cid=-2, _int=(xform_size_ArrayList(self.self)._int) + (new Object(__cid=-2, _int=1)._int));
+        }
+      }
+      case Getb:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:108 (0)
+        }
+      }
+      case Setb:
+      {
+        {
+          return xform_size_ArrayList(self.self);
+        }
+      }
+      case Get:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:112 (0)
+        }
+      }
+      case Set:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:113 (0)
+        }
+      }
+      case Ensurecapacity:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:114 (0)
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:115 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /* END PACKAGE ArrayList*/
+}
+/* BEGIN PACKAGE String*/
+package String{
+  /*String.sk:3*/
+  
+Object String_String (Object self)/*String.sk:3*/
+  {
+    return self;
+  }
+  /*String.sk:22*/
+  
+Object String_String_byte (Object self, Object bytes)/*String.sk:22*/
+  {
+    Object len = bytes._array_object.length;
+    self._value_String = Wrap_Array_char(new Array_char(length=len));
+    {
+      Object i = new Object(__cid=-2, _int=0);
+      bit __sa8 = (i._int) < (len._int);
+      while(__sa8)
+      {
+        {
+          {
+            self._value_String._array_char.A[i._int] = ((char)bytes._array_char.A[i._int]);
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) + 1);
+        __sa8 = (i._int) < (len._int);
+      }
+    }
+    self._count_String = len;
+    return self;
+  }
+  /*String.sk:7*/
+  
+Object String_String_char_int_int (Object self, Object ca, Object offset, Object count)/*String.sk:7*/
+  {
+    if(((offset._int) > (new Object(__cid=-2, _int=0)._int)) && ((offset._int) < (ca._array_object.length._int)))/*String.sk:8*/
+    {
+      {
+        Object tmp = Wrap_Array_char(new Array_char(length=count));
+        {
+          Object i = new Object(__cid=-2, _int=0);
+          bit __sa7 = (i._int) < (count._int);
+          while(__sa7)
+          {
+            {
+              {
+                tmp._array_char.A[i._int] = ca._array_char.A[(i._int) + (offset._int)];
+              }
+            }
+            i = new Object(__cid=-2, _int=(i._int) + 1);
+            __sa7 = (i._int) < (count._int);
+          }
+        }
+        self._value_String = tmp;
+      }
+    }
+    else
+    {
+      {
+        self._value_String = ca;
+      }
+    }
+    self._count_String = count;
+    return self;
+  }
+  /*String.sk:32*/
+  
+Object charAt_int (Object self, Object index)/*String.sk:32*/
+  {
+    if(((new Object(__cid=-2, _int=0)._int) <= (index._int)) && ((index._int) < (self._count_String._int)))/*String.sk:33*/
+    {
+      return new Object(__cid=-3, _char=self._value_String._array_char.A[index._int]);
+    }
+    return new Object(__cid=-3, _char='\0');
+  }
+  /*String.sk:97*/
+  
+Object compareTo_String (Object self, Object str)/*String.sk:97*/
+  {
+    return compare_String_String(((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? toString@String(self) : null), str);
+  }
+  /*String.sk:101*/
+  
+Object compare_String_String (Object s1, Object s2)/*String.sk:101*/
+  {
+    Object l1 = ((s1.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(s1) : null);
+    Object l2 = ((s2.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(s2) : null);
+    Object lendiff = new Object(__cid=-2, _int=(l1._int) - (l2._int));
+    Object smaller = l1;
+    if((l1._int) > (l2._int))/*String.sk:106*/
+    {
+      {
+        smaller = l2;
+      }
+    }
+    else
+    {
+      {
+        {
+          Object i = new Object(__cid=-2, _int=0);
+          bit __sa11 = (i._int) < (smaller._int);
+          while(__sa11)
+          {
+            {
+              {
+                Object c1 = ((s1.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(s1, i) : null);
+                Object c2 = ((s2.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(s2, i) : null);
+                if((c1._char) != (c2._char))/*String.sk:113*/
+                {
+                  {
+                    return new Object(__cid=-3, _char=(c1._char) - (c2._char));
+                  }
+                }
+              }
+            }
+            i = new Object(__cid=-2, _int=(i._int) + 1);
+            __sa11 = (i._int) < (smaller._int);
+          }
+        }
+        if((lendiff._int) != (new Object(__cid=-2, _int=0)._int))/*String.sk:117*/
+        {
+          return lendiff;
+        }
+        return new Object(__cid=-2, _int=0);
+      }
+    }
+  }
+  /*String.sk:122*/
+  
+Object concat_String (Object self, Object str)/*String.sk:122*/
+  {
+    Object otherLen = ((str.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(str) : null);
+    if((otherLen._int) == (new Object(__cid=-2, _int=0)._int))/*String.sk:124*/
+    {
+      {
+        return self;
+      }
+    }
+    Object thisLen = ((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(self) : null);
+    Object totalLen = new Object(__cid=-2, _int=(((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(self) : null)._int) + (otherLen._int));
+    Object ret = Wrap_Array_char(new Array_char(length=totalLen));
+    {
+      Object i = new Object(__cid=-2, _int=0);
+      bit __sa12 = (i._int) < (thisLen._int);
+      while(__sa12)
+      {
+        {
+          {
+            ret._array_char.A[i._int] = ((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(self, i) : null)._char;
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) + 1);
+        __sa12 = (i._int) < (thisLen._int);
+      }
+    }
+    {
+      Object i = thisLen;
+      bit __sa13 = (i._int) < (totalLen._int);
+      while(__sa13)
+      {
+        {
+          {
+            ret._array_char.A[i._int] = ((str.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(str, new Object(__cid=-2, _int=(i._int) - (thisLen._int))) : null)._char;
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) + 1);
+        __sa13 = (i._int) < (totalLen._int);
+      }
+    }
+    return String_String_char_int_int(new Object(__cid=String()), ret, new Object(__cid=-2, _int=0), totalLen);
+  }
+  /*String.sk:139*/
+  
+Object equalsIgnoreCase_Object (Object self, Object obj)/*String.sk:139*/
+  {
+    return equals_Object@String(self, obj);
+  }
+  /*String.sk:143*/
+  
+Object equals_Object (Object self, Object obj)/*String.sk:143*/
+  {
+    Object isEqual = new Object(__cid=-4, _bit=0);
+    if((obj.__cid) == (String()))/*String.sk:145*/
+    {
+      {
+        isEqual = new Object(__cid=-4, _bit=1);
+        Object s = obj;
+        Object sLen = ((s.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(s) : null);
+        Object tLen = ((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(self) : null);
+        if((sLen._int) != (tLen._int))/*String.sk:150*/
+        {
+          isEqual = new Object(__cid=-4, _bit=0);
+        }
+        {
+          Object i = new Object(__cid=-2, _int=0);
+          bit __sa14 = ((i._int) < (sLen._int)) && ((isEqual._bit) == (new Object(__cid=-4, _bit=1)._bit));
+          while(__sa14)
+          {
+            {
+              {
+                if((s._value_String._array_char.A[i._int]) != (self._value_String._array_char.A[i._int]))/*String.sk:152*/
+                {
+                  {
+                    isEqual = new Object(__cid=-4, _bit=0);
+                  }
+                }
+              }
+            }
+            i = new Object(__cid=-2, _int=(i._int) + 1);
+            __sa14 = ((i._int) < (sLen._int)) && ((isEqual._bit) == (new Object(__cid=-4, _bit=1)._bit));
+          }
+        }
+      }
+    }
+    return isEqual;
+  }
+  /*String.sk:203*/
+  
+Object getBytes (Object self)/*String.sk:203*/
+  {
+    return getBytes_String(((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? toString@String(self) : null));
+  }
+  /*String.sk:207*/
+  
+Object getBytes_String (Object str)/*String.sk:207*/
+  {
+    Object len = ((str.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(str) : null);
+    Object bytes = Wrap_Array_char(new Array_char(length=len));
+    {
+      Object i = new Object(__cid=-2, _int=0);
+      bit __sa20 = (i._int) < (len._int);
+      while(__sa20)
+      {
+        {
+          {
+            bytes._array_char.A[i._int] = ((char)((str.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(str, i) : null));
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) + 1);
+        __sa20 = (i._int) < (len._int);
+      }
+    }
+    return bytes;
+  }
+  /*String.sk:160*/
+  
+Object hashCode (Object self)/*String.sk:160*/
+  {
+    Object n = self._count_String;
+    Object hash = new Object(__cid=-2, _int=0);
+    Object temp = new Object(__cid=-2, _int=0);
+    if((n._int) == (new Object(__cid=-2, _int=0)._int))/*String.sk:162*/
+    {
+      {
+        return new Object(__cid=-2, _int=0);
+      }
+    }
+    {
+      Object i = new Object(__cid=-2, _int=0);
+      bit __sa15 = (i._int) < (n._int);
+      while(__sa15)
+      {
+        {
+          {
+            temp = ((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(self, i) : null);
+            {
+              Object j = new Object(__cid=-2, _int=0);
+              bit __sa16 = (j._int) < (((n._int) - (new Object(__cid=-2, _int=1)._int)) - (i._int));
+              while(__sa16)
+              {
+                {
+                  {
+                    temp = new Object(__cid=-2, _int=(temp._int) * (new Object(__cid=-2, _int=31)._int));
+                  }
+                }
+                j = new Object(__cid=-2, _int=(j._int) + 1);
+                __sa16 = (j._int) < (((n._int) - (new Object(__cid=-2, _int=1)._int)) - (i._int));
+              }
+            }
+            hash = new Object(__cid=-2, _int=(hash._int) + (temp._int));
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) + 1);
+        __sa15 = (i._int) < (n._int);
+      }
+    }
+    return hash;
+  }
+  /*String.sk:49*/
+  
+Object indexOf_String (Object self, Object s)/*String.sk:49*/
+  {
+    return indexOf_String_int@String(self, s, new Object(__cid=-2, _int=0));
+  }
+  /*String.sk:53*/
+  
+Object indexOf_String_int (Object self, Object s, Object i)/*String.sk:53*/
+  {
+    Object tLen = ((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(self) : null);
+    Object sLen = ((s.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(s) : null);
+    Object index = i;
+    Object mLen = new Object(__cid=-2, _int=0);
+    Object j;
+    if((((i._int) >= (tLen._int)) || ((i._int) < (new Object(__cid=-2, _int=0)._int))) || ((sLen._int) == (new Object(__cid=-2, _int=0)._int)))/*String.sk:59*/
+    {
+      {
+        return new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1)._int));
+      }
+    }
+    {
+      j = i;
+      bit __sa9 = (((j._int) < (tLen._int)) && ((mLen._int) < (sLen._int))) && (((j._int) - (index._int)) < (sLen._int));
+      while(__sa9)
+      {
+        {
+          {
+            if((((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(self, j) : null)._char) != (((s.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(s, new Object(__cid=-2, _int=(j._int) - (index._int))) : null)._char))/*String.sk:63*/
+            {
+              {
+                mLen = new Object(__cid=-2, _int=0);
+                index = new Object(__cid=-2, _int=(index._int) + 1);
+                j = index;
+              }
+            }
+            else
+            {
+              {
+                mLen = new Object(__cid=-2, _int=(mLen._int) + 1);
+                j = new Object(__cid=-2, _int=(j._int) + 1);
+              }
+            }
+          }
+        }
+        { }
+        __sa9 = (((j._int) < (tLen._int)) && ((mLen._int) < (sLen._int))) && (((j._int) - (index._int)) < (sLen._int));
+      }
+    }
+    if((mLen._int) != (sLen._int))/*String.sk:73*/
+    {
+      {
+        index = new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1)._int));
+      }
+    }
+    return index;
+  }
+  /*String.sk:79*/
+  
+Object indexOf_char (Object self, Object c)/*String.sk:79*/
+  {
+    return indexOf_char_int@String(self, c, new Object(__cid=-2, _int=0));
+  }
+  /*String.sk:83*/
+  
+Object indexOf_char_int (Object self, Object c, Object i)/*String.sk:83*/
+  {
+    Object len = ((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(self) : null);
+    Object index = new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1)._int));
+    if(((i._int) >= (len._int)) || ((i._int) < (new Object(__cid=-2, _int=0)._int)))/*String.sk:86*/
+    {
+      {
+        return index;
+      }
+    }
+    {
+      Object j = i;
+      bit __sa10 = (j._int) < (len._int);
+      while(__sa10)
+      {
+        {
+          {
+            if((((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(self, j) : null)._char) == (c._char))/*String.sk:90*/
+            {
+              {
+                return j;
+              }
+            }
+          }
+        }
+        j = new Object(__cid=-2, _int=(j._int) + 1);
+        __sa10 = (j._int) < (len._int);
+      }
+    }
+    return index;
+  }
+  /*String.sk:37*/
+  
+Object length (Object self)/*String.sk:37*/
+  {
+    return self._count_String;
+  }
+  /*String.sk:175*/
+  
+Object replace_char_char (Object self, Object oldChar, Object newChar)/*String.sk:175*/
+  {
+    if((oldChar._char) != (newChar._char))/*String.sk:176*/
+    {
+      {
+        Object len = self._count_String;
+        Object i = new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1)._int));
+        Object stop = new Object(__cid=-2, _int=0);
+        Object val = self._value_String;
+        {
+          bit __sa17 = (i._int) < (len._int);
+          while(__sa17)
+          {
+            {
+              {
+                i = new Object(__cid=-2, _int=(i._int) + (new Object(__cid=-2, _int=1)._int));
+                if(((val._array_char.A[i._int]) == (oldChar._char)) && ((stop._int) == (new Object(__cid=-2, _int=0)._int)))/*String.sk:183*/
+                {
+                  {
+                    stop = i;
+                  }
+                }
+              }
+            }
+            __sa17 = (i._int) < (len._int);
+          }
+        }
+        if((stop._int) < (len._int))/*String.sk:187*/
+        {
+          {
+            Object buf = Wrap_Array_char(new Array_char(length=len));
+            {
+              Object j = new Object(__cid=-2, _int=0);
+              bit __sa18 = (j._int) < (stop._int);
+              while(__sa18)
+              {
+                {
+                  {
+                    buf._array_char.A[j._int] = val._array_char.A[j._int];
+                  }
+                }
+                j = new Object(__cid=-2, _int=(j._int) + 1);
+                __sa18 = (j._int) < (stop._int);
+              }
+            }
+            {
+              bit __sa19 = (stop._int) < (len._int);
+              while(__sa19)
+              {
+                {
+                  {
+                    Object c = new Object(__cid=-3, _char=val._array_char.A[stop._int]);
+                    buf._array_char.A[stop._int] = ((c._char) == (oldChar._char) ? newChar : c)._char;
+                    stop = new Object(__cid=-2, _int=(stop._int) + 1);
+                  }
+                }
+                __sa19 = (stop._int) < (len._int);
+              }
+            }
+            return String_String_char_int_int(new Object(__cid=String()), buf, new Object(__cid=-2, _int=0), len);
+          }
+        }
+      }
+    }
+    return self;
+  }
+  /*String.sk:45*/
+  
+void setCharAt_int_char (Object self, Object i, Object c)/*String.sk:45*/
+  {
+    self._value_String._array_char.A[i._int] = c._char;
+  }
+  /*String.sk:216*/
+  
+Object substring_int (Object self, Object beginIndex)/*String.sk:216*/
+  {
+    Object subLen = new Object(__cid=-2, _int=(self._count_String._int) - (beginIndex._int));
+    assert ((subLen._int) > (new Object(__cid=-2, _int=0)._int)); //Assert at String.sk:218 (0)
+    return ((beginIndex._int) == (new Object(__cid=-2, _int=0)._int) ? self : String_String_char_int_int(new Object(__cid=String()), self._value_String, beginIndex, subLen));
+  }
+  /*String.sk:222*/
+  
+Object substring_int_int (Object self, Object beginIndex, Object endIndex)/*String.sk:222*/
+  {
+    assert (((beginIndex._int) >= (new Object(__cid=-2, _int=0)._int)) && ((endIndex._int) <= (self._value_String._array_object.length._int))); //Assert at String.sk:223 (0)
+    Object subLen = new Object(__cid=-2, _int=(endIndex._int) - (beginIndex._int));
+    assert ((subLen._int) > (new Object(__cid=-2, _int=0)._int)); //Assert at String.sk:225 (0)
+    return (((beginIndex._int) == (new Object(__cid=-2, _int=0)._int)) && ((endIndex._int) == (self._count_String._int)) ? self : String_String_char_int_int(new Object(__cid=String()), self._value_String, beginIndex, subLen));
+  }
+  /*String.sk:41*/
+  
+Object toString (Object self)/*String.sk:41*/
+  {
+    return self;
+  }
+  /* END PACKAGE String*/
+}
+/* BEGIN PACKAGE Integer*/
+package Integer{
+  /*Integer.sk:3*/
+  
+Object Integer_Integer (Object self)/*Integer.sk:3*/
+  {
+    return self;
+  }
+  /*Integer.sk:7*/
+  
+Object Integer_Integer_int (Object self, Object value)/*Integer.sk:7*/
+  {
+    self.value_Integer = value;
+    return self;
+  }
+  /*Integer.sk:16*/
+  
+Object compareTo_Integer (Object self, Object anotherInteger)/*Integer.sk:16*/
+  {
+    return compare_int_int(self.value_Integer, ((anotherInteger.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? intValue@Integer(anotherInteger) : null));
+  }
+  /*Integer.sk:20*/
+  
+Object compare_int_int (Object x, Object y)/*Integer.sk:20*/
+  {
+    return ((x._int) < (y._int) ? new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1)._int)) : ((x._int) == (y._int) ? new Object(__cid=-2, _int=0) : new Object(__cid=-2, _int=1)));
+  }
+  /*Integer.sk:24*/
+  
+Object equals_Object (Object self, Object obj)/*Integer.sk:24*/
+  {
+    if((obj.__cid) == (Integer()))/*Integer.sk:25*/
+    {
+      {
+        return new Object(__cid=-4, _bit=(self.value_Integer._int) == (((obj.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? intValue@Integer(obj) : null)._int));
+      }
+    }
+    return new Object(__cid=-4, _bit=0);
+  }
+  /*Integer.sk:31*/
+  
+Object hashCode (Object self)/*Integer.sk:31*/
+  {
+    return self.value_Integer;
+  }
+  /*Integer.sk:12*/
+  
+Object intValue (Object self)/*Integer.sk:12*/
+  {
+    return self.value_Integer;
+  }
+  /* END PACKAGE Integer*/
+}
+/* BEGIN PACKAGE Assert*/
+package Assert{
+  /*Assert.sk:3*/
+  
+Object Assert_Assert (Object self)/*Assert.sk:3*/
+  {
+    return self;
+  }
+  /*Assert.sk:45*/
+  
+void assertEquals_Object_Object (Object expected, Object actual)/*Assert.sk:45*/
+  {
+    assertEquals_String_Object_Object(null, expected, actual);
+  }
+  /*Assert.sk:30*/
+  
+void assertEquals_String_Object_Object (Object message, Object expected, Object actual)/*Assert.sk:30*/
+  {
+    assert (((expected.__cid) == (new Object(__cid=-2, _int=Character())._int) ? equals_Object@Character(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? equals_Object@Integer(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=HashTableNode())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Assert())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=HashTableTest())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=String())._int) ? equals_Object@String(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Boolean())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Object())._int) ? equals_Object@Object(expected, actual) : null))))))))))._bit); //Assert at Assert.sk:31 (0)
+  }
+  /*Assert.sk:49*/
+  
+void assertEquals_int_int (Object expected, Object actual)/*Assert.sk:49*/
+  {
+    assert ((expected._int) == (actual._int)); //Assert at Assert.sk:50 (0)
+  }
+  /*Assert.sk:15*/
+  
+void assertFalse_String_boolean (Object message, Object condition)/*Assert.sk:15*/
+  {
+    assertTrue_String_boolean(message, new Object(__cid=-4, _bit=!(condition._bit)));
+  }
+  /*Assert.sk:19*/
+  
+void assertFalse_boolean (Object condition)/*Assert.sk:19*/
+  {
+    assertFalse_String_boolean(String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1), A={'\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=0)), condition);
+  }
+  /*Assert.sk:60*/
+  
+void assertNull_Object (Object object)/*Assert.sk:60*/
+  {
+    assertNull_String_Object(null, object);
+  }
+  /*Assert.sk:53*/
+  
+void assertNull_String_Object (Object message, Object object)/*Assert.sk:53*/
+  {
+    if(object == (null))/*Assert.sk:54*/
+    {
+      {
+        return;
+      }
+    }
+    failNotNull_String_Object(message, object);
+  }
+  /*Assert.sk:7*/
+  
+void assertTrue_String_boolean (Object message, Object condition)/*Assert.sk:7*/
+  {
+    assert (condition._bit); //Assert at Assert.sk:8 (0)
+  }
+  /*Assert.sk:11*/
+  
+void assertTrue_boolean (Object condition)/*Assert.sk:11*/
+  {
+    assertTrue_String_boolean(String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1), A={'\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=0)), condition);
+  }
+  /*Assert.sk:34*/
+  
+Object equalsRegardingNull_Object_Object (Object expected, Object actual)/*Assert.sk:34*/
+  {
+    if(expected == (null))/*Assert.sk:35*/
+    {
+      {
+        return new Object(__cid=-4, _bit=actual == (null));
+      }
+    }
+    return isEquals_Object_Object(expected, actual);
+  }
+  /*Assert.sk:68*/
+  
+void failNotEquals_String_Object_Object (Object message, Object expected, Object actual)/*Assert.sk:68*/
+  {
+    fail_String(format_String_Object_Object(message, expected, actual));
+  }
+  /*Assert.sk:64*/
+  
+void failNotNull_String_Object (Object message, Object actual)/*Assert.sk:64*/
+  {
+    assert (new Object(__cid=-4, _bit=0)._bit); //Assert at Assert.sk:65 (0)
+  }
+  /*Assert.sk:23*/
+  
+void fail_String (Object message)/*Assert.sk:23*/
+  {
+    if(message == (null))/*Assert.sk:24*/
+    {
+      {
+      }
+    }
+  }
+  /*Assert.sk:72*/
+  
+Object format_String_Object_Object (Object message, Object expected, Object actual)/*Assert.sk:72*/
+  {
+    return String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1), A={'\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=0));
+  }
+  /*Assert.sk:41*/
+  
+Object isEquals_Object_Object (Object expected, Object actual)/*Assert.sk:41*/
+  {
+    return ((expected.__cid) == (new Object(__cid=-2, _int=Character())._int) ? equals_Object@Character(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? equals_Object@Integer(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=HashTableNode())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Assert())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=HashTableTest())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=String())._int) ? equals_Object@String(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Boolean())._int) ? equals_Object@Object(expected, actual) : ((expected.__cid) == (new Object(__cid=-2, _int=Object())._int) ? equals_Object@Object(expected, actual) : null))))))))));
+  }
+  /* END PACKAGE Assert*/
+}
+/* BEGIN PACKAGE array*/
+package array{
+  struct Array_bit {
+      Object length;
+      bit[length._int] A;
+  }
+  struct Array_char {
+      Object length;
+      char[length._int] A;
+  }
+  struct Array_int {
+      Object length;
+      int[length._int] A;
+  }
+  struct Array_float {
+      Object length;
+      float[length._int] A;
+  }
+  struct Array_double {
+      Object length;
+      double[length._int] A;
+  }
+  struct Array_Object {
+      Object length;
+      Object[length._int] A;
+  }
+  /*array.sk:53*/
+  
+Object Wrap_Array_Object (Array_Object arr)/*array.sk:53*/
+  {
+    return new Object(__cid=Array(), _array_object=arr);
+  }
+  /*array.sk:33*/
+  
+Object Wrap_Array_bit (Array_bit arr)/*array.sk:33*/
+  {
+    return new Object(__cid=Array(), _array_bit=arr);
+  }
+  /*array.sk:37*/
+  
+Object Wrap_Array_char (Array_char arr)/*array.sk:37*/
+  {
+    return new Object(__cid=Array(), _array_char=arr);
+  }
+  /*array.sk:49*/
+  
+Object Wrap_Array_double (Array_double arr)/*array.sk:49*/
+  {
+    return new Object(__cid=Array(), _array_double=arr);
+  }
+  /*array.sk:45*/
+  
+Object Wrap_Array_float (Array_float arr)/*array.sk:45*/
+  {
+    return new Object(__cid=Array(), _array_float=arr);
+  }
+  /*array.sk:41*/
+  
+Object Wrap_Array_int (Array_int arr)/*array.sk:41*/
+  {
+    return new Object(__cid=Array(), _array_int=arr);
+  }
+  /* END PACKAGE array*/
+}
+/* BEGIN PACKAGE HashTableTest*/
+package HashTableTest{
+  Object INITIAL_SIZE=new Object(__cid=-2, _int=8);
+  /*HashTableTest.sk:7*/
+  
+Object HashTableTest_HashTableTest (Object self)/*HashTableTest.sk:7*/
+  {
+    return self;
+  }
+  /*HashTableTest.sk:4*/
+  
+Object INITIAL_SIZE_g ()/*HashTableTest.sk:4*/
+  {
+    return INITIAL_SIZE;
+  }
+  /*HashTableTest.sk:5*/
+  
+void INITIAL_SIZE_s (Object INITIAL_SIZE_s)/*HashTableTest.sk:5*/
+  {
+    INITIAL_SIZE = INITIAL_SIZE_s;
+  }
+  /*HashTableTest.sk:23*/
+  
+Object makeInts_Integer (Object self, Object i1)/*HashTableTest.sk:23*/
+  {
+    Object i = Wrap_Array_Object(new Array_Object(length=new Object(__cid=-2, _int=1)));
+    i._array_object.A[0] = Integer_Integer_int(new Object(__cid=Integer()), ((i1.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? intValue@Integer(i1) : null));
+    return i;
+  }
+  /*HashTableTest.sk:28*/
+  
+Object makeInts_Integer_Integer (Object self, Object i1, Object i2)/*HashTableTest.sk:28*/
+  {
+    Object i = Wrap_Array_Object(new Array_Object(length=new Object(__cid=-2, _int=2)));
+    i._array_object.A[0] = Integer_Integer_int(new Object(__cid=Integer()), ((i1.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? intValue@Integer(i1) : null));
+    i._array_object.A[1] = Integer_Integer_int(new Object(__cid=Integer()), ((i2.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? intValue@Integer(i2) : null));
+    return i;
+  }
+  /*HashTableTest.sk:33*/
+  
+Object makeInts_Integer_Integer_Integer (Object self, Object i1, Object i2, Object i3)/*HashTableTest.sk:33*/
+  {
+    Object i = Wrap_Array_Object(new Array_Object(length=new Object(__cid=-2, _int=3)));
+    i._array_object.A[0] = Integer_Integer_int(new Object(__cid=Integer()), ((i1.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? intValue@Integer(i1) : null));
+    i._array_object.A[1] = Integer_Integer_int(new Object(__cid=Integer()), ((i2.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? intValue@Integer(i2) : null));
+    i._array_object.A[2] = Integer_Integer_int(new Object(__cid=Integer()), ((i3.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? intValue@Integer(i3) : null));
+    return i;
+  }
+  /*HashTableTest.sk:11*/
+  
+harness void mn_int_int_int (int __x, int __y, int __z)/*HashTableTest.sk:11*/
+  {
+    Object x = new Object(__cid=-2, _int=__x);
+    Object y = new Object(__cid=-2, _int=__y);
+    Object z = new Object(__cid=-2, _int=__z);
+    Object self = Object_Object(new Object(__cid=Object()));
+    assume ((((x._int) != (y._int)) && ((x._int) != (z._int))) && ((y._int) != (z._int))); //Assume at HashTableTest.sk:16
+    Object xx = Integer_Integer_int(new Object(__cid=Integer()), x);
+    Object yy = Integer_Integer_int(new Object(__cid=Integer()), y);
+    Object zz = Integer_Integer_int(new Object(__cid=Integer()), z);
+    setUp@HashTableTest(self);
+  }
+  /*HashTableTest.sk:38*/
+  
+void setUp (Object self)/*HashTableTest.sk:38*/
+  {
+    self.classUnderTest_HashTableTest = HashTable_HashTable_int(new Object(__cid=HashTable()), INITIAL_SIZE);
+  }
+  /*HashTableTest.sk:168*/
+  
+void testClear_Integer_Integer (Object self, Object x, Object y)/*HashTableTest.sk:168*/
+  {
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:169*/
+    {
+      {
+        clear@HashTable(self.classUnderTest_HashTableTest);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:171*/
+    {
+      {
+        put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:173*/
+    {
+      {
+        put_K_V@HashTable(self.classUnderTest_HashTableTest, y, x);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    assertTrue_boolean@Assert(new Object(__cid=-4, _bit=(((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? size@HashTable(self.classUnderTest_HashTableTest) : null)._int) > (new Object(__cid=-2, _int=0)._int)));
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:176*/
+    {
+      {
+        clear@HashTable(self.classUnderTest_HashTableTest);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    { }
+    assertFalse_boolean@Assert(new Object(__cid=-4, _bit=(((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? size@HashTable(self.classUnderTest_HashTableTest) : null)._int) > (new Object(__cid=-2, _int=0)._int)));
+  }
+  /*HashTableTest.sk:118*/
+  
+void testContainsKey_Integer_Integer (Object self, Object x, Object y)/*HashTableTest.sk:118*/
+  {
+    Object is = makeInts_Integer_Integer@HashTableTest(self, x, y);
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:120*/
+    {
+      {
+        clear@HashTable(self.classUnderTest_HashTableTest);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    assertFalse_boolean@Assert(((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? containsKey_K@HashTable(self.classUnderTest_HashTableTest, x) : null));
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:123*/
+    {
+      {
+        put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    assertTrue_boolean@Assert(((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? containsKey_K@HashTable(self.classUnderTest_HashTableTest, is._array_object.A[new Object(__cid=-2, _int=0)._int]) : null));
+  }
+  /*HashTableTest.sk:109*/
+  
+void testContainsValue_Integer_Integer (Object self, Object x, Object y)/*HashTableTest.sk:109*/
+  {
+    Object is = makeInts_Integer_Integer@HashTableTest(self, x, y);
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:111*/
+    {
+      {
+        clear@HashTable(self.classUnderTest_HashTableTest);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:113*/
+    {
+      {
+        put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    assertTrue_boolean@Assert(((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? containsValue_V@HashTable(self.classUnderTest_HashTableTest, is._array_object.A[new Object(__cid=-2, _int=1)._int]) : null));
+  }
+  /*HashTableTest.sk:182*/
+  
+void testEnsureCapacity_Integer_Integer_Integer_Integer_Integer (Object self, Object v, Object w, Object x, Object y, Object z)/*HashTableTest.sk:182*/
+  {
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:183*/
+    {
+      {
+        clear@HashTable(self.classUnderTest_HashTableTest);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:185*/
+    {
+      {
+        put_K_V@HashTable(self.classUnderTest_HashTableTest, v, w);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:187*/
+    {
+      {
+        put_K_V@HashTable(self.classUnderTest_HashTableTest, w, x);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:189*/
+    {
+      {
+        put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:191*/
+    {
+      {
+        put_K_V@HashTable(self.classUnderTest_HashTableTest, y, z);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:193*/
+    {
+      {
+        put_K_V@HashTable(self.classUnderTest_HashTableTest, z, v);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    assertEquals_Object_Object@Assert(((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? get_K@HashTable(self.classUnderTest_HashTableTest, v) : null), w);
+    assertEquals_Object_Object@Assert(((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? get_K@HashTable(self.classUnderTest_HashTableTest, w) : null), x);
+    assertEquals_Object_Object@Assert(((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? get_K@HashTable(self.classUnderTest_HashTableTest, x) : null), y);
+    assertEquals_Object_Object@Assert(((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? get_K@HashTable(self.classUnderTest_HashTableTest, y) : null), z);
+    assertEquals_Object_Object@Assert(((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? get_K@HashTable(self.classUnderTest_HashTableTest, z) : null), v);
+  }
+  /*HashTableTest.sk:42*/
+  
+void testGetEmpty (Object self)/*HashTableTest.sk:42*/
+  {
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:43*/
+    {
+      {
+        clear@HashTable(self.classUnderTest_HashTableTest);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    assertNull_Object@Assert(((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? get_K@HashTable(self.classUnderTest_HashTableTest, null) : null));
+  }
+  /*HashTableTest.sk:89*/
+  
+void testKeys_Integer_Integer (Object self, Object x, Object y)/*HashTableTest.sk:89*/
+  {
+    Object is = makeInts_Integer_Integer@HashTableTest(self, x, y);
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:91*/
+    {
+      {
+        clear@HashTable(self.classUnderTest_HashTableTest);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:93*/
+    {
+      {
+        put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    Object k = ((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? keys@HashTable(self.classUnderTest_HashTableTest) : null)._array_object.A[new Object(__cid=-2, _int=0)._int];
+    assertEquals_Object_Object@Assert(k, is._array_object.A[new Object(__cid=-2, _int=0)._int]);
+  }
+  /*HashTableTest.sk:48*/
+  
+void testPutAndGet_Integer_Integer_Integer (Object self, Object x, Object y, Object z)/*HashTableTest.sk:48*/
+  {
+    Object is = makeInts_Integer_Integer_Integer@HashTableTest(self, x, y, z);
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:50*/
+    {
+      {
+        clear@HashTable(self.classUnderTest_HashTableTest);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:52*/
+    {
+      {
+        put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:54*/
+    {
+      {
+        put_K_V@HashTable(self.classUnderTest_HashTableTest, y, x);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:56*/
+    {
+      {
+        put_K_V@HashTable(self.classUnderTest_HashTableTest, z, x);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    assertEquals_Object_Object@Assert(((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? get_K@HashTable(self.classUnderTest_HashTableTest, is._array_object.A[new Object(__cid=-2, _int=0)._int]) : null), is._array_object.A[new Object(__cid=-2, _int=1)._int]);
+    assertEquals_Object_Object@Assert(((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? get_K@HashTable(self.classUnderTest_HashTableTest, is._array_object.A[new Object(__cid=-2, _int=1)._int]) : null), is._array_object.A[new Object(__cid=-2, _int=0)._int]);
+    assertEquals_Object_Object@Assert(((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? get_K@HashTable(self.classUnderTest_HashTableTest, is._array_object.A[new Object(__cid=-2, _int=2)._int]) : null), is._array_object.A[new Object(__cid=-2, _int=0)._int]);
+    Object i = Integer_Integer_int(new Object(__cid=Integer()), new Object(__cid=-2, _int=(((x.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? intValue@Integer(x) : null)._int) + (INITIAL_SIZE._int)));
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:62*/
+    {
+      {
+        put_K_V@HashTable(self.classUnderTest_HashTableTest, i, y);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    assertEquals_Object_Object@Assert(((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? get_K@HashTable(self.classUnderTest_HashTableTest, i) : null), y);
+  }
+  /*HashTableTest.sk:142*/
+  
+void testRemoveNonExistent_Integer_Integer (Object self, Object x, Object y)/*HashTableTest.sk:142*/
+  {
+    Object is = makeInts_Integer_Integer@HashTableTest(self, x, y);
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:144*/
+    {
+      {
+        clear@HashTable(self.classUnderTest_HashTableTest);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:146*/
+    {
+      {
+        put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    Object size = ((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? size@HashTable(self.classUnderTest_HashTableTest) : null);
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:149*/
+    {
+      {
+        remove_K@HashTable(self.classUnderTest_HashTableTest, is._array_object.A[new Object(__cid=-2, _int=1)._int]);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    assertEquals_int_int@Assert(((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? size@HashTable(self.classUnderTest_HashTableTest) : null), size);
+  }
+  /*HashTableTest.sk:154*/
+  
+void testRemove_Integer_Integer (Object self, Object x, Object y)/*HashTableTest.sk:154*/
+  {
+    Object is = makeInts_Integer_Integer@HashTableTest(self, x, y);
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:156*/
+    {
+      {
+        clear@HashTable(self.classUnderTest_HashTableTest);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    Object size = ((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? size@HashTable(self.classUnderTest_HashTableTest) : null);
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:159*/
+    {
+      {
+        put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    assertEquals_Object_Object@Assert(((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? get_K@HashTable(self.classUnderTest_HashTableTest, is._array_object.A[new Object(__cid=-2, _int=0)._int]) : null), is._array_object.A[new Object(__cid=-2, _int=1)._int]);
+    assertEquals_int_int@Assert(((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? size@HashTable(self.classUnderTest_HashTableTest) : null), new Object(__cid=-2, _int=(size._int) + (new Object(__cid=-2, _int=1)._int)));
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:163*/
+    {
+      {
+        remove_K@HashTable(self.classUnderTest_HashTableTest, x);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    assertNull_Object@Assert(((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? get_K@HashTable(self.classUnderTest_HashTableTest, is._array_object.A[new Object(__cid=-2, _int=0)._int]) : null));
+  }
+  /*HashTableTest.sk:67*/
+  
+void testReplacing_Integer_Integer_Integer (Object self, Object x, Object y, Object z)/*HashTableTest.sk:67*/
+  {
+    Object is = makeInts_Integer_Integer_Integer@HashTableTest(self, x, y, z);
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:69*/
+    {
+      {
+        clear@HashTable(self.classUnderTest_HashTableTest);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    Object i0 = Integer_Integer_int(new Object(__cid=Integer()), new Object(__cid=-2, _int=(((x.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? intValue@Integer(x) : null)._int) + (INITIAL_SIZE._int)));
+    Object i1 = Integer_Integer_int(new Object(__cid=Integer()), new Object(__cid=-2, _int=(((x.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? intValue@Integer(x) : null)._int) + (INITIAL_SIZE._int)));
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:73*/
+    {
+      {
+        put_K_V@HashTable(self.classUnderTest_HashTableTest, i0, z);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    assertEquals_Object_Object@Assert(((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? get_K@HashTable(self.classUnderTest_HashTableTest, i1) : null), is._array_object.A[new Object(__cid=-2, _int=2)._int]);
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:76*/
+    {
+      {
+        put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    assertEquals_Object_Object@Assert(((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? get_K@HashTable(self.classUnderTest_HashTableTest, is._array_object.A[new Object(__cid=-2, _int=0)._int]) : null), is._array_object.A[new Object(__cid=-2, _int=1)._int]);
+    Object size = ((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? size@HashTable(self.classUnderTest_HashTableTest) : null);
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:80*/
+    {
+      {
+        put_K_V@HashTable(self.classUnderTest_HashTableTest, x, z);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    assertEquals_Object_Object@Assert(((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? get_K@HashTable(self.classUnderTest_HashTableTest, is._array_object.A[new Object(__cid=-2, _int=0)._int]) : null), is._array_object.A[new Object(__cid=-2, _int=2)._int]);
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:83*/
+    {
+      {
+        put_K_V@HashTable(self.classUnderTest_HashTableTest, i0, z);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    assertEquals_Object_Object@Assert(((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? get_K@HashTable(self.classUnderTest_HashTableTest, i1) : null), is._array_object.A[new Object(__cid=-2, _int=2)._int]);
+    assertEquals_int_int@Assert(((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? size@HashTable(self.classUnderTest_HashTableTest) : null), size);
+  }
+  /*HashTableTest.sk:128*/
+  
+void testSize_int_int (Object self, Object x, Object y)/*HashTableTest.sk:128*/
+  {
+    assume (((x._int) >= (INITIAL_SIZE._int)) && ((x._int) < (new Object(__cid=-2, _int=0)._int))): "Assume at HashTableTest.sk:129"; //Assume at HashTableTest.sk:129
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:130*/
+    {
+      {
+        clear@HashTable(self.classUnderTest_HashTableTest);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    {
+      Object i = new Object(__cid=-2, _int=0);
+      bit __sa21 = (i._int) < (INITIAL_SIZE._int);
+      while(__sa21)
+      {
+        {
+          {
+            if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:133*/
+            {
+              {
+                put_K_V@HashTable(self.classUnderTest_HashTableTest, Integer_Integer_int(new Object(__cid=Integer()), i), null);
+              }
+            }
+            else
+            {
+              {
+                0;
+              }
+            }
+            { }
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) + 1);
+        __sa21 = (i._int) < (INITIAL_SIZE._int);
+      }
+    }
+    assertEquals_int_int@Assert(((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? size@HashTable(self.classUnderTest_HashTableTest) : null), INITIAL_SIZE);
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:137*/
+    {
+      {
+        put_K_V@HashTable(self.classUnderTest_HashTableTest, Integer_Integer_int(new Object(__cid=Integer()), x), Integer_Integer_int(new Object(__cid=Integer()), y));
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    assertEquals_int_int@Assert(((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? size@HashTable(self.classUnderTest_HashTableTest) : null), new Object(__cid=-2, _int=(INITIAL_SIZE._int) + (new Object(__cid=-2, _int=1)._int)));
+  }
+  /*HashTableTest.sk:99*/
+  
+void testValues_Integer_Integer (Object self, Object x, Object y)/*HashTableTest.sk:99*/
+  {
+    Object is = makeInts_Integer_Integer@HashTableTest(self, x, y);
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:101*/
+    {
+      {
+        clear@HashTable(self.classUnderTest_HashTableTest);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int))/*HashTableTest.sk:103*/
+    {
+      {
+        put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    Object v = ((self.classUnderTest_HashTableTest.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? values@HashTable(self.classUnderTest_HashTableTest) : null)._array_object.A[new Object(__cid=-2, _int=0)._int];
+    assertEquals_Object_Object@Assert(v, is._array_object.A[new Object(__cid=-2, _int=1)._int]);
+  }
+  /* END PACKAGE HashTableTest*/
+}
+/* BEGIN PACKAGE meta*/
+package meta{
+  /*meta.sk:15*/
+  
+int Array ()/*meta.sk:15*/
+  {
+    return -1;
+  }
+  /*meta.sk:4*/
+  
+int ArrayList ()/*meta.sk:4*/
+  {
+    return 6;
+  }
+  /*meta.sk:5*/
+  
+int Assert ()/*meta.sk:5*/
+  {
+    return 11;
+  }
+  /*meta.sk:6*/
+  
+int Boolean ()/*meta.sk:6*/
+  {
+    return 8;
+  }
+  /*meta.sk:7*/
+  
+int CharSequence ()/*meta.sk:7*/
+  {
+    return 5;
+  }
+  /*meta.sk:8*/
+  
+int Character ()/*meta.sk:8*/
+  {
+    return 9;
+  }
+  /*meta.sk:9*/
+  
+int HashTable ()/*meta.sk:9*/
+  {
+    return 2;
+  }
+  /*meta.sk:10*/
+  
+int HashTableNode ()/*meta.sk:10*/
+  {
+    return 4;
+  }
+  /*meta.sk:11*/
+  
+int HashTableTest ()/*meta.sk:11*/
+  {
+    return 3;
+  }
+  /*meta.sk:12*/
+  
+int Integer ()/*meta.sk:12*/
+  {
+    return 7;
+  }
+  /*meta.sk:13*/
+  
+int Object ()/*meta.sk:13*/
+  {
+    return 1;
+  }
+  /*meta.sk:14*/
+  
+int String ()/*meta.sk:14*/
+  {
+    return 10;
+  }
+  /*meta.sk:18*/
+  
+int _bit ()/*meta.sk:18*/
+  {
+    return -4;
+  }
+  /*meta.sk:17*/
+  
+int _char ()/*meta.sk:17*/
+  {
+    return -3;
+  }
+  /*meta.sk:20*/
+  
+int _double ()/*meta.sk:20*/
+  {
+    return -6;
+  }
+  /*meta.sk:19*/
+  
+int _float ()/*meta.sk:19*/
+  {
+    return -5;
+  }
+  /*meta.sk:16*/
+  
+int _int ()/*meta.sk:16*/
+  {
+    return -2;
+  }
+  /* END PACKAGE meta*/
+}
+/* BEGIN PACKAGE Object*/
+package Object{
+  struct Object {
+      int __cid;
+      Object bool_Boolean;
+      Object _value_String;
+      Object _count_String;
+      Object classUnderTest_HashTableTest;
+      Object key_HashTableNode;
+      Object value_HashTableNode;
+      Object next_HashTableNode;
+      Object maxLoadFactor_HashTable;
+      Object capacityGrowth_HashTable;
+      Object initialCapacity_HashTable;
+      Object size_HashTable;
+      Object currentCapacity_HashTable;
+      Object buckets_HashTable;
+      Object value_Integer;
+      Object value_Character;
+      ArrayList _arraylist;
+      Array_bit _array_bit;
+      Array_char _array_char;
+      Array_int _array_int;
+      Array_float _array_float;
+      Array_double _array_double;
+      Array_Object _array_object;
+      bit _bit;
+      char _char;
+      int _int;
+      float _float;
+      double _double;
+  }
+  /*Object.sk:3*/
+  
+Object Object_Object (Object self)/*Object.sk:3*/
+  {
+    return self;
+  }
+  /*Object.sk:17*/
+  
+Object equals_Object (Object self, Object obj)/*Object.sk:17*/
+  {
+    return new Object(__cid=-4, _bit=self == obj);
+  }
+  /*Object.sk:7*/
+  
+Object equals_Object_Object (Object a, Object b)/*Object.sk:7*/
+  {
+    if(a == (null))/*Object.sk:8*/
+    {
+      {
+        if(b == (null))/*Object.sk:9*/
+        {
+          {
+            return new Object(__cid=-4, _bit=1);
+          }
+        }
+        return new Object(__cid=-4, _bit=0);
+      }
+    }
+    return ((a.__cid) == (new Object(__cid=-2, _int=Character())._int) ? equals_Object@Character(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? equals_Object@Integer(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=HashTable())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=HashTableNode())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=Assert())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=HashTableTest())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=String())._int) ? equals_Object@String(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=Boolean())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=Object())._int) ? equals_Object@Object(a, b) : null))))))))));
+  }
+  /*Object.sk:21*/
+  
+Object hashCode (Object self)/*Object.sk:21*/
+  {
+    return new Object(__cid=-2, _int=0);
+  }
+  /* END PACKAGE Object*/
+}
+/* BEGIN PACKAGE Boolean*/
+package Boolean{
+  /*Boolean.sk:3*/
+  
+Object Boolean_Boolean (Object self)/*Boolean.sk:3*/
+  {
+    return self;
+  }
+  /*Boolean.sk:7*/
+  
+Object Boolean_Boolean_boolean (Object self, Object bool)/*Boolean.sk:7*/
+  {
+    self.bool_Boolean = bool;
+    return self;
+  }
+  /*Boolean.sk:12*/
+  
+Object booleanValue (Object self)/*Boolean.sk:12*/
+  {
+    return self.bool_Boolean;
+  }
+  /* END PACKAGE Boolean*/
+}
