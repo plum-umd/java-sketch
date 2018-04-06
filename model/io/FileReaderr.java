@@ -1,8 +1,24 @@
-class FileReaderr {
-    File file;
-    FileReaderr(File file) { this.file = file; }
+public class FileReaderr {
+    String path;
+    String data;
+    int position;
+    
+    public FileReader(String path) {
+	this.path = path;
+	this.position = 0;
+	this.data = path;
+    }
 
-    boolean ready() { return file.size() > 0; }
-    int read() { return 0; }
-    void close() { }
+    public char read() {
+	if (position < data.length()) {
+	    char c = data.charAt(position);
+	    position++;
+	    return c;
+	}
+	return -1;
+    }
+
+    public void close() {
+
+    }
 }
