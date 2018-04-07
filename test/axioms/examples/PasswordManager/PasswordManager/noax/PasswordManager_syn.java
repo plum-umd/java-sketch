@@ -77,6 +77,7 @@ public class PasswordManager {
     
 	public void addPassword(String domain, String passWord){
 		String PassEncryption = cryptographer.encrypt(passWord);
+		assert !passWord.equals(PassEncryption);
 		String domainHash = cryptographer.hash(domain);
 		passMap.add(domainHash, PassEncryption);
 
@@ -88,6 +89,7 @@ public class PasswordManager {
     
 	public void modifyPassword(String domain, String passWord) {
 		String PassEncryption = cryptographer.encrypt(passWord);
+		assert !passWord.equals(PassEncryption);
 		String domainHash = cryptographer.hash(domain);
 		passMap.add(domainHash, PassEncryption);
 	}

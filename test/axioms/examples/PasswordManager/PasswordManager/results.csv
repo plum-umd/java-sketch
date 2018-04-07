@@ -1,0 +1,496 @@
+    [0;32m[1522686703.8320 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+    [0;32m[1522686706.6710 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522686708.3530 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522686708.3590 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522686708.3660 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522686708.3740 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522686708.3830 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522686708.4560 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522686709.5140 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp]
+    [0;32m[1522686743.5240 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522686743.5310 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522686744.0170 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522686744.5710 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+    [0;32m[1522686747.4150 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522686749.1130 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522686749.1180 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522686749.1220 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522686749.1300 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522686749.1390 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522686749.2080 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522686750.2250 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp]
+    [0;32m[1522686784.3390 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522686784.3470 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522686784.9460 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522686785.5100 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+    [0;32m[1522686788.3160 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522686789.9620 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522686789.9680 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522686789.9730 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522686789.9790 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522686789.9890 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522686790.0590 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522686791.1410 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp]
+    [0;32m[1522686825.5240 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522686825.5310 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522686826.0850 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522686826.6510 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+    [0;32m[1522686829.5580 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522686831.1660 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522686831.1710 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522686831.1740 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522686831.1840 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522686831.1920 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522686831.2560 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522686832.3310 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp]
+    [0;32m[1522686866.5470 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522686866.5570 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522686867.1590 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522686867.7300 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+    [0;32m[1522686870.5170 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522686872.1800 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522686872.1860 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522686872.1900 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522686872.1980 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522686872.2070 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522686872.2660 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522686873.3090 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp]
+    [0;32m[1522686907.4390 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522686907.4480 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522686908.0370 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522686908.5970 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+    [0;32m[1522686911.4420 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522686913.0810 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522686913.0870 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522686913.0910 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522686913.0980 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522686913.1080 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522686913.1740 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522686914.2650 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp]
+    [0;32m[1522686948.4000 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522686948.4110 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522686949.0180 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522686949.6150 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+    [0;32m[1522686952.5240 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522686954.1760 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522686954.1830 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522686954.1890 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522686954.2010 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522686954.2140 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522686954.3010 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522686955.5880 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp]
+    [0;32m[1522686989.8620 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522686989.8700 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522686990.4060 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522686990.9670 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+    [0;32m[1522686993.7450 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522686995.3910 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522686995.3960 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522686995.4040 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522686995.4130 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522686995.4220 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522686995.4860 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522686996.6170 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp]
+    [0;32m[1522687030.8220 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522687030.8280 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522687031.3900 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522687031.9650 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+    [0;32m[1522687034.7700 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522687036.4040 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522687036.4100 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522687036.4150 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522687036.4230 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522687036.4330 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522687036.5010 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522687037.5280 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp]
+    [0;32m[1522687071.7750 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522687071.7840 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522687072.3540 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522687072.9040 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+    [0;32m[1522687075.7940 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522687077.3990 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522687077.4090 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522687077.4150 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522687077.4220 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522687077.4320 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522687077.4990 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522687078.5900 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp]
+    [0;32m[1522687113.0990 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522687113.1080 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522687113.7130 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522687114.3050 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+    [0;32m[1522687117.1490 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522687118.7990 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522687118.8060 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522687118.8130 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522687118.8210 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522687118.8300 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522687118.8940 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522687119.9430 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp]
+    [0;32m[1522687154.1010 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522687154.1100 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522687154.7640 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522687155.3170 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+    [0;32m[1522687158.2670 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522687159.8970 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522687159.9020 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522687159.9060 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522687159.9130 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522687159.9210 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522687159.9820 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522687161.0210 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp]
+    [0;32m[1522687195.0980 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522687195.1070 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522687195.8790 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522687196.5050 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+    [0;32m[1522687199.3220 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522687200.9990 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522687201.0030 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522687201.0080 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522687201.0190 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522687201.0290 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522687201.0990 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522687202.1260 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp]
+    [0;32m[1522687236.1860 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522687236.1940 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522687236.7570 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522687237.3520 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+    [0;32m[1522687240.1750 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522687241.8180 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522687241.8240 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522687241.8280 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522687241.8370 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522687241.8460 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522687241.9070 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522687242.9440 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp]
+    [0;32m[1522687277.2130 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522687277.2250 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522687277.7440 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522687278.2950 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+    [0;32m[1522687281.1100 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522687282.7620 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522687282.7670 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522687282.7710 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522687282.7780 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522687282.7870 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522687282.8500 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522687283.9250 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp]
+    [0;32m[1522687317.9720 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522687317.9790 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522687318.4730 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522687319.0060 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+    [0;32m[1522687321.9270 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522687323.5910 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522687323.5960 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522687323.6040 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522687323.6110 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522687323.6200 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522687323.6780 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522687324.7260 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp]
+    [0;32m[1522687358.5150 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522687358.5220 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522687359.1200 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522687359.6550 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+    [0;32m[1522687362.5540 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522687364.1940 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522687364.2000 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522687364.2080 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522687364.2150 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522687364.2240 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522687364.3120 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522687365.3230 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp]
+    [0;32m[1522687399.1370 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522687399.1460 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522687399.7540 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522687400.3150 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+    [0;32m[1522687403.2090 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522687404.8660 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522687404.8720 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522687404.8790 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522687404.8880 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522687404.8960 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522687404.9530 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522687405.9740 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp]
+    [0;32m[1522687439.8550 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522687439.8610 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522687440.5180 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522687441.0570 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+    [0;32m[1522687443.8380 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522687445.4770 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522687445.4830 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522687445.4930 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522687445.5010 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522687445.5090 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522687445.5800 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522687446.6600 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp]
+    [0;32m[1522687480.5600 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522687480.5700 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522687481.0850 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522687481.6420 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+    [0;32m[1522687484.4570 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522687486.1150 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522687486.1210 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522687486.1250 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522687486.1350 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522687486.1440 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522687486.2290 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522687487.2650 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp]
+    [0;32m[1522687521.1130 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522687521.1270 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522687521.6880 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522687522.2450 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+    [0;32m[1522687525.0820 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522687526.7390 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522687526.7450 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522687526.7520 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522687526.7590 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522687526.7670 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522687526.8300 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522687527.9290 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp]
+    [0;32m[1522687561.8950 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522687561.9020 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522687562.5010 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522687563.0430 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+    [0;32m[1522687565.8780 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522687567.5550 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522687567.5590 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522687567.5670 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522687567.5750 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522687567.5830 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522687567.6440 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522687568.7250 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp]
+    [0;32m[1522687602.6590 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522687602.6670 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522687603.2250 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522687603.7800 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+    [0;32m[1522687606.6680 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522687608.3160 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522687608.3210 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522687608.3250 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522687608.3330 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522687608.3410 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522687608.4040 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522687609.4810 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp]
+    [0;32m[1522687643.5110 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522687643.5180 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522687644.1000 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522687644.6550 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+    [0;32m[1522687647.5230 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522687649.1190 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522687649.1250 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522687649.1330 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522687649.1400 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522687649.1490 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522687649.2150 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522687650.3160 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp]
+    [0;32m[1522687684.4950 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522687684.5030 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522687685.0980 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522687685.7490 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+    [0;32m[1522687689.0110 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522687690.6620 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522687690.6710 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522687690.6750 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522687690.6840 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522687690.6920 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522687690.7600 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522687691.8450 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp]
+    [0;32m[1522687725.8060 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522687725.8150 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522687726.3540 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522687726.8850 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+    [0;32m[1522687729.7460 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522687731.4140 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522687731.4200 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522687731.4240 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522687731.4350 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522687731.4440 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522687731.5170 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522687732.6000 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp]
+    [0;32m[1522687766.4620 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522687766.4710 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522687766.9500 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522687767.5040 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+    [0;32m[1522687770.3340 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522687771.9940 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522687771.9990 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522687772.0070 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522687772.0140 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522687772.0230 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522687772.0850 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522687773.1640 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp]
+    [0;32m[1522687807.2610 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522687807.2700 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522687807.9260 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522687808.5110 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+    [0;32m[1522687811.4060 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522687813.0170 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522687813.0230 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522687813.0270 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522687813.0350 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522687813.0440 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522687813.1070 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522687814.1420 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp]
+    [0;32m[1522687848.0310 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522687848.0390 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522687848.5730 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522687849.1080 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+    [0;32m[1522687851.9680 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522687853.6020 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522687853.6070 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522687853.6150 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522687853.6220 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522687853.6310 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522687853.6910 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522687854.7940 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp]
+    [0;32m[1522687888.7910 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522687888.7990 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522687889.3610 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522687889.8960 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+    [0;32m[1522687892.7320 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522687894.4230 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522687894.4300 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522687894.4400 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522687894.4470 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522687894.4560 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522687894.5300 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522687895.5980 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp]
+    [0;32m[1522687929.5680 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522687929.5750 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522687930.1910 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522687930.8090 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '16'
+    [0;32m[1522687933.6930 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522687935.3100 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522687935.3160 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522687935.3200 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522687935.3290 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522687935.3370 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522687935.4020 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522687936.4920 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/PasswordManager/result_noax/tmp/sk_PasswordManagerTest/input0.tmp]
+    [0;32m[1522687970.4460 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522687970.4540 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522687970.9470 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
