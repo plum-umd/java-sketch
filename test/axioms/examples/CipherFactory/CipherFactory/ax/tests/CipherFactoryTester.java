@@ -27,10 +27,12 @@ public class CipherFactoryTests {
     	CryptoManager cm = new CryptoManager();
 
 
-	for (int x = 0; x < 999999; x = x + 111111) {
+	// for (int x = 0; x < 999999; x = x + 111111) {
+	for (int x = 0; x < 1; x = x + 1) {
 	    // String m = "Secret message";
 	    String m = Integer.toString(x);	
 	    String d = cm.encrypt(m);
+	    assert !d.equals(m);
 	    String p = cm.decrypt(d);
 	    assert p.equals(m);	
 	}

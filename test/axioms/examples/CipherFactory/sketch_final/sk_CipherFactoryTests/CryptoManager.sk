@@ -11,50 +11,104 @@ Object CryptoManager_CryptoManager(Object self) {
 }
 
 generator Object genCipherText_String_byte_ICipherFactory_Cipher(Object self, Object plainText, Object bytes, Object cf, Object cipher) {
-  Object cipherText;
-  if ((new Object(__cid=-4, _bit=??))._bit) {
-    cipherText = encode_String_String@CryptoManager(self, plainText, getCharset@CryptoManager(self));
-  }
-  if ((new Object(__cid=-4, _bit=??))._bit) {
+  Object cipherText = bytes;
+  if (??) {
     cf = getCipherFactory@CryptoManager(self);
   }
-  if ((new Object(__cid=-4, _bit=??))._bit) {
+  if (??) {
     cipher = (cf.__cid == (new Object(__cid=-2, _int=DefaultCipherFactory()))._int ? encryptionCipher@DefaultCipherFactory(cf) : null);
   }
-  if ((new Object(__cid=-4, _bit=??))._bit) {
+  if (??) {
     cipher = (cf.__cid == (new Object(__cid=-2, _int=DefaultCipherFactory()))._int ? decryptionCipher@DefaultCipherFactory(cf) : null);
   }
-  if ((new Object(__cid=-4, _bit=??))._bit) {
+  if (??) {
+    cipherText = genCipherText2_String_byte_ICipherFactory_Cipher@CryptoManager(self, plainText, cipherText, cf, cipher);
+    /* return cipherText; */
+  }
+  return cipherText;
+}
+
+generator Object genCipherText2_String_byte_ICipherFactory_Cipher(Object self, Object plainText, Object bytes, Object cf, Object cipher) {
+  Object cipherText = bytes;
+  if (??) {
+    cipherText = encode_String_String@CryptoManager(self, plainText, getCharset@CryptoManager(self));
+  }
+  if (??) {
     cipherText = (cipher.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? readEncoded_Object_String@Cipher(cipher, plainText) : null);
   }
-  if ((new Object(__cid=-4, _bit=??))._bit) {
+  if (??) {
     cipherText = appendEncryptionMark_byte@CryptoManager(self, cipherText);
   }
-  if ((new Object(__cid=-4, _bit=??))._bit) {
-    cipherText = cryptInCipher_Cipher_byte@CryptoManager(self, cipher, cipherText);
-  }
-  if ((new Object(__cid=-4, _bit=??))._bit) {
-    /* cipherText = cryptInCipher_Cipher_byte@CryptoManager(self, cipher, cipherText); */
-    cipherText = xform_doFinal_Cipher_Object(cipher._cipher, cipherText);
-  }
-  if ((new Object(__cid=-4, _bit=??))._bit) {
-    cipherText = processEscape_byte_boolean@CryptoManager(self, cipherText, (new Object(__cid=-4, _bit=true)));
-  }
-  if ((new Object(__cid=-4, _bit=??))._bit) {
-    return (cipher.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? toString_Object_Object@Cipher(cipher, cipherText) : null);
-  }
-  if ((new Object(__cid=-4, _bit=??))._bit) {
+  if (??) {
     if (isEncryptedByte_byte@CryptoManager(self, cipherText)._bit) {
       cipherText = cutEncryptionMark_byte@CryptoManager(self, cipherText);
     }
-    return decode_byte_String@CryptoManager(self, cipherText, getCharset@CryptoManager(self));
   }
-  if ((new Object(__cid=-4, _bit=??))._bit) {
-    cipherText = genCipherText_String_byte_ICipherFactory_Cipher@CryptoManager(self, plainText, cipherText, cf, cipher);
-    return cipherText;
+  if (??) {
+    cipherText = cryptInCipher_Cipher_byte@CryptoManager(self, cipher, cipherText);
   }
-  return null;
+  if (??) {
+    /* cipherText = cryptInCipher_Cipher_byte@CryptoManager(self, cipher, cipherText); */
+    cipherText = xform_doFinal_Cipher_Object(cipher._cipher, cipherText);
+  }
+  if (??) {
+    cipherText = processEscape_byte_boolean@CryptoManager(self, cipherText, (new Object(__cid=-4, _bit=true)));
+  }
+  if (??) {
+    return (cipher.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? toString_Object_Object@Cipher(cipher, cipherText) : null);
+  }
+  if (??) {
+    cipherText = genCipherText2_String_byte_ICipherFactory_Cipher@CryptoManager(self, plainText, cipherText, cf, cipher);
+    /* return cipherText; */
+  }
+  return cipherText;
 }
+
+/* generator Object genCipherText_String_byte_ICipherFactory_Cipher(Object self, Object plainText, Object bytes, Object cf, Object cipher) { */
+/*   Object cipherText; */
+/*   if ((new Object(__cid=-4, _bit=??))._bit) { */
+/*     cipherText = encode_String_String@CryptoManager(self, plainText, getCharset@CryptoManager(self)); */
+/*   } */
+/*   if ((new Object(__cid=-4, _bit=??))._bit) { */
+/*     cf = getCipherFactory@CryptoManager(self); */
+/*   } */
+/*   if ((new Object(__cid=-4, _bit=??))._bit) { */
+/*     cipher = (cf.__cid == (new Object(__cid=-2, _int=DefaultCipherFactory()))._int ? encryptionCipher@DefaultCipherFactory(cf) : null); */
+/*   } */
+/*   if ((new Object(__cid=-4, _bit=??))._bit) { */
+/*     cipher = (cf.__cid == (new Object(__cid=-2, _int=DefaultCipherFactory()))._int ? decryptionCipher@DefaultCipherFactory(cf) : null); */
+/*   } */
+/*   if ((new Object(__cid=-4, _bit=??))._bit) { */
+/*     cipherText = (cipher.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? readEncoded_Object_String@Cipher(cipher, plainText) : null); */
+/*   } */
+/*   if ((new Object(__cid=-4, _bit=??))._bit) { */
+/*     cipherText = appendEncryptionMark_byte@CryptoManager(self, cipherText); */
+/*   } */
+/*   if ((new Object(__cid=-4, _bit=??))._bit) { */
+/*     cipherText = cryptInCipher_Cipher_byte@CryptoManager(self, cipher, cipherText); */
+/*   } */
+/*   if ((new Object(__cid=-4, _bit=??))._bit) { */
+/*     /\* cipherText = cryptInCipher_Cipher_byte@CryptoManager(self, cipher, cipherText); *\/ */
+/*     cipherText = xform_doFinal_Cipher_Object(cipher._cipher, cipherText); */
+/*   } */
+/*   if ((new Object(__cid=-4, _bit=??))._bit) { */
+/*     cipherText = processEscape_byte_boolean@CryptoManager(self, cipherText, (new Object(__cid=-4, _bit=true))); */
+/*   } */
+/*   if ((new Object(__cid=-4, _bit=??))._bit) { */
+/*     return (cipher.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? toString_Object_Object@Cipher(cipher, cipherText) : null); */
+/*   } */
+/*   if ((new Object(__cid=-4, _bit=??))._bit) { */
+/*     if (isEncryptedByte_byte@CryptoManager(self, cipherText)._bit) { */
+/*       cipherText = cutEncryptionMark_byte@CryptoManager(self, cipherText); */
+/*     } */
+/*     return decode_byte_String@CryptoManager(self, cipherText, getCharset@CryptoManager(self)); */
+/*   } */
+/*   if ((new Object(__cid=-4, _bit=??))._bit) { */
+/*     cipherText = genCipherText_String_byte_ICipherFactory_Cipher@CryptoManager(self, plainText, cipherText, cf, cipher); */
+/*     return cipherText; */
+/*   } */
+/*   return null; */
+/* } */
 
 Object encrypt_String(Object self, Object message) {
   /* Object cf = getCipherFactory@CryptoManager(self); */
@@ -64,7 +118,10 @@ Object encrypt_String(Object self, Object message) {
   /* bytes = cryptInCipher_Cipher_byte@CryptoManager(self, cipher, bytes); */
   /* Object data = processEscape_byte_boolean@CryptoManager(self, bytes, (new Object(__cid=-4, _bit=true))); */
   /* return (cipher.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? toString_Object_Object@Cipher(cipher, data) : null); */
-  return genCipherText_String_byte_ICipherFactory_Cipher(self, message, null, null, null); 
+
+  /* Object data = genCipherText_String_byte_ICipherFactory_Cipher(self, message, null, null, null); */
+  /* return (cipher.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? toString_Object_Object@Cipher(cipher, data) : null); */
+  return genCipherText_String_byte_ICipherFactory_Cipher(self, message, null, null, null);
 }
 
 Object encryptIfNotEncrypted_String(Object self, Object message) {
@@ -115,7 +172,10 @@ Object decrypt_String(Object self, Object encryptedMessage) {
   /*   data = cutEncryptionMark_byte@CryptoManager(self, data); */
   /* } */
   /* return decode_byte_String@CryptoManager(self, data, getCharset@CryptoManager(self)); */
-  return genCipherText_String_byte_ICipherFactory_Cipher(self, encryptedMessage, null, null, null);
+
+  Object data = genCipherText_String_byte_ICipherFactory_Cipher(self, encryptedMessage, null, null, null);
+  return decode_byte_String@CryptoManager(self, data, getCharset@CryptoManager(self));
+  /* return genCipherText_String_byte_ICipherFactory_Cipher(self, encryptedMessage, null, null, null); */
 }
 
 Object isEncrypted_String(Object self, Object message) {
@@ -128,6 +188,9 @@ Object isEncrypted_String(Object self, Object message) {
 }
 
 Object cryptInCipher_Cipher_byte(Object self, Object cipher, Object data) {
+  /* Object ret = (cipher.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? xform_doFinal_Cipher_Object(cipher._cipher, data) : null); */
+  /* cipher = (cipher.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? doFinalb_Object_Object@Cipher(cipher, data) : null); */
+  /* return ret; */
   return (cipher.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? doFinal_Object_Object@Cipher(cipher, data) : null); cipher = (cipher.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? doFinalb_Object_Object@Cipher(cipher, data) : null);
 }
 

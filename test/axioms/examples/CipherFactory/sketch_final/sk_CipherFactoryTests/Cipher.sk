@@ -108,7 +108,11 @@ Object xform_doFinal_Cipher_Object(Cipher self, Object text) {
                   case Initb_int_secretkeyspec: {
 		    Object cond = xform_equals_SecretKeySpec_Object(self.s._secretkeyspec, text_text_text_text_text.s);
 		    if (cond._bit) {
-		      return text_text_text_text.text;
+		      if (self.mode._int == 2 && text_text_text_text_text.mode._int == 1) {
+			return text_text_text_text.text;
+		      } else {
+			return null;
+		      }
 		    } else {
 		      return null;
 		    }

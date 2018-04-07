@@ -7,9 +7,10 @@ Object CipherFactoryTests_CipherFactoryTests(Object self) {
 harness void main() {
   Object self = Object_Object(new Object(__cid=Object()));
   Object cm = CryptoManager_CryptoManager(new Object(__cid=CryptoManager()));
-  for (Object x = (new Object(__cid=-2, _int=0)); x._int < (new Object(__cid=-2, _int=999999))._int; x = (new Object(__cid=-2, _int=x._int + (new Object(__cid=-2, _int=111111))._int))) {
+  for (Object x = (new Object(__cid=-2, _int=0)); x._int < (new Object(__cid=-2, _int=1))._int; x = (new Object(__cid=-2, _int=x._int + (new Object(__cid=-2, _int=1))._int))) {
     Object m = toString_int@Integer(x);
     Object d = (cm.__cid == (new Object(__cid=-2, _int=CryptoManager()))._int ? encrypt_String@CryptoManager(cm, m) : null);
+    assert !(d.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(d, m) : null)._bit;
     Object p = (cm.__cid == (new Object(__cid=-2, _int=CryptoManager()))._int ? decrypt_String@CryptoManager(cm, d) : null);
     assert (p.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(p, m) : null)._bit;
   }
