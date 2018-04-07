@@ -43,18 +43,18 @@ generator Object genCipherText_byte_boolean_SecretKeySpec_byte(Object self, Obje
   Object finalBytes = (new Object(__cid=-2, _int=0));
   Object cipher;
 
-  if ((new Object(__cid=-4, _bit=??))._bit) {
+  if (??) {
     cipher = getCipher_boolean_SecretKeySpec_byte@JCECipher(self, isEncryption, key, IV);
   }
-  if ((new Object(__cid=-4, _bit=??))._bit) {
+  if (??) {
     updateBytes = xform_update_Cipher_byte_int_int_byte_int(cipher._cipher, data, (new Object(__cid=-2, _int=??)), new Object(__cid=-2, _int=??), cipherText, (new Object(__cid=-2, _int=??)));
     cipher = (cipher.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? updateb_Object_byte_int_int_byte_int@Cipher(cipher, data, (new Object(__cid=-2, _int=??)), new Object(__cid=-2, _int=??), cipherText, (new Object(__cid=-2, _int=??))) : null);
   }
-  if ((new Object(__cid=-4, _bit=??))._bit) {
+  if (??) {
     finalBytes = xform_doFinale_Cipher_byte_int_int_byte_int(cipher._cipher, data, (new Object(__cid=-2, _int=??)), (new Object(__cid=-2, _int=??)), cipherText, updateBytes);
     cipher = (cipher.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? doFinaleb_Object_byte_int_int_byte_int@Cipher(cipher, data, (new Object(__cid=-2, _int=??)), (new Object(__cid=-2, _int=??)), cipherText, updateBytes) : null);
   }
-  if ((new Object(__cid=-4, _bit=??))._bit) {
+  if (??) {
     if (isEncryption._bit) {
       cipherText = (cipher.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? doFinal_Object_Object@Cipher(cipher, data) : null);
       cipher = (cipher.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? doFinalb_Object_Object@Cipher(cipher, data) : null);
@@ -63,12 +63,12 @@ generator Object genCipherText_byte_boolean_SecretKeySpec_byte(Object self, Obje
       cipher = (cipher.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? doFinalb_Object_Object@Cipher(cipher, data) : null);
     }
   }
-  if ((new Object(__cid=-4, _bit=??))._bit) {
+  if (??) {
     if (!isEncryption._bit) {
       cipherText = copyOf_byte_int@Arrays(cipherText, (new Object(__cid=-2, _int=updateBytes._int + finalBytes._int)));
     }
   }
-  if ((new Object(__cid=-4, _bit=??))._bit) {
+  if (??) {
     cipherText = genCipherText_byte_boolean_SecretKeySpec_byte@JCECipher(self, cipherText, isEncryption, key, IV);
   }
   

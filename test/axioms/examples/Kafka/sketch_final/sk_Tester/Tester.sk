@@ -13,7 +13,10 @@ harness void main() {
 void testOpenSSL(Object self) {
   Object oc = OpenSSLCipher_OpenSSLCipher_String_String(new Object(__cid=OpenSSLCipher()), String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=3+1), A="AES")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=3)), String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=14+1), A="TRANSFORMATION")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=14)));
 
-  for (int x = 0; x < 666666; x = x + 111111) {
+  /* for (int x = 0; x < 666666; x = x + 111111) { */
+  /* for (int x = 666666; x < 666667; x = x + 111111) { */
+  /* for (int x = 9; x < 5000000; x = x * 9) {		     */
+  for (int x = 0; x < 5; x++) {
     Object p1 = toString_int@Integer((new Object(__cid=-2, _int = x)));
     Object p2 = toString_int@Integer((new Object(__cid=-2, _int = x+1)));
     Object p3 = toString_int@Integer((new Object(__cid=-2, _int = x+2)));  
@@ -30,7 +33,10 @@ void testOpenSSL(Object self) {
 void testJCECipher(Object self) {
   Object oc = JCECipher_JCECipher_String_String_String(new Object(__cid=JCECipher()), String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=8+1), A="PROVIDER")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=8)), String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=3+1), A="AES")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=3)), String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=14+1), A="TRANSFORMATION")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=14)));
 
-  for (int x = 0; x < 666666; x = x + 111111) {
+  /* for (int x = 0; x < 666666; x = x + 111111) { */
+  /* for (int x = 666666; x < 666667; x = x + 111111) { */
+  /* for (int x = 9; x < 5000000; x = x * 9) {		     */
+  for (int x = 0; x < 5; x++) {
     Object p1 = toString_int@Integer((new Object(__cid=-2, _int = x)));
     Object p2 = toString_int@Integer((new Object(__cid=-2, _int = x+1)));
     Object p3 = toString_int@Integer((new Object(__cid=-2, _int = x+2)));
