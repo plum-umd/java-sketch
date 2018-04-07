@@ -22,8 +22,45 @@ public class PasswordManagerTest {
 
     // 	}
 
+    // harness public static void main() {
+    // 	// int limit = 9999999;
+    // 	// int limit = 100;
+    // 	// assume u > 0 & u < limit;
+    // 	// assume w > 0 & w < limit;
+    // 	// assume x > 0 & x < limit;
+    // 	// assume y > 0 & y < limit;
+    // 	// assume z > 0 & z < limit;	
+    // 	// assume u != w && w != y && x != z;
+
+    // 	String p1 = Integer.toString(12345);
+	
+    // 	PasswordManager pasman = new PasswordManager(p1);	
+	
+    // 	for (int i = 1; i < 5; i++) {
+    // 	    String p2 = Integer.toString(i*81);
+    // 	    String p3 = Integer.toString(i*891);
+    // 	    String p4 = Integer.toString(i*8019);
+    // 	    String p5 = Integer.toString(i*72171);	
+	    
+    // 	    pasman.addPassword(p2, p3);
+    // 	    pasman.addPassword(p4, p5);
+    // 	    String pass1 = pasman.getPass(p2);	
+    // 	    assert pass1.equals(p3);	
+    // 	    String pass2 = pasman.getPass(p4);	
+    // 	    assert pass2.equals(p5);
+    // 	    pasman.modifyPassword(p2, p4);
+    // 	    String pass3 = pasman.getPass(p2);	
+    // 	    assert pass3.equals(p4);	
+    // 	}
+		
+    // 	// assert !pasman.checkMasterPassword(p2);
+    // 	// assert pasman.checkMasterPassword(p1);
+
+    // }
+
     harness public static void main(int u, int w, int x, int y, int z) {
-	int limit = 9999999;
+    	// int limit = 9999999;
+    	int limit = 10;
     	assume u > 0 & u < limit;
     	assume w > 0 & w < limit;
     	assume x > 0 & x < limit;
@@ -41,13 +78,13 @@ public class PasswordManagerTest {
 
     	pasman.addPassword(p2, p3);
     	pasman.addPassword(p4, p5);
-    	String pass1 = pasman.getPass(p2);
-	
-    	assert pass1.equals(p3);
-	
-    	String pass2 = pasman.getPass(p4);
-	
+    	String pass1 = pasman.getPass(p2);	
+    	assert pass1.equals(p3);	
+    	String pass2 = pasman.getPass(p4);	
     	assert pass2.equals(p5);
+    	pasman.modifyPassword(p2, p4);
+    	String pass3 = pasman.getPass(p2);	
+    	assert pass3.equals(p4);	
 
     	// assert !pasman.checkMasterPassword(p2);
     	// assert pasman.checkMasterPassword(p1);

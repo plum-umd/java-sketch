@@ -10,9 +10,9 @@ array.sk:30: Making final Array_Object@array.length
 [SATBackend] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [SATBackend] MAX LOOP UNROLLING = 16
 [SATBackend] MAX FUNC INLINING  = 2
-estimated size of main__Wrapper_PasswordManagerTest
+estimated size of main_int_int_int_int_int__Wrapper_PasswordManagerTest
 stmt cnt: 2
-callee main_PasswordManagerTest : 540
+callee main_int_int_int_int_int0_PasswordManagerTest : 362
 
 [SATBackend] After prog.accept(partialEval)
 [SATBackend] OFILE = sk_PasswordManagerTest
@@ -60,49 +60,55 @@ resolved cegis to path /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5
 Overriding inputs with 5
 boundmode = CALLNAME
 assuming  bounds checks
-SOLVER RAND SEED = 1520261234
+SOLVER RAND SEED = 1523127878
  optimization level = 6
 Reading SKETCH Program in File /Users/kathymariano/Research/java-sketch2/test/axioms/examples/PasswordManager/sketch_final/tmp/sk_PasswordManagerTest/input0.tmp
-CREATING main__Wrapper_PasswordManagerTest
-size = 4
-after ba size = 4
-CREATING main__WrapperNospec_PasswordManagerTest
-size = 0
-after ba size = 0
-CREATING main_PasswordManagerTest
-Found Cycle of size 30; Breaking.
-size = 1099
-after ba size = 1099
+CREATING main_int_int_int_int_int__Wrapper_PasswordManagerTest
+size = 9
+after ba size = 9
+CREATING main_int_int_int_int_int__WrapperNospec_PasswordManagerTest
+size = 5
+after ba size = 5
+CREATING main_int_int_int_int_int0_PasswordManagerTest
+size = 1311
+after ba size = 1311
 CREATING Object_meta
 size = 3
 after ba size = 3
 CREATING Object_Object_Object
 size = 38
 after ba size = 38
+CREATING toString_int_Integer
+size = 3958
+after ba size = 3958
 CREATING PasswordManager_meta
 size = 3
 after ba size = 3
+CREATING PasswordManager_PasswordManager_String_PasswordManager
+size = 142
+after ba size = 142
+CREATING addPassword_String_String_PasswordManager
+size = 342
+after ba size = 342
+CREATING getPass_String_PasswordManager
+size = 250
+after ba size = 250
 CREATING String_meta
 size = 3
 after ba size = 3
+CREATING equals_Object_String
+Found Cycle of size 5; Breaking.
+size = 1616
+after ba size = 1616
+CREATING modifyPassword_String_String_PasswordManager
+size = 342
+after ba size = 342
 CREATING Wrap_Array_char_array
 size = 48
 after ba size = 48
 CREATING String_String_char_int_int_String
 size = 1170
 after ba size = 1170
-CREATING PasswordManager_PasswordManager_String_PasswordManager
-size = 142
-after ba size = 142
-CREATING addPassword_String_String_PasswordManager
-size = 249
-after ba size = 249
-CREATING getPass_String_PasswordManager
-size = 250
-after ba size = 250
-CREATING Array_meta
-size = 3
-after ba size = 3
 CREATING Cryptographer_meta
 size = 3
 after ba size = 3
@@ -116,9 +122,9 @@ CREATING PasswordMap_PasswordMap_PasswordMap
 size = 255
 after ba size = 255
 CREATING encrypt_String_Cryptographer
-Found Cycle of size 25; Breaking.
-size = 1607
-after ba size = 1607
+Found Cycle of size 14; Breaking.
+size = 1733
+after ba size = 1733
 CREATING add_String_String_PasswordMap
 size = 238
 after ba size = 238
@@ -126,9 +132,15 @@ CREATING get_String_PasswordMap
 size = 92
 after ba size = 92
 CREATING decrypt_String_Cryptographer
-Found Cycle of size 13; Breaking.
-size = 1955
-after ba size = 1955
+Found Cycle of size 28; Breaking.
+size = 1690
+after ba size = 1690
+CREATING length_String
+size = 45
+after ba size = 45
+CREATING Array_meta
+size = 3
+after ba size = 3
 CREATING SecureRandom_SecureRandom_SecureRandom
 size = 48
 after ba size = 48
@@ -183,6 +195,31 @@ after ba size = 55
 CREATING doFinalb_Object_Object_Cipher
 size = 55
 after ba size = 55
+CREATING xform_doFinal_Cipher_Object_Cipher
+Found Cycle of size 31; Breaking.
+Found Cycle of size 61; Breaking.
+Found Cycle of size 65; Breaking.
+Found Cycle of size 83; Breaking.
+Found Cycle of size 54; Breaking.
+Found Cycle of size 69; Breaking.
+Found Cycle of size 69; Breaking.
+Found Cycle of size 36; Breaking.
+Found Cycle of size 57; Breaking.
+Found Cycle of size 31; Breaking.
+Found Cycle of size 34; Breaking.
+Found Cycle of size 44; Breaking.
+Found Cycle of size 39; Breaking.
+Found Cycle of size 23; Breaking.
+Found Cycle of size 25; Breaking.
+Found Cycle of size 39; Breaking.
+Found Cycle of size 24; Breaking.
+Found Cycle of size 24; Breaking.
+Found Cycle of size 26; Breaking.
+Found Cycle of size 39; Breaking.
+Found Cycle of size 15; Breaking.
+Found Cycle of size 15; Breaking.
+size = 4062
+after ba size = 4062
 CREATING toString_Object_Cipher
 size = 53
 after ba size = 53
@@ -198,37 +235,6 @@ after ba size = 56
 CREATING xform_get_HashMap_Object_HashMap
 size = 3782
 after ba size = 3782
-CREATING xform_doFinal_Cipher_Object_Cipher
-Found Cycle of size 78; Breaking.
-Found Cycle of size 38; Breaking.
-Found Cycle of size 63; Breaking.
-Found Cycle of size 60; Breaking.
-Found Cycle of size 62; Breaking.
-Found Cycle of size 67; Breaking.
-Found Cycle of size 65; Breaking.
-Found Cycle of size 57; Breaking.
-Found Cycle of size 57; Breaking.
-Found Cycle of size 48; Breaking.
-Found Cycle of size 43; Breaking.
-Found Cycle of size 33; Breaking.
-Found Cycle of size 32; Breaking.
-Found Cycle of size 26; Breaking.
-Found Cycle of size 34; Breaking.
-Found Cycle of size 29; Breaking.
-Found Cycle of size 36; Breaking.
-Found Cycle of size 34; Breaking.
-Found Cycle of size 36; Breaking.
-Found Cycle of size 40; Breaking.
-Found Cycle of size 50; Breaking.
-Found Cycle of size 54; Breaking.
-Found Cycle of size 44; Breaking.
-Found Cycle of size 27; Breaking.
-Found Cycle of size 39; Breaking.
-Found Cycle of size 21; Breaking.
-Found Cycle of size 21; Breaking.
-Found Cycle of size 21; Breaking.
-size = 4068
-after ba size = 4068
 CREATING String_String_byte_String
 size = 1172
 after ba size = 1172
@@ -239,7 +245,7 @@ CREATING toString_String
 size = 38
 after ba size = 38
 CREATING getBytes_String_String
-Found Cycle of size 46; Breaking.
+Found Cycle of size 18; Breaking.
 size = 2897
 after ba size = 2897
 CREATING Boolean_meta
@@ -271,16 +277,9 @@ after ba size = 101
 CREATING Assert_meta
 size = 3
 after ba size = 3
-CREATING equals_Object_String
-Found Cycle of size 6; Breaking.
-size = 1616
-after ba size = 1616
 CREATING PasswordManagerTest_meta
 size = 3
 after ba size = 3
-CREATING length_String
-size = 45
-after ba size = 45
 CREATING charAt_int_String
 size = 116
 after ba size = 116
@@ -290,180 +289,743 @@ after ba size = 45
 CREATING charValue_Character
 size = 45
 after ba size = 45
-* before  EVERYTHING: main__WrapperNospec_PasswordManagerTest::SPEC nodes = 0	 main__Wrapper_PasswordManagerTest::SKETCH nodes = 4
+* before  EVERYTHING: main_int_int_int_int_int__WrapperNospec_PasswordManagerTest::SPEC nodes = 5	 main_int_int_int_int_int__Wrapper_PasswordManagerTest::SKETCH nodes = 9
  INBITS = 5
  CBITS  = 5
- input_ints = 0 	 input_bits = 0
+ input_ints = 5 	 input_bits = 0
  Inlining amount = 2
  Inlining functions in the sketch.
-inlined 1 new size =944
-Found Cycle of size 20; Breaking.
-inlined 69 new size =4259
-Found Cycle of size 43; Breaking.
-Found Cycle of size 42; Breaking.
-inlined 13 new size =8888
-Found Cycle of size 67; Breaking.
-Found Cycle of size 64; Breaking.
-Found Cycle of size 32; Breaking.
-Found Cycle of size 43; Breaking.
-Found Cycle of size 36; Breaking.
-Found Cycle of size 40; Breaking.
-Found Cycle of size 84; Breaking.
-Found Cycle of size 87; Breaking.
+inlined 1 new size =1069
+Found Cycle of size 38; Breaking.
+Found Cycle of size 61; Breaking.
+Found Cycle of size 15; Breaking.
+inlined 57 new size =26590
+Found Cycle of size 109; Breaking.
+inlined 70 new size =28038
+Found Cycle of size 112; Breaking.
+Found Cycle of size 85; Breaking.
+Found Cycle of size 91; Breaking.
+Found Cycle of size 89; Breaking.
+Found Cycle of size 239; Breaking.
+Found Cycle of size 236; Breaking.
+Found Cycle of size 91; Breaking.
+Found Cycle of size 202; Breaking.
+Found Cycle of size 174; Breaking.
+Found Cycle of size 174; Breaking.
+Found Cycle of size 165; Breaking.
+Found Cycle of size 108; Breaking.
+Found Cycle of size 167; Breaking.
+Found Cycle of size 76; Breaking.
+Found Cycle of size 185; Breaking.
+Found Cycle of size 108; Breaking.
+Found Cycle of size 157; Breaking.
+Found Cycle of size 73; Breaking.
+Found Cycle of size 221; Breaking.
+inlined 111 new size =84768
+Found Cycle of size 127; Breaking.
+Found Cycle of size 244; Breaking.
+Found Cycle of size 145; Breaking.
 Found Cycle of size 102; Breaking.
-Found Cycle of size 100; Breaking.
-Found Cycle of size 96; Breaking.
-Found Cycle of size 90; Breaking.
-Found Cycle of size 84; Breaking.
-Found Cycle of size 79; Breaking.
-Found Cycle of size 42; Breaking.
-Found Cycle of size 46; Breaking.
-Found Cycle of size 34; Breaking.
-Found Cycle of size 40; Breaking.
-inlined 54 new size =15013
+Found Cycle of size 204; Breaking.
+Found Cycle of size 105; Breaking.
+Found Cycle of size 104; Breaking.
+Found Cycle of size 244; Breaking.
+Found Cycle of size 139; Breaking.
+Found Cycle of size 95; Breaking.
+Found Cycle of size 224; Breaking.
+Found Cycle of size 57; Breaking.
+Found Cycle of size 107; Breaking.
+Found Cycle of size 140; Breaking.
+Found Cycle of size 124; Breaking.
+Found Cycle of size 164; Breaking.
 Found Cycle of size 125; Breaking.
-Found Cycle of size 74; Breaking.
-Found Cycle of size 65; Breaking.
-inlined 162 new size =51765
-Found Cycle of size 58; Breaking.
-inlined 289 new size =28261
-inlined 15 new size =28194
-inlined 0 new size =28194
+Found Cycle of size 158; Breaking.
+Found Cycle of size 150; Breaking.
+Found Cycle of size 150; Breaking.
+Found Cycle of size 144; Breaking.
+Found Cycle of size 111; Breaking.
+Found Cycle of size 138; Breaking.
+inlined 708 new size =166612
+Found Cycle of size 116; Breaking.
+inlined 714 new size =132471
+inlined 29 new size =132382
+inlined 0 new size =132382
 END OF STEP 0
  Inlining functions in the spec.
-inlined 0 new size =0
+inlined 0 new size =5
 END OF STEP 0
 Bailing out
-after Creating Miter: Problem nodes = 24105
-* Final Problem size: Problem nodes = 24092
-  # OF CONTROLS:    25
- control_ints = 10 	 control_bits = 15
-inputSize = 0	ctrlSize = 85
+after Creating Miter: Problem nodes = 108233
+* Final Problem size: Problem nodes = 108227
+  # OF CONTROLS:    24
+ control_ints = 8 	 control_bits = 16
+inputSize = 10	ctrlSize = 72
 Random seeds = 1
-!+ 1000000100010000110010000011010110000111000001000101011000000001100010000010000111000
-!+ H__3_158:1
-H__0_158:0
-H__4_158:0
-H__1_158:16
-H__2_158:66
-H__3_158_151:1
-H__0_158_151:0
-H__1_158_151:2
-H__2_158_151:107
-H__4_158_151_158_151:0
-H__8_161:0
-H__5_161:0
-H__6_161:14
-H__7_161:68
-H__9_161:0
-H__3_161_157:1
-H__0_161_157:0
-H__1_161_157:3
-H__2_161_157:24
-H__4_161_157:0
-H__3_161_157_151:1
-H__0_161_157_151:0
-H__1_161_157_151:16
-H__2_161_157_151:28
-H__4_161_157_151_161_157_151:0
+!+ 000001000000101001001000110001100000011101100100110011000000100010100001
+!+ H__3_156:0
+H__0_156:0
+H__5_156:0
+H__4_156:0
+H__1_156:2
+H__2_156:74
+H__4_156_155:0
+H__3_156_155:0
+H__0_156_155:1
+H__1_156_155:24
+H__2_156_155:6
+H__5_159:0
+H__4_159:0
+H__3_159:1
+H__0_159:1
+H__1_159:77
+H__2_159:76
+H__4_159_155:1
+H__3_159_155:0
+H__0_159_155:0
+H__1_159_155:16
+H__2_159_155:10
+H__5_156_155_156_155:0
+H__5_159_155_159_155:1
 
 BEG CHECK
- * After optims it became = 2 was 24092
-Assert at String.sk:23 (1)
-Simulation found a cex by random testing:  0 ms 
+ * After optims it became = 35396 was 108227
+Assert at String.sk:23 (0)
+Simulation found a cex by random testing:  0.026 ms 
 END CHECK
-********  0	ftime= 0	ctime= 0.042
-!% 
-!% 
+********  0	ftime= 0	ctime= 0.295
+!% 1011011010
+!% __u_5_52_0:1
+__w_6_53_0:3
+__x_7_54_0:2
+__y_8_55_0:1
+__z_9_56_0:1
+
 BEG FIND
 Level 1  intsize = 2
- * After optims it became = 24092 was 24092
- * After all optims it became = 24092
- finder  hits = 1530	 bstoreObjs=7330	 sstorePages=7
-hitcount 	0	6910	2
-hitcount 	1	261	2
-hitcount 	2	59	1
-hitcount 	3	48	1
-hitcount 	4	3	2
-hitcount 	5	23	1
-hitcount 	6	5	1
-hitcount 	7	1	2
-hitcount 	8	2	1
-hitcount 	11	2	1
-hitcount 	17	1	4
-hitcount 	19	2	1
-hitcount 	25	1	5
-hitcount 	27	5	1
-hitcount 	55	1	5
-hitcount 	57	1	4
-hitcount 	80	2	1
-hitcount 	104	2	1
-hitcount 	110	1	1
-bucketsPerDepth 	0	2
-bucketsPerDepth 	1	31
-bucketsPerDepth 	2	152
-bucketsPerDepth 	3	287
-bucketsPerDepth 	4	298
-bucketsPerDepth 	5	164
-bucketsPerDepth 	6	56
-bucketsPerDepth 	7	26
-bucketsPerDepth 	8	5
-bucketsPerDepth 	9	1
-bucketsPerDepth 	10	1
-* TIME TO ADD INPUT :  0.712 ms 
+ * After optims it became = 101181 was 108227
+ * After all optims it became = 101181
+ finder  hits = 9456	 bstoreObjs=32494	 sstorePages=31
+hitcount 	0	26751	4
+hitcount 	1	4885	5
+hitcount 	2	136	4
+hitcount 	3	541	4
+hitcount 	4	3	4
+hitcount 	5	74	4
+hitcount 	6	19	4
+hitcount 	8	7	4
+hitcount 	9	3	3
+hitcount 	11	3	3
+hitcount 	14	18	4
+hitcount 	15	6	4
+hitcount 	16	4	4
+hitcount 	17	7	4
+hitcount 	25	6	5
+hitcount 	27	6	6
+hitcount 	32	3	2
+hitcount 	36	3	2
+hitcount 	38	2	2
+hitcount 	44	1	5
+hitcount 	46	1	2
+hitcount 	49	2	8
+hitcount 	55	7	4
+hitcount 	58	5	4
+hitcount 	84	1	4
+bucketsPerDepth 	4	1
+bucketsPerDepth 	5	16
+bucketsPerDepth 	6	97
+bucketsPerDepth 	7	225
+bucketsPerDepth 	8	287
+bucketsPerDepth 	9	213
+bucketsPerDepth 	10	113
+bucketsPerDepth 	11	42
+bucketsPerDepth 	12	22
+bucketsPerDepth 	13	7
+bucketsPerDepth 	14	1
+* TIME TO ADD INPUT :  25000.3 ms 
 DECISIONS START = 0
-f# %assign: 26 clauses: 21885 learn: 2 restart: 1 decision: 1542 propagated: 9633
+f# %assign: 5 clauses: 90987 learn: 1 restart: 1 decision: 798 propagated: 35879
 END FIND
-!+ 1100000000100000010000000000000000110000000010000000000000000000000000000000000000000
-!+ H__3_158:1
-H__0_158:1
-H__4_158:0
-H__1_158:0
-H__2_158:1
-H__3_158_151:1
-H__0_158_151:0
-H__1_158_151:0
-H__2_158_151:0
-H__4_158_151_158_151:0
-H__8_161:1
-H__5_161:1
-H__6_161:0
-H__7_161:2
-H__9_161:0
-H__3_161_157:0
-H__0_161_157:0
-H__1_161_157:0
-H__2_161_157:0
-H__4_161_157:0
-H__3_161_157_151:0
-H__0_161_157_151:0
-H__1_161_157_151:0
-H__2_161_157_151:0
-H__4_161_157_151_161_157_151:0
+!+ 011000000001000000010000000000000000101000000001000000010000000111111100
+!+ H__3_156:0
+H__0_156:1
+H__5_156:1
+H__4_156:0
+H__1_156:0
+H__2_156:1
+H__4_156_155:0
+H__3_156_155:1
+H__0_156_155:0
+H__1_156_155:0
+H__2_156_155:0
+H__5_159:0
+H__4_159:1
+H__3_159:0
+H__0_159:1
+H__1_159:0
+H__2_159:2
+H__4_159_155:0
+H__3_159_155:0
+H__0_159_155:1
+H__1_159_155:0
+H__2_159_155:127
+H__5_156_155_156_155:0
+H__5_159_155_159_155:0
 
 BEG CHECK
- * After optims it became = 0 was 24092
-Simulation no cex:  0 ms 
+ * After optims it became = 52072 was 108227
+ TESTING HYPOTHESIS ITER 1
+h = 36  hasserts.size()= 6
+dagmain_int_int_int_int_int__WrapperNospec_PasswordManagerTest{
+0= (0)
+__u_5_52_0
+2= (0) < __u_5_52_0 
+3= (100)
+4= __u_5_52_0 < (100) 
+5= 2 & 4 
+6= Assume 5 : Assume at Passwor..erTest.sk:15
+__w_6_53_0
+8= (0) < __w_6_53_0 
+9= __w_6_53_0 < (100) 
+10= 8 & 9 
+11= Assume 10 : Assume at Passwor..erTest.sk:16
+__x_7_54_0
+13= (0) < __x_7_54_0 
+14= __x_7_54_0 < (100) 
+15= 13 & 14 
+16= Assume 15 : Assume at Passwor..erTest.sk:17
+__y_8_55_0
+18= (0) < __y_8_55_0 
+19= __y_8_55_0 < (100) 
+20= 18 & 19 
+21= Assume 20 : Assume at Passwor..erTest.sk:18
+__z_9_56_0
+23= (0) < __z_9_56_0 
+24= __z_9_56_0 < (100) 
+25= 23 & 24 
+26= Assume 25 : Assume at Passwor..erTest.sk:19
+27= __u_5_52_0 == __w_6_53_0 
+28= __w_6_53_0 == __y_8_55_0 
+29= 28 ! 
+30= 27 ! 
+31= [27]$(!28), (!27), $
+32= __x_7_54_0 == __z_9_56_0 
+33= 32 ! 
+34= 31 & (!32) 
+35= Assume 34 : Assume at Passwor..erTest.sk:20
+36= __u_5_52_0 == (0) 
+37= 36 ! 
+38= ASSERT (!36) : 
+}
+SLICE SIZE = 39
+c# %assign: 29 clauses: 46 learn: 0 restart: 0 decision: 0 propagated: 11
+ FOUND CONST: 36= __u_5_52_0 == (0)  = 0
+ reduced size from 52072 to 52044
+ TESTING HYPOTHESIS ITER 2
+h = 45  hasserts.size()= 6
+dagmain_int_int_int_int_int__WrapperNospec_PasswordManagerTest{
+0= (0)
+__u_5_52_0
+2= (0) < __u_5_52_0 
+3= (100)
+4= __u_5_52_0 < (100) 
+5= 2 & 4 
+6= Assume 5 : Assume at Passwor..erTest.sk:15
+__w_6_53_0
+8= (0) < __w_6_53_0 
+9= __w_6_53_0 < (100) 
+10= 8 & 9 
+11= Assume 10 : Assume at Passwor..erTest.sk:16
+__x_7_54_0
+13= (0) < __x_7_54_0 
+14= __x_7_54_0 < (100) 
+15= 13 & 14 
+16= Assume 15 : Assume at Passwor..erTest.sk:17
+__y_8_55_0
+18= (0) < __y_8_55_0 
+19= __y_8_55_0 < (100) 
+20= 18 & 19 
+21= Assume 20 : Assume at Passwor..erTest.sk:18
+__z_9_56_0
+23= (0) < __z_9_56_0 
+24= __z_9_56_0 < (100) 
+25= 23 & 24 
+26= Assume 25 : Assume at Passwor..erTest.sk:19
+27= __u_5_52_0 == __w_6_53_0 
+28= __w_6_53_0 == __y_8_55_0 
+29= 28 ! 
+30= 27 ! 
+31= [27]$(!28), (!27), $
+32= __x_7_54_0 == __z_9_56_0 
+33= 32 ! 
+34= 31 & (!32) 
+35= Assume 34 : Assume at Passwor..erTest.sk:20
+36= (10)
+37= __u_5_52_0 / (10) 
+38= (0)
+39= 37 == (0) 
+40= ASSERT 39 : 
+}
+SLICE SIZE = 41
+c# %assign: 41 clauses: 52 learn: 0 restart: 0 decision: 0 propagated: 15
+ FOUND CONST: 45= __u_5_52_0 / (10)  = 0
+ reduced size from 52044 to 51477
+ TESTING HYPOTHESIS ITER 3
+h = 145  hasserts.size()= 6
+SLICE SIZE = 114
+c# %assign: 29 clauses: 46 learn: 0 restart: 0 decision: 0 propagated: 11
+ FOUND CONST: 145= 144[121] = 1
+ reduced size from 51477 to 51385
+ TESTING HYPOTHESIS ITER 4
+h = 10435  hasserts.size()= 6
+SLICE SIZE = 306
+c# %assign: 29 clauses: 46 learn: 0 restart: 0 decision: 0 propagated: 11
+ FOUND CONST: 10435= 424==0 ? (238):(453) = 453
+ reduced size from 51385 to 51312
+ * Simulation optimized it to = 51312
+Simulation didn't find a cex:  999.636 ms 
+After all optim
+DECISIONS START = 0
+c# %assign: 81 clauses: 12120 learn: 28 restart: 1 decision: 229 propagated: 21066
 CONTROL: growing l=2 inputs to size 3
-Simulation no cex:  0 ms 
+ TESTING HYPOTHESIS ITER 1
+h = 36  hasserts.size()= 6
+dagmain_int_int_int_int_int__WrapperNospec_PasswordManagerTest{
+0= (0)
+__u_5_52_0
+2= (0) < __u_5_52_0 
+3= (100)
+4= __u_5_52_0 < (100) 
+5= 2 & 4 
+6= Assume 5 : Assume at Passwor..erTest.sk:15
+__w_6_53_0
+8= (0) < __w_6_53_0 
+9= __w_6_53_0 < (100) 
+10= 8 & 9 
+11= Assume 10 : Assume at Passwor..erTest.sk:16
+__x_7_54_0
+13= (0) < __x_7_54_0 
+14= __x_7_54_0 < (100) 
+15= 13 & 14 
+16= Assume 15 : Assume at Passwor..erTest.sk:17
+__y_8_55_0
+18= (0) < __y_8_55_0 
+19= __y_8_55_0 < (100) 
+20= 18 & 19 
+21= Assume 20 : Assume at Passwor..erTest.sk:18
+__z_9_56_0
+23= (0) < __z_9_56_0 
+24= __z_9_56_0 < (100) 
+25= 23 & 24 
+26= Assume 25 : Assume at Passwor..erTest.sk:19
+27= __u_5_52_0 == __w_6_53_0 
+28= __w_6_53_0 == __y_8_55_0 
+29= 28 ! 
+30= 27 ! 
+31= [27]$(!28), (!27), $
+32= __x_7_54_0 == __z_9_56_0 
+33= 32 ! 
+34= 31 & (!32) 
+35= Assume 34 : Assume at Passwor..erTest.sk:20
+36= __u_5_52_0 == (0) 
+37= 36 ! 
+38= ASSERT (!36) : 
+}
+SLICE SIZE = 39
+c# %assign: 17 clauses: 82 learn: 0 restart: 0 decision: 0 propagated: 11
+ FOUND CONST: 36= __u_5_52_0 == (0)  = 0
+ reduced size from 52072 to 52044
+ TESTING HYPOTHESIS ITER 2
+h = 45  hasserts.size()= 6
+dagmain_int_int_int_int_int__WrapperNospec_PasswordManagerTest{
+0= (0)
+__u_5_52_0
+2= (0) < __u_5_52_0 
+3= (100)
+4= __u_5_52_0 < (100) 
+5= 2 & 4 
+6= Assume 5 : Assume at Passwor..erTest.sk:15
+__w_6_53_0
+8= (0) < __w_6_53_0 
+9= __w_6_53_0 < (100) 
+10= 8 & 9 
+11= Assume 10 : Assume at Passwor..erTest.sk:16
+__x_7_54_0
+13= (0) < __x_7_54_0 
+14= __x_7_54_0 < (100) 
+15= 13 & 14 
+16= Assume 15 : Assume at Passwor..erTest.sk:17
+__y_8_55_0
+18= (0) < __y_8_55_0 
+19= __y_8_55_0 < (100) 
+20= 18 & 19 
+21= Assume 20 : Assume at Passwor..erTest.sk:18
+__z_9_56_0
+23= (0) < __z_9_56_0 
+24= __z_9_56_0 < (100) 
+25= 23 & 24 
+26= Assume 25 : Assume at Passwor..erTest.sk:19
+27= __u_5_52_0 == __w_6_53_0 
+28= __w_6_53_0 == __y_8_55_0 
+29= 28 ! 
+30= 27 ! 
+31= [27]$(!28), (!27), $
+32= __x_7_54_0 == __z_9_56_0 
+33= 32 ! 
+34= 31 & (!32) 
+35= Assume 34 : Assume at Passwor..erTest.sk:20
+36= (10)
+37= __u_5_52_0 / (10) 
+38= (0)
+39= 37 == (0) 
+40= ASSERT 39 : 
+}
+SLICE SIZE = 41
+c# %assign: 35 clauses: 100 learn: 0 restart: 0 decision: 0 propagated: 23
+ FOUND CONST: 45= __u_5_52_0 / (10)  = 0
+ reduced size from 52044 to 51477
+ TESTING HYPOTHESIS ITER 3
+h = 145  hasserts.size()= 6
+SLICE SIZE = 114
+c# %assign: 17 clauses: 82 learn: 0 restart: 0 decision: 0 propagated: 11
+ FOUND CONST: 145= 144[121] = 1
+ reduced size from 51477 to 51385
+ TESTING HYPOTHESIS ITER 4
+h = 10435  hasserts.size()= 6
+SLICE SIZE = 306
+c# %assign: 17 clauses: 82 learn: 0 restart: 0 decision: 0 propagated: 11
+ FOUND CONST: 10435= 424==0 ? (238):(453) = 453
+ reduced size from 51385 to 51312
+ * Simulation optimized it to = 51312
+Simulation didn't find a cex:  1000.01 ms 
+After all optim
+DECISIONS START = 0
+c# %assign: 79 clauses: 17800 learn: 40 restart: 1 decision: 433 propagated: 40896
 CONTROL: growing l=2 inputs to size 4
-Simulation no cex:  0 ms 
+ TESTING HYPOTHESIS ITER 1
+h = 36  hasserts.size()= 6
+dagmain_int_int_int_int_int__WrapperNospec_PasswordManagerTest{
+0= (0)
+__u_5_52_0
+2= (0) < __u_5_52_0 
+3= (100)
+4= __u_5_52_0 < (100) 
+5= 2 & 4 
+6= Assume 5 : Assume at Passwor..erTest.sk:15
+__w_6_53_0
+8= (0) < __w_6_53_0 
+9= __w_6_53_0 < (100) 
+10= 8 & 9 
+11= Assume 10 : Assume at Passwor..erTest.sk:16
+__x_7_54_0
+13= (0) < __x_7_54_0 
+14= __x_7_54_0 < (100) 
+15= 13 & 14 
+16= Assume 15 : Assume at Passwor..erTest.sk:17
+__y_8_55_0
+18= (0) < __y_8_55_0 
+19= __y_8_55_0 < (100) 
+20= 18 & 19 
+21= Assume 20 : Assume at Passwor..erTest.sk:18
+__z_9_56_0
+23= (0) < __z_9_56_0 
+24= __z_9_56_0 < (100) 
+25= 23 & 24 
+26= Assume 25 : Assume at Passwor..erTest.sk:19
+27= __u_5_52_0 == __w_6_53_0 
+28= __w_6_53_0 == __y_8_55_0 
+29= 28 ! 
+30= 27 ! 
+31= [27]$(!28), (!27), $
+32= __x_7_54_0 == __z_9_56_0 
+33= 32 ! 
+34= 31 & (!32) 
+35= Assume 34 : Assume at Passwor..erTest.sk:20
+36= __u_5_52_0 == (0) 
+37= 36 ! 
+38= ASSERT (!36) : 
+}
+SLICE SIZE = 39
+c# %assign: 10 clauses: 154 learn: 0 restart: 0 decision: 0 propagated: 11
+ FOUND CONST: 36= __u_5_52_0 == (0)  = 0
+ reduced size from 52072 to 52044
+ TESTING HYPOTHESIS ITER 2
+h = 56  hasserts.size()= 6
+dagmain_int_int_int_int_int__WrapperNospec_PasswordManagerTest{
+0= (0)
+__u_5_52_0
+2= (0) < __u_5_52_0 
+3= (100)
+4= __u_5_52_0 < (100) 
+5= 2 & 4 
+6= Assume 5 : Assume at Passwor..erTest.sk:15
+__w_6_53_0
+8= (0) < __w_6_53_0 
+9= __w_6_53_0 < (100) 
+10= 8 & 9 
+11= Assume 10 : Assume at Passwor..erTest.sk:16
+__x_7_54_0
+13= (0) < __x_7_54_0 
+14= __x_7_54_0 < (100) 
+15= 13 & 14 
+16= Assume 15 : Assume at Passwor..erTest.sk:17
+__y_8_55_0
+18= (0) < __y_8_55_0 
+19= __y_8_55_0 < (100) 
+20= 18 & 19 
+21= Assume 20 : Assume at Passwor..erTest.sk:18
+__z_9_56_0
+23= (0) < __z_9_56_0 
+24= __z_9_56_0 < (100) 
+25= 23 & 24 
+26= Assume 25 : Assume at Passwor..erTest.sk:19
+27= __u_5_52_0 == __w_6_53_0 
+28= __w_6_53_0 == __y_8_55_0 
+29= 28 ! 
+30= 27 ! 
+31= [27]$(!28), (!27), $
+32= __x_7_54_0 == __z_9_56_0 
+33= 32 ! 
+34= 31 & (!32) 
+35= Assume 34 : Assume at Passwor..erTest.sk:20
+36= (10)
+37= __u_5_52_0 / (10) 
+38= 37 / (10) 
+39= (0)
+40= 38 == (0) 
+41= ASSERT 40 : 
+}
+SLICE SIZE = 42
+c# %assign: 9 clauses: 193 learn: 0 restart: 0 decision: 0 propagated: 11
+ FOUND CONST: 56= 45 / (10)  = 0
+ reduced size from 52044 to 51510
+ TESTING HYPOTHESIS ITER 3
+h = 10560  hasserts.size()= 6
+SLICE SIZE = 342
+c# %assign: 9 clauses: 193 learn: 0 restart: 0 decision: 0 propagated: 11
+ FOUND CONST: 10560= 545==0 ? (238):(453) = 453
+ reduced size from 51510 to 51437
+ TESTING HYPOTHESIS ITER 4
+h = 36  hasserts.size()= 6
+dagmain_int_int_int_int_int__WrapperNospec_PasswordManagerTest{
+0= (0)
+__u_5_52_0
+2= (0) < __u_5_52_0 
+3= (100)
+4= __u_5_52_0 < (100) 
+5= 2 & 4 
+6= Assume 5 : Assume at Passwor..erTest.sk:15
+__w_6_53_0
+8= (0) < __w_6_53_0 
+9= __w_6_53_0 < (100) 
+10= 8 & 9 
+11= Assume 10 : Assume at Passwor..erTest.sk:16
+__x_7_54_0
+13= (0) < __x_7_54_0 
+14= __x_7_54_0 < (100) 
+15= 13 & 14 
+16= Assume 15 : Assume at Passwor..erTest.sk:17
+__y_8_55_0
+18= (0) < __y_8_55_0 
+19= __y_8_55_0 < (100) 
+20= 18 & 19 
+21= Assume 20 : Assume at Passwor..erTest.sk:18
+__z_9_56_0
+23= (0) < __z_9_56_0 
+24= __z_9_56_0 < (100) 
+25= 23 & 24 
+26= Assume 25 : Assume at Passwor..erTest.sk:19
+27= __u_5_52_0 == __w_6_53_0 
+28= __w_6_53_0 == __y_8_55_0 
+29= 28 ! 
+30= 27 ! 
+31= [27]$(!28), (!27), $
+32= __x_7_54_0 == __z_9_56_0 
+33= 32 ! 
+34= 31 & (!32) 
+35= Assume 34 : Assume at Passwor..erTest.sk:20
+36= 2 ! 
+37= (!2) ! 
+38= ASSERT (!(!2)) : 
+}
+SLICE SIZE = 39
+c# %assign: 10 clauses: 154 learn: 0 restart: 0 decision: 0 propagated: 11
+ FOUND CONST: 36= 4 !  = 0
+ reduced size from 51437 to 51435
+ * Simulation optimized it to = 51435
+Simulation didn't find a cex:  1000.15 ms 
+After all optim
+DECISIONS START = 0
+c# %assign: 61 clauses: 25458 learn: 35 restart: 2 decision: 621 propagated: 180844
 CONTROL: growing l=2 inputs to size 5
-Simulation no cex:  0 ms 
+ TESTING HYPOTHESIS ITER 1
+h = 36  hasserts.size()= 6
+dagmain_int_int_int_int_int__WrapperNospec_PasswordManagerTest{
+0= (0)
+__u_5_52_0
+2= (0) < __u_5_52_0 
+3= (100)
+4= __u_5_52_0 < (100) 
+5= 2 & 4 
+6= Assume 5 : Assume at Passwor..erTest.sk:15
+__w_6_53_0
+8= (0) < __w_6_53_0 
+9= __w_6_53_0 < (100) 
+10= 8 & 9 
+11= Assume 10 : Assume at Passwor..erTest.sk:16
+__x_7_54_0
+13= (0) < __x_7_54_0 
+14= __x_7_54_0 < (100) 
+15= 13 & 14 
+16= Assume 15 : Assume at Passwor..erTest.sk:17
+__y_8_55_0
+18= (0) < __y_8_55_0 
+19= __y_8_55_0 < (100) 
+20= 18 & 19 
+21= Assume 20 : Assume at Passwor..erTest.sk:18
+__z_9_56_0
+23= (0) < __z_9_56_0 
+24= __z_9_56_0 < (100) 
+25= 23 & 24 
+26= Assume 25 : Assume at Passwor..erTest.sk:19
+27= __u_5_52_0 == __w_6_53_0 
+28= __w_6_53_0 == __y_8_55_0 
+29= 28 ! 
+30= 27 ! 
+31= [27]$(!28), (!27), $
+32= __x_7_54_0 == __z_9_56_0 
+33= 32 ! 
+34= 31 & (!32) 
+35= Assume 34 : Assume at Passwor..erTest.sk:20
+36= __u_5_52_0 == (0) 
+37= 36 ! 
+38= ASSERT (!36) : 
+}
+SLICE SIZE = 39
+c# %assign: 5 clauses: 298 learn: 0 restart: 0 decision: 0 propagated: 11
+ FOUND CONST: 36= __u_5_52_0 == (0)  = 0
+ reduced size from 52072 to 52044
+ TESTING HYPOTHESIS ITER 2
+h = 56  hasserts.size()= 6
+dagmain_int_int_int_int_int__WrapperNospec_PasswordManagerTest{
+0= (0)
+__u_5_52_0
+2= (0) < __u_5_52_0 
+3= (100)
+4= __u_5_52_0 < (100) 
+5= 2 & 4 
+6= Assume 5 : Assume at Passwor..erTest.sk:15
+__w_6_53_0
+8= (0) < __w_6_53_0 
+9= __w_6_53_0 < (100) 
+10= 8 & 9 
+11= Assume 10 : Assume at Passwor..erTest.sk:16
+__x_7_54_0
+13= (0) < __x_7_54_0 
+14= __x_7_54_0 < (100) 
+15= 13 & 14 
+16= Assume 15 : Assume at Passwor..erTest.sk:17
+__y_8_55_0
+18= (0) < __y_8_55_0 
+19= __y_8_55_0 < (100) 
+20= 18 & 19 
+21= Assume 20 : Assume at Passwor..erTest.sk:18
+__z_9_56_0
+23= (0) < __z_9_56_0 
+24= __z_9_56_0 < (100) 
+25= 23 & 24 
+26= Assume 25 : Assume at Passwor..erTest.sk:19
+27= __u_5_52_0 == __w_6_53_0 
+28= __w_6_53_0 == __y_8_55_0 
+29= 28 ! 
+30= 27 ! 
+31= [27]$(!28), (!27), $
+32= __x_7_54_0 == __z_9_56_0 
+33= 32 ! 
+34= 31 & (!32) 
+35= Assume 34 : Assume at Passwor..erTest.sk:20
+36= (10)
+37= __u_5_52_0 / (10) 
+38= 37 / (10) 
+39= (0)
+40= 38 == (0) 
+41= ASSERT 40 : 
+}
+SLICE SIZE = 42
+c# %assign: 32 clauses: 389 learn: 0 restart: 0 decision: 0 propagated: 69
+ FOUND CONST: 56= 45 / (10)  = 0
+ reduced size from 52044 to 51510
+ TESTING HYPOTHESIS ITER 3
+h = 10560  hasserts.size()= 6
+SLICE SIZE = 342
+c# %assign: 5 clauses: 380 learn: 0 restart: 0 decision: 0 propagated: 11
+ FOUND CONST: 10560= 545==0 ? (238):(453) = 453
+ reduced size from 51510 to 51437
+ TESTING HYPOTHESIS ITER 4
+h = 36  hasserts.size()= 6
+dagmain_int_int_int_int_int__WrapperNospec_PasswordManagerTest{
+0= (0)
+__u_5_52_0
+2= (0) < __u_5_52_0 
+3= (100)
+4= __u_5_52_0 < (100) 
+5= 2 & 4 
+6= Assume 5 : Assume at Passwor..erTest.sk:15
+__w_6_53_0
+8= (0) < __w_6_53_0 
+9= __w_6_53_0 < (100) 
+10= 8 & 9 
+11= Assume 10 : Assume at Passwor..erTest.sk:16
+__x_7_54_0
+13= (0) < __x_7_54_0 
+14= __x_7_54_0 < (100) 
+15= 13 & 14 
+16= Assume 15 : Assume at Passwor..erTest.sk:17
+__y_8_55_0
+18= (0) < __y_8_55_0 
+19= __y_8_55_0 < (100) 
+20= 18 & 19 
+21= Assume 20 : Assume at Passwor..erTest.sk:18
+__z_9_56_0
+23= (0) < __z_9_56_0 
+24= __z_9_56_0 < (100) 
+25= 23 & 24 
+26= Assume 25 : Assume at Passwor..erTest.sk:19
+27= __u_5_52_0 == __w_6_53_0 
+28= __w_6_53_0 == __y_8_55_0 
+29= 28 ! 
+30= 27 ! 
+31= [27]$(!28), (!27), $
+32= __x_7_54_0 == __z_9_56_0 
+33= 32 ! 
+34= 31 & (!32) 
+35= Assume 34 : Assume at Passwor..erTest.sk:20
+36= 2 ! 
+37= (!2) ! 
+38= ASSERT (!(!2)) : 
+}
+SLICE SIZE = 39
+c# %assign: 5 clauses: 298 learn: 0 restart: 0 decision: 0 propagated: 11
+ FOUND CONST: 36= 4 !  = 0
+ reduced size from 51437 to 51435
+ * Simulation optimized it to = 51435
+Simulation didn't find a cex:  1000.13 ms 
+After all optim
+DECISIONS START = 0
+c# %assign: 91 clauses: 63397 learn: 200 restart: 3 decision: 1544 propagated: 351497
 END CHECK
-********  1	ftime= 0.715	ctime= 0.038
+********  1	ftime= 25000.3	ctime= 32000.2
  *GOT THE CORRECT ANSWER IN 2 iterations.
- *FIND TIME 0.715 CHECK TIME 0.08 TOTAL TIME 0.795
-VALUES H__0_158: 1, H__0_158_151: 0, H__0_161_157: 0, H__0_161_157_151: 0, H__1_158: 0, H__1_158_151: 0, H__1_161_157: 0, H__1_161_157_151: 0, H__2_158: 1, H__2_158_151: 0, H__2_161_157: 0, H__2_161_157_151: 0, H__3_158: 1, H__3_158_151: 1, H__3_161_157: 0, H__3_161_157_151: 0, H__4_158: 0, H__4_158_151_158_151: 0, H__4_161_157: 0, H__4_161_157_151_161_157_151: 0, H__5_161: 1, H__6_161: 0, H__7_161: 2, H__8_161: 1, H__9_161: 0, 
+ *FIND TIME 25000.3 CHECK TIME 32000.5 TOTAL TIME 57000.9
+VALUES H__0_156: 1, H__0_156_155: 0, H__0_159: 1, H__0_159_155: 1, H__1_156: 0, H__1_156_155: 0, H__1_159: 0, H__1_159_155: 0, H__2_156: 1, H__2_156_155: 0, H__2_159: 2, H__2_159_155: 127, H__3_156: 0, H__3_156_155: 1, H__3_159: 0, H__3_159_155: 0, H__4_156: 0, H__4_156_155: 0, H__4_159: 1, H__4_159_155: 0, H__5_156: 1, H__5_156_155_156_155: 0, H__5_159: 0, H__5_159_155_159_155: 0, 
 RESULT = 2  
-**ROUND 0 : 0 Round time:  1000.16 ms 
+**ROUND 0 : 0 Round time:  59000.9 ms 
 RNDDEG = -1
 return 0
 
 ----- Statistics -----
-Total elapsed time (ms):  1000.69
-Model building time (ms): 0.504
-Solution time (ms):       1000.16
+Total elapsed time (ms):  60999.7
+Model building time (ms): 999.687
+Solution time (ms):       59000.9
 Max virtual mem (bytes):  0
 Max resident mem (bytes): 0
 Max private mem (bytes):  0
@@ -471,9 +1033,9 @@ ALL CORRECT
 [SATBackend] Stats for last run:
       [solution stats]
       successful? ---------------------> true
-      elapsed time (s) ----------------> 1.867
-      model building time (s) ---------> 0.0
-      solution time (s) ---------------> 1.0
+      elapsed time (s) ----------------> 60.987
+      model building time (s) ---------> 0.999
+      solution time (s) ---------------> 59.0
       max memory usage (MiB) ----------> 0.0
       [SAT-specific solution stats]
       initial number of nodes ---------> -1
@@ -489,481 +1051,216 @@ package Cryptographer{
   
 void Cryptographer_Cryptographer (Object self, ref Object _out)/*Cryptographer.sk:3*/
   {
-    Object@Object random_s77 = null;
-    SecureRandom_SecureRandom@SecureRandom(random_s77);
-    Object@Object randomKey_s79 = null;
-    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=16)), randomKey_s79);
+    Object@Object random_s68 = null;
+    SecureRandom_SecureRandom@SecureRandom(random_s68);
+    Object@Object randomKey_s70 = null;
+    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=16)), randomKey_s70);
+    int _out_s72 = 0;
+    SecureRandom@meta(_out_s72);
+    if((random_s68.__cid) == (new Object@Object(__cid=-2, _int=_out_s72)._int))/*Cryptographer.sk:6*/
+    {
+      Object@Object _out_s75 = null;
+      nextBytes_Object_Object@SecureRandom(random_s68, randomKey_s70, _out_s75);
+    }
+    Object@Object _out_s77 = null;
+    SecretKeySpec_SecretKeySpec@SecretKeySpec(_out_s77);
+    self.GCMSecretKey_Cryptographer = _out_s77;
+    Object@Object _out_s79 = null;
+    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=16)), _out_s79);
+    self.randomIv_Cryptographer = _out_s79;
     int _out_s81 = 0;
     SecureRandom@meta(_out_s81);
-    if((random_s77.__cid) == (new Object@Object(__cid=-2, _int=_out_s81)._int))/*Cryptographer.sk:6*/
+    if((random_s68.__cid) == (new Object@Object(__cid=-2, _int=_out_s81)._int))/*Cryptographer.sk:9*/
     {
       Object@Object _out_s84 = null;
-      nextBytes_Object_Object@SecureRandom(random_s77, randomKey_s79, _out_s84);
+      nextBytes_Object_Object@SecureRandom(random_s68, self.randomIv_Cryptographer, _out_s84);
     }
-    Object@Object _out_s86 = null;
-    SecretKeySpec_SecretKeySpec@SecretKeySpec(_out_s86);
-    self.GCMSecretKey_Cryptographer = _out_s86;
+    int _out_s86 = 0;
+    IvParameterSpec@meta(_out_s86);
     Object@Object _out_s88 = null;
-    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=16)), _out_s88);
-    self.randomIv_Cryptographer = _out_s88;
-    int _out_s90 = 0;
-    SecureRandom@meta(_out_s90);
-    if((random_s77.__cid) == (new Object@Object(__cid=-2, _int=_out_s90)._int))/*Cryptographer.sk:9*/
+    IvParameterSpec_IvParameterSpec_byte@IvParameterSpec(new Object@Object(__cid=_out_s86), self.randomIv_Cryptographer, _out_s88)//{};
+    self.ivParameterSpec_Cryptographer = _out_s88;
+    Object@Object _out_s90 = null;
+    Cipher_Cipher@Cipher(_out_s90);
+    self.myCypherOut_Cryptographer = _out_s90;
+    int _out_s92 = 0;
+    Cipher@meta(_out_s92);
+    if((self.myCypherOut_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=_out_s92)._int))/*Cryptographer.sk:12*/
     {
-      Object@Object _out_s93 = null;
-      nextBytes_Object_Object@SecureRandom(random_s77, self.randomIv_Cryptographer, _out_s93);
+      Object@Object _out_s94 = null;
+      init_Object_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, new Object@Object(__cid=-2, _int=2), self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer, _out_s94);
     }
-    int _out_s95 = 0;
-    IvParameterSpec@meta(_out_s95);
-    Object@Object _out_s97 = null;
-    IvParameterSpec_IvParameterSpec_byte@IvParameterSpec(new Object@Object(__cid=_out_s95), self.randomIv_Cryptographer, _out_s97)//{};
-    self.ivParameterSpec_Cryptographer = _out_s97;
-    Object@Object _out_s99 = null;
-    Cipher_Cipher@Cipher(_out_s99);
-    self.myCypherOut_Cryptographer = _out_s99;
-    int _out_s101 = 0;
-    Cipher@meta(_out_s101);
-    if((self.myCypherOut_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=_out_s101)._int))/*Cryptographer.sk:12*/
+    int _out_s96 = 0;
+    Cipher@meta(_out_s96);
+    Object@Object _pac_sc_s97 = null;
+    if((self.myCypherOut_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=_out_s96)._int))/*Cryptographer.sk:13*/
     {
-      Object@Object _out_s103 = null;
-      init_Object_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, new Object@Object(__cid=-2, _int=2), self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer, _out_s103);
-    }
-    int _out_s105 = 0;
-    Cipher@meta(_out_s105);
-    Object@Object _pac_sc_s106 = null;
-    if((self.myCypherOut_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=_out_s105)._int))/*Cryptographer.sk:13*/
-    {
-      Object@Object _out_s108 = null;
-      initb_Object_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, new Object@Object(__cid=-2, _int=2), self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer, _out_s108);
-      _pac_sc_s106 = _out_s108;
+      Object@Object _out_s99 = null;
+      initb_Object_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, new Object@Object(__cid=-2, _int=2), self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer, _out_s99);
+      _pac_sc_s97 = _out_s99;
     }
     else
     {
-      _pac_sc_s106 = null;
+      _pac_sc_s97 = null;
     }
-    self.myCypherOut_Cryptographer = _pac_sc_s106;
-    int secret_s110 = 0;
-    String@meta(secret_s110);
-    Object@Object secret_s112 = null;
-    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=7), A={'s','e','c','r','e','t','\0'}), secret_s112);
-    Object@Object secret_s114 = null;
-    String_String_char_int_int@String(new Object@Object(__cid=secret_s110), secret_s112, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=6), secret_s114)//{};
-    Object@Object _out_s116 = null;
-    Mac_Mac@Mac(_out_s116);
-    self.sha256_HMAC_Cryptographer = _out_s116;
-    Object@Object _out_s118 = null;
-    SecretKeySpec_SecretKeySpec@SecretKeySpec(_out_s118);
-    self.Hash_secret_key_Cryptographer = _out_s118;
-    int _out_s120 = 0;
-    Mac@meta(_out_s120);
-    if((self.sha256_HMAC_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=_out_s120)._int))/*Cryptographer.sk:17*/
+    self.myCypherOut_Cryptographer = _pac_sc_s97;
+    int secret_s101 = 0;
+    String@meta(secret_s101);
+    Object@Object secret_s103 = null;
+    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=7), A={'s','e','c','r','e','t','\0'}), secret_s103);
+    Object@Object secret_s105 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=secret_s101), secret_s103, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=6), secret_s105)//{};
+    Object@Object _out_s107 = null;
+    Mac_Mac@Mac(_out_s107);
+    self.sha256_HMAC_Cryptographer = _out_s107;
+    Object@Object _out_s109 = null;
+    SecretKeySpec_SecretKeySpec@SecretKeySpec(_out_s109);
+    self.Hash_secret_key_Cryptographer = _out_s109;
+    int _out_s111 = 0;
+    Mac@meta(_out_s111);
+    if((self.sha256_HMAC_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=_out_s111)._int))/*Cryptographer.sk:17*/
     {
-      Object@Object _out_s122 = null;
-      init_Object_SecretKeySpec@Mac(self.sha256_HMAC_Cryptographer, self.Hash_secret_key_Cryptographer, _out_s122);
+      Object@Object _out_s113 = null;
+      init_Object_SecretKeySpec@Mac(self.sha256_HMAC_Cryptographer, self.Hash_secret_key_Cryptographer, _out_s113);
     }
-    int _out_s124 = 0;
-    Mac@meta(_out_s124);
-    Object@Object _pac_sc_s125 = null;
-    if((self.sha256_HMAC_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=_out_s124)._int))/*Cryptographer.sk:18*/
+    int _out_s115 = 0;
+    Mac@meta(_out_s115);
+    Object@Object _pac_sc_s116 = null;
+    if((self.sha256_HMAC_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=_out_s115)._int))/*Cryptographer.sk:18*/
     {
-      Object@Object _out_s127 = null;
-      initb_Object_SecretKeySpec@Mac(self.sha256_HMAC_Cryptographer, self.Hash_secret_key_Cryptographer, _out_s127);
-      _pac_sc_s125 = _out_s127;
+      Object@Object _out_s118 = null;
+      initb_Object_SecretKeySpec@Mac(self.sha256_HMAC_Cryptographer, self.Hash_secret_key_Cryptographer, _out_s118);
+      _pac_sc_s116 = _out_s118;
     }
     else
     {
-      _pac_sc_s125 = null;
+      _pac_sc_s116 = null;
     }
-    self.sha256_HMAC_Cryptographer = _pac_sc_s125;
+    self.sha256_HMAC_Cryptographer = _pac_sc_s116;
     self.MAX_LENGTH_PASSWORD_Cryptographer = new Object@Object(__cid=-2, _int=16);
     _out = self;
     return;
   }
-  /*Cryptographer.sk:63*/
+  /*Cryptographer.sk:82*/
   
-void decrypt_String (Object self, Object plainText, ref Object _out)/*Cryptographer.sk:63*/
+void decrypt_String (Object self, Object plainText, ref Object _out)/*Cryptographer.sk:82*/
   {
-    Object@Object cipherText_s20 = null;
-    if(new Object@Object(__cid=-4, _bit=1)._bit)/*Cryptographer.sk:44*/
+    int _out_s28 = 0;
+    Cipher@meta(_out_s28);
+    if((self.myCypherOut_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=_out_s28)._int))/*Cryptographer.sk:30*/
     {
-      int _out_s26 = 0;
-      Cipher@meta(_out_s26);
-      if((self.myCypherOut_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=_out_s26)._int))/*Cryptographer.sk:45*/
-      {
-        Object@Object _out_s28 = null;
-        init_Object_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, new Object@Object(__cid=-2, _int=0), self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer, _out_s28);
-      }
-      int _out_s30 = 0;
-      Cipher@meta(_out_s30);
-      Object@Object _pac_sc_s31 = null;
-      if((self.myCypherOut_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=_out_s30)._int))/*Cryptographer.sk:46*/
-      {
-        Object@Object _out_s33 = null;
-        initb_Object_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, new Object@Object(__cid=-2, _int=2), self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer, _out_s33);
-        _pac_sc_s31 = _out_s33;
-      }
-      else
-      {
-        _pac_sc_s31 = null;
-      }
-      self.myCypherOut_Cryptographer = _pac_sc_s31;
+      Object@Object _out_s30 = null;
+      init_Object_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, new Object@Object(__cid=-2, _int=0), self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer, _out_s30);
     }
-    if(new Object@Object(__cid=-4, _bit=1)._bit)/*Cryptographer.sk:48*/
+    int _out_s32 = 0;
+    Cipher@meta(_out_s32);
+    Object@Object _pac_sc_s33 = null;
+    if((self.myCypherOut_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=_out_s32)._int))/*Cryptographer.sk:31*/
     {
-      Object@Object cipherText_s35 = null;
-      xform_doFinal_Cipher_Object@Cipher(self.myCypherOut_Cryptographer._cipher, plainText, cipherText_s35);
-      cipherText_s20 = cipherText_s35;
-    }
-    if(new Object@Object(__cid=-4, _bit=0)._bit)/*Cryptographer.sk:52*/
-    {
-      Object@Object cipherText_s37 = null;
-      if(new Object@Object(__cid=-4, _bit=0)._bit)/*Cryptographer.sk:29*/
-      {
-        int _out_s39 = 0;
-        Cipher@meta(_out_s39);
-        if((self.myCypherOut_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=_out_s39)._int))/*Cryptographer.sk:30*/
-        {
-          Object@Object _out_s41 = null;
-          init_Object_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, new Object@Object(__cid=-2, _int=0), self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer, _out_s41);
-        }
-        int _out_s43 = 0;
-        Cipher@meta(_out_s43);
-        Object@Object _pac_sc_s44 = null;
-        if((self.myCypherOut_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=_out_s43)._int))/*Cryptographer.sk:31*/
-        {
-          Object@Object _out_s46 = null;
-          initb_Object_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, new Object@Object(__cid=-2, _int=0), self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer, _out_s46);
-          _pac_sc_s44 = _out_s46;
-        }
-        else
-        {
-          _pac_sc_s44 = null;
-        }
-        self.myCypherOut_Cryptographer = _pac_sc_s44;
-      }
-      if(new Object@Object(__cid=-4, _bit=0)._bit)/*Cryptographer.sk:33*/
-      {
-        int cipherText_s48 = 0;
-        Cipher@meta(cipherText_s48);
-        Object@Object _pac_sc_s49 = null;
-        if((self.myCypherOut_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=cipherText_s48)._int))/*Cryptographer.sk:34*/
-        {
-          int cipherText_s51 = 0;
-          String@meta(cipherText_s51);
-          Object@Object _pac_sc_s52 = null;
-          if((plainText.__cid) == (new Object@Object(__cid=-2, _int=cipherText_s51)._int))/*Cryptographer.sk:34*/
-          {
-            Object@Object cipherText_s54 = null;
-            getBytes@String(plainText, cipherText_s54);
-            _pac_sc_s52 = cipherText_s54;
-          }
-          else
-          {
-            _pac_sc_s52 = null;
-          }
-          Object@Object cipherText_s56 = null;
-          doFinal_Object_Object@Cipher(self.myCypherOut_Cryptographer, _pac_sc_s52, cipherText_s56)//{};
-          _pac_sc_s49 = cipherText_s56;
-        }
-        else
-        {
-          _pac_sc_s49 = null;
-        }
-        cipherText_s37 = _pac_sc_s49;
-        int _out_s58 = 0;
-        Cipher@meta(_out_s58);
-        Object@Object _pac_sc_s59 = null;
-        if((self.myCypherOut_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=_out_s58)._int))/*Cryptographer.sk:34*/
-        {
-          int _out_s61 = 0;
-          String@meta(_out_s61);
-          Object@Object _pac_sc_s62 = null;
-          if((plainText.__cid) == (new Object@Object(__cid=-2, _int=_out_s61)._int))/*Cryptographer.sk:34*/
-          {
-            Object@Object _out_s64 = null;
-            getBytes@String(plainText, _out_s64);
-            _pac_sc_s62 = _out_s64;
-          }
-          else
-          {
-            _pac_sc_s62 = null;
-          }
-          Object@Object _out_s66 = null;
-          doFinalb_Object_Object@Cipher(self.myCypherOut_Cryptographer, _pac_sc_s62, _out_s66)//{};
-          _pac_sc_s59 = _out_s66;
-        }
-        else
-        {
-          _pac_sc_s59 = null;
-        }
-        self.myCypherOut_Cryptographer = _pac_sc_s59;
-      }
-      if(new Object@Object(__cid=-4, _bit=0)._bit)/*Cryptographer.sk:36*/
-      {
-        Object@Object cipherText_s68 = null;
-        if(new Object@Object(__cid=-4, _bit=0)._bit)/*Cryptographer.sk:29*/
-        {
-          int _out_s39_0 = 0;
-          Cipher@meta(_out_s39_0);
-          if((self.myCypherOut_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=_out_s39_0)._int))/*Cryptographer.sk:30*/
-          {
-            Object@Object _out_s41_0 = null;
-            init_Object_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, new Object@Object(__cid=-2, _int=0), self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer, _out_s41_0);
-          }
-          int _out_s43_0 = 0;
-          Cipher@meta(_out_s43_0);
-          Object@Object _pac_sc_s44_0 = null;
-          if((self.myCypherOut_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=_out_s43_0)._int))/*Cryptographer.sk:31*/
-          {
-            Object@Object _out_s46_0 = null;
-            initb_Object_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, new Object@Object(__cid=-2, _int=0), self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer, _out_s46_0);
-            _pac_sc_s44_0 = _out_s46_0;
-          }
-          else
-          {
-            _pac_sc_s44_0 = null;
-          }
-          self.myCypherOut_Cryptographer = _pac_sc_s44_0;
-        }
-        if(new Object@Object(__cid=-4, _bit=0)._bit)/*Cryptographer.sk:33*/
-        {
-          int cipherText_s48_0 = 0;
-          Cipher@meta(cipherText_s48_0);
-          Object@Object _pac_sc_s49_0 = null;
-          if((self.myCypherOut_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=cipherText_s48_0)._int))/*Cryptographer.sk:34*/
-          {
-            int cipherText_s51_0 = 0;
-            String@meta(cipherText_s51_0);
-            Object@Object _pac_sc_s52_0 = null;
-            if((plainText.__cid) == (new Object@Object(__cid=-2, _int=cipherText_s51_0)._int))/*Cryptographer.sk:34*/
-            {
-              Object@Object cipherText_s54_0 = null;
-              getBytes@String(plainText, cipherText_s54_0);
-              _pac_sc_s52_0 = cipherText_s54_0;
-            }
-            else
-            {
-              _pac_sc_s52_0 = null;
-            }
-            Object@Object cipherText_s56_0 = null;
-            doFinal_Object_Object@Cipher(self.myCypherOut_Cryptographer, _pac_sc_s52_0, cipherText_s56_0)//{};
-            _pac_sc_s49_0 = cipherText_s56_0;
-          }
-          else
-          {
-            _pac_sc_s49_0 = null;
-          }
-          cipherText_s68 = _pac_sc_s49_0;
-          int _out_s58_0 = 0;
-          Cipher@meta(_out_s58_0);
-          Object@Object _pac_sc_s59_0 = null;
-          if((self.myCypherOut_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=_out_s58_0)._int))/*Cryptographer.sk:34*/
-          {
-            int _out_s61_0 = 0;
-            String@meta(_out_s61_0);
-            Object@Object _pac_sc_s62_0 = null;
-            if((plainText.__cid) == (new Object@Object(__cid=-2, _int=_out_s61_0)._int))/*Cryptographer.sk:34*/
-            {
-              Object@Object _out_s64_0 = null;
-              getBytes@String(plainText, _out_s64_0);
-              _pac_sc_s62_0 = _out_s64_0;
-            }
-            else
-            {
-              _pac_sc_s62_0 = null;
-            }
-            Object@Object _out_s66_0 = null;
-            doFinalb_Object_Object@Cipher(self.myCypherOut_Cryptographer, _pac_sc_s62_0, _out_s66_0)//{};
-            _pac_sc_s59_0 = _out_s66_0;
-          }
-          else
-          {
-            _pac_sc_s59_0 = null;
-          }
-          self.myCypherOut_Cryptographer = _pac_sc_s59_0;
-        }
-        assert (!(new Object@Object(__cid=-4, _bit=0)._bit)); //ASSERTION CAN NOT BE SATISFIED: Cryptographer.sk:37 Function genCipherText_String@Cryptographer was not inlined enough. Increase inlining with --inlineamnt flag.
-        cipherText_s37 = cipherText_s68;
-      }
-      cipherText_s20 = cipherText_s37;
-    }
-    int _out_s22 = 0;
-    String@meta(_out_s22);
-    Object@Object _out_s24 = null;
-    String_String_byte@String(new Object@Object(__cid=_out_s22), cipherText_s20, _out_s24)//{};
-    _out = _out_s24;
-    return;
-  }
-  /*Cryptographer.sk:58*/
-  
-void encrypt_String (Object self, Object plainText, ref Object _out)/*Cryptographer.sk:58*/
-  {
-    if(new Object@Object(__cid=-4, _bit=1)._bit)/*Cryptographer.sk:29*/
-    {
-      int _out_s39 = 0;
-      Cipher@meta(_out_s39);
-      if((self.myCypherOut_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=_out_s39)._int))/*Cryptographer.sk:30*/
-      {
-        Object@Object _out_s41 = null;
-        init_Object_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, new Object@Object(__cid=-2, _int=0), self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer, _out_s41);
-      }
-      int _out_s43 = 0;
-      Cipher@meta(_out_s43);
-      Object@Object _pac_sc_s44 = null;
-      if((self.myCypherOut_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=_out_s43)._int))/*Cryptographer.sk:31*/
-      {
-        Object@Object _out_s46 = null;
-        initb_Object_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, new Object@Object(__cid=-2, _int=1), self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer, _out_s46);
-        _pac_sc_s44 = _out_s46;
-      }
-      else
-      {
-        _pac_sc_s44 = null;
-      }
-      self.myCypherOut_Cryptographer = _pac_sc_s44;
-    }
-    if(new Object@Object(__cid=-4, _bit=1)._bit)/*Cryptographer.sk:33*/
-    {
-      int cipherText_s48 = 0;
-      Cipher@meta(cipherText_s48);
-      if((self.myCypherOut_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=cipherText_s48)._int))/*Cryptographer.sk:34*/
-      {
-        int cipherText_s51 = 0;
-        String@meta(cipherText_s51);
-        Object@Object _pac_sc_s52 = null;
-        if((plainText.__cid) == (new Object@Object(__cid=-2, _int=cipherText_s51)._int))/*Cryptographer.sk:34*/
-        {
-          Object@Object cipherText_s54 = null;
-          getBytes@String(plainText, cipherText_s54);
-          _pac_sc_s52 = cipherText_s54;
-        }
-        else
-        {
-          _pac_sc_s52 = null;
-        }
-        Object@Object cipherText_s56 = null;
-        doFinal_Object_Object@Cipher(self.myCypherOut_Cryptographer, _pac_sc_s52, cipherText_s56)//{};
-      }
-      int _out_s58 = 0;
-      Cipher@meta(_out_s58);
-      Object@Object _pac_sc_s59 = null;
-      if((self.myCypherOut_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=_out_s58)._int))/*Cryptographer.sk:34*/
-      {
-        int _out_s61 = 0;
-        String@meta(_out_s61);
-        Object@Object _pac_sc_s62 = null;
-        if((plainText.__cid) == (new Object@Object(__cid=-2, _int=_out_s61)._int))/*Cryptographer.sk:34*/
-        {
-          Object@Object _out_s64 = null;
-          getBytes@String(plainText, _out_s64);
-          _pac_sc_s62 = _out_s64;
-        }
-        else
-        {
-          _pac_sc_s62 = null;
-        }
-        Object@Object _out_s66 = null;
-        doFinalb_Object_Object@Cipher(self.myCypherOut_Cryptographer, _pac_sc_s62, _out_s66)//{};
-        _pac_sc_s59 = _out_s66;
-      }
-      else
-      {
-        _pac_sc_s59 = null;
-      }
-      self.myCypherOut_Cryptographer = _pac_sc_s59;
-    }
-    if(new Object@Object(__cid=-4, _bit=0)._bit)/*Cryptographer.sk:36*/
-    {
-      if(new Object@Object(__cid=-4, _bit=0)._bit)/*Cryptographer.sk:29*/
-      {
-        int _out_s39_0 = 0;
-        Cipher@meta(_out_s39_0);
-        if((self.myCypherOut_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=_out_s39_0)._int))/*Cryptographer.sk:30*/
-        {
-          Object@Object _out_s41_0 = null;
-          init_Object_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, new Object@Object(__cid=-2, _int=0), self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer, _out_s41_0);
-        }
-        int _out_s43_0 = 0;
-        Cipher@meta(_out_s43_0);
-        Object@Object _pac_sc_s44_0 = null;
-        if((self.myCypherOut_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=_out_s43_0)._int))/*Cryptographer.sk:31*/
-        {
-          Object@Object _out_s46_0 = null;
-          initb_Object_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, new Object@Object(__cid=-2, _int=0), self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer, _out_s46_0);
-          _pac_sc_s44_0 = _out_s46_0;
-        }
-        else
-        {
-          _pac_sc_s44_0 = null;
-        }
-        self.myCypherOut_Cryptographer = _pac_sc_s44_0;
-      }
-      if(new Object@Object(__cid=-4, _bit=1)._bit)/*Cryptographer.sk:33*/
-      {
-        int cipherText_s48_0 = 0;
-        Cipher@meta(cipherText_s48_0);
-        if((self.myCypherOut_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=cipherText_s48_0)._int))/*Cryptographer.sk:34*/
-        {
-          int cipherText_s51_0 = 0;
-          String@meta(cipherText_s51_0);
-          Object@Object _pac_sc_s52_0 = null;
-          if((plainText.__cid) == (new Object@Object(__cid=-2, _int=cipherText_s51_0)._int))/*Cryptographer.sk:34*/
-          {
-            Object@Object cipherText_s54_0 = null;
-            getBytes@String(plainText, cipherText_s54_0);
-            _pac_sc_s52_0 = cipherText_s54_0;
-          }
-          else
-          {
-            _pac_sc_s52_0 = null;
-          }
-          Object@Object cipherText_s56_0 = null;
-          doFinal_Object_Object@Cipher(self.myCypherOut_Cryptographer, _pac_sc_s52_0, cipherText_s56_0)//{};
-        }
-        int _out_s58_0 = 0;
-        Cipher@meta(_out_s58_0);
-        Object@Object _pac_sc_s59_0 = null;
-        if((self.myCypherOut_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=_out_s58_0)._int))/*Cryptographer.sk:34*/
-        {
-          int _out_s61_0 = 0;
-          String@meta(_out_s61_0);
-          Object@Object _pac_sc_s62_0 = null;
-          if((plainText.__cid) == (new Object@Object(__cid=-2, _int=_out_s61_0)._int))/*Cryptographer.sk:34*/
-          {
-            Object@Object _out_s64_0 = null;
-            getBytes@String(plainText, _out_s64_0);
-            _pac_sc_s62_0 = _out_s64_0;
-          }
-          else
-          {
-            _pac_sc_s62_0 = null;
-          }
-          Object@Object _out_s66_0 = null;
-          doFinalb_Object_Object@Cipher(self.myCypherOut_Cryptographer, _pac_sc_s62_0, _out_s66_0)//{};
-          _pac_sc_s59_0 = _out_s66_0;
-        }
-        else
-        {
-          _pac_sc_s59_0 = null;
-        }
-        self.myCypherOut_Cryptographer = _pac_sc_s59_0;
-      }
-      assert (!(new Object@Object(__cid=-4, _bit=0)._bit)); //ASSERTION CAN NOT BE SATISFIED: Cryptographer.sk:37 Function genCipherText_String@Cryptographer was not inlined enough. Increase inlining with --inlineamnt flag.
-    }
-    int _out_s72 = 0;
-    Cipher@meta(_out_s72);
-    Object@Object _pac_sc_s73 = null;
-    if((self.myCypherOut_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=_out_s72)._int))/*Cryptographer.sk:60*/
-    {
-      Object@Object _out_s75 = null;
-      toString_Object@Cipher(self.myCypherOut_Cryptographer, _out_s75);
-      _pac_sc_s73 = _out_s75;
+      Object@Object _out_s35 = null;
+      initb_Object_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, new Object@Object(__cid=-2, _int=2), self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer, _out_s35);
+      _pac_sc_s33 = _out_s35;
     }
     else
     {
-      _pac_sc_s73 = null;
+      _pac_sc_s33 = null;
     }
-    _out = _pac_sc_s73;
+    self.myCypherOut_Cryptographer = _pac_sc_s33;
+    Object@Object cipherText_s57 = null;
+    xform_doFinal_Cipher_Object@Cipher(self.myCypherOut_Cryptographer._cipher, plainText, cipherText_s57);
+    int _out_s24 = 0;
+    String@meta(_out_s24);
+    Object@Object _out_s26 = null;
+    String_String_byte@String(new Object@Object(__cid=_out_s24), cipherText_s57, _out_s26)//{};
+    _out = _out_s26;
+    return;
+  }
+  /*Cryptographer.sk:77*/
+  
+void encrypt_String (Object self, Object plainText, ref Object _out)/*Cryptographer.sk:77*/
+  {
+    int _out_s28 = 0;
+    Cipher@meta(_out_s28);
+    if((self.myCypherOut_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=_out_s28)._int))/*Cryptographer.sk:30*/
+    {
+      Object@Object _out_s30 = null;
+      init_Object_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, new Object@Object(__cid=-2, _int=0), self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer, _out_s30);
+    }
+    int _out_s32 = 0;
+    Cipher@meta(_out_s32);
+    Object@Object _pac_sc_s33 = null;
+    if((self.myCypherOut_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=_out_s32)._int))/*Cryptographer.sk:31*/
+    {
+      Object@Object _out_s35 = null;
+      initb_Object_int_Object_Object@Cipher(self.myCypherOut_Cryptographer, new Object@Object(__cid=-2, _int=1), self.GCMSecretKey_Cryptographer, self.ivParameterSpec_Cryptographer, _out_s35);
+      _pac_sc_s33 = _out_s35;
+    }
+    else
+    {
+      _pac_sc_s33 = null;
+    }
+    self.myCypherOut_Cryptographer = _pac_sc_s33;
+    int cipherText_s37 = 0;
+    Cipher@meta(cipherText_s37);
+    if((self.myCypherOut_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=cipherText_s37)._int))/*Cryptographer.sk:34*/
+    {
+      int cipherText_s40 = 0;
+      String@meta(cipherText_s40);
+      Object@Object _pac_sc_s41 = null;
+      if((plainText.__cid) == (new Object@Object(__cid=-2, _int=cipherText_s40)._int))/*Cryptographer.sk:34*/
+      {
+        Object@Object cipherText_s43 = null;
+        getBytes@String(plainText, cipherText_s43);
+        _pac_sc_s41 = cipherText_s43;
+      }
+      else
+      {
+        _pac_sc_s41 = null;
+      }
+      Object@Object cipherText_s45 = null;
+      doFinal_Object_Object@Cipher(self.myCypherOut_Cryptographer, _pac_sc_s41, cipherText_s45)//{};
+    }
+    int _out_s47 = 0;
+    Cipher@meta(_out_s47);
+    Object@Object _pac_sc_s48 = null;
+    if((self.myCypherOut_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=_out_s47)._int))/*Cryptographer.sk:34*/
+    {
+      int _out_s50 = 0;
+      String@meta(_out_s50);
+      Object@Object _pac_sc_s51 = null;
+      if((plainText.__cid) == (new Object@Object(__cid=-2, _int=_out_s50)._int))/*Cryptographer.sk:34*/
+      {
+        Object@Object _out_s53 = null;
+        getBytes@String(plainText, _out_s53);
+        _pac_sc_s51 = _out_s53;
+      }
+      else
+      {
+        _pac_sc_s51 = null;
+      }
+      Object@Object _out_s55 = null;
+      doFinalb_Object_Object@Cipher(self.myCypherOut_Cryptographer, _pac_sc_s51, _out_s55)//{};
+      _pac_sc_s48 = _out_s55;
+    }
+    else
+    {
+      _pac_sc_s48 = null;
+    }
+    self.myCypherOut_Cryptographer = _pac_sc_s48;
+    int _out_s63 = 0;
+    Cipher@meta(_out_s63);
+    Object@Object _pac_sc_s64 = null;
+    if((self.myCypherOut_Cryptographer.__cid) == (new Object@Object(__cid=-2, _int=_out_s63)._int))/*Cryptographer.sk:79*/
+    {
+      Object@Object _out_s66 = null;
+      toString_Object@Cipher(self.myCypherOut_Cryptographer, _out_s66);
+      _pac_sc_s64 = _out_s66;
+    }
+    else
+    {
+      _pac_sc_s64 = null;
+    }
+    _out = _pac_sc_s64;
     return;
   }
   /* END PACKAGE Cryptographer*/
@@ -983,24 +1280,24 @@ void charValue (Object self, ref Object _out)/*Character.sk:12*/
   
 void equals_Object (Object self, Object obj, ref Object _out)/*Character.sk:16*/
   {
-    int _out_s134 = 0;
-    Character@meta(_out_s134);
-    if((obj.__cid) == _out_s134)/*Character.sk:17*/
+    int _out_s125 = 0;
+    Character@meta(_out_s125);
+    if((obj.__cid) == _out_s125)/*Character.sk:17*/
     {
-      int _out_s136 = 0;
-      Character@meta(_out_s136);
-      Object@Object _pac_sc_s137 = null;
-      if((obj.__cid) == (new Object@Object(__cid=-2, _int=_out_s136)._int))/*Character.sk:18*/
+      int _out_s127 = 0;
+      Character@meta(_out_s127);
+      Object@Object _pac_sc_s128 = null;
+      if((obj.__cid) == (new Object@Object(__cid=-2, _int=_out_s127)._int))/*Character.sk:18*/
       {
-        Object@Object _out_s139 = null;
-        charValue@Character(obj, _out_s139);
-        _pac_sc_s137 = _out_s139;
+        Object@Object _out_s130 = null;
+        charValue@Character(obj, _out_s130);
+        _pac_sc_s128 = _out_s130;
       }
       else
       {
-        _pac_sc_s137 = null;
+        _pac_sc_s128 = null;
       }
-      _out = new Object@Object(__cid=-4, _bit=(self.value_Character._char) == (_pac_sc_s137._char));
+      _out = new Object@Object(__cid=-4, _bit=(self.value_Character._char) == (_pac_sc_s128._char));
       return;
     }
     _out = new Object@Object(__cid=-4, _bit=0);
@@ -1012,81 +1309,152 @@ void equals_Object (Object self, Object obj, ref Object _out)/*Character.sk:16*/
 package PasswordManagerTest{
   /*Passwor..erTest.sk:7*/
   
-void _main ()/*Passwor..erTest.sk:7*/
+void main_int_int_int_int_int (int __u, int __w, int __x, int __y, int __z)/*Passwor..erTest.sk:7*/
   {
-    int self_s141 = 0;
-    Object@meta(self_s141);
-    Object@Object self_s143 = null;
-    Object_Object@Object(new Object@Object(__cid=self_s141), self_s143)//{};
-    int pasman_s145 = 0;
-    PasswordManager@meta(pasman_s145);
-    int pasman_s147 = 0;
-    String@meta(pasman_s147);
-    Object@Object pasman_s149 = null;
-    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=5), A={'1','2','3','4','\0'}), pasman_s149);
-    Object@Object pasman_s151 = null;
-    String_String_char_int_int@String(new Object@Object(__cid=pasman_s147), pasman_s149, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=4), pasman_s151)//{};
-    Object@Object pasman_s153 = null;
-    PasswordManager_PasswordManager_String@PasswordManager(new Object@Object(__cid=pasman_s145), pasman_s151, pasman_s153)//{};
-    int _out_s155 = 0;
-    PasswordManager@meta(_out_s155);
-    if((pasman_s153.__cid) == (new Object@Object(__cid=-2, _int=_out_s155)._int))/*Passwor..erTest.sk:10*/
+    Object@Object u;
+    u = new Object@Object(__cid=-2, _int=__u);
+    Object@Object w;
+    w = new Object@Object(__cid=-2, _int=__w);
+    Object@Object x;
+    x = new Object@Object(__cid=-2, _int=__x);
+    Object@Object y;
+    y = new Object@Object(__cid=-2, _int=__y);
+    Object@Object z;
+    z = new Object@Object(__cid=-2, _int=__z);
+    int self_s132 = 0;
+    Object@meta(self_s132);
+    Object@Object self_s134 = null;
+    Object_Object@Object(new Object@Object(__cid=self_s132), self_s134)//{};
+    Object@Object limit = new Object@Object(__cid=-2, _int=100);
+    assume (((u._int) > (new Object@Object(__cid=-2, _int=0)._int)) & ((u._int) < (limit._int))): "Assume at Passwor..erTest.sk:15"; //Assume at Passwor..erTest.sk:15
+    assume (((w._int) > (new Object@Object(__cid=-2, _int=0)._int)) & ((w._int) < (limit._int))): "Assume at Passwor..erTest.sk:16"; //Assume at Passwor..erTest.sk:16
+    assume (((x._int) > (new Object@Object(__cid=-2, _int=0)._int)) & ((x._int) < (limit._int))): "Assume at Passwor..erTest.sk:17"; //Assume at Passwor..erTest.sk:17
+    assume (((y._int) > (new Object@Object(__cid=-2, _int=0)._int)) & ((y._int) < (limit._int))): "Assume at Passwor..erTest.sk:18"; //Assume at Passwor..erTest.sk:18
+    assume (((z._int) > (new Object@Object(__cid=-2, _int=0)._int)) & ((z._int) < (limit._int))): "Assume at Passwor..erTest.sk:19"; //Assume at Passwor..erTest.sk:19
+    assume ((((u._int) != (w._int)) && ((w._int) != (y._int))) && ((x._int) != (z._int))): "Assume at Passwor..erTest.sk:20"; //Assume at Passwor..erTest.sk:20
+    Object@Object p1_s136 = null;
+    toString_int@Integer(u, p1_s136);
+    Object@Object p2_s138 = null;
+    toString_int@Integer(w, p2_s138);
+    Object@Object p3_s140 = null;
+    toString_int@Integer(x, p3_s140);
+    Object@Object p4_s142 = null;
+    toString_int@Integer(y, p4_s142);
+    Object@Object p5_s144 = null;
+    toString_int@Integer(z, p5_s144);
+    int pasman_s146 = 0;
+    PasswordManager@meta(pasman_s146);
+    Object@Object pasman_s148 = null;
+    PasswordManager_PasswordManager_String@PasswordManager(new Object@Object(__cid=pasman_s146), p1_s136, pasman_s148)//{};
+    int _out_s150 = 0;
+    PasswordManager@meta(_out_s150);
+    if((pasman_s148.__cid) == (new Object@Object(__cid=-2, _int=_out_s150)._int))/*Passwor..erTest.sk:27*/
     {
-      int _out_s157 = 0;
-      String@meta(_out_s157);
-      Object@Object _out_s159 = null;
-      Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=6), A={'y','a','h','o','o','\0'}), _out_s159);
-      Object@Object _out_s161 = null;
-      String_String_char_int_int@String(new Object@Object(__cid=_out_s157), _out_s159, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=5), _out_s161)//{};
-      int _out_s163 = 0;
-      String@meta(_out_s163);
-      Object@Object _out_s165 = null;
-      Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=6), A={'1','2','3','4','5','\0'}), _out_s165);
-      Object@Object _out_s167 = null;
-      String_String_char_int_int@String(new Object@Object(__cid=_out_s163), _out_s165, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=5), _out_s167)//{};
-      addPassword_String_String@PasswordManager(pasman_s153, _out_s161, _out_s167)//{};
+      addPassword_String_String@PasswordManager(pasman_s148, p2_s138, p3_s140);
+    }
+    int _out_s152 = 0;
+    PasswordManager@meta(_out_s152);
+    if((pasman_s148.__cid) == (new Object@Object(__cid=-2, _int=_out_s152)._int))/*Passwor..erTest.sk:29*/
+    {
+      addPassword_String_String@PasswordManager(pasman_s148, p4_s142, p5_s144);
+    }
+    int pass1_s154 = 0;
+    PasswordManager@meta(pass1_s154);
+    Object@Object _pac_sc_s155 = null;
+    if((pasman_s148.__cid) == (new Object@Object(__cid=-2, _int=pass1_s154)._int))/*Passwor..erTest.sk:31*/
+    {
+      Object@Object pass1_s157 = null;
+      getPass_String@PasswordManager(pasman_s148, p2_s138, pass1_s157);
+      _pac_sc_s155 = pass1_s157;
+    }
+    else
+    {
+      _pac_sc_s155 = null;
+    }
+    int _out_s159 = 0;
+    String@meta(_out_s159);
+    Object@Object _pac_sc_s160 = null;
+    if((_pac_sc_s155.__cid) == (new Object@Object(__cid=-2, _int=_out_s159)._int))/*Passwor..erTest.sk:32*/
+    {
+      Object@Object _out_s162 = null;
+      equals_Object@String(_pac_sc_s155, p3_s140, _out_s162);
+      _pac_sc_s160 = _out_s162;
+    }
+    else
+    {
+      _pac_sc_s160 = null;
+    }
+    assert (_pac_sc_s160._bit); //Assert at Passwor..erTest.sk:32 (0)
+    int pass2_s164 = 0;
+    PasswordManager@meta(pass2_s164);
+    Object@Object _pac_sc_s165 = null;
+    if((pasman_s148.__cid) == (new Object@Object(__cid=-2, _int=pass2_s164)._int))/*Passwor..erTest.sk:33*/
+    {
+      Object@Object pass2_s167 = null;
+      getPass_String@PasswordManager(pasman_s148, p4_s142, pass2_s167);
+      _pac_sc_s165 = pass2_s167;
+    }
+    else
+    {
+      _pac_sc_s165 = null;
     }
     int _out_s169 = 0;
-    PasswordManager@meta(_out_s169);
-    if((pasman_s153.__cid) == (new Object@Object(__cid=-2, _int=_out_s169)._int))/*Passwor..erTest.sk:12*/
+    String@meta(_out_s169);
+    Object@Object _pac_sc_s170 = null;
+    if((_pac_sc_s165.__cid) == (new Object@Object(__cid=-2, _int=_out_s169)._int))/*Passwor..erTest.sk:34*/
     {
-      int _out_s171 = 0;
-      String@meta(_out_s171);
-      Object@Object _out_s173 = null;
-      Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=7), A={'g','o','o','g','l','e','\0'}), _out_s173);
-      Object@Object _out_s175 = null;
-      String_String_char_int_int@String(new Object@Object(__cid=_out_s171), _out_s173, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=6), _out_s175)//{};
-      int _out_s177 = 0;
-      String@meta(_out_s177);
-      Object@Object _out_s179 = null;
-      Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=8), A={'5','4','4','1','9','4','4','\0'}), _out_s179);
-      Object@Object _out_s181 = null;
-      String_String_char_int_int@String(new Object@Object(__cid=_out_s177), _out_s179, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=7), _out_s181)//{};
-      addPassword_String_String@PasswordManager(pasman_s153, _out_s175, _out_s181)//{};
+      Object@Object _out_s172 = null;
+      equals_Object@String(_pac_sc_s165, p5_s144, _out_s172);
+      _pac_sc_s170 = _out_s172;
     }
-    int pass1_s183 = 0;
-    PasswordManager@meta(pass1_s183);
-    if((pasman_s153.__cid) == (new Object@Object(__cid=-2, _int=pass1_s183)._int))/*Passwor..erTest.sk:14*/
+    else
     {
-      int pass1_s186 = 0;
-      String@meta(pass1_s186);
-      Object@Object pass1_s188 = null;
-      Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=7), A={'g','o','o','g','l','e','\0'}), pass1_s188);
-      Object@Object pass1_s190 = null;
-      String_String_char_int_int@String(new Object@Object(__cid=pass1_s186), pass1_s188, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=6), pass1_s190)//{};
-      Object@Object pass1_s192 = null;
-      getPass_String@PasswordManager(pasman_s153, pass1_s190, pass1_s192)//{};
+      _pac_sc_s170 = null;
     }
+    assert (_pac_sc_s170._bit); //Assert at Passwor..erTest.sk:34 (0)
+    int _out_s174 = 0;
+    PasswordManager@meta(_out_s174);
+    if((pasman_s148.__cid) == (new Object@Object(__cid=-2, _int=_out_s174)._int))/*Passwor..erTest.sk:35*/
+    {
+      modifyPassword_String_String@PasswordManager(pasman_s148, p2_s138, p4_s142);
+    }
+    int pass3_s176 = 0;
+    PasswordManager@meta(pass3_s176);
+    Object@Object _pac_sc_s177 = null;
+    if((pasman_s148.__cid) == (new Object@Object(__cid=-2, _int=pass3_s176)._int))/*Passwor..erTest.sk:37*/
+    {
+      Object@Object pass3_s179 = null;
+      getPass_String@PasswordManager(pasman_s148, p2_s138, pass3_s179);
+      _pac_sc_s177 = pass3_s179;
+    }
+    else
+    {
+      _pac_sc_s177 = null;
+    }
+    int _out_s181 = 0;
+    String@meta(_out_s181);
+    Object@Object _pac_sc_s182 = null;
+    if((_pac_sc_s177.__cid) == (new Object@Object(__cid=-2, _int=_out_s181)._int))/*Passwor..erTest.sk:38*/
+    {
+      Object@Object _out_s184 = null;
+      equals_Object@String(_pac_sc_s177, p4_s142, _out_s184);
+      _pac_sc_s182 = _out_s184;
+    }
+    else
+    {
+      _pac_sc_s182 = null;
+    }
+    assert (_pac_sc_s182._bit); //Assert at Passwor..erTest.sk:38 (0)
   }
   /*Passwor..erTest.sk:7*/
   
-void main__Wrapper ()  implements main__WrapperNospec/*Passwor..erTest.sk:7*/
+void main_int_int_int_int_int__Wrapper (int __u, int __w, int __x, int __y, int __z)  implements main_int_int_int_int_int__WrapperNospec/*Passwor..erTest.sk:7*/
   {
-    _main();
+    main_int_int_int_int_int(__u, __w, __x, __y, __z);
   }
   /*Passwor..erTest.sk:7*/
   
-void main__WrapperNospec ()/*Passwor..erTest.sk:7*/
+void main_int_int_int_int_int__WrapperNospec (int __u, int __w, int __x, int __y, int __z)/*Passwor..erTest.sk:7*/
   { }
   /* END PACKAGE PasswordManagerTest*/
 }
@@ -1134,27 +1502,27 @@ package HashMap{
   
 void HashMap_HashMap (ref Object _out)/*HashMap.sk:13*/
   {
-    int _out_s384 = 0;
-    HashMap@meta(_out_s384);
-    _out = new Object@Object(__cid=_out_s384, _hashmap=new Hashmap());
+    int _out_s376 = 0;
+    HashMap@meta(_out_s376);
+    _out = new Object@Object(__cid=_out_s376, _hashmap=new Hashmap());
     return;
   }
   /*HashMap.sk:17*/
   
 void put_Object_Object_Object (Object self, Object k, Object v, ref Object _out)/*HashMap.sk:17*/
   {
-    int _out_s382 = 0;
-    HashMap@meta(_out_s382);
-    _out = new Object@Object(__cid=_out_s382, _hashmap=new Put_object_object(self=self._hashmap, k=k, v=v));
+    int _out_s374 = 0;
+    HashMap@meta(_out_s374);
+    _out = new Object@Object(__cid=_out_s374, _hashmap=new Put_object_object(self=self._hashmap, k=k, v=v));
     return;
   }
   /*HashMap.sk:21*/
   
 void putb_Object_Object_Object (Object self, Object k, Object v, ref Object _out)/*HashMap.sk:21*/
   {
-    int _out_s380 = 0;
-    HashMap@meta(_out_s380);
-    _out = new Object@Object(__cid=_out_s380, _hashmap=new Putb_object_object(self=self._hashmap, k=k, v=v));
+    int _out_s372 = 0;
+    HashMap@meta(_out_s372);
+    _out = new Object@Object(__cid=_out_s372, _hashmap=new Putb_object_object(self=self._hashmap, k=k, v=v));
     return;
   }
   /*HashMap.sk:101*/
@@ -1171,502 +1539,502 @@ void xform_get_HashMap_Object (HashMap self, Object k, ref Object _out)/*HashMap
         assert (0); //ASSERTION CAN NOT BE SATISFIED: HashMap.sk:102 ASSERTION CAN NOT BE SATISFIED: HashMap.sk:106 Assert at HashMap.sk:106 (1)
       case Putb_object_object:
       {
-        int _out_s194 = 0;
-        Boolean@meta(_out_s194);
-        Object@Object _pac_sc_s195 = null;
-        if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s194)._int))/*HashMap.sk:108*/
+        int _out_s186 = 0;
+        Boolean@meta(_out_s186);
+        Object@Object _pac_sc_s187 = null;
+        if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s186)._int))/*HashMap.sk:108*/
         {
-          Object@Object _out_s197 = null;
-          equals_Object@Object(k, self.k, _out_s197);
-          _pac_sc_s195 = _out_s197;
+          Object@Object _out_s189 = null;
+          equals_Object@Object(k, self.k, _out_s189);
+          _pac_sc_s187 = _out_s189;
         }
         else
         {
-          int _out_s199 = 0;
-          Mac@meta(_out_s199);
-          Object@Object _pac_sc_s200 = null;
-          if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s199)._int))/*HashMap.sk:108*/
+          int _out_s191 = 0;
+          Mac@meta(_out_s191);
+          Object@Object _pac_sc_s192 = null;
+          if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s191)._int))/*HashMap.sk:108*/
           {
-            Object@Object _out_s202 = null;
-            equals_Object@Object(k, self.k, _out_s202);
-            _pac_sc_s200 = _out_s202;
+            Object@Object _out_s194 = null;
+            equals_Object@Object(k, self.k, _out_s194);
+            _pac_sc_s192 = _out_s194;
           }
           else
           {
-            int _out_s204 = 0;
-            PasswordMap@meta(_out_s204);
-            Object@Object _pac_sc_s205 = null;
-            if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s204)._int))/*HashMap.sk:108*/
+            int _out_s196 = 0;
+            PasswordMap@meta(_out_s196);
+            Object@Object _pac_sc_s197 = null;
+            if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s196)._int))/*HashMap.sk:108*/
             {
-              Object@Object _out_s207 = null;
-              equals_Object@Object(k, self.k, _out_s207);
-              _pac_sc_s205 = _out_s207;
+              Object@Object _out_s199 = null;
+              equals_Object@Object(k, self.k, _out_s199);
+              _pac_sc_s197 = _out_s199;
             }
             else
             {
-              int _out_s209 = 0;
-              SecretKeySpec@meta(_out_s209);
-              Object@Object _pac_sc_s210 = null;
-              if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s209)._int))/*HashMap.sk:108*/
+              int _out_s201 = 0;
+              SecretKeySpec@meta(_out_s201);
+              Object@Object _pac_sc_s202 = null;
+              if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s201)._int))/*HashMap.sk:108*/
               {
-                Object@Object _out_s212 = null;
-                equals_Object@Object(k, self.k, _out_s212);
-                _pac_sc_s210 = _out_s212;
+                Object@Object _out_s204 = null;
+                equals_Object@Object(k, self.k, _out_s204);
+                _pac_sc_s202 = _out_s204;
               }
               else
               {
-                int _out_s214 = 0;
-                IvParameterSpec@meta(_out_s214);
-                Object@Object _pac_sc_s215 = null;
-                if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s214)._int))/*HashMap.sk:108*/
+                int _out_s206 = 0;
+                IvParameterSpec@meta(_out_s206);
+                Object@Object _pac_sc_s207 = null;
+                if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s206)._int))/*HashMap.sk:108*/
                 {
-                  Object@Object _out_s217 = null;
-                  equals_Object@Object(k, self.k, _out_s217);
-                  _pac_sc_s215 = _out_s217;
+                  Object@Object _out_s209 = null;
+                  equals_Object@Object(k, self.k, _out_s209);
+                  _pac_sc_s207 = _out_s209;
                 }
                 else
                 {
-                  int _out_s219 = 0;
-                  HashMap@meta(_out_s219);
-                  Object@Object _pac_sc_s220 = null;
-                  if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s219)._int))/*HashMap.sk:108*/
+                  int _out_s211 = 0;
+                  HashMap@meta(_out_s211);
+                  Object@Object _pac_sc_s212 = null;
+                  if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s211)._int))/*HashMap.sk:108*/
                   {
-                    Object@Object _out_s222 = null;
-                    equals_Object@Object(k, self.k, _out_s222);
-                    _pac_sc_s220 = _out_s222;
+                    Object@Object _out_s214 = null;
+                    equals_Object@Object(k, self.k, _out_s214);
+                    _pac_sc_s212 = _out_s214;
                   }
                   else
                   {
-                    int _out_s224 = 0;
-                    Integer@meta(_out_s224);
-                    Object@Object _pac_sc_s225 = null;
-                    if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s224)._int))/*HashMap.sk:108*/
+                    int _out_s216 = 0;
+                    Integer@meta(_out_s216);
+                    Object@Object _pac_sc_s217 = null;
+                    if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s216)._int))/*HashMap.sk:108*/
                     {
-                      Object@Object _out_s227 = null;
-                      equals_Object@Integer(k, self.k, _out_s227);
-                      _pac_sc_s225 = _out_s227;
+                      Object@Object _out_s219 = null;
+                      equals_Object@Integer(k, self.k, _out_s219);
+                      _pac_sc_s217 = _out_s219;
                     }
                     else
                     {
-                      int _out_s229 = 0;
-                      Cryptographer@meta(_out_s229);
-                      Object@Object _pac_sc_s230 = null;
-                      if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s229)._int))/*HashMap.sk:108*/
+                      int _out_s221 = 0;
+                      Cryptographer@meta(_out_s221);
+                      Object@Object _pac_sc_s222 = null;
+                      if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s221)._int))/*HashMap.sk:108*/
                       {
-                        Object@Object _out_s232 = null;
-                        equals_Object@Object(k, self.k, _out_s232);
-                        _pac_sc_s230 = _out_s232;
+                        Object@Object _out_s224 = null;
+                        equals_Object@Object(k, self.k, _out_s224);
+                        _pac_sc_s222 = _out_s224;
                       }
                       else
                       {
-                        int _out_s234 = 0;
-                        Byte@meta(_out_s234);
-                        Object@Object _pac_sc_s235 = null;
-                        if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s234)._int))/*HashMap.sk:108*/
+                        int _out_s226 = 0;
+                        Byte@meta(_out_s226);
+                        Object@Object _pac_sc_s227 = null;
+                        if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s226)._int))/*HashMap.sk:108*/
                         {
-                          Object@Object _out_s237 = null;
-                          equals_Object@Object(k, self.k, _out_s237);
-                          _pac_sc_s235 = _out_s237;
+                          Object@Object _out_s229 = null;
+                          equals_Object@Object(k, self.k, _out_s229);
+                          _pac_sc_s227 = _out_s229;
                         }
                         else
                         {
-                          int _out_s239 = 0;
-                          ArrayList@meta(_out_s239);
-                          Object@Object _pac_sc_s240 = null;
-                          if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s239)._int))/*HashMap.sk:108*/
+                          int _out_s231 = 0;
+                          ArrayList@meta(_out_s231);
+                          Object@Object _pac_sc_s232 = null;
+                          if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s231)._int))/*HashMap.sk:108*/
                           {
-                            Object@Object _out_s242 = null;
-                            equals_Object@Object(k, self.k, _out_s242);
-                            _pac_sc_s240 = _out_s242;
+                            Object@Object _out_s234 = null;
+                            equals_Object@Object(k, self.k, _out_s234);
+                            _pac_sc_s232 = _out_s234;
                           }
                           else
                           {
-                            int _out_s244 = 0;
-                            Character@meta(_out_s244);
-                            Object@Object _pac_sc_s245 = null;
-                            if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s244)._int))/*HashMap.sk:108*/
+                            int _out_s236 = 0;
+                            Character@meta(_out_s236);
+                            Object@Object _pac_sc_s237 = null;
+                            if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s236)._int))/*HashMap.sk:108*/
                             {
-                              Object@Object _out_s247 = null;
-                              equals_Object@Character(k, self.k, _out_s247);
-                              _pac_sc_s245 = _out_s247;
+                              Object@Object _out_s239 = null;
+                              equals_Object@Character(k, self.k, _out_s239);
+                              _pac_sc_s237 = _out_s239;
                             }
                             else
                             {
-                              int _out_s249 = 0;
-                              SecureRandom@meta(_out_s249);
-                              Object@Object _pac_sc_s250 = null;
-                              if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s249)._int))/*HashMap.sk:108*/
+                              int _out_s241 = 0;
+                              SecureRandom@meta(_out_s241);
+                              Object@Object _pac_sc_s242 = null;
+                              if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s241)._int))/*HashMap.sk:108*/
                               {
-                                Object@Object _out_s252 = null;
-                                equals_Object@Object(k, self.k, _out_s252);
-                                _pac_sc_s250 = _out_s252;
+                                Object@Object _out_s244 = null;
+                                equals_Object@Object(k, self.k, _out_s244);
+                                _pac_sc_s242 = _out_s244;
                               }
                               else
                               {
-                                int _out_s254 = 0;
-                                Assert@meta(_out_s254);
-                                Object@Object _pac_sc_s255 = null;
-                                if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s254)._int))/*HashMap.sk:108*/
+                                int _out_s246 = 0;
+                                Assert@meta(_out_s246);
+                                Object@Object _pac_sc_s247 = null;
+                                if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s246)._int))/*HashMap.sk:108*/
                                 {
-                                  Object@Object _out_s257 = null;
-                                  equals_Object@Object(k, self.k, _out_s257);
-                                  _pac_sc_s255 = _out_s257;
+                                  Object@Object _out_s249 = null;
+                                  equals_Object@Object(k, self.k, _out_s249);
+                                  _pac_sc_s247 = _out_s249;
                                 }
                                 else
                                 {
-                                  int _out_s259 = 0;
-                                  String@meta(_out_s259);
-                                  Object@Object _pac_sc_s260 = null;
-                                  if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s259)._int))/*HashMap.sk:108*/
+                                  int _out_s251 = 0;
+                                  String@meta(_out_s251);
+                                  Object@Object _pac_sc_s252 = null;
+                                  if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s251)._int))/*HashMap.sk:108*/
                                   {
-                                    Object@Object _out_s262 = null;
-                                    equals_Object@String(k, self.k, _out_s262);
-                                    _pac_sc_s260 = _out_s262;
+                                    Object@Object _out_s254 = null;
+                                    equals_Object@String(k, self.k, _out_s254);
+                                    _pac_sc_s252 = _out_s254;
                                   }
                                   else
                                   {
-                                    int _out_s264 = 0;
-                                    PasswordManager@meta(_out_s264);
-                                    Object@Object _pac_sc_s265 = null;
-                                    if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s264)._int))/*HashMap.sk:108*/
+                                    int _out_s256 = 0;
+                                    PasswordManager@meta(_out_s256);
+                                    Object@Object _pac_sc_s257 = null;
+                                    if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s256)._int))/*HashMap.sk:108*/
                                     {
-                                      Object@Object _out_s267 = null;
-                                      equals_Object@Object(k, self.k, _out_s267);
-                                      _pac_sc_s265 = _out_s267;
+                                      Object@Object _out_s259 = null;
+                                      equals_Object@Object(k, self.k, _out_s259);
+                                      _pac_sc_s257 = _out_s259;
                                     }
                                     else
                                     {
-                                      int _out_s269 = 0;
-                                      Cipher@meta(_out_s269);
-                                      Object@Object _pac_sc_s270 = null;
-                                      if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s269)._int))/*HashMap.sk:108*/
+                                      int _out_s261 = 0;
+                                      Cipher@meta(_out_s261);
+                                      Object@Object _pac_sc_s262 = null;
+                                      if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s261)._int))/*HashMap.sk:108*/
                                       {
-                                        Object@Object _out_s272 = null;
-                                        equals_Object@Object(k, self.k, _out_s272);
-                                        _pac_sc_s270 = _out_s272;
+                                        Object@Object _out_s264 = null;
+                                        equals_Object@Object(k, self.k, _out_s264);
+                                        _pac_sc_s262 = _out_s264;
                                       }
                                       else
                                       {
-                                        int _out_s274 = 0;
-                                        PasswordManagerTest@meta(_out_s274);
-                                        Object@Object _pac_sc_s275 = null;
-                                        if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s274)._int))/*HashMap.sk:108*/
+                                        int _out_s266 = 0;
+                                        PasswordManagerTest@meta(_out_s266);
+                                        Object@Object _pac_sc_s267 = null;
+                                        if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s266)._int))/*HashMap.sk:108*/
                                         {
-                                          Object@Object _out_s277 = null;
-                                          equals_Object@Object(k, self.k, _out_s277);
-                                          _pac_sc_s275 = _out_s277;
+                                          Object@Object _out_s269 = null;
+                                          equals_Object@Object(k, self.k, _out_s269);
+                                          _pac_sc_s267 = _out_s269;
                                         }
                                         else
                                         {
-                                          int _out_s279 = 0;
-                                          Object@meta(_out_s279);
-                                          Object@Object _pac_sc_s280 = null;
-                                          if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s279)._int))/*HashMap.sk:108*/
+                                          int _out_s271 = 0;
+                                          Object@meta(_out_s271);
+                                          Object@Object _pac_sc_s272 = null;
+                                          if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s271)._int))/*HashMap.sk:108*/
                                           {
-                                            Object@Object _out_s282 = null;
-                                            equals_Object@Object(k, self.k, _out_s282);
-                                            _pac_sc_s280 = _out_s282;
+                                            Object@Object _out_s274 = null;
+                                            equals_Object@Object(k, self.k, _out_s274);
+                                            _pac_sc_s272 = _out_s274;
                                           }
                                           else
                                           {
-                                            _pac_sc_s280 = null;
+                                            _pac_sc_s272 = null;
                                           }
-                                          _pac_sc_s275 = _pac_sc_s280;
+                                          _pac_sc_s267 = _pac_sc_s272;
                                         }
-                                        _pac_sc_s270 = _pac_sc_s275;
+                                        _pac_sc_s262 = _pac_sc_s267;
                                       }
-                                      _pac_sc_s265 = _pac_sc_s270;
+                                      _pac_sc_s257 = _pac_sc_s262;
                                     }
-                                    _pac_sc_s260 = _pac_sc_s265;
+                                    _pac_sc_s252 = _pac_sc_s257;
                                   }
-                                  _pac_sc_s255 = _pac_sc_s260;
+                                  _pac_sc_s247 = _pac_sc_s252;
                                 }
-                                _pac_sc_s250 = _pac_sc_s255;
+                                _pac_sc_s242 = _pac_sc_s247;
                               }
-                              _pac_sc_s245 = _pac_sc_s250;
+                              _pac_sc_s237 = _pac_sc_s242;
                             }
-                            _pac_sc_s240 = _pac_sc_s245;
+                            _pac_sc_s232 = _pac_sc_s237;
                           }
-                          _pac_sc_s235 = _pac_sc_s240;
+                          _pac_sc_s227 = _pac_sc_s232;
                         }
-                        _pac_sc_s230 = _pac_sc_s235;
+                        _pac_sc_s222 = _pac_sc_s227;
                       }
-                      _pac_sc_s225 = _pac_sc_s230;
+                      _pac_sc_s217 = _pac_sc_s222;
                     }
-                    _pac_sc_s220 = _pac_sc_s225;
+                    _pac_sc_s212 = _pac_sc_s217;
                   }
-                  _pac_sc_s215 = _pac_sc_s220;
+                  _pac_sc_s207 = _pac_sc_s212;
                 }
-                _pac_sc_s210 = _pac_sc_s215;
+                _pac_sc_s202 = _pac_sc_s207;
               }
-              _pac_sc_s205 = _pac_sc_s210;
+              _pac_sc_s197 = _pac_sc_s202;
             }
-            _pac_sc_s200 = _pac_sc_s205;
+            _pac_sc_s192 = _pac_sc_s197;
           }
-          _pac_sc_s195 = _pac_sc_s200;
+          _pac_sc_s187 = _pac_sc_s192;
         }
-        Object@Object _pac_sc_s283 = null;
-        if(_pac_sc_s195._bit)/*HashMap.sk:108*/
+        Object@Object _pac_sc_s275 = null;
+        if(_pac_sc_s187._bit)/*HashMap.sk:108*/
         {
-          _pac_sc_s283 = self.v;
+          _pac_sc_s275 = self.v;
         }
         else
         {
-          Object@Object _out_s285 = null;
-          xform_get_HashMap_Object(self.self, k, _out_s285);
-          _pac_sc_s283 = _out_s285;
+          Object@Object _out_s277 = null;
+          xform_get_HashMap_Object(self.self, k, _out_s277);
+          _pac_sc_s275 = _out_s277;
         }
-        _out = _pac_sc_s283;
+        _out = _pac_sc_s275;
         return;
       }
       case Removeb_object:
       {
-        int _out_s287 = 0;
-        Boolean@meta(_out_s287);
-        Object@Object _pac_sc_s288 = null;
-        if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s287)._int))/*HashMap.sk:111*/
+        int _out_s279 = 0;
+        Boolean@meta(_out_s279);
+        Object@Object _pac_sc_s280 = null;
+        if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s279)._int))/*HashMap.sk:111*/
         {
-          Object@Object _out_s290 = null;
-          equals_Object@Object(k, self.k, _out_s290);
-          _pac_sc_s288 = _out_s290;
+          Object@Object _out_s282 = null;
+          equals_Object@Object(k, self.k, _out_s282);
+          _pac_sc_s280 = _out_s282;
         }
         else
         {
-          int _out_s292 = 0;
-          Mac@meta(_out_s292);
-          Object@Object _pac_sc_s293 = null;
-          if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s292)._int))/*HashMap.sk:111*/
+          int _out_s284 = 0;
+          Mac@meta(_out_s284);
+          Object@Object _pac_sc_s285 = null;
+          if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s284)._int))/*HashMap.sk:111*/
           {
-            Object@Object _out_s295 = null;
-            equals_Object@Object(k, self.k, _out_s295);
-            _pac_sc_s293 = _out_s295;
+            Object@Object _out_s287 = null;
+            equals_Object@Object(k, self.k, _out_s287);
+            _pac_sc_s285 = _out_s287;
           }
           else
           {
-            int _out_s297 = 0;
-            PasswordMap@meta(_out_s297);
-            Object@Object _pac_sc_s298 = null;
-            if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s297)._int))/*HashMap.sk:111*/
+            int _out_s289 = 0;
+            PasswordMap@meta(_out_s289);
+            Object@Object _pac_sc_s290 = null;
+            if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s289)._int))/*HashMap.sk:111*/
             {
-              Object@Object _out_s300 = null;
-              equals_Object@Object(k, self.k, _out_s300);
-              _pac_sc_s298 = _out_s300;
+              Object@Object _out_s292 = null;
+              equals_Object@Object(k, self.k, _out_s292);
+              _pac_sc_s290 = _out_s292;
             }
             else
             {
-              int _out_s302 = 0;
-              SecretKeySpec@meta(_out_s302);
-              Object@Object _pac_sc_s303 = null;
-              if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s302)._int))/*HashMap.sk:111*/
+              int _out_s294 = 0;
+              SecretKeySpec@meta(_out_s294);
+              Object@Object _pac_sc_s295 = null;
+              if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s294)._int))/*HashMap.sk:111*/
               {
-                Object@Object _out_s305 = null;
-                equals_Object@Object(k, self.k, _out_s305);
-                _pac_sc_s303 = _out_s305;
+                Object@Object _out_s297 = null;
+                equals_Object@Object(k, self.k, _out_s297);
+                _pac_sc_s295 = _out_s297;
               }
               else
               {
-                int _out_s307 = 0;
-                IvParameterSpec@meta(_out_s307);
-                Object@Object _pac_sc_s308 = null;
-                if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s307)._int))/*HashMap.sk:111*/
+                int _out_s299 = 0;
+                IvParameterSpec@meta(_out_s299);
+                Object@Object _pac_sc_s300 = null;
+                if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s299)._int))/*HashMap.sk:111*/
                 {
-                  Object@Object _out_s310 = null;
-                  equals_Object@Object(k, self.k, _out_s310);
-                  _pac_sc_s308 = _out_s310;
+                  Object@Object _out_s302 = null;
+                  equals_Object@Object(k, self.k, _out_s302);
+                  _pac_sc_s300 = _out_s302;
                 }
                 else
                 {
-                  int _out_s312 = 0;
-                  HashMap@meta(_out_s312);
-                  Object@Object _pac_sc_s313 = null;
-                  if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s312)._int))/*HashMap.sk:111*/
+                  int _out_s304 = 0;
+                  HashMap@meta(_out_s304);
+                  Object@Object _pac_sc_s305 = null;
+                  if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s304)._int))/*HashMap.sk:111*/
                   {
-                    Object@Object _out_s315 = null;
-                    equals_Object@Object(k, self.k, _out_s315);
-                    _pac_sc_s313 = _out_s315;
+                    Object@Object _out_s307 = null;
+                    equals_Object@Object(k, self.k, _out_s307);
+                    _pac_sc_s305 = _out_s307;
                   }
                   else
                   {
-                    int _out_s317 = 0;
-                    Integer@meta(_out_s317);
-                    Object@Object _pac_sc_s318 = null;
-                    if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s317)._int))/*HashMap.sk:111*/
+                    int _out_s309 = 0;
+                    Integer@meta(_out_s309);
+                    Object@Object _pac_sc_s310 = null;
+                    if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s309)._int))/*HashMap.sk:111*/
                     {
-                      Object@Object _out_s320 = null;
-                      equals_Object@Integer(k, self.k, _out_s320);
-                      _pac_sc_s318 = _out_s320;
+                      Object@Object _out_s312 = null;
+                      equals_Object@Integer(k, self.k, _out_s312);
+                      _pac_sc_s310 = _out_s312;
                     }
                     else
                     {
-                      int _out_s322 = 0;
-                      Cryptographer@meta(_out_s322);
-                      Object@Object _pac_sc_s323 = null;
-                      if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s322)._int))/*HashMap.sk:111*/
+                      int _out_s314 = 0;
+                      Cryptographer@meta(_out_s314);
+                      Object@Object _pac_sc_s315 = null;
+                      if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s314)._int))/*HashMap.sk:111*/
                       {
-                        Object@Object _out_s325 = null;
-                        equals_Object@Object(k, self.k, _out_s325);
-                        _pac_sc_s323 = _out_s325;
+                        Object@Object _out_s317 = null;
+                        equals_Object@Object(k, self.k, _out_s317);
+                        _pac_sc_s315 = _out_s317;
                       }
                       else
                       {
-                        int _out_s327 = 0;
-                        Byte@meta(_out_s327);
-                        Object@Object _pac_sc_s328 = null;
-                        if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s327)._int))/*HashMap.sk:111*/
+                        int _out_s319 = 0;
+                        Byte@meta(_out_s319);
+                        Object@Object _pac_sc_s320 = null;
+                        if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s319)._int))/*HashMap.sk:111*/
                         {
-                          Object@Object _out_s330 = null;
-                          equals_Object@Object(k, self.k, _out_s330);
-                          _pac_sc_s328 = _out_s330;
+                          Object@Object _out_s322 = null;
+                          equals_Object@Object(k, self.k, _out_s322);
+                          _pac_sc_s320 = _out_s322;
                         }
                         else
                         {
-                          int _out_s332 = 0;
-                          ArrayList@meta(_out_s332);
-                          Object@Object _pac_sc_s333 = null;
-                          if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s332)._int))/*HashMap.sk:111*/
+                          int _out_s324 = 0;
+                          ArrayList@meta(_out_s324);
+                          Object@Object _pac_sc_s325 = null;
+                          if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s324)._int))/*HashMap.sk:111*/
                           {
-                            Object@Object _out_s335 = null;
-                            equals_Object@Object(k, self.k, _out_s335);
-                            _pac_sc_s333 = _out_s335;
+                            Object@Object _out_s327 = null;
+                            equals_Object@Object(k, self.k, _out_s327);
+                            _pac_sc_s325 = _out_s327;
                           }
                           else
                           {
-                            int _out_s337 = 0;
-                            Character@meta(_out_s337);
-                            Object@Object _pac_sc_s338 = null;
-                            if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s337)._int))/*HashMap.sk:111*/
+                            int _out_s329 = 0;
+                            Character@meta(_out_s329);
+                            Object@Object _pac_sc_s330 = null;
+                            if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s329)._int))/*HashMap.sk:111*/
                             {
-                              Object@Object _out_s340 = null;
-                              equals_Object@Character(k, self.k, _out_s340);
-                              _pac_sc_s338 = _out_s340;
+                              Object@Object _out_s332 = null;
+                              equals_Object@Character(k, self.k, _out_s332);
+                              _pac_sc_s330 = _out_s332;
                             }
                             else
                             {
-                              int _out_s342 = 0;
-                              SecureRandom@meta(_out_s342);
-                              Object@Object _pac_sc_s343 = null;
-                              if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s342)._int))/*HashMap.sk:111*/
+                              int _out_s334 = 0;
+                              SecureRandom@meta(_out_s334);
+                              Object@Object _pac_sc_s335 = null;
+                              if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s334)._int))/*HashMap.sk:111*/
                               {
-                                Object@Object _out_s345 = null;
-                                equals_Object@Object(k, self.k, _out_s345);
-                                _pac_sc_s343 = _out_s345;
+                                Object@Object _out_s337 = null;
+                                equals_Object@Object(k, self.k, _out_s337);
+                                _pac_sc_s335 = _out_s337;
                               }
                               else
                               {
-                                int _out_s347 = 0;
-                                Assert@meta(_out_s347);
-                                Object@Object _pac_sc_s348 = null;
-                                if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s347)._int))/*HashMap.sk:111*/
+                                int _out_s339 = 0;
+                                Assert@meta(_out_s339);
+                                Object@Object _pac_sc_s340 = null;
+                                if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s339)._int))/*HashMap.sk:111*/
                                 {
-                                  Object@Object _out_s350 = null;
-                                  equals_Object@Object(k, self.k, _out_s350);
-                                  _pac_sc_s348 = _out_s350;
+                                  Object@Object _out_s342 = null;
+                                  equals_Object@Object(k, self.k, _out_s342);
+                                  _pac_sc_s340 = _out_s342;
                                 }
                                 else
                                 {
-                                  int _out_s352 = 0;
-                                  String@meta(_out_s352);
-                                  Object@Object _pac_sc_s353 = null;
-                                  if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s352)._int))/*HashMap.sk:111*/
+                                  int _out_s344 = 0;
+                                  String@meta(_out_s344);
+                                  Object@Object _pac_sc_s345 = null;
+                                  if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s344)._int))/*HashMap.sk:111*/
                                   {
-                                    Object@Object _out_s355 = null;
-                                    equals_Object@String(k, self.k, _out_s355);
-                                    _pac_sc_s353 = _out_s355;
+                                    Object@Object _out_s347 = null;
+                                    equals_Object@String(k, self.k, _out_s347);
+                                    _pac_sc_s345 = _out_s347;
                                   }
                                   else
                                   {
-                                    int _out_s357 = 0;
-                                    PasswordManager@meta(_out_s357);
-                                    Object@Object _pac_sc_s358 = null;
-                                    if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s357)._int))/*HashMap.sk:111*/
+                                    int _out_s349 = 0;
+                                    PasswordManager@meta(_out_s349);
+                                    Object@Object _pac_sc_s350 = null;
+                                    if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s349)._int))/*HashMap.sk:111*/
                                     {
-                                      Object@Object _out_s360 = null;
-                                      equals_Object@Object(k, self.k, _out_s360);
-                                      _pac_sc_s358 = _out_s360;
+                                      Object@Object _out_s352 = null;
+                                      equals_Object@Object(k, self.k, _out_s352);
+                                      _pac_sc_s350 = _out_s352;
                                     }
                                     else
                                     {
-                                      int _out_s362 = 0;
-                                      Cipher@meta(_out_s362);
-                                      Object@Object _pac_sc_s363 = null;
-                                      if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s362)._int))/*HashMap.sk:111*/
+                                      int _out_s354 = 0;
+                                      Cipher@meta(_out_s354);
+                                      Object@Object _pac_sc_s355 = null;
+                                      if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s354)._int))/*HashMap.sk:111*/
                                       {
-                                        Object@Object _out_s365 = null;
-                                        equals_Object@Object(k, self.k, _out_s365);
-                                        _pac_sc_s363 = _out_s365;
+                                        Object@Object _out_s357 = null;
+                                        equals_Object@Object(k, self.k, _out_s357);
+                                        _pac_sc_s355 = _out_s357;
                                       }
                                       else
                                       {
-                                        int _out_s367 = 0;
-                                        PasswordManagerTest@meta(_out_s367);
-                                        Object@Object _pac_sc_s368 = null;
-                                        if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s367)._int))/*HashMap.sk:111*/
+                                        int _out_s359 = 0;
+                                        PasswordManagerTest@meta(_out_s359);
+                                        Object@Object _pac_sc_s360 = null;
+                                        if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s359)._int))/*HashMap.sk:111*/
                                         {
-                                          Object@Object _out_s370 = null;
-                                          equals_Object@Object(k, self.k, _out_s370);
-                                          _pac_sc_s368 = _out_s370;
+                                          Object@Object _out_s362 = null;
+                                          equals_Object@Object(k, self.k, _out_s362);
+                                          _pac_sc_s360 = _out_s362;
                                         }
                                         else
                                         {
-                                          int _out_s372 = 0;
-                                          Object@meta(_out_s372);
-                                          Object@Object _pac_sc_s373 = null;
-                                          if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s372)._int))/*HashMap.sk:111*/
+                                          int _out_s364 = 0;
+                                          Object@meta(_out_s364);
+                                          Object@Object _pac_sc_s365 = null;
+                                          if((k.__cid) == (new Object@Object(__cid=-2, _int=_out_s364)._int))/*HashMap.sk:111*/
                                           {
-                                            Object@Object _out_s375 = null;
-                                            equals_Object@Object(k, self.k, _out_s375);
-                                            _pac_sc_s373 = _out_s375;
+                                            Object@Object _out_s367 = null;
+                                            equals_Object@Object(k, self.k, _out_s367);
+                                            _pac_sc_s365 = _out_s367;
                                           }
                                           else
                                           {
-                                            _pac_sc_s373 = null;
+                                            _pac_sc_s365 = null;
                                           }
-                                          _pac_sc_s368 = _pac_sc_s373;
+                                          _pac_sc_s360 = _pac_sc_s365;
                                         }
-                                        _pac_sc_s363 = _pac_sc_s368;
+                                        _pac_sc_s355 = _pac_sc_s360;
                                       }
-                                      _pac_sc_s358 = _pac_sc_s363;
+                                      _pac_sc_s350 = _pac_sc_s355;
                                     }
-                                    _pac_sc_s353 = _pac_sc_s358;
+                                    _pac_sc_s345 = _pac_sc_s350;
                                   }
-                                  _pac_sc_s348 = _pac_sc_s353;
+                                  _pac_sc_s340 = _pac_sc_s345;
                                 }
-                                _pac_sc_s343 = _pac_sc_s348;
+                                _pac_sc_s335 = _pac_sc_s340;
                               }
-                              _pac_sc_s338 = _pac_sc_s343;
+                              _pac_sc_s330 = _pac_sc_s335;
                             }
-                            _pac_sc_s333 = _pac_sc_s338;
+                            _pac_sc_s325 = _pac_sc_s330;
                           }
-                          _pac_sc_s328 = _pac_sc_s333;
+                          _pac_sc_s320 = _pac_sc_s325;
                         }
-                        _pac_sc_s323 = _pac_sc_s328;
+                        _pac_sc_s315 = _pac_sc_s320;
                       }
-                      _pac_sc_s318 = _pac_sc_s323;
+                      _pac_sc_s310 = _pac_sc_s315;
                     }
-                    _pac_sc_s313 = _pac_sc_s318;
+                    _pac_sc_s305 = _pac_sc_s310;
                   }
-                  _pac_sc_s308 = _pac_sc_s313;
+                  _pac_sc_s300 = _pac_sc_s305;
                 }
-                _pac_sc_s303 = _pac_sc_s308;
+                _pac_sc_s295 = _pac_sc_s300;
               }
-              _pac_sc_s298 = _pac_sc_s303;
+              _pac_sc_s290 = _pac_sc_s295;
             }
-            _pac_sc_s293 = _pac_sc_s298;
+            _pac_sc_s285 = _pac_sc_s290;
           }
-          _pac_sc_s288 = _pac_sc_s293;
+          _pac_sc_s280 = _pac_sc_s285;
         }
-        Object@Object _pac_sc_s376 = null;
-        if(_pac_sc_s288._bit)/*HashMap.sk:111*/
+        Object@Object _pac_sc_s368 = null;
+        if(_pac_sc_s280._bit)/*HashMap.sk:111*/
         {
-          _pac_sc_s376 = null;
+          _pac_sc_s368 = null;
         }
         else
         {
-          Object@Object _out_s378 = null;
-          xform_get_HashMap_Object(self.self, k, _out_s378);
-          _pac_sc_s376 = _out_s378;
+          Object@Object _out_s370 = null;
+          xform_get_HashMap_Object(self.self, k, _out_s370);
+          _pac_sc_s368 = _out_s370;
         }
-        _out = _pac_sc_s376;
+        _out = _pac_sc_s368;
         return;
       }
       case Remove_object:
@@ -1742,16 +2110,16 @@ package PasswordManager{
   
 void PasswordManager_PasswordManager_String (Object self, Object masterPassword, ref Object _out)/*Passwor..anager.sk:11*/
   {
-    int _out_s633 = 0;
-    Cryptographer@meta(_out_s633);
-    Object@Object _out_s635 = null;
-    Cryptographer_Cryptographer@Cryptographer(new Object@Object(__cid=_out_s633), _out_s635)//{};
-    self.cryptographer_PasswordManager = _out_s635;
-    int _out_s637 = 0;
-    PasswordMap@meta(_out_s637);
-    Object@Object _out_s639 = null;
-    PasswordMap_PasswordMap@PasswordMap(new Object@Object(__cid=_out_s637), _out_s639)//{};
-    self.passMap_PasswordManager = _out_s639;
+    int _out_s642 = 0;
+    Cryptographer@meta(_out_s642);
+    Object@Object _out_s644 = null;
+    Cryptographer_Cryptographer@Cryptographer(new Object@Object(__cid=_out_s642), _out_s644)//{};
+    self.cryptographer_PasswordManager = _out_s644;
+    int _out_s646 = 0;
+    PasswordMap@meta(_out_s646);
+    Object@Object _out_s648 = null;
+    PasswordMap_PasswordMap@PasswordMap(new Object@Object(__cid=_out_s646), _out_s648)//{};
+    self.passMap_PasswordManager = _out_s648;
     _out = self;
     return;
   }
@@ -1759,58 +2127,110 @@ void PasswordManager_PasswordManager_String (Object self, Object masterPassword,
   
 void addPassword_String_String (Object self, Object domain, Object passWord)/*Passwor..anager.sk:29*/
   {
-    int PassEncryption_s626 = 0;
-    Cryptographer@meta(PassEncryption_s626);
-    Object@Object _pac_sc_s627 = null;
-    if((self.cryptographer_PasswordManager.__cid) == (new Object@Object(__cid=-2, _int=PassEncryption_s626)._int))/*Passwor..anager.sk:30*/
+    int PassEncryption_s630 = 0;
+    Cryptographer@meta(PassEncryption_s630);
+    Object@Object _pac_sc_s631 = null;
+    if((self.cryptographer_PasswordManager.__cid) == (new Object@Object(__cid=-2, _int=PassEncryption_s630)._int))/*Passwor..anager.sk:30*/
     {
-      Object@Object PassEncryption_s629 = null;
-      encrypt_String@Cryptographer(self.cryptographer_PasswordManager, passWord, PassEncryption_s629);
-      _pac_sc_s627 = PassEncryption_s629;
+      Object@Object PassEncryption_s633 = null;
+      encrypt_String@Cryptographer(self.cryptographer_PasswordManager, passWord, PassEncryption_s633);
+      _pac_sc_s631 = PassEncryption_s633;
     }
     else
     {
-      _pac_sc_s627 = null;
+      _pac_sc_s631 = null;
     }
-    int _out_s631 = 0;
-    PasswordMap@meta(_out_s631);
-    if((self.passMap_PasswordManager.__cid) == (new Object@Object(__cid=-2, _int=_out_s631)._int))/*Passwor..anager.sk:32*/
+    int _out_s635 = 0;
+    String@meta(_out_s635);
+    Object@Object _pac_sc_s636 = null;
+    if((passWord.__cid) == _out_s635)/*Passwor..anager.sk:31*/
     {
-      add_String_String@PasswordMap(self.passMap_PasswordManager, domain, _pac_sc_s627);
+      Object@Object _out_s638 = null;
+      equals_Object@String(passWord, _pac_sc_s631, _out_s638);
+      _pac_sc_s636 = _out_s638;
+    }
+    else
+    {
+      _pac_sc_s636 = null;
+    }
+    assert (!(_pac_sc_s636._bit)); //Assert at Passwor..anager.sk:31 (0)
+    int _out_s640 = 0;
+    PasswordMap@meta(_out_s640);
+    if((self.passMap_PasswordManager.__cid) == (new Object@Object(__cid=-2, _int=_out_s640)._int))/*Passwor..anager.sk:33*/
+    {
+      add_String_String@PasswordMap(self.passMap_PasswordManager, domain, _pac_sc_s631);
     }
   }
-  /*Passwor..anager.sk:49*/
+  /*Passwor..anager.sk:51*/
   
-void getPass_String (Object self, Object domain, ref Object _out)/*Passwor..anager.sk:49*/
+void getPass_String (Object self, Object domain, ref Object _out)/*Passwor..anager.sk:51*/
   {
-    int PassEncryption_s616 = 0;
-    PasswordMap@meta(PassEncryption_s616);
-    Object@Object _pac_sc_s617 = null;
-    if((self.passMap_PasswordManager.__cid) == (new Object@Object(__cid=-2, _int=PassEncryption_s616)._int))/*Passwor..anager.sk:51*/
+    int PassEncryption_s608 = 0;
+    PasswordMap@meta(PassEncryption_s608);
+    Object@Object _pac_sc_s609 = null;
+    if((self.passMap_PasswordManager.__cid) == (new Object@Object(__cid=-2, _int=PassEncryption_s608)._int))/*Passwor..anager.sk:53*/
     {
-      Object@Object PassEncryption_s619 = null;
-      get_String@PasswordMap(self.passMap_PasswordManager, domain, PassEncryption_s619);
-      _pac_sc_s617 = PassEncryption_s619;
+      Object@Object PassEncryption_s611 = null;
+      get_String@PasswordMap(self.passMap_PasswordManager, domain, PassEncryption_s611);
+      _pac_sc_s609 = PassEncryption_s611;
     }
     else
     {
-      _pac_sc_s617 = null;
+      _pac_sc_s609 = null;
     }
-    int _out_s621 = 0;
-    Cryptographer@meta(_out_s621);
-    Object@Object _pac_sc_s622 = null;
-    if((self.cryptographer_PasswordManager.__cid) == (new Object@Object(__cid=-2, _int=_out_s621)._int))/*Passwor..anager.sk:52*/
+    int _out_s613 = 0;
+    Cryptographer@meta(_out_s613);
+    Object@Object _pac_sc_s614 = null;
+    if((self.cryptographer_PasswordManager.__cid) == (new Object@Object(__cid=-2, _int=_out_s613)._int))/*Passwor..anager.sk:54*/
     {
-      Object@Object _out_s624 = null;
-      decrypt_String@Cryptographer(self.cryptographer_PasswordManager, _pac_sc_s617, _out_s624);
-      _pac_sc_s622 = _out_s624;
+      Object@Object _out_s616 = null;
+      decrypt_String@Cryptographer(self.cryptographer_PasswordManager, _pac_sc_s609, _out_s616);
+      _pac_sc_s614 = _out_s616;
     }
     else
     {
-      _pac_sc_s622 = null;
+      _pac_sc_s614 = null;
     }
-    _out = _pac_sc_s622;
+    _out = _pac_sc_s614;
     return;
+  }
+  /*Passwor..anager.sk:37*/
+  
+void modifyPassword_String_String (Object self, Object domain, Object passWord)/*Passwor..anager.sk:37*/
+  {
+    int PassEncryption_s618 = 0;
+    Cryptographer@meta(PassEncryption_s618);
+    Object@Object _pac_sc_s619 = null;
+    if((self.cryptographer_PasswordManager.__cid) == (new Object@Object(__cid=-2, _int=PassEncryption_s618)._int))/*Passwor..anager.sk:38*/
+    {
+      Object@Object PassEncryption_s621 = null;
+      encrypt_String@Cryptographer(self.cryptographer_PasswordManager, passWord, PassEncryption_s621);
+      _pac_sc_s619 = PassEncryption_s621;
+    }
+    else
+    {
+      _pac_sc_s619 = null;
+    }
+    int _out_s623 = 0;
+    String@meta(_out_s623);
+    Object@Object _pac_sc_s624 = null;
+    if((passWord.__cid) == _out_s623)/*Passwor..anager.sk:39*/
+    {
+      Object@Object _out_s626 = null;
+      equals_Object@String(passWord, _pac_sc_s619, _out_s626);
+      _pac_sc_s624 = _out_s626;
+    }
+    else
+    {
+      _pac_sc_s624 = null;
+    }
+    assert (!(_pac_sc_s624._bit)); //Assert at Passwor..anager.sk:39 (0)
+    int _out_s628 = 0;
+    PasswordMap@meta(_out_s628);
+    if((self.passMap_PasswordManager.__cid) == (new Object@Object(__cid=-2, _int=_out_s628)._int))/*Passwor..anager.sk:41*/
+    {
+      add_String_String@PasswordMap(self.passMap_PasswordManager, domain, _pac_sc_s619);
+    }
   }
   /* END PACKAGE PasswordManager*/
 }
@@ -1831,18 +2251,18 @@ package SecureRandom{
   
 void SecureRandom_SecureRandom (ref Object _out)/*SecureRandom.sk:8*/
   {
-    int _out_s676 = 0;
-    SecureRandom@meta(_out_s676);
-    _out = new Object@Object(__cid=_out_s676, _securerandom=new Securerandom());
+    int _out_s678 = 0;
+    SecureRandom@meta(_out_s678);
+    _out = new Object@Object(__cid=_out_s678, _securerandom=new Securerandom());
     return;
   }
   /*SecureRandom.sk:12*/
   
 void nextBytes_Object_Object (Object self, Object k, ref Object _out)/*SecureRandom.sk:12*/
   {
-    int _out_s674 = 0;
-    SecureRandom@meta(_out_s674);
-    _out = new Object@Object(__cid=_out_s674, _securerandom=new Nextbytes_object(self=self._securerandom, k=k));
+    int _out_s676 = 0;
+    SecureRandom@meta(_out_s676);
+    _out = new Object@Object(__cid=_out_s676, _securerandom=new Nextbytes_object(self=self._securerandom, k=k));
     return;
   }
   /* END PACKAGE SecureRandom*/
@@ -1855,9 +2275,9 @@ void String_String_byte (Object self, Object bytes, ref Object _out)/*String.sk:
   {
     Object@Object len;
     len = bytes._array_char.length;
-    Object@Object _out_s684 = null;
-    Wrap_Array_char@array(new Array_char@array(length=len), _out_s684);
-    self._value_String = _out_s684;
+    Object@Object _out_s696 = null;
+    Wrap_Array_char@array(new Array_char@array(length=len), _out_s696);
+    self._value_String = _out_s696;
     Object@Object i;
     i = new Object@Object(__cid=-2, _int=0);
     bit __sa1 = (i._int) < (len._int);
@@ -1877,18 +2297,18 @@ void String_String_char_int_int (Object self, Object ca, Object offset, Object c
   {
     if(((offset._int) > (new Object@Object(__cid=-2, _int=0)._int)) && ((offset._int) < (ca._array_char.length._int)))/*String.sk:8*/
     {
-      Object@Object tmp_s682 = null;
-      Wrap_Array_char@array(new Array_char@array(length=count), tmp_s682);
+      Object@Object tmp_s717 = null;
+      Wrap_Array_char@array(new Array_char@array(length=count), tmp_s717);
       Object@Object i;
       i = new Object@Object(__cid=-2, _int=0);
       bit __sa0 = (i._int) < (count._int);
       while(__sa0)
       {
-        tmp_s682._array_char.A[i._int] = ca._array_char.A[(i._int) + (offset._int)];
+        tmp_s717._array_char.A[i._int] = ca._array_char.A[(i._int) + (offset._int)];
         i = new Object@Object(__cid=-2, _int=(i._int) + 1);
         __sa0 = (i._int) < (count._int);
       }
-      self._value_String = tmp_s682;
+      self._value_String = tmp_s717;
     }
     else
     {
@@ -1915,44 +2335,44 @@ void charAt_int (Object self, Object index, ref Object _out)/*String.sk:43*/
 void equals_Object (Object self, Object obj, ref Object _out)/*String.sk:154*/
   {
     _out = new Object@Object(__cid=-4, _bit=0);
-    int _out_s705 = 0;
-    String@meta(_out_s705);
-    if((obj.__cid) == _out_s705)/*String.sk:156*/
+    int _out_s684 = 0;
+    String@meta(_out_s684);
+    if((obj.__cid) == _out_s684)/*String.sk:156*/
     {
       _out = new Object@Object(__cid=-4, _bit=1);
-      int sLen_s707 = 0;
-      String@meta(sLen_s707);
-      Object@Object _pac_sc_s708 = null;
-      if((obj.__cid) == (new Object@Object(__cid=-2, _int=sLen_s707)._int))/*String.sk:159*/
+      int sLen_s686 = 0;
+      String@meta(sLen_s686);
+      Object@Object _pac_sc_s687 = null;
+      if((obj.__cid) == (new Object@Object(__cid=-2, _int=sLen_s686)._int))/*String.sk:159*/
       {
-        Object@Object sLen_s710 = null;
-        length@String(obj, sLen_s710);
-        _pac_sc_s708 = sLen_s710;
+        Object@Object sLen_s689 = null;
+        length@String(obj, sLen_s689);
+        _pac_sc_s687 = sLen_s689;
       }
       else
       {
-        _pac_sc_s708 = null;
+        _pac_sc_s687 = null;
       }
-      int tLen_s712 = 0;
-      String@meta(tLen_s712);
-      Object@Object _pac_sc_s713 = null;
-      if((self.__cid) == (new Object@Object(__cid=-2, _int=tLen_s712)._int))/*String.sk:160*/
+      int tLen_s691 = 0;
+      String@meta(tLen_s691);
+      Object@Object _pac_sc_s692 = null;
+      if((self.__cid) == (new Object@Object(__cid=-2, _int=tLen_s691)._int))/*String.sk:160*/
       {
-        Object@Object tLen_s715 = null;
-        length@String(self, tLen_s715);
-        _pac_sc_s713 = tLen_s715;
+        Object@Object tLen_s694 = null;
+        length@String(self, tLen_s694);
+        _pac_sc_s692 = tLen_s694;
       }
       else
       {
-        _pac_sc_s713 = null;
+        _pac_sc_s692 = null;
       }
-      if((_pac_sc_s708._int) != (_pac_sc_s713._int))/*String.sk:161*/
+      if((_pac_sc_s687._int) != (_pac_sc_s692._int))/*String.sk:161*/
       {
         _out = new Object@Object(__cid=-4, _bit=0);
       }
       Object@Object i;
       i = new Object@Object(__cid=-2, _int=0);
-      bit __sa8 = ((i._int) < (_pac_sc_s708._int)) && ((_out._bit) == (new Object@Object(__cid=-4, _bit=1)._bit));
+      bit __sa8 = ((i._int) < (_pac_sc_s687._int)) && ((_out._bit) == (new Object@Object(__cid=-4, _bit=1)._bit));
       while(__sa8)
       {
         if((obj._value_String._array_char.A[i._int]) != (self._value_String._array_char.A[i._int]))/*String.sk:163*/
@@ -1960,7 +2380,7 @@ void equals_Object (Object self, Object obj, ref Object _out)/*String.sk:154*/
           _out = new Object@Object(__cid=-4, _bit=0);
         }
         i = new Object@Object(__cid=-2, _int=(i._int) + 1);
-        __sa8 = ((i._int) < (_pac_sc_s708._int)) && ((_out._bit) == (new Object@Object(__cid=-4, _bit=1)._bit));
+        __sa8 = ((i._int) < (_pac_sc_s687._int)) && ((_out._bit) == (new Object@Object(__cid=-4, _bit=1)._bit));
       }
     }
     return;
@@ -1969,65 +2389,65 @@ void equals_Object (Object self, Object obj, ref Object _out)/*String.sk:154*/
   
 void getBytes (Object self, ref Object _out)/*String.sk:214*/
   {
-    int _out_s686 = 0;
-    String@meta(_out_s686);
-    Object@Object _pac_sc_s687 = null;
-    if((self.__cid) == (new Object@Object(__cid=-2, _int=_out_s686)._int))/*String.sk:215*/
+    int _out_s698 = 0;
+    String@meta(_out_s698);
+    Object@Object _pac_sc_s699 = null;
+    if((self.__cid) == (new Object@Object(__cid=-2, _int=_out_s698)._int))/*String.sk:215*/
     {
-      Object@Object _out_s689 = null;
-      toString@String(self, _out_s689);
-      _pac_sc_s687 = _out_s689;
+      Object@Object _out_s701 = null;
+      toString@String(self, _out_s701);
+      _pac_sc_s699 = _out_s701;
     }
     else
     {
-      _pac_sc_s687 = null;
+      _pac_sc_s699 = null;
     }
-    Object@Object _out_s691 = null;
-    getBytes_String(_pac_sc_s687, _out_s691)//{};
-    _out = _out_s691;
+    Object@Object _out_s703 = null;
+    getBytes_String(_pac_sc_s699, _out_s703)//{};
+    _out = _out_s703;
     return;
   }
   /*String.sk:218*/
   
 void getBytes_String (Object str, ref Object _out)/*String.sk:218*/
   {
-    int len_s693 = 0;
-    String@meta(len_s693);
-    Object@Object _pac_sc_s694 = null;
-    if((str.__cid) == (new Object@Object(__cid=-2, _int=len_s693)._int))/*String.sk:219*/
+    int len_s705 = 0;
+    String@meta(len_s705);
+    Object@Object _pac_sc_s706 = null;
+    if((str.__cid) == (new Object@Object(__cid=-2, _int=len_s705)._int))/*String.sk:219*/
     {
-      Object@Object len_s696 = null;
-      length@String(str, len_s696);
-      _pac_sc_s694 = len_s696;
+      Object@Object len_s708 = null;
+      length@String(str, len_s708);
+      _pac_sc_s706 = len_s708;
     }
     else
     {
-      _pac_sc_s694 = null;
+      _pac_sc_s706 = null;
     }
-    Object@Object bytes_s698 = null;
-    Wrap_Array_char@array(new Array_char@array(length=_pac_sc_s694), bytes_s698);
-    _out = bytes_s698;
+    Object@Object bytes_s710 = null;
+    Wrap_Array_char@array(new Array_char@array(length=_pac_sc_s706), bytes_s710);
+    _out = bytes_s710;
     Object@Object i;
     i = new Object@Object(__cid=-2, _int=0);
-    bit __sa14 = (i._int) < (_pac_sc_s694._int);
+    bit __sa14 = (i._int) < (_pac_sc_s706._int);
     while(__sa14)
     {
-      int _out_s700 = 0;
-      String@meta(_out_s700);
-      Object@Object _pac_sc_s701 = null;
-      if((str.__cid) == (new Object@Object(__cid=-2, _int=_out_s700)._int))/*String.sk:222*/
+      int _out_s712 = 0;
+      String@meta(_out_s712);
+      Object@Object _pac_sc_s713 = null;
+      if((str.__cid) == (new Object@Object(__cid=-2, _int=_out_s712)._int))/*String.sk:222*/
       {
-        Object@Object _out_s703 = null;
-        charAt_int@String(str, i, _out_s703);
-        _pac_sc_s701 = _out_s703;
+        Object@Object _out_s715 = null;
+        charAt_int@String(str, i, _out_s715);
+        _pac_sc_s713 = _out_s715;
       }
       else
       {
-        _pac_sc_s701 = null;
+        _pac_sc_s713 = null;
       }
-      bytes_s698._array_char.A[i._int] = _pac_sc_s701._char;
+      bytes_s710._array_char.A[i._int] = _pac_sc_s713._char;
       i = new Object@Object(__cid=-2, _int=(i._int) + 1);
-      __sa14 = (i._int) < (_pac_sc_s694._int);
+      __sa14 = (i._int) < (_pac_sc_s706._int);
     }
     return;
   }
@@ -2074,27 +2494,27 @@ package Mac{
   
 void Mac_Mac (ref Object _out)/*Mac.sk:10*/
   {
-    int _out_s900 = 0;
-    Mac@meta(_out_s900);
-    _out = new Object@Object(__cid=_out_s900, _mac=new Mac_empty());
+    int _out_s902 = 0;
+    Mac@meta(_out_s902);
+    _out = new Object@Object(__cid=_out_s902, _mac=new Mac_empty());
     return;
   }
   /*Mac.sk:14*/
   
 void init_Object_SecretKeySpec (Object self, Object key, ref Object _out)/*Mac.sk:14*/
   {
-    int _out_s898 = 0;
-    Mac@meta(_out_s898);
-    _out = new Object@Object(__cid=_out_s898, _mac=new Init_secretkeyspec(self=self._mac, key=key));
+    int _out_s900 = 0;
+    Mac@meta(_out_s900);
+    _out = new Object@Object(__cid=_out_s900, _mac=new Init_secretkeyspec(self=self._mac, key=key));
     return;
   }
   /*Mac.sk:18*/
   
 void initb_Object_SecretKeySpec (Object self, Object key, ref Object _out)/*Mac.sk:18*/
   {
-    int _out_s896 = 0;
-    Mac@meta(_out_s896);
-    _out = new Object@Object(__cid=_out_s896, _mac=new Initb_secretkeyspec(self=self._mac, key=key));
+    int _out_s898 = 0;
+    Mac@meta(_out_s898);
+    _out = new Object@Object(__cid=_out_s898, _mac=new Initb_secretkeyspec(self=self._mac, key=key));
     return;
   }
   /* END PACKAGE Mac*/
@@ -2105,24 +2525,24 @@ package Integer{
   
 void equals_Object (Object self, Object obj, ref Object _out)/*Integer.sk:24*/
   {
-    int _out_s906 = 0;
-    Integer@meta(_out_s906);
-    if((obj.__cid) == _out_s906)/*Integer.sk:25*/
+    int _out_s908 = 0;
+    Integer@meta(_out_s908);
+    if((obj.__cid) == _out_s908)/*Integer.sk:25*/
     {
-      int _out_s908 = 0;
-      Integer@meta(_out_s908);
-      Object@Object _pac_sc_s909 = null;
-      if((obj.__cid) == (new Object@Object(__cid=-2, _int=_out_s908)._int))/*Integer.sk:26*/
+      int _out_s910 = 0;
+      Integer@meta(_out_s910);
+      Object@Object _pac_sc_s911 = null;
+      if((obj.__cid) == (new Object@Object(__cid=-2, _int=_out_s910)._int))/*Integer.sk:26*/
       {
-        Object@Object _out_s911 = null;
-        intValue@Integer(obj, _out_s911);
-        _pac_sc_s909 = _out_s911;
+        Object@Object _out_s913 = null;
+        intValue@Integer(obj, _out_s913);
+        _pac_sc_s911 = _out_s913;
       }
       else
       {
-        _pac_sc_s909 = null;
+        _pac_sc_s911 = null;
       }
-      _out = new Object@Object(__cid=-4, _bit=(self.value_Integer._int) == (_pac_sc_s909._int));
+      _out = new Object@Object(__cid=-4, _bit=(self.value_Integer._int) == (_pac_sc_s911._int));
       return;
     }
     _out = new Object@Object(__cid=-4, _bit=0);
@@ -2133,6 +2553,74 @@ void equals_Object (Object self, Object obj, ref Object _out)/*Integer.sk:24*/
 void intValue (Object self, ref Object _out)/*Integer.sk:12*/
   {
     _out = self.value_Integer;
+    return;
+  }
+  /*Integer.sk:39*/
+  
+void toString_int (Object i, ref Object _out)/*Integer.sk:39*/
+  {
+    if((i._int) == (new Object@Object(__cid=-2, _int=0)._int))/*Integer.sk:40*/
+    {
+      int _out_s915 = 0;
+      String@meta(_out_s915);
+      Object@Object _out_s917 = null;
+      Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=2), A={'0','\0'}), _out_s917);
+      Object@Object _out_s919 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_out_s915), _out_s917, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=1), _out_s919)//{};
+      _out = _out_s919;
+      return;
+    }
+    Object@Object index = new Object@Object(__cid=-2, _int=0);
+    Object@Object temp = i;
+    Object@Object j;
+    Object@Object ret_s921 = null;
+    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=32)), ret_s921);
+    Object@Object ret2_s923 = null;
+    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=32)), ret2_s923);
+    Object@Object nums_s925 = null;
+    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=10)), nums_s925);
+    nums_s925._array_char.A[0] = new Object@Object(__cid=-3, _char='0')._char;
+    nums_s925._array_char.A[1] = new Object@Object(__cid=-3, _char='1')._char;
+    nums_s925._array_char.A[2] = new Object@Object(__cid=-3, _char='2')._char;
+    nums_s925._array_char.A[3] = new Object@Object(__cid=-3, _char='3')._char;
+    nums_s925._array_char.A[4] = new Object@Object(__cid=-3, _char='4')._char;
+    nums_s925._array_char.A[5] = new Object@Object(__cid=-3, _char='5')._char;
+    nums_s925._array_char.A[6] = new Object@Object(__cid=-3, _char='6')._char;
+    nums_s925._array_char.A[7] = new Object@Object(__cid=-3, _char='7')._char;
+    nums_s925._array_char.A[8] = new Object@Object(__cid=-3, _char='8')._char;
+    nums_s925._array_char.A[9] = new Object@Object(__cid=-3, _char='9')._char;
+    if((i._int) < (new Object@Object(__cid=-2, _int=0)._int))/*Integer.sk:47*/
+    {
+      temp = new Object@Object(__cid=-2, _int=(i._int) * (-(new Object@Object(__cid=-2, _int=1)._int)));
+    }
+    bit __sa19 = (temp._int) > (new Object@Object(__cid=-2, _int=0)._int);
+    while(__sa19)
+    {
+      ret_s921._array_char.A[index._int] = nums_s925._array_char.A[(temp._int) % (new Object@Object(__cid=-2, _int=10)._int)];
+      temp = new Object@Object(__cid=-2, _int=(temp._int) / (new Object@Object(__cid=-2, _int=10)._int));
+      index = new Object@Object(__cid=-2, _int=(index._int) + (new Object@Object(__cid=-2, _int=1)._int));
+      __sa19 = (temp._int) > (new Object@Object(__cid=-2, _int=0)._int);
+    }
+    if((i._int) < (new Object@Object(__cid=-2, _int=0)._int))/*Integer.sk:55*/
+    {
+      ret_s921._array_char.A[index._int] = new Object@Object(__cid=-3, _char='-')._char;
+      index = new Object@Object(__cid=-2, _int=(index._int) + (new Object@Object(__cid=-2, _int=1)._int));
+    }
+    Object@Object size = index;
+    j = new Object@Object(__cid=-2, _int=0);
+    bit __sa20 = (j._int) < (index._int);
+    while(__sa20)
+    {
+      ret2_s923._array_char.A[j._int] = ret_s921._array_char.A[(index._int) - (new Object@Object(__cid=-2, _int=1)._int)];
+      index = new Object@Object(__cid=-2, _int=(index._int) - (new Object@Object(__cid=-2, _int=1)._int));
+      j = new Object@Object(__cid=-2, _int=(j._int) + 1);
+      __sa20 = (j._int) < (size._int);
+    }
+    int _out_s927 = 0;
+    String@meta(_out_s927);
+    Object@Object _out_s929 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=_out_s927), ret2_s923, new Object@Object(__cid=-2, _int=0), size, _out_s929)//{};
+    _out = _out_s929;
     return;
   }
   /* END PACKAGE Integer*/
@@ -2151,16 +2639,16 @@ package PasswordMap{
   
 void PasswordMap_PasswordMap (Object self, ref Object _out)/*PasswordMap.sk:3*/
   {
-    Object@Object _out_s1134 = null;
-    HashMap_HashMap@HashMap(_out_s1134);
-    self.passMap_PasswordMap = _out_s1134;
-    int _out_s1136 = 0;
-    String@meta(_out_s1136);
-    Object@Object _out_s1138 = null;
-    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=16), A={'S','e','c','r','e','t',' ','P','a','s','s','w','o','r','d','\0'}), _out_s1138);
-    Object@Object _out_s1140 = null;
-    String_String_char_int_int@String(new Object@Object(__cid=_out_s1136), _out_s1138, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=15), _out_s1140)//{};
-    self.masterHash_PasswordMap = _out_s1140;
+    Object@Object _out_s1154 = null;
+    HashMap_HashMap@HashMap(_out_s1154);
+    self.passMap_PasswordMap = _out_s1154;
+    int _out_s1156 = 0;
+    String@meta(_out_s1156);
+    Object@Object _out_s1158 = null;
+    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=16), A={'S','e','c','r','e','t',' ','P','a','s','s','w','o','r','d','\0'}), _out_s1158);
+    Object@Object _out_s1160 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=_out_s1156), _out_s1158, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=15), _out_s1160)//{};
+    self.masterHash_PasswordMap = _out_s1160;
     _out = self;
     return;
   }
@@ -2168,35 +2656,35 @@ void PasswordMap_PasswordMap (Object self, ref Object _out)/*PasswordMap.sk:3*/
   
 void add_String_String (Object self, Object tag, Object passEncryption)/*PasswordMap.sk:9*/
   {
-    int _out_s1124 = 0;
-    HashMap@meta(_out_s1124);
-    if((self.passMap_PasswordMap.__cid) == (new Object@Object(__cid=-2, _int=_out_s1124)._int))/*PasswordMap.sk:10*/
+    int _out_s1144 = 0;
+    HashMap@meta(_out_s1144);
+    if((self.passMap_PasswordMap.__cid) == (new Object@Object(__cid=-2, _int=_out_s1144)._int))/*PasswordMap.sk:10*/
     {
-      Object@Object _out_s1127 = null;
-      put_Object_Object_Object@HashMap(self.passMap_PasswordMap, tag, passEncryption, _out_s1127);
+      Object@Object _out_s1147 = null;
+      put_Object_Object_Object@HashMap(self.passMap_PasswordMap, tag, passEncryption, _out_s1147);
     }
-    int _out_s1129 = 0;
-    HashMap@meta(_out_s1129);
-    Object@Object _pac_sc_s1130 = null;
-    if((self.passMap_PasswordMap.__cid) == (new Object@Object(__cid=-2, _int=_out_s1129)._int))/*PasswordMap.sk:10*/
+    int _out_s1149 = 0;
+    HashMap@meta(_out_s1149);
+    Object@Object _pac_sc_s1150 = null;
+    if((self.passMap_PasswordMap.__cid) == (new Object@Object(__cid=-2, _int=_out_s1149)._int))/*PasswordMap.sk:10*/
     {
-      Object@Object _out_s1132 = null;
-      putb_Object_Object_Object@HashMap(self.passMap_PasswordMap, tag, passEncryption, _out_s1132);
-      _pac_sc_s1130 = _out_s1132;
+      Object@Object _out_s1152 = null;
+      putb_Object_Object_Object@HashMap(self.passMap_PasswordMap, tag, passEncryption, _out_s1152);
+      _pac_sc_s1150 = _out_s1152;
     }
     else
     {
-      _pac_sc_s1130 = null;
+      _pac_sc_s1150 = null;
     }
-    self.passMap_PasswordMap = _pac_sc_s1130;
+    self.passMap_PasswordMap = _pac_sc_s1150;
   }
   /*PasswordMap.sk:17*/
   
 void get_String (Object self, Object domainHash, ref Object _out)/*PasswordMap.sk:17*/
   {
-    Object@Object _out_s1122 = null;
-    xform_get_HashMap_Object@HashMap(self.passMap_PasswordMap._hashmap, domainHash, _out_s1122);
-    _out = _out_s1122;
+    Object@Object _out_s1142 = null;
+    xform_get_HashMap_Object@HashMap(self.passMap_PasswordMap._hashmap, domainHash, _out_s1142);
+    _out = _out_s1142;
     return;
   }
   /* END PACKAGE PasswordMap*/
@@ -2231,9 +2719,9 @@ package array{
   
 void Wrap_Array_char (Array_char arr, ref Object _out)/*array.sk:37*/
   {
-    int _out_s1157 = 0;
-    Array@meta(_out_s1157);
-    _out = new Object@Object(__cid=_out_s1157, _array_char=arr);
+    int _out_s1177 = 0;
+    Array@meta(_out_s1177);
+    _out = new Object@Object(__cid=_out_s1177, _array_char=arr);
     return;
   }
   /* END PACKAGE array*/
@@ -2391,9 +2879,9 @@ package SecretKeySpec{
   
 void SecretKeySpec_SecretKeySpec (ref Object _out)/*SecretKeySpec.sk:8*/
   {
-    int _out_s1169 = 0;
-    SecretKeySpec@meta(_out_s1169);
-    _out = new Object@Object(__cid=_out_s1169, _secretkeyspec=new Secretkeyspec());
+    int _out_s1189 = 0;
+    SecretKeySpec@meta(_out_s1189);
+    _out = new Object@Object(__cid=_out_s1189, _secretkeyspec=new Secretkeyspec());
     return;
   }
   /* END PACKAGE SecretKeySpec*/
@@ -2512,54 +3000,54 @@ package Cipher{
   
 void Cipher_Cipher (ref Object _out)/*Cipher.sk:17*/
   {
-    int _out_s1457 = 0;
-    Cipher@meta(_out_s1457);
-    _out = new Object@Object(__cid=_out_s1457, _cipher=new Cipher_empty());
+    int _out_s1477 = 0;
+    Cipher@meta(_out_s1477);
+    _out = new Object@Object(__cid=_out_s1477, _cipher=new Cipher_empty());
     return;
   }
   /*Cipher.sk:41*/
   
 void doFinal_Object_Object (Object self, Object text, ref Object _out)/*Cipher.sk:41*/
   {
-    int _out_s1269 = 0;
-    Cipher@meta(_out_s1269);
-    _out = new Object@Object(__cid=_out_s1269, _cipher=new Dofinal_object(self=self._cipher, text=text));
+    int _out_s1469 = 0;
+    Cipher@meta(_out_s1469);
+    _out = new Object@Object(__cid=_out_s1469, _cipher=new Dofinal_object(self=self._cipher, text=text));
     return;
   }
   /*Cipher.sk:37*/
   
 void doFinalb_Object_Object (Object self, Object text, ref Object _out)/*Cipher.sk:37*/
   {
-    int _out_s1267 = 0;
-    Cipher@meta(_out_s1267);
-    _out = new Object@Object(__cid=_out_s1267, _cipher=new Dofinalb_object(self=self._cipher, text=text));
+    int _out_s1467 = 0;
+    Cipher@meta(_out_s1467);
+    _out = new Object@Object(__cid=_out_s1467, _cipher=new Dofinalb_object(self=self._cipher, text=text));
     return;
   }
   /*Cipher.sk:29*/
   
 void init_Object_int_Object_Object (Object self, Object mode, Object k, Object iv, ref Object _out)/*Cipher.sk:29*/
   {
-    int _out_s1273 = 0;
-    Cipher@meta(_out_s1273);
-    _out = new Object@Object(__cid=_out_s1273, _cipher=new Init_int_object_object(self=self._cipher, mode=mode, k=k, iv=iv));
+    int _out_s1473 = 0;
+    Cipher@meta(_out_s1473);
+    _out = new Object@Object(__cid=_out_s1473, _cipher=new Init_int_object_object(self=self._cipher, mode=mode, k=k, iv=iv));
     return;
   }
   /*Cipher.sk:33*/
   
 void initb_Object_int_Object_Object (Object self, Object mode, Object k, Object iv, ref Object _out)/*Cipher.sk:33*/
   {
-    int _out_s1271 = 0;
-    Cipher@meta(_out_s1271);
-    _out = new Object@Object(__cid=_out_s1271, _cipher=new Initb_int_object_object(self=self._cipher, mode=mode, k=k, iv=iv));
+    int _out_s1471 = 0;
+    Cipher@meta(_out_s1471);
+    _out = new Object@Object(__cid=_out_s1471, _cipher=new Initb_int_object_object(self=self._cipher, mode=mode, k=k, iv=iv));
     return;
   }
   /*Cipher.sk:21*/
   
 void toString_Object (Object self, ref Object _out)/*Cipher.sk:21*/
   {
-    int _out_s1455 = 0;
-    Cipher@meta(_out_s1455);
-    _out = new Object@Object(__cid=_out_s1455, _cipher=new Tostring(self=self._cipher));
+    int _out_s1475 = 0;
+    Cipher@meta(_out_s1475);
+    _out = new Object@Object(__cid=_out_s1475, _cipher=new Tostring(self=self._cipher));
     return;
   }
   /*Cipher.sk:140*/
@@ -2609,165 +3097,165 @@ void xform_doFinal_Cipher_Object (Cipher self, Object text, ref Object _out)/*Ci
                     assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:166 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:170 Assert at Cipher.sk:170 (1)
                   case Initb_int_object_object:
                   {
-                    int _out_s1275 = 0;
-                    Boolean@meta(_out_s1275);
-                    if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1275)._int))/*Cipher.sk:172*/
+                    int _out_s1287 = 0;
+                    Boolean@meta(_out_s1287);
+                    if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1287)._int))/*Cipher.sk:172*/
                     {
-                      Object@Object _out_s1278 = null;
-                      equals_Object@Object(self.k, text_text_text_text.k, _out_s1278);
+                      Object@Object _out_s1290 = null;
+                      equals_Object@Object(self.k, text_text_text_text.k, _out_s1290);
                     }
                     else
                     {
-                      int _out_s1280 = 0;
-                      Mac@meta(_out_s1280);
-                      if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1280)._int))/*Cipher.sk:172*/
+                      int _out_s1292 = 0;
+                      Mac@meta(_out_s1292);
+                      if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1292)._int))/*Cipher.sk:172*/
                       {
-                        Object@Object _out_s1283 = null;
-                        equals_Object@Object(self.k, text_text_text_text.k, _out_s1283);
+                        Object@Object _out_s1295 = null;
+                        equals_Object@Object(self.k, text_text_text_text.k, _out_s1295);
                       }
                       else
                       {
-                        int _out_s1285 = 0;
-                        PasswordMap@meta(_out_s1285);
-                        if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1285)._int))/*Cipher.sk:172*/
+                        int _out_s1297 = 0;
+                        PasswordMap@meta(_out_s1297);
+                        if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1297)._int))/*Cipher.sk:172*/
                         {
-                          Object@Object _out_s1288 = null;
-                          equals_Object@Object(self.k, text_text_text_text.k, _out_s1288);
+                          Object@Object _out_s1300 = null;
+                          equals_Object@Object(self.k, text_text_text_text.k, _out_s1300);
                         }
                         else
                         {
-                          int _out_s1290 = 0;
-                          SecretKeySpec@meta(_out_s1290);
-                          if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1290)._int))/*Cipher.sk:172*/
+                          int _out_s1302 = 0;
+                          SecretKeySpec@meta(_out_s1302);
+                          if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1302)._int))/*Cipher.sk:172*/
                           {
-                            Object@Object _out_s1293 = null;
-                            equals_Object@Object(self.k, text_text_text_text.k, _out_s1293);
+                            Object@Object _out_s1305 = null;
+                            equals_Object@Object(self.k, text_text_text_text.k, _out_s1305);
                           }
                           else
                           {
-                            int _out_s1295 = 0;
-                            IvParameterSpec@meta(_out_s1295);
-                            if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1295)._int))/*Cipher.sk:172*/
+                            int _out_s1307 = 0;
+                            IvParameterSpec@meta(_out_s1307);
+                            if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1307)._int))/*Cipher.sk:172*/
                             {
-                              Object@Object _out_s1298 = null;
-                              equals_Object@Object(self.k, text_text_text_text.k, _out_s1298);
+                              Object@Object _out_s1310 = null;
+                              equals_Object@Object(self.k, text_text_text_text.k, _out_s1310);
                             }
                             else
                             {
-                              int _out_s1300 = 0;
-                              HashMap@meta(_out_s1300);
-                              if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1300)._int))/*Cipher.sk:172*/
+                              int _out_s1312 = 0;
+                              HashMap@meta(_out_s1312);
+                              if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1312)._int))/*Cipher.sk:172*/
                               {
-                                Object@Object _out_s1303 = null;
-                                equals_Object@Object(self.k, text_text_text_text.k, _out_s1303);
+                                Object@Object _out_s1315 = null;
+                                equals_Object@Object(self.k, text_text_text_text.k, _out_s1315);
                               }
                               else
                               {
-                                int _out_s1305 = 0;
-                                Integer@meta(_out_s1305);
-                                if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1305)._int))/*Cipher.sk:172*/
+                                int _out_s1317 = 0;
+                                Integer@meta(_out_s1317);
+                                if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1317)._int))/*Cipher.sk:172*/
                                 {
-                                  Object@Object _out_s1308 = null;
-                                  equals_Object@Integer(self.k, text_text_text_text.k, _out_s1308);
+                                  Object@Object _out_s1320 = null;
+                                  equals_Object@Integer(self.k, text_text_text_text.k, _out_s1320);
                                 }
                                 else
                                 {
-                                  int _out_s1310 = 0;
-                                  Cryptographer@meta(_out_s1310);
-                                  if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1310)._int))/*Cipher.sk:172*/
+                                  int _out_s1322 = 0;
+                                  Cryptographer@meta(_out_s1322);
+                                  if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1322)._int))/*Cipher.sk:172*/
                                   {
-                                    Object@Object _out_s1313 = null;
-                                    equals_Object@Object(self.k, text_text_text_text.k, _out_s1313);
+                                    Object@Object _out_s1325 = null;
+                                    equals_Object@Object(self.k, text_text_text_text.k, _out_s1325);
                                   }
                                   else
                                   {
-                                    int _out_s1315 = 0;
-                                    Byte@meta(_out_s1315);
-                                    if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1315)._int))/*Cipher.sk:172*/
+                                    int _out_s1327 = 0;
+                                    Byte@meta(_out_s1327);
+                                    if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1327)._int))/*Cipher.sk:172*/
                                     {
-                                      Object@Object _out_s1318 = null;
-                                      equals_Object@Object(self.k, text_text_text_text.k, _out_s1318);
+                                      Object@Object _out_s1330 = null;
+                                      equals_Object@Object(self.k, text_text_text_text.k, _out_s1330);
                                     }
                                     else
                                     {
-                                      int _out_s1320 = 0;
-                                      ArrayList@meta(_out_s1320);
-                                      if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1320)._int))/*Cipher.sk:172*/
+                                      int _out_s1332 = 0;
+                                      ArrayList@meta(_out_s1332);
+                                      if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1332)._int))/*Cipher.sk:172*/
                                       {
-                                        Object@Object _out_s1323 = null;
-                                        equals_Object@Object(self.k, text_text_text_text.k, _out_s1323);
+                                        Object@Object _out_s1335 = null;
+                                        equals_Object@Object(self.k, text_text_text_text.k, _out_s1335);
                                       }
                                       else
                                       {
-                                        int _out_s1325 = 0;
-                                        Character@meta(_out_s1325);
-                                        if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1325)._int))/*Cipher.sk:172*/
+                                        int _out_s1337 = 0;
+                                        Character@meta(_out_s1337);
+                                        if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1337)._int))/*Cipher.sk:172*/
                                         {
-                                          Object@Object _out_s1328 = null;
-                                          equals_Object@Character(self.k, text_text_text_text.k, _out_s1328);
+                                          Object@Object _out_s1340 = null;
+                                          equals_Object@Character(self.k, text_text_text_text.k, _out_s1340);
                                         }
                                         else
                                         {
-                                          int _out_s1330 = 0;
-                                          SecureRandom@meta(_out_s1330);
-                                          if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1330)._int))/*Cipher.sk:172*/
+                                          int _out_s1342 = 0;
+                                          SecureRandom@meta(_out_s1342);
+                                          if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1342)._int))/*Cipher.sk:172*/
                                           {
-                                            Object@Object _out_s1333 = null;
-                                            equals_Object@Object(self.k, text_text_text_text.k, _out_s1333);
+                                            Object@Object _out_s1345 = null;
+                                            equals_Object@Object(self.k, text_text_text_text.k, _out_s1345);
                                           }
                                           else
                                           {
-                                            int _out_s1335 = 0;
-                                            Assert@meta(_out_s1335);
-                                            if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1335)._int))/*Cipher.sk:172*/
+                                            int _out_s1347 = 0;
+                                            Assert@meta(_out_s1347);
+                                            if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1347)._int))/*Cipher.sk:172*/
                                             {
-                                              Object@Object _out_s1338 = null;
-                                              equals_Object@Object(self.k, text_text_text_text.k, _out_s1338);
+                                              Object@Object _out_s1350 = null;
+                                              equals_Object@Object(self.k, text_text_text_text.k, _out_s1350);
                                             }
                                             else
                                             {
-                                              int _out_s1340 = 0;
-                                              String@meta(_out_s1340);
-                                              if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1340)._int))/*Cipher.sk:172*/
+                                              int _out_s1352 = 0;
+                                              String@meta(_out_s1352);
+                                              if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1352)._int))/*Cipher.sk:172*/
                                               {
-                                                Object@Object _out_s1343 = null;
-                                                equals_Object@String(self.k, text_text_text_text.k, _out_s1343);
+                                                Object@Object _out_s1355 = null;
+                                                equals_Object@String(self.k, text_text_text_text.k, _out_s1355);
                                               }
                                               else
                                               {
-                                                int _out_s1345 = 0;
-                                                PasswordManager@meta(_out_s1345);
-                                                if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1345)._int))/*Cipher.sk:172*/
+                                                int _out_s1357 = 0;
+                                                PasswordManager@meta(_out_s1357);
+                                                if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1357)._int))/*Cipher.sk:172*/
                                                 {
-                                                  Object@Object _out_s1348 = null;
-                                                  equals_Object@Object(self.k, text_text_text_text.k, _out_s1348);
+                                                  Object@Object _out_s1360 = null;
+                                                  equals_Object@Object(self.k, text_text_text_text.k, _out_s1360);
                                                 }
                                                 else
                                                 {
-                                                  int _out_s1350 = 0;
-                                                  Cipher@meta(_out_s1350);
-                                                  if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1350)._int))/*Cipher.sk:172*/
+                                                  int _out_s1362 = 0;
+                                                  Cipher@meta(_out_s1362);
+                                                  if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1362)._int))/*Cipher.sk:172*/
                                                   {
-                                                    Object@Object _out_s1353 = null;
-                                                    equals_Object@Object(self.k, text_text_text_text.k, _out_s1353);
+                                                    Object@Object _out_s1365 = null;
+                                                    equals_Object@Object(self.k, text_text_text_text.k, _out_s1365);
                                                   }
                                                   else
                                                   {
-                                                    int _out_s1355 = 0;
-                                                    PasswordManagerTest@meta(_out_s1355);
-                                                    if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1355)._int))/*Cipher.sk:172*/
+                                                    int _out_s1367 = 0;
+                                                    PasswordManagerTest@meta(_out_s1367);
+                                                    if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1367)._int))/*Cipher.sk:172*/
                                                     {
-                                                      Object@Object _out_s1358 = null;
-                                                      equals_Object@Object(self.k, text_text_text_text.k, _out_s1358);
+                                                      Object@Object _out_s1370 = null;
+                                                      equals_Object@Object(self.k, text_text_text_text.k, _out_s1370);
                                                     }
                                                     else
                                                     {
-                                                      int _out_s1360 = 0;
-                                                      Object@meta(_out_s1360);
-                                                      if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1360)._int))/*Cipher.sk:172*/
+                                                      int _out_s1372 = 0;
+                                                      Object@meta(_out_s1372);
+                                                      if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1372)._int))/*Cipher.sk:172*/
                                                       {
-                                                        Object@Object _out_s1363 = null;
-                                                        equals_Object@Object(self.k, text_text_text_text.k, _out_s1363);
+                                                        Object@Object _out_s1375 = null;
+                                                        equals_Object@Object(self.k, text_text_text_text.k, _out_s1375);
                                                       }
                                                     }
                                                   }
@@ -2786,241 +3274,241 @@ void xform_doFinal_Cipher_Object (Cipher self, Object text, ref Object _out)/*Ci
                         }
                       }
                     }
-                    int _out_s1365 = 0;
-                    Boolean@meta(_out_s1365);
-                    Object@Object _pac_sc_s1366 = null;
-                    if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1365)._int))/*Cipher.sk:172*/
+                    int _out_s1377 = 0;
+                    Boolean@meta(_out_s1377);
+                    Object@Object _pac_sc_s1378 = null;
+                    if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1377)._int))/*Cipher.sk:172*/
                     {
-                      Object@Object _out_s1368 = null;
-                      equals_Object@Object(self.k, text_text_text_text.k, _out_s1368);
-                      _pac_sc_s1366 = _out_s1368;
+                      Object@Object _out_s1380 = null;
+                      equals_Object@Object(self.k, text_text_text_text.k, _out_s1380);
+                      _pac_sc_s1378 = _out_s1380;
                     }
                     else
                     {
-                      int _out_s1370 = 0;
-                      Mac@meta(_out_s1370);
-                      Object@Object _pac_sc_s1371 = null;
-                      if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1370)._int))/*Cipher.sk:172*/
+                      int _out_s1382 = 0;
+                      Mac@meta(_out_s1382);
+                      Object@Object _pac_sc_s1383 = null;
+                      if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1382)._int))/*Cipher.sk:172*/
                       {
-                        Object@Object _out_s1373 = null;
-                        equals_Object@Object(self.k, text_text_text_text.k, _out_s1373);
-                        _pac_sc_s1371 = _out_s1373;
+                        Object@Object _out_s1385 = null;
+                        equals_Object@Object(self.k, text_text_text_text.k, _out_s1385);
+                        _pac_sc_s1383 = _out_s1385;
                       }
                       else
                       {
-                        int _out_s1375 = 0;
-                        PasswordMap@meta(_out_s1375);
-                        Object@Object _pac_sc_s1376 = null;
-                        if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1375)._int))/*Cipher.sk:172*/
+                        int _out_s1387 = 0;
+                        PasswordMap@meta(_out_s1387);
+                        Object@Object _pac_sc_s1388 = null;
+                        if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1387)._int))/*Cipher.sk:172*/
                         {
-                          Object@Object _out_s1378 = null;
-                          equals_Object@Object(self.k, text_text_text_text.k, _out_s1378);
-                          _pac_sc_s1376 = _out_s1378;
+                          Object@Object _out_s1390 = null;
+                          equals_Object@Object(self.k, text_text_text_text.k, _out_s1390);
+                          _pac_sc_s1388 = _out_s1390;
                         }
                         else
                         {
-                          int _out_s1380 = 0;
-                          SecretKeySpec@meta(_out_s1380);
-                          Object@Object _pac_sc_s1381 = null;
-                          if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1380)._int))/*Cipher.sk:172*/
+                          int _out_s1392 = 0;
+                          SecretKeySpec@meta(_out_s1392);
+                          Object@Object _pac_sc_s1393 = null;
+                          if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1392)._int))/*Cipher.sk:172*/
                           {
-                            Object@Object _out_s1383 = null;
-                            equals_Object@Object(self.k, text_text_text_text.k, _out_s1383);
-                            _pac_sc_s1381 = _out_s1383;
+                            Object@Object _out_s1395 = null;
+                            equals_Object@Object(self.k, text_text_text_text.k, _out_s1395);
+                            _pac_sc_s1393 = _out_s1395;
                           }
                           else
                           {
-                            int _out_s1385 = 0;
-                            IvParameterSpec@meta(_out_s1385);
-                            Object@Object _pac_sc_s1386 = null;
-                            if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1385)._int))/*Cipher.sk:172*/
+                            int _out_s1397 = 0;
+                            IvParameterSpec@meta(_out_s1397);
+                            Object@Object _pac_sc_s1398 = null;
+                            if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1397)._int))/*Cipher.sk:172*/
                             {
-                              Object@Object _out_s1388 = null;
-                              equals_Object@Object(self.k, text_text_text_text.k, _out_s1388);
-                              _pac_sc_s1386 = _out_s1388;
+                              Object@Object _out_s1400 = null;
+                              equals_Object@Object(self.k, text_text_text_text.k, _out_s1400);
+                              _pac_sc_s1398 = _out_s1400;
                             }
                             else
                             {
-                              int _out_s1390 = 0;
-                              HashMap@meta(_out_s1390);
-                              Object@Object _pac_sc_s1391 = null;
-                              if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1390)._int))/*Cipher.sk:172*/
+                              int _out_s1402 = 0;
+                              HashMap@meta(_out_s1402);
+                              Object@Object _pac_sc_s1403 = null;
+                              if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1402)._int))/*Cipher.sk:172*/
                               {
-                                Object@Object _out_s1393 = null;
-                                equals_Object@Object(self.k, text_text_text_text.k, _out_s1393);
-                                _pac_sc_s1391 = _out_s1393;
+                                Object@Object _out_s1405 = null;
+                                equals_Object@Object(self.k, text_text_text_text.k, _out_s1405);
+                                _pac_sc_s1403 = _out_s1405;
                               }
                               else
                               {
-                                int _out_s1395 = 0;
-                                Integer@meta(_out_s1395);
-                                Object@Object _pac_sc_s1396 = null;
-                                if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1395)._int))/*Cipher.sk:172*/
+                                int _out_s1407 = 0;
+                                Integer@meta(_out_s1407);
+                                Object@Object _pac_sc_s1408 = null;
+                                if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1407)._int))/*Cipher.sk:172*/
                                 {
-                                  Object@Object _out_s1398 = null;
-                                  equals_Object@Integer(self.k, text_text_text_text.k, _out_s1398);
-                                  _pac_sc_s1396 = _out_s1398;
+                                  Object@Object _out_s1410 = null;
+                                  equals_Object@Integer(self.k, text_text_text_text.k, _out_s1410);
+                                  _pac_sc_s1408 = _out_s1410;
                                 }
                                 else
                                 {
-                                  int _out_s1400 = 0;
-                                  Cryptographer@meta(_out_s1400);
-                                  Object@Object _pac_sc_s1401 = null;
-                                  if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1400)._int))/*Cipher.sk:172*/
+                                  int _out_s1412 = 0;
+                                  Cryptographer@meta(_out_s1412);
+                                  Object@Object _pac_sc_s1413 = null;
+                                  if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1412)._int))/*Cipher.sk:172*/
                                   {
-                                    Object@Object _out_s1403 = null;
-                                    equals_Object@Object(self.k, text_text_text_text.k, _out_s1403);
-                                    _pac_sc_s1401 = _out_s1403;
+                                    Object@Object _out_s1415 = null;
+                                    equals_Object@Object(self.k, text_text_text_text.k, _out_s1415);
+                                    _pac_sc_s1413 = _out_s1415;
                                   }
                                   else
                                   {
-                                    int _out_s1405 = 0;
-                                    Byte@meta(_out_s1405);
-                                    Object@Object _pac_sc_s1406 = null;
-                                    if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1405)._int))/*Cipher.sk:172*/
+                                    int _out_s1417 = 0;
+                                    Byte@meta(_out_s1417);
+                                    Object@Object _pac_sc_s1418 = null;
+                                    if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1417)._int))/*Cipher.sk:172*/
                                     {
-                                      Object@Object _out_s1408 = null;
-                                      equals_Object@Object(self.k, text_text_text_text.k, _out_s1408);
-                                      _pac_sc_s1406 = _out_s1408;
+                                      Object@Object _out_s1420 = null;
+                                      equals_Object@Object(self.k, text_text_text_text.k, _out_s1420);
+                                      _pac_sc_s1418 = _out_s1420;
                                     }
                                     else
                                     {
-                                      int _out_s1410 = 0;
-                                      ArrayList@meta(_out_s1410);
-                                      Object@Object _pac_sc_s1411 = null;
-                                      if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1410)._int))/*Cipher.sk:172*/
+                                      int _out_s1422 = 0;
+                                      ArrayList@meta(_out_s1422);
+                                      Object@Object _pac_sc_s1423 = null;
+                                      if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1422)._int))/*Cipher.sk:172*/
                                       {
-                                        Object@Object _out_s1413 = null;
-                                        equals_Object@Object(self.k, text_text_text_text.k, _out_s1413);
-                                        _pac_sc_s1411 = _out_s1413;
+                                        Object@Object _out_s1425 = null;
+                                        equals_Object@Object(self.k, text_text_text_text.k, _out_s1425);
+                                        _pac_sc_s1423 = _out_s1425;
                                       }
                                       else
                                       {
-                                        int _out_s1415 = 0;
-                                        Character@meta(_out_s1415);
-                                        Object@Object _pac_sc_s1416 = null;
-                                        if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1415)._int))/*Cipher.sk:172*/
+                                        int _out_s1427 = 0;
+                                        Character@meta(_out_s1427);
+                                        Object@Object _pac_sc_s1428 = null;
+                                        if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1427)._int))/*Cipher.sk:172*/
                                         {
-                                          Object@Object _out_s1418 = null;
-                                          equals_Object@Character(self.k, text_text_text_text.k, _out_s1418);
-                                          _pac_sc_s1416 = _out_s1418;
+                                          Object@Object _out_s1430 = null;
+                                          equals_Object@Character(self.k, text_text_text_text.k, _out_s1430);
+                                          _pac_sc_s1428 = _out_s1430;
                                         }
                                         else
                                         {
-                                          int _out_s1420 = 0;
-                                          SecureRandom@meta(_out_s1420);
-                                          Object@Object _pac_sc_s1421 = null;
-                                          if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1420)._int))/*Cipher.sk:172*/
+                                          int _out_s1432 = 0;
+                                          SecureRandom@meta(_out_s1432);
+                                          Object@Object _pac_sc_s1433 = null;
+                                          if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1432)._int))/*Cipher.sk:172*/
                                           {
-                                            Object@Object _out_s1423 = null;
-                                            equals_Object@Object(self.k, text_text_text_text.k, _out_s1423);
-                                            _pac_sc_s1421 = _out_s1423;
+                                            Object@Object _out_s1435 = null;
+                                            equals_Object@Object(self.k, text_text_text_text.k, _out_s1435);
+                                            _pac_sc_s1433 = _out_s1435;
                                           }
                                           else
                                           {
-                                            int _out_s1425 = 0;
-                                            Assert@meta(_out_s1425);
-                                            Object@Object _pac_sc_s1426 = null;
-                                            if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1425)._int))/*Cipher.sk:172*/
+                                            int _out_s1437 = 0;
+                                            Assert@meta(_out_s1437);
+                                            Object@Object _pac_sc_s1438 = null;
+                                            if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1437)._int))/*Cipher.sk:172*/
                                             {
-                                              Object@Object _out_s1428 = null;
-                                              equals_Object@Object(self.k, text_text_text_text.k, _out_s1428);
-                                              _pac_sc_s1426 = _out_s1428;
+                                              Object@Object _out_s1440 = null;
+                                              equals_Object@Object(self.k, text_text_text_text.k, _out_s1440);
+                                              _pac_sc_s1438 = _out_s1440;
                                             }
                                             else
                                             {
-                                              int _out_s1430 = 0;
-                                              String@meta(_out_s1430);
-                                              Object@Object _pac_sc_s1431 = null;
-                                              if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1430)._int))/*Cipher.sk:172*/
+                                              int _out_s1442 = 0;
+                                              String@meta(_out_s1442);
+                                              Object@Object _pac_sc_s1443 = null;
+                                              if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1442)._int))/*Cipher.sk:172*/
                                               {
-                                                Object@Object _out_s1433 = null;
-                                                equals_Object@String(self.k, text_text_text_text.k, _out_s1433);
-                                                _pac_sc_s1431 = _out_s1433;
+                                                Object@Object _out_s1445 = null;
+                                                equals_Object@String(self.k, text_text_text_text.k, _out_s1445);
+                                                _pac_sc_s1443 = _out_s1445;
                                               }
                                               else
                                               {
-                                                int _out_s1435 = 0;
-                                                PasswordManager@meta(_out_s1435);
-                                                Object@Object _pac_sc_s1436 = null;
-                                                if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1435)._int))/*Cipher.sk:172*/
+                                                int _out_s1447 = 0;
+                                                PasswordManager@meta(_out_s1447);
+                                                Object@Object _pac_sc_s1448 = null;
+                                                if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1447)._int))/*Cipher.sk:172*/
                                                 {
-                                                  Object@Object _out_s1438 = null;
-                                                  equals_Object@Object(self.k, text_text_text_text.k, _out_s1438);
-                                                  _pac_sc_s1436 = _out_s1438;
+                                                  Object@Object _out_s1450 = null;
+                                                  equals_Object@Object(self.k, text_text_text_text.k, _out_s1450);
+                                                  _pac_sc_s1448 = _out_s1450;
                                                 }
                                                 else
                                                 {
-                                                  int _out_s1440 = 0;
-                                                  Cipher@meta(_out_s1440);
-                                                  Object@Object _pac_sc_s1441 = null;
-                                                  if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1440)._int))/*Cipher.sk:172*/
+                                                  int _out_s1452 = 0;
+                                                  Cipher@meta(_out_s1452);
+                                                  Object@Object _pac_sc_s1453 = null;
+                                                  if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1452)._int))/*Cipher.sk:172*/
                                                   {
-                                                    Object@Object _out_s1443 = null;
-                                                    equals_Object@Object(self.k, text_text_text_text.k, _out_s1443);
-                                                    _pac_sc_s1441 = _out_s1443;
+                                                    Object@Object _out_s1455 = null;
+                                                    equals_Object@Object(self.k, text_text_text_text.k, _out_s1455);
+                                                    _pac_sc_s1453 = _out_s1455;
                                                   }
                                                   else
                                                   {
-                                                    int _out_s1445 = 0;
-                                                    PasswordManagerTest@meta(_out_s1445);
-                                                    Object@Object _pac_sc_s1446 = null;
-                                                    if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1445)._int))/*Cipher.sk:172*/
+                                                    int _out_s1457 = 0;
+                                                    PasswordManagerTest@meta(_out_s1457);
+                                                    Object@Object _pac_sc_s1458 = null;
+                                                    if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1457)._int))/*Cipher.sk:172*/
                                                     {
-                                                      Object@Object _out_s1448 = null;
-                                                      equals_Object@Object(self.k, text_text_text_text.k, _out_s1448);
-                                                      _pac_sc_s1446 = _out_s1448;
+                                                      Object@Object _out_s1460 = null;
+                                                      equals_Object@Object(self.k, text_text_text_text.k, _out_s1460);
+                                                      _pac_sc_s1458 = _out_s1460;
                                                     }
                                                     else
                                                     {
-                                                      int _out_s1450 = 0;
-                                                      Object@meta(_out_s1450);
-                                                      Object@Object _pac_sc_s1451 = null;
-                                                      if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1450)._int))/*Cipher.sk:172*/
+                                                      int _out_s1462 = 0;
+                                                      Object@meta(_out_s1462);
+                                                      Object@Object _pac_sc_s1463 = null;
+                                                      if((self.k.__cid) == (new Object@Object(__cid=-2, _int=_out_s1462)._int))/*Cipher.sk:172*/
                                                       {
-                                                        Object@Object _out_s1453 = null;
-                                                        equals_Object@Object(self.k, text_text_text_text.k, _out_s1453);
-                                                        _pac_sc_s1451 = _out_s1453;
+                                                        Object@Object _out_s1465 = null;
+                                                        equals_Object@Object(self.k, text_text_text_text.k, _out_s1465);
+                                                        _pac_sc_s1463 = _out_s1465;
                                                       }
                                                       else
                                                       {
-                                                        _pac_sc_s1451 = null;
+                                                        _pac_sc_s1463 = null;
                                                       }
-                                                      _pac_sc_s1446 = _pac_sc_s1451;
+                                                      _pac_sc_s1458 = _pac_sc_s1463;
                                                     }
-                                                    _pac_sc_s1441 = _pac_sc_s1446;
+                                                    _pac_sc_s1453 = _pac_sc_s1458;
                                                   }
-                                                  _pac_sc_s1436 = _pac_sc_s1441;
+                                                  _pac_sc_s1448 = _pac_sc_s1453;
                                                 }
-                                                _pac_sc_s1431 = _pac_sc_s1436;
+                                                _pac_sc_s1443 = _pac_sc_s1448;
                                               }
-                                              _pac_sc_s1426 = _pac_sc_s1431;
+                                              _pac_sc_s1438 = _pac_sc_s1443;
                                             }
-                                            _pac_sc_s1421 = _pac_sc_s1426;
+                                            _pac_sc_s1433 = _pac_sc_s1438;
                                           }
-                                          _pac_sc_s1416 = _pac_sc_s1421;
+                                          _pac_sc_s1428 = _pac_sc_s1433;
                                         }
-                                        _pac_sc_s1411 = _pac_sc_s1416;
+                                        _pac_sc_s1423 = _pac_sc_s1428;
                                       }
-                                      _pac_sc_s1406 = _pac_sc_s1411;
+                                      _pac_sc_s1418 = _pac_sc_s1423;
                                     }
-                                    _pac_sc_s1401 = _pac_sc_s1406;
+                                    _pac_sc_s1413 = _pac_sc_s1418;
                                   }
-                                  _pac_sc_s1396 = _pac_sc_s1401;
+                                  _pac_sc_s1408 = _pac_sc_s1413;
                                 }
-                                _pac_sc_s1391 = _pac_sc_s1396;
+                                _pac_sc_s1403 = _pac_sc_s1408;
                               }
-                              _pac_sc_s1386 = _pac_sc_s1391;
+                              _pac_sc_s1398 = _pac_sc_s1403;
                             }
-                            _pac_sc_s1381 = _pac_sc_s1386;
+                            _pac_sc_s1393 = _pac_sc_s1398;
                           }
-                          _pac_sc_s1376 = _pac_sc_s1381;
+                          _pac_sc_s1388 = _pac_sc_s1393;
                         }
-                        _pac_sc_s1371 = _pac_sc_s1376;
+                        _pac_sc_s1383 = _pac_sc_s1388;
                       }
-                      _pac_sc_s1366 = _pac_sc_s1371;
+                      _pac_sc_s1378 = _pac_sc_s1383;
                     }
-                    _out = (_pac_sc_s1366._bit ? (((self.mode._int) == (new Object@Object(__cid=-2, _int=2)._int)) && ((text_text_text_text.mode._int) == (new Object@Object(__cid=-2, _int=1)._int)) ? text_text_text.text : null) : null);
+                    _out = (_pac_sc_s1378._bit ? (((self.mode._int) == (new Object@Object(__cid=-2, _int=2)._int)) && ((text_text_text_text.mode._int) == (new Object@Object(__cid=-2, _int=1)._int)) ? text_text_text.text : null) : null);
                     return;
                   }
                   case Dofinalb_object:
@@ -3064,4 +3552,4 @@ package Key{
   /* END PACKAGE Key*/
 }
 [SKETCH] DONE
-Total time = 4926
+Total time = 66504
