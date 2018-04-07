@@ -1,17 +1,28 @@
 SKETCH version 1.7.5
 Benchmark = /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/CipherFactory/../result_noax/sk_CipherFactoryTests/main.sk
+    [1523037228.6190 - DEBUG] Running stage 'parse' -- Parse the program from a file
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [1523037231.4410 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)
 array.sk:5: Making final Array_bit@array.length
 array.sk:10: Making final Array_char@array.length
 array.sk:15: Making final Array_int@array.length
 array.sk:20: Making final Array_float@array.length
 array.sk:25: Making final Array_double@array.length
 array.sk:30: Making final Array_Object@array.length
+    [1523037233.0440 - DEBUG] Running stage SpmdLowLevelCStage
+    [1523037233.0510 - DEBUG]    Running visitor FlattenStmtBlocks2
+    [1523037233.0540 - DEBUG]    Running visitor SplitAssignFromVarDef
+    [1523037233.0600 - DEBUG]    Running visitor EliminateComplexForLoops
+    [1523037233.0670 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend
+    [1523037233.1250 - DEBUG] Running stage 'sten' -- Stencil transformations
 [SATBackend] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [SATBackend] MAX LOOP UNROLLING = 15
 [SATBackend] MAX FUNC INLINING  = 2
 estimated size of main__Wrapper_CipherFactoryTests
 stmt cnt: 2
-callee main_CipherFactoryTests : 76
+callee main_CipherFactoryTests : 67
 
 [SATBackend] After prog.accept(partialEval)
 [SATBackend] OFILE = sk_CipherFactoryTests
@@ -55,11 +66,13 @@ searching for file /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/ske
 searching for file /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-frontend/src/SketchSolver/cegis
 searching for file /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
 resolved cegis to path /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis
+    [1523037233.8110 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp
 [SATBackend] Launching: /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp 
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
 Overriding inputs with 5
 boundmode = CALLNAME
 assuming  bounds checks
-SOLVER RAND SEED = 1523118618
+SOLVER RAND SEED = 1523037233
  optimization level = 6
 Reading SKETCH Program in File /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp
 CREATING main__Wrapper_CipherFactoryTests
@@ -69,8 +82,8 @@ CREATING main__WrapperNospec_CipherFactoryTests
 size = 0
 after ba size = 0
 CREATING main_CipherFactoryTests
-size = 607
-after ba size = 607
+size = 3922
+after ba size = 3922
 CREATING Object_meta
 size = 3
 after ba size = 3
@@ -87,9 +100,14 @@ CREATING toString_int_Integer
 size = 1068
 after ba size = 1068
 CREATING encrypt_String_CryptoManager
+Found Cycle of size 11; Breaking.
+size = 1190
+after ba size = 1190
+CREATING decrypt_String_CryptoManager
+Found Cycle of size 19; Breaking.
 Found Cycle of size 15; Breaking.
-size = 728
-after ba size = 728
+size = 1363
+after ba size = 1363
 CREATING String_meta
 size = 3
 after ba size = 3
@@ -97,11 +115,6 @@ CREATING equals_Object_String
 Found Cycle of size 5; Breaking.
 size = 589
 after ba size = 589
-CREATING decrypt_String_CryptoManager
-Found Cycle of size 15; Breaking.
-Found Cycle of size 11; Breaking.
-size = 894
-after ba size = 894
 CREATING String_String_char_int_int_String
 size = 397
 after ba size = 397
@@ -111,6 +124,12 @@ after ba size = 3
 CREATING DefaultCipherFactory_DefaultCipherFactory_DefaultCipherFactory
 size = 436
 after ba size = 436
+CREATING getCharset_CryptoManager
+size = 83
+after ba size = 83
+CREATING encode_String_String_CryptoManager
+size = 102
+after ba size = 102
 CREATING getCipherFactory_CryptoManager
 size = 83
 after ba size = 83
@@ -123,24 +142,18 @@ after ba size = 161
 CREATING decryptionCipher_DefaultCipherFactory
 size = 161
 after ba size = 161
-CREATING getCharset_CryptoManager
-size = 83
-after ba size = 83
-CREATING encode_String_String_CryptoManager
-size = 102
-after ba size = 102
 CREATING readEncoded_String_CryptoManager
 size = 91
 after ba size = 91
-CREATING appendEncryptionMark_byte_CryptoManager
-size = 109
-after ba size = 109
 CREATING isEncryptedByte_byte_CryptoManager
 size = 97
 after ba size = 97
 CREATING cutEncryptionMark_byte_CryptoManager
 size = 400
 after ba size = 400
+CREATING appendEncryptionMark_byte_CryptoManager
+size = 109
+after ba size = 109
 CREATING cryptInCipher_Cipher_byte_CryptoManager
 size = 102
 after ba size = 102
@@ -153,18 +166,18 @@ after ba size = 83
 CREATING decode_byte_String_CryptoManager
 size = 166
 after ba size = 166
-CREATING length_String
-size = 83
-after ba size = 83
 CREATING isEncrypted_String_CryptoManager
 size = 290
 after ba size = 290
-CREATING initCipher_int_DefaultCipherFactory
-size = 161
-after ba size = 161
+CREATING length_String
+size = 83
+after ba size = 83
 CREATING getBytes_String
 size = 98
 after ba size = 98
+CREATING initCipher_int_DefaultCipherFactory
+size = 161
+after ba size = 161
 CREATING getEncryptedMark_CryptoManager
 size = 83
 after ba size = 83
@@ -183,16 +196,16 @@ after ba size = 238
 CREATING isUseEncryptionStrict_CryptoManager
 size = 83
 after ba size = 83
-CREATING obtainCipher_int_DefaultCipherFactory
-size = 404
-after ba size = 404
 CREATING toString_String
 size = 76
 after ba size = 76
 CREATING getBytes_String_String
-Found Cycle of size 12; Breaking.
+Found Cycle of size 14; Breaking.
 size = 289
 after ba size = 289
+CREATING obtainCipher_int_DefaultCipherFactory
+size = 404
+after ba size = 404
 CREATING SecretKeySpec_meta
 size = 3
 after ba size = 3
@@ -205,6 +218,9 @@ after ba size = 3
 CREATING getEncoded_KerberosKey
 size = 85
 after ba size = 85
+CREATING charAt_int_String
+size = 113
+after ba size = 113
 CREATING key_DefaultCipherFactory
 size = 102
 after ba size = 102
@@ -223,9 +239,6 @@ after ba size = 158
 CREATING init_int_Key_Cipher
 size = 86
 after ba size = 86
-CREATING charAt_int_String
-size = 113
-after ba size = 113
 CREATING getKey_DefaultCipherFactory
 size = 83
 after ba size = 83
@@ -238,171 +251,111 @@ after ba size = 88
  input_ints = 0 	 input_bits = 0
  Inlining amount = 2
  Inlining functions in the sketch.
-inlined 1 new size =509
-Found Cycle of size 33; Breaking.
-inlined 21 new size =2564
-Found Cycle of size 58; Breaking.
-Found Cycle of size 54; Breaking.
-inlined 53 new size =3787
-Found Cycle of size 125; Breaking.
-Found Cycle of size 122; Breaking.
-Found Cycle of size 131; Breaking.
-inlined 42 new size =8124
+inlined 1 new size =3787
+Found Cycle of size 379; Breaking.
+Found Cycle of size 377; Breaking.
+Found Cycle of size 364; Breaking.
+Found Cycle of size 354; Breaking.
+inlined 68 new size =28033
+Found Cycle of size 251; Breaking.
+Found Cycle of size 326; Breaking.
+Found Cycle of size 323; Breaking.
+Found Cycle of size 159; Breaking.
+Found Cycle of size 295; Breaking.
+Found Cycle of size 151; Breaking.
+Found Cycle of size 149; Breaking.
+Found Cycle of size 153; Breaking.
 Found Cycle of size 148; Breaking.
-Found Cycle of size 50; Breaking.
-Found Cycle of size 53; Breaking.
-Found Cycle of size 53; Breaking.
-Found Cycle of size 47; Breaking.
-Found Cycle of size 205; Breaking.
-inlined 36 new size =10797
-Found Cycle of size 69; Breaking.
-Found Cycle of size 206; Breaking.
-inlined 115 new size =11502
-Found Cycle of size 296; Breaking.
-inlined 92 new size =11293
-Found Cycle of size 80; Breaking.
-Found Cycle of size 77; Breaking.
-inlined 33 new size =11428
-inlined 86 new size =12088
-inlined 18 new size =12301
-inlined 0 new size =12301
+Found Cycle of size 142; Breaking.
+Found Cycle of size 142; Breaking.
+Found Cycle of size 149; Breaking.
+Found Cycle of size 146; Breaking.
+Found Cycle of size 149; Breaking.
+Found Cycle of size 142; Breaking.
+Found Cycle of size 141; Breaking.
+Found Cycle of size 145; Breaking.
+Found Cycle of size 162; Breaking.
+Found Cycle of size 135; Breaking.
+Found Cycle of size 159; Breaking.
+inlined 479 new size =40840
+Found Cycle of size 954; Breaking.
+Found Cycle of size 530; Breaking.
+Found Cycle of size 524; Breaking.
+Found Cycle of size 938; Breaking.
+Found Cycle of size 935; Breaking.
+Found Cycle of size 628; Breaking.
+Found Cycle of size 49; Breaking.
+inlined 430 new size =80179
+Found Cycle of size 347; Breaking.
+Found Cycle of size 344; Breaking.
+Found Cycle of size 1298; Breaking.
+Found Cycle of size 2419; Breaking.
+Found Cycle of size 1416; Breaking.
+inlined 343 new size =114022
+Found Cycle of size 1641; Breaking.
+Found Cycle of size 3580; Breaking.
+Found Cycle of size 193; Breaking.
+inlined 1155 new size =111699
+Found Cycle of size 1245; Breaking.
+Found Cycle of size 395; Breaking.
+inlined 934 new size =104856
+Found Cycle of size 2525; Breaking.
+Found Cycle of size 2522; Breaking.
+inlined 350 new size =116884
+inlined 1384 new size =127650
+inlined 162 new size =129355
+inlined 0 new size =129355
 END OF STEP 0
  Inlining functions in the spec.
 inlined 0 new size =0
 END OF STEP 0
 Bailing out
-after Creating Miter: Problem nodes = 12289
-* Final Problem size: Problem nodes = 12289
-  # OF CONTROLS:    32
- control_ints = 0 	 control_bits = 32
-inputSize = 0	ctrlSize = 32
+after Creating Miter: Problem nodes = 127575
+* Final Problem size: Problem nodes = 127575
+  # OF CONTROLS:    36
+ control_ints = 0 	 control_bits = 36
+inputSize = 0	ctrlSize = 36
 Random seeds = 1
-!+ 01100000100100011111001010000001
-!+ H__0_309:0
-H__1_309:1
-H__2_309:1
-H__3_309:0
-H__10_309_299:0
-H__4_309_299:0
-H__5_309_299:0
-H__6_309_299:0
-H__7_309_299:1
-H__8_309_299:0
-H__4_309_299_308:0
-H__5_309_299_308:1
-H__6_309_299_308:0
-H__7_309_299_308:0
-H__8_309_299_308:0
-H__1_321:1
-H__0_321:1
-H__2_321:1
-H__3_321:1
-H__10_321_299:1
-H__5_321_299_308:0
-H__5_321_299:0
-H__4_321_299_308:1
-H__4_321_299:0
-H__10_309_299_308_309_299_308:1
-H__6_321_299:0
-H__7_321_299:0
-H__8_321_299:0
-H__6_321_299_308:0
-H__7_321_299_308:0
-H__8_321_299_308:0
-H__10_321_299_308_321_299_308:1
+!+ 001000000000000000010100010100000101
+!+ H__1_308:0
+H__2_308:0
+H__0_308:1
+H__3_308:0
+H__9_308:0
+H__2_308_307:0
+H__1_308_307:0
+H__4_308:0
+H__5_308:0
+H__6_308:0
+H__7_308:0
+H__0_308_307:0
+H__3_308_307:0
+H__4_308_307:0
+H__5_308_307:0
+H__6_308_307:0
+H__7_308_307:0
+H__9_320:0
+H__1_320:0
+H__2_320:1
+H__3_320:0
+H__1_320_307:1
+H__2_320_307:0
+H__3_320_307:0
+H__7_320:0
+H__6_320:1
+H__0_320:0
+H__4_320:1
+H__5_320:0
+H__7_320_307:0
+H__6_320_307:0
+H__0_320_307:0
+H__4_320_307:0
+H__5_320_307:1
+H__9_308_307_308_307:0
+H__9_320_307_320_307:1
 
 BEG CHECK
- * After optims it became = 2 was 12289
-Assert at CryptoManager.sk:18 (1)
-Simulation found a cex by random testing:  0 ms 
-END CHECK
-********  0	ftime= 0	ctime= 0.018
-!% 
-!% 
-BEG FIND
-Level 1  intsize = 2
- * After optims it became = 12289 was 12289
- * After all optims it became = 12289
- finder  hits = 18174	 bstoreObjs=161715	 sstorePages=178
-hitcount 	0	147598	8
-hitcount 	1	13723	6
-hitcount 	2	39	2
-hitcount 	3	38	2
-hitcount 	4	11	2
-hitcount 	5	45	3
-hitcount 	7	27	2
-hitcount 	8	1	3
-hitcount 	9	6	7
-hitcount 	10	11	8
-hitcount 	11	65	3
-hitcount 	12	15	2
-hitcount 	13	12	0
-hitcount 	14	18	3
-hitcount 	15	29	2
-hitcount 	18	2	2
-hitcount 	19	22	3
-hitcount 	21	7	6
-hitcount 	23	21	3
-hitcount 	25	7	1
-hitcount 	27	4	0
-hitcount 	28	2	5
-hitcount 	39	12	2
-bucketsPerDepth 	11	2
-bucketsPerDepth 	12	9
-bucketsPerDepth 	13	51
-bucketsPerDepth 	14	84
-bucketsPerDepth 	15	157
-bucketsPerDepth 	16	181
-bucketsPerDepth 	17	166
-bucketsPerDepth 	18	142
-bucketsPerDepth 	19	100
-bucketsPerDepth 	20	39
-bucketsPerDepth 	21	44
-bucketsPerDepth 	22	22
-bucketsPerDepth 	23	12
-bucketsPerDepth 	24	10
-bucketsPerDepth 	25	3
-bucketsPerDepth 	26	2
-* TIME TO ADD INPUT :  999.507 ms 
-DECISIONS START = 0
-f# %assign: 10 clauses: 560709 learn: 24 restart: 1 decision: 186 propagated: 1242444
-END FIND
-!+ 11011011000000101111010000010100
-!+ H__0_309:1
-H__1_309:1
-H__2_309:0
-H__3_309:1
-H__10_309_299:1
-H__4_309_299:0
-H__5_309_299:1
-H__6_309_299:1
-H__7_309_299:0
-H__8_309_299:0
-H__4_309_299_308:0
-H__5_309_299_308:0
-H__6_309_299_308:0
-H__7_309_299_308:0
-H__8_309_299_308:1
-H__1_321:0
-H__0_321:1
-H__2_321:1
-H__3_321:1
-H__10_321_299:1
-H__5_321_299_308:0
-H__5_321_299:1
-H__4_321_299_308:0
-H__4_321_299:0
-H__10_309_299_308_309_299_308:0
-H__6_321_299:0
-H__7_321_299:0
-H__8_321_299:1
-H__6_321_299_308:0
-H__7_321_299_308:1
-H__8_321_299_308:0
-H__10_321_299_308_321_299_308:0
-
-BEG CHECK
- * After optims it became = 0 was 12289
+ * After optims it became = 0 was 127575
 Simulation no cex:  0 ms 
 CONTROL: growing l=2 inputs to size 3
 Simulation no cex:  0 ms 
@@ -411,19 +364,19 @@ Simulation no cex:  0 ms
 CONTROL: growing l=2 inputs to size 5
 Simulation no cex:  0 ms 
 END CHECK
-********  1	ftime= 999.811	ctime= 0.015
- *GOT THE CORRECT ANSWER IN 2 iterations.
- *FIND TIME 999.811 CHECK TIME 0.033 TOTAL TIME 999.844
-VALUES H__0_309: 1, H__0_321: 1, H__10_309_299: 1, H__10_309_299_308_309_299_308: 0, H__10_321_299: 1, H__10_321_299_308_321_299_308: 0, H__1_309: 1, H__1_321: 0, H__2_309: 0, H__2_321: 1, H__3_309: 1, H__3_321: 1, H__4_309_299: 0, H__4_309_299_308: 0, H__4_321_299: 0, H__4_321_299_308: 0, H__5_309_299: 1, H__5_309_299_308: 0, H__5_321_299: 1, H__5_321_299_308: 0, H__6_309_299: 1, H__6_309_299_308: 0, H__6_321_299: 0, H__6_321_299_308: 0, H__7_309_299: 0, H__7_309_299_308: 0, H__7_321_299: 0, H__7_321_299_308: 1, H__8_309_299: 0, H__8_309_299_308: 1, H__8_321_299: 1, H__8_321_299_308: 0, 
+********  0	ftime= 0	ctime= 0.254
+ *GOT THE CORRECT ANSWER IN 1 iterations.
+ *FIND TIME 0 CHECK TIME 0.254 TOTAL TIME 0.254
+VALUES H__0_308: 1, H__0_308_307: 0, H__0_320: 0, H__0_320_307: 0, H__1_308: 0, H__1_308_307: 0, H__1_320: 0, H__1_320_307: 1, H__2_308: 0, H__2_308_307: 0, H__2_320: 1, H__2_320_307: 0, H__3_308: 0, H__3_308_307: 0, H__3_320: 0, H__3_320_307: 0, H__4_308: 0, H__4_308_307: 0, H__4_320: 1, H__4_320_307: 0, H__5_308: 0, H__5_308_307: 0, H__5_320: 0, H__5_320_307: 1, H__6_308: 0, H__6_308_307: 0, H__6_320: 1, H__6_320_307: 0, H__7_308: 0, H__7_308_307: 0, H__7_320: 0, H__7_320_307: 0, H__9_308: 0, H__9_308_307_308_307: 0, H__9_320: 0, H__9_320_307_320_307: 1, 
 RESULT = 2  
-**ROUND 0 : 0 Round time:  999.977 ms 
+**ROUND 0 : 0 Round time:  2999.61 ms 
 RNDDEG = -1
 return 0
 
 ----- Statistics -----
-Total elapsed time (ms):  1000.37
-Model building time (ms): 0.22
-Solution time (ms):       999.977
+Total elapsed time (ms):  3000.01
+Model building time (ms): 0.366
+Solution time (ms):       2999.61
 Max virtual mem (bytes):  0
 Max resident mem (bytes): 0
 Max private mem (bytes):  0
@@ -431,18 +384,21 @@ ALL CORRECT
 [SATBackend] Stats for last run:
       [solution stats]
       successful? ---------------------> true
-      elapsed time (s) ----------------> 1.543
+      elapsed time (s) ----------------> 3.181
       model building time (s) ---------> 0.0
-      solution time (s) ---------------> 0.999
+      solution time (s) ---------------> 2.999
       max memory usage (MiB) ----------> 0.0
       [SAT-specific solution stats]
       initial number of nodes ---------> -1
-      number of nodes after opts ------> -1
-      number of controls --------------> -1
-      total number of control bits ----> -1
+      number of nodes after opts ------> 127575
+      number of controls --------------> 36
+      total number of control bits ----> 36
 
 [SATBackend] Solver exit value: 0
 [SATBackend] Not Deleting
+    [1523037237.0000 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch
+    [1523037237.0040 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability
+    [1523037237.1540 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)
 /* BEGIN PACKAGE FileWriterr*/
 package FileWriterr{
   /* END PACKAGE FileWriterr*/
@@ -463,9 +419,9 @@ package ICipherFactory{
 package HashMap{
   /*HashMap.sk:3*/
   
-void glblInit_DEFAULT_INITIAL_CAPACITY__HashMap_s5342 (ref int DEFAULT_INITIAL_CAPACITY__HashMap_s5341)/*HashMap.sk:3*/
+void glblInit_DEFAULT_INITIAL_CAPACITY__HashMap_s5335 (ref int DEFAULT_INITIAL_CAPACITY__HashMap_s5334)/*HashMap.sk:3*/
   {
-    DEFAULT_INITIAL_CAPACITY__HashMap_s5341 = 16;
+    DEFAULT_INITIAL_CAPACITY__HashMap_s5334 = 16;
   }
   /* END PACKAGE HashMap*/
 }
@@ -473,15 +429,15 @@ void glblInit_DEFAULT_INITIAL_CAPACITY__HashMap_s5342 (ref int DEFAULT_INITIAL_C
 package ArrayList{
   /*ArrayList.sk:3*/
   
-void glblInit_EMPTY_ELEMENTDATA__ArrayList_s5384 (ref Array_Object@array EMPTY_ELEMENTDATA__ArrayList_s5383)/*ArrayList.sk:3*/
+void glblInit_EMPTY_ELEMENTDATA__ArrayList_s5377 (ref Array_Object@array EMPTY_ELEMENTDATA__ArrayList_s5376)/*ArrayList.sk:3*/
   {
-    EMPTY_ELEMENTDATA__ArrayList_s5383 = new Array_Object@array(length=0, A={});
+    EMPTY_ELEMENTDATA__ArrayList_s5376 = new Array_Object@array(length=0, A={});
   }
   /*ArrayList.sk:7*/
   
-void glblInit_MAX_ARRAY_SIZE__ArrayList_s5406 (ref int MAX_ARRAY_SIZE__ArrayList_s5405)/*ArrayList.sk:7*/
+void glblInit_MAX_ARRAY_SIZE__ArrayList_s5399 (ref int MAX_ARRAY_SIZE__ArrayList_s5398)/*ArrayList.sk:7*/
   {
-    MAX_ARRAY_SIZE__ArrayList_s5405 = 1000000;
+    MAX_ARRAY_SIZE__ArrayList_s5398 = 1000000;
   }
   /* END PACKAGE ArrayList*/
 }
@@ -668,15 +624,15 @@ package Assert{
 package TreeSet{
   /*TreeSet.sk:3*/
   
-void glblInit_INITIAL_CAPACITY__TreeSet_s5396 (ref int INITIAL_CAPACITY__TreeSet_s5395)/*TreeSet.sk:3*/
+void glblInit_INITIAL_CAPACITY__TreeSet_s5389 (ref int INITIAL_CAPACITY__TreeSet_s5388)/*TreeSet.sk:3*/
   {
-    INITIAL_CAPACITY__TreeSet_s5395 = 16;
+    INITIAL_CAPACITY__TreeSet_s5388 = 16;
   }
   /*TreeSet.sk:7*/
   
-void glblInit_RESIZE_FACTOR__TreeSet_s5432 (ref int RESIZE_FACTOR__TreeSet_s5431)/*TreeSet.sk:7*/
+void glblInit_RESIZE_FACTOR__TreeSet_s5425 (ref int RESIZE_FACTOR__TreeSet_s5424)/*TreeSet.sk:7*/
   {
-    RESIZE_FACTOR__TreeSet_s5431 = 2;
+    RESIZE_FACTOR__TreeSet_s5424 = 2;
   }
   /* END PACKAGE TreeSet*/
 }
@@ -715,15 +671,15 @@ package Boolean{
 package HashSet{
   /*HashSet.sk:3*/
   
-void glblInit_INITIAL_CAPACITY__HashSet_s5394 (ref int INITIAL_CAPACITY__HashSet_s5393)/*HashSet.sk:3*/
+void glblInit_INITIAL_CAPACITY__HashSet_s5387 (ref int INITIAL_CAPACITY__HashSet_s5386)/*HashSet.sk:3*/
   {
-    INITIAL_CAPACITY__HashSet_s5393 = 16;
+    INITIAL_CAPACITY__HashSet_s5386 = 16;
   }
   /*HashSet.sk:7*/
   
-void glblInit_RESIZE_FACTOR__HashSet_s5430 (ref int RESIZE_FACTOR__HashSet_s5429)/*HashSet.sk:7*/
+void glblInit_RESIZE_FACTOR__HashSet_s5423 (ref int RESIZE_FACTOR__HashSet_s5422)/*HashSet.sk:7*/
   {
-    RESIZE_FACTOR__HashSet_s5429 = 2;
+    RESIZE_FACTOR__HashSet_s5422 = 2;
   }
   /* END PACKAGE HashSet*/
 }
@@ -731,309 +687,309 @@ void glblInit_RESIZE_FACTOR__HashSet_s5430 (ref int RESIZE_FACTOR__HashSet_s5429
 package Character{
   /*Character.sk:43*/
   
-void glblInit_COMBINING_SPACING_MARK__Character_s5330 (ref char COMBINING_SPACING_MARK__Character_s5329)/*Character.sk:43*/
+void glblInit_COMBINING_SPACING_MARK__Character_s5323 (ref char COMBINING_SPACING_MARK__Character_s5322)/*Character.sk:43*/
   {
-    COMBINING_SPACING_MARK__Character_s5329 = 8;
+    COMBINING_SPACING_MARK__Character_s5322 = 8;
   }
   /*Character.sk:99*/
   
-void glblInit_CONNECTOR_PUNCTUATION__Character_s5332 (ref char CONNECTOR_PUNCTUATION__Character_s5331)/*Character.sk:99*/
+void glblInit_CONNECTOR_PUNCTUATION__Character_s5325 (ref char CONNECTOR_PUNCTUATION__Character_s5324)/*Character.sk:99*/
   {
-    CONNECTOR_PUNCTUATION__Character_s5331 = 23;
+    CONNECTOR_PUNCTUATION__Character_s5324 = 23;
   }
   /*Character.sk:71*/
   
-void glblInit_CONTROL__Character_s5334 (ref char CONTROL__Character_s5333)/*Character.sk:71*/
+void glblInit_CONTROL__Character_s5327 (ref char CONTROL__Character_s5326)/*Character.sk:71*/
   {
-    CONTROL__Character_s5333 = 15;
+    CONTROL__Character_s5326 = 15;
   }
   /*Character.sk:111*/
   
-void glblInit_CURRENCY_SYMBOL__Character_s5336 (ref char CURRENCY_SYMBOL__Character_s5335)/*Character.sk:111*/
+void glblInit_CURRENCY_SYMBOL__Character_s5329 (ref char CURRENCY_SYMBOL__Character_s5328)/*Character.sk:111*/
   {
-    CURRENCY_SYMBOL__Character_s5335 = 26;
+    CURRENCY_SYMBOL__Character_s5328 = 26;
   }
   /*Character.sk:87*/
   
-void glblInit_DASH_PUNCTUATION__Character_s5338 (ref char DASH_PUNCTUATION__Character_s5337)/*Character.sk:87*/
+void glblInit_DASH_PUNCTUATION__Character_s5331 (ref char DASH_PUNCTUATION__Character_s5330)/*Character.sk:87*/
   {
-    DASH_PUNCTUATION__Character_s5337 = 20;
+    DASH_PUNCTUATION__Character_s5330 = 20;
   }
   /*Character.sk:47*/
   
-void glblInit_DECIMAL_DIGIT_NUMBER__Character_s5340 (ref char DECIMAL_DIGIT_NUMBER__Character_s5339)/*Character.sk:47*/
+void glblInit_DECIMAL_DIGIT_NUMBER__Character_s5333 (ref char DECIMAL_DIGIT_NUMBER__Character_s5332)/*Character.sk:47*/
   {
-    DECIMAL_DIGIT_NUMBER__Character_s5339 = 9;
+    DECIMAL_DIGIT_NUMBER__Character_s5332 = 9;
   }
   /*Character.sk:155*/
   
-void glblInit_DIRECTIONALITY_ARABIC_NUMBER__Character_s5344 (ref char DIRECTIONALITY_ARABIC_NUMBER__Character_s5343)/*Character.sk:155*/
+void glblInit_DIRECTIONALITY_ARABIC_NUMBER__Character_s5337 (ref char DIRECTIONALITY_ARABIC_NUMBER__Character_s5336)/*Character.sk:155*/
   {
-    DIRECTIONALITY_ARABIC_NUMBER__Character_s5343 = 6;
+    DIRECTIONALITY_ARABIC_NUMBER__Character_s5336 = 6;
   }
   /*Character.sk:167*/
   
-void glblInit_DIRECTIONALITY_BOUNDARY_NEUTRAL__Character_s5346 (ref char DIRECTIONALITY_BOUNDARY_NEUTRAL__Character_s5345)/*Character.sk:167*/
+void glblInit_DIRECTIONALITY_BOUNDARY_NEUTRAL__Character_s5339 (ref char DIRECTIONALITY_BOUNDARY_NEUTRAL__Character_s5338)/*Character.sk:167*/
   {
-    DIRECTIONALITY_BOUNDARY_NEUTRAL__Character_s5345 = 9;
+    DIRECTIONALITY_BOUNDARY_NEUTRAL__Character_s5338 = 9;
   }
   /*Character.sk:159*/
   
-void glblInit_DIRECTIONALITY_COMMON_NUMBER_SEPARATOR__Character_s5348 (ref char DIRECTIONALITY_COMMON_NUMBER_SEPARATOR__Character_s5347)/*Character.sk:159*/
+void glblInit_DIRECTIONALITY_COMMON_NUMBER_SEPARATOR__Character_s5341 (ref char DIRECTIONALITY_COMMON_NUMBER_SEPARATOR__Character_s5340)/*Character.sk:159*/
   {
-    DIRECTIONALITY_COMMON_NUMBER_SEPARATOR__Character_s5347 = 7;
+    DIRECTIONALITY_COMMON_NUMBER_SEPARATOR__Character_s5340 = 7;
   }
   /*Character.sk:147*/
   
-void glblInit_DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR__Character_s5350 (ref char DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR__Character_s5349)/*Character.sk:147*/
+void glblInit_DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR__Character_s5343 (ref char DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR__Character_s5342)/*Character.sk:147*/
   {
-    DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR__Character_s5349 = 4;
+    DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR__Character_s5342 = 4;
   }
   /*Character.sk:151*/
   
-void glblInit_DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR__Character_s5352 (ref char DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR__Character_s5351)/*Character.sk:151*/
+void glblInit_DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR__Character_s5345 (ref char DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR__Character_s5344)/*Character.sk:151*/
   {
-    DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR__Character_s5351 = 5;
+    DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR__Character_s5344 = 5;
   }
   /*Character.sk:143*/
   
-void glblInit_DIRECTIONALITY_EUROPEAN_NUMBER__Character_s5354 (ref char DIRECTIONALITY_EUROPEAN_NUMBER__Character_s5353)/*Character.sk:143*/
+void glblInit_DIRECTIONALITY_EUROPEAN_NUMBER__Character_s5347 (ref char DIRECTIONALITY_EUROPEAN_NUMBER__Character_s5346)/*Character.sk:143*/
   {
-    DIRECTIONALITY_EUROPEAN_NUMBER__Character_s5353 = 3;
+    DIRECTIONALITY_EUROPEAN_NUMBER__Character_s5346 = 3;
   }
   /*Character.sk:187*/
   
-void glblInit_DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING__Character_s5356 (ref char DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING__Character_s5355)/*Character.sk:187*/
+void glblInit_DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING__Character_s5349 (ref char DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING__Character_s5348)/*Character.sk:187*/
   {
-    DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING__Character_s5355 = 14;
+    DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING__Character_s5348 = 14;
   }
   /*Character.sk:191*/
   
-void glblInit_DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE__Character_s5358 (ref char DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE__Character_s5357)/*Character.sk:191*/
+void glblInit_DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE__Character_s5351 (ref char DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE__Character_s5350)/*Character.sk:191*/
   {
-    DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE__Character_s5357 = 15;
+    DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE__Character_s5350 = 15;
   }
   /*Character.sk:131*/
   
-void glblInit_DIRECTIONALITY_LEFT_TO_RIGHT__Character_s5360 (ref char DIRECTIONALITY_LEFT_TO_RIGHT__Character_s5359)/*Character.sk:131*/
+void glblInit_DIRECTIONALITY_LEFT_TO_RIGHT__Character_s5353 (ref char DIRECTIONALITY_LEFT_TO_RIGHT__Character_s5352)/*Character.sk:131*/
   {
-    DIRECTIONALITY_LEFT_TO_RIGHT__Character_s5359 = 0;
+    DIRECTIONALITY_LEFT_TO_RIGHT__Character_s5352 = 0;
   }
   /*Character.sk:163*/
   
-void glblInit_DIRECTIONALITY_NONSPACING_MARK__Character_s5362 (ref char DIRECTIONALITY_NONSPACING_MARK__Character_s5361)/*Character.sk:163*/
+void glblInit_DIRECTIONALITY_NONSPACING_MARK__Character_s5355 (ref char DIRECTIONALITY_NONSPACING_MARK__Character_s5354)/*Character.sk:163*/
   {
-    DIRECTIONALITY_NONSPACING_MARK__Character_s5361 = 8;
+    DIRECTIONALITY_NONSPACING_MARK__Character_s5354 = 8;
   }
   /*Character.sk:183*/
   
-void glblInit_DIRECTIONALITY_OTHER_NEUTRALS__Character_s5364 (ref char DIRECTIONALITY_OTHER_NEUTRALS__Character_s5363)/*Character.sk:183*/
+void glblInit_DIRECTIONALITY_OTHER_NEUTRALS__Character_s5357 (ref char DIRECTIONALITY_OTHER_NEUTRALS__Character_s5356)/*Character.sk:183*/
   {
-    DIRECTIONALITY_OTHER_NEUTRALS__Character_s5363 = 13;
+    DIRECTIONALITY_OTHER_NEUTRALS__Character_s5356 = 13;
   }
   /*Character.sk:171*/
   
-void glblInit_DIRECTIONALITY_PARAGRAPH_SEPARATOR__Character_s5366 (ref char DIRECTIONALITY_PARAGRAPH_SEPARATOR__Character_s5365)/*Character.sk:171*/
+void glblInit_DIRECTIONALITY_PARAGRAPH_SEPARATOR__Character_s5359 (ref char DIRECTIONALITY_PARAGRAPH_SEPARATOR__Character_s5358)/*Character.sk:171*/
   {
-    DIRECTIONALITY_PARAGRAPH_SEPARATOR__Character_s5365 = 10;
+    DIRECTIONALITY_PARAGRAPH_SEPARATOR__Character_s5358 = 10;
   }
   /*Character.sk:203*/
   
-void glblInit_DIRECTIONALITY_POP_DIRECTIONAL_FORMAT__Character_s5368 (ref char DIRECTIONALITY_POP_DIRECTIONAL_FORMAT__Character_s5367)/*Character.sk:203*/
+void glblInit_DIRECTIONALITY_POP_DIRECTIONAL_FORMAT__Character_s5361 (ref char DIRECTIONALITY_POP_DIRECTIONAL_FORMAT__Character_s5360)/*Character.sk:203*/
   {
-    DIRECTIONALITY_POP_DIRECTIONAL_FORMAT__Character_s5367 = 18;
+    DIRECTIONALITY_POP_DIRECTIONAL_FORMAT__Character_s5360 = 18;
   }
   /*Character.sk:139*/
   
-void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC__Character_s5370 (ref char DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC__Character_s5369)/*Character.sk:139*/
+void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC__Character_s5363 (ref char DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC__Character_s5362)/*Character.sk:139*/
   {
-    DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC__Character_s5369 = 2;
+    DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC__Character_s5362 = 2;
   }
   /*Character.sk:195*/
   
-void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING__Character_s5372 (ref char DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING__Character_s5371)/*Character.sk:195*/
+void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING__Character_s5365 (ref char DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING__Character_s5364)/*Character.sk:195*/
   {
-    DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING__Character_s5371 = 16;
+    DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING__Character_s5364 = 16;
   }
   /*Character.sk:199*/
   
-void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE__Character_s5374 (ref char DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE__Character_s5373)/*Character.sk:199*/
+void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE__Character_s5367 (ref char DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE__Character_s5366)/*Character.sk:199*/
   {
-    DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE__Character_s5373 = 17;
+    DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE__Character_s5366 = 17;
   }
   /*Character.sk:135*/
   
-void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT__Character_s5376 (ref char DIRECTIONALITY_RIGHT_TO_LEFT__Character_s5375)/*Character.sk:135*/
+void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT__Character_s5369 (ref char DIRECTIONALITY_RIGHT_TO_LEFT__Character_s5368)/*Character.sk:135*/
   {
-    DIRECTIONALITY_RIGHT_TO_LEFT__Character_s5375 = 1;
+    DIRECTIONALITY_RIGHT_TO_LEFT__Character_s5368 = 1;
   }
   /*Character.sk:175*/
   
-void glblInit_DIRECTIONALITY_SEGMENT_SEPARATOR__Character_s5378 (ref char DIRECTIONALITY_SEGMENT_SEPARATOR__Character_s5377)/*Character.sk:175*/
+void glblInit_DIRECTIONALITY_SEGMENT_SEPARATOR__Character_s5371 (ref char DIRECTIONALITY_SEGMENT_SEPARATOR__Character_s5370)/*Character.sk:175*/
   {
-    DIRECTIONALITY_SEGMENT_SEPARATOR__Character_s5377 = 11;
+    DIRECTIONALITY_SEGMENT_SEPARATOR__Character_s5370 = 11;
   }
   /*Character.sk:127*/
   
-void glblInit_DIRECTIONALITY_UNDEFINED__Character_s5380 (ref char DIRECTIONALITY_UNDEFINED__Character_s5379)/*Character.sk:127*/
+void glblInit_DIRECTIONALITY_UNDEFINED__Character_s5373 (ref char DIRECTIONALITY_UNDEFINED__Character_s5372)/*Character.sk:127*/
   {
-    DIRECTIONALITY_UNDEFINED__Character_s5379 = -1;
+    DIRECTIONALITY_UNDEFINED__Character_s5372 = -1;
   }
   /*Character.sk:179*/
   
-void glblInit_DIRECTIONALITY_WHITESPACE__Character_s5382 (ref char DIRECTIONALITY_WHITESPACE__Character_s5381)/*Character.sk:179*/
+void glblInit_DIRECTIONALITY_WHITESPACE__Character_s5375 (ref char DIRECTIONALITY_WHITESPACE__Character_s5374)/*Character.sk:179*/
   {
-    DIRECTIONALITY_WHITESPACE__Character_s5381 = 12;
+    DIRECTIONALITY_WHITESPACE__Character_s5374 = 12;
   }
   /*Character.sk:39*/
   
-void glblInit_ENCLOSING_MARK__Character_s5386 (ref char ENCLOSING_MARK__Character_s5385)/*Character.sk:39*/
+void glblInit_ENCLOSING_MARK__Character_s5379 (ref char ENCLOSING_MARK__Character_s5378)/*Character.sk:39*/
   {
-    ENCLOSING_MARK__Character_s5385 = 7;
+    ENCLOSING_MARK__Character_s5378 = 7;
   }
   /*Character.sk:95*/
   
-void glblInit_END_PUNCTUATION__Character_s5388 (ref char END_PUNCTUATION__Character_s5387)/*Character.sk:95*/
+void glblInit_END_PUNCTUATION__Character_s5381 (ref char END_PUNCTUATION__Character_s5380)/*Character.sk:95*/
   {
-    END_PUNCTUATION__Character_s5387 = 22;
+    END_PUNCTUATION__Character_s5380 = 22;
   }
   /*Character.sk:123*/
   
-void glblInit_FINAL_QUOTE_PUNCTUATION__Character_s5390 (ref char FINAL_QUOTE_PUNCTUATION__Character_s5389)/*Character.sk:123*/
+void glblInit_FINAL_QUOTE_PUNCTUATION__Character_s5383 (ref char FINAL_QUOTE_PUNCTUATION__Character_s5382)/*Character.sk:123*/
   {
-    FINAL_QUOTE_PUNCTUATION__Character_s5389 = 30;
+    FINAL_QUOTE_PUNCTUATION__Character_s5382 = 30;
   }
   /*Character.sk:75*/
   
-void glblInit_FORMAT__Character_s5392 (ref char FORMAT__Character_s5391)/*Character.sk:75*/
+void glblInit_FORMAT__Character_s5385 (ref char FORMAT__Character_s5384)/*Character.sk:75*/
   {
-    FORMAT__Character_s5391 = 16;
+    FORMAT__Character_s5384 = 16;
   }
   /*Character.sk:51*/
   
-void glblInit_LETTER_NUMBER__Character_s5398 (ref char LETTER_NUMBER__Character_s5397)/*Character.sk:51*/
+void glblInit_LETTER_NUMBER__Character_s5391 (ref char LETTER_NUMBER__Character_s5390)/*Character.sk:51*/
   {
-    LETTER_NUMBER__Character_s5397 = 10;
+    LETTER_NUMBER__Character_s5390 = 10;
   }
   /*Character.sk:63*/
   
-void glblInit_LINE_SEPARATOR__Character_s5400 (ref char LINE_SEPARATOR__Character_s5399)/*Character.sk:63*/
+void glblInit_LINE_SEPARATOR__Character_s5393 (ref char LINE_SEPARATOR__Character_s5392)/*Character.sk:63*/
   {
-    LINE_SEPARATOR__Character_s5399 = 13;
+    LINE_SEPARATOR__Character_s5392 = 13;
   }
   /*Character.sk:19*/
   
-void glblInit_LOWERCASE_LETTER__Character_s5402 (ref char LOWERCASE_LETTER__Character_s5401)/*Character.sk:19*/
+void glblInit_LOWERCASE_LETTER__Character_s5395 (ref char LOWERCASE_LETTER__Character_s5394)/*Character.sk:19*/
   {
-    LOWERCASE_LETTER__Character_s5401 = 2;
+    LOWERCASE_LETTER__Character_s5394 = 2;
   }
   /*Character.sk:107*/
   
-void glblInit_MATH_SYMBOL__Character_s5404 (ref char MATH_SYMBOL__Character_s5403)/*Character.sk:107*/
+void glblInit_MATH_SYMBOL__Character_s5397 (ref char MATH_SYMBOL__Character_s5396)/*Character.sk:107*/
   {
-    MATH_SYMBOL__Character_s5403 = 25;
+    MATH_SYMBOL__Character_s5396 = 25;
   }
   /*Character.sk:7*/
   
-void glblInit_MAX_RADIX__Character_s5408 (ref int MAX_RADIX__Character_s5407)/*Character.sk:7*/
+void glblInit_MAX_RADIX__Character_s5401 (ref int MAX_RADIX__Character_s5400)/*Character.sk:7*/
   {
-    MAX_RADIX__Character_s5407 = 36;
+    MAX_RADIX__Character_s5400 = 36;
   }
   /*Character.sk:3*/
   
-void glblInit_MIN_RADIX__Character_s5410 (ref int MIN_RADIX__Character_s5409)/*Character.sk:3*/
+void glblInit_MIN_RADIX__Character_s5403 (ref int MIN_RADIX__Character_s5402)/*Character.sk:3*/
   {
-    MIN_RADIX__Character_s5409 = 2;
+    MIN_RADIX__Character_s5402 = 2;
   }
   /*Character.sk:27*/
   
-void glblInit_MODIFIER_LETTER__Character_s5412 (ref char MODIFIER_LETTER__Character_s5411)/*Character.sk:27*/
+void glblInit_MODIFIER_LETTER__Character_s5405 (ref char MODIFIER_LETTER__Character_s5404)/*Character.sk:27*/
   {
-    MODIFIER_LETTER__Character_s5411 = 4;
+    MODIFIER_LETTER__Character_s5404 = 4;
   }
   /*Character.sk:115*/
   
-void glblInit_MODIFIER_SYMBOL__Character_s5414 (ref char MODIFIER_SYMBOL__Character_s5413)/*Character.sk:115*/
+void glblInit_MODIFIER_SYMBOL__Character_s5407 (ref char MODIFIER_SYMBOL__Character_s5406)/*Character.sk:115*/
   {
-    MODIFIER_SYMBOL__Character_s5413 = 27;
+    MODIFIER_SYMBOL__Character_s5406 = 27;
   }
   /*Character.sk:35*/
   
-void glblInit_NON_SPACING_MARK__Character_s5416 (ref char NON_SPACING_MARK__Character_s5415)/*Character.sk:35*/
+void glblInit_NON_SPACING_MARK__Character_s5409 (ref char NON_SPACING_MARK__Character_s5408)/*Character.sk:35*/
   {
-    NON_SPACING_MARK__Character_s5415 = 6;
+    NON_SPACING_MARK__Character_s5408 = 6;
   }
   /*Character.sk:31*/
   
-void glblInit_OTHER_LETTER__Character_s5418 (ref char OTHER_LETTER__Character_s5417)/*Character.sk:31*/
+void glblInit_OTHER_LETTER__Character_s5411 (ref char OTHER_LETTER__Character_s5410)/*Character.sk:31*/
   {
-    OTHER_LETTER__Character_s5417 = 5;
+    OTHER_LETTER__Character_s5410 = 5;
   }
   /*Character.sk:55*/
   
-void glblInit_OTHER_NUMBER__Character_s5420 (ref char OTHER_NUMBER__Character_s5419)/*Character.sk:55*/
+void glblInit_OTHER_NUMBER__Character_s5413 (ref char OTHER_NUMBER__Character_s5412)/*Character.sk:55*/
   {
-    OTHER_NUMBER__Character_s5419 = 11;
+    OTHER_NUMBER__Character_s5412 = 11;
   }
   /*Character.sk:103*/
   
-void glblInit_OTHER_PUNCTUATION__Character_s5422 (ref char OTHER_PUNCTUATION__Character_s5421)/*Character.sk:103*/
+void glblInit_OTHER_PUNCTUATION__Character_s5415 (ref char OTHER_PUNCTUATION__Character_s5414)/*Character.sk:103*/
   {
-    OTHER_PUNCTUATION__Character_s5421 = 24;
+    OTHER_PUNCTUATION__Character_s5414 = 24;
   }
   /*Character.sk:119*/
   
-void glblInit_OTHER_SYMBOL__Character_s5424 (ref char OTHER_SYMBOL__Character_s5423)/*Character.sk:119*/
+void glblInit_OTHER_SYMBOL__Character_s5417 (ref char OTHER_SYMBOL__Character_s5416)/*Character.sk:119*/
   {
-    OTHER_SYMBOL__Character_s5423 = 28;
+    OTHER_SYMBOL__Character_s5416 = 28;
   }
   /*Character.sk:67*/
   
-void glblInit_PARAGRAPH_SEPARATOR__Character_s5426 (ref char PARAGRAPH_SEPARATOR__Character_s5425)/*Character.sk:67*/
+void glblInit_PARAGRAPH_SEPARATOR__Character_s5419 (ref char PARAGRAPH_SEPARATOR__Character_s5418)/*Character.sk:67*/
   {
-    PARAGRAPH_SEPARATOR__Character_s5425 = 14;
+    PARAGRAPH_SEPARATOR__Character_s5418 = 14;
   }
   /*Character.sk:79*/
   
-void glblInit_PRIVATE_USE__Character_s5428 (ref char PRIVATE_USE__Character_s5427)/*Character.sk:79*/
+void glblInit_PRIVATE_USE__Character_s5421 (ref char PRIVATE_USE__Character_s5420)/*Character.sk:79*/
   {
-    PRIVATE_USE__Character_s5427 = 18;
+    PRIVATE_USE__Character_s5420 = 18;
   }
   /*Character.sk:59*/
   
-void glblInit_SPACE_SEPARATOR__Character_s5434 (ref char SPACE_SEPARATOR__Character_s5433)/*Character.sk:59*/
+void glblInit_SPACE_SEPARATOR__Character_s5427 (ref char SPACE_SEPARATOR__Character_s5426)/*Character.sk:59*/
   {
-    SPACE_SEPARATOR__Character_s5433 = 12;
+    SPACE_SEPARATOR__Character_s5426 = 12;
   }
   /*Character.sk:91*/
   
-void glblInit_START_PUNCTUATION__Character_s5436 (ref char START_PUNCTUATION__Character_s5435)/*Character.sk:91*/
+void glblInit_START_PUNCTUATION__Character_s5429 (ref char START_PUNCTUATION__Character_s5428)/*Character.sk:91*/
   {
-    START_PUNCTUATION__Character_s5435 = 21;
+    START_PUNCTUATION__Character_s5428 = 21;
   }
   /*Character.sk:83*/
   
-void glblInit_SURROGATE__Character_s5438 (ref char SURROGATE__Character_s5437)/*Character.sk:83*/
+void glblInit_SURROGATE__Character_s5431 (ref char SURROGATE__Character_s5430)/*Character.sk:83*/
   {
-    SURROGATE__Character_s5437 = 19;
+    SURROGATE__Character_s5430 = 19;
   }
   /*Character.sk:23*/
   
-void glblInit_TITLECASE_LETTER__Character_s5440 (ref char TITLECASE_LETTER__Character_s5439)/*Character.sk:23*/
+void glblInit_TITLECASE_LETTER__Character_s5433 (ref char TITLECASE_LETTER__Character_s5432)/*Character.sk:23*/
   {
-    TITLECASE_LETTER__Character_s5439 = 3;
+    TITLECASE_LETTER__Character_s5432 = 3;
   }
   /*Character.sk:11*/
   
-void glblInit_UNASSIGNED__Character_s5442 (ref char UNASSIGNED__Character_s5441)/*Character.sk:11*/
+void glblInit_UNASSIGNED__Character_s5435 (ref char UNASSIGNED__Character_s5434)/*Character.sk:11*/
   {
-    UNASSIGNED__Character_s5441 = 0;
+    UNASSIGNED__Character_s5434 = 0;
   }
   /*Character.sk:15*/
   
-void glblInit_UPPERCASE_LETTER__Character_s5444 (ref char UPPERCASE_LETTER__Character_s5443)/*Character.sk:15*/
+void glblInit_UPPERCASE_LETTER__Character_s5437 (ref char UPPERCASE_LETTER__Character_s5436)/*Character.sk:15*/
   {
-    UPPERCASE_LETTER__Character_s5443 = 1;
+    UPPERCASE_LETTER__Character_s5436 = 1;
   }
   /* END PACKAGE Character*/
 }
@@ -1160,78 +1116,78 @@ package FileOutputStream{
 package Object{
   struct Object {
       int __cid;
-      int value_Integer;
-      Object writer_BufferedWriter;
-      Array_Object elementData_AbstractQueue;
-      int size_AbstractQueue;
-      int capacity_AbstractQueue;
-      Object file_Scanner;
-      Object fname_File;
-      int size_File;
+      Array_char key_KerberosKey;
+      int KEYSIZE_KerberosKey;
+      Array_Object set_HashSet;
+      int capacity_HashSet;
+      int size_HashSet;
       Object CLASSES_KEY_CryptoCipherFactory;
-      Array_Object elementData_Stack;
-      int size_Stack;
-      int capacity_Stack;
+      Object mode_KeyGenerator;
+      Array_char _value_String;
+      int _count_String;
+      Object map_Properties;
       char value_Character;
-      Object val_ArrayDeque_DequeNode;
-      Object prev_ArrayDeque_DequeNode;
-      Object next_ArrayDeque_DequeNode;
+      Object instance_KeyStore;
+      Object path_FileReaderr;
+      Object data_FileReaderr;
+      int position_FileReaderr;
+      Array_char key_SecretKeySpec;
+      Array_char _value_StringBuffer;
+      int _count_StringBuffer;
+      Array_char _value_StringBuilder;
+      int _count_StringBuilder;
+      float value_Float;
+      Object path_FileOutputStream;
+      Object file_Scanner;
       Object key_HashMap_Node;
       Object value_HashMap_Node;
       int hash_HashMap_Node;
-      Object path_FileOutputStream;
-      Object mode_KeyGenerator;
-      Object fname_FileWriterr;
+      Object type_Cipher;
+      Object key_Cipher;
+      int mode_Cipher;
+      int ENCRYPT_MODE_Cipher;
+      int DECRYPT_MODE_Cipher;
+      Object out_PrintStream;
+      int value_Integer;
+      Array_Object set_TreeSet;
+      int capacity_TreeSet;
+      int size_TreeSet;
+      Object reader_BufferedReader;
+      Array_Object elementData_Stack;
+      int size_Stack;
+      int capacity_Stack;
       Object ALGORITHM_DefaultCipherFactory;
       Object PADDING_DefaultCipherFactory;
       Object algorithm_DefaultCipherFactory;
       Object padding_DefaultCipherFactory;
       Object key_DefaultCipherFactory;
       bit keyBase64_DefaultCipherFactory;
-      Array_Object set_HashSet;
-      int capacity_HashSet;
-      int size_HashSet;
       Array_Object elementData_ArrayList;
       int DEFAULT_CAPACITY_ArrayList;
       int capacity_ArrayList;
       int size_ArrayList;
-      Object path_FileReaderr;
-      Object data_FileReaderr;
-      int position_FileReaderr;
-      Array_char _value_String;
-      int _count_String;
-      Object currentHead_ArrayDeque;
-      Object currentTail_ArrayDeque;
-      int size_ArrayDeque;
-      Object map_Properties;
-      bit bool_Boolean;
+      Object writer_BufferedWriter;
+      Object val_ArrayDeque_DequeNode;
+      Object prev_ArrayDeque_DequeNode;
+      Object next_ArrayDeque_DequeNode;
       Array_Object elementData_HashMap;
       int numPairs_HashMap;
       int capacity_HashMap;
-      Array_char _value_StringBuilder;
-      int _count_StringBuilder;
-      Array_char key_KerberosKey;
-      int KEYSIZE_KerberosKey;
-      Array_char key_SecretKeySpec;
-      Array_char _value_StringBuffer;
-      int _count_StringBuffer;
-      Object type_Cipher;
-      Object key_Cipher;
-      int mode_Cipher;
-      int ENCRYPT_MODE_Cipher;
-      int DECRYPT_MODE_Cipher;
-      Object reader_BufferedReader;
-      Array_Object set_TreeSet;
-      int capacity_TreeSet;
-      int size_TreeSet;
-      Object instance_KeyStore;
-      Object out_PrintStream;
+      Object fname_File;
+      int size_File;
+      bit bool_Boolean;
+      Object currentHead_ArrayDeque;
+      Object currentTail_ArrayDeque;
+      int size_ArrayDeque;
       Object basicCharset_CryptoManager;
       Object charset_CryptoManager;
       char encryptedMark_CryptoManager;
       bit useEncryptionStrict_CryptoManager;
       Object cipherFactory_CryptoManager;
-      float value_Float;
+      Object fname_FileWriterr;
+      Array_Object elementData_AbstractQueue;
+      int size_AbstractQueue;
+      int capacity_AbstractQueue;
   }
   /*Object.sk:7*/
   
@@ -1379,7 +1335,7 @@ void _main ()/*CipherF..yTests.sk:7*/
     CryptoManager@meta(cm_s4761);
     Object@Object cm_s4763 = null;
     CryptoManager_CryptoManager@CryptoManager(new Object@Object(__cid=cm_s4761), cm_s4763)//{};
-    for(int x = 0; x < 1; x = x + 111111)
+    for(int x = 0; x < 999999; x = x + 111111)
     {
       Object@Object m_s4765 = null;
       toString_int@Integer(x, m_s4765);
@@ -1396,47 +1352,33 @@ void _main ()/*CipherF..yTests.sk:7*/
       {
         _pac_sc_s4768 = null;
       }
-      int _out_s4772 = 0;
-      String@meta(_out_s4772);
-      bit _pac_sc_s4773 = 0;
-      if((_pac_sc_s4768.__cid) == _out_s4772)/*CipherF..yTests.sk:13*/
+      int p_s4772 = 0;
+      CryptoManager@meta(p_s4772);
+      Object@Object _pac_sc_s4773 = null;
+      if((cm_s4763.__cid) == p_s4772)/*CipherF..yTests.sk:13*/
       {
-        bit _out_s4775 = 0;
-        equals_Object@String(_pac_sc_s4768, m_s4765, _out_s4775);
-        _pac_sc_s4773 = _out_s4775;
+        Object@Object p_s4775 = null;
+        decrypt_String@CryptoManager(cm_s4763, _pac_sc_s4768, p_s4775);
+        _pac_sc_s4773 = p_s4775;
       }
       else
       {
-        _pac_sc_s4773 = 0;
+        _pac_sc_s4773 = null;
       }
-      assert (!(_pac_sc_s4773)); //Assert at CipherF..yTests.sk:13 (0)
-      int p_s4777 = 0;
-      CryptoManager@meta(p_s4777);
-      Object@Object _pac_sc_s4778 = null;
-      if((cm_s4763.__cid) == p_s4777)/*CipherF..yTests.sk:14*/
+      int _out_s4777 = 0;
+      String@meta(_out_s4777);
+      bit _pac_sc_s4778 = 0;
+      if((_pac_sc_s4773.__cid) == _out_s4777)/*CipherF..yTests.sk:14*/
       {
-        Object@Object p_s4780 = null;
-        decrypt_String@CryptoManager(cm_s4763, _pac_sc_s4768, p_s4780);
-        _pac_sc_s4778 = p_s4780;
+        bit _out_s4780 = 0;
+        equals_Object@String(_pac_sc_s4773, m_s4765, _out_s4780);
+        _pac_sc_s4778 = _out_s4780;
       }
       else
       {
-        _pac_sc_s4778 = null;
+        _pac_sc_s4778 = 0;
       }
-      int _out_s4782 = 0;
-      String@meta(_out_s4782);
-      bit _pac_sc_s4783 = 0;
-      if((_pac_sc_s4778.__cid) == _out_s4782)/*CipherF..yTests.sk:15*/
-      {
-        bit _out_s4785 = 0;
-        equals_Object@String(_pac_sc_s4778, m_s4765, _out_s4785);
-        _pac_sc_s4783 = _out_s4785;
-      }
-      else
-      {
-        _pac_sc_s4783 = 0;
-      }
-      assert (_pac_sc_s4783); //Assert at CipherF..yTests.sk:15 (0)
+      assert (_pac_sc_s4778); //Assert at CipherF..yTests.sk:14 (0)
     }
   }
   /*CipherF..yTests.sk:7*/
@@ -1489,318 +1431,254 @@ package CryptoManager{
   
 void CryptoManager_CryptoManager (Object self, ref Object _out)/*CryptoManager.sk:3*/
   {
-    int _out_s4919 = 0;
-    String@meta(_out_s4919);
-    Object@Object _out_s4921 = null;
-    String_String_char_int_int@String(new Object@Object(__cid=_out_s4919), new Array_char@array(length=9, A={'U','S','-','A','S','C','I','I','\0'}), 0, 8, _out_s4921)//{};
-    self.basicCharset_CryptoManager = _out_s4921;
-    int _out_s4923 = 0;
-    String@meta(_out_s4923);
-    Object@Object _out_s4925 = null;
-    String_String_char_int_int@String(new Object@Object(__cid=_out_s4923), new Array_char@array(length=6, A={'U','T','F','-','8','\0'}), 0, 5, _out_s4925)//{};
-    self.charset_CryptoManager = _out_s4925;
+    int _out_s4912 = 0;
+    String@meta(_out_s4912);
+    Object@Object _out_s4914 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=_out_s4912), new Array_char@array(length=9, A={'U','S','-','A','S','C','I','I','\0'}), 0, 8, _out_s4914)//{};
+    self.basicCharset_CryptoManager = _out_s4914;
+    int _out_s4916 = 0;
+    String@meta(_out_s4916);
+    Object@Object _out_s4918 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=_out_s4916), new Array_char@array(length=6, A={'U','T','F','-','8','\0'}), 0, 5, _out_s4918)//{};
+    self.charset_CryptoManager = _out_s4918;
     self.encryptedMark_CryptoManager = ((char)129);
     self.useEncryptionStrict_CryptoManager = 1;
-    int _out_s4927 = 0;
-    DefaultCipherFactory@meta(_out_s4927);
-    Object@Object _out_s4929 = null;
-    DefaultCipherFactory_DefaultCipherFactory@DefaultCipherFactory(new Object@Object(__cid=_out_s4927), _out_s4929)//{};
-    self.cipherFactory_CryptoManager = _out_s4929;
+    int _out_s4920 = 0;
+    DefaultCipherFactory@meta(_out_s4920);
+    Object@Object _out_s4922 = null;
+    DefaultCipherFactory_DefaultCipherFactory@DefaultCipherFactory(new Object@Object(__cid=_out_s4920), _out_s4922)//{};
+    self.cipherFactory_CryptoManager = _out_s4922;
     _out = self;
     return;
   }
-  /*CryptoManager.sk:69*/
+  /*CryptoManager.sk:61*/
   
-void appendEncryptionMark_byte (Object self, Array_char bytesArray, ref Array_char _out)/*CryptoManager.sk:69*/
+void appendEncryptionMark_byte (Object self, Array_char bytesArray, ref Array_char _out)/*CryptoManager.sk:61*/
   {
     _out = new Array_char@array(length=(bytesArray.length) + 1);
-    char _out_s4879 = '\0';
-    getEncryptedMark@CryptoManager(self, _out_s4879);
-    _out.A[0] = _out_s4879;
+    char _out_s4870 = '\0';
+    getEncryptedMark@CryptoManager(self, _out_s4870);
+    _out.A[0] = _out_s4870;
     arraycopy_byte_int_byte_int_int@System(bytesArray, 0, _out, 1, bytesArray.length);
-    return;
-  }
-  /*CryptoManager.sk:109*/
-  
-void cryptInCipher_Cipher_byte (Object self, Object cipher, Array_char data, ref Array_char _out)/*CryptoManager.sk:109*/
-  {
-    int _out_s4872 = 0;
-    Cipher@meta(_out_s4872);
-    Array_char@array _pac_sc_s4873 = null;
-    if((cipher.__cid) == _out_s4872)/*CryptoManager.sk:110*/
-    {
-      Array_char@array _out_s4875 = null;
-      doFinal_byte@Cipher(cipher, data, _out_s4875);
-      _pac_sc_s4873 = _out_s4875;
-    }
-    else
-    {
-      _pac_sc_s4873 = null;
-    }
-    _out = _pac_sc_s4873;
-    return;
-  }
-  /*CryptoManager.sk:76*/
-  
-void cutEncryptionMark_byte (Object self, Array_char bytesArray, ref Array_char _out)/*CryptoManager.sk:76*/
-  {
-    _out = new Array_char@array(length=(bytesArray.length) - 1);
-    bit __sa26 = 1 < (bytesArray.length);
-    int i = 1;
-    while(__sa26)
-    {
-      _out.A[i - 1] = bytesArray.A[i];
-      i = i + 1;
-      __sa26 = i < (bytesArray.length);
-    }
-    return;
-  }
-  /*CryptoManager.sk:121*/
-  
-void decode_byte_String (Object self, Array_char string, Object charset, ref Object _out)/*CryptoManager.sk:121*/
-  {
-    int _out_s4826 = 0;
-    String@meta(_out_s4826);
-    Object@Object _out_s4828 = null;
-    String_String_byte@String(new Object@Object(__cid=_out_s4826), string, _out_s4828)//{};
-    _out = _out_s4828;
-    return;
-  }
-  /*CryptoManager.sk:93*/
-  
-void decrypt_String (Object self, Object encryptedMessage, ref Object _out)/*CryptoManager.sk:93*/
-  {
-    bit _out_s4818 = 0;
-    isEncrypted_String@CryptoManager(self, encryptedMessage, _out_s4818);
-    if(!(_out_s4818))/*CryptoManager.sk:94*/
-    {
-      _out = encryptedMessage;
-      return;
-    }
-    Object@Object cf_s4830 = null;
-    getCipherFactory@CryptoManager(self, cf_s4830);
-    int cipher_s4842 = 0;
-    ConfigurableCipherFactory@meta(cipher_s4842);
-    Object@Object _pac_sc_s4843 = null;
-    if((cf_s4830.__cid) == cipher_s4842)/*CryptoManager.sk:21*/
-    {
-      Object@Object cipher_s4845 = null;
-      decryptionCipher@DefaultCipherFactory(cf_s4830, cipher_s4845);
-      _pac_sc_s4843 = cipher_s4845;
-    }
-    else
-    {
-      int cipher_s4847 = 0;
-      DefaultCipherFactory@meta(cipher_s4847);
-      Object@Object _pac_sc_s4848 = null;
-      if((cf_s4830.__cid) == cipher_s4847)/*CryptoManager.sk:21*/
-      {
-        Object@Object cipher_s4850 = null;
-        decryptionCipher@DefaultCipherFactory(cf_s4830, cipher_s4850);
-        _pac_sc_s4848 = cipher_s4850;
-      }
-      else
-      {
-        _pac_sc_s4848 = null;
-      }
-      _pac_sc_s4843 = _pac_sc_s4848;
-    }
-    Array_char@array cipherText_s4858 = null;
-    readEncoded_String@CryptoManager(self, encryptedMessage, cipherText_s4858);
-    Array_char@array cipherText_s4866 = null;
-    cryptInCipher_Cipher_byte@CryptoManager(self, _pac_sc_s4843, cipherText_s4858, cipherText_s4866);
-    Array_char@array cipherText_s4870 = cipherText_s4866;
-    bit _out_s4862 = 0;
-    isEncryptedByte_byte@CryptoManager(self, cipherText_s4866, _out_s4862);
-    if(_out_s4862)/*CryptoManager.sk:41*/
-    {
-      Array_char@array cipherText_s4864 = null;
-      cutEncryptionMark_byte@CryptoManager(self, cipherText_s4866, cipherText_s4864);
-      cipherText_s4870 = cipherText_s4864;
-    }
-    Object@Object _out_s4822 = null;
-    getCharset@CryptoManager(self, _out_s4822);
-    Object@Object _out_s4824 = null;
-    decode_byte_String@CryptoManager(self, cipherText_s4870, _out_s4822, _out_s4824)//{};
-    _out = _out_s4824;
-    return;
-  }
-  /*CryptoManager.sk:117*/
-  
-void encode_String_String (Object self, Object string, Object charset, ref Array_char _out)/*CryptoManager.sk:117*/
-  {
-    int _out_s4887 = 0;
-    String@meta(_out_s4887);
-    Array_char@array _pac_sc_s4888 = null;
-    if((string.__cid) == _out_s4887)/*CryptoManager.sk:118*/
-    {
-      Array_char@array _out_s4890 = null;
-      getBytes@String(string, _out_s4890);
-      _pac_sc_s4888 = _out_s4890;
-    }
-    else
-    {
-      _pac_sc_s4888 = null;
-    }
-    _out = _pac_sc_s4888;
-    return;
-  }
-  /*CryptoManager.sk:57*/
-  
-void encrypt_String (Object self, Object message, ref Object _out)/*CryptoManager.sk:57*/
-  {
-    Object@Object cf_s4830 = null;
-    getCipherFactory@CryptoManager(self, cf_s4830);
-    int cipher_s4832 = 0;
-    ConfigurableCipherFactory@meta(cipher_s4832);
-    Object@Object _pac_sc_s4833 = null;
-    if((cf_s4830.__cid) == cipher_s4832)/*CryptoManager.sk:18*/
-    {
-      Object@Object cipher_s4835 = null;
-      encryptionCipher@DefaultCipherFactory(cf_s4830, cipher_s4835);
-      _pac_sc_s4833 = cipher_s4835;
-    }
-    else
-    {
-      int cipher_s4837 = 0;
-      DefaultCipherFactory@meta(cipher_s4837);
-      Object@Object _pac_sc_s4838 = null;
-      if((cf_s4830.__cid) == cipher_s4837)/*CryptoManager.sk:18*/
-      {
-        Object@Object cipher_s4840 = null;
-        encryptionCipher@DefaultCipherFactory(cf_s4830, cipher_s4840);
-        _pac_sc_s4838 = cipher_s4840;
-      }
-      else
-      {
-        _pac_sc_s4838 = null;
-      }
-      _pac_sc_s4833 = _pac_sc_s4838;
-    }
-    Array_char@array cipherText_s4858 = null;
-    readEncoded_String@CryptoManager(self, message, cipherText_s4858);
-    Array_char@array cipherText_s4860 = null;
-    appendEncryptionMark_byte@CryptoManager(self, cipherText_s4858, cipherText_s4860);
-    Array_char@array cipherText_s4866 = null;
-    cryptInCipher_Cipher_byte@CryptoManager(self, _pac_sc_s4833, cipherText_s4860, cipherText_s4866);
-    Object@Object _out_s4915 = null;
-    getBasicCharset@CryptoManager(self, _out_s4915);
-    Object@Object _out_s4917 = null;
-    decode_byte_String@CryptoManager(self, cipherText_s4866, _out_s4915, _out_s4917)//{};
-    _out = _out_s4917;
-    return;
-  }
-  /*CryptoManager.sk:125*/
-  
-void getBasicCharset (Object self, ref Object _out)/*CryptoManager.sk:125*/
-  {
-    _out = self.basicCharset_CryptoManager;
-    return;
-  }
-  /*CryptoManager.sk:133*/
-  
-void getCharset (Object self, ref Object _out)/*CryptoManager.sk:133*/
-  {
-    _out = self.charset_CryptoManager;
-    return;
-  }
-  /*CryptoManager.sk:145*/
-  
-void getCipherFactory (Object self, ref Object _out)/*CryptoManager.sk:145*/
-  {
-    _out = self.cipherFactory_CryptoManager;
-    return;
-  }
-  /*CryptoManager.sk:141*/
-  
-void getEncryptedMark (Object self, ref char _out)/*CryptoManager.sk:141*/
-  {
-    _out = self.encryptedMark_CryptoManager;
-    return;
-  }
-  /*CryptoManager.sk:89*/
-  
-void isEncryptedByte_byte (Object self, Array_char data, ref bit _out)/*CryptoManager.sk:89*/
-  {
-    char _out_s4877 = '\0';
-    getEncryptedMark@CryptoManager(self, _out_s4877);
-    _out = (data.A[0]) == _out_s4877;
     return;
   }
   /*CryptoManager.sk:101*/
   
-void isEncrypted_String (Object self, Object message, ref bit _out)/*CryptoManager.sk:101*/
+void cryptInCipher_Cipher_byte (Object self, Object cipher, Array_char data, ref Array_char _out)/*CryptoManager.sk:101*/
   {
-    Object@Object cf_s4892 = null;
-    getCipherFactory@CryptoManager(self, cf_s4892);
-    int cipher_s4894 = 0;
-    ConfigurableCipherFactory@meta(cipher_s4894);
-    Object@Object _pac_sc_s4895 = null;
-    if((cf_s4892.__cid) == cipher_s4894)/*CryptoManager.sk:103*/
+    int _out_s4865 = 0;
+    Cipher@meta(_out_s4865);
+    Array_char@array _pac_sc_s4866 = null;
+    if((cipher.__cid) == _out_s4865)/*CryptoManager.sk:102*/
     {
-      Object@Object cipher_s4897 = null;
-      decryptionCipher@DefaultCipherFactory(cf_s4892, cipher_s4897);
-      _pac_sc_s4895 = cipher_s4897;
+      Array_char@array _out_s4868 = null;
+      doFinal_byte@Cipher(cipher, data, _out_s4868);
+      _pac_sc_s4866 = _out_s4868;
     }
     else
     {
-      int cipher_s4899 = 0;
-      DefaultCipherFactory@meta(cipher_s4899);
-      Object@Object _pac_sc_s4900 = null;
-      if((cf_s4892.__cid) == cipher_s4899)/*CryptoManager.sk:103*/
-      {
-        Object@Object cipher_s4902 = null;
-        decryptionCipher@DefaultCipherFactory(cf_s4892, cipher_s4902);
-        _pac_sc_s4900 = cipher_s4902;
-      }
-      else
-      {
-        _pac_sc_s4900 = null;
-      }
-      _pac_sc_s4895 = _pac_sc_s4900;
+      _pac_sc_s4866 = null;
     }
-    Array_char@array bytes_s4904 = null;
-    readEncoded_String@CryptoManager(self, message, bytes_s4904);
-    Array_char@array data_s4906 = null;
-    cryptInCipher_Cipher_byte@CryptoManager(self, _pac_sc_s4895, bytes_s4904, data_s4906);
-    bit _pac_sc_s4907_s4909 = 0;
-    isUseEncryptionStrict@CryptoManager(self, _pac_sc_s4907_s4909);
-    bit _pac_sc_s4907;
-    _pac_sc_s4907 = !(_pac_sc_s4907_s4909);
-    if(!(_pac_sc_s4907))/*CryptoManager.sk:106*/
-    {
-      bit _pac_sc_s4907_s4911 = 0;
-      isEncryptedByte_byte@CryptoManager(self, data_s4906, _pac_sc_s4907_s4911);
-      _pac_sc_s4907 = _pac_sc_s4907_s4911;
-    }
-    _out = _pac_sc_s4907;
-    return;
-  }
-  /*CryptoManager.sk:153*/
-  
-void isUseEncryptionStrict (Object self, ref bit _out)/*CryptoManager.sk:153*/
-  {
-    _out = self.useEncryptionStrict_CryptoManager;
+    _out = _pac_sc_s4866;
     return;
   }
   /*CryptoManager.sk:113*/
   
-void processEscape_byte_boolean (Object self, Array_char data, bit escape, ref Array_char _out)/*CryptoManager.sk:113*/
+void decode_byte_String (Object self, Array_char string, Object charset, ref Object _out)/*CryptoManager.sk:113*/
+  {
+    int _out_s4821 = 0;
+    String@meta(_out_s4821);
+    Object@Object _out_s4823 = null;
+    String_String_byte@String(new Object@Object(__cid=_out_s4821), string, _out_s4823)//{};
+    _out = _out_s4823;
+    return;
+  }
+  /*CryptoManager.sk:85*/
+  
+void decrypt_String (Object self, Object encryptedMessage, ref Object _out)/*CryptoManager.sk:85*/
+  {
+    bit _out_s4813 = 0;
+    isEncrypted_String@CryptoManager(self, encryptedMessage, _out_s4813);
+    if(!(_out_s4813))/*CryptoManager.sk:86*/
+    {
+      _out = encryptedMessage;
+      return;
+    }
+    Object@Object cf_0 = null;
+    int cipher_s4831 = 0;
+    ConfigurableCipherFactory@meta(cipher_s4831);
+    if((cf_0.__cid) == cipher_s4831)/*CryptoManager.sk:21*/
+    {
+      Object@Object cipher_s4834 = null;
+      encryptionCipher@DefaultCipherFactory(cf_0, cipher_s4834);
+    }
+    else
+    {
+      int cipher_s4836 = 0;
+      DefaultCipherFactory@meta(cipher_s4836);
+      if((cf_0.__cid) == cipher_s4836)/*CryptoManager.sk:21*/
+      {
+        Object@Object cipher_s4839 = null;
+        encryptionCipher@DefaultCipherFactory(cf_0, cipher_s4839);
+      }
+    }
+    Array_char@array cipherText_s4851 = null;
+    readEncoded_String@CryptoManager(self, encryptedMessage, cipherText_s4851);
+    Array_char@array cipherText_s4857 = null;
+    appendEncryptionMark_byte@CryptoManager(self, cipherText_s4851, cipherText_s4857);
+    Object@Object _out_s4817 = null;
+    getCharset@CryptoManager(self, _out_s4817);
+    Object@Object _out_s4819 = null;
+    decode_byte_String@CryptoManager(self, cipherText_s4857, _out_s4817, _out_s4819)//{};
+    _out = _out_s4819;
+    return;
+  }
+  /*CryptoManager.sk:109*/
+  
+void encode_String_String (Object self, Object string, Object charset, ref Array_char _out)/*CryptoManager.sk:109*/
+  {
+    int _out_s4880 = 0;
+    String@meta(_out_s4880);
+    Array_char@array _pac_sc_s4881 = null;
+    if((string.__cid) == _out_s4880)/*CryptoManager.sk:110*/
+    {
+      Array_char@array _out_s4883 = null;
+      getBytes@String(string, _out_s4883);
+      _pac_sc_s4881 = _out_s4883;
+    }
+    else
+    {
+      _pac_sc_s4881 = null;
+    }
+    _out = _pac_sc_s4881;
+    return;
+  }
+  /*CryptoManager.sk:49*/
+  
+void encrypt_String (Object self, Object message, ref Object _out)/*CryptoManager.sk:49*/
+  {
+    Object@Object cipherText_s4825 = null;
+    getCharset@CryptoManager(self, cipherText_s4825);
+    Array_char@array cipherText_s4827 = null;
+    encode_String_String@CryptoManager(self, message, cipherText_s4825, cipherText_s4827)//{};
+    Object@Object _out_s4908 = null;
+    getBasicCharset@CryptoManager(self, _out_s4908);
+    Object@Object _out_s4910 = null;
+    decode_byte_String@CryptoManager(self, cipherText_s4827, _out_s4908, _out_s4910)//{};
+    _out = _out_s4910;
+    return;
+  }
+  /*CryptoManager.sk:117*/
+  
+void getBasicCharset (Object self, ref Object _out)/*CryptoManager.sk:117*/
+  {
+    _out = self.basicCharset_CryptoManager;
+    return;
+  }
+  /*CryptoManager.sk:125*/
+  
+void getCharset (Object self, ref Object _out)/*CryptoManager.sk:125*/
+  {
+    _out = self.charset_CryptoManager;
+    return;
+  }
+  /*CryptoManager.sk:137*/
+  
+void getCipherFactory (Object self, ref Object _out)/*CryptoManager.sk:137*/
+  {
+    _out = self.cipherFactory_CryptoManager;
+    return;
+  }
+  /*CryptoManager.sk:133*/
+  
+void getEncryptedMark (Object self, ref char _out)/*CryptoManager.sk:133*/
+  {
+    _out = self.encryptedMark_CryptoManager;
+    return;
+  }
+  /*CryptoManager.sk:81*/
+  
+void isEncryptedByte_byte (Object self, Array_char data, ref bit _out)/*CryptoManager.sk:81*/
+  {
+    char _out_s4872 = '\0';
+    getEncryptedMark@CryptoManager(self, _out_s4872);
+    _out = (data.A[0]) == _out_s4872;
+    return;
+  }
+  /*CryptoManager.sk:93*/
+  
+void isEncrypted_String (Object self, Object message, ref bit _out)/*CryptoManager.sk:93*/
+  {
+    Object@Object cf_s4885 = null;
+    getCipherFactory@CryptoManager(self, cf_s4885);
+    int cipher_s4887 = 0;
+    ConfigurableCipherFactory@meta(cipher_s4887);
+    Object@Object _pac_sc_s4888 = null;
+    if((cf_s4885.__cid) == cipher_s4887)/*CryptoManager.sk:95*/
+    {
+      Object@Object cipher_s4890 = null;
+      decryptionCipher@DefaultCipherFactory(cf_s4885, cipher_s4890);
+      _pac_sc_s4888 = cipher_s4890;
+    }
+    else
+    {
+      int cipher_s4892 = 0;
+      DefaultCipherFactory@meta(cipher_s4892);
+      Object@Object _pac_sc_s4893 = null;
+      if((cf_s4885.__cid) == cipher_s4892)/*CryptoManager.sk:95*/
+      {
+        Object@Object cipher_s4895 = null;
+        decryptionCipher@DefaultCipherFactory(cf_s4885, cipher_s4895);
+        _pac_sc_s4893 = cipher_s4895;
+      }
+      else
+      {
+        _pac_sc_s4893 = null;
+      }
+      _pac_sc_s4888 = _pac_sc_s4893;
+    }
+    Array_char@array bytes_s4897 = null;
+    readEncoded_String@CryptoManager(self, message, bytes_s4897);
+    Array_char@array data_s4899 = null;
+    cryptInCipher_Cipher_byte@CryptoManager(self, _pac_sc_s4888, bytes_s4897, data_s4899);
+    bit _pac_sc_s4900_s4902 = 0;
+    isUseEncryptionStrict@CryptoManager(self, _pac_sc_s4900_s4902);
+    bit _pac_sc_s4900;
+    _pac_sc_s4900 = !(_pac_sc_s4900_s4902);
+    if(!(_pac_sc_s4900))/*CryptoManager.sk:98*/
+    {
+      bit _pac_sc_s4900_s4904 = 0;
+      isEncryptedByte_byte@CryptoManager(self, data_s4899, _pac_sc_s4900_s4904);
+      _pac_sc_s4900 = _pac_sc_s4900_s4904;
+    }
+    _out = _pac_sc_s4900;
+    return;
+  }
+  /*CryptoManager.sk:145*/
+  
+void isUseEncryptionStrict (Object self, ref bit _out)/*CryptoManager.sk:145*/
+  {
+    _out = self.useEncryptionStrict_CryptoManager;
+    return;
+  }
+  /*CryptoManager.sk:105*/
+  
+void processEscape_byte_boolean (Object self, Array_char data, bit escape, ref Array_char _out)/*CryptoManager.sk:105*/
   {
     _out = data;
     return;
   }
-  /*CryptoManager.sk:84*/
+  /*CryptoManager.sk:76*/
   
-void readEncoded_String (Object self, Object encrypted, ref Array_char _out)/*CryptoManager.sk:84*/
+void readEncoded_String (Object self, Object encrypted, ref Array_char _out)/*CryptoManager.sk:76*/
   {
-    Object@Object bytes_s4881 = null;
-    getBasicCharset@CryptoManager(self, bytes_s4881);
-    Array_char@array bytes_s4883 = null;
-    encode_String_String@CryptoManager(self, encrypted, bytes_s4881, bytes_s4883)//{};
-    Array_char@array _out_s4885 = null;
-    processEscape_byte_boolean@CryptoManager(self, bytes_s4883, 0, _out_s4885);
-    _out = _out_s4885;
+    Object@Object bytes_s4874 = null;
+    getBasicCharset@CryptoManager(self, bytes_s4874);
+    Array_char@array bytes_s4876 = null;
+    encode_String_String@CryptoManager(self, encrypted, bytes_s4874, bytes_s4876)//{};
+    Array_char@array _out_s4878 = null;
+    processEscape_byte_boolean@CryptoManager(self, bytes_s4876, 0, _out_s4878);
+    _out = _out_s4878;
     return;
   }
   /* END PACKAGE CryptoManager*/
@@ -1915,11 +1793,11 @@ void toString_int (int i, ref Object _out)/*Integer.sk:43*/
   {
     if(i == 0)/*Integer.sk:44*/
     {
-      int _out_s5065 = 0;
-      String@meta(_out_s5065);
-      Object@Object _out_s5067 = null;
-      String_String_char_int_int@String(new Object@Object(__cid=_out_s5065), new Array_char@array(length=2, A={'0','\0'}), 0, 1, _out_s5067)//{};
-      _out = _out_s5067;
+      int _out_s5058 = 0;
+      String@meta(_out_s5058);
+      Object@Object _out_s5060 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_out_s5058), new Array_char@array(length=2, A={'0','\0'}), 0, 1, _out_s5060)//{};
+      _out = _out_s5060;
       return;
     }
     int index = 0;
@@ -1949,11 +1827,11 @@ void toString_int (int i, ref Object _out)/*Integer.sk:43*/
       ret2.A[j] = ret.A[index - 1];
       index = index - 1;
     }
-    int _out_s5069 = 0;
-    String@meta(_out_s5069);
-    Object@Object _out_s5071 = null;
-    String_String_char_int_int@String(new Object@Object(__cid=_out_s5069), ret2, 0, size, _out_s5071)//{};
-    _out = _out_s5071;
+    int _out_s5062 = 0;
+    String@meta(_out_s5062);
+    Object@Object _out_s5064 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=_out_s5062), ret2, 0, size, _out_s5064)//{};
+    _out = _out_s5064;
     return;
   }
   /* END PACKAGE Integer*/
@@ -1994,34 +1872,34 @@ void Cipher_Cipher_String (Object self, Object type, ref Object _out)/*Cipher.sk
   
 void doFinal_byte (Object self, Array_char text, ref Array_char _out)/*Cipher.sk:37*/
   {
-    int k_s5154 = 0;
-    SecretKeySpec@meta(k_s5154);
-    Array_char@array _pac_sc_s5155 = null;
-    if((self.key_Cipher.__cid) == k_s5154)/*Cipher.sk:38*/
+    int k_s5147 = 0;
+    SecretKeySpec@meta(k_s5147);
+    Array_char@array _pac_sc_s5148 = null;
+    if((self.key_Cipher.__cid) == k_s5147)/*Cipher.sk:38*/
     {
-      Array_char@array k_s5157 = null;
-      getEncoded@SecretKeySpec(self.key_Cipher, k_s5157);
-      _pac_sc_s5155 = k_s5157;
+      Array_char@array k_s5150 = null;
+      getEncoded@SecretKeySpec(self.key_Cipher, k_s5150);
+      _pac_sc_s5148 = k_s5150;
     }
     else
     {
-      int k_s5159 = 0;
-      KerberosKey@meta(k_s5159);
-      Array_char@array _pac_sc_s5160 = null;
-      if((self.key_Cipher.__cid) == k_s5159)/*Cipher.sk:38*/
+      int k_s5152 = 0;
+      KerberosKey@meta(k_s5152);
+      Array_char@array _pac_sc_s5153 = null;
+      if((self.key_Cipher.__cid) == k_s5152)/*Cipher.sk:38*/
       {
-        Array_char@array k_s5162 = null;
-        getEncoded@KerberosKey(self.key_Cipher, k_s5162);
-        _pac_sc_s5160 = k_s5162;
+        Array_char@array k_s5155 = null;
+        getEncoded@KerberosKey(self.key_Cipher, k_s5155);
+        _pac_sc_s5153 = k_s5155;
       }
       else
       {
-        _pac_sc_s5160 = null;
+        _pac_sc_s5153 = null;
       }
-      _pac_sc_s5155 = _pac_sc_s5160;
+      _pac_sc_s5148 = _pac_sc_s5153;
     }
     _out = new Array_char@array(length=text.length);
-    if((_pac_sc_s5155.length) == 0)/*Cipher.sk:40*/
+    if((_pac_sc_s5148.length) == 0)/*Cipher.sk:40*/
     {
       return;
     }
@@ -2031,7 +1909,7 @@ void doFinal_byte (Object self, Array_char text, ref Array_char _out)/*Cipher.sk
       int i = 0;
       while(__sa30)
       {
-        _out.A[i] = (text.A[i]) + (_pac_sc_s5155.A[i % (_pac_sc_s5155.length)]);
+        _out.A[i] = (text.A[i]) + (_pac_sc_s5148.A[i % (_pac_sc_s5148.length)]);
         i = i + 1;
         __sa30 = i < (text.length);
       }
@@ -2044,7 +1922,7 @@ void doFinal_byte (Object self, Array_char text, ref Array_char _out)/*Cipher.sk
         int i_0 = 0;
         while(__sa31)
         {
-          _out.A[i_0] = (text.A[i_0]) - (_pac_sc_s5155.A[i_0 % (_pac_sc_s5155.length)]);
+          _out.A[i_0] = (text.A[i_0]) - (_pac_sc_s5148.A[i_0 % (_pac_sc_s5148.length)]);
           i_0 = i_0 + 1;
           __sa31 = i_0 < (text.length);
         }
@@ -2056,11 +1934,11 @@ void doFinal_byte (Object self, Array_char text, ref Array_char _out)/*Cipher.sk
   
 void getInstance_String (Object type, ref Object _out)/*Cipher.sk:14*/
   {
-    int _out_s5164 = 0;
-    Cipher@meta(_out_s5164);
-    Object@Object _out_s5166 = null;
-    Cipher_Cipher_String(new Object@Object(__cid=_out_s5164), type, _out_s5166)//{};
-    _out = _out_s5166;
+    int _out_s5157 = 0;
+    Cipher@meta(_out_s5157);
+    Object@Object _out_s5159 = null;
+    Cipher_Cipher_String(new Object@Object(__cid=_out_s5157), type, _out_s5159)//{};
+    _out = _out_s5159;
     return;
   }
   /*Cipher.sk:22*/
@@ -2073,4 +1951,4 @@ void init_int_Key (Object self, int opmode, Object key)/*Cipher.sk:22*/
   /* END PACKAGE Cipher*/
 }
 [SKETCH] DONE
-Total time = 6953
+Total time = 8688

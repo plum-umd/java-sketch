@@ -1,0 +1,496 @@
+    [0;32m[1522687981.7040 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [0;32m[1522687984.5930 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522687986.1450 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522687986.1510 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522687986.1530 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522687986.1580 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522687986.1660 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522687986.2070 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522687986.8600 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
+    [0;32m[1522688089.1820 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522688089.1880 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522688089.3320 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522688089.8370 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [0;32m[1522688092.7340 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522688094.3340 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522688094.3460 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522688094.3490 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522688094.3540 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522688094.3600 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522688094.4000 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522688095.0500 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
+    [0;32m[1522688197.3640 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522688197.3680 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522688197.4960 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522688197.9960 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [0;32m[1522688200.8030 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522688202.4260 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522688202.4340 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522688202.4370 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522688202.4430 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522688202.4500 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522688202.5010 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522688203.1360 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
+    [0;32m[1522688303.0590 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522688303.0650 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522688303.2060 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522688303.7360 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [0;32m[1522688306.6620 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522688308.2340 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522688308.2400 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522688308.2430 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522688308.2480 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522688308.2550 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522688308.3010 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522688308.9650 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
+    [0;32m[1522688408.6320 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522688408.6360 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522688408.7590 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522688409.2620 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [0;32m[1522688412.0500 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522688413.6790 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522688413.6840 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522688413.6870 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522688413.6930 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522688413.6990 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522688413.7430 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522688414.4330 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
+    [0;32m[1522688516.1530 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522688516.1590 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522688516.2820 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522688516.7890 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [0;32m[1522688519.6570 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522688521.2240 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522688521.2300 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522688521.2320 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522688521.2370 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522688521.2440 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522688521.2880 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522688521.9130 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
+    [0;32m[1522688525.0520 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522688525.0570 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522688525.1920 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522688525.7020 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [0;32m[1522688528.4970 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522688530.1010 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522688530.1070 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522688530.1100 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522688530.1150 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522688530.1220 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522688530.1650 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522688530.7900 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
+    [0;32m[1522688632.3670 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522688632.3720 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522688632.5070 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522688633.0130 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [0;32m[1522688635.8990 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522688637.5480 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522688637.5540 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522688637.5560 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522688637.5620 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522688637.5700 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522688637.6150 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522688638.2520 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
+    [0;32m[1522688741.1210 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522688741.1250 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522688741.2590 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522688741.7980 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [0;32m[1522688744.7780 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522688746.3570 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522688746.3600 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522688746.3630 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522688746.3760 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522688746.3820 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522688746.4290 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522688747.0900 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
+    [0;32m[1522688849.7630 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522688849.7680 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522688849.8960 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522688850.3930 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [0;32m[1522688853.2550 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522688854.8610 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522688854.8670 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522688854.8690 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522688854.8740 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522688854.8810 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522688854.9220 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522688855.5620 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
+    [0;32m[1522688958.0840 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522688958.0880 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522688958.2120 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522688958.7230 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [0;32m[1522688961.7330 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522688963.3320 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522688963.3370 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522688963.3390 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522688963.3440 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522688963.3510 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522688963.4000 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522688964.0350 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
+    [0;32m[1522689066.5900 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522689066.5940 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522689066.7210 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522689067.2240 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [0;32m[1522689070.1210 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522689071.7070 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522689071.7130 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522689071.7150 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522689071.7210 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522689071.7280 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522689071.7730 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522689072.4640 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
+    [0;32m[1522689172.6810 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522689172.6860 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522689172.8180 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522689173.3380 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [0;32m[1522689176.1050 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522689177.6850 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522689177.6910 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522689177.6940 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522689177.6990 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522689177.7060 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522689177.7520 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522689178.3970 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
+    [0;32m[1522689281.4650 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522689281.4700 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522689281.5920 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522689282.0890 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [0;32m[1522689284.9070 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522689286.5360 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522689286.5430 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522689286.5460 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522689286.5520 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522689286.5590 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522689286.6030 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522689287.2120 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
+    [0;32m[1522689386.4550 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522689386.4590 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522689386.5830 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522689387.0830 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [0;32m[1522689390.0210 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522689391.6800 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522689391.6860 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522689391.6890 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522689391.6940 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522689391.7010 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522689391.7450 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522689392.3850 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
+    [0;32m[1522689494.2110 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522689494.2150 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522689494.3440 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522689494.8460 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [0;32m[1522689497.7240 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522689499.3260 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522689499.3310 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522689499.3340 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522689499.3400 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522689499.3460 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522689499.3880 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522689500.0260 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
+    [0;32m[1522689602.0860 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522689602.0900 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522689602.2170 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522689602.7310 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [0;32m[1522689605.6740 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522689607.3020 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522689607.3080 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522689607.3100 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522689607.3150 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522689607.3210 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522689607.3620 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522689608.0190 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
+    [0;32m[1522689708.3020 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522689708.3070 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522689708.4390 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522689708.9460 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [0;32m[1522689711.7980 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522689713.4150 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522689713.4200 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522689713.4230 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522689713.4280 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522689713.4350 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522689713.4820 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522689714.1200 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
+    [0;32m[1522689814.4970 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522689814.5010 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522689814.6290 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522689815.1330 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [0;32m[1522689817.9810 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522689819.6430 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522689819.6490 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522689819.6600 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522689819.6650 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522689819.6710 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522689819.7140 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522689820.3490 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
+    [0;32m[1522689923.0370 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522689923.0410 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522689923.1720 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522689923.6770 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [0;32m[1522689926.5670 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522689928.0940 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522689928.1000 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522689928.1020 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522689928.1080 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522689928.1150 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522689928.1590 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522689928.8130 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
+    [0;32m[1522690031.4240 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522690031.4300 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522690031.5630 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522690032.0630 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [0;32m[1522690034.8150 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522690036.4080 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522690036.4130 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522690036.4150 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522690036.4250 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522690036.4320 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522690036.4830 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522690037.1140 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
+    [0;32m[1522690139.5320 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522690139.5360 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522690139.6660 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522690140.1650 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [0;32m[1522690142.9560 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522690144.5910 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522690144.5970 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522690144.5990 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522690144.6050 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522690144.6120 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522690144.6540 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522690145.3210 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
+    [0;32m[1522690148.3710 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522690148.3750 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522690148.5180 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522690149.0300 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [0;32m[1522690151.9100 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522690153.5060 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522690153.5100 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522690153.5130 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522690153.5180 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522690153.5250 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522690153.5680 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522690154.1960 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
+    [0;32m[1522690256.3940 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522690256.4000 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522690256.5340 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522690257.0470 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [0;32m[1522690259.8730 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522690261.4830 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522690261.4890 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522690261.4920 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522690261.4970 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522690261.5030 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522690261.5440 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522690262.1680 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
+    [0;32m[1522690363.8480 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522690363.8530 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522690363.9850 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522690364.4820 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [0;32m[1522690367.4120 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522690369.0220 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522690369.0280 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522690369.0310 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522690369.0370 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522690369.0550 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522690369.0950 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522690369.7330 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
+    [0;32m[1522690372.8270 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522690372.8310 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522690372.9650 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522690373.4650 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [0;32m[1522690376.2720 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522690377.8610 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522690377.8670 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522690377.8700 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522690377.8740 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522690377.8810 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522690377.9230 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522690378.5580 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
+    [0;32m[1522690381.6390 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522690381.6440 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522690381.7780 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522690382.3020 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [0;32m[1522690385.2440 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522690386.8710 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522690386.8760 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522690386.8790 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522690386.8840 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522690386.8910 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522690386.9340 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522690387.5800 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
+    [0;32m[1522690489.6520 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522690489.6560 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522690489.7850 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522690490.2890 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [0;32m[1522690493.1440 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522690494.7630 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522690494.7680 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522690494.7700 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522690494.7760 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522690494.7820 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522690494.8260 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522690495.4710 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
+    [0;32m[1522690595.7030 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522690595.7100 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522690595.8360 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522690596.3470 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [0;32m[1522690599.2070 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522690600.8400 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522690600.8470 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522690600.8490 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522690600.8550 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522690600.8620 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522690600.9110 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522690601.5530 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
+    [0;32m[1522690701.6820 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522690701.6860 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522690701.8210 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522690702.3580 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [0;32m[1522690705.3390 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522690706.9680 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522690706.9740 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522690706.9760 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522690706.9810 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522690706.9880 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522690707.0380 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522690707.6680 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
+    [0;32m[1522690807.9810 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522690807.9850 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522690808.1100 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522690808.6400 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '15'
+    [0;32m[1522690811.5080 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522690813.1570 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522690813.1630 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522690813.1650 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522690813.1710 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522690813.1770 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522690813.2230 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522690813.8680 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/CipherFactory/result_noax/tmp/sk_CipherFactoryTests/input0.tmp]
+    [0;32m[1522690916.5500 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522690916.5540 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522690916.6830 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m

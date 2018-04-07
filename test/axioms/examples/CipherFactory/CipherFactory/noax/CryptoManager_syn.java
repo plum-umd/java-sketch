@@ -31,25 +31,43 @@ public class CryptoManager implements ICryptoManager {
     
     generator public byte[] genCipherText(String plainText, byte[] bytes, ICipherFactory cf, Cipher cipher) {
 
-	byte[] cipherText;
-    	if (??) { cipherText = encode(plainText, getCharset()); }
+	byte[] cipherText = bytes;
+    	// if (??) { cipherText = encode(plainText, getCharset()); }
     	if (??) { cf = getCipherFactory(); }
     	if (??) { cipher = cf.encryptionCipher(); }
     	if (??) { cipher = cf.decryptionCipher(); }
+	// if (??) { cipherText = readEncoded(plainText); }
+    	// if (??) { cipherText = appendEncryptionMark(cipherText); }
+	// if (??) {
+	//     if (isEncryptedByte(cipherText)) {
+	// 	cipherText = cutEncryptionMark(cipherText);
+	//     }
+	// }
+    	// if (??) { cipherText = cryptInCipher(cipher, cipherText); }
+    	// if (??) { cipherText = processEscape(cipherText, true); }
+    	if (??) { cipherText = genCipherText2(plainText, cipherText, cf, cipher); }
+	
+    	return cipherText;
+    }
+
+    generator public byte[] genCipherText2(String plainText, byte[] bytes, ICipherFactory cf, Cipher cipher) {
+
+	byte[] cipherText = bytes;
+    	if (??) { cipherText = encode(plainText, getCharset()); }
 	if (??) { cipherText = readEncoded(plainText); }
+    	if (??) { cipherText = appendEncryptionMark(cipherText); }
 	if (??) {
 	    if (isEncryptedByte(cipherText)) {
 		cipherText = cutEncryptionMark(cipherText);
 	    }
 	}
-    	if (??) { cipherText = appendEncryptionMark(cipherText); }
     	if (??) { cipherText = cryptInCipher(cipher, cipherText); }
     	if (??) { cipherText = processEscape(cipherText, true); }
-    	if (??) { cipherText = genCipherText(plainText, cipherText, cf, cipher); }
+    	if (??) { cipherText = genCipherText2(plainText, cipherText, cf, cipher); }
 	
     	return cipherText;
     }
-
+    
     /**
      * Performs message encryption.
      * @param message message
