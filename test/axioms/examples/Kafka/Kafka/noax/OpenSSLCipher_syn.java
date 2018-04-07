@@ -89,7 +89,10 @@ public class OpenSSLCipher implements ICipher {
      * @return encrypted data
      */
     public byte[] encrypt(byte[] data, Key key, byte[] IV) {
-        return translate(true, data, key, IV);
+        // return translate(true, data, key, IV);
+        byte[] cipherText =  translate(true, data, key, IV);
+	assert !Arrays.arraysEquals(cipherText, data);
+	return cipherText;
     }
 
     /**
@@ -110,11 +113,14 @@ public class OpenSSLCipher implements ICipher {
 	int finalBytes = 0;
 	Cipher cipher;
 	if (??) {
+	    cipherText = new byte[2 * data.length];
+	}
+	if (??) {
 	    cipher = getCipher(isEncryption, key, IV);
 	}
 	if (??) { updateBytes = cipher.update(data, ??, data.length, cipherText, ??); }
 	if (??) { finalBytes = cipher.doFinal(data, ??, ??, cipherText, updateBytes); }
-	if (??) { cipherText = cipher.doFinal(data); }
+	// if (??) { cipherText = cipher.doFinal(data); }
 	if (??) {
 	    cipherText = Arrays.copyOf(cipherText, updateBytes + finalBytes);
 	}

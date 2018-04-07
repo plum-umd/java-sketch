@@ -73,7 +73,10 @@ public class JCECipher implements ICipher {
 
     @Override
     public byte[] encrypt(byte[] data, Key key, byte[] IV) {
-        return translate(true, data, key, IV);
+        // return translate(true, data, key, IV);
+        byte[] cipherText = translate(true, data, key, IV);
+	assert !Arrays.arraysEquals(cipherText, data);
+	return cipherText;
     }
 
     @Override
@@ -82,25 +85,28 @@ public class JCECipher implements ICipher {
     }
 
     generator public byte[] genCipherText(byte[] data, boolean isEncryption, Key key, byte[] IV) {
-	byte[] cipherText;
-	int updateBytes = 0;
-	int finalBytes = 0;
-	Cipher cipher;
+    	byte[] cipherText;
+    	int updateBytes = 0;
+    	int finalBytes = 0;
+    	Cipher cipher;
+    	if (??) {
+    	    cipher = getCipher(isEncryption, key, IV);
+    	}
 	if (??) {
-	    cipher = getCipher(isEncryption, key, IV);
+	    cipherText = new byte[cipher.getOutputSize(data.length)];
 	}
-	if (??) { updateBytes = cipher.update(data, ??, cipherText.length, cipherText, ??); }
-	if (??) { finalBytes = cipher.doFinal(data, ??, ??, cipherText, updateBytes); }
-	if (??) { cipherText = cipher.doFinal(data); }
-	if (??) {
-	    if (updateBytes + finalBytes < cipherText.length) {
-		cipherText = Arrays.copyOf(cipherText, updateBytes + finalBytes);
-	    }
-	}
-	if (??) {
-	    cipherText = genCipherText(cipherText, isEncryption, key, IV);
-	}
-	return cipherText;
+    	if (??) { updateBytes = cipher.update(data, ??, cipherText.length, cipherText, ??); }
+    	if (??) { finalBytes = cipher.doFinal(data, ??, ??, cipherText, updateBytes); }
+    	// if (??) { cipherText = cipher.doFinal(data); }
+    	if (??) {
+    	    if (updateBytes + finalBytes < cipherText.length) {
+    		cipherText = Arrays.copyOf(cipherText, updateBytes + finalBytes);
+    	    }
+    	}
+    	if (??) {
+    	    cipherText = genCipherText(cipherText, isEncryption, key, IV);
+    	}
+    	return cipherText;
     }
     
     private byte[] translate(boolean isEncryption, byte[] data, Key key, byte[] IV) {
@@ -109,7 +115,7 @@ public class JCECipher implements ICipher {
 
 	// int updateBytes = cipher.update(data, 0, data.length, output, 0);
 	// int finalBytes = cipher.doFinal(data, 0, 0, output, updateBytes);
-	// output = cipher.doFinal(data);
+	// // output = cipher.doFinal(data);
 	// if (updateBytes + finalBytes < output.length) {
 	//     output = Arrays.copyOf(output, updateBytes + finalBytes);
 	// }	

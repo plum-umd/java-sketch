@@ -1,0 +1,496 @@
+    [0;32m[1522690927.3700 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+    [0;32m[1522690930.2420 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522690931.8650 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522690931.8710 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522690931.8750 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522690931.8820 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522690931.8890 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522690931.9530 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522690933.2470 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp]
+    [0;32m[1522691061.8080 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522691061.8150 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522691062.1720 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522691062.7020 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+    [0;32m[1522691065.5550 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522691067.2220 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522691067.2280 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522691067.2310 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522691067.2380 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522691067.2460 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522691067.3120 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522691068.6100 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp]
+    [0;32m[1522691194.5040 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522691194.5120 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522691194.9000 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522691195.4280 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+    [0;32m[1522691198.2580 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522691199.9210 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522691199.9260 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522691199.9300 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522691199.9370 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522691199.9450 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522691200.0150 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522691201.2320 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp]
+    [0;32m[1522691326.7650 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522691326.7720 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522691327.1910 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522691327.7580 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+    [0;32m[1522691330.6200 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522691332.2590 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522691332.2650 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522691332.2690 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522691332.2750 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522691332.2820 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522691332.3520 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522691333.7460 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp]
+    [0;32m[1522691460.3100 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522691460.3160 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522691460.7130 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522691461.2360 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+    [0;32m[1522691464.0390 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522691465.6650 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522691465.6690 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522691465.6730 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522691465.6800 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522691465.6860 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522691465.7450 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522691467.0090 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp]
+    [0;32m[1522691593.3900 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522691593.3990 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522691593.8020 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522691594.3360 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+    [0;32m[1522691597.1720 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522691598.8280 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522691598.8340 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522691598.8380 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522691598.8460 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522691598.8530 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522691598.9150 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522691600.2330 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp]
+    [0;32m[1522691727.5400 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522691727.5450 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522691727.9170 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522691728.4410 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+    [0;32m[1522691731.3670 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522691733.0220 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522691733.0280 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522691733.0310 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522691733.0380 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522691733.0460 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522691733.1150 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522691734.4420 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp]
+    [0;32m[1522691861.1440 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522691861.1510 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522691861.5370 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522691862.0480 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+    [0;32m[1522691864.8950 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522691866.5300 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522691866.5360 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522691866.5440 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522691866.5510 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522691866.5600 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522691866.6210 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522691867.8770 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp]
+    [0;32m[1522691997.0900 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522691997.0960 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522691997.4640 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522691998.0120 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+    [0;32m[1522692001.0970 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522692002.7750 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522692002.7810 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522692002.7860 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522692002.7920 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522692002.8000 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522692002.8650 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522692004.1140 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp]
+    [0;32m[1522692131.3180 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522692131.3240 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522692131.7010 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522692132.2560 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+    [0;32m[1522692135.1100 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522692136.7650 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522692136.7710 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522692136.7740 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522692136.7790 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522692136.7860 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522692136.8500 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522692138.1090 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp]
+    [0;32m[1522692263.8140 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522692263.8200 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522692264.2030 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522692264.7260 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+    [0;32m[1522692267.6000 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522692269.2220 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522692269.2270 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522692269.2310 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522692269.2380 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522692269.2480 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522692269.3160 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522692270.5720 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp]
+    [0;32m[1522692397.6820 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522692397.6870 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522692398.0740 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522692398.6150 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+    [0;32m[1522692401.3620 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522692403.0040 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522692403.0090 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522692403.0130 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522692403.0200 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522692403.0280 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522692403.1040 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522692404.3680 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp]
+    [0;32m[1522692532.7580 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522692532.7670 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522692533.1820 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522692533.7180 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+    [0;32m[1522692536.4920 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522692538.1250 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522692538.1290 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522692538.1330 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522692538.1410 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522692538.1490 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522692538.2230 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522692539.5280 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp]
+    [0;32m[1522692669.8370 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522692669.8430 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522692670.2210 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522692670.7360 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+    [0;32m[1522692673.6090 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522692675.2550 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522692675.2610 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522692675.2650 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522692675.2720 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522692675.2800 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522692675.3450 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522692676.5510 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp]
+    [0;32m[1522692803.9040 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522692803.9120 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522692804.3080 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522692804.8780 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+    [0;32m[1522692807.7230 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522692809.4290 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522692809.4350 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522692809.4390 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522692809.4440 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522692809.4520 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522692809.5170 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522692810.7780 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp]
+    [0;32m[1522692938.8730 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522692938.8780 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522692939.2900 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522692939.8350 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+    [0;32m[1522692942.6760 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522692944.3090 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522692944.3150 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522692944.3190 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522692944.3260 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522692944.3360 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522692944.4110 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522692945.6530 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp]
+    [0;32m[1522693071.2740 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522693071.2810 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522693071.6840 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522693072.2110 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+    [0;32m[1522693075.1040 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522693076.8170 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522693076.8220 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522693076.8260 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522693076.8340 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522693076.8420 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522693076.9040 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522693078.1480 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp]
+    [0;32m[1522693203.8210 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522693203.8260 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522693204.2220 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522693204.7640 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+    [0;32m[1522693207.6020 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522693209.2790 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522693209.2850 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522693209.2890 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522693209.2960 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522693209.3040 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522693209.3680 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522693210.6750 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp]
+    [0;32m[1522693337.3910 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522693337.3960 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522693337.7730 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522693338.3650 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+    [0;32m[1522693341.3320 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522693343.0070 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522693343.0130 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522693343.0170 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522693343.0240 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522693343.0320 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522693343.1070 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522693344.4040 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp]
+    [0;32m[1522693471.1880 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522693471.1940 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522693471.6190 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522693472.1500 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+    [0;32m[1522693475.0220 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522693476.6580 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522693476.6630 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522693476.6660 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522693476.6760 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522693476.6840 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522693476.7480 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522693478.0240 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp]
+    [0;32m[1522693604.4740 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522693604.4820 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522693604.8810 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522693605.4100 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+    [0;32m[1522693608.3600 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522693610.0230 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522693610.0260 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522693610.0290 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522693610.0360 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522693610.0470 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522693610.1070 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522693611.4040 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp]
+    [0;32m[1522693737.9340 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522693737.9390 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522693738.3570 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522693738.8980 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+    [0;32m[1522693741.6950 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522693743.3060 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522693743.3120 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522693743.3150 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522693743.3220 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522693743.3300 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522693743.3950 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522693744.7520 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp]
+    [0;32m[1522693870.5950 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522693870.6000 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522693870.9820 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522693871.5300 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+    [0;32m[1522693874.3870 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522693876.0140 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522693876.0200 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522693876.0240 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522693876.0310 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522693876.0390 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522693876.0990 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522693877.4350 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp]
+    [0;32m[1522694002.9070 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522694002.9130 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522694003.2930 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522694003.8350 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+    [0;32m[1522694006.6600 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522694008.3160 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522694008.3220 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522694008.3270 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522694008.3350 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522694008.3450 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522694008.4130 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522694009.6210 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp]
+    [0;32m[1522694136.2390 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522694136.2460 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522694136.6550 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522694137.1860 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+    [0;32m[1522694139.9680 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522694141.6340 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522694141.6390 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522694141.6430 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522694141.6500 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522694141.6590 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522694141.7190 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522694142.9270 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp]
+    [0;32m[1522694269.8240 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522694269.8290 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522694270.2480 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522694270.8120 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+    [0;32m[1522694273.6770 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522694275.3140 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522694275.3240 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522694275.3280 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522694275.3350 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522694275.3430 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522694275.4030 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522694276.7450 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp]
+    [0;32m[1522694402.9640 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522694402.9740 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522694403.3680 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522694403.9230 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+    [0;32m[1522694406.7880 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522694408.4130 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522694408.4180 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522694408.4220 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522694408.4290 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522694408.4470 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522694408.5060 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522694409.8070 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp]
+    [0;32m[1522694538.4520 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522694538.4570 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522694538.8350 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522694539.4060 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+    [0;32m[1522694542.2460 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522694543.9380 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522694543.9440 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522694543.9480 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522694543.9540 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522694543.9630 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522694544.0210 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522694545.5220 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp]
+    [0;32m[1522694673.2900 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522694673.2990 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522694673.6920 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522694674.2050 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+    [0;32m[1522694677.0940 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522694678.7750 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522694678.7800 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522694678.7830 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522694678.7880 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522694678.7970 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522694678.8650 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522694680.2010 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp]
+    [0;32m[1522694807.4120 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522694807.4180 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522694807.8170 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522694808.3260 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+    [0;32m[1522694811.0430 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522694812.7380 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522694812.7440 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522694812.7480 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522694812.7540 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522694812.7620 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522694812.8250 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522694814.1510 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp]
+    [0;32m[1522694941.2690 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522694941.2780 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522694941.6680 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
+    [0;32m[1522694942.1880 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '35'
+    [0;32m[1522694945.0980 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+    [0;32m[1522694946.7740 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1522694946.7800 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1522694946.7830 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1522694946.7910 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1522694946.7980 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1522694946.8610 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+    [0;32m[1522694948.2050 - DEBUG] executing /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp[0m
+starting command line: [/Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/solution0-0, /Users/kathymariano/Research/java-sketch4/test/axioms/examples/Kafka/result_noax/tmp/sk_Tester/input0.tmp]
+    [0;32m[1522695076.6370 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch[0m
+    [0;32m[1522695076.6450 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability[0m
+    [0;32m[1522695077.0110 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)[0m
