@@ -11,7 +11,7 @@ import util
 from functools import partial
 
 from . import builtins
-from .translator import Translator
+from .translator import TranslatorWrap, TranslatorNoWrap
 
 from ast.utils import utils
 
@@ -71,8 +71,16 @@ class Encoder(object):
 
         # finds main/harness and populates some book keeping stuff
         self.main_cls()
-        # create a translator object, this will do the JSketch -> Sketch
-        self._tltr = Translator(cnums=self._CLASS_NUMS, mnums=self._MTD_NUMS, sk_dir=self._sk_dir, fs=self._fs)
+
+        clss = utils.extract_nodes([ClassOrInterfaceDeclaration], self.prg)
+        is_ax_cls = any(map(lambda c: c._axiom, clss))        
+
+        if is_ax_cls:
+            # create a translator object, this will do the JSketch -> Sketch
+            self._tltr = TranslatorWrap(cnums=self._CLASS_NUMS, mnums=self._MTD_NUMS, sk_dir=self._sk_dir, fs=self._fs)
+        else:
+            # create a translator object, this will do the JSketch -> Sketch
+            self._tltr = TranslatorNoWrap(cnums=self._CLASS_NUMS, mnums=self._MTD_NUMS, sk_dir=self._sk_dir, fs=self._fs)
 
     def find_main(self):
         mtds = []
@@ -109,49 +117,50 @@ class Encoder(object):
         if os.path.isdir(self.sk_dir): util.clean_dir(self.sk_dir)
         else: os.makedirs(self.sk_dir)
 
+        clss = utils.extract_nodes([ClassOrInterfaceDeclaration], self.prg)
+        is_ax_cls = any(map(lambda c: c._axiom, clss))
+        
         # consist builds up some class hierarchies which happens in main.py
         # prg.consist()
         # type.sk
         logging.info('generating Object.sk')
-        self.gen_object_sk()
+        self.gen_object_sk(is_ax_cls)
 
         logging.info('generating meta.sk')
-        self.gen_meta_sk()
+        self.gen_meta_sk(is_ax_cls)
 
         # cls.sk
         logging.info('generating cls.sk')
         cls_sks = []
-        clss = utils.extract_nodes([ClassOrInterfaceDeclaration], self.prg)
         for cls in clss:
-            cls_sk = self.gen_cls_sk(cls)
+            cls_sk = self.gen_cls_sk(cls, is_ax_cls)
             if cls_sk: cls_sks.append(cls_sk)
 
         logging.info('generating main.sk')
         self.gen_main_sk(cls_sks)
 
         logging.info('writing struct Object')
-        self.print_obj_struct()
+        self.print_obj_struct(is_ax_cls)
 
         logging.info('generating array.sk')
-        self.gen_array_sk()
+        self.gen_array_sk(is_ax_cls)
 
-    def gen_array_sk(self):
+    def gen_array_sk(self, is_ax_cls):
         types = [u'bit', u'char', u'int', u'float', u'double', u'Object',]
-        array_struct = 'struct Array_{0} {{\n  Object length;\n  {0}[length._int] A;\n}}\n\n'
-        # array_struct = 'struct Array_Object {{\n  Object length;\n  Object[length._int] A;\n}}\n\n'
-        # array_struct = 'struct Array_{0} {{\n  int length;\n  {0}[length] A;\n}}\n\n'
-        array_wrapper = 'Object Wrap_Array_{0}(Array_{0} arr) {{\n  return new Object(__cid=Array(), _array_{1}=arr); \n}}\n\n'
-        # array_wrapper = 'Object Wrap_Array_Object(Array_Object arr) {{\n  return new Object(__cid=Array(), _array=arr); \n}}\n\n'
+        array_struct = 'struct Array_{0} {{\n  int length;\n  {0}[length] A;\n}}\n\n'
+        array_wrapper = ''
+        if is_ax_cls:
+            array_struct = 'struct Array_{0} {{\n  Object length;\n  {0}[length._int] A;\n}}\n\n'
+            array_wrapper = 'Object Wrap_Array_{0}(Array_{0} arr) {{\n  return new Object(__cid=Array(), _array_{1}=arr); \n}}\n\n'
         with open(os.path.join(self.sk_dir, "array.sk"), 'w') as f:
             f.write("package array;\n\n")
-            # f.write(array_struct)
-            # f.write(array_wrapper)
             for t in types:
                 f.write(array_struct.format(t))
-            for t in types:
-                f.write(array_wrapper.format(t, t.lower())) 
+            if is_ax_cls:
+                for t in types:
+                    f.write(array_wrapper.format(t, t.lower())) 
 
-    def print_obj_struct(self):
+    def print_obj_struct(self, is_ax_cls):
         buf = cStringIO.StringIO()
 
         if self.tltr.obj_struct:            
@@ -161,28 +170,33 @@ class Encoder(object):
             lens = map(lambda f: len(f[0]), flds)
             m = max(lens) + 1
             buf.write("struct " + str(self.tltr.obj_struct) + " {\n")
-            for i in range(0, len(flds)):
-                f = flds[i]
-                typ = f[0]
-                if isinstance(i_flds[i].typee, PrimitiveType) and not(f[1] == '__cid' or f[1] == '_int' or f[1] == '_bit' or f[1] == '_double' or f[1] == '_float' or f[1] == '_char'):
-                    typ = u'Object'
-                buf.write('  {} {}{}{};\n'.format(typ,' '*(m-len(typ)), f[1], f[2]))
+            if is_ax_cls:
+                for i in range(0, len(flds)):
+                    f = flds[i]
+                    typ = f[0]
+                    if isinstance(i_flds[i].typee, PrimitiveType) and not(f[1] == '__cid' or f[1] == '_int' or f[1] == '_bit' or f[1] == '_double' or f[1] == '_float' or f[1] == '_char'):
+                        typ = u'Object'
+                    buf.write('  {} {}{}{};\n'.format(typ,' '*(m-len(typ)), f[1], f[2]))
+            else:
+                for f in flds:
+                    buf.write('  {} {}{}{};\n'.format(f[0],' '*(m-len(f[0])), f[1], f[2]))
             buf.write("}\n")
         else:
-            buf.write("struct Object {\n")
-            buf.write("  int __cid;\n")
-            buf.write("  Array_bit _array_bit;\n")            
-            buf.write("  Array_char _array_char;\n")
-            buf.write("  Array_int _array_int;\n")
-            buf.write("  Array_float _array_float;\n")
-            buf.write("  Array_double _array_double;\n")
-            buf.write("  Array_Object _array_object;\n")
-            buf.write("  int _int;\n")
-            buf.write("  bit _bit;\n")
-            buf.write("  double _double;\n")
-            buf.write("  char _char;\n")
-            buf.write("  float _float;\n")            
-            buf.write("}\n")
+            if is_ax_cls:
+                buf.write("struct Object {\n")
+                buf.write("  int __cid;\n")
+                buf.write("  Array_bit _array_bit;\n")            
+                buf.write("  Array_char _array_char;\n")
+                buf.write("  Array_int _array_int;\n")
+                buf.write("  Array_float _array_float;\n")
+                buf.write("  Array_double _array_double;\n")
+                buf.write("  Array_Object _array_object;\n")
+                buf.write("  int _int;\n")
+                buf.write("  bit _bit;\n")
+                buf.write("  double _double;\n")
+                buf.write("  char _char;\n")
+                buf.write("  float _float;\n")            
+                buf.write("}\n")
             
         with open(os.path.join(self.sk_dir, "Object.sk"), 'a') as f:
             f.write(util.get_and_close(buf))
@@ -215,7 +229,7 @@ class Encoder(object):
         with open(os.path.join(self.sk_dir, "main.sk"), 'w') as f:
             f.write(util.get_and_close(buf))
 
-    def gen_meta_sk(self):
+    def gen_meta_sk(self, is_ax_cls):
         buf = cStringIO.StringIO()
         buf.write("package meta;\n\n")
 
@@ -227,28 +241,29 @@ class Encoder(object):
             if k not in utils.narrow:
                 buf.write("int {k}() {s} {{ return {v}; }}\n".format(k=k, v=v, s=' '*(m-len(k))))
 
-        buf.write("int {k}(){s}{{ return {v}; }}\n".format(k="Array", v="-1", s=' '*(m-len(k))))        
-        buf.write("int {k}(){s} {{ return {v}; }}\n".format(k="_int", v="-2", s=' '*(m-len(k))))        
-        buf.write("int {k}(){s}{{ return {v}; }}\n".format(k="_char", v="-3", s=' '*(m-len(k))))        
-        buf.write("int {k}(){s} {{ return {v}; }}\n".format(k="_bit", v="-4", s=' '*(m-len(k))))        
-        buf.write("int {k}(){s}{{ return {v}; }}\n".format(k="_float", v="-5", s=' '*(m-len(k)-1)))        
-        buf.write("int {k}(){s}{{ return {v}; }}\n".format(k="_double", v="-6", s=' '*(m-len(k)-2)))        
+        if is_ax_cls:
+            buf.write("int {k}(){s}{{ return {v}; }}\n".format(k="Array", v="-1", s=' '*(m-len(k))))        
+            buf.write("int {k}(){s} {{ return {v}; }}\n".format(k="_int", v="-2", s=' '*(m-len(k))))        
+            buf.write("int {k}(){s}{{ return {v}; }}\n".format(k="_char", v="-3", s=' '*(m-len(k))))        
+            buf.write("int {k}(){s} {{ return {v}; }}\n".format(k="_bit", v="-4", s=' '*(m-len(k))))        
+            buf.write("int {k}(){s}{{ return {v}; }}\n".format(k="_float", v="-5", s=' '*(m-len(k)-1)))        
+            buf.write("int {k}(){s}{{ return {v}; }}\n".format(k="_double", v="-6", s=' '*(m-len(k)-2)))        
             
         buf.write('\n// Uninterpreted functions\n')
         with open(os.path.join(self.sk_dir, "meta.sk"), 'w') as f:
             f.write(util.get_and_close(buf))
 
-    def gen_object_sk(self):
+    def gen_object_sk(self, is_ax_cls):
         buf = cStringIO.StringIO()
         buf.write("package Object;\n\n")
 
         self.bases = util.rm_subs(self.clss)
-        filter(None, map(self.to_struct, self.bases))
+        filter(None, map(partial(self.to_struct, is_ax_cls), self.bases))
         buf.write('Object Object_Object(Object self){\n return self;\n}\n\n')
         with open(os.path.join(self.sk_dir, "Object.sk"), 'w') as f:
             f.write(util.get_and_close(buf))
 
-    def gen_cls_sk(self, cls):
+    def gen_cls_sk(self, cls, is_ax_cls):
         if cls.axiom:
             return self.gen_axiom_cls_sk(cls)
 
@@ -263,12 +278,18 @@ class Encoder(object):
 
         for fld in s_flds:
             f = self.tltr.trans_fld(fld)
-            typ = u'Object'            
+            typ = f[0]
+            if is_ax_cls:
+                typ = u'Object'            
             buf.write('{} {}{};\n'.format(typ, f[1], f[2]))
             if cls == self.mcls and fld.variable.init and type(fld.variable.init) == GeneratorExpr: continue
-            # typ = self.tltr.trans_ty(fld.typee)
-            # if isinstance(fld.typee, ReferenceType) and fld.typee.arrayCount > 0:
-            #     typ = 'Object'
+            if not is_ax_cls:
+                typ = self.tltr.trans_ty(fld.typee)
+                if isinstance(fld.typee, ReferenceType) and fld.typee.arrayCount > 0:
+                    if is_ax_cls:
+                        typ = 'Object'
+                    else:
+                        typ = 'Array_{}'.format(typ)
             buf.write("{0} {1}_g() {{ return {1}; }}\n".format(typ, fld.name))
             buf.write("void {1}_s({0} {1}_s) {{ {1} = {1}_s; }}\n".format(typ, fld.name))
             buf.write('\n')
@@ -413,17 +434,6 @@ class Encoder(object):
                         c += ', {0}={0}'.format(n)
                 c += '));\n}\n\n'
             else:
-                # print("HEREWHAT: "+str(mtd_name2))
-                # c += 'return new Object(__cid={}(), _{}=new {}('.format(cls.name, cls.name.lower(), mtd_name2.capitalize())
-                # if not mtd.default and not mtd.constructor:
-                #     c += 'self=self._{}'.format(cls.name.lower())
-                # for i in range(0, len(pnms)):
-                #     n = pnms[i]
-                #     if i == 0 and mtd.constructor:
-                #         c += '{0}={0}'.format(n)
-                #     else:
-                #         c += ', {0}={0}'.format(n)
-
                 mname = mtd_name2.split('_')[0]
                 ptypes = '_'.join(mtd_name2.split('_')[1:])
                 c += 'return xform_{}_{}'.format(mname, cls.name)
@@ -433,7 +443,6 @@ class Encoder(object):
                 if pnms != []:
                     c += ', {}'.format(','.join(pnms))
                 c += ');\n}\n\n'
-                # c += '));\n}\n\n'
                 
             return c
 
@@ -701,12 +710,12 @@ class Encoder(object):
             self.tltr.post_mtds = ''
         return util.get_and_close(buf)
 
-    def to_struct(self, cls):
-        if not cls.extendsList: self.tltr.obj_struct = self.to_v_struct(cls)
+    def to_struct(self, is_ax_cls, cls):
+        if not cls.extendsList: self.tltr.obj_struct = self.to_v_struct(cls, is_ax_cls)
  
     # from the given base class,
     # generate a virtual struct that encompasses all the class in the hierarchy
-    def to_v_struct(self, cls):
+    def to_v_struct(self, cls, is_ax_cls):
         cls_d = {u'name':str(cls)}
         cls_v = ClassOrInterfaceDeclaration(cls_d)
         # add __cid field

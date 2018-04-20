@@ -8,7 +8,7 @@ public class ArrayList<E> implements List<E>{
     private int capacity;
     private int size;
     private static Object[] EMPTY_ELEMENTDATA;
-    private static final int MAX_ARRAY_SIZE; // other value causing weird problem in Sketch
+    private static final int MAX_ARRAY_SIZE = 1000000; // other value causing weird problem in Sketch
     // private static final int MAX_ARRAY_SIZE = 0x7fffffff - 8;
 
     public ArrayList() {
@@ -16,8 +16,7 @@ public class ArrayList<E> implements List<E>{
 	this.elementData = new Object[this.DEFAULT_CAPACITY];
 	this.capacity = this.DEFAULT_CAPACITY;
 	this.size = 0;
-	this.EMPTY_ELEMENTDATA = new Object[0];
-	this.MAX_ARRAY_SIZE = 1000000;
+	this.EMPTY_ELEMENTDATA = new Object[0];	
     }
 
     public ArrayList(int initialCapacity) {
@@ -28,194 +27,204 @@ public class ArrayList<E> implements List<E>{
 	this.EMPTY_ELEMENTDATA = new Object[0];	
     }
 
+    public void addAll(ArrayList<E> a2) {
+	int len = a2.size();
+	for (int i = 0; i < len; i++) {
+	    this.add(a2.get(i));
+	}
+    }
+    
+    public void sort(Object c) {
+
+    }
+    
     // Expand capacity to size while keeping old elements of elementData
     private void copyNewElementData(int size) {
-    	Object[] newElementData = new Object[size];
-    	int i = 0;
+	Object[] newElementData = new Object[size];
+	int i = 0;
 
-    	for (i = 0; i < this.size; i++) {
-    	    newElementData[i] = elementData[i];
-    	}
+	for (i = 0; i < this.size; i++) {
+	    newElementData[i] = elementData[i];
+	}
 
-    	elementData = newElementData;
-    	capacity = size;
+	elementData = newElementData;
+	capacity = size;
     }
 
     // if adding one would be out of bounds, expand elementData
     private void checkAdjustSize() {
-    	if (size + 1 >= capacity) {
-    	    // Arbitrarily 10, should compare to source
-    	    copyNewElementData(capacity + 10);
-    	}
+	if (size + 1 >= capacity) {
+	    // Arbitrarily 10, should compare to source
+	    copyNewElementData(capacity + 10);
+	}
     }
 
     private void createSpace(int index) {
-    	int j = 0;
+	int j = 0;
 
-    	// Note - 1 because one after last element could be out of range
-    	for (j = size; j > index; j--) {
-    	    elementData[j] = elementData[j-1];
-    	}
+	// Note - 1 because one after last element could be out of range
+	for (j = size; j > index; j--) {
+	    elementData[j] = elementData[j-1];
+	}
     }
 
     public <E> void add(int index, E e) {
     // public <E> void add(int index, E e) {
-    	checkAdjustSize();
-    	createSpace(index);
-    	elementData[index] = e;
-    	size ++;
+	checkAdjustSize();
+	createSpace(index);
+	elementData[index] = e;
+	size ++;
     }
 
     public <E> boolean add(E e) {
     // public <E> boolean add(E e) {
-    	checkAdjustSize();
+	checkAdjustSize();
 	size++;
-    	elementData[size] = e;
-    	return true;
+	elementData[size] = e;
+	return true;
     }
 
     public void clear() {
-    	// clear for GC
-    	for (int i = 0; i < size; i++) {
-    	    elementData[i] = null;
-    	}
-    	capacity = 10;
-    	size = 0;
+	// clear for GC
+	for (int i = 0; i < size; i++) {
+	    elementData[i] = null;
+	}
+	capacity = 10;
+	size = 0;
     }
 
     public boolean contains(Object o) {
-    	return indexOf(o) >= 0;
+	return indexOf(o) >= 0;
     }
 
     public E get(int index) {
-    	if (index < 0 || index >= size) {
-    	    return null;
-    	}
+	if (index < 0 || index >= size) {
+	    return null;
+	}
 
-    	return elementData[index];
+	return elementData[index];
     }
 
     public int indexOf(Object o) {
-    	int i = 0;
-    	if (o == null) {
+	int i = 0;
+	if (o == null) {
             for (i = 0; i < capacity; i++) {
                 if (elementData[i]==null) {
                     return i;
-    		}
-    	    }
+		}
+	    }
         } else {
             for (i = 0; i < size; i++) {
                 if (o.equals(elementData[i])) {
                     return i;
-    		}
-    	    }
+		}
+	    }
         }
         return -1;
     }
 
     private void removeElement(int index) {
-    	int j = 0;
+	int j = 0;
 
-    	// Note - 1 because one after last element could be out of range
-    	for (j = index; j < size - 1; j++) {
-    	    elementData[j] = elementData[j+1];
-    	}
-    	elementData[size-1] = null;
-    	size --;
+	// Note - 1 because one after last element could be out of range
+	for (j = index; j < size - 1; j++) {
+	    elementData[j] = elementData[j+1];
+	}
+	elementData[size-1] = null;
+	size --;
     }
 
     public E remove(int index) {
-    	E e = null;
-    	if (index < 0 || index >= size) {
-    	    return null;
-    	}	
-    	e = elementData[index];
-    	removeElement(index);
-    	return e;
+	E e;
+	if (index < 0 || index >= size) {
+	    return null;
+	}	
+	e = elementData[index];
+	removeElement(index);
+	return e;
     }
 
     public boolean remove(Object o) {
-    	int i = 0;
-    	if (o == null) {
+	int i = 0;
+	if (o == null) {
             for (i = 0; i < capacity; i++) {
                 if (elementData[i]==null) {
                     removeElement(i);
-    		    return true;
-    		}
-    	    }
+		    return true;
+		}
+	    }
         } else {
             for (i = 0; i < size; i++) {
                 if (o.equals(elementData[i])) {
                     removeElement(i);
-    		    return true;
-    		}
-    	    }
+		    return true;
+		}
+	    }
         }
         return false;	
     }
 
 
     public <E> E set (int index, E element) {
-    	E oldElement;
+	E oldElement;
 
-    	if (index < 0 || index >= size) {
-    	    return null;
-    	}
+	if (index < 0 || index >= size) {
+	    return null;
+	}
 
-    	oldElement = elementData[index];
-    	elementData[index] = element;
+	oldElement = elementData[index];
+	elementData[index] = element;
 
-    	return oldElement;
+	return oldElement;
     }
     
     public int size() {
-    	return size;
+	return size;
     }
 
     public int length() {
-    	return size();
+	return size();
     }
 
     public boolean isEmpty() {
-    	return size == 0;
+	return size == 0;
     }
 
     public T[] toArray() {
-    	Object[] arr = new Object[size];
-    	int i = 0;
+	Object[] arr = new Object[size];
+	int i = 0;
 
-    	for (i = 0; i < size; i++) {
-    	    arr[i] = elementData[i];
-    	}
+	for (i = 0; i < size; i++) {
+	    arr[i] = elementData[i];
+	}
 
-    	return arr;
+	return arr;
     }
-
     public void ensureCapacity(int minCapacity) {
-    	int minExpand;
-    	if (elementData != EMPTY_ELEMENTDATA) { minExpand = 0; }
-    	else { minExpand = DEFAULT_CAPACITY; }
-    	if (minCapacity > minExpand) { ensureExplicitCapacity(minCapacity); }
+	int minExpand;
+	if (elementData != EMPTY_ELEMENTDATA) { minExpand = 0; }
+	else { minExpand = DEFAULT_CAPACITY; }
+	if (minCapacity > minExpand) { ensureExplicitCapacity(minCapacity); }
     }
 
     public List<E> subList(int fromIndex, int toIndex) {
         subListRangeCheck(fromIndex, toIndex, size);
     	ArrayList a = new ArrayList();
-    	for (int i = 0; i < toIndex-fromIndex; i++ )
-    	    a.add(elementData[i]); 
+	for (int i = 0; i < toIndex-fromIndex; i++ )
+	    a.add(elementData[i]); 
     	return a;
         // return new SubList(this, 0, fromIndex, toIndex);
     }
 
     static void subListRangeCheck(int fromIndex, int toIndex, int size) {
         assert fromIndex >= 0;
-    	assert toIndex <= size;
-    	assert fromIndex < toIndex;
+	assert toIndex <= size;
+	assert fromIndex < toIndex;
     }
     
     private void ensureCapacityInternal(int minCapacity) {
         if (elementData == EMPTY_ELEMENTDATA) {
-    	    if (DEFAULT_CAPACITY > minCapacity) { minCapacity = DEFAULT_CAPACITY; }
+	    if (DEFAULT_CAPACITY > minCapacity) { minCapacity = DEFAULT_CAPACITY; }
         }
         ensureExplicitCapacity(minCapacity);
     }
@@ -237,7 +246,7 @@ public class ArrayList<E> implements List<E>{
         if (newCapacity - MAX_ARRAY_SIZE > 0)
             newCapacity = hugeCapacity(minCapacity);
         // minCapacity is usually close to size, so this is a win:
-    	copyNewElementData(newCapacity);
+	copyNewElementData(newCapacity);
     }
 
     private static int hugeCapacity(int minCapacity) {
