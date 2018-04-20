@@ -37,7 +37,8 @@ class ClassOrInterfaceDeclaration(TypeDeclaration):
 
         self._axiom = False
         if self.annotations:
-            self._axiom = any(map(lambda a: str(a) == 'axiomClass', self.annotations))
+            # self._axiom = any(map(lambda a: str(a) == 'axiomClass', self.annotations))
+            self._axiom = any(map(lambda a: str(a) == 'rewriteClass', self.annotations))
 
         self.add_as_parent(self.typeParameters+self.extendsList+self.implementsList+self.subClasses)
 

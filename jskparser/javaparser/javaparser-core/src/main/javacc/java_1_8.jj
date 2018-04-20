@@ -271,7 +271,7 @@ TOKEN :
 | < ASSUME: "assume" >
 | < MINREPEAT: "minrepeat" >
 | < GENERATOR: "generator" >
-| < AXIOM: "axiom" >
+| < AXIOM: "rewrite" >
 }
 
 /* LITERALS */
@@ -1513,7 +1513,7 @@ BodyDeclaration ClassOrInterfaceBodyDeclaration(boolean isInterface):
 	      LOOKAHEAD( Type() <IDENTIFIER> ( "[" "]" )* ( "," | "=" | ";" ) )
 	      ret = FieldDeclaration(modifier)
 	    |
-	      "axiom"
+	      "rewrite"
 	      ret = AxiomDeclaration(modifier)
 	    |
 	      ret = MethodDeclaration(modifier)

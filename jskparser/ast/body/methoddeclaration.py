@@ -53,7 +53,8 @@ class MethodDeclaration(BodyDeclaration):
         self._default = False
         self._constructor = False
         if self.annotations:
-            self._adt = any(map(lambda a: str(a) == 'adt', self.annotations))
+            # self._adt = any(map(lambda a: str(a) == 'adt', self.annotations))
+            self._adt = any(map(lambda a: str(a) == 'alg', self.annotations))
             self._pure = any(map(lambda a: str(a) == 'pure', self.annotations))
             self._default = any(map(lambda a: str(a) == 'default', self.annotations))
             self._constructor = any(map(lambda a: str(a) == 'constructor', self.annotations))            
