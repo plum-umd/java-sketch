@@ -47,7 +47,7 @@ public class Float extends Number {
 
     public int intValue() {
 	// return (int)this.value;
-	return this.value;
+	return (int)this.value;
     }
 
     public String toString() {
@@ -55,8 +55,8 @@ public class Float extends Number {
     }
 
     public static String toString(float i) {
-    	// int index = 0, j, temp2 = (int)i;
-    	int index = 0, j, temp2 = i;
+    	int index = 0, j, temp2 = (int)i;
+    	// int index = 0, j, temp2 = i;
     	float temp = i - (float)((int)i);
     	char [32] ret = {
     	    '\0', '\0', '\0', '\0','\0', '\0', '\0', '\0',
