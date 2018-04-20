@@ -302,7 +302,9 @@ class Encoder(object):
 
     def gen_axiom_cls_sk(self, cls):
         cname = str(cls)
-        
+
+        ax_mtds = utils.extract_nodes([AxiomDeclaration], cls, recurse=False)
+
         def gen_adt_constructor(mtd):
             name = mtd.name
             mtd_param_typs = mtd.param_typs()            
@@ -399,16 +401,40 @@ class Encoder(object):
                 c += '{}) {{\n    '.format(params)
             else:
                 c += ') {\n    '
-            c += 'return new Object(__cid={}(), _{}=new {}('.format(cls.name, cls.name.lower(), mtd_name2.capitalize())
-            if not mtd.default and not mtd.constructor:
-                c += 'self=self._{}'.format(cls.name.lower())
-            for i in range(0, len(pnms)):
-                n = pnms[i]
-                if i == 0 and mtd.constructor:
-                    c += '{0}={0}'.format(n)
-                else:
-                    c += ', {0}={0}'.format(n)
-            c += '));\n}\n\n'
+            if mtd_name2.split('_')[0] not in map(lambda x: x.name, ax_mtds):
+                c += 'return new Object(__cid={}(), _{}=new {}('.format(cls.name, cls.name.lower(), mtd_name2.capitalize())
+                if not mtd.default and not mtd.constructor:
+                    c += 'self=self._{}'.format(cls.name.lower())
+                for i in range(0, len(pnms)):
+                    n = pnms[i]
+                    if i == 0 and mtd.constructor:
+                        c += '{0}={0}'.format(n)
+                    else:
+                        c += ', {0}={0}'.format(n)
+                c += '));\n}\n\n'
+            else:
+                # print("HEREWHAT: "+str(mtd_name2))
+                # c += 'return new Object(__cid={}(), _{}=new {}('.format(cls.name, cls.name.lower(), mtd_name2.capitalize())
+                # if not mtd.default and not mtd.constructor:
+                #     c += 'self=self._{}'.format(cls.name.lower())
+                # for i in range(0, len(pnms)):
+                #     n = pnms[i]
+                #     if i == 0 and mtd.constructor:
+                #         c += '{0}={0}'.format(n)
+                #     else:
+                #         c += ', {0}={0}'.format(n)
+
+                mname = mtd_name2.split('_')[0]
+                ptypes = '_'.join(mtd_name2.split('_')[1:])
+                c += 'return xform_{}_{}'.format(mname, cls.name)
+                if ptypes != '':
+                    c +='_{}'.format(ptypes)
+                c += '(self._{}'.format(cls.name.lower())
+                if pnms != []:
+                    c += ', {}'.format(','.join(pnms))
+                c += ');\n}\n\n'
+                # c += '));\n}\n\n'
+                
             return c
 
         buf = cStringIO.StringIO()
@@ -455,7 +481,7 @@ class Encoder(object):
 
         # I like to format
         max_len = max(map(lambda m: len(m.name), adt_mtds))
-
+        
         # Create ADT constructors for all methods and wraps them in ADT struct
         #  Also create a dictionary for object constructors for symbol table reference
         cons = map(gen_obj_constructor, adt_mtds)
@@ -524,7 +550,8 @@ class Encoder(object):
                 ret.expr.args.append(v)
                 
             body = dispatch.get_xform()
-            body.add_body([a.name.capitalize()], [ret], adt_mtds)
+            # body.add_body([a.name.capitalize()], [ret], adt_mtds)
+            body.add_body([a.name_no_nested(False).capitalize()], [ret], adt_mtds)
 
         # Writes dispatch function
         buf.write(self.tltr.trans(dispatch))
