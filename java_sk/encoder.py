@@ -11,7 +11,8 @@ import util
 from functools import partial
 
 from . import builtins
-from .translator import TranslatorWrap, TranslatorNoWrap
+# from .translator import TranslatorWrap, TranslatorNoWrap
+from .translator import Translator
 
 from ast.utils import utils
 
@@ -75,12 +76,15 @@ class Encoder(object):
         clss = utils.extract_nodes([ClassOrInterfaceDeclaration], self.prg)
         is_ax_cls = any(map(lambda c: c._axiom, clss))        
 
-        if is_ax_cls:
-            # create a translator object, this will do the JSketch -> Sketch
-            self._tltr = TranslatorWrap(cnums=self._CLASS_NUMS, mnums=self._MTD_NUMS, sk_dir=self._sk_dir, fs=self._fs)
-        else:
-            # create a translator object, this will do the JSketch -> Sketch
-            self._tltr = TranslatorNoWrap(cnums=self._CLASS_NUMS, mnums=self._MTD_NUMS, sk_dir=self._sk_dir, fs=self._fs)
+        # create a translator object, this will do the JSketch -> Sketch
+        self._tltr = Translator(cnums=self._CLASS_NUMS, mnums=self._MTD_NUMS, sk_dir=self._sk_dir, fs=self._fs, is_ax_cls=is_ax_cls)
+        
+        # if is_ax_cls:
+        #     # create a translator object, this will do the JSketch -> Sketch
+        #     self._tltr = TranslatorWrap(cnums=self._CLASS_NUMS, mnums=self._MTD_NUMS, sk_dir=self._sk_dir, fs=self._fs)
+        # else:
+        #     # create a translator object, this will do the JSketch -> Sketch
+        #     self._tltr = TranslatorNoWrap(cnums=self._CLASS_NUMS, mnums=self._MTD_NUMS, sk_dir=self._sk_dir, fs=self._fs)
 
     def find_main(self):
         mtds = []
