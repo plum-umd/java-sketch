@@ -48,6 +48,18 @@ public class String implements CharSequence{
     	}
     	_count = len;
     }
+
+    public boolean startsWith(String suffix) {
+	int len = suffix.length();
+	if (len > this.length()) return false;
+	for (int i = 0; i < len; i++) {
+	    if (this.charAt(i) != suffix.charAt(i)) {
+		return false;
+	    }
+	}
+
+	return true;
+    }
     
     public char charAt(int index) {
 	if (0 <= index && index < _count) return _value[index];
@@ -264,9 +276,9 @@ public class String implements CharSequence{
 
 
 
-    // public String[] split(String regex) {
-    //     return split(regex, 0);
-    // }
+    public String[] split(String regex) {
+        return split(regex, 0);
+    }
 
     // public String[] split(String regex, int limit) {
     // 	int off = 0;
@@ -311,6 +323,78 @@ public class String implements CharSequence{
     // 	// return list.toArray();
     // }
 
+    public String[] split(String regex, int limit) {
+    	int off = 0;
+    	char ch = regex.charAt(0);
+    	int next = indexOf(ch, off);
+    	boolean limited = limit > 0;
+    	// ArrayList<String> list = new ArrayList<>();
+	int size = 0;
+    	while (next != -1) {
+    	    if (!limited || size < limit - 1) {
+    		off = next + 1;
+    		next = indexOf(ch, off);
+    	    }
+    	    else {    // last one
+    		off = _value.length;
+    		next = -1;
+    	    }
+	    size++;    
+    	}
+
+    	off = 0;
+    	ch = regex.charAt(0);
+    	next = indexOf(ch, off);
+    	limited = limit > 0;
+	String[] list = new String[size];
+	size = 0;
+    	while (next != -1) {	    
+    	    if (!limited || size < limit - 1) {
+		list[size] = substring(off, next);
+    		off = next + 1;
+    		next = indexOf(ch, off);
+    	    }
+    	    else {    // last one
+		list[size] = substring(off, _count);
+    		off = _value.length;
+    		next = -1;
+    	    }
+	    size++;	    
+    	}
+	
+    	// If no match was found, return this
+    	if (off == 0) {
+	    String[] res = {this};
+    	    return res;
+	}
+	    
+    	// Add remaining segment
+    	if (!limited || size < limit) {
+	    list[size] = substring(off, _count);
+    	    // list.add(substring(off, _count));
+	    size++;
+    	}
+
+    	// // Construct result
+    	int resultSize = list.length;
+    	if (limit == 0) {
+    	    // String tmp = list.get(resultSize - 1);
+	    String tmp = list[resultSize-1];
+    	    while (resultSize > 0 && tmp.length() == 0) {
+    		resultSize--;
+    	    }
+    	}
+    	String[] result = new String[resultSize];
+	for (int i = 0; i < resultSize; i++) {
+	    result[i] = list[i];
+	}
+    	// list = list.subList(0, resultSize);
+    	// result = list.toArray();
+    	return result;
+	// return new String[10];
+    	// return list.toArray();
+    }
+    
 
     // 	// If no match was found, return this
     // 	if (off == 0)
