@@ -9,9 +9,12 @@ pwd = os.path.dirname(__file__)
 tests = os.path.join(pwd, "axioms/benchmarks")
 
 class TestJava(TestCommon):
-    def __test(self, fs, inline, unroll):
+    def __test(self, fs, inline, unroll, adp_conc=False, arr=32):
         _fs = map(lambda f: os.path.join(tests, f), fs)
-        ret = java_sk.main.translate(prg=_fs, log_lvl='30', lib=False, opts=["--bnd-inline-amnt", str(inline), "--bnd-unroll-amnt", str(unroll), "--slv-timeout",  "10"])
+        if adp_conc:
+            ret = java_sk.main.translate(prg=_fs, log_lvl='30', lib=False, opts=["--bnd-inline-amnt", str(inline), "--bnd-unroll-amnt", str(unroll), "--bnd-arr-size", str(arr), "--slv-timeout",  "10", "--slv-randassign", "--slv-simple-inputs"])
+        else:
+            ret = java_sk.main.translate(prg=_fs, log_lvl='30', lib=False, opts=["--bnd-inline-amnt", str(inline), "--bnd-unroll-amnt", str(unroll), "--bnd-arr-size", str(arr), "--slv-timeout",  "10"])
         self.assertEqual(ret, 0)
 
     # def test_SuffixArrayModel(self):
@@ -70,13 +73,76 @@ class TestJava(TestCommon):
     #     unroll = 16
     #     self.__test(files, inline, unroll)
         
-    def test_CipherFactoryModel(self):
-        files = ["CryptoManager_syn.java", "CipherFactoryTester.java", "ConfigurableCipherFactory.java", "DefaultCipherFactory.java", "ICipherFactory.java", "ICryptoManager.java", "model/", "shared/"]
-        files = map(lambda s: "CipherFactory/" + s, files)
-        inline = 2
-        unroll = 9
-        self.__test(files, inline, unroll)
+    # def test_CipherFactoryModel(self):
+    #     files = ["CryptoManager_syn_model.java", "CipherFactoryTester.java", "ConfigurableCipherFactory.java", "DefaultCipherFactory_model.java", "ICipherFactory.java", "ICryptoManager.java", "model/", "shared/"]
+    #     files = map(lambda s: "CipherFactory/" + s, files)
+    #     inline = 2
+    #     unroll = 9
+    #     self.__test(files, inline, unroll)
+        
+    # def test_CipherFactoryRewrite(self):
+    #     files = ["CryptoManager_syn_rewrite.java", "CipherFactoryTester.java", "ConfigurableCipherFactory.java", "DefaultCipherFactory_rewrite.java", "ICipherFactory.java", "ICryptoManager.java", "rewrite/", "shared/"]
+    #     files = map(lambda s: "CipherFactory/" + s, files)
+    #     inline = 2
+    #     unroll = 9
+    #     self.__test(files, inline, unroll)
 
+    # def test_KafkaModel(self):
+    #     files = ["JCECipher_syn.java", "OpenSSLCipher_syn.java", "CipherFactory.java", "ICipher.java", "Tester.java", "model/", "shared/"]
+    #     files = map(lambda s: "Kafka/" + s, files)
+    #     inline = 2
+    #     unroll = 35
+    #     self.__test(files, inline, unroll)
+
+    # def test_KafkaRewrite(self):
+    #     files = ["JCECipher_syn.java", "OpenSSLCipher_syn.java", "CipherFactory.java", "ICipher.java", "Tester.java", "rewrite/", "shared/"]
+    #     files = map(lambda s: "Kafka/" + s, files)
+    #     inline = 2
+    #     unroll = 35
+    #     self.__test(files, inline, unroll)
+
+    # def test_EasyCSVModel(self):
+    #     files = ["CsvDocument_syn.java", "CodeAssertion.java", "CsvColumn.java", "CsvColumnTest.java", "CsvConfiguration.java", "CsvDocumentTest.java", "CsvRow.java", "CsvRowTest.java", "Tester.java", "model/", "shared/"]
+    #     files = map(lambda s: "EasyCSV/" + s, files)
+    #     inline = 3
+    #     unroll = 5
+    #     self.__test(files, inline, unroll)
+
+    # def test_EasyCSVRewrite(self):
+    #     files = ["CsvDocument_syn.java", "CodeAssertion.java", "CsvColumn.java", "CsvColumnTest.java", "CsvConfiguration.java", "CsvDocumentTest.java", "CsvRow.java", "CsvRowTest.java", "Tester.java", "rewrite/", "shared/"]
+    #     files = map(lambda s: "EasyCSV/" + s, files)
+    #     inline = 3
+    #     unroll = 6
+    #     self.__test(files, inline, unroll, True)
+
+    # def test_RomListModel(self):
+    #     files = ["RomlistParser_syn_model.java", "RomlistGame.java", "Tester.java", "model/", "shared/"]
+    #     files = map(lambda s: "RomList/" + s, files)
+    #     inline = 2
+    #     unroll = 26
+    #     self.__test(files, inline, unroll, True)
+
+    # def test_RomListRewrite(self):
+    #     files = ["RomlistParser_syn_rewrite.java", "RomlistGame.java", "Tester.java", "rewrite/", "shared/"]
+    #     files = map(lambda s: "RomList/" + s, files)
+    #     inline = 2
+    #     unroll = 26
+    #     self.__test(files, inline, unroll, True)
+
+    # def test_ComparatorModel(self):
+    #     files = ["CommunicationWithFiles_syn_model.java", "Comparator_model.java", "Tester.java", "model/", "shared/"]
+    #     files = map(lambda s: "Comparator/" + s, files)
+    #     inline = 2
+    #     unroll = 10
+    #     self.__test(files, inline, unroll, True, 50)
+
+    def test_ComparatorRewrite(self):
+        files = ["CommunicationWithFiles_syn_rewrite.java", "Comparator_rewrite.java", "Tester.java", "rewrite/", "shared/"] 
+        files = map(lambda s: "Comparator/" + s, files)
+        inline = 2
+        unroll = 10
+        self.__test(files, inline, unroll, True)
+        
     
 
 if __name__ == '__main__':
