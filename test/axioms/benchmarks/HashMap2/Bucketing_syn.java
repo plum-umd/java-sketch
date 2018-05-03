@@ -43,9 +43,9 @@ public class Bucketing<K, V> implements HashTable<K, V> {
     		temp1.add(new Pair(bucketHash[index].key,bucketHash[index].value));
     	    }
     	}
-	// int sz = overflow.size();
+	int sz = overflow.size();
 	// int g2 = {| size, mod, numberOfSlots, numberOfElements, sz |};   
-    	for (int i = 0; i < overflow.size(); i++) {
+    	for (int i = 0; i < sz; i++) {
 	    Pair<K,V> tmp = overflow.get(i);
 	    temp1.add(tmp);
     	}
@@ -60,10 +60,10 @@ public class Bucketing<K, V> implements HashTable<K, V> {
     	sizeBucket = new int[mod];
     	numberOfElements = ??;
 
-	// int sz2 = temp1.size();
+	int sz2 = temp1.size();
 	// int g3 = {| size, mod, numberOfSlots, numberOfElements, sz2 |};   	
     	// for (int i = ??; i < temp1.size(); i++) {
-    	for (int i = 0; i < temp1.size(); i++) {
+    	for (int i = 0; i < sz2; i++) {
 	    Pair<K,V> tmp = temp1.get(i);
 	    K key = tmp.key;
 	    V val = tmp.value;			
@@ -80,7 +80,7 @@ public class Bucketing<K, V> implements HashTable<K, V> {
     	if (sizeBucket[integerKey] != numberOfSlots) {
     	    int index = numberOfSlots * integerKey + sizeBucket[integerKey];
     	    bucketHash[index] = new Pair(key, value);
-    	    sizeBucket[integerKey]++;
+    	    sizeBucket[integerKey] = sizeBucket[integerKey] + 1;
 
     	}
 	else {
@@ -144,7 +144,7 @@ public class Bucketing<K, V> implements HashTable<K, V> {
     	}
     	if (flag) {
     	    numberOfElements--;
-    	    sizeBucket[integerKey]--;
+    	    sizeBucket[integerKey] = sizeBucket[integerKey] - 1;
     	}
 	else if (sizeBucket[integerKey] == numberOfSlots) {
 	    int sz = overflow.size();

@@ -4,6 +4,7 @@ class ArrayList {
     boolean add(Object e);
 
     @alg
+    @pure
     Object get(int i);
 
     @alg
