@@ -38,6 +38,7 @@ from ast.expr.binaryexpr import BinaryExpr
 
 from ast.type.referencetype import ReferenceType
 from ast.type.primitivetype import PrimitiveType
+from ast.type.classorinterfacetype import ClassOrInterfaceType
 
 class Encoder(object):
     def __init__(self, program, out_dir, fs):
@@ -74,11 +75,13 @@ class Encoder(object):
         self.main_cls()
 
         clss = utils.extract_nodes([ClassOrInterfaceDeclaration], self.prg)
-        is_ax_cls = any(map(lambda c: c._axiom, clss))        
+        # is_ax_cls = any(map(lambda c: c._axiom, clss))        
+        is_ax_cls = False
 
+        self.is_ax_cls = is_ax_cls
+        
         # create a translator object, this will do the JSketch -> Sketch
         self._tltr = Translator(cnums=self._CLASS_NUMS, mnums=self._MTD_NUMS, sk_dir=self._sk_dir, fs=self._fs, is_ax_cls=is_ax_cls)
-        # self._tltr = Translator(cnums=self._CLASS_NUMS, mnums=self._MTD_NUMS, sk_dir=self._sk_dir, fs=self._fs, is_ax_cls=False)
         
         # if is_ax_cls:
         #     # create a translator object, this will do the JSketch -> Sketch
@@ -124,7 +127,7 @@ class Encoder(object):
 
         clss = utils.extract_nodes([ClassOrInterfaceDeclaration], self.prg)
         is_ax_cls = any(map(lambda c: c._axiom, clss))
-        
+
         # consist builds up some class hierarchies which happens in main.py
         # prg.consist()
         # type.sk
@@ -145,10 +148,12 @@ class Encoder(object):
         self.gen_main_sk(cls_sks)
 
         logging.info('writing struct Object')
-        self.print_obj_struct(is_ax_cls)
+        # self.print_obj_struct(is_ax_cls)
+        self.print_obj_struct(self.is_ax_cls)
 
         logging.info('generating array.sk')
-        self.gen_array_sk(is_ax_cls)
+        # self.gen_array_sk(is_ax_cls)
+        self.gen_array_sk(self.is_ax_cls)
 
     def gen_array_sk(self, is_ax_cls):
         types = [u'bit', u'char', u'int', u'float', u'double', u'Object',]
@@ -183,8 +188,20 @@ class Encoder(object):
                         typ = u'Object'
                     buf.write('  {} {}{}{};\n'.format(typ,' '*(m-len(typ)), f[1], f[2]))
             else:
-                for f in flds:
-                    buf.write('  {} {}{}{};\n'.format(f[0],' '*(m-len(f[0])), f[1], f[2]))
+                for i in range(0, len(flds)):                
+                # for f in flds:
+                    f = flds[i]
+                    typ = f[0]
+                    i_f = i_flds[i]
+                    if isinstance(i_f.typee, ReferenceType):
+                        if isinstance(i_f.typee.typee, ClassOrInterfaceType):
+                            clss = utils.extract_nodes([ClassOrInterfaceDeclaration], self.prg)
+                            clss = map(lambda a: a.name, filter(lambda c: c._axiom, clss))  
+                            
+                            if i_f.typee.typee.name in clss:
+                                typ = u'Object'
+                                
+                    buf.write('  {} {}{}{};\n'.format(typ,' '*(m-len(typ)), f[1], f[2]))
             buf.write("}\n")
         else:
             if is_ax_cls:
@@ -267,10 +284,11 @@ class Encoder(object):
         buf.write('Object Object_Object(Object self){\n return self;\n}\n\n')
         with open(os.path.join(self.sk_dir, "Object.sk"), 'w') as f:
             f.write(util.get_and_close(buf))
+
     def gen_cls_sk(self, cls, is_ax_cls):
         if cls.axiom:
             if is_ax_cls:
-                return self.gen_axiom_cls_sk(cls, is_ax_cls)
+                return self.gen_axiom_cls_sk(cls, self.is_ax_cls)
             
         mtds = utils.extract_nodes([MethodDeclaration], cls, recurse=False)
         cons = utils.extract_nodes([ConstructorDeclaration], cls, recurse=False)
@@ -403,6 +421,8 @@ class Encoder(object):
                         ptyps[i] = "Array_"+ptyps[i]
             params = ', '.join(map(lambda p: ' '.join(p), zip(ptyps, pnms)))
             c = 'Object '
+            if not is_ax_cls and mtd_name2.split('_')[0] in map(lambda x: x.name, ax_mtds):
+                c = str(mtd.typee) + u' '
             
             if name == cname.lower():
                 mtd_name = cname + "_" + cname
@@ -444,6 +464,8 @@ class Encoder(object):
                     c +='_{}'.format(ptypes)
                 # c += '(self._{}'.format(cls.name.lower())
                 c += '(self'
+                if not is_ax_cls:
+                    c += u'._'+str(cls).lower()
                 if pnms != []:
                     c += ', {}'.format(','.join(pnms))
                 c += ');\n}\n\n'
@@ -517,7 +539,7 @@ class Encoder(object):
             x = Xform.gen_xform(a.get_coid(), xnm, adt_mtds,
                                 [{u'@t':u'Parameter',
                                   u'type':{u'@t':u'ClassOrInterfaceType',u'name':cname,},
-                                  u'id':{u'name':u'selff',},},],)
+                                  u'id':{u'name':u'selff',},},], is_ax_cls, a)
 
             # _self = Parameter({u'id':{u'name':u'selff'},
             #                        u'type':{u'@t':u'ClassOrInterfaceType', u'name':cname}},)

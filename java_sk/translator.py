@@ -196,14 +196,20 @@ class Translator(object):
         # self.printTypeParameters(n.typeParameters)
         
         self.printt('(')
-
+        
         if not td.isStatic(n) and not td.isHarness(n) and not td.isADT(n):
             ty = n.get_coid().name if n.adtType else self.trans_ty(n.get_coid())
             self.printt('{} self'.format(ty))
             if n.parameters: self.printt(', ')
 
         if not td.isHarness(n) or not self._is_ax_cls:
-            self.printSepList(n.parameters)            
+            params = cp.copy(n.parameters)
+            # if str(n).startswith('xform_'):
+            #     _self = Parameter({u'id':{u'name':u'selff'},
+            #                        u'type':{u'@t': u'ReferenceType', u'type': {u'@t':u'ClassOrInterfaceType', u'name':u'Object'},},},)
+            #     params[0] = _self                
+                
+            self.printSepList(params)            
             # if not td.isADT(n): self.printSepList(n.parameters)
             # elif n.parameters:
             #     self.printt(n.parameters[0].typee.name)
@@ -1610,7 +1616,11 @@ class Translator(object):
         
         if str(mtd).startswith("xform_"):
             xform_name = str(mtd).split('_')[2]
-        
+            # if not self._is_ax_cls:
+            # _self = Parameter({u'id':{u'name':u'selff'},
+            #                            u'type':{u'@t': u'ReferenceType', u'type': {u'@t':u'ClassOrInterfaceType', u'name':u'Object'},},},)
+            # mtd.parameters[0] = _self
+            
         # 15.12.4. Run-Time Evaluation of Method Invocation
         # 15.12.4.1. Compute Target Reference (If Necessary)
         if invocation_mode == 'static':

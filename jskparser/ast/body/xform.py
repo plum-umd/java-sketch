@@ -47,7 +47,7 @@ class Xform(BodyDeclaration):
     
     # this is just a helper cuz I'm not about having this all over the place
     @staticmethod
-    def gen_xform(cls, name, adt_mtds, params):
+    def gen_xform(cls, name, adt_mtds, params, is_ax_cls, ax):
         from .methoddeclaration import MethodDeclaration
         # create a switch dictionary
         entries = []
@@ -58,6 +58,13 @@ class Xform(BodyDeclaration):
                u'id': {u'@t':u'VariableDeclaratorId', u'name': u'self',},
                u'type': {u'@t': u'ClassOrInterfaceType', u'name': str(cls),},
                u'init': {u'@t':u'LiteralExpr', u'name':u'selff._'+str(cls).lower(),},}
+
+        if not is_ax_cls:
+            dec = {u'@t': u'VariableDeclarator',
+                   u'id': {u'@t':u'VariableDeclaratorId', u'name': u'self',},
+                   u'type': {u'@t': u'ClassOrInterfaceType', u'name': str(cls),},
+                   u'init': {u'@t':u'LiteralExpr', u'name':u'selff',},}
+            
         
         dec_self = {u'@t': u'VariableDeclarationExpr',
                     u'name': u'self',
@@ -72,11 +79,29 @@ class Xform(BodyDeclaration):
         xform = {u'@t':u'Xform',u'stmt':switch,u'name':name,
                  u'type':{u'@t':u'ClassOrInterfaceType',u'name':str(cls),},}
         ret_none = {u'@t':u'ReturnStmt', u'expr': {u'@t':u'LiteralExpr', u'name':u'null',},}
-        return MethodDeclaration({u'type':{u'@t':u'ClassOrInterfaceType',u'name':u'Object',},
-                                  u'name':name,u'adtType':True, u'modifiers':Modifiers[u'AT'],
-                                  u'body':{u'@t':u'BlockStmt',
-                                           u'stmts':{u'@e':[dec_self_stmt, xform, ret_none],},},
-                                  u'parameters':{u'@e':params},},)
+        if not is_ax_cls:
+            if str(ax.typee) != u'void':
+                prim_bot = {
+                    u'boolean': u'0',
+                    u'int': u'0',
+                    u'double': u'0',
+                    u'float': u'0',
+                    u'Object': u'null'
+                    }
+                ret_none = {u'@t':u'ReturnStmt', u'expr': {u'@t':u'LiteralExpr', u'name':prim_bot[str(ax.typee)],},}
+            else:
+                ret_none = {u'@t':u'ReturnStmt',}
+            return MethodDeclaration({u'type':{u'@t':u'ClassOrInterfaceType',u'name':str(ax.typee),},
+                                      u'name':name,u'adtType':True, u'modifiers':Modifiers[u'AT'],
+                                      u'body':{u'@t':u'BlockStmt',
+                                               u'stmts':{u'@e':[dec_self_stmt, xform, ret_none],},},
+                                      u'parameters':{u'@e':params},},)
+        else:
+            return MethodDeclaration({u'type':{u'@t':u'ClassOrInterfaceType',u'name':u'Object',},
+                                      u'name':name,u'adtType':True, u'modifiers':Modifiers[u'AT'],
+                                      u'body':{u'@t':u'BlockStmt',
+                                               u'stmts':{u'@e':[dec_self_stmt, xform, ret_none],},},
+                                      u'parameters':{u'@e':params},},)
     def gen_switch(self, adt_mtds, depth, arg, cls, mtd, args):
         entries = []
         for a in adt_mtds:
