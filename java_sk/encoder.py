@@ -75,13 +75,14 @@ class Encoder(object):
         self.main_cls()
 
         clss = utils.extract_nodes([ClassOrInterfaceDeclaration], self.prg)
-        # is_ax_cls = any(map(lambda c: c._axiom, clss))        
+        # is_ax_cls = any(map(lambda c: c._axiom, clss))
         is_ax_cls = False
+        ax_clss = filter(lambda c: c.axiom, clss)        
 
         self.is_ax_cls = is_ax_cls
         
         # create a translator object, this will do the JSketch -> Sketch
-        self._tltr = Translator(cnums=self._CLASS_NUMS, mnums=self._MTD_NUMS, sk_dir=self._sk_dir, fs=self._fs, is_ax_cls=is_ax_cls)
+        self._tltr = Translator(cnums=self._CLASS_NUMS, mnums=self._MTD_NUMS, sk_dir=self._sk_dir, fs=self._fs, is_ax_cls=is_ax_cls, ax_clss=ax_clss)
         
         # if is_ax_cls:
         #     # create a translator object, this will do the JSketch -> Sketch
@@ -759,7 +760,7 @@ class Encoder(object):
         def per_cls(cls):
             cname = str(cls)
             if cname != str(cls_v):
-                self.tltr.ty[str(cls)] = str(cls_v) if not cls.axiom else str(cls)
+                self.tltr.ty[str(cls)] = str(cls_v) if not cls.axiom else str(cls)  
             flds = filter(lambda m: type(m) == FieldDeclaration, cls.members)
             def cp_fld(fld):
                 fld_v = cp.copy(fld)

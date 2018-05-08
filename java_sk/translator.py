@@ -102,6 +102,7 @@ class Translator(object):
         self._sk_dir = kwargs.get('sk_dir')
         self._fs = kwargs.get('fs')
         self._is_ax_cls = kwargs.get('is_ax_cls')
+        self._ax_clss = kwargs.get('ax_clss')            
         
         self._buf = None
         self._mtd = None
@@ -190,7 +191,11 @@ class Translator(object):
             if self._fs:
                 s.append(u'fs_s@Object(HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash())));')
             n.body.stmts = s + n.body.stmts
-        n.typee.accept(self, **kwargs)
+
+        if isinstance(n.typee, ReferenceType) and isinstance(n.typee.typee, ClassOrInterfaceType) and str(n.typee.typee) in map(lambda c: c.name, self._ax_clss) and not self._is_ax_cls:
+            self.printt('Object')
+        else:
+            n.typee.accept(self, **kwargs)
         self.printt(' ')
         self.printt(str(n))
         # self.printTypeParameters(n.typeParameters)
@@ -1315,6 +1320,7 @@ class Translator(object):
             else: r_ty = str(cls) if cls else str(typ)
         else:
             r_ty = str(typ)
+            
         # print 'typ {},{} -> {}'.format(str(typ), type(typ), r_ty)
         # we've already rewritten this type
         if r_ty in self.ty: r_ty = self.ty[r_ty] if convert else r_ty
@@ -1323,6 +1329,7 @@ class Translator(object):
         # Unknown type, cast as Object for now
         else: r_ty = u'Object'
         # print('typ {} -> {}'.format(repr(str(typ)), r_ty))
+
         return r_ty
 
     def trans_faccess(self, n, **kwargs):
@@ -1651,7 +1658,7 @@ class Translator(object):
             conexprs2 = []            
             for c in reversed(clss): # start from bottom of hierarchy
                 (_, mdec) = self.find_mtd(c, mtd.sig())
-                if self._is_ax_cls:
+                if self._ax_clss != []:
                     if mdec:
                         if is_ax2: mdec.add_bang = True;
                         conexprs.append(self.make_dispatch(scp, c, mdec, args))
@@ -1678,7 +1685,8 @@ class Translator(object):
             # DIFFERENT ARGS HERE THEN FOR UNBOXED
             self.print_dispatch(conexprs, is_adt, is_ax2, xform_name, **kwargs)
             if type(mtd.typee) != VoidType: self.printt(')')                
-            if is_ax and self._is_ax_cls:
+            # if is_ax and self._is_ax_cls:
+            if is_ax and self._ax_clss != []:
                 self.printt('; ')
                 callexpr.scope.accept(self, **kwargs)
                 self.printt(' = ')
@@ -1805,11 +1813,14 @@ class Translator(object):
                 if self._is_ax_cls:
                     self.printt('null')
                 else:
-                    if c.elseExpr.name == u'double' or c.elseExpr.name == u'float' or \
-                       c.elseExpr.name == u'long': self.printt('0.0')
-                    if c.elseExpr.name == u'int' or c.elseExpr.name == u'boolean' or c.\
-                       elseExpr.name == u'bit' or c.elseExpr.name == u'short': self.printt('0')
-                    if c.elseExpr.name == u'char' or c.elseExpr.name == u'byte': self.printt("'\\0'")
+                    if not is_ax:
+                        if c.elseExpr.name == u'double' or c.elseExpr.name == u'float' or \
+                           c.elseExpr.name == u'long': self.printt('0.0')
+                        if c.elseExpr.name == u'int' or c.elseExpr.name == u'boolean' or c.\
+                           elseExpr.name == u'bit' or c.elseExpr.name == u'short': self.printt('0')
+                        if c.elseExpr.name == u'char' or c.elseExpr.name == u'byte': self.printt("'\\0'")
+                    else:
+                        self.printt('null')
             elif isinstance(c.elseExpr, (ClassOrInterfaceType, ReferenceType)): self.printt('null')
             else: self.print_dispatch(c.elseExpr, is_adt, is_ax, xform_name)
         elif isinstance(c, MethodCallExpr):
