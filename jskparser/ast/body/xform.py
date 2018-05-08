@@ -12,6 +12,9 @@ from ..stmt.expressionstmt import ExpressionStmt
 from ..stmt.returnstmt import ReturnStmt
 from ..expr.conditionalexpr import ConditionalExpr
 from ..expr.binaryexpr import BinaryExpr
+from ..body.methoddeclaration import MethodDeclaration
+
+from ..utils import utils
 
 from axiomparameter import AxiomParameter
 
@@ -51,6 +54,19 @@ class Xform(BodyDeclaration):
         for a in adt_mtds:
             entries.append({u'@t':u'SwitchEntryStmt',
                             u'label':{u'@t':u'NameExpr',u'name':a.name_no_nested(False).capitalize(),},},)
+        dec = {u'@t': u'VariableDeclarator',
+               u'id': {u'@t':u'VariableDeclaratorId', u'name': u'self',},
+               u'type': {u'@t': u'ClassOrInterfaceType', u'name': str(cls),},
+               u'init': {u'@t':u'LiteralExpr', u'name':u'selff._'+str(cls).lower(),},}
+        
+        dec_self = {u'@t': u'VariableDeclarationExpr',
+                    u'name': u'self',
+                    u'vars': {u'@e': [dec],},
+                    u'type': {u'@t': u'ClassOrInterfaceType', u'name': str(cls),},}
+
+        dec_self_stmt = {u'@t':u'ExpressionStmt',
+                         u'expr':dec_self,}        
+        
         switch = {u'@t':u'SwitchStmt', u'selector':{u'@t':u'NameExpr',u'name':u'self'},
                   u'entries':{u'@e':entries,},}
         xform = {u'@t':u'Xform',u'stmt':switch,u'name':name,
@@ -59,9 +75,9 @@ class Xform(BodyDeclaration):
         return MethodDeclaration({u'type':{u'@t':u'ClassOrInterfaceType',u'name':u'Object',},
                                   u'name':name,u'adtType':True, u'modifiers':Modifiers[u'AT'],
                                   u'body':{u'@t':u'BlockStmt',
-                                           u'stmts':{u'@e':[xform, ret_none],},},
+                                           u'stmts':{u'@e':[dec_self_stmt, xform, ret_none],},},
                                   u'parameters':{u'@e':params},},)
-    def gen_switch(self, adt_mtds, depth, arg):
+    def gen_switch(self, adt_mtds, depth, arg, cls, mtd, args):
         entries = []
         for a in adt_mtds:
             entries.append({u'@t':u'SwitchEntryStmt',
@@ -75,6 +91,38 @@ class Xform(BodyDeclaration):
             slf_dot = name+u'._'+str(self.typee).lower()
         else:
             slf_dot = ((name+u'_')*(depth-1))+name+u'.self'            
+
+        check_null = {u'@t':u'BinaryExpr',
+                      u'left': {u'@t':u'LiteralExpr', u'name':slf_dot,},
+                      u'right': {u'@t':u'NullLiteralExpr',},
+                      u'op': {u'name': u'equals',},}
+
+        mtds = utils.extract_nodes([MethodDeclaration], cls, recurse=False)
+        adt_mtd = filter(lambda m: m.adt and m.name == a.name, mtds)[0]        
+        
+        ret_val = u'new '+str(mtd.name).lower().capitalize()+u'(self=selff._'+str(cls).lower()
+        for ap,mp in zip(adt_mtd.parameters, args[1:]):
+            ret_val += u', '+str(ap.name)+u'='+str(mp.name)
+        ret_val += u')'
+            
+        assn_self = {u'@t':u'AssignExpr',
+                     u'target':{u'@t':u'LiteralExpr', u'name':u'selff._'+str(cls).lower(),},
+                     # u'value':{u'@t':u'LiteralExpr', u'name':u'new Dofinal_object(self=selff._'+str(cls).lower()+u', text=text)',},
+                     u'value':{u'@t':u'LiteralExpr', u'name':ret_val,},
+                     u'op':{u'name':u'ASSIGN',},}
+
+        assn_self_stmt = {u'@t':u'ExpressionStmt',
+                          u'expr':assn_self,}
+        
+        ret_self = {u'@t': u'ReturnStmt',
+                    u'expr': {u'@t':u'LiteralExpr', u'name':u'selff',},}
+        
+        ret_block = {u'@t':u'BlockStmt',
+                     u'stmts':{u'@e':[assn_self_stmt, ret_self],},}
+
+        if_stmt = {u'@t':u'IfStmt',
+                   u'condition': check_null,
+                   u'thenStmt': ret_block,}
 
         assn = {u'@t':u'AssignExpr',
                 u'target':{u'@t':u'LiteralExpr', u'name':slf,},
@@ -103,11 +151,11 @@ class Xform(BodyDeclaration):
                  u'type':{u'@t':u'ClassOrInterfaceType',u'name':self.name,},}
 
         block = BlockStmt({u'@t':u'BlockStmt',
-                           u'stmts':{u'@e':[vdec_expr, assn_expr, xform],},},)
+                           u'stmts':{u'@e':[if_stmt, vdec_expr, assn_expr, xform],},},)
             
         return block
 
-    def build_switch(self, cases, body, adt_mtds, depth, arg_num, args, switch):
+    def build_switch(self, cases, body, adt_mtds, depth, arg_num, args, switch, cls, mtd):
         new_switch = None
 
         if len(cases) > 0:
@@ -116,8 +164,8 @@ class Xform(BodyDeclaration):
                 depth = 1
 
         if not switch:
-            new_block = self.gen_switch(adt_mtds, depth, args[arg_num])
-            new_switch = new_block.stmts[2]
+            new_block = self.gen_switch(adt_mtds, depth, args[arg_num], cls, mtd, args)
+            new_switch = new_block.stmts[3]
         else:
             new_switch = switch
             
@@ -135,7 +183,7 @@ class Xform(BodyDeclaration):
                 else:
                     b = BlockStmt()
                     switch2 = s.stmts[0].stmts[0] if len(s.stmts) > 0 else None
-                    body2 = self.build_switch(cases[1:], body, adt_mtds, depth+1, arg_num, args, switch2)
+                    body2 = self.build_switch(cases[1:], body, adt_mtds, depth+1, arg_num, args, switch2, cls, mtd)
                     body = [body2] if not isinstance(body2, list) else body2
                     b.stmts = body
                     s.stmts = [b]
@@ -162,7 +210,7 @@ class Xform(BodyDeclaration):
                     b.add_parent_post(s, True)
                     map(lambda s: s.add_parent_post(b), body)                       
 
-    def add_body_nested(self, casess, body, adt_mtds, args):
+    def add_body_nested(self, casess, body, adt_mtds, args, cls, a):
         cases = []
         for i in range(0, len(casess)):
             for c in casess[i]:
@@ -187,7 +235,7 @@ class Xform(BodyDeclaration):
                 else:
                     b = BlockStmt()
                     switch = s.stmts[0].stmts[0] if len(s.stmts) > 0 else None
-                    body2 = self.build_switch(cases[1:], body, adt_mtds, 1, 0, args, switch)
+                    body2 = self.build_switch(cases[1:], body, adt_mtds, 1, 0, args, switch, cls, a)
                     body = [body2] if not isinstance(body2, list) else body2
                     b.stmts = body
                     s.stmts = [b]

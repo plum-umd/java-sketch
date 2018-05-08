@@ -78,6 +78,7 @@ class Encoder(object):
 
         # create a translator object, this will do the JSketch -> Sketch
         self._tltr = Translator(cnums=self._CLASS_NUMS, mnums=self._MTD_NUMS, sk_dir=self._sk_dir, fs=self._fs, is_ax_cls=is_ax_cls)
+        # self._tltr = Translator(cnums=self._CLASS_NUMS, mnums=self._MTD_NUMS, sk_dir=self._sk_dir, fs=self._fs, is_ax_cls=False)
         
         # if is_ax_cls:
         #     # create a translator object, this will do the JSketch -> Sketch
@@ -266,11 +267,11 @@ class Encoder(object):
         buf.write('Object Object_Object(Object self){\n return self;\n}\n\n')
         with open(os.path.join(self.sk_dir, "Object.sk"), 'w') as f:
             f.write(util.get_and_close(buf))
-
     def gen_cls_sk(self, cls, is_ax_cls):
         if cls.axiom:
-            return self.gen_axiom_cls_sk(cls)
-
+            if is_ax_cls:
+                return self.gen_axiom_cls_sk(cls, is_ax_cls)
+            
         mtds = utils.extract_nodes([MethodDeclaration], cls, recurse=False)
         cons = utils.extract_nodes([ConstructorDeclaration], cls, recurse=False)
         flds = utils.extract_nodes([FieldDeclaration], cls, recurse=False)
@@ -325,7 +326,7 @@ class Encoder(object):
             f.write(util.get_and_close(buf))
         return cls_sk
 
-    def gen_axiom_cls_sk(self, cls):
+    def gen_axiom_cls_sk(self, cls, is_ax_cls):
         cname = str(cls)
 
         ax_mtds = utils.extract_nodes([AxiomDeclaration], cls, recurse=False)
@@ -352,10 +353,10 @@ class Encoder(object):
             if mtd.parameters and not mtd.constructor: c += '; '
             for p,t,n in zip(mtd.parameters, mtd.param_typs(), mtd.param_names()):
                 typ = u'Object'
-                # typ = self.tltr.trans_ty(t)
-                # if isinstance(t, ReferenceType) and t.arrayCount > 0:
-                #     # typ = "Array_"+typ
-                #     typ = u'Object'
+                if not is_ax_cls:
+                    typ = self.tltr.trans_ty(t)
+                    if isinstance(t, ReferenceType) and t.arrayCount > 0:
+                        typ = "Array_"+typ
                 # if p.typee.name in p.symtab:
                 #     typ_cls = p.symtab[p.typee.name]
                 #     if isinstance(typ_cls, ClassOrInterfaceDeclaration) and typ_cls.axiom:
@@ -387,21 +388,19 @@ class Encoder(object):
             pnms = map(str, mtd.param_names())
             # (ptyps, pnms) = (map(lambda t: self.tltr.trans_ty(t), mtd.param_typs()), map(str, mtd.param_names()))
             ptyps_name = cp.deepcopy(ptyps)
-            for i in range(0, len(ptyps)):
-                ptyps[i] = u'Object'
+            if is_ax_cls:
+                for i in range(0, len(ptyps)):
+                    ptyps[i] = u'Object'
             #     ptyp = ptyps[i]
             #     p = mtd.parameters[i]
             #     if p.typee.name in p.symtab:
             #         typ_cls = p.symtab[p.typee.name]
             #         if isinstance(typ_cls, ClassOrInterfaceDeclaration) and typ_cls.axiom:
             #             ptyps[i] = u'Object'
-            # for i in range(0,len(ptyps)):
-            #     if isinstance(mtd_param_typs[i], ReferenceType):
-            #         if mtd_param_typs[i].arrayCount > 0:
-            #             # ptyps[i] = "Array_"+ptyps[i]
-            #             if str(mtd_param_typs[i]) == 'byte':
-            #                 ptyps_name[i] = 'byte'
-            #             ptyps[i] = 'Object'                        
+            for i in range(0,len(ptyps)):
+                if isinstance(mtd_param_typs[i], ReferenceType):
+                    if mtd_param_typs[i].arrayCount > 0:
+                        ptyps[i] = "Array_"+ptyps[i]
             params = ', '.join(map(lambda p: ' '.join(p), zip(ptyps, pnms)))
             c = 'Object '
             
@@ -443,7 +442,8 @@ class Encoder(object):
                 c += 'return xform_{}_{}'.format(mname, cls.name)
                 if ptypes != '':
                     c +='_{}'.format(ptypes)
-                c += '(self._{}'.format(cls.name.lower())
+                # c += '(self._{}'.format(cls.name.lower())
+                c += '(self'
                 if pnms != []:
                     c += ', {}'.format(','.join(pnms))
                 c += ');\n}\n\n'
@@ -516,11 +516,13 @@ class Encoder(object):
             xnm = u'xform_{}'.format(a.name_no_nested(False))
             x = Xform.gen_xform(a.get_coid(), xnm, adt_mtds,
                                 [{u'@t':u'Parameter',
-                                  u'type':{u'@t':u'ClassOrInterfaceType',u'name':cname},
-                                  u'id':{u'name':u'self',},},],)
+                                  u'type':{u'@t':u'ClassOrInterfaceType',u'name':cname,},
+                                  u'id':{u'name':u'selff',},},],)
 
-            _self = Parameter({u'id':{u'name':u'self'},
-                                   u'type':{u'@t':u'ClassOrInterfaceType', u'name':cname},},)
+            # _self = Parameter({u'id':{u'name':u'selff'},
+            #                        u'type':{u'@t':u'ClassOrInterfaceType', u'name':cname}},)
+            _self = Parameter({u'id':{u'name':u'selff'},
+                                   u'type':{u'@t': u'ReferenceType', u'type': {u'@t':u'ClassOrInterfaceType', u'name':cname},},},)
             x.childrenNodes.append(_self)
             x.parameters = [_self] + map(cp.copy, a.parameters)
                 
@@ -533,41 +535,41 @@ class Encoder(object):
         #    symbol table
         map(partial(utils.walk, cpy_sym), cls.childrenNodes)
             
-        # create xform dispatch method
-        #    i.e. calls the right xform depending on type of ADT
-        dispatch = Xform.gen_xform(cls, u'xform', adt_mtds,
-                                   [{u'@t':u'Parameter',
-                                     u'type':{u'@t':u'ClassOrInterfaceType',u'name':cname},
-                                     u'id':{u'name':u'self',},},],)
-        dispatch.add_parent_post(cls)
+        # # create xform dispatch method
+        # #    i.e. calls the right xform depending on type of ADT
+        # dispatch = Xform.gen_xform(cls, u'xform', adt_mtds,
+        #                            [{u'@t':u'Parameter',
+        #                              u'type':{u'@t':u'ClassOrInterfaceType',u'name':cname},
+        #                              u'id':{u'name':u'self',},},],)
+        # dispatch.add_parent_post(cls)
 
-        # Builds up return and body of dispatch function
-        for a in adt_mtds:
-            xnm = 'xform_{}'.format(a.name_no_nested(False))
-            xf = xforms[xnm]
-            ret = ReturnStmt({u'expr':{u'@t':u'MethodCallExpr',
-                                       u'name':xnm,u'type':{u'@t':u'ClassOrInterfaceType',
-                                                            u'name':'Object',},
-                                       u'args':[],},},)
+        # # Builds up return and body of dispatch function
+        # for a in adt_mtds:
+        #     xnm = 'xform_{}'.format(a.name_no_nested(False))
+        #     xf = xforms[xnm]
+        #     ret = ReturnStmt({u'expr':{u'@t':u'MethodCallExpr',
+        #                                u'name':xnm,u'type':{u'@t':u'ClassOrInterfaceType',
+        #                                                     u'name':'Object',},
+        #                                u'args':[],},},)
 
-            for p in xf.parameters:
-                if p.idd.name == 'self' and a.constructor:
-                    v = LiteralExpr({u'name':u'{}'.format(p.idd.name),},)
-                else:
-                    if not a.default:
-                        v = LiteralExpr({u'name':u'self.{}'.format(p.idd.name),},)
-                    else:
-                        v = LiteralExpr({u'name':u'{}'.format(p.idd.name),},)
-                v.typee = p.typee
-                ret.expr.childrenNodes.append(v)
-                ret.expr.args.append(v)
+        #     for p in xf.parameters:
+        #         if p.idd.name == 'self' and a.constructor:
+        #             v = LiteralExpr({u'name':u'{}'.format(p.idd.name),},)
+        #         else:
+        #             if not a.default:
+        #                 v = LiteralExpr({u'name':u'self.{}'.format(p.idd.name),},)
+        #             else:
+        #                 v = LiteralExpr({u'name':u'{}'.format(p.idd.name),},)
+        #         v.typee = p.typee
+        #         ret.expr.childrenNodes.append(v)
+        #         ret.expr.args.append(v)
                 
-            body = dispatch.get_xform()
-            # body.add_body([a.name.capitalize()], [ret], adt_mtds)
-            body.add_body([a.name_no_nested(False).capitalize()], [ret], adt_mtds)
+        #     body = dispatch.get_xform()
+        #     # body.add_body([a.name.capitalize()], [ret], adt_mtds)
+        #     body.add_body([a.name_no_nested(False).capitalize()], [ret], adt_mtds)
 
         # Writes dispatch function
-        buf.write(self.tltr.trans(dispatch))
+        # buf.write(self.tltr.trans(dispatch))
 
         # Gets all the axiom declarations 
         ax_mtds = utils.extract_nodes([AxiomDeclaration], cls, recurse=False)
@@ -611,6 +613,7 @@ class Encoder(object):
                         params2 = param.method.parameters
                     for (xp, ap) in zip(xf2.parameters, params2):
                         name = xparam.name
+                        if name == 'selff': name = u'self'
                         old_name = '#'+ap.name+"_axparam#"
                         if not old_name in xf.symtab: 
                             xf.symtab[old_name] = ((name+u'_')*(depth-1))+name+u'.'+xp.name
@@ -634,9 +637,10 @@ class Encoder(object):
             for (xp,ap) in zip(xf.parameters, a.parameters):
                 # Filters out first argument (i.e. the bang ADT structure)
                 if ap.idd:
+                    xp_name = xp.name if xp.name != u'selff' else u'self'
                     # xp.name = ap.name
                     # ap.name = xp.name
-                    a.symtab[ap.name].name = xp.name
+                    a.symtab[ap.name].name = xp_name
 
             # add a symbol table items to xf
             #   this will give it access to the argument names of a
@@ -697,7 +701,7 @@ class Encoder(object):
                 casess.append(cases)
                 
             # add cases to body
-            body.add_body_nested(casess, a.body.stmts, adt_mtds, xf.parameters)
+            body.add_body_nested(casess, a.body.stmts, adt_mtds, xf.parameters, cls, a)
 
         for v in xforms.values():
             buf.write(self.tltr.trans(v))        

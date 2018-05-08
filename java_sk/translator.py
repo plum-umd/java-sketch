@@ -203,13 +203,14 @@ class Translator(object):
             if n.parameters: self.printt(', ')
 
         if not td.isHarness(n) or not self._is_ax_cls:
-            if not td.isADT(n): self.printSepList(n.parameters)
-            elif n.parameters:
-                self.printt(n.parameters[0].typee.name)
-                self.printt(' ')
-                self.printt(n.parameters[0].name)
-                if len(n.parameters) > 1: self.printt(', ')
-                self.printSepList(n.parameters[1:])
+            self.printSepList(n.parameters)            
+            # if not td.isADT(n): self.printSepList(n.parameters)
+            # elif n.parameters:
+            #     self.printt(n.parameters[0].typee.name)
+            #     self.printt(' ')
+            #     self.printt(n.parameters[0].name)
+            #     if len(n.parameters) > 1: self.printt(', ')
+            #     self.printSepList(n.parameters[1:])
         else:
             self.printSepListHarness(n.parameters, **kwargs)
         self.printt(')')
@@ -261,7 +262,7 @@ class Translator(object):
     def visit(self, n, **kwargs):
         n.typee.accept(self, **kwargs)
         self.buf.write(' {}'.format(str(n.idd)))
-
+        
     @v.when(AxiomParameter)
     def visit(self, n, **kwargs):
         self.printt(str(n.typee))
@@ -1412,7 +1413,7 @@ class Translator(object):
     def trans_call(self, callexpr, **kwargs):
         semi = kwargs.get('semi', True)
         tltr = copy.copy(self)
-        tltr.indentation = ''
+        tltr.indentation = ''        
         
         def write_call():
             tltr.buf = cStringIO.StringIO()
@@ -1604,6 +1605,11 @@ class Translator(object):
         mtd_call = None
         is_ax2 = callexpr.add_bang
         is_adt = False
+
+        xform_name = ""
+        
+        if str(mtd).startswith("xform_"):
+            xform_name = str(mtd).split('_')[2]
         
         # 15.12.4. Run-Time Evaluation of Method Invocation
         # 15.12.4.1. Compute Target Reference (If Necessary)
@@ -1613,7 +1619,7 @@ class Translator(object):
                 self.printt('{}'.format(str(mtd)))
             else:
                 self.printt('{}@{}'.format(str(mtd), str(mtd.get_coid())))
-            self.printArguments(callexpr.args)
+            self.printArguments(callexpr.args, xform_name)
             # self.printt(';')
         elif not callexpr.scope:
             self.printt('{}@{}'.format(str(mtd), str(cls)))
@@ -1621,7 +1627,7 @@ class Translator(object):
         else:
             if type(callexpr.scope) == SuperExpr:
                 self.printt('{}@{}'.format(str(mtd), str(cls)))
-                self.printArguments([NameExpr({u'name':u'self'})] + callexpr.args)
+                self.printArguments([NameExpr({u'name':u'self'})] + callexpr.args, xform_name)
                 logging.debug('**END CALL***\n')
                 return            
             clss = [cls] + utils.all_subClasses(cls) if invocation_mode != 'uninterpreted' else \
@@ -1660,7 +1666,7 @@ class Translator(object):
             conexprs = reduce(combine, reversed(conexprs))
             if type(mtd.typee) != VoidType: self.printt('(')
             # DIFFERENT ARGS HERE THEN FOR UNBOXED
-            self.print_dispatch(conexprs, is_adt, is_ax2, **kwargs)
+            self.print_dispatch(conexprs, is_adt, is_ax2, xform_name, **kwargs)
             if type(mtd.typee) != VoidType: self.printt(')')                
             if is_ax and self._is_ax_cls:
                 self.printt('; ')
@@ -1677,7 +1683,7 @@ class Translator(object):
             if type(val) != MethodDeclaration: continue
             tparam_names = map(lambda t: t.name, val.typeParameters)
             tparam_names.extend(map(lambda t: t.name, val.get_coid().typeParameters))
-            if self._is_ax_cls:
+            if self._is_ax_cls or callexpr.name.startswith('xform'):
                 name = callexpr.name
                 if val.adtType and callexpr.name != val.name and len(call_arg_typs) > 1:
                     name += '_'+'_'.join(map(str, call_arg_typs[1:]))
@@ -1775,14 +1781,14 @@ class Translator(object):
         elif s: return self.find_mtd(s[0], descriptor) # nope, check superclasses
         else: return (None, None) # doesn't exist
 
-    def print_dispatch(self, c, is_adt, is_ax, **kwargs):
+    def print_dispatch(self, c, is_adt, is_ax, xform_name, **kwargs):
         # we need to do this b/c the elseExpr's are going to have MethodCallExpr which
         # get handled differently
         if isinstance(c, ConditionalExpr):
             c.condition.accept(self, **kwargs)
             self.printt(' ? ')
             self.printt('{}'.format(c.thenExpr.name))
-            self.printArguments(c.thenExpr.args)
+            self.printArguments(c.thenExpr.args, xform_name)
             self.printt(' : ')
             if isinstance(c.elseExpr, IntegerLiteralExpr): self.printt('0')
             elif isinstance(c.elseExpr, PrimitiveType):
@@ -1795,10 +1801,10 @@ class Translator(object):
                        elseExpr.name == u'bit' or c.elseExpr.name == u'short': self.printt('0')
                     if c.elseExpr.name == u'char' or c.elseExpr.name == u'byte': self.printt("'\\0'")
             elif isinstance(c.elseExpr, (ClassOrInterfaceType, ReferenceType)): self.printt('null')
-            else: self.print_dispatch(c.elseExpr, is_adt, is_ax)
+            else: self.print_dispatch(c.elseExpr, is_adt, is_ax, xform_name)
         elif isinstance(c, MethodCallExpr):
             self.printt('{}('.format(c.name))
-            self.printArguments(c.args)
+            self.printArguments(c.args, xform_name)
             self.printt(')')
         else:
             if is_ax and self._is_ax_cls:
@@ -1806,20 +1812,20 @@ class Translator(object):
                 c.condition.accept(self, **kwargs)
                 self.printt(' ? ')
                 self.printt('{}'.format(c.thenStmt.name))
-                self.printArguments(c.thenStmt.args)
+                self.printArguments(c.thenStmt.args, xform_name)
                 self.printt(' : ')
                 if type(c.elseStmt) == IntegerLiteralExpr:
                     self.printt('null)'.format(c.elseStmt.value))
                 else:
                     # self.printLn()
                     # self.printt('else ')
-                    self.print_dispatch(c.elseStmt, is_adt, is_ax)
+                    self.print_dispatch(c.elseStmt, is_adt, is_ax, xform_name)
             else:
                 self.printt('if (')
                 c.condition.accept(self, **kwargs)
                 self.printt(') { ')
                 self.printt('{}'.format(c.thenStmt.name))
-                self.printArguments(c.thenStmt.args)
+                self.printArguments(c.thenStmt.args, xform_name)
                 self.printt(';')
                 self.printt(' }')
                 if type(c.elseStmt) == IntegerLiteralExpr:
@@ -1828,7 +1834,7 @@ class Translator(object):
                 else:
                     self.printLn()
                     self.printt('else ')
-                    self.print_dispatch(c.elseStmt, is_adt, is_ax)
+                    self.print_dispatch(c.elseStmt, is_adt, is_ax, xform_name)
 
     def make_dispatch(self, scope, S, mdec, args, **kwargs):
         d = {
@@ -1979,8 +1985,9 @@ class Translator(object):
                 name = 'xform_{}'.format(str(s))
                 mdec = s.symtab.get('m'+name)
                 if mdec or not s.pure:                 
-                    # alter method call name to be xform call                    
+                    # alter method call name to be xform call                   
                     s.name = 'xform_{}'.format(s.name)
+
                     if not s.pure:
                         s.name += "b"                                        
                         
@@ -2007,7 +2014,7 @@ class Translator(object):
             new_stmts.append(wrapUnwrapPrimitives(s))
             
         return new_stmts
-        
+    
     # wrap prim in an object creation expr
     #   This is done when returning a primitive from an xform (must be an object)
     def wrapPrimitive(self, prim):
@@ -2146,7 +2153,7 @@ class Translator(object):
                     args[i].accept(self, **kwargs)
                 if i+1 < lenn: self.printt('{} '.format(kwargs.get('sep', ',')))   
                 
-    def printArguments(self, args, **kwargs):
+    def printArguments(self, args, xform_name = "", **kwargs):
         self.printt('(')
         if self._is_ax_cls:
             if args:
@@ -2162,7 +2169,12 @@ class Translator(object):
                         else:
                             args[i].accept(self, **kwargs)                        
                     else:
-                        args[i].accept(self, **kwargs)
+                       if i == 0 and xform_name != "":
+                           self.printt('(new Object(__cid=-2, _{}='.format(xform_name.lower()))
+                           args[i].accept(self, **kwargs)
+                           self.printt('))')
+                       else:
+                           args[i].accept(self, **kwargs)
                     if i+1 < lenn: self.printt('{} '.format(kwargs.get('sep', ',')))
         else:
             self.printSepList(args)
