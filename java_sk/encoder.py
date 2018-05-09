@@ -303,8 +303,8 @@ class Encoder(object):
         for fld in s_flds:
             f = self.tltr.trans_fld(fld)
             typ = f[0]
-            if is_ax_cls:
-                typ = u'Object'            
+            if self.is_ax_cls:
+                typ = u'Object'
             buf.write('{} {}{};\n'.format(typ, f[1], f[2]))
             if cls == self.mcls and fld.variable.init and type(fld.variable.init) == GeneratorExpr: continue
             if not is_ax_cls:
@@ -400,13 +400,15 @@ class Encoder(object):
                 if mtd.constructor:
                     name += '_'+typ
             ptyps = []
+            ptyps_name = []
             for t in mtd_param_typs:
                 typ = self.tltr.trans_ty(t)
-                if typ == u'Object': typ = str(t)
                 ptyps.append(typ)
+                if typ == u'Object': typ = str(t)
+                ptyps_name.append(typ)
             pnms = map(str, mtd.param_names())
             # (ptyps, pnms) = (map(lambda t: self.tltr.trans_ty(t), mtd.param_typs()), map(str, mtd.param_names()))
-            ptyps_name = cp.deepcopy(ptyps)
+            # ptyps_name = cp.deepcopy(ptyps)
             if is_ax_cls:
                 for i in range(0, len(ptyps)):
                     ptyps[i] = u'Object'
@@ -423,8 +425,9 @@ class Encoder(object):
             params = ', '.join(map(lambda p: ' '.join(p), zip(ptyps, pnms)))
             c = 'Object '
             if not is_ax_cls and mtd_name2.split('_')[0] in map(lambda x: x.name, ax_mtds):
-                c = str(mtd.typee) + u' '
-            
+                # c = str(mtd.typee) + u' '
+                c = self.tltr.trans_ty(mtd.typee) + u' '
+                
             if name == cname.lower():
                 mtd_name = cname + "_" + cname
             elif len(name) > 6 and name[len(name)-6:] == "_Empty" and name[0:len(name)-6] == cname.lower():
@@ -436,7 +439,7 @@ class Encoder(object):
                 mtd_name += '_Object'
                 if mtd.parameters:
                     mtd_name += '_{}'.format(typ_params)
-                
+
             c += '{}'.format(mtd_name)
             c += '('
             if not mtd.default:

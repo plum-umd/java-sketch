@@ -88,7 +88,8 @@ class Xform(BodyDeclaration):
                     u'float': u'0',
                     u'Object': u'null'
                     }
-                ret_none = {u'@t':u'ReturnStmt', u'expr': {u'@t':u'LiteralExpr', u'name':prim_bot[str(ax.typee)],},}
+                typ = prim_bot[str(ax.typee)] if str(ax.typee) in prim_bot else u'null'
+                ret_none = {u'@t':u'ReturnStmt', u'expr': {u'@t':u'LiteralExpr', u'name':typ,},}
             else:
                 ret_none = {u'@t':u'ReturnStmt',}
             return MethodDeclaration({u'type':{u'@t':u'ClassOrInterfaceType',u'name':str(ax.typee),},

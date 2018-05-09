@@ -238,7 +238,7 @@ class Translator(object):
                             if 'HasCurly' not in kwargs or not kwargs['HasCurly']:
                                 self.printt('{\n');                            
                             typ = self.trans_ty(p.typee)
-                            cid = self.primitiveIds[typ]                        
+                            cid = self.primitiveIds[typ]
                             self.printt('  Object {0} = new Object(__cid={1}, _{2}={3}); \n'.format(p.name, cid, typ, '__'+p.name))
                             kwargs['HasCurly'] = True
                 n.body.accept(self, **kwargs)
@@ -1630,7 +1630,7 @@ class Translator(object):
             
         # 15.12.4. Run-Time Evaluation of Method Invocation
         # 15.12.4.1. Compute Target Reference (If Necessary)
-        if invocation_mode == 'static':
+        if invocation_mode == 'static':            
             if (callexpr.scope and isinstance(callexpr.scope, ThisExpr)) or \
                str(callexpr.get_coid()) == str(mtd.get_coid()):
                 self.printt('{}'.format(str(mtd)))
