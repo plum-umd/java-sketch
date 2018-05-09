@@ -457,16 +457,30 @@ class Encoder(object):
             else:
                 c += ') {\n    '
             if mtd_name2.split('_')[0] not in map(lambda x: x.name, ax_mtds):
-                c += 'return new Object(__cid={}(), _{}=new {}('.format(cls.name, cls.name.lower(), mtd_name2.capitalize())
-                if not mtd.default and not mtd.constructor:
-                    c += 'self=self._{}'.format(cls.name.lower())
-                for i in range(0, len(pnms)):
-                    n = pnms[i]
-                    if i == 0 and mtd.constructor:
-                        c += '{0}={0}'.format(n)
-                    else:
-                        c += ', {0}={0}'.format(n)
-                c += '));\n}\n\n'
+                # THERE MUST BE A BETTER WAY TO DETECT BANG TYPE METHODS
+                if mtd_name2.split('_')[0].endswith('b'):
+                    c += 'self._{0}=new {1}('.format(cls.name.lower(), mtd_name2.capitalize())
+                    if not mtd.default and not mtd.constructor:
+                        c += 'self=self._{}'.format(cls.name.lower())
+                    for i in range(0, len(pnms)):
+                        n = pnms[i]
+                        if i == 0 and mtd.constructor:
+                            c += '{0}={0}'.format(n)
+                        else:
+                            c += ', {0}={0}'.format(n)
+                    c += ');\n'
+                    c +='return self;\n}\n\n'
+                else:
+                    c += 'return new Object(__cid={}(), _{}=new {}('.format(cls.name, cls.name.lower(), mtd_name2.capitalize())
+                    if not mtd.default and not mtd.constructor:
+                        c += 'self=self._{}'.format(cls.name.lower())
+                    for i in range(0, len(pnms)):
+                        n = pnms[i]
+                        if i == 0 and mtd.constructor:
+                            c += '{0}={0}'.format(n)
+                        else:
+                            c += ', {0}={0}'.format(n)
+                    c += '));\n}\n\n'
             else:
                 mname = mtd_name2.split('_')[0]
                 ptypes = '_'.join(mtd_name2.split('_')[1:])
