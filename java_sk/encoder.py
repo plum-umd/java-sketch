@@ -80,6 +80,7 @@ class Encoder(object):
         ax_clss = filter(lambda c: c.axiom, clss)        
 
         self.is_ax_cls = is_ax_cls
+        self.ax_clss = ax_clss
         
         # create a translator object, this will do the JSketch -> Sketch
         self._tltr = Translator(cnums=self._CLASS_NUMS, mnums=self._MTD_NUMS, sk_dir=self._sk_dir, fs=self._fs, is_ax_cls=is_ax_cls, ax_clss=ax_clss)
@@ -376,6 +377,9 @@ class Encoder(object):
                     typ = self.tltr.trans_ty(t)
                     if isinstance(t, ReferenceType) and t.arrayCount > 0:
                         typ = "Array_"+typ
+                    if isinstance(t, ReferenceType) and isinstance(t.typee, ClassOrInterfaceType) and str(t.typee) in map(lambda c: c.name, self.ax_clss) and not self.is_ax_cls:
+                        typ = u'Object'
+                        
                 # if p.typee.name in p.symtab:
                 #     typ_cls = p.symtab[p.typee.name]
                 #     if isinstance(typ_cls, ClassOrInterfaceDeclaration) and typ_cls.axiom:
@@ -402,7 +406,10 @@ class Encoder(object):
             ptyps = []
             ptyps_name = []
             for t in mtd_param_typs:
-                typ = self.tltr.trans_ty(t)
+                if isinstance(t, ReferenceType) and isinstance(t.typee, ClassOrInterfaceType) and str(t.typee) in map(lambda c: c.name, self.ax_clss) and not self.is_ax_cls:
+                    typ = u'Object'
+                else:
+                    typ = self.tltr.trans_ty(t)
                 ptyps.append(typ)
                 if typ == u'Object': typ = str(t)
                 ptyps_name.append(typ)

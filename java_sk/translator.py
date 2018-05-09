@@ -165,7 +165,16 @@ class Translator(object):
         n.parameters = p + n.parameters
 
         self.printt('(')
-        self.printSepList(n.parameters)
+        # self.printSepList(n.parameters)
+        for i in range(0, len(n.parameters)):
+            param = n.parameters[i]
+            if isinstance(param.typee, ReferenceType) and isinstance(param.typee.typee, ClassOrInterfaceType) and str(param.typee.typee) in map(lambda c: c.name, self._ax_clss) and not self._is_ax_cls:
+                self.printt('Object')
+            else:
+                param.typee.accept(self, **kwargs)
+            self.buf.write(' {}'.format(str(param.idd)))
+            if i != len(n.parameters)-1: self.printt(', ')
+            
         self.printt(') ')
 
         for i in xrange(n.arrayCount): self.printt('[]')
@@ -192,6 +201,8 @@ class Translator(object):
                 s.append(u'fs_s@Object(HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash())));')
             n.body.stmts = s + n.body.stmts
 
+        
+            
         if isinstance(n.typee, ReferenceType) and isinstance(n.typee.typee, ClassOrInterfaceType) and str(n.typee.typee) in map(lambda c: c.name, self._ax_clss) and not self._is_ax_cls:
             self.printt('Object')
         else:
@@ -213,8 +224,25 @@ class Translator(object):
             #     _self = Parameter({u'id':{u'name':u'selff'},
             #                        u'type':{u'@t': u'ReferenceType', u'type': {u'@t':u'ClassOrInterfaceType', u'name':u'Object'},},},)
             #     params[0] = _self                
-                
-            self.printSepList(params)            
+
+            # print("HERE: "+str(n))
+            # for i in range(0, len(params)):
+            #     p = params[i]
+            #     if isinstance(p.typee, ReferenceType) and isinstance(p.typee.typee, ClassOrInterfaceType) and str(p.typee.typee) in map(lambda c: c.name, self._ax_clss) and not self._is_ax_cls:
+            #         params[i] = Parameter({u'id':{u'name':p.name},
+            #                                u'type':{u'@t': u'ReferenceType', u'type': {u'@t':u'ClassOrInterfaceType', u'name':u'Object'},},},)
+            
+            for i in range(0, len(params)):
+                param = params[i]
+                if isinstance(param.typee, ReferenceType) and isinstance(param.typee.typee, ClassOrInterfaceType) and str(param.typee.typee) in map(lambda c: c.name, self._ax_clss) and not self._is_ax_cls and not str(n).startswith('xform_'):
+                    self.printt('Object')
+                else:
+                    param.typee.accept(self, **kwargs)
+                self.buf.write(' {}'.format(str(param.idd)))
+                if i != len(params)-1: self.printt(', ')
+
+            # self.printSepList(params)            
+
             # if not td.isADT(n): self.printSepList(n.parameters)
             # elif n.parameters:
             #     self.printt(n.parameters[0].typee.name)
@@ -1320,7 +1348,7 @@ class Translator(object):
             else: r_ty = str(cls) if cls else str(typ)
         else:
             r_ty = str(typ)
-            
+
         # print 'typ {},{} -> {}'.format(str(typ), type(typ), r_ty)
         # we've already rewritten this type
         if r_ty in self.ty: r_ty = self.ty[r_ty] if convert else r_ty
