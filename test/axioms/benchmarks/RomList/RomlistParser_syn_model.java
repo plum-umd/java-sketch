@@ -142,10 +142,12 @@ public class RomlistParser {
 		this.totalGamesAvailable = gamesAvailable;
 
 		// Check if there is metadata for the romlist.
-		String a1 = romlistFile.getParent();
-		String a2 = a1.concat("/db/");
-		String a3 = a2.concat(romlistFile.getName());
-		File nf = new File(a3);
+
+		// String a1 = romlistFile.getParent();
+		// String a2 = a1.concat("/db/");
+		// String a3 = a2.concat(romlistFile.getName());
+		// File nf = new File(a3);
+
 		// if (nf.exists()) {
 		// 	this.description = new String(Files.readAllBytes(Paths.get(romlistFile.getParent() + "/database/" + romlistFile.getName())));
 		// }

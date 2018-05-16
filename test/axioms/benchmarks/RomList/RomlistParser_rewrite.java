@@ -57,63 +57,115 @@ public class RomlistParser {
 	}
 
     generator public void genRead(BufferedReader br, File romlistFile) {
-	    String line = null;
-	    if (??) {
-		line = br.readLine();		
-	    }
-	    if (??) {
-		while (line != null) {
-		    genRead(br, romlistFile);
-		}
-	    }
-	    if (??) {
-		if (!line.startsWith("#")) {
-			String[] data = line.split(";", -1);
-			if (data.length >= 10) {
-			// if (data.length >= 2) {
-			     RomlistGame game = new RomlistGame();
-			     game.setRomlist(romlistFile.getName());
-			     game.setName(data[0]);
-			     game.setTitle(data[1]);
-			     game.setEmulator(data[2]);
-			     game.setCloneOf(data[3]);
-			     game.setYear(data[4]);
-			     game.setManufacturer(data[5]);
-			     game.setCategory(data[6]);
-			     game.setPlayers(data[7]);
-			     game.setRotation(data[8]);
-			     game.setControl(data[9]);
-			     if (data.length > 10) {
-				     game.setStatus(data[10]);
-			     }
-			     if (data.length > 11) {
-				     game.setDisplayCount(data[11]);
-			     }
-			     if (data.length > 12) {
-				     game.setDisplayType(data[12]);
-			     }
-			     if (data.length > 13) {
-				     game.setAltRomname(data[13]);
-			     }
-			     if (data.length > 14) {
-				     game.setAltTitle(data[14]);
-			     }
-			     if (data.length > 15) {
-				     game.setExtra(data[15]);
-			     }
-			     if (data.length > 16) {
-				     game.setButtons(data[16]);
-			     }
+    	    String line = null;
+    	    if (true) {
+    		line = br.readLine();		
+    		while (line != null) {
+    		    if (!line.startsWith("#")) {
+    			    String[] data = line.split(";", -1);
+    			    if (data.length >= 10) {
+    			    // if (data.length >= 2) {
+    				 RomlistGame game = new RomlistGame();
+    				 game.setRomlist(romlistFile.getName());
+    				 game.setName(data[0]);
+    				 game.setTitle(data[1]);
+    				 game.setEmulator(data[2]);
+    				 game.setCloneOf(data[3]);
+    				 game.setYear(data[4]);
+    				 game.setManufacturer(data[5]);
+    				 game.setCategory(data[6]);
+    				 game.setPlayers(data[7]);
+    				 game.setRotation(data[8]);
+    				 game.setControl(data[9]);
+    				 if (data.length > 10) {
+    					 game.setStatus(data[10]);
+    				 }
+    				 if (data.length > 11) {
+    					 game.setDisplayCount(data[11]);
+    				 }
+    				 if (data.length > 12) {
+    					 game.setDisplayType(data[12]);
+    				 }
+    				 if (data.length > 13) {
+    					 game.setAltRomname(data[13]);
+    				 }
+    				 if (data.length > 14) {
+    					 game.setAltTitle(data[14]);
+    				 }
+    				 if (data.length > 15) {
+    					 game.setExtra(data[15]);
+    				 }
+    				 if (data.length > 16) {
+    					 game.setButtons(data[16]);
+    				 }
 
-			     game.setAvailable(false);
-			     games.add(game);
-			}
-		}
-	    }
-	    if (??) {
-		genRead(br, romlistFile);
-	    }
-	}
+    				 game.setAvailable(false);
+    				 games.add(game);
+    			    }
+    		    }
+    		    line = br.readLine();				    
+    		}
+    	    }
+    	}
+
+    // generator public void genRead(BufferedReader br, File romlistFile) {
+    // 	    String line = null;
+    // 	    if (??) {
+    // 		line = br.readLine();		
+    // 	    }
+    // 	    if (??) {
+    // 		while (line != null) {
+    // 		    genRead(br, romlistFile);
+    // 		}
+    // 	    }
+    // 	    if (??) {
+    // 		if (!line.startsWith("#")) {
+    // 			String[] data = line.split(";", -1);
+    // 			if (data.length >= 10) {
+    // 			// if (data.length >= 2) {
+    // 			     RomlistGame game = new RomlistGame();
+    // 			     game.setRomlist(romlistFile.getName());
+    // 			     game.setName(data[0]);
+    // 			     game.setTitle(data[1]);
+    // 			     game.setEmulator(data[2]);
+    // 			     game.setCloneOf(data[3]);
+    // 			     game.setYear(data[4]);
+    // 			     game.setManufacturer(data[5]);
+    // 			     game.setCategory(data[6]);
+    // 			     game.setPlayers(data[7]);
+    // 			     game.setRotation(data[8]);
+    // 			     game.setControl(data[9]);
+    // 			     if (data.length > 10) {
+    // 				     game.setStatus(data[10]);
+    // 			     }
+    // 			     if (data.length > 11) {
+    // 				     game.setDisplayCount(data[11]);
+    // 			     }
+    // 			     if (data.length > 12) {
+    // 				     game.setDisplayType(data[12]);
+    // 			     }
+    // 			     if (data.length > 13) {
+    // 				     game.setAltRomname(data[13]);
+    // 			     }
+    // 			     if (data.length > 14) {
+    // 				     game.setAltTitle(data[14]);
+    // 			     }
+    // 			     if (data.length > 15) {
+    // 				     game.setExtra(data[15]);
+    // 			     }
+    // 			     if (data.length > 16) {
+    // 				     game.setButtons(data[16]);
+    // 			     }
+
+    // 			     game.setAvailable(false);
+    // 			     games.add(game);
+    // 			}
+    // 		}
+    // 	    }
+    // 	    if (??) {
+    // 		genRead(br, romlistFile);
+    // 	    }
+    // 	}
     
 	/**
 	 * @param romlistFile
