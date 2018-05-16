@@ -1,0 +1,10 @@
+package Collections;
+
+Object Collections_Collections(Object self) {
+    return self;
+}
+
+Object sort_ArrayList(Object a) {
+  return a;
+}
+

@@ -1,24 +1,24 @@
-@axiomClass
+@rewriteClass
 class TreeSet {
 
-    @adt
+    @alg
     boolean add(Object e);
     
-    @adt
+    @alg
     Object clear();
 
-    @adt
+    @alg
     boolean contains(Object e);
 
-    @adt
+    @alg
     @pure
     int size();
 
-    axiom Object size(Object TreeSet()) {
+    rewrite Object size(Object TreeSet()) {
 	return 0;
     }
 
-    axiom Object size(Object add!(TreeSet s, Object e)) {
+    rewrite Object size(Object add!(TreeSet s, Object e)) {
 	boolean b = contains(s, e);
 	if (b) {
 	    return size(s);
@@ -28,31 +28,31 @@ class TreeSet {
 	// return contains(s, e) ? size(s) : size(s)+1;
     }
 
-    axiom Object size(Object clear!(TreeSet s)) {
+    rewrite Object size(Object clear!(TreeSet s)) {
 	return 0;
     }
     
-    axiom Object add(Object clear!(TreeSet s), Object e) {
+    rewrite Object add(Object clear!(TreeSet s), Object e) {
     	return true;
     }
     
-    axiom Object add(Object TreeSet(), Object e) {
+    rewrite Object add(Object TreeSet(), Object e) {
     	return true;
     }
 
-    axiom Object add(Object add!(TreeSet s, Object e1), Object e2) {
+    rewrite Object add(Object add!(TreeSet s, Object e1), Object e2) {
     	return e2.equals(e1) ? false : add(s, e2);
     }
 
-    axiom Object contains(Object add!(TreeSet s, Object e1), Object e2) {
+    rewrite Object contains(Object add!(TreeSet s, Object e1), Object e2) {
     	return e1.equals(e2) ? true : contains(s, e2);
     }
 
-    axiom Object contains(Object TreeSet(), Object e) {
+    rewrite Object contains(Object TreeSet(), Object e) {
 	return false;
     }
 
-    axiom Object contains(Object clear!(TreeSet s), Object e) {
+    rewrite Object contains(Object clear!(TreeSet s), Object e) {
     	return false;
     }
 

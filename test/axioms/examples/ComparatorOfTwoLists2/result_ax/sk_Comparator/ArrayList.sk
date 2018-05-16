@@ -1,0 +1,459 @@
+package ArrayList;
+
+adt ArrayList {
+    Arraylist       { }
+    Add_object             { ArrayList self; Object e; }
+    Addb_object            { ArrayList self; Object e; }
+    Get_int             { ArrayList self; Object i; }
+    Setb_int_object            { ArrayList self; Object i; Object e; }
+    Set_int_object             { ArrayList self; Object i; Object e; }
+    Ensurecapacity  { ArrayList self; }
+    Sortb_object           { ArrayList self; Object t; }
+    Size            { ArrayList self; }
+    Removeb_int         { ArrayList self; Object i; }
+    Addallb_object         { ArrayList self; Object a; }
+    Sort_object            { ArrayList self; Object t; }
+    Getithbiggest_object_int   { ArrayList self; Object os; Object i; }
+    Remove_int          { ArrayList self; Object i; }
+    Addall_object          { ArrayList self; Object a; }
+}
+
+Object ArrayList_ArrayList() {
+    return new Object(__cid=ArrayList(), _arraylist=new Arraylist());
+}
+
+Object add_Object_Object(Object self, Object e) {
+    return new Object(__cid=ArrayList(), _arraylist=new Add_object(self=self._arraylist, e=e));
+}
+
+Object addb_Object_Object(Object self, Object e) {
+    return new Object(__cid=ArrayList(), _arraylist=new Addb_object(self=self._arraylist, e=e));
+}
+
+Object get_Object_int(Object self, Object i) {
+    return new Object(__cid=ArrayList(), _arraylist=new Get_int(self=self._arraylist, i=i));
+}
+
+Object setb_Object_int_Object(Object self, Object i, Object e) {
+    return new Object(__cid=ArrayList(), _arraylist=new Setb_int_object(self=self._arraylist, i=i, e=e));
+}
+
+Object set_Object_int_Object(Object self, Object i, Object e) {
+    return new Object(__cid=ArrayList(), _arraylist=new Set_int_object(self=self._arraylist, i=i, e=e));
+}
+
+Object ensureCapacity_Object(Object self) {
+    return new Object(__cid=ArrayList(), _arraylist=new Ensurecapacity(self=self._arraylist));
+}
+
+Object sortb_Object_Object(Object self, Object t) {
+    return new Object(__cid=ArrayList(), _arraylist=new Sortb_object(self=self._arraylist, t=t));
+}
+
+Object size_Object(Object self) {
+    return new Object(__cid=ArrayList(), _arraylist=new Size(self=self._arraylist));
+}
+
+Object removeb_Object_int(Object self, Object i) {
+    return new Object(__cid=ArrayList(), _arraylist=new Removeb_int(self=self._arraylist, i=i));
+}
+
+Object addAllb_Object_Object(Object self, Object a) {
+    return new Object(__cid=ArrayList(), _arraylist=new Addallb_object(self=self._arraylist, a=a));
+}
+
+Object sort_Object_Object(Object self, Object t) {
+    return new Object(__cid=ArrayList(), _arraylist=new Sort_object(self=self._arraylist, t=t));
+}
+
+Object getIthBiggest_Object_Object_int(Object self, Object os, Object i) {
+    return new Object(__cid=ArrayList(), _arraylist=new Getithbiggest_object_int(self=self._arraylist, os=os, i=i));
+}
+
+Object remove_Object_int(Object self, Object i) {
+    return new Object(__cid=ArrayList(), _arraylist=new Remove_int(self=self._arraylist, i=i));
+}
+
+Object addAll_Object_Object(Object self, Object a) {
+    return new Object(__cid=ArrayList(), _arraylist=new Addall_object(self=self._arraylist, a=a));
+}
+
+Object xform_ArrayList(ArrayList self) {
+  switch(self) {
+  case Arraylist: {
+    return xform_arraylist_ArrayList(self);
+  }
+  case Add_object: {
+    return xform_add_ArrayList_Object(self.self, self.e);
+  }
+  case Addb_object: {
+    return xform_addb_ArrayList_Object(self.self, self.e);
+  }
+  case Get_int: {
+    return xform_get_ArrayList_int(self.self, self.i);
+  }
+  case Setb_int_object: {
+    return xform_setb_ArrayList_int_Object(self.self, self.i, self.e);
+  }
+  case Set_int_object: {
+    return xform_set_ArrayList_int_Object(self.self, self.i, self.e);
+  }
+  case Ensurecapacity: {
+    return xform_ensureCapacity_ArrayList(self.self);
+  }
+  case Sortb_object: {
+    return xform_sortb_ArrayList_Object(self.self, self.t);
+  }
+  case Size: {
+    return xform_size_ArrayList(self.self);
+  }
+  case Removeb_int: {
+    return xform_removeb_ArrayList_int(self.self, self.i);
+  }
+  case Addallb_object: {
+    return xform_addAllb_ArrayList_Object(self.self, self.a);
+  }
+  case Sort_object: {
+    return xform_sort_ArrayList_Object(self.self, self.t);
+  }
+  case Getithbiggest_object_int: {
+    return xform_getIthBiggest_ArrayList_Object_int(self.self, self.os, self.i);
+  }
+  case Remove_int: {
+    return xform_remove_ArrayList_int(self.self, self.i);
+  }
+  case Addall_object: {
+    return xform_addAll_ArrayList_Object(self.self, self.a);
+  }
+  }
+
+  return null;
+}
+Object xform_addAllb_ArrayList_Object(ArrayList self, Object a) {
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_object: { assert false; }
+  case Addb_object: { assert false; }
+  case Get_int: { assert false; }
+  case Setb_int_object: { assert false; }
+  case Set_int_object: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Sortb_object: { assert false; }
+  case Size: { assert false; }
+  case Removeb_int: { assert false; }
+  case Addallb_object: { assert false; }
+  case Sort_object: { assert false; }
+  case Getithbiggest_object_int: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_get_ArrayList_int(ArrayList self, Object i) {
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_object: { assert false; }
+  case Addb_object: {
+    Object sz = xform_size_ArrayList(self.self);
+    return ((sz._int == i._int) ? self.e : xform_get_ArrayList_int(self.self, i));
+  }
+  case Get_int: { assert false; }
+  case Setb_int_object: {
+    return (i._int == self.i._int ? self.e : xform_get_ArrayList_int(self.self, i));
+  }
+  case Set_int_object: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Sortb_object: {
+    Object rs = null;
+  }
+  case Size: { assert false; }
+  case Removeb_int: { assert false; }
+  case Addallb_object: { assert false; }
+  case Sort_object: { assert false; }
+  case Getithbiggest_object_int: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_removeb_ArrayList_int(ArrayList self, Object i) {
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_object: { assert false; }
+  case Addb_object: { assert false; }
+  case Get_int: { assert false; }
+  case Setb_int_object: { assert false; }
+  case Set_int_object: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Sortb_object: { assert false; }
+  case Size: { assert false; }
+  case Removeb_int: { assert false; }
+  case Addallb_object: { assert false; }
+  case Sort_object: { assert false; }
+  case Getithbiggest_object_int: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_addb_ArrayList_Object(ArrayList self, Object e) {
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_object: { assert false; }
+  case Addb_object: { assert false; }
+  case Get_int: { assert false; }
+  case Setb_int_object: { assert false; }
+  case Set_int_object: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Sortb_object: { assert false; }
+  case Size: { assert false; }
+  case Removeb_int: { assert false; }
+  case Addallb_object: { assert false; }
+  case Sort_object: { assert false; }
+  case Getithbiggest_object_int: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_getIthBiggest_ArrayList_Object_int(ArrayList self, Object os, Object i) {
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_object: { assert false; }
+  case Addb_object: { assert false; }
+  case Get_int: { assert false; }
+  case Setb_int_object: { assert false; }
+  case Set_int_object: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Sortb_object: { assert false; }
+  case Size: { assert false; }
+  case Removeb_int: { assert false; }
+  case Addallb_object: { assert false; }
+  case Sort_object: { assert false; }
+  case Getithbiggest_object_int: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_set_ArrayList_int_Object(ArrayList self, Object i, Object e) {
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_object: { assert false; }
+  case Addb_object: { assert false; }
+  case Get_int: { assert false; }
+  case Setb_int_object: { assert false; }
+  case Set_int_object: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Sortb_object: { assert false; }
+  case Size: { assert false; }
+  case Removeb_int: { assert false; }
+  case Addallb_object: { assert false; }
+  case Sort_object: { assert false; }
+  case Getithbiggest_object_int: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_sort_ArrayList_Object(ArrayList self, Object t) {
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_object: { assert false; }
+  case Addb_object: { assert false; }
+  case Get_int: { assert false; }
+  case Setb_int_object: { assert false; }
+  case Set_int_object: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Sortb_object: { assert false; }
+  case Size: { assert false; }
+  case Removeb_int: { assert false; }
+  case Addallb_object: { assert false; }
+  case Sort_object: { assert false; }
+  case Getithbiggest_object_int: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_size_ArrayList(ArrayList self) {
+  switch(self) {
+  case Arraylist: {
+    return (new Object(__cid=-2, _int=0));
+  }
+  case Add_object: { assert false; }
+  case Addb_object: {
+    return (new Object(__cid=-2, _int=xform_size_ArrayList(self.self)._int + (new Object(__cid=-2, _int=1))._int));
+  }
+  case Get_int: { assert false; }
+  case Setb_int_object: {
+    return xform_size_ArrayList(self.self);
+  }
+  case Set_int_object: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Sortb_object: { assert false; }
+  case Size: { assert false; }
+  case Removeb_int: { assert false; }
+  case Addallb_object: { assert false; }
+  case Sort_object: { assert false; }
+  case Getithbiggest_object_int: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_remove_ArrayList_int(ArrayList self, Object i) {
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_object: { assert false; }
+  case Addb_object: { assert false; }
+  case Get_int: { assert false; }
+  case Setb_int_object: { assert false; }
+  case Set_int_object: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Sortb_object: { assert false; }
+  case Size: { assert false; }
+  case Removeb_int: { assert false; }
+  case Addallb_object: { assert false; }
+  case Sort_object: { assert false; }
+  case Getithbiggest_object_int: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_setb_ArrayList_int_Object(ArrayList self, Object i, Object e) {
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_object: { assert false; }
+  case Addb_object: { assert false; }
+  case Get_int: { assert false; }
+  case Setb_int_object: { assert false; }
+  case Set_int_object: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Sortb_object: { assert false; }
+  case Size: { assert false; }
+  case Removeb_int: { assert false; }
+  case Addallb_object: { assert false; }
+  case Sort_object: { assert false; }
+  case Getithbiggest_object_int: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_add_ArrayList_Object(ArrayList self, Object e) {
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_object: { assert false; }
+  case Addb_object: { assert false; }
+  case Get_int: { assert false; }
+  case Setb_int_object: { assert false; }
+  case Set_int_object: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Sortb_object: { assert false; }
+  case Size: { assert false; }
+  case Removeb_int: { assert false; }
+  case Addallb_object: { assert false; }
+  case Sort_object: { assert false; }
+  case Getithbiggest_object_int: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_ensureCapacity_ArrayList(ArrayList self) {
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_object: { assert false; }
+  case Addb_object: { assert false; }
+  case Get_int: { assert false; }
+  case Setb_int_object: { assert false; }
+  case Set_int_object: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Sortb_object: { assert false; }
+  case Size: { assert false; }
+  case Removeb_int: { assert false; }
+  case Addallb_object: { assert false; }
+  case Sort_object: { assert false; }
+  case Getithbiggest_object_int: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_addAll_ArrayList_Object(ArrayList self, Object a) {
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_object: { assert false; }
+  case Addb_object: { assert false; }
+  case Get_int: { assert false; }
+  case Setb_int_object: { assert false; }
+  case Set_int_object: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Sortb_object: { assert false; }
+  case Size: { assert false; }
+  case Removeb_int: { assert false; }
+  case Addallb_object: { assert false; }
+  case Sort_object: { assert false; }
+  case Getithbiggest_object_int: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_sortb_ArrayList_Object(ArrayList self, Object t) {
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_object: { assert false; }
+  case Addb_object: { assert false; }
+  case Get_int: { assert false; }
+  case Setb_int_object: { assert false; }
+  case Set_int_object: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Sortb_object: { assert false; }
+  case Size: { assert false; }
+  case Removeb_int: { assert false; }
+  case Addallb_object: { assert false; }
+  case Sort_object: { assert false; }
+  case Getithbiggest_object_int: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_arraylist_ArrayList(ArrayList self) {
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_object: { assert false; }
+  case Addb_object: { assert false; }
+  case Get_int: { assert false; }
+  case Setb_int_object: { assert false; }
+  case Set_int_object: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Sortb_object: { assert false; }
+  case Size: { assert false; }
+  case Removeb_int: { assert false; }
+  case Addallb_object: { assert false; }
+  case Sort_object: { assert false; }
+  case Getithbiggest_object_int: { assert false; }
+  case Remove_int: { assert false; }
+  case Addall_object: { assert false; }
+  }
+
+  return null;
+}

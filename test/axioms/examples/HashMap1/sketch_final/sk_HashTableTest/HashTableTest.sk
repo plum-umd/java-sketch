@@ -9,9 +9,9 @@ Object HashTableTest_HashTableTest(Object self) {
 }
 
 harness void mn_int_int_int(int __x, int __y, int __z) {
-  Object x = new Object(__cid=-2, _int=__x); 
-  Object y = new Object(__cid=-2, _int=__y); 
-  Object z = new Object(__cid=-2, _int=__z); 
+  Object x = new Object(__cid=-2, _int=__x);
+  Object y = new Object(__cid=-2, _int=__y);
+  Object z = new Object(__cid=-2, _int=__z);
 Object self = Object_Object(new Object(__cid=Object()));
   assume x._int != y._int && x._int != z._int && y._int != z._int;
   Object xx = Integer_Integer_int(new Object(__cid=Integer()), x);
@@ -64,6 +64,7 @@ void testPutAndGet_Integer_Integer_Integer(Object self, Object x, Object y, Obje
   else { 0; };
   assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? get_K@HashTable(self.classUnderTest_HashTableTest, x) : null), y);
   assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? get_K@HashTable(self.classUnderTest_HashTableTest, y) : null), x);
+
   /* assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? get_K@HashTable(self.classUnderTest_HashTableTest, z) : null), x); */
   /* Object i = Integer_Integer_int(new Object(__cid=Integer()), (new Object(__cid=-2, _int=(x.__cid == (new Object(__cid=-2, _int=Integer()))._int ? intValue@Integer(x) : null)._int + INITIAL_SIZE._int))); */
   /* if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { put_K_V@HashTable(self.classUnderTest_HashTableTest, i, y); } */

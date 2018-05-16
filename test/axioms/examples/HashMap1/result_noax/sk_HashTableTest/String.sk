@@ -5,7 +5,7 @@ Object String_String(Object self) {
 }
 
 Object String_String_char_int_int(Object self, Object ca, Object offset, Object count) {
-  if (offset._int > (new Object(__cid=-2, _int=0))._int && offset._int < ca._array_object.length._int) {
+  if (offset._int > (new Object(__cid=-2, _int=0))._int && offset._int < ca._array_char.length._int) {
     Object tmp = Wrap_Array_char(new Array_char(length=count));
     for (Object i = (new Object(__cid=-2, _int=0)); i._int < count._int; i = new Object(__cid=-2, _int=i._int + 1)) {
       tmp._array_char.A[i._int] = ca._array_char.A[i._int + offset._int];
@@ -20,7 +20,7 @@ Object String_String_char_int_int(Object self, Object ca, Object offset, Object 
 }
 
 Object String_String_byte(Object self, Object bytes) {
-  Object len = bytes._array_object.length;
+  Object len = bytes._array_char.length;
   self._value_String = Wrap_Array_char(new Array_char(length=len));
   for (Object i = (new Object(__cid=-2, _int=0)); i._int < len._int; i = new Object(__cid=-2, _int=i._int + 1)) {
     self._value_String._array_char.A[i._int] = (new Object(__cid=-3, _char=((char)(bytes._array_char.A[i._int]))))._char;
@@ -219,7 +219,7 @@ Object getBytes_String(Object str) {
   Object len = (str.__cid == (new Object(__cid=-2, _int=String()))._int ? length@String(str) : null);
   Object bytes = Wrap_Array_char(new Array_char(length=len));
   for (Object i = (new Object(__cid=-2, _int=0)); i._int < len._int; i = new Object(__cid=-2, _int=i._int + 1)) {
-    bytes._array_char.A[i._int] = (char)((str.__cid == (new Object(__cid=-2, _int=String()))._int ? charAt_int@String(str, i) : null));
+    bytes._array_char.A[i._int] = (char)((str.__cid == (new Object(__cid=-2, _int=String()))._int ? charAt_int@String(str, i) : null)._char);
   }
   return bytes;
 }
@@ -231,7 +231,7 @@ Object substring_int(Object self, Object beginIndex) {
 }
 
 Object substring_int_int(Object self, Object beginIndex, Object endIndex) {
-  assert beginIndex._int >= (new Object(__cid=-2, _int=0))._int && endIndex._int <= self._value_String._array_object.length._int;
+  assert beginIndex._int >= (new Object(__cid=-2, _int=0))._int && endIndex._int <= self._value_String._array_char.length._int;
   Object subLen = (new Object(__cid=-2, _int=endIndex._int - beginIndex._int));
   assert subLen._int > (new Object(__cid=-2, _int=0))._int;
   return ((beginIndex._int == (new Object(__cid=-2, _int=0))._int && endIndex._int == self._count_String._int) ? self : String_String_char_int_int(new Object(__cid=String()), self._value_String, beginIndex, subLen));
@@ -253,11 +253,12 @@ Object split_String_int(Object self, Object regex, Object limit) {
       next = indexOf_char_int@String(self, ch, off);
     }
     else {
-      off = self._value_String._array_object.length;
+      off = self._value_String._array_char.length;
       next = (new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1))._int));
     }
     size = new Object(__cid=-2, _int=size._int + 1);
   }
+  if (!limited._bit || size._int < limit._int) size = new Object(__cid=-2, _int=size._int + 1);
   off = (new Object(__cid=-2, _int=0));
   ch = (regex.__cid == (new Object(__cid=-2, _int=String()))._int ? charAt_int@String(regex, (new Object(__cid=-2, _int=0))) : null);
   next = indexOf_char_int@String(self, ch, off);
@@ -272,7 +273,7 @@ Object split_String_int(Object self, Object regex, Object limit) {
     }
     else {
       list._array_object.A[size._int] = substring_int_int@String(self, off, self._count_String);
-      off = self._value_String._array_object.length;
+      off = self._value_String._array_char.length;
       next = (new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1))._int));
     }
     size = new Object(__cid=-2, _int=size._int + 1);

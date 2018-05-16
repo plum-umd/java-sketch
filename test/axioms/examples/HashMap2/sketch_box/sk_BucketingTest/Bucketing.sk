@@ -1,0 +1,171 @@
+package Bucketing;
+
+Object Bucketing_Bucketing(Object self) {
+  self.size_Bucketing = (new Object(__cid=-2, _int=4));
+  self.mod_Bucketing = (new Object(__cid=-2, _int=2));
+  self.numberOfSlots_Bucketing = (new Object(__cid=-2, _int=2));
+  self.bucketHash_Bucketing = Wrap_Array_Object(new Array_Object(length=self.size_Bucketing));
+  self.overflow_Bucketing = ArrayList_ArrayList();
+  self.sizeBucket_Bucketing = Wrap_Array_int(new Array_int(length=(new Object(__cid=-2, _int=2))));
+  self.numberOfElements_Bucketing = (new Object(__cid=-2, _int=0));
+  return self;
+}
+
+Object sizeOfArray(Object self) {
+  return self.size_Bucketing;
+}
+
+void rehashng(Object self) {
+  Object temp1 = ArrayList_ArrayList();
+  for (Object i = (new Object(__cid=-2, _int=??)); i._int < (new Object(__cid=-2, _int=??))._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    Object szbkt = (new Object(__cid=-2, _int=self.sizeBucket_Bucketing._array_int.A[i._int]));
+    Object g1 = {|(szbkt | self.size_Bucketing | self.mod_Bucketing | self.numberOfSlots_Bucketing | self.numberOfElements_Bucketing)|};
+    for (Object j = (new Object(__cid=-2, _int=??)); j._int < g1._int; j = new Object(__cid=-2, _int=j._int + 1)) {
+      Object index = (new Object(__cid=-2, _int=i._int * self.numberOfSlots_Bucketing._int + j._int));
+      (temp1.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? add_Object_Object@ArrayList(temp1, Pair_Pair_K_V(new Object(__cid=Pair()), self.bucketHash_Bucketing._array_object.A[index._int].key_Pair, self.bucketHash_Bucketing._array_object.A[index._int].value_Pair)) : null); temp1 = (temp1.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? addb_Object_Object@ArrayList(temp1, Pair_Pair_K_V(new Object(__cid=Pair()), self.bucketHash_Bucketing._array_object.A[index._int].key_Pair, self.bucketHash_Bucketing._array_object.A[index._int].value_Pair)) : null);
+    }
+  }
+  Object sz = xform_size_ArrayList(self.overflow_Bucketing._arraylist);
+  /* Object sz = (self.overflow_Bucketing.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? size_Object@ArrayList(self.overflow_Bucketing) : null); */
+  Object g2 = {|(self.size_Bucketing | self.mod_Bucketing | self.numberOfSlots_Bucketing | self.numberOfElements_Bucketing | sz)|};
+  for (Object i = (new Object(__cid=-2, _int=??)); i._int < g2._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    Object tmp = xform_get_ArrayList_int(self.overflow_Bucketing._arraylist, i);
+    /* Object tmp = (self.overflow_Bucketing.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_Object_int@ArrayList(self.overflow_Bucketing, i) : null); self.overflow_Bucketing = (self.overflow_Bucketing.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? getb_Object_int@ArrayList(self.overflow_Bucketing, i) : null); */    
+    (temp1.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? add_Object_Object@ArrayList(temp1, tmp) : null); temp1 = (temp1.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? addb_Object_Object@ArrayList(temp1, tmp) : null);
+  }
+  self.size_Bucketing = (new Object(__cid=-2, _int=self.size_Bucketing._int * (new Object(__cid=-2, _int=??))._int));
+  self.numberOfSlots_Bucketing = (new Object(__cid=-2, _int=self.numberOfSlots_Bucketing._int * (new Object(__cid=-2, _int=??))._int));
+  self.mod_Bucketing = (new Object(__cid=-2, _int=self.mod_Bucketing._int * (new Object(__cid=-2, _int=??))._int));
+  self.bucketHash_Bucketing = Wrap_Array_Object(new Array_Object(length=self.size_Bucketing));
+  self.sizeBucket_Bucketing = Wrap_Array_int(new Array_int(length=self.mod_Bucketing));
+  self.numberOfElements_Bucketing = (new Object(__cid=-2, _int=??));
+  Object sz2 = xform_size_ArrayList(temp1._arraylist);
+  /* Object sz2 = (temp1.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? size_Object@ArrayList(temp1) : null); */
+  Object g3 = {|(self.size_Bucketing | self.mod_Bucketing | self.numberOfSlots_Bucketing | self.numberOfElements_Bucketing | sz2)|};
+  for (Object i = (new Object(__cid=-2, _int=??)); i._int < g3._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    Object tmp = xform_get_ArrayList_int(temp1._arraylist, i);
+    /* Object tmp = (temp1.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_Object_int@ArrayList(temp1, i) : null); temp1 = (temp1.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? getb_Object_int@ArrayList(temp1, i) : null); */
+    Object key = tmp.key_Pair;
+    Object val = tmp.value_Pair;
+    put_K_V@Bucketing(self, key, val);
+  }
+}
+
+void put_K_V(Object self, Object key, Object value) {
+  delete_K@Bucketing(self, key);
+  self.integerKey_Bucketing = (new Object(__cid=-2, _int=(key.__cid == (new Object(__cid=-2, _int=Integer()))._int ? hashCode@Integer(key) : key.__cid == (new Object(__cid=-2, _int=Bucketing()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=BucketingTest()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Pair()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=String()))._int ? hashCode@String(key) : key.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Assert()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Character()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Object()))._int ? hashCode@Object(key) : null)._int % self.mod_Bucketing._int));
+  if (self.integerKey_Bucketing._int < (new Object(__cid=-2, _int=??))._int) {
+    self.integerKey_Bucketing = (new Object(__cid=-2, _int=self.integerKey_Bucketing._int * (new Object(__cid=-2, _int=??))._int));
+  }
+  if (self.sizeBucket_Bucketing._array_int.A[self.integerKey_Bucketing._int] != self.numberOfSlots_Bucketing._int) {
+    Object index = (new Object(__cid=-2, _int=self.numberOfSlots_Bucketing._int * self.integerKey_Bucketing._int + self.sizeBucket_Bucketing._array_int.A[self.integerKey_Bucketing._int]));
+    self.bucketHash_Bucketing._array_object.A[index._int] = Pair_Pair_K_V(new Object(__cid=Pair()), key, value);
+    self.sizeBucket_Bucketing._array_int.A[self.integerKey_Bucketing._int];
+  }
+  else {
+    (self.overflow_Bucketing.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? add_Object_Object@ArrayList(self.overflow_Bucketing, Pair_Pair_K_V(new Object(__cid=Pair()), key, value)) : null); self.overflow_Bucketing = (self.overflow_Bucketing.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? addb_Object_Object@ArrayList(self.overflow_Bucketing, Pair_Pair_K_V(new Object(__cid=Pair()), key, value)) : null);
+  }
+  self.numberOfElements_Bucketing = new Object(__cid=-2, _int=self.numberOfElements_Bucketing._int + 1);
+  self.rehash_Bucketing = (new Object(__cid=-6, _double=(double)self.numberOfElements_Bucketing._int / (double)self.size_Bucketing._int));
+  if (self.rehash_Bucketing._double > (new Object(__cid=-6, _double=0.75))._double) rehashng@Bucketing(self);
+}
+
+Object get_K(Object self, Object key) {
+  self.integerKey_Bucketing = (new Object(__cid=-2, _int=(key.__cid == (new Object(__cid=-2, _int=Integer()))._int ? hashCode@Integer(key) : key.__cid == (new Object(__cid=-2, _int=Bucketing()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=BucketingTest()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Pair()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=String()))._int ? hashCode@String(key) : key.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Assert()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Character()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Object()))._int ? hashCode@Object(key) : null)._int % self.mod_Bucketing._int));
+  if (self.integerKey_Bucketing._int < (new Object(__cid=-2, _int=??))._int) {
+    self.integerKey_Bucketing = (new Object(__cid=-2, _int=self.integerKey_Bucketing._int * (new Object(__cid=-2, _int=??))._int));
+  }
+  self.index_Bucketing = (new Object(__cid=-2, _int=self.numberOfSlots_Bucketing._int * self.integerKey_Bucketing._int));
+  Object g3 = {|(self.size_Bucketing | self.mod_Bucketing | self.numberOfSlots_Bucketing | self.numberOfElements_Bucketing | self.integerKey_Bucketing | self.index_Bucketing)|};
+  Object add = (new Object(__cid=-2, _int=self.index_Bucketing._int + self.sizeBucket_Bucketing._array_int.A[self.integerKey_Bucketing._int]));
+  Object g4 = {|(self.size_Bucketing | self.mod_Bucketing | self.numberOfSlots_Bucketing | self.numberOfElements_Bucketing | self.integerKey_Bucketing | self.index_Bucketing | add)|};
+  for (Object i = g3; i._int < g4._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    Object tmp = self.bucketHash_Bucketing._array_object.A[i._int];
+    Object tmp_key = tmp.key_Pair;
+    Object b = (tmp_key.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=Bucketing()))._int ? equals_Object@Object(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=BucketingTest()))._int ? equals_Object@Object(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=Pair()))._int ? equals_Object@Object(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(tmp_key, key) : null);
+    if ({|(b | (new Object(__cid=-4, _bit=tmp_key == key)))|}._bit) {
+      return tmp.value_Pair;
+    }
+  }
+  if (self.sizeBucket_Bucketing._array_int.A[self.integerKey_Bucketing._int] == self.numberOfSlots_Bucketing._int) {
+    Object sz = xform_size_ArrayList(self.overflow_Bucketing._arraylist);
+    /* Object sz = (self.overflow_Bucketing.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? size_Object@ArrayList(self.overflow_Bucketing) : null); */
+    Object g5 = {|(self.size_Bucketing | self.mod_Bucketing | self.numberOfSlots_Bucketing | self.numberOfElements_Bucketing | self.integerKey_Bucketing | self.index_Bucketing | sz)|};
+    for (Object i = (new Object(__cid=-2, _int=??)); i._int < g5._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+      Object tmp = xform_get_ArrayList_int(self.overflow_Bucketing._arraylist, i);
+      /* Object tmp = (self.overflow_Bucketing.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_Object_int@ArrayList(self.overflow_Bucketing, i) : null); self.overflow_Bucketing = (self.overflow_Bucketing.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? getb_Object_int@ArrayList(self.overflow_Bucketing, i) : null); */
+      Object tmp_key = tmp.key_Pair;
+      Object b = (tmp_key.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=Bucketing()))._int ? equals_Object@Object(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=BucketingTest()))._int ? equals_Object@Object(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=Pair()))._int ? equals_Object@Object(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(tmp_key, key) : null);
+      if ({|(b | (new Object(__cid=-4, _bit=tmp_key == key)))|}._bit) {
+        return tmp.value_Pair;
+      }
+    }
+  }
+  return null;
+}
+
+void delete_K(Object self, Object key) {
+  self.integerKey_Bucketing = (new Object(__cid=-2, _int=(key.__cid == (new Object(__cid=-2, _int=Integer()))._int ? hashCode@Integer(key) : key.__cid == (new Object(__cid=-2, _int=Bucketing()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=BucketingTest()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Pair()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=String()))._int ? hashCode@String(key) : key.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Assert()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Character()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Object()))._int ? hashCode@Object(key) : null)._int % self.mod_Bucketing._int));
+  if (self.integerKey_Bucketing._int < (new Object(__cid=-2, _int=0))._int) {
+    self.integerKey_Bucketing = (new Object(__cid=-2, _int=self.integerKey_Bucketing._int * -(new Object(__cid=-2, _int=1))._int));
+  }
+  self.index_Bucketing = (new Object(__cid=-2, _int=self.numberOfSlots_Bucketing._int * self.integerKey_Bucketing._int));
+  Object flag = (new Object(__cid=-4, _bit=false));
+  Object g3 = {|(self.size_Bucketing | self.mod_Bucketing | self.numberOfSlots_Bucketing | self.numberOfElements_Bucketing | self.integerKey_Bucketing | self.index_Bucketing)|};
+  Object add = (new Object(__cid=-2, _int=self.index_Bucketing._int + self.sizeBucket_Bucketing._array_int.A[self.integerKey_Bucketing._int]));
+  Object g4 = {|(self.size_Bucketing | self.mod_Bucketing | self.numberOfSlots_Bucketing | self.numberOfElements_Bucketing | self.integerKey_Bucketing | self.index_Bucketing | add)|};
+  for (Object i = g3; i._int < g4._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    Object tmp = self.bucketHash_Bucketing._array_object.A[i._int];
+    Object tmp_key = tmp.key_Pair;
+    Object b = (tmp_key.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=Bucketing()))._int ? equals_Object@Object(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=BucketingTest()))._int ? equals_Object@Object(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=Pair()))._int ? equals_Object@Object(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(tmp_key, key) : null);
+    if ({|(b | (new Object(__cid=-4, _bit=tmp_key == key)))|}._bit) {
+      flag = (new Object(__cid=-4, _bit=true));
+    }
+    else if (flag._bit) {
+      self.bucketHash_Bucketing._array_object.A[i._int - (new Object(__cid=-2, _int=??))._int] = Pair_Pair_K_V(new Object(__cid=Pair()), self.bucketHash_Bucketing._array_object.A[i._int].key_Pair, self.bucketHash_Bucketing._array_object.A[i._int].value_Pair);
+    }
+  }
+  if (flag._bit) {
+    self.numberOfElements_Bucketing = new Object(__cid=-2, _int=self.numberOfElements_Bucketing._int - 1);
+    self.sizeBucket_Bucketing._array_int.A[self.integerKey_Bucketing._int];
+  }
+  else if (self.sizeBucket_Bucketing._array_int.A[self.integerKey_Bucketing._int] == self.numberOfSlots_Bucketing._int) {
+    Object sz = xform_size_ArrayList(self.overflow_Bucketing._arraylist);
+    /* Object sz = (self.overflow_Bucketing.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? size_Object@ArrayList(self.overflow_Bucketing) : null); */
+    Object g5 = {|(self.size_Bucketing | self.mod_Bucketing | self.numberOfSlots_Bucketing | self.numberOfElements_Bucketing | self.integerKey_Bucketing | self.index_Bucketing | sz)|};
+    for (Object i = (new Object(__cid=-2, _int=??)); i._int < g5._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+      Object tmp = xform_get_ArrayList_int(self.overflow_Bucketing._arraylist, i);
+      /* Object tmp = (self.overflow_Bucketing.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_Object_int@ArrayList(self.overflow_Bucketing, i) : null); self.overflow_Bucketing = (self.overflow_Bucketing.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? getb_Object_int@ArrayList(self.overflow_Bucketing, i) : null); */
+      Object tmp_key = tmp.key_Pair;
+      Object b = (tmp_key.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=Bucketing()))._int ? equals_Object@Object(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=BucketingTest()))._int ? equals_Object@Object(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=Pair()))._int ? equals_Object@Object(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(tmp_key, key) : tmp_key.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(tmp_key, key) : null);
+      if ({|(b | (new Object(__cid=-4, _bit=tmp_key == key)))|}._bit) {
+        (self.overflow_Bucketing.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? remove_Object_int@ArrayList(self.overflow_Bucketing, i) : null); self.overflow_Bucketing = (self.overflow_Bucketing.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? removeb_Object_int@ArrayList(self.overflow_Bucketing, i) : null);
+        self.numberOfElements_Bucketing = new Object(__cid=-2, _int=self.numberOfElements_Bucketing._int - 1);
+        return;
+      }
+    }
+  }
+}
+
+Object containsKey_K(Object self, Object key) {
+  Object check = get_K@Bucketing(self, key);
+  if (check == null) return (new Object(__cid=-4, _bit=false));
+  return (new Object(__cid=-4, _bit=true));
+}
+
+Object isEmpty(Object self) {
+  if (self.numberOfElements_Bucketing._int == (new Object(__cid=-2, _int=??))._int) return (new Object(__cid=-4, _bit=true));
+  return (new Object(__cid=-4, _bit=false));
+}
+
+Object size(Object self) {
+  return self.numberOfElements_Bucketing;
+}
+
+void clear(Object self) {
+  self.bucketHash_Bucketing = Wrap_Array_Object(new Array_Object(length=self.size_Bucketing));
+  self.overflow_Bucketing = ArrayList_ArrayList();
+  self.sizeBucket_Bucketing = Wrap_Array_int(new Array_int(length=(new Object(__cid=-2, _int=2))));
+  self.numberOfElements_Bucketing = (new Object(__cid=-2, _int=0));
+}
+

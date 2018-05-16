@@ -2168,7 +2168,8 @@ class Translator(object):
         self.buf.write('\n')
         self.indented = False
 
-    def printSepList(self, args, **kwargs):
+    def printSepList(self, args, xform_name = "", **kwargs):
+        # if xform_name != "": print(map(lambda n: n, args))
         if args:
             lenn = len(args)
             for i in xrange(lenn):
@@ -2226,7 +2227,7 @@ class Translator(object):
                            args[i].accept(self, **kwargs)
                     if i+1 < lenn: self.printt('{} '.format(kwargs.get('sep', ',')))
         else:
-            self.printSepList(args)
+            self.printSepList(args, xform_name)
         self.printt(')')
         
     def printMods(self, mods, **kwargs):

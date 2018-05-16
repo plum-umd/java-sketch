@@ -13,7 +13,8 @@ public class BufferedReader {
     axiom Object readLine(Object BufferedReader(File f)) {
     	// String[] parts = f.data.split("\n");
     	// return parts[0];	
-	return f.path.splitGetEl("\n", 0);
+	// return f.data.splitGetEl("\n", 0);
+	return f.get(0);
     }
 
     axiom Object readLine(Object readLine!(BufferedReader b)) {
@@ -28,7 +29,8 @@ public class BufferedReader {
     	// String[] parts = f.data.split("\n");
     	// return i < parts.length ? parts[i] : null;
 	// return parts[i];
-	return f.path.splitGetEl("\n", i);	
+	// return f.data.splitGetEl("\n", i);	
+	return f.get(i);
     }
 
 }

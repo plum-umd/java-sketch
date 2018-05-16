@@ -28,8 +28,8 @@ public class RomlistParser {
 	private int missingVideo;
 	private int missingCart;
 	private int missingBox;
-	private List<RomlistGame> missingGames;
-	private List<RomlistGame> games;
+	private ArrayList<RomlistGame> missingGames;
+	private ArrayList<RomlistGame> games;
 	private boolean complete;
 	private String description;
 	private String romPath;
@@ -48,20 +48,71 @@ public class RomlistParser {
 	    this.romPath = "";
 	}
     
-	public List<RomlistGame> parse(File romlistFile) throws Exception {
+	public ArrayList<RomlistGame> parse(File romlistFile) throws Exception {
 		return parse(romlistFile, null);
 	}
 
-	public List<RomlistGame> parse(File romlistFile, String folderToSearch) throws Exception {
+	public ArrayList<RomlistGame> parse(File romlistFile, String folderToSearch) throws Exception {
 		return parse(romlistFile, folderToSearch, true);
 	}
 
-        generator public String genRead(BufferedReader br) {
+    generator public void genRead(BufferedReader br, File romlistFile) {
 	    String line = null;
 	    if (??) {
-		line = br.readLine();
+		line = br.readLine();		
 	    }
-	    return line;
+	    if (??) {
+		while (line != null) {
+		    genRead(br, romlistFile);
+		}
+	    }
+	    if (??) {
+		if (!line.startsWith("#")) {
+			String[] data = line.split(";", -1);
+			if (data.length >= 10) {
+			// if (data.length >= 2) {
+			     RomlistGame game = new RomlistGame();
+			     game.setRomlist(romlistFile.getName());
+			     game.setName(data[0]);
+			     game.setTitle(data[1]);
+			     game.setEmulator(data[2]);
+			     game.setCloneOf(data[3]);
+			     game.setYear(data[4]);
+			     game.setManufacturer(data[5]);
+			     game.setCategory(data[6]);
+			     game.setPlayers(data[7]);
+			     game.setRotation(data[8]);
+			     game.setControl(data[9]);
+			     if (data.length > 10) {
+				     game.setStatus(data[10]);
+			     }
+			     if (data.length > 11) {
+				     game.setDisplayCount(data[11]);
+			     }
+			     if (data.length > 12) {
+				     game.setDisplayType(data[12]);
+			     }
+			     if (data.length > 13) {
+				     game.setAltRomname(data[13]);
+			     }
+			     if (data.length > 14) {
+				     game.setAltTitle(data[14]);
+			     }
+			     if (data.length > 15) {
+				     game.setExtra(data[15]);
+			     }
+			     if (data.length > 16) {
+				     game.setButtons(data[16]);
+			     }
+
+			     game.setAvailable(false);
+			     games.add(game);
+			}
+		}
+	    }
+	    if (??) {
+		genRead(br, romlistFile);
+	    }
 	}
     
 	/**
@@ -70,7 +121,7 @@ public class RomlistParser {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<RomlistGame> parse(File romlistFile, String folderToSearch, boolean lookAvailable) throws Exception {
+	public ArrayList<RomlistGame> parse(File romlistFile, String folderToSearch, boolean lookAvailable) throws Exception {
 		if (!romlistFile.exists()) {
 			return new ArrayList<RomlistGame>();
 		}
@@ -84,73 +135,15 @@ public class RomlistParser {
 		// InputStreamReader isr = new InputStreamReader(fis, Charset.forName("UTF-8"));
 		BufferedReader br = new BufferedReader(romlistFile);		
 		// line = br.readLine();
-		line = genRead(br);
-		while (line != null) {
-			if (!line.startsWith("#")) {
-			        String[] data = line.split(";", -1);
-				if (data.length >= 10) {
-				// if (data.length >= 2) {
-				     RomlistGame game = new RomlistGame();
-				     game.setRomlist(romlistFile.getName());
-				     game.setName(data[0]);
-				     game.setTitle(data[1]);
-				     game.setEmulator(data[2]);
-				     game.setCloneOf(data[3]);
-				     game.setYear(data[4]);
-				     game.setManufacturer(data[5]);
-				     game.setCategory(data[6]);
-				     game.setPlayers(data[7]);
-				     game.setRotation(data[8]);
-				     game.setControl(data[9]);
-				     if (data.length > 10) {
-					     game.setStatus(data[10]);
-				     }
-				     if (data.length > 11) {
-					     game.setDisplayCount(data[11]);
-				     }
-				     if (data.length > 12) {
-					     game.setDisplayType(data[12]);
-				     }
-				     if (data.length > 13) {
-					     game.setAltRomname(data[13]);
-				     }
-				     if (data.length > 14) {
-					     game.setAltTitle(data[14]);
-				     }
-				     if (data.length > 15) {
-					     game.setExtra(data[15]);
-				     }
-				     if (data.length > 16) {
-					     game.setButtons(data[16]);
-				     }
+		// line = genRead(br);
+		genRead(br, romlistFile);
 
-				     game.setAvailable(false);
-				     // if (lookAvailable) {
-				     // 	EmulatorConfigFile ecf = new EmulatorConfigFile();
-				     // 	if (!ecf.readConfig(data[2])) {
-				     // 		System.out.println("WARNING!!!! Emulator config " + data[2] + " NOT FOUND! in " + romlistFile);
-				     // 		continue;
-				     // 	}
-
-				     // 	if (this.checkGameAvailability(game, ecf, data, folderToSearch)) {
-				     // 		this.romPath = ecf.getRompath();
-				     // 		gamesAvailable++;
-				     // 	}
-				     // 	this.checkGameMediaAvailability(game, ecf, data);
-				     // 	this.checkGameDatabaseAvailability(game, ecf, data);
-				     // }
-
-				     games.add(game);
-				}
-			}
-			line = br.readLine();			
-		}
 		this.totalGames = games.size();
 		this.totalGamesAvailable = gamesAvailable;
 
 		// Check if there is metadata for the romlist.
 		String a1 = romlistFile.getParent();
-		String a2 = a1.concat("/database/");
+		String a2 = a1.concat("/db/");
 		String a3 = a2.concat(romlistFile.getName());
 		File nf = new File(a3);
 		// if (nf.exists()) {
@@ -308,7 +301,7 @@ public class RomlistParser {
 		return missingWheel;
 	}
 
-	public List<RomlistGame> getGames() {
+	public ArrayList<RomlistGame> getGames() {
 		return games;
 	}
 
@@ -332,11 +325,11 @@ public class RomlistParser {
 		this.missingVideo = missingVideo;
 	}
 
-	public List<RomlistGame> getMissingGames() {
+	public ArrayList<RomlistGame> getMissingGames() {
 		return missingGames;
 	}
 
-	public void setMissingGames(List<RomlistGame> missingGames) {
+	public void setMissingGames(ArrayList<RomlistGame> missingGames) {
 		this.missingGames = missingGames;
 	}
 

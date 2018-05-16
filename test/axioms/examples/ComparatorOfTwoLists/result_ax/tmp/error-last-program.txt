@@ -1,0 +1,4642 @@
+/* BEGIN PACKAGE PrintStream*/
+package PrintStream{
+  struct PrintStream {
+      @Immutable()
+  }
+  struct Printstream extends PrintStream@PrintStream {
+      @Immutable()
+  }
+  struct Printstream_fileoutputstream extends PrintStream@PrintStream {
+      Object fos;
+      @Immutable()
+  }
+  struct Close extends PrintStream@PrintStream {
+      PrintStream self;
+      @Immutable()
+  }
+  struct Closeb extends PrintStream@PrintStream {
+      PrintStream self;
+      @Immutable()
+  }
+  struct Printb_string extends PrintStream@PrintStream {
+      PrintStream self;
+      Object s;
+      @Immutable()
+  }
+  struct Print_string extends PrintStream@PrintStream {
+      PrintStream self;
+      Object s;
+      @Immutable()
+  }
+  /*PrintStream.sk:16*/
+  
+Object PrintStream_Object_FileOutputStream (Object fos)/*PrintStream.sk:16*/
+  {
+    return new Object(__cid=PrintStream(), _printstream=new Printstream_fileoutputstream(fos=fos));
+  }
+  /*PrintStream.sk:12*/
+  
+Object PrintStream_PrintStream ()/*PrintStream.sk:12*/
+  {
+    return new Object(__cid=PrintStream(), _printstream=new Printstream());
+  }
+  /*PrintStream.sk:20*/
+  
+Object close_Object (Object self)/*PrintStream.sk:20*/
+  {
+    return new Object(__cid=PrintStream(), _printstream=new Close(self=self._printstream));
+  }
+  /*PrintStream.sk:24*/
+  
+Object closeb_Object (Object self)/*PrintStream.sk:24*/
+  {
+    return new Object(__cid=PrintStream(), _printstream=new Closeb(self=self._printstream));
+  }
+  /*PrintStream.sk:32*/
+  
+Object print_Object_String (Object self, Object s)/*PrintStream.sk:32*/
+  {
+    return new Object(__cid=PrintStream(), _printstream=new Print_string(self=self._printstream, s=s));
+  }
+  /*PrintStream.sk:28*/
+  
+Object printb_Object_String (Object self, Object s)/*PrintStream.sk:28*/
+  {
+    return new Object(__cid=PrintStream(), _printstream=new Printb_string(self=self._printstream, s=s));
+  }
+  /*PrintStream.sk:36*/
+  
+Object xform_PrintStream (PrintStream self)/*PrintStream.sk:36*/
+  {
+    switch(self){/*PrintStream.sk:37*/
+      case Printstream:
+      {
+        {
+          return xform_printstream_PrintStream(self);
+        }
+      }
+      case Printstream_fileoutputstream:
+      {
+        {
+          return xform_PrintStream_PrintStream_FileOutputStream(self, self.fos);
+        }
+      }
+      case Close:
+      {
+        {
+          return xform_close_PrintStream(self.self);
+        }
+      }
+      case Closeb:
+      {
+        {
+          return xform_closeb_PrintStream(self.self);
+        }
+      }
+      case Printb_string:
+      {
+        {
+          return xform_printb_PrintStream_String(self.self, self.s);
+        }
+      }
+      case Print_string:
+      {
+        {
+          return xform_print_PrintStream_String(self.self, self.s);
+        }
+      }
+    }
+    return null;
+  }
+  /*PrintStream.sk:84*/
+  
+Object xform_PrintStream_PrintStream_FileOutputStream (PrintStream self, Object fos)/*PrintStream.sk:84*/
+  {
+    switch(self){/*PrintStream.sk:85*/
+      case Printstream:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:86 (0)
+        }
+      }
+      case Printstream_fileoutputstream:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:87 (0)
+        }
+      }
+      case Close:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:88 (0)
+        }
+      }
+      case Closeb:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:89 (0)
+        }
+      }
+      case Printb_string:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:90 (0)
+        }
+      }
+      case Print_string:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:91 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*PrintStream.sk:72*/
+  
+Object xform_close_PrintStream (PrintStream self)/*PrintStream.sk:72*/
+  {
+    switch(self){/*PrintStream.sk:73*/
+      case Printstream:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:74 (0)
+        }
+      }
+      case Printstream_fileoutputstream:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:75 (0)
+        }
+      }
+      case Close:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:76 (0)
+        }
+      }
+      case Closeb:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:77 (0)
+        }
+      }
+      case Printb_string:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:78 (0)
+        }
+      }
+      case Print_string:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:79 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*PrintStream.sk:60*/
+  
+Object xform_closeb_PrintStream (PrintStream self)/*PrintStream.sk:60*/
+  {
+    switch(self){/*PrintStream.sk:61*/
+      case Printstream:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:62 (0)
+        }
+      }
+      case Printstream_fileoutputstream:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:63 (0)
+        }
+      }
+      case Close:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:64 (0)
+        }
+      }
+      case Closeb:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:65 (0)
+        }
+      }
+      case Printb_string:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:66 (0)
+        }
+      }
+      case Print_string:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:67 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*PrintStream.sk:108*/
+  
+Object xform_print_PrintStream_String (PrintStream self, Object s)/*PrintStream.sk:108*/
+  {
+    switch(self){/*PrintStream.sk:109*/
+      case Printstream:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:110 (0)
+        }
+      }
+      case Printstream_fileoutputstream:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:111 (0)
+        }
+      }
+      case Close:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:112 (0)
+        }
+      }
+      case Closeb:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:113 (0)
+        }
+      }
+      case Printb_string:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:114 (0)
+        }
+      }
+      case Print_string:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:115 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*PrintStream.sk:96*/
+  
+Object xform_printb_PrintStream_String (PrintStream self, Object s)/*PrintStream.sk:96*/
+  {
+    switch(self){/*PrintStream.sk:97*/
+      case Printstream:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:98 (0)
+        }
+      }
+      case Printstream_fileoutputstream:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:99 (0)
+        }
+      }
+      case Close:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:100 (0)
+        }
+      }
+      case Closeb:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:101 (0)
+        }
+      }
+      case Printb_string:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:102 (0)
+        }
+      }
+      case Print_string:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:103 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*PrintStream.sk:120*/
+  
+Object xform_printstream_PrintStream (PrintStream self)/*PrintStream.sk:120*/
+  {
+    switch(self){/*PrintStream.sk:121*/
+      case Printstream:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:122 (0)
+        }
+      }
+      case Printstream_fileoutputstream:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:123 (0)
+        }
+      }
+      case Close:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:124 (0)
+        }
+      }
+      case Closeb:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:125 (0)
+        }
+      }
+      case Printb_string:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:126 (0)
+        }
+      }
+      case Print_string:
+      {
+        {
+          assert (0); //Assert at PrintStream.sk:127 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /* END PACKAGE PrintStream*/
+}
+/* BEGIN PACKAGE FileWriterr*/
+package FileWriterr{
+  /*FileWriterr.sk:3*/
+  
+Object FileWriterr_FileWriterr (Object self)/*FileWriterr.sk:3*/
+  {
+    return self;
+  }
+  /*FileWriterr.sk:7*/
+  
+Object FileWriterr_FileWriterr_String (Object self, Object fname)/*FileWriterr.sk:7*/
+  {
+    self.fname_FileWriterr = fname;
+    return self;
+  }
+  /* END PACKAGE FileWriterr*/
+}
+/* BEGIN PACKAGE ANONYMOUS*/
+/* END PACKAGE ANONYMOUS*/
+/* BEGIN PACKAGE Tester*/
+package Tester{
+  /*Tester.sk:3*/
+  
+Object Tester_Tester (Object self)/*Tester.sk:3*/
+  {
+    return self;
+  }
+  /*Tester.sk:7*/
+  
+harness void mn ()/*Tester.sk:7*/
+  {
+    Object self = Object_Object(new Object(__cid=Object()))//{};
+  }
+  /* END PACKAGE Tester*/
+}
+/* BEGIN PACKAGE Character*/
+package Character{
+  /*Character.sk:3*/
+  
+Object Character_Character (Object self)/*Character.sk:3*/
+  {
+    return self;
+  }
+  /*Character.sk:7*/
+  
+Object Character_Character_char (Object self, Object value)/*Character.sk:7*/
+  {
+    self.value_Character = value;
+    return self;
+  }
+  /*Character.sk:12*/
+  
+Object charValue (Object self)/*Character.sk:12*/
+  {
+    return self.value_Character;
+  }
+  /*Character.sk:16*/
+  
+Object equals_Object (Object self, Object obj)/*Character.sk:16*/
+  {
+    if((obj.__cid) == (Character()))/*Character.sk:17*/
+    {
+      {
+        return new Object(__cid=-4, _bit=(self.value_Character._char) == (((obj.__cid) == (new Object(__cid=-2, _int=Character())._int) ? charValue@Character(obj) : null)._char));
+      }
+    }
+    return new Object(__cid=-4, _bit=0);
+  }
+  /* END PACKAGE Character*/
+}
+/* BEGIN PACKAGE StringBuilder*/
+package StringBuilder{
+  /*StringBuilder.sk:3*/
+  
+Object StringBuilder_StringBuilder (Object self)/*StringBuilder.sk:3*/
+  {
+    self._value_StringBuilder = Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1)));
+    self._count_StringBuilder = new Object(__cid=-2, _int=0);
+    return self;
+  }
+  /*StringBuilder.sk:9*/
+  
+Object StringBuilder_StringBuilder_String (Object self, Object str)/*StringBuilder.sk:9*/
+  {
+    self._value_StringBuilder = str._value_String;
+    self._count_StringBuilder = ((str.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(str) : null);
+    return self;
+  }
+  /*StringBuilder.sk:31*/
+  
+void append_String (Object self, Object s)/*StringBuilder.sk:31*/
+  {
+    Object len = ((s.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(s) : null);
+    Object new_value_len = new Object(__cid=-2, _int=(self._count_StringBuilder._int) + (len._int));
+    Object new_value = Wrap_Array_char(new Array_char(length=new_value_len));
+    {
+      Object i = new Object(__cid=-2, _int=0);
+      bit __sa0 = (i._int) < (self._count_StringBuilder._int);
+      while(__sa0)
+      {
+        {
+          {
+            new_value._array_char.A[i._int] = self._value_StringBuilder._array_char.A[i._int];
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) + 1);
+        __sa0 = (i._int) < (self._count_StringBuilder._int);
+      }
+    }
+    {
+      Object i = new Object(__cid=-2, _int=0);
+      bit __sa1 = (i._int) < (len._int);
+      while(__sa1)
+      {
+        {
+          {
+            new_value._array_char.A[(self._count_StringBuilder._int) + (i._int)] = ((s.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(s, i) : null)._char;
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) + 1);
+        __sa1 = (i._int) < (len._int);
+      }
+    }
+    self._value_StringBuilder = new_value;
+    self._count_StringBuilder = new_value_len;
+  }
+  /*StringBuilder.sk:45*/
+  
+void append_char (Object self, Object c)/*StringBuilder.sk:45*/
+  {
+    Object new_value_len = new Object(__cid=-2, _int=(self._count_StringBuilder._int) + (new Object(__cid=-2, _int=1)._int));
+    Object new_value = Wrap_Array_char(new Array_char(length=new_value_len));
+    {
+      Object i = new Object(__cid=-2, _int=0);
+      bit __sa2 = (i._int) < (self._count_StringBuilder._int);
+      while(__sa2)
+      {
+        {
+          {
+            new_value._array_char.A[i._int] = self._value_StringBuilder._array_char.A[i._int];
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) + 1);
+        __sa2 = (i._int) < (self._count_StringBuilder._int);
+      }
+    }
+    new_value._array_char.A[self._count_StringBuilder._int] = c._char;
+    self._value_StringBuilder = new_value;
+    self._count_StringBuilder = new_value_len;
+  }
+  /*StringBuilder.sk:15*/
+  
+Object charAt_int (Object self, Object index)/*StringBuilder.sk:15*/
+  {
+    if(((new Object(__cid=-2, _int=0)._int) <= (index._int)) && ((index._int) < (self._count_StringBuilder._int)))/*StringBuilder.sk:16*/
+    {
+      return new Object(__cid=-3, _char=self._value_StringBuilder._array_char.A[index._int]);
+    }
+  }
+  /*StringBuilder.sk:19*/
+  
+Object length (Object self)/*StringBuilder.sk:19*/
+  {
+    return self._count_StringBuilder;
+  }
+  /*StringBuilder.sk:27*/
+  
+void setCharAt_int_char (Object self, Object i, Object c)/*StringBuilder.sk:27*/
+  {
+    self._value_StringBuilder._array_char.A[i._int] = c._char;
+  }
+  /*StringBuilder.sk:23*/
+  
+Object toString (Object self)/*StringBuilder.sk:23*/
+  {
+    return String_String_char_int_int(new Object(__cid=String()), self._value_StringBuilder, new Object(__cid=-2, _int=0), self._count_StringBuilder)//{};
+  }
+  /* END PACKAGE StringBuilder*/
+}
+/* BEGIN PACKAGE CharSequence*/
+package CharSequence{
+  /*CharSequence.sk:3*/
+  
+Object CharSequence_CharSequence (Object self)/*CharSequence.sk:3*/
+  {
+    return self;
+  }
+  /* END PACKAGE CharSequence*/
+}
+/* BEGIN PACKAGE ArrayList*/
+package ArrayList{
+  struct ArrayList {
+      @Immutable()
+  }
+  struct Arraylist extends ArrayList@ArrayList {
+      @Immutable()
+  }
+  struct Add_string extends ArrayList@ArrayList {
+      ArrayList self;
+      Object e;
+      @Immutable()
+  }
+  struct Addb_string extends ArrayList@ArrayList {
+      ArrayList self;
+      Object e;
+      @Immutable()
+  }
+  struct Get_int extends ArrayList@ArrayList {
+      ArrayList self;
+      Object i;
+      @Immutable()
+  }
+  struct Getfirsti_int_string_int_int extends ArrayList@ArrayList {
+      ArrayList self;
+      Object i;
+      Object es;
+      Object rs;
+      Object r;
+      @Immutable()
+  }
+  struct Setb_int_string extends ArrayList@ArrayList {
+      ArrayList self;
+      Object i;
+      Object e;
+      @Immutable()
+  }
+  struct Set_int_string extends ArrayList@ArrayList {
+      ArrayList self;
+      Object i;
+      Object e;
+      @Immutable()
+  }
+  struct Ensurecapacity extends ArrayList@ArrayList {
+      ArrayList self;
+      @Immutable()
+  }
+  struct Sortb_object extends ArrayList@ArrayList {
+      ArrayList self;
+      Object b;
+      @Immutable()
+  }
+  struct Removeb_int extends ArrayList@ArrayList {
+      ArrayList self;
+      Object i;
+      @Immutable()
+  }
+  struct Addallb_arraylist extends ArrayList@ArrayList {
+      ArrayList self;
+      Object e;
+      @Immutable()
+  }
+  struct Size extends ArrayList@ArrayList {
+      ArrayList self;
+      @Immutable()
+  }
+  struct Sort_object extends ArrayList@ArrayList {
+      ArrayList self;
+      Object b;
+      @Immutable()
+  }
+  struct Remove_int extends ArrayList@ArrayList {
+      ArrayList self;
+      Object i;
+      @Immutable()
+  }
+  struct Addall_arraylist extends ArrayList@ArrayList {
+      ArrayList self;
+      Object e;
+      @Immutable()
+  }
+  /*ArrayList.sk:21*/
+  
+Object ArrayList_ArrayList ()/*ArrayList.sk:21*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Arraylist());
+  }
+  /*ArrayList.sk:77*/
+  
+Object addAll_Object_ArrayList (Object self, Object e)/*ArrayList.sk:77*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Addall_arraylist(self=self._arraylist, e=e));
+  }
+  /*ArrayList.sk:61*/
+  
+Object addAllb_Object_ArrayList (Object self, Object e)/*ArrayList.sk:61*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Addallb_arraylist(self=self._arraylist, e=e));
+  }
+  /*ArrayList.sk:25*/
+  
+Object add_Object_String (Object self, Object e)/*ArrayList.sk:25*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Add_string(self=self._arraylist, e=e));
+  }
+  /*ArrayList.sk:29*/
+  
+Object addb_Object_String (Object self, Object e)/*ArrayList.sk:29*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Addb_string(self=self._arraylist, e=e));
+  }
+  /*ArrayList.sk:49*/
+  
+Object ensureCapacity_Object (Object self)/*ArrayList.sk:49*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Ensurecapacity(self=self._arraylist));
+  }
+  /*ArrayList.sk:37*/
+  
+Object getFirstI_Object_int_String_int_int (Object self, Object i, Object es, Object rs, Object r)/*ArrayList.sk:37*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Getfirsti_int_string_int_int(self=self._arraylist, i=i, es=es, rs=rs, r=r));
+  }
+  /*ArrayList.sk:33*/
+  
+Object get_Object_int (Object self, Object i)/*ArrayList.sk:33*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Get_int(self=self._arraylist, i=i));
+  }
+  /*ArrayList.sk:73*/
+  
+Object remove_Object_int (Object self, Object i)/*ArrayList.sk:73*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Remove_int(self=self._arraylist, i=i));
+  }
+  /*ArrayList.sk:57*/
+  
+Object removeb_Object_int (Object self, Object i)/*ArrayList.sk:57*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Removeb_int(self=self._arraylist, i=i));
+  }
+  /*ArrayList.sk:45*/
+  
+Object set_Object_int_String (Object self, Object i, Object e)/*ArrayList.sk:45*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Set_int_string(self=self._arraylist, i=i, e=e));
+  }
+  /*ArrayList.sk:41*/
+  
+Object setb_Object_int_String (Object self, Object i, Object e)/*ArrayList.sk:41*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Setb_int_string(self=self._arraylist, i=i, e=e));
+  }
+  /*ArrayList.sk:65*/
+  
+Object size_Object (Object self)/*ArrayList.sk:65*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Size(self=self._arraylist));
+  }
+  /*ArrayList.sk:69*/
+  
+Object sort_Object_Object (Object self, Object b)/*ArrayList.sk:69*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Sort_object(self=self._arraylist, b=b));
+  }
+  /*ArrayList.sk:53*/
+  
+Object sortb_Object_Object (Object self, Object b)/*ArrayList.sk:53*/
+  {
+    return new Object(__cid=ArrayList(), _arraylist=new Sortb_object(self=self._arraylist, b=b));
+  }
+  /*ArrayList.sk:81*/
+  
+Object xform_ArrayList (ArrayList self)/*ArrayList.sk:81*/
+  {
+    switch(self){/*ArrayList.sk:82*/
+      case Arraylist:
+      {
+        {
+          return xform_arraylist_ArrayList(self);
+        }
+      }
+      case Add_string:
+      {
+        {
+          return xform_add_ArrayList_String(self.self, self.e);
+        }
+      }
+      case Addb_string:
+      {
+        {
+          return xform_addb_ArrayList_String(self.self, self.e);
+        }
+      }
+      case Get_int:
+      {
+        {
+          return xform_get_ArrayList_int(self.self, self.i);
+        }
+      }
+      case Getfirsti_int_string_int_int:
+      {
+        {
+          return xform_getFirstI_ArrayList_int_String_int_int(self.self, self.i, self.es, self.rs, self.r);
+        }
+      }
+      case Setb_int_string:
+      {
+        {
+          return xform_setb_ArrayList_int_String(self.self, self.i, self.e);
+        }
+      }
+      case Set_int_string:
+      {
+        {
+          return xform_set_ArrayList_int_String(self.self, self.i, self.e);
+        }
+      }
+      case Ensurecapacity:
+      {
+        {
+          return xform_ensureCapacity_ArrayList(self.self);
+        }
+      }
+      case Sortb_object:
+      {
+        {
+          return xform_sortb_ArrayList_Object(self.self, self.b);
+        }
+      }
+      case Removeb_int:
+      {
+        {
+          return xform_removeb_ArrayList_int(self.self, self.i);
+        }
+      }
+      case Addallb_arraylist:
+      {
+        {
+          return xform_addAllb_ArrayList_ArrayList(self.self, self.e);
+        }
+      }
+      case Size:
+      {
+        {
+          return xform_size_ArrayList(self.self);
+        }
+      }
+      case Sort_object:
+      {
+        {
+          return xform_sort_ArrayList_Object(self.self, self.b);
+        }
+      }
+      case Remove_int:
+      {
+        {
+          return xform_remove_ArrayList_int(self.self, self.i);
+        }
+      }
+      case Addall_arraylist:
+      {
+        {
+          return xform_addAll_ArrayList_ArrayList(self.self, self.e);
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:327*/
+  
+Object xform_addAll_ArrayList_ArrayList (ArrayList self, Object e)/*ArrayList.sk:327*/
+  {
+    switch(self){/*ArrayList.sk:328*/
+      case Arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:329 (0)
+        }
+      }
+      case Add_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:330 (0)
+        }
+      }
+      case Addb_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:331 (0)
+        }
+      }
+      case Get_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:332 (0)
+        }
+      }
+      case Getfirsti_int_string_int_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:333 (0)
+        }
+      }
+      case Setb_int_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:334 (0)
+        }
+      }
+      case Set_int_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:335 (0)
+        }
+      }
+      case Ensurecapacity:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:336 (0)
+        }
+      }
+      case Sortb_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:337 (0)
+        }
+      }
+      case Removeb_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:338 (0)
+        }
+      }
+      case Addallb_arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:339 (0)
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:340 (0)
+        }
+      }
+      case Sort_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:341 (0)
+        }
+      }
+      case Remove_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:342 (0)
+        }
+      }
+      case Addall_arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:343 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:251*/
+  
+Object xform_addAllb_ArrayList_ArrayList (ArrayList self, Object e)/*ArrayList.sk:251*/
+  {
+    switch(self){/*ArrayList.sk:252*/
+      case Arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:253 (0)
+        }
+      }
+      case Add_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:254 (0)
+        }
+      }
+      case Addb_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:255 (0)
+        }
+      }
+      case Get_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:256 (0)
+        }
+      }
+      case Getfirsti_int_string_int_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:257 (0)
+        }
+      }
+      case Setb_int_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:258 (0)
+        }
+      }
+      case Set_int_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:259 (0)
+        }
+      }
+      case Ensurecapacity:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:260 (0)
+        }
+      }
+      case Sortb_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:261 (0)
+        }
+      }
+      case Removeb_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:262 (0)
+        }
+      }
+      case Addallb_arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:263 (0)
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:264 (0)
+        }
+      }
+      case Sort_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:265 (0)
+        }
+      }
+      case Remove_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:266 (0)
+        }
+      }
+      case Addall_arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:267 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:476*/
+  
+Object xform_add_ArrayList_String (ArrayList self, Object e)/*ArrayList.sk:476*/
+  {
+    switch(self){/*ArrayList.sk:477*/
+      case Arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:478 (0)
+        }
+      }
+      case Add_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:479 (0)
+        }
+      }
+      case Addb_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:480 (0)
+        }
+      }
+      case Get_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:481 (0)
+        }
+      }
+      case Getfirsti_int_string_int_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:482 (0)
+        }
+      }
+      case Setb_int_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:483 (0)
+        }
+      }
+      case Set_int_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:484 (0)
+        }
+      }
+      case Ensurecapacity:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:485 (0)
+        }
+      }
+      case Sortb_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:486 (0)
+        }
+      }
+      case Removeb_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:487 (0)
+        }
+      }
+      case Addallb_arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:488 (0)
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:489 (0)
+        }
+      }
+      case Sort_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:490 (0)
+        }
+      }
+      case Remove_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:491 (0)
+        }
+      }
+      case Addall_arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:492 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:272*/
+  
+Object xform_addb_ArrayList_String (ArrayList self, Object e)/*ArrayList.sk:272*/
+  {
+    switch(self){/*ArrayList.sk:273*/
+      case Arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:274 (0)
+        }
+      }
+      case Add_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:275 (0)
+        }
+      }
+      case Addb_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:276 (0)
+        }
+      }
+      case Get_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:277 (0)
+        }
+      }
+      case Getfirsti_int_string_int_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:278 (0)
+        }
+      }
+      case Setb_int_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:279 (0)
+        }
+      }
+      case Set_int_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:280 (0)
+        }
+      }
+      case Ensurecapacity:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:281 (0)
+        }
+      }
+      case Sortb_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:282 (0)
+        }
+      }
+      case Removeb_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:283 (0)
+        }
+      }
+      case Addallb_arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:284 (0)
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:285 (0)
+        }
+      }
+      case Sort_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:286 (0)
+        }
+      }
+      case Remove_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:287 (0)
+        }
+      }
+      case Addall_arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:288 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:497*/
+  
+Object xform_arraylist_ArrayList (ArrayList self)/*ArrayList.sk:497*/
+  {
+    switch(self){/*ArrayList.sk:498*/
+      case Arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:499 (0)
+        }
+      }
+      case Add_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:500 (0)
+        }
+      }
+      case Addb_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:501 (0)
+        }
+      }
+      case Get_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:502 (0)
+        }
+      }
+      case Getfirsti_int_string_int_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:503 (0)
+        }
+      }
+      case Setb_int_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:504 (0)
+        }
+      }
+      case Set_int_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:505 (0)
+        }
+      }
+      case Ensurecapacity:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:506 (0)
+        }
+      }
+      case Sortb_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:507 (0)
+        }
+      }
+      case Removeb_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:508 (0)
+        }
+      }
+      case Addallb_arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:509 (0)
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:510 (0)
+        }
+      }
+      case Sort_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:511 (0)
+        }
+      }
+      case Remove_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:512 (0)
+        }
+      }
+      case Addall_arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:513 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:153*/
+  
+Object xform_ensureCapacity_ArrayList (ArrayList self)/*ArrayList.sk:153*/
+  {
+    switch(self){/*ArrayList.sk:154*/
+      case Arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:155 (0)
+        }
+      }
+      case Add_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:156 (0)
+        }
+      }
+      case Addb_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:157 (0)
+        }
+      }
+      case Get_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:158 (0)
+        }
+      }
+      case Getfirsti_int_string_int_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:159 (0)
+        }
+      }
+      case Setb_int_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:160 (0)
+        }
+      }
+      case Set_int_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:161 (0)
+        }
+      }
+      case Ensurecapacity:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:162 (0)
+        }
+      }
+      case Sortb_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:163 (0)
+        }
+      }
+      case Removeb_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:164 (0)
+        }
+      }
+      case Addallb_arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:165 (0)
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:166 (0)
+        }
+      }
+      case Sort_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:167 (0)
+        }
+      }
+      case Remove_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:168 (0)
+        }
+      }
+      case Addall_arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:169 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:411*/
+  
+Object xform_getFirstI_ArrayList_int_String_int_int (ArrayList self, Object i, Object es, Object rs, Object r)/*ArrayList.sk:411*/
+  {
+    switch(self){/*ArrayList.sk:412*/
+      case Arraylist:
+      {
+        {
+          return es;
+        }
+      }
+      case Add_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:416 (0)
+        }
+      }
+      case Addb_string:
+      {
+        {
+          Object index = new Object(__cid=-2, _int=(i._int) - (new Object(__cid=-2, _int=1)._int));
+          Object x = es._array_object.A[index._int];
+          Object sz = xform_size_ArrayList(self.self);
+          Object removed = new Object(__cid=-4, _bit=0);
+          {
+            Object j = new Object(__cid=-2, _int=0);
+            bit __sa3 = (j._int) < (r._int);
+            while(__sa3)
+            {
+              {
+                {
+                  if((sz._int) == (i._int))/*ArrayList.sk:423*/
+                  {
+                    {
+                      removed = new Object(__cid=-4, _bit=1);
+                      j = r;
+                    }
+                  }
+                }
+              }
+              j = new Object(__cid=-2, _int=(j._int) + 1);
+              __sa3 = (j._int) < (r._int);
+            }
+          }
+          if(!(removed._bit))/*ArrayList.sk:428*/
+          {
+            {
+              {
+                bit __sa4 = ((((x.__cid) == (new Object(__cid=-2, _int=String())._int) ? compareTo_String@String(x, self.e) : null)._int) > (new Object(__cid=-2, _int=0)._int)) && ((index._int) >= (new Object(__cid=-2, _int=0)._int));
+                while(__sa4)
+                {
+                  {
+                    {
+                      es._array_object.A[(index._int) + (new Object(__cid=-2, _int=1)._int)] = es._array_object.A[index._int];
+                      index = new Object(__cid=-2, _int=(index._int) - (new Object(__cid=-2, _int=1)._int));
+                      x = es._array_object.A[index._int];
+                    }
+                  }
+                  __sa4 = ((((x.__cid) == (new Object(__cid=-2, _int=String())._int) ? compareTo_String@String(x, self.e) : null)._int) > (new Object(__cid=-2, _int=0)._int)) && ((index._int) >= (new Object(__cid=-2, _int=0)._int));
+                }
+              }
+              es._array_object.A[(index._int) + (new Object(__cid=-2, _int=1)._int)] = self.e;
+            }
+          }
+          return xform_getFirstI_ArrayList_int_String_int_int(self.self, i, es, rs, r);
+        }
+      }
+      case Get_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:438 (0)
+        }
+      }
+      case Getfirsti_int_string_int_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:439 (0)
+        }
+      }
+      case Setb_int_string:
+      {
+        {
+          Object index = new Object(__cid=-2, _int=(i._int) - (new Object(__cid=-2, _int=1)._int));
+          Object x = es._array_object.A[index._int];
+          Object sz = xform_size_ArrayList(self.self);
+          if((sz._int) != (self.i._int))/*ArrayList.sk:444*/
+          {
+            {
+              {
+                bit __sa5 = ((((x.__cid) == (new Object(__cid=-2, _int=String())._int) ? compareTo_String@String(x, self.e) : null)._int) > (new Object(__cid=-2, _int=0)._int)) && ((index._int) >= (new Object(__cid=-2, _int=0)._int));
+                while(__sa5)
+                {
+                  {
+                    {
+                      es._array_object.A[(index._int) + (new Object(__cid=-2, _int=1)._int)] = es._array_object.A[index._int];
+                      index = new Object(__cid=-2, _int=(index._int) - (new Object(__cid=-2, _int=1)._int));
+                      x = es._array_object.A[index._int];
+                    }
+                  }
+                  __sa5 = ((((x.__cid) == (new Object(__cid=-2, _int=String())._int) ? compareTo_String@String(x, self.e) : null)._int) > (new Object(__cid=-2, _int=0)._int)) && ((index._int) >= (new Object(__cid=-2, _int=0)._int));
+                }
+              }
+              es._array_object.A[(index._int) + (new Object(__cid=-2, _int=1)._int)] = self.e;
+            }
+          }
+          return xform_getFirstI_ArrayList_int_String_int_int(self.self, i, es, rs, r);
+        }
+      }
+      case Set_int_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:454 (0)
+        }
+      }
+      case Ensurecapacity:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:455 (0)
+        }
+      }
+      case Sortb_object:
+      {
+        {
+          return xform_getFirstI_ArrayList_int_String_int_int(self.self, i, es, rs, r);
+        }
+      }
+      case Removeb_int:
+      {
+        {
+          rs._array_int.A[r._int] = self.i._int;
+          r = new Object(__cid=-2, _int=(r._int) + 1);
+          return xform_getFirstI_ArrayList_int_String_int_int(self.self, i, es, rs, r);
+        }
+      }
+      case Addallb_arraylist:
+      {
+        {
+          es = xform_getFirstI_ArrayList_int_String_int_int(self.self, i, es, rs, r);
+          return xform_getFirstI_ArrayList_int_String_int_int(self.e._arraylist, i, es, rs, r);
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:468 (0)
+        }
+      }
+      case Sort_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:469 (0)
+        }
+      }
+      case Remove_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:470 (0)
+        }
+      }
+      case Addall_arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:471 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:293*/
+  
+Object xform_get_ArrayList_int (ArrayList self, Object i)/*ArrayList.sk:293*/
+  {
+    switch(self){/*ArrayList.sk:294*/
+      case Arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:295 (0)
+        }
+      }
+      case Add_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:296 (0)
+        }
+      }
+      case Addb_string:
+      {
+        {
+          Object sz = xform_size_ArrayList(self.self);
+          return ((sz._int) == (i._int) ? self.e : xform_get_ArrayList_int(self.self, i));
+        }
+      }
+      case Get_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:301 (0)
+        }
+      }
+      case Getfirsti_int_string_int_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:302 (0)
+        }
+      }
+      case Setb_int_string:
+      {
+        {
+          return ((i._int) == (self.i._int) ? self.e : xform_get_ArrayList_int(self.self, i));
+        }
+      }
+      case Set_int_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:306 (0)
+        }
+      }
+      case Ensurecapacity:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:307 (0)
+        }
+      }
+      case Sortb_object:
+      {
+        {
+          Object firstI = xform_getFirstI_ArrayList_int_String_int_int(self.self, i, Wrap_Array_Object(new Array_Object(length=new Object(__cid=-2, _int=(i._int) + (new Object(__cid=-2, _int=1)._int)))), Wrap_Array_int(new Array_int(length=i)), new Object(__cid=-2, _int=0))//{};
+          return firstI._array_object.A[(i._int) - (new Object(__cid=-2, _int=1)._int)];
+        }
+      }
+      case Removeb_int:
+      {
+        {
+          return ((self.i._int) <= (i._int) ? xform_get_ArrayList_int(self.self, new Object(__cid=-2, _int=(i._int) + (new Object(__cid=-2, _int=1)._int))) : xform_get_ArrayList_int(self.self, i));
+        }
+      }
+      case Addallb_arraylist:
+      {
+        {
+          Object s1 = xform_size_ArrayList(self.self);
+          return ((i._int) <= (s1._int) ? xform_get_ArrayList_int(self.self, i) : xform_get_ArrayList_int(self.e._arraylist, new Object(__cid=-2, _int=(i._int) - (s1._int))));
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:319 (0)
+        }
+      }
+      case Sort_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:320 (0)
+        }
+      }
+      case Remove_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:321 (0)
+        }
+      }
+      case Addall_arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:322 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:195*/
+  
+Object xform_remove_ArrayList_int (ArrayList self, Object i)/*ArrayList.sk:195*/
+  {
+    switch(self){/*ArrayList.sk:196*/
+      case Arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:197 (0)
+        }
+      }
+      case Add_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:198 (0)
+        }
+      }
+      case Addb_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:199 (0)
+        }
+      }
+      case Get_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:200 (0)
+        }
+      }
+      case Getfirsti_int_string_int_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:201 (0)
+        }
+      }
+      case Setb_int_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:202 (0)
+        }
+      }
+      case Set_int_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:203 (0)
+        }
+      }
+      case Ensurecapacity:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:204 (0)
+        }
+      }
+      case Sortb_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:205 (0)
+        }
+      }
+      case Removeb_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:206 (0)
+        }
+      }
+      case Addallb_arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:207 (0)
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:208 (0)
+        }
+      }
+      case Sort_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:209 (0)
+        }
+      }
+      case Remove_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:210 (0)
+        }
+      }
+      case Addall_arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:211 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:132*/
+  
+Object xform_removeb_ArrayList_int (ArrayList self, Object i)/*ArrayList.sk:132*/
+  {
+    switch(self){/*ArrayList.sk:133*/
+      case Arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:134 (0)
+        }
+      }
+      case Add_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:135 (0)
+        }
+      }
+      case Addb_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:136 (0)
+        }
+      }
+      case Get_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:137 (0)
+        }
+      }
+      case Getfirsti_int_string_int_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:138 (0)
+        }
+      }
+      case Setb_int_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:139 (0)
+        }
+      }
+      case Set_int_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:140 (0)
+        }
+      }
+      case Ensurecapacity:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:141 (0)
+        }
+      }
+      case Sortb_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:142 (0)
+        }
+      }
+      case Removeb_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:143 (0)
+        }
+      }
+      case Addallb_arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:144 (0)
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:145 (0)
+        }
+      }
+      case Sort_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:146 (0)
+        }
+      }
+      case Remove_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:147 (0)
+        }
+      }
+      case Addall_arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:148 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:348*/
+  
+Object xform_set_ArrayList_int_String (ArrayList self, Object i, Object e)/*ArrayList.sk:348*/
+  {
+    switch(self){/*ArrayList.sk:349*/
+      case Arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:350 (0)
+        }
+      }
+      case Add_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:351 (0)
+        }
+      }
+      case Addb_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:352 (0)
+        }
+      }
+      case Get_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:353 (0)
+        }
+      }
+      case Getfirsti_int_string_int_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:354 (0)
+        }
+      }
+      case Setb_int_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:355 (0)
+        }
+      }
+      case Set_int_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:356 (0)
+        }
+      }
+      case Ensurecapacity:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:357 (0)
+        }
+      }
+      case Sortb_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:358 (0)
+        }
+      }
+      case Removeb_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:359 (0)
+        }
+      }
+      case Addallb_arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:360 (0)
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:361 (0)
+        }
+      }
+      case Sort_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:362 (0)
+        }
+      }
+      case Remove_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:363 (0)
+        }
+      }
+      case Addall_arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:364 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:369*/
+  
+Object xform_setb_ArrayList_int_String (ArrayList self, Object i, Object e)/*ArrayList.sk:369*/
+  {
+    switch(self){/*ArrayList.sk:370*/
+      case Arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:371 (0)
+        }
+      }
+      case Add_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:372 (0)
+        }
+      }
+      case Addb_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:373 (0)
+        }
+      }
+      case Get_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:374 (0)
+        }
+      }
+      case Getfirsti_int_string_int_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:375 (0)
+        }
+      }
+      case Setb_int_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:376 (0)
+        }
+      }
+      case Set_int_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:377 (0)
+        }
+      }
+      case Ensurecapacity:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:378 (0)
+        }
+      }
+      case Sortb_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:379 (0)
+        }
+      }
+      case Removeb_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:380 (0)
+        }
+      }
+      case Addallb_arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:381 (0)
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:382 (0)
+        }
+      }
+      case Sort_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:383 (0)
+        }
+      }
+      case Remove_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:384 (0)
+        }
+      }
+      case Addall_arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:385 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:216*/
+  
+Object xform_size_ArrayList (ArrayList self)/*ArrayList.sk:216*/
+  {
+    switch(self){/*ArrayList.sk:217*/
+      case Arraylist:
+      {
+        {
+          return new Object(__cid=-2, _int=0);
+        }
+      }
+      case Add_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:221 (0)
+        }
+      }
+      case Addb_string:
+      {
+        {
+          return new Object(__cid=-2, _int=(xform_size_ArrayList(self.self)._int) + (new Object(__cid=-2, _int=1)._int));
+        }
+      }
+      case Get_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:225 (0)
+        }
+      }
+      case Getfirsti_int_string_int_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:226 (0)
+        }
+      }
+      case Setb_int_string:
+      {
+        {
+          return xform_size_ArrayList(self.self);
+        }
+      }
+      case Set_int_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:230 (0)
+        }
+      }
+      case Ensurecapacity:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:231 (0)
+        }
+      }
+      case Sortb_object:
+      {
+        {
+          return xform_size_ArrayList(self.self);
+        }
+      }
+      case Removeb_int:
+      {
+        {
+          return new Object(__cid=-2, _int=(xform_size_ArrayList(self.self)._int) - (new Object(__cid=-2, _int=1)._int));
+        }
+      }
+      case Addallb_arraylist:
+      {
+        {
+          Object s1 = xform_size_ArrayList(self.self);
+          Object s2 = xform_size_ArrayList(self.e._arraylist);
+          return new Object(__cid=-2, _int=(s1._int) + (s2._int));
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:243 (0)
+        }
+      }
+      case Sort_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:244 (0)
+        }
+      }
+      case Remove_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:245 (0)
+        }
+      }
+      case Addall_arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:246 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:174*/
+  
+Object xform_sort_ArrayList_Object (ArrayList self, Object b)/*ArrayList.sk:174*/
+  {
+    switch(self){/*ArrayList.sk:175*/
+      case Arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:176 (0)
+        }
+      }
+      case Add_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:177 (0)
+        }
+      }
+      case Addb_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:178 (0)
+        }
+      }
+      case Get_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:179 (0)
+        }
+      }
+      case Getfirsti_int_string_int_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:180 (0)
+        }
+      }
+      case Setb_int_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:181 (0)
+        }
+      }
+      case Set_int_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:182 (0)
+        }
+      }
+      case Ensurecapacity:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:183 (0)
+        }
+      }
+      case Sortb_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:184 (0)
+        }
+      }
+      case Removeb_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:185 (0)
+        }
+      }
+      case Addallb_arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:186 (0)
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:187 (0)
+        }
+      }
+      case Sort_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:188 (0)
+        }
+      }
+      case Remove_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:189 (0)
+        }
+      }
+      case Addall_arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:190 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*ArrayList.sk:390*/
+  
+Object xform_sortb_ArrayList_Object (ArrayList self, Object b)/*ArrayList.sk:390*/
+  {
+    switch(self){/*ArrayList.sk:391*/
+      case Arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:392 (0)
+        }
+      }
+      case Add_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:393 (0)
+        }
+      }
+      case Addb_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:394 (0)
+        }
+      }
+      case Get_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:395 (0)
+        }
+      }
+      case Getfirsti_int_string_int_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:396 (0)
+        }
+      }
+      case Setb_int_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:397 (0)
+        }
+      }
+      case Set_int_string:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:398 (0)
+        }
+      }
+      case Ensurecapacity:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:399 (0)
+        }
+      }
+      case Sortb_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:400 (0)
+        }
+      }
+      case Removeb_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:401 (0)
+        }
+      }
+      case Addallb_arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:402 (0)
+        }
+      }
+      case Size:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:403 (0)
+        }
+      }
+      case Sort_object:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:404 (0)
+        }
+      }
+      case Remove_int:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:405 (0)
+        }
+      }
+      case Addall_arraylist:
+      {
+        {
+          assert (0); //Assert at ArrayList.sk:406 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /* END PACKAGE ArrayList*/
+}
+/* BEGIN PACKAGE String*/
+package String{
+  /*String.sk:3*/
+  
+Object String_String (Object self)/*String.sk:3*/
+  {
+    return self;
+  }
+  /*String.sk:22*/
+  
+Object String_String_byte (Object self, Object bytes)/*String.sk:22*/
+  {
+    Object len = bytes._array_char.length;
+    self._value_String = Wrap_Array_char(new Array_char(length=len));
+    {
+      Object i = new Object(__cid=-2, _int=0);
+      bit __sa7 = (i._int) < (len._int);
+      while(__sa7)
+      {
+        {
+          {
+            self._value_String._array_char.A[i._int] = new Object(__cid=-3, _char=((char)bytes._array_char.A[i._int]))._char;
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) + 1);
+        __sa7 = (i._int) < (len._int);
+      }
+    }
+    self._count_String = len;
+    return self;
+  }
+  /*String.sk:7*/
+  
+Object String_String_char_int_int (Object self, Object ca, Object offset, Object count)/*String.sk:7*/
+  {
+    if(((offset._int) > (new Object(__cid=-2, _int=0)._int)) && ((offset._int) < (ca._array_char.length._int)))/*String.sk:8*/
+    {
+      {
+        Object tmp = Wrap_Array_char(new Array_char(length=count));
+        {
+          Object i = new Object(__cid=-2, _int=0);
+          bit __sa6 = (i._int) < (count._int);
+          while(__sa6)
+          {
+            {
+              {
+                tmp._array_char.A[i._int] = ca._array_char.A[(i._int) + (offset._int)];
+              }
+            }
+            i = new Object(__cid=-2, _int=(i._int) + 1);
+            __sa6 = (i._int) < (count._int);
+          }
+        }
+        self._value_String = tmp;
+      }
+    }
+    else
+    {
+      {
+        self._value_String = ca;
+      }
+    }
+    self._count_String = count;
+    return self;
+  }
+  /*String.sk:43*/
+  
+Object charAt_int (Object self, Object index)/*String.sk:43*/
+  {
+    if(((new Object(__cid=-2, _int=0)._int) <= (index._int)) && ((index._int) < (self._count_String._int)))/*String.sk:44*/
+    {
+      return new Object(__cid=-3, _char=self._value_String._array_char.A[index._int]);
+    }
+    return new Object(__cid=-3, _char='\0');
+  }
+  /*String.sk:108*/
+  
+Object compareTo_String (Object self, Object str)/*String.sk:108*/
+  {
+    return compare_String_String(((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? toString@String(self) : null), str)//{};
+  }
+  /*String.sk:112*/
+  
+Object compare_String_String (Object s1, Object s2)/*String.sk:112*/
+  {
+    Object l1 = ((s1.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(s1) : null);
+    Object l2 = ((s2.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(s2) : null);
+    Object lendiff = new Object(__cid=-2, _int=(l1._int) - (l2._int));
+    Object smaller = l1;
+    if((l1._int) > (l2._int))/*String.sk:117*/
+    {
+      {
+        smaller = l2;
+      }
+    }
+    else
+    {
+      {
+        {
+          Object i = new Object(__cid=-2, _int=0);
+          bit __sa11 = (i._int) < (smaller._int);
+          while(__sa11)
+          {
+            {
+              {
+                Object c1 = ((s1.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(s1, i) : null);
+                Object c2 = ((s2.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(s2, i) : null);
+                if((c1._char) != (c2._char))/*String.sk:124*/
+                {
+                  {
+                    return new Object(__cid=-3, _char=(c1._char) - (c2._char));
+                  }
+                }
+              }
+            }
+            i = new Object(__cid=-2, _int=(i._int) + 1);
+            __sa11 = (i._int) < (smaller._int);
+          }
+        }
+        if((lendiff._int) != (new Object(__cid=-2, _int=0)._int))/*String.sk:128*/
+        {
+          return lendiff;
+        }
+        return new Object(__cid=-2, _int=0);
+      }
+    }
+  }
+  /*String.sk:133*/
+  
+Object concat_String (Object self, Object str)/*String.sk:133*/
+  {
+    Object otherLen = ((str.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(str) : null);
+    if((otherLen._int) == (new Object(__cid=-2, _int=0)._int))/*String.sk:135*/
+    {
+      {
+        return self;
+      }
+    }
+    Object thisLen = ((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(self) : null);
+    Object totalLen = new Object(__cid=-2, _int=(((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(self) : null)._int) + (otherLen._int));
+    Object ret = Wrap_Array_char(new Array_char(length=totalLen));
+    {
+      Object i = new Object(__cid=-2, _int=0);
+      bit __sa12 = (i._int) < (thisLen._int);
+      while(__sa12)
+      {
+        {
+          {
+            ret._array_char.A[i._int] = ((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(self, i) : null)._char;
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) + 1);
+        __sa12 = (i._int) < (thisLen._int);
+      }
+    }
+    {
+      Object i = thisLen;
+      bit __sa13 = (i._int) < (totalLen._int);
+      while(__sa13)
+      {
+        {
+          {
+            ret._array_char.A[i._int] = ((str.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(str, new Object(__cid=-2, _int=(i._int) - (thisLen._int))) : null)._char;
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) + 1);
+        __sa13 = (i._int) < (totalLen._int);
+      }
+    }
+    return String_String_char_int_int(new Object(__cid=String()), ret, new Object(__cid=-2, _int=0), totalLen)//{};
+  }
+  /*String.sk:150*/
+  
+Object equalsIgnoreCase_Object (Object self, Object obj)/*String.sk:150*/
+  {
+    return equals_Object@String(self, obj);
+  }
+  /*String.sk:154*/
+  
+Object equals_Object (Object self, Object obj)/*String.sk:154*/
+  {
+    Object isEqual = new Object(__cid=-4, _bit=0);
+    if((obj.__cid) == (String()))/*String.sk:156*/
+    {
+      {
+        isEqual = new Object(__cid=-4, _bit=1);
+        Object s = obj;
+        Object sLen = ((s.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(s) : null);
+        Object tLen = ((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(self) : null);
+        if((sLen._int) != (tLen._int))/*String.sk:161*/
+        {
+          isEqual = new Object(__cid=-4, _bit=0);
+        }
+        {
+          Object i = new Object(__cid=-2, _int=0);
+          bit __sa14 = ((i._int) < (sLen._int)) && ((isEqual._bit) == (new Object(__cid=-4, _bit=1)._bit));
+          while(__sa14)
+          {
+            {
+              {
+                if((s._value_String._array_char.A[i._int]) != (self._value_String._array_char.A[i._int]))/*String.sk:163*/
+                {
+                  {
+                    isEqual = new Object(__cid=-4, _bit=0);
+                  }
+                }
+              }
+            }
+            i = new Object(__cid=-2, _int=(i._int) + 1);
+            __sa14 = ((i._int) < (sLen._int)) && ((isEqual._bit) == (new Object(__cid=-4, _bit=1)._bit));
+          }
+        }
+      }
+    }
+    return isEqual;
+  }
+  /*String.sk:214*/
+  
+Object getBytes (Object self)/*String.sk:214*/
+  {
+    return getBytes_String(((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? toString@String(self) : null))//{};
+  }
+  /*String.sk:218*/
+  
+Object getBytes_String (Object str)/*String.sk:218*/
+  {
+    Object len = ((str.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(str) : null);
+    Object bytes = Wrap_Array_char(new Array_char(length=len));
+    {
+      Object i = new Object(__cid=-2, _int=0);
+      bit __sa20 = (i._int) < (len._int);
+      while(__sa20)
+      {
+        {
+          {
+            bytes._array_char.A[i._int] = ((char)((str.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(str, i) : null)._char);
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) + 1);
+        __sa20 = (i._int) < (len._int);
+      }
+    }
+    return bytes;
+  }
+  /*String.sk:171*/
+  
+Object hashCode (Object self)/*String.sk:171*/
+  {
+    Object n = self._count_String;
+    Object hash = new Object(__cid=-2, _int=0);
+    Object temp = new Object(__cid=-2, _int=0);
+    if((n._int) == (new Object(__cid=-2, _int=0)._int))/*String.sk:173*/
+    {
+      {
+        return new Object(__cid=-2, _int=0);
+      }
+    }
+    {
+      Object i = new Object(__cid=-2, _int=0);
+      bit __sa15 = (i._int) < (n._int);
+      while(__sa15)
+      {
+        {
+          {
+            temp = ((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(self, i) : null);
+            {
+              Object j = new Object(__cid=-2, _int=0);
+              bit __sa16 = (j._int) < (((n._int) - (new Object(__cid=-2, _int=1)._int)) - (i._int));
+              while(__sa16)
+              {
+                {
+                  {
+                    temp = new Object(__cid=-2, _int=(temp._int) * (new Object(__cid=-2, _int=31)._int));
+                  }
+                }
+                j = new Object(__cid=-2, _int=(j._int) + 1);
+                __sa16 = (j._int) < (((n._int) - (new Object(__cid=-2, _int=1)._int)) - (i._int));
+              }
+            }
+            hash = new Object(__cid=-2, _int=(hash._int) + (temp._int));
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) + 1);
+        __sa15 = (i._int) < (n._int);
+      }
+    }
+    return hash;
+  }
+  /*String.sk:60*/
+  
+Object indexOf_String (Object self, Object s)/*String.sk:60*/
+  {
+    return indexOf_String_int@String(self, s, new Object(__cid=-2, _int=0));
+  }
+  /*String.sk:64*/
+  
+Object indexOf_String_int (Object self, Object s, Object i)/*String.sk:64*/
+  {
+    Object tLen = ((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(self) : null);
+    Object sLen = ((s.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(s) : null);
+    Object index = i;
+    Object mLen = new Object(__cid=-2, _int=0);
+    Object j;
+    if((((i._int) >= (tLen._int)) || ((i._int) < (new Object(__cid=-2, _int=0)._int))) || ((sLen._int) == (new Object(__cid=-2, _int=0)._int)))/*String.sk:70*/
+    {
+      {
+        return new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1)._int));
+      }
+    }
+    {
+      j = i;
+      bit __sa9 = (((j._int) < (tLen._int)) && ((mLen._int) < (sLen._int))) && (((j._int) - (index._int)) < (sLen._int));
+      while(__sa9)
+      {
+        {
+          {
+            if((((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(self, j) : null)._char) != (((s.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(s, new Object(__cid=-2, _int=(j._int) - (index._int))) : null)._char))/*String.sk:74*/
+            {
+              {
+                mLen = new Object(__cid=-2, _int=0);
+                index = new Object(__cid=-2, _int=(index._int) + 1);
+                j = index;
+              }
+            }
+            else
+            {
+              {
+                mLen = new Object(__cid=-2, _int=(mLen._int) + 1);
+                j = new Object(__cid=-2, _int=(j._int) + 1);
+              }
+            }
+          }
+        }
+        { }
+        __sa9 = (((j._int) < (tLen._int)) && ((mLen._int) < (sLen._int))) && (((j._int) - (index._int)) < (sLen._int));
+      }
+    }
+    if((mLen._int) != (sLen._int))/*String.sk:84*/
+    {
+      {
+        index = new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1)._int));
+      }
+    }
+    return index;
+  }
+  /*String.sk:90*/
+  
+Object indexOf_char (Object self, Object c)/*String.sk:90*/
+  {
+    return indexOf_char_int@String(self, c, new Object(__cid=-2, _int=0));
+  }
+  /*String.sk:94*/
+  
+Object indexOf_char_int (Object self, Object c, Object i)/*String.sk:94*/
+  {
+    Object len = ((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(self) : null);
+    Object index = new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1)._int));
+    if(((i._int) >= (len._int)) || ((i._int) < (new Object(__cid=-2, _int=0)._int)))/*String.sk:97*/
+    {
+      {
+        return index;
+      }
+    }
+    {
+      Object j = i;
+      bit __sa10 = (j._int) < (len._int);
+      while(__sa10)
+      {
+        {
+          {
+            if((((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(self, j) : null)._char) == (c._char))/*String.sk:101*/
+            {
+              {
+                return j;
+              }
+            }
+          }
+        }
+        j = new Object(__cid=-2, _int=(j._int) + 1);
+        __sa10 = (j._int) < (len._int);
+      }
+    }
+    return index;
+  }
+  /*String.sk:48*/
+  
+Object length (Object self)/*String.sk:48*/
+  {
+    return self._count_String;
+  }
+  /*String.sk:186*/
+  
+Object replace_char_char (Object self, Object oldChar, Object newChar)/*String.sk:186*/
+  {
+    if((oldChar._char) != (newChar._char))/*String.sk:187*/
+    {
+      {
+        Object len = self._count_String;
+        Object i = new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1)._int));
+        Object stop = new Object(__cid=-2, _int=0);
+        Object val = self._value_String;
+        {
+          bit __sa17 = (i._int) < (len._int);
+          while(__sa17)
+          {
+            {
+              {
+                i = new Object(__cid=-2, _int=(i._int) + (new Object(__cid=-2, _int=1)._int));
+                if(((val._array_char.A[i._int]) == (oldChar._char)) && ((stop._int) == (new Object(__cid=-2, _int=0)._int)))/*String.sk:194*/
+                {
+                  {
+                    stop = i;
+                  }
+                }
+              }
+            }
+            __sa17 = (i._int) < (len._int);
+          }
+        }
+        if((stop._int) < (len._int))/*String.sk:198*/
+        {
+          {
+            Object buf = Wrap_Array_char(new Array_char(length=len));
+            {
+              Object j = new Object(__cid=-2, _int=0);
+              bit __sa18 = (j._int) < (stop._int);
+              while(__sa18)
+              {
+                {
+                  {
+                    buf._array_char.A[j._int] = val._array_char.A[j._int];
+                  }
+                }
+                j = new Object(__cid=-2, _int=(j._int) + 1);
+                __sa18 = (j._int) < (stop._int);
+              }
+            }
+            {
+              bit __sa19 = (stop._int) < (len._int);
+              while(__sa19)
+              {
+                {
+                  {
+                    Object c = new Object(__cid=-3, _char=val._array_char.A[stop._int]);
+                    buf._array_char.A[stop._int] = ((c._char) == (oldChar._char) ? newChar : c)._char;
+                    stop = new Object(__cid=-2, _int=(stop._int) + 1);
+                  }
+                }
+                __sa19 = (stop._int) < (len._int);
+              }
+            }
+            return String_String_char_int_int(new Object(__cid=String()), buf, new Object(__cid=-2, _int=0), len)//{};
+          }
+        }
+      }
+    }
+    return self;
+  }
+  /*String.sk:56*/
+  
+void setCharAt_int_char (Object self, Object i, Object c)/*String.sk:56*/
+  {
+    self._value_String._array_char.A[i._int] = c._char;
+  }
+  /*String.sk:240*/
+  
+Object splitGetEl_String_int (Object self, Object regex, Object i)/*String.sk:240*/
+  {
+    Object strs = split_String@String(self, regex);
+    return ((i._int) < (strs._array_object.length._int) ? strs._array_object.A[i._int] : null);
+  }
+  /*String.sk:245*/
+  
+Object split_String (Object self, Object regex)/*String.sk:245*/
+  {
+    return split_String_int@String(self, regex, new Object(__cid=-2, _int=0));
+  }
+  /*String.sk:249*/
+  
+Object split_String_int (Object self, Object regex, Object limit)/*String.sk:249*/
+  {
+    Object off = new Object(__cid=-2, _int=0);
+    Object ch = ((regex.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(regex, new Object(__cid=-2, _int=0)) : null);
+    Object next = indexOf_char_int@String(self, ch, off);
+    Object limited = new Object(__cid=-2, _int=(limit._int) > (new Object(__cid=-2, _int=0)._int));
+    Object size = new Object(__cid=-2, _int=0);
+    {
+      bit __sa21 = (next._int) != (-(new Object(__cid=-2, _int=1)._int));
+      while(__sa21)
+      {
+        {
+          {
+            if((!(limited._bit)) || ((size._int) < ((limit._int) - (new Object(__cid=-2, _int=1)._int))))/*String.sk:256*/
+            {
+              {
+                off = new Object(__cid=-2, _int=(next._int) + (new Object(__cid=-2, _int=1)._int));
+                next = indexOf_char_int@String(self, ch, off);
+              }
+            }
+            else
+            {
+              {
+                off = self._value_String._array_char.length;
+                next = new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1)._int));
+              }
+            }
+            size = new Object(__cid=-2, _int=(size._int) + 1);
+          }
+        }
+        __sa21 = (next._int) != (-(new Object(__cid=-2, _int=1)._int));
+      }
+    }
+    if((!(limited._bit)) || ((size._int) < (limit._int)))/*String.sk:266*/
+    {
+      size = new Object(__cid=-2, _int=(size._int) + 1);
+    }
+    off = new Object(__cid=-2, _int=0);
+    ch = ((regex.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(regex, new Object(__cid=-2, _int=0)) : null);
+    next = indexOf_char_int@String(self, ch, off);
+    limited = new Object(__cid=-2, _int=(limit._int) > (new Object(__cid=-2, _int=0)._int));
+    Object list = Wrap_Array_Object(new Array_Object(length=size));
+    size = new Object(__cid=-2, _int=0);
+    {
+      bit __sa22 = (next._int) != (-(new Object(__cid=-2, _int=1)._int));
+      while(__sa22)
+      {
+        {
+          {
+            if((!(limited._bit)) || ((size._int) < ((limit._int) - (new Object(__cid=-2, _int=1)._int))))/*String.sk:274*/
+            {
+              {
+                list._array_object.A[size._int] = substring_int_int@String(self, off, next);
+                off = new Object(__cid=-2, _int=(next._int) + (new Object(__cid=-2, _int=1)._int));
+                next = indexOf_char_int@String(self, ch, off);
+              }
+            }
+            else
+            {
+              {
+                list._array_object.A[size._int] = substring_int_int@String(self, off, self._count_String);
+                off = self._value_String._array_char.length;
+                next = new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1)._int));
+              }
+            }
+            size = new Object(__cid=-2, _int=(size._int) + 1);
+          }
+        }
+        __sa22 = (next._int) != (-(new Object(__cid=-2, _int=1)._int));
+      }
+    }
+    if((off._int) == (new Object(__cid=-2, _int=0)._int))/*String.sk:286*/
+    {
+      {
+        Object res = Wrap_Array_Object(new Array_Object(length=new Object(__cid=-2, _int=1)));
+        res._array_object.A[0] = self;
+        return res;
+      }
+    }
+    if((!(limited._bit)) || ((size._int) < (limit._int)))/*String.sk:290*/
+    {
+      {
+        list._array_object.A[size._int] = substring_int_int@String(self, off, self._count_String);
+        size = new Object(__cid=-2, _int=(size._int) + 1);
+      }
+    }
+    Object resultSize = list._array_object.length;
+    if((limit._int) == (new Object(__cid=-2, _int=0)._int))/*String.sk:295*/
+    {
+      {
+        Object tmp = list._array_object.A[(resultSize._int) - (new Object(__cid=-2, _int=1)._int)];
+        {
+          bit __sa23 = ((resultSize._int) > (new Object(__cid=-2, _int=0)._int)) && ((((tmp.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(tmp) : null)._int) == (new Object(__cid=-2, _int=0)._int));
+          while(__sa23)
+          {
+            {
+              {
+                resultSize = new Object(__cid=-2, _int=(resultSize._int) - 1);
+              }
+            }
+            __sa23 = ((resultSize._int) > (new Object(__cid=-2, _int=0)._int)) && ((((tmp.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(tmp) : null)._int) == (new Object(__cid=-2, _int=0)._int));
+          }
+        }
+      }
+    }
+    Object result = Wrap_Array_Object(new Array_Object(length=resultSize));
+    {
+      Object i = new Object(__cid=-2, _int=0);
+      bit __sa24 = (i._int) < (resultSize._int);
+      while(__sa24)
+      {
+        {
+          {
+            result._array_object.A[i._int] = list._array_object.A[i._int];
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) + 1);
+        __sa24 = (i._int) < (resultSize._int);
+      }
+    }
+    return result;
+  }
+  /*String.sk:308*/
+  
+Object split_char_int (Object self, Object ch, Object limit)/*String.sk:308*/
+  {
+    Object off = new Object(__cid=-2, _int=0);
+    Object next = indexOf_char_int@String(self, ch, off);
+    Object limited = new Object(__cid=-2, _int=(limit._int) > (new Object(__cid=-2, _int=0)._int));
+    Object size = new Object(__cid=-2, _int=0);
+    {
+      bit __sa25 = (next._int) != (-(new Object(__cid=-2, _int=1)._int));
+      while(__sa25)
+      {
+        {
+          {
+            if((!(limited._bit)) || ((size._int) < ((limit._int) - (new Object(__cid=-2, _int=1)._int))))/*String.sk:314*/
+            {
+              {
+                off = new Object(__cid=-2, _int=(next._int) + (new Object(__cid=-2, _int=1)._int));
+                next = indexOf_char_int@String(self, ch, off);
+              }
+            }
+            else
+            {
+              {
+                off = self._value_String._array_char.length;
+                next = new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1)._int));
+              }
+            }
+            size = new Object(__cid=-2, _int=(size._int) + 1);
+          }
+        }
+        __sa25 = (next._int) != (-(new Object(__cid=-2, _int=1)._int));
+      }
+    }
+    if((!(limited._bit)) || ((size._int) < (limit._int)))/*String.sk:324*/
+    {
+      size = new Object(__cid=-2, _int=(size._int) + 1);
+    }
+    off = new Object(__cid=-2, _int=0);
+    next = indexOf_char_int@String(self, ch, off);
+    limited = new Object(__cid=-2, _int=(limit._int) > (new Object(__cid=-2, _int=0)._int));
+    Object list = Wrap_Array_Object(new Array_Object(length=size));
+    size = new Object(__cid=-2, _int=0);
+    {
+      bit __sa26 = (next._int) != (-(new Object(__cid=-2, _int=1)._int));
+      while(__sa26)
+      {
+        {
+          {
+            if((!(limited._bit)) || ((size._int) < ((limit._int) - (new Object(__cid=-2, _int=1)._int))))/*String.sk:331*/
+            {
+              {
+                list._array_object.A[size._int] = substring_int_int@String(self, off, next);
+                off = new Object(__cid=-2, _int=(next._int) + (new Object(__cid=-2, _int=1)._int));
+                next = indexOf_char_int@String(self, ch, off);
+              }
+            }
+            else
+            {
+              {
+                list._array_object.A[size._int] = substring_int_int@String(self, off, self._count_String);
+                off = self._value_String._array_char.length;
+                next = new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1)._int));
+              }
+            }
+            size = new Object(__cid=-2, _int=(size._int) + 1);
+          }
+        }
+        __sa26 = (next._int) != (-(new Object(__cid=-2, _int=1)._int));
+      }
+    }
+    if((off._int) == (new Object(__cid=-2, _int=0)._int))/*String.sk:343*/
+    {
+      {
+        Object res = Wrap_Array_Object(new Array_Object(length=new Object(__cid=-2, _int=1)));
+        res._array_object.A[0] = self;
+        return res;
+      }
+    }
+    if((!(limited._bit)) || ((size._int) < (limit._int)))/*String.sk:347*/
+    {
+      {
+        list._array_object.A[size._int] = substring_int_int@String(self, off, self._count_String);
+        size = new Object(__cid=-2, _int=(size._int) + 1);
+      }
+    }
+    Object resultSize = list._array_object.length;
+    if((limit._int) == (new Object(__cid=-2, _int=0)._int))/*String.sk:352*/
+    {
+      {
+        Object tmp = list._array_object.A[(resultSize._int) - (new Object(__cid=-2, _int=1)._int)];
+        {
+          bit __sa27 = ((resultSize._int) > (new Object(__cid=-2, _int=0)._int)) && ((((tmp.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(tmp) : null)._int) == (new Object(__cid=-2, _int=0)._int));
+          while(__sa27)
+          {
+            {
+              {
+                resultSize = new Object(__cid=-2, _int=(resultSize._int) - 1);
+              }
+            }
+            __sa27 = ((resultSize._int) > (new Object(__cid=-2, _int=0)._int)) && ((((tmp.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(tmp) : null)._int) == (new Object(__cid=-2, _int=0)._int));
+          }
+        }
+      }
+    }
+    Object result = Wrap_Array_Object(new Array_Object(length=resultSize));
+    {
+      Object i = new Object(__cid=-2, _int=0);
+      bit __sa28 = (i._int) < (resultSize._int);
+      while(__sa28)
+      {
+        {
+          {
+            result._array_object.A[i._int] = list._array_object.A[i._int];
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) + 1);
+        __sa28 = (i._int) < (resultSize._int);
+      }
+    }
+    return result;
+  }
+  /*String.sk:32*/
+  
+Object startsWith_String (Object self, Object suffix)/*String.sk:32*/
+  {
+    Object len = ((suffix.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(suffix) : null);
+    if((len._int) > (((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(self) : null)._int))/*String.sk:34*/
+    {
+      return new Object(__cid=-4, _bit=0);
+    }
+    {
+      Object i = new Object(__cid=-2, _int=0);
+      bit __sa8 = (i._int) < (len._int);
+      while(__sa8)
+      {
+        {
+          {
+            if((((self.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(self, i) : null)._char) != (((suffix.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(suffix, i) : null)._char))/*String.sk:36*/
+            {
+              {
+                return new Object(__cid=-4, _bit=0);
+              }
+            }
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) + 1);
+        __sa8 = (i._int) < (len._int);
+      }
+    }
+    return new Object(__cid=-4, _bit=1);
+  }
+  /*String.sk:227*/
+  
+Object substring_int (Object self, Object beginIndex)/*String.sk:227*/
+  {
+    Object subLen = new Object(__cid=-2, _int=(self._count_String._int) - (beginIndex._int));
+    assert ((subLen._int) > (new Object(__cid=-2, _int=0)._int)); //Assert at String.sk:229 (0)
+    return ((beginIndex._int) == (new Object(__cid=-2, _int=0)._int) ? self : String_String_char_int_int(new Object(__cid=String()), self._value_String, beginIndex, subLen)//{});
+  }
+  /*String.sk:233*/
+  
+Object substring_int_int (Object self, Object beginIndex, Object endIndex)/*String.sk:233*/
+  {
+    assert (((beginIndex._int) >= (new Object(__cid=-2, _int=0)._int)) && ((endIndex._int) <= (self._value_String._array_char.length._int))); //Assert at String.sk:234 (0)
+    Object subLen = new Object(__cid=-2, _int=(endIndex._int) - (beginIndex._int));
+    assert ((subLen._int) > (new Object(__cid=-2, _int=0)._int)); //Assert at String.sk:236 (0)
+    return (((beginIndex._int) == (new Object(__cid=-2, _int=0)._int)) && ((endIndex._int) == (self._count_String._int)) ? self : String_String_char_int_int(new Object(__cid=String()), self._value_String, beginIndex, subLen)//{});
+  }
+  /*String.sk:52*/
+  
+Object toString (Object self)/*String.sk:52*/
+  {
+    return self;
+  }
+  /* END PACKAGE String*/
+}
+/* BEGIN PACKAGE Comparator*/
+package Comparator{
+  /*Comparator.sk:3*/
+  
+Object Comparator_Comparator (Object self)/*Comparator.sk:3*/
+  {
+    return self;
+  }
+  /*Comparator.sk:7*/
+  
+harness void main ()/*Comparator.sk:7*/
+  {
+    Object self = Object_Object(new Object(__cid=Object()))//{};
+    Object communication = CommunicationWithFiles_CommunicationWithFiles(new Object(__cid=CommunicationWithFiles()))//{};
+    Object File1 = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=4), A={'1','\n','2','\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=3))//{};
+    Object File2 = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=4), A={'2','\n','3','\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=3))//{};
+    Object inFile1 = ArrayList_ArrayList();
+    Object inFile2 = ArrayList_ArrayList();
+    inFile1 = ((communication.__cid) == (new Object(__cid=-2, _int=CommunicationWithFiles())._int) ? ReadToArray_String_boolean@CommunicationWithFiles(communication, File1, new Object(__cid=-4, _bit=0)) : null);
+    inFile2 = ((communication.__cid) == (new Object(__cid=-2, _int=CommunicationWithFiles())._int) ? ReadToArray_String_boolean@CommunicationWithFiles(communication, File2, new Object(__cid=-4, _bit=0)) : null);
+    if((inFile1.__cid) == (new Object(__cid=-2, _int=ArrayList())._int))/*Comparator.sk:16*/
+    {
+      {
+        addAll_Object_ArrayList@ArrayList(inFile1, inFile2);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    inFile1 = ((inFile1.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? addAllb_Object_ArrayList@ArrayList(inFile1, inFile2) : null);
+    Object o1 = ((File1.__cid) == (new Object(__cid=-2, _int=String())._int) ? concat_String@String(File1, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=5), A={'_','v','s','_','\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=4))//{})//{} : null);
+    Object o2 = ((o1.__cid) == (new Object(__cid=-2, _int=String())._int) ? concat_String@String(o1, File2) : null);
+    Object outputFileName = ((o2.__cid) == (new Object(__cid=-2, _int=String())._int) ? concat_String@String(o2, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=5), A={'.','t','x','t','\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=4))//{})//{} : null);
+    Object comp = ((communication.__cid) == (new Object(__cid=-2, _int=CommunicationWithFiles())._int) ? RemoveDuplicates_ArrayList@CommunicationWithFiles(communication, inFile1) : null);
+    Object c1 = xform_get_ArrayList_int(comp._arraylist, new Object(__cid=-2, _int=1));
+    Object c2 = xform_get_ArrayList_int(comp._arraylist, new Object(__cid=-2, _int=2));
+    Object sz = xform_size_ArrayList(comp._arraylist);
+  }
+  /* END PACKAGE Comparator*/
+}
+/* BEGIN PACKAGE FileReaderr*/
+package FileReaderr{
+  /*FileReaderr.sk:3*/
+  
+Object FileReaderr_FileReaderr (Object self)/*FileReaderr.sk:3*/
+  {
+    return self;
+  }
+  /*FileReaderr.sk:7*/
+  
+Object FileReaderr_FileReaderr_String (Object self, Object path)/*FileReaderr.sk:7*/
+  {
+    self.path_FileReaderr = path;
+    self.data_FileReaderr = ((path.__cid) == (new Object(__cid=-2, _int=String())._int) ? split_String@String(path, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=2), A={'\n','\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))//{})//{} : null);
+    return self;
+  }
+  /*FileReaderr.sk:28*/
+  
+void close (Object self)/*FileReaderr.sk:28*/
+  {
+  }
+  /*FileReaderr.sk:17*/
+  
+Object get_int (Object self, Object i)/*FileReaderr.sk:17*/
+  {
+    if((i._int) < (self.data_FileReaderr._array_object.length._int))/*FileReaderr.sk:18*/
+    {
+      {
+        return self.data_FileReaderr._array_object.A[i._int];
+      }
+    }
+    return null;
+  }
+  /*FileReaderr.sk:13*/
+  
+Object len_String (Object self, Object strs)/*FileReaderr.sk:13*/
+  {
+    return strs._array_object.length;
+  }
+  /*FileReaderr.sk:24*/
+  
+Object read (Object self)/*FileReaderr.sk:24*/
+  {
+    return new Object(__cid=-2, _int=0);
+  }
+  /* END PACKAGE FileReaderr*/
+}
+/* BEGIN PACKAGE BufferedWriter*/
+package BufferedWriter{
+  /*BufferedWriter.sk:3*/
+  
+Object BufferedWriter_BufferedWriter (Object self)/*BufferedWriter.sk:3*/
+  {
+    return self;
+  }
+  /*BufferedWriter.sk:7*/
+  
+Object BufferedWriter_BufferedWriter_FileWriter (Object self, Object writer)/*BufferedWriter.sk:7*/
+  {
+    self.writer_BufferedWriter = writer;
+    return self;
+  }
+  /*BufferedWriter.sk:18*/
+  
+void close (Object self)/*BufferedWriter.sk:18*/
+  {
+  }
+  /*BufferedWriter.sk:15*/
+  
+void newLine (Object self)/*BufferedWriter.sk:15*/
+  {
+  }
+  /*BufferedWriter.sk:12*/
+  
+void write_String (Object self, Object s)/*BufferedWriter.sk:12*/
+  {
+  }
+  /* END PACKAGE BufferedWriter*/
+}
+/* BEGIN PACKAGE Integer*/
+package Integer{
+  Object MIN_VALUE;
+  Object MAX_VALUE;
+  /*Integer.sk:11*/
+  
+Object Integer_Integer (Object self)/*Integer.sk:11*/
+  {
+    return self;
+  }
+  /*Integer.sk:15*/
+  
+Object Integer_Integer_int (Object self, Object value)/*Integer.sk:15*/
+  {
+    self.value_Integer = value;
+    MIN_VALUE = new Object(__cid=-2, _int=-2147483648);
+    MAX_VALUE = new Object(__cid=-2, _int=2147483647);
+    return self;
+  }
+  /*Integer.sk:8*/
+  
+Object MAX_VALUE_g ()/*Integer.sk:8*/
+  {
+    return MAX_VALUE;
+  }
+  /*Integer.sk:9*/
+  
+void MAX_VALUE_s (Object MAX_VALUE_s)/*Integer.sk:9*/
+  {
+    MAX_VALUE = MAX_VALUE_s;
+  }
+  /*Integer.sk:4*/
+  
+Object MIN_VALUE_g ()/*Integer.sk:4*/
+  {
+    return MIN_VALUE;
+  }
+  /*Integer.sk:5*/
+  
+void MIN_VALUE_s (Object MIN_VALUE_s)/*Integer.sk:5*/
+  {
+    MIN_VALUE = MIN_VALUE_s;
+  }
+  /*Integer.sk:26*/
+  
+Object compareTo_Integer (Object self, Object anotherInteger)/*Integer.sk:26*/
+  {
+    return compare_int_int(self.value_Integer, ((anotherInteger.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? intValue@Integer(anotherInteger) : null))//{};
+  }
+  /*Integer.sk:30*/
+  
+Object compare_int_int (Object x, Object y)/*Integer.sk:30*/
+  {
+    return ((x._int) < (y._int) ? new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1)._int)) : ((x._int) == (y._int) ? new Object(__cid=-2, _int=0) : new Object(__cid=-2, _int=1)));
+  }
+  /*Integer.sk:34*/
+  
+Object equals_Object (Object self, Object obj)/*Integer.sk:34*/
+  {
+    if((obj.__cid) == (Integer()))/*Integer.sk:35*/
+    {
+      {
+        return new Object(__cid=-4, _bit=(self.value_Integer._int) == (((obj.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? intValue@Integer(obj) : null)._int));
+      }
+    }
+    return new Object(__cid=-4, _bit=0);
+  }
+  /*Integer.sk:73*/
+  
+Object hashCode (Object self)/*Integer.sk:73*/
+  {
+    return self.value_Integer;
+  }
+  /*Integer.sk:22*/
+  
+Object intValue (Object self)/*Integer.sk:22*/
+  {
+    return self.value_Integer;
+  }
+  /*Integer.sk:77*/
+  
+Object parseInt_String (Object s)/*Integer.sk:77*/
+  {
+    Object nums = Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=10)));
+    nums._array_char.A[0] = new Object(__cid=-3, _char='0')._char;
+    nums._array_char.A[1] = new Object(__cid=-3, _char='1')._char;
+    nums._array_char.A[2] = new Object(__cid=-3, _char='2')._char;
+    nums._array_char.A[3] = new Object(__cid=-3, _char='3')._char;
+    nums._array_char.A[4] = new Object(__cid=-3, _char='4')._char;
+    nums._array_char.A[5] = new Object(__cid=-3, _char='5')._char;
+    nums._array_char.A[6] = new Object(__cid=-3, _char='6')._char;
+    nums._array_char.A[7] = new Object(__cid=-3, _char='7')._char;
+    nums._array_char.A[8] = new Object(__cid=-3, _char='8')._char;
+    nums._array_char.A[9] = new Object(__cid=-3, _char='9')._char;
+    Object len = ((s.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(s) : null);
+    Object num = new Object(__cid=-2, _int=0);
+    Object mult = new Object(__cid=-2, _int=1);
+    {
+      Object i = new Object(__cid=-2, _int=(len._int) - (new Object(__cid=-2, _int=1)._int));
+      bit __sa31 = (i._int) >= (new Object(__cid=-2, _int=0)._int);
+      while(__sa31)
+      {
+        {
+          {
+            Object c = ((s.__cid) == (new Object(__cid=-2, _int=String())._int) ? charAt_int@String(s, i) : null);
+            {
+              Object j = new Object(__cid=-2, _int=0);
+              bit __sa32 = (j._int) < (new Object(__cid=-2, _int=10)._int);
+              while(__sa32)
+              {
+                {
+                  {
+                    if((c._char) == (nums._array_char.A[j._int]))/*Integer.sk:85*/
+                    {
+                      {
+                        num = new Object(__cid=-2, _int=(num._int) + ((mult._int) * (j._int)));
+                      }
+                    }
+                  }
+                }
+                j = new Object(__cid=-2, _int=(j._int) + 1);
+                __sa32 = (j._int) < (new Object(__cid=-2, _int=10)._int);
+              }
+            }
+            if(((i._int) == (new Object(__cid=-2, _int=0)._int)) && ((c._char) == (new Object(__cid=-3, _char='-')._char)))/*Integer.sk:89*/
+            {
+              num = new Object(__cid=-2, _int=(num._int) * (-(new Object(__cid=-2, _int=1)._int)));
+            }
+            mult = new Object(__cid=-2, _int=(mult._int) * (new Object(__cid=-2, _int=10)._int));
+          }
+        }
+        i = new Object(__cid=-2, _int=(i._int) - 1);
+        __sa31 = (i._int) >= (new Object(__cid=-2, _int=0)._int);
+      }
+    }
+    return num;
+  }
+  /*Integer.sk:41*/
+  
+Object toString (Object self)/*Integer.sk:41*/
+  {
+    return toString_int(self.value_Integer);
+  }
+  /*Integer.sk:45*/
+  
+Object toString_int (Object i)/*Integer.sk:45*/
+  {
+    if((i._int) == (new Object(__cid=-2, _int=0)._int))/*Integer.sk:46*/
+    {
+      {
+        return String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=2), A={'0','\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))//{};
+      }
+    }
+    Object index = new Object(__cid=-2, _int=0);
+    Object temp = i;
+    Object j;
+    Object ret = Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=32)));
+    Object ret2 = Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=32)));
+    Object nums = Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=10)));
+    nums._array_char.A[0] = new Object(__cid=-3, _char='0')._char;
+    nums._array_char.A[1] = new Object(__cid=-3, _char='1')._char;
+    nums._array_char.A[2] = new Object(__cid=-3, _char='2')._char;
+    nums._array_char.A[3] = new Object(__cid=-3, _char='3')._char;
+    nums._array_char.A[4] = new Object(__cid=-3, _char='4')._char;
+    nums._array_char.A[5] = new Object(__cid=-3, _char='5')._char;
+    nums._array_char.A[6] = new Object(__cid=-3, _char='6')._char;
+    nums._array_char.A[7] = new Object(__cid=-3, _char='7')._char;
+    nums._array_char.A[8] = new Object(__cid=-3, _char='8')._char;
+    nums._array_char.A[9] = new Object(__cid=-3, _char='9')._char;
+    if((temp._int) < (new Object(__cid=-2, _int=0)._int))/*Integer.sk:53*/
+    {
+      {
+        temp = new Object(__cid=-2, _int=(temp._int) * (-(new Object(__cid=-2, _int=1)._int)));
+      }
+    }
+    {
+      bit __sa29 = (temp._int) > (new Object(__cid=-2, _int=0)._int);
+      while(__sa29)
+      {
+        {
+          {
+            index = new Object(__cid=-2, _int=(index._int) + 1);
+            ret._array_char.A[index._int] = nums._array_char.A[(temp._int) % (new Object(__cid=-2, _int=10)._int)];
+            temp = new Object(__cid=-2, _int=(temp._int) / (new Object(__cid=-2, _int=10)._int));
+          }
+        }
+        __sa29 = (temp._int) > (new Object(__cid=-2, _int=0)._int);
+      }
+    }
+    if((i._int) < (new Object(__cid=-2, _int=0)._int))/*Integer.sk:61*/
+    {
+      {
+        index = new Object(__cid=-2, _int=(index._int) + 1);
+        ret._array_char.A[index._int] = new Object(__cid=-3, _char='-')._char;
+      }
+    }
+    Object size = index;
+    {
+      j = new Object(__cid=-2, _int=0);
+      bit __sa30 = (j._int) < (size._int);
+      while(__sa30)
+      {
+        {
+          {
+            ret2._array_char.A[j._int] = ret._array_char.A[(index._int) - (new Object(__cid=-2, _int=1)._int)];
+            index = new Object(__cid=-2, _int=(index._int) - 1);
+          }
+        }
+        j = new Object(__cid=-2, _int=(j._int) + 1);
+        __sa30 = (j._int) < (size._int);
+      }
+    }
+    return String_String_char_int_int(new Object(__cid=String()), ret2, new Object(__cid=-2, _int=0), size)//{};
+  }
+  /* END PACKAGE Integer*/
+}
+/* BEGIN PACKAGE StringBuffer*/
+package StringBuffer{
+  /*StringBuffer.sk:3*/
+  
+Object StringBuffer_StringBuffer (Object self)/*StringBuffer.sk:3*/
+  {
+    return self;
+  }
+  /*StringBuffer.sk:7*/
+  
+Object StringBuffer_StringBuffer_String (Object self, Object str)/*StringBuffer.sk:7*/
+  {
+    self._value_StringBuffer = str._value_String;
+    self._count_StringBuffer = ((str.__cid) == (new Object(__cid=-2, _int=String())._int) ? length@String(str) : null);
+    return self;
+  }
+  /*StringBuffer.sk:13*/
+  
+Object charAt_int (Object self, Object index)/*StringBuffer.sk:13*/
+  {
+    if(((new Object(__cid=-2, _int=0)._int) <= (index._int)) && ((index._int) < (self._count_StringBuffer._int)))/*StringBuffer.sk:14*/
+    {
+      return new Object(__cid=-3, _char=self._value_StringBuffer._array_char.A[index._int]);
+    }
+  }
+  /*StringBuffer.sk:17*/
+  
+Object length (Object self)/*StringBuffer.sk:17*/
+  {
+    return self._count_StringBuffer;
+  }
+  /*StringBuffer.sk:25*/
+  
+void setCharAt_int_char (Object self, Object i, Object c)/*StringBuffer.sk:25*/
+  {
+    self._value_StringBuffer._array_char.A[i._int] = c._char;
+  }
+  /*StringBuffer.sk:21*/
+  
+Object toString (Object self)/*StringBuffer.sk:21*/
+  {
+    return String_String_char_int_int(new Object(__cid=String()), self._value_StringBuffer, new Object(__cid=-2, _int=0), self._count_StringBuffer)//{};
+  }
+  /* END PACKAGE StringBuffer*/
+}
+/* BEGIN PACKAGE CommunicationWithFiles*/
+package CommunicationWithFiles{
+  /*Communi..hFiles.sk:73*/
+  
+void ClearFile_String (Object self, Object toBeCleared)/*Communi..hFiles.sk:73*/
+  {
+    Object fileWriter = FileWriterr_FileWriterr_String(new Object(__cid=FileWriterr()), toBeCleared)//{};
+    Object bufferedWriter = BufferedWriter_BufferedWriter_FileWriter(new Object(__cid=BufferedWriter()), fileWriter)//{};
+    if((bufferedWriter.__cid) == (new Object(__cid=-2, _int=BufferedWriter())._int))/*Communi..hFiles.sk:76*/
+    {
+      {
+        close@BufferedWriter(bufferedWriter);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+  }
+  /*Communi..hFiles.sk:3*/
+  
+Object CommunicationWithFiles_CommunicationWithFiles (Object self)/*Communi..hFiles.sk:3*/
+  {
+    return self;
+  }
+  /*Communi..hFiles.sk:7*/
+  
+Object ReadToArray_String_boolean (Object self, Object filename, Object isAList)/*Communi..hFiles.sk:7*/
+  {
+    Object fr = null;
+    Object value = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1), A={'\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=0))//{};
+    Object values = ArrayList_ArrayList();
+    if((values.__cid) == (new Object(__cid=-2, _int=ArrayList())._int))/*Communi..hFiles.sk:11*/
+    {
+      {
+        sort_Object_Object@ArrayList(values, null);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    values = ((values.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? sortb_Object_Object@ArrayList(values, null) : null);
+    fr = FileReaderr_FileReaderr_String(new Object(__cid=FileReaderr()), filename)//{};
+    Object bfr = BufferedReader_Object_File(fr);
+    value = ((bfr.__cid) == (new Object(__cid=-2, _int=BufferedReader())._int) ? xform_readLine_BufferedReader@BufferedReader(bfr._bufferedreader) : null);
+    bfr = ((bfr.__cid) == (new Object(__cid=-2, _int=BufferedReader())._int) ? readLineb_Object@BufferedReader(bfr) : null);
+    while(value != (null))
+    {
+      {
+        if((value != (null)) && ((!(isAList._bit)) == (new Object(__cid=-4, _bit=1)._bit)))/*Communi..hFiles.sk:18*/
+        {
+          {
+            Object vbar = ((value.__cid) == (new Object(__cid=-2, _int=String())._int) ? concat_String@String(value, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=2), A={'|','\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))//{})//{} : null);
+            ((values.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? add_Object_String@ArrayList(values, ((vbar.__cid) == (new Object(__cid=-2, _int=String())._int) ? concat_String@String(vbar, filename) : null))//{} : null);
+            values = ((values.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? addb_Object_String@ArrayList(values, ((vbar.__cid) == (new Object(__cid=-2, _int=String())._int) ? concat_String@String(vbar, filename) : null))//{} : null);
+          }
+        }
+        value = ((bfr.__cid) == (new Object(__cid=-2, _int=BufferedReader())._int) ? xform_readLine_BufferedReader@BufferedReader(bfr._bufferedreader) : null);
+        bfr = ((bfr.__cid) == (new Object(__cid=-2, _int=BufferedReader())._int) ? readLineb_Object@BufferedReader(bfr) : null);
+      }
+    }
+    if((fr.__cid) == (new Object(__cid=-2, _int=FileReaderr())._int))/*Communi..hFiles.sk:25*/
+    {
+      {
+        close@FileReaderr(fr);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    return values;
+  }
+  /*Communi..hFiles.sk:30*/
+  
+Object RemoveDuplicates_ArrayList (Object self, Object toBeSorted)/*Communi..hFiles.sk:30*/
+  {
+    Object j = new Object(__cid=-2, _int=1);
+    if((toBeSorted.__cid) == (new Object(__cid=-2, _int=ArrayList())._int))/*Communi..hFiles.sk:32*/
+    {
+      {
+        sort_Object_Object@ArrayList(toBeSorted, null);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+    toBeSorted = ((toBeSorted.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? sortb_Object_Object@ArrayList(toBeSorted, null) : null);
+    int sz = ((toBeSorted.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? xform_size_ArrayList(toBeSorted._arraylist) : null)._int;
+    {
+      bit __sa33 = ((j._int) + (new Object(__cid=-2, _int=1)._int)) < sz;
+      while(__sa33)
+      {
+        {
+          {
+            Object get_j = ((toBeSorted.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? xform_get_ArrayList_int@ArrayList(toBeSorted._arraylist, j) : null);
+            Object sstr = ((get_j.__cid) == (new Object(__cid=-2, _int=String())._int) ? substring_int_int@String(get_j, new Object(__cid=-2, _int=0), ((get_j.__cid) == (new Object(__cid=-2, _int=String())._int) ? indexOf_String@String(get_j, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=2), A={'|','\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))//{})//{} : null))//{} : null);
+            Object get_j1 = ((toBeSorted.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? xform_get_ArrayList_int@ArrayList(toBeSorted._arraylist, new Object(__cid=-2, _int=(j._int) + (new Object(__cid=-2, _int=1)._int))) : null);
+            Object sstr1 = ((get_j1.__cid) == (new Object(__cid=-2, _int=String())._int) ? substring_int_int@String(get_j1, new Object(__cid=-2, _int=0), ((get_j1.__cid) == (new Object(__cid=-2, _int=String())._int) ? indexOf_String@String(get_j1, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=2), A={'|','\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))//{})//{} : null))//{} : null);
+            if(((sstr.__cid) == (new Object(__cid=-2, _int=String())._int) ? equals_Object@String(sstr, sstr1) : null)._bit)/*Communi..hFiles.sk:42*/
+            {
+              {
+                if((toBeSorted.__cid) == (new Object(__cid=-2, _int=ArrayList())._int))/*Communi..hFiles.sk:43*/
+                {
+                  {
+                    remove_Object_int@ArrayList(toBeSorted, new Object(__cid=-2, _int=(j._int) + (new Object(__cid=-2, _int=1)._int)));
+                  }
+                }
+                else
+                {
+                  {
+                    0;
+                  }
+                }
+                { }
+                toBeSorted = ((toBeSorted.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? removeb_Object_int@ArrayList(toBeSorted, new Object(__cid=-2, _int=(j._int) + (new Object(__cid=-2, _int=1)._int))) : null);
+                if((toBeSorted.__cid) == (new Object(__cid=-2, _int=ArrayList())._int))/*Communi..hFiles.sk:45*/
+                {
+                  {
+                    remove_Object_int@ArrayList(toBeSorted, j);
+                  }
+                }
+                else
+                {
+                  {
+                    0;
+                  }
+                }
+                { }
+                toBeSorted = ((toBeSorted.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? removeb_Object_int@ArrayList(toBeSorted, j) : null);
+              }
+            }
+            else
+            {
+              {
+                j._int = 1;
+              }
+            }
+          }
+        }
+        __sa33 = ((j._int) + (new Object(__cid=-2, _int=1)._int)) < sz;
+      }
+    }
+    ((toBeSorted.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? set_Object_int_String@ArrayList(toBeSorted, new Object(__cid=-2, _int=0), String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=4), A={'V','|','F','\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=3))//{})//{} : null);
+    toBeSorted = ((toBeSorted.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? setb_Object_int_String@ArrayList(toBeSorted, new Object(__cid=-2, _int=0), String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=4), A={'V','|','F','\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=3))//{})//{} : null);
+    return toBeSorted;
+  }
+  /*Communi..hFiles.sk:57*/
+  
+void createFile_ArrayList_String (Object self, Object rows, Object filename)/*Communi..hFiles.sk:57*/
+  {
+    Object fileWriter = FileWriterr_FileWriterr_String(new Object(__cid=FileWriterr()), filename)//{};
+    Object bufferedWriter = BufferedWriter_BufferedWriter_FileWriter(new Object(__cid=BufferedWriter()), fileWriter)//{};
+    int sz = (xform_size_ArrayList@ArrayList(rows._arraylist)._int) - (new Object(__cid=-2, _int=1)._int);
+    {
+      Object k = new Object(__cid=-2, _int=0);
+      bit __sa34 = (k._int) <= (((rows.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? sz : 0));
+      while(__sa34)
+      {
+        {
+          {
+            Object v = ((rows.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? xform_get_ArrayList_int@ArrayList(rows._arraylist, k) : null);
+            if((bufferedWriter.__cid) == (new Object(__cid=-2, _int=BufferedWriter())._int))/*Communi..hFiles.sk:64*/
+            {
+              {
+                write_String@BufferedWriter(bufferedWriter, v);
+              }
+            }
+            else
+            {
+              {
+                0;
+              }
+            }
+            { }
+            if((bufferedWriter.__cid) == (new Object(__cid=-2, _int=BufferedWriter())._int))/*Communi..hFiles.sk:66*/
+            {
+              {
+                newLine@BufferedWriter(bufferedWriter);
+              }
+            }
+            else
+            {
+              {
+                0;
+              }
+            }
+            { }
+          }
+        }
+        k = new Object(__cid=-2, _int=(k._int) + 1);
+        __sa34 = (k._int) <= (((rows.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? sz : 0));
+      }
+    }
+    if((bufferedWriter.__cid) == (new Object(__cid=-2, _int=BufferedWriter())._int))/*Communi..hFiles.sk:69*/
+    {
+      {
+        close@BufferedWriter(bufferedWriter);
+      }
+    }
+    else
+    {
+      {
+        0;
+      }
+    }
+    { }
+  }
+  /* END PACKAGE CommunicationWithFiles*/
+}
+/* BEGIN PACKAGE Number*/
+package Number{
+  /*Number.sk:3*/
+  
+Object Number_Number (Object self)/*Number.sk:3*/
+  {
+    return self;
+  }
+  /* END PACKAGE Number*/
+}
+/* BEGIN PACKAGE array*/
+package array{
+  struct Array_bit {
+      Object length;
+      bit[length._int] A;
+  }
+  struct Array_char {
+      Object length;
+      char[length._int] A;
+  }
+  struct Array_int {
+      Object length;
+      int[length._int] A;
+  }
+  struct Array_float {
+      Object length;
+      float[length._int] A;
+  }
+  struct Array_double {
+      Object length;
+      double[length._int] A;
+  }
+  struct Array_Object {
+      Object length;
+      Object[length._int] A;
+  }
+  /*array.sk:53*/
+  
+Object Wrap_Array_Object (Array_Object arr)/*array.sk:53*/
+  {
+    return new Object(__cid=Array(), _array_object=arr);
+  }
+  /*array.sk:33*/
+  
+Object Wrap_Array_bit (Array_bit arr)/*array.sk:33*/
+  {
+    return new Object(__cid=Array(), _array_bit=arr);
+  }
+  /*array.sk:37*/
+  
+Object Wrap_Array_char (Array_char arr)/*array.sk:37*/
+  {
+    return new Object(__cid=Array(), _array_char=arr);
+  }
+  /*array.sk:49*/
+  
+Object Wrap_Array_double (Array_double arr)/*array.sk:49*/
+  {
+    return new Object(__cid=Array(), _array_double=arr);
+  }
+  /*array.sk:45*/
+  
+Object Wrap_Array_float (Array_float arr)/*array.sk:45*/
+  {
+    return new Object(__cid=Array(), _array_float=arr);
+  }
+  /*array.sk:41*/
+  
+Object Wrap_Array_int (Array_int arr)/*array.sk:41*/
+  {
+    return new Object(__cid=Array(), _array_int=arr);
+  }
+  /* END PACKAGE array*/
+}
+/* BEGIN PACKAGE meta*/
+package meta{
+  /*meta.sk:24*/
+  
+int Array ()/*meta.sk:24*/
+  {
+    return -1;
+  }
+  /*meta.sk:4*/
+  
+int ArrayList ()/*meta.sk:4*/
+  {
+    return 16;
+  }
+  /*meta.sk:5*/
+  
+int Boolean ()/*meta.sk:5*/
+  {
+    return 19;
+  }
+  /*meta.sk:6*/
+  
+int BufferedReader ()/*meta.sk:6*/
+  {
+    return 13;
+  }
+  /*meta.sk:7*/
+  
+int BufferedWriter ()/*meta.sk:7*/
+  {
+    return 20;
+  }
+  /*meta.sk:8*/
+  
+int CharSequence ()/*meta.sk:8*/
+  {
+    return 14;
+  }
+  /*meta.sk:9*/
+  
+int Character ()/*meta.sk:9*/
+  {
+    return 9;
+  }
+  /*meta.sk:10*/
+  
+int CommunicationWithFiles ()/*meta.sk:10*/
+  {
+    return 3;
+  }
+  /*meta.sk:11*/
+  
+int Comparator ()/*meta.sk:11*/
+  {
+    return 4;
+  }
+  /*meta.sk:12*/
+  
+int File ()/*meta.sk:12*/
+  {
+    return 18;
+  }
+  /*meta.sk:13*/
+  
+int FileOutputStream ()/*meta.sk:13*/
+  {
+    return 7;
+  }
+  /*meta.sk:14*/
+  
+int FileReaderr ()/*meta.sk:14*/
+  {
+    return 10;
+  }
+  /*meta.sk:15*/
+  
+int FileWriterr ()/*meta.sk:15*/
+  {
+    return 15;
+  }
+  /*meta.sk:16*/
+  
+int Integer ()/*meta.sk:16*/
+  {
+    return 8;
+  }
+  /*meta.sk:17*/
+  
+int Number ()/*meta.sk:17*/
+  {
+    return 12;
+  }
+  /*meta.sk:18*/
+  
+int Object ()/*meta.sk:18*/
+  {
+    return 1;
+  }
+  /*meta.sk:19*/
+  
+int PrintStream ()/*meta.sk:19*/
+  {
+    return 6;
+  }
+  /*meta.sk:20*/
+  
+int String ()/*meta.sk:20*/
+  {
+    return 5;
+  }
+  /*meta.sk:21*/
+  
+int StringBuffer ()/*meta.sk:21*/
+  {
+    return 17;
+  }
+  /*meta.sk:22*/
+  
+int StringBuilder ()/*meta.sk:22*/
+  {
+    return 11;
+  }
+  /*meta.sk:23*/
+  
+int Tester ()/*meta.sk:23*/
+  {
+    return 2;
+  }
+  /*meta.sk:27*/
+  
+int _bit ()/*meta.sk:27*/
+  {
+    return -4;
+  }
+  /*meta.sk:26*/
+  
+int _char ()/*meta.sk:26*/
+  {
+    return -3;
+  }
+  /*meta.sk:29*/
+  
+int _double ()/*meta.sk:29*/
+  {
+    return -6;
+  }
+  /*meta.sk:28*/
+  
+int _float ()/*meta.sk:28*/
+  {
+    return -5;
+  }
+  /*meta.sk:25*/
+  
+int _int ()/*meta.sk:25*/
+  {
+    return -2;
+  }
+  /* END PACKAGE meta*/
+}
+/* BEGIN PACKAGE FileOutputStream*/
+package FileOutputStream{
+  struct FileOutputStream {
+      @Immutable()
+  }
+  struct Fileoutputstream extends FileOutputStream@FileOutputStream {
+      @Immutable()
+  }
+  struct Fileoutputstream_string extends FileOutputStream@FileOutputStream {
+      Object s;
+      @Immutable()
+  }
+  /*FileOut..Stream.sk:8*/
+  
+Object FileOutputStream_FileOutputStream ()/*FileOut..Stream.sk:8*/
+  {
+    return new Object(__cid=FileOutputStream(), _fileoutputstream=new Fileoutputstream());
+  }
+  /*FileOut..Stream.sk:12*/
+  
+Object FileOutputStream_Object_String (Object s)/*FileOut..Stream.sk:12*/
+  {
+    return new Object(__cid=FileOutputStream(), _fileoutputstream=new Fileoutputstream_string(s=s));
+  }
+  /*FileOut..Stream.sk:16*/
+  
+Object xform_FileOutputStream (FileOutputStream self)/*FileOut..Stream.sk:16*/
+  {
+    switch(self){/*FileOut..Stream.sk:17*/
+      case Fileoutputstream:
+      {
+        {
+          return xform_fileoutputstream_FileOutputStream(self);
+        }
+      }
+      case Fileoutputstream_string:
+      {
+        {
+          return xform_FileOutputStream_FileOutputStream_String(self, self.s);
+        }
+      }
+    }
+    return null;
+  }
+  /*FileOut..Stream.sk:28*/
+  
+Object xform_FileOutputStream_FileOutputStream_String (FileOutputStream self, Object s)/*FileOut..Stream.sk:28*/
+  {
+    switch(self){/*FileOut..Stream.sk:29*/
+      case Fileoutputstream:
+      {
+        {
+          assert (0); //Assert at FileOut..Stream.sk:30 (0)
+        }
+      }
+      case Fileoutputstream_string:
+      {
+        {
+          assert (0); //Assert at FileOut..Stream.sk:31 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*FileOut..Stream.sk:36*/
+  
+Object xform_fileoutputstream_FileOutputStream (FileOutputStream self)/*FileOut..Stream.sk:36*/
+  {
+    switch(self){/*FileOut..Stream.sk:37*/
+      case Fileoutputstream:
+      {
+        {
+          assert (0); //Assert at FileOut..Stream.sk:38 (0)
+        }
+      }
+      case Fileoutputstream_string:
+      {
+        {
+          assert (0); //Assert at FileOut..Stream.sk:39 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /* END PACKAGE FileOutputStream*/
+}
+/* BEGIN PACKAGE BufferedReader*/
+package BufferedReader{
+  struct BufferedReader {
+      @Immutable()
+  }
+  struct Bufferedreader extends BufferedReader@BufferedReader {
+      @Immutable()
+  }
+  struct Bufferedreader_file extends BufferedReader@BufferedReader {
+      Object type;
+      @Immutable()
+  }
+  struct Readline extends BufferedReader@BufferedReader {
+      BufferedReader self;
+      @Immutable()
+  }
+  struct Readlineb extends BufferedReader@BufferedReader {
+      BufferedReader self;
+      @Immutable()
+  }
+  struct Readlinehelpb_int extends BufferedReader@BufferedReader {
+      BufferedReader self;
+      Object i;
+      @Immutable()
+  }
+  struct Readlinehelp_int extends BufferedReader@BufferedReader {
+      BufferedReader self;
+      Object i;
+      @Immutable()
+  }
+  /*BufferedReader.sk:12*/
+  
+Object BufferedReader_BufferedReader ()/*BufferedReader.sk:12*/
+  {
+    return new Object(__cid=BufferedReader(), _bufferedreader=new Bufferedreader());
+  }
+  /*BufferedReader.sk:16*/
+  
+Object BufferedReader_Object_File (Object type)/*BufferedReader.sk:16*/
+  {
+    return new Object(__cid=BufferedReader(), _bufferedreader=new Bufferedreader_file(type=type));
+  }
+  /*BufferedReader.sk:32*/
+  
+Object readLineHelp_Object_int (Object self, Object i)/*BufferedReader.sk:32*/
+  {
+    return new Object(__cid=BufferedReader(), _bufferedreader=new Readlinehelp_int(self=self._bufferedreader, i=i));
+  }
+  /*BufferedReader.sk:28*/
+  
+Object readLineHelpb_Object_int (Object self, Object i)/*BufferedReader.sk:28*/
+  {
+    return new Object(__cid=BufferedReader(), _bufferedreader=new Readlinehelpb_int(self=self._bufferedreader, i=i));
+  }
+  /*BufferedReader.sk:20*/
+  
+Object readLine_Object (Object self)/*BufferedReader.sk:20*/
+  {
+    return new Object(__cid=BufferedReader(), _bufferedreader=new Readline(self=self._bufferedreader));
+  }
+  /*BufferedReader.sk:24*/
+  
+Object readLineb_Object (Object self)/*BufferedReader.sk:24*/
+  {
+    return new Object(__cid=BufferedReader(), _bufferedreader=new Readlineb(self=self._bufferedreader));
+  }
+  /*BufferedReader.sk:36*/
+  
+Object xform_BufferedReader (BufferedReader self)/*BufferedReader.sk:36*/
+  {
+    switch(self){/*BufferedReader.sk:37*/
+      case Bufferedreader:
+      {
+        {
+          return xform_bufferedreader_BufferedReader(self);
+        }
+      }
+      case Bufferedreader_file:
+      {
+        {
+          return xform_BufferedReader_BufferedReader_File(self, self.type);
+        }
+      }
+      case Readline:
+      {
+        {
+          return xform_readLine_BufferedReader(self.self);
+        }
+      }
+      case Readlineb:
+      {
+        {
+          return xform_readLineb_BufferedReader(self.self);
+        }
+      }
+      case Readlinehelpb_int:
+      {
+        {
+          return xform_readLineHelpb_BufferedReader_int(self.self, self.i);
+        }
+      }
+      case Readlinehelp_int:
+      {
+        {
+          return xform_readLineHelp_BufferedReader_int(self.self, self.i);
+        }
+      }
+    }
+    return null;
+  }
+  /*BufferedReader.sk:100*/
+  
+Object xform_BufferedReader_BufferedReader_File (BufferedReader self, Object type)/*BufferedReader.sk:100*/
+  {
+    switch(self){/*BufferedReader.sk:101*/
+      case Bufferedreader:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:102 (0)
+        }
+      }
+      case Bufferedreader_file:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:103 (0)
+        }
+      }
+      case Readline:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:104 (0)
+        }
+      }
+      case Readlineb:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:105 (0)
+        }
+      }
+      case Readlinehelpb_int:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:106 (0)
+        }
+      }
+      case Readlinehelp_int:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:107 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*BufferedReader.sk:112*/
+  
+Object xform_bufferedreader_BufferedReader (BufferedReader self)/*BufferedReader.sk:112*/
+  {
+    switch(self){/*BufferedReader.sk:113*/
+      case Bufferedreader:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:114 (0)
+        }
+      }
+      case Bufferedreader_file:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:115 (0)
+        }
+      }
+      case Readline:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:116 (0)
+        }
+      }
+      case Readlineb:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:117 (0)
+        }
+      }
+      case Readlinehelpb_int:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:118 (0)
+        }
+      }
+      case Readlinehelp_int:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:119 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*BufferedReader.sk:60*/
+  
+Object xform_readLineHelp_BufferedReader_int (BufferedReader self, Object i)/*BufferedReader.sk:60*/
+  {
+    switch(self){/*BufferedReader.sk:61*/
+      case Bufferedreader:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:62 (0)
+        }
+      }
+      case Bufferedreader_file:
+      {
+        {
+          return ((self.type.__cid) == (new Object(__cid=-2, _int=File())._int) ? get_int@File(self.type, i) : null);
+        }
+      }
+      case Readline:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:66 (0)
+        }
+      }
+      case Readlineb:
+      {
+        {
+          return xform_readLineHelp_BufferedReader_int(self.self, new Object(__cid=-2, _int=(i._int) + (new Object(__cid=-2, _int=1)._int)));
+        }
+      }
+      case Readlinehelpb_int:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:70 (0)
+        }
+      }
+      case Readlinehelp_int:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:71 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*BufferedReader.sk:88*/
+  
+Object xform_readLineHelpb_BufferedReader_int (BufferedReader self, Object i)/*BufferedReader.sk:88*/
+  {
+    switch(self){/*BufferedReader.sk:89*/
+      case Bufferedreader:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:90 (0)
+        }
+      }
+      case Bufferedreader_file:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:91 (0)
+        }
+      }
+      case Readline:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:92 (0)
+        }
+      }
+      case Readlineb:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:93 (0)
+        }
+      }
+      case Readlinehelpb_int:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:94 (0)
+        }
+      }
+      case Readlinehelp_int:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:95 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*BufferedReader.sk:124*/
+  
+Object xform_readLine_BufferedReader (BufferedReader self)/*BufferedReader.sk:124*/
+  {
+    switch(self){/*BufferedReader.sk:125*/
+      case Bufferedreader:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:126 (0)
+        }
+      }
+      case Bufferedreader_file:
+      {
+        {
+          return ((self.type.__cid) == (new Object(__cid=-2, _int=File())._int) ? get_int@File(self.type, new Object(__cid=-2, _int=0)) : null);
+        }
+      }
+      case Readline:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:130 (0)
+        }
+      }
+      case Readlineb:
+      {
+        {
+          return xform_readLineHelp_BufferedReader_int(self.self, new Object(__cid=-2, _int=1));
+        }
+      }
+      case Readlinehelpb_int:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:134 (0)
+        }
+      }
+      case Readlinehelp_int:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:135 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /*BufferedReader.sk:76*/
+  
+Object xform_readLineb_BufferedReader (BufferedReader self)/*BufferedReader.sk:76*/
+  {
+    switch(self){/*BufferedReader.sk:77*/
+      case Bufferedreader:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:78 (0)
+        }
+      }
+      case Bufferedreader_file:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:79 (0)
+        }
+      }
+      case Readline:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:80 (0)
+        }
+      }
+      case Readlineb:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:81 (0)
+        }
+      }
+      case Readlinehelpb_int:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:82 (0)
+        }
+      }
+      case Readlinehelp_int:
+      {
+        {
+          assert (0); //Assert at BufferedReader.sk:83 (0)
+        }
+      }
+    }
+    return null;
+  }
+  /* END PACKAGE BufferedReader*/
+}
+/* BEGIN PACKAGE Object*/
+package Object{
+  struct Object {
+      int __cid;
+      Object _value_StringBuilder;
+      Object _count_StringBuilder;
+      Object value_Integer;
+      Object bool_Boolean;
+      Object _value_StringBuffer;
+      Object _count_StringBuffer;
+      Object _value_String;
+      Object _count_String;
+      Object writer_BufferedWriter;
+      Object value_Character;
+      Object fname_FileWriterr;
+      Object path_File;
+      Object data_File;
+      Object path_FileReaderr;
+      Object data_FileReaderr;
+      ArrayList _arraylist;
+      BufferedReader _bufferedreader;
+      PrintStream _printstream;
+      FileOutputStream _fileoutputstream;
+      Array_bit _array_bit;
+      Array_char _array_char;
+      Array_int _array_int;
+      Array_float _array_float;
+      Array_double _array_double;
+      Array_Object _array_object;
+      bit _bit;
+      char _char;
+      int _int;
+      float _float;
+      double _double;
+  }
+  Object fs;
+  /*Object.sk:7*/
+  
+Object Object_Object (Object self)/*Object.sk:7*/
+  {
+    return self;
+  }
+  /*Object.sk:25*/
+  
+Object equals_Object (Object self, Object obj)/*Object.sk:25*/
+  {
+    return new Object(__cid=-4, _bit=self == obj);
+  }
+  /*Object.sk:11*/
+  
+Object equals_Object_Object (Object a, Object b)/*Object.sk:11*/
+  {
+    if(a == (null))/*Object.sk:12*/
+    {
+      {
+        if(b == (null))/*Object.sk:13*/
+        {
+          {
+            return new Object(__cid=-4, _bit=1);
+          }
+        }
+        return new Object(__cid=-4, _bit=0);
+      }
+    }
+    return ((a.__cid) == (new Object(__cid=-2, _int=FileReaderr())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=FileOutputStream())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=File())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=PrintStream())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=BufferedReader())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=Comparator())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=FileWriterr())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=Character())._int) ? equals_Object@Character(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=Number())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=BufferedWriter())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=CommunicationWithFiles())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=String())._int) ? equals_Object@String(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=StringBuffer())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=Boolean())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=Tester())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? equals_Object@Integer(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=StringBuilder())._int) ? equals_Object@Object(a, b) : ((a.__cid) == (new Object(__cid=-2, _int=Object())._int) ? equals_Object@Object(a, b) : null)))))))))))))))))));
+  }
+  /*Object.sk:4*/
+  
+Object fs_g ()/*Object.sk:4*/
+  {
+    return fs;
+  }
+  /*Object.sk:5*/
+  
+void fs_s (Object fs_s)/*Object.sk:5*/
+  {
+    fs = fs_s;
+  }
+  /*Object.sk:29*/
+  
+Object hashCode (Object self)/*Object.sk:29*/
+  {
+    return new Object(__cid=-2, _int=0);
+  }
+  /*Object.sk:21*/
+  
+Object hashCode_Object (Object o)/*Object.sk:21*/
+  {
+    return (o != (null) ? ((o.__cid) == (new Object(__cid=-2, _int=FileReaderr())._int) ? hashCode@Object(o) : ((o.__cid) == (new Object(__cid=-2, _int=FileOutputStream())._int) ? hashCode@Object(o) : ((o.__cid) == (new Object(__cid=-2, _int=File())._int) ? hashCode@Object(o) : ((o.__cid) == (new Object(__cid=-2, _int=PrintStream())._int) ? hashCode@Object(o) : ((o.__cid) == (new Object(__cid=-2, _int=BufferedReader())._int) ? hashCode@Object(o) : ((o.__cid) == (new Object(__cid=-2, _int=Comparator())._int) ? hashCode@Object(o) : ((o.__cid) == (new Object(__cid=-2, _int=FileWriterr())._int) ? hashCode@Object(o) : ((o.__cid) == (new Object(__cid=-2, _int=Character())._int) ? hashCode@Object(o) : ((o.__cid) == (new Object(__cid=-2, _int=Number())._int) ? hashCode@Object(o) : ((o.__cid) == (new Object(__cid=-2, _int=BufferedWriter())._int) ? hashCode@Object(o) : ((o.__cid) == (new Object(__cid=-2, _int=CommunicationWithFiles())._int) ? hashCode@Object(o) : ((o.__cid) == (new Object(__cid=-2, _int=ArrayList())._int) ? hashCode@Object(o) : ((o.__cid) == (new Object(__cid=-2, _int=String())._int) ? hashCode@String(o) : ((o.__cid) == (new Object(__cid=-2, _int=StringBuffer())._int) ? hashCode@Object(o) : ((o.__cid) == (new Object(__cid=-2, _int=Boolean())._int) ? hashCode@Object(o) : ((o.__cid) == (new Object(__cid=-2, _int=Tester())._int) ? hashCode@Object(o) : ((o.__cid) == (new Object(__cid=-2, _int=Integer())._int) ? hashCode@Integer(o) : ((o.__cid) == (new Object(__cid=-2, _int=StringBuilder())._int) ? hashCode@Object(o) : ((o.__cid) == (new Object(__cid=-2, _int=Object())._int) ? hashCode@Object(o) : null))))))))))))))))))) : new Object(__cid=-2, _int=0));
+  }
+  /* END PACKAGE Object*/
+}
+/* BEGIN PACKAGE Boolean*/
+package Boolean{
+  /*Boolean.sk:3*/
+  
+Object Boolean_Boolean (Object self)/*Boolean.sk:3*/
+  {
+    return self;
+  }
+  /*Boolean.sk:7*/
+  
+Object Boolean_Boolean_boolean (Object self, Object bool)/*Boolean.sk:7*/
+  {
+    self.bool_Boolean = bool;
+    return self;
+  }
+  /*Boolean.sk:12*/
+  
+Object booleanValue (Object self)/*Boolean.sk:12*/
+  {
+    return self.bool_Boolean;
+  }
+  /*Boolean.sk:16*/
+  
+Object toString (Object self)/*Boolean.sk:16*/
+  {
+    return toString_boolean(self.bool_Boolean);
+  }
+  /*Boolean.sk:20*/
+  
+Object toString_boolean (Object bool)/*Boolean.sk:20*/
+  {
+    if(bool._bit)/*Boolean.sk:21*/
+    {
+      return String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=5), A={'t','r','u','e','\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=4))//{};
+    }
+    return String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=6), A={'f','a','l','s','e','\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=5))//{};
+  }
+  /* END PACKAGE Boolean*/
+}
+/* BEGIN PACKAGE File*/
+package File{
+  /*File.sk:3*/
+  
+Object File_File (Object self)/*File.sk:3*/
+  {
+    return self;
+  }
+  /*File.sk:7*/
+  
+Object File_File_String (Object self, Object path)/*File.sk:7*/
+  {
+    self.path_File = path;
+    self.data_File = ((path.__cid) == (new Object(__cid=-2, _int=String())._int) ? split_String@String(path, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=2), A={'\n','\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))//{})//{} : null);
+    return self;
+  }
+  /*File.sk:20*/
+  
+Object exists (Object self)/*File.sk:20*/
+  {
+    return new Object(__cid=-4, _bit=1);
+  }
+  /*File.sk:24*/
+  
+Object getName (Object self)/*File.sk:24*/
+  {
+    return self.path_File;
+  }
+  /*File.sk:28*/
+  
+Object getParent (Object self)/*File.sk:28*/
+  {
+    return String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=5), A={'P','A','T','H','\0'})), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=4))//{};
+  }
+  /*File.sk:13*/
+  
+Object get_int (Object self, Object i)/*File.sk:13*/
+  {
+    if((i._int) < (self.data_File._array_object.length._int))/*File.sk:14*/
+    {
+      {
+        return self.data_File._array_object.A[i._int];
+      }
+    }
+    return null;
+  }
+  /* END PACKAGE File*/
+}

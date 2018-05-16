@@ -1,0 +1,179 @@
+SKETCH version 1.7.5
+usage: [options]
+
+advanced flags: --be:flag --beopt:option value
+native compiler flags: --nc:flag --ncopt:option value
+bnd - bounds for bounded model checking
+debug - debugging
+fe - miscellaneous frontend options
+spmd - spmd sketching interface options
+sem - change program semantics
+slv - solver options
+    --bnd-ang-tuple-depth         Maximum depth of angelic tuples [default 1]
+    --bnd-angelic-arrsz           The max length of angelic array. [default -1]
+    --bnd-angelicbits             The number of bits to use for integer angelic ctrls.
+                                  [default -1]
+    --bnd-arr-size                Max Size for arrays of unknown size. [default 32]
+    --bnd-arr1d-size              Max Size for one dimensional arrays of unknown size.
+                                  [default 32]
+    --bnd-bound-mode              Determine whether inline-amnt will bound the number of
+                                  times a callsite will appear on the stack (CALLSITE) or
+                                  the number of times a call name will appear on the stack
+                                  (CALLNAME). [default CALLNAME]
+    --bnd-branch-amnt             This flag is also used for recursion control. It bounds
+                                  inlining based on the idea that if a function calls
+                                  itself recureively ten times, we want to inline it less
+                                  than a function that calls itself recursively only once.
+                                  In this case, n is the maximum value of the branching
+                                  factor, which is the number of times a function calls
+                                  itself recursively, times the amount of inlining.
+                                  [default 15]
+    --bnd-cbits                   The number of bits to use for integer holes. [default 5]
+    --bnd-cost-estimate           Initial value to start with when minimizing
+                                  expressions/cost functions [default 32]
+    --bnd-dag-size                Max size of DAG [default -1]
+    --bnd-eq-depth                Maximum depth for ADT equality comparisons [default 6]
+    --bnd-guc-depth               Maximum depth of GUC [default 3]
+    --bnd-heap-size               (Deprecated) System will ignore this flag. [default 11]
+    --bnd-inbits                  The number of bits to use for integer inputs. [default
+                                  5]
+    --bnd-incremental             Tells the solver to incrementally grow the size of
+                                  integer holes from 1 to n bits. [default
+                                  sketch.util.cli.CliOptional@1b2c6ec2]
+    --bnd-inline-amnt             Bounds inlining to n levels of recursion, so each
+                                  function can appear at most n times in the stack.
+                                  [default 5]
+    --bnd-int-range               Maximum absolute value of integers modeled by the
+                                  system; -1 means there is no bound. [default -1]
+    --bnd-mbits                   The number of bits to use for minimize bound. [default
+                                  5]
+    --bnd-src-tuple-depth         Maximum depth of src tuples [default 2]
+    --bnd-unroll-amnt             The unroll ammount for loops. [default 8]
+    --debug-cex                   Show the counterexample inputs produced by the solver.
+                                  (Equivalend to backend flag -showinputs).
+    --debug-check-back-input      Feed the backend input file to a bash script to check
+                                  its validity
+ -p,--debug-dump-after            Stages / visitors to dump the program after (comma-sep)
+    --debug-dump-ast              Dump LISP-Like representation of the AST.
+ -P,--debug-dump-before           Stages / visitors to dump the program before (comma-sep)
+    --debug-dump-to-file          Dump debug output to a file
+    --debug-fake-solver           This flag indicates that the SAT solver should not be
+                                  invoked. Instead the frontend should look for a solution
+                                  file, and generate the code from that. It is useful when
+                                  working with sketches that take a long time to resolve
+                                  if one wants to play with different settings for code
+                                  generation.
+    --debug-output-dag            Write the IR to the given file in an easy to parse
+                                  format.
+    --debug-print-passes          Print names of stages and visitors as they execute
+    --debug-show-dag              Print IR for the synthesis problem to the console.
+    --debug-trace                 Show a trace of the symbolic execution.
+ -V,--debug-verbosity             Sets the level of verbosity for the output. 0 is quiet
+                                  mode 10 is the most verbose. [default 1]
+    --fe-cegis-path               Path to the 'cegis' binary, overriding default search
+                                  paths.
+    --fe-custom-codegen <FILE>    Do custom code generation based on the visitor class
+                                  from this jar file.
+    --fe-def <VAR=val>            If the program contains a global variable VAR, it sets
+                                  its value to val. [default [Ljava.lang.String;@4edde6e5]
+    --fe-elim-final-structs       Eliminate final structs and structs with no alias
+    --fe-force-codegen            Forces code generation. Even if the sketch fails to
+                                  resolve, this flag will force the synthesizer to produce
+                                  code from the latest known control values.
+    --fe-fpencoding               Determine which encoding to use for floats/doubles.
+                                  With AS_BIT, it will encode floats with a single bit.
+                                  With AS_FFIELD, it will encode them using the field of
+                                  integers mod 7.
+                                  With AS_FIXPOINT, it will encode them using fixedpoint
+                                  arithmetic.
+                                  [default AS_BIT]
+    --fe-inc                      Directory to search for include files. [default
+                                  [Ljava.lang.String;@70177ecd]
+    --fe-keep-asserts             DEPRACATED: The synthesizer guarantees that all asserts
+                                  will succeed. For this reason, all asserts are removed
+                                  from generated code by default. However, sometimes it is
+                                  useful for debugging purposes to keep the assertions
+                                  around.
+    --fe-keep-tmp                 Keep intermediate files. Useful for debugging the
+                                  compiler.
+    --fe-kill-asserts             Remove all assertions from the code, since the
+                                  synthesizer knows they will all succeed.
+    --fe-low-overhead             Turn off all typechecking, as well as stencils. Useful
+                                  to reduce overhead when using sketch as a backend for
+                                  other tools.
+ -n,--fe-no-output-print          Do not print out code (useful when using printfcn's
+    --fe-output                   Temporary output directory used to communicate with
+                                  backend solver. This is a relative path relative to the
+                                  sketch temp directory which is usually $HOME/.sketch/tmp
+    --fe-output-code              Use this flag if you want the compiler to produce C
+                                  code.
+    --fe-output-dir               Set the directory where you want the generated code to
+                                  be written. [default ./]
+    --fe-output-docs <FILE.tex>   Outputs documentation to FILE.tex. Sketch compiler will
+                                  not actually be invoked if you pass this flag.
+    --fe-output-hole-func         the file name to which to output the values of 'Hole
+                                  Functions', which are single line functions to give
+                                  unique names to holes
+    --fe-output-prog-name         Set the name of the output C files. By default it is the
+                                  name of the first input file.
+    --fe-output-script            Produce compilation script even if output-test was not
+                                  used.
+    --fe-output-test              Produce also a harness to test the generated C code.
+    --fe-output-xml <FILE>        Output the values of holes as XML to a file, "--" for
+                                  stdout
+    --fe-tempdir                  Changes the default temp directory from
+                                  $HOME/.sketch/tmp to a different value.
+    --fe-timeout                  Stop Sketch after given number of minutes. [default 0.0]
+ -y,--fe-tprint-python            Print Python code from tprint statements to file
+    --fe-trunc-var-arr            Add assume a[i]==0 for i>length(a) for any varlength
+                                  array a
+ -h,--help                        display help
+    --help:bnd                    help for bounds for bounded model checking
+    --help:debug                  help for debugging
+    --help:fe                     help for miscellaneous frontend options
+    --help:sem                    help for change program semantics
+    --help:slv                    help for solver options
+    --help:spmd                   help for spmd sketching interface options
+    --sem-array-OOB-policy        What to do when an array access would be out of bounds.
+                                  Options: 'assertions' to fail, 'wrsilent_rdzero' to read
+                                  zeros and ignore writes. [default assertions]
+    --slv-lightverif              Performs lightweight verification instead of full
+                                  bounded verification.
+    --slv-mem-limit               Kills the solver if its memory usage exceeds the bound
+                                  (bytes). [default 0]
+    --slv-ntimes                  Number of rounds on a single back-end invocation.
+                                  [default -1]
+    --slv-olevel                  Sets the optimization level for the compiler. [default
+                                  -1]
+    --slv-only-sp-rand            Only randomize depth holes of GUC
+    --slv-p-cpus                  Number of cores to use. [default 0]
+    --slv-p-timeout               Kills test trials after given number of minutes.
+                                  [default 1.0]
+    --slv-p-trials                Number of parallel trails. [default 0]
+    --slv-parallel                Runs backend in parallel.
+    --slv-randassign              Concretize high-impact holes.
+    --slv-randdegree              Degree of randomness for hole concretization. [default
+                                  -1]
+    --slv-randdegrees             Degrees of randomness for hole concretization.
+    --slv-reorder-encoding        How reorder blocks should be rewritten. Options:
+                                  'exponential' to use 'insert' blocks, 'quadratic' to use
+                                  a loop of switch statements. Default value is
+                                  exponential. [default exponential]
+    --slv-seed                    Seeds the random number generator. If set to zero, a
+                                  random seed is used. [default 0]
+    --slv-simiters                Maximum steps of random simulation to perform for every
+                                  verification step. [default 4]
+    --slv-simple-inputs           Helps performance on bitvector benchmarks. Avoids
+                                  producing completely random inputs.
+    --slv-sp-rand-bias            Bias for special randomize holes [default 1]
+    --slv-strategy                Strategy for parallel-running. [default NOT_SET]
+    --slv-synth                   SAT solver to use for synthesis. Options: 'ABC' for the
+                                  ABC solver, 'MINI' for the MiniSat solver. [default
+                                  NOT_SET]
+    --slv-timeout                 Kills the solver after given number of minutes. [default
+                                  0.0]
+    --slv-unoptimized             Don't optimize using specification
+    --slv-verif                   SAT solver to use for verification. Options: 'ABC' for
+                                  the ABC solver, 'MINI' for the MiniSat solver. [default
+                                  NOT_SET]
+    --spmd-max-nproc              Max NProc of spmd programs [default 16]

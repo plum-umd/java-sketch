@@ -1,0 +1,492 @@
+package Cipher;
+
+Object getInstance_String_String(Object type, Object prov) {
+  return Cipher_Object_String_String(type, prov);
+}
+
+adt Cipher {
+    Cipher_empty   { }
+    Cipher_string_string         { Object t; Object p; }
+    Init_int_secretkeyspec_algorithmparameterspec           { Cipher self; Object mode; Object s; Object a; }
+    Initb_int_secretkeyspec_algorithmparameterspec          { Cipher self; Object mode; Object s; Object a; }
+    Updateb_byte_int_int_byte_int        { Cipher self; Object data; Object a; Object len; Object out; Object b; }
+    Dofinalb_object       { Cipher self; Object data; }
+    Dofinaleb_byte_int_int_byte_int      { Cipher self; Object data; Object a; Object b; Object out; Object c; }
+    Update_byte_int_int_byte_int         { Cipher self; Object data; Object a; Object len; Object out; Object b; }
+    Dofinal_object        { Cipher self; Object data; }
+    Dofinale_byte_int_int_byte_int       { Cipher self; Object data; Object a; Object b; Object out; Object c; }
+    Getoutputsize_int  { Cipher self; Object len; }
+}
+
+Object Cipher_Cipher() {
+    return new Object(__cid=Cipher(), _cipher=new Cipher_empty());
+}
+
+Object Cipher_Object_String_String(Object t, Object p) {
+    return new Object(__cid=Cipher(), _cipher=new Cipher_string_string(t=t, p=p));
+}
+
+Object init_Object_int_SecretKeySpec_AlgorithmParameterSpec(Object self, Object mode, Object s, Object a) {
+    return new Object(__cid=Cipher(), _cipher=new Init_int_secretkeyspec_algorithmparameterspec(self=self._cipher, mode=mode, s=s, a=a));
+}
+
+Object initb_Object_int_SecretKeySpec_AlgorithmParameterSpec(Object self, Object mode, Object s, Object a) {
+    return new Object(__cid=Cipher(), _cipher=new Initb_int_secretkeyspec_algorithmparameterspec(self=self._cipher, mode=mode, s=s, a=a));
+}
+
+Object updateb_Object_byte_int_int_byte_int(Object self, Object data, Object a, Object len, Object out, Object b) {
+    return new Object(__cid=Cipher(), _cipher=new Updateb_byte_int_int_byte_int(self=self._cipher, data=data, a=a, len=len, out=out, b=b));
+}
+
+Object doFinalb_Object_Object(Object self, Object data) {
+    return new Object(__cid=Cipher(), _cipher=new Dofinalb_object(self=self._cipher, data=data));
+}
+
+Object doFinaleb_Object_byte_int_int_byte_int(Object self, Object data, Object a, Object b, Object out, Object c) {
+    return new Object(__cid=Cipher(), _cipher=new Dofinaleb_byte_int_int_byte_int(self=self._cipher, data=data, a=a, b=b, out=out, c=c));
+}
+
+Object update_Object_byte_int_int_byte_int(Object self, Object data, Object a, Object len, Object out, Object b) {
+    return new Object(__cid=Cipher(), _cipher=new Update_byte_int_int_byte_int(self=self._cipher, data=data, a=a, len=len, out=out, b=b));
+}
+
+Object doFinal_Object_Object(Object self, Object data) {
+    return new Object(__cid=Cipher(), _cipher=new Dofinal_object(self=self._cipher, data=data));
+}
+
+Object doFinale_Object_byte_int_int_byte_int(Object self, Object data, Object a, Object b, Object out, Object c) {
+    return new Object(__cid=Cipher(), _cipher=new Dofinale_byte_int_int_byte_int(self=self._cipher, data=data, a=a, b=b, out=out, c=c));
+}
+
+Object getOutputSize_Object_int(Object self, Object len) {
+    return new Object(__cid=Cipher(), _cipher=new Getoutputsize_int(self=self._cipher, len=len));
+}
+
+Object xform_Cipher(Cipher self) {
+  switch(self) {
+  case Cipher_empty: {
+    return xform_cipher_Cipher(self);
+  }
+  case Cipher_string_string: { assert false; }
+  case Init_int_secretkeyspec_algorithmparameterspec: { assert false; }
+  case Initb_int_secretkeyspec_algorithmparameterspec: { assert false; }
+  case Updateb_byte_int_int_byte_int: { assert false; }
+  case Dofinalb_object: { assert false; }
+  case Dofinaleb_byte_int_int_byte_int: { assert false; }
+  case Update_byte_int_int_byte_int: { assert false; }
+  case Dofinal_object: { assert false; }
+  case Dofinale_byte_int_int_byte_int: { assert false; }
+  case Getoutputsize_int: { assert false; }
+  }
+
+  return null;
+}
+Object xform_doFinal_Cipher_Object(Cipher self, Object data) {
+  switch(self) {
+  case Cipher_empty: { assert false; }
+  case Cipher_string_string: { assert false; }
+  case Init_int_secretkeyspec_algorithmparameterspec: { assert false; }
+  case Initb_int_secretkeyspec_algorithmparameterspec: { assert false; }
+  case Updateb_byte_int_int_byte_int: { assert false; }
+  case Dofinalb_object: { assert false; }
+  case Dofinaleb_byte_int_int_byte_int: {
+    {
+      Cipher self_self;
+      self_self = self.self;
+      switch(self_self) {
+      case Cipher_empty: { assert false; }
+      case Cipher_string_string: { assert false; }
+      case Init_int_secretkeyspec_algorithmparameterspec: { assert false; }
+      case Initb_int_secretkeyspec_algorithmparameterspec: { assert false; }
+      case Updateb_byte_int_int_byte_int: {
+        {
+          Cipher self_self_self;
+          self_self_self = self_self.self;
+          switch(self_self_self) {
+          case Cipher_empty: { assert false; }
+          case Cipher_string_string: { assert false; }
+          case Init_int_secretkeyspec_algorithmparameterspec: { assert false; }
+          case Initb_int_secretkeyspec_algorithmparameterspec: {
+            {
+              Cipher data_data;
+              data_data = data._cipher;
+              switch(data_data) {
+              case Cipher_empty: { assert false; }
+              case Cipher_string_string: { assert false; }
+              case Init_int_secretkeyspec_algorithmparameterspec: { assert false; }
+              case Initb_int_secretkeyspec_algorithmparameterspec: { assert false; }
+              case Updateb_byte_int_int_byte_int: { assert false; }
+              case Dofinalb_object: { assert false; }
+              case Dofinaleb_byte_int_int_byte_int: { assert false; }
+              case Update_byte_int_int_byte_int: { assert false; }
+              case Dofinal_object: {
+                {
+                  Cipher data_data_data;
+                  data_data_data = data_data.self;
+                  switch(data_data_data) {
+                  case Cipher_empty: { assert false; }
+                  case Cipher_string_string: { assert false; }
+                  case Init_int_secretkeyspec_algorithmparameterspec: { assert false; }
+                  case Initb_int_secretkeyspec_algorithmparameterspec: { assert false; }
+                  case Updateb_byte_int_int_byte_int: { assert false; }
+                  case Dofinalb_object: { assert false; }
+                  case Dofinaleb_byte_int_int_byte_int: {
+                    {
+                      Cipher data_data_data_data;
+                      data_data_data_data = data_data_data.self;
+                      switch(data_data_data_data) {
+                      case Cipher_empty: { assert false; }
+                      case Cipher_string_string: { assert false; }
+                      case Init_int_secretkeyspec_algorithmparameterspec: { assert false; }
+                      case Initb_int_secretkeyspec_algorithmparameterspec: { assert false; }
+                      case Updateb_byte_int_int_byte_int: {
+                        {
+                          Cipher data_data_data_data_data;
+                          data_data_data_data_data = data_data_data_data.self;
+                          switch(data_data_data_data_data) {
+                          case Cipher_empty: { assert false; }
+                          case Cipher_string_string: { assert false; }
+                          case Init_int_secretkeyspec_algorithmparameterspec: { assert false; }
+                          case Initb_int_secretkeyspec_algorithmparameterspec: {
+			    Object cond = xform_equals_SecretKeySpec_Object(self_self_self.s._secretkeyspec, data_data_data_data_data.s);
+			    if (cond._bit) {
+			      return data_data.data;
+			    } else {
+			      return null;
+			    }
+                            /* return ((self_self_self.s.__cid == (new Object(__cid=-2, _int=SecretKeySpec()))._int ? equals_Object_Object@SecretKeySpec(self_self_self.s, data_data_data_data_data.s) : null)._bit ? data_data.data : null); */
+                          }
+                          case Updateb_byte_int_int_byte_int: { assert false; }
+                          case Dofinalb_object: { assert false; }
+                          case Dofinaleb_byte_int_int_byte_int: { assert false; }
+                          case Update_byte_int_int_byte_int: { assert false; }
+                          case Dofinal_object: { assert false; }
+                          case Dofinale_byte_int_int_byte_int: { assert false; }
+                          case Getoutputsize_int: { assert false; }
+                          }
+
+                        }
+                      }
+                      case Dofinalb_object: { assert false; }
+                      case Dofinaleb_byte_int_int_byte_int: { assert false; }
+                      case Update_byte_int_int_byte_int: { assert false; }
+                      case Dofinal_object: { assert false; }
+                      case Dofinale_byte_int_int_byte_int: { assert false; }
+                      case Getoutputsize_int: { assert false; }
+                      }
+
+                    }
+                  }
+                  case Update_byte_int_int_byte_int: { assert false; }
+                  case Dofinal_object: { assert false; }
+                  case Dofinale_byte_int_int_byte_int: { assert false; }
+                  case Getoutputsize_int: { assert false; }
+                  }
+
+                }
+              }
+              case Dofinale_byte_int_int_byte_int: { assert false; }
+              case Getoutputsize_int: { assert false; }
+              }
+
+            }
+          }
+          case Updateb_byte_int_int_byte_int: { assert false; }
+          case Dofinalb_object: { assert false; }
+          case Dofinaleb_byte_int_int_byte_int: { assert false; }
+          case Update_byte_int_int_byte_int: { assert false; }
+          case Dofinal_object: { assert false; }
+          case Dofinale_byte_int_int_byte_int: { assert false; }
+          case Getoutputsize_int: { assert false; }
+          }
+
+        }
+      }
+      case Dofinalb_object: { assert false; }
+      case Dofinaleb_byte_int_int_byte_int: { assert false; }
+      case Update_byte_int_int_byte_int: { assert false; }
+      case Dofinal_object: { assert false; }
+      case Dofinale_byte_int_int_byte_int: { assert false; }
+      case Getoutputsize_int: { assert false; }
+      }
+
+    }
+  }
+  case Update_byte_int_int_byte_int: { assert false; }
+  case Dofinal_object: { assert false; }
+  case Dofinale_byte_int_int_byte_int: { assert false; }
+  case Getoutputsize_int: { assert false; }
+  }
+
+  return null;
+}
+Object xform_Cipher_Cipher_String_String(Cipher self, Object t, Object p) {
+  switch(self) {
+  case Cipher_empty: { assert false; }
+  case Cipher_string_string: { assert false; }
+  case Init_int_secretkeyspec_algorithmparameterspec: { assert false; }
+  case Initb_int_secretkeyspec_algorithmparameterspec: { assert false; }
+  case Updateb_byte_int_int_byte_int: { assert false; }
+  case Dofinalb_object: { assert false; }
+  case Dofinaleb_byte_int_int_byte_int: { assert false; }
+  case Update_byte_int_int_byte_int: { assert false; }
+  case Dofinal_object: { assert false; }
+  case Dofinale_byte_int_int_byte_int: { assert false; }
+  case Getoutputsize_int: { assert false; }
+  }
+
+  return null;
+}
+Object xform_doFinaleb_Cipher_byte_int_int_byte_int(Cipher self, Object data, Object a, Object b, Object out, Object c) {
+  switch(self) {
+  case Cipher_empty: { assert false; }
+  case Cipher_string_string: { assert false; }
+  case Init_int_secretkeyspec_algorithmparameterspec: { assert false; }
+  case Initb_int_secretkeyspec_algorithmparameterspec: { assert false; }
+  case Updateb_byte_int_int_byte_int: { assert false; }
+  case Dofinalb_object: { assert false; }
+  case Dofinaleb_byte_int_int_byte_int: { assert false; }
+  case Update_byte_int_int_byte_int: { assert false; }
+  case Dofinal_object: { assert false; }
+  case Dofinale_byte_int_int_byte_int: { assert false; }
+  case Getoutputsize_int: { assert false; }
+  }
+
+  return null;
+}
+Object xform_doFinale_Cipher_byte_int_int_byte_int(Cipher self, Object data, Object a, Object b, Object out, Object c) {
+  switch(self) {
+  case Cipher_empty: { assert false; }
+  case Cipher_string_string: { assert false; }
+  case Init_int_secretkeyspec_algorithmparameterspec: { assert false; }
+  case Initb_int_secretkeyspec_algorithmparameterspec: { assert false; }
+  case Updateb_byte_int_int_byte_int: {
+    return self.len;
+  }
+  case Dofinalb_object: { assert false; }
+  case Dofinaleb_byte_int_int_byte_int: { assert false; }
+  case Update_byte_int_int_byte_int: { assert false; }
+  case Dofinal_object: { assert false; }
+  case Dofinale_byte_int_int_byte_int: { assert false; }
+  case Getoutputsize_int: { assert false; }
+  }
+
+  return null;
+}
+Object xform_getOutputSize_Cipher_int(Cipher self, Object len) {
+  switch(self) {
+  case Cipher_empty: { assert false; }
+  case Cipher_string_string: { assert false; }
+  case Init_int_secretkeyspec_algorithmparameterspec: { assert false; }
+  case Initb_int_secretkeyspec_algorithmparameterspec: { assert false; }
+  case Updateb_byte_int_int_byte_int: { assert false; }
+  case Dofinalb_object: { assert false; }
+  case Dofinaleb_byte_int_int_byte_int: { assert false; }
+  case Update_byte_int_int_byte_int: { assert false; }
+  case Dofinal_object: { assert false; }
+  case Dofinale_byte_int_int_byte_int: { assert false; }
+  case Getoutputsize_int: { assert false; }
+  }
+
+  return null;
+}
+Object xform_update_Cipher_byte_int_int_byte_int(Cipher self, Object data, Object a, Object len, Object out, Object b) {
+  return (new Object(__cid=-2, _int=0));
+  /* switch(self) { */
+  /* case Cipher_empty: { */
+  /*   { */
+  /*     Cipher data_data; */
+  /*     data_data = data._cipher; */
+  /*     switch(data_data) { */
+  /*     case Cipher_empty: { */
+  /*       { */
+  /*         Cipher a_a; */
+  /*         a_a = a._cipher; */
+  /*         switch(a_a) { */
+  /*         case Cipher_empty: { */
+  /*           { */
+  /*             Cipher len_len; */
+  /*             len_len = len._cipher; */
+  /*             switch(len_len) { */
+  /*             case Cipher_empty: { */
+  /*               { */
+  /*                 Cipher out_out; */
+  /*                 out_out = out._cipher; */
+  /*                 switch(out_out) { */
+  /*                 case Cipher_empty: { */
+  /*                   { */
+  /*                     Cipher b_b; */
+  /*                     b_b = b._cipher; */
+  /*                     switch(b_b) { */
+  /*                     case Cipher_empty: { */
+  /*                       return (new Object(__cid=-2, _int=0)); */
+  /*                     } */
+  /*                     case Cipher_string_string: { assert false; } */
+  /*                     case Init_int_secretkeyspec_algorithmparameterspec: { assert false; } */
+  /*                     case Initb_int_secretkeyspec_algorithmparameterspec: { assert false; } */
+  /*                     case Updateb_byte_int_int_byte_int: { assert false; } */
+  /*                     case Dofinalb_object: { assert false; } */
+  /*                     case Dofinaleb_byte_int_int_byte_int: { assert false; } */
+  /*                     case Update_byte_int_int_byte_int: { assert false; } */
+  /*                     case Dofinal_object: { assert false; } */
+  /*                     case Dofinale_byte_int_int_byte_int: { assert false; } */
+  /*                     case Getoutputsize_int: { assert false; } */
+  /*                     } */
+
+  /*                   } */
+  /*                 } */
+  /*                 case Cipher_string_string: { assert false; } */
+  /*                 case Init_int_secretkeyspec_algorithmparameterspec: { assert false; } */
+  /*                 case Initb_int_secretkeyspec_algorithmparameterspec: { assert false; } */
+  /*                 case Updateb_byte_int_int_byte_int: { assert false; } */
+  /*                 case Dofinalb_object: { assert false; } */
+  /*                 case Dofinaleb_byte_int_int_byte_int: { assert false; } */
+  /*                 case Update_byte_int_int_byte_int: { assert false; } */
+  /*                 case Dofinal_object: { assert false; } */
+  /*                 case Dofinale_byte_int_int_byte_int: { assert false; } */
+  /*                 case Getoutputsize_int: { assert false; } */
+  /*                 } */
+
+  /*               } */
+  /*             } */
+  /*             case Cipher_string_string: { assert false; } */
+  /*             case Init_int_secretkeyspec_algorithmparameterspec: { assert false; } */
+  /*             case Initb_int_secretkeyspec_algorithmparameterspec: { assert false; } */
+  /*             case Updateb_byte_int_int_byte_int: { assert false; } */
+  /*             case Dofinalb_object: { assert false; } */
+  /*             case Dofinaleb_byte_int_int_byte_int: { assert false; } */
+  /*             case Update_byte_int_int_byte_int: { assert false; } */
+  /*             case Dofinal_object: { assert false; } */
+  /*             case Dofinale_byte_int_int_byte_int: { assert false; } */
+  /*             case Getoutputsize_int: { assert false; } */
+  /*             } */
+
+  /*           } */
+  /*         } */
+  /*         case Cipher_string_string: { assert false; } */
+  /*         case Init_int_secretkeyspec_algorithmparameterspec: { assert false; } */
+  /*         case Initb_int_secretkeyspec_algorithmparameterspec: { assert false; } */
+  /*         case Updateb_byte_int_int_byte_int: { assert false; } */
+  /*         case Dofinalb_object: { assert false; } */
+  /*         case Dofinaleb_byte_int_int_byte_int: { assert false; } */
+  /*         case Update_byte_int_int_byte_int: { assert false; } */
+  /*         case Dofinal_object: { assert false; } */
+  /*         case Dofinale_byte_int_int_byte_int: { assert false; } */
+  /*         case Getoutputsize_int: { assert false; } */
+  /*         } */
+
+  /*       } */
+  /*     } */
+  /*     case Cipher_string_string: { assert false; } */
+  /*     case Init_int_secretkeyspec_algorithmparameterspec: { assert false; } */
+  /*     case Initb_int_secretkeyspec_algorithmparameterspec: { assert false; } */
+  /*     case Updateb_byte_int_int_byte_int: { assert false; } */
+  /*     case Dofinalb_object: { assert false; } */
+  /*     case Dofinaleb_byte_int_int_byte_int: { assert false; } */
+  /*     case Update_byte_int_int_byte_int: { assert false; } */
+  /*     case Dofinal_object: { assert false; } */
+  /*     case Dofinale_byte_int_int_byte_int: { assert false; } */
+  /*     case Getoutputsize_int: { assert false; } */
+  /*     } */
+
+  /*   } */
+  /* } */
+  /* case Cipher_string_string: { assert false; } */
+  /* case Init_int_secretkeyspec_algorithmparameterspec: { assert false; } */
+  /* case Initb_int_secretkeyspec_algorithmparameterspec: { assert false; } */
+  /* case Updateb_byte_int_int_byte_int: { assert false; } */
+  /* case Dofinalb_object: { assert false; } */
+  /* case Dofinaleb_byte_int_int_byte_int: { assert false; } */
+  /* case Update_byte_int_int_byte_int: { assert false; } */
+  /* case Dofinal_object: { assert false; } */
+  /* case Dofinale_byte_int_int_byte_int: { assert false; } */
+  /* case Getoutputsize_int: { assert false; } */
+  /* } */
+
+  return null;
+}
+Object xform_initb_Cipher_int_SecretKeySpec_AlgorithmParameterSpec(Cipher self, Object mode, Object s, Object a) {
+  switch(self) {
+  case Cipher_empty: { assert false; }
+  case Cipher_string_string: { assert false; }
+  case Init_int_secretkeyspec_algorithmparameterspec: { assert false; }
+  case Initb_int_secretkeyspec_algorithmparameterspec: { assert false; }
+  case Updateb_byte_int_int_byte_int: { assert false; }
+  case Dofinalb_object: { assert false; }
+  case Dofinaleb_byte_int_int_byte_int: { assert false; }
+  case Update_byte_int_int_byte_int: { assert false; }
+  case Dofinal_object: { assert false; }
+  case Dofinale_byte_int_int_byte_int: { assert false; }
+  case Getoutputsize_int: { assert false; }
+  }
+
+  return null;
+}
+Object xform_init_Cipher_int_SecretKeySpec_AlgorithmParameterSpec(Cipher self, Object mode, Object s, Object a) {
+  switch(self) {
+  case Cipher_empty: { assert false; }
+  case Cipher_string_string: { assert false; }
+  case Init_int_secretkeyspec_algorithmparameterspec: { assert false; }
+  case Initb_int_secretkeyspec_algorithmparameterspec: { assert false; }
+  case Updateb_byte_int_int_byte_int: { assert false; }
+  case Dofinalb_object: { assert false; }
+  case Dofinaleb_byte_int_int_byte_int: { assert false; }
+  case Update_byte_int_int_byte_int: { assert false; }
+  case Dofinal_object: { assert false; }
+  case Dofinale_byte_int_int_byte_int: { assert false; }
+  case Getoutputsize_int: { assert false; }
+  }
+
+  return null;
+}
+Object xform_cipher_Cipher(Cipher self) {
+  switch(self) {
+  case Cipher_empty: { assert false; }
+  case Cipher_string_string: { assert false; }
+  case Init_int_secretkeyspec_algorithmparameterspec: { assert false; }
+  case Initb_int_secretkeyspec_algorithmparameterspec: { assert false; }
+  case Updateb_byte_int_int_byte_int: { assert false; }
+  case Dofinalb_object: { assert false; }
+  case Dofinaleb_byte_int_int_byte_int: { assert false; }
+  case Update_byte_int_int_byte_int: { assert false; }
+  case Dofinal_object: { assert false; }
+  case Dofinale_byte_int_int_byte_int: { assert false; }
+  case Getoutputsize_int: { assert false; }
+  }
+
+  return null;
+}
+Object xform_doFinalb_Cipher_Object(Cipher self, Object data) {
+  switch(self) {
+  case Cipher_empty: { assert false; }
+  case Cipher_string_string: { assert false; }
+  case Init_int_secretkeyspec_algorithmparameterspec: { assert false; }
+  case Initb_int_secretkeyspec_algorithmparameterspec: { assert false; }
+  case Updateb_byte_int_int_byte_int: { assert false; }
+  case Dofinalb_object: { assert false; }
+  case Dofinaleb_byte_int_int_byte_int: { assert false; }
+  case Update_byte_int_int_byte_int: { assert false; }
+  case Dofinal_object: { assert false; }
+  case Dofinale_byte_int_int_byte_int: { assert false; }
+  case Getoutputsize_int: { assert false; }
+  }
+
+  return null;
+}
+Object xform_updateb_Cipher_byte_int_int_byte_int(Cipher self, Object data, Object a, Object len, Object out, Object b) {
+  switch(self) {
+  case Cipher_empty: { assert false; }
+  case Cipher_string_string: { assert false; }
+  case Init_int_secretkeyspec_algorithmparameterspec: { assert false; }
+  case Initb_int_secretkeyspec_algorithmparameterspec: { assert false; }
+  case Updateb_byte_int_int_byte_int: { assert false; }
+  case Dofinalb_object: { assert false; }
+  case Dofinaleb_byte_int_int_byte_int: { assert false; }
+  case Update_byte_int_int_byte_int: { assert false; }
+  case Dofinal_object: { assert false; }
+  case Dofinale_byte_int_int_byte_int: { assert false; }
+  case Getoutputsize_int: { assert false; }
+  }
+
+  return null;
+}

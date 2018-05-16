@@ -1,0 +1,199 @@
+package Cipher;
+
+Object getInstance_String(Object type) {
+  return Cipher_Object_String(type);
+}
+
+adt Cipher {
+    Cipher_empty  { }
+    Tostring      { Cipher self; }
+    Cipher_string        { Object t; }
+    Init_int_object_object          { Cipher self; Object mode; Object k; Object iv; }
+    Initb_int_object_object         { Cipher self; Object mode; Object k; Object iv; }
+    Dofinalb_object      { Cipher self; Object text; }
+    Dofinal_object       { Cipher self; Object text; }
+}
+
+Object Cipher_Cipher() {
+    return new Object(__cid=Cipher(), _cipher=new Cipher_empty());
+}
+
+Object toString_Object(Object self) {
+    return new Object(__cid=Cipher(), _cipher=new Tostring(self=self._cipher));
+}
+
+Object Cipher_Object_String(Object t) {
+    return new Object(__cid=Cipher(), _cipher=new Cipher_string(t=t));
+}
+
+Object init_Object_int_Object_Object(Object self, Object mode, Object k, Object iv) {
+    return new Object(__cid=Cipher(), _cipher=new Init_int_object_object(self=self._cipher, mode=mode, k=k, iv=iv));
+}
+
+Object initb_Object_int_Object_Object(Object self, Object mode, Object k, Object iv) {
+    return new Object(__cid=Cipher(), _cipher=new Initb_int_object_object(self=self._cipher, mode=mode, k=k, iv=iv));
+}
+
+Object doFinalb_Object_Object(Object self, Object text) {
+    return new Object(__cid=Cipher(), _cipher=new Dofinalb_object(self=self._cipher, text=text));
+}
+
+Object doFinal_Object_Object(Object self, Object text) {
+    return new Object(__cid=Cipher(), _cipher=new Dofinal_object(self=self._cipher, text=text));
+}
+
+Object xform_Cipher(Cipher self) {
+  switch(self) {
+  case Cipher_empty: {
+    return xform_cipher_Cipher(self);
+  }
+  case Tostring: {
+    return xform_toString_Cipher(self.self);
+  }
+  case Cipher_string: { assert false; }
+  case Init_int_object_object: { assert false; }
+  case Initb_int_object_object: { assert false; }
+  case Dofinalb_object: { assert false; }
+  case Dofinal_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_initb_Cipher_int_Object_Object(Cipher self, Object mode, Object k, Object iv) {
+  switch(self) {
+  case Cipher_empty: { assert false; }
+  case Tostring: { assert false; }
+  case Cipher_string: { assert false; }
+  case Init_int_object_object: { assert false; }
+  case Initb_int_object_object: { assert false; }
+  case Dofinalb_object: { assert false; }
+  case Dofinal_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_init_Cipher_int_Object_Object(Cipher self, Object mode, Object k, Object iv) {
+  switch(self) {
+  case Cipher_empty: { assert false; }
+  case Tostring: { assert false; }
+  case Cipher_string: { assert false; }
+  case Init_int_object_object: { assert false; }
+  case Initb_int_object_object: { assert false; }
+  case Dofinalb_object: { assert false; }
+  case Dofinal_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_toString_Cipher(Cipher self) {
+  switch(self) {
+  case Cipher_empty: { assert false; }
+  case Tostring: { assert false; }
+  case Cipher_string: { assert false; }
+  case Init_int_object_object: { assert false; }
+  case Initb_int_object_object: { assert false; }
+  case Dofinalb_object: { assert false; }
+  case Dofinal_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_doFinalb_Cipher_Object(Cipher self, Object text) {
+  switch(self) {
+  case Cipher_empty: { assert false; }
+  case Tostring: { assert false; }
+  case Cipher_string: { assert false; }
+  case Init_int_object_object: { assert false; }
+  case Initb_int_object_object: { assert false; }
+  case Dofinalb_object: { assert false; }
+  case Dofinal_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_cipher_Cipher(Cipher self) {
+  switch(self) {
+  case Cipher_empty: { assert false; }
+  case Tostring: { assert false; }
+  case Cipher_string: { assert false; }
+  case Init_int_object_object: { assert false; }
+  case Initb_int_object_object: { assert false; }
+  case Dofinalb_object: { assert false; }
+  case Dofinal_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_Cipher_Cipher_String(Cipher self, Object t) {
+  switch(self) {
+  case Cipher_empty: { assert false; }
+  case Tostring: { assert false; }
+  case Cipher_string: { assert false; }
+  case Init_int_object_object: { assert false; }
+  case Initb_int_object_object: { assert false; }
+  case Dofinalb_object: { assert false; }
+  case Dofinal_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_doFinal_Cipher_Object(Cipher self, Object text) {
+  switch(self) {
+  case Cipher_empty: { assert false; }
+  case Tostring: { assert false; }
+  case Cipher_string: { assert false; }
+  case Init_int_object_object: { assert false; }
+  case Initb_int_object_object: {
+    {
+      Cipher text_text;
+      text_text = text._cipher;
+      switch(text_text) {
+      case Cipher_empty: { assert false; }
+      case Tostring: {
+        {
+          Cipher text_text_text;
+          text_text_text = text_text.self;
+          switch(text_text_text) {
+          case Cipher_empty: { assert false; }
+          case Tostring: { assert false; }
+          case Cipher_string: { assert false; }
+          case Init_int_object_object: { assert false; }
+          case Initb_int_object_object: { assert false; }
+          case Dofinalb_object: {
+            {
+              Cipher text_text_text_text;
+              text_text_text_text = text_text_text.self;
+              switch(text_text_text_text) {
+              case Cipher_empty: { assert false; }
+              case Tostring: { assert false; }
+              case Cipher_string: { assert false; }
+              case Init_int_object_object: { assert false; }
+              case Initb_int_object_object: {
+                return ((self.k.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(self.k, text_text_text_text.k) : self.k.__cid == (new Object(__cid=-2, _int=Mac()))._int ? equals_Object@Object(self.k, text_text_text_text.k) : self.k.__cid == (new Object(__cid=-2, _int=PasswordMap()))._int ? equals_Object@Object(self.k, text_text_text_text.k) : self.k.__cid == (new Object(__cid=-2, _int=SecretKeySpec()))._int ? equals_Object@Object(self.k, text_text_text_text.k) : self.k.__cid == (new Object(__cid=-2, _int=IvParameterSpec()))._int ? equals_Object@Object(self.k, text_text_text_text.k) : self.k.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? equals_Object@Object(self.k, text_text_text_text.k) : self.k.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(self.k, text_text_text_text.k) : self.k.__cid == (new Object(__cid=-2, _int=Cryptographer()))._int ? equals_Object@Object(self.k, text_text_text_text.k) : self.k.__cid == (new Object(__cid=-2, _int=Byte()))._int ? equals_Object@Object(self.k, text_text_text_text.k) : self.k.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(self.k, text_text_text_text.k) : self.k.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(self.k, text_text_text_text.k) : self.k.__cid == (new Object(__cid=-2, _int=SecureRandom()))._int ? equals_Object@Object(self.k, text_text_text_text.k) : self.k.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(self.k, text_text_text_text.k) : self.k.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(self.k, text_text_text_text.k) : self.k.__cid == (new Object(__cid=-2, _int=PasswordManager()))._int ? equals_Object@Object(self.k, text_text_text_text.k) : self.k.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? equals_Object@Object(self.k, text_text_text_text.k) : self.k.__cid == (new Object(__cid=-2, _int=PasswordManagerTest()))._int ? equals_Object@Object(self.k, text_text_text_text.k) : self.k.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(self.k, text_text_text_text.k) : null)._bit ? (((self.mode._int == (new Object(__cid=-2, _int=2))._int && text_text_text_text.mode._int == (new Object(__cid=-2, _int=1))._int) ? text_text_text.text : null)) : null);
+              }
+              case Dofinalb_object: { assert false; }
+              case Dofinal_object: { assert false; }
+              }
+
+            }
+          }
+          case Dofinal_object: { assert false; }
+          }
+
+        }
+      }
+      case Cipher_string: { assert false; }
+      case Init_int_object_object: { assert false; }
+      case Initb_int_object_object: { assert false; }
+      case Dofinalb_object: { assert false; }
+      case Dofinal_object: { assert false; }
+      }
+
+    }
+  }
+  case Dofinalb_object: { assert false; }
+  case Dofinal_object: { assert false; }
+  }
+
+  return null;
+}

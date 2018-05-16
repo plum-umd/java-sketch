@@ -11,7 +11,7 @@ import org.junit.Assert;
 
 public class HashTableTest {
      // static so it will be initialised when translated
-    public static final int INITIAL_SIZE = 8;
+    public static final int INITIAL_SIZE = 5;
 
     private HashTable<Object, Object> classUnderTest;
 
@@ -22,9 +22,14 @@ public class HashTableTest {
     // 	    y != z;
 	// Integer vv = new Integer(v);
 	// Integer ww = new Integer(w);
-    harness void mn(int x, int y, int z) {
-	assume x != y && x != z && y != z;
-	    
+
+    // harness void mn(int x, int y, int z) {
+    // 	assume x != y && x != z && y != z;
+    harness void mn() {
+    	int x = 0;
+    	int y = 1;
+    	int z = 2;
+
 	Integer xx = new Integer(x);
 	Integer yy = new Integer(y);
 	Integer zz = new Integer(z);
@@ -59,17 +64,16 @@ public class HashTableTest {
         classUnderTest = new HashTable<>(INITIAL_SIZE);
     }
 
-    public void testGetEmpty() {
-        classUnderTest.clear();
-        Assert.assertNull(classUnderTest.get(null));
-    }
+    // public void testGetEmpty() {
+    //     classUnderTest.clear();
+    //     Assert.assertNull(classUnderTest.get(null));
+    // }
 
     public void testPutAndGet(Integer x, Integer y, Integer z) {
 	Integer[3] is = makeInts(x, y, z);
         classUnderTest.clear();
 
         classUnderTest.put(x, y);
-
 	classUnderTest.put(y, x);
         classUnderTest.put(z, x);
         Assert.assertEquals(classUnderTest.get(is[0]), is[1]);
@@ -81,138 +85,138 @@ public class HashTableTest {
         Assert.assertEquals(classUnderTest.get(i), y);
     }
 
-    public void testReplacing(Integer x, Integer y, Integer z) {
-	Integer[3] is = makeInts(x, y, z);
-        classUnderTest.clear();
-    	Integer i0 = new Integer(x.intValue()+INITIAL_SIZE);
-    	Integer i1 = new Integer(x.intValue()+INITIAL_SIZE);
-        classUnderTest.put(i0, z);
-        Assert.assertEquals(classUnderTest.get(i1), is[2]);
+    // public void testReplacing(Integer x, Integer y, Integer z) {
+    // 	Integer[3] is = makeInts(x, y, z);
+    //     classUnderTest.clear();
+    // 	Integer i0 = new Integer(x.intValue()+INITIAL_SIZE);
+    // 	Integer i1 = new Integer(x.intValue()+INITIAL_SIZE);
+    //     classUnderTest.put(i0, z);
+    //     Assert.assertEquals(classUnderTest.get(i1), is[2]);
 
-        classUnderTest.put(x, y);
-        Assert.assertEquals(classUnderTest.get(is[0]), is[1]);
+    //     classUnderTest.put(x, y);
+    //     Assert.assertEquals(classUnderTest.get(is[0]), is[1]);
 
-        int size = classUnderTest.size();
+    //     int size = classUnderTest.size();
 
-        classUnderTest.put(x, z);
-        Assert.assertEquals(classUnderTest.get(is[0]), is[2]);
+    //     classUnderTest.put(x, z);
+    //     Assert.assertEquals(classUnderTest.get(is[0]), is[2]);
 
-    	classUnderTest.put(i0, z);
-        Assert.assertEquals(classUnderTest.get(i1), is[2]);
+    // 	classUnderTest.put(i0, z);
+    //     Assert.assertEquals(classUnderTest.get(i1), is[2]);
 
-        Assert.assertEquals(classUnderTest.size(), size);
+    //     Assert.assertEquals(classUnderTest.size(), size);
 
-    }
+    // }
 
-    public void testKeys(Integer x, Integer y) {
-	Integer[2] is = makeInts(x, y);
-        classUnderTest.clear();
+    // public void testKeys(Integer x, Integer y) {
+    // 	Integer[2] is = makeInts(x, y);
+    //     classUnderTest.clear();
 
-        classUnderTest.put(x, y);
-    	Object k = classUnderTest.keys()[0];
-        Assert.assertEquals(k, is[0]);
-    	// TODO: array access from method call as argument to assertTrue
-        // Assert.assertEquals(classUnderTest.keys()[0], k);
+    //     classUnderTest.put(x, y);
+    // 	Object k = classUnderTest.keys()[0];
+    //     Assert.assertEquals(k, is[0]);
+    // 	// TODO: array access from method call as argument to assertTrue
+    //     // Assert.assertEquals(classUnderTest.keys()[0], k);
 
-    	// Object[] keys = classUnderTest.keys();
-        // Assert.assertTrue(keys.length == 1);
-     }
+    // 	// Object[] keys = classUnderTest.keys();
+    //     // Assert.assertTrue(keys.length == 1);
+    //  }
 
-    // @Test
-    public void testValues(Integer x, Integer y) {
-	Integer[2] is = makeInts(x, y);
-        classUnderTest.clear();
+    // // @Test
+    // public void testValues(Integer x, Integer y) {
+    // 	Integer[2] is = makeInts(x, y);
+    //     classUnderTest.clear();
 
-    	classUnderTest.put(x, y);
-    	Object v = classUnderTest.values()[0];
-    	Assert.assertEquals(v, is[1]);
+    // 	classUnderTest.put(x, y);
+    // 	Object v = classUnderTest.values()[0];
+    // 	Assert.assertEquals(v, is[1]);
 
-        // Assert.assertTrue(k.equals(y));
-    	// TODO: array access from method call as argument to assertTrue
-        // Assert.assertEquals(classUnderTest.values()[0], k);
-    }
+    //     // Assert.assertTrue(k.equals(y));
+    // 	// TODO: array access from method call as argument to assertTrue
+    //     // Assert.assertEquals(classUnderTest.values()[0], k);
+    // }
 
-    //TODO: why the heck is this so slow?! containsValue()????
-    public void testContainsValue(Integer x, Integer y) {
-	Integer[2] is = makeInts(x, y);
-        classUnderTest.clear();
+    // //TODO: why the heck is this so slow?! containsValue()????
+    // public void testContainsValue(Integer x, Integer y) {
+    // 	Integer[2] is = makeInts(x, y);
+    //     classUnderTest.clear();
 
-        classUnderTest.put(x, y);
-    	Assert.assertTrue(classUnderTest.containsValue(is[1]));
-    }
+    //     classUnderTest.put(x, y);
+    // 	Assert.assertTrue(classUnderTest.containsValue(is[1]));
+    // }
 
-    public void testContainsKey(Integer x, Integer y) {
-	Integer[2] is = makeInts(x, y);
-        classUnderTest.clear();
+    // public void testContainsKey(Integer x, Integer y) {
+    // 	Integer[2] is = makeInts(x, y);
+    //     classUnderTest.clear();
 
-        Assert.assertFalse(classUnderTest.containsKey(x));
-        classUnderTest.put(x, y);
-	// Integer i = new Integer(x.intValue());
-    	Assert.assertTrue(classUnderTest.containsKey(is[0]));
-    }
+    //     Assert.assertFalse(classUnderTest.containsKey(x));
+    //     classUnderTest.put(x, y);
+    // 	// Integer i = new Integer(x.intValue());
+    // 	Assert.assertTrue(classUnderTest.containsKey(is[0]));
+    // }
 
-    public void testSize(int x, int y) {
-    	assume x >= INITIAL_SIZE && x < 0;
-        classUnderTest.clear();
+    // public void testSize(int x, int y) {
+    // 	assume x >= INITIAL_SIZE && x < 0;
+    //     classUnderTest.clear();
 
-    	// had to reduce loop size from original (2048)
-    	for (int i = 0; i < INITIAL_SIZE; i++) { classUnderTest.put(new Integer(i), null); }
-        Assert.assertEquals(classUnderTest.size(), INITIAL_SIZE);
-        classUnderTest.put(new Integer(x), new Integer(y));
-        Assert.assertEquals(classUnderTest.size(), INITIAL_SIZE+1);
-    }
+    // 	// had to reduce loop size from original (2048)
+    // 	for (int i = 0; i < INITIAL_SIZE; i++) { classUnderTest.put(new Integer(i), null); }
+    //     Assert.assertEquals(classUnderTest.size(), INITIAL_SIZE);
+    //     classUnderTest.put(new Integer(x), new Integer(y));
+    //     Assert.assertEquals(classUnderTest.size(), INITIAL_SIZE+1);
+    // }
 
-    public void testRemoveNonExistent(Integer x, Integer y) {
-	Integer[2] is = makeInts(x, y);
-        classUnderTest.clear();
+    // public void testRemoveNonExistent(Integer x, Integer y) {
+    // 	Integer[2] is = makeInts(x, y);
+    //     classUnderTest.clear();
 
-        classUnderTest.put(x, y);
-        int size = classUnderTest.size();
-        classUnderTest.remove(is[1]);
-        Assert.assertEquals(classUnderTest.size(), size);
-    }
+    //     classUnderTest.put(x, y);
+    //     int size = classUnderTest.size();
+    //     classUnderTest.remove(is[1]);
+    //     Assert.assertEquals(classUnderTest.size(), size);
+    // }
 
-    public void testRemove(Integer x, Integer y) {
-	Integer[2] is = makeInts(x, y);
-        classUnderTest.clear();
+    // public void testRemove(Integer x, Integer y) {
+    // 	Integer[2] is = makeInts(x, y);
+    //     classUnderTest.clear();
 
-        int size = classUnderTest.size();
-        classUnderTest.put(x, y);
+    //     int size = classUnderTest.size();
+    //     classUnderTest.put(x, y);
 
-        Assert.assertEquals(classUnderTest.get(is[0]), is[1]);
-        Assert.assertEquals(classUnderTest.size(), size + 1);
+    //     Assert.assertEquals(classUnderTest.get(is[0]), is[1]);
+    //     Assert.assertEquals(classUnderTest.size(), size + 1);
 
-        classUnderTest.remove(x);
-        Assert.assertNull(classUnderTest.get(is[0]));
-    }
+    //     classUnderTest.remove(x);
+    //     Assert.assertNull(classUnderTest.get(is[0]));
+    // }
 
-    public void testClear(Integer x, Integer y) {
-    	classUnderTest.clear();
+    // public void testClear(Integer x, Integer y) {
+    // 	classUnderTest.clear();
 
-        classUnderTest.put(x, y);
-        classUnderTest.put(y, x);
-        Assert.assertTrue(classUnderTest.size() > 0);
+    //     classUnderTest.put(x, y);
+    //     classUnderTest.put(y, x);
+    //     Assert.assertTrue(classUnderTest.size() > 0);
         
-    	classUnderTest.clear();
-    	Asset.assertNull(classUnderTest.buckets.get(classUnderTest.initialCapacity-1));
-    	Assert.assertFalse(classUnderTest.size() > 0);
-    }
+    // 	classUnderTest.clear();
+    // 	Asset.assertNull(classUnderTest.buckets.get(classUnderTest.initialCapacity-1));
+    // 	Assert.assertFalse(classUnderTest.size() > 0);
+    // }
 
-    public void testEnsureCapacity(Integer v, Integer w, Integer x, Integer y, Integer z) {
-    	classUnderTest.clear();
+    // public void testEnsureCapacity(Integer v, Integer w, Integer x, Integer y, Integer z) {
+    // 	classUnderTest.clear();
 
-        classUnderTest.put(v, w);
-        classUnderTest.put(w, x);
-        classUnderTest.put(x, y);
-        classUnderTest.put(y, z);
-        classUnderTest.put(z, v);
+    //     classUnderTest.put(v, w);
+    //     classUnderTest.put(w, x);
+    //     classUnderTest.put(x, y);
+    //     classUnderTest.put(y, z);
+    //     classUnderTest.put(z, v);
 	
-        Assert.assertEquals(classUnderTest.get(v), w);
-        Assert.assertEquals(classUnderTest.get(w), x);
-        Assert.assertEquals(classUnderTest.get(x), y);
-        Assert.assertEquals(classUnderTest.get(y), z);
-        Assert.assertEquals(classUnderTest.get(z), v);
-    }
+    //     Assert.assertEquals(classUnderTest.get(v), w);
+    //     Assert.assertEquals(classUnderTest.get(w), x);
+    //     Assert.assertEquals(classUnderTest.get(x), y);
+    //     Assert.assertEquals(classUnderTest.get(y), z);
+    //     Assert.assertEquals(classUnderTest.get(z), v);
+    // }
 }
 
 // ORIGINAL TESTS

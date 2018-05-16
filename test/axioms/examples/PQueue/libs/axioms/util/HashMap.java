@@ -50,7 +50,7 @@ class HashMap<K, V> {
 	return false;
     }
 
-    axiom Object get(Object clear!(Hashmap h), Object k)
+    axiom Object get(Object clear!(HashMap h), Object k)
     {
 	return null;
     }

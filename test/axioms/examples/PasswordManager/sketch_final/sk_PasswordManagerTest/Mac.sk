@@ -28,51 +28,51 @@ Object xform_Mac(Mac self) {
   case Mac_empty: {
     return xform_mac_Mac(self);
   }
-  case Init_secretkeyspec: { assert false; }
-  case Initb_secretkeyspec: { assert false; }
-  case Dofinal_object: { assert false; }
+  case Init_secretkeyspec: { new Object(__cid=Mac(), _mac=self); }
+  case Initb_secretkeyspec: { new Object(__cid=Mac(), _mac=self); }
+  case Dofinal_object: { new Object(__cid=Mac(), _mac=self); }
   }
 
   return null;
 }
 Object xform_doFinal_Mac_Object(Mac self, Object text) {
   switch(self) {
-  case Mac_empty: { assert false; }
-  case Init_secretkeyspec: { assert false; }
+  case Mac_empty: { return new Object(__cid=Mac(), _mac=self); }
+  case Init_secretkeyspec: { return new Object(__cid=Mac(), _mac=self); }
   case Initb_secretkeyspec: {
     return text;
   }
-  case Dofinal_object: { assert false; }
+  case Dofinal_object: { return new Object(__cid=Mac(), _mac=self); }
   }
 
   return null;
 }
 Object xform_init_Mac_SecretKeySpec(Mac self, Object key) {
   switch(self) {
-  case Mac_empty: { assert false; }
-  case Init_secretkeyspec: { assert false; }
-  case Initb_secretkeyspec: { assert false; }
-  case Dofinal_object: { assert false; }
+  case Mac_empty: { return new Object(__cid=Mac(), _mac=self); }
+  case Init_secretkeyspec: { return new Object(__cid=Mac(), _mac=self); }
+  case Initb_secretkeyspec: { return new Object(__cid=Mac(), _mac=self); }
+  case Dofinal_object: { return new Object(__cid=Mac(), _mac=self); }
   }
 
   return null;
 }
 Object xform_initb_Mac_SecretKeySpec(Mac self, Object key) {
   switch(self) {
-  case Mac_empty: { assert false; }
-  case Init_secretkeyspec: { assert false; }
-  case Initb_secretkeyspec: { assert false; }
-  case Dofinal_object: { assert false; }
+  case Mac_empty: { return new Object(__cid=Mac(), _mac=self); }
+  case Init_secretkeyspec: { return new Object(__cid=Mac(), _mac=self); }
+  case Initb_secretkeyspec: { return new Object(__cid=Mac(), _mac=self); }
+  case Dofinal_object: { return new Object(__cid=Mac(), _mac=self); }
   }
 
   return null;
 }
 Object xform_mac_Mac(Mac self) {
   switch(self) {
-  case Mac_empty: { assert false; }
-  case Init_secretkeyspec: { assert false; }
-  case Initb_secretkeyspec: { assert false; }
-  case Dofinal_object: { assert false; }
+  case Mac_empty: { return new Object(__cid=Mac(), _mac=self); }
+  case Init_secretkeyspec: { return new Object(__cid=Mac(), _mac=self); }
+  case Initb_secretkeyspec: { return new Object(__cid=Mac(), _mac=self); }
+  case Dofinal_object: { return new Object(__cid=Mac(), _mac=self); }
   }
 
   return null;

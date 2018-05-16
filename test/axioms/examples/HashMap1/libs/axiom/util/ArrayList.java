@@ -1,13 +1,13 @@
 @axiomClass
-class ArrayList {
+class ArrayList<E>{
     @adt
-    boolean add(Object e);
+    boolean add(E e);
 
     @adt
-    Object get(int i);
+    E get(int i);
 
     @adt
-    Object set(int i, Object e);
+    E set(int i, E e);
 
     @adt
     @pure

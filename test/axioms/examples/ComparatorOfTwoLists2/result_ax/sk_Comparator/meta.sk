@@ -1,0 +1,30 @@
+package meta;
+
+// distinct class IDs
+int ArrayList()               { return 4; }
+int Boolean()                 { return 15; }
+int BufferedReader()          { return 18; }
+int BufferedWriter()          { return 8; }
+int CharSequence()            { return 12; }
+int Character()               { return 9; }
+int CommunicationWithFiles()  { return 2; }
+int Comparator()              { return 3; }
+int File()                    { return 5; }
+int FileOutputStream()        { return 19; }
+int FileReaderr()             { return 17; }
+int FileWriterr()             { return 6; }
+int Integer()                 { return 7; }
+int Number()                  { return 10; }
+int Object()                  { return 1; }
+int PrintStream()             { return 13; }
+int String()                  { return 16; }
+int StringBuffer()            { return 11; }
+int StringBuilder()           { return 14; }
+int Array()                   { return -1; }
+int _int()                    { return -2; }
+int _char()                   { return -3; }
+int _bit()                    { return -4; }
+int _float()                  { return -5; }
+int _double()                 { return -6; }
+
+// Uninterpreted functions

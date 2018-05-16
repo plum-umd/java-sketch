@@ -1,0 +1,225 @@
+package HashTable;
+
+Object HashTable_HashTable(Object self) {
+    return self;
+}
+
+Object HashTable_HashTable_int(Object self, Object initialCapacity) {
+  self.initialCapacity_HashTable = initialCapacity;
+  self.capacityGrowth_HashTable = (new Object(__cid=-2, _int=2));
+  self.maxLoadFactor_HashTable = (new Object(__cid=-6, _double=0.75));
+  self.buckets_HashTable = ArrayList_ArrayList();
+  resetHashTable@HashTable(self);
+  return self;
+}
+
+void resetHashTable(Object self) {
+  self.size_HashTable = (new Object(__cid=-2, _int=??));
+  self.currentCapacity_HashTable = self.initialCapacity_HashTable;
+  self.buckets_HashTable = ArrayList_ArrayList();
+  Object g = {|(self.size_HashTable | self.currentCapacity_HashTable | self.capacityGrowth_HashTable | self.initialCapacity_HashTable)|};
+  for (Object i = (new Object(__cid=-2, _int=??)),  t = g; i._int < t._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? add_Object_E@ArrayList(self.buckets_HashTable, null) : null); self.buckets_HashTable = (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? addb_Object_E@ArrayList(self.buckets_HashTable, null) : null);
+  }
+}
+
+Object get_K(Object self, Object key) {
+  Object result = getNodeWithKey_K@HashTable(self, key);
+  return (result != null ? (result.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? getValue@HashTableNode(result) : null) : null);
+}
+
+void put_K_V(Object self, Object key, Object value) {
+  ensureCapacity_int@HashTable(self, (new Object(__cid=-2, _int=size@HashTable(self)._int + (new Object(__cid=-2, _int=??))._int)));
+  Object bucketIndex = getBucketIndex_K@HashTable(self, key);
+  Object newNode = HashTableNode_HashTableNode_K_V(new Object(__cid=HashTableNode()), key, value);
+  Object current = xform_get_ArrayList_int(self.buckets_HashTable._arraylist, bucketIndex);
+  /* Object current = (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_Object_int@ArrayList(self.buckets_HashTable, bucketIndex) : null); self.buckets_HashTable = (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? getb_Object_int@ArrayList(self.buckets_HashTable, bucketIndex) : null); */
+  if (current == null) {
+    (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? set_Object_int_E@ArrayList(self.buckets_HashTable, bucketIndex, newNode) : null); self.buckets_HashTable = (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? setb_Object_int_E@ArrayList(self.buckets_HashTable, bucketIndex, newNode) : null);
+    self.size_HashTable = new Object(__cid=-2, _int=self.size_HashTable._int + 1);
+    return;
+  }
+  while (current != null) {
+    Object k = (current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? getKey@HashTableNode(current) : null);
+    Object b = (k.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(k, key) : k.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(k, key) : k.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(k, key) : k.__cid == (new Object(__cid=-2, _int=HashTableTest()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(k, key) : null);
+    if ({|(b | (new Object(__cid=-4, _bit=k == key)))|}._bit) {
+      if (current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int) { setValue_V@HashTableNode(current, value); }
+      else { 0; };
+      return;
+    }
+    else if ((current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? getNext@HashTableNode(current) : null) == null) {
+      if (current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int) { setNext_HashTableNode@HashTableNode(current, newNode); }
+      else { 0; };
+      self.size_HashTable = new Object(__cid=-2, _int=self.size_HashTable._int + 1);
+      return;
+    }
+    current = (current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? getNext@HashTableNode(current) : null);
+  }
+}
+
+void remove_K(Object self, Object key) {
+  if (size@HashTable(self)._int == (new Object(__cid=-2, _int=??))._int || key == null) {
+    return;
+  }
+  Object bucketIndex = getBucketIndex_K@HashTable(self, key);
+  Object current = xform_get_ArrayList_int(self.buckets_HashTable._arraylist, bucketIndex);
+  /* Object current = (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_Object_int@ArrayList(self.buckets_HashTable, bucketIndex) : null); self.buckets_HashTable = (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? getb_Object_int@ArrayList(self.buckets_HashTable, bucketIndex) : null); */
+  Object previous = null;
+  while (current != null) {
+    Object k = (current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? getKey@HashTableNode(current) : null);
+    Object b = (k.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(k, key) : k.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(k, key) : k.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(k, key) : k.__cid == (new Object(__cid=-2, _int=HashTableTest()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(k, key) : null);
+    if ({|(b | (new Object(__cid=-4, _bit=k == key)))|}._bit) {
+      if (previous == null) {
+        if ((current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? getNext@HashTableNode(current) : null) != null) {
+          (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? set_Object_int_E@ArrayList(self.buckets_HashTable, bucketIndex, (current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? getNext@HashTableNode(current) : null)) : null); self.buckets_HashTable = (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? setb_Object_int_E@ArrayList(self.buckets_HashTable, bucketIndex, (current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? getNext@HashTableNode(current) : null)) : null);
+        }
+        else {
+          (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? set_Object_int_E@ArrayList(self.buckets_HashTable, bucketIndex, null) : null); self.buckets_HashTable = (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? setb_Object_int_E@ArrayList(self.buckets_HashTable, bucketIndex, null) : null);
+        }
+      }
+      else {
+        if ((current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? getNext@HashTableNode(current) : null) == null) {
+          if (previous.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int) { setNext_HashTableNode@HashTableNode(previous, null); }
+          else { 0; };
+        }
+        else {
+          if (previous.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int) { setNext_HashTableNode@HashTableNode(previous, (current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? getNext@HashTableNode(current) : null)); }
+          else { 0; };
+        }
+      }
+      self.size_HashTable = new Object(__cid=-2, _int=self.size_HashTable._int - 1);
+      return;
+    }
+    previous = current;
+    current = (current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? getNext@HashTableNode(current) : null);
+  }
+}
+
+Object values(Object self) {
+  Object values = Wrap_Array_Object(new Array_Object(length=size@HashTable(self)));
+  if (size@HashTable(self)._int > (new Object(__cid=-2, _int=??))._int) {
+    Object index = (new Object(__cid=-2, _int=??));
+    Object bs = xform_size_ArrayList(self.buckets_HashTable._arraylist);
+    /* Object bs = (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? size_Object@ArrayList(self.buckets_HashTable) : null); */
+    Object g = {|(self.size_HashTable | self.currentCapacity_HashTable | self.capacityGrowth_HashTable | self.initialCapacity_HashTable | bs)|};
+    for (Object i = (new Object(__cid=-2, _int=??)); i._int < g._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+      Object current = xform_get_ArrayList_int(self.buckets_HashTable._arraylist, i);
+      /* Object current = (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_Object_int@ArrayList(self.buckets_HashTable, i) : null); self.buckets_HashTable = (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? getb_Object_int@ArrayList(self.buckets_HashTable, i) : null); */
+      while (current != null) {
+        values._array_object.A[index._int] = (current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? getValue@HashTableNode(current) : null);
+        index = new Object(__cid=-2, _int=index._int + 1);
+        current = (current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? getNext@HashTableNode(current) : null);
+      }
+    }
+    minimize(g);
+  }
+  return values;
+}
+
+Object keys(Object self) {
+  Object keys = Wrap_Array_Object(new Array_Object(length=size@HashTable(self)));
+  if (size@HashTable(self)._int > (new Object(__cid=-2, _int=??))._int) {
+    Object index = (new Object(__cid=-2, _int=??));
+    Object bs = xform_size_ArrayList(self.buckets_HashTable._arraylist);
+    /* Object bs = (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? size_Object@ArrayList(self.buckets_HashTable) : null); */
+    Object g = {|(self.size_HashTable | self.currentCapacity_HashTable | self.capacityGrowth_HashTable | self.initialCapacity_HashTable | bs)|};
+    for (Object i = (new Object(__cid=-2, _int=0)); i._int < g._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+      Object current = xform_get_ArrayList_int(self.buckets_HashTable._arraylist, i); 
+      /* Object current = (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_Object_int@ArrayList(self.buckets_HashTable, i) : null); self.buckets_HashTable = (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? getb_Object_int@ArrayList(self.buckets_HashTable, i) : null); */
+      while (current != null) {
+        keys._array_object.A[index._int] = (current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? getKey@HashTableNode(current) : null);
+        index = new Object(__cid=-2, _int=index._int + 1);
+        current = (current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? getNext@HashTableNode(current) : null);
+      }
+    }
+    minimize(g);
+  }
+  return keys;
+}
+
+Object containsKey_K(Object self, Object key) {
+  Object result = getNodeWithKey_K@HashTable(self, key);
+  return (new Object(__cid=-4, _bit=result != null));
+}
+
+Object containsValue_V(Object self, Object value) {
+  Object result = getNodeWithValue_V@HashTable(self, value);
+  return (new Object(__cid=-4, _bit=result != null));
+}
+
+Object size(Object self) {
+  return self.size_HashTable;
+}
+
+void clear(Object self) {
+  resetHashTable@HashTable(self);
+}
+
+Object getBucketIndex_K(Object self, Object key) {
+  Object h = (key.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Integer()))._int ? hashCode@Integer(key) : key.__cid == (new Object(__cid=-2, _int=Character()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=String()))._int ? hashCode@String(key) : key.__cid == (new Object(__cid=-2, _int=HashTableTest()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Assert()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Object()))._int ? hashCode@Object(key) : null);
+  Object c = (new Object(__cid=-2, _int=self.currentCapacity_HashTable._int - (new Object(__cid=-2, _int=1))._int));
+  Object result = (new Object(__cid=-2, _int=0)),  s = (new Object(__cid=-2, _int=1));
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < (new Object(__cid=-2, _int=32))._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    if (i._int > (new Object(__cid=-2, _int=1))._int) {
+      for (Object j = (new Object(__cid=-2, _int=0)); j._int < i._int - (new Object(__cid=-2, _int=1))._int; j = new Object(__cid=-2, _int=j._int + 1)) s = (new Object(__cid=-2, _int=s._int * (new Object(__cid=-2, _int=2))._int));
+    }
+    result = (new Object(__cid=-2, _int=result._int + (((h._int / s._int) % (new Object(__cid=-2, _int=2))._int) * ((c._int / s._int) % (new Object(__cid=-2, _int=2))._int) * s._int)));
+    s = (new Object(__cid=-2, _int=2));
+  }
+  return result;
+}
+
+Object getNodeWithKey_K(Object self, Object key) {
+  if (size@HashTable(self)._int == (new Object(__cid=-2, _int=??))._int || key == null) {
+    return null;
+  }
+  Object bucketIndex = getBucketIndex_K@HashTable(self, key);
+  Object current = xform_get_ArrayList_int(self.buckets_HashTable._arraylist, bucketIndex);
+  /* Object current = (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_Object_int@ArrayList(self.buckets_HashTable, bucketIndex) : null); self.buckets_HashTable = (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? getb_Object_int@ArrayList(self.buckets_HashTable, bucketIndex) : null); */
+  while (current != null) {
+    Object k = (current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? getKey@HashTableNode(current) : null);
+    Object b = (k.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(k, key) : k.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(k, key) : k.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(k, key) : k.__cid == (new Object(__cid=-2, _int=HashTableTest()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(k, key) : null);
+    if ({|(b | (new Object(__cid=-4, _bit=k == key)))|}._bit) {
+      return current;
+    }
+    current = (current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? getNext@HashTableNode(current) : null);
+  }
+  return null;
+}
+
+Object getNodeWithValue_V(Object self, Object value) {
+  if (size@HashTable(self)._int == (new Object(__cid=-2, _int=??))._int) {
+    return null;
+  }
+  Object bs = xform_size_ArrayList(self.buckets_HashTable._arraylist);  
+  /* Object bs = (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? size_Object@ArrayList(self.buckets_HashTable) : null); */
+  Object b = {|(self.size_HashTable | self.currentCapacity_HashTable | self.capacityGrowth_HashTable | self.initialCapacity_HashTable | bs)|};
+  for (Object i = (new Object(__cid=-2, _int=??)); i._int < b._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    Object current = xform_get_ArrayList_int(self.buckets_HashTable._arraylist, i);
+    /* Object current = (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_Object_int@ArrayList(self.buckets_HashTable, i) : null); self.buckets_HashTable = (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? getb_Object_int@ArrayList(self.buckets_HashTable, i) : null); */
+    while (current != null) {
+      Object v = (current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? getValue@HashTableNode(current) : null);
+      Object b2 = (v.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? equals_Object@Object(v, value) : v.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(v, value) : v.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(v, value) : v.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(v, value) : v.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(v, value) : v.__cid == (new Object(__cid=-2, _int=HashTableTest()))._int ? equals_Object@Object(v, value) : v.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? equals_Object@Object(v, value) : v.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(v, value) : v.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(v, value) : v.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(v, value) : null);
+      if ({|(b2 | (new Object(__cid=-4, _bit=v == value)))|}._bit) {
+        return current;
+      }
+      current = (current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? getNext@HashTableNode(current) : null);
+    }
+  }
+  return null;
+}
+
+void ensureCapacity_int(Object self, Object intendedCapacity) {
+  Object loadFactor = (new Object(__cid=-6, _double=(double)intendedCapacity._int / (double)self.currentCapacity_HashTable._int));
+  if (loadFactor._double < self.maxLoadFactor_HashTable._double) {
+    return;
+  }
+  Object newCapacity = (new Object(__cid=-2, _int=self.currentCapacity_HashTable._int * self.capacityGrowth_HashTable._int));
+  if (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int) { ensureCapacity_Object_int@ArrayList(self.buckets_HashTable, newCapacity); }
+  else { 0; };
+  for (Object i = self.currentCapacity_HashTable; i._int < newCapacity._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? add_Object_E@ArrayList(self.buckets_HashTable, null) : null); self.buckets_HashTable = (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? addb_Object_E@ArrayList(self.buckets_HashTable, null) : null);
+  }
+  self.currentCapacity_HashTable = newCapacity;
+}
+

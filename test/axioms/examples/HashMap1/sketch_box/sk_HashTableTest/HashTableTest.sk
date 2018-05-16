@@ -1,0 +1,196 @@
+package HashTableTest;
+
+Object INITIAL_SIZE = (new Object(__cid=-2, _int=8));
+Object INITIAL_SIZE_g() { return INITIAL_SIZE; }
+void INITIAL_SIZE_s(Object INITIAL_SIZE_s) { INITIAL_SIZE = INITIAL_SIZE_s; }
+
+Object HashTableTest_HashTableTest(Object self) {
+    return self;
+}
+
+harness void mn_int_int_int(int __x, int __y, int __z) {
+  Object x = new Object(__cid=-2, _int=__x); 
+  Object y = new Object(__cid=-2, _int=__y); 
+  Object z = new Object(__cid=-2, _int=__z); 
+Object self = Object_Object(new Object(__cid=Object()));
+  assume x._int != y._int && x._int != z._int && y._int != z._int;
+  Object xx = Integer_Integer_int(new Object(__cid=Integer()), x);
+  Object yy = Integer_Integer_int(new Object(__cid=Integer()), y);
+  Object zz = Integer_Integer_int(new Object(__cid=Integer()), z);
+  setUp@HashTableTest(self);
+  testPutAndGet_Integer_Integer_Integer@HashTableTest(self, xx, yy, zz);
+}
+
+Object makeInts_Integer(Object self, Object i1) {
+  Object i = Wrap_Array_Object(new Array_Object(length=new Object(__cid=-2, _int=1))); i._array_object.A[0] = Integer_Integer_int(new Object(__cid=Integer()), (i1.__cid == (new Object(__cid=-2, _int=Integer()))._int ? intValue@Integer(i1) : null));
+  return i;
+}
+
+Object makeInts_Integer_Integer(Object self, Object i1, Object i2) {
+  Object i = Wrap_Array_Object(new Array_Object(length=new Object(__cid=-2, _int=2))); i._array_object.A[0] = Integer_Integer_int(new Object(__cid=Integer()), (i1.__cid == (new Object(__cid=-2, _int=Integer()))._int ? intValue@Integer(i1) : null)); i._array_object.A[1] = Integer_Integer_int(new Object(__cid=Integer()), (i2.__cid == (new Object(__cid=-2, _int=Integer()))._int ? intValue@Integer(i2) : null));
+  return i;
+}
+
+Object makeInts_Integer_Integer_Integer(Object self, Object i1, Object i2, Object i3) {
+  Object i = Wrap_Array_Object(new Array_Object(length=new Object(__cid=-2, _int=3))); i._array_object.A[0] = Integer_Integer_int(new Object(__cid=Integer()), (i1.__cid == (new Object(__cid=-2, _int=Integer()))._int ? intValue@Integer(i1) : null)); i._array_object.A[1] = Integer_Integer_int(new Object(__cid=Integer()), (i2.__cid == (new Object(__cid=-2, _int=Integer()))._int ? intValue@Integer(i2) : null)); i._array_object.A[2] = Integer_Integer_int(new Object(__cid=Integer()), (i3.__cid == (new Object(__cid=-2, _int=Integer()))._int ? intValue@Integer(i3) : null));
+  return i;
+}
+
+void setUp(Object self) {
+  self.classUnderTest_HashTableTest = HashTable_HashTable_int(new Object(__cid=HashTable()), INITIAL_SIZE);
+}
+
+void testGetEmpty(Object self) {
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { clear@HashTable(self.classUnderTest_HashTableTest); }
+  else { 0; };
+  assertNull_Object@Assert((self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? get_K@HashTable(self.classUnderTest_HashTableTest, null) : null));
+}
+
+void testPutAndGet_Integer_Integer_Integer(Object self, Object x, Object y, Object z) {
+  Object is = makeInts_Integer_Integer_Integer@HashTableTest(self, x, y, z);
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { clear@HashTable(self.classUnderTest_HashTableTest); }
+  else { 0; };
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y); }
+  else { 0; };
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { put_K_V@HashTable(self.classUnderTest_HashTableTest, y, x); }
+  else { 0; };
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { put_K_V@HashTable(self.classUnderTest_HashTableTest, z, x); }
+  else { 0; };
+  assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? get_K@HashTable(self.classUnderTest_HashTableTest, is._array_object.A[(new Object(__cid=-2, _int=0))._int]) : null), is._array_object.A[(new Object(__cid=-2, _int=1))._int]);
+}
+
+void testReplacing_Integer_Integer_Integer(Object self, Object x, Object y, Object z) {
+  Object is = makeInts_Integer_Integer_Integer@HashTableTest(self, x, y, z);
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { clear@HashTable(self.classUnderTest_HashTableTest); }
+  else { 0; };
+  Object i0 = Integer_Integer_int(new Object(__cid=Integer()), (new Object(__cid=-2, _int=(x.__cid == (new Object(__cid=-2, _int=Integer()))._int ? intValue@Integer(x) : null)._int + INITIAL_SIZE._int)));
+  Object i1 = Integer_Integer_int(new Object(__cid=Integer()), (new Object(__cid=-2, _int=(x.__cid == (new Object(__cid=-2, _int=Integer()))._int ? intValue@Integer(x) : null)._int + INITIAL_SIZE._int)));
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { put_K_V@HashTable(self.classUnderTest_HashTableTest, i0, z); }
+  else { 0; };
+  assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? get_K@HashTable(self.classUnderTest_HashTableTest, i1) : null), is._array_object.A[(new Object(__cid=-2, _int=2))._int]);
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y); }
+  else { 0; };
+  assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? get_K@HashTable(self.classUnderTest_HashTableTest, is._array_object.A[(new Object(__cid=-2, _int=0))._int]) : null), is._array_object.A[(new Object(__cid=-2, _int=1))._int]);
+  Object size = (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? size@HashTable(self.classUnderTest_HashTableTest) : null);
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, z); }
+  else { 0; };
+  assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? get_K@HashTable(self.classUnderTest_HashTableTest, is._array_object.A[(new Object(__cid=-2, _int=0))._int]) : null), is._array_object.A[(new Object(__cid=-2, _int=2))._int]);
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { put_K_V@HashTable(self.classUnderTest_HashTableTest, i0, z); }
+  else { 0; };
+  assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? get_K@HashTable(self.classUnderTest_HashTableTest, i1) : null), is._array_object.A[(new Object(__cid=-2, _int=2))._int]);
+  assertEquals_int_int@Assert((self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? size@HashTable(self.classUnderTest_HashTableTest) : null), size);
+}
+
+void testKeys_Integer_Integer(Object self, Object x, Object y) {
+  Object is = makeInts_Integer_Integer@HashTableTest(self, x, y);
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { clear@HashTable(self.classUnderTest_HashTableTest); }
+  else { 0; };
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y); }
+  else { 0; };
+  Object k = (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? keys@HashTable(self.classUnderTest_HashTableTest) : null)._array_object.A[(new Object(__cid=-2, _int=0))._int];
+  assertEquals_Object_Object@Assert(k, is._array_object.A[(new Object(__cid=-2, _int=0))._int]);
+}
+
+void testValues_Integer_Integer(Object self, Object x, Object y) {
+  Object is = makeInts_Integer_Integer@HashTableTest(self, x, y);
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { clear@HashTable(self.classUnderTest_HashTableTest); }
+  else { 0; };
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y); }
+  else { 0; };
+  Object v = (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? values@HashTable(self.classUnderTest_HashTableTest) : null)._array_object.A[(new Object(__cid=-2, _int=0))._int];
+  assertEquals_Object_Object@Assert(v, is._array_object.A[(new Object(__cid=-2, _int=1))._int]);
+}
+
+void testContainsValue_Integer_Integer(Object self, Object x, Object y) {
+  Object is = makeInts_Integer_Integer@HashTableTest(self, x, y);
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { clear@HashTable(self.classUnderTest_HashTableTest); }
+  else { 0; };
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y); }
+  else { 0; };
+  assertTrue_boolean@Assert((self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? containsValue_V@HashTable(self.classUnderTest_HashTableTest, is._array_object.A[(new Object(__cid=-2, _int=1))._int]) : null));
+}
+
+void testContainsKey_Integer_Integer(Object self, Object x, Object y) {
+  Object is = makeInts_Integer_Integer@HashTableTest(self, x, y);
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { clear@HashTable(self.classUnderTest_HashTableTest); }
+  else { 0; };
+  assertFalse_boolean@Assert((self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? containsKey_K@HashTable(self.classUnderTest_HashTableTest, x) : null));
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y); }
+  else { 0; };
+  assertTrue_boolean@Assert((self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? containsKey_K@HashTable(self.classUnderTest_HashTableTest, is._array_object.A[(new Object(__cid=-2, _int=0))._int]) : null));
+}
+
+void testSize_int_int(Object self, Object x, Object y) {
+  assume x._int >= INITIAL_SIZE._int && x._int < (new Object(__cid=-2, _int=0))._int;
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { clear@HashTable(self.classUnderTest_HashTableTest); }
+  else { 0; };
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < INITIAL_SIZE._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { put_K_V@HashTable(self.classUnderTest_HashTableTest, Integer_Integer_int(new Object(__cid=Integer()), i), null); }
+    else { 0; };
+  }
+  assertEquals_int_int@Assert((self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? size@HashTable(self.classUnderTest_HashTableTest) : null), INITIAL_SIZE);
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { put_K_V@HashTable(self.classUnderTest_HashTableTest, Integer_Integer_int(new Object(__cid=Integer()), x), Integer_Integer_int(new Object(__cid=Integer()), y)); }
+  else { 0; };
+  assertEquals_int_int@Assert((self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? size@HashTable(self.classUnderTest_HashTableTest) : null), (new Object(__cid=-2, _int=INITIAL_SIZE._int + (new Object(__cid=-2, _int=1))._int)));
+}
+
+void testRemoveNonExistent_Integer_Integer(Object self, Object x, Object y) {
+  Object is = makeInts_Integer_Integer@HashTableTest(self, x, y);
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { clear@HashTable(self.classUnderTest_HashTableTest); }
+  else { 0; };
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y); }
+  else { 0; };
+  Object size = (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? size@HashTable(self.classUnderTest_HashTableTest) : null);
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { remove_K@HashTable(self.classUnderTest_HashTableTest, is._array_object.A[(new Object(__cid=-2, _int=1))._int]); }
+  else { 0; };
+  assertEquals_int_int@Assert((self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? size@HashTable(self.classUnderTest_HashTableTest) : null), size);
+}
+
+void testRemove_Integer_Integer(Object self, Object x, Object y) {
+  Object is = makeInts_Integer_Integer@HashTableTest(self, x, y);
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { clear@HashTable(self.classUnderTest_HashTableTest); }
+  else { 0; };
+  Object size = (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? size@HashTable(self.classUnderTest_HashTableTest) : null);
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y); }
+  else { 0; };
+  assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? get_K@HashTable(self.classUnderTest_HashTableTest, is._array_object.A[(new Object(__cid=-2, _int=0))._int]) : null), is._array_object.A[(new Object(__cid=-2, _int=1))._int]);
+  assertEquals_int_int@Assert((self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? size@HashTable(self.classUnderTest_HashTableTest) : null), (new Object(__cid=-2, _int=size._int + (new Object(__cid=-2, _int=1))._int)));
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { remove_K@HashTable(self.classUnderTest_HashTableTest, x); }
+  else { 0; };
+  assertNull_Object@Assert((self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? get_K@HashTable(self.classUnderTest_HashTableTest, is._array_object.A[(new Object(__cid=-2, _int=0))._int]) : null));
+}
+
+void testClear_Integer_Integer(Object self, Object x, Object y) {
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { clear@HashTable(self.classUnderTest_HashTableTest); }
+  else { 0; };
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y); }
+  else { 0; };
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { put_K_V@HashTable(self.classUnderTest_HashTableTest, y, x); }
+  else { 0; };
+  assertTrue_boolean@Assert((new Object(__cid=-4, _bit=(self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? size@HashTable(self.classUnderTest_HashTableTest) : null)._int > (new Object(__cid=-2, _int=0))._int)));
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { clear@HashTable(self.classUnderTest_HashTableTest); }
+  else { 0; };
+  ;
+  assertFalse_boolean@Assert((new Object(__cid=-4, _bit=(self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? size@HashTable(self.classUnderTest_HashTableTest) : null)._int > (new Object(__cid=-2, _int=0))._int)));
+}
+
+void testEnsureCapacity_Integer_Integer_Integer_Integer_Integer(Object self, Object v, Object w, Object x, Object y, Object z) {
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { clear@HashTable(self.classUnderTest_HashTableTest); }
+  else { 0; };
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { put_K_V@HashTable(self.classUnderTest_HashTableTest, v, w); }
+  else { 0; };
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { put_K_V@HashTable(self.classUnderTest_HashTableTest, w, x); }
+  else { 0; };
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y); }
+  else { 0; };
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { put_K_V@HashTable(self.classUnderTest_HashTableTest, y, z); }
+  else { 0; };
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { put_K_V@HashTable(self.classUnderTest_HashTableTest, z, v); }
+  else { 0; };
+  assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? get_K@HashTable(self.classUnderTest_HashTableTest, v) : null), w);
+  assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? get_K@HashTable(self.classUnderTest_HashTableTest, w) : null), x);
+  assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? get_K@HashTable(self.classUnderTest_HashTableTest, x) : null), y);
+  assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? get_K@HashTable(self.classUnderTest_HashTableTest, y) : null), z);
+  assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? get_K@HashTable(self.classUnderTest_HashTableTest, z) : null), v);
+}
+

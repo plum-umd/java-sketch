@@ -1,324 +1,18 @@
-SKETCH version 1.7.4
-Benchmark = /Users/grumpy/Research/java-sketch/test/axioms/examples/simplePrivateExample/PrivateExample/../result_noax/sk_PrivateExample/main.sk
+SKETCH version 1.7.5
+Benchmark = /Users/grumpy/Research/java-sketch2/test/axioms/examples/simplePrivateExample/PrivateExample/../result_noax/sk_PrivateExample/main.sk
 /* BEGIN PACKAGE ANONYMOUS*/
 /* END PACKAGE ANONYMOUS*/
 /* BEGIN PACKAGE Character*/
 package Character{
-  /*Character.sk:43*/
-  
-void glblInit_COMBINING_SPACING_MARK__Character_s1048 (ref char COMBINING_SPACING_MARK__Character_s1047)/*Character.sk:43*/
-  {
-    COMBINING_SPACING_MARK__Character_s1047 = 8;
-  }
-  /*Character.sk:99*/
-  
-void glblInit_CONNECTOR_PUNCTUATION__Character_s1050 (ref char CONNECTOR_PUNCTUATION__Character_s1049)/*Character.sk:99*/
-  {
-    CONNECTOR_PUNCTUATION__Character_s1049 = 23;
-  }
-  /*Character.sk:71*/
-  
-void glblInit_CONTROL__Character_s1052 (ref char CONTROL__Character_s1051)/*Character.sk:71*/
-  {
-    CONTROL__Character_s1051 = 15;
-  }
-  /*Character.sk:111*/
-  
-void glblInit_CURRENCY_SYMBOL__Character_s1054 (ref char CURRENCY_SYMBOL__Character_s1053)/*Character.sk:111*/
-  {
-    CURRENCY_SYMBOL__Character_s1053 = 26;
-  }
-  /*Character.sk:87*/
-  
-void glblInit_DASH_PUNCTUATION__Character_s1056 (ref char DASH_PUNCTUATION__Character_s1055)/*Character.sk:87*/
-  {
-    DASH_PUNCTUATION__Character_s1055 = 20;
-  }
-  /*Character.sk:47*/
-  
-void glblInit_DECIMAL_DIGIT_NUMBER__Character_s1058 (ref char DECIMAL_DIGIT_NUMBER__Character_s1057)/*Character.sk:47*/
-  {
-    DECIMAL_DIGIT_NUMBER__Character_s1057 = 9;
-  }
-  /*Character.sk:155*/
-  
-void glblInit_DIRECTIONALITY_ARABIC_NUMBER__Character_s1060 (ref char DIRECTIONALITY_ARABIC_NUMBER__Character_s1059)/*Character.sk:155*/
-  {
-    DIRECTIONALITY_ARABIC_NUMBER__Character_s1059 = 6;
-  }
-  /*Character.sk:167*/
-  
-void glblInit_DIRECTIONALITY_BOUNDARY_NEUTRAL__Character_s1062 (ref char DIRECTIONALITY_BOUNDARY_NEUTRAL__Character_s1061)/*Character.sk:167*/
-  {
-    DIRECTIONALITY_BOUNDARY_NEUTRAL__Character_s1061 = 9;
-  }
-  /*Character.sk:159*/
-  
-void glblInit_DIRECTIONALITY_COMMON_NUMBER_SEPARATOR__Character_s1064 (ref char DIRECTIONALITY_COMMON_NUMBER_SEPARATOR__Character_s1063)/*Character.sk:159*/
-  {
-    DIRECTIONALITY_COMMON_NUMBER_SEPARATOR__Character_s1063 = 7;
-  }
-  /*Character.sk:147*/
-  
-void glblInit_DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR__Character_s1066 (ref char DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR__Character_s1065)/*Character.sk:147*/
-  {
-    DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR__Character_s1065 = 4;
-  }
-  /*Character.sk:151*/
-  
-void glblInit_DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR__Character_s1068 (ref char DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR__Character_s1067)/*Character.sk:151*/
-  {
-    DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR__Character_s1067 = 5;
-  }
-  /*Character.sk:143*/
-  
-void glblInit_DIRECTIONALITY_EUROPEAN_NUMBER__Character_s1070 (ref char DIRECTIONALITY_EUROPEAN_NUMBER__Character_s1069)/*Character.sk:143*/
-  {
-    DIRECTIONALITY_EUROPEAN_NUMBER__Character_s1069 = 3;
-  }
-  /*Character.sk:187*/
-  
-void glblInit_DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING__Character_s1072 (ref char DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING__Character_s1071)/*Character.sk:187*/
-  {
-    DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING__Character_s1071 = 14;
-  }
-  /*Character.sk:191*/
-  
-void glblInit_DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE__Character_s1074 (ref char DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE__Character_s1073)/*Character.sk:191*/
-  {
-    DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE__Character_s1073 = 15;
-  }
-  /*Character.sk:131*/
-  
-void glblInit_DIRECTIONALITY_LEFT_TO_RIGHT__Character_s1076 (ref char DIRECTIONALITY_LEFT_TO_RIGHT__Character_s1075)/*Character.sk:131*/
-  {
-    DIRECTIONALITY_LEFT_TO_RIGHT__Character_s1075 = 0;
-  }
-  /*Character.sk:163*/
-  
-void glblInit_DIRECTIONALITY_NONSPACING_MARK__Character_s1078 (ref char DIRECTIONALITY_NONSPACING_MARK__Character_s1077)/*Character.sk:163*/
-  {
-    DIRECTIONALITY_NONSPACING_MARK__Character_s1077 = 8;
-  }
-  /*Character.sk:183*/
-  
-void glblInit_DIRECTIONALITY_OTHER_NEUTRALS__Character_s1080 (ref char DIRECTIONALITY_OTHER_NEUTRALS__Character_s1079)/*Character.sk:183*/
-  {
-    DIRECTIONALITY_OTHER_NEUTRALS__Character_s1079 = 13;
-  }
-  /*Character.sk:171*/
-  
-void glblInit_DIRECTIONALITY_PARAGRAPH_SEPARATOR__Character_s1082 (ref char DIRECTIONALITY_PARAGRAPH_SEPARATOR__Character_s1081)/*Character.sk:171*/
-  {
-    DIRECTIONALITY_PARAGRAPH_SEPARATOR__Character_s1081 = 10;
-  }
-  /*Character.sk:203*/
-  
-void glblInit_DIRECTIONALITY_POP_DIRECTIONAL_FORMAT__Character_s1084 (ref char DIRECTIONALITY_POP_DIRECTIONAL_FORMAT__Character_s1083)/*Character.sk:203*/
-  {
-    DIRECTIONALITY_POP_DIRECTIONAL_FORMAT__Character_s1083 = 18;
-  }
-  /*Character.sk:139*/
-  
-void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC__Character_s1086 (ref char DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC__Character_s1085)/*Character.sk:139*/
-  {
-    DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC__Character_s1085 = 2;
-  }
-  /*Character.sk:195*/
-  
-void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING__Character_s1088 (ref char DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING__Character_s1087)/*Character.sk:195*/
-  {
-    DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING__Character_s1087 = 16;
-  }
-  /*Character.sk:199*/
-  
-void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE__Character_s1090 (ref char DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE__Character_s1089)/*Character.sk:199*/
-  {
-    DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE__Character_s1089 = 17;
-  }
-  /*Character.sk:135*/
-  
-void glblInit_DIRECTIONALITY_RIGHT_TO_LEFT__Character_s1092 (ref char DIRECTIONALITY_RIGHT_TO_LEFT__Character_s1091)/*Character.sk:135*/
-  {
-    DIRECTIONALITY_RIGHT_TO_LEFT__Character_s1091 = 1;
-  }
-  /*Character.sk:175*/
-  
-void glblInit_DIRECTIONALITY_SEGMENT_SEPARATOR__Character_s1094 (ref char DIRECTIONALITY_SEGMENT_SEPARATOR__Character_s1093)/*Character.sk:175*/
-  {
-    DIRECTIONALITY_SEGMENT_SEPARATOR__Character_s1093 = 11;
-  }
-  /*Character.sk:127*/
-  
-void glblInit_DIRECTIONALITY_UNDEFINED__Character_s1096 (ref char DIRECTIONALITY_UNDEFINED__Character_s1095)/*Character.sk:127*/
-  {
-    DIRECTIONALITY_UNDEFINED__Character_s1095 = -1;
-  }
-  /*Character.sk:179*/
-  
-void glblInit_DIRECTIONALITY_WHITESPACE__Character_s1098 (ref char DIRECTIONALITY_WHITESPACE__Character_s1097)/*Character.sk:179*/
-  {
-    DIRECTIONALITY_WHITESPACE__Character_s1097 = 12;
-  }
-  /*Character.sk:39*/
-  
-void glblInit_ENCLOSING_MARK__Character_s1100 (ref char ENCLOSING_MARK__Character_s1099)/*Character.sk:39*/
-  {
-    ENCLOSING_MARK__Character_s1099 = 7;
-  }
-  /*Character.sk:95*/
-  
-void glblInit_END_PUNCTUATION__Character_s1102 (ref char END_PUNCTUATION__Character_s1101)/*Character.sk:95*/
-  {
-    END_PUNCTUATION__Character_s1101 = 22;
-  }
-  /*Character.sk:123*/
-  
-void glblInit_FINAL_QUOTE_PUNCTUATION__Character_s1104 (ref char FINAL_QUOTE_PUNCTUATION__Character_s1103)/*Character.sk:123*/
-  {
-    FINAL_QUOTE_PUNCTUATION__Character_s1103 = 30;
-  }
-  /*Character.sk:75*/
-  
-void glblInit_FORMAT__Character_s1106 (ref char FORMAT__Character_s1105)/*Character.sk:75*/
-  {
-    FORMAT__Character_s1105 = 16;
-  }
-  /*Character.sk:51*/
-  
-void glblInit_LETTER_NUMBER__Character_s1108 (ref char LETTER_NUMBER__Character_s1107)/*Character.sk:51*/
-  {
-    LETTER_NUMBER__Character_s1107 = 10;
-  }
-  /*Character.sk:63*/
-  
-void glblInit_LINE_SEPARATOR__Character_s1110 (ref char LINE_SEPARATOR__Character_s1109)/*Character.sk:63*/
-  {
-    LINE_SEPARATOR__Character_s1109 = 13;
-  }
-  /*Character.sk:19*/
-  
-void glblInit_LOWERCASE_LETTER__Character_s1112 (ref char LOWERCASE_LETTER__Character_s1111)/*Character.sk:19*/
-  {
-    LOWERCASE_LETTER__Character_s1111 = 2;
-  }
-  /*Character.sk:107*/
-  
-void glblInit_MATH_SYMBOL__Character_s1114 (ref char MATH_SYMBOL__Character_s1113)/*Character.sk:107*/
-  {
-    MATH_SYMBOL__Character_s1113 = 25;
-  }
-  /*Character.sk:7*/
-  
-void glblInit_MAX_RADIX__Character_s1118 (ref int MAX_RADIX__Character_s1117)/*Character.sk:7*/
-  {
-    MAX_RADIX__Character_s1117 = 36;
-  }
-  /*Character.sk:3*/
-  
-void glblInit_MIN_RADIX__Character_s1122 (ref int MIN_RADIX__Character_s1121)/*Character.sk:3*/
-  {
-    MIN_RADIX__Character_s1121 = 2;
-  }
-  /*Character.sk:27*/
-  
-void glblInit_MODIFIER_LETTER__Character_s1126 (ref char MODIFIER_LETTER__Character_s1125)/*Character.sk:27*/
-  {
-    MODIFIER_LETTER__Character_s1125 = 4;
-  }
-  /*Character.sk:115*/
-  
-void glblInit_MODIFIER_SYMBOL__Character_s1128 (ref char MODIFIER_SYMBOL__Character_s1127)/*Character.sk:115*/
-  {
-    MODIFIER_SYMBOL__Character_s1127 = 27;
-  }
-  /*Character.sk:35*/
-  
-void glblInit_NON_SPACING_MARK__Character_s1130 (ref char NON_SPACING_MARK__Character_s1129)/*Character.sk:35*/
-  {
-    NON_SPACING_MARK__Character_s1129 = 6;
-  }
-  /*Character.sk:31*/
-  
-void glblInit_OTHER_LETTER__Character_s1132 (ref char OTHER_LETTER__Character_s1131)/*Character.sk:31*/
-  {
-    OTHER_LETTER__Character_s1131 = 5;
-  }
-  /*Character.sk:55*/
-  
-void glblInit_OTHER_NUMBER__Character_s1134 (ref char OTHER_NUMBER__Character_s1133)/*Character.sk:55*/
-  {
-    OTHER_NUMBER__Character_s1133 = 11;
-  }
-  /*Character.sk:103*/
-  
-void glblInit_OTHER_PUNCTUATION__Character_s1136 (ref char OTHER_PUNCTUATION__Character_s1135)/*Character.sk:103*/
-  {
-    OTHER_PUNCTUATION__Character_s1135 = 24;
-  }
-  /*Character.sk:119*/
-  
-void glblInit_OTHER_SYMBOL__Character_s1138 (ref char OTHER_SYMBOL__Character_s1137)/*Character.sk:119*/
-  {
-    OTHER_SYMBOL__Character_s1137 = 28;
-  }
-  /*Character.sk:67*/
-  
-void glblInit_PARAGRAPH_SEPARATOR__Character_s1140 (ref char PARAGRAPH_SEPARATOR__Character_s1139)/*Character.sk:67*/
-  {
-    PARAGRAPH_SEPARATOR__Character_s1139 = 14;
-  }
-  /*Character.sk:79*/
-  
-void glblInit_PRIVATE_USE__Character_s1142 (ref char PRIVATE_USE__Character_s1141)/*Character.sk:79*/
-  {
-    PRIVATE_USE__Character_s1141 = 18;
-  }
-  /*Character.sk:59*/
-  
-void glblInit_SPACE_SEPARATOR__Character_s1144 (ref char SPACE_SEPARATOR__Character_s1143)/*Character.sk:59*/
-  {
-    SPACE_SEPARATOR__Character_s1143 = 12;
-  }
-  /*Character.sk:91*/
-  
-void glblInit_START_PUNCTUATION__Character_s1146 (ref char START_PUNCTUATION__Character_s1145)/*Character.sk:91*/
-  {
-    START_PUNCTUATION__Character_s1145 = 21;
-  }
-  /*Character.sk:83*/
-  
-void glblInit_SURROGATE__Character_s1148 (ref char SURROGATE__Character_s1147)/*Character.sk:83*/
-  {
-    SURROGATE__Character_s1147 = 19;
-  }
-  /*Character.sk:23*/
-  
-void glblInit_TITLECASE_LETTER__Character_s1150 (ref char TITLECASE_LETTER__Character_s1149)/*Character.sk:23*/
-  {
-    TITLECASE_LETTER__Character_s1149 = 3;
-  }
-  /*Character.sk:11*/
-  
-void glblInit_UNASSIGNED__Character_s1152 (ref char UNASSIGNED__Character_s1151)/*Character.sk:11*/
-  {
-    UNASSIGNED__Character_s1151 = 0;
-  }
-  /*Character.sk:15*/
-  
-void glblInit_UPPERCASE_LETTER__Character_s1154 (ref char UPPERCASE_LETTER__Character_s1153)/*Character.sk:15*/
-  {
-    UPPERCASE_LETTER__Character_s1153 = 1;
-  }
   /* END PACKAGE Character*/
 }
 /* BEGIN PACKAGE ArrayList*/
 package ArrayList{
   /*ArrayList.sk:7*/
   
-void glblInit_MAX_ARRAY_SIZE__ArrayList_s1116 (ref int MAX_ARRAY_SIZE__ArrayList_s1115)/*ArrayList.sk:7*/
+void glblInit_MAX_ARRAY_SIZE__ArrayList_s915 (ref Object@Object MAX_ARRAY_SIZE__ArrayList_s914)/*ArrayList.sk:7*/
   {
-    MAX_ARRAY_SIZE__ArrayList_s1115 = 1000000;
+    MAX_ARRAY_SIZE__ArrayList_s914 = new Object@Object(__cid=-2, _int=1000000);
   }
   /* END PACKAGE ArrayList*/
 }
@@ -328,15 +22,19 @@ package String{
   
 void String_String_byte (Object self, Object bytes, ref Object _out)/*String.sk:22*/
   {
-    _out = null;
-    int len;
+    Object@Object len;
     len = bytes._array_char.length;
-    Object@Object _out_s225 = null;
-    Wrap_Array_char@array(new Array_char@array(length=len), _out_s225);
-    self._value_String = _out_s225;
-    for(int i = 0; i < len; i = i + 1)/*Canonical*/
+    Object@Object _out_s235 = null;
+    Wrap_Array_char@array(new Array_char@array(length=len), _out_s235);
+    self._value_String = _out_s235;
+    Object@Object i;
+    i = new Object@Object(__cid=-2, _int=0);
+    bit __sa12 = (i._int) < (len._int);
+    while(__sa12)
     {
-      self._value_String._array_char.A[i] = bytes._array_char.A[i];
+      self._value_String._array_char.A[i._int] = new Object@Object(__cid=-3, _char=bytes._array_char.A[i._int])._char;
+      i = new Object@Object(__cid=-2, _int=(i._int) + 1);
+      __sa12 = (i._int) < (len._int);
     }
     self._count_String = len;
     _out = self;
@@ -344,18 +42,22 @@ void String_String_byte (Object self, Object bytes, ref Object _out)/*String.sk:
   }
   /*String.sk:7*/
   
-void String_String_char_int_int (Object self, Object ca, int offset, int count, ref Object _out)/*String.sk:7*/
+void String_String_char_int_int (Object self, Object ca, Object offset, Object count, ref Object _out)/*String.sk:7*/
   {
-    _out = null;
-    if((offset > 0) && (offset < (ca._array_char.length)))/*String.sk:8*/
+    if(((offset._int) > (new Object@Object(__cid=-2, _int=0)._int)) && ((offset._int) < (ca._array_char.length._int)))/*String.sk:8*/
     {
-      Object@Object tmp_s227 = null;
-      Wrap_Array_char@array(new Array_char@array(length=count), tmp_s227);
-      for(int i = 0; i < count; i = i + 1)/*Canonical*/
+      Object@Object tmp_s237 = null;
+      Wrap_Array_char@array(new Array_char@array(length=count), tmp_s237);
+      Object@Object i;
+      i = new Object@Object(__cid=-2, _int=0);
+      bit __sa11 = (i._int) < (count._int);
+      while(__sa11)
       {
-        tmp_s227._array_char.A[i] = ca._array_char.A[i + offset];
+        tmp_s237._array_char.A[i._int] = ca._array_char.A[(i._int) + (offset._int)];
+        i = new Object@Object(__cid=-2, _int=(i._int) + 1);
+        __sa11 = (i._int) < (count._int);
       }
-      self._value_String = tmp_s227;
+      self._value_String = tmp_s237;
     }
     else
     {
@@ -365,146 +67,150 @@ void String_String_char_int_int (Object self, Object ca, int offset, int count, 
     _out = self;
     return;
   }
-  /*String.sk:32*/
+  /*String.sk:43*/
   
-void charAt_int (Object self, int index, ref char _out)/*String.sk:32*/
+void charAt_int (Object self, Object index, ref Object _out)/*String.sk:43*/
   {
-    _out = '\0';
-    if((0 <= index) && (index < (self._count_String)))/*String.sk:33*/
+    if(((new Object@Object(__cid=-2, _int=0)._int) <= (index._int)) && ((index._int) < (self._count_String._int)))/*String.sk:44*/
     {
-      _out = self._value_String._array_char.A[index];
+      _out = new Object@Object(__cid=-3, _char=self._value_String._array_char.A[index._int]);
       return;
     }
-    _out = '\0';
+    _out = new Object@Object(__cid=-3, _char='\0');
     return;
   }
-  /*String.sk:143*/
+  /*String.sk:154*/
   
-void equals_Object (Object self, Object obj, ref bit _out)/*String.sk:143*/
+void equals_Object (Object self, Object obj, ref Object _out)/*String.sk:154*/
   {
-    _out = 0;
-    _out = 0;
-    int _out_s213 = 0;
-    String@meta(_out_s213);
-    if((obj.__cid) == _out_s213)/*String.sk:145*/
+    _out = new Object@Object(__cid=-4, _bit=0);
+    int _out_s223 = 0;
+    String@meta(_out_s223);
+    if((obj.__cid) == _out_s223)/*String.sk:156*/
     {
-      _out = 1;
-      int sLen_s215 = 0;
-      String@meta(sLen_s215);
-      int _pac_sc_s216 = 0;
-      if((obj.__cid) == sLen_s215)/*String.sk:148*/
+      _out = new Object@Object(__cid=-4, _bit=1);
+      int sLen_s225 = 0;
+      String@meta(sLen_s225);
+      Object@Object _pac_sc_s226 = null;
+      if((obj.__cid) == (new Object@Object(__cid=-2, _int=sLen_s225)._int))/*String.sk:159*/
       {
-        int sLen_s218 = 0;
-        length@String(obj, sLen_s218);
-        _pac_sc_s216 = sLen_s218;
+        Object@Object sLen_s228 = null;
+        length@String(obj, sLen_s228);
+        _pac_sc_s226 = sLen_s228;
       }
       else
       {
-        _pac_sc_s216 = 0;
+        _pac_sc_s226 = null;
       }
-      int tLen_s220 = 0;
-      String@meta(tLen_s220);
-      int _pac_sc_s221 = 0;
-      if((self.__cid) == tLen_s220)/*String.sk:149*/
+      int tLen_s230 = 0;
+      String@meta(tLen_s230);
+      Object@Object _pac_sc_s231 = null;
+      if((self.__cid) == (new Object@Object(__cid=-2, _int=tLen_s230)._int))/*String.sk:160*/
       {
-        int tLen_s223 = 0;
-        length@String(self, tLen_s223);
-        _pac_sc_s221 = tLen_s223;
+        Object@Object tLen_s233 = null;
+        length@String(self, tLen_s233);
+        _pac_sc_s231 = tLen_s233;
       }
       else
       {
-        _pac_sc_s221 = 0;
+        _pac_sc_s231 = null;
       }
-      if(_pac_sc_s216 != _pac_sc_s221)/*String.sk:150*/
+      if((_pac_sc_s226._int) != (_pac_sc_s231._int))/*String.sk:161*/
       {
-        _out = 0;
+        _out = new Object@Object(__cid=-4, _bit=0);
       }
-      for(int i = 0; (i < _pac_sc_s216) && (_out == 1); i = i + 1)
+      Object@Object i;
+      i = new Object@Object(__cid=-2, _int=0);
+      bit __sa19 = ((i._int) < (_pac_sc_s226._int)) && ((_out._bit) == (new Object@Object(__cid=-4, _bit=1)._bit));
+      while(__sa19)
       {
-        if((obj._value_String._array_char.A[i]) != (self._value_String._array_char.A[i]))/*String.sk:152*/
+        if((obj._value_String._array_char.A[i._int]) != (self._value_String._array_char.A[i._int]))/*String.sk:163*/
         {
-          _out = 0;
+          _out = new Object@Object(__cid=-4, _bit=0);
         }
+        i = new Object@Object(__cid=-2, _int=(i._int) + 1);
+        __sa19 = ((i._int) < (_pac_sc_s226._int)) && ((_out._bit) == (new Object@Object(__cid=-4, _bit=1)._bit));
       }
     }
     return;
   }
-  /*String.sk:202*/
+  /*String.sk:214*/
   
-void getBytes (Object self, ref Object _out)/*String.sk:202*/
+void getBytes (Object self, ref Object _out)/*String.sk:214*/
   {
-    _out = null;
-    int _out_s229 = 0;
-    String@meta(_out_s229);
-    Object@Object _pac_sc_s230 = null;
-    if((self.__cid) == _out_s229)/*String.sk:203*/
+    int _out_s239 = 0;
+    String@meta(_out_s239);
+    Object@Object _pac_sc_s240 = null;
+    if((self.__cid) == (new Object@Object(__cid=-2, _int=_out_s239)._int))/*String.sk:215*/
     {
-      Object@Object _out_s232 = null;
-      toString@String(self, _out_s232);
-      _pac_sc_s230 = _out_s232;
+      Object@Object _out_s242 = null;
+      toString@String(self, _out_s242);
+      _pac_sc_s240 = _out_s242;
     }
     else
     {
-      _pac_sc_s230 = null;
+      _pac_sc_s240 = null;
     }
-    Object@Object _out_s234 = null;
-    getBytes_String(_pac_sc_s230, _out_s234);
-    _out = _out_s234;
+    Object@Object _out_s244 = null;
+    getBytes_String(_pac_sc_s240, _out_s244);
+    _out = _out_s244;
     return;
   }
-  /*String.sk:206*/
+  /*String.sk:218*/
   
-void getBytes_String (Object str, ref Object _out)/*String.sk:206*/
+void getBytes_String (Object str, ref Object _out)/*String.sk:218*/
   {
-    _out = null;
-    int len_s236 = 0;
-    String@meta(len_s236);
-    int _pac_sc_s237 = 0;
-    if((str.__cid) == len_s236)/*String.sk:207*/
+    int len_s246 = 0;
+    String@meta(len_s246);
+    Object@Object _pac_sc_s247 = null;
+    if((str.__cid) == (new Object@Object(__cid=-2, _int=len_s246)._int))/*String.sk:219*/
     {
-      int len_s239 = 0;
-      length@String(str, len_s239);
-      _pac_sc_s237 = len_s239;
+      Object@Object len_s249 = null;
+      length@String(str, len_s249);
+      _pac_sc_s247 = len_s249;
     }
     else
     {
-      _pac_sc_s237 = 0;
+      _pac_sc_s247 = null;
     }
-    Object@Object bytes_s241 = null;
-    Wrap_Array_char@array(new Array_char@array(length=_pac_sc_s237), bytes_s241);
-    _out = bytes_s241;
-    for(int i = 0; i < _pac_sc_s237; i = i + 1)/*Canonical*/
+    Object@Object bytes_s251 = null;
+    Wrap_Array_char@array(new Array_char@array(length=_pac_sc_s247), bytes_s251);
+    _out = bytes_s251;
+    Object@Object i;
+    i = new Object@Object(__cid=-2, _int=0);
+    bit __sa25 = (i._int) < (_pac_sc_s247._int);
+    while(__sa25)
     {
-      int _out_s243 = 0;
-      String@meta(_out_s243);
-      char _pac_sc_s244 = '\0';
-      if((str.__cid) == _out_s243)/*String.sk:210*/
+      int _out_s253 = 0;
+      String@meta(_out_s253);
+      Object@Object _pac_sc_s254 = null;
+      if((str.__cid) == (new Object@Object(__cid=-2, _int=_out_s253)._int))/*String.sk:222*/
       {
-        char _out_s246 = '\0';
-        charAt_int@String(str, i, _out_s246);
-        _pac_sc_s244 = _out_s246;
+        Object@Object _out_s256 = null;
+        charAt_int@String(str, i, _out_s256);
+        _pac_sc_s254 = _out_s256;
       }
       else
       {
-        _pac_sc_s244 = '\0';
+        _pac_sc_s254 = null;
       }
-      bytes_s241._array_char.A[i] = _pac_sc_s244;
+      bytes_s251._array_char.A[i._int] = _pac_sc_s254._char;
+      i = new Object@Object(__cid=-2, _int=(i._int) + 1);
+      __sa25 = (i._int) < (_pac_sc_s247._int);
     }
     return;
   }
-  /*String.sk:37*/
+  /*String.sk:48*/
   
-void length (Object self, ref int _out)/*String.sk:37*/
+void length (Object self, ref Object _out)/*String.sk:48*/
   {
-    _out = 0;
     _out = self._count_String;
     return;
   }
-  /*String.sk:41*/
+  /*String.sk:52*/
   
-void toString (Object self, ref Object _out)/*String.sk:41*/
+void toString (Object self, ref Object _out)/*String.sk:52*/
   {
-    _out = null;
     _out = self;
     return;
   }
@@ -516,18 +222,6 @@ package Mac{
 }
 /* BEGIN PACKAGE Integer*/
 package Integer{
-  /*Integer.sk:7*/
-  
-void glblInit_MAX_VALUE__Integer_s1120 (ref int MAX_VALUE__Integer_s1119)/*Integer.sk:7*/
-  {
-    MAX_VALUE__Integer_s1119 = 2147483647;
-  }
-  /*Integer.sk:3*/
-  
-void glblInit_MIN_VALUE__Integer_s1124 (ref int MIN_VALUE__Integer_s1123)/*Integer.sk:3*/
-  {
-    MIN_VALUE__Integer_s1123 = -2147483648;
-  }
   /* END PACKAGE Integer*/
 }
 /* BEGIN PACKAGE SecretKey*/
@@ -540,24 +234,18 @@ package KerberosKey{
   
 void KerberosKey_KerberosKey (Object self, ref Object _out)/*KerberosKey.sk:3*/
   {
-    _out = null;
-    self.KEYSIZE_KerberosKey = 32;
-    Object@Object _out_s514 = null;
-    Wrap_Array_char@array(new Array_char@array(length=self.KEYSIZE_KerberosKey), _out_s514);
-    self.key_KerberosKey = _out_s514;
-    bit __sa10 = 0 < (self.KEYSIZE_KerberosKey);
-    int i = 0;
-    while(__sa10)
+    self.KEYSIZE_KerberosKey = new Object@Object(__cid=-2, _int=32);
+    Object@Object _out_s485 = null;
+    Wrap_Array_char@array(new Array_char@array(length=self.KEYSIZE_KerberosKey), _out_s485);
+    self.key_KerberosKey = _out_s485;
+    Object@Object i;
+    i = new Object@Object(__cid=-2, _int=0);
+    bit __sa34 = (i._int) < (self.KEYSIZE_KerberosKey._int);
+    while(__sa34)
     {
-      {
-        {
-          {
-            self.key_KerberosKey._array_char.A[i] = 1;
-            i = i + 1;
-            __sa10 = i < (self.KEYSIZE_KerberosKey);
-          }
-        }
-      }
+      self.key_KerberosKey._array_char.A[i._int] = new Object@Object(__cid=-2, _int=1)._int;
+      i = new Object@Object(__cid=-2, _int=(i._int) + 1);
+      __sa34 = (i._int) < (self.KEYSIZE_KerberosKey._int);
     }
     _out = self;
     return;
@@ -566,7 +254,6 @@ void KerberosKey_KerberosKey (Object self, ref Object _out)/*KerberosKey.sk:3*/
   
 void getEncoded (Object self, ref Object _out)/*KerberosKey.sk:12*/
   {
-    _out = null;
     _out = self.key_KerberosKey;
     return;
   }
@@ -578,45 +265,41 @@ package Assert{
 }
 /* BEGIN PACKAGE Number*/
 package Number{
-  /*Number.sk:7*/
-  
-uninterp void intValue (Object self, ref int _out)/*Number.sk:7*/
   /* END PACKAGE Number*/
 }
 /* BEGIN PACKAGE array*/
 package array{
   struct Array_bit {
-      int length;
-      bit[length] A;
+      Object length;
+      bit[length._int] A;
   }
   struct Array_char {
-      int length;
-      char[length] A;
+      Object length;
+      char[length._int] A;
   }
   struct Array_int {
-      int length;
-      int[length] A;
+      Object length;
+      int[length._int] A;
   }
   struct Array_float {
-      int length;
-      float[length] A;
+      Object length;
+      float[length._int] A;
   }
   struct Array_double {
-      int length;
-      double[length] A;
+      Object length;
+      double[length._int] A;
   }
   struct Array_Object {
-      int length;
-      Object[length] A;
+      Object length;
+      Object[length._int] A;
   }
   /*array.sk:37*/
   
 void Wrap_Array_char (Array_char arr, ref Object _out)/*array.sk:37*/
   {
-    _out = null;
-    int _out_s678 = 0;
-    Array@meta(_out_s678);
-    _out = new Object@Object(__cid=_out_s678, _array_char=arr);
+    int _out_s649 = 0;
+    Array@meta(_out_s649);
+    _out = new Object@Object(__cid=_out_s649, _array_char=arr);
     return;
   }
   /* END PACKAGE array*/
@@ -627,7 +310,6 @@ package meta{
   
 void Array (ref int _out)/*meta.sk:21*/
   {
-    _out = 0;
     _out = -1;
     return;
   }
@@ -635,31 +317,27 @@ void Array (ref int _out)/*meta.sk:21*/
   
 void Cipher (ref int _out)/*meta.sk:7*/
   {
-    _out = 0;
-    _out = 6;
+    _out = 8;
     return;
   }
   /*meta.sk:10*/
   
 void KerberosKey (ref int _out)/*meta.sk:10*/
   {
-    _out = 0;
-    _out = 12;
+    _out = 9;
     return;
   }
   /*meta.sk:12*/
   
 void KeyGenerator (ref int _out)/*meta.sk:12*/
   {
-    _out = 0;
-    _out = 8;
+    _out = 10;
     return;
   }
   /*meta.sk:16*/
   
 void Object (ref int _out)/*meta.sk:16*/
   {
-    _out = 0;
     _out = 1;
     return;
   }
@@ -667,7 +345,6 @@ void Object (ref int _out)/*meta.sk:16*/
   
 void SecretKeySpec (ref int _out)/*meta.sk:19*/
   {
-    _out = 0;
     _out = 7;
     return;
   }
@@ -675,7 +352,6 @@ void SecretKeySpec (ref int _out)/*meta.sk:19*/
   
 void String (ref int _out)/*meta.sk:20*/
   {
-    _out = 0;
     _out = 14;
     return;
   }
@@ -687,7 +363,6 @@ package SecretKeySpec{
   
 void getEncoded (Object self, ref Object _out)/*SecretKeySpec.sk:12*/
   {
-    _out = null;
     _out = self.key_SecretKeySpec;
     return;
   }
@@ -697,23 +372,23 @@ void getEncoded (Object self, ref Object _out)/*SecretKeySpec.sk:12*/
 package Object{
   struct Object {
       int __cid;
-      Object _value_String;
-      int _count_String;
-      Object key_KerberosKey;
-      int KEYSIZE_KerberosKey;
-      int value_Integer;
-      char value_Character;
+      Object elementData_ArrayList;
+      Object DEFAULT_CAPACITY_ArrayList;
+      Object capacity_ArrayList;
+      Object size_ArrayList;
+      Object mode_KeyGenerator;
       Object key_SecretKeySpec;
+      Object key_KerberosKey;
+      Object KEYSIZE_KerberosKey;
+      Object value_Character;
+      Object _value_String;
+      Object _count_String;
       Object type_Cipher;
       Object key_Cipher;
-      int mode_Cipher;
-      int ENCRYPT_MODE_Cipher;
-      int DECRYPT_MODE_Cipher;
-      Object mode_KeyGenerator;
-      Object elementData_ArrayList;
-      int DEFAULT_CAPACITY_ArrayList;
-      int capacity_ArrayList;
-      int size_ArrayList;
+      Object mode_Cipher;
+      Object ENCRYPT_MODE_Cipher;
+      Object DECRYPT_MODE_Cipher;
+      Object value_Integer;
       Array_bit _array_bit;
       Array_char _array_char;
       Array_int _array_int;
@@ -730,7 +405,6 @@ package Object{
   
 void Object_Object (Object self, ref Object _out)/*Object.sk:7*/
   {
-    _out = null;
     _out = self;
     return;
   }
@@ -750,10 +424,9 @@ package Cipher{
   
 void Cipher_Cipher_String (Object self, Object type, ref Object _out)/*Cipher.sk:7*/
   {
-    _out = null;
     self.type_Cipher = type;
-    self.ENCRYPT_MODE_Cipher = 1;
-    self.DECRYPT_MODE_Cipher = 2;
+    self.ENCRYPT_MODE_Cipher = new Object@Object(__cid=-2, _int=1);
+    self.DECRYPT_MODE_Cipher = new Object@Object(__cid=-2, _int=2);
     _out = self;
     return;
   }
@@ -761,74 +434,62 @@ void Cipher_Cipher_String (Object self, Object type, ref Object _out)/*Cipher.sk
   
 void doFinal_byte (Object self, Object text, ref Object _out)/*Cipher.sk:32*/
   {
-    _out = null;
-    int k_s831 = 0;
-    KerberosKey@meta(k_s831);
-    Object@Object _pac_sc_s832 = null;
-    if((self.key_Cipher.__cid) == k_s831)/*Cipher.sk:33*/
+    int k_s802 = 0;
+    KerberosKey@meta(k_s802);
+    Object@Object _pac_sc_s803 = null;
+    if((self.key_Cipher.__cid) == (new Object@Object(__cid=-2, _int=k_s802)._int))/*Cipher.sk:33*/
     {
-      Object@Object k_s834 = null;
-      getEncoded@KerberosKey(self.key_Cipher, k_s834);
-      _pac_sc_s832 = k_s834;
+      Object@Object k_s805 = null;
+      getEncoded@KerberosKey(self.key_Cipher, k_s805);
+      _pac_sc_s803 = k_s805;
     }
     else
     {
-      int k_s836 = 0;
-      SecretKeySpec@meta(k_s836);
-      Object@Object _pac_sc_s837 = null;
-      if((self.key_Cipher.__cid) == k_s836)/*Cipher.sk:33*/
+      int k_s807 = 0;
+      SecretKeySpec@meta(k_s807);
+      Object@Object _pac_sc_s808 = null;
+      if((self.key_Cipher.__cid) == (new Object@Object(__cid=-2, _int=k_s807)._int))/*Cipher.sk:33*/
       {
-        Object@Object k_s839 = null;
-        getEncoded@SecretKeySpec(self.key_Cipher, k_s839);
-        _pac_sc_s837 = k_s839;
+        Object@Object k_s810 = null;
+        getEncoded@SecretKeySpec(self.key_Cipher, k_s810);
+        _pac_sc_s808 = k_s810;
       }
       else
       {
-        _pac_sc_s837 = null;
+        _pac_sc_s808 = null;
       }
-      _pac_sc_s832 = _pac_sc_s837;
+      _pac_sc_s803 = _pac_sc_s808;
     }
-    Object@Object result_s841 = null;
-    Wrap_Array_char@array(new Array_char@array(length=text._array_char.length), result_s841);
-    _out = result_s841;
-    if((_pac_sc_s832._array_char.length) == 0)/*Cipher.sk:35*/
+    Object@Object result_s812 = null;
+    Wrap_Array_char@array(new Array_char@array(length=text._array_char.length), result_s812);
+    _out = result_s812;
+    if((_pac_sc_s803._array_char.length._int) == (new Object@Object(__cid=-2, _int=0)._int))/*Cipher.sk:35*/
     {
       return;
     }
-    if((self.mode_Cipher) == (self.ENCRYPT_MODE_Cipher))/*Cipher.sk:38*/
+    if((self.mode_Cipher._int) == (self.ENCRYPT_MODE_Cipher._int))/*Cipher.sk:38*/
     {
-      bit __sa12 = 0 < (text._array_char.length);
-      int i = 0;
-      while(__sa12)
+      Object@Object i;
+      i = new Object@Object(__cid=-2, _int=0);
+      bit __sa36 = (i._int) < (text._array_char.length._int);
+      while(__sa36)
       {
-        {
-          {
-            {
-              result_s841._array_char.A[i] = (text._array_char.A[i]) + (_pac_sc_s832._array_char.A[i % (_pac_sc_s832._array_char.length)]);
-              i = i + 1;
-              __sa12 = i < (text._array_char.length);
-            }
-          }
-        }
+        result_s812._array_char.A[i._int] = (text._array_char.A[i._int]) + (_pac_sc_s803._array_char.A[(i._int) % (_pac_sc_s803._array_char.length._int)]);
+        i = new Object@Object(__cid=-2, _int=(i._int) + 1);
+        __sa36 = (i._int) < (text._array_char.length._int);
       }
     }
     else
     {
-      if((self.mode_Cipher) == (self.DECRYPT_MODE_Cipher))/*Cipher.sk:43*/
+      if((self.mode_Cipher._int) == (self.DECRYPT_MODE_Cipher._int))/*Cipher.sk:43*/
       {
-        bit __sa13 = 0 < (text._array_char.length);
-        int i_0 = 0;
-        while(__sa13)
+        Object@Object i_0 = new Object@Object(__cid=-2, _int=0);
+        bit __sa37 = (i_0._int) < (text._array_char.length._int);
+        while(__sa37)
         {
-          {
-            {
-              {
-                result_s841._array_char.A[i_0] = (text._array_char.A[i_0]) - (_pac_sc_s832._array_char.A[i_0 % (_pac_sc_s832._array_char.length)]);
-                i_0 = i_0 + 1;
-                __sa13 = i_0 < (text._array_char.length);
-              }
-            }
-          }
+          result_s812._array_char.A[i_0._int] = (text._array_char.A[i_0._int]) - (_pac_sc_s803._array_char.A[(i_0._int) % (_pac_sc_s803._array_char.length._int)]);
+          i_0 = new Object@Object(__cid=-2, _int=(i_0._int) + 1);
+          __sa37 = (i_0._int) < (text._array_char.length._int);
         }
       }
     }
@@ -838,17 +499,16 @@ void doFinal_byte (Object self, Object text, ref Object _out)/*Cipher.sk:32*/
   
 void getInstance_String (Object type, ref Object _out)/*Cipher.sk:14*/
   {
-    _out = null;
-    int _out_s843 = 0;
-    Cipher@meta(_out_s843);
-    Object@Object _out_s845 = null;
-    Cipher_Cipher_String(new Object@Object(__cid=_out_s843), type, _out_s845);
-    _out = _out_s845;
+    int _out_s814 = 0;
+    Cipher@meta(_out_s814);
+    Object@Object _out_s816 = null;
+    Cipher_Cipher_String(new Object@Object(__cid=_out_s814), type, _out_s816);
+    _out = _out_s816;
     return;
   }
   /*Cipher.sk:22*/
   
-void init_int_Key (Object self, int opmode, Object key)/*Cipher.sk:22*/
+void init_int_Key (Object self, Object opmode, Object key)/*Cipher.sk:22*/
   {
     self.key_Cipher = key;
     self.mode_Cipher = opmode;
@@ -861,7 +521,6 @@ package KeyGenerator{
   
 void KeyGenerator_KeyGenerator_String (Object self, Object mode, ref Object _out)/*KeyGenerator.sk:7*/
   {
-    _out = null;
     self.mode_KeyGenerator = mode;
     _out = self;
     return;
@@ -870,29 +529,27 @@ void KeyGenerator_KeyGenerator_String (Object self, Object mode, ref Object _out
   
 void generateKey (Object self, ref Object _out)/*KeyGenerator.sk:12*/
   {
-    _out = null;
-    int _out_s853 = 0;
-    KerberosKey@meta(_out_s853);
-    Object@Object _out_s855 = null;
-    KerberosKey_KerberosKey@KerberosKey(new Object@Object(__cid=_out_s853), _out_s855);
-    _out = _out_s855;
+    int _out_s824 = 0;
+    KerberosKey@meta(_out_s824);
+    Object@Object _out_s826 = null;
+    KerberosKey_KerberosKey@KerberosKey(new Object@Object(__cid=_out_s824), _out_s826);
+    _out = _out_s826;
     return;
   }
   /*KeyGenerator.sk:19*/
   
 void getInstance_String (Object mode, ref Object _out)/*KeyGenerator.sk:19*/
   {
-    _out = null;
-    int _out_s857 = 0;
-    KeyGenerator@meta(_out_s857);
-    Object@Object _out_s859 = null;
-    KeyGenerator_KeyGenerator_String(new Object@Object(__cid=_out_s857), mode, _out_s859);
-    _out = _out_s859;
+    int _out_s828 = 0;
+    KeyGenerator@meta(_out_s828);
+    Object@Object _out_s830 = null;
+    KeyGenerator_KeyGenerator_String(new Object@Object(__cid=_out_s828), mode, _out_s830);
+    _out = _out_s830;
     return;
   }
   /*KeyGenerator.sk:16*/
   
-void init_int (Object self, int keysize)/*KeyGenerator.sk:16*/
+void init_int (Object self, Object keysize)/*KeyGenerator.sk:16*/
   { }
   /* END PACKAGE KeyGenerator*/
 }
@@ -902,130 +559,129 @@ package PrivateExample{
   
 void privateExample_String (Object plainTextString, ref Object _out)/*PrivateExample.sk:15*/
   {
-    _out = null;
-    int plainText_s882 = 0;
-    String@meta(plainText_s882);
-    Object@Object _pac_sc_s883 = null;
-    if((plainTextString.__cid) == plainText_s882)/*PrivateExample.sk:16*/
+    int plainText_s853 = 0;
+    String@meta(plainText_s853);
+    Object@Object _pac_sc_s854 = null;
+    if((plainTextString.__cid) == (new Object@Object(__cid=-2, _int=plainText_s853)._int))/*PrivateExample.sk:16*/
     {
-      Object@Object plainText_s885 = null;
-      getBytes@String(plainTextString, plainText_s885);
-      _pac_sc_s883 = plainText_s885;
+      Object@Object plainText_s856 = null;
+      getBytes@String(plainTextString, plainText_s856);
+      _pac_sc_s854 = plainText_s856;
     }
     else
     {
-      _pac_sc_s883 = null;
+      _pac_sc_s854 = null;
     }
-    int keyGen_s887 = 0;
-    String@meta(keyGen_s887);
-    Object@Object keyGen_s889 = null;
-    Wrap_Array_char@array(new Array_char@array(length=4, A={'D','E','S','\0'}), keyGen_s889);
-    Object@Object keyGen_s891 = null;
-    String_String_char_int_int@String(new Object@Object(__cid=keyGen_s887), keyGen_s889, 0, 3, keyGen_s891);
-    Object@Object keyGen_s893 = null;
-    getInstance_String@KeyGenerator(keyGen_s891, keyGen_s893);
-    int _out_s895 = 0;
-    KeyGenerator@meta(_out_s895);
-    if((keyGen_s893.__cid) == _out_s895)/*PrivateExample.sk:18*/
+    int keyGen_s858 = 0;
+    String@meta(keyGen_s858);
+    Object@Object keyGen_s860 = null;
+    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=4), A={'D','E','S','\0'}), keyGen_s860);
+    Object@Object keyGen_s862 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=keyGen_s858), keyGen_s860, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=3), keyGen_s862);
+    Object@Object keyGen_s864 = null;
+    getInstance_String@KeyGenerator(keyGen_s862, keyGen_s864);
+    int _out_s866 = 0;
+    KeyGenerator@meta(_out_s866);
+    if((keyGen_s864.__cid) == (new Object@Object(__cid=-2, _int=_out_s866)._int))/*PrivateExample.sk:18*/
     {
-      init_int@KeyGenerator(keyGen_s893, 56);
+      init_int@KeyGenerator(keyGen_s864, new Object@Object(__cid=-2, _int=56));
     }
-    int key_s897 = 0;
-    KeyGenerator@meta(key_s897);
-    Object@Object _pac_sc_s898 = null;
-    if((keyGen_s893.__cid) == key_s897)/*PrivateExample.sk:20*/
+    int key_s868 = 0;
+    KeyGenerator@meta(key_s868);
+    Object@Object _pac_sc_s869 = null;
+    if((keyGen_s864.__cid) == (new Object@Object(__cid=-2, _int=key_s868)._int))/*PrivateExample.sk:20*/
     {
-      Object@Object key_s900 = null;
-      generateKey@KeyGenerator(keyGen_s893, key_s900);
-      _pac_sc_s898 = key_s900;
+      Object@Object key_s871 = null;
+      generateKey@KeyGenerator(keyGen_s864, key_s871);
+      _pac_sc_s869 = key_s871;
     }
     else
     {
-      _pac_sc_s898 = null;
+      _pac_sc_s869 = null;
     }
-    int cipher_s902 = 0;
-    String@meta(cipher_s902);
-    Object@Object cipher_s904 = null;
-    Wrap_Array_char@array(new Array_char@array(length=21, A={'D','E','S','/','E','C','B','/','P','K','C','S','5','P','a','d','d','i','n','g','\0'}), cipher_s904);
-    Object@Object cipher_s906 = null;
-    String_String_char_int_int@String(new Object@Object(__cid=cipher_s902), cipher_s904, 0, 20, cipher_s906);
-    Object@Object cipher_s908 = null;
-    getInstance_String@Cipher(cipher_s906, cipher_s908);
-    int _out_s910 = 0;
-    Cipher@meta(_out_s910);
-    if((cipher_s908.__cid) == _out_s910)/*PrivateExample.sk:22*/
+    int cipher_s873 = 0;
+    String@meta(cipher_s873);
+    Object@Object cipher_s875 = null;
+    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=21), A={'D','E','S','/','E','C','B','/','P','K','C','S','5','P','a','d','d','i','n','g','\0'}), cipher_s875);
+    Object@Object cipher_s877 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=cipher_s873), cipher_s875, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=20), cipher_s877);
+    Object@Object cipher_s879 = null;
+    getInstance_String@Cipher(cipher_s877, cipher_s879);
+    int _out_s881 = 0;
+    Cipher@meta(_out_s881);
+    if((cipher_s879.__cid) == (new Object@Object(__cid=-2, _int=_out_s881)._int))/*PrivateExample.sk:22*/
     {
-      init_int_Key@Cipher(cipher_s908, 1, _pac_sc_s898);
+      init_int_Key@Cipher(cipher_s879, new Object@Object(__cid=-2, _int=1), _pac_sc_s869);
     }
-    int cipherText_s912 = 0;
-    Cipher@meta(cipherText_s912);
-    Object@Object _pac_sc_s913 = null;
-    if((cipher_s908.__cid) == cipherText_s912)/*PrivateExample.sk:24*/
+    int cipherText_s883 = 0;
+    Cipher@meta(cipherText_s883);
+    Object@Object _pac_sc_s884 = null;
+    if((cipher_s879.__cid) == (new Object@Object(__cid=-2, _int=cipherText_s883)._int))/*PrivateExample.sk:24*/
     {
-      Object@Object cipherText_s915 = null;
-      doFinal_byte@Cipher(cipher_s908, _pac_sc_s883, cipherText_s915);
-      _pac_sc_s913 = cipherText_s915;
+      Object@Object cipherText_s886 = null;
+      doFinal_byte@Cipher(cipher_s879, _pac_sc_s854, cipherText_s886);
+      _pac_sc_s884 = cipherText_s886;
     }
     else
     {
-      _pac_sc_s913 = null;
+      _pac_sc_s884 = null;
     }
-    int _out_s917 = 0;
-    Cipher@meta(_out_s917);
-    if((cipher_s908.__cid) == _out_s917)/*PrivateExample.sk:25*/
+    int _out_s888 = 0;
+    Cipher@meta(_out_s888);
+    if((cipher_s879.__cid) == (new Object@Object(__cid=-2, _int=_out_s888)._int))/*PrivateExample.sk:25*/
     {
-      init_int_Key@Cipher(cipher_s908, 2, _pac_sc_s898);
+      init_int_Key@Cipher(cipher_s879, new Object@Object(__cid=-2, _int=2), _pac_sc_s869);
     }
-    int newPlainText_s919 = 0;
-    Cipher@meta(newPlainText_s919);
-    Object@Object _pac_sc_s920 = null;
-    if((cipher_s908.__cid) == newPlainText_s919)/*PrivateExample.sk:27*/
+    int newPlainText_s890 = 0;
+    Cipher@meta(newPlainText_s890);
+    Object@Object _pac_sc_s891 = null;
+    if((cipher_s879.__cid) == (new Object@Object(__cid=-2, _int=newPlainText_s890)._int))/*PrivateExample.sk:27*/
     {
-      Object@Object newPlainText_s922 = null;
-      doFinal_byte@Cipher(cipher_s908, _pac_sc_s913, newPlainText_s922);
-      _pac_sc_s920 = newPlainText_s922;
+      Object@Object newPlainText_s893 = null;
+      doFinal_byte@Cipher(cipher_s879, _pac_sc_s884, newPlainText_s893);
+      _pac_sc_s891 = newPlainText_s893;
     }
     else
     {
-      _pac_sc_s920 = null;
+      _pac_sc_s891 = null;
     }
-    _out = _pac_sc_s920;
+    _out = _pac_sc_s891;
     return;
   }
   /*PrivateExample.sk:7*/
   
 void test_privateExample ()/*PrivateExample.sk:7*/
   {
-    int self_s861 = 0;
-    Object@meta(self_s861);
-    Object@Object self_s863 = null;
-    Object_Object@Object(new Object@Object(__cid=self_s861), self_s863);
-    int plainText_s865 = 0;
-    String@meta(plainText_s865);
-    Object@Object plainText_s867 = null;
-    Wrap_Array_char@array(new Array_char@array(length=16, A={'S','e','c','r','e','t',' ','M','e','s','s','a','g','e','!','\0'}), plainText_s867);
-    Object@Object plainText_s869 = null;
-    String_String_char_int_int@String(new Object@Object(__cid=plainText_s865), plainText_s867, 0, 15, plainText_s869);
-    Object@Object newPlainText_s871 = null;
-    privateExample_String(plainText_s869, newPlainText_s871);
-    int plainText2_s873 = 0;
-    String@meta(plainText2_s873);
-    Object@Object plainText2_s875 = null;
-    String_String_byte@String(new Object@Object(__cid=plainText2_s873), newPlainText_s871, plainText2_s875);
-    int _out_s877 = 0;
-    String@meta(_out_s877);
-    bit _pac_sc_s878 = 0;
-    if((plainText_s869.__cid) == _out_s877)/*PrivateExample.sk:12*/
+    int self_s832 = 0;
+    Object@meta(self_s832);
+    Object@Object self_s834 = null;
+    Object_Object@Object(new Object@Object(__cid=self_s832), self_s834);
+    int plainText_s836 = 0;
+    String@meta(plainText_s836);
+    Object@Object plainText_s838 = null;
+    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=16), A={'S','e','c','r','e','t',' ','M','e','s','s','a','g','e','!','\0'}), plainText_s838);
+    Object@Object plainText_s840 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=plainText_s836), plainText_s838, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=15), plainText_s840);
+    Object@Object newPlainText_s842 = null;
+    privateExample_String(plainText_s840, newPlainText_s842);
+    int plainText2_s844 = 0;
+    String@meta(plainText2_s844);
+    Object@Object plainText2_s846 = null;
+    String_String_byte@String(new Object@Object(__cid=plainText2_s844), newPlainText_s842, plainText2_s846);
+    int _out_s848 = 0;
+    String@meta(_out_s848);
+    Object@Object _pac_sc_s849 = null;
+    if((plainText_s840.__cid) == (new Object@Object(__cid=-2, _int=_out_s848)._int))/*PrivateExample.sk:12*/
     {
-      bit _out_s880 = 0;
-      equals_Object@String(plainText_s869, plainText2_s875, _out_s880);
-      _pac_sc_s878 = _out_s880;
+      Object@Object _out_s851 = null;
+      equals_Object@String(plainText_s840, plainText2_s846, _out_s851);
+      _pac_sc_s849 = _out_s851;
     }
     else
     {
-      _pac_sc_s878 = 0;
+      _pac_sc_s849 = null;
     }
-    assert (_pac_sc_s878); //Assert at PrivateExample.sk:12 (0)
+    assert (_pac_sc_s849._bit); //Assert at PrivateExample.sk:12 (0)
   }
   /*PrivateExample.sk:7*/
   
@@ -1044,4 +700,4 @@ package Key{
   /* END PACKAGE Key*/
 }
 [SKETCH] DONE
-Total time = 2332
+Total time = 2818

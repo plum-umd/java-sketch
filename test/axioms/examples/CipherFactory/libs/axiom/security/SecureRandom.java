@@ -1,10 +1,10 @@
-@axiomClass
+@rewriteClass
 public class SecureRandom {
-    @adt
+    @alg
     @pure
     byte[] nextBytes(Object k);
 
-    axiom Object nextBytes(SecureRandom s, Object k) {
+    rewrite Object nextBytes(SecureRandom s, Object k) {
 	return new byte[16];
     }
 }

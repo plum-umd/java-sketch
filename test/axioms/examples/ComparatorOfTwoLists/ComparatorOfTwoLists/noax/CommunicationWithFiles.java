@@ -23,8 +23,9 @@ public class CommunicationWithFiles {
                 String value = "";
                 
                 ArrayList<String> values = new ArrayList<String>();
-                Collections.sort(values);
-                    // try {
+                // Collections.sort(values);
+		values.sort(null);
+		// try {
 		fr = new FileReaderr(filename);
                         // } catch (FileNotFoundException e1) {
                         //         System.out.println("Error opening the file (file not found)");
@@ -75,7 +76,8 @@ public class CommunicationWithFiles {
                         toBeSorted.remove(j);
                 }else{j++; 	}
             }   
-            toBeSorted.add(0, "Values present in only one file|File name");
+            // toBeSorted.add(0, "Values present in only one file|File name");
+            toBeSorted.set(0, "V|F");
             return toBeSorted;
         }   
 

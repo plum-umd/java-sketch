@@ -61,7 +61,7 @@ Object xform_readLineHelp_BufferedReader_int(BufferedReader self, Object i) {
   switch(self) {
   case Bufferedreader: { assert false; }
   case Bufferedreader_file: {
-    return (self.type.path_File.__cid == (new Object(__cid=-2, _int=String()))._int ? splitGetEl_String_int@String(self.type.path_File, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=2+1), A="\n")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=2)), i) : null);
+    return (self.type.__cid == (new Object(__cid=-2, _int=File()))._int ? get_int@File(self.type, i) : null);
   }
   case Readline: { assert false; }
   case Readlineb: {
@@ -125,7 +125,7 @@ Object xform_readLine_BufferedReader(BufferedReader self) {
   switch(self) {
   case Bufferedreader: { assert false; }
   case Bufferedreader_file: {
-    return (self.type.path_File.__cid == (new Object(__cid=-2, _int=String()))._int ? splitGetEl_String_int@String(self.type.path_File, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=2+1), A="\n")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=2)), (new Object(__cid=-2, _int=0))) : null);
+    return (self.type.__cid == (new Object(__cid=-2, _int=File()))._int ? get_int@File(self.type, (new Object(__cid=-2, _int=0))) : null);
   }
   case Readline: { assert false; }
   case Readlineb: {

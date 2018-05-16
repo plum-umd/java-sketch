@@ -6,6 +6,7 @@ include "Object.sk";
 include "array.sk";
 include "Bucketing.sk";
 include "BucketingTest.sk";
+include "Bucketing.sk";
 include "HashTable.sk";
 include "Pair.sk";
 include "Assert.sk";

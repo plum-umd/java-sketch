@@ -5,8 +5,8 @@ Object Assert_Assert(Object self) {
 }
 
 void assertArrayEquals_byte_byte(Object b1, Object b2) {
-  if (b1._array_object.length._int == b2._array_object.length._int) {
-    for (Object i = (new Object(__cid=-2, _int=0)); i._int < b1._array_object.length._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+  if (b1._array_char.length._int == b2._array_char.length._int) {
+    for (Object i = (new Object(__cid=-2, _int=0)); i._int < b1._array_char.length._int; i = new Object(__cid=-2, _int=i._int + 1)) {
       if (b1._array_char.A[i._int] != b2._array_char.A[i._int]) assert (new Object(__cid=-4, _bit=false))._bit;
     }
   }
@@ -39,7 +39,7 @@ void fail_String(Object message) {
 }
 
 void assertEquals_String_Object_Object(Object message, Object expected, Object actual) {
-  assert (expected.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Bucketing()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=BucketingTest()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Number()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Pair()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(expected, actual) : null)._bit;
+  assert (expected.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Pair()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Number()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=BucketingTest()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Bucketing()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Bucketing()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(expected, actual) : null)._bit;
 }
 
 Object equalsRegardingNull_Object_Object(Object expected, Object actual) {
@@ -50,7 +50,7 @@ Object equalsRegardingNull_Object_Object(Object expected, Object actual) {
 }
 
 Object isEquals_Object_Object(Object expected, Object actual) {
-  return (expected.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Bucketing()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=BucketingTest()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Number()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Pair()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(expected, actual) : null);
+  return (expected.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Pair()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Number()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=BucketingTest()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Bucketing()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Bucketing()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(expected, actual) : null);
 }
 
 void assertEquals_Object_Object(Object expected, Object actual) {

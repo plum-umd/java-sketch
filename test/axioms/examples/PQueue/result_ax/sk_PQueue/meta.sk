@@ -1,24 +1,18 @@
 package meta;
 
 // distinct class IDs
-int ArrayList()      { return 14; }
-int Assert()         { return 10; }
-int Boolean()        { return 9; }
-int Byte()           { return 3; }
-int CharSequence()   { return 4; }
-int Character()      { return 11; }
-int Comparable()     { return 17; }
-int Float()          { return 6; }
-int HashMap()        { return 7; }
-int Integer()        { return 13; }
-int Number()         { return 12; }
-int Object()         { return 1; }
-int PQueue()         { return 2; }
-int String()         { return 5; }
-int StringBuffer()   { return 18; }
-int StringBuilder()  { return 15; }
-int System()         { return 16; }
-int TreeSet()        { return 8; }
-int Array()          { return -1; }
+int ArrayList()  { return 5; }
+int HashMap()    { return 6; }
+int Integer()    { return 3; }
+int Number()     { return 4; }
+int Object()     { return 1; }
+int PQueue()     { return 2; }
+int TreeSet()    { return 7; }
+int Array()      { return -1; }
+int _int()       { return -2; }
+int _char()      { return -3; }
+int _bit()       { return -4; }
+int _float()     { return -5; }
+int _double()    { return -6; }
 
 // Uninterpreted functions

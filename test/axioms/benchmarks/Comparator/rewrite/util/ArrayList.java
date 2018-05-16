@@ -2,7 +2,8 @@
 // class ArrayList<E> implements List<E>{
 class ArrayList<E> {
     @alg
-    boolean add(String e);
+    // boolean add(String e);
+    Object add(String e);
 
     @alg
     @pure
@@ -27,13 +28,16 @@ class ArrayList<E> {
     int maxSize();
     
     @alg
-    void sort(Object b);
+    // void sort(Object b);
+    Object sort(Object b);
 
     @alg
-    void remove(int i);
+    // void remove(int i);
+    Object remove(int i);
 
     @alg
-    void addAll(ArrayList<E> e);
+    // void addAll(ArrayList<E> e);
+    Object addAll(ArrayList<E> e);
     
     rewrite Object size(Object ArrayList()) {
     	return 0;

@@ -1,0 +1,198 @@
+package ArrayList;
+
+adt ArrayList {
+    Arraylist       { }
+    Add_object             { ArrayList self; Object e; }
+    Addb_object            { ArrayList self; Object e; }
+    Get_int             { ArrayList self; Object i; }
+    Setb_int_object            { ArrayList self; Object i; Object e; }
+    Set_int_object             { ArrayList self; Object i; Object e; }
+    Ensurecapacity  { ArrayList self; }
+    Size            { ArrayList self; }
+}
+
+Object ArrayList_ArrayList() {
+    return new Object(__cid=ArrayList(), _arraylist=new Arraylist());
+}
+
+Object add_Object_Object(Object self, Object e) {
+    return new Object(__cid=ArrayList(), _arraylist=new Add_object(self=self._arraylist, e=e));
+}
+
+Object addb_Object_Object(Object self, Object e) {
+    return new Object(__cid=ArrayList(), _arraylist=new Addb_object(self=self._arraylist, e=e));
+}
+
+Object get_Object_int(Object self, Object i) {
+    return new Object(__cid=ArrayList(), _arraylist=new Get_int(self=self._arraylist, i=i));
+}
+
+Object setb_Object_int_Object(Object self, Object i, Object e) {
+    return new Object(__cid=ArrayList(), _arraylist=new Setb_int_object(self=self._arraylist, i=i, e=e));
+}
+
+Object set_Object_int_Object(Object self, Object i, Object e) {
+    return new Object(__cid=ArrayList(), _arraylist=new Set_int_object(self=self._arraylist, i=i, e=e));
+}
+
+Object ensureCapacity_Object(Object self) {
+    return new Object(__cid=ArrayList(), _arraylist=new Ensurecapacity(self=self._arraylist));
+}
+
+Object size_Object(Object self) {
+    return new Object(__cid=ArrayList(), _arraylist=new Size(self=self._arraylist));
+}
+
+Object xform_ArrayList(ArrayList self) {
+  switch(self) {
+  case Arraylist: {
+    return xform_arraylist_ArrayList(self);
+  }
+  case Add_object: {
+    return xform_add_ArrayList_Object(self.self, self.e);
+  }
+  case Addb_object: {
+    return xform_addb_ArrayList_Object(self.self, self.e);
+  }
+  case Get_int: {
+    return xform_get_ArrayList_int(self.self, self.i);
+  }
+  case Setb_int_object: {
+    return xform_setb_ArrayList_int_Object(self.self, self.i, self.e);
+  }
+  case Set_int_object: {
+    return xform_set_ArrayList_int_Object(self.self, self.i, self.e);
+  }
+  case Ensurecapacity: {
+    return xform_ensureCapacity_ArrayList(self.self);
+  }
+  case Size: {
+    return xform_size_ArrayList(self.self);
+  }
+  }
+
+  return null;
+}
+Object xform_get_ArrayList_int(ArrayList self, Object i) {
+  switch(self) {
+  case Arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Add_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addb_object: {
+    Object sz = xform_size_ArrayList(self.self);
+    return ((sz._int == i._int) ? self.e : xform_get_ArrayList_int(self.self, i));
+  }
+  case Get_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Setb_int_object: {
+    return (i._int == self.i._int ? self.e : xform_get_ArrayList_int(self.self, i));
+  }
+  case Set_int_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Ensurecapacity: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Size: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  }
+
+  return null;
+}
+Object xform_addb_ArrayList_Object(ArrayList self, Object e) {
+  switch(self) {
+  case Arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Add_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addb_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Get_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Setb_int_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Set_int_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Ensurecapacity: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Size: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  }
+
+  return null;
+}
+Object xform_set_ArrayList_int_Object(ArrayList self, Object i, Object e) {
+  switch(self) {
+  case Arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Add_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addb_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Get_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Setb_int_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Set_int_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Ensurecapacity: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Size: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  }
+
+  return null;
+}
+Object xform_size_ArrayList(ArrayList self) {
+  switch(self) {
+  case Arraylist: {
+    return (new Object(__cid=-2, _int=0));
+  }
+  case Add_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addb_object: {
+    return (new Object(__cid=-2, _int=xform_size_ArrayList(self.self)._int + (new Object(__cid=-2, _int=1))._int));
+  }
+  case Get_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Setb_int_object: {
+    return xform_size_ArrayList(self.self);
+  }
+  case Set_int_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Ensurecapacity: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Size: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  }
+
+  return null;
+}
+Object xform_setb_ArrayList_int_Object(ArrayList self, Object i, Object e) {
+  switch(self) {
+  case Arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Add_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addb_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Get_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Setb_int_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Set_int_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Ensurecapacity: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Size: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  }
+
+  return null;
+}
+Object xform_add_ArrayList_Object(ArrayList self, Object e) {
+  switch(self) {
+  case Arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Add_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addb_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Get_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Setb_int_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Set_int_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Ensurecapacity: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Size: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  }
+
+  return null;
+}
+Object xform_ensureCapacity_ArrayList(ArrayList self) {
+  switch(self) {
+  case Arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Add_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addb_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Get_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Setb_int_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Set_int_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Ensurecapacity: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Size: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  }
+
+  return null;
+}
+Object xform_arraylist_ArrayList(ArrayList self) {
+  switch(self) {
+  case Arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Add_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addb_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Get_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Setb_int_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Set_int_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Ensurecapacity: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Size: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  }
+
+  return null;
+}

@@ -118,51 +118,7 @@ public class SuffixArrayTest {
     // assertEquals("a", list.get(0));
     // list.clear();
 
-    s = "abcba";
-    sa = new SuffixArray(s);
-    lrss = sa.lrs();
-    // list.addAll(lrss);
-    // CHANGE
-    assert lrss.size() == 2;
-    // assertEquals(2, lrss.size() );
-    // CHANGE
-    cont1 = lrss.contains("a");
-    cont2 = lrss.contains("b");
-    assert cont1;
-    assert cont2;
-    // assertEquals("a", list.get(0));
-    // assertEquals("b", list.get(1));
-    // list.clear();
-
-    s = "aZZbZZcYYdYYe";
-    sa = new SuffixArray(s);
-    lrss = sa.lrs();
-    // list.addAll(lrss);
-    assert lrss.size() == 2;
-    // assertEquals(2, lrss.size() );
-    // CHANGE
-    cont1 = lrss.contains("YY");
-    cont2 = lrss.contains("ZZ");
-    assert cont1;
-    assert cont2;
-    // assertEquals("YY", list.get(0));
-    // assertEquals("ZZ", list.get(1));
-    // list.clear();
-
-    s = "AAAAAA";
-    sa = new SuffixArray(s);
-    lrss = sa.lrs();
-    // list.addAll(lrss);
-    // CHANGE
-    assert lrss.size() == 1;
-    // assertEquals(1, lrss.size() );
-    // CHANGE
-    cont1 = lrss.contains("AAAAA");
-    assert cont1;
-    // assertEquals("AAAAA", list.get(0));
-    // list.clear();
-
-    // s = "aWXYZsdfABCDbvABCDsWXYZyWXYZjisdssd";
+    // s = "abcba";
     // sa = new SuffixArray(s);
     // lrss = sa.lrs();
     // // list.addAll(lrss);
@@ -170,11 +126,55 @@ public class SuffixArrayTest {
     // assert lrss.size() == 2;
     // // assertEquals(2, lrss.size() );
     // // CHANGE
-    // assert lrss.contains("ABCD");
-    // assert lrss.contains("WXYZ");
-    // // assertEquals("ABCD", list.get(0));
-    // // assertEquals("WXYZ", list.get(1));
+    // cont1 = lrss.contains("a");
+    // cont2 = lrss.contains("b");
+    // assert cont1;
+    // assert cont2;
+    // // assertEquals("a", list.get(0));
+    // // assertEquals("b", list.get(1));
     // // list.clear();
+
+    // s = "aZZbZZcYYdYYe";
+    // sa = new SuffixArray(s);
+    // lrss = sa.lrs();
+    // // list.addAll(lrss);
+    // assert lrss.size() == 2;
+    // // assertEquals(2, lrss.size() );
+    // // CHANGE
+    // cont1 = lrss.contains("YY");
+    // cont2 = lrss.contains("ZZ");
+    // assert cont1;
+    // assert cont2;
+    // // assertEquals("YY", list.get(0));
+    // // assertEquals("ZZ", list.get(1));
+    // // list.clear();
+
+    // s = "AAAAAA";
+    // sa = new SuffixArray(s);
+    // lrss = sa.lrs();
+    // // list.addAll(lrss);
+    // // CHANGE
+    // assert lrss.size() == 1;
+    // // assertEquals(1, lrss.size() );
+    // // CHANGE
+    // cont1 = lrss.contains("AAAAA");
+    // assert cont1;
+    // // assertEquals("AAAAA", list.get(0));
+    // // list.clear();
+
+    // // s = "aWXYZsdfABCDbvABCDsWXYZyWXYZjisdssd";
+    // // sa = new SuffixArray(s);
+    // // lrss = sa.lrs();
+    // // // list.addAll(lrss);
+    // // // CHANGE
+    // // assert lrss.size() == 2;
+    // // // assertEquals(2, lrss.size() );
+    // // // CHANGE
+    // // assert lrss.contains("ABCD");
+    // // assert lrss.contains("WXYZ");
+    // // // assertEquals("ABCD", list.get(0));
+    // // // assertEquals("WXYZ", list.get(1));
+    // // // list.clear();
 
   }
 

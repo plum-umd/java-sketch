@@ -1,0 +1,32 @@
+package Comparator;
+
+Object Comparator_Comparator(Object self) {
+    return self;
+}
+
+harness void main() {
+  Object self = Object_Object(new Object(__cid=Object()));
+  Object communication = CommunicationWithFiles_CommunicationWithFiles(new Object(__cid=CommunicationWithFiles()));
+  Object File1 = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=6+1), A="1\n2\n3\n")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=6));
+  Object File2 = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=6+1), A="3\n4\n5\n")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=6));
+  Object inFile1 = ArrayList_ArrayList(new Object(__cid=ArrayList()));
+  Object inFile2 = ArrayList_ArrayList(new Object(__cid=ArrayList()));
+  inFile1 = (communication.__cid == (new Object(__cid=-2, _int=CommunicationWithFiles()))._int ? ReadToArray_String_boolean@CommunicationWithFiles(communication, File1, (new Object(__cid=-4, _bit=false))) : null);
+  inFile2 = (communication.__cid == (new Object(__cid=-2, _int=CommunicationWithFiles()))._int ? ReadToArray_String_boolean@CommunicationWithFiles(communication, File2, (new Object(__cid=-4, _bit=false))) : null);
+  if (inFile1.__cid == (new Object(__cid=-2, _int=ArrayList()))._int) { addAll_ArrayList@ArrayList(inFile1, inFile2); }
+  else { 0; };
+  Object o1 = (File1.__cid == (new Object(__cid=-2, _int=String()))._int ? concat_String@String(File1, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=4+1), A="_vs_")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=4))) : null);
+  Object o2 = (o1.__cid == (new Object(__cid=-2, _int=String()))._int ? concat_String@String(o1, File2) : null);
+  Object outputFileName = (o2.__cid == (new Object(__cid=-2, _int=String()))._int ? concat_String@String(o2, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=4+1), A=".txt")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=4))) : null);
+  Object comp = (communication.__cid == (new Object(__cid=-2, _int=CommunicationWithFiles()))._int ? RemoveDuplicates_ArrayList@CommunicationWithFiles(communication, inFile1) : null);
+  Object c1 = (comp.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_int@ArrayList(comp, (new Object(__cid=-2, _int=1))) : null);
+  Object c2 = (comp.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_int@ArrayList(comp, (new Object(__cid=-2, _int=2))) : null);
+  Object c3 = (comp.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_int@ArrayList(comp, (new Object(__cid=-2, _int=3))) : null);
+  Object c4 = (comp.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_int@ArrayList(comp, (new Object(__cid=-2, _int=4))) : null);
+  assert (c1.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(c1, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=8+1), A="1|1\n2\n3\n")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=8))) : null)._bit;
+  assert (c2.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(c2, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=8+1), A="2|1\n2\n3\n")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=8))) : null)._bit;
+  assert (c3.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(c3, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=8+1), A="4|3\n4\n5\n")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=8))) : null)._bit;
+  assert (c4.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(c4, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=8+1), A="5|3\n4\n5\n")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=8))) : null)._bit;
+  assert (comp.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? size@ArrayList(comp) : null)._int == (new Object(__cid=-2, _int=5))._int;
+}
+

@@ -2,14 +2,14 @@
 class TreeSet {
 
     @adt
-    boolean add(Object e);
+    boolean add(Integer e);
     
     @adt
     Object clear();
 
     @adt
     @pure
-    boolean contains(Object e);
+    boolean contains(Integer e);
 
     @adt
     @pure
@@ -17,16 +17,16 @@ class TreeSet {
 
     @adt
     @pure
-    Object last();
+    Integer last();
     
     @adt
-    boolean remove(Object e);
+    boolean remove(Integer e);
 
     axiom Object size(Object TreeSet()) {
     	return 0;
     }
 
-    axiom Object size(Object add!(TreeSet s, Object e)) {
+    axiom Object size(Object add!(TreeSet s, Integer e)) {
     	return contains(s, e) ? size(s) : size(s)+1;
     }
 
@@ -34,45 +34,45 @@ class TreeSet {
     	return 0;
     }
     
-    axiom Object add(Object clear!(TreeSet s), Object e) {
+    axiom Object add(Object clear!(TreeSet s), Integer e) {
     	return true;
     }
     
-    axiom Object add(Object TreeSet(), Object e) {
+    axiom Object add(Object TreeSet(), Integer e) {
     	return true;
     }
 
-    axiom Object add(Object add!(TreeSet s, Object e1), Object e2) {
+    axiom Object add(Object add!(TreeSet s, Integer e1), Integer e2) {
     	return e2.equals(e1) ? false : add(s, e2);
     }
 
-    axiom Object contains(Object add!(TreeSet s, Object e1), Object e2) {
+    axiom Object contains(Object add!(TreeSet s, Integer e1), Integer e2) {
     	return e1.equals(e2) ? true : contains(s, e2);
     }
 
-    axiom Object contains(Object TreeSet(), Object e) {
+    axiom Object contains(Object TreeSet(), Integer e) {
     	return false;
     }
 
-    axiom Object contains(Object clear!(TreeSet s), Object e) {
+    axiom Object contains(Object clear!(TreeSet s), Integer e) {
     	return false;
     }
     
-    axiom Object last(Object add!(TreeSet s, Object e1))
+    axiom Object last(Object add!(TreeSet s, Integer e1))
     {
-    	Object tmp = last(s);
+    	Integer tmp = last(s);
     	return tmp.compareTo(e1) > 0 ? tmp : e1;
     }
 
-    axiom Object size(Object remove!(TreeSet s, Object e)){
+    axiom Object size(Object remove!(TreeSet s, Integer e)){
     	return contains(s,e) ?  size(s) - 1: size(s);
     }
 
-     axiom Object remove(Object clear!(TreeSet s), Object e) {
+     axiom Object remove(Object clear!(TreeSet s), Integer e) {
     	return false;
     }
 
-    axiom Object remove(Object TreeSet(), Object e){
+    axiom Object remove(Object TreeSet(), Integer e){
     	return false;
     }
     

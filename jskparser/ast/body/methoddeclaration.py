@@ -153,7 +153,7 @@ class MethodDeclaration(BodyDeclaration):
 
     def get_xform(self):
         from .xform import Xform
-        x = self.body.stmts[0]
+        x = self.body.stmts[1]
         if not isinstance(x, Xform):
             raise Exception('Trying to get Xform from {} but body isnt an Xform'.format(self))
         return x

@@ -1,83 +1,83 @@
-@axiomClass
+@rewriteClass
 class ArrayDeque {
-    @adt
+    @alg
     @pure
     Object peekFirst();
 
-    @adt
+    @alg
     @pure
     Object peekFirstHelp(int i, int j);
     
-    @adt
+    @alg
     @pure
     boolean isEmpty();
 
-    @adt
+    @alg
     Object removeFirst();
 
-    @adt
+    @alg
     @pure
     Object peekLast();
 
-    @adt
+    @alg
     @pure
     Object peekLastHelp(int i, int j);
     
-    @adt
+    @alg
     Object removeLast();
 
-    @adt
+    @alg
     void addLast(Object e);
 
-    @adt
+    @alg
     @pure
     int size();
 
-    axiom Object size(Object ArrayDeque()) {
+    rewrite Object size(Object ArrayDeque()) {
 	return 0;
     }
     
-    axiom Object size(Object addLast!(ArrayDeque d, Object e)) {
+    rewrite Object size(Object addLast!(ArrayDeque d, Object e)) {
     	return size(d)+1;
     }
 
-    axiom Object size(Object removeFirst!(ArrayDeque d, Object e)) {
+    rewrite Object size(Object removeFirst!(ArrayDeque d, Object e)) {
     	return size(d)==0 ? 0 : size(d)-1;
     }
 
-    axiom Object size(Object removeLast!(ArrayDeque d, Object e)) {
+    rewrite Object size(Object removeLast!(ArrayDeque d, Object e)) {
     	return size(d)==0 ? 0 : size(d)-1;
     }
 
-    axiom Object isEmpty(ArrayDeque d) {
+    rewrite Object isEmpty(ArrayDeque d) {
     	return size(d)==0;
     }
 
-    axiom Object peekLast(Object ArrayDeque()) {
+    rewrite Object peekLast(Object ArrayDeque()) {
 	return null;
     }
     
-    axiom Object peekLast(Object addLast!(ArrayDeque d, Object e)) {
+    rewrite Object peekLast(Object addLast!(ArrayDeque d, Object e)) {
     	return e;
     }
 
-    axiom Object peekLast(Object removeLast!(ArrayDeque d)) {
+    rewrite Object peekLast(Object removeLast!(ArrayDeque d)) {
 	return peekLastHelp(d, 0, 1);
     }
 
-    axiom Object peekLastHelp(Object removeLast!(ArrayDeque d), int i, int j) {
+    rewrite Object peekLastHelp(Object removeLast!(ArrayDeque d), int i, int j) {
 	return peekLastHelp(d,i,j+1);
     }
 
-    axiom Object peekLast(Object removeFirst!(ArrayDeque d)) {
+    rewrite Object peekLast(Object removeFirst!(ArrayDeque d)) {
 	return peekLastHelp(d, 1, 0);
     }
 
-    axiom Object peekLastHelp(Object removeFirst!(ArrayDeque d), int i, int j) {
+    rewrite Object peekLastHelp(Object removeFirst!(ArrayDeque d), int i, int j) {
 	return peekLastHelp(d, i+1, j);
     }
     
-    axiom Object peekLastHelp(Object addLast!(ArrayDeque d, Object e), int i, int j) {
+    rewrite Object peekLastHelp(Object addLast!(ArrayDeque d, Object e), int i, int j) {
 	if (j > 0) {
 	    return peekLastHelp(d, i, j-1);
 	} else if (i > 0) {
@@ -87,31 +87,31 @@ class ArrayDeque {
 	}
     }
 
-    axiom Object peekFirst(Object ArrayDeque()) {
+    rewrite Object peekFirst(Object ArrayDeque()) {
 	return null;
     }
     
-    axiom Object peekFirst(Object addLast!(ArrayDeque d, Object e)) {
+    rewrite Object peekFirst(Object addLast!(ArrayDeque d, Object e)) {
 	return size(d)==0 ? e : peekFirst(d);
     }
 
-    axiom Object peekFirst(Object removeFirst!(ArrayDeque d)) {
+    rewrite Object peekFirst(Object removeFirst!(ArrayDeque d)) {
 	return peekFirstHelp(d, 1, 0);
     }
 
-    axiom Object peekFirst(Object removeLast!(ArrayDeque d)) {
+    rewrite Object peekFirst(Object removeLast!(ArrayDeque d)) {
 	return peekFirstHelp(d, 0, 1);
     }
 
-    axiom Object peekFirstHelp(Object removeFirst!(ArrayDeque d), int i, int j) {
+    rewrite Object peekFirstHelp(Object removeFirst!(ArrayDeque d), int i, int j) {
 	return peekFirstHelp(d, i+1, j);
     }
 
-    axiom Object peekFirstHelp(Object removeLast!(ArrayDeque d), int i, int j) {
+    rewrite Object peekFirstHelp(Object removeLast!(ArrayDeque d), int i, int j) {
 	return peekFirstHelp(d, i, j+1);
     }
 
-    axiom Object peekFirstHelp(Object addLast!(ArrayDeque d, Object e), int i, int j) {
+    rewrite Object peekFirstHelp(Object addLast!(ArrayDeque d, Object e), int i, int j) {
 	if (size(d) == i) {
 	    if (j > 0) {
 		return null;
@@ -122,11 +122,11 @@ class ArrayDeque {
 	}
     }
 
-    axiom Object removeLast(ArrayDeque d) {
+    rewrite Object removeLast(ArrayDeque d) {
 	return peekLast(d);
     }
 
-    axiom Object removeFirst(ArrayDeque d) {
+    rewrite Object removeFirst(ArrayDeque d) {
 	return peekFirst(d);
     }
 }

@@ -42,7 +42,7 @@ class TestJava(TestCommon):
     #     files = ["HashTable_loops.java", "HashTableNode.java", "HashTableTest.java", "rewrite/", "shared/"]
     #     files = map(lambda s: "HashMap1/" + s, files)
     #     inline = 3
-    #     unroll = 2
+    #     unroll = 3
     #     self.__test(files, inline, unroll)
 
     # def test_HashMap2Model(self):
@@ -55,19 +55,19 @@ class TestJava(TestCommon):
     # def test_HashMap2Rewrite(self):
     #     files = ["Bucketing_syn.java", "BucketingTest.java", "HashTable.java", "Pair.java", "rewrite/", "shared/"]
     #     files = map(lambda s: "HashMap2/" + s, files)
-    #     inline = 2
+    #     inline = 1
     #     unroll = 2
     #     self.__test(files, inline, unroll)
 
     # def test_PasswordManagerModel(self):
-    #     files = ["Cryptographer_syn.java", "PasswordManager_syn.java", "PasswordMap.java", "PasswordManagerTest.java", "model/", "shared/"]
+    #     files = ["Cryptographer_syn_model.java", "PasswordManager_syn.java", "PasswordMap.java", "PasswordManagerTest.java", "model/", "shared/"]
     #     files = map(lambda s: "PasswordManager/" + s, files)
     #     inline = 2
     #     unroll = 16
     #     self.__test(files, inline, unroll)
         
     # def test_PasswordManagerRewrite(self):
-    #     files = ["Cryptographer_rewrite.java", "PasswordManager_syn.java", "PasswordMap.java", "PasswordManagerTest.java", "rewrite/", "shared/"]
+    #     files = ["Cryptographer_syn_rewrite.java", "PasswordManager_syn.java", "PasswordMap.java", "PasswordManagerTest.java", "rewrite/", "shared/"]
     #     files = map(lambda s: "PasswordManager/" + s, files)
     #     inline = 2
     #     unroll = 16
@@ -112,8 +112,9 @@ class TestJava(TestCommon):
     #     files = ["CsvDocument_syn.java", "CodeAssertion.java", "CsvColumn.java", "CsvColumnTest.java", "CsvConfiguration.java", "CsvDocumentTest.java", "CsvRow.java", "CsvRowTest.java", "Tester.java", "rewrite/", "shared/"]
     #     files = map(lambda s: "EasyCSV/" + s, files)
     #     inline = 3
-    #     unroll = 6
-    #     self.__test(files, inline, unroll, True)
+    #     unroll = 5
+    #     # self.__test(files, inline, unroll, True)
+    #     self.__test(files, inline, unroll)
 
     # def test_RomListModel(self):
     #     files = ["RomlistParser_syn_model.java", "RomlistGame.java", "Tester.java", "model/", "shared/"]
@@ -124,10 +125,13 @@ class TestJava(TestCommon):
 
     # def test_RomListRewrite(self):
     #     files = ["RomlistParser_syn_rewrite.java", "RomlistGame.java", "Tester.java", "rewrite/", "shared/"]
+    #     # files = ["RomlistParser_rewrite.java", "RomlistGame.java", "Tester.java", "rewrite/", "shared/"]
     #     files = map(lambda s: "RomList/" + s, files)
     #     inline = 2
     #     unroll = 26
+    #     # unroll = 19
     #     self.__test(files, inline, unroll, True)
+    #     # self.__test(files, inline, unroll)
 
     # def test_ComparatorModel(self):
     #     files = ["CommunicationWithFiles_syn_model.java", "Comparator_model.java", "Tester.java", "model/", "shared/"]

@@ -1,18 +1,18 @@
 package meta;
 
 // distinct class IDs
-int ArrayList()      { return 8; }
-int Assert()         { return 7; }
-int Boolean()        { return 12; }
+int ArrayList()      { return 9; }
+int Assert()         { return 10; }
+int Boolean()        { return 8; }
 int Bucketing()      { return 2; }
 int BucketingTest()  { return 3; }
-int CharSequence()   { return 10; }
-int Character()      { return 9; }
-int HashTable()      { return 4; }
+int CharSequence()   { return 6; }
+int Character()      { return 7; }
+int HashTable()      { return 5; }
 int Integer()        { return 11; }
 int Object()         { return 1; }
-int Pair()           { return 5; }
-int String()         { return 6; }
+int Pair()           { return 4; }
+int String()         { return 12; }
 int Array()          { return -1; }
 int _int()           { return -2; }
 int _char()          { return -3; }

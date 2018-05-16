@@ -8,5 +8,6 @@ then
 elif [ "$1" == "2" ]
 then
     shift
-    ./jsk.sh $@ "${pwd}/*.java ${pwd}/../libs/ --no-lib -o ${pwd}/../result_ax/"
+    ./jsk.sh $@ "${pwd}/Bucketing_loops.java ${pwd}/BucketingTest.java ${pwd}/Pair.java ${pwd}/HashTable.java ${pwd}/../libs/ --no-lib -o ${pwd}/../result_ax/"
+    # ./jsk.sh $@ "${pwd}/Bucketing_loops.java ${pwd}/BucketingTest.java ${pwd}/Pair.java ${pwd}/HashTable.java ${pwd}/../libs/ --no-lib -o ${pwd}/../result_ax/"
 fi

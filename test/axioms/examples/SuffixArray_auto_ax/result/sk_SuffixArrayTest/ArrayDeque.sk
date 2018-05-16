@@ -21,19 +21,19 @@ Object ArrayDeque_ArrayDeque() {
 }
 
 Object peekFirst_Object(Object self) {
-    return new Object(__cid=ArrayDeque(), _arraydeque=new Peekfirst(self=self._arraydeque));
+    return xform_peekFirst_ArrayDeque(self._arraydeque);
 }
 
 Object peekFirstHelp_Object_int_int(Object self, Object i, Object j) {
-    return new Object(__cid=ArrayDeque(), _arraydeque=new Peekfirsthelp_int_int(self=self._arraydeque, i=i, j=j));
+    return xform_peekFirstHelp_ArrayDeque_int_int(self._arraydeque, i,j);
 }
 
 Object isEmpty_Object(Object self) {
-    return new Object(__cid=ArrayDeque(), _arraydeque=new Isempty(self=self._arraydeque));
+    return xform_isEmpty_ArrayDeque(self._arraydeque);
 }
 
 Object removeFirst_Object(Object self) {
-    return new Object(__cid=ArrayDeque(), _arraydeque=new Removefirst(self=self._arraydeque));
+    return xform_removeFirst_ArrayDeque(self._arraydeque);
 }
 
 Object removeFirstb_Object(Object self) {
@@ -41,11 +41,11 @@ Object removeFirstb_Object(Object self) {
 }
 
 Object peekLast_Object(Object self) {
-    return new Object(__cid=ArrayDeque(), _arraydeque=new Peeklast(self=self._arraydeque));
+    return xform_peekLast_ArrayDeque(self._arraydeque);
 }
 
 Object peekLastHelp_Object_int_int(Object self, Object i, Object j) {
-    return new Object(__cid=ArrayDeque(), _arraydeque=new Peeklasthelp_int_int(self=self._arraydeque, i=i, j=j));
+    return xform_peekLastHelp_ArrayDeque_int_int(self._arraydeque, i,j);
 }
 
 Object removeLastb_Object(Object self) {
@@ -57,7 +57,7 @@ Object addLastb_Object_Object(Object self, Object e) {
 }
 
 Object removeLast_Object(Object self) {
-    return new Object(__cid=ArrayDeque(), _arraydeque=new Removelast(self=self._arraydeque));
+    return xform_removeLast_ArrayDeque(self._arraydeque);
 }
 
 Object addLast_Object_Object(Object self, Object e) {
@@ -65,7 +65,7 @@ Object addLast_Object_Object(Object self, Object e) {
 }
 
 Object size_Object(Object self) {
-    return new Object(__cid=ArrayDeque(), _arraydeque=new Size(self=self._arraydeque));
+    return xform_size_ArrayDeque(self._arraydeque);
 }
 
 Object xform_ArrayDeque(ArrayDeque self) {

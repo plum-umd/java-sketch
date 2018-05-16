@@ -1,0 +1,278 @@
+package TreeSet;
+
+adt TreeSet {
+    Treeset   { }
+    Add_integer       { TreeSet self; Object e; }
+    Addb_integer      { TreeSet self; Object e; }
+    Clearb    { TreeSet self; }
+    Clear     { TreeSet self; }
+    Contains_integer  { TreeSet self; Object e; }
+    Size      { TreeSet self; }
+    Removeb_integer   { TreeSet self; Object e; }
+    Last      { TreeSet self; }
+    Remove_integer    { TreeSet self; Object e; }
+}
+
+Object TreeSet_TreeSet() {
+    return new Object(__cid=TreeSet(), _treeset=new Treeset());
+}
+
+Object add_Object_Integer(Object self, Object e) {
+    return new Object(__cid=TreeSet(), _treeset=new Add_integer(self=self._treeset, e=e));
+}
+
+Object addb_Object_Integer(Object self, Object e) {
+    return new Object(__cid=TreeSet(), _treeset=new Addb_integer(self=self._treeset, e=e));
+}
+
+Object clearb_Object(Object self) {
+    return new Object(__cid=TreeSet(), _treeset=new Clearb(self=self._treeset));
+}
+
+Object clear_Object(Object self) {
+    return new Object(__cid=TreeSet(), _treeset=new Clear(self=self._treeset));
+}
+
+Object contains_Object_Integer(Object self, Object e) {
+    return new Object(__cid=TreeSet(), _treeset=new Contains_integer(self=self._treeset, e=e));
+}
+
+Object size_Object(Object self) {
+    return new Object(__cid=TreeSet(), _treeset=new Size(self=self._treeset));
+}
+
+Object removeb_Object_Integer(Object self, Object e) {
+    return new Object(__cid=TreeSet(), _treeset=new Removeb_integer(self=self._treeset, e=e));
+}
+
+Object last_Object(Object self) {
+    return new Object(__cid=TreeSet(), _treeset=new Last(self=self._treeset));
+}
+
+Object remove_Object_Integer(Object self, Object e) {
+    return new Object(__cid=TreeSet(), _treeset=new Remove_integer(self=self._treeset, e=e));
+}
+
+Object xform_TreeSet(TreeSet self) {
+  switch(self) {
+  case Treeset: {
+    return xform_treeset_TreeSet(self);
+  }
+  case Add_integer: {
+    return xform_add_TreeSet_Integer(self.self, self.e);
+  }
+  case Addb_integer: {
+    return xform_addb_TreeSet_Integer(self.self, self.e);
+  }
+  case Clearb: {
+    return xform_clearb_TreeSet(self.self);
+  }
+  case Clear: {
+    return xform_clear_TreeSet(self.self);
+  }
+  case Contains_integer: {
+    return xform_contains_TreeSet_Integer(self.self, self.e);
+  }
+  case Size: {
+    return xform_size_TreeSet(self.self);
+  }
+  case Removeb_integer: {
+    return xform_removeb_TreeSet_Integer(self.self, self.e);
+  }
+  case Last: {
+    return xform_last_TreeSet(self.self);
+  }
+  case Remove_integer: {
+    return xform_remove_TreeSet_Integer(self.self, self.e);
+  }
+  }
+
+  return null;
+}
+Object xform_addb_TreeSet_Integer(TreeSet self, Object e) {
+  switch(self) {
+  case Treeset: { assert false; }
+  case Add_integer: { assert false; }
+  case Addb_integer: { assert false; }
+  case Clearb: { assert false; }
+  case Clear: { assert false; }
+  case Contains_integer: { assert false; }
+  case Size: { assert false; }
+  case Removeb_integer: { assert false; }
+  case Last: { assert false; }
+  case Remove_integer: { assert false; }
+  }
+
+  return null;
+}
+Object xform_clearb_TreeSet(TreeSet self) {
+  switch(self) {
+  case Treeset: { assert false; }
+  case Add_integer: { assert false; }
+  case Addb_integer: { assert false; }
+  case Clearb: { assert false; }
+  case Clear: { assert false; }
+  case Contains_integer: { assert false; }
+  case Size: { assert false; }
+  case Removeb_integer: { assert false; }
+  case Last: { assert false; }
+  case Remove_integer: { assert false; }
+  }
+
+  return null;
+}
+Object xform_contains_TreeSet_Integer(TreeSet self, Object e) {
+  switch(self) {
+  case Treeset: {
+    return (new Object(__cid=-4, _bit=false));
+  }
+  case Add_integer: { assert false; }
+  case Addb_integer: {
+    return ((self.e.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(self.e, e) : null)._bit ? (new Object(__cid=-4, _bit=true)) : xform_contains_TreeSet_Integer(self.self, e));
+  }
+  case Clearb: {
+    return (new Object(__cid=-4, _bit=false));
+  }
+  case Clear: { assert false; }
+  case Contains_integer: { assert false; }
+  case Size: { assert false; }
+  case Removeb_integer: { assert false; }
+  case Last: { assert false; }
+  case Remove_integer: { assert false; }
+  }
+
+  return null;
+}
+Object xform_add_TreeSet_Integer(TreeSet self, Object e) {
+  switch(self) {
+  case Treeset: {
+    return (new Object(__cid=-4, _bit=true));
+  }
+  case Add_integer: { assert false; }
+  case Addb_integer: {
+    return ((e.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(e, self.e) : null)._bit ? (new Object(__cid=-4, _bit=false)) : xform_add_TreeSet_Integer(self.self, e));
+  }
+  case Clearb: {
+    return (new Object(__cid=-4, _bit=true));
+  }
+  case Clear: { assert false; }
+  case Contains_integer: { assert false; }
+  case Size: { assert false; }
+  case Removeb_integer: { assert false; }
+  case Last: { assert false; }
+  case Remove_integer: { assert false; }
+  }
+
+  return null;
+}
+Object xform_last_TreeSet(TreeSet self) {
+  switch(self) {
+  case Treeset: { assert false; }
+  case Add_integer: { assert false; }
+  case Addb_integer: {
+    Object tmp = xform_last_TreeSet(self.self);
+    return ((tmp.__cid == (new Object(__cid=-2, _int=Integer()))._int ? compareTo_Integer@Integer(tmp, self.e) : null)._int > (new Object(__cid=-2, _int=0))._int ? tmp : self.e);
+  }
+  case Clearb: { assert false; }
+  case Clear: { assert false; }
+  case Contains_integer: { assert false; }
+  case Size: { assert false; }
+  case Removeb_integer: { assert false; }
+  case Last: { assert false; }
+  case Remove_integer: { assert false; }
+  }
+
+  return null;
+}
+Object xform_size_TreeSet(TreeSet self) {
+  switch(self) {
+  case Treeset: {
+    return (new Object(__cid=-2, _int=0));
+  }
+  case Add_integer: { assert false; }
+  case Addb_integer: {
+    return (xform_contains_TreeSet_Integer(self.self, self.e) ? xform_size_TreeSet(self.self) : xform_size_TreeSet(self.self)._int + (new Object(__cid=-2, _int=1))._int);
+  }
+  case Clearb: {
+    return (new Object(__cid=-2, _int=0));
+  }
+  case Clear: { assert false; }
+  case Contains_integer: { assert false; }
+  case Size: { assert false; }
+  case Removeb_integer: {
+    return (xform_contains_TreeSet_Integer(self.self, self.e) ? xform_size_TreeSet(self.self)._int - (new Object(__cid=-2, _int=1))._int : xform_size_TreeSet(self.self));
+  }
+  case Last: { assert false; }
+  case Remove_integer: { assert false; }
+  }
+
+  return null;
+}
+Object xform_clear_TreeSet(TreeSet self) {
+  switch(self) {
+  case Treeset: { assert false; }
+  case Add_integer: { assert false; }
+  case Addb_integer: { assert false; }
+  case Clearb: { assert false; }
+  case Clear: { assert false; }
+  case Contains_integer: { assert false; }
+  case Size: { assert false; }
+  case Removeb_integer: { assert false; }
+  case Last: { assert false; }
+  case Remove_integer: { assert false; }
+  }
+
+  return null;
+}
+Object xform_removeb_TreeSet_Integer(TreeSet self, Object e) {
+  switch(self) {
+  case Treeset: { assert false; }
+  case Add_integer: { assert false; }
+  case Addb_integer: { assert false; }
+  case Clearb: { assert false; }
+  case Clear: { assert false; }
+  case Contains_integer: { assert false; }
+  case Size: { assert false; }
+  case Removeb_integer: { assert false; }
+  case Last: { assert false; }
+  case Remove_integer: { assert false; }
+  }
+
+  return null;
+}
+Object xform_treeset_TreeSet(TreeSet self) {
+  switch(self) {
+  case Treeset: { assert false; }
+  case Add_integer: { assert false; }
+  case Addb_integer: { assert false; }
+  case Clearb: { assert false; }
+  case Clear: { assert false; }
+  case Contains_integer: { assert false; }
+  case Size: { assert false; }
+  case Removeb_integer: { assert false; }
+  case Last: { assert false; }
+  case Remove_integer: { assert false; }
+  }
+
+  return null;
+}
+Object xform_remove_TreeSet_Integer(TreeSet self, Object e) {
+  switch(self) {
+  case Treeset: {
+    return (new Object(__cid=-4, _bit=false));
+  }
+  case Add_integer: { assert false; }
+  case Addb_integer: { assert false; }
+  case Clearb: {
+    return (new Object(__cid=-4, _bit=false));
+  }
+  case Clear: { assert false; }
+  case Contains_integer: { assert false; }
+  case Size: { assert false; }
+  case Removeb_integer: { assert false; }
+  case Last: { assert false; }
+  case Remove_integer: { assert false; }
+  }
+
+  return null;
+}

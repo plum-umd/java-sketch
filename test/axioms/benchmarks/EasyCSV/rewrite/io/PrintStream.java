@@ -5,8 +5,10 @@ public class PrintStream {
     PrintStream PrintStream(FileOutputStream fos);
 
     @alg
-    void close();
+    // void close();
+    Object close();
 
     @alg
-    void print(String s);
+    // void print(String s);
+    Object print(String s);    
 }

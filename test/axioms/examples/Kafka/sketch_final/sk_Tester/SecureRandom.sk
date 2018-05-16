@@ -18,15 +18,15 @@ Object xform_SecureRandom(SecureRandom self) {
   case Securerandom: {
     return xform_securerandom_SecureRandom(self);
   }
-  case Nextbytes_object: { assert false; }
+  case Nextbytes_object: { return new Object(__cid=SecureRandom(), _securerandom=self); }
   }
 
   return null;
 }
 Object xform_securerandom_SecureRandom(SecureRandom self) {
   switch(self) {
-  case Securerandom: { assert false; }
-  case Nextbytes_object: { assert false; }
+  case Securerandom: { return new Object(__cid=SecureRandom(), _securerandom=self); }
+  case Nextbytes_object: { return new Object(__cid=SecureRandom(), _securerandom=self); }
   }
 
   return null;
@@ -41,12 +41,12 @@ Object xform_nextBytes_SecureRandom_Object(SecureRandom self, Object k) {
       case Securerandom: {
         return Wrap_Array_char(new Array_char(length=(new Object(__cid=-2, _int=16))));
       }
-      case Nextbytes_object: { assert false; }
+      case Nextbytes_object: { return new Object(__cid=SecureRandom(), _securerandom=self); }
       }
 
     }
   }
-  case Nextbytes_object: { assert false; }
+  case Nextbytes_object: { return new Object(__cid=SecureRandom(), _securerandom=self); }
   }
 
   return null;

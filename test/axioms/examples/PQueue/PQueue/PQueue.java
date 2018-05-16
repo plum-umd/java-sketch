@@ -360,84 +360,84 @@ class PQueue {
 
     static final int MAX_SZ = 100;
 
-    testEmpty();
-	testHeapProperty();
-	testClear();
-	testContainment();
-	testRemovingDuplicates();
+    // testEmpty();
+    // 	testHeapProperty();
+    // 	testClear();
+    // 	testContainment();
+    // 	testRemovingDuplicates();
 
 
   }
 
-    @Test
-    public void testEmpty() {
-    	PQueue<Integer> q = new PQueue<>();
-    	Assert.assertEquals (q.size(), 0);
-    	assert (q.isEmpty());
-    	assert q.poll() == null;
-    	assert q.peek() == null;
-    }
+    // @Test
+    // public void testEmpty() {
+    // 	PQueue<Integer> q = new PQueue<>();
+    // 	Assert.assertEquals (q.size(), 0);
+    // 	assert (q.isEmpty());
+    // 	assert q.poll() == null;
+    // 	assert q.peek() == null;
+    // }
 
-	@Test
-    public void testHeapProperty ()
-    {
-		PQueue q = new PQueue();
-    	Integer[] nums = { new Integer(3),new Integer(2), new Integer(5), new Integer(6), new Integer(7), new Integer(9), new Integer(4), new Integer(8), new Integer(1) };
+    // 	@Test
+    // public void testHeapProperty ()
+    // {
+    // 		PQueue q = new PQueue();
+    // 	Integer[] nums = { new Integer(3),new Integer(2), new Integer(5), new Integer(6), new Integer(7), new Integer(9), new Integer(4), new Integer(8), new Integer(1) };
     
-    	// Try manually creating heap
+    // 	// Try manually creating heap
 	     
 	   
-    	for (int i = 0; i <= 8; i++ )
-    	//for (int i = ??; i <= 8; i++ )
-    	{
-			q.add(nums[i]);
-    	}
+    // 	for (int i = 0; i <= 8; i++ )
+    // 	//for (int i = ??; i <= 8; i++ )
+    // 	{
+    // 			q.add(nums[i]);
+    // 	}
 
-    	//for (int i = 1; i <= 9; i++)
-		for (int i = 1; i <= 9; i++)
-    	{
-        	Integer ii = q.poll();
-			assert (i == ii.intValue());
-    	}
-    }
+    // 	//for (int i = 1; i <= 9; i++)
+    // 		for (int i = 1; i <= 9; i++)
+    // 	{
+    //     	Integer ii = q.poll();
+    // 			assert (i == ii.intValue());
+    // 	}
+    // }
 
-	@Test
-  	public void testClear() 
-	{
-    	PQueue q = new PQueue();
-    	Integer[] nums = {new Integer(11), new Integer(22), new Integer(33), new Integer(44), new Integer(55)};
-    	for (int i = 0; i < 5; i++ )
-    	{
-			q.add(nums[i]);
-    	}
-    	q.clear();
-    	Assert.assertEquals(q.size(), 0);
-    	Assert.assertTrue(q.isEmpty());
-	}
+    // 	@Test
+    // 	public void testClear() 
+    // 	{
+    // 	PQueue q = new PQueue();
+    // 	Integer[] nums = {new Integer(11), new Integer(22), new Integer(33), new Integer(44), new Integer(55)};
+    // 	for (int i = 0; i < 5; i++ )
+    // 	{
+    // 			q.add(nums[i]);
+    // 	}
+    // 	q.clear();
+    // 	Assert.assertEquals(q.size(), 0);
+    // 	Assert.assertTrue(q.isEmpty());
+    // 	}
 
 	
-	@Test
-  	public void testContainment() {
+    // 	@Test
+    // 	public void testContainment() {
 
-    	Integer[] nums = {new Integer(11), new Integer(22), new Integer(33), new Integer(44), new Integer(55)};    
-    	PQueue q = new PQueue();
-		for (int i = 0; i < 5; i++ )
-    	{
-			q.add(nums[i]);
-    	}
-    	q.remove(new Integer(11));
-    	Assert.assertFalse(q.contains(new Integer(11)));
-    	q.remove(new Integer(22));
-    	Assert.assertFalse(q.contains(new Integer(22)));
-    	q.remove(new Integer(33));
-    	Assert.assertFalse(q.contains(new Integer(33)));
-    	q.remove(new Integer(44));
-    	Assert.assertFalse(q.contains(new Integer(44)));
-    	q.clear();
-    	Assert.assertFalse(q.contains(new Integer(55)));
+    // 	Integer[] nums = {new Integer(11), new Integer(22), new Integer(33), new Integer(44), new Integer(55)};    
+    // 	PQueue q = new PQueue();
+    // 		for (int i = 0; i < 5; i++ )
+    // 	{
+    // 			q.add(nums[i]);
+    // 	}
+    // 	q.remove(new Integer(11));
+    // 	Assert.assertFalse(q.contains(new Integer(11)));
+    // 	q.remove(new Integer(22));
+    // 	Assert.assertFalse(q.contains(new Integer(22)));
+    // 	q.remove(new Integer(33));
+    // 	Assert.assertFalse(q.contains(new Integer(33)));
+    // 	q.remove(new Integer(44));
+    // 	Assert.assertFalse(q.contains(new Integer(44)));
+    // 	q.clear();
+    // 	Assert.assertFalse(q.contains(new Integer(55)));
 
 
-	}
+    // 	}
 	
 	// There is no assert in the test, so no constraints! We don't need them! 
 	/*

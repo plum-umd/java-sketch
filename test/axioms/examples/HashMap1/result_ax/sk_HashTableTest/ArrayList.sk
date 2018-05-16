@@ -1,230 +1,235 @@
 package ArrayList;
 
-adt ArrayList {
-    Arraylist       { }
-    Add             { ArrayList self; Object e; }
-    Addb            { ArrayList self; Object e; }
-    Getb            { ArrayList self; Object i; }
-    Setb            { ArrayList self; Object i; Object e; }
-    Get             { ArrayList self; Object i; }
-    Set             { ArrayList self; Object i; Object e; }
-    Ensurecapacity  { ArrayList self; Object n; }
-    Size            { ArrayList self; }
+Object EMPTY_ELEMENTDATA;
+Object EMPTY_ELEMENTDATA_g() { return EMPTY_ELEMENTDATA; }
+void EMPTY_ELEMENTDATA_s(Object EMPTY_ELEMENTDATA_s) { EMPTY_ELEMENTDATA = EMPTY_ELEMENTDATA_s; }
+
+Object MAX_ARRAY_SIZE = (new Object(__cid=-2, _int=1000000));
+Object MAX_ARRAY_SIZE_g() { return MAX_ARRAY_SIZE; }
+void MAX_ARRAY_SIZE_s(Object MAX_ARRAY_SIZE_s) { MAX_ARRAY_SIZE = MAX_ARRAY_SIZE_s; }
+
+Object ArrayList_ArrayList(Object self) {
+  self.DEFAULT_CAPACITY_ArrayList = (new Object(__cid=-2, _int=10));
+  self.elementData_ArrayList = Wrap_Array_Object(new Array_Object(length=self.DEFAULT_CAPACITY_ArrayList));
+  self.capacity_ArrayList = self.DEFAULT_CAPACITY_ArrayList;
+  self.size_ArrayList = (new Object(__cid=-2, _int=0));
+  EMPTY_ELEMENTDATA = Wrap_Array_Object(new Array_Object(length=(new Object(__cid=-2, _int=0))));
+  return self;
 }
 
-Object ArrayList_ArrayList() {
-    return new Object(__cid=ArrayList(), _arraylist=new Arraylist());
+Object ArrayList_ArrayList_int(Object self, Object initialCapacity) {
+  self.DEFAULT_CAPACITY_ArrayList = (new Object(__cid=-2, _int=10));
+  self.elementData_ArrayList = Wrap_Array_Object(new Array_Object(length=initialCapacity));
+  self.capacity_ArrayList = initialCapacity;
+  self.size_ArrayList = (new Object(__cid=-2, _int=0));
+  EMPTY_ELEMENTDATA = Wrap_Array_Object(new Array_Object(length=(new Object(__cid=-2, _int=0))));
+  return self;
 }
 
-Object add_Object_Object(Object self, Object e) {
-    return new Object(__cid=ArrayList(), _arraylist=new Add(self=self._arraylist, e=e));
+void addAll_ArrayList(Object self, Object a2) {
+  Object len = (a2.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? size@ArrayList(a2) : null);
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < len._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    (self.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? add_E@ArrayList(self, a2._array_object.A[i._int]) : null);
+  }
 }
 
-Object addb_Object_Object(Object self, Object e) {
-    return new Object(__cid=ArrayList(), _arraylist=new Addb(self=self._arraylist, e=e));
+void sort_Object(Object self, Object c) {
 }
 
-Object getb_Object_int(Object self, Object i) {
-    return new Object(__cid=ArrayList(), _arraylist=new Getb(self=self._arraylist, i=i));
+void copyNewElementData_int(Object self, Object size) {
+  Object newElementData = Wrap_Array_Object(new Array_Object(length=size));
+  Object i = (new Object(__cid=-2, _int=0));
+  for (i = (new Object(__cid=-2, _int=0)); i._int < self.size_ArrayList._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    newElementData._array_object.A[i._int] = self.elementData_ArrayList._array_object.A[i._int];
+  }
+  self.elementData_ArrayList = newElementData;
+  self.capacity_ArrayList = size;
 }
 
-Object setb_Object_int_Object(Object self, Object i, Object e) {
-    return new Object(__cid=ArrayList(), _arraylist=new Setb(self=self._arraylist, i=i, e=e));
+void checkAdjustSize(Object self) {
+  if (self.size_ArrayList._int + (new Object(__cid=-2, _int=1))._int >= self.capacity_ArrayList._int) {
+    copyNewElementData_int@ArrayList(self, (new Object(__cid=-2, _int=self.capacity_ArrayList._int + (new Object(__cid=-2, _int=10))._int)));
+  }
 }
 
-Object get_Object_int(Object self, Object i) {
-    return new Object(__cid=ArrayList(), _arraylist=new Get(self=self._arraylist, i=i));
+void createSpace_int(Object self, Object index) {
+  Object j = (new Object(__cid=-2, _int=0));
+  for (j = self.size_ArrayList; j._int > index._int; j = new Object(__cid=-2, _int=j._int - 1)) {
+    self.elementData_ArrayList._array_object.A[j._int] = self.elementData_ArrayList._array_object.A[j._int - (new Object(__cid=-2, _int=1))._int];
+  }
 }
 
-Object set_Object_int_Object(Object self, Object i, Object e) {
-    return new Object(__cid=ArrayList(), _arraylist=new Set(self=self._arraylist, i=i, e=e));
+void add_int_E(Object self, Object index, Object e) {
+  checkAdjustSize@ArrayList(self);
+  createSpace_int@ArrayList(self, index);
+  self.elementData_ArrayList._array_object.A[index._int] = e;
+  self.size_ArrayList = new Object(__cid=-2, _int=self.size_ArrayList._int + 1);
 }
 
-Object ensureCapacity_Object_int(Object self, Object n) {
-    return new Object(__cid=ArrayList(), _arraylist=new Ensurecapacity(self=self._arraylist, n=n));
+Object add_E(Object self, Object e) {
+  checkAdjustSize@ArrayList(self);
+  self.size_ArrayList = new Object(__cid=-2, _int=self.size_ArrayList._int + 1);
+  self.elementData_ArrayList._array_object.A[self.size_ArrayList._int] = e;
+  return (new Object(__cid=-4, _bit=true));
 }
 
-Object size_Object(Object self) {
-    return new Object(__cid=ArrayList(), _arraylist=new Size(self=self._arraylist));
+void clear(Object self) {
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < self.size_ArrayList._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    self.elementData_ArrayList._array_object.A[i._int] = null;
+  }
+  self.capacity_ArrayList = (new Object(__cid=-2, _int=10));
+  self.size_ArrayList = (new Object(__cid=-2, _int=0));
 }
 
-Object xform_ArrayList(ArrayList self) {
-  switch(self) {
-  case Arraylist: {
-    return xform_arraylist_ArrayList(self);
-  }
-  case Add: {
-    return xform_add_ArrayList_Object(self.self, self.e);
-  }
-  case Addb: {
-    return xform_addb_ArrayList_Object(self.self, self.e);
-  }
-  case Getb: {
-    return xform_getb_ArrayList_int(self.self, self.i);
-  }
-  case Setb: {
-    return xform_setb_ArrayList_int_Object(self.self, self.i, self.e);
-  }
-  case Get: {
-    return xform_get_ArrayList_int(self.self, self.i);
-  }
-  case Set: {
-    return xform_set_ArrayList_int_Object(self.self, self.i, self.e);
-  }
-  case Ensurecapacity: {
-    return xform_ensureCapacity_ArrayList_int(self.self, self.n);
-  }
-  case Size: {
-    return xform_size_ArrayList(self.self);
-  }
-  }
-
-  return null;
+Object contains_Object(Object self, Object o) {
+  return (new Object(__cid=-2, _int=indexOf_Object@ArrayList(self, o)._int >= (new Object(__cid=-2, _int=0))._int));
 }
-Object xform_ensureCapacity_ArrayList_int(ArrayList self, Object n) {
-  switch(self) {
-  case Arraylist: { assert false; }
-  case Add: { assert false; }
-  case Addb: { assert false; }
-  case Getb: { assert false; }
-  case Setb: { assert false; }
-  case Get: { assert false; }
-  case Set: { assert false; }
-  case Ensurecapacity: { assert false; }
-  case Size: { assert false; }
-  }
 
-  return null;
-}
-Object xform_size_ArrayList(ArrayList self) {
-  switch(self) {
-  case Arraylist: {
-    return (new Object(__cid=-2, _int=0));
-  }
-  case Add: { assert false; }
-  case Addb: {
-    return (new Object(__cid=-2, _int=xform_size_ArrayList(self.self)._int + (new Object(__cid=-2, _int=1))._int));
-  }
-  case Getb: { assert false; }
-  case Setb: {
-    return xform_size_ArrayList(self.self);
-  }
-  case Get: { assert false; }
-  case Set: { assert false; }
-  case Ensurecapacity: { assert false; }
-  case Size: { assert false; }
-  }
-
-  return null;
-}
-Object xform_set_ArrayList_int_Object(ArrayList self, Object i, Object e) {
-  switch(self) {
-  case Arraylist: { assert false; }
-  case Add: { assert false; }
-  case Addb: { assert false; }
-  case Getb: { assert false; }
-  case Setb: { assert false; }
-  case Get: { assert false; }
-  case Set: { assert false; }
-  case Ensurecapacity: { assert false; }
-  case Size: { assert false; }
-  }
-
-  return null;
-}
-Object xform_getb_ArrayList_int(ArrayList self, Object i) {
-  switch(self) {
-  case Arraylist: { assert false; }
-  case Add: { assert false; }
-  case Addb: { assert false; }
-  case Getb: { assert false; }
-  case Setb: { assert false; }
-  case Get: { assert false; }
-  case Set: { assert false; }
-  case Ensurecapacity: { assert false; }
-  case Size: { assert false; }
-  }
-
-  return null;
-}
-Object xform_get_ArrayList_int(ArrayList self, Object i) {
-  switch(self) {
-  case Arraylist: {
+Object get_int(Object self, Object index) {
+  if (index._int < (new Object(__cid=-2, _int=0))._int || index._int >= self.size_ArrayList._int) {
     return null;
   }
-  case Add: { assert false; }
-  case Addb: {
-    return (xform_size_ArrayList(self.self)._int == i._int - (new Object(__cid=-2, _int=1))._int ? self.e : xform_get_ArrayList_int(self.self, i));
-  }
-  case Getb: { assert false; }
-  case Setb: {
-    return (i._int == self.i._int ? self.e : xform_get_ArrayList_int(self.self, i));
-  }
-  case Get: { assert false; }
-  case Set: { assert false; }
-  case Ensurecapacity: { assert false; }
-  case Size: { assert false; }
-  }
-
-  return null;
+  return self.elementData_ArrayList._array_object.A[index._int];
 }
-Object xform_setb_ArrayList_int_Object(ArrayList self, Object i, Object e) {
-  switch(self) {
-  case Arraylist: { assert false; }
-  case Add: { assert false; }
-  case Addb: { assert false; }
-  case Getb: { assert false; }
-  case Setb: { assert false; }
-  case Get: { assert false; }
-  case Set: { assert false; }
-  case Ensurecapacity: { assert false; }
-  case Size: { assert false; }
-  }
 
-  return null;
-}
-Object xform_add_ArrayList_Object(ArrayList self, Object e) {
-  switch(self) {
-  case Arraylist: { assert false; }
-  case Add: { assert false; }
-  case Addb: { assert false; }
-  case Getb: { assert false; }
-  case Setb: { assert false; }
-  case Get: { assert false; }
-  case Set: { assert false; }
-  case Ensurecapacity: { assert false; }
-  case Size: { assert false; }
+Object indexOf_Object(Object self, Object o) {
+  Object i = (new Object(__cid=-2, _int=0));
+  if (o == null) {
+    for (i = (new Object(__cid=-2, _int=0)); i._int < self.capacity_ArrayList._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+      if (self.elementData_ArrayList._array_object.A[i._int] == null) {
+        return i;
+      }
+    }
   }
-
-  return null;
-}
-Object xform_addb_ArrayList_Object(ArrayList self, Object e) {
-  switch(self) {
-  case Arraylist: { assert false; }
-  case Add: { assert false; }
-  case Addb: { assert false; }
-  case Getb: { assert false; }
-  case Setb: { assert false; }
-  case Get: { assert false; }
-  case Set: { assert false; }
-  case Ensurecapacity: { assert false; }
-  case Size: { assert false; }
+  else {
+    for (i = (new Object(__cid=-2, _int=0)); i._int < self.size_ArrayList._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+      if ((o.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Number()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=HashTableTest()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : null)._bit) {
+        return i;
+      }
+    }
   }
-
-  return null;
+  return (new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1))._int));
 }
-Object xform_arraylist_ArrayList(ArrayList self) {
-  switch(self) {
-  case Arraylist: { assert false; }
-  case Add: { assert false; }
-  case Addb: { assert false; }
-  case Getb: { assert false; }
-  case Setb: { assert false; }
-  case Get: { assert false; }
-  case Set: { assert false; }
-  case Ensurecapacity: { assert false; }
-  case Size: { assert false; }
+
+void removeElement_int(Object self, Object index) {
+  Object j = (new Object(__cid=-2, _int=0));
+  for (j = index; j._int < self.size_ArrayList._int - (new Object(__cid=-2, _int=1))._int; j = new Object(__cid=-2, _int=j._int + 1)) {
+    self.elementData_ArrayList._array_object.A[j._int] = self.elementData_ArrayList._array_object.A[j._int + (new Object(__cid=-2, _int=1))._int];
   }
-
-  return null;
+  self.elementData_ArrayList._array_object.A[self.size_ArrayList._int - (new Object(__cid=-2, _int=1))._int] = null;
+  self.size_ArrayList = new Object(__cid=-2, _int=self.size_ArrayList._int - 1);
 }
+
+Object remove_int(Object self, Object index) {
+  Object e;
+  if (index._int < (new Object(__cid=-2, _int=0))._int || index._int >= self.size_ArrayList._int) {
+    return null;
+  }
+  e = self.elementData_ArrayList._array_object.A[index._int];
+  removeElement_int@ArrayList(self, index);
+  return e;
+}
+
+Object remove_Object(Object self, Object o) {
+  Object i = (new Object(__cid=-2, _int=0));
+  if (o == null) {
+    for (i = (new Object(__cid=-2, _int=0)); i._int < self.capacity_ArrayList._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+      if (self.elementData_ArrayList._array_object.A[i._int] == null) {
+        removeElement_int@ArrayList(self, i);
+        return (new Object(__cid=-4, _bit=true));
+      }
+    }
+  }
+  else {
+    for (i = (new Object(__cid=-2, _int=0)); i._int < self.size_ArrayList._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+      if ((o.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Number()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=HashTableTest()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(o, self.elementData_ArrayList._array_object.A[i._int]) : o.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(o, self.elementData_ArrayList._array_object.A[i._int]) : null)._bit) {
+        removeElement_int@ArrayList(self, i);
+        return (new Object(__cid=-4, _bit=true));
+      }
+    }
+  }
+  return (new Object(__cid=-4, _bit=false));
+}
+
+Object set_int_E(Object self, Object index, Object element) {
+  Object oldElement;
+  if (index._int < (new Object(__cid=-2, _int=0))._int || index._int >= self.size_ArrayList._int) {
+    return null;
+  }
+  oldElement = self.elementData_ArrayList._array_object.A[index._int];
+  self.elementData_ArrayList._array_object.A[index._int] = element;
+  return oldElement;
+}
+
+Object size(Object self) {
+  return self.size_ArrayList;
+}
+
+Object length(Object self) {
+  return size@ArrayList(self);
+}
+
+Object isEmpty(Object self) {
+  return (new Object(__cid=-4, _bit=self.size_ArrayList._int == (new Object(__cid=-2, _int=0))._int));
+}
+
+Object toArray(Object self) {
+  Object arr = Wrap_Array_Object(new Array_Object(length=self.size_ArrayList));
+  Object i = (new Object(__cid=-2, _int=0));
+  for (i = (new Object(__cid=-2, _int=0)); i._int < self.size_ArrayList._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+    arr._array_object.A[i._int] = self.elementData_ArrayList._array_object.A[i._int];
+  }
+  return arr;
+}
+
+void ensureCapacity_int(Object self, Object minCapacity) {
+  Object minExpand;
+  if (self.elementData_ArrayList != EMPTY_ELEMENTDATA) {
+    minExpand = (new Object(__cid=-2, _int=0));
+  }
+  else {
+    minExpand = self.DEFAULT_CAPACITY_ArrayList;
+  }
+  if (minCapacity._int > minExpand._int) {
+    ensureExplicitCapacity_int@ArrayList(self, minCapacity);
+  }
+}
+
+Object subList_int_int(Object self, Object fromIndex, Object toIndex) {
+  subListRangeCheck_int_int_int(fromIndex, toIndex, self.size_ArrayList);
+  Object a = ArrayList_ArrayList(new Object(__cid=ArrayList()));
+  for (Object i = (new Object(__cid=-2, _int=0)); i._int < toIndex._int - fromIndex._int; i = new Object(__cid=-2, _int=i._int + 1)) (a.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? add_E@ArrayList(a, self.elementData_ArrayList._array_object.A[i._int]) : null);
+  return a;
+}
+
+void subListRangeCheck_int_int_int(Object fromIndex, Object toIndex, Object size) {
+  assert fromIndex._int >= (new Object(__cid=-2, _int=0))._int;
+  assert toIndex._int <= size._int;
+  assert fromIndex._int < toIndex._int;
+}
+
+void ensureCapacityInternal_int(Object self, Object minCapacity) {
+  if (self.elementData_ArrayList == EMPTY_ELEMENTDATA) {
+    if (self.DEFAULT_CAPACITY_ArrayList._int > minCapacity._int) {
+      minCapacity = self.DEFAULT_CAPACITY_ArrayList;
+    }
+  }
+  ensureExplicitCapacity_int@ArrayList(self, minCapacity);
+}
+
+void ensureExplicitCapacity_int(Object self, Object minCapacity) {
+  if (minCapacity._int - self.elementData_ArrayList._array_object.length._int > (new Object(__cid=-2, _int=0))._int) grow_int@ArrayList(self, minCapacity);
+}
+
+void grow_int(Object self, Object minCapacity) {
+  Object oldCapacity = self.elementData_ArrayList._array_object.length;
+  Object newCapacity = (new Object(__cid=-2, _int=oldCapacity._int + (oldCapacity._int / (new Object(__cid=-2, _int=2))._int)));
+  if (newCapacity._int - minCapacity._int < (new Object(__cid=-2, _int=0))._int) newCapacity = minCapacity;
+  if (newCapacity._int - MAX_ARRAY_SIZE._int > (new Object(__cid=-2, _int=0))._int) newCapacity = hugeCapacity_int(minCapacity);
+  copyNewElementData_int@ArrayList(self, newCapacity);
+}
+
+Object hugeCapacity_int(Object minCapacity) {
+  return ((minCapacity._int > MAX_ARRAY_SIZE._int) ? (new Object(__cid=-2, _int=0x7fffffff)) : MAX_ARRAY_SIZE);
+}
+

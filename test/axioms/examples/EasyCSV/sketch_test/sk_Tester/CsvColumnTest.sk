@@ -1,0 +1,29 @@
+package CsvColumnTest;
+
+Object CsvColumnTest_CsvColumnTest(Object self) {
+    return self;
+}
+
+void runTests() {
+  the_getIntValue_method_when_column_is_integer_should_return_correct_result();
+  the_getBooleanValue_method_when_column_can_be_converted_to_boolean_should_return_correct_result();
+}
+
+void the_getIntValue_method_when_column_is_integer_should_return_correct_result() {
+  Object someIntValue = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=2+1), A="20")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=2));
+  Object someIntCsvColumn = CsvColumn_CsvColumn_String(new Object(__cid=CsvColumn()), someIntValue);
+  Object result = (someIntCsvColumn.__cid == (new Object(__cid=-2, _int=CsvColumn()))._int ? getInteger@CsvColumn(someIntCsvColumn) : null);
+  assert (new Object(__cid=-2, _int=20))._int == result._int;
+}
+
+void the_getBooleanValue_method_when_column_can_be_converted_to_boolean_should_return_correct_result() {
+  Object trueValue = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=4+1), A="true")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=4));
+  Object falseValue = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=5+1), A="false")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=5));
+  Object columnWithTrueResult = CsvColumn_CsvColumn_String(new Object(__cid=CsvColumn()), trueValue);
+  Object columnWithFalseResult = CsvColumn_CsvColumn_String(new Object(__cid=CsvColumn()), falseValue);
+  Object resultThatShouldBeTrue = (columnWithTrueResult.__cid == (new Object(__cid=-2, _int=CsvColumn()))._int ? getBoolean@CsvColumn(columnWithTrueResult) : null);
+  Object resultThatShouldBeFalse = (columnWithFalseResult.__cid == (new Object(__cid=-2, _int=CsvColumn()))._int ? getBoolean@CsvColumn(columnWithFalseResult) : null);
+  assert resultThatShouldBeTrue._bit;
+  assert !resultThatShouldBeFalse._bit;
+}
+

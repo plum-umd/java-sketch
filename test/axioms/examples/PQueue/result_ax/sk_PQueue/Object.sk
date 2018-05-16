@@ -1,6 +1,46 @@
 package Object;
 
-Object Object_Object(Object self){
- return self;
+Object Object_Object(Object self) {
+    return self;
 }
 
+Object equals_Object_Object(Object a, Object b) {
+  if (a == null) {
+    if (b == null) {
+      return (new Object(__cid=-4, _bit=true));
+    }
+    return (new Object(__cid=-4, _bit=false));
+  }
+  return (a.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(a, b) : a.__cid == (new Object(__cid=-2, _int=Number()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=PQueue()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(a, b) : null);
+}
+
+Object equals_Object(Object self, Object obj) {
+  return (new Object(__cid=-4, _bit=self == obj));
+}
+
+Object hashCode(Object self) {
+  return (new Object(__cid=-2, _int=0));
+}
+
+struct Object {
+  int           __cid;
+  Object        heapSize_PQueue;
+  Object        heapCapacity_PQueue;
+  Object        heap_PQueue;
+  Object        map_PQueue;
+  Object        value_Integer;
+  HashMap       _hashmap;
+  ArrayList     _arraylist;
+  TreeSet       _treeset;
+  Array_bit     _array_bit;
+  Array_char    _array_char;
+  Array_int     _array_int;
+  Array_float   _array_float;
+  Array_double  _array_double;
+  Array_Object  _array_object;
+  bit           _bit;
+  char          _char;
+  int           _int;
+  float         _float;
+  double        _double;
+}

@@ -1,16 +1,21 @@
 package meta;
 
 // distinct class IDs
-int ArrayList()       { return 4; }
-int Assert()          { return 6; }
-int Boolean()         { return 9; }
-int CharSequence()    { return 5; }
+int ArrayList()       { return 5; }
+int Assert()          { return 9; }
+int Boolean()         { return 10; }
+int CharSequence()    { return 6; }
 int Character()       { return 3; }
-int Cipher()          { return 7; }
-int Integer()         { return 8; }
+int Cipher()          { return 8; }
+int Integer()         { return 7; }
 int Object()          { return 1; }
 int PrivateExample()  { return 2; }
-int String()          { return 10; }
+int String()          { return 4; }
 int Array()           { return -1; }
+int _int()            { return -2; }
+int _char()           { return -3; }
+int _bit()            { return -4; }
+int _float()          { return -5; }
+int _double()         { return -6; }
 
 // Uninterpreted functions

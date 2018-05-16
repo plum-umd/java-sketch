@@ -8,5 +8,5 @@ then
 elif [ "$1" == "2" ]
 then
     shift
-    ./jsk.sh $@ "${pwd}/ax/PQueue.java ${pwd}/../libs/ -o ${pwd}/../result_ax --no-lib"
+    ./jsk.sh $@ "${pwd}/ax/PQueue.java ${pwd}/../libs/model/lang/Integer.java ${pwd}/../libs/model/lang/Number.java ${pwd}/../libs/model/lang/Object.java ${pwd}/../libs/axioms/util/ -o ${pwd}/../result_ax --no-lib"
 fi

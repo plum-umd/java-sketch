@@ -9,15 +9,16 @@ void runTests() {
 }
 
 void with_no_config_options_should_parse_csv_file_and_create_csv_document() {
-  Object csvPath = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=9+1), A="A\n1\n2\n")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=9));
+  /* Object csvPath = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=6+1), A="A\n1\n2\n")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=6)); */
+  Object csvPath = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=5+1), A="A\n1\n2")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=5));
   Object document = read_String@CsvDocument(csvPath);
   Object rs = (document.__cid == (new Object(__cid=-2, _int=CsvDocument()))._int ? getCsvRows@CsvDocument(document) : null);
   /* Object headers = (rs.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_Object_int@ArrayList(rs, (new Object(__cid=-2, _int=0))) : null); */
   /* Object r1 = (rs.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_Object_int@ArrayList(rs, (new Object(__cid=-2, _int=1))) : null); */
   /* Object r2 = (rs.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_Object_int@ArrayList(rs, (new Object(__cid=-2, _int=2))) : null); */
-  Object headers = xform_get_ArrayList_int(rs._arraylist, (new Object(__cid=-2, _int=0))); 
-  Object r1 = xform_get_ArrayList_int(rs._arraylist, (new Object(__cid=-2, _int=1))); 
-  Object r2 = xform_get_ArrayList_int(rs._arraylist, (new Object(__cid=-2, _int=2))); 
+  Object headers = xform_get_ArrayList_int(rs._arraylist, (new Object(__cid=-2, _int=0)));
+  Object r1 = xform_get_ArrayList_int(rs._arraylist, (new Object(__cid=-2, _int=1)));
+  Object r2 = xform_get_ArrayList_int(rs._arraylist, (new Object(__cid=-2, _int=2)));  
   Object hstr = (headers.__cid == (new Object(__cid=-2, _int=CsvRow()))._int ? toString@CsvRow(headers) : null);
   Object r1str = (r1.__cid == (new Object(__cid=-2, _int=CsvRow()))._int ? toString@CsvRow(r1) : null);
   Object r2str = (r2.__cid == (new Object(__cid=-2, _int=CsvRow()))._int ? toString@CsvRow(r2) : null);

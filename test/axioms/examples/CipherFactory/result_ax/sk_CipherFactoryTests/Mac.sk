@@ -20,7 +20,7 @@ Object initb_Object_SecretKeySpec(Object self, Object key) {
 }
 
 Object doFinal_Object_Object(Object self, Object text) {
-    return new Object(__cid=Mac(), _mac=new Dofinal_object(self=self._mac, text=text));
+    return xform_doFinal_Mac_Object(self._mac, text);
 }
 
 Object xform_Mac(Mac self) {

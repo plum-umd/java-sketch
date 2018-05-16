@@ -1,0 +1,326 @@
+package RomlistGame;
+
+Object RomlistGame_RomlistGame(Object self) {
+    return self;
+}
+
+Object getName(Object self) {
+  return self.name_RomlistGame;
+}
+
+void setName_String(Object self, Object name) {
+  self.name_RomlistGame = name;
+}
+
+Object getTitle(Object self) {
+  return self.title_RomlistGame;
+}
+
+void setTitle_String(Object self, Object title) {
+  self.title_RomlistGame = title;
+}
+
+Object getEmulator(Object self) {
+  return self.emulator_RomlistGame;
+}
+
+void setEmulator_String(Object self, Object emulator) {
+  self.emulator_RomlistGame = emulator;
+}
+
+Object getCloneOf(Object self) {
+  return self.cloneOf_RomlistGame;
+}
+
+void setCloneOf_String(Object self, Object cloneOf) {
+  self.cloneOf_RomlistGame = cloneOf;
+}
+
+Object getYear(Object self) {
+  return self.year_RomlistGame;
+}
+
+void setYear_String(Object self, Object year) {
+  self.year_RomlistGame = year;
+}
+
+Object getManufacturer(Object self) {
+  return self.manufacturer_RomlistGame;
+}
+
+void setManufacturer_String(Object self, Object manufacturer) {
+  self.manufacturer_RomlistGame = manufacturer;
+}
+
+Object getCategory(Object self) {
+  return self.category_RomlistGame;
+}
+
+void setCategory_String(Object self, Object category) {
+  self.category_RomlistGame = category;
+}
+
+Object getPlayers(Object self) {
+  return self.players_RomlistGame;
+}
+
+void setPlayers_String(Object self, Object players) {
+  self.players_RomlistGame = players;
+}
+
+Object getRotation(Object self) {
+  return self.rotation_RomlistGame;
+}
+
+void setRotation_String(Object self, Object rotation) {
+  self.rotation_RomlistGame = rotation;
+}
+
+Object getControl(Object self) {
+  return self.control_RomlistGame;
+}
+
+void setControl_String(Object self, Object control) {
+  self.control_RomlistGame = control;
+}
+
+Object getStatus(Object self) {
+  return self.status_RomlistGame;
+}
+
+void setStatus_String(Object self, Object status) {
+  self.status_RomlistGame = status;
+}
+
+Object getDisplayCount(Object self) {
+  return self.displayCount_RomlistGame;
+}
+
+void setDisplayCount_String(Object self, Object displayCount) {
+  self.displayCount_RomlistGame = displayCount;
+}
+
+Object getDisplayType(Object self) {
+  return self.displayType_RomlistGame;
+}
+
+void setDisplayType_String(Object self, Object displayType) {
+  self.displayType_RomlistGame = displayType;
+}
+
+Object getAltRomname(Object self) {
+  return self.altRomname_RomlistGame;
+}
+
+void setAltRomname_String(Object self, Object altRomname) {
+  self.altRomname_RomlistGame = altRomname;
+}
+
+Object getAltTitle(Object self) {
+  return self.altTitle_RomlistGame;
+}
+
+void setAltTitle_String(Object self, Object altTitle) {
+  self.altTitle_RomlistGame = altTitle;
+}
+
+Object getExtra(Object self) {
+  return self.extra_RomlistGame;
+}
+
+void setExtra_String(Object self, Object extra) {
+  self.extra_RomlistGame = extra;
+}
+
+Object getButtons(Object self) {
+  return self.buttons_RomlistGame;
+}
+
+void setButtons_String(Object self, Object buttons) {
+  self.buttons_RomlistGame = buttons;
+}
+
+Object isAvailable(Object self) {
+  return self.isAvailable_RomlistGame;
+}
+
+void setAvailable_boolean(Object self, Object isAvailable) {
+  self.isAvailable_RomlistGame = isAvailable;
+}
+
+Object isHasWheel(Object self) {
+  return self.hasWheel_RomlistGame;
+}
+
+void setHasWheel_boolean(Object self, Object hasWheel) {
+  self.hasWheel_RomlistGame = hasWheel;
+}
+
+Object isHasVideo(Object self) {
+  return self.hasVideo_RomlistGame;
+}
+
+void setHasVideo_boolean(Object self, Object hasVideo) {
+  self.hasVideo_RomlistGame = hasVideo;
+}
+
+Object isComplete(Object self) {
+  return self.complete_RomlistGame;
+}
+
+void setComplete_boolean(Object self, Object complete) {
+  self.complete_RomlistGame = complete;
+}
+
+Object getRomlist(Object self) {
+  return self.romlist_RomlistGame;
+}
+
+void setRomlist_String(Object self, Object romlist) {
+  self.romlist_RomlistGame = romlist;
+}
+
+Object getFileName(Object self) {
+  return self.fileName_RomlistGame;
+}
+
+void setFileName_String(Object self, Object fileName) {
+  self.fileName_RomlistGame = fileName;
+}
+
+Object getWheelFileName(Object self) {
+  return self.wheelFileName_RomlistGame;
+}
+
+void setWheelFileName_String(Object self, Object wheelFileName) {
+  self.wheelFileName_RomlistGame = wheelFileName;
+}
+
+Object getSnapFileName(Object self) {
+  return self.snapFileName_RomlistGame;
+}
+
+void setSnapFileName_String(Object self, Object snapFileName) {
+  self.snapFileName_RomlistGame = snapFileName;
+}
+
+Object isHasDatabase(Object self) {
+  return self.hasDatabase_RomlistGame;
+}
+
+void setHasDatabase_boolean(Object self, Object hasDatabase) {
+  self.hasDatabase_RomlistGame = hasDatabase;
+}
+
+Object getDescription(Object self) {
+  return self.description_RomlistGame;
+}
+
+void setDescription_String(Object self, Object description) {
+  self.description_RomlistGame = description;
+}
+
+Object isHasBox(Object self) {
+  return self.hasBox_RomlistGame;
+}
+
+void setHasBox_boolean(Object self, Object hasBox) {
+  self.hasBox_RomlistGame = hasBox;
+}
+
+Object isHasCart(Object self) {
+  return self.hasCart_RomlistGame;
+}
+
+void setHasCart_boolean(Object self, Object hasCart) {
+  self.hasCart_RomlistGame = hasCart;
+}
+
+Object getBoxFileName(Object self) {
+  return self.boxFileName_RomlistGame;
+}
+
+void setBoxFileName_String(Object self, Object boxFileName) {
+  self.boxFileName_RomlistGame = boxFileName;
+}
+
+Object getCartFileName(Object self) {
+  return self.cartFileName_RomlistGame;
+}
+
+void setCartFileName_String(Object self, Object cartFileName) {
+  self.cartFileName_RomlistGame = cartFileName;
+}
+
+Object getRating(Object self) {
+  return self.rating_RomlistGame;
+}
+
+void setRating_String(Object self, Object rating) {
+  self.rating_RomlistGame = rating;
+}
+
+Object getReleaseDate(Object self) {
+  return self.releaseDate_RomlistGame;
+}
+
+void setReleaseDate_String(Object self, Object releaseDate) {
+  self.releaseDate_RomlistGame = releaseDate;
+}
+
+Object getDeveloper(Object self) {
+  return self.developer_RomlistGame;
+}
+
+void setDeveloper_String(Object self, Object developer) {
+  self.developer_RomlistGame = developer;
+}
+
+Object getPublisher(Object self) {
+  return self.publisher_RomlistGame;
+}
+
+void setPublisher_String(Object self, Object publisher) {
+  self.publisher_RomlistGame = publisher;
+}
+
+Object getGenre(Object self) {
+  return self.genre_RomlistGame;
+}
+
+void setGenre_String(Object self, Object genre) {
+  self.genre_RomlistGame = genre;
+}
+
+Object getPi3Status(Object self) {
+  return self.pi3Status_RomlistGame;
+}
+
+void setPi3Status_String(Object self, Object pi3Status) {
+  self.pi3Status_RomlistGame = pi3Status;
+}
+
+Object getPcStatus(Object self) {
+  return self.pcStatus_RomlistGame;
+}
+
+void setPcStatus_String(Object self, Object pcStatus) {
+  self.pcStatus_RomlistGame = pcStatus;
+}
+
+Object getSize(Object self) {
+  return self.size_RomlistGame;
+}
+
+void setSize_Long(Object self, Object size) {
+  self.size_RomlistGame = size;
+}
+
+Object isHasSnap(Object self) {
+  return self.hasSnap_RomlistGame;
+}
+
+void setHasSnap_boolean(Object self, Object hasSnap) {
+  self.hasSnap_RomlistGame = hasSnap;
+}
+

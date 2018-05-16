@@ -60,7 +60,7 @@ resolved cegis to path /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5
 Overriding inputs with 5
 boundmode = CALLNAME
 assuming  bounds checks
-SOLVER RAND SEED = 1523134866
+SOLVER RAND SEED = 1523665964
  optimization level = 6
 Reading SKETCH Program in File /Users/kathymariano/Research/java-sketch2/test/axioms/examples/Kafka/sketch_final/tmp/sk_Tester/input0.tmp
 CREATING main__Wrapper_Tester
@@ -79,11 +79,11 @@ CREATING Object_Object_Object
 size = 34
 after ba size = 34
 CREATING testOpenSSL_Tester
-size = 952
-after ba size = 952
+size = 3385
+after ba size = 3385
 CREATING testJCECipher_Tester
-size = 1079
-after ba size = 1079
+size = 3548
+after ba size = 3548
 CREATING OpenSSLCipher_meta
 size = 3
 after ba size = 3
@@ -136,20 +136,20 @@ CREATING toString_String
 size = 34
 after ba size = 34
 CREATING getBytes_String_String
-Found Cycle of size 38; Breaking.
+Found Cycle of size 47; Breaking.
 size = 2538
 after ba size = 2538
 CREATING SecretKeySpec_meta
 size = 3
 after ba size = 3
 CREATING translate_boolean_byte_SecretKeySpec_byte_OpenSSLCipher
-Found Cycle of size 9; Breaking.
-size = 1814
-after ba size = 1814
+Found Cycle of size 35; Breaking.
+size = 1932
+after ba size = 1932
 CREATING translate_boolean_byte_SecretKeySpec_byte_JCECipher
-Found Cycle of size 13; Breaking.
-size = 915
-after ba size = 915
+Found Cycle of size 20; Breaking.
+size = 973
+after ba size = 973
 CREATING length_String
 size = 41
 after ba size = 41
@@ -169,8 +169,8 @@ CREATING updateb_Object_byte_int_int_byte_int_Cipher
 size = 55
 after ba size = 55
 CREATING xform_doFinale_Cipher_byte_int_int_byte_int_Cipher
-size = 213
-after ba size = 213
+size = 246
+after ba size = 246
 CREATING doFinaleb_Object_byte_int_int_byte_int_Cipher
 size = 55
 after ba size = 55
@@ -181,8 +181,8 @@ CREATING doFinalb_Object_Object_Cipher
 size = 51
 after ba size = 51
 CREATING xform_doFinal_Cipher_Object_Cipher
-size = 1251
-after ba size = 1251
+size = 1540
+after ba size = 1540
 CREATING copyOf_byte_int_Arrays
 size = 1540
 after ba size = 1540
@@ -202,8 +202,8 @@ CREATING initb_Object_int_SecretKeySpec_AlgorithmParameterSpec_Cipher
 size = 53
 after ba size = 53
 CREATING xform_equals_SecretKeySpec_Object_SecretKeySpec
-size = 143
-after ba size = 143
+size = 154
+after ba size = 154
 CREATING Cipher_Object_String_String_Cipher
 size = 45
 after ba size = 45
@@ -214,152 +214,171 @@ after ba size = 45
  Inlining amount = 1
  Inlining functions in the sketch.
 inlined 1 new size =45
-inlined 4 new size =1831
-Found Cycle of size 45; Breaking.
-Found Cycle of size 42; Breaking.
-inlined 90 new size =21243
-Found Cycle of size 90; Breaking.
-inlined 39 new size =37262
-Found Cycle of size 10; Breaking.
-Found Cycle of size 29; Breaking.
-Found Cycle of size 60; Breaking.
-inlined 135 new size =46455
-Found Cycle of size 282; Breaking.
-Found Cycle of size 253; Breaking.
-Found Cycle of size 289; Breaking.
-inlined 60 new size =43232
-Found Cycle of size 579; Breaking.
-inlined 12 new size =12359
-inlined 2 new size =12285
-inlined 0 new size =12285
+inlined 4 new size =6632
+Found Cycle of size 248; Breaking.
+Found Cycle of size 245; Breaking.
+inlined 310 new size =125326
+inlined 162 new size =233938
+Found Cycle of size 28; Breaking.
+Found Cycle of size 72; Breaking.
+Found Cycle of size 303; Breaking.
+inlined 788 new size =293939
+Found Cycle of size 97; Breaking.
+Found Cycle of size 222; Breaking.
+Found Cycle of size 176; Breaking.
+inlined 276 new size =271296
+Found Cycle of size 552; Breaking.
+inlined 36 new size =55154
+inlined 2 new size =54767
+inlined 0 new size =54767
 END OF STEP 0
  Inlining functions in the spec.
 inlined 0 new size =0
 END OF STEP 0
 Bailing out
-after Creating Miter: Problem nodes = 12254
-* Final Problem size: Problem nodes = 12254
+after Creating Miter: Problem nodes = 54640
+* Final Problem size: Problem nodes = 54640
   # OF CONTROLS:    52
  control_ints = 34 	 control_bits = 18
 inputSize = 0	ctrlSize = 256
 Random seeds = 1
-!+ 0000000001010000000000000000110000010000000001000000001010110011001000001000000000001010100010000000110000000001010111000010000000000000101001000000000010000110000011100000000100000001110000000001010000101000110000000100001110011000011100100000000010000100
-!+ H__39_194:0
+!+ 1000001001000100010000100000000001000100001100000010000000010010100000011000100010100000100100001000010100011000000010000001001001000010001110011001100000000000000000010010000000000000010100001010001000000000000010001010101000001100001000000000010000000101
+!+ H__39_194:1
 H__37_194:0
 H__32_194:0
 H__25_194:0
 H__24_194:0
 H__17_194_193:0
-H__12_194_193:0
+H__12_194_193:1
 H__5_194_193:0
 H__4_194_193:0
 H__38_194:1
-H__0:2
-H__1:0
-H__26_194:48
-H__27_194:16
-H__28_194:0
-H__29_194:1
-H__30_194:84
-H__31_194:25
-H__33_194:65
-H__34_194:0
-H__35_194:80
-H__36_194:34
-H__6_194_193:64
-H__7_194_193:1
-H__8_194_193:40
-H__9_194_193:7
-H__10_194_193:1
-H__11_194_193:0
-H__13_194_193:37
-H__14_194_193:0
-H__15_194_193:4
-H__16_194_193:3
-H__2:7
-H__3:16
+H__0:8
+H__1:33
+H__26_194:0
+H__27_194:68
+H__28_194:48
+H__29_194:32
+H__30_194:0
+H__31_194:41
+H__33_194:96
+H__34_194:8
+H__35_194:5
+H__36_194:18
+H__6_194_193:4
+H__7_194_193:69
+H__8_194_193:1
+H__9_194_193:2
+H__10_194_193:18
+H__11_194_193:33
+H__13_194_193:28
+H__14_194_193:51
+H__15_194_193:0
+H__16_194_193:0
+H__2:72
+H__3:0
+H__18_194_193:0
 H__17_136:0
 H__12_136:0
 H__5_136:0
 H__4_136:0
-H__18_194_193:0
-H__19_194_193_194_193:1
-H__19_136_136:1
-H__18_136:1
-H__6_136:0
+H__6_136:20
 H__7_136:20
-H__8_136:20
-H__9_136:6
-H__10_136:8
-H__11_136:78
-H__13_136:97
-H__14_136:9
+H__8_136:2
+H__9_136:0
+H__10_136:34
+H__11_136:21
+H__13_136:24
+H__14_136:4
 H__15_136:64
-H__16_136:16
+H__16_136:0
+H__18_136:1
+H__19_194_193_194_193:0
+H__19_136_136:1
 
 BEG CHECK
- * After optims it became = 2 was 12254
-Assert at Tester.sk:27 (0)
-Simulation found a cex by random testing:  0.001 ms 
+ * After optims it became = 2 was 54640
+Expression to pattern match can't be null: Cipher.sk:258
+Simulation found a cex by random testing:  0 ms 
 END CHECK
-********  0	ftime= 0	ctime= 0.018
+********  0	ftime= 0	ctime= 0.092
 !% 
 !% 
 BEG FIND
 Level 1  intsize = 2
- * After optims it became = 12254 was 12254
- * After all optims it became = 12254
- finder  hits = 17039	 bstoreObjs=12331	 sstorePages=11
-hitcount 	0	3964	3
-hitcount 	1	7277	2
-hitcount 	2	386	3
-hitcount 	3	44	3
-hitcount 	4	18	2
-hitcount 	5	31	2
-hitcount 	6	16	2
-hitcount 	7	11	3
-hitcount 	8	16	3
-hitcount 	9	13	2
-hitcount 	10	5	3
-hitcount 	11	13	4
-hitcount 	12	9	3
-hitcount 	13	6	2
-hitcount 	14	9	4
-hitcount 	15	512	3
-hitcount 	28	1	1
-bucketsPerDepth 	1	1
-bucketsPerDepth 	2	5
-bucketsPerDepth 	3	70
-bucketsPerDepth 	4	237
+ * After optims it became = 54640 was 54640
+ * After all optims it became = 54640
+ finder  hits = 125895	 bstoreObjs=12773	 sstorePages=11
+hitcount 	0	302	4
+hitcount 	1	17	4
+hitcount 	2	15	4
+hitcount 	3	303	4
+hitcount 	4	3614	3
+hitcount 	5	3	5
+hitcount 	6	3	4
+hitcount 	7	27	4
+hitcount 	8	4	4
+hitcount 	9	7242	2
+hitcount 	10	4	4
+hitcount 	11	22	3
+hitcount 	12	9	5
+hitcount 	13	5	4
+hitcount 	14	402	3
+hitcount 	15	131	4
+hitcount 	18	2	4
+hitcount 	19	154	3
+hitcount 	20	1	2
+hitcount 	24	14	2
+hitcount 	29	22	3
+hitcount 	33	4	3
+hitcount 	34	22	2
+hitcount 	36	1	6
+hitcount 	39	6	3
+hitcount 	44	6	3
+hitcount 	46	1	5
+hitcount 	47	5	4
+hitcount 	49	7	1
+hitcount 	54	3	3
+hitcount 	59	17	3
+hitcount 	63	129	3
+hitcount 	64	3	5
+hitcount 	68	2	1
+hitcount 	69	6	2
+hitcount 	74	6	3
+hitcount 	79	258	3
+hitcount 	149	1	1
+bucketsPerDepth 	2	7
+bucketsPerDepth 	3	44
+bucketsPerDepth 	4	207
 bucketsPerDepth 	5	299
-bucketsPerDepth 	6	200
-bucketsPerDepth 	7	111
-bucketsPerDepth 	8	70
-bucketsPerDepth 	9	27
-bucketsPerDepth 	10	3
-bucketsPerDepth 	11	1
-* TIME TO ADD INPUT :  999.386 ms 
+bucketsPerDepth 	6	251
+bucketsPerDepth 	7	129
+bucketsPerDepth 	8	53
+bucketsPerDepth 	9	25
+bucketsPerDepth 	10	8
+bucketsPerDepth 	12	1
+* TIME TO ADD INPUT :  26999.6 ms 
 DECISIONS START = 0
-f# %assign: 8 clauses: 31232 learn: 1 restart: 1 decision: 6732 propagated: 25649
+f# %assign: 6 clauses: 35779 learn: 3 restart: 1 decision: 5895 propagated: 25701
 END FIND
-!+ 0111101001000000000000000000000000000000000000000000011000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000111110000000000000000000000000000000000000000000000000000000000000000000000000
+!+ 0111100110000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000011110000000000000000000000000000000000000000000000000000000000000000000000000
 !+ H__39_194:0
 H__37_194:1
 H__32_194:1
 H__25_194:1
 H__24_194:1
 H__17_194_193:0
-H__12_194_193:1
-H__5_194_193:0
-H__4_194_193:0
-H__38_194:1
+H__12_194_193:0
+H__5_194_193:1
+H__4_194_193:1
+H__38_194:0
 H__0:0
 H__1:0
 H__26_194:0
 H__27_194:0
 H__28_194:0
 H__29_194:0
-H__30_194:6
+H__30_194:0
 H__31_194:0
 H__33_194:0
 H__34_194:0
@@ -374,17 +393,14 @@ H__11_194_193:0
 H__13_194_193:0
 H__14_194_193:0
 H__15_194_193:0
-H__16_194_193:1
+H__16_194_193:0
 H__2:0
 H__3:0
+H__18_194_193:0
 H__17_136:1
 H__12_136:1
 H__5_136:1
 H__4_136:1
-H__18_194_193:1
-H__19_194_193_194_193:0
-H__19_136_136:0
-H__18_136:0
 H__6_136:0
 H__7_136:0
 H__8_136:0
@@ -395,9 +411,12 @@ H__13_136:0
 H__14_136:0
 H__15_136:0
 H__16_136:0
+H__18_136:0
+H__19_194_193_194_193:0
+H__19_136_136:0
 
 BEG CHECK
- * After optims it became = 0 was 12254
+ * After optims it became = 0 was 54640
 Simulation no cex:  0 ms 
 CONTROL: growing l=2 inputs to size 3
 Simulation no cex:  0 ms 
@@ -406,19 +425,19 @@ Simulation no cex:  0 ms
 CONTROL: growing l=2 inputs to size 5
 Simulation no cex:  0 ms 
 END CHECK
-********  1	ftime= 999.391	ctime= 0.018
+********  1	ftime= 26999.6	ctime= 0.096
  *GOT THE CORRECT ANSWER IN 2 iterations.
- *FIND TIME 999.391 CHECK TIME 0.036 TOTAL TIME 999.428
-VALUES H__0: 0, H__1: 0, H__10_136: 0, H__10_194_193: 0, H__11_136: 0, H__11_194_193: 0, H__12_136: 1, H__12_194_193: 1, H__13_136: 0, H__13_194_193: 0, H__14_136: 0, H__14_194_193: 0, H__15_136: 0, H__15_194_193: 0, H__16_136: 0, H__16_194_193: 1, H__17_136: 1, H__17_194_193: 0, H__18_136: 0, H__18_194_193: 1, H__19_136_136: 0, H__19_194_193_194_193: 0, H__2: 0, H__24_194: 1, H__25_194: 1, H__26_194: 0, H__27_194: 0, H__28_194: 0, H__29_194: 0, H__3: 0, H__30_194: 6, H__31_194: 0, H__32_194: 1, H__33_194: 0, H__34_194: 0, H__35_194: 0, H__36_194: 0, H__37_194: 1, H__38_194: 1, H__39_194: 0, H__4_136: 1, H__4_194_193: 0, H__5_136: 1, H__5_194_193: 0, H__6_136: 0, H__6_194_193: 0, H__7_136: 0, H__7_194_193: 0, H__8_136: 0, H__8_194_193: 0, H__9_136: 0, H__9_194_193: 0, 
+ *FIND TIME 26999.6 CHECK TIME 0.188 TOTAL TIME 26999.8
+VALUES H__0: 0, H__1: 0, H__10_136: 0, H__10_194_193: 0, H__11_136: 0, H__11_194_193: 0, H__12_136: 1, H__12_194_193: 0, H__13_136: 0, H__13_194_193: 0, H__14_136: 0, H__14_194_193: 0, H__15_136: 0, H__15_194_193: 0, H__16_136: 0, H__16_194_193: 0, H__17_136: 1, H__17_194_193: 0, H__18_136: 0, H__18_194_193: 0, H__19_136_136: 0, H__19_194_193_194_193: 0, H__2: 0, H__24_194: 1, H__25_194: 1, H__26_194: 0, H__27_194: 0, H__28_194: 0, H__29_194: 0, H__3: 0, H__30_194: 0, H__31_194: 0, H__32_194: 1, H__33_194: 0, H__34_194: 0, H__35_194: 0, H__36_194: 0, H__37_194: 1, H__38_194: 0, H__39_194: 0, H__4_136: 1, H__4_194_193: 1, H__5_136: 1, H__5_194_193: 1, H__6_136: 0, H__6_194_193: 0, H__7_136: 0, H__7_194_193: 0, H__8_136: 0, H__8_194_193: 0, H__9_136: 0, H__9_194_193: 0, 
 RESULT = 2  
-**ROUND 0 : 0 Round time:  999.76 ms 
+**ROUND 0 : 0 Round time:  29000.1 ms 
 RNDDEG = -1
 return 0
 
 ----- Statistics -----
-Total elapsed time (ms):  1000.19
-Model building time (ms): 0.4
-Solution time (ms):       999.76
+Total elapsed time (ms):  29999.9
+Model building time (ms): 999.723
+Solution time (ms):       29000.1
 Max virtual mem (bytes):  0
 Max resident mem (bytes): 0
 Max private mem (bytes):  0
@@ -426,9 +445,9 @@ ALL CORRECT
 [SATBackend] Stats for last run:
       [solution stats]
       successful? ---------------------> true
-      elapsed time (s) ----------------> 1.381
-      model building time (s) ---------> 0.0
-      solution time (s) ---------------> 0.999
+      elapsed time (s) ----------------> 30.102
+      model building time (s) ---------> 0.999
+      solution time (s) ---------------> 29.0
       max memory usage (MiB) ----------> 0.0
       [SAT-specific solution stats]
       initial number of nodes ---------> -1
@@ -632,9 +651,9 @@ void main__Wrapper ()  implements main__WrapperNospec/*Tester.sk:7*/
   
 void main__WrapperNospec ()/*Tester.sk:7*/
   { }
-  /*Tester.sk:31*/
+  /*Tester.sk:33*/
   
-void testJCECipher (Object self)/*Tester.sk:31*/
+void testJCECipher (Object self)/*Tester.sk:33*/
   {
     int oc_s97 = 0;
     JCECipher@meta(oc_s97);
@@ -658,7 +677,7 @@ void testJCECipher (Object self)/*Tester.sk:31*/
     String_String_char_int_int@String(new Object@Object(__cid=oc_s111), oc_s113, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=14), oc_s115)//{};
     Object@Object oc_s117 = null;
     JCECipher_JCECipher_String_String_String@JCECipher(new Object@Object(__cid=oc_s97), oc_s103, oc_s109, oc_s115, oc_s117)//{};
-    for(int x = 666666; x < 666667; x = x + 111111)
+    for(int x = 0; x < 5; x = x + 1)/*Canonical*/
     {
       Object@Object p1_s119 = null;
       toString_int@Integer(new Object@Object(__cid=-2, _int=x), p1_s119);
@@ -669,7 +688,7 @@ void testJCECipher (Object self)/*Tester.sk:31*/
       int plaintext_s125 = 0;
       String@meta(plaintext_s125);
       Object@Object _pac_sc_s126 = null;
-      if((p1_s119.__cid) == plaintext_s125)/*Tester.sk:39*/
+      if((p1_s119.__cid) == plaintext_s125)/*Tester.sk:43*/
       {
         Object@Object plaintext_s128 = null;
         getBytes@String(p1_s119, plaintext_s128);
@@ -682,7 +701,7 @@ void testJCECipher (Object self)/*Tester.sk:31*/
       int IV_s130 = 0;
       String@meta(IV_s130);
       Object@Object _pac_sc_s131 = null;
-      if((p2_s121.__cid) == IV_s130)/*Tester.sk:40*/
+      if((p2_s121.__cid) == IV_s130)/*Tester.sk:44*/
       {
         Object@Object IV_s133 = null;
         getBytes@String(p2_s121, IV_s133);
@@ -694,7 +713,7 @@ void testJCECipher (Object self)/*Tester.sk:31*/
       }
       int key_s135 = 0;
       String@meta(key_s135);
-      if((p3_s123.__cid) == key_s135)/*Tester.sk:41*/
+      if((p3_s123.__cid) == key_s135)/*Tester.sk:45*/
       {
         Object@Object key_s138 = null;
         getBytes@String(p3_s123, key_s138);
@@ -704,7 +723,7 @@ void testJCECipher (Object self)/*Tester.sk:31*/
       int cipherText_s142 = 0;
       JCECipher@meta(cipherText_s142);
       Object@Object _pac_sc_s143 = null;
-      if((oc_s117.__cid) == (new Object@Object(__cid=-2, _int=cipherText_s142)._int))/*Tester.sk:43*/
+      if((oc_s117.__cid) == (new Object@Object(__cid=-2, _int=cipherText_s142)._int))/*Tester.sk:47*/
       {
         Object@Object cipherText_s145 = null;
         encrypt_byte_SecretKeySpec_byte@JCECipher(oc_s117, _pac_sc_s126, sk_s140, _pac_sc_s131, cipherText_s145);
@@ -717,7 +736,7 @@ void testJCECipher (Object self)/*Tester.sk:31*/
       int plaintext2_s147 = 0;
       JCECipher@meta(plaintext2_s147);
       Object@Object _pac_sc_s148 = null;
-      if((oc_s117.__cid) == (new Object@Object(__cid=-2, _int=plaintext2_s147)._int))/*Tester.sk:44*/
+      if((oc_s117.__cid) == (new Object@Object(__cid=-2, _int=plaintext2_s147)._int))/*Tester.sk:48*/
       {
         Object@Object plaintext2_s150 = null;
         decrypt_byte_SecretKeySpec_byte@JCECipher(oc_s117, _pac_sc_s143, sk_s140, _pac_sc_s131, plaintext2_s150);
@@ -729,10 +748,10 @@ void testJCECipher (Object self)/*Tester.sk:31*/
       }
       Object@Object _out_s152 = null;
       arraysEquals_byte_byte@Arrays(_pac_sc_s126, _pac_sc_s148, _out_s152);
-      assert (_out_s152._bit); //Assert at Tester.sk:45 (0)
+      assert (_out_s152._bit); //Assert at Tester.sk:49 (0)
       int _out_s154 = 0;
       Array@meta(_out_s154);
-      assert ((_pac_sc_s143.__cid) != _out_s154); //Assert at Tester.sk:46 (0)
+      assert ((_pac_sc_s143.__cid) != _out_s154); //Assert at Tester.sk:50 (0)
     }
   }
   /*Tester.sk:13*/
@@ -755,7 +774,7 @@ void testOpenSSL (Object self)/*Tester.sk:13*/
     String_String_char_int_int@String(new Object@Object(__cid=oc_s164), oc_s166, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=14), oc_s168)//{};
     Object@Object oc_s170 = null;
     OpenSSLCipher_OpenSSLCipher_String_String@OpenSSLCipher(new Object@Object(__cid=oc_s156), oc_s162, oc_s168, oc_s170)//{};
-    for(int x = 666666; x < 666667; x = x + 111111)
+    for(int x = 0; x < 5; x = x + 1)/*Canonical*/
     {
       Object@Object p1_s172 = null;
       toString_int@Integer(new Object@Object(__cid=-2, _int=x), p1_s172);
@@ -766,7 +785,7 @@ void testOpenSSL (Object self)/*Tester.sk:13*/
       int plaintext_s178 = 0;
       String@meta(plaintext_s178);
       Object@Object _pac_sc_s179 = null;
-      if((p1_s172.__cid) == plaintext_s178)/*Tester.sk:21*/
+      if((p1_s172.__cid) == plaintext_s178)/*Tester.sk:23*/
       {
         Object@Object plaintext_s181 = null;
         getBytes@String(p1_s172, plaintext_s181);
@@ -779,7 +798,7 @@ void testOpenSSL (Object self)/*Tester.sk:13*/
       int IV_s183 = 0;
       String@meta(IV_s183);
       Object@Object _pac_sc_s184 = null;
-      if((p2_s174.__cid) == IV_s183)/*Tester.sk:22*/
+      if((p2_s174.__cid) == IV_s183)/*Tester.sk:24*/
       {
         Object@Object IV_s186 = null;
         getBytes@String(p2_s174, IV_s186);
@@ -791,7 +810,7 @@ void testOpenSSL (Object self)/*Tester.sk:13*/
       }
       int key_s188 = 0;
       String@meta(key_s188);
-      if((p3_s176.__cid) == key_s188)/*Tester.sk:23*/
+      if((p3_s176.__cid) == key_s188)/*Tester.sk:25*/
       {
         Object@Object key_s191 = null;
         getBytes@String(p3_s176, key_s191);
@@ -801,7 +820,7 @@ void testOpenSSL (Object self)/*Tester.sk:13*/
       int cipherText_s195 = 0;
       OpenSSLCipher@meta(cipherText_s195);
       Object@Object _pac_sc_s196 = null;
-      if((oc_s170.__cid) == (new Object@Object(__cid=-2, _int=cipherText_s195)._int))/*Tester.sk:25*/
+      if((oc_s170.__cid) == (new Object@Object(__cid=-2, _int=cipherText_s195)._int))/*Tester.sk:27*/
       {
         Object@Object cipherText_s198 = null;
         encrypt_byte_SecretKeySpec_byte@OpenSSLCipher(oc_s170, _pac_sc_s179, sk_s193, _pac_sc_s184, cipherText_s198);
@@ -814,7 +833,7 @@ void testOpenSSL (Object self)/*Tester.sk:13*/
       int plaintext2_s200 = 0;
       OpenSSLCipher@meta(plaintext2_s200);
       Object@Object _pac_sc_s201 = null;
-      if((oc_s170.__cid) == (new Object@Object(__cid=-2, _int=plaintext2_s200)._int))/*Tester.sk:26*/
+      if((oc_s170.__cid) == (new Object@Object(__cid=-2, _int=plaintext2_s200)._int))/*Tester.sk:28*/
       {
         Object@Object plaintext2_s203 = null;
         decrypt_byte_SecretKeySpec_byte@OpenSSLCipher(oc_s170, _pac_sc_s196, sk_s193, _pac_sc_s184, plaintext2_s203);
@@ -826,7 +845,7 @@ void testOpenSSL (Object self)/*Tester.sk:13*/
       }
       Object@Object _out_s205 = null;
       arraysEquals_byte_byte@Arrays(_pac_sc_s179, _pac_sc_s201, _out_s205);
-      assert (_out_s205._bit); //Assert at Tester.sk:27 (0)
+      assert (_out_s205._bit); //Assert at Tester.sk:29 (0)
     }
   }
   /* END PACKAGE Tester*/
@@ -936,18 +955,18 @@ void String_String_char_int_int (Object self, Object ca, Object offset, Object c
   {
     if(((offset._int) > (new Object@Object(__cid=-2, _int=0)._int)) && ((offset._int) < (ca._array_char.length._int)))/*String.sk:8*/
     {
-      Object@Object tmp_s748 = null;
-      Wrap_Array_char@array(new Array_char@array(length=count), tmp_s748);
+      Object@Object tmp_s1010 = null;
+      Wrap_Array_char@array(new Array_char@array(length=count), tmp_s1010);
       Object@Object i;
       i = new Object@Object(__cid=-2, _int=0);
       bit __sa0 = (i._int) < (count._int);
       while(__sa0)
       {
-        tmp_s748._array_char.A[i._int] = ca._array_char.A[(i._int) + (offset._int)];
+        tmp_s1010._array_char.A[i._int] = ca._array_char.A[(i._int) + (offset._int)];
         i = new Object@Object(__cid=-2, _int=(i._int) + 1);
         __sa0 = (i._int) < (count._int);
       }
-      self._value_String = tmp_s748;
+      self._value_String = tmp_s1010;
     }
     else
     {
@@ -973,65 +992,65 @@ void charAt_int (Object self, Object index, ref Object _out)/*String.sk:43*/
   
 void getBytes (Object self, ref Object _out)/*String.sk:214*/
   {
-    int _out_s729 = 0;
-    String@meta(_out_s729);
-    Object@Object _pac_sc_s730 = null;
-    if((self.__cid) == (new Object@Object(__cid=-2, _int=_out_s729)._int))/*String.sk:215*/
+    int _out_s991 = 0;
+    String@meta(_out_s991);
+    Object@Object _pac_sc_s992 = null;
+    if((self.__cid) == (new Object@Object(__cid=-2, _int=_out_s991)._int))/*String.sk:215*/
     {
-      Object@Object _out_s732 = null;
-      toString@String(self, _out_s732);
-      _pac_sc_s730 = _out_s732;
+      Object@Object _out_s994 = null;
+      toString@String(self, _out_s994);
+      _pac_sc_s992 = _out_s994;
     }
     else
     {
-      _pac_sc_s730 = null;
+      _pac_sc_s992 = null;
     }
-    Object@Object _out_s734 = null;
-    getBytes_String(_pac_sc_s730, _out_s734)//{};
-    _out = _out_s734;
+    Object@Object _out_s996 = null;
+    getBytes_String(_pac_sc_s992, _out_s996)//{};
+    _out = _out_s996;
     return;
   }
   /*String.sk:218*/
   
 void getBytes_String (Object str, ref Object _out)/*String.sk:218*/
   {
-    int len_s736 = 0;
-    String@meta(len_s736);
-    Object@Object _pac_sc_s737 = null;
-    if((str.__cid) == (new Object@Object(__cid=-2, _int=len_s736)._int))/*String.sk:219*/
+    int len_s998 = 0;
+    String@meta(len_s998);
+    Object@Object _pac_sc_s999 = null;
+    if((str.__cid) == (new Object@Object(__cid=-2, _int=len_s998)._int))/*String.sk:219*/
     {
-      Object@Object len_s739 = null;
-      length@String(str, len_s739);
-      _pac_sc_s737 = len_s739;
+      Object@Object len_s1001 = null;
+      length@String(str, len_s1001);
+      _pac_sc_s999 = len_s1001;
     }
     else
     {
-      _pac_sc_s737 = null;
+      _pac_sc_s999 = null;
     }
-    Object@Object bytes_s741 = null;
-    Wrap_Array_char@array(new Array_char@array(length=_pac_sc_s737), bytes_s741);
-    _out = bytes_s741;
+    Object@Object bytes_s1003 = null;
+    Wrap_Array_char@array(new Array_char@array(length=_pac_sc_s999), bytes_s1003);
+    _out = bytes_s1003;
     Object@Object i;
     i = new Object@Object(__cid=-2, _int=0);
-    bit __sa14 = (i._int) < (_pac_sc_s737._int);
+    bit __sa14 = (i._int) < (_pac_sc_s999._int);
     while(__sa14)
     {
-      int _out_s743 = 0;
-      String@meta(_out_s743);
-      Object@Object _pac_sc_s744 = null;
-      if((str.__cid) == (new Object@Object(__cid=-2, _int=_out_s743)._int))/*String.sk:222*/
+      int _out_s1005 = 0;
+      String@meta(_out_s1005);
+      Object@Object _pac_sc_s1006 = null;
+      if((str.__cid) == (new Object@Object(__cid=-2, _int=_out_s1005)._int))/*String.sk:222*/
       {
-        Object@Object _out_s746 = null;
-        charAt_int@String(str, i, _out_s746);
-        _pac_sc_s744 = _out_s746;
+        Object@Object _out_s1008 = null;
+        charAt_int@String(str, i, _out_s1008);
+        _pac_sc_s1006 = _out_s1008;
       }
       else
       {
-        _pac_sc_s744 = null;
+        _pac_sc_s1006 = null;
       }
-      bytes_s741._array_char.A[i._int] = _pac_sc_s744._char;
+      bytes_s1003._array_char.A[i._int] = _pac_sc_s1006._char;
       i = new Object@Object(__cid=-2, _int=(i._int) + 1);
-      __sa14 = (i._int) < (_pac_sc_s737._int);
+      __sa14 = (i._int) < (_pac_sc_s999._int);
     }
     return;
   }
@@ -1093,9 +1112,9 @@ package array{
   
 void Wrap_Array_char (Array_char arr, ref Object _out)/*array.sk:37*/
   {
-    int _out_s1213 = 0;
-    Array@meta(_out_s1213);
-    _out = new Object@Object(__cid=_out_s1213, _array_char=arr);
+    int _out_s1475 = 0;
+    Array@meta(_out_s1475);
+    _out = new Object@Object(__cid=_out_s1475, _array_char=arr);
     return;
   }
   /* END PACKAGE array*/
@@ -1121,9 +1140,9 @@ package SecretKeySpec{
   
 void SecretKeySpec_SecretKeySpec (ref Object _out)/*SecretKeySpec.sk:9*/
   {
-    int _out_s1225 = 0;
-    SecretKeySpec@meta(_out_s1225);
-    _out = new Object@Object(__cid=_out_s1225, _secretkeyspec=new Secretkeyspec());
+    int _out_s1495 = 0;
+    SecretKeySpec@meta(_out_s1495);
+    _out = new Object@Object(__cid=_out_s1495, _secretkeyspec=new Secretkeyspec());
     return;
   }
   /*SecretKeySpec.sk:34*/
@@ -1141,15 +1160,35 @@ void xform_equals_SecretKeySpec_Object (SecretKeySpec self, Object o, ref Object
             return;
           }
           case Getencoded:
-            assert (0); //ASSERTION CAN NOT BE SATISFIED: SecretKeySpec.sk:40 ASSERTION CAN NOT BE SATISFIED: SecretKeySpec.sk:56 Assert at SecretKeySpec.sk:56 (1)
+          {
+            int _out_s1487 = 0;
+            SecretKeySpec@meta(_out_s1487);
+            _out = new Object@Object(__cid=_out_s1487, _secretkeyspec=self);
+            return;
+          }
           case Equals_object:
-            assert (0); //ASSERTION CAN NOT BE SATISFIED: SecretKeySpec.sk:40 ASSERTION CAN NOT BE SATISFIED: SecretKeySpec.sk:57 Assert at SecretKeySpec.sk:57 (1)
+          {
+            int _out_s1489 = 0;
+            SecretKeySpec@meta(_out_s1489);
+            _out = new Object@Object(__cid=_out_s1489, _secretkeyspec=self);
+            return;
+          }
         }
       }
       case Getencoded:
-        assert (0); //ASSERTION CAN NOT BE SATISFIED: SecretKeySpec.sk:35 ASSERTION CAN NOT BE SATISFIED: SecretKeySpec.sk:62 Assert at SecretKeySpec.sk:62 (1)
+      {
+        int _out_s1491 = 0;
+        SecretKeySpec@meta(_out_s1491);
+        _out = new Object@Object(__cid=_out_s1491, _secretkeyspec=self);
+        return;
+      }
       case Equals_object:
-        assert (0); //ASSERTION CAN NOT BE SATISFIED: SecretKeySpec.sk:35 ASSERTION CAN NOT BE SATISFIED: SecretKeySpec.sk:63 Assert at SecretKeySpec.sk:63 (1)
+      {
+        int _out_s1493 = 0;
+        SecretKeySpec@meta(_out_s1493);
+        _out = new Object@Object(__cid=_out_s1493, _secretkeyspec=self);
+        return;
+      }
     }
     _out = null;
     return;
@@ -1175,101 +1214,95 @@ void OpenSSLCipher_OpenSSLCipher_String_String (Object self, Object algorithm, O
   
 void decrypt_byte_SecretKeySpec_byte (Object self, Object data, Object key, Object IV, ref Object _out)/*OpenSSLCipher.sk:36*/
   {
-    Object@Object _out_s1235 = null;
-    translate_boolean_byte_SecretKeySpec_byte@OpenSSLCipher(self, new Object@Object(__cid=-4, _bit=0), data, key, IV, _out_s1235);
-    _out = _out_s1235;
+    Object@Object _out_s1519 = null;
+    translate_boolean_byte_SecretKeySpec_byte@OpenSSLCipher(self, new Object@Object(__cid=-4, _bit=0), data, key, IV, _out_s1519);
+    _out = _out_s1519;
     return;
   }
   /*OpenSSLCipher.sk:32*/
   
 void encrypt_byte_SecretKeySpec_byte (Object self, Object data, Object key, Object IV, ref Object _out)/*OpenSSLCipher.sk:32*/
   {
-    Object@Object _out_s1276 = null;
-    translate_boolean_byte_SecretKeySpec_byte@OpenSSLCipher(self, new Object@Object(__cid=-4, _bit=1), data, key, IV, _out_s1276);
-    _out = _out_s1276;
+    Object@Object _out_s1560 = null;
+    translate_boolean_byte_SecretKeySpec_byte@OpenSSLCipher(self, new Object@Object(__cid=-4, _bit=1), data, key, IV, _out_s1560);
+    _out = _out_s1560;
     return;
   }
   /*OpenSSLCipher.sk:79*/
   
 void translate_boolean_byte_SecretKeySpec_byte (Object self, Object isEncryption, Object data, Object key, Object IV, ref Object _out)/*OpenSSLCipher.sk:79*/
   {
-    Object@Object _out_s1237 = null;
-    Object@Object cipher_s1239 = null;
-    getCipher_boolean_SecretKeySpec_byte@JCECipher(self, isEncryption, key, IV, cipher_s1239);
-    Object@Object updateBytes_s1241 = null;
-    xform_update_Cipher_byte_int_int_byte_int@Cipher(cipher_s1239._cipher, data, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=0), _out_s1237, new Object@Object(__cid=-2, _int=0), updateBytes_s1241);
-    int cipher_s1243 = 0;
-    Cipher@meta(cipher_s1243);
-    Object@Object _pac_sc_s1244 = null;
-    if((cipher_s1239.__cid) == (new Object@Object(__cid=-2, _int=cipher_s1243)._int))/*OpenSSLCipher.sk:51*/
+    Object@Object _out_s1521 = null;
+    Object@Object cipher_s1523 = null;
+    getCipher_boolean_SecretKeySpec_byte@JCECipher(self, isEncryption, key, IV, cipher_s1523);
+    Object@Object updateBytes_s1525 = null;
+    xform_update_Cipher_byte_int_int_byte_int@Cipher(cipher_s1523._cipher, data, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=0), _out_s1521, new Object@Object(__cid=-2, _int=0), updateBytes_s1525);
+    int cipher_s1527 = 0;
+    Cipher@meta(cipher_s1527);
+    Object@Object _pac_sc_s1528 = null;
+    if((cipher_s1523.__cid) == (new Object@Object(__cid=-2, _int=cipher_s1527)._int))/*OpenSSLCipher.sk:51*/
     {
-      Object@Object cipher_s1246 = null;
-      updateb_Object_byte_int_int_byte_int@Cipher(cipher_s1239, data, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=6), _out_s1237, new Object@Object(__cid=-2, _int=0), cipher_s1246);
-      _pac_sc_s1244 = cipher_s1246;
+      Object@Object cipher_s1530 = null;
+      updateb_Object_byte_int_int_byte_int@Cipher(cipher_s1523, data, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=0), _out_s1521, new Object@Object(__cid=-2, _int=0), cipher_s1530);
+      _pac_sc_s1528 = cipher_s1530;
     }
     else
     {
-      _pac_sc_s1244 = null;
+      _pac_sc_s1528 = null;
     }
-    Object@Object finalBytes_s1248 = null;
-    xform_doFinale_Cipher_byte_int_int_byte_int@Cipher(_pac_sc_s1244._cipher, data, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=0), _out_s1237, updateBytes_s1241, finalBytes_s1248);
-    int cipher_s1250 = 0;
-    Cipher@meta(cipher_s1250);
-    Object@Object _pac_sc_s1251 = null;
-    if((_pac_sc_s1244.__cid) == (new Object@Object(__cid=-2, _int=cipher_s1250)._int))/*OpenSSLCipher.sk:55*/
+    Object@Object finalBytes_s1532 = null;
+    xform_doFinale_Cipher_byte_int_int_byte_int@Cipher(_pac_sc_s1528._cipher, data, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=0), _out_s1521, updateBytes_s1525, finalBytes_s1532);
+    int cipher_s1534 = 0;
+    Cipher@meta(cipher_s1534);
+    Object@Object _pac_sc_s1535 = null;
+    if((_pac_sc_s1528.__cid) == (new Object@Object(__cid=-2, _int=cipher_s1534)._int))/*OpenSSLCipher.sk:55*/
     {
-      Object@Object cipher_s1253 = null;
-      doFinaleb_Object_byte_int_int_byte_int@Cipher(_pac_sc_s1244, data, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=0), _out_s1237, updateBytes_s1241, cipher_s1253);
-      _pac_sc_s1251 = cipher_s1253;
+      Object@Object cipher_s1537 = null;
+      doFinaleb_Object_byte_int_int_byte_int@Cipher(_pac_sc_s1528, data, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=0), _out_s1521, updateBytes_s1525, cipher_s1537);
+      _pac_sc_s1535 = cipher_s1537;
     }
     else
     {
-      _pac_sc_s1251 = null;
+      _pac_sc_s1535 = null;
     }
     if(isEncryption._bit)/*OpenSSLCipher.sk:58*/
     {
-      int cipherText_s1255 = 0;
-      Cipher@meta(cipherText_s1255);
-      Object@Object _pac_sc_s1256 = null;
-      if((_pac_sc_s1251.__cid) == (new Object@Object(__cid=-2, _int=cipherText_s1255)._int))/*OpenSSLCipher.sk:59*/
+      int cipherText_s1539 = 0;
+      Cipher@meta(cipherText_s1539);
+      Object@Object _pac_sc_s1540 = null;
+      if((_pac_sc_s1535.__cid) == (new Object@Object(__cid=-2, _int=cipherText_s1539)._int))/*OpenSSLCipher.sk:59*/
       {
-        Object@Object cipherText_s1258 = null;
-        doFinal_Object_Object@Cipher(_pac_sc_s1251, data, cipherText_s1258);
-        _pac_sc_s1256 = cipherText_s1258;
+        Object@Object cipherText_s1542 = null;
+        doFinal_Object_Object@Cipher(_pac_sc_s1535, data, cipherText_s1542);
+        _pac_sc_s1540 = cipherText_s1542;
       }
       else
       {
-        _pac_sc_s1256 = null;
+        _pac_sc_s1540 = null;
       }
-      _out_s1237 = _pac_sc_s1256;
-      int cipher_s1260 = 0;
-      Cipher@meta(cipher_s1260);
-      if((_pac_sc_s1251.__cid) == (new Object@Object(__cid=-2, _int=cipher_s1260)._int))/*OpenSSLCipher.sk:60*/
+      _out_s1521 = _pac_sc_s1540;
+      int cipher_s1544 = 0;
+      Cipher@meta(cipher_s1544);
+      if((_pac_sc_s1535.__cid) == (new Object@Object(__cid=-2, _int=cipher_s1544)._int))/*OpenSSLCipher.sk:60*/
       {
-        Object@Object cipher_s1263 = null;
-        doFinalb_Object_Object@Cipher(_pac_sc_s1251, data, cipher_s1263);
+        Object@Object cipher_s1547 = null;
+        doFinalb_Object_Object@Cipher(_pac_sc_s1535, data, cipher_s1547);
       }
     }
     else
     {
-      Object@Object cipherText_s1265 = null;
-      xform_doFinal_Cipher_Object@Cipher(_pac_sc_s1251._cipher, data, cipherText_s1265);
-      _out_s1237 = cipherText_s1265;
-      int cipher_s1267 = 0;
-      Cipher@meta(cipher_s1267);
-      if((_pac_sc_s1251.__cid) == (new Object@Object(__cid=-2, _int=cipher_s1267)._int))/*OpenSSLCipher.sk:63*/
+      Object@Object cipherText_s1549 = null;
+      xform_doFinal_Cipher_Object@Cipher(_pac_sc_s1535._cipher, data, cipherText_s1549);
+      _out_s1521 = cipherText_s1549;
+      int cipher_s1551 = 0;
+      Cipher@meta(cipher_s1551);
+      if((_pac_sc_s1535.__cid) == (new Object@Object(__cid=-2, _int=cipher_s1551)._int))/*OpenSSLCipher.sk:63*/
       {
-        Object@Object cipher_s1270 = null;
-        doFinalb_Object_Object@Cipher(_pac_sc_s1251, data, cipher_s1270);
+        Object@Object cipher_s1554 = null;
+        doFinalb_Object_Object@Cipher(_pac_sc_s1535, data, cipher_s1554);
       }
     }
-    if(!(isEncryption._bit))/*OpenSSLCipher.sk:67*/
-    {
-      Object@Object cipherText_s1272 = null;
-      copyOf_byte_int@Arrays(_out_s1237, new Object@Object(__cid=-2, _int=(updateBytes_s1241._int) + (finalBytes_s1248._int)), cipherText_s1272);
-      _out_s1237 = cipherText_s1272;
-    }
-    _out = _out_s1237;
+    _out = _out_s1521;
     return;
   }
   /* END PACKAGE OpenSSLCipher*/
@@ -1340,34 +1373,34 @@ void toString_int (Object i, ref Object _out)/*Integer.sk:39*/
   {
     if((i._int) == (new Object@Object(__cid=-2, _int=0)._int))/*Integer.sk:40*/
     {
-      int _out_s1390 = 0;
-      String@meta(_out_s1390);
-      Object@Object _out_s1392 = null;
-      Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=2), A={'0','\0'}), _out_s1392);
-      Object@Object _out_s1394 = null;
-      String_String_char_int_int@String(new Object@Object(__cid=_out_s1390), _out_s1392, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=1), _out_s1394)//{};
-      _out = _out_s1394;
+      int _out_s1720 = 0;
+      String@meta(_out_s1720);
+      Object@Object _out_s1722 = null;
+      Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=2), A={'0','\0'}), _out_s1722);
+      Object@Object _out_s1724 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_out_s1720), _out_s1722, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=1), _out_s1724)//{};
+      _out = _out_s1724;
       return;
     }
     Object@Object index = new Object@Object(__cid=-2, _int=0);
     Object@Object temp = i;
     Object@Object j;
-    Object@Object ret_s1396 = null;
-    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=32)), ret_s1396);
-    Object@Object ret2_s1398 = null;
-    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=32)), ret2_s1398);
-    Object@Object nums_s1400 = null;
-    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=10)), nums_s1400);
-    nums_s1400._array_char.A[0] = new Object@Object(__cid=-3, _char='0')._char;
-    nums_s1400._array_char.A[1] = new Object@Object(__cid=-3, _char='1')._char;
-    nums_s1400._array_char.A[2] = new Object@Object(__cid=-3, _char='2')._char;
-    nums_s1400._array_char.A[3] = new Object@Object(__cid=-3, _char='3')._char;
-    nums_s1400._array_char.A[4] = new Object@Object(__cid=-3, _char='4')._char;
-    nums_s1400._array_char.A[5] = new Object@Object(__cid=-3, _char='5')._char;
-    nums_s1400._array_char.A[6] = new Object@Object(__cid=-3, _char='6')._char;
-    nums_s1400._array_char.A[7] = new Object@Object(__cid=-3, _char='7')._char;
-    nums_s1400._array_char.A[8] = new Object@Object(__cid=-3, _char='8')._char;
-    nums_s1400._array_char.A[9] = new Object@Object(__cid=-3, _char='9')._char;
+    Object@Object ret_s1726 = null;
+    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=32)), ret_s1726);
+    Object@Object ret2_s1728 = null;
+    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=32)), ret2_s1728);
+    Object@Object nums_s1730 = null;
+    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=10)), nums_s1730);
+    nums_s1730._array_char.A[0] = new Object@Object(__cid=-3, _char='0')._char;
+    nums_s1730._array_char.A[1] = new Object@Object(__cid=-3, _char='1')._char;
+    nums_s1730._array_char.A[2] = new Object@Object(__cid=-3, _char='2')._char;
+    nums_s1730._array_char.A[3] = new Object@Object(__cid=-3, _char='3')._char;
+    nums_s1730._array_char.A[4] = new Object@Object(__cid=-3, _char='4')._char;
+    nums_s1730._array_char.A[5] = new Object@Object(__cid=-3, _char='5')._char;
+    nums_s1730._array_char.A[6] = new Object@Object(__cid=-3, _char='6')._char;
+    nums_s1730._array_char.A[7] = new Object@Object(__cid=-3, _char='7')._char;
+    nums_s1730._array_char.A[8] = new Object@Object(__cid=-3, _char='8')._char;
+    nums_s1730._array_char.A[9] = new Object@Object(__cid=-3, _char='9')._char;
     if((i._int) < (new Object@Object(__cid=-2, _int=0)._int))/*Integer.sk:47*/
     {
       temp = new Object@Object(__cid=-2, _int=(i._int) * (-(new Object@Object(__cid=-2, _int=1)._int)));
@@ -1375,14 +1408,14 @@ void toString_int (Object i, ref Object _out)/*Integer.sk:39*/
     bit __sa19 = (temp._int) > (new Object@Object(__cid=-2, _int=0)._int);
     while(__sa19)
     {
-      ret_s1396._array_char.A[index._int] = nums_s1400._array_char.A[(temp._int) % (new Object@Object(__cid=-2, _int=10)._int)];
+      ret_s1726._array_char.A[index._int] = nums_s1730._array_char.A[(temp._int) % (new Object@Object(__cid=-2, _int=10)._int)];
       temp = new Object@Object(__cid=-2, _int=(temp._int) / (new Object@Object(__cid=-2, _int=10)._int));
       index = new Object@Object(__cid=-2, _int=(index._int) + (new Object@Object(__cid=-2, _int=1)._int));
       __sa19 = (temp._int) > (new Object@Object(__cid=-2, _int=0)._int);
     }
     if((i._int) < (new Object@Object(__cid=-2, _int=0)._int))/*Integer.sk:55*/
     {
-      ret_s1396._array_char.A[index._int] = new Object@Object(__cid=-3, _char='-')._char;
+      ret_s1726._array_char.A[index._int] = new Object@Object(__cid=-3, _char='-')._char;
       index = new Object@Object(__cid=-2, _int=(index._int) + (new Object@Object(__cid=-2, _int=1)._int));
     }
     Object@Object size = index;
@@ -1390,16 +1423,16 @@ void toString_int (Object i, ref Object _out)/*Integer.sk:39*/
     bit __sa20 = (j._int) < (index._int);
     while(__sa20)
     {
-      ret2_s1398._array_char.A[j._int] = ret_s1396._array_char.A[(index._int) - (new Object@Object(__cid=-2, _int=1)._int)];
+      ret2_s1728._array_char.A[j._int] = ret_s1726._array_char.A[(index._int) - (new Object@Object(__cid=-2, _int=1)._int)];
       index = new Object@Object(__cid=-2, _int=(index._int) - (new Object@Object(__cid=-2, _int=1)._int));
       j = new Object@Object(__cid=-2, _int=(j._int) + 1);
       __sa20 = (j._int) < (size._int);
     }
-    int _out_s1402 = 0;
-    String@meta(_out_s1402);
-    Object@Object _out_s1404 = null;
-    String_String_char_int_int@String(new Object@Object(__cid=_out_s1402), ret2_s1398, new Object@Object(__cid=-2, _int=0), size, _out_s1404)//{};
-    _out = _out_s1404;
+    int _out_s1732 = 0;
+    String@meta(_out_s1732);
+    Object@Object _out_s1734 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=_out_s1732), ret2_s1728, new Object@Object(__cid=-2, _int=0), size, _out_s1734)//{};
+    _out = _out_s1734;
     return;
   }
   /* END PACKAGE Integer*/
@@ -1613,72 +1646,72 @@ package Cipher{
   
 void Cipher_Object_String_String (Object t, Object p, ref Object _out)/*Cipher.sk:25*/
   {
-    int _out_s1553 = 0;
-    Cipher@meta(_out_s1553);
-    _out = new Object@Object(__cid=_out_s1553, _cipher=new Cipher_string_string(t=t, p=p));
+    int _out_s2043 = 0;
+    Cipher@meta(_out_s2043);
+    _out = new Object@Object(__cid=_out_s2043, _cipher=new Cipher_string_string(t=t, p=p));
     return;
   }
   /*Cipher.sk:53*/
   
 void doFinal_Object_Object (Object self, Object data, ref Object _out)/*Cipher.sk:53*/
   {
-    int _out_s1541 = 0;
-    Cipher@meta(_out_s1541);
-    _out = new Object@Object(__cid=_out_s1541, _cipher=new Dofinal_object(self=self._cipher, data=data));
+    int _out_s2011 = 0;
+    Cipher@meta(_out_s2011);
+    _out = new Object@Object(__cid=_out_s2011, _cipher=new Dofinal_object(self=self._cipher, data=data));
     return;
   }
   /*Cipher.sk:41*/
   
 void doFinalb_Object_Object (Object self, Object data, ref Object _out)/*Cipher.sk:41*/
   {
-    int _out_s1537 = 0;
-    Cipher@meta(_out_s1537);
-    _out = new Object@Object(__cid=_out_s1537, _cipher=new Dofinalb_object(self=self._cipher, data=data));
+    int _out_s1867 = 0;
+    Cipher@meta(_out_s1867);
+    _out = new Object@Object(__cid=_out_s1867, _cipher=new Dofinalb_object(self=self._cipher, data=data));
     return;
   }
   /*Cipher.sk:45*/
   
 void doFinaleb_Object_byte_int_int_byte_int (Object self, Object data, Object a, Object b, Object out, Object c, ref Object _out)/*Cipher.sk:45*/
   {
-    int _out_s1543 = 0;
-    Cipher@meta(_out_s1543);
-    _out = new Object@Object(__cid=_out_s1543, _cipher=new Dofinaleb_byte_int_int_byte_int(self=self._cipher, data=data, a=a, b=b, out=out, c=c));
+    int _out_s2013 = 0;
+    Cipher@meta(_out_s2013);
+    _out = new Object@Object(__cid=_out_s2013, _cipher=new Dofinaleb_byte_int_int_byte_int(self=self._cipher, data=data, a=a, b=b, out=out, c=c));
     return;
   }
   /*Cipher.sk:3*/
   
 void getInstance_String_String (Object type, Object prov, ref Object _out)/*Cipher.sk:3*/
   {
-    Object@Object _out_s1551 = null;
-    Cipher_Object_String_String(type, prov, _out_s1551);
-    _out = _out_s1551;
+    Object@Object _out_s2041 = null;
+    Cipher_Object_String_String(type, prov, _out_s2041);
+    _out = _out_s2041;
     return;
   }
   /*Cipher.sk:29*/
   
 void init_Object_int_SecretKeySpec_AlgorithmParameterSpec (Object self, Object mode, Object s, Object a, ref Object _out)/*Cipher.sk:29*/
   {
-    int _out_s1549 = 0;
-    Cipher@meta(_out_s1549);
-    _out = new Object@Object(__cid=_out_s1549, _cipher=new Init_int_secretkeyspec_algorithmparameterspec(self=self._cipher, mode=mode, s=s, a=a));
+    int _out_s2039 = 0;
+    Cipher@meta(_out_s2039);
+    _out = new Object@Object(__cid=_out_s2039, _cipher=new Init_int_secretkeyspec_algorithmparameterspec(self=self._cipher, mode=mode, s=s, a=a));
     return;
   }
   /*Cipher.sk:33*/
   
 void initb_Object_int_SecretKeySpec_AlgorithmParameterSpec (Object self, Object mode, Object s, Object a, ref Object _out)/*Cipher.sk:33*/
   {
-    int _out_s1547 = 0;
-    Cipher@meta(_out_s1547);
-    _out = new Object@Object(__cid=_out_s1547, _cipher=new Initb_int_secretkeyspec_algorithmparameterspec(self=self._cipher, mode=mode, s=s, a=a));
+    int _out_s2037 = 0;
+    Cipher@meta(_out_s2037);
+    _out = new Object@Object(__cid=_out_s2037, _cipher=new Initb_int_secretkeyspec_algorithmparameterspec(self=self._cipher, mode=mode, s=s, a=a));
     return;
   }
   /*Cipher.sk:37*/
   
 void updateb_Object_byte_int_int_byte_int (Object self, Object data, Object a, Object len, Object out, Object b, ref Object _out)/*Cipher.sk:37*/
   {
-    int _out_s1545 = 0;
-    Cipher@meta(_out_s1545);
-    _out = new Object@Object(__cid=_out_s1545, _cipher=new Updateb_byte_int_int_byte_int(self=self._cipher, data=data, a=a, len=len, out=out, b=b));
+    int _out_s2035 = 0;
+    Cipher@meta(_out_s2035);
+    _out = new Object@Object(__cid=_out_s2035, _cipher=new Updateb_byte_int_int_byte_int(self=self._cipher, data=data, a=a, len=len, out=out, b=b));
     return;
   }
   /*Cipher.sk:84*/
@@ -1687,102 +1720,272 @@ void xform_doFinal_Cipher_Object (Cipher self, Object data, ref Object _out)/*Ci
   {
     switch(self){/*Cipher.sk:85*/
       case Cipher_empty:
-        assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:85 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:86 Assert at Cipher.sk:86 (1)
+      {
+        int _out_s1869 = 0;
+        Cipher@meta(_out_s1869);
+        _out = new Object@Object(__cid=_out_s1869, _cipher=self);
+        return;
+      }
       case Cipher_string_string:
-        assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:85 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:87 Assert at Cipher.sk:87 (1)
+      {
+        int _out_s1871 = 0;
+        Cipher@meta(_out_s1871);
+        _out = new Object@Object(__cid=_out_s1871, _cipher=self);
+        return;
+      }
       case Init_int_secretkeyspec_algorithmparameterspec:
-        assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:85 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:88 Assert at Cipher.sk:88 (1)
+      {
+        int _out_s1873 = 0;
+        Cipher@meta(_out_s1873);
+        _out = new Object@Object(__cid=_out_s1873, _cipher=self);
+        return;
+      }
       case Initb_int_secretkeyspec_algorithmparameterspec:
-        assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:85 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:89 Assert at Cipher.sk:89 (1)
+      {
+        int _out_s1875 = 0;
+        Cipher@meta(_out_s1875);
+        _out = new Object@Object(__cid=_out_s1875, _cipher=self);
+        return;
+      }
       case Updateb_byte_int_int_byte_int:
-        assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:85 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:90 Assert at Cipher.sk:90 (1)
+      {
+        int _out_s1877 = 0;
+        Cipher@meta(_out_s1877);
+        _out = new Object@Object(__cid=_out_s1877, _cipher=self);
+        return;
+      }
       case Dofinalb_object:
-        assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:85 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:91 Assert at Cipher.sk:91 (1)
+      {
+        int _out_s1879 = 0;
+        Cipher@meta(_out_s1879);
+        _out = new Object@Object(__cid=_out_s1879, _cipher=self);
+        return;
+      }
       case Dofinaleb_byte_int_int_byte_int:
       {
         Cipher@Cipher self_self = self.self;
         switch(self_self){/*Cipher.sk:96*/
           case Cipher_empty:
-            assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:96 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:97 Assert at Cipher.sk:97 (1)
+          {
+            int _out_s1881 = 0;
+            Cipher@meta(_out_s1881);
+            _out = new Object@Object(__cid=_out_s1881, _cipher=self);
+            return;
+          }
           case Cipher_string_string:
-            assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:96 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:98 Assert at Cipher.sk:98 (1)
+          {
+            int _out_s1883 = 0;
+            Cipher@meta(_out_s1883);
+            _out = new Object@Object(__cid=_out_s1883, _cipher=self);
+            return;
+          }
           case Init_int_secretkeyspec_algorithmparameterspec:
-            assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:96 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:99 Assert at Cipher.sk:99 (1)
+          {
+            int _out_s1885 = 0;
+            Cipher@meta(_out_s1885);
+            _out = new Object@Object(__cid=_out_s1885, _cipher=self);
+            return;
+          }
           case Initb_int_secretkeyspec_algorithmparameterspec:
-            assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:96 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:100 Assert at Cipher.sk:100 (1)
+          {
+            int _out_s1887 = 0;
+            Cipher@meta(_out_s1887);
+            _out = new Object@Object(__cid=_out_s1887, _cipher=self);
+            return;
+          }
           case Updateb_byte_int_int_byte_int:
           {
             Cipher@Cipher self_self_self = self_self.self;
             switch(self_self_self){/*Cipher.sk:105*/
               case Cipher_empty:
-                assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:105 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:106 Assert at Cipher.sk:106 (1)
+              {
+                int _out_s1889 = 0;
+                Cipher@meta(_out_s1889);
+                _out = new Object@Object(__cid=_out_s1889, _cipher=self);
+                return;
+              }
               case Cipher_string_string:
-                assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:105 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:107 Assert at Cipher.sk:107 (1)
+              {
+                int _out_s1891 = 0;
+                Cipher@meta(_out_s1891);
+                _out = new Object@Object(__cid=_out_s1891, _cipher=self);
+                return;
+              }
               case Init_int_secretkeyspec_algorithmparameterspec:
-                assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:105 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:108 Assert at Cipher.sk:108 (1)
+              {
+                int _out_s1893 = 0;
+                Cipher@meta(_out_s1893);
+                _out = new Object@Object(__cid=_out_s1893, _cipher=self);
+                return;
+              }
               case Initb_int_secretkeyspec_algorithmparameterspec:
               {
                 Cipher@Cipher data_data = data._cipher;
                 switch(data_data){/*Cipher.sk:113*/
                   case Cipher_empty:
-                    assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:113 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:114 Assert at Cipher.sk:114 (1)
+                  {
+                    int _out_s1895 = 0;
+                    Cipher@meta(_out_s1895);
+                    _out = new Object@Object(__cid=_out_s1895, _cipher=self);
+                    return;
+                  }
                   case Cipher_string_string:
-                    assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:113 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:115 Assert at Cipher.sk:115 (1)
+                  {
+                    int _out_s1897 = 0;
+                    Cipher@meta(_out_s1897);
+                    _out = new Object@Object(__cid=_out_s1897, _cipher=self);
+                    return;
+                  }
                   case Init_int_secretkeyspec_algorithmparameterspec:
-                    assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:113 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:116 Assert at Cipher.sk:116 (1)
+                  {
+                    int _out_s1899 = 0;
+                    Cipher@meta(_out_s1899);
+                    _out = new Object@Object(__cid=_out_s1899, _cipher=self);
+                    return;
+                  }
                   case Initb_int_secretkeyspec_algorithmparameterspec:
-                    assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:113 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:117 Assert at Cipher.sk:117 (1)
+                  {
+                    int _out_s1901 = 0;
+                    Cipher@meta(_out_s1901);
+                    _out = new Object@Object(__cid=_out_s1901, _cipher=self);
+                    return;
+                  }
                   case Updateb_byte_int_int_byte_int:
-                    assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:113 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:118 Assert at Cipher.sk:118 (1)
+                  {
+                    int _out_s1903 = 0;
+                    Cipher@meta(_out_s1903);
+                    _out = new Object@Object(__cid=_out_s1903, _cipher=self);
+                    return;
+                  }
                   case Dofinalb_object:
-                    assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:113 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:119 Assert at Cipher.sk:119 (1)
+                  {
+                    int _out_s1905 = 0;
+                    Cipher@meta(_out_s1905);
+                    _out = new Object@Object(__cid=_out_s1905, _cipher=self);
+                    return;
+                  }
                   case Dofinaleb_byte_int_int_byte_int:
-                    assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:113 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:120 Assert at Cipher.sk:120 (1)
+                  {
+                    int _out_s1907 = 0;
+                    Cipher@meta(_out_s1907);
+                    _out = new Object@Object(__cid=_out_s1907, _cipher=self);
+                    return;
+                  }
                   case Update_byte_int_int_byte_int:
-                    assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:113 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:121 Assert at Cipher.sk:121 (1)
+                  {
+                    int _out_s1909 = 0;
+                    Cipher@meta(_out_s1909);
+                    _out = new Object@Object(__cid=_out_s1909, _cipher=self);
+                    return;
+                  }
                   case Dofinal_object:
                   {
                     Cipher@Cipher data_data_data = data_data.self;
                     switch(data_data_data){/*Cipher.sk:126*/
                       case Cipher_empty:
-                        assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:126 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:127 Assert at Cipher.sk:127 (1)
+                      {
+                        int _out_s1911 = 0;
+                        Cipher@meta(_out_s1911);
+                        _out = new Object@Object(__cid=_out_s1911, _cipher=self);
+                        return;
+                      }
                       case Cipher_string_string:
-                        assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:126 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:128 Assert at Cipher.sk:128 (1)
+                      {
+                        int _out_s1913 = 0;
+                        Cipher@meta(_out_s1913);
+                        _out = new Object@Object(__cid=_out_s1913, _cipher=self);
+                        return;
+                      }
                       case Init_int_secretkeyspec_algorithmparameterspec:
-                        assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:126 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:129 Assert at Cipher.sk:129 (1)
+                      {
+                        int _out_s1915 = 0;
+                        Cipher@meta(_out_s1915);
+                        _out = new Object@Object(__cid=_out_s1915, _cipher=self);
+                        return;
+                      }
                       case Initb_int_secretkeyspec_algorithmparameterspec:
-                        assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:126 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:130 Assert at Cipher.sk:130 (1)
+                      {
+                        int _out_s1917 = 0;
+                        Cipher@meta(_out_s1917);
+                        _out = new Object@Object(__cid=_out_s1917, _cipher=self);
+                        return;
+                      }
                       case Updateb_byte_int_int_byte_int:
-                        assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:126 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:131 Assert at Cipher.sk:131 (1)
+                      {
+                        int _out_s1919 = 0;
+                        Cipher@meta(_out_s1919);
+                        _out = new Object@Object(__cid=_out_s1919, _cipher=self);
+                        return;
+                      }
                       case Dofinalb_object:
-                        assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:126 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:132 Assert at Cipher.sk:132 (1)
+                      {
+                        int _out_s1921 = 0;
+                        Cipher@meta(_out_s1921);
+                        _out = new Object@Object(__cid=_out_s1921, _cipher=self);
+                        return;
+                      }
                       case Dofinaleb_byte_int_int_byte_int:
                       {
                         Cipher@Cipher data_data_data_data = data_data_data.self;
                         switch(data_data_data_data){/*Cipher.sk:137*/
                           case Cipher_empty:
-                            assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:137 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:138 Assert at Cipher.sk:138 (1)
+                          {
+                            int _out_s1923 = 0;
+                            Cipher@meta(_out_s1923);
+                            _out = new Object@Object(__cid=_out_s1923, _cipher=self);
+                            return;
+                          }
                           case Cipher_string_string:
-                            assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:137 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:139 Assert at Cipher.sk:139 (1)
+                          {
+                            int _out_s1925 = 0;
+                            Cipher@meta(_out_s1925);
+                            _out = new Object@Object(__cid=_out_s1925, _cipher=self);
+                            return;
+                          }
                           case Init_int_secretkeyspec_algorithmparameterspec:
-                            assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:137 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:140 Assert at Cipher.sk:140 (1)
+                          {
+                            int _out_s1927 = 0;
+                            Cipher@meta(_out_s1927);
+                            _out = new Object@Object(__cid=_out_s1927, _cipher=self);
+                            return;
+                          }
                           case Initb_int_secretkeyspec_algorithmparameterspec:
-                            assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:137 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:141 Assert at Cipher.sk:141 (1)
+                          {
+                            int _out_s1929 = 0;
+                            Cipher@meta(_out_s1929);
+                            _out = new Object@Object(__cid=_out_s1929, _cipher=self);
+                            return;
+                          }
                           case Updateb_byte_int_int_byte_int:
                           {
                             Cipher@Cipher data_data_data_data_data = data_data_data_data.self;
                             switch(data_data_data_data_data){/*Cipher.sk:146*/
                               case Cipher_empty:
-                                assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:146 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:147 Assert at Cipher.sk:147 (1)
+                              {
+                                int _out_s1931 = 0;
+                                Cipher@meta(_out_s1931);
+                                _out = new Object@Object(__cid=_out_s1931, _cipher=self);
+                                return;
+                              }
                               case Cipher_string_string:
-                                assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:146 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:148 Assert at Cipher.sk:148 (1)
+                              {
+                                int _out_s1933 = 0;
+                                Cipher@meta(_out_s1933);
+                                _out = new Object@Object(__cid=_out_s1933, _cipher=self);
+                                return;
+                              }
                               case Init_int_secretkeyspec_algorithmparameterspec:
-                                assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:146 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:149 Assert at Cipher.sk:149 (1)
+                              {
+                                int _out_s1935 = 0;
+                                Cipher@meta(_out_s1935);
+                                _out = new Object@Object(__cid=_out_s1935, _cipher=self);
+                                return;
+                              }
                               case Initb_int_secretkeyspec_algorithmparameterspec:
                               {
-                                Object@Object cond_s1539 = null;
-                                xform_equals_SecretKeySpec_Object@SecretKeySpec(self_self_self.s._secretkeyspec, data_data_data_data_data.s, cond_s1539);
-                                if(cond_s1539._bit)/*Cipher.sk:152*/
+                                Object@Object cond_s1937 = null;
+                                xform_equals_SecretKeySpec_Object@SecretKeySpec(self_self_self.s._secretkeyspec, data_data_data_data_data.s, cond_s1937);
+                                if(cond_s1937._bit)/*Cipher.sk:152*/
                                 {
                                   _out = data_data.data;
                                   return;
@@ -1794,89 +1997,269 @@ void xform_doFinal_Cipher_Object (Cipher self, Object data, ref Object _out)/*Ci
                                 }
                               }
                               case Updateb_byte_int_int_byte_int:
-                                assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:146 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:159 Assert at Cipher.sk:159 (1)
+                              {
+                                int _out_s1939 = 0;
+                                Cipher@meta(_out_s1939);
+                                _out = new Object@Object(__cid=_out_s1939, _cipher=self);
+                                return;
+                              }
                               case Dofinalb_object:
-                                assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:146 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:160 Assert at Cipher.sk:160 (1)
+                              {
+                                int _out_s1941 = 0;
+                                Cipher@meta(_out_s1941);
+                                _out = new Object@Object(__cid=_out_s1941, _cipher=self);
+                                return;
+                              }
                               case Dofinaleb_byte_int_int_byte_int:
-                                assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:146 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:161 Assert at Cipher.sk:161 (1)
+                              {
+                                int _out_s1943 = 0;
+                                Cipher@meta(_out_s1943);
+                                _out = new Object@Object(__cid=_out_s1943, _cipher=self);
+                                return;
+                              }
                               case Update_byte_int_int_byte_int:
-                                assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:146 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:162 Assert at Cipher.sk:162 (1)
+                              {
+                                int _out_s1945 = 0;
+                                Cipher@meta(_out_s1945);
+                                _out = new Object@Object(__cid=_out_s1945, _cipher=self);
+                                return;
+                              }
                               case Dofinal_object:
-                                assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:146 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:163 Assert at Cipher.sk:163 (1)
+                              {
+                                int _out_s1947 = 0;
+                                Cipher@meta(_out_s1947);
+                                _out = new Object@Object(__cid=_out_s1947, _cipher=self);
+                                return;
+                              }
                               case Dofinale_byte_int_int_byte_int:
-                                assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:146 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:164 Assert at Cipher.sk:164 (1)
+                              {
+                                int _out_s1949 = 0;
+                                Cipher@meta(_out_s1949);
+                                _out = new Object@Object(__cid=_out_s1949, _cipher=self);
+                                return;
+                              }
                               case Getoutputsize_int:
-                                assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:146 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:165 Assert at Cipher.sk:165 (1)
+                              {
+                                int _out_s1951 = 0;
+                                Cipher@meta(_out_s1951);
+                                _out = new Object@Object(__cid=_out_s1951, _cipher=self);
+                                return;
+                              }
                             }
                           }
                           case Dofinalb_object:
-                            assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:137 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:170 Assert at Cipher.sk:170 (1)
+                          {
+                            int _out_s1953 = 0;
+                            Cipher@meta(_out_s1953);
+                            _out = new Object@Object(__cid=_out_s1953, _cipher=self);
+                            return;
+                          }
                           case Dofinaleb_byte_int_int_byte_int:
-                            assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:137 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:171 Assert at Cipher.sk:171 (1)
+                          {
+                            int _out_s1955 = 0;
+                            Cipher@meta(_out_s1955);
+                            _out = new Object@Object(__cid=_out_s1955, _cipher=self);
+                            return;
+                          }
                           case Update_byte_int_int_byte_int:
-                            assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:137 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:172 Assert at Cipher.sk:172 (1)
+                          {
+                            int _out_s1957 = 0;
+                            Cipher@meta(_out_s1957);
+                            _out = new Object@Object(__cid=_out_s1957, _cipher=self);
+                            return;
+                          }
                           case Dofinal_object:
-                            assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:137 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:173 Assert at Cipher.sk:173 (1)
+                          {
+                            int _out_s1959 = 0;
+                            Cipher@meta(_out_s1959);
+                            _out = new Object@Object(__cid=_out_s1959, _cipher=self);
+                            return;
+                          }
                           case Dofinale_byte_int_int_byte_int:
-                            assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:137 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:174 Assert at Cipher.sk:174 (1)
+                          {
+                            int _out_s1961 = 0;
+                            Cipher@meta(_out_s1961);
+                            _out = new Object@Object(__cid=_out_s1961, _cipher=self);
+                            return;
+                          }
                           case Getoutputsize_int:
-                            assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:137 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:175 Assert at Cipher.sk:175 (1)
+                          {
+                            int _out_s1963 = 0;
+                            Cipher@meta(_out_s1963);
+                            _out = new Object@Object(__cid=_out_s1963, _cipher=self);
+                            return;
+                          }
                         }
                       }
                       case Update_byte_int_int_byte_int:
-                        assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:126 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:180 Assert at Cipher.sk:180 (1)
+                      {
+                        int _out_s1965 = 0;
+                        Cipher@meta(_out_s1965);
+                        _out = new Object@Object(__cid=_out_s1965, _cipher=self);
+                        return;
+                      }
                       case Dofinal_object:
-                        assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:126 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:181 Assert at Cipher.sk:181 (1)
+                      {
+                        int _out_s1967 = 0;
+                        Cipher@meta(_out_s1967);
+                        _out = new Object@Object(__cid=_out_s1967, _cipher=self);
+                        return;
+                      }
                       case Dofinale_byte_int_int_byte_int:
-                        assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:126 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:182 Assert at Cipher.sk:182 (1)
+                      {
+                        int _out_s1969 = 0;
+                        Cipher@meta(_out_s1969);
+                        _out = new Object@Object(__cid=_out_s1969, _cipher=self);
+                        return;
+                      }
                       case Getoutputsize_int:
-                        assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:126 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:183 Assert at Cipher.sk:183 (1)
+                      {
+                        int _out_s1971 = 0;
+                        Cipher@meta(_out_s1971);
+                        _out = new Object@Object(__cid=_out_s1971, _cipher=self);
+                        return;
+                      }
                     }
                   }
                   case Dofinale_byte_int_int_byte_int:
-                    assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:113 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:188 Assert at Cipher.sk:188 (1)
+                  {
+                    int _out_s1973 = 0;
+                    Cipher@meta(_out_s1973);
+                    _out = new Object@Object(__cid=_out_s1973, _cipher=self);
+                    return;
+                  }
                   case Getoutputsize_int:
-                    assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:113 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:189 Assert at Cipher.sk:189 (1)
+                  {
+                    int _out_s1975 = 0;
+                    Cipher@meta(_out_s1975);
+                    _out = new Object@Object(__cid=_out_s1975, _cipher=self);
+                    return;
+                  }
                 }
               }
               case Updateb_byte_int_int_byte_int:
-                assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:105 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:194 Assert at Cipher.sk:194 (1)
+              {
+                int _out_s1977 = 0;
+                Cipher@meta(_out_s1977);
+                _out = new Object@Object(__cid=_out_s1977, _cipher=self);
+                return;
+              }
               case Dofinalb_object:
-                assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:105 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:195 Assert at Cipher.sk:195 (1)
+              {
+                int _out_s1979 = 0;
+                Cipher@meta(_out_s1979);
+                _out = new Object@Object(__cid=_out_s1979, _cipher=self);
+                return;
+              }
               case Dofinaleb_byte_int_int_byte_int:
-                assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:105 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:196 Assert at Cipher.sk:196 (1)
+              {
+                int _out_s1981 = 0;
+                Cipher@meta(_out_s1981);
+                _out = new Object@Object(__cid=_out_s1981, _cipher=self);
+                return;
+              }
               case Update_byte_int_int_byte_int:
-                assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:105 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:197 Assert at Cipher.sk:197 (1)
+              {
+                int _out_s1983 = 0;
+                Cipher@meta(_out_s1983);
+                _out = new Object@Object(__cid=_out_s1983, _cipher=self);
+                return;
+              }
               case Dofinal_object:
-                assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:105 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:198 Assert at Cipher.sk:198 (1)
+              {
+                int _out_s1985 = 0;
+                Cipher@meta(_out_s1985);
+                _out = new Object@Object(__cid=_out_s1985, _cipher=self);
+                return;
+              }
               case Dofinale_byte_int_int_byte_int:
-                assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:105 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:199 Assert at Cipher.sk:199 (1)
+              {
+                int _out_s1987 = 0;
+                Cipher@meta(_out_s1987);
+                _out = new Object@Object(__cid=_out_s1987, _cipher=self);
+                return;
+              }
               case Getoutputsize_int:
-                assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:105 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:200 Assert at Cipher.sk:200 (1)
+              {
+                int _out_s1989 = 0;
+                Cipher@meta(_out_s1989);
+                _out = new Object@Object(__cid=_out_s1989, _cipher=self);
+                return;
+              }
             }
           }
           case Dofinalb_object:
-            assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:96 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:205 Assert at Cipher.sk:205 (1)
+          {
+            int _out_s1991 = 0;
+            Cipher@meta(_out_s1991);
+            _out = new Object@Object(__cid=_out_s1991, _cipher=self);
+            return;
+          }
           case Dofinaleb_byte_int_int_byte_int:
-            assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:96 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:206 Assert at Cipher.sk:206 (1)
+          {
+            int _out_s1993 = 0;
+            Cipher@meta(_out_s1993);
+            _out = new Object@Object(__cid=_out_s1993, _cipher=self);
+            return;
+          }
           case Update_byte_int_int_byte_int:
-            assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:96 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:207 Assert at Cipher.sk:207 (1)
+          {
+            int _out_s1995 = 0;
+            Cipher@meta(_out_s1995);
+            _out = new Object@Object(__cid=_out_s1995, _cipher=self);
+            return;
+          }
           case Dofinal_object:
-            assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:96 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:208 Assert at Cipher.sk:208 (1)
+          {
+            int _out_s1997 = 0;
+            Cipher@meta(_out_s1997);
+            _out = new Object@Object(__cid=_out_s1997, _cipher=self);
+            return;
+          }
           case Dofinale_byte_int_int_byte_int:
-            assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:96 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:209 Assert at Cipher.sk:209 (1)
+          {
+            int _out_s1999 = 0;
+            Cipher@meta(_out_s1999);
+            _out = new Object@Object(__cid=_out_s1999, _cipher=self);
+            return;
+          }
           case Getoutputsize_int:
-            assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:96 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:210 Assert at Cipher.sk:210 (1)
+          {
+            int _out_s2001 = 0;
+            Cipher@meta(_out_s2001);
+            _out = new Object@Object(__cid=_out_s2001, _cipher=self);
+            return;
+          }
         }
       }
       case Update_byte_int_int_byte_int:
-        assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:85 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:215 Assert at Cipher.sk:215 (1)
+      {
+        int _out_s2003 = 0;
+        Cipher@meta(_out_s2003);
+        _out = new Object@Object(__cid=_out_s2003, _cipher=self);
+        return;
+      }
       case Dofinal_object:
-        assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:85 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:216 Assert at Cipher.sk:216 (1)
+      {
+        int _out_s2005 = 0;
+        Cipher@meta(_out_s2005);
+        _out = new Object@Object(__cid=_out_s2005, _cipher=self);
+        return;
+      }
       case Dofinale_byte_int_int_byte_int:
-        assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:85 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:217 Assert at Cipher.sk:217 (1)
+      {
+        int _out_s2007 = 0;
+        Cipher@meta(_out_s2007);
+        _out = new Object@Object(__cid=_out_s2007, _cipher=self);
+        return;
+      }
       case Getoutputsize_int:
-        assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:85 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:218 Assert at Cipher.sk:218 (1)
+      {
+        int _out_s2009 = 0;
+        Cipher@meta(_out_s2009);
+        _out = new Object@Object(__cid=_out_s2009, _cipher=self);
+        return;
+      }
     }
     _out = null;
     return;
@@ -1887,30 +2270,80 @@ void xform_doFinale_Cipher_byte_int_int_byte_int (Cipher self, Object data, Obje
   {
     switch(self){/*Cipher.sk:258*/
       case Cipher_empty:
-        assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:258 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:259 Assert at Cipher.sk:259 (1)
+      {
+        int _out_s2015 = 0;
+        Cipher@meta(_out_s2015);
+        _out = new Object@Object(__cid=_out_s2015, _cipher=self);
+        return;
+      }
       case Cipher_string_string:
-        assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:258 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:260 Assert at Cipher.sk:260 (1)
+      {
+        int _out_s2017 = 0;
+        Cipher@meta(_out_s2017);
+        _out = new Object@Object(__cid=_out_s2017, _cipher=self);
+        return;
+      }
       case Init_int_secretkeyspec_algorithmparameterspec:
-        assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:258 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:261 Assert at Cipher.sk:261 (1)
+      {
+        int _out_s2019 = 0;
+        Cipher@meta(_out_s2019);
+        _out = new Object@Object(__cid=_out_s2019, _cipher=self);
+        return;
+      }
       case Initb_int_secretkeyspec_algorithmparameterspec:
-        assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:258 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:262 Assert at Cipher.sk:262 (1)
+      {
+        int _out_s2021 = 0;
+        Cipher@meta(_out_s2021);
+        _out = new Object@Object(__cid=_out_s2021, _cipher=self);
+        return;
+      }
       case Updateb_byte_int_int_byte_int:
       {
         _out = self.len;
         return;
       }
       case Dofinalb_object:
-        assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:258 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:266 Assert at Cipher.sk:266 (1)
+      {
+        int _out_s2023 = 0;
+        Cipher@meta(_out_s2023);
+        _out = new Object@Object(__cid=_out_s2023, _cipher=self);
+        return;
+      }
       case Dofinaleb_byte_int_int_byte_int:
-        assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:258 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:267 Assert at Cipher.sk:267 (1)
+      {
+        int _out_s2025 = 0;
+        Cipher@meta(_out_s2025);
+        _out = new Object@Object(__cid=_out_s2025, _cipher=self);
+        return;
+      }
       case Update_byte_int_int_byte_int:
-        assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:258 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:268 Assert at Cipher.sk:268 (1)
+      {
+        int _out_s2027 = 0;
+        Cipher@meta(_out_s2027);
+        _out = new Object@Object(__cid=_out_s2027, _cipher=self);
+        return;
+      }
       case Dofinal_object:
-        assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:258 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:269 Assert at Cipher.sk:269 (1)
+      {
+        int _out_s2029 = 0;
+        Cipher@meta(_out_s2029);
+        _out = new Object@Object(__cid=_out_s2029, _cipher=self);
+        return;
+      }
       case Dofinale_byte_int_int_byte_int:
-        assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:258 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:270 Assert at Cipher.sk:270 (1)
+      {
+        int _out_s2031 = 0;
+        Cipher@meta(_out_s2031);
+        _out = new Object@Object(__cid=_out_s2031, _cipher=self);
+        return;
+      }
       case Getoutputsize_int:
-        assert (0); //ASSERTION CAN NOT BE SATISFIED: Cipher.sk:258 ASSERTION CAN NOT BE SATISFIED: Cipher.sk:271 Assert at Cipher.sk:271 (1)
+      {
+        int _out_s2033 = 0;
+        Cipher@meta(_out_s2033);
+        _out = new Object@Object(__cid=_out_s2033, _cipher=self);
+        return;
+      }
     }
     _out = null;
     return;
@@ -1954,32 +2387,7 @@ void arraysEquals_byte_byte (Object b1, Object b2, ref Object _out)/*Arrays.sk:2
     _out = new Object@Object(__cid=-4, _bit=1);
     return;
   }
-  /*Arrays.sk:7*/
-  
-void copyOf_byte_int (Object in, Object len, ref Object _out)/*Arrays.sk:7*/
-  {
-    Object@Object n_s1565 = null;
-    Wrap_Array_char@array(new Array_char@array(length=len), n_s1565);
-    _out = n_s1565;
-    Object@Object i;
-    i = new Object@Object(__cid=-2, _int=0);
-    bit __sa21 = (i._int) < (len._int);
-    while(__sa21)
-    {
-      if((i._int) >= (in._array_char.length._int))/*Arrays.sk:10*/
-      {
-        n_s1565._array_char.A[i._int] = new Object@Object(__cid=-2, _int=0)._int;
-      }
-      else
-      {
-        n_s1565._array_char.A[i._int] = in._array_char.A[i._int];
-      }
-      i = new Object@Object(__cid=-2, _int=(i._int) + 1);
-      __sa21 = (i._int) < (len._int);
-    }
-    return;
-  }
   /* END PACKAGE Arrays*/
 }
 [SKETCH] DONE
-Total time = 4251
+Total time = 33768

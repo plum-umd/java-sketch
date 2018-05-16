@@ -149,92 +149,92 @@ Object xform_ArrayList(ArrayList self) {
 }
 Object xform_removeb_ArrayList_int(ArrayList self, Object i) {
   switch(self) {
-  case Arraylist: { assert false; }
-  case Add_string: { assert false; }
-  case Addb_string: { assert false; }
-  case Get_int: { assert false; }
-  case Getfirsti_int_string_int_int: { assert false; }
-  case Setb_int_string: { assert false; }
-  case Set_int_string: { assert false; }
-  case Ensurecapacity: { assert false; }
-  case Maxsizeb: { assert false; }
-  case Sortb_object: { assert false; }
-  case Removeb_int: { assert false; }
-  case Addallb_arraylist: { assert false; }
-  case Size: { assert false; }
-  case Maxsize: { assert false; }
-  case Sort_object: { assert false; }
-  case Remove_int: { assert false; }
-  case Addall_arraylist: { assert false; }
+  case Arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Add_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addb_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Get_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Getfirsti_int_string_int_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Setb_int_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Set_int_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Ensurecapacity: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsizeb: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Sortb_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Removeb_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addallb_arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Size: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsize: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Sort_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Remove_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addall_arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
   }
 
   return null;
 }
 Object xform_ensureCapacity_ArrayList(ArrayList self) {
   switch(self) {
-  case Arraylist: { assert false; }
-  case Add_string: { assert false; }
-  case Addb_string: { assert false; }
-  case Get_int: { assert false; }
-  case Getfirsti_int_string_int_int: { assert false; }
-  case Setb_int_string: { assert false; }
-  case Set_int_string: { assert false; }
-  case Ensurecapacity: { assert false; }
-  case Maxsizeb: { assert false; }
-  case Sortb_object: { assert false; }
-  case Removeb_int: { assert false; }
-  case Addallb_arraylist: { assert false; }
-  case Size: { assert false; }
-  case Maxsize: { assert false; }
-  case Sort_object: { assert false; }
-  case Remove_int: { assert false; }
-  case Addall_arraylist: { assert false; }
+  case Arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Add_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addb_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Get_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Getfirsti_int_string_int_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Setb_int_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Set_int_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Ensurecapacity: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsizeb: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Sortb_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Removeb_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addallb_arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Size: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsize: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Sort_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Remove_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addall_arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
   }
 
   return null;
 }
 Object xform_sort_ArrayList_Object(ArrayList self, Object b) {
   switch(self) {
-  case Arraylist: { assert false; }
-  case Add_string: { assert false; }
-  case Addb_string: { assert false; }
-  case Get_int: { assert false; }
-  case Getfirsti_int_string_int_int: { assert false; }
-  case Setb_int_string: { assert false; }
-  case Set_int_string: { assert false; }
-  case Ensurecapacity: { assert false; }
-  case Maxsizeb: { assert false; }
-  case Sortb_object: { assert false; }
-  case Removeb_int: { assert false; }
-  case Addallb_arraylist: { assert false; }
-  case Size: { assert false; }
-  case Maxsize: { assert false; }
-  case Sort_object: { assert false; }
-  case Remove_int: { assert false; }
-  case Addall_arraylist: { assert false; }
+  case Arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Add_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addb_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Get_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Getfirsti_int_string_int_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Setb_int_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Set_int_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Ensurecapacity: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsizeb: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Sortb_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Removeb_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addallb_arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Size: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsize: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Sort_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Remove_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addall_arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
   }
 
   return null;
 }
 Object xform_remove_ArrayList_int(ArrayList self, Object i) {
   switch(self) {
-  case Arraylist: { assert false; }
-  case Add_string: { assert false; }
-  case Addb_string: { assert false; }
-  case Get_int: { assert false; }
-  case Getfirsti_int_string_int_int: { assert false; }
-  case Setb_int_string: { assert false; }
-  case Set_int_string: { assert false; }
-  case Ensurecapacity: { assert false; }
-  case Maxsizeb: { assert false; }
-  case Sortb_object: { assert false; }
-  case Removeb_int: { assert false; }
-  case Addallb_arraylist: { assert false; }
-  case Size: { assert false; }
-  case Maxsize: { assert false; }
-  case Sort_object: { assert false; }
-  case Remove_int: { assert false; }
-  case Addall_arraylist: { assert false; }
+  case Arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Add_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addb_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Get_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Getfirsti_int_string_int_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Setb_int_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Set_int_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Ensurecapacity: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsizeb: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Sortb_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Removeb_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addallb_arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Size: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsize: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Sort_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Remove_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addall_arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
   }
 
   return null;
@@ -244,18 +244,18 @@ Object xform_size_ArrayList(ArrayList self) {
   case Arraylist: {
     return (new Object(__cid=-2, _int=0));
   }
-  case Add_string: { assert false; }
+  case Add_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
   case Addb_string: {
     return (new Object(__cid=-2, _int=xform_size_ArrayList(self.self)._int + (new Object(__cid=-2, _int=1))._int));
   }
-  case Get_int: { assert false; }
-  case Getfirsti_int_string_int_int: { assert false; }
+  case Get_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Getfirsti_int_string_int_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
   case Setb_int_string: {
     return (new Object(__cid=-2, _int=xform_size_ArrayList(self.self)._int + (new Object(__cid=-2, _int=1))._int));
   }
-  case Set_int_string: { assert false; }
-  case Ensurecapacity: { assert false; }
-  case Maxsizeb: { assert false; }
+  case Set_int_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Ensurecapacity: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsizeb: { return new Object(__cid=ArrayList(), _arraylist=self); }
   case Sortb_object: {
     return xform_size_ArrayList(self.self);
   }
@@ -267,34 +267,34 @@ Object xform_size_ArrayList(ArrayList self) {
     Object s2 = xform_size_ArrayList(self.e._arraylist);
     return (new Object(__cid=-2, _int=s1._int + s2._int));
   }
-  case Size: { assert false; }
-  case Maxsize: { assert false; }
-  case Sort_object: { assert false; }
-  case Remove_int: { assert false; }
-  case Addall_arraylist: { assert false; }
+  case Size: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsize: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Sort_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Remove_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addall_arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
   }
 
   return null;
 }
 Object xform_addAllb_ArrayList_ArrayList(ArrayList self, Object e) {
   switch(self) {
-  case Arraylist: { assert false; }
-  case Add_string: { assert false; }
-  case Addb_string: { assert false; }
-  case Get_int: { assert false; }
-  case Getfirsti_int_string_int_int: { assert false; }
-  case Setb_int_string: { assert false; }
-  case Set_int_string: { assert false; }
-  case Ensurecapacity: { assert false; }
-  case Maxsizeb: { assert false; }
-  case Sortb_object: { assert false; }
-  case Removeb_int: { assert false; }
-  case Addallb_arraylist: { assert false; }
-  case Size: { assert false; }
-  case Maxsize: { assert false; }
-  case Sort_object: { assert false; }
-  case Remove_int: { assert false; }
-  case Addall_arraylist: { assert false; }
+  case Arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Add_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addb_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Get_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Getfirsti_int_string_int_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Setb_int_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Set_int_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Ensurecapacity: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsizeb: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Sortb_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Removeb_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addallb_arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Size: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsize: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Sort_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Remove_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addall_arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
   }
 
   return null;
@@ -304,18 +304,18 @@ Object xform_maxSize_ArrayList(ArrayList self) {
   case Arraylist: {
     return (new Object(__cid=-2, _int=0));
   }
-  case Add_string: { assert false; }
+  case Add_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
   case Addb_string: {
     return (new Object(__cid=-2, _int=xform_maxSize_ArrayList(self.self)._int + (new Object(__cid=-2, _int=1))._int));
   }
-  case Get_int: { assert false; }
-  case Getfirsti_int_string_int_int: { assert false; }
+  case Get_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Getfirsti_int_string_int_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
   case Setb_int_string: {
     return (new Object(__cid=-2, _int=xform_maxSize_ArrayList(self.self)._int + (new Object(__cid=-2, _int=1))._int));
   }
-  case Set_int_string: { assert false; }
-  case Ensurecapacity: { assert false; }
-  case Maxsizeb: { assert false; }
+  case Set_int_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Ensurecapacity: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsizeb: { return new Object(__cid=ArrayList(), _arraylist=self); }
   case Sortb_object: {
     return xform_maxSize_ArrayList(self.self);
   }
@@ -327,34 +327,34 @@ Object xform_maxSize_ArrayList(ArrayList self) {
     Object s2 = xform_maxSize_ArrayList(self.e._arraylist);
     return (new Object(__cid=-2, _int=s1._int + s2._int));
   }
-  case Size: { assert false; }
-  case Maxsize: { assert false; }
-  case Sort_object: { assert false; }
-  case Remove_int: { assert false; }
-  case Addall_arraylist: { assert false; }
+  case Size: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsize: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Sort_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Remove_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addall_arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
   }
 
   return null;
 }
 Object xform_addb_ArrayList_String(ArrayList self, Object e) {
   switch(self) {
-  case Arraylist: { assert false; }
-  case Add_string: { assert false; }
-  case Addb_string: { assert false; }
-  case Get_int: { assert false; }
-  case Getfirsti_int_string_int_int: { assert false; }
-  case Setb_int_string: { assert false; }
-  case Set_int_string: { assert false; }
-  case Ensurecapacity: { assert false; }
-  case Maxsizeb: { assert false; }
-  case Sortb_object: { assert false; }
-  case Removeb_int: { assert false; }
-  case Addallb_arraylist: { assert false; }
-  case Size: { assert false; }
-  case Maxsize: { assert false; }
-  case Sort_object: { assert false; }
-  case Remove_int: { assert false; }
-  case Addall_arraylist: { assert false; }
+  case Arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Add_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addb_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Get_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Getfirsti_int_string_int_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Setb_int_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Set_int_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Ensurecapacity: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsizeb: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Sortb_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Removeb_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addallb_arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Size: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsize: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Sort_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Remove_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addall_arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
   }
 
   return null;
@@ -362,14 +362,14 @@ Object xform_addb_ArrayList_String(ArrayList self, Object e) {
 
 Object xform_get_ArrayList_int(ArrayList self, Object i) {
   switch(self) {
-  case Arraylist: { assert false; }
-  case Add_string: { assert false; }
+  case Arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Add_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
   case Addb_string: {
     Object sz = xform_size_ArrayList(self.self);
     return ((sz._int == i._int) ? self.e : xform_get_ArrayList_int(self.self, i));
   }
-  case Get_int: { assert false; }
-  case Getfirsti_int_string_int_int: { assert false; }
+  case Get_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Getfirsti_int_string_int_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
   case Setb_int_string: {
     if (i._int == self.i._int) {
       return self.e;
@@ -381,9 +381,9 @@ Object xform_get_ArrayList_int(ArrayList self, Object i) {
       }
     }
   }
-  case Set_int_string: { assert false; }
-  case Ensurecapacity: { assert false; }
-  case Maxsizeb: { assert false; }
+  case Set_int_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Ensurecapacity: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsizeb: { return new Object(__cid=ArrayList(), _arraylist=self); }
   case Sortb_object: {
     Object j = xform_maxSize_ArrayList(self.self);
     Object firstI = xform_getFirstI_ArrayList_int_String_int_int(self.self, (new Object(__cid=-2, _int=i._int+1)), Wrap_Array_Object(new Array_Object(length=(new Object(__cid=-2, _int=j._int + (new Object(__cid=-2, _int=1))._int)))), Wrap_Array_int(new Array_int(length=(new Object(__cid=-2, _int=j._int + (new Object(__cid=-2, _int=1))._int)))), (new Object(__cid=-2, _int=0)));
@@ -397,126 +397,126 @@ Object xform_get_ArrayList_int(ArrayList self, Object i) {
     Object s1 = xform_size_ArrayList(self.self);
     return ((i._int < s1._int) ? xform_get_ArrayList_int(self.self, i) : xform_get_ArrayList_int(self.e._arraylist, (new Object(__cid=-2, _int=i._int - s1._int))));
   }
-  case Size: { assert false; }
-  case Maxsize: { assert false; }
-  case Sort_object: { assert false; }
-  case Remove_int: { assert false; }
-  case Addall_arraylist: { assert false; }
+  case Size: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsize: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Sort_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Remove_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addall_arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
   }
 
   return null;
 }
 Object xform_addAll_ArrayList_ArrayList(ArrayList self, Object e) {
   switch(self) {
-  case Arraylist: { assert false; }
-  case Add_string: { assert false; }
-  case Addb_string: { assert false; }
-  case Get_int: { assert false; }
-  case Getfirsti_int_string_int_int: { assert false; }
-  case Setb_int_string: { assert false; }
-  case Set_int_string: { assert false; }
-  case Ensurecapacity: { assert false; }
-  case Maxsizeb: { assert false; }
-  case Sortb_object: { assert false; }
-  case Removeb_int: { assert false; }
-  case Addallb_arraylist: { assert false; }
-  case Size: { assert false; }
-  case Maxsize: { assert false; }
-  case Sort_object: { assert false; }
-  case Remove_int: { assert false; }
-  case Addall_arraylist: { assert false; }
+  case Arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Add_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addb_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Get_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Getfirsti_int_string_int_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Setb_int_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Set_int_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Ensurecapacity: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsizeb: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Sortb_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Removeb_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addallb_arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Size: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsize: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Sort_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Remove_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addall_arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
   }
 
   return null;
 }
 Object xform_set_ArrayList_int_String(ArrayList self, Object i, Object e) {
   switch(self) {
-  case Arraylist: { assert false; }
-  case Add_string: { assert false; }
-  case Addb_string: { assert false; }
-  case Get_int: { assert false; }
-  case Getfirsti_int_string_int_int: { assert false; }
-  case Setb_int_string: { assert false; }
-  case Set_int_string: { assert false; }
-  case Ensurecapacity: { assert false; }
-  case Maxsizeb: { assert false; }
-  case Sortb_object: { assert false; }
-  case Removeb_int: { assert false; }
-  case Addallb_arraylist: { assert false; }
-  case Size: { assert false; }
-  case Maxsize: { assert false; }
-  case Sort_object: { assert false; }
-  case Remove_int: { assert false; }
-  case Addall_arraylist: { assert false; }
+  case Arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Add_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addb_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Get_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Getfirsti_int_string_int_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Setb_int_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Set_int_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Ensurecapacity: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsizeb: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Sortb_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Removeb_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addallb_arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Size: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsize: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Sort_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Remove_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addall_arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
   }
 
   return null;
 }
 Object xform_maxSizeb_ArrayList(ArrayList self) {
   switch(self) {
-  case Arraylist: { assert false; }
-  case Add_string: { assert false; }
-  case Addb_string: { assert false; }
-  case Get_int: { assert false; }
-  case Getfirsti_int_string_int_int: { assert false; }
-  case Setb_int_string: { assert false; }
-  case Set_int_string: { assert false; }
-  case Ensurecapacity: { assert false; }
-  case Maxsizeb: { assert false; }
-  case Sortb_object: { assert false; }
-  case Removeb_int: { assert false; }
-  case Addallb_arraylist: { assert false; }
-  case Size: { assert false; }
-  case Maxsize: { assert false; }
-  case Sort_object: { assert false; }
-  case Remove_int: { assert false; }
-  case Addall_arraylist: { assert false; }
+  case Arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Add_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addb_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Get_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Getfirsti_int_string_int_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Setb_int_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Set_int_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Ensurecapacity: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsizeb: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Sortb_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Removeb_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addallb_arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Size: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsize: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Sort_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Remove_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addall_arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
   }
 
   return null;
 }
 Object xform_setb_ArrayList_int_String(ArrayList self, Object i, Object e) {
   switch(self) {
-  case Arraylist: { assert false; }
-  case Add_string: { assert false; }
-  case Addb_string: { assert false; }
-  case Get_int: { assert false; }
-  case Getfirsti_int_string_int_int: { assert false; }
-  case Setb_int_string: { assert false; }
-  case Set_int_string: { assert false; }
-  case Ensurecapacity: { assert false; }
-  case Maxsizeb: { assert false; }
-  case Sortb_object: { assert false; }
-  case Removeb_int: { assert false; }
-  case Addallb_arraylist: { assert false; }
-  case Size: { assert false; }
-  case Maxsize: { assert false; }
-  case Sort_object: { assert false; }
-  case Remove_int: { assert false; }
-  case Addall_arraylist: { assert false; }
+  case Arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Add_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addb_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Get_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Getfirsti_int_string_int_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Setb_int_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Set_int_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Ensurecapacity: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsizeb: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Sortb_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Removeb_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addallb_arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Size: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsize: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Sort_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Remove_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addall_arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
   }
 
   return null;
 }
 Object xform_sortb_ArrayList_Object(ArrayList self, Object b) {
   switch(self) {
-  case Arraylist: { assert false; }
-  case Add_string: { assert false; }
-  case Addb_string: { assert false; }
-  case Get_int: { assert false; }
-  case Getfirsti_int_string_int_int: { assert false; }
-  case Setb_int_string: { assert false; }
-  case Set_int_string: { assert false; }
-  case Ensurecapacity: { assert false; }
-  case Maxsizeb: { assert false; }
-  case Sortb_object: { assert false; }
-  case Removeb_int: { assert false; }
-  case Addallb_arraylist: { assert false; }
-  case Size: { assert false; }
-  case Maxsize: { assert false; }
-  case Sort_object: { assert false; }
-  case Remove_int: { assert false; }
-  case Addall_arraylist: { assert false; }
+  case Arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Add_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addb_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Get_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Getfirsti_int_string_int_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Setb_int_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Set_int_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Ensurecapacity: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsizeb: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Sortb_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Removeb_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addallb_arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Size: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsize: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Sort_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Remove_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addall_arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
   }
 
   return null;
@@ -533,7 +533,7 @@ Object xform_getFirstI_ArrayList_int_String_int_int(ArrayList self, Object i, Ob
         
     return es;
   }
-  case Add_string: { assert false; }
+  case Add_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
   case Addb_string: {
     Object index = (new Object(__cid=-2, _int=i._int - (new Object(__cid=-2, _int=1))._int));
     Object x = es._array_object.A[index._int];
@@ -577,8 +577,8 @@ Object xform_getFirstI_ArrayList_int_String_int_int(ArrayList self, Object i, Ob
     }
     return xform_getFirstI_ArrayList_int_String_int_int(self.self, i, es, rs, r);
   }
-  case Get_int: { assert false; }
-  case Getfirsti_int_string_int_int: { assert false; }
+  case Get_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Getfirsti_int_string_int_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
   case Setb_int_string: {
     Object index = (new Object(__cid=-2, _int=i._int - (new Object(__cid=-2, _int=1))._int));
     Object x = es._array_object.A[index._int];
@@ -604,9 +604,9 @@ Object xform_getFirstI_ArrayList_int_String_int_int(ArrayList self, Object i, Ob
     }
     return xform_getFirstI_ArrayList_int_String_int_int(self.self, i, es, rs, r);
   }
-  case Set_int_string: { assert false; }
-  case Ensurecapacity: { assert false; }
-  case Maxsizeb: { assert false; }
+  case Set_int_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Ensurecapacity: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsizeb: { return new Object(__cid=ArrayList(), _arraylist=self); }
   case Sortb_object: {
     return xform_getFirstI_ArrayList_int_String_int_int(self.self, i, es, rs, r);
   }
@@ -619,57 +619,57 @@ Object xform_getFirstI_ArrayList_int_String_int_int(ArrayList self, Object i, Ob
     es = xform_getFirstI_ArrayList_int_String_int_int(self.self, i, es, rs, r);
     return xform_getFirstI_ArrayList_int_String_int_int(self.e._arraylist, i, es, rs, r);
   }
-  case Size: { assert false; }
-  case Maxsize: { assert false; }
-  case Sort_object: { assert false; }
-  case Remove_int: { assert false; }
-  case Addall_arraylist: { assert false; }
+  case Size: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsize: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Sort_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Remove_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addall_arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
   }
 
   return null;
 }
 Object xform_add_ArrayList_String(ArrayList self, Object e) {
   switch(self) {
-  case Arraylist: { assert false; }
-  case Add_string: { assert false; }
-  case Addb_string: { assert false; }
-  case Get_int: { assert false; }
-  case Getfirsti_int_string_int_int: { assert false; }
-  case Setb_int_string: { assert false; }
-  case Set_int_string: { assert false; }
-  case Ensurecapacity: { assert false; }
-  case Maxsizeb: { assert false; }
-  case Sortb_object: { assert false; }
-  case Removeb_int: { assert false; }
-  case Addallb_arraylist: { assert false; }
-  case Size: { assert false; }
-  case Maxsize: { assert false; }
-  case Sort_object: { assert false; }
-  case Remove_int: { assert false; }
-  case Addall_arraylist: { assert false; }
+  case Arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Add_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addb_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Get_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Getfirsti_int_string_int_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Setb_int_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Set_int_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Ensurecapacity: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsizeb: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Sortb_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Removeb_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addallb_arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Size: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsize: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Sort_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Remove_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addall_arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
   }
 
   return null;
 }
 Object xform_arraylist_ArrayList(ArrayList self) {
   switch(self) {
-  case Arraylist: { assert false; }
-  case Add_string: { assert false; }
-  case Addb_string: { assert false; }
-  case Get_int: { assert false; }
-  case Getfirsti_int_string_int_int: { assert false; }
-  case Setb_int_string: { assert false; }
-  case Set_int_string: { assert false; }
-  case Ensurecapacity: { assert false; }
-  case Maxsizeb: { assert false; }
-  case Sortb_object: { assert false; }
-  case Removeb_int: { assert false; }
-  case Addallb_arraylist: { assert false; }
-  case Size: { assert false; }
-  case Maxsize: { assert false; }
-  case Sort_object: { assert false; }
-  case Remove_int: { assert false; }
-  case Addall_arraylist: { assert false; }
+  case Arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Add_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addb_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Get_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Getfirsti_int_string_int_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Setb_int_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Set_int_string: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Ensurecapacity: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsizeb: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Sortb_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Removeb_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addallb_arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Size: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Maxsize: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Sort_object: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Remove_int: { return new Object(__cid=ArrayList(), _arraylist=self); }
+  case Addall_arraylist: { return new Object(__cid=ArrayList(), _arraylist=self); }
   }
 
   return null;

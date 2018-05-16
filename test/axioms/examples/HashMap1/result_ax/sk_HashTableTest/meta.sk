@@ -1,17 +1,17 @@
 package meta;
 
 // distinct class IDs
-int ArrayList()      { return 6; }
-int Assert()         { return 11; }
-int Boolean()        { return 8; }
-int CharSequence()   { return 5; }
-int Character()      { return 9; }
+int ArrayList()      { return 8; }
+int Assert()         { return 5; }
+int Character()      { return 10; }
 int HashTable()      { return 2; }
 int HashTableNode()  { return 4; }
 int HashTableTest()  { return 3; }
-int Integer()        { return 7; }
+int Integer()        { return 6; }
+int List()           { return 11; }
+int Number()         { return 7; }
 int Object()         { return 1; }
-int String()         { return 10; }
+int String()         { return 9; }
 int Array()          { return -1; }
 int _int()           { return -2; }
 int _char()          { return -3; }

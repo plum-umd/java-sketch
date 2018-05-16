@@ -33,7 +33,7 @@ public class CsvDocumentTest {
 	// String csvPath = "Header 1,Header 2,Header 3,Header 4,Header\n1,1.1,abc,TRUE,11/1/2014\n2,2.2,def,FALSE,11/2/2014";
 	// String csvPath = "Hdr 1,Hdr 2\n1,True\n2,False\n";
 	// String csvPath = "A,B\n1,T\n2,F\n";
-	String csvPath = "A\n1\n2\n";
+	String csvPath = "A\n1\n2";
 	// String csvPath = "A,B\n";
 	
         //act

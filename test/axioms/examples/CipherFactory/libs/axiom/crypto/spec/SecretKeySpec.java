@@ -1,28 +1,28 @@
-@axiomClass
+@rewriteClass
 public class SecretKeySpec implements Key {
-    @adt
+    @alg
     @pure
     byte[] getEncoded();
 
-    // @adt
+    // @alg
     // @constructor
     // SecretKeySpec SecretKeySpec(byte[] k, String alg);
 
-    @adt
+    @alg
     @pure
     boolean equals(Object o);
 
-    axiom Object equals(SecretKeySpec s, Object SecretKeySpec()) {
+    rewrite Object equals(SecretKeySpec s, Object SecretKeySpec()) {
     	return true;
     }
 }
 
 // public class SecretKeySpec implements Key {
-//     // @adt
+//     // @alg
 //     // @pure
 //     // byte[] getEncoded();
 
-//     // @adt
+//     // @alg
 //     // @constructor
 //     // SecretKeySpec SecretKeySpec(byte[] k, String alg);
 

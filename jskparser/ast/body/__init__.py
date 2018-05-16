@@ -29,6 +29,7 @@ def _import():
     from ..expr.nullliteralexpr import NullLiteralExpr
     from ..expr.charliteralexpr import CharLiteralExpr
     from ..expr.booleanliteralexpr import BooleanLiteralExpr
+    from ..expr.literalexpr import LiteralExpr
     from ..expr.nameexpr import NameExpr
     from ..expr.binaryexpr import BinaryExpr
     from ..expr.assignexpr import AssignExpr

@@ -29,7 +29,9 @@ def run(sk_dir, output_path, trial=-1):
   
     res = False
     logging.info(running)
-    cmd = ["sketch"] + _opt + [sk]
+    # cmd = ["sketch"] + _opt + [sk]
+    cmd = ["sketch"] + [sk] + _opt
+    print(' '.join(cmd))
     logging.debug(' '.join(cmd))
     try:
         with open(output_path, 'a') as f:

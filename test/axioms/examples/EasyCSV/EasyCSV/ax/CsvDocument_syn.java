@@ -54,32 +54,29 @@ public class CsvDocument {
         return CsvDocument.read(filePath, defaultConfiguration);
     }
 
-    generator public static CsvDocument genRead(BufferedReader bufferedReader, CsvConfiguration csvConfiguration, ArrayList<CsvRow> parsedCsvRows) {
-	String csvLine = null;
+    generator public static String genRead(BufferedReader bufferedReader, CsvConfiguration csvConfiguration, ArrayList<CsvRow> parsedCsvRows, String csvLine) {
 	CsvRow row = null;
 	CsvDocument parsedDocument = null;
-	if (??) {
-	    if (csvConfiguration.skipHeader()) {
-		bufferedReader.readLine();
-	    }
-	}
+	int i = 1;
 	if (??) {
 	    csvLine = bufferedReader.readLine();	    
 	}
 	if (??) {
-	    parsedCsvRows.add(row);
+	    while (csvLine != null) {
+		csvLine = genRead(bufferedReader, csvConfiguration, parsedCsvRows, csvLine);
+	    }
 	}
 	if (??) {
 	    row = parseCsvRow(csvConfiguration, csvLine);
 	}
 	if (??) {
-	    genRead(bufferedReader, csvConfiguration, parsedCsvRows);
+	    parsedCsvRows.add(row);
 	}
 	if (??) {
-	    parsedDocument = new CsvDocument(parsedCsvRows);	
+	    genRead(bufferedReader, csvConfiguration, parsedCsvRows, csvLine);
 	}
 
-	return parsedDocument;
+	return csvLine;
     }
     
     /**
@@ -96,27 +93,27 @@ public class CsvDocument {
 
 	ArrayList<CsvRow> parsedCsvRows = new ArrayList<>();	
         // try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath))) {
-	//skip header
+	// //skip header
 	// if (csvConfiguration.skipHeader()) {
 	//     bufferedReader.readLine();
 	// }
 
-	genRead(bufferedReader, csvConfiguration, parsedCsvRows);
+	genRead(bufferedReader, csvConfiguration, parsedCsvRows, null);
 	
 	//parse rows
-	String csvLine = bufferedReader.readLine();
-	while (csvLine != null) {
-	    genRead(bufferedReader, csvConfiguration, parsedCsvRows);
-	    // CsvRow row = parseCsvRow(csvConfiguration, csvLine);
-	    // parsedCsvRows.add(row);
-	    // csvLine = bufferedReader.readLine();	    
-	}
+	// String csvLine = bufferedReader.readLine();
+	// while (csvLine != null) {
+	//     csvLine = genRead(bufferedReader, csvConfiguration, parsedCsvRows);
+	//     // CsvRow row = parseCsvRow(csvConfiguration, csvLine);
+	//     // parsedCsvRows.add(row);
+	//     // csvLine = bufferedReader.readLine();	    
+	// }
 
 	//build document
-	// CsvDocument parsedDocument = new CsvDocument(parsedCsvRows);
+	CsvDocument parsedDocument = new CsvDocument(parsedCsvRows);
 
-	// return parsedDocument;
-	return genRead(bufferedReader, csvConfiguration, parsedCsvRows);
+	return parsedDocument;
+	// return genRead(bufferedReader, csvConfiguration, parsedCsvRows);
         // }
     }
 

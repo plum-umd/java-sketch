@@ -1,4 +1,3 @@
-sketch.compiler.solvers.SATBackend.partialEvalAndSolve(SATBackend.java:192)
-sketch.compiler.main.seq.SequentialSketchMain.partialEvalAndSolve(SequentialSketchMain.java:309)
-sketch.compiler.main.seq.SequentialSketchMain.run(SequentialSketchMain.java:649)
+sketch.compiler.main.seq.SequentialSketchMain.preprocAndSemanticCheck(SequentialSketchMain.java:563)
+sketch.compiler.main.seq.SequentialSketchMain.run(SequentialSketchMain.java:642)
 sketch.compiler.main.seq.SequentialSketchMain.main(SequentialSketchMain.java:715)

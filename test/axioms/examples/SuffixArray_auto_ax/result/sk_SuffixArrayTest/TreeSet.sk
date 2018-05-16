@@ -16,7 +16,7 @@ Object TreeSet_TreeSet() {
 }
 
 Object add_Object_Object(Object self, Object e) {
-    return new Object(__cid=TreeSet(), _treeset=new Add_object(self=self._treeset, e=e));
+    return xform_add_TreeSet_Object(self._treeset, e);
 }
 
 Object addb_Object_Object(Object self, Object e) {
@@ -36,11 +36,11 @@ Object clear_Object(Object self) {
 }
 
 Object contains_Object_Object(Object self, Object e) {
-    return new Object(__cid=TreeSet(), _treeset=new Contains_object(self=self._treeset, e=e));
+    return xform_contains_TreeSet_Object(self._treeset, e);
 }
 
 Object size_Object(Object self) {
-    return new Object(__cid=TreeSet(), _treeset=new Size(self=self._treeset));
+    return xform_size_TreeSet(self._treeset);
 }
 
 Object xform_TreeSet(TreeSet self) {
@@ -162,7 +162,7 @@ Object xform_add_TreeSet_Object(TreeSet self, Object e) {
   }
   case Add_object: { assert false; }
   case Addb_object: {
-    return ((e.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=SuffixRankTuple()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=SuffixArrayTest()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=SuffixArray()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=TwoDArray()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(e, self.e) : e.__cid == (new Object(__cid=-2, _int=HashSet()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(e, self.e) : e.__cid == (new Object(__cid=-2, _int=Arrays()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(e, self.e) : e.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(e, self.e) : null)._bit ? (new Object(__cid=-4, _bit=false)) : xform_add_TreeSet_Object(self.self, e));
+    return ((e.__cid == (new Object(__cid=-2, _int=TwoDArray()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=SuffixRankTuple()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(e, self.e) : e.__cid == (new Object(__cid=-2, _int=Arrays()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=SuffixArrayTest()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(e, self.e) : e.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(e, self.e) : e.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=SuffixArray()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=HashSet()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(e, self.e) : null)._bit ? (new Object(__cid=-4, _bit=false)) : xform_add_TreeSet_Object(self.self, e));
   }
   case Clearb: {
     return (new Object(__cid=-4, _bit=true));
@@ -182,7 +182,7 @@ Object xform_contains_TreeSet_Object(TreeSet self, Object e) {
   }
   case Add_object: { assert false; }
   case Addb_object: {
-    return ((self.e.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=SuffixRankTuple()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=SuffixArrayTest()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=SuffixArray()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=TwoDArray()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=HashSet()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=Arrays()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(self.e, e) : null)._bit ? (new Object(__cid=-4, _bit=true)) : xform_contains_TreeSet_Object(self.self, e));
+    return ((self.e.__cid == (new Object(__cid=-2, _int=TwoDArray()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=SuffixRankTuple()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=Arrays()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=SuffixArrayTest()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=SuffixArray()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=HashSet()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(self.e, e) : null)._bit ? (new Object(__cid=-4, _bit=true)) : xform_contains_TreeSet_Object(self.self, e));
   }
   case Clearb: {
     return (new Object(__cid=-4, _bit=false));

@@ -10,7 +10,7 @@ Object SecureRandom_SecureRandom() {
 }
 
 Object nextBytes_Object_Object(Object self, Object k) {
-    return new Object(__cid=SecureRandom(), _securerandom=new Nextbytes_object(self=self._securerandom, k=k));
+    return xform_nextBytes_SecureRandom_Object(self._securerandom, k);
 }
 
 Object xform_SecureRandom(SecureRandom self) {

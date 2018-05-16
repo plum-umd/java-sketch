@@ -11,7 +11,7 @@ Object equals_Object_Object(Object a, Object b) {
     }
     return (new Object(__cid=-4, _bit=false));
   }
-  return (a.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=SecureRandom()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Mac()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=DefaultCipherFactory()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=SecretKeySpec()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(a, b) : a.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(a, b) : a.__cid == (new Object(__cid=-2, _int=Byte()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=CipherFactoryTests()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=CryptoManager()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(a, b) : a.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=IvParameterSpec()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=DefaultCipherFactoryTest()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(a, b) : null);
+  return (a.__cid == (new Object(__cid=-2, _int=Mac()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=SecretKeySpec()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(a, b) : a.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(a, b) : a.__cid == (new Object(__cid=-2, _int=CipherFactoryTests()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=SecureRandom()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=CryptoManager()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=DefaultCipherFactory()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(a, b) : a.__cid == (new Object(__cid=-2, _int=IvParameterSpec()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=DefaultCipherFactoryTest()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Byte()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(a, b) : null);
 }
 
 Object equals_Object(Object self, Object obj) {
@@ -24,18 +24,10 @@ Object hashCode(Object self) {
 
 struct Object {
   int            __cid;
+  Object         b_Byte;
   Object         defaultCipherFactory_DefaultCipherFactoryTest;
   Object         cipher_DefaultCipherFactoryTest;
   Object         keyString_DefaultCipherFactoryTest;
-  Object         _value_String;
-  Object         _count_String;
-  Object         basicCharset_CryptoManager;
-  Object         charset_CryptoManager;
-  Object         encryptedMark_CryptoManager;
-  Object         useEncryptionStrict_CryptoManager;
-  Object         cipherFactory_CryptoManager;
-  Object         b_Byte;
-  Object         value_Character;
   Object         value_Integer;
   Object         ALGORITHM_DefaultCipherFactory;
   Object         PADDING_DefaultCipherFactory;
@@ -43,13 +35,21 @@ struct Object {
   Object         padding_DefaultCipherFactory;
   Object         key_DefaultCipherFactory;
   Object         keyBase64_DefaultCipherFactory;
+  Object         basicCharset_CryptoManager;
+  Object         charset_CryptoManager;
+  Object         encryptedMark_CryptoManager;
+  Object         useEncryptionStrict_CryptoManager;
+  Object         cipherFactory_CryptoManager;
+  Object         value_Character;
   Object         bool_Boolean;
-  Cipher         _cipher;
+  Object         _value_String;
+  Object         _count_String;
+  HashMap        _hashmap;
+  SecureRandom   _securerandom;
   ArrayList      _arraylist;
+  Cipher         _cipher;
   SecretKeySpec  _secretkeyspec;
   Mac            _mac;
-  SecureRandom   _securerandom;
-  HashMap        _hashmap;
   Array_bit      _array_bit;
   Array_char     _array_char;
   Array_int      _array_int;

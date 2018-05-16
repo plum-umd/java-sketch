@@ -1,13 +1,13 @@
-@axiomClass
+@rewriteClass
 public class Mac {
-    @adt
+    @alg
     void init(SecretKeySpec key);
 
-    @adt
+    @alg
     @pure
     Object doFinal(Object text);
 
-    axiom Object doFinal(Object init!(Mac m, SecretKeySpec s), Object text) {
+    rewrite Object doFinal(Object init!(Mac m, SecretKeySpec s), Object text) {
 	return text;
     }
 }

@@ -1,0 +1,44 @@
+package CsvColumn;
+
+Object CsvColumn_CsvColumn(Object self) {
+  return self;
+}
+
+Object CsvColumn_CsvColumn_String(Object self, Object value) {
+  self.columnValue_CsvColumn = value;
+  return self;
+}
+
+Object CsvColumn_CsvColumn_int(Object self, Object intValue) {
+  self.columnValue_CsvColumn = toString_int@Integer(intValue);
+  return self;
+}
+
+Object CsvColumn_CsvColumn_boolean(Object self, Object booleanValue) {
+  self.columnValue_CsvColumn = toString_boolean@Boolean(booleanValue);
+  return self;
+}
+
+Object hasValue(Object self) {
+  return (new Object(__cid=-4, _bit=self.columnValue_CsvColumn == null));
+}
+
+Object getColumnValue(Object self) {
+  return self.columnValue_CsvColumn;
+}
+
+Object getInteger(Object self) {
+  Object parsedValue = parseInt_String@Integer(self.columnValue_CsvColumn);
+  return parsedValue;
+}
+
+Object getBoolean(Object self) {
+  if ((self.columnValue_CsvColumn.__cid == (new Object(__cid=-2, _int=String()))._int ? equalsIgnoreCase_Object@String(self.columnValue_CsvColumn, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=4+1), A="true")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=4))) : null)._bit || (self.columnValue_CsvColumn.__cid == (new Object(__cid=-2, _int=String()))._int ? equalsIgnoreCase_Object@String(self.columnValue_CsvColumn, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="t")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null)._bit || (self.columnValue_CsvColumn.__cid == (new Object(__cid=-2, _int=String()))._int ? equalsIgnoreCase_Object@String(self.columnValue_CsvColumn, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=3+1), A="yes")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=3))) : null)._bit || (self.columnValue_CsvColumn.__cid == (new Object(__cid=-2, _int=String()))._int ? equalsIgnoreCase_Object@String(self.columnValue_CsvColumn, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="y")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null)._bit || (self.columnValue_CsvColumn.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(self.columnValue_CsvColumn, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="1")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null)._bit) {
+    return (new Object(__cid=-4, _bit=true));
+  }
+  if ((self.columnValue_CsvColumn.__cid == (new Object(__cid=-2, _int=String()))._int ? equalsIgnoreCase_Object@String(self.columnValue_CsvColumn, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=5+1), A="false")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=5))) : null)._bit || (self.columnValue_CsvColumn.__cid == (new Object(__cid=-2, _int=String()))._int ? equalsIgnoreCase_Object@String(self.columnValue_CsvColumn, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="f")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null)._bit || (self.columnValue_CsvColumn.__cid == (new Object(__cid=-2, _int=String()))._int ? equalsIgnoreCase_Object@String(self.columnValue_CsvColumn, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=2+1), A="no")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=2))) : null)._bit || (self.columnValue_CsvColumn.__cid == (new Object(__cid=-2, _int=String()))._int ? equalsIgnoreCase_Object@String(self.columnValue_CsvColumn, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="n")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null)._bit || (self.columnValue_CsvColumn.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(self.columnValue_CsvColumn, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="0")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null)._bit) {
+    return (new Object(__cid=-4, _bit=false));
+  }
+  return (new Object(__cid=-4, _bit=false));
+}
+

@@ -30,7 +30,7 @@ def translate(**kwargs):
     cntr = kwargs.get('cntr', False)
     skv = kwargs.get('skv', 0)
     lib = kwargs.get('lib', True)
-
+    
     codegen_jar = os.path.join(root_dir, "codegen", "lib", "codegen.jar")
     
     logging.info('parsing {}'.format(prg))
@@ -40,7 +40,7 @@ def translate(**kwargs):
     encoder = Encoder(prg_ast, out_dir, fs)
     logging.info('encoding to Sketch')
     encoder.to_sk()
- 
+    
     # Sketch options
     opts = kwargs.get('opts', [])
 
@@ -63,7 +63,7 @@ def translate(**kwargs):
  
         logging.info('sk_dir: {}, output_path: {}'.format(encoder.sk_dir, output_path))
         _, r = sketch.run(encoder.sk_dir, output_path)
- 
+
         # if sketch fails, halt the process here
         if not r: return 1
     elif not prg:

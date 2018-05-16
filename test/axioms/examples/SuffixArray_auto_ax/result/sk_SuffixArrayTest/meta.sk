@@ -1,23 +1,23 @@
 package meta;
 
 // distinct class IDs
-int ArrayDeque()       { return 10; }
-int ArrayList()        { return 17; }
-int Arrays()           { return 15; }
-int Assert()           { return 16; }
-int Boolean()          { return 5; }
-int CharSequence()     { return 9; }
-int Character()        { return 12; }
-int HashMap()          { return 13; }
-int HashSet()          { return 14; }
-int Integer()          { return 11; }
+int ArrayDeque()       { return 13; }
+int ArrayList()        { return 15; }
+int Arrays()           { return 6; }
+int Assert()           { return 7; }
+int Boolean()          { return 8; }
+int CharSequence()     { return 5; }
+int Character()        { return 10; }
+int HashMap()          { return 9; }
+int HashSet()          { return 12; }
+int Integer()          { return 16; }
 int Object()           { return 1; }
-int String()           { return 6; }
+int String()           { return 14; }
 int SuffixArray()      { return 3; }
 int SuffixArrayTest()  { return 2; }
-int SuffixRankTuple()  { return 7; }
-int TreeSet()          { return 4; }
-int TwoDArray()        { return 8; }
+int SuffixRankTuple()  { return 4; }
+int TreeSet()          { return 17; }
+int TwoDArray()        { return 11; }
 int Array()            { return -1; }
 int _int()             { return -2; }
 int _char()            { return -3; }

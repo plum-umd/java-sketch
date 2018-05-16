@@ -197,16 +197,19 @@ public class HashTable<K, V> {
     protected int getBucketIndex(K key) {
     	// leaving this method alone b/c it's a translation of the comments below
     	int h = key.hashCode();
-    	int c = this.currentCapacity - 1;
-    	int result = 0, s = 1;
-    	for (int i = 0; i < 32; i++) {
-    	    if (i > 1) {
-    		for (int j = 0; j < i-1; j++) s *= 2;
-    	    }
-    	    result += (((h/s) % 2) * ((c/s) % 2) * s);
-    	    s = 2;
-    	}
-    	return result;
+    	// int c = this.currentCapacity - 1;
+    	// int result = 0, s = 1;
+    	// for (int i = 0; i < 32; i++) {
+    	//     if (i > 1) {
+    	// 	for (int j = 0; j < i-1; j++) s *= 2;
+    	//     }
+    	//     result += (((h/s) % 2) * ((c/s) % 2) * s);
+    	//     s = 2;
+    	// }
+    	// return result;
+
+	return h % this.currentCapacity;	
+	
     	// // Rehash to protect against poor hash functions
     	// int rehashed = hash(key.hashCode());
         // // Capacity is always a power of two, use fast modulo operation

@@ -8,11 +8,11 @@ array.sk:20: Making final Array_float@array.length
 array.sk:25: Making final Array_double@array.length
 array.sk:30: Making final Array_Object@array.length
 [SATBackend] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-[SATBackend] MAX LOOP UNROLLING = 5
+[SATBackend] MAX LOOP UNROLLING = 2
 [SATBackend] MAX FUNC INLINING  = 3
 estimated size of mn_int_int_int__Wrapper_HashTableTest
 stmt cnt: 2
-callee glblInit_INITIAL_SIZE__HashTableTest_s1248_HashTableTest : 10
+callee glblInit_INITIAL_SIZE__HashTableTest_s1398_HashTableTest : 10
 callee mn_int_int_int0_HashTableTest : 104
 
 [SATBackend] After prog.accept(partialEval)
@@ -57,11 +57,11 @@ searching for file /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/ske
 searching for file /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-frontend/src/SketchSolver/cegis
 searching for file /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
 resolved cegis to path /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis
-[SATBackend] Launching: /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 -randassign --assumebcheck --bnd-inline-amnt 3 -nosim -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch2/test/axioms/examples/HashMap1/sketch_final/tmp/sk_HashTableTest/solution0-0 /Users/kathymariano/Research/java-sketch2/test/axioms/examples/HashMap1/sketch_final/tmp/sk_HashTableTest/input0.tmp 
+[SATBackend] Launching: /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 3 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch2/test/axioms/examples/HashMap1/sketch_final/tmp/sk_HashTableTest/solution0-0 /Users/kathymariano/Research/java-sketch2/test/axioms/examples/HashMap1/sketch_final/tmp/sk_HashTableTest/input0.tmp 
 Overriding inputs with 5
 boundmode = CALLNAME
 assuming  bounds checks
-SOLVER RAND SEED = 1520277222
+SOLVER RAND SEED = 1523664930
  optimization level = 6
 Reading SKETCH Program in File /Users/kathymariano/Research/java-sketch2/test/axioms/examples/HashMap1/sketch_final/tmp/sk_HashTableTest/input0.tmp
 CREATING mn_int_int_int__Wrapper_HashTableTest
@@ -70,7 +70,7 @@ after ba size = 38
 CREATING mn_int_int_int__WrapperNospec_HashTableTest
 size = 3
 after ba size = 3
-CREATING glblInit_INITIAL_SIZE__HashTableTest_s1248_HashTableTest
+CREATING glblInit_INITIAL_SIZE__HashTableTest_s1398_HashTableTest
 size = 37
 after ba size = 37
 CREATING mn_int_int_int0_HashTableTest
@@ -101,18 +101,18 @@ CREATING HashTable_HashTable_int_HashTable
 size = 115
 after ba size = 115
 CREATING put_K_V_HashTable
-Found Cycle of size 12; Breaking.
-Found Cycle of size 27; Breaking.
-Found Cycle of size 30; Breaking.
-Found Cycle of size 43; Breaking.
-Found Cycle of size 32; Breaking.
-Found Cycle of size 41; Breaking.
-Found Cycle of size 18; Breaking.
-Found Cycle of size 28; Breaking.
-Found Cycle of size 15; Breaking.
 Found Cycle of size 17; Breaking.
-size = 5932
-after ba size = 5932
+Found Cycle of size 45; Breaking.
+Found Cycle of size 42; Breaking.
+Found Cycle of size 38; Breaking.
+Found Cycle of size 38; Breaking.
+Found Cycle of size 38; Breaking.
+Found Cycle of size 38; Breaking.
+Found Cycle of size 27; Breaking.
+Found Cycle of size 29; Breaking.
+Found Cycle of size 16; Breaking.
+size = 2641
+after ba size = 2641
 CREATING get_K_HashTable
 size = 101
 after ba size = 101
@@ -123,16 +123,16 @@ CREATING ArrayList_ArrayList_ArrayList
 size = 41
 after ba size = 41
 CREATING resetHashTable_HashTable
-Found Cycle of size 9; Breaking.
-size = 1183
-after ba size = 1183
+Found Cycle of size 16; Breaking.
+size = 550
+after ba size = 550
 CREATING size_HashTable
 size = 38
 after ba size = 38
 CREATING ensureCapacity_int_HashTable
-Found Cycle of size 23; Breaking.
-size = 1292
-after ba size = 1292
+Found Cycle of size 18; Breaking.
+size = 656
+after ba size = 656
 CREATING getBucketIndex_K_HashTable
 size = 851
 after ba size = 851
@@ -143,8 +143,8 @@ CREATING HashTableNode_HashTableNode_K_V_HashTableNode
 size = 42
 after ba size = 42
 CREATING xform_get_ArrayList_int_ArrayList
-size = 465
-after ba size = 465
+size = 485
+after ba size = 485
 CREATING ArrayList_meta
 size = 3
 after ba size = 3
@@ -185,8 +185,8 @@ size = 3
 after ba size = 3
 CREATING equals_Object_String
 Found Cycle of size 6; Breaking.
-size = 620
-after ba size = 620
+size = 350
+after ba size = 350
 CREATING setValue_V_HashTableNode
 size = 39
 after ba size = 39
@@ -197,18 +197,20 @@ CREATING setNext_HashTableNode_HashTableNode
 size = 39
 after ba size = 39
 CREATING getNodeWithKey_K_HashTable
-Found Cycle of size 13; Breaking.
-Found Cycle of size 26; Breaking.
-Found Cycle of size 53; Breaking.
-Found Cycle of size 24; Breaking.
-Found Cycle of size 37; Breaking.
-Found Cycle of size 26; Breaking.
-Found Cycle of size 19; Breaking.
-Found Cycle of size 21; Breaking.
+Found Cycle of size 47; Breaking.
+Found Cycle of size 42; Breaking.
+Found Cycle of size 18; Breaking.
 Found Cycle of size 23; Breaking.
-Found Cycle of size 38; Breaking.
-size = 4725
-after ba size = 4725
+Found Cycle of size 23; Breaking.
+Found Cycle of size 25; Breaking.
+Found Cycle of size 23; Breaking.
+Found Cycle of size 23; Breaking.
+Found Cycle of size 21; Breaking.
+Found Cycle of size 17; Breaking.
+Found Cycle of size 18; Breaking.
+Found Cycle of size 11; Breaking.
+size = 2024
+after ba size = 2024
 CREATING getValue_HashTableNode
 size = 38
 after ba size = 38
@@ -225,9 +227,9 @@ CREATING ensureCapacity_Object_int_ArrayList
 size = 48
 after ba size = 48
 CREATING hashCode_String
-Found Cycle of size 29; Breaking.
-size = 2200
-after ba size = 2200
+Found Cycle of size 27; Breaking.
+size = 640
+after ba size = 640
 CREATING hashCode_Object
 size = 38
 after ba size = 38
@@ -235,8 +237,8 @@ CREATING hashCode_Integer
 size = 38
 after ba size = 38
 CREATING xform_size_ArrayList_ArrayList
-size = 352
-after ba size = 352
+size = 370
+after ba size = 370
 CREATING charValue_Character
 size = 38
 after ba size = 38
@@ -249,7 +251,6 @@ after ba size = 38
 CREATING charAt_int_String
 size = 109
 after ba size = 109
-ATTEMPT 0
 * before  EVERYTHING: mn_int_int_int__WrapperNospec_HashTableTest::SPEC nodes = 3	 mn_int_int_int__Wrapper_HashTableTest::SKETCH nodes = 38
  INBITS = 5
  CBITS  = 5
@@ -258,92 +259,2302 @@ ATTEMPT 0
  Inlining functions in the sketch.
 inlined 2 new size =162
 inlined 8 new size =468
-H__13 odds = 1/2 0.244919 (5, 5)  try to replace
-H__13: replacing with value 0 bnd= 2 totsize= 0.693147
-H__2 odds = 1/5  (2, 2)  not replacing
-Found Cycle of size 61; Breaking.
-Found Cycle of size 39; Breaking.
-Found Cycle of size 36; Breaking.
+Found Cycle of size 23; Breaking.
 Found Cycle of size 29; Breaking.
+Found Cycle of size 29; Breaking.
+Found Cycle of size 29; Breaking.
+Found Cycle of size 27; Breaking.
+Found Cycle of size 18; Breaking.
 Found Cycle of size 22; Breaking.
-Found Cycle of size 25; Breaking.
-Found Cycle of size 19; Breaking.
-Found Cycle of size 20; Breaking.
-Found Cycle of size 12; Breaking.
-inlined 13 new size =18965
-H__14 odds = 1/2  (5, 5)  not replacing
-H__0 odds = 1/10  (1, 1)  not replacing
-H__1 odds = 1/5  (2, 2)  not replacing
-H__12 odds = 1/2  (5, 5)  not replacing
-H__9 odds = 1/5  (2, 2)  not replacing
-Found Cycle of size 145; Breaking.
-Found Cycle of size 191; Breaking.
-Found Cycle of size 190; Breaking.
-Found Cycle of size 181; Breaking.
-Found Cycle of size 158; Breaking.
-Found Cycle of size 91; Breaking.
-Found Cycle of size 90; Breaking.
-Found Cycle of size 92; Breaking.
-Found Cycle of size 98; Breaking.
-Found Cycle of size 183; Breaking.
-Found Cycle of size 90; Breaking.
-inlined 302 new size =31860
-Found Cycle of size 120; Breaking.
-Found Cycle of size 52; Breaking.
-Found Cycle of size 39; Breaking.
-Found Cycle of size 75; Breaking.
-Found Cycle of size 145; Breaking.
-Found Cycle of size 84; Breaking.
-Found Cycle of size 84; Breaking.
-Found Cycle of size 85; Breaking.
-Found Cycle of size 77; Breaking.
+Found Cycle of size 21; Breaking.
+Found Cycle of size 18; Breaking.
+inlined 13 new size =9114
+Found Cycle of size 107; Breaking.
+Found Cycle of size 59; Breaking.
+Found Cycle of size 130; Breaking.
 Found Cycle of size 70; Breaking.
-inlined 306 new size =34991
-inlined 113 new size =39154
-inlined 30 new size =42130
-inlined 15 new size =44484
-inlined 9 new size =45708
-inlined 3 new size =45957
-inlined 0 new size =45882
+Found Cycle of size 58; Breaking.
+Found Cycle of size 126; Breaking.
+Found Cycle of size 108; Breaking.
+Found Cycle of size 56; Breaking.
+Found Cycle of size 70; Breaking.
+Found Cycle of size 82; Breaking.
+inlined 167 new size =14964
+Found Cycle of size 88; Breaking.
+Found Cycle of size 91; Breaking.
+Found Cycle of size 92; Breaking.
+Found Cycle of size 102; Breaking.
+Found Cycle of size 103; Breaking.
+Found Cycle of size 66; Breaking.
+Found Cycle of size 66; Breaking.
+Found Cycle of size 100; Breaking.
+Found Cycle of size 99; Breaking.
+Found Cycle of size 96; Breaking.
+Found Cycle of size 94; Breaking.
+Found Cycle of size 97; Breaking.
+Found Cycle of size 102; Breaking.
+Found Cycle of size 58; Breaking.
+Found Cycle of size 42; Breaking.
+Found Cycle of size 66; Breaking.
+Found Cycle of size 50; Breaking.
+inlined 177 new size =15581
+Found Cycle of size 112; Breaking.
+inlined 85 new size =17979
+Found Cycle of size 91; Breaking.
+inlined 23 new size =20705
+Found Cycle of size 79; Breaking.
+inlined 14 new size =22668
+Found Cycle of size 101; Breaking.
+inlined 9 new size =23626
+Found Cycle of size 114; Breaking.
+inlined 4 new size =23736
+inlined 2 new size =23649
+inlined 0 new size =23649
 END OF STEP 0
  Inlining functions in the spec.
 inlined 0 new size =3
 END OF STEP 0
 Bailing out
-after Creating Miter: Problem nodes = 35147
-* Final Problem size: Problem nodes = 35107
-  # OF CONTROLS:    6
- control_ints = 5 	 control_bits = 1
-inputSize = 6	ctrlSize = 31
+after Creating Miter: Problem nodes = 18458
+* Final Problem size: Problem nodes = 18418
+  # OF CONTROLS:    7
+ control_ints = 5 	 control_bits = 2
+inputSize = 6	ctrlSize = 32
 Random seeds = 1
-!+ 0100111001000100100000010000000
+!+ 01100000100101100010100000100100
 !+ H__14:2
-H__0:28
-H__1:17
-H__2:1
-H__9:1
+H__0:65
+H__1:52
+H__2:20
+H__13:0
+H__9:36
 H__12:0
 
 BEG CHECK
- * After optims it became = 14 was 35107
-DECISIONS START = 0
-c# %assign: 24 clauses: 15 learn: 0 restart: 1 decision: 8 propagated: 25
+ * After optims it became = 12609 was 18418
+function was not inlined enough xform_size_ArrayList_ArrayList
+Simulation found a cex by random testing:  0.011 ms 
 END CHECK
-********  0	ftime= 0	ctime= 0.042
-!% 001001
-!% __x_4_5e_0:0
-__y_5_5f_0:1
-__z_6_60_0:2
+********  0	ftime= 0	ctime= 0.063
+!% 100100
+!% __x_4_5e_0:1
+__y_5_5f_0:2
+__z_6_60_0:0
 
 BEG FIND
 Level 1  intsize = 2
- * After optims it became = 35095 was 35107
- * After all optims it became = 35095
+ * After optims it became = 18406 was 18418
+ * After all optims it became = 18406
+ finder  hits = 69086	 bstoreObjs=493177	 sstorePages=757
+hitcount 	0	453333	9
+hitcount 	1	24414	8
+hitcount 	2	11211	8
+hitcount 	3	1090	9
+hitcount 	4	1919	9
+hitcount 	5	309	9
+hitcount 	6	259	9
+hitcount 	7	266	8
+hitcount 	8	78	8
+hitcount 	9	34	8
+hitcount 	10	74	8
+hitcount 	11	79	7
+hitcount 	12	10	9
+hitcount 	13	9	8
+hitcount 	14	2	9
+hitcount 	15	6	11
+hitcount 	16	7	7
+hitcount 	17	3	8
+hitcount 	18	2	10
+hitcount 	19	8	9
+hitcount 	20	6	6
+hitcount 	21	5	10
+hitcount 	22	2	12
+hitcount 	23	4	7
+hitcount 	24	4	10
+hitcount 	25	3	8
+hitcount 	26	1	6
+hitcount 	27	3	7
+hitcount 	28	1	13
+hitcount 	29	2	10
+hitcount 	30	1	9
+hitcount 	32	1	8
+hitcount 	33	1	7
+hitcount 	35	1	10
+hitcount 	37	2	6
+hitcount 	38	1	11
+hitcount 	39	1	7
+hitcount 	40	1	6
+hitcount 	41	1	7
+hitcount 	42	1	6
+hitcount 	45	1	8
+hitcount 	46	1	9
+hitcount 	49	1	9
+hitcount 	50	1	7
+hitcount 	53	1	9
+hitcount 	54	1	11
+hitcount 	55	1	10
+hitcount 	56	1	16
+hitcount 	57	1	5
+hitcount 	62	1	9
+hitcount 	78	1	5
+hitcount 	92	1	5
+hitcount 	95	1	9
+hitcount 	96	1	5
+hitcount 	104	1	12
+hitcount 	108	1	11
+hitcount 	109	1	11
+hitcount 	116	1	1
+hitcount 	128	1	13
+hitcount 	165	1	5
+hitcount 	171	1	6
+hitcount 	180	1	9
+bucketsPerDepth 	14	1
+bucketsPerDepth 	15	35
+bucketsPerDepth 	16	103
+bucketsPerDepth 	17	183
+bucketsPerDepth 	18	234
+bucketsPerDepth 	19	159
+bucketsPerDepth 	20	147
+bucketsPerDepth 	21	71
+bucketsPerDepth 	22	50
+bucketsPerDepth 	23	21
+bucketsPerDepth 	24	13
+bucketsPerDepth 	25	3
+bucketsPerDepth 	26	3
+bucketsPerDepth 	28	1
+* TIME TO ADD INPUT :  3000.17 ms 
+DECISIONS START = 0
+f# %assign: 85 clauses: 323700 learn: 0 restart: 1 decision: 396 propagated: 494247
+END FIND
+!+ 00100000010000000000000000000000
+!+ H__14:0
+H__0:1
+H__1:1
+H__2:0
+H__13:0
+H__9:0
+H__12:0
+
+BEG CHECK
+ * After optims it became = 11768 was 18418
+ TESTING HYPOTHESIS ITER 1
+h = 16  hasserts.size()= 1
+dagmn_int_int_int__WrapperNospec_HashTableTest{
+__x_4_5e_0
+__y_5_5f_0
+2= __x_4_5e_0 == __y_5_5f_0 
+__z_6_60_0
+4= __x_4_5e_0 == __z_6_60_0 
+5= 4 ! 
+6= 2 ! 
+7= [2]$(!4), (!2), $
+8= __y_5_5f_0 == __z_6_60_0 
+9= 8 ! 
+10= 7 & (!8) 
+11= Assume 10 : Assume at HashTableTest.sk:16
+12= (8)
+13= __y_5_5f_0 % (8) 
+14= __x_4_5e_0 % (8) 
+15= 13 == 14 
+16= 15 ! 
+17= ASSERT (!15) : 
+}
+SLICE SIZE = 18
+c# %assign: 24 clauses: 55 learn: 0 restart: 0 decision: 0 propagated: 6
+ FOUND CONST: 16= 15 == 14  = 0
+ reduced size from 11768 to 9181
+ TESTING HYPOTHESIS ITER 2
+h = 15  hasserts.size()= 1
+dagmn_int_int_int__WrapperNospec_HashTableTest{
+__x_4_5e_0
+__y_5_5f_0
+2= __x_4_5e_0 == __y_5_5f_0 
+__z_6_60_0
+4= __x_4_5e_0 == __z_6_60_0 
+5= 4 ! 
+6= 2 ! 
+7= [2]$(!4), (!2), $
+8= __y_5_5f_0 == __z_6_60_0 
+9= 8 ! 
+10= 7 & (!8) 
+11= Assume 10 : Assume at HashTableTest.sk:16
+12= (8)
+13= __z_6_60_0 % (8) 
+14= __y_5_5f_0 % (8) 
+15= 13 == 14 
+16= 15 ! 
+17= ASSERT (!15) : 
+}
+SLICE SIZE = 18
+c# %assign: 24 clauses: 55 learn: 0 restart: 0 decision: 0 propagated: 6
+ FOUND CONST: 15= 14 == 13  = 0
+ reduced size from 9181 to 8806
+ TESTING HYPOTHESIS ITER 3
+h = 15  hasserts.size()= 1
+dagmn_int_int_int__WrapperNospec_HashTableTest{
+__x_4_5e_0
+__y_5_5f_0
+2= __x_4_5e_0 == __y_5_5f_0 
+__z_6_60_0
+4= __x_4_5e_0 == __z_6_60_0 
+5= 4 ! 
+6= 2 ! 
+7= [2]$(!4), (!2), $
+8= __y_5_5f_0 == __z_6_60_0 
+9= 8 ! 
+10= 7 & (!8) 
+11= Assume 10 : Assume at HashTableTest.sk:16
+12= (8)
+13= __z_6_60_0 % (8) 
+14= __x_4_5e_0 % (8) 
+15= 13 == 14 
+16= 15 ! 
+17= ASSERT (!15) : 
+}
+SLICE SIZE = 18
+c# %assign: 24 clauses: 55 learn: 0 restart: 0 decision: 0 propagated: 6
+ FOUND CONST: 15= 14 == 13  = 0
+ reduced size from 8806 to 6013
+ TESTING HYPOTHESIS ITER 4
+h = 15  hasserts.size()= 1
+dagmn_int_int_int__WrapperNospec_HashTableTest{
+__x_4_5e_0
+__y_5_5f_0
+2= __x_4_5e_0 == __y_5_5f_0 
+__z_6_60_0
+4= __x_4_5e_0 == __z_6_60_0 
+5= 4 ! 
+6= 2 ! 
+7= [2]$(!4), (!2), $
+8= __y_5_5f_0 == __z_6_60_0 
+9= 8 ! 
+10= 7 & (!8) 
+11= Assume 10 : Assume at HashTableTest.sk:16
+12= (8)
+13= __x_4_5e_0 % (8) 
+14= __z_6_60_0 % (8) 
+15= 13 == 14 
+16= 15 ! 
+17= ASSERT (!15) : 
+}
+SLICE SIZE = 18
+c# %assign: 24 clauses: 55 learn: 0 restart: 0 decision: 0 propagated: 6
+ FOUND CONST: 15= 14 == 13  = 0
+ reduced size from 6013 to 5484
+ * Simulation optimized it to = 5476
+Simulation didn't find a cex:  0.259 ms 
+After all optim
+DECISIONS START = 0
+c# %assign: 87 clauses: 6823 learn: 20 restart: 1 decision: 71 propagated: 13548
+CONTROL: growing l=2 inputs to size 3
+ TESTING HYPOTHESIS ITER 1
+h = 16  hasserts.size()= 1
+dagmn_int_int_int__WrapperNospec_HashTableTest{
+__x_4_5e_0
+__y_5_5f_0
+2= __x_4_5e_0 == __y_5_5f_0 
+__z_6_60_0
+4= __x_4_5e_0 == __z_6_60_0 
+5= 4 ! 
+6= 2 ! 
+7= [2]$(!4), (!2), $
+8= __y_5_5f_0 == __z_6_60_0 
+9= 8 ! 
+10= 7 & (!8) 
+11= Assume 10 : Assume at HashTableTest.sk:16
+12= (8)
+13= __y_5_5f_0 % (8) 
+14= __x_4_5e_0 % (8) 
+15= 13 == 14 
+16= 15 ! 
+17= ASSERT (!15) : 
+}
+SLICE SIZE = 18
+c# %assign: 15 clauses: 91 learn: 0 restart: 0 decision: 0 propagated: 6
+ FOUND CONST: 16= 15 == 14  = 0
+ reduced size from 11768 to 9181
+ TESTING HYPOTHESIS ITER 2
+h = 15  hasserts.size()= 1
+dagmn_int_int_int__WrapperNospec_HashTableTest{
+__x_4_5e_0
+__y_5_5f_0
+2= __x_4_5e_0 == __y_5_5f_0 
+__z_6_60_0
+4= __x_4_5e_0 == __z_6_60_0 
+5= 4 ! 
+6= 2 ! 
+7= [2]$(!4), (!2), $
+8= __y_5_5f_0 == __z_6_60_0 
+9= 8 ! 
+10= 7 & (!8) 
+11= Assume 10 : Assume at HashTableTest.sk:16
+12= (8)
+13= __z_6_60_0 % (8) 
+14= __y_5_5f_0 % (8) 
+15= 13 == 14 
+16= 15 ! 
+17= ASSERT (!15) : 
+}
+SLICE SIZE = 18
+c# %assign: 15 clauses: 91 learn: 0 restart: 0 decision: 0 propagated: 6
+ FOUND CONST: 15= 14 == 13  = 0
+ reduced size from 9181 to 8806
+ TESTING HYPOTHESIS ITER 3
+h = 15  hasserts.size()= 1
+dagmn_int_int_int__WrapperNospec_HashTableTest{
+__x_4_5e_0
+__y_5_5f_0
+2= __x_4_5e_0 == __y_5_5f_0 
+__z_6_60_0
+4= __x_4_5e_0 == __z_6_60_0 
+5= 4 ! 
+6= 2 ! 
+7= [2]$(!4), (!2), $
+8= __y_5_5f_0 == __z_6_60_0 
+9= 8 ! 
+10= 7 & (!8) 
+11= Assume 10 : Assume at HashTableTest.sk:16
+12= (8)
+13= __z_6_60_0 % (8) 
+14= __x_4_5e_0 % (8) 
+15= 13 == 14 
+16= 15 ! 
+17= ASSERT (!15) : 
+}
+SLICE SIZE = 18
+c# %assign: 15 clauses: 91 learn: 0 restart: 0 decision: 0 propagated: 6
+ FOUND CONST: 15= 14 == 13  = 0
+ reduced size from 8806 to 6013
+ TESTING HYPOTHESIS ITER 4
+h = 15  hasserts.size()= 1
+dagmn_int_int_int__WrapperNospec_HashTableTest{
+__x_4_5e_0
+__y_5_5f_0
+2= __x_4_5e_0 == __y_5_5f_0 
+__z_6_60_0
+4= __x_4_5e_0 == __z_6_60_0 
+5= 4 ! 
+6= 2 ! 
+7= [2]$(!4), (!2), $
+8= __y_5_5f_0 == __z_6_60_0 
+9= 8 ! 
+10= 7 & (!8) 
+11= Assume 10 : Assume at HashTableTest.sk:16
+12= (8)
+13= __x_4_5e_0 % (8) 
+14= __z_6_60_0 % (8) 
+15= 13 == 14 
+16= 15 ! 
+17= ASSERT (!15) : 
+}
+SLICE SIZE = 18
+c# %assign: 15 clauses: 91 learn: 0 restart: 0 decision: 0 propagated: 6
+ FOUND CONST: 15= 14 == 13  = 0
+ reduced size from 6013 to 5484
+ * Simulation optimized it to = 5476
+Simulation didn't find a cex:  999.271 ms 
+After all optim
+DECISIONS START = 0
+c# %assign: 90 clauses: 7947 learn: 38 restart: 1 decision: 193 propagated: 17161
+CONTROL: growing l=2 inputs to size 4
+ TESTING HYPOTHESIS ITER 1
+h = 24  hasserts.size()= 1
+dagmn_int_int_int__WrapperNospec_HashTableTest{
+__x_4_5e_0
+__y_5_5f_0
+2= __x_4_5e_0 == __y_5_5f_0 
+__z_6_60_0
+4= __x_4_5e_0 == __z_6_60_0 
+5= 4 ! 
+6= 2 ! 
+7= [2]$(!4), (!2), $
+8= __y_5_5f_0 == __z_6_60_0 
+9= 8 ! 
+10= 7 & (!8) 
+11= Assume 10 : Assume at HashTableTest.sk:16
+12= (8)
+13= __y_5_5f_0 % (8) 
+14= __x_4_5e_0 % (8) 
+15= 13 == 14 
+16= (0)
+17= (-1)
+18= <(0), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), >
+19= [15]$18, (-1), $
+20= 19[0]
+21= (0)
+22= 20 == (0) 
+23= ASSERT 22 : 
+}
+SLICE SIZE = 24
+c# %assign: 7 clauses: 237 learn: 0 restart: 0 decision: 0 propagated: 6
+ FOUND CONST: 24= 23[0] = 0
+ reduced size from 11768 to 11557
+ TESTING HYPOTHESIS ITER 2
+h = 408  hasserts.size()= 1
+SLICE SIZE = 410
+c# %assign: 4 clauses: 430 learn: 0 restart: 0 decision: 0 propagated: 6
+ FOUND CONST: 408= 407 == (2)  = 1
+ reduced size from 11557 to 11518
+ TESTING HYPOTHESIS ITER 3
+h = 8836  hasserts.size()= 1
+dagmn_int_int_int__WrapperNospec_HashTableTest{
+__x_4_5e_0
+__y_5_5f_0
+2= __x_4_5e_0 == __y_5_5f_0 
+__z_6_60_0
+4= __x_4_5e_0 == __z_6_60_0 
+5= 4 ! 
+6= 2 ! 
+7= [2]$(!4), (!2), $
+8= __y_5_5f_0 == __z_6_60_0 
+9= 8 ! 
+10= 7 & (!8) 
+11= Assume 10 : Assume at HashTableTest.sk:16
+12= (8)
+13= __y_5_5f_0 % (8) 
+14= __x_4_5e_0 % (8) 
+15= 13 == 14 
+16= (0)
+17= (-1)
+18= <(0), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), >
+19= [15]$18, (-1), $
+20= 19 == (-1) 
+21= 15 ! 
+22= 20 & (!15) 
+23= 22 ! 
+24= ASSERT (!22) : 
+}
+SLICE SIZE = 25
+c# %assign: 7 clauses: 237 learn: 0 restart: 0 decision: 0 propagated: 6
+ FOUND CONST: 8836= 8835 & (!16)  = 0
+ reduced size from 11518 to 11514
+ TESTING HYPOTHESIS ITER 4
+h = 235  hasserts.size()= 1
+dagmn_int_int_int__WrapperNospec_HashTableTest{
+__x_4_5e_0
+__y_5_5f_0
+2= __x_4_5e_0 == __y_5_5f_0 
+__z_6_60_0
+4= __x_4_5e_0 == __z_6_60_0 
+5= 4 ! 
+6= 2 ! 
+7= [2]$(!4), (!2), $
+8= __y_5_5f_0 == __z_6_60_0 
+9= 8 ! 
+10= 7 & (!8) 
+11= Assume 10 : Assume at HashTableTest.sk:16
+12= (8)
+13= __y_5_5f_0 % (8) 
+14= __x_4_5e_0 % (8) 
+15= 13 == 14 
+16= (0)
+17= [15]$15, (0), $
+18= 17 ! 
+19= ASSERT (!17) : 
+}
+SLICE SIZE = 20
+c# %assign: 7 clauses: 237 learn: 0 restart: 0 decision: 0 propagated: 6
+ FOUND CONST: 235= [16]$16, (0), $ = 0
+ reduced size from 11514 to 11513
+ * Simulation optimized it to = 11513
+Simulation didn't find a cex:  0.369 ms 
+After all optim
+DECISIONS START = 0
+c# %assign: 60 clauses: 281957 learn: 365 restart: 4 decision: 1821 propagated: 3168597
+CONTROL: growing l=2 inputs to size 5
+ TESTING HYPOTHESIS ITER 1
+h = 24  hasserts.size()= 1
+dagmn_int_int_int__WrapperNospec_HashTableTest{
+__x_4_5e_0
+__y_5_5f_0
+2= __x_4_5e_0 == __y_5_5f_0 
+__z_6_60_0
+4= __x_4_5e_0 == __z_6_60_0 
+5= 4 ! 
+6= 2 ! 
+7= [2]$(!4), (!2), $
+8= __y_5_5f_0 == __z_6_60_0 
+9= 8 ! 
+10= 7 & (!8) 
+11= Assume 10 : Assume at HashTableTest.sk:16
+12= (8)
+13= __y_5_5f_0 % (8) 
+14= __x_4_5e_0 % (8) 
+15= 13 == 14 
+16= (0)
+17= (-1)
+18= <(0), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), >
+19= [15]$18, (-1), $
+20= 19[0]
+21= (0)
+22= 20 == (0) 
+23= ASSERT 22 : 
+}
+SLICE SIZE = 24
+c# %assign: 3 clauses: 477 learn: 0 restart: 0 decision: 0 propagated: 6
+ FOUND CONST: 24= 23[0] = 0
+ reduced size from 11768 to 11557
+ TESTING HYPOTHESIS ITER 2
+h = 408  hasserts.size()= 1
+SLICE SIZE = 410
+c# %assign: 2 clauses: 766 learn: 0 restart: 0 decision: 0 propagated: 6
+ FOUND CONST: 408= 407 == (2)  = 1
+ reduced size from 11557 to 11518
+ TESTING HYPOTHESIS ITER 3
+h = 8836  hasserts.size()= 1
+dagmn_int_int_int__WrapperNospec_HashTableTest{
+__x_4_5e_0
+__y_5_5f_0
+2= __x_4_5e_0 == __y_5_5f_0 
+__z_6_60_0
+4= __x_4_5e_0 == __z_6_60_0 
+5= 4 ! 
+6= 2 ! 
+7= [2]$(!4), (!2), $
+8= __y_5_5f_0 == __z_6_60_0 
+9= 8 ! 
+10= 7 & (!8) 
+11= Assume 10 : Assume at HashTableTest.sk:16
+12= (8)
+13= __y_5_5f_0 % (8) 
+14= __x_4_5e_0 % (8) 
+15= 13 == 14 
+16= (0)
+17= (-1)
+18= <(0), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), (-1), >
+19= [15]$18, (-1), $
+20= 19 == (-1) 
+21= 15 ! 
+22= 20 & (!15) 
+23= 22 ! 
+24= ASSERT (!22) : 
+}
+SLICE SIZE = 25
+c# %assign: 3 clauses: 477 learn: 0 restart: 0 decision: 0 propagated: 6
+ FOUND CONST: 8836= 8835 & (!16)  = 0
+ reduced size from 11518 to 11514
+ TESTING HYPOTHESIS ITER 4
+h = 235  hasserts.size()= 1
+dagmn_int_int_int__WrapperNospec_HashTableTest{
+__x_4_5e_0
+__y_5_5f_0
+2= __x_4_5e_0 == __y_5_5f_0 
+__z_6_60_0
+4= __x_4_5e_0 == __z_6_60_0 
+5= 4 ! 
+6= 2 ! 
+7= [2]$(!4), (!2), $
+8= __y_5_5f_0 == __z_6_60_0 
+9= 8 ! 
+10= 7 & (!8) 
+11= Assume 10 : Assume at HashTableTest.sk:16
+12= (8)
+13= __y_5_5f_0 % (8) 
+14= __x_4_5e_0 % (8) 
+15= 13 == 14 
+16= (0)
+17= [15]$15, (0), $
+18= 17 ! 
+19= ASSERT (!17) : 
+}
+SLICE SIZE = 20
+c# %assign: 3 clauses: 477 learn: 0 restart: 0 decision: 0 propagated: 6
+ FOUND CONST: 235= [16]$16, (0), $ = 0
+ reduced size from 11514 to 11513
+ * Simulation optimized it to = 11513
+Simulation didn't find a cex:  999.402 ms 
+After all optim
+DECISIONS START = 0
+c# %assign: 96 clauses: 246623 learn: 374 restart: 5 decision: 4540 propagated: 5341090
+END CHECK
+********  1	ftime= 11999.8	ctime= 7000.37
+ *GOT THE CORRECT ANSWER IN 2 iterations.
+ *FIND TIME 11999.8 CHECK TIME 7000.43 TOTAL TIME 19000.2
+VALUES H__0: 1, H__1: 1, H__12: 0, H__13: 0, H__14: 0, H__2: 0, H__9: 0, 
+RESULT = 2  
+**ROUND 0 : 0 Round time:  19999.8 ms 
+RNDDEG = -1
+return 0
 
 ----- Statistics -----
-Total elapsed time (ms):  97999.9
-Model building time (ms): 999.392
-Solution time (ms):       0
+Total elapsed time (ms):  20999.5
+Model building time (ms): 0.298
+Solution time (ms):       19999.8
 Max virtual mem (bytes):  0
 Max resident mem (bytes): 0
 Max private mem (bytes):  0
+ALL CORRECT
+[SATBackend] Stats for last run:
+      [solution stats]
+      successful? ---------------------> true
+      elapsed time (s) ----------------> 20.784
+      model building time (s) ---------> 0.0
+      solution time (s) ---------------> 19.999
+      max memory usage (MiB) ----------> 0.0
+      [SAT-specific solution stats]
+      initial number of nodes ---------> -1
+      number of nodes after opts ------> -1
+      number of controls --------------> -1
+      total number of control bits ----> -1
+
+[SATBackend] Solver exit value: 0
+[SATBackend] Not Deleting
+/* BEGIN PACKAGE ANONYMOUS*/
+/* END PACKAGE ANONYMOUS*/
+/* BEGIN PACKAGE HashTable*/
+package HashTable{
+  /*HashTable.sk:7*/
+  
+void HashTable_HashTable_int (Object self, Object initialCapacity, ref Object _out)/*HashTable.sk:7*/
+  {
+    self.initialCapacity_HashTable = initialCapacity;
+    self.capacityGrowth_HashTable = new Object@Object(__cid=-2, _int=2);
+    self.maxLoadFactor_HashTable = new Object@Object(__cid=-6, _double=0.75);
+    Object@Object _out_s257 = null;
+    ArrayList_ArrayList@ArrayList(_out_s257);
+    self.buckets_HashTable = _out_s257;
+    resetHashTable@HashTable(self);
+    _out = self;
+    return;
+  }
+  /*HashTable.sk:203*/
+  
+void ensureCapacity_int (Object self, Object intendedCapacity)/*HashTable.sk:203*/
+  {
+    Object@Object loadFactor = new Object@Object(__cid=-6, _double=(((double)intendedCapacity._int)) / (((double)self.currentCapacity_HashTable._int)));
+    if((loadFactor._double) < (self.maxLoadFactor_HashTable._double))/*HashTable.sk:205*/
+    {
+      return;
+    }
+    Object@Object newCapacity = new Object@Object(__cid=-2, _int=(self.currentCapacity_HashTable._int) * (self.capacityGrowth_HashTable._int));
+    int _out_s243 = 0;
+    ArrayList@meta(_out_s243);
+    if((self.buckets_HashTable.__cid) == (new Object@Object(__cid=-2, _int=_out_s243)._int))/*HashTable.sk:209*/
+    {
+      Object@Object _out_s245 = null;
+      ensureCapacity_Object_int@ArrayList(self.buckets_HashTable, newCapacity, _out_s245);
+    }
+    Object@Object i;
+    i = self.currentCapacity_HashTable;
+    bit __sa4 = (i._int) < (newCapacity._int);
+    while(__sa4)
+    {
+      int _out_s247 = 0;
+      ArrayList@meta(_out_s247);
+      if((self.buckets_HashTable.__cid) == (new Object@Object(__cid=-2, _int=_out_s247)._int))/*HashTable.sk:212*/
+      {
+        Object@Object _out_s250 = null;
+        add_Object_E@ArrayList(self.buckets_HashTable, null, _out_s250);
+      }
+      int _out_s252 = 0;
+      ArrayList@meta(_out_s252);
+      Object@Object _pac_sc_s253 = null;
+      if((self.buckets_HashTable.__cid) == (new Object@Object(__cid=-2, _int=_out_s252)._int))/*HashTable.sk:212*/
+      {
+        Object@Object _out_s255 = null;
+        addb_Object_E@ArrayList(self.buckets_HashTable, null, _out_s255);
+        _pac_sc_s253 = _out_s255;
+      }
+      else
+      {
+        _pac_sc_s253 = null;
+      }
+      self.buckets_HashTable = _pac_sc_s253;
+      i = new Object@Object(__cid=-2, _int=(i._int) + 1);
+      __sa4 = (i._int) < (newCapacity._int);
+    }
+    self.currentCapacity_HashTable = newCapacity;
+  }
+  /*HashTable.sk:158*/
+  
+void getBucketIndex_K (Object self, Object key, ref Object _out)/*HashTable.sk:158*/
+  {
+    int h_s104 = 0;
+    String@meta(h_s104);
+    Object@Object _pac_sc_s105 = null;
+    if((key.__cid) == (new Object@Object(__cid=-2, _int=h_s104)._int))/*HashTable.sk:159*/
+    {
+      Object@Object h_s107 = null;
+      hashCode@String(key, h_s107);
+      _pac_sc_s105 = h_s107;
+    }
+    else
+    {
+      int h_s109 = 0;
+      HashTableNode@meta(h_s109);
+      Object@Object _pac_sc_s110 = null;
+      if((key.__cid) == (new Object@Object(__cid=-2, _int=h_s109)._int))/*HashTable.sk:159*/
+      {
+        Object@Object h_s112 = null;
+        hashCode@Object(key, h_s112);
+        _pac_sc_s110 = h_s112;
+      }
+      else
+      {
+        int h_s114 = 0;
+        Boolean@meta(h_s114);
+        Object@Object _pac_sc_s115 = null;
+        if((key.__cid) == (new Object@Object(__cid=-2, _int=h_s114)._int))/*HashTable.sk:159*/
+        {
+          Object@Object h_s117 = null;
+          hashCode@Object(key, h_s117);
+          _pac_sc_s115 = h_s117;
+        }
+        else
+        {
+          int h_s119 = 0;
+          Assert@meta(h_s119);
+          Object@Object _pac_sc_s120 = null;
+          if((key.__cid) == (new Object@Object(__cid=-2, _int=h_s119)._int))/*HashTable.sk:159*/
+          {
+            Object@Object h_s122 = null;
+            hashCode@Object(key, h_s122);
+            _pac_sc_s120 = h_s122;
+          }
+          else
+          {
+            int h_s124 = 0;
+            Character@meta(h_s124);
+            Object@Object _pac_sc_s125 = null;
+            if((key.__cid) == (new Object@Object(__cid=-2, _int=h_s124)._int))/*HashTable.sk:159*/
+            {
+              Object@Object h_s127 = null;
+              hashCode@Object(key, h_s127);
+              _pac_sc_s125 = h_s127;
+            }
+            else
+            {
+              int h_s129 = 0;
+              ArrayList@meta(h_s129);
+              Object@Object _pac_sc_s130 = null;
+              if((key.__cid) == (new Object@Object(__cid=-2, _int=h_s129)._int))/*HashTable.sk:159*/
+              {
+                Object@Object h_s132 = null;
+                hashCode@Object(key, h_s132);
+                _pac_sc_s130 = h_s132;
+              }
+              else
+              {
+                int h_s134 = 0;
+                Integer@meta(h_s134);
+                Object@Object _pac_sc_s135 = null;
+                if((key.__cid) == (new Object@Object(__cid=-2, _int=h_s134)._int))/*HashTable.sk:159*/
+                {
+                  Object@Object h_s137 = null;
+                  hashCode@Integer(key, h_s137);
+                  _pac_sc_s135 = h_s137;
+                }
+                else
+                {
+                  int h_s139 = 0;
+                  HashTableTest@meta(h_s139);
+                  Object@Object _pac_sc_s140 = null;
+                  if((key.__cid) == (new Object@Object(__cid=-2, _int=h_s139)._int))/*HashTable.sk:159*/
+                  {
+                    Object@Object h_s142 = null;
+                    hashCode@Object(key, h_s142);
+                    _pac_sc_s140 = h_s142;
+                  }
+                  else
+                  {
+                    int h_s144 = 0;
+                    HashTable@meta(h_s144);
+                    Object@Object _pac_sc_s145 = null;
+                    if((key.__cid) == (new Object@Object(__cid=-2, _int=h_s144)._int))/*HashTable.sk:159*/
+                    {
+                      Object@Object h_s147 = null;
+                      hashCode@Object(key, h_s147);
+                      _pac_sc_s145 = h_s147;
+                    }
+                    else
+                    {
+                      int h_s149 = 0;
+                      Object@meta(h_s149);
+                      Object@Object _pac_sc_s150 = null;
+                      if((key.__cid) == (new Object@Object(__cid=-2, _int=h_s149)._int))/*HashTable.sk:159*/
+                      {
+                        Object@Object h_s152 = null;
+                        hashCode@Object(key, h_s152);
+                        _pac_sc_s150 = h_s152;
+                      }
+                      else
+                      {
+                        _pac_sc_s150 = null;
+                      }
+                      _pac_sc_s145 = _pac_sc_s150;
+                    }
+                    _pac_sc_s140 = _pac_sc_s145;
+                  }
+                  _pac_sc_s135 = _pac_sc_s140;
+                }
+                _pac_sc_s130 = _pac_sc_s135;
+              }
+              _pac_sc_s125 = _pac_sc_s130;
+            }
+            _pac_sc_s120 = _pac_sc_s125;
+          }
+          _pac_sc_s115 = _pac_sc_s120;
+        }
+        _pac_sc_s110 = _pac_sc_s115;
+      }
+      _pac_sc_s105 = _pac_sc_s110;
+    }
+    _out = new Object@Object(__cid=-2, _int=(_pac_sc_s105._int) % (self.currentCapacity_HashTable._int));
+    return;
+  }
+  /*HashTable.sk:163*/
+  
+void getNodeWithKey_K (Object self, Object key, ref Object _out)/*HashTable.sk:163*/
+  {
+    Object@Object _pac_sc_s36_s38 = null;
+    size@HashTable(self, _pac_sc_s36_s38);
+    bit _pac_sc_s36;
+    _pac_sc_s36 = (_pac_sc_s36_s38._int) == (new Object@Object(__cid=-2, _int=0)._int);
+    if(!(_pac_sc_s36))/*HashTable.sk:164*/
+    {
+      _pac_sc_s36 = key == (null);
+    }
+    if(_pac_sc_s36)/*HashTable.sk:164*/
+    {
+      _out = null;
+      return;
+    }
+    Object@Object bucketIndex_s40 = null;
+    getBucketIndex_K@HashTable(self, key, bucketIndex_s40);
+    Object@Object current_s42 = null;
+    xform_get_ArrayList_int@ArrayList(self.buckets_HashTable._arraylist, bucketIndex_s40, current_s42);
+    Object@Object current;
+    current = current_s42;
+    while(current != (null))
+    {
+      int k_s44 = 0;
+      HashTableNode@meta(k_s44);
+      Object@Object _pac_sc_s45 = null;
+      if((current.__cid) == (new Object@Object(__cid=-2, _int=k_s44)._int))/*HashTable.sk:171*/
+      {
+        Object@Object k_s47 = null;
+        getKey@HashTableNode(current, k_s47);
+        _pac_sc_s45 = k_s47;
+      }
+      else
+      {
+        _pac_sc_s45 = null;
+      }
+      int b_s49 = 0;
+      Character@meta(b_s49);
+      Object@Object _pac_sc_s50 = null;
+      if((_pac_sc_s45.__cid) == (new Object@Object(__cid=-2, _int=b_s49)._int))/*HashTable.sk:172*/
+      {
+        Object@Object b_s52 = null;
+        equals_Object@Character(_pac_sc_s45, key, b_s52);
+        _pac_sc_s50 = b_s52;
+      }
+      else
+      {
+        int b_s54 = 0;
+        HashTable@meta(b_s54);
+        Object@Object _pac_sc_s55 = null;
+        if((_pac_sc_s45.__cid) == (new Object@Object(__cid=-2, _int=b_s54)._int))/*HashTable.sk:172*/
+        {
+          Object@Object b_s57 = null;
+          equals_Object@Object(_pac_sc_s45, key, b_s57);
+          _pac_sc_s55 = b_s57;
+        }
+        else
+        {
+          int b_s59 = 0;
+          HashTableNode@meta(b_s59);
+          Object@Object _pac_sc_s60 = null;
+          if((_pac_sc_s45.__cid) == (new Object@Object(__cid=-2, _int=b_s59)._int))/*HashTable.sk:172*/
+          {
+            Object@Object b_s62 = null;
+            equals_Object@Object(_pac_sc_s45, key, b_s62);
+            _pac_sc_s60 = b_s62;
+          }
+          else
+          {
+            int b_s64 = 0;
+            HashTableTest@meta(b_s64);
+            Object@Object _pac_sc_s65 = null;
+            if((_pac_sc_s45.__cid) == (new Object@Object(__cid=-2, _int=b_s64)._int))/*HashTable.sk:172*/
+            {
+              Object@Object b_s67 = null;
+              equals_Object@Object(_pac_sc_s45, key, b_s67);
+              _pac_sc_s65 = b_s67;
+            }
+            else
+            {
+              int b_s69 = 0;
+              Boolean@meta(b_s69);
+              Object@Object _pac_sc_s70 = null;
+              if((_pac_sc_s45.__cid) == (new Object@Object(__cid=-2, _int=b_s69)._int))/*HashTable.sk:172*/
+              {
+                Object@Object b_s72 = null;
+                equals_Object@Object(_pac_sc_s45, key, b_s72);
+                _pac_sc_s70 = b_s72;
+              }
+              else
+              {
+                int b_s74 = 0;
+                Assert@meta(b_s74);
+                Object@Object _pac_sc_s75 = null;
+                if((_pac_sc_s45.__cid) == (new Object@Object(__cid=-2, _int=b_s74)._int))/*HashTable.sk:172*/
+                {
+                  Object@Object b_s77 = null;
+                  equals_Object@Object(_pac_sc_s45, key, b_s77);
+                  _pac_sc_s75 = b_s77;
+                }
+                else
+                {
+                  int b_s79 = 0;
+                  ArrayList@meta(b_s79);
+                  Object@Object _pac_sc_s80 = null;
+                  if((_pac_sc_s45.__cid) == (new Object@Object(__cid=-2, _int=b_s79)._int))/*HashTable.sk:172*/
+                  {
+                    Object@Object b_s82 = null;
+                    equals_Object@Object(_pac_sc_s45, key, b_s82);
+                    _pac_sc_s80 = b_s82;
+                  }
+                  else
+                  {
+                    int b_s84 = 0;
+                    Integer@meta(b_s84);
+                    Object@Object _pac_sc_s85 = null;
+                    if((_pac_sc_s45.__cid) == (new Object@Object(__cid=-2, _int=b_s84)._int))/*HashTable.sk:172*/
+                    {
+                      Object@Object b_s87 = null;
+                      equals_Object@Integer(_pac_sc_s45, key, b_s87);
+                      _pac_sc_s85 = b_s87;
+                    }
+                    else
+                    {
+                      int b_s89 = 0;
+                      String@meta(b_s89);
+                      Object@Object _pac_sc_s90 = null;
+                      if((_pac_sc_s45.__cid) == (new Object@Object(__cid=-2, _int=b_s89)._int))/*HashTable.sk:172*/
+                      {
+                        Object@Object b_s92 = null;
+                        equals_Object@String(_pac_sc_s45, key, b_s92);
+                        _pac_sc_s90 = b_s92;
+                      }
+                      else
+                      {
+                        int b_s94 = 0;
+                        Object@meta(b_s94);
+                        Object@Object _pac_sc_s95 = null;
+                        if((_pac_sc_s45.__cid) == (new Object@Object(__cid=-2, _int=b_s94)._int))/*HashTable.sk:172*/
+                        {
+                          Object@Object b_s97 = null;
+                          equals_Object@Object(_pac_sc_s45, key, b_s97);
+                          _pac_sc_s95 = b_s97;
+                        }
+                        else
+                        {
+                          _pac_sc_s95 = null;
+                        }
+                        _pac_sc_s90 = _pac_sc_s95;
+                      }
+                      _pac_sc_s85 = _pac_sc_s90;
+                    }
+                    _pac_sc_s80 = _pac_sc_s85;
+                  }
+                  _pac_sc_s75 = _pac_sc_s80;
+                }
+                _pac_sc_s70 = _pac_sc_s75;
+              }
+              _pac_sc_s65 = _pac_sc_s70;
+            }
+            _pac_sc_s60 = _pac_sc_s65;
+          }
+          _pac_sc_s55 = _pac_sc_s60;
+        }
+        _pac_sc_s50 = _pac_sc_s55;
+      }
+      if(_pac_sc_s50._bit)/*HashTable.sk:173*/
+      {
+        _out = current;
+        return;
+      }
+      int current_s99 = 0;
+      HashTableNode@meta(current_s99);
+      Object@Object _pac_sc_s100 = null;
+      if((current.__cid) == (new Object@Object(__cid=-2, _int=current_s99)._int))/*HashTable.sk:176*/
+      {
+        Object@Object current_s102 = null;
+        getNext@HashTableNode(current, current_s102);
+        _pac_sc_s100 = current_s102;
+      }
+      else
+      {
+        _pac_sc_s100 = null;
+      }
+      current = _pac_sc_s100;
+    }
+    _out = null;
+    return;
+  }
+  /*HashTable.sk:26*/
+  
+void get_K (Object self, Object key, ref Object _out)/*HashTable.sk:26*/
+  {
+    Object@Object result_s29 = null;
+    getNodeWithKey_K@HashTable(self, key, result_s29);
+    Object@Object _pac_sc_s30 = null;
+    if(result_s29 != (null))/*HashTable.sk:28*/
+    {
+      int _out_s32 = 0;
+      HashTableNode@meta(_out_s32);
+      Object@Object _pac_sc_s33 = null;
+      if((result_s29.__cid) == (new Object@Object(__cid=-2, _int=_out_s32)._int))/*HashTable.sk:28*/
+      {
+        Object@Object _out_s35 = null;
+        getValue@HashTableNode(result_s29, _out_s35);
+        _pac_sc_s33 = _out_s35;
+      }
+      else
+      {
+        _pac_sc_s33 = null;
+      }
+      _pac_sc_s30 = _pac_sc_s33;
+    }
+    else
+    {
+      _pac_sc_s30 = null;
+    }
+    _out = _pac_sc_s30;
+    return;
+  }
+  /*HashTable.sk:31*/
+  
+void put_K_V (Object self, Object key, Object value)/*HashTable.sk:31*/
+  {
+    Object@Object _out_s154 = null;
+    size@HashTable(self, _out_s154);
+    ensureCapacity_int@HashTable(self, new Object@Object(__cid=-2, _int=(_out_s154._int) + (new Object@Object(__cid=-2, _int=0)._int)))//{};
+    Object@Object bucketIndex_s156 = null;
+    getBucketIndex_K@HashTable(self, key, bucketIndex_s156);
+    int newNode_s158 = 0;
+    HashTableNode@meta(newNode_s158);
+    Object@Object newNode_s160 = null;
+    HashTableNode_HashTableNode_K_V@HashTableNode(new Object@Object(__cid=newNode_s158), key, value, newNode_s160)//{};
+    Object@Object current_s162 = null;
+    xform_get_ArrayList_int@ArrayList(self.buckets_HashTable._arraylist, bucketIndex_s156, current_s162);
+    Object@Object current;
+    current = current_s162;
+    if(current_s162 == (null))/*HashTable.sk:37*/
+    {
+      int _out_s164 = 0;
+      ArrayList@meta(_out_s164);
+      if((self.buckets_HashTable.__cid) == (new Object@Object(__cid=-2, _int=_out_s164)._int))/*HashTable.sk:38*/
+      {
+        Object@Object _out_s167 = null;
+        set_Object_int_E@ArrayList(self.buckets_HashTable, bucketIndex_s156, newNode_s160, _out_s167);
+      }
+      int _out_s169 = 0;
+      ArrayList@meta(_out_s169);
+      Object@Object _pac_sc_s170 = null;
+      if((self.buckets_HashTable.__cid) == (new Object@Object(__cid=-2, _int=_out_s169)._int))/*HashTable.sk:38*/
+      {
+        Object@Object _out_s172 = null;
+        setb_Object_int_E@ArrayList(self.buckets_HashTable, bucketIndex_s156, newNode_s160, _out_s172);
+        _pac_sc_s170 = _out_s172;
+      }
+      else
+      {
+        _pac_sc_s170 = null;
+      }
+      self.buckets_HashTable = _pac_sc_s170;
+      self.size_HashTable = new Object@Object(__cid=-2, _int=(self.size_HashTable._int) + 1);
+      return;
+    }
+    while(current != (null))
+    {
+      int k_s174 = 0;
+      HashTableNode@meta(k_s174);
+      Object@Object _pac_sc_s175 = null;
+      if((current.__cid) == (new Object@Object(__cid=-2, _int=k_s174)._int))/*HashTable.sk:43*/
+      {
+        Object@Object k_s177 = null;
+        getKey@HashTableNode(current, k_s177);
+        _pac_sc_s175 = k_s177;
+      }
+      else
+      {
+        _pac_sc_s175 = null;
+      }
+      int b_s179 = 0;
+      Character@meta(b_s179);
+      Object@Object _pac_sc_s180 = null;
+      if((_pac_sc_s175.__cid) == (new Object@Object(__cid=-2, _int=b_s179)._int))/*HashTable.sk:44*/
+      {
+        Object@Object b_s182 = null;
+        equals_Object@Character(_pac_sc_s175, key, b_s182);
+        _pac_sc_s180 = b_s182;
+      }
+      else
+      {
+        int b_s184 = 0;
+        HashTable@meta(b_s184);
+        Object@Object _pac_sc_s185 = null;
+        if((_pac_sc_s175.__cid) == (new Object@Object(__cid=-2, _int=b_s184)._int))/*HashTable.sk:44*/
+        {
+          Object@Object b_s187 = null;
+          equals_Object@Object(_pac_sc_s175, key, b_s187);
+          _pac_sc_s185 = b_s187;
+        }
+        else
+        {
+          int b_s189 = 0;
+          HashTableNode@meta(b_s189);
+          Object@Object _pac_sc_s190 = null;
+          if((_pac_sc_s175.__cid) == (new Object@Object(__cid=-2, _int=b_s189)._int))/*HashTable.sk:44*/
+          {
+            Object@Object b_s192 = null;
+            equals_Object@Object(_pac_sc_s175, key, b_s192);
+            _pac_sc_s190 = b_s192;
+          }
+          else
+          {
+            int b_s194 = 0;
+            HashTableTest@meta(b_s194);
+            Object@Object _pac_sc_s195 = null;
+            if((_pac_sc_s175.__cid) == (new Object@Object(__cid=-2, _int=b_s194)._int))/*HashTable.sk:44*/
+            {
+              Object@Object b_s197 = null;
+              equals_Object@Object(_pac_sc_s175, key, b_s197);
+              _pac_sc_s195 = b_s197;
+            }
+            else
+            {
+              int b_s199 = 0;
+              Boolean@meta(b_s199);
+              Object@Object _pac_sc_s200 = null;
+              if((_pac_sc_s175.__cid) == (new Object@Object(__cid=-2, _int=b_s199)._int))/*HashTable.sk:44*/
+              {
+                Object@Object b_s202 = null;
+                equals_Object@Object(_pac_sc_s175, key, b_s202);
+                _pac_sc_s200 = b_s202;
+              }
+              else
+              {
+                int b_s204 = 0;
+                Assert@meta(b_s204);
+                Object@Object _pac_sc_s205 = null;
+                if((_pac_sc_s175.__cid) == (new Object@Object(__cid=-2, _int=b_s204)._int))/*HashTable.sk:44*/
+                {
+                  Object@Object b_s207 = null;
+                  equals_Object@Object(_pac_sc_s175, key, b_s207);
+                  _pac_sc_s205 = b_s207;
+                }
+                else
+                {
+                  int b_s209 = 0;
+                  ArrayList@meta(b_s209);
+                  Object@Object _pac_sc_s210 = null;
+                  if((_pac_sc_s175.__cid) == (new Object@Object(__cid=-2, _int=b_s209)._int))/*HashTable.sk:44*/
+                  {
+                    Object@Object b_s212 = null;
+                    equals_Object@Object(_pac_sc_s175, key, b_s212);
+                    _pac_sc_s210 = b_s212;
+                  }
+                  else
+                  {
+                    int b_s214 = 0;
+                    Integer@meta(b_s214);
+                    Object@Object _pac_sc_s215 = null;
+                    if((_pac_sc_s175.__cid) == (new Object@Object(__cid=-2, _int=b_s214)._int))/*HashTable.sk:44*/
+                    {
+                      Object@Object b_s217 = null;
+                      equals_Object@Integer(_pac_sc_s175, key, b_s217);
+                      _pac_sc_s215 = b_s217;
+                    }
+                    else
+                    {
+                      int b_s219 = 0;
+                      String@meta(b_s219);
+                      Object@Object _pac_sc_s220 = null;
+                      if((_pac_sc_s175.__cid) == (new Object@Object(__cid=-2, _int=b_s219)._int))/*HashTable.sk:44*/
+                      {
+                        Object@Object b_s222 = null;
+                        equals_Object@String(_pac_sc_s175, key, b_s222);
+                        _pac_sc_s220 = b_s222;
+                      }
+                      else
+                      {
+                        int b_s224 = 0;
+                        Object@meta(b_s224);
+                        Object@Object _pac_sc_s225 = null;
+                        if((_pac_sc_s175.__cid) == (new Object@Object(__cid=-2, _int=b_s224)._int))/*HashTable.sk:44*/
+                        {
+                          Object@Object b_s227 = null;
+                          equals_Object@Object(_pac_sc_s175, key, b_s227);
+                          _pac_sc_s225 = b_s227;
+                        }
+                        else
+                        {
+                          _pac_sc_s225 = null;
+                        }
+                        _pac_sc_s220 = _pac_sc_s225;
+                      }
+                      _pac_sc_s215 = _pac_sc_s220;
+                    }
+                    _pac_sc_s210 = _pac_sc_s215;
+                  }
+                  _pac_sc_s205 = _pac_sc_s210;
+                }
+                _pac_sc_s200 = _pac_sc_s205;
+              }
+              _pac_sc_s195 = _pac_sc_s200;
+            }
+            _pac_sc_s190 = _pac_sc_s195;
+          }
+          _pac_sc_s185 = _pac_sc_s190;
+        }
+        _pac_sc_s180 = _pac_sc_s185;
+      }
+      if(_pac_sc_s180._bit)/*HashTable.sk:45*/
+      {
+        int _out_s229 = 0;
+        HashTableNode@meta(_out_s229);
+        if((current.__cid) == (new Object@Object(__cid=-2, _int=_out_s229)._int))/*HashTable.sk:46*/
+        {
+          setValue_V@HashTableNode(current, value);
+        }
+        return;
+      }
+      else
+      {
+        int _out_s231 = 0;
+        HashTableNode@meta(_out_s231);
+        Object@Object _pac_sc_s232 = null;
+        if((current.__cid) == (new Object@Object(__cid=-2, _int=_out_s231)._int))/*HashTable.sk:50*/
+        {
+          Object@Object _out_s234 = null;
+          getNext@HashTableNode(current, _out_s234);
+          _pac_sc_s232 = _out_s234;
+        }
+        else
+        {
+          _pac_sc_s232 = null;
+        }
+        if(_pac_sc_s232 == (null))/*HashTable.sk:50*/
+        {
+          int _out_s236 = 0;
+          HashTableNode@meta(_out_s236);
+          if((current.__cid) == (new Object@Object(__cid=-2, _int=_out_s236)._int))/*HashTable.sk:51*/
+          {
+            setNext_HashTableNode@HashTableNode(current, newNode_s160);
+          }
+          self.size_HashTable = new Object@Object(__cid=-2, _int=(self.size_HashTable._int) + 1);
+          return;
+        }
+      }
+      int current_s238 = 0;
+      HashTableNode@meta(current_s238);
+      Object@Object _pac_sc_s239 = null;
+      if((current.__cid) == (new Object@Object(__cid=-2, _int=current_s238)._int))/*HashTable.sk:56*/
+      {
+        Object@Object current_s241 = null;
+        getNext@HashTableNode(current, current_s241);
+        _pac_sc_s239 = current_s241;
+      }
+      else
+      {
+        _pac_sc_s239 = null;
+      }
+      current = _pac_sc_s239;
+    }
+  }
+  /*HashTable.sk:16*/
+  
+void resetHashTable (Object self)/*HashTable.sk:16*/
+  {
+    self.size_HashTable = new Object@Object(__cid=-2, _int=1);
+    self.currentCapacity_HashTable = self.initialCapacity_HashTable;
+    Object@Object _out_s259 = null;
+    ArrayList_ArrayList@ArrayList(_out_s259);
+    self.buckets_HashTable = _out_s259;
+    Object@Object g = self.size_HashTable;
+    Object@Object i;
+    i = new Object@Object(__cid=-2, _int=1);
+    bit __sa0 = (i._int) < (g._int);
+    while(__sa0)
+    {
+      int _out_s261 = 0;
+      ArrayList@meta(_out_s261);
+      if((self.buckets_HashTable.__cid) == (new Object@Object(__cid=-2, _int=_out_s261)._int))/*HashTable.sk:22*/
+      {
+        Object@Object _out_s264 = null;
+        add_Object_E@ArrayList(self.buckets_HashTable, null, _out_s264);
+      }
+      int _out_s266 = 0;
+      ArrayList@meta(_out_s266);
+      Object@Object _pac_sc_s267 = null;
+      if((self.buckets_HashTable.__cid) == (new Object@Object(__cid=-2, _int=_out_s266)._int))/*HashTable.sk:22*/
+      {
+        Object@Object _out_s269 = null;
+        addb_Object_E@ArrayList(self.buckets_HashTable, null, _out_s269);
+        _pac_sc_s267 = _out_s269;
+      }
+      else
+      {
+        _pac_sc_s267 = null;
+      }
+      self.buckets_HashTable = _pac_sc_s267;
+      i = new Object@Object(__cid=-2, _int=(i._int) + 1);
+      __sa0 = (i._int) < (g._int);
+    }
+  }
+  /*HashTable.sk:150*/
+  
+void size (Object self, ref Object _out)/*HashTable.sk:150*/
+  {
+    _out = self.size_HashTable;
+    return;
+  }
+  /* END PACKAGE HashTable*/
+}
+/* BEGIN PACKAGE Character*/
+package Character{
+  /*Character.sk:12*/
+  
+void charValue (Object self, ref Object _out)/*Character.sk:12*/
+  {
+    _out = self.value_Character;
+    return;
+  }
+  /*Character.sk:16*/
+  
+void equals_Object (Object self, Object obj, ref Object _out)/*Character.sk:16*/
+  {
+    int _out_s497 = 0;
+    Character@meta(_out_s497);
+    if((obj.__cid) == _out_s497)/*Character.sk:17*/
+    {
+      int _out_s499 = 0;
+      Character@meta(_out_s499);
+      Object@Object _pac_sc_s500 = null;
+      if((obj.__cid) == (new Object@Object(__cid=-2, _int=_out_s499)._int))/*Character.sk:18*/
+      {
+        Object@Object _out_s502 = null;
+        charValue@Character(obj, _out_s502);
+        _pac_sc_s500 = _out_s502;
+      }
+      else
+      {
+        _pac_sc_s500 = null;
+      }
+      _out = new Object@Object(__cid=-4, _bit=(self.value_Character._char) == (_pac_sc_s500._char));
+      return;
+    }
+    _out = new Object@Object(__cid=-4, _bit=0);
+    return;
+  }
+  /* END PACKAGE Character*/
+}
+/* BEGIN PACKAGE HashTableNode*/
+package HashTableNode{
+  /*HashTableNode.sk:7*/
+  
+void HashTableNode_HashTableNode_K_V (Object self, Object key, Object value, ref Object _out)/*HashTableNode.sk:7*/
+  {
+    self.key_HashTableNode = key;
+    self.value_HashTableNode = value;
+    self.next_HashTableNode = null;
+    _out = self;
+    return;
+  }
+  /*HashTableNode.sk:14*/
+  
+void getKey (Object self, ref Object _out)/*HashTableNode.sk:14*/
+  {
+    _out = self.key_HashTableNode;
+    return;
+  }
+  /*HashTableNode.sk:26*/
+  
+void getNext (Object self, ref Object _out)/*HashTableNode.sk:26*/
+  {
+    _out = self.next_HashTableNode;
+    return;
+  }
+  /*HashTableNode.sk:18*/
+  
+void getValue (Object self, ref Object _out)/*HashTableNode.sk:18*/
+  {
+    _out = self.value_HashTableNode;
+    return;
+  }
+  /*HashTableNode.sk:30*/
+  
+void setNext_HashTableNode (Object self, Object node)/*HashTableNode.sk:30*/
+  {
+    self.next_HashTableNode = node;
+  }
+  /*HashTableNode.sk:22*/
+  
+void setValue_V (Object self, Object value)/*HashTableNode.sk:22*/
+  {
+    self.value_HashTableNode = value;
+  }
+  /* END PACKAGE HashTableNode*/
+}
+/* BEGIN PACKAGE CharSequence*/
+package CharSequence{
+  /* END PACKAGE CharSequence*/
+}
+/* BEGIN PACKAGE ArrayList*/
+package ArrayList{
+  struct ArrayList {
+      @Immutable()
+  }
+  struct Arraylist extends ArrayList@ArrayList {
+      @Immutable()
+  }
+  struct Add_e extends ArrayList@ArrayList {
+      ArrayList self;
+      Object e;
+      @Immutable()
+  }
+  struct Addb_e extends ArrayList@ArrayList {
+      ArrayList self;
+      Object e;
+      @Immutable()
+  }
+  struct Getb_int extends ArrayList@ArrayList {
+      ArrayList self;
+      Object i;
+      @Immutable()
+  }
+  struct Setb_int_e extends ArrayList@ArrayList {
+      ArrayList self;
+      Object i;
+      Object e;
+      @Immutable()
+  }
+  struct Get_int extends ArrayList@ArrayList {
+      ArrayList self;
+      Object i;
+      @Immutable()
+  }
+  struct Set_int_e extends ArrayList@ArrayList {
+      ArrayList self;
+      Object i;
+      Object e;
+      @Immutable()
+  }
+  struct Ensurecapacity_int extends ArrayList@ArrayList {
+      ArrayList self;
+      Object n;
+      @Immutable()
+  }
+  struct Size extends ArrayList@ArrayList {
+      ArrayList self;
+      @Immutable()
+  }
+  /*ArrayList.sk:15*/
+  
+void ArrayList_ArrayList (ref Object _out)/*ArrayList.sk:15*/
+  {
+    int _out_s550 = 0;
+    ArrayList@meta(_out_s550);
+    _out = new Object@Object(__cid=_out_s550, _arraylist=new Arraylist());
+    return;
+  }
+  /*ArrayList.sk:19*/
+  
+void add_Object_E (Object self, Object e, ref Object _out)/*ArrayList.sk:19*/
+  {
+    int _out_s546 = 0;
+    ArrayList@meta(_out_s546);
+    _out = new Object@Object(__cid=_out_s546, _arraylist=new Add_e(self=self._arraylist, e=e));
+    return;
+  }
+  /*ArrayList.sk:23*/
+  
+void addb_Object_E (Object self, Object e, ref Object _out)/*ArrayList.sk:23*/
+  {
+    int _out_s544 = 0;
+    ArrayList@meta(_out_s544);
+    _out = new Object@Object(__cid=_out_s544, _arraylist=new Addb_e(self=self._arraylist, e=e));
+    return;
+  }
+  /*ArrayList.sk:43*/
+  
+void ensureCapacity_Object_int (Object self, Object n, ref Object _out)/*ArrayList.sk:43*/
+  {
+    int _out_s548 = 0;
+    ArrayList@meta(_out_s548);
+    _out = new Object@Object(__cid=_out_s548, _arraylist=new Ensurecapacity_int(self=self._arraylist, n=n));
+    return;
+  }
+  /*ArrayList.sk:39*/
+  
+void set_Object_int_E (Object self, Object i, Object e, ref Object _out)/*ArrayList.sk:39*/
+  {
+    int _out_s542 = 0;
+    ArrayList@meta(_out_s542);
+    _out = new Object@Object(__cid=_out_s542, _arraylist=new Set_int_e(self=self._arraylist, i=i, e=e));
+    return;
+  }
+  /*ArrayList.sk:31*/
+  
+void setb_Object_int_E (Object self, Object i, Object e, ref Object _out)/*ArrayList.sk:31*/
+  {
+    int _out_s540 = 0;
+    ArrayList@meta(_out_s540);
+    _out = new Object@Object(__cid=_out_s540, _arraylist=new Setb_int_e(self=self._arraylist, i=i, e=e));
+    return;
+  }
+  /*ArrayList.sk:120*/
+  
+void xform_get_ArrayList_int (ArrayList self, Object i, ref Object _out)/*ArrayList.sk:120*/
+  {
+    switch(self){/*ArrayList.sk:121*/
+      case Arraylist:
+      {
+        _out = null;
+        return;
+      }
+      case Add_e:
+      {
+        int _out_s504 = 0;
+        ArrayList@meta(_out_s504);
+        new Object@Object(__cid=_out_s504, _arraylist=self);
+      }
+      case Addb_e:
+      {
+        Object@Object _out_s506 = null;
+        xform_size_ArrayList(self.self, _out_s506);
+        Object@Object _pac_sc_s507 = null;
+        if((_out_s506._int) == ((i._int) - (new Object@Object(__cid=-2, _int=1)._int)))/*ArrayList.sk:127*/
+        {
+          _pac_sc_s507 = self.e;
+        }
+        else
+        {
+          Object@Object _out_s509 = null;
+          xform_get_ArrayList_int(self.self, i, _out_s509);
+          _pac_sc_s507 = _out_s509;
+        }
+        _out = _pac_sc_s507;
+        return;
+      }
+      case Getb_int:
+      {
+        int _out_s511 = 0;
+        ArrayList@meta(_out_s511);
+        new Object@Object(__cid=_out_s511, _arraylist=self);
+      }
+      case Setb_int_e:
+      {
+        Object@Object _pac_sc_s512 = null;
+        if((i._int) == (self.i._int))/*ArrayList.sk:131*/
+        {
+          _pac_sc_s512 = self.e;
+        }
+        else
+        {
+          Object@Object _out_s514 = null;
+          xform_get_ArrayList_int(self.self, i, _out_s514);
+          _pac_sc_s512 = _out_s514;
+        }
+        _out = _pac_sc_s512;
+        return;
+      }
+      case Get_int:
+      {
+        int _out_s516 = 0;
+        ArrayList@meta(_out_s516);
+        new Object@Object(__cid=_out_s516, _arraylist=self);
+      }
+      case Set_int_e:
+      {
+        int _out_s518 = 0;
+        ArrayList@meta(_out_s518);
+        new Object@Object(__cid=_out_s518, _arraylist=self);
+      }
+      case Ensurecapacity_int:
+      {
+        int _out_s520 = 0;
+        ArrayList@meta(_out_s520);
+        new Object@Object(__cid=_out_s520, _arraylist=self);
+      }
+      case Size:
+      {
+        int _out_s522 = 0;
+        ArrayList@meta(_out_s522);
+        new Object@Object(__cid=_out_s522, _arraylist=self);
+      }
+    }
+    _out = null;
+    return;
+  }
+  /*ArrayList.sk:99*/
+  
+void xform_size_ArrayList (ArrayList self, ref Object _out)/*ArrayList.sk:99*/
+  {
+    switch(self){/*ArrayList.sk:100*/
+      case Arraylist:
+      {
+        _out = new Object@Object(__cid=-2, _int=0);
+        return;
+      }
+      case Add_e:
+      {
+        int _out_s524 = 0;
+        ArrayList@meta(_out_s524);
+        new Object@Object(__cid=_out_s524, _arraylist=self);
+      }
+      case Addb_e:
+      {
+        Object@Object _out_s526 = null;
+        xform_size_ArrayList(self.self, _out_s526);
+        _out = new Object@Object(__cid=-2, _int=(_out_s526._int) + (new Object@Object(__cid=-2, _int=1)._int));
+        return;
+      }
+      case Getb_int:
+      {
+        int _out_s528 = 0;
+        ArrayList@meta(_out_s528);
+        new Object@Object(__cid=_out_s528, _arraylist=self);
+      }
+      case Setb_int_e:
+      {
+        Object@Object _out_s530 = null;
+        xform_size_ArrayList(self.self, _out_s530);
+        _out = _out_s530;
+        return;
+      }
+      case Get_int:
+      {
+        int _out_s532 = 0;
+        ArrayList@meta(_out_s532);
+        new Object@Object(__cid=_out_s532, _arraylist=self);
+      }
+      case Set_int_e:
+      {
+        int _out_s534 = 0;
+        ArrayList@meta(_out_s534);
+        new Object@Object(__cid=_out_s534, _arraylist=self);
+      }
+      case Ensurecapacity_int:
+      {
+        int _out_s536 = 0;
+        ArrayList@meta(_out_s536);
+        new Object@Object(__cid=_out_s536, _arraylist=self);
+      }
+      case Size:
+      {
+        int _out_s538 = 0;
+        ArrayList@meta(_out_s538);
+        new Object@Object(__cid=_out_s538, _arraylist=self);
+      }
+    }
+    _out = null;
+    return;
+  }
+  /* END PACKAGE ArrayList*/
+}
+/* BEGIN PACKAGE String*/
+package String{
+  /*String.sk:32*/
+  
+void charAt_int (Object self, Object index, ref Object _out)/*String.sk:32*/
+  {
+    if(((new Object@Object(__cid=-2, _int=0)._int) <= (index._int)) && ((index._int) < (self._count_String._int)))/*String.sk:33*/
+    {
+      _out = new Object@Object(__cid=-3, _char=self._value_String._array_char.A[index._int]);
+      return;
+    }
+    _out = new Object@Object(__cid=-3, _char='\0');
+    return;
+  }
+  /*String.sk:143*/
+  
+void equals_Object (Object self, Object obj, ref Object _out)/*String.sk:143*/
+  {
+    _out = new Object@Object(__cid=-4, _bit=0);
+    int _out_s702 = 0;
+    String@meta(_out_s702);
+    if((obj.__cid) == _out_s702)/*String.sk:145*/
+    {
+      _out = new Object@Object(__cid=-4, _bit=1);
+      int sLen_s704 = 0;
+      String@meta(sLen_s704);
+      Object@Object _pac_sc_s705 = null;
+      if((obj.__cid) == (new Object@Object(__cid=-2, _int=sLen_s704)._int))/*String.sk:148*/
+      {
+        Object@Object sLen_s707 = null;
+        length@String(obj, sLen_s707);
+        _pac_sc_s705 = sLen_s707;
+      }
+      else
+      {
+        _pac_sc_s705 = null;
+      }
+      int tLen_s709 = 0;
+      String@meta(tLen_s709);
+      Object@Object _pac_sc_s710 = null;
+      if((self.__cid) == (new Object@Object(__cid=-2, _int=tLen_s709)._int))/*String.sk:149*/
+      {
+        Object@Object tLen_s712 = null;
+        length@String(self, tLen_s712);
+        _pac_sc_s710 = tLen_s712;
+      }
+      else
+      {
+        _pac_sc_s710 = null;
+      }
+      if((_pac_sc_s705._int) != (_pac_sc_s710._int))/*String.sk:150*/
+      {
+        _out = new Object@Object(__cid=-4, _bit=0);
+      }
+      Object@Object i;
+      i = new Object@Object(__cid=-2, _int=0);
+      bit __sa12 = ((i._int) < (_pac_sc_s705._int)) && ((_out._bit) == (new Object@Object(__cid=-4, _bit=1)._bit));
+      while(__sa12)
+      {
+        if((obj._value_String._array_char.A[i._int]) != (self._value_String._array_char.A[i._int]))/*String.sk:152*/
+        {
+          _out = new Object@Object(__cid=-4, _bit=0);
+        }
+        i = new Object@Object(__cid=-2, _int=(i._int) + 1);
+        __sa12 = ((i._int) < (_pac_sc_s705._int)) && ((_out._bit) == (new Object@Object(__cid=-4, _bit=1)._bit));
+      }
+    }
+    return;
+  }
+  /*String.sk:160*/
+  
+void hashCode (Object self, ref Object _out)/*String.sk:160*/
+  {
+    Object@Object n;
+    Object@Object hash;
+    Object@Object temp;
+    n = self._count_String;
+    hash = new Object@Object(__cid=-2, _int=0);
+    if((n._int) == (new Object@Object(__cid=-2, _int=0)._int))/*String.sk:162*/
+    {
+      _out = new Object@Object(__cid=-2, _int=0);
+      return;
+    }
+    Object@Object i;
+    i = new Object@Object(__cid=-2, _int=0);
+    bit __sa13 = (i._int) < (n._int);
+    while(__sa13)
+    {
+      int temp_s714 = 0;
+      String@meta(temp_s714);
+      Object@Object _pac_sc_s715 = null;
+      if((self.__cid) == (new Object@Object(__cid=-2, _int=temp_s714)._int))/*String.sk:166*/
+      {
+        Object@Object temp_s717 = null;
+        charAt_int@String(self, i, temp_s717);
+        _pac_sc_s715 = temp_s717;
+      }
+      else
+      {
+        _pac_sc_s715 = null;
+      }
+      temp = _pac_sc_s715;
+      Object@Object j;
+      j = new Object@Object(__cid=-2, _int=0);
+      bit __sa14 = (j._int) < (((n._int) - (new Object@Object(__cid=-2, _int=1)._int)) - (i._int));
+      while(__sa14)
+      {
+        temp = new Object@Object(__cid=-2, _int=(temp._int) * (new Object@Object(__cid=-2, _int=31)._int));
+        j = new Object@Object(__cid=-2, _int=(j._int) + 1);
+        __sa14 = (j._int) < (((n._int) - (new Object@Object(__cid=-2, _int=1)._int)) - (i._int));
+      }
+      hash = new Object@Object(__cid=-2, _int=(hash._int) + (temp._int));
+      i = new Object@Object(__cid=-2, _int=(i._int) + 1);
+      __sa13 = (i._int) < (n._int);
+    }
+    _out = hash;
+    return;
+  }
+  /*String.sk:37*/
+  
+void length (Object self, ref Object _out)/*String.sk:37*/
+  {
+    _out = self._count_String;
+    return;
+  }
+  /* END PACKAGE String*/
+}
+/* BEGIN PACKAGE Integer*/
+package Integer{
+  /*Integer.sk:7*/
+  
+void Integer_Integer_int (Object self, Object value, ref Object _out)/*Integer.sk:7*/
+  {
+    self.value_Integer = value;
+    _out = self;
+    return;
+  }
+  /*Integer.sk:24*/
+  
+void equals_Object (Object self, Object obj, ref Object _out)/*Integer.sk:24*/
+  {
+    int _out_s852 = 0;
+    Integer@meta(_out_s852);
+    if((obj.__cid) == _out_s852)/*Integer.sk:25*/
+    {
+      int _out_s854 = 0;
+      Integer@meta(_out_s854);
+      Object@Object _pac_sc_s855 = null;
+      if((obj.__cid) == (new Object@Object(__cid=-2, _int=_out_s854)._int))/*Integer.sk:26*/
+      {
+        Object@Object _out_s857 = null;
+        intValue@Integer(obj, _out_s857);
+        _pac_sc_s855 = _out_s857;
+      }
+      else
+      {
+        _pac_sc_s855 = null;
+      }
+      _out = new Object@Object(__cid=-4, _bit=(self.value_Integer._int) == (_pac_sc_s855._int));
+      return;
+    }
+    _out = new Object@Object(__cid=-4, _bit=0);
+    return;
+  }
+  /*Integer.sk:31*/
+  
+void hashCode (Object self, ref Object _out)/*Integer.sk:31*/
+  {
+    _out = self.value_Integer;
+    return;
+  }
+  /*Integer.sk:12*/
+  
+void intValue (Object self, ref Object _out)/*Integer.sk:12*/
+  {
+    _out = self.value_Integer;
+    return;
+  }
+  /* END PACKAGE Integer*/
+}
+/* BEGIN PACKAGE Assert*/
+package Assert{
+  /*Assert.sk:45*/
+  
+void assertEquals_Object_Object (Object expected, Object actual)/*Assert.sk:45*/
+  {
+    assertEquals_String_Object_Object(null, expected, actual);
+  }
+  /*Assert.sk:30*/
+  
+void assertEquals_String_Object_Object (Object message, Object expected, Object actual)/*Assert.sk:30*/
+  {
+    int _out_s866 = 0;
+    String@meta(_out_s866);
+    Object@Object _pac_sc_s867 = null;
+    if((expected.__cid) == (new Object@Object(__cid=-2, _int=_out_s866)._int))/*Assert.sk:31*/
+    {
+      Object@Object _out_s869 = null;
+      equals_Object@String(expected, actual, _out_s869);
+      _pac_sc_s867 = _out_s869;
+    }
+    else
+    {
+      int _out_s871 = 0;
+      HashTableNode@meta(_out_s871);
+      Object@Object _pac_sc_s872 = null;
+      if((expected.__cid) == (new Object@Object(__cid=-2, _int=_out_s871)._int))/*Assert.sk:31*/
+      {
+        Object@Object _out_s874 = null;
+        equals_Object@Object(expected, actual, _out_s874);
+        _pac_sc_s872 = _out_s874;
+      }
+      else
+      {
+        int _out_s876 = 0;
+        Boolean@meta(_out_s876);
+        Object@Object _pac_sc_s877 = null;
+        if((expected.__cid) == (new Object@Object(__cid=-2, _int=_out_s876)._int))/*Assert.sk:31*/
+        {
+          Object@Object _out_s879 = null;
+          equals_Object@Object(expected, actual, _out_s879);
+          _pac_sc_s877 = _out_s879;
+        }
+        else
+        {
+          int _out_s881 = 0;
+          Assert@meta(_out_s881);
+          Object@Object _pac_sc_s882 = null;
+          if((expected.__cid) == (new Object@Object(__cid=-2, _int=_out_s881)._int))/*Assert.sk:31*/
+          {
+            Object@Object _out_s884 = null;
+            equals_Object@Object(expected, actual, _out_s884);
+            _pac_sc_s882 = _out_s884;
+          }
+          else
+          {
+            int _out_s886 = 0;
+            Character@meta(_out_s886);
+            Object@Object _pac_sc_s887 = null;
+            if((expected.__cid) == (new Object@Object(__cid=-2, _int=_out_s886)._int))/*Assert.sk:31*/
+            {
+              Object@Object _out_s889 = null;
+              equals_Object@Character(expected, actual, _out_s889);
+              _pac_sc_s887 = _out_s889;
+            }
+            else
+            {
+              int _out_s891 = 0;
+              ArrayList@meta(_out_s891);
+              Object@Object _pac_sc_s892 = null;
+              if((expected.__cid) == (new Object@Object(__cid=-2, _int=_out_s891)._int))/*Assert.sk:31*/
+              {
+                Object@Object _out_s894 = null;
+                equals_Object@Object(expected, actual, _out_s894);
+                _pac_sc_s892 = _out_s894;
+              }
+              else
+              {
+                int _out_s896 = 0;
+                Integer@meta(_out_s896);
+                Object@Object _pac_sc_s897 = null;
+                if((expected.__cid) == (new Object@Object(__cid=-2, _int=_out_s896)._int))/*Assert.sk:31*/
+                {
+                  Object@Object _out_s899 = null;
+                  equals_Object@Integer(expected, actual, _out_s899);
+                  _pac_sc_s897 = _out_s899;
+                }
+                else
+                {
+                  int _out_s901 = 0;
+                  HashTableTest@meta(_out_s901);
+                  Object@Object _pac_sc_s902 = null;
+                  if((expected.__cid) == (new Object@Object(__cid=-2, _int=_out_s901)._int))/*Assert.sk:31*/
+                  {
+                    Object@Object _out_s904 = null;
+                    equals_Object@Object(expected, actual, _out_s904);
+                    _pac_sc_s902 = _out_s904;
+                  }
+                  else
+                  {
+                    int _out_s906 = 0;
+                    HashTable@meta(_out_s906);
+                    Object@Object _pac_sc_s907 = null;
+                    if((expected.__cid) == (new Object@Object(__cid=-2, _int=_out_s906)._int))/*Assert.sk:31*/
+                    {
+                      Object@Object _out_s909 = null;
+                      equals_Object@Object(expected, actual, _out_s909);
+                      _pac_sc_s907 = _out_s909;
+                    }
+                    else
+                    {
+                      int _out_s911 = 0;
+                      Object@meta(_out_s911);
+                      Object@Object _pac_sc_s912 = null;
+                      if((expected.__cid) == (new Object@Object(__cid=-2, _int=_out_s911)._int))/*Assert.sk:31*/
+                      {
+                        Object@Object _out_s914 = null;
+                        equals_Object@Object(expected, actual, _out_s914);
+                        _pac_sc_s912 = _out_s914;
+                      }
+                      else
+                      {
+                        _pac_sc_s912 = null;
+                      }
+                      _pac_sc_s907 = _pac_sc_s912;
+                    }
+                    _pac_sc_s902 = _pac_sc_s907;
+                  }
+                  _pac_sc_s897 = _pac_sc_s902;
+                }
+                _pac_sc_s892 = _pac_sc_s897;
+              }
+              _pac_sc_s887 = _pac_sc_s892;
+            }
+            _pac_sc_s882 = _pac_sc_s887;
+          }
+          _pac_sc_s877 = _pac_sc_s882;
+        }
+        _pac_sc_s872 = _pac_sc_s877;
+      }
+      _pac_sc_s867 = _pac_sc_s872;
+    }
+    assert (_pac_sc_s867._bit); //Assert at Assert.sk:31 (0)
+  }
+  /* END PACKAGE Assert*/
+}
+/* BEGIN PACKAGE array*/
+package array{
+  struct Array_bit {
+      Object length;
+      bit[length._int] A;
+  }
+  struct Array_char {
+      Object length;
+      char[length._int] A;
+  }
+  struct Array_int {
+      Object length;
+      int[length._int] A;
+  }
+  struct Array_float {
+      Object length;
+      float[length._int] A;
+  }
+  struct Array_double {
+      Object length;
+      double[length._int] A;
+  }
+  struct Array_Object {
+      Object length;
+      Object[length._int] A;
+  }
+  /* END PACKAGE array*/
+}
+/* BEGIN PACKAGE HashTableTest*/
+package HashTableTest{
+  /*HashTableTest.sk:3*/
+  
+void glblInit_INITIAL_SIZE__HashTableTest_s1398 (ref Object@Object INITIAL_SIZE__HashTableTest_s1397)/*HashTableTest.sk:3*/
+  {
+    INITIAL_SIZE__HashTableTest_s1397 = new Object@Object(__cid=-2, _int=8);
+  }
+  /*HashTableTest.sk:11*/
+  
+void mn_int_int_int (int __x, int __y, int __z, ref global Object@Object INITIAL_SIZE__HashTableTest_s1395)/*HashTableTest.sk:11*/
+  {
+    Object@Object x;
+    x = new Object@Object(__cid=-2, _int=__x);
+    Object@Object y;
+    y = new Object@Object(__cid=-2, _int=__y);
+    Object@Object z;
+    z = new Object@Object(__cid=-2, _int=__z);
+    int self_s1000 = 0;
+    Object@meta(self_s1000);
+    Object@Object self_s1002 = null;
+    Object_Object@Object(new Object@Object(__cid=self_s1000), self_s1002)//{};
+    assume ((((x._int) != (y._int)) && ((x._int) != (z._int))) && ((y._int) != (z._int))): "Assume at HashTableTest.sk:16"; //Assume at HashTableTest.sk:16
+    int xx_s1004 = 0;
+    Integer@meta(xx_s1004);
+    Object@Object xx_s1006 = null;
+    Integer_Integer_int@Integer(new Object@Object(__cid=xx_s1004), x, xx_s1006)//{};
+    int yy_s1008 = 0;
+    Integer@meta(yy_s1008);
+    Object@Object yy_s1010 = null;
+    Integer_Integer_int@Integer(new Object@Object(__cid=yy_s1008), y, yy_s1010)//{};
+    int zz_s1012 = 0;
+    Integer@meta(zz_s1012);
+    Object@Object zz_s1014 = null;
+    Integer_Integer_int@Integer(new Object@Object(__cid=zz_s1012), z, zz_s1014)//{};
+    setUp@HashTableTest(self_s1002, INITIAL_SIZE__HashTableTest_s1395);
+    testPutAndGet_Integer_Integer_Integer@HashTableTest(self_s1002, xx_s1006, yy_s1010, zz_s1014);
+  }
+  /*HashTableTest.sk:11*/
+  
+void mn_int_int_int__Wrapper (int __x, int __y, int __z)  implements mn_int_int_int__WrapperNospec/*HashTableTest.sk:11*/
+  {
+    global Object@Object INITIAL_SIZE__HashTableTest_s1396 = null;
+    glblInit_INITIAL_SIZE__HashTableTest_s1398(INITIAL_SIZE__HashTableTest_s1396);
+    mn_int_int_int(__x, __y, __z, INITIAL_SIZE__HashTableTest_s1396);
+  }
+  /*HashTableTest.sk:11*/
+  
+void mn_int_int_int__WrapperNospec (int __x, int __y, int __z)/*HashTableTest.sk:11*/
+  { }
+  /*HashTableTest.sk:48*/
+  
+void setUp (Object self, ref global Object@Object INITIAL_SIZE__HashTableTest_s1393)/*HashTableTest.sk:48*/
+  {
+    int _out_s1032 = 0;
+    HashTable@meta(_out_s1032);
+    Object@Object _out_s1034 = null;
+    HashTable_HashTable_int@HashTable(new Object@Object(__cid=_out_s1032), INITIAL_SIZE__HashTableTest_s1393, _out_s1034)//{};
+    self.classUnderTest_HashTableTest = _out_s1034;
+  }
+  /*HashTableTest.sk:58*/
+  
+void testPutAndGet_Integer_Integer_Integer (Object self, Object x, Object y, Object z)/*HashTableTest.sk:58*/
+  {
+    int _out_s1016 = 0;
+    HashTable@meta(_out_s1016);
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object@Object(__cid=-2, _int=_out_s1016)._int))/*HashTableTest.sk:59*/
+    {
+      put_K_V@HashTable(self.classUnderTest_HashTableTest, x, y);
+    }
+    int _out_s1018 = 0;
+    HashTable@meta(_out_s1018);
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object@Object(__cid=-2, _int=_out_s1018)._int))/*HashTableTest.sk:61*/
+    {
+      put_K_V@HashTable(self.classUnderTest_HashTableTest, y, x);
+    }
+    int _out_s1020 = 0;
+    HashTable@meta(_out_s1020);
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object@Object(__cid=-2, _int=_out_s1020)._int))/*HashTableTest.sk:63*/
+    {
+      put_K_V@HashTable(self.classUnderTest_HashTableTest, z, x);
+    }
+    int _out_s1022 = 0;
+    HashTable@meta(_out_s1022);
+    Object@Object _pac_sc_s1023 = null;
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object@Object(__cid=-2, _int=_out_s1022)._int))/*HashTableTest.sk:65*/
+    {
+      Object@Object _out_s1025 = null;
+      get_K@HashTable(self.classUnderTest_HashTableTest, x, _out_s1025);
+      _pac_sc_s1023 = _out_s1025;
+    }
+    else
+    {
+      _pac_sc_s1023 = null;
+    }
+    assertEquals_Object_Object@Assert(_pac_sc_s1023, y)//{};
+    int _out_s1027 = 0;
+    HashTable@meta(_out_s1027);
+    Object@Object _pac_sc_s1028 = null;
+    if((self.classUnderTest_HashTableTest.__cid) == (new Object@Object(__cid=-2, _int=_out_s1027)._int))/*HashTableTest.sk:66*/
+    {
+      Object@Object _out_s1030 = null;
+      get_K@HashTable(self.classUnderTest_HashTableTest, y, _out_s1030);
+      _pac_sc_s1028 = _out_s1030;
+    }
+    else
+    {
+      _pac_sc_s1028 = null;
+    }
+    assertEquals_Object_Object@Assert(_pac_sc_s1028, x)//{};
+  }
+  /* END PACKAGE HashTableTest*/
+}
+/* BEGIN PACKAGE meta*/
+package meta{
+  /*meta.sk:4*/
+  
+void ArrayList (ref int _out)/*meta.sk:4*/
+  {
+    _out = 6;
+    return;
+  }
+  /*meta.sk:5*/
+  
+void Assert (ref int _out)/*meta.sk:5*/
+  {
+    _out = 11;
+    return;
+  }
+  /*meta.sk:6*/
+  
+void Boolean (ref int _out)/*meta.sk:6*/
+  {
+    _out = 8;
+    return;
+  }
+  /*meta.sk:8*/
+  
+void Character (ref int _out)/*meta.sk:8*/
+  {
+    _out = 9;
+    return;
+  }
+  /*meta.sk:9*/
+  
+void HashTable (ref int _out)/*meta.sk:9*/
+  {
+    _out = 2;
+    return;
+  }
+  /*meta.sk:10*/
+  
+void HashTableNode (ref int _out)/*meta.sk:10*/
+  {
+    _out = 4;
+    return;
+  }
+  /*meta.sk:11*/
+  
+void HashTableTest (ref int _out)/*meta.sk:11*/
+  {
+    _out = 3;
+    return;
+  }
+  /*meta.sk:12*/
+  
+void Integer (ref int _out)/*meta.sk:12*/
+  {
+    _out = 7;
+    return;
+  }
+  /*meta.sk:13*/
+  
+void Object (ref int _out)/*meta.sk:13*/
+  {
+    _out = 1;
+    return;
+  }
+  /*meta.sk:14*/
+  
+void String (ref int _out)/*meta.sk:14*/
+  {
+    _out = 10;
+    return;
+  }
+  /* END PACKAGE meta*/
+}
+/* BEGIN PACKAGE Object*/
+package Object{
+  struct Object {
+      int __cid;
+      Object maxLoadFactor_HashTable;
+      Object capacityGrowth_HashTable;
+      Object initialCapacity_HashTable;
+      Object size_HashTable;
+      Object currentCapacity_HashTable;
+      Object buckets_HashTable;
+      Object classUnderTest_HashTableTest;
+      Object value_Integer;
+      Object value_Character;
+      Object bool_Boolean;
+      Object key_HashTableNode;
+      Object value_HashTableNode;
+      Object next_HashTableNode;
+      Object _value_String;
+      Object _count_String;
+      ArrayList _arraylist;
+      Array_bit _array_bit;
+      Array_char _array_char;
+      Array_int _array_int;
+      Array_float _array_float;
+      Array_double _array_double;
+      Array_Object _array_object;
+      bit _bit;
+      char _char;
+      int _int;
+      float _float;
+      double _double;
+  }
+  /*Object.sk:3*/
+  
+void Object_Object (Object self, ref Object _out)/*Object.sk:3*/
+  {
+    _out = self;
+    return;
+  }
+  /*Object.sk:17*/
+  
+void equals_Object (Object self, Object obj, ref Object _out)/*Object.sk:17*/
+  {
+    _out = new Object(__cid=-4, _bit=self == obj);
+    return;
+  }
+  /*Object.sk:21*/
+  
+void hashCode (Object self, ref Object _out)/*Object.sk:21*/
+  {
+    _out = new Object(__cid=-2, _int=0);
+    return;
+  }
+  /* END PACKAGE Object*/
+}
+/* BEGIN PACKAGE Boolean*/
+package Boolean{
+  /* END PACKAGE Boolean*/
+}
+[SKETCH] DONE
+Total time = 24296

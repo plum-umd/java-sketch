@@ -89,7 +89,7 @@ public class Cryptographer {
     generator public byte[] genCipherText2(String plainText) {
 	byte[] cipherText;
 	if (??) { myCypherOut.init(??, GCMSecretKey, ivParameterSpec); }
-	if (??) { cipherText = myCypherOut.doFinal(plainText.getBytes()); }
+	if (??) { cipherText = myCypherOut.doFinal(plainText); }
 	if (??) { cipherText = genCipherText(plainText); }
 	return cipherText;
     }
@@ -97,7 +97,8 @@ public class Cryptographer {
     public String encrypt(String plainText) {
 	byte[] cipherText = genCipherText(plainText);
 	// return new String(cipherText);
-	return myCypherOut.toString();
+	// return myCypherOut.toString();
+	return cipherText;
     }
     
     // // throws InvalidKeyException,

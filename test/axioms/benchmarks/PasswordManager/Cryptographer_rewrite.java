@@ -104,7 +104,8 @@ public class Cryptographer {
     		byte[] cipherText = myCypherOut.doFinal(plainText.getBytes());
     		// return toHexString(cipherText);
     		// return new String(cipherText);		
-		return myCypherOut.toString();
+		// return myCypherOut.toString(cipherText);
+		return cipherText;
     	}
 
      // throws InvalidKeyException,
@@ -118,7 +119,8 @@ public class Cryptographer {
     		myCypherOut.init(2, GCMSecretKey,ivParameterSpec);
     		// String decryptText = new String(
     		// 		myCypherOut.doFinal(hexStringToByteArray(cipherText)));
-    		byte[] plainText = myCypherOut.doFinal(cipherText.getBytes());
+    		// byte[] plainText = myCypherOut.doFinal(cipherText.getBytes());
+    		byte[] plainText = myCypherOut.doFinal(cipherText);
     		String decryptText = new String(plainText);  			
 
     		// if(decryptText.charAt(decryptText.length()-1)<='9'&&decryptText.charAt(decryptText.length()-1)>='0')

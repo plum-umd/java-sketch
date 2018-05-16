@@ -8,7 +8,8 @@ then
 elif [ "$1" == "2" ]
 then
     shift
-    ./jsk.sh $@ "${pwd}/ax/PasswordManagerTest.java ${pwd}/ax/PasswordManager.java ${pwd}/ax/PasswordMap.java ${pwd}/ax/Cryptographer.java ${pwd}/../libs/ -o ${pwd}/../result_ax --no-lib"
+    ./jsk.sh $@ "${pwd}/noax/Tester.java ${pwd}/noax/CommunicationWithFiles.java ${pwd}/noax/Comparator.java ${pwd}/../libs/ -o ${pwd}/../result_ax --no-lib"
+    # ./jsk.sh $@ "${pwd}/ax/Tester.java ${pwd}/ax/CommunicationWithFiles_syn.java ${pwd}/ax/Comparator.java ${pwd}/../libs/ -o ${pwd}/../result_ax --no-lib"
 elif [ "$1" == "3" ]
 then
     shift

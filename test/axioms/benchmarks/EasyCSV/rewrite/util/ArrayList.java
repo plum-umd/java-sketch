@@ -2,7 +2,8 @@
 // class ArrayList<E> implements List<E>{
 class ArrayList<E> {
     @alg
-    boolean add(Object e);
+    // boolean add(Object e);
+    Object add(Object e);
 
     @alg
     @pure

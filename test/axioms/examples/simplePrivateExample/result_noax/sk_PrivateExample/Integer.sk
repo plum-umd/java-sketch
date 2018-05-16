@@ -1,98 +1,92 @@
 package Integer;
 
-int MIN_VALUE = 0x80000000;
-int MIN_VALUE_g() { return MIN_VALUE; }
-void MIN_VALUE_s(int MIN_VALUE_s) { MIN_VALUE = MIN_VALUE_s; }
+Object MIN_VALUE;
+Object MIN_VALUE_g() { return MIN_VALUE; }
+void MIN_VALUE_s(Object MIN_VALUE_s) { MIN_VALUE = MIN_VALUE_s; }
 
-int MAX_VALUE = 0x7fffffff;
-int MAX_VALUE_g() { return MAX_VALUE; }
-void MAX_VALUE_s(int MAX_VALUE_s) { MAX_VALUE = MAX_VALUE_s; }
+Object MAX_VALUE;
+Object MAX_VALUE_g() { return MAX_VALUE; }
+void MAX_VALUE_s(Object MAX_VALUE_s) { MAX_VALUE = MAX_VALUE_s; }
 
 Object Integer_Integer(Object self) {
     return self;
 }
 
-Object Integer_Integer_int(Object self, int value) {
+Object Integer_Integer_int(Object self, Object value) {
   self.value_Integer = value;
   return self;
 }
 
-int intValue(Object self) {
+Object intValue(Object self) {
   return self.value_Integer;
 }
 
-int compareTo_Integer(Object self, Object anotherInteger) {
-  return compare_int_int(self.value_Integer, (anotherInteger.__cid == Integer() ? intValue@Integer(anotherInteger) : 0));
+Object compareTo_Integer(Object self, Object anotherInteger) {
+  return compare_int_int(self.value_Integer, (anotherInteger.__cid == (new Object(__cid=-2, _int=Integer()))._int ? intValue@Integer(anotherInteger) : null));
 }
 
-int compare_int_int(int x, int y) {
-  return ((x < y) ? -1 : (((x == y) ? 0 : 1)));
+Object compare_int_int(Object x, Object y) {
+  return ((x._int < y._int) ? (new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1))._int)) : (((x._int == y._int) ? (new Object(__cid=-2, _int=0)) : (new Object(__cid=-2, _int=1)))));
 }
 
-bit equals_Object(Object self, Object obj) {
+Object equals_Object(Object self, Object obj) {
   if (obj.__cid == Integer()) {
-    return self.value_Integer == ((obj).__cid == Integer() ? intValue@Integer((obj)) : 0);
+    return (new Object(__cid=-4, _bit=self.value_Integer._int == ((obj).__cid == (new Object(__cid=-2, _int=Integer()))._int ? intValue@Integer((obj)) : null)._int));
   }
-  return false;
+  return (new Object(__cid=-4, _bit=false));
 }
 
 Object toString(Object self) {
   return toString_int(self.value_Integer);
 }
 
-Object toString_int(int i) {
-  if (i == 0) {
-    return String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=1+1, A="0")), 0, 1);
+Object toString_int(Object i) {
+  if (i._int == (new Object(__cid=-2, _int=0))._int) {
+    return String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="0")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1));
   }
-  int index = 0,  temp = i,  j;
-  Object ret = Wrap_Array_char(new Array_char(length=32));
-  Object ret2 = Wrap_Array_char(new Array_char(length=32));
-  Object nums = Wrap_Array_char(new Array_char(length=10, A={'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'}));
-  if (temp < 0) {
-    temp = temp * -1;
+  Object index = (new Object(__cid=-2, _int=0)),  temp = i,  j;
+  Object ret = Wrap_Array_char(new Array_char(length=(new Object(__cid=-2, _int=32))));
+  Object ret2 = Wrap_Array_char(new Array_char(length=(new Object(__cid=-2, _int=32))));
+  Object nums = Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=10))); nums._array_char.A[0] = (new Object(__cid=-3, _char='0'))._char; nums._array_char.A[1] = (new Object(__cid=-3, _char='1'))._char; nums._array_char.A[2] = (new Object(__cid=-3, _char='2'))._char; nums._array_char.A[3] = (new Object(__cid=-3, _char='3'))._char; nums._array_char.A[4] = (new Object(__cid=-3, _char='4'))._char; nums._array_char.A[5] = (new Object(__cid=-3, _char='5'))._char; nums._array_char.A[6] = (new Object(__cid=-3, _char='6'))._char; nums._array_char.A[7] = (new Object(__cid=-3, _char='7'))._char; nums._array_char.A[8] = (new Object(__cid=-3, _char='8'))._char; nums._array_char.A[9] = (new Object(__cid=-3, _char='9'))._char;
+  if (temp._int < (new Object(__cid=-2, _int=0))._int) {
+    temp = (new Object(__cid=-2, _int=temp._int * -(new Object(__cid=-2, _int=1))._int));
   }
-  while (temp > 0) {
-    ret._array_char.A[index++] = nums._array_char.A[temp % 10];
-    temp = temp / 10;
+  while (temp._int > (new Object(__cid=-2, _int=0))._int) {
+    index = new Object(__cid=-2, _int=index._int + 1);
+    ret._array_char.A[index._int] = nums._array_char.A[temp._int % (new Object(__cid=-2, _int=10))._int];
+    temp = (new Object(__cid=-2, _int=temp._int / (new Object(__cid=-2, _int=10))._int));
   }
-  if (i < 0) {
-    ret._array_char.A[index++] = '-';
+  if (i._int < (new Object(__cid=-2, _int=0))._int) {
+    index = new Object(__cid=-2, _int=index._int + 1);
+    ret._array_char.A[index._int] = (new Object(__cid=-3, _char='-'))._char;
   }
-  int size = index;
-  for (j = 0; j < size; j++) {
-    ret2._array_char.A[j] = ret._array_char.A[index - 1];
-    index--;
+  Object size = index;
+  for (j = (new Object(__cid=-2, _int=0)); j._int < size._int; j = new Object(__cid=-2, _int=j._int + 1)) {
+    ret2._array_char.A[j._int] = ret._array_char.A[index._int - (new Object(__cid=-2, _int=1))._int];
+    index = new Object(__cid=-2, _int=index._int - 1);
   }
-  return String_String_char_int_int(new Object(__cid=String()), ret2, 0, size);
+  return String_String_char_int_int(new Object(__cid=String()), ret2, (new Object(__cid=-2, _int=0)), size);
 }
 
-int power_int_int(int n, int p) {
-  return (p == 0 ? 1 : n * power_int_int(n, p - 1));
+Object hashCode(Object self) {
+  return self.value_Integer;
 }
 
-int parseInt_String(Object n) {
-  int size = (n.__cid == String() ? length@String(n) : 0);
-  int num = 0;
-  for (int i = 1; i <= size; i++) {
-    char x = (n.__cid == String() ? charAt_int@String(n, size - i) : '\0');
-    if (x == '0') num = num;
-    else if (x == '1') num = num + power_int_int(10, i);
-    else if (x == '2') num = num + (2 * power_int_int(10, i));
-    else if (x == '3') num = num + (3 * power_int_int(10, i));
-    else if (x == '4') num = num + (4 * power_int_int(10, i));
-    else if (x == '5') num = num + (5 * power_int_int(10, i));
-    else if (x == '6') num = num + (6 * power_int_int(10, i));
-    else if (x == '7') num = num + (7 * power_int_int(10, i));
-    else if (x == '8') num = num + (8 * power_int_int(10, i));
-    else if (x == '9') num = num + (9 * power_int_int(10, i));
-    else if (x == '-' && i == size) num = num * -1;
-    else
-      i = size;
+Object parseInt_String(Object s) {
+  Object nums = Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=10))); nums._array_char.A[0] = (new Object(__cid=-3, _char='0'))._char; nums._array_char.A[1] = (new Object(__cid=-3, _char='1'))._char; nums._array_char.A[2] = (new Object(__cid=-3, _char='2'))._char; nums._array_char.A[3] = (new Object(__cid=-3, _char='3'))._char; nums._array_char.A[4] = (new Object(__cid=-3, _char='4'))._char; nums._array_char.A[5] = (new Object(__cid=-3, _char='5'))._char; nums._array_char.A[6] = (new Object(__cid=-3, _char='6'))._char; nums._array_char.A[7] = (new Object(__cid=-3, _char='7'))._char; nums._array_char.A[8] = (new Object(__cid=-3, _char='8'))._char; nums._array_char.A[9] = (new Object(__cid=-3, _char='9'))._char;
+  Object len = (s.__cid == (new Object(__cid=-2, _int=String()))._int ? length@String(s) : null);
+  Object num = (new Object(__cid=-2, _int=0));
+  Object mult = (new Object(__cid=-2, _int=1));
+  for (Object i = (new Object(__cid=-2, _int=len._int - (new Object(__cid=-2, _int=1))._int)); i._int >= (new Object(__cid=-2, _int=0))._int; i = new Object(__cid=-2, _int=i._int - 1)) {
+    Object c = (s.__cid == (new Object(__cid=-2, _int=String()))._int ? charAt_int@String(s, i) : null);
+    for (Object j = (new Object(__cid=-2, _int=0)); j._int < (new Object(__cid=-2, _int=10))._int; j = new Object(__cid=-2, _int=j._int + 1)) {
+      if (c._char == nums._array_char.A[j._int]) {
+        num = (new Object(__cid=-2, _int=num._int + mult._int * nums._array_char.A[j._int]));
+      }
+    }
+    if (i._int == (new Object(__cid=-2, _int=0))._int && c._char == (new Object(__cid=-3, _char='-'))._char) num = (new Object(__cid=-2, _int=num._int * -(new Object(__cid=-2, _int=1))._int));
+    mult = (new Object(__cid=-2, _int=mult._int * (new Object(__cid=-2, _int=10))._int));
   }
   return num;
-}
-
-int hashCode(Object self) {
-  return self.value_Integer;
 }
 

@@ -1,0 +1,2 @@
+SKETCH version 1.7.5
+Benchmark = /Users/kathymariano/Research/java-sketch2/test/axioms/examples/ComparatorOfTwoLists2/ComparatorOfTwoLists/../result_noax/sk_Comparator/main.sk

@@ -18,7 +18,16 @@ Object self = Object_Object(new Object(__cid=Object()));
   Object yy = Integer_Integer_int(new Object(__cid=Integer()), y);
   Object zz = Integer_Integer_int(new Object(__cid=Integer()), z);
   setUp@HashTableTest(self);
+  testClear_Integer_Integer@HashTableTest(self, xx, yy);
   testPutAndGet_Integer_Integer_Integer@HashTableTest(self, xx, yy, zz);
+  testGetEmpty@HashTableTest(self);
+  testReplacing_Integer_Integer_Integer@HashTableTest(self, xx, yy, zz);
+  testKeys_Integer_Integer@HashTableTest(self, xx, yy);
+  testValues_Integer_Integer@HashTableTest(self, xx, yy);
+  testContainsValue_Integer_Integer@HashTableTest(self, xx, yy);
+  testContainsKey_Integer_Integer@HashTableTest(self, xx, yy);
+  testRemoveNonExistent_Integer_Integer@HashTableTest(self, xx, yy);
+  testRemove_Integer_Integer@HashTableTest(self, xx, yy);
 }
 
 Object makeInts_Integer(Object self, Object i1) {
@@ -57,6 +66,12 @@ void testPutAndGet_Integer_Integer_Integer(Object self, Object x, Object y, Obje
   if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { put_K_V@HashTable(self.classUnderTest_HashTableTest, z, x); }
   else { 0; };
   assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? get_K@HashTable(self.classUnderTest_HashTableTest, is._array_object.A[(new Object(__cid=-2, _int=0))._int]) : null), is._array_object.A[(new Object(__cid=-2, _int=1))._int]);
+  assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? get_K@HashTable(self.classUnderTest_HashTableTest, is._array_object.A[(new Object(__cid=-2, _int=1))._int]) : null), is._array_object.A[(new Object(__cid=-2, _int=0))._int]);
+  assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? get_K@HashTable(self.classUnderTest_HashTableTest, is._array_object.A[(new Object(__cid=-2, _int=2))._int]) : null), is._array_object.A[(new Object(__cid=-2, _int=0))._int]);
+  Object i = Integer_Integer_int(new Object(__cid=Integer()), (new Object(__cid=-2, _int=(x.__cid == (new Object(__cid=-2, _int=Integer()))._int ? intValue@Integer(x) : null)._int + INITIAL_SIZE._int)));
+  if (self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int) { put_K_V@HashTable(self.classUnderTest_HashTableTest, i, y); }
+  else { 0; };
+  assertEquals_Object_Object@Assert((self.classUnderTest_HashTableTest.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? get_K@HashTable(self.classUnderTest_HashTableTest, i) : null), y);
 }
 
 void testReplacing_Integer_Integer_Integer(Object self, Object x, Object y, Object z) {

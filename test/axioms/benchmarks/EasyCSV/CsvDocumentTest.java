@@ -22,6 +22,30 @@ public class CsvDocumentTest {
 
     public static void runTests() {
 	with_no_config_options_should_parse_csv_file_and_create_csv_document();	
+	// ben_test();
+    }
+
+    @Test
+    public static void ben_test() throws IOException {
+     	String csvPath = "A\n1\n2";
+	
+        //act
+        CsvDocument document = CsvDocument.read(csvPath);
+
+        //assert
+	ArrayList<CsvRow> rs = document.getCsvRows();
+
+	CsvRow headers = rs.get(0);
+	CsvRow r1 = rs.get(1);
+	CsvRow r2 = rs.get(2);	
+
+	String hstr = headers.toString();
+	String r1str = r1.toString();
+	String r2str = r2.toString();
+
+	assert hstr.equals("A");
+	assert r1str.equals("1");
+	assert r2str.equals("2");	
     }
     
     @Test
@@ -32,7 +56,7 @@ public class CsvDocumentTest {
 
 	// String csvPath = "Header 1,Header 2,Header 3,Header 4,Header\n1,1.1,abc,TRUE,11/1/2014\n2,2.2,def,FALSE,11/2/2014";
 	// String csvPath = "Hdr 1,Hdr 2\n1,True\n2,False\n";
-	String csvPath = "A,B\n1,T\n2,F\n";
+	String csvPath = "A,B\n1,T\n2,F";
 	
         //act
         CsvDocument document = CsvDocument.read(csvPath);

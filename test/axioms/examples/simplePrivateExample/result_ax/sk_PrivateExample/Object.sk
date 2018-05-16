@@ -4,42 +4,21 @@ Object Object_Object(Object self) {
     return self;
 }
 
-bit equals_Object_Object(Object a, Object b) {
+Object equals_Object_Object(Object a, Object b) {
   if (a == null) {
     if (b == null) {
-      return true;
+      return (new Object(__cid=-4, _bit=true));
     }
-    return false;
+    return (new Object(__cid=-4, _bit=false));
   }
-  return (a.__cid == Character() ? equals_Object@Character(a, b) : a.__cid == Integer() ? equals_Object@Integer(a, b) : a.__cid == Assert() ? equals_Object@Object(a, b) : a.__cid == PrivateExample() ? equals_Object@Object(a, b) : a.__cid == Boolean() ? equals_Object@Object(a, b) : a.__cid == String() ? equals_Object@String(a, b) : a.__cid == Cipher() ? equals_Object@Object(a, b) : a.__cid == ArrayList() ? equals_Object@Object(a, b) : a.__cid == Object() ? equals_Object@Object(a, b) : 0);
+  return (a.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(a, b) : a.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(a, b) : a.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(a, b) : a.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=PrivateExample()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(a, b) : null);
 }
 
-bit equals_Object(Object self, Object obj) {
-  return self == obj;
+Object equals_Object(Object self, Object obj) {
+  return (new Object(__cid=-4, _bit=self == obj));
 }
 
-int hashCode(Object self) {
-  return 0;
+Object hashCode(Object self) {
+  return (new Object(__cid=-2, _int=0));
 }
 
-struct Object {
-  int           __cid;
-  Object        _value_String;
-  int           _count_String;
-  bit           bool_Boolean;
-  int           value_Integer;
-  char          value_Character;
-  ArrayList     _arraylist;
-  Cipher        _cipher;
-  Array_bit     _array_bit;
-  Array_char    _array_char;
-  Array_int     _array_int;
-  Array_float   _array_float;
-  Array_double  _array_double;
-  Array_Object  _array_object;
-  bit           _bit;
-  char          _char;
-  int           _int;
-  float         _float;
-  double        _double;
-}

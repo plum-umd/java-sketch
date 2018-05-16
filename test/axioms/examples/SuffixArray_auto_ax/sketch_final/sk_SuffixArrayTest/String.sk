@@ -160,6 +160,7 @@ Object equals_Object(Object self, Object obj) {
     Object tLen = (self.__cid == (new Object(__cid=-2, _int=String()))._int ? length@String(self) : null);
     if (sLen._int != tLen._int) isEqual = (new Object(__cid=-4, _bit=false));
     for (Object i = (new Object(__cid=-2, _int=0)); (i._int < sLen._int) && (isEqual._bit == (new Object(__cid=-4, _bit=true))._bit); i = new Object(__cid=-2, _int=i._int + 1)) {
+      
       if (s._value_String._array_char.A[i._int] != self._value_String._array_char.A[i._int]) {
         isEqual = (new Object(__cid=-4, _bit=false));
       }
@@ -237,65 +238,65 @@ Object substring_int_int(Object self, Object beginIndex, Object endIndex) {
   return ((beginIndex._int == (new Object(__cid=-2, _int=0))._int && endIndex._int == self._count_String._int) ? self : String_String_char_int_int(new Object(__cid=String()), self._value_String, beginIndex, subLen));
 }
 
-Object split_String(Object self, Object regex) {
-  return split_String_int@String(self, regex, (new Object(__cid=-2, _int=0)));
-}
+/* Object split_String(Object self, Object regex) { */
+/*   return split_String_int@String(self, regex, (new Object(__cid=-2, _int=0))); */
+/* } */
 
-Object split_String_int(Object self, Object regex, Object limit) {
-  Object off = (new Object(__cid=-2, _int=0));
-  Object ch = (regex.__cid == (new Object(__cid=-2, _int=String()))._int ? charAt_int@String(regex, (new Object(__cid=-2, _int=0))) : null);
-  Object next = indexOf_char_int@String(self, ch, off);
-  Object limited = (new Object(__cid=-2, _int=limit._int > (new Object(__cid=-2, _int=0))._int));
-  Object size = (new Object(__cid=-2, _int=0));
-  while (next._int != -(new Object(__cid=-2, _int=1))._int) {
-    if (!limited._bit || size._int < limit._int - (new Object(__cid=-2, _int=1))._int) {
-      off = (new Object(__cid=-2, _int=next._int + (new Object(__cid=-2, _int=1))._int));
-      next = indexOf_char_int@String(self, ch, off);
-    }
-    else {
-      off = self._value_String._array_char.length;
-      next = (new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1))._int));
-    }
-    size = new Object(__cid=-2, _int=size._int + 1);
-  }
-  off = (new Object(__cid=-2, _int=0));
-  ch = (regex.__cid == (new Object(__cid=-2, _int=String()))._int ? charAt_int@String(regex, (new Object(__cid=-2, _int=0))) : null);
-  next = indexOf_char_int@String(self, ch, off);
-  limited = (new Object(__cid=-2, _int=limit._int > (new Object(__cid=-2, _int=0))._int));
-  Object list = Wrap_Array_Object(new Array_Object(length=size));
-  size = (new Object(__cid=-2, _int=0));
-  while (next._int != -(new Object(__cid=-2, _int=1))._int) {
-    if (!limited._bit || size._int < limit._int - (new Object(__cid=-2, _int=1))._int) {
-      list._array_object.A[size._int] = substring_int_int@String(self, off, next);
-      off = (new Object(__cid=-2, _int=next._int + (new Object(__cid=-2, _int=1))._int));
-      next = indexOf_char_int@String(self, ch, off);
-    }
-    else {
-      list._array_object.A[size._int] = substring_int_int@String(self, off, self._count_String);
-      off = self._value_String._array_char.length;
-      next = (new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1))._int));
-    }
-    size = new Object(__cid=-2, _int=size._int + 1);
-  }
-  if (off._int == (new Object(__cid=-2, _int=0))._int) {
-    Object res = Wrap_Array_Object(new Array_Object(length=new Object(__cid=-2, _int=1))); res._array_object.A[0] = self;
-    return res;
-  }
-  if (!limited._bit || size._int < limit._int) {
-    list._array_object.A[size._int] = substring_int_int@String(self, off, self._count_String);
-    size = new Object(__cid=-2, _int=size._int + 1);
-  }
-  Object resultSize = list._array_object.length;
-  if (limit._int == (new Object(__cid=-2, _int=0))._int) {
-    Object tmp = list._array_object.A[resultSize._int - (new Object(__cid=-2, _int=1))._int];
-    while (resultSize._int > (new Object(__cid=-2, _int=0))._int && (tmp.__cid == (new Object(__cid=-2, _int=String()))._int ? length@String(tmp) : null)._int == (new Object(__cid=-2, _int=0))._int) {
-      resultSize = new Object(__cid=-2, _int=resultSize._int - 1);
-    }
-  }
-  Object result = Wrap_Array_Object(new Array_Object(length=resultSize));
-  for (Object i = (new Object(__cid=-2, _int=0)); i._int < resultSize._int; i = new Object(__cid=-2, _int=i._int + 1)) {
-    result._array_object.A[i._int] = list._array_object.A[i._int];
-  }
-  return result;
-}
+/* Object split_String_int(Object self, Object regex, Object limit) { */
+/*   Object off = (new Object(__cid=-2, _int=0)); */
+/*   Object ch = (regex.__cid == (new Object(__cid=-2, _int=String()))._int ? charAt_int@String(regex, (new Object(__cid=-2, _int=0))) : null); */
+/*   Object next = indexOf_char_int@String(self, ch, off); */
+/*   Object limited = (new Object(__cid=-2, _int=limit._int > (new Object(__cid=-2, _int=0))._int)); */
+/*   Object size = (new Object(__cid=-2, _int=0)); */
+/*   while (next._int != -(new Object(__cid=-2, _int=1))._int) { */
+/*     if (!limited._bit || size._int < limit._int - (new Object(__cid=-2, _int=1))._int) { */
+/*       off = (new Object(__cid=-2, _int=next._int + (new Object(__cid=-2, _int=1))._int)); */
+/*       next = indexOf_char_int@String(self, ch, off); */
+/*     } */
+/*     else { */
+/*       off = self._value_String._array_char.length; */
+/*       next = (new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1))._int)); */
+/*     } */
+/*     size = new Object(__cid=-2, _int=size._int + 1); */
+/*   } */
+/*   off = (new Object(__cid=-2, _int=0)); */
+/*   ch = (regex.__cid == (new Object(__cid=-2, _int=String()))._int ? charAt_int@String(regex, (new Object(__cid=-2, _int=0))) : null); */
+/*   next = indexOf_char_int@String(self, ch, off); */
+/*   limited = (new Object(__cid=-2, _int=limit._int > (new Object(__cid=-2, _int=0))._int)); */
+/*   Object list = Wrap_Array_Object(new Array_Object(length=size)); */
+/*   size = (new Object(__cid=-2, _int=0)); */
+/*   while (next._int != -(new Object(__cid=-2, _int=1))._int) { */
+/*     if (!limited._bit || size._int < limit._int - (new Object(__cid=-2, _int=1))._int) { */
+/*       list._array_object.A[size._int] = substring_int_int@String(self, off, next); */
+/*       off = (new Object(__cid=-2, _int=next._int + (new Object(__cid=-2, _int=1))._int)); */
+/*       next = indexOf_char_int@String(self, ch, off); */
+/*     } */
+/*     else { */
+/*       list._array_object.A[size._int] = substring_int_int@String(self, off, self._count_String); */
+/*       off = self._value_String._array_char.length; */
+/*       next = (new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1))._int)); */
+/*     } */
+/*     size = new Object(__cid=-2, _int=size._int + 1); */
+/*   } */
+/*   if (off._int == (new Object(__cid=-2, _int=0))._int) { */
+/*     Object res = Wrap_Array_Object(new Array_Object(length=new Object(__cid=-2, _int=1))); res._array_object.A[0] = self; */
+/*     return res; */
+/*   } */
+/*   if (!limited._bit || size._int < limit._int) { */
+/*     list._array_object.A[size._int] = substring_int_int@String(self, off, self._count_String); */
+/*     size = new Object(__cid=-2, _int=size._int + 1); */
+/*   } */
+/*   Object resultSize = list._array_object.length; */
+/*   if (limit._int == (new Object(__cid=-2, _int=0))._int) { */
+/*     Object tmp = list._array_object.A[resultSize._int - (new Object(__cid=-2, _int=1))._int]; */
+/*     while (resultSize._int > (new Object(__cid=-2, _int=0))._int && (tmp.__cid == (new Object(__cid=-2, _int=String()))._int ? length@String(tmp) : null)._int == (new Object(__cid=-2, _int=0))._int) { */
+/*       resultSize = new Object(__cid=-2, _int=resultSize._int - 1); */
+/*     } */
+/*   } */
+/*   Object result = Wrap_Array_Object(new Array_Object(length=resultSize)); */
+/*   for (Object i = (new Object(__cid=-2, _int=0)); i._int < resultSize._int; i = new Object(__cid=-2, _int=i._int + 1)) { */
+/*     result._array_object.A[i._int] = list._array_object.A[i._int]; */
+/*   } */
+/*   return result; */
+/* } */
 

@@ -26,11 +26,11 @@ Object getb_Object_int(Object self, Object i) {
 }
 
 Object get_Object_int(Object self, Object i) {
-    return new Object(__cid=ArrayList(), _arraylist=new Get_int(self=self._arraylist, i=i));
+    return xform_get_ArrayList_int(self._arraylist, i);
 }
 
 Object size_Object(Object self) {
-    return new Object(__cid=ArrayList(), _arraylist=new Size(self=self._arraylist));
+    return xform_size_ArrayList(self._arraylist);
 }
 
 Object xform_ArrayList(ArrayList self) {

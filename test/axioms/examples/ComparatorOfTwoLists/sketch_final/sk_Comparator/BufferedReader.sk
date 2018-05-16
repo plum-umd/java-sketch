@@ -59,80 +59,80 @@ Object xform_BufferedReader(BufferedReader self) {
 }
 Object xform_readLineHelp_BufferedReader_int(BufferedReader self, Object i) {
   switch(self) {
-  case Bufferedreader: { assert false; }
+  case Bufferedreader: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
   case Bufferedreader_filereaderr: {
     return (self.type.__cid == (new Object(__cid=-2, _int=FileReaderr()))._int ? get_int@FileReaderr(self.type, i) : null);
   }
-  case Readline: { assert false; }
+  case Readline: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
   case Readlineb: {
     return xform_readLineHelp_BufferedReader_int(self.self, (new Object(__cid=-2, _int=i._int + (new Object(__cid=-2, _int=1))._int)));
   }
-  case Readlinehelpb_int: { assert false; }
-  case Readlinehelp_int: { assert false; }
+  case Readlinehelpb_int: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
+  case Readlinehelp_int: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
   }
 
   return null;
 }
 Object xform_readLineb_BufferedReader(BufferedReader self) {
   switch(self) {
-  case Bufferedreader: { assert false; }
-  case Bufferedreader_filereaderr: { assert false; }
-  case Readline: { assert false; }
-  case Readlineb: { assert false; }
-  case Readlinehelpb_int: { assert false; }
-  case Readlinehelp_int: { assert false; }
+  case Bufferedreader: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
+  case Bufferedreader_filereaderr: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
+  case Readline: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
+  case Readlineb: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
+  case Readlinehelpb_int: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
+  case Readlinehelp_int: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
   }
 
   return null;
 }
 Object xform_readLineHelpb_BufferedReader_int(BufferedReader self, Object i) {
   switch(self) {
-  case Bufferedreader: { assert false; }
-  case Bufferedreader_filereaderr: { assert false; }
-  case Readline: { assert false; }
-  case Readlineb: { assert false; }
-  case Readlinehelpb_int: { assert false; }
-  case Readlinehelp_int: { assert false; }
+  case Bufferedreader: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
+  case Bufferedreader_filereaderr: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
+  case Readline: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
+  case Readlineb: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
+  case Readlinehelpb_int: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
+  case Readlinehelp_int: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
   }
 
   return null;
 }
 Object xform_bufferedreader_BufferedReader(BufferedReader self) {
   switch(self) {
-  case Bufferedreader: { assert false; }
-  case Bufferedreader_filereaderr: { assert false; }
-  case Readline: { assert false; }
-  case Readlineb: { assert false; }
-  case Readlinehelpb_int: { assert false; }
-  case Readlinehelp_int: { assert false; }
+  case Bufferedreader: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
+  case Bufferedreader_filereaderr: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
+  case Readline: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
+  case Readlineb: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
+  case Readlinehelpb_int: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
+  case Readlinehelp_int: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
   }
 
   return null;
 }
 Object xform_readLine_BufferedReader(BufferedReader self) {
   switch(self) {
-  case Bufferedreader: { assert false; }
+  case Bufferedreader: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
   case Bufferedreader_filereaderr: {
     return (self.type.__cid == (new Object(__cid=-2, _int=FileReaderr()))._int ? get_int@FileReaderr(self.type, (new Object(__cid=-2, _int=0))) : null);
   }
-  case Readline: { assert false; }
+  case Readline: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
   case Readlineb: {
     return xform_readLineHelp_BufferedReader_int(self.self, (new Object(__cid=-2, _int=1)));
   }
-  case Readlinehelpb_int: { assert false; }
-  case Readlinehelp_int: { assert false; }
+  case Readlinehelpb_int: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
+  case Readlinehelp_int: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
   }
 
   return null;
 }
 Object xform_BufferedReader_BufferedReader_FileReaderr(BufferedReader self, Object type) {
   switch(self) {
-  case Bufferedreader: { assert false; }
-  case Bufferedreader_filereaderr: { assert false; }
-  case Readline: { assert false; }
-  case Readlineb: { assert false; }
-  case Readlinehelpb_int: { assert false; }
-  case Readlinehelp_int: { assert false; }
+  case Bufferedreader: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
+  case Bufferedreader_filereaderr: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
+  case Readline: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
+  case Readlineb: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
+  case Readlinehelpb_int: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
+  case Readlinehelp_int: { return new Object(__cid=BufferedReader(), _bufferedreader=self); }
   }
 
   return null;

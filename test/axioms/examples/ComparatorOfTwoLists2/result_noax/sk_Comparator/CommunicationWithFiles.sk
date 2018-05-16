@@ -1,0 +1,84 @@
+package CommunicationWithFiles;
+
+Object CommunicationWithFiles_CommunicationWithFiles(Object self) {
+  return self;
+}
+
+generator void genRead_BufferedReader_String_boolean_ArrayList_String(Object self, Object bfr, Object value, Object isAList, Object values, Object filename) {
+  Object vbar = null;
+  if ((new Object(__cid=-4, _bit=??))._bit) {
+    value = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLine@BufferedReader(bfr) : null);
+  }
+  if ((new Object(__cid=-4, _bit=??))._bit) {
+    vbar = (value.__cid == (new Object(__cid=-2, _int=String()))._int ? concat_String@String(value, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="|")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null);
+    vbar = (vbar.__cid == (new Object(__cid=-2, _int=String()))._int ? concat_String@String(vbar, filename) : null);
+  }
+  if ((new Object(__cid=-4, _bit=??))._bit) {
+    if (value != null && !isAList._bit == (new Object(__cid=-4, _bit=true))._bit) {
+      (values.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? add_E@ArrayList(values, vbar) : null);
+    }
+  }
+  if ((new Object(__cid=-4, _bit=??))._bit) {
+    genRead_BufferedReader_String_boolean_ArrayList_String@CommunicationWithFiles(self, bfr, value, isAList, values, filename);
+  }
+}
+
+Object ReadToArray_String_boolean(Object self, Object filename, Object isAList) {
+  Object fr = null;
+  Object value = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=0+1), A="")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=0));
+  Object values = ArrayList_ArrayList(new Object(__cid=ArrayList()));
+  sort_ArrayList@Collections(values);
+  fr = FileReaderr_FileReaderr_String(new Object(__cid=FileReaderr()), filename);
+  Object bfr = BufferedReader_BufferedReader_FileReaderr(new Object(__cid=BufferedReader()), fr);
+  value = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLine@BufferedReader(bfr) : null);
+  while (value != null) {
+    genRead_BufferedReader_String_boolean_ArrayList_String@CommunicationWithFiles(self, bfr, value, isAList, values, filename);
+  }
+  if (fr.__cid == (new Object(__cid=-2, _int=FileReaderr()))._int) { close@FileReaderr(fr); }
+  else { 0; };
+  return values;
+}
+
+Object RemoveDuplicates_ArrayList(Object self, Object toBeSorted) {
+  Object j = (new Object(__cid=-2, _int=1));
+  if (toBeSorted.__cid == (new Object(__cid=-2, _int=ArrayList()))._int) { sort_Object@ArrayList(toBeSorted, null); }
+  else { 0; };
+  while (j._int + (new Object(__cid=-2, _int=1))._int < (toBeSorted.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? size@ArrayList(toBeSorted) : null)._int) {
+    Object get_j = (toBeSorted.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_int@ArrayList(toBeSorted, j) : null);
+    Object sstr = (get_j.__cid == (new Object(__cid=-2, _int=String()))._int ? substring_int_int@String(get_j, (new Object(__cid=-2, _int=0)), (get_j.__cid == (new Object(__cid=-2, _int=String()))._int ? indexOf_String@String(get_j, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="|")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null)) : null);
+    Object get_j1 = (toBeSorted.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_int@ArrayList(toBeSorted, (new Object(__cid=-2, _int=j._int + (new Object(__cid=-2, _int=1))._int))) : null);
+    Object sstr1 = (get_j1.__cid == (new Object(__cid=-2, _int=String()))._int ? substring_int_int@String(get_j1, (new Object(__cid=-2, _int=0)), (get_j1.__cid == (new Object(__cid=-2, _int=String()))._int ? indexOf_String@String(get_j1, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="|")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null)) : null);
+    if ((sstr.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(sstr, sstr1) : null)._bit) {
+      (toBeSorted.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? remove_int@ArrayList(toBeSorted, (new Object(__cid=-2, _int=j._int + (new Object(__cid=-2, _int=1))._int))) : null);
+      (toBeSorted.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? remove_int@ArrayList(toBeSorted, j) : null);
+    }
+    else {
+      j = new Object(__cid=-2, _int=j._int + 1);
+    }
+  }
+  if (toBeSorted.__cid == (new Object(__cid=-2, _int=ArrayList()))._int) { add_int_E@ArrayList(toBeSorted, (new Object(__cid=-2, _int=0)), String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=41+1), A="Values present in only one file|File name")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=41))); }
+  else { 0; };
+  return toBeSorted;
+}
+
+void createFile_ArrayList_String(Object self, Object rows, Object filename) {
+  Object fileWriter = FileWriterr_FileWriterr_String(new Object(__cid=FileWriterr()), filename);
+  Object bufferedWriter = BufferedWriter_BufferedWriter_FileWriter(new Object(__cid=BufferedWriter()), fileWriter);
+  for (Object k = (new Object(__cid=-2, _int=0)); k._int <= (rows.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? size@ArrayList(rows) : null)._int - (new Object(__cid=-2, _int=1))._int; k = new Object(__cid=-2, _int=k._int + 1)) {
+    Object v = (rows.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_int@ArrayList(rows, k) : null);
+    if (bufferedWriter.__cid == (new Object(__cid=-2, _int=BufferedWriter()))._int) { write_String@BufferedWriter(bufferedWriter, v); }
+    else { 0; };
+    if (bufferedWriter.__cid == (new Object(__cid=-2, _int=BufferedWriter()))._int) { newLine@BufferedWriter(bufferedWriter); }
+    else { 0; };
+  }
+  if (bufferedWriter.__cid == (new Object(__cid=-2, _int=BufferedWriter()))._int) { close@BufferedWriter(bufferedWriter); }
+  else { 0; };
+}
+
+void ClearFile_String(Object self, Object toBeCleared) {
+  Object fileWriter = FileWriterr_FileWriterr_String(new Object(__cid=FileWriterr()), toBeCleared);
+  Object bufferedWriter = BufferedWriter_BufferedWriter_FileWriter(new Object(__cid=BufferedWriter()), fileWriter);
+  if (bufferedWriter.__cid == (new Object(__cid=-2, _int=BufferedWriter()))._int) { close@BufferedWriter(bufferedWriter); }
+  else { 0; };
+}
+

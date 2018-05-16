@@ -14,10 +14,11 @@ Object HashTable_HashTable_int(Object self, Object initialCapacity) {
 }
 
 void resetHashTable(Object self) {
-  self.size_HashTable = (new Object(__cid=-2, _int=0));
+  self.size_HashTable = (new Object(__cid=-2, _int=??));
   self.currentCapacity_HashTable = self.initialCapacity_HashTable;
   self.buckets_HashTable = ArrayList_ArrayList(new Object(__cid=ArrayList()));
-  for (Object i = (new Object(__cid=-2, _int=0)); i._int < self.currentCapacity_HashTable._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+  Object g = {|(self.size_HashTable | self.currentCapacity_HashTable | self.capacityGrowth_HashTable | self.initialCapacity_HashTable)|};
+  for (Object i = (new Object(__cid=-2, _int=??)),  t = g; i._int < t._int; i = new Object(__cid=-2, _int=i._int + 1)) {
     (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? add_E@ArrayList(self.buckets_HashTable, null) : null);
   }
 }
@@ -28,7 +29,7 @@ Object get_K(Object self, Object key) {
 }
 
 void put_K_V(Object self, Object key, Object value) {
-  ensureCapacity_int@HashTable(self, (new Object(__cid=-2, _int=size@HashTable(self)._int + (new Object(__cid=-2, _int=1))._int)));
+  ensureCapacity_int@HashTable(self, (new Object(__cid=-2, _int=size@HashTable(self)._int + (new Object(__cid=-2, _int=??))._int)));
   Object bucketIndex = getBucketIndex_K@HashTable(self, key);
   Object newNode = HashTableNode_HashTableNode_K_V(new Object(__cid=HashTableNode()), key, value);
   Object current = (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_int@ArrayList(self.buckets_HashTable, bucketIndex) : null);
@@ -39,7 +40,8 @@ void put_K_V(Object self, Object key, Object value) {
   }
   while (current != null) {
     Object k = (current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? getKey@HashTableNode(current) : null);
-    if ((k.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(k, key) : k.__cid == (new Object(__cid=-2, _int=HashTableTest()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Number()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(k, key) : k.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(k, key) : k.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(k, key) : null)._bit) {
+    Object b = (k.__cid == (new Object(__cid=-2, _int=Number()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=HashTableTest()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(k, key) : k.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(k, key) : k.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(k, key) : k.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(k, key) : null);
+    if ({|(b | (new Object(__cid=-4, _bit=k == key)))|}._bit) {
       if (current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int) { setValue_V@HashTableNode(current, value); }
       else { 0; };
       return;
@@ -55,7 +57,7 @@ void put_K_V(Object self, Object key, Object value) {
 }
 
 void remove_K(Object self, Object key) {
-  if (size@HashTable(self)._int == (new Object(__cid=-2, _int=0))._int || key == null) {
+  if (size@HashTable(self)._int == (new Object(__cid=-2, _int=??))._int || key == null) {
     return;
   }
   Object bucketIndex = getBucketIndex_K@HashTable(self, key);
@@ -63,7 +65,8 @@ void remove_K(Object self, Object key) {
   Object previous = null;
   while (current != null) {
     Object k = (current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? getKey@HashTableNode(current) : null);
-    if ((k.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(k, key) : k.__cid == (new Object(__cid=-2, _int=HashTableTest()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Number()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(k, key) : k.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(k, key) : k.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(k, key) : null)._bit) {
+    Object b = (k.__cid == (new Object(__cid=-2, _int=Number()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=HashTableTest()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(k, key) : k.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(k, key) : k.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(k, key) : k.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(k, key) : null);
+    if ({|(b | (new Object(__cid=-4, _bit=k == key)))|}._bit) {
       if (previous == null) {
         if ((current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? getNext@HashTableNode(current) : null) != null) {
           (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? set_int_E@ArrayList(self.buckets_HashTable, bucketIndex, (current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? getNext@HashTableNode(current) : null)) : null);
@@ -92,9 +95,11 @@ void remove_K(Object self, Object key) {
 
 Object values(Object self) {
   Object values = Wrap_Array_Object(new Array_Object(length=size@HashTable(self)));
-  if (size@HashTable(self)._int > (new Object(__cid=-2, _int=0))._int) {
-    Object index = (new Object(__cid=-2, _int=0));
-    for (Object i = (new Object(__cid=-2, _int=0)); i._int < (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? size@ArrayList(self.buckets_HashTable) : null)._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+  if (size@HashTable(self)._int > (new Object(__cid=-2, _int=??))._int) {
+    Object index = (new Object(__cid=-2, _int=??));
+    Object bs = (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? size@ArrayList(self.buckets_HashTable) : null);
+    Object g = {|(self.size_HashTable | self.currentCapacity_HashTable | self.capacityGrowth_HashTable | self.initialCapacity_HashTable | bs)|};
+    for (Object i = (new Object(__cid=-2, _int=??)); i._int < g._int; i = new Object(__cid=-2, _int=i._int + 1)) {
       Object current = (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_int@ArrayList(self.buckets_HashTable, i) : null);
       while (current != null) {
         values._array_object.A[index._int] = (current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? getValue@HashTableNode(current) : null);
@@ -102,15 +107,18 @@ Object values(Object self) {
         current = (current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? getNext@HashTableNode(current) : null);
       }
     }
+    minimize(g);
   }
   return values;
 }
 
 Object keys(Object self) {
   Object keys = Wrap_Array_Object(new Array_Object(length=size@HashTable(self)));
-  if (size@HashTable(self)._int > (new Object(__cid=-2, _int=0))._int) {
-    Object index = (new Object(__cid=-2, _int=0));
-    for (Object i = (new Object(__cid=-2, _int=0)); i._int < (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? size@ArrayList(self.buckets_HashTable) : null)._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+  if (size@HashTable(self)._int > (new Object(__cid=-2, _int=??))._int) {
+    Object index = (new Object(__cid=-2, _int=??));
+    Object bs = (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? size@ArrayList(self.buckets_HashTable) : null);
+    Object g = {|(self.size_HashTable | self.currentCapacity_HashTable | self.capacityGrowth_HashTable | self.initialCapacity_HashTable | bs)|};
+    for (Object i = (new Object(__cid=-2, _int=0)); i._int < g._int; i = new Object(__cid=-2, _int=i._int + 1)) {
       Object current = (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_int@ArrayList(self.buckets_HashTable, i) : null);
       while (current != null) {
         keys._array_object.A[index._int] = (current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? getKey@HashTableNode(current) : null);
@@ -118,6 +126,7 @@ Object keys(Object self) {
         current = (current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? getNext@HashTableNode(current) : null);
       }
     }
+    minimize(g);
   }
   return keys;
 }
@@ -141,28 +150,20 @@ void clear(Object self) {
 }
 
 Object getBucketIndex_K(Object self, Object key) {
-  Object h = (key.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Assert()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=String()))._int ? hashCode@String(key) : key.__cid == (new Object(__cid=-2, _int=HashTableTest()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Number()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Character()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Integer()))._int ? hashCode@Integer(key) : key.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Object()))._int ? hashCode@Object(key) : null);
-  Object c = (new Object(__cid=-2, _int=self.currentCapacity_HashTable._int - (new Object(__cid=-2, _int=1))._int));
-  Object result = (new Object(__cid=-2, _int=0)),  s = (new Object(__cid=-2, _int=1));
-  for (Object i = (new Object(__cid=-2, _int=0)); i._int < (new Object(__cid=-2, _int=32))._int; i = new Object(__cid=-2, _int=i._int + 1)) {
-    if (i._int > (new Object(__cid=-2, _int=1))._int) {
-      for (Object j = (new Object(__cid=-2, _int=0)); j._int < i._int - (new Object(__cid=-2, _int=1))._int; j = new Object(__cid=-2, _int=j._int + 1)) s = (new Object(__cid=-2, _int=s._int * (new Object(__cid=-2, _int=2))._int));
-    }
-    result = (new Object(__cid=-2, _int=result._int + (((h._int / s._int) % (new Object(__cid=-2, _int=2))._int) * ((c._int / s._int) % (new Object(__cid=-2, _int=2))._int) * s._int)));
-    s = (new Object(__cid=-2, _int=2));
-  }
-  return result;
+  Object h = (key.__cid == (new Object(__cid=-2, _int=Number()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=HashTableTest()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Character()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=Integer()))._int ? hashCode@Integer(key) : key.__cid == (new Object(__cid=-2, _int=Assert()))._int ? hashCode@Object(key) : key.__cid == (new Object(__cid=-2, _int=String()))._int ? hashCode@String(key) : key.__cid == (new Object(__cid=-2, _int=Object()))._int ? hashCode@Object(key) : null);
+  return (new Object(__cid=-2, _int=h._int % self.currentCapacity_HashTable._int));
 }
 
 Object getNodeWithKey_K(Object self, Object key) {
-  if (size@HashTable(self)._int == (new Object(__cid=-2, _int=0))._int || key == null) {
+  if (size@HashTable(self)._int == (new Object(__cid=-2, _int=??))._int || key == null) {
     return null;
   }
   Object bucketIndex = getBucketIndex_K@HashTable(self, key);
   Object current = (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_int@ArrayList(self.buckets_HashTable, bucketIndex) : null);
   while (current != null) {
     Object k = (current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? getKey@HashTableNode(current) : null);
-    if ((k.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(k, key) : k.__cid == (new Object(__cid=-2, _int=HashTableTest()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Number()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(k, key) : k.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(k, key) : k.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(k, key) : null)._bit) {
+    Object b = (k.__cid == (new Object(__cid=-2, _int=Number()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=HashTableTest()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(k, key) : k.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(k, key) : k.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(k, key) : k.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(k, key) : k.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(k, key) : null);
+    if ({|(b | (new Object(__cid=-4, _bit=k == key)))|}._bit) {
       return current;
     }
     current = (current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? getNext@HashTableNode(current) : null);
@@ -171,14 +172,17 @@ Object getNodeWithKey_K(Object self, Object key) {
 }
 
 Object getNodeWithValue_V(Object self, Object value) {
-  if (size@HashTable(self)._int == (new Object(__cid=-2, _int=0))._int) {
+  if (size@HashTable(self)._int == (new Object(__cid=-2, _int=??))._int) {
     return null;
   }
-  for (Object i = (new Object(__cid=-2, _int=0)); i._int < (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? size@ArrayList(self.buckets_HashTable) : null)._int; i = new Object(__cid=-2, _int=i._int + 1)) {
+  Object bs = (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? size@ArrayList(self.buckets_HashTable) : null);
+  Object b = {|(self.size_HashTable | self.currentCapacity_HashTable | self.capacityGrowth_HashTable | self.initialCapacity_HashTable | bs)|};
+  for (Object i = (new Object(__cid=-2, _int=??)); i._int < b._int; i = new Object(__cid=-2, _int=i._int + 1)) {
     Object current = (self.buckets_HashTable.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_int@ArrayList(self.buckets_HashTable, i) : null);
     while (current != null) {
       Object v = (current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? getValue@HashTableNode(current) : null);
-      if ((v.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? equals_Object@Object(v, value) : v.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(v, value) : v.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(v, value) : v.__cid == (new Object(__cid=-2, _int=HashTableTest()))._int ? equals_Object@Object(v, value) : v.__cid == (new Object(__cid=-2, _int=Number()))._int ? equals_Object@Object(v, value) : v.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(v, value) : v.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(v, value) : v.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(v, value) : v.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? equals_Object@Object(v, value) : v.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(v, value) : null)._bit) {
+      Object b2 = (v.__cid == (new Object(__cid=-2, _int=Number()))._int ? equals_Object@Object(v, value) : v.__cid == (new Object(__cid=-2, _int=HashTableTest()))._int ? equals_Object@Object(v, value) : v.__cid == (new Object(__cid=-2, _int=HashTable()))._int ? equals_Object@Object(v, value) : v.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(v, value) : v.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? equals_Object@Object(v, value) : v.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(v, value) : v.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(v, value) : v.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(v, value) : v.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(v, value) : v.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(v, value) : null);
+      if ({|(b2 | (new Object(__cid=-4, _bit=v == value)))|}._bit) {
         return current;
       }
       current = (current.__cid == (new Object(__cid=-2, _int=HashTableNode()))._int ? getNext@HashTableNode(current) : null);

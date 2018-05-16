@@ -14,8 +14,6 @@ Object Integer_Integer(Object self) {
 
 Object Integer_Integer_int(Object self, Object value) {
   self.value_Integer = value;
-  MIN_VALUE = (new Object(__cid=-2, _int=0x80000000));
-  MAX_VALUE = (new Object(__cid=-2, _int=0x7fffffff));
   return self;
 }
 

@@ -6,20 +6,22 @@ Object PrivateExample_PrivateExample(Object self) {
 
 harness void test_privateExample() {
   Object self = Object_Object(new Object(__cid=Object()));
-  Object plainText = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=15+1, A="Secret Message!")), 0, 15);
+  Object plainText = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=15+1), A="Secret Message!")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=15));
   Object newPlainText = privateExample_String(plainText);
   Object plainText2 = String_String_byte(new Object(__cid=String()), newPlainText);
-  assert (plainText.__cid == String() ? equals_Object@String(plainText, plainText2) : 0);
+  assert (plainText.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(plainText, plainText2) : null)._bit;
 }
 
 Object privateExample_String(Object plainTextString) {
-  Object plainText = (plainTextString.__cid == String() ? getBytes@String(plainTextString) : null);
+  Object plainText = (plainTextString.__cid == (new Object(__cid=-2, _int=String()))._int ? getBytes@String(plainTextString) : null);
   Object key = Object_Object(new Object(__cid=Object()));
   Object cipher = Cipher_Cipher();
-  (cipher.__cid == Cipher() ? init_Object_int_Object@Cipher(cipher, 1, key) : 0); cipher = (cipher.__cid == Cipher() ? initb_Object_int_Object@Cipher(cipher, 1, key) : 0);
-  Object cipherText = (cipher.__cid == Cipher() ? doFinal_Object_byte@Cipher(cipher, plainText) : null); cipher = (cipher.__cid == Cipher() ? doFinalb_Object_byte@Cipher(cipher, plainText) : null);
-  (cipher.__cid == Cipher() ? init_Object_int_Object@Cipher(cipher, 2, key) : 0); cipher = (cipher.__cid == Cipher() ? initb_Object_int_Object@Cipher(cipher, 2, key) : 0);
-  Object newPlainText = (cipher.__cid == Cipher() ? doFinal_Object_byte@Cipher(cipher, cipherText) : null); cipher = (cipher.__cid == Cipher() ? doFinalb_Object_byte@Cipher(cipher, cipherText) : null);
+  if (cipher.__cid == (new Object(__cid=-2, _int=Cipher()))._int) { init_Object_int_Object@Cipher(cipher, (new Object(__cid=-2, _int=1)), key); }
+  else { 0; }; cipher = (cipher.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? initb_Object_int_Object@Cipher(cipher, (new Object(__cid=-2, _int=1)), key) : null);
+  Object cipherText = (cipher.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? doFinal_Object_byte@Cipher(cipher, plainText) : null); cipher = (cipher.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? doFinalb_Object_byte@Cipher(cipher, plainText) : null);
+  if (cipher.__cid == (new Object(__cid=-2, _int=Cipher()))._int) { init_Object_int_Object@Cipher(cipher, (new Object(__cid=-2, _int=2)), key); }
+  else { 0; }; cipher = (cipher.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? initb_Object_int_Object@Cipher(cipher, (new Object(__cid=-2, _int=2)), key) : null);
+  Object newPlainText = (cipher.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? doFinal_Object_byte@Cipher(cipher, cipherText) : null); cipher = (cipher.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? doFinalb_Object_byte@Cipher(cipher, cipherText) : null);
   return newPlainText;
 }
 

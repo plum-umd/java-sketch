@@ -20,7 +20,9 @@ Object add_Object_Object(Object self, Object e) {
 }
 
 Object addb_Object_Object(Object self, Object e) {
-    return new Object(__cid=ArrayList(), _arraylist=new Addb_object(self=self._arraylist, e=e));
+    /* return new Object(__cid=ArrayList(), _arraylist=new Addb_object(self=self._arraylist, e=e)); */
+  self._arraylist=new Addb_object(self=self._arraylist, e=e);
+  return self;
 }
 
 Object get_Object_int(Object self, Object i) {
@@ -78,7 +80,8 @@ Object xform_get_ArrayList_int(ArrayList self, Object i) {
   case Arraylist: { assert false; }
   case Add_object: { assert false; }
   case Addb_object: {
-    return (xform_size_ArrayList(self.self)._int == i._int - (new Object(__cid=-2, _int=1))._int ? self.e : xform_get_ArrayList_int(self.self, i));
+    Object sz = xform_size_ArrayList(self.self);
+    return ((sz._int == i._int) ? self.e : xform_get_ArrayList_int(self.self, i));
   }
   case Get_int: { assert false; }
   case Setb_int_object: {

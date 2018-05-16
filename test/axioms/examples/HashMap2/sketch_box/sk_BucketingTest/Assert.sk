@@ -1,0 +1,75 @@
+package Assert;
+
+Object Assert_Assert(Object self) {
+  return self;
+}
+
+void assertTrue_String_boolean(Object message, Object condition) {
+  assert condition._bit;
+}
+
+void assertTrue_boolean(Object condition) {
+  assertTrue_String_boolean(String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=0+1), A="")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=0)), condition);
+}
+
+void assertFalse_String_boolean(Object message, Object condition) {
+  assertTrue_String_boolean(message, (new Object(__cid=-4, _bit=!condition._bit)));
+}
+
+void assertFalse_boolean(Object condition) {
+  assertFalse_String_boolean(String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=0+1), A="")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=0)), condition);
+}
+
+void fail_String(Object message) {
+  if (message == null) {
+
+  }
+
+}
+
+void assertEquals_String_Object_Object(Object message, Object expected, Object actual) {
+  assert (expected.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Bucketing()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=BucketingTest()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Pair()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(expected, actual) : null)._bit;
+}
+
+Object equalsRegardingNull_Object_Object(Object expected, Object actual) {
+  if (expected == null) {
+    return (new Object(__cid=-4, _bit=actual == null));
+  }
+  return isEquals_Object_Object(expected, actual);
+}
+
+Object isEquals_Object_Object(Object expected, Object actual) {
+  return (expected.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Bucketing()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=BucketingTest()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Pair()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(expected, actual) : expected.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(expected, actual) : null);
+}
+
+void assertEquals_Object_Object(Object expected, Object actual) {
+  assertEquals_String_Object_Object(null, expected, actual);
+}
+
+void assertEquals_int_int(Object expected, Object actual) {
+  assert expected._int == actual._int;
+}
+
+void assertNull_String_Object(Object message, Object object) {
+  if (object == null) {
+    return;
+  }
+  failNotNull_String_Object(message, object);
+}
+
+void assertNull_Object(Object object) {
+  assertNull_String_Object(null, object);
+}
+
+void failNotNull_String_Object(Object message, Object actual) {
+  assert (new Object(__cid=-4, _bit=false))._bit;
+}
+
+void failNotEquals_String_Object_Object(Object message, Object expected, Object actual) {
+  fail_String(format_String_Object_Object(message, expected, actual));
+}
+
+Object format_String_Object_Object(Object message, Object expected, Object actual) {
+  return String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=0+1), A="")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=0));
+}
+

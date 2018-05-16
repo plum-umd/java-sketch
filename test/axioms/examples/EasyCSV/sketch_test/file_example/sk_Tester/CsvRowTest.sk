@@ -1,0 +1,61 @@
+package CsvRowTest;
+
+Object CsvRowTest_CsvRowTest(Object self) {
+    return self;
+}
+
+void runTests() {
+  the_constructor_with_column_values_argument_should_build_row();
+  the_constructor_with_variable_columns_argument_should_build_row();
+  the_constructor_with_column_list_argument_should_build_row();
+}
+
+void the_constructor_with_column_values_argument_should_build_row() {
+  Object someValue = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="1")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1));
+  Object anotherValue = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=5+1), A="value")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=5));
+  Object someRow = CsvRow_CsvRow_String_String(new Object(__cid=CsvRow()), someValue, anotherValue);
+  assert (new Object(__cid=-2, _int=2))._int == (someRow.__cid == (new Object(__cid=-2, _int=CsvRow()))._int ? getNumberOfColumns@CsvRow(someRow) : null)._int;
+  assert !((someRow.__cid == (new Object(__cid=-2, _int=CsvRow()))._int ? isEmpty@CsvRow(someRow) : null))._bit;
+  Object c1 = (someRow.__cid == (new Object(__cid=-2, _int=CsvRow()))._int ? getColumnAtIndex_int@CsvRow(someRow, (new Object(__cid=-2, _int=0))) : null);
+  Object i1 = (c1.__cid == (new Object(__cid=-2, _int=CsvColumn()))._int ? getColumnValue@CsvColumn(c1) : null);
+  assert (i1.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(i1, someValue) : null)._bit;
+  Object c2 = (someRow.__cid == (new Object(__cid=-2, _int=CsvRow()))._int ? getColumnAtIndex_int@CsvRow(someRow, (new Object(__cid=-2, _int=1))) : null);
+  Object i2 = (c2.__cid == (new Object(__cid=-2, _int=CsvColumn()))._int ? getColumnValue@CsvColumn(c2) : null);
+  assert (i2.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(i2, anotherValue) : null)._bit;
+}
+
+void the_constructor_with_variable_columns_argument_should_build_row() {
+  Object someValue = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="1")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1));
+  Object anotherValue = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=5+1), A="value")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=5));
+  Object someColumn = CsvColumn_CsvColumn_String(new Object(__cid=CsvColumn()), someValue);
+  Object anotherColumn = CsvColumn_CsvColumn_String(new Object(__cid=CsvColumn()), anotherValue);
+  Object someRow = CsvRow_CsvRow_CsvColumn_CsvColumn(new Object(__cid=CsvRow()), someColumn, anotherColumn);
+  assert (new Object(__cid=-2, _int=2))._int == (someRow.__cid == (new Object(__cid=-2, _int=CsvRow()))._int ? getNumberOfColumns@CsvRow(someRow) : null)._int;
+  assert !((someRow.__cid == (new Object(__cid=-2, _int=CsvRow()))._int ? isEmpty@CsvRow(someRow) : null))._bit;
+  Object c1 = (someRow.__cid == (new Object(__cid=-2, _int=CsvRow()))._int ? getColumnAtIndex_int@CsvRow(someRow, (new Object(__cid=-2, _int=0))) : null);
+  Object i1 = (c1.__cid == (new Object(__cid=-2, _int=CsvColumn()))._int ? getColumnValue@CsvColumn(c1) : null);
+  assert (i1.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(i1, someValue) : null)._bit;
+  Object c2 = (someRow.__cid == (new Object(__cid=-2, _int=CsvRow()))._int ? getColumnAtIndex_int@CsvRow(someRow, (new Object(__cid=-2, _int=1))) : null);
+  Object i2 = (c2.__cid == (new Object(__cid=-2, _int=CsvColumn()))._int ? getColumnValue@CsvColumn(c2) : null);
+  assert (i2.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(i2, anotherValue) : null)._bit;
+}
+
+void the_constructor_with_column_list_argument_should_build_row() {
+  Object someValue = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="1")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1));
+  Object anotherValue = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=5+1), A="value")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=5));
+  Object someColumn = CsvColumn_CsvColumn_String(new Object(__cid=CsvColumn()), someValue);
+  Object anotherColumn = CsvColumn_CsvColumn_String(new Object(__cid=CsvColumn()), anotherValue);
+  Object rowColumns = ArrayList_ArrayList();
+  (rowColumns.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? add_Object_Object@ArrayList(rowColumns, someColumn) : null); rowColumns = (rowColumns.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? addb_Object_Object@ArrayList(rowColumns, someColumn) : null);
+  (rowColumns.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? add_Object_Object@ArrayList(rowColumns, anotherColumn) : null); rowColumns = (rowColumns.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? addb_Object_Object@ArrayList(rowColumns, anotherColumn) : null);
+  Object someRow = CsvRow_CsvRow_ArrayList(new Object(__cid=CsvRow()), rowColumns);
+  assert (new Object(__cid=-2, _int=2))._int == (someRow.__cid == (new Object(__cid=-2, _int=CsvRow()))._int ? getNumberOfColumns@CsvRow(someRow) : null)._int;
+  assert !((someRow.__cid == (new Object(__cid=-2, _int=CsvRow()))._int ? isEmpty@CsvRow(someRow) : null))._bit;
+  Object c1 = (someRow.__cid == (new Object(__cid=-2, _int=CsvRow()))._int ? getColumnAtIndex_int@CsvRow(someRow, (new Object(__cid=-2, _int=0))) : null);
+  Object i1 = (c1.__cid == (new Object(__cid=-2, _int=CsvColumn()))._int ? getColumnValue@CsvColumn(c1) : null);
+  assert (i1.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(i1, someValue) : null)._bit;
+  Object c2 = (someRow.__cid == (new Object(__cid=-2, _int=CsvRow()))._int ? getColumnAtIndex_int@CsvRow(someRow, (new Object(__cid=-2, _int=1))) : null);
+  Object i2 = (c2.__cid == (new Object(__cid=-2, _int=CsvColumn()))._int ? getColumnValue@CsvColumn(c2) : null);
+  assert (i2.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(i2, anotherValue) : null)._bit;
+}
+

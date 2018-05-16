@@ -75,42 +75,42 @@ Object xform_TreeSet(TreeSet self) {
 }
 Object xform_clearb_TreeSet(TreeSet self) {
   switch(self) {
-  case Treeset: { assert false; }
-  case Add_object: { assert false; }
-  case Addb_object: { assert false; }
-  case Clearb: { assert false; }
-  case Containsb_object: { assert false; }
-  case Clear: { assert false; }
-  case Contains_object: { assert false; }
-  case Size: { assert false; }
+  case Treeset: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Add_object: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Addb_object: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Clearb: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Containsb_object: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Clear: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Contains_object: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Size: { return new Object(__cid=TreeSet(), _treeset=self); }
   }
 
   return null;
 }
 Object xform_addb_TreeSet_Object(TreeSet self, Object e) {
   switch(self) {
-  case Treeset: { assert false; }
-  case Add_object: { assert false; }
-  case Addb_object: { assert false; }
-  case Clearb: { assert false; }
-  case Containsb_object: { assert false; }
-  case Clear: { assert false; }
-  case Contains_object: { assert false; }
-  case Size: { assert false; }
+  case Treeset: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Add_object: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Addb_object: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Clearb: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Containsb_object: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Clear: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Contains_object: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Size: { return new Object(__cid=TreeSet(), _treeset=self); }
   }
 
   return null;
 }
 Object xform_containsb_TreeSet_Object(TreeSet self, Object e) {
   switch(self) {
-  case Treeset: { assert false; }
-  case Add_object: { assert false; }
-  case Addb_object: { assert false; }
-  case Clearb: { assert false; }
-  case Containsb_object: { assert false; }
-  case Clear: { assert false; }
-  case Contains_object: { assert false; }
-  case Size: { assert false; }
+  case Treeset: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Add_object: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Addb_object: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Clearb: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Containsb_object: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Clear: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Contains_object: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Size: { return new Object(__cid=TreeSet(), _treeset=self); }
   }
 
   return null;
@@ -120,37 +120,40 @@ Object xform_size_TreeSet(TreeSet self) {
   case Treeset: {
     return (new Object(__cid=-2, _int=0));
   }
-  case Add_object: { assert false; }
+  case Add_object: { return new Object(__cid=TreeSet(), _treeset=self); }
   case Addb_object: {
     Object b = xform_contains_TreeSet_Object(self.self, self.e);
+    Object sz = xform_size_TreeSet(self.self);
     if (b._bit) {
-      return xform_size_TreeSet(self.self);
+      /* return xform_size_TreeSet(self.self); */
+      return sz;
     }
     else {
-      return (new Object(__cid=-2, _int=xform_size_TreeSet(self.self)._int + (new Object(__cid=-2, _int=1))._int));
+      /* return (new Object(__cid=-2, _int=xform_size_TreeSet(self.self)._int + (new Object(__cid=-2, _int=1))._int)); */
+      return (new Object(__cid=-2, _int=sz._int + (new Object(__cid=-2, _int=1))._int));
     }
   }
   case Clearb: {
     return (new Object(__cid=-2, _int=0));
   }
-  case Containsb_object: { assert false; }
-  case Clear: { assert false; }
-  case Contains_object: { assert false; }
-  case Size: { assert false; }
+  case Containsb_object: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Clear: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Contains_object: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Size: { return new Object(__cid=TreeSet(), _treeset=self); }
   }
 
   return null;
 }
 Object xform_clear_TreeSet(TreeSet self) {
   switch(self) {
-  case Treeset: { assert false; }
-  case Add_object: { assert false; }
-  case Addb_object: { assert false; }
-  case Clearb: { assert false; }
-  case Containsb_object: { assert false; }
-  case Clear: { assert false; }
-  case Contains_object: { assert false; }
-  case Size: { assert false; }
+  case Treeset: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Add_object: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Addb_object: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Clearb: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Containsb_object: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Clear: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Contains_object: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Size: { return new Object(__cid=TreeSet(), _treeset=self); }
   }
 
   return null;
@@ -160,17 +163,17 @@ Object xform_add_TreeSet_Object(TreeSet self, Object e) {
   case Treeset: {
     return (new Object(__cid=-4, _bit=true));
   }
-  case Add_object: { assert false; }
+  case Add_object: { return new Object(__cid=TreeSet(), _treeset=self); }
   case Addb_object: {
     return ((e.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=SuffixRankTuple()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=SuffixArrayTest()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=SuffixArray()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=TwoDArray()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(e, self.e) : e.__cid == (new Object(__cid=-2, _int=HashSet()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(e, self.e) : e.__cid == (new Object(__cid=-2, _int=Arrays()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(e, self.e) : e.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(e, self.e) : e.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(e, self.e) : null)._bit ? (new Object(__cid=-4, _bit=false)) : xform_add_TreeSet_Object(self.self, e));
   }
   case Clearb: {
     return (new Object(__cid=-4, _bit=true));
   }
-  case Containsb_object: { assert false; }
-  case Clear: { assert false; }
-  case Contains_object: { assert false; }
-  case Size: { assert false; }
+  case Containsb_object: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Clear: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Contains_object: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Size: { return new Object(__cid=TreeSet(), _treeset=self); }
   }
 
   return null;
@@ -180,31 +183,31 @@ Object xform_contains_TreeSet_Object(TreeSet self, Object e) {
   case Treeset: {
     return (new Object(__cid=-4, _bit=false));
   }
-  case Add_object: { assert false; }
+  case Add_object: { return new Object(__cid=TreeSet(), _treeset=self); }
   case Addb_object: {
     return ((self.e.__cid == (new Object(__cid=-2, _int=ArrayDeque()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=HashMap()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=SuffixRankTuple()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=SuffixArrayTest()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=SuffixArray()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=TwoDArray()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=HashSet()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=Boolean()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=Arrays()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(self.e, e) : self.e.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(self.e, e) : null)._bit ? (new Object(__cid=-4, _bit=true)) : xform_contains_TreeSet_Object(self.self, e));
   }
   case Clearb: {
     return (new Object(__cid=-4, _bit=false));
   }
-  case Containsb_object: { assert false; }
-  case Clear: { assert false; }
-  case Contains_object: { assert false; }
-  case Size: { assert false; }
+  case Containsb_object: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Clear: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Contains_object: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Size: { return new Object(__cid=TreeSet(), _treeset=self); }
   }
 
   return null;
 }
 Object xform_treeset_TreeSet(TreeSet self) {
   switch(self) {
-  case Treeset: { assert false; }
-  case Add_object: { assert false; }
-  case Addb_object: { assert false; }
-  case Clearb: { assert false; }
-  case Containsb_object: { assert false; }
-  case Clear: { assert false; }
-  case Contains_object: { assert false; }
-  case Size: { assert false; }
+  case Treeset: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Add_object: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Addb_object: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Clearb: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Containsb_object: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Clear: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Contains_object: { return new Object(__cid=TreeSet(), _treeset=self); }
+  case Size: { return new Object(__cid=TreeSet(), _treeset=self); }
   }
 
   return null;

@@ -1,0 +1,387 @@
+SKETCH version 1.7.5
+Benchmark = /Users/grumpy/Research/java-sketch2/test/axioms/examples/HashMap1/HashMap/../result_ax/sk_HashTableTest/main.sk
+    [0;32m[1515525423.3720 - DEBUG] Running stage 'parse' -- Parse the program from a file[0m
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '10'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '10'
+NOTE -- multiple values provided for command line option 'bnd-unroll-amnt'; using '10'
+    [0;32m[1515525424.4660 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)[0m
+array.sk:5: Making final Array_bit@array.length
+array.sk:5: Making final Object._int
+array.sk:10: Making final Array_char@array.length
+array.sk:15: Making final Array_int@array.length
+array.sk:20: Making final Array_float@array.length
+array.sk:25: Making final Array_double@array.length
+array.sk:30: Making final Array_Object@array.length
+    [0;32m[1515525425.0220 - DEBUG] Running stage SpmdLowLevelCStage[0m
+    [0;32m[1515525425.0290 - DEBUG]    Running visitor FlattenStmtBlocks2[0m
+    [0;32m[1515525425.0310 - DEBUG]    Running visitor SplitAssignFromVarDef[0m
+    [0;32m[1515525425.0360 - DEBUG]    Running visitor EliminateComplexForLoops[0m
+    [0;32m[1515525425.0400 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend[0m
+    [0;32m[1515525425.1020 - DEBUG] Running stage 'sten' -- Stencil transformations[0m
+[SATBackend] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[SATBackend] MAX LOOP UNROLLING = 10
+[SATBackend] MAX FUNC INLINING  = 2
+estimated size of mn_int_int_int__Wrapper_HashTableTest
+stmt cnt: 3
+callee glblInit_INITIAL_SIZE__HashTableTest_s1235_HashTableTest : 10
+callee mn_int_int_int0_HashTableTest : 104
+
+[SATBackend] After prog.accept(partialEval)
+[SATBackend] OFILE = sk_HashTableTest
+searching for file null
+searching for file /Users/grumpy/Research/sketch-from-source/sketch-frontend/target/sketch-1.7.5-noarch-launchers/cegis/src/SketchSolver/cegis
+searching for file /Users/grumpy/Research/sketch-from-source/sketch-frontend/target/sketch-1.7.5-noarch-launchers/cegis
+searching for file cegis/src/SketchSolver/cegis
+searching for file ../sketch-backend/src/SketchSolver/cegis
+searching for file ../sketch-backend/bindings/cegis
+searching for file /Users/grumpy/Research/java-sketch2/test/axioms/examples/HashMap1/HashMap/../result_ax/cegis-1.7.5
+searching for file /Users/grumpy/Research/java-sketch2/test/axioms/examples/HashMap1/HashMap/../result_ax/cegis
+searching for file /usr/local/bin/cegis
+searching for file /usr/local/bin/src/SketchSolver/cegis
+searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/bin/../sketch-backend/bindings/cegis
+searching for file /usr/bin/cegis
+searching for file /usr/bin/src/SketchSolver/cegis
+searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/bin/../sketch-backend/bindings/cegis
+searching for file /bin/cegis
+searching for file /bin/src/SketchSolver/cegis
+searching for file /bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /bin/../sketch-backend/bindings/cegis
+searching for file /usr/sbin/cegis
+searching for file /usr/sbin/src/SketchSolver/cegis
+searching for file /usr/sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/sbin/../sketch-backend/bindings/cegis
+searching for file /sbin/cegis
+searching for file /sbin/src/SketchSolver/cegis
+searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /sbin/../sketch-backend/bindings/cegis
+searching for file /Library/TeX/texbin/cegis
+searching for file /Library/TeX/texbin/src/SketchSolver/cegis
+searching for file /Library/TeX/texbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /Library/TeX/texbin/../sketch-backend/bindings/cegis
+searching for file /Users/grumpy/Research/sketch-from-source/sketch-frontend/target/sketch-1.7.5-noarch-launchers/cegis
+searching for file /Users/grumpy/Research/sketch-from-source/sketch-frontend/target/sketch-1.7.5-noarch-launchers/src/SketchSolver/cegis
+searching for file /Users/grumpy/Research/sketch-from-source/sketch-frontend/target/sketch-1.7.5-noarch-launchers/../sketch-backend/src/SketchSolver/cegis
+searching for file /Users/grumpy/Research/sketch-from-source/sketch-frontend/target/sketch-1.7.5-noarch-launchers/../sketch-backend/bindings/cegis
+searching for file /Users/grumpy/School/CMSC818/llvm_prebuilt/clang+llvm-5.0.0-x86_64-apple-darwin/bin/cegis
+searching for file /Users/grumpy/School/CMSC818/llvm_prebuilt/clang+llvm-5.0.0-x86_64-apple-darwin/bin/src/SketchSolver/cegis
+searching for file /Users/grumpy/School/CMSC818/llvm_prebuilt/clang+llvm-5.0.0-x86_64-apple-darwin/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /Users/grumpy/School/CMSC818/llvm_prebuilt/clang+llvm-5.0.0-x86_64-apple-darwin/bin/../sketch-backend/bindings/cegis
+searching for file /Users/grumpy/.cabal/bin/cegis
+searching for file /Users/grumpy/.cabal/bin/src/SketchSolver/cegis
+searching for file /Users/grumpy/.cabal/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /Users/grumpy/.cabal/bin/../sketch-backend/bindings/cegis
+searching for file /Users/grumpy/Research/sketch-from-source/sketch-frontend/cegis
+searching for file /Users/grumpy/Research/sketch-from-source/sketch-frontend/src/SketchSolver/cegis
+searching for file /Users/grumpy/Research/sketch-from-source/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
+resolved cegis to path /Users/grumpy/Research/sketch-from-source/sketch-backend/src/SketchSolver/cegis
+    [0;32m[1515525426.1940 - DEBUG] executing /Users/grumpy/Research/sketch-from-source/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/grumpy/Research/java-sketch2/test/axioms/examples/HashMap1/result_ax/tmp/sk_HashTableTest/solution0-0 /Users/grumpy/Research/java-sketch2/test/axioms/examples/HashMap1/result_ax/tmp/sk_HashTableTest/input0.tmp[0m
+[SATBackend] Launching: /Users/grumpy/Research/sketch-from-source/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/grumpy/Research/java-sketch2/test/axioms/examples/HashMap1/result_ax/tmp/sk_HashTableTest/solution0-0 /Users/grumpy/Research/java-sketch2/test/axioms/examples/HashMap1/result_ax/tmp/sk_HashTableTest/input0.tmp 
+starting command line: [/Users/grumpy/Research/sketch-from-source/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 13, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 2, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /Users/grumpy/Research/java-sketch2/test/axioms/examples/HashMap1/result_ax/tmp/sk_HashTableTest/solution0-0, /Users/grumpy/Research/java-sketch2/test/axioms/examples/HashMap1/result_ax/tmp/sk_HashTableTest/input0.tmp]
+Overriding inputs with 5
+boundmode = CALLNAME
+assuming  bounds checks
+SOLVER RAND SEED = 1515525426
+ optimization level = 6
+Reading SKETCH Program in File /Users/grumpy/Research/java-sketch2/test/axioms/examples/HashMap1/result_ax/tmp/sk_HashTableTest/input0.tmp
+CREATING mn_int_int_int__Wrapper_HashTableTest
+size = 38
+after ba size = 38
+CREATING mn_int_int_int__WrapperNospec_HashTableTest
+size = 3
+after ba size = 3
+CREATING glblInit_INITIAL_SIZE__HashTableTest_s1235_HashTableTest
+size = 37
+after ba size = 37
+CREATING mn_int_int_int0_HashTableTest
+size = 263
+after ba size = 263
+CREATING Object_meta
+size = 3
+after ba size = 3
+CREATING Object_Object_Object
+size = 31
+after ba size = 31
+CREATING Integer_meta
+size = 3
+after ba size = 3
+CREATING Integer_Integer_int_Integer
+size = 39
+after ba size = 39
+CREATING setUp_HashTableTest
+size = 76
+after ba size = 76
+CREATING testPutAndGet_Integer_Integer_Integer_HashTableTest
+size = 565
+after ba size = 565
+CREATING HashTable_meta
+size = 3
+after ba size = 3
+CREATING HashTable_HashTable_int_HashTable
+size = 115
+after ba size = 115
+CREATING makeInts_Integer_Integer_Integer_HashTableTest
+size = 291
+after ba size = 291
+CREATING clear_HashTable
+size = 63
+after ba size = 63
+CREATING put_K_V_HashTable
+Found Cycle of size 67; Breaking.
+Found Cycle of size 48; Breaking.
+Found Cycle of size 40; Breaking.
+Found Cycle of size 58; Breaking.
+Found Cycle of size 49; Breaking.
+Found Cycle of size 47; Breaking.
+Found Cycle of size 58; Breaking.
+Found Cycle of size 53; Breaking.
+Found Cycle of size 48; Breaking.
+Found Cycle of size 81; Breaking.
+Found Cycle of size 47; Breaking.
+Found Cycle of size 54; Breaking.
+Found Cycle of size 62; Breaking.
+Found Cycle of size 18; Breaking.
+size = 11441
+after ba size = 11441
+CREATING get_K_HashTable
+size = 101
+after ba size = 101
+CREATING assertEquals_Object_Object_Assert
+size = 67
+after ba size = 67
+CREATING ArrayList_ArrayList_ArrayList
+size = 41
+after ba size = 41
+CREATING resetHashTable_HashTable
+Found Cycle of size 35; Breaking.
+size = 2238
+after ba size = 2238
+CREATING Wrap_Array_Object_array
+size = 41
+after ba size = 41
+CREATING intValue_Integer
+size = 38
+after ba size = 38
+CREATING size_HashTable
+size = 38
+after ba size = 38
+CREATING ensureCapacity_int_HashTable
+Found Cycle of size 43; Breaking.
+size = 2352
+after ba size = 2352
+CREATING getBucketIndex_K_HashTable
+size = 7796
+after ba size = 7796
+CREATING HashTableNode_meta
+size = 3
+after ba size = 3
+CREATING HashTableNode_HashTableNode_K_V_HashTableNode
+size = 42
+after ba size = 42
+CREATING xform_get_ArrayList_int_ArrayList
+size = 465
+after ba size = 465
+CREATING ArrayList_meta
+size = 3
+after ba size = 3
+CREATING set_Object_int_E_ArrayList
+size = 49
+after ba size = 49
+CREATING setb_Object_int_E_ArrayList
+size = 49
+after ba size = 49
+CREATING getKey_HashTableNode
+size = 38
+after ba size = 38
+CREATING equals_Object_Object
+size = 39
+after ba size = 39
+CREATING Boolean_meta
+size = 3
+after ba size = 3
+CREATING equals_Object_Integer
+Found Cycle of size 5; Breaking.
+size = 94
+after ba size = 94
+CREATING Character_meta
+size = 3
+after ba size = 3
+CREATING equals_Object_Character
+Found Cycle of size 5; Breaking.
+size = 94
+after ba size = 94
+CREATING String_meta
+size = 3
+after ba size = 3
+CREATING equals_Object_String
+Found Cycle of size 5; Breaking.
+size = 1069
+after ba size = 1069
+CREATING HashTableTest_meta
+size = 3
+after ba size = 3
+CREATING Assert_meta
+size = 3
+after ba size = 3
+CREATING setValue_V_HashTableNode
+size = 39
+after ba size = 39
+CREATING getNext_HashTableNode
+size = 38
+after ba size = 38
+CREATING setNext_HashTableNode_HashTableNode
+size = 39
+after ba size = 39
+CREATING getNodeWithKey_K_HashTable
+Found Cycle of size 52; Breaking.
+Found Cycle of size 129; Breaking.
+Found Cycle of size 131; Breaking.
+Found Cycle of size 43; Breaking.
+Found Cycle of size 63; Breaking.
+Found Cycle of size 60; Breaking.
+Found Cycle of size 84; Breaking.
+Found Cycle of size 85; Breaking.
+Found Cycle of size 61; Breaking.
+Found Cycle of size 89; Breaking.
+Found Cycle of size 93; Breaking.
+Found Cycle of size 97; Breaking.
+Found Cycle of size 99; Breaking.
+Found Cycle of size 96; Breaking.
+Found Cycle of size 98; Breaking.
+Found Cycle of size 116; Breaking.
+Found Cycle of size 145; Breaking.
+Found Cycle of size 118; Breaking.
+Found Cycle of size 105; Breaking.
+Found Cycle of size 124; Breaking.
+Found Cycle of size 126; Breaking.
+Found Cycle of size 135; Breaking.
+Found Cycle of size 89; Breaking.
+Found Cycle of size 99; Breaking.
+Found Cycle of size 55; Breaking.
+Found Cycle of size 38; Breaking.
+size = 9266
+after ba size = 9266
+CREATING getValue_HashTableNode
+size = 38
+after ba size = 38
+CREATING assertEquals_String_Object_Object_Assert
+size = 864
+after ba size = 864
+CREATING add_Object_E_ArrayList
+size = 47
+after ba size = 47
+CREATING addb_Object_E_ArrayList
+size = 48
+after ba size = 48
+CREATING Array_meta
+size = 3
+after ba size = 3
+CREATING ensureCapacity_Object_int_ArrayList
+size = 48
+after ba size = 48
+CREATING hashCode_Object
+size = 38
+after ba size = 38
+CREATING hashCode_Integer
+size = 38
+after ba size = 38
+CREATING hashCode_String
+Found Cycle of size 25; Breaking.
+size = 6799
+after ba size = 6799
+CREATING xform_size_ArrayList_ArrayList
+size = 352
+after ba size = 352
+CREATING charValue_Character
+size = 38
+after ba size = 38
+CREATING length_String
+size = 38
+after ba size = 38
+CREATING charAt_int_String
+size = 109
+after ba size = 109
+* before  EVERYTHING: mn_int_int_int__WrapperNospec_HashTableTest::SPEC nodes = 3	 mn_int_int_int__Wrapper_HashTableTest::SKETCH nodes = 38
+ INBITS = 5
+ CBITS  = 5
+ input_ints = 3 	 input_bits = 0
+ Inlining amount = 2
+ Inlining functions in the sketch.
+inlined 2 new size =162
+inlined 8 new size =521
+Found Cycle of size 30; Breaking.
+Found Cycle of size 25; Breaking.
+Found Cycle of size 20; Breaking.
+Found Cycle of size 15; Breaking.
+inlined 17 new size =34838
+Found Cycle of size 225; Breaking.
+Found Cycle of size 135; Breaking.
+Found Cycle of size 129; Breaking.
+Found Cycle of size 197; Breaking.
+Found Cycle of size 171; Breaking.
+Found Cycle of size 184; Breaking.
+Found Cycle of size 192; Breaking.
+Found Cycle of size 226; Breaking.
+Found Cycle of size 179; Breaking.
+Found Cycle of size 181; Breaking.
+Found Cycle of size 79; Breaking.
+Found Cycle of size 191; Breaking.
+Found Cycle of size 202; Breaking.
+Found Cycle of size 198; Breaking.
+Found Cycle of size 268; Breaking.
+Found Cycle of size 263; Breaking.
+Found Cycle of size 131; Breaking.
+Found Cycle of size 190; Breaking.
+Found Cycle of size 148; Breaking.
+Found Cycle of size 149; Breaking.
+Found Cycle of size 125; Breaking.
+Found Cycle of size 143; Breaking.
+inlined 526 new size =78234
+Found Cycle of size 83; Breaking.
+Found Cycle of size 92; Breaking.
+Found Cycle of size 76; Breaking.
+Found Cycle of size 161; Breaking.
+Found Cycle of size 157; Breaking.
+Found Cycle of size 155; Breaking.
+inlined 447 new size =98552
+inlined 117 new size =95587
+inlined 17 new size =96031
+inlined 1 new size =96123
+inlined 0 new size =96098
+END OF STEP 0
+ Inlining functions in the spec.
+inlined 0 new size =3
+END OF STEP 0
+Bailing out
+after Creating Miter: Problem nodes = 68480
+* Final Problem size: Problem nodes = 68454
+  # OF CONTROLS:    7
+ control_ints = 5 	 control_bits = 2
+inputSize = 6	ctrlSize = 32
+Random seeds = 1
+!+ 01010010100101000000000000100101
+!+ H__14:2
+H__0:82
+H__1:20
+H__2:0
+H__13:0
+H__9:36
+H__12:1
+
+BEG CHECK
+ * After optims it became = 14 was 68454
+function was not inlined enough xform_size_ArrayList_ArrayList
+Simulation found a cex by random testing:  0 ms 
+END CHECK
+********  0	ftime= 0	ctime= 0.085
+!% 100100
+!% __x_4_63_0:1
+__y_5_64_0:2
+__z_6_65_0:0
+
+BEG FIND
+Level 1  intsize = 2
+ * After optims it became = 68442 was 68454
+ * After all optims it became = 68442
+

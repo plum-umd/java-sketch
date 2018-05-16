@@ -1,0 +1,146 @@
+package CommunicationWithFiles;
+
+Object CommunicationWithFiles_CommunicationWithFiles(Object self) {
+  return self;
+}
+
+generator Object genRead_BufferedReader_String_boolean_ArrayList_String(Object self, Object bfr, Object value, Object isAList, Object values, Object filename) {
+    /* value = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLine_Object@BufferedReader(bfr) : null); bfr = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLineb_Object@BufferedReader(bfr) : null); */
+  value = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? xform_readLine_BufferedReader@BufferedReader(bfr._bufferedreader) : null); bfr = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLineb_Object@BufferedReader(bfr) : null);
+  while (value != null) {
+    if (value != null && !isAList._bit == (new Object(__cid=-4, _bit=true))._bit) {
+      Object vbar = (value.__cid == (new Object(__cid=-2, _int=String()))._int ? concat_String@String(value, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="|")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null);
+      (values.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? add_Object_String@ArrayList(values, (vbar.__cid == (new Object(__cid=-2, _int=String()))._int ? concat_String@String(vbar, filename) : null)) : null); values = (values.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? addb_Object_String@ArrayList(values, (vbar.__cid == (new Object(__cid=-2, _int=String()))._int ? concat_String@String(vbar, filename) : null)) : null);
+    }
+    /* value = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLine_Object@BufferedReader(bfr) : null); bfr = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLineb_Object@BufferedReader(bfr) : null); */
+    value = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? xform_readLine_BufferedReader@BufferedReader(bfr._bufferedreader) : null); bfr = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLineb_Object@BufferedReader(bfr) : null);
+  }
+  
+
+  /* if ((new Object(__cid=-4, _bit=??))._bit) { */
+  /*   /\* value = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLine_Object@BufferedReader(bfr) : null); bfr = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLineb_Object@BufferedReader(bfr) : null); *\/ */
+  /* value = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? xform_readLine_BufferedReader@BufferedReader(bfr._bufferedreader) : null); bfr = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLineb_Object@BufferedReader(bfr) : null); */
+  /* } */
+  /* if ((new Object(__cid=-4, _bit=??))._bit) { */
+  /*   while (value != null) { */
+  /*     value = genRead_BufferedReader_String_boolean_ArrayList_String@CommunicationWithFiles(self, bfr, value, isAList, values, filename); */
+  /*   } */
+  /* } */
+  /* if ((new Object(__cid=-4, _bit=??))._bit) { */
+  /*   if (value != null && !isAList._bit == (new Object(__cid=-4, _bit=true))._bit) { */
+  /*     Object vbar = (value.__cid == (new Object(__cid=-2, _int=String()))._int ? concat_String@String(value, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="|")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null); */
+  /*     (values.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? add_Object_String@ArrayList(values, (vbar.__cid == (new Object(__cid=-2, _int=String()))._int ? concat_String@String(vbar, filename) : null)) : null); values = (values.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? addb_Object_String@ArrayList(values, (vbar.__cid == (new Object(__cid=-2, _int=String()))._int ? concat_String@String(vbar, filename) : null)) : null); */
+  /*   } */
+  /* } */
+  /* if ((new Object(__cid=-4, _bit=??))._bit) { */
+  /*   value = genRead_BufferedReader_String_boolean_ArrayList_String@CommunicationWithFiles(self, bfr, value, isAList, values, filename); */
+  /* } */
+  return value;
+}
+
+Object ReadToArray_String_boolean(Object self, Object filename, Object isAList) {
+  Object fr = null;
+  Object value = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=0+1), A="")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=0));
+  Object values = ArrayList_ArrayList();
+  if (values.__cid == (new Object(__cid=-2, _int=ArrayList()))._int) { sort_Object_Object@ArrayList(values, null); }
+  else { 0; }; values = (values.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? sortb_Object_Object@ArrayList(values, null) : null);
+  fr = FileReaderr_FileReaderr_String(new Object(__cid=FileReaderr()), filename);
+  Object bfr = BufferedReader_Object_FileReaderr(fr);
+
+    /* value = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLine_Object@BufferedReader(bfr) : null); bfr = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLineb_Object@BufferedReader(bfr) : null); */
+  value = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? xform_readLine_BufferedReader@BufferedReader(bfr._bufferedreader) : null); bfr = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLineb_Object@BufferedReader(bfr) : null);
+  while (value != null) {
+    if (value != null && !isAList._bit == (new Object(__cid=-4, _bit=true))._bit) {
+      Object vbar = (value.__cid == (new Object(__cid=-2, _int=String()))._int ? concat_String@String(value, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="|")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null);
+      (values.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? add_Object_String@ArrayList(values, (vbar.__cid == (new Object(__cid=-2, _int=String()))._int ? concat_String@String(vbar, filename) : null)) : null); values = (values.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? addb_Object_String@ArrayList(values, (vbar.__cid == (new Object(__cid=-2, _int=String()))._int ? concat_String@String(vbar, filename) : null)) : null);
+    }
+    /* value = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLine_Object@BufferedReader(bfr) : null); bfr = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLineb_Object@BufferedReader(bfr) : null); */
+    value = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? xform_readLine_BufferedReader@BufferedReader(bfr._bufferedreader) : null); bfr = (bfr.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLineb_Object@BufferedReader(bfr) : null);
+  }
+  
+  /* genRead_BufferedReader_String_boolean_ArrayList_String@CommunicationWithFiles(self, bfr, value, isAList, values, filename); */
+
+  if (fr.__cid == (new Object(__cid=-2, _int=FileReaderr()))._int) { close@FileReaderr(fr); }
+  else { 0; };
+  return values;
+}
+
+Object RemoveDuplicates_ArrayList(Object self, Object toBeSorted) {
+  Object j = (new Object(__cid=-2, _int=1));
+
+  /* Object blah0 = xform_get_ArrayList_int(toBeSorted._arraylist, (new Object(__cid=-2, _int=0))); */
+  /* assert equals_Object@String(blah0, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=5+1), A="1|1\n2")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=5)))._bit; */
+
+  /* Object blah1 = xform_get_ArrayList_int(toBeSorted._arraylist, (new Object(__cid=-2, _int=1))); */
+  /* assert equals_Object@String(blah1, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=5+1), A="2|1\n2")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=5)))._bit; */
+
+  /* Object blah2 = xform_get_ArrayList_int(toBeSorted._arraylist, (new Object(__cid=-2, _int=2))); */
+  /* assert equals_Object@String(blah2, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=5+1), A="2|2\n3")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=5)))._bit; */
+  
+  /* Object blah3 = xform_get_ArrayList_int(toBeSorted._arraylist, (new Object(__cid=-2, _int=3))); */
+  /* assert equals_Object@String(blah3, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=5+1), A="3|2\n3")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=5)))._bit; */
+  
+  if (toBeSorted.__cid == (new Object(__cid=-2, _int=ArrayList()))._int) { sort_Object_Object@ArrayList(toBeSorted, null); }
+  else { 0; }; toBeSorted = (toBeSorted.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? sortb_Object_Object@ArrayList(toBeSorted, null) : null);
+  int sz = (toBeSorted.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? xform_size_ArrayList(toBeSorted._arraylist) : null)._int;
+
+  /* Object get_0 = (toBeSorted.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? xform_get_ArrayList_int@ArrayList(toBeSorted._arraylist, (new Object(__cid=-2, _int=0))) : null); */
+  /* assert charAt_int@String(get_0, (new Object(__cid=-2, _int=0)))._char == '1'; */
+
+  /* Object get_1 = (toBeSorted.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? xform_get_ArrayList_int@ArrayList(toBeSorted._arraylist, (new Object(__cid=-2, _int=1))) : null); */
+  /* assert charAt_int@String(get_1, (new Object(__cid=-2, _int=0)))._char == '2'; */
+
+  /* Object get_2 = (toBeSorted.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? xform_get_ArrayList_int@ArrayList(toBeSorted._arraylist, (new Object(__cid=-2, _int=2))) : null); */
+  /* assert charAt_int@String(get_2, (new Object(__cid=-2, _int=0)))._char == '2'; */
+
+  /* Object get_3 = (toBeSorted.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? xform_get_ArrayList_int@ArrayList(toBeSorted._arraylist, (new Object(__cid=-2, _int=3))) : null); */
+  /* assert charAt_int@String(get_3, (new Object(__cid=-2, _int=0)))._char == '3'; */
+
+  /* assert (j._int + (new Object(__cid=-2, _int=1))._int < sz); */
+  
+  while (j._int + (new Object(__cid=-2, _int=1))._int < sz) {
+    /* Object get_j = (toBeSorted.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_Object_int@ArrayList(toBeSorted, j) : null); */
+    Object get_j = (toBeSorted.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? xform_get_ArrayList_int@ArrayList(toBeSorted._arraylist, j) : null);
+    Object sstr = (get_j.__cid == (new Object(__cid=-2, _int=String()))._int ? substring_int_int@String(get_j, (new Object(__cid=-2, _int=0)), (get_j.__cid == (new Object(__cid=-2, _int=String()))._int ? indexOf_String@String(get_j, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="|")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null)) : null);
+    /* Object get_j1 = (toBeSorted.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_Object_int@ArrayList(toBeSorted, (new Object(__cid=-2, _int=j._int + (new Object(__cid=-2, _int=1))._int))) : null); */
+    Object get_j1 = (toBeSorted.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? xform_get_ArrayList_int@ArrayList(toBeSorted._arraylist, (new Object(__cid=-2, _int=j._int + (new Object(__cid=-2, _int=1))._int))) : null);
+    Object sstr1 = (get_j1.__cid == (new Object(__cid=-2, _int=String()))._int ? substring_int_int@String(get_j1, (new Object(__cid=-2, _int=0)), (get_j1.__cid == (new Object(__cid=-2, _int=String()))._int ? indexOf_String@String(get_j1, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="|")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null)) : null);
+    if ((sstr.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(sstr, sstr1) : null)._bit) {
+      if (toBeSorted.__cid == (new Object(__cid=-2, _int=ArrayList()))._int) { remove_Object_int@ArrayList(toBeSorted, (new Object(__cid=-2, _int=j._int + (new Object(__cid=-2, _int=1))._int))); }
+      else { 0; }; toBeSorted = (toBeSorted.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? removeb_Object_int@ArrayList(toBeSorted, (new Object(__cid=-2, _int=j._int + (new Object(__cid=-2, _int=1))._int))) : null);
+      if (toBeSorted.__cid == (new Object(__cid=-2, _int=ArrayList()))._int) { remove_Object_int@ArrayList(toBeSorted, j); }
+      else { 0; }; toBeSorted = (toBeSorted.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? removeb_Object_int@ArrayList(toBeSorted, j) : null);
+    }
+    else {
+      j = new Object(__cid=-2, _int=j._int + 1);
+    }
+    sz = (toBeSorted.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? xform_size_ArrayList(toBeSorted._arraylist) : null)._int;
+  }
+  
+  (toBeSorted.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? set_Object_int_String@ArrayList(toBeSorted, (new Object(__cid=-2, _int=0)), String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=3+1), A="V|F")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=3))) : null); toBeSorted = (toBeSorted.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? setb_Object_int_String@ArrayList(toBeSorted, (new Object(__cid=-2, _int=0)), String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=3+1), A="V|F")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=3))) : null);
+  return toBeSorted;
+}
+
+void createFile_ArrayList_String(Object self, Object rows, Object filename) {
+  Object fileWriter = FileWriterr_FileWriterr_String(new Object(__cid=FileWriterr()), filename);
+  Object bufferedWriter = BufferedWriter_BufferedWriter_FileWriter(new Object(__cid=BufferedWriter()), fileWriter);
+  int sz = (xform_size_ArrayList@ArrayList(rows._arraylist))._int - (new Object(__cid=-2, _int=1))._int;  
+for (Object k = (new Object(__cid=-2, _int=0)); k._int <= (rows.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? sz : 0); k = new Object(__cid=-2, _int=k._int + 1)) {
+    /* Object v = (rows.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? get_Object_int@ArrayList(rows, k) : null); */
+      Object v = (rows.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? xform_get_ArrayList_int@ArrayList(rows._arraylist, k) : null);
+    if (bufferedWriter.__cid == (new Object(__cid=-2, _int=BufferedWriter()))._int) { write_String@BufferedWriter(bufferedWriter, v); }
+    else { 0; };
+    if (bufferedWriter.__cid == (new Object(__cid=-2, _int=BufferedWriter()))._int) { newLine@BufferedWriter(bufferedWriter); }
+    else { 0; };
+  }
+  if (bufferedWriter.__cid == (new Object(__cid=-2, _int=BufferedWriter()))._int) { close@BufferedWriter(bufferedWriter); }
+  else { 0; };
+}
+
+void ClearFile_String(Object self, Object toBeCleared) {
+  Object fileWriter = FileWriterr_FileWriterr_String(new Object(__cid=FileWriterr()), toBeCleared);
+  Object bufferedWriter = BufferedWriter_BufferedWriter_FileWriter(new Object(__cid=BufferedWriter()), fileWriter);
+  if (bufferedWriter.__cid == (new Object(__cid=-2, _int=BufferedWriter()))._int) { close@BufferedWriter(bufferedWriter); }
+  else { 0; };
+}
+

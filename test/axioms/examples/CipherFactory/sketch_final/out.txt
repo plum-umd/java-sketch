@@ -1,2 +1,2088 @@
 SKETCH version 1.7.5
 Benchmark = /Users/kathymariano/Research/java-sketch2/test/axioms/examples/CipherFactory/sketch_final/sk_CipherFactoryTests/main.sk
+array.sk:5: Making final Array_bit@array.length
+array.sk:5: Making final Object._int
+array.sk:10: Making final Array_char@array.length
+array.sk:15: Making final Array_int@array.length
+array.sk:20: Making final Array_float@array.length
+array.sk:25: Making final Array_double@array.length
+array.sk:30: Making final Array_Object@array.length
+[SATBackend] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[SATBackend] MAX LOOP UNROLLING = 9
+[SATBackend] MAX FUNC INLINING  = 2
+estimated size of main__Wrapper_CipherFactoryTests
+stmt cnt: 2
+callee main_CipherFactoryTests : 129
+
+[SATBackend] After prog.accept(partialEval)
+[SATBackend] OFILE = sk_CipherFactoryTests
+searching for file null
+searching for file /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-frontend/cegis/src/SketchSolver/cegis
+searching for file /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-frontend/cegis
+searching for file cegis/src/SketchSolver/cegis
+searching for file ../sketch-backend/src/SketchSolver/cegis
+searching for file ../sketch-backend/bindings/cegis
+searching for file /Users/kathymariano/Research/java-sketch2/test/axioms/examples/CipherFactory/sketch_final/cegis-1.7.5
+searching for file /Users/kathymariano/Research/java-sketch2/test/axioms/examples/CipherFactory/sketch_final/cegis
+searching for file /usr/bin/cegis
+searching for file /usr/bin/src/SketchSolver/cegis
+searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/bin/../sketch-backend/bindings/cegis
+searching for file /bin/cegis
+searching for file /bin/src/SketchSolver/cegis
+searching for file /bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /bin/../sketch-backend/bindings/cegis
+searching for file /usr/sbin/cegis
+searching for file /usr/sbin/src/SketchSolver/cegis
+searching for file /usr/sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/sbin/../sketch-backend/bindings/cegis
+searching for file /sbin/cegis
+searching for file /sbin/src/SketchSolver/cegis
+searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /sbin/../sketch-backend/bindings/cegis
+searching for file /usr/local/bin/cegis
+searching for file /usr/local/bin/src/SketchSolver/cegis
+searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/bin/../sketch-backend/bindings/cegis
+searching for file /Applications/Racket v6.10/bin/cegis
+searching for file /Applications/Racket v6.10/bin/src/SketchSolver/cegis
+searching for file /Applications/Racket v6.10/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /Applications/Racket v6.10/bin/../sketch-backend/bindings/cegis
+searching for file /Library/TeX/texbin/cegis
+searching for file /Library/TeX/texbin/src/SketchSolver/cegis
+searching for file /Library/TeX/texbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /Library/TeX/texbin/../sketch-backend/bindings/cegis
+searching for file /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-frontend/cegis
+searching for file /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-frontend/src/SketchSolver/cegis
+searching for file /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
+resolved cegis to path /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis
+[SATBackend] Launching: /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch2/test/axioms/examples/CipherFactory/sketch_final/tmp/sk_CipherFactoryTests/solution0-0 /Users/kathymariano/Research/java-sketch2/test/axioms/examples/CipherFactory/sketch_final/tmp/sk_CipherFactoryTests/input0.tmp 
+Overriding inputs with 5
+boundmode = CALLNAME
+assuming  bounds checks
+SOLVER RAND SEED = 1523665539
+ optimization level = 6
+Reading SKETCH Program in File /Users/kathymariano/Research/java-sketch2/test/axioms/examples/CipherFactory/sketch_final/tmp/sk_CipherFactoryTests/input0.tmp
+CREATING main__Wrapper_CipherFactoryTests
+size = 4
+after ba size = 4
+CREATING main__WrapperNospec_CipherFactoryTests
+size = 0
+after ba size = 0
+CREATING main_CipherFactoryTests
+size = 3085
+after ba size = 3085
+CREATING Object_meta
+size = 3
+after ba size = 3
+CREATING Object_Object_Object
+size = 38
+after ba size = 38
+CREATING CryptoManager_meta
+size = 3
+after ba size = 3
+CREATING CryptoManager_CryptoManager_CryptoManager
+size = 366
+after ba size = 366
+CREATING toString_int_Integer
+size = 2544
+after ba size = 2544
+CREATING encrypt_String_CryptoManager
+size = 1801
+after ba size = 1801
+CREATING String_meta
+size = 3
+after ba size = 3
+CREATING equals_Object_String
+Found Cycle of size 6; Breaking.
+size = 986
+after ba size = 986
+CREATING decrypt_String_CryptoManager
+size = 1936
+after ba size = 1936
+CREATING Wrap_Array_char_array
+size = 48
+after ba size = 48
+CREATING String_String_char_int_int_String
+size = 750
+after ba size = 750
+CREATING DefaultCipherFactory_meta
+size = 3
+after ba size = 3
+CREATING DefaultCipherFactory_DefaultCipherFactory_DefaultCipherFactory
+size = 302
+after ba size = 302
+CREATING getCipherFactory_CryptoManager
+size = 45
+after ba size = 45
+CREATING encryptionCipher_DefaultCipherFactory
+size = 83
+after ba size = 83
+CREATING decryptionCipher_DefaultCipherFactory
+size = 84
+after ba size = 84
+CREATING getCharset_CryptoManager
+size = 45
+after ba size = 45
+CREATING encode_String_String_CryptoManager
+size = 147
+after ba size = 147
+CREATING Cipher_meta
+size = 3
+after ba size = 3
+CREATING readEncoded_Object_String_Cipher
+size = 55
+after ba size = 55
+CREATING appendEncryptionMark_byte_CryptoManager
+size = 769
+after ba size = 769
+CREATING isEncryptedByte_byte_CryptoManager
+size = 89
+after ba size = 89
+CREATING cutEncryptionMark_byte_CryptoManager
+size = 737
+after ba size = 737
+CREATING cryptInCipher_Cipher_byte_CryptoManager
+size = 137
+after ba size = 137
+CREATING xform_doFinal_Cipher_Object_Cipher
+size = 937
+after ba size = 937
+CREATING processEscape_byte_boolean_CryptoManager
+size = 40
+after ba size = 40
+CREATING toString_Object_Object_Cipher
+size = 54
+after ba size = 54
+CREATING length_String
+size = 45
+after ba size = 45
+CREATING isEncrypted_String_CryptoManager
+size = 365
+after ba size = 365
+CREATING decode_byte_String_CryptoManager
+size = 91
+after ba size = 91
+CREATING Array_meta
+size = 3
+after ba size = 3
+CREATING initCipher_int_DefaultCipherFactory
+size = 79
+after ba size = 79
+CREATING getBytes_String
+size = 106
+after ba size = 106
+CREATING getEncryptedMark_CryptoManager
+size = 45
+after ba size = 45
+CREATING doFinal_Object_Object_Cipher
+size = 55
+after ba size = 55
+CREATING xform_equals_SecretKeySpec_Object_SecretKeySpec
+size = 158
+after ba size = 158
+CREATING isUseEncryptionStrict_CryptoManager
+size = 45
+after ba size = 45
+CREATING String_String_byte_String
+size = 718
+after ba size = 718
+CREATING obtainCipher_int_DefaultCipherFactory
+size = 298
+after ba size = 298
+CREATING toString_String
+size = 38
+after ba size = 38
+CREATING getBytes_String_String
+Found Cycle of size 13; Breaking.
+size = 1672
+after ba size = 1672
+CREATING SecretKeySpec_meta
+size = 3
+after ba size = 3
+CREATING SecretKeySpec_SecretKeySpec_SecretKeySpec
+size = 48
+after ba size = 48
+CREATING getPadding_DefaultCipherFactory
+size = 45
+after ba size = 45
+CREATING getInstance_String_Cipher
+size = 78
+after ba size = 78
+CREATING init_Object_int_SecretKeySpec_Cipher
+size = 56
+after ba size = 56
+CREATING initb_Object_int_SecretKeySpec_Cipher
+size = 56
+after ba size = 56
+CREATING charAt_int_String
+size = 116
+after ba size = 116
+CREATING Cipher_Object_String_Cipher
+size = 49
+after ba size = 49
+* before  EVERYTHING: main__WrapperNospec_CipherFactoryTests::SPEC nodes = 0	 main__Wrapper_CipherFactoryTests::SKETCH nodes = 4
+ INBITS = 5
+ CBITS  = 5
+ input_ints = 0 	 input_bits = 0
+ Inlining amount = 2
+ Inlining functions in the sketch.
+inlined 1 new size =2868
+Found Cycle of size 349; Breaking.
+Found Cycle of size 332; Breaking.
+Found Cycle of size 329; Breaking.
+inlined 70 new size =51819
+Found Cycle of size 171; Breaking.
+Found Cycle of size 105; Breaking.
+Found Cycle of size 106; Breaking.
+inlined 414 new size =115308
+Found Cycle of size 166; Breaking.
+Found Cycle of size 313; Breaking.
+Found Cycle of size 309; Breaking.
+Found Cycle of size 329; Breaking.
+Found Cycle of size 102; Breaking.
+Found Cycle of size 167; Breaking.
+inlined 292 new size =114114
+Found Cycle of size 299; Breaking.
+Found Cycle of size 196; Breaking.
+Found Cycle of size 423; Breaking.
+inlined 122 new size =160769
+Found Cycle of size 199; Breaking.
+Found Cycle of size 302; Breaking.
+Found Cycle of size 215; Breaking.
+inlined 474 new size =140737
+Found Cycle of size 101; Breaking.
+Found Cycle of size 733; Breaking.
+inlined 70 new size =135001
+Found Cycle of size 93; Breaking.
+inlined 11 new size =89349
+inlined 2 new size =89269
+inlined 0 new size =89269
+END OF STEP 0
+ Inlining functions in the spec.
+inlined 0 new size =0
+END OF STEP 0
+Bailing out
+after Creating Miter: Problem nodes = 88561
+* Final Problem size: Problem nodes = 88550
+  # OF CONTROLS:    44
+ control_ints = 0 	 control_bits = 44
+inputSize = 0	ctrlSize = 44
+Random seeds = 1
+!+ 00000011000000000100001000001001010000000011
+!+ H__1_99:0
+H__0_99:0
+H__2_99:0
+H__3_99:0
+H__4_99_85:0
+H__11_99_85:0
+H__12_99_85:1
+H__4_99_85_98:1
+H__8_99_85:0
+H__7_99_85:0
+H__6_99_85:0
+H__5_99_85:0
+H__9_99_85:0
+H__10_99_85:0
+H__11_99_85_98:0
+H__8_99_85_98:0
+H__7_99_85_98:0
+H__6_99_85_98:1
+H__5_99_85_98:0
+H__9_99_85_98:0
+H__10_99_85_98:0
+H__1_110:0
+H__0_110:1
+H__2_110:0
+H__3_110:0
+H__4_110_85:0
+H__11_110_85:0
+H__12_110_85:0
+H__4_110_85_98:1
+H__8_110_85:0
+H__7_110_85:0
+H__6_110_85:1
+H__5_110_85:0
+H__9_110_85:1
+H__10_110_85:0
+H__7_110_85_98:0
+H__6_110_85_98:0
+H__5_110_85_98:0
+H__8_110_85_98:0
+H__11_110_85_98:0
+H__9_110_85_98:0
+H__10_110_85_98:0
+H__12_99_85_98_99_85_98:1
+H__12_110_85_98_110_85_98:1
+
+BEG CHECK
+ * After optims it became = 2 was 88550
+Assert at Cipher.sk:83 (0)
+Simulation found a cex by random testing:  0 ms 
+END CHECK
+********  0	ftime= 0	ctime= 0.173
+!% 
+!% 
+BEG FIND
+Level 1  intsize = 2
+ * After optims it became = 88550 was 88550
+ * After all optims it became = 88550
+ finder  hits = 98566	 bstoreObjs=33201	 sstorePages=31
+hitcount 	0	21299	4
+hitcount 	1	3696	4
+hitcount 	2	901	5
+hitcount 	3	2262	4
+hitcount 	4	986	4
+hitcount 	5	227	3
+hitcount 	6	990	1
+hitcount 	7	242	4
+hitcount 	8	403	5
+hitcount 	9	257	4
+hitcount 	10	31	5
+hitcount 	11	90	4
+hitcount 	12	26	3
+hitcount 	13	207	1
+hitcount 	14	32	4
+hitcount 	15	45	3
+hitcount 	16	5	4
+hitcount 	17	31	5
+hitcount 	18	312	3
+hitcount 	19	136	2
+hitcount 	20	213	3
+hitcount 	21	9	2
+hitcount 	22	2	5
+hitcount 	23	28	3
+hitcount 	24	22	4
+hitcount 	25	2	1
+hitcount 	26	66	5
+hitcount 	27	56	0
+hitcount 	28	70	5
+hitcount 	29	5	3
+hitcount 	31	6	4
+hitcount 	32	1	10
+hitcount 	33	3	3
+hitcount 	34	10	3
+hitcount 	35	7	5
+hitcount 	37	13	4
+hitcount 	38	3	1
+hitcount 	39	21	4
+hitcount 	41	53	1
+hitcount 	43	6	4
+hitcount 	44	5	3
+hitcount 	47	3	5
+hitcount 	48	15	1
+hitcount 	49	19	4
+hitcount 	51	1	3
+hitcount 	53	2	7
+hitcount 	54	3	3
+hitcount 	55	14	2
+hitcount 	56	23	4
+hitcount 	59	12	3
+hitcount 	61	1	0
+hitcount 	62	26	2
+hitcount 	63	1	1
+hitcount 	65	4	5
+hitcount 	66	4	6
+hitcount 	69	11	0
+hitcount 	74	2	3
+hitcount 	75	63	4
+hitcount 	76	6	1
+hitcount 	79	11	4
+hitcount 	82	1	0
+hitcount 	83	24	3
+hitcount 	85	3	5
+hitcount 	89	1	0
+hitcount 	92	1	7
+hitcount 	94	1	1
+hitcount 	95	1	4
+hitcount 	96	2	0
+hitcount 	97	2	0
+hitcount 	99	32	4
+hitcount 	104	57	4
+hitcount 	111	2	2
+hitcount 	118	1	0
+hitcount 	119	5	3
+hitcount 	125	9	2
+hitcount 	127	1	11
+hitcount 	128	1	2
+hitcount 	134	1	5
+hitcount 	139	17	0
+hitcount 	144	3	4
+hitcount 	146	21	1
+hitcount 	155	1	1
+hitcount 	161	1	3
+hitcount 	167	2	1
+hitcount 	179	1	4
+hitcount 	188	1	0
+hitcount 	202	1	2
+hitcount 	207	1	2
+hitcount 	223	2	2
+hitcount 	237	1	0
+hitcount 	244	2	0
+hitcount 	288	1	2
+hitcount 	314	1	2
+bucketsPerDepth 	5	3
+bucketsPerDepth 	6	67
+bucketsPerDepth 	7	189
+bucketsPerDepth 	8	272
+bucketsPerDepth 	9	249
+bucketsPerDepth 	10	138
+bucketsPerDepth 	11	67
+bucketsPerDepth 	12	28
+bucketsPerDepth 	13	5
+bucketsPerDepth 	14	6
+* TIME TO ADD INPUT :  21999.6 ms 
+DECISIONS START = 0
+f# %assign: 15 clauses: 86201 learn: 10 restart: 1 decision: 203 propagated: 40742
+END FIND
+!+ 11011101101000000011001110010000110100000000
+!+ H__1_99:1
+H__0_99:1
+H__2_99:0
+H__3_99:1
+H__4_99_85:1
+H__11_99_85:1
+H__12_99_85:0
+H__4_99_85_98:1
+H__8_99_85:1
+H__7_99_85:0
+H__6_99_85:1
+H__5_99_85:0
+H__9_99_85:0
+H__10_99_85:0
+H__11_99_85_98:0
+H__8_99_85_98:0
+H__7_99_85_98:0
+H__6_99_85_98:0
+H__5_99_85_98:1
+H__9_99_85_98:1
+H__10_99_85_98:0
+H__1_110:0
+H__0_110:1
+H__2_110:1
+H__3_110:1
+H__4_110_85:0
+H__11_110_85:0
+H__12_110_85:1
+H__4_110_85_98:0
+H__8_110_85:0
+H__7_110_85:0
+H__6_110_85:0
+H__5_110_85:1
+H__9_110_85:1
+H__10_110_85:0
+H__7_110_85_98:1
+H__6_110_85_98:0
+H__5_110_85_98:0
+H__8_110_85_98:0
+H__11_110_85_98:0
+H__9_110_85_98:0
+H__10_110_85_98:0
+H__12_99_85_98_99_85_98:0
+H__12_110_85_98_110_85_98:0
+
+BEG CHECK
+ * After optims it became = 0 was 88550
+Simulation no cex:  0 ms 
+CONTROL: growing l=2 inputs to size 3
+Simulation no cex:  0 ms 
+CONTROL: growing l=2 inputs to size 4
+Simulation no cex:  0 ms 
+CONTROL: growing l=2 inputs to size 5
+Simulation no cex:  0 ms 
+END CHECK
+********  1	ftime= 21999.6	ctime= 0.186
+ *GOT THE CORRECT ANSWER IN 2 iterations.
+ *FIND TIME 21999.6 CHECK TIME 0.359 TOTAL TIME 21999.9
+VALUES H__0_110: 1, H__0_99: 1, H__10_110_85: 0, H__10_110_85_98: 0, H__10_99_85: 0, H__10_99_85_98: 0, H__11_110_85: 0, H__11_110_85_98: 0, H__11_99_85: 1, H__11_99_85_98: 0, H__12_110_85: 1, H__12_110_85_98_110_85_98: 0, H__12_99_85: 0, H__12_99_85_98_99_85_98: 0, H__1_110: 0, H__1_99: 1, H__2_110: 1, H__2_99: 0, H__3_110: 1, H__3_99: 1, H__4_110_85: 0, H__4_110_85_98: 0, H__4_99_85: 1, H__4_99_85_98: 1, H__5_110_85: 1, H__5_110_85_98: 0, H__5_99_85: 0, H__5_99_85_98: 1, H__6_110_85: 0, H__6_110_85_98: 0, H__6_99_85: 1, H__6_99_85_98: 0, H__7_110_85: 0, H__7_110_85_98: 1, H__7_99_85: 0, H__7_99_85_98: 0, H__8_110_85: 0, H__8_110_85_98: 0, H__8_99_85: 1, H__8_99_85_98: 0, H__9_110_85: 1, H__9_110_85_98: 0, H__9_99_85: 0, H__9_99_85_98: 1, 
+RESULT = 2  
+**ROUND 0 : 0 Round time:  23999.9 ms 
+RNDDEG = -1
+return 0
+
+----- Statistics -----
+Total elapsed time (ms):  24000.4
+Model building time (ms): 0.446
+Solution time (ms):       23999.9
+Max virtual mem (bytes):  0
+Max resident mem (bytes): 0
+Max private mem (bytes):  0
+ALL CORRECT
+[SATBackend] Stats for last run:
+      [solution stats]
+      successful? ---------------------> true
+      elapsed time (s) ----------------> 24.684
+      model building time (s) ---------> 0.0
+      solution time (s) ---------------> 23.999
+      max memory usage (MiB) ----------> 0.0
+      [SAT-specific solution stats]
+      initial number of nodes ---------> -1
+      number of nodes after opts ------> -1
+      number of controls --------------> -1
+      total number of control bits ----> -1
+
+[SATBackend] Solver exit value: 0
+[SATBackend] Not Deleting
+/* BEGIN PACKAGE ICipherFactory*/
+package ICipherFactory{
+  /* END PACKAGE ICipherFactory*/
+}
+/* BEGIN PACKAGE HashMap*/
+package HashMap{
+  struct HashMap {
+      @Immutable()
+  }
+  struct Hashmap extends HashMap@HashMap {
+      @Immutable()
+  }
+  struct Put_object_object extends HashMap@HashMap {
+      HashMap self;
+      Object k;
+      Object v;
+      @Immutable()
+  }
+  struct Putb_object_object extends HashMap@HashMap {
+      HashMap self;
+      Object k;
+      Object v;
+      @Immutable()
+  }
+  struct Removeb_object extends HashMap@HashMap {
+      HashMap self;
+      Object k;
+      @Immutable()
+  }
+  struct Remove_object extends HashMap@HashMap {
+      HashMap self;
+      Object k;
+      @Immutable()
+  }
+  struct Get_object extends HashMap@HashMap {
+      HashMap self;
+      Object k;
+      @Immutable()
+  }
+  struct Containskey_object extends HashMap@HashMap {
+      HashMap self;
+      Object k;
+      @Immutable()
+  }
+  /* END PACKAGE HashMap*/
+}
+/* BEGIN PACKAGE ArrayList*/
+package ArrayList{
+  struct ArrayList {
+      @Immutable()
+  }
+  struct Arraylist extends ArrayList@ArrayList {
+      @Immutable()
+  }
+  struct Add_object extends ArrayList@ArrayList {
+      ArrayList self;
+      Object e;
+      @Immutable()
+  }
+  struct Addb_object extends ArrayList@ArrayList {
+      ArrayList self;
+      Object e;
+      @Immutable()
+  }
+  struct Getb_int extends ArrayList@ArrayList {
+      ArrayList self;
+      Object i;
+      @Immutable()
+  }
+  struct Setb_int_object extends ArrayList@ArrayList {
+      ArrayList self;
+      Object i;
+      Object e;
+      @Immutable()
+  }
+  struct Get_int extends ArrayList@ArrayList {
+      ArrayList self;
+      Object i;
+      @Immutable()
+  }
+  struct Set_int_object extends ArrayList@ArrayList {
+      ArrayList self;
+      Object i;
+      Object e;
+      @Immutable()
+  }
+  struct Ensurecapacity_int extends ArrayList@ArrayList {
+      ArrayList self;
+      Object n;
+      @Immutable()
+  }
+  struct Size extends ArrayList@ArrayList {
+      ArrayList self;
+      @Immutable()
+  }
+  /* END PACKAGE ArrayList*/
+}
+/* BEGIN PACKAGE CryptoManager*/
+package CryptoManager{
+  /*CryptoManager.sk:3*/
+  
+void CryptoManager_CryptoManager (Object self, ref Object _out)/*CryptoManager.sk:3*/
+  {
+    int _out_s782 = 0;
+    String@meta(_out_s782);
+    Object@Object _out_s784 = null;
+    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=9), A={'U','S','-','A','S','C','I','I','\0'}), _out_s784);
+    Object@Object _out_s786 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=_out_s782), _out_s784, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=8), _out_s786)//{};
+    self.basicCharset_CryptoManager = _out_s786;
+    int _out_s788 = 0;
+    String@meta(_out_s788);
+    Object@Object _out_s790 = null;
+    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=6), A={'U','T','F','-','8','\0'}), _out_s790);
+    Object@Object _out_s792 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=_out_s788), _out_s790, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=5), _out_s792)//{};
+    self.charset_CryptoManager = _out_s792;
+    Object@Object b;
+    b = new Object@Object(__cid=-3, _char='a');
+    self.encryptedMark_CryptoManager = b;
+    self.useEncryptionStrict_CryptoManager = new Object@Object(__cid=-4, _bit=1);
+    int _out_s794 = 0;
+    DefaultCipherFactory@meta(_out_s794);
+    Object@Object _out_s796 = null;
+    DefaultCipherFactory_DefaultCipherFactory@DefaultCipherFactory(new Object@Object(__cid=_out_s794), _out_s796)//{};
+    self.cipherFactory_CryptoManager = _out_s796;
+    _out = self;
+    return;
+  }
+  /*CryptoManager.sk:134*/
+  
+void appendEncryptionMark_byte (Object self, Object bytesArray, ref Object _out)/*CryptoManager.sk:134*/
+  {
+    Object@Object extendedBytes_s752 = null;
+    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=(bytesArray._array_char.length._int) + (new Object@Object(__cid=-2, _int=1)._int))), extendedBytes_s752);
+    _out = extendedBytes_s752;
+    Object@Object _out_s754 = null;
+    getEncryptedMark@CryptoManager(self, _out_s754);
+    extendedBytes_s752._array_char.A[new Object@Object(__cid=-2, _int=0)._int] = _out_s754._char;
+    Object@Object i;
+    i = new Object@Object(__cid=-2, _int=0);
+    bit __sa0 = (i._int) < (bytesArray._array_char.length._int);
+    while(__sa0)
+    {
+      extendedBytes_s752._array_char.A[(i._int) + (new Object@Object(__cid=-2, _int=1)._int)] = bytesArray._array_char.A[i._int];
+      i = new Object@Object(__cid=-2, _int=(i._int) + 1);
+      __sa0 = (i._int) < (bytesArray._array_char.length._int);
+    }
+    return;
+  }
+  /*CryptoManager.sk:190*/
+  
+void cryptInCipher_Cipher_byte (Object self, Object cipher, Object data, ref Object _out)/*CryptoManager.sk:190*/
+  {
+    int _out_s743 = 0;
+    Cipher@meta(_out_s743);
+    Object@Object _pac_sc_s744 = null;
+    if((cipher.__cid) == (new Object@Object(__cid=-2, _int=_out_s743)._int))/*CryptoManager.sk:194*/
+    {
+      Object@Object _out_s746 = null;
+      doFinal_Object_Object@Cipher(cipher, data, _out_s746);
+      _pac_sc_s744 = _out_s746;
+    }
+    else
+    {
+      _pac_sc_s744 = null;
+    }
+    _out = _pac_sc_s744;
+    return;
+  }
+  /*CryptoManager.sk:143*/
+  
+void cutEncryptionMark_byte (Object self, Object bytesArray, ref Object _out)/*CryptoManager.sk:143*/
+  {
+    Object@Object trimmedBytes_s748 = null;
+    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=(bytesArray._array_char.length._int) - (new Object@Object(__cid=-2, _int=1)._int))), trimmedBytes_s748);
+    _out = trimmedBytes_s748;
+    Object@Object i;
+    i = new Object@Object(__cid=-2, _int=1);
+    bit __sa1 = (i._int) < (bytesArray._array_char.length._int);
+    while(__sa1)
+    {
+      trimmedBytes_s748._array_char.A[(i._int) - (new Object@Object(__cid=-2, _int=1)._int)] = bytesArray._array_char.A[i._int];
+      i = new Object@Object(__cid=-2, _int=(i._int) + 1);
+      __sa1 = (i._int) < (bytesArray._array_char.length._int);
+    }
+    return;
+  }
+  /*CryptoManager.sk:205*/
+  
+void decode_byte_String (Object self, Object string, Object charset, ref Object _out)/*CryptoManager.sk:205*/
+  {
+    int _out_s697 = 0;
+    String@meta(_out_s697);
+    Object@Object _out_s699 = null;
+    String_String_byte@String(new Object@Object(__cid=_out_s697), string, _out_s699)//{};
+    _out = _out_s699;
+    return;
+  }
+  /*CryptoManager.sk:161*/
+  
+void decrypt_String (Object self, Object encryptedMessage, ref Object _out)/*CryptoManager.sk:161*/
+  {
+    Object@Object _out_s689 = null;
+    isEncrypted_String@CryptoManager(self, encryptedMessage, _out_s689);
+    if(!(_out_s689._bit))/*CryptoManager.sk:162*/
+    {
+      _out = encryptedMessage;
+      return;
+    }
+    Object@Object cf_s701 = null;
+    getCipherFactory@CryptoManager(self, cf_s701);
+    int cipher_s708 = 0;
+    DefaultCipherFactory@meta(cipher_s708);
+    Object@Object _pac_sc_s709 = null;
+    if((cf_s701.__cid) == (new Object@Object(__cid=-2, _int=cipher_s708)._int))/*CryptoManager.sk:22*/
+    {
+      Object@Object cipher_s711 = null;
+      decryptionCipher@DefaultCipherFactory(cf_s701, cipher_s711);
+      _pac_sc_s709 = cipher_s711;
+    }
+    else
+    {
+      _pac_sc_s709 = null;
+    }
+    int cipherText_s719 = 0;
+    Cipher@meta(cipherText_s719);
+    Object@Object _pac_sc_s720 = null;
+    if((_pac_sc_s709.__cid) == (new Object@Object(__cid=-2, _int=cipherText_s719)._int))/*CryptoManager.sk:37*/
+    {
+      Object@Object cipherText_s722 = null;
+      readEncoded_Object_String@Cipher(_pac_sc_s709, encryptedMessage, cipherText_s722);
+      _pac_sc_s720 = cipherText_s722;
+    }
+    else
+    {
+      _pac_sc_s720 = null;
+    }
+    Object@Object cipherText_s732 = null;
+    xform_doFinal_Cipher_Object@Cipher(_pac_sc_s709._cipher, _pac_sc_s720, cipherText_s732);
+    Object@Object cipherText;
+    cipherText = cipherText_s732;
+    Object@Object _out_s726 = null;
+    isEncryptedByte_byte@CryptoManager(self, cipherText_s732, _out_s726);
+    if(_out_s726._bit)/*CryptoManager.sk:43*/
+    {
+      Object@Object cipherText_s728 = null;
+      cutEncryptionMark_byte@CryptoManager(self, cipherText_s732, cipherText_s728);
+      cipherText = cipherText_s728;
+    }
+    Object@Object _out_s693 = null;
+    getCharset@CryptoManager(self, _out_s693);
+    Object@Object _out_s695 = null;
+    decode_byte_String@CryptoManager(self, cipherText, _out_s693, _out_s695)//{};
+    _out = _out_s695;
+    return;
+  }
+  /*CryptoManager.sk:201*/
+  
+void encode_String_String (Object self, Object string, Object charset, ref Object _out)/*CryptoManager.sk:201*/
+  {
+    int _out_s756 = 0;
+    String@meta(_out_s756);
+    Object@Object _pac_sc_s757 = null;
+    if((string.__cid) == (new Object@Object(__cid=-2, _int=_out_s756)._int))/*CryptoManager.sk:202*/
+    {
+      Object@Object _out_s759 = null;
+      getBytes@String(string, _out_s759);
+      _pac_sc_s757 = _out_s759;
+    }
+    else
+    {
+      _pac_sc_s757 = null;
+    }
+    _out = _pac_sc_s757;
+    return;
+  }
+  /*CryptoManager.sk:113*/
+  
+void encrypt_String (Object self, Object message, ref Object _out)/*CryptoManager.sk:113*/
+  {
+    Object@Object cf_s701 = null;
+    getCipherFactory@CryptoManager(self, cf_s701);
+    int cipher_s703 = 0;
+    DefaultCipherFactory@meta(cipher_s703);
+    Object@Object _pac_sc_s704 = null;
+    if((cf_s701.__cid) == (new Object@Object(__cid=-2, _int=cipher_s703)._int))/*CryptoManager.sk:19*/
+    {
+      Object@Object cipher_s706 = null;
+      encryptionCipher@DefaultCipherFactory(cf_s701, cipher_s706);
+      _pac_sc_s704 = cipher_s706;
+    }
+    else
+    {
+      _pac_sc_s704 = null;
+    }
+    Object@Object cipherText_s715 = null;
+    getCharset@CryptoManager(self, cipherText_s715);
+    Object@Object cipherText_s717 = null;
+    encode_String_String@CryptoManager(self, message, cipherText_s715, cipherText_s717)//{};
+    Object@Object cipherText_s724 = null;
+    appendEncryptionMark_byte@CryptoManager(self, cipherText_s717, cipherText_s724);
+    Object@Object cipherText_s730 = null;
+    cryptInCipher_Cipher_byte@CryptoManager(self, _pac_sc_s704, cipherText_s724, cipherText_s730);
+    int _out_s736 = 0;
+    Cipher@meta(_out_s736);
+    Object@Object _pac_sc_s737 = null;
+    if((_pac_sc_s704.__cid) == (new Object@Object(__cid=-2, _int=_out_s736)._int))/*CryptoManager.sk:58*/
+    {
+      Object@Object _out_s739 = null;
+      toString_Object_Object@Cipher(_pac_sc_s704, cipherText_s730, _out_s739);
+      _pac_sc_s737 = _out_s739;
+    }
+    else
+    {
+      _pac_sc_s737 = null;
+    }
+    _out = _pac_sc_s737;
+    return;
+  }
+  /*CryptoManager.sk:217*/
+  
+void getCharset (Object self, ref Object _out)/*CryptoManager.sk:217*/
+  {
+    _out = self.charset_CryptoManager;
+    return;
+  }
+  /*CryptoManager.sk:229*/
+  
+void getCipherFactory (Object self, ref Object _out)/*CryptoManager.sk:229*/
+  {
+    _out = self.cipherFactory_CryptoManager;
+    return;
+  }
+  /*CryptoManager.sk:225*/
+  
+void getEncryptedMark (Object self, ref Object _out)/*CryptoManager.sk:225*/
+  {
+    _out = self.encryptedMark_CryptoManager;
+    return;
+  }
+  /*CryptoManager.sk:157*/
+  
+void isEncryptedByte_byte (Object self, Object data, ref Object _out)/*CryptoManager.sk:157*/
+  {
+    Object@Object _out_s750 = null;
+    getEncryptedMark@CryptoManager(self, _out_s750);
+    _out = new Object@Object(__cid=-4, _bit=(data._array_char.A[new Object@Object(__cid=-2, _int=0)._int]) == (_out_s750._char));
+    return;
+  }
+  /*CryptoManager.sk:181*/
+  
+void isEncrypted_String (Object self, Object message, ref Object _out)/*CryptoManager.sk:181*/
+  {
+    Object@Object cf_s761 = null;
+    getCipherFactory@CryptoManager(self, cf_s761);
+    int cipher_s763 = 0;
+    DefaultCipherFactory@meta(cipher_s763);
+    Object@Object _pac_sc_s764 = null;
+    if((cf_s761.__cid) == (new Object@Object(__cid=-2, _int=cipher_s763)._int))/*CryptoManager.sk:183*/
+    {
+      Object@Object cipher_s766 = null;
+      decryptionCipher@DefaultCipherFactory(cf_s761, cipher_s766);
+      _pac_sc_s764 = cipher_s766;
+    }
+    else
+    {
+      _pac_sc_s764 = null;
+    }
+    int bytes_s768 = 0;
+    Cipher@meta(bytes_s768);
+    Object@Object _pac_sc_s769 = null;
+    if((_pac_sc_s764.__cid) == (new Object@Object(__cid=-2, _int=bytes_s768)._int))/*CryptoManager.sk:184*/
+    {
+      Object@Object bytes_s771 = null;
+      readEncoded_Object_String@Cipher(_pac_sc_s764, message, bytes_s771);
+      _pac_sc_s769 = bytes_s771;
+    }
+    else
+    {
+      _pac_sc_s769 = null;
+    }
+    Object@Object data_s773 = null;
+    xform_doFinal_Cipher_Object@Cipher(_pac_sc_s764._cipher, _pac_sc_s769, data_s773);
+    Object@Object _pac_sc_s774_s776 = null;
+    isUseEncryptionStrict@CryptoManager(self, _pac_sc_s774_s776);
+    bit _pac_sc_s774;
+    _pac_sc_s774 = !(_pac_sc_s774_s776._bit);
+    if(!(_pac_sc_s774))/*CryptoManager.sk:187*/
+    {
+      Object@Object _pac_sc_s774_s778 = null;
+      isEncryptedByte_byte@CryptoManager(self, data_s773, _pac_sc_s774_s778);
+      _pac_sc_s774 = _pac_sc_s774_s778._bit;
+    }
+    _out = new Object@Object(__cid=-4, _bit=_pac_sc_s774);
+    return;
+  }
+  /*CryptoManager.sk:237*/
+  
+void isUseEncryptionStrict (Object self, ref Object _out)/*CryptoManager.sk:237*/
+  {
+    _out = self.useEncryptionStrict_CryptoManager;
+    return;
+  }
+  /* END PACKAGE CryptoManager*/
+}
+/* BEGIN PACKAGE String*/
+package String{
+  /*String.sk:22*/
+  
+void String_String_byte (Object self, Object bytes, ref Object _out)/*String.sk:22*/
+  {
+    Object@Object len;
+    len = bytes._array_char.length;
+    Object@Object _out_s820 = null;
+    Wrap_Array_char@array(new Array_char@array(length=len), _out_s820);
+    self._value_String = _out_s820;
+    Object@Object i;
+    i = new Object@Object(__cid=-2, _int=0);
+    bit __sa3 = (i._int) < (len._int);
+    while(__sa3)
+    {
+      self._value_String._array_char.A[i._int] = new Object@Object(__cid=-3, _char=bytes._array_char.A[i._int])._char;
+      i = new Object@Object(__cid=-2, _int=(i._int) + 1);
+      __sa3 = (i._int) < (len._int);
+    }
+    self._count_String = len;
+    _out = self;
+    return;
+  }
+  /*String.sk:7*/
+  
+void String_String_char_int_int (Object self, Object ca, Object offset, Object count, ref Object _out)/*String.sk:7*/
+  {
+    if(((offset._int) > (new Object@Object(__cid=-2, _int=0)._int)) && ((offset._int) < (ca._array_char.length._int)))/*String.sk:8*/
+    {
+      Object@Object tmp_s841 = null;
+      Wrap_Array_char@array(new Array_char@array(length=count), tmp_s841);
+      Object@Object i;
+      i = new Object@Object(__cid=-2, _int=0);
+      bit __sa2 = (i._int) < (count._int);
+      while(__sa2)
+      {
+        tmp_s841._array_char.A[i._int] = ca._array_char.A[(i._int) + (offset._int)];
+        i = new Object@Object(__cid=-2, _int=(i._int) + 1);
+        __sa2 = (i._int) < (count._int);
+      }
+      self._value_String = tmp_s841;
+    }
+    else
+    {
+      self._value_String = ca;
+    }
+    self._count_String = count;
+    _out = self;
+    return;
+  }
+  /*String.sk:43*/
+  
+void charAt_int (Object self, Object index, ref Object _out)/*String.sk:43*/
+  {
+    if(((new Object@Object(__cid=-2, _int=0)._int) <= (index._int)) && ((index._int) < (self._count_String._int)))/*String.sk:44*/
+    {
+      _out = new Object@Object(__cid=-3, _char=self._value_String._array_char.A[index._int]);
+      return;
+    }
+    _out = new Object@Object(__cid=-3, _char='\0');
+    return;
+  }
+  /*String.sk:154*/
+  
+void equals_Object (Object self, Object obj, ref Object _out)/*String.sk:154*/
+  {
+    _out = new Object@Object(__cid=-4, _bit=0);
+    int _out_s808 = 0;
+    String@meta(_out_s808);
+    if((obj.__cid) == _out_s808)/*String.sk:156*/
+    {
+      _out = new Object@Object(__cid=-4, _bit=1);
+      int sLen_s810 = 0;
+      String@meta(sLen_s810);
+      Object@Object _pac_sc_s811 = null;
+      if((obj.__cid) == (new Object@Object(__cid=-2, _int=sLen_s810)._int))/*String.sk:159*/
+      {
+        Object@Object sLen_s813 = null;
+        length@String(obj, sLen_s813);
+        _pac_sc_s811 = sLen_s813;
+      }
+      else
+      {
+        _pac_sc_s811 = null;
+      }
+      int tLen_s815 = 0;
+      String@meta(tLen_s815);
+      Object@Object _pac_sc_s816 = null;
+      if((self.__cid) == (new Object@Object(__cid=-2, _int=tLen_s815)._int))/*String.sk:160*/
+      {
+        Object@Object tLen_s818 = null;
+        length@String(self, tLen_s818);
+        _pac_sc_s816 = tLen_s818;
+      }
+      else
+      {
+        _pac_sc_s816 = null;
+      }
+      if((_pac_sc_s811._int) != (_pac_sc_s816._int))/*String.sk:161*/
+      {
+        _out = new Object@Object(__cid=-4, _bit=0);
+      }
+      Object@Object i;
+      i = new Object@Object(__cid=-2, _int=0);
+      bit __sa10 = ((i._int) < (_pac_sc_s811._int)) && ((_out._bit) == (new Object@Object(__cid=-4, _bit=1)._bit));
+      while(__sa10)
+      {
+        if((obj._value_String._array_char.A[i._int]) != (self._value_String._array_char.A[i._int]))/*String.sk:165*/
+        {
+          _out = new Object@Object(__cid=-4, _bit=0);
+        }
+        i = new Object@Object(__cid=-2, _int=(i._int) + 1);
+        __sa10 = ((i._int) < (_pac_sc_s811._int)) && ((_out._bit) == (new Object@Object(__cid=-4, _bit=1)._bit));
+      }
+    }
+    return;
+  }
+  /*String.sk:216*/
+  
+void getBytes (Object self, ref Object _out)/*String.sk:216*/
+  {
+    int _out_s822 = 0;
+    String@meta(_out_s822);
+    Object@Object _pac_sc_s823 = null;
+    if((self.__cid) == (new Object@Object(__cid=-2, _int=_out_s822)._int))/*String.sk:217*/
+    {
+      Object@Object _out_s825 = null;
+      toString@String(self, _out_s825);
+      _pac_sc_s823 = _out_s825;
+    }
+    else
+    {
+      _pac_sc_s823 = null;
+    }
+    Object@Object _out_s827 = null;
+    getBytes_String(_pac_sc_s823, _out_s827)//{};
+    _out = _out_s827;
+    return;
+  }
+  /*String.sk:220*/
+  
+void getBytes_String (Object str, ref Object _out)/*String.sk:220*/
+  {
+    int len_s829 = 0;
+    String@meta(len_s829);
+    Object@Object _pac_sc_s830 = null;
+    if((str.__cid) == (new Object@Object(__cid=-2, _int=len_s829)._int))/*String.sk:221*/
+    {
+      Object@Object len_s832 = null;
+      length@String(str, len_s832);
+      _pac_sc_s830 = len_s832;
+    }
+    else
+    {
+      _pac_sc_s830 = null;
+    }
+    Object@Object bytes_s834 = null;
+    Wrap_Array_char@array(new Array_char@array(length=_pac_sc_s830), bytes_s834);
+    _out = bytes_s834;
+    Object@Object i;
+    i = new Object@Object(__cid=-2, _int=0);
+    bit __sa16 = (i._int) < (_pac_sc_s830._int);
+    while(__sa16)
+    {
+      int _out_s836 = 0;
+      String@meta(_out_s836);
+      Object@Object _pac_sc_s837 = null;
+      if((str.__cid) == (new Object@Object(__cid=-2, _int=_out_s836)._int))/*String.sk:224*/
+      {
+        Object@Object _out_s839 = null;
+        charAt_int@String(str, i, _out_s839);
+        _pac_sc_s837 = _out_s839;
+      }
+      else
+      {
+        _pac_sc_s837 = null;
+      }
+      bytes_s834._array_char.A[i._int] = _pac_sc_s837._char;
+      i = new Object@Object(__cid=-2, _int=(i._int) + 1);
+      __sa16 = (i._int) < (_pac_sc_s830._int);
+    }
+    return;
+  }
+  /*String.sk:48*/
+  
+void length (Object self, ref Object _out)/*String.sk:48*/
+  {
+    _out = self._count_String;
+    return;
+  }
+  /*String.sk:52*/
+  
+void toString (Object self, ref Object _out)/*String.sk:52*/
+  {
+    _out = self;
+    return;
+  }
+  /* END PACKAGE String*/
+}
+/* BEGIN PACKAGE Assert*/
+package Assert{
+  /* END PACKAGE Assert*/
+}
+/* BEGIN PACKAGE array*/
+package array{
+  struct Array_bit {
+      Object length;
+      bit[length._int] A;
+  }
+  struct Array_char {
+      Object length;
+      char[length._int] A;
+  }
+  struct Array_int {
+      Object length;
+      int[length._int] A;
+  }
+  struct Array_float {
+      Object length;
+      float[length._int] A;
+  }
+  struct Array_double {
+      Object length;
+      double[length._int] A;
+  }
+  struct Array_Object {
+      Object length;
+      Object[length._int] A;
+  }
+  /*array.sk:37*/
+  
+void Wrap_Array_char (Array_char arr, ref Object _out)/*array.sk:37*/
+  {
+    int _out_s1214 = 0;
+    Array@meta(_out_s1214);
+    _out = new Object@Object(__cid=_out_s1214, _array_char=arr);
+    return;
+  }
+  /* END PACKAGE array*/
+}
+/* BEGIN PACKAGE SecretKeySpec*/
+package SecretKeySpec{
+  struct SecretKeySpec {
+      @Immutable()
+  }
+  struct Secretkeyspec extends SecretKeySpec@SecretKeySpec {
+      @Immutable()
+  }
+  struct Getencoded extends SecretKeySpec@SecretKeySpec {
+      SecretKeySpec self;
+      @Immutable()
+  }
+  struct Equals_object extends SecretKeySpec@SecretKeySpec {
+      SecretKeySpec self;
+      Object o;
+      @Immutable()
+  }
+  /*SecretKeySpec.sk:9*/
+  
+void SecretKeySpec_SecretKeySpec (ref Object _out)/*SecretKeySpec.sk:9*/
+  {
+    int _out_s1234 = 0;
+    SecretKeySpec@meta(_out_s1234);
+    _out = new Object@Object(__cid=_out_s1234, _secretkeyspec=new Secretkeyspec());
+    return;
+  }
+  /*SecretKeySpec.sk:34*/
+  
+void xform_equals_SecretKeySpec_Object (SecretKeySpec self, Object o, ref Object _out)/*SecretKeySpec.sk:34*/
+  {
+    switch(self){/*SecretKeySpec.sk:35*/
+      case Secretkeyspec:
+      {
+        SecretKeySpec@SecretKeySpec o_o = o._secretkeyspec;
+        switch(o_o){/*SecretKeySpec.sk:40*/
+          case Secretkeyspec:
+          {
+            _out = new Object@Object(__cid=-4, _bit=1);
+            return;
+          }
+          case Getencoded:
+          {
+            int _out_s1226 = 0;
+            SecretKeySpec@meta(_out_s1226);
+            _out = new Object@Object(__cid=_out_s1226, _secretkeyspec=self);
+            return;
+          }
+          case Equals_object:
+          {
+            int _out_s1228 = 0;
+            SecretKeySpec@meta(_out_s1228);
+            _out = new Object@Object(__cid=_out_s1228, _secretkeyspec=self);
+            return;
+          }
+        }
+      }
+      case Getencoded:
+      {
+        int _out_s1230 = 0;
+        SecretKeySpec@meta(_out_s1230);
+        _out = new Object@Object(__cid=_out_s1230, _secretkeyspec=self);
+        return;
+      }
+      case Equals_object:
+      {
+        int _out_s1232 = 0;
+        SecretKeySpec@meta(_out_s1232);
+        _out = new Object@Object(__cid=_out_s1232, _secretkeyspec=self);
+        return;
+      }
+    }
+    _out = null;
+    return;
+  }
+  /* END PACKAGE SecretKeySpec*/
+}
+/* BEGIN PACKAGE Boolean*/
+package Boolean{
+  /* END PACKAGE Boolean*/
+}
+/* BEGIN PACKAGE ANONYMOUS*/
+/* END PACKAGE ANONYMOUS*/
+/* BEGIN PACKAGE Character*/
+package Character{
+  /* END PACKAGE Character*/
+}
+/* BEGIN PACKAGE ICryptoManager*/
+package ICryptoManager{
+  /* END PACKAGE ICryptoManager*/
+}
+/* BEGIN PACKAGE CharSequence*/
+package CharSequence{
+  /* END PACKAGE CharSequence*/
+}
+/* BEGIN PACKAGE SecureRandom*/
+package SecureRandom{
+  struct SecureRandom {
+      @Immutable()
+  }
+  struct Securerandom extends SecureRandom@SecureRandom {
+      @Immutable()
+  }
+  struct Nextbytes_object extends SecureRandom@SecureRandom {
+      SecureRandom self;
+      Object k;
+      @Immutable()
+  }
+  /* END PACKAGE SecureRandom*/
+}
+/* BEGIN PACKAGE Mac*/
+package Mac{
+  struct Mac {
+      @Immutable()
+  }
+  struct Mac_empty extends Mac@Mac {
+      @Immutable()
+  }
+  struct Init_secretkeyspec extends Mac@Mac {
+      Mac self;
+      Object key;
+      @Immutable()
+  }
+  struct Initb_secretkeyspec extends Mac@Mac {
+      Mac self;
+      Object key;
+      @Immutable()
+  }
+  struct Dofinal_object extends Mac@Mac {
+      Mac self;
+      Object text;
+      @Immutable()
+  }
+  /* END PACKAGE Mac*/
+}
+/* BEGIN PACKAGE Integer*/
+package Integer{
+  /*Integer.sk:39*/
+  
+void toString_int (Object i, ref Object _out)/*Integer.sk:39*/
+  {
+    if((i._int) == (new Object@Object(__cid=-2, _int=0)._int))/*Integer.sk:40*/
+    {
+      int _out_s1329 = 0;
+      String@meta(_out_s1329);
+      Object@Object _out_s1331 = null;
+      Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=2), A={'0','\0'}), _out_s1331);
+      Object@Object _out_s1333 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_out_s1329), _out_s1331, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=1), _out_s1333)//{};
+      _out = _out_s1333;
+      return;
+    }
+    Object@Object index = new Object@Object(__cid=-2, _int=0);
+    Object@Object temp = i;
+    Object@Object j;
+    Object@Object ret_s1335 = null;
+    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=32)), ret_s1335);
+    Object@Object ret2_s1337 = null;
+    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=32)), ret2_s1337);
+    Object@Object nums_s1339 = null;
+    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=10)), nums_s1339);
+    nums_s1339._array_char.A[0] = new Object@Object(__cid=-3, _char='0')._char;
+    nums_s1339._array_char.A[1] = new Object@Object(__cid=-3, _char='1')._char;
+    nums_s1339._array_char.A[2] = new Object@Object(__cid=-3, _char='2')._char;
+    nums_s1339._array_char.A[3] = new Object@Object(__cid=-3, _char='3')._char;
+    nums_s1339._array_char.A[4] = new Object@Object(__cid=-3, _char='4')._char;
+    nums_s1339._array_char.A[5] = new Object@Object(__cid=-3, _char='5')._char;
+    nums_s1339._array_char.A[6] = new Object@Object(__cid=-3, _char='6')._char;
+    nums_s1339._array_char.A[7] = new Object@Object(__cid=-3, _char='7')._char;
+    nums_s1339._array_char.A[8] = new Object@Object(__cid=-3, _char='8')._char;
+    nums_s1339._array_char.A[9] = new Object@Object(__cid=-3, _char='9')._char;
+    if((i._int) < (new Object@Object(__cid=-2, _int=0)._int))/*Integer.sk:47*/
+    {
+      temp = new Object@Object(__cid=-2, _int=(i._int) * (-(new Object@Object(__cid=-2, _int=1)._int)));
+    }
+    bit __sa22 = (temp._int) > (new Object@Object(__cid=-2, _int=0)._int);
+    while(__sa22)
+    {
+      ret_s1335._array_char.A[index._int] = nums_s1339._array_char.A[(temp._int) % (new Object@Object(__cid=-2, _int=10)._int)];
+      temp = new Object@Object(__cid=-2, _int=(temp._int) / (new Object@Object(__cid=-2, _int=10)._int));
+      index = new Object@Object(__cid=-2, _int=(index._int) + (new Object@Object(__cid=-2, _int=1)._int));
+      __sa22 = (temp._int) > (new Object@Object(__cid=-2, _int=0)._int);
+    }
+    if((i._int) < (new Object@Object(__cid=-2, _int=0)._int))/*Integer.sk:55*/
+    {
+      ret_s1335._array_char.A[index._int] = new Object@Object(__cid=-3, _char='-')._char;
+      index = new Object@Object(__cid=-2, _int=(index._int) + (new Object@Object(__cid=-2, _int=1)._int));
+    }
+    Object@Object size = index;
+    j = new Object@Object(__cid=-2, _int=0);
+    bit __sa23 = (j._int) < (index._int);
+    while(__sa23)
+    {
+      ret2_s1337._array_char.A[j._int] = ret_s1335._array_char.A[(index._int) - (new Object@Object(__cid=-2, _int=1)._int)];
+      index = new Object@Object(__cid=-2, _int=(index._int) - (new Object@Object(__cid=-2, _int=1)._int));
+      j = new Object@Object(__cid=-2, _int=(j._int) + 1);
+      __sa23 = (j._int) < (size._int);
+    }
+    int _out_s1341 = 0;
+    String@meta(_out_s1341);
+    Object@Object _out_s1343 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=_out_s1341), ret2_s1337, new Object@Object(__cid=-2, _int=0), size, _out_s1343)//{};
+    _out = _out_s1343;
+    return;
+  }
+  /* END PACKAGE Integer*/
+}
+/* BEGIN PACKAGE SecretKey*/
+package SecretKey{
+  /* END PACKAGE SecretKey*/
+}
+/* BEGIN PACKAGE meta*/
+package meta{
+  /*meta.sk:26*/
+  
+void Array (ref int _out)/*meta.sk:26*/
+  {
+    _out = -1;
+    return;
+  }
+  /*meta.sk:10*/
+  
+void Cipher (ref int _out)/*meta.sk:10*/
+  {
+    _out = 16;
+    return;
+  }
+  /*meta.sk:12*/
+  
+void CryptoManager (ref int _out)/*meta.sk:12*/
+  {
+    _out = 4;
+    return;
+  }
+  /*meta.sk:13*/
+  
+void DefaultCipherFactory (ref int _out)/*meta.sk:13*/
+  {
+    _out = 3;
+    return;
+  }
+  /*meta.sk:21*/
+  
+void Object (ref int _out)/*meta.sk:21*/
+  {
+    _out = 1;
+    return;
+  }
+  /*meta.sk:23*/
+  
+void SecretKeySpec (ref int _out)/*meta.sk:23*/
+  {
+    _out = 18;
+    return;
+  }
+  /*meta.sk:25*/
+  
+void String (ref int _out)/*meta.sk:25*/
+  {
+    _out = 14;
+    return;
+  }
+  /* END PACKAGE meta*/
+}
+/* BEGIN PACKAGE Byte*/
+package Byte{
+  /* END PACKAGE Byte*/
+}
+/* BEGIN PACKAGE Object*/
+package Object{
+  struct Object {
+      int __cid;
+      Object bool_Boolean;
+      Object basicCharset_CryptoManager;
+      Object charset_CryptoManager;
+      Object encryptedMark_CryptoManager;
+      Object useEncryptionStrict_CryptoManager;
+      Object cipherFactory_CryptoManager;
+      Object _value_String;
+      Object _count_String;
+      Object b_Byte;
+      Object value_Integer;
+      Object value_Character;
+      Object ALGORITHM_DefaultCipherFactory;
+      Object PADDING_DefaultCipherFactory;
+      Object algorithm_DefaultCipherFactory;
+      Object padding_DefaultCipherFactory;
+      Object key_DefaultCipherFactory;
+      Object keyBase64_DefaultCipherFactory;
+      HashMap _hashmap;
+      ArrayList _arraylist;
+      SecureRandom _securerandom;
+      Mac _mac;
+      SecretKeySpec _secretkeyspec;
+      Cipher _cipher;
+      Array_bit _array_bit;
+      Array_char _array_char;
+      Array_int _array_int;
+      Array_float _array_float;
+      Array_double _array_double;
+      Array_Object _array_object;
+      bit _bit;
+      char _char;
+      int _int;
+      float _float;
+      double _double;
+  }
+  /*Object.sk:3*/
+  
+void Object_Object (Object self, ref Object _out)/*Object.sk:3*/
+  {
+    _out = self;
+    return;
+  }
+  /* END PACKAGE Object*/
+}
+/* BEGIN PACKAGE IvParameterSpec*/
+package IvParameterSpec{
+  /* END PACKAGE IvParameterSpec*/
+}
+/* BEGIN PACKAGE Cipher*/
+package Cipher{
+  struct Cipher {
+      @Immutable()
+  }
+  struct Cipher_empty extends Cipher@Cipher {
+      @Immutable()
+  }
+  struct Tostring_object extends Cipher@Cipher {
+      Cipher self;
+      Object str;
+      @Immutable()
+  }
+  struct Readencoded_string extends Cipher@Cipher {
+      Cipher self;
+      Object pt;
+      @Immutable()
+  }
+  struct Cipher_string extends Cipher@Cipher {
+      Object t;
+      @Immutable()
+  }
+  struct Init_int_secretkeyspec extends Cipher@Cipher {
+      Cipher self;
+      Object mode;
+      Object s;
+      @Immutable()
+  }
+  struct Initb_int_secretkeyspec extends Cipher@Cipher {
+      Cipher self;
+      Object mode;
+      Object s;
+      @Immutable()
+  }
+  struct Dofinalb_object extends Cipher@Cipher {
+      Cipher self;
+      Object text;
+      @Immutable()
+  }
+  struct Dofinal_object extends Cipher@Cipher {
+      Cipher self;
+      Object text;
+      @Immutable()
+  }
+  /*Cipher.sk:30*/
+  
+void Cipher_Object_String (Object t, ref Object _out)/*Cipher.sk:30*/
+  {
+    int _out_s1530 = 0;
+    Cipher@meta(_out_s1530);
+    _out = new Object@Object(__cid=_out_s1530, _cipher=new Cipher_string(t=t));
+    return;
+  }
+  /*Cipher.sk:46*/
+  
+void doFinal_Object_Object (Object self, Object text, ref Object _out)/*Cipher.sk:46*/
+  {
+    int _out_s1520 = 0;
+    Cipher@meta(_out_s1520);
+    _out = new Object@Object(__cid=_out_s1520, _cipher=new Dofinal_object(self=self._cipher, text=text));
+    return;
+  }
+  /*Cipher.sk:3*/
+  
+void getInstance_String (Object type, ref Object _out)/*Cipher.sk:3*/
+  {
+    Object@Object _out_s1528 = null;
+    Cipher_Object_String(type, _out_s1528);
+    _out = _out_s1528;
+    return;
+  }
+  /*Cipher.sk:34*/
+  
+void init_Object_int_SecretKeySpec (Object self, Object mode, Object s, ref Object _out)/*Cipher.sk:34*/
+  {
+    int _out_s1526 = 0;
+    Cipher@meta(_out_s1526);
+    _out = new Object@Object(__cid=_out_s1526, _cipher=new Init_int_secretkeyspec(self=self._cipher, mode=mode, s=s));
+    return;
+  }
+  /*Cipher.sk:38*/
+  
+void initb_Object_int_SecretKeySpec (Object self, Object mode, Object s, ref Object _out)/*Cipher.sk:38*/
+  {
+    int _out_s1524 = 0;
+    Cipher@meta(_out_s1524);
+    _out = new Object@Object(__cid=_out_s1524, _cipher=new Initb_int_secretkeyspec(self=self._cipher, mode=mode, s=s));
+    return;
+  }
+  /*Cipher.sk:26*/
+  
+void readEncoded_Object_String (Object self, Object pt, ref Object _out)/*Cipher.sk:26*/
+  {
+    int _out_s1522 = 0;
+    Cipher@meta(_out_s1522);
+    _out = new Object@Object(__cid=_out_s1522, _cipher=new Readencoded_string(self=self._cipher, pt=pt));
+    return;
+  }
+  /*Cipher.sk:22*/
+  
+void toString_Object_Object (Object self, Object str, ref Object _out)/*Cipher.sk:22*/
+  {
+    int _out_s1446 = 0;
+    Cipher@meta(_out_s1446);
+    _out = new Object@Object(__cid=_out_s1446, _cipher=new Tostring_object(self=self._cipher, str=str));
+    return;
+  }
+  /*Cipher.sk:66*/
+  
+void xform_doFinal_Cipher_Object (Cipher self, Object text, ref Object _out)/*Cipher.sk:66*/
+  {
+    switch(self){/*Cipher.sk:67*/
+      case Cipher_empty:
+      {
+        int _out_s1448 = 0;
+        Cipher@meta(_out_s1448);
+        _out = new Object@Object(__cid=_out_s1448, _cipher=self);
+        return;
+      }
+      case Tostring_object:
+      {
+        int _out_s1450 = 0;
+        Cipher@meta(_out_s1450);
+        _out = new Object@Object(__cid=_out_s1450, _cipher=self);
+        return;
+      }
+      case Readencoded_string:
+      {
+        int _out_s1452 = 0;
+        Cipher@meta(_out_s1452);
+        _out = new Object@Object(__cid=_out_s1452, _cipher=self);
+        return;
+      }
+      case Cipher_string:
+      {
+        int _out_s1454 = 0;
+        Cipher@meta(_out_s1454);
+        _out = new Object@Object(__cid=_out_s1454, _cipher=self);
+        return;
+      }
+      case Init_int_secretkeyspec:
+      {
+        int _out_s1456 = 0;
+        Cipher@meta(_out_s1456);
+        _out = new Object@Object(__cid=_out_s1456, _cipher=self);
+        return;
+      }
+      case Initb_int_secretkeyspec:
+      {
+        Cipher@Cipher text_text = text._cipher;
+        switch(text_text){/*Cipher.sk:77*/
+          case Cipher_empty:
+          {
+            int _out_s1458 = 0;
+            Cipher@meta(_out_s1458);
+            _out = new Object@Object(__cid=_out_s1458, _cipher=self);
+            return;
+          }
+          case Tostring_object:
+          {
+            int _out_s1460 = 0;
+            Cipher@meta(_out_s1460);
+            _out = new Object@Object(__cid=_out_s1460, _cipher=self);
+            return;
+          }
+          case Readencoded_string:
+          {
+            Cipher@Cipher text_text_text = text_text.pt._cipher;
+            switch(text_text_text){/*Cipher.sk:84*/
+              case Cipher_empty:
+              {
+                int _out_s1462 = 0;
+                Cipher@meta(_out_s1462);
+                _out = new Object@Object(__cid=_out_s1462, _cipher=self);
+                return;
+              }
+              case Tostring_object:
+              {
+                Cipher@Cipher text_text_text_text = text_text_text.str._cipher;
+                switch(text_text_text_text){/*Cipher.sk:90*/
+                  case Cipher_empty:
+                  {
+                    int _out_s1464 = 0;
+                    Cipher@meta(_out_s1464);
+                    _out = new Object@Object(__cid=_out_s1464, _cipher=self);
+                    return;
+                  }
+                  case Tostring_object:
+                  {
+                    int _out_s1466 = 0;
+                    Cipher@meta(_out_s1466);
+                    _out = new Object@Object(__cid=_out_s1466, _cipher=self);
+                    return;
+                  }
+                  case Readencoded_string:
+                  {
+                    int _out_s1468 = 0;
+                    Cipher@meta(_out_s1468);
+                    _out = new Object@Object(__cid=_out_s1468, _cipher=self);
+                    return;
+                  }
+                  case Cipher_string:
+                  {
+                    int _out_s1470 = 0;
+                    Cipher@meta(_out_s1470);
+                    _out = new Object@Object(__cid=_out_s1470, _cipher=self);
+                    return;
+                  }
+                  case Init_int_secretkeyspec:
+                  {
+                    int _out_s1472 = 0;
+                    Cipher@meta(_out_s1472);
+                    _out = new Object@Object(__cid=_out_s1472, _cipher=self);
+                    return;
+                  }
+                  case Initb_int_secretkeyspec:
+                  {
+                    int _out_s1474 = 0;
+                    Cipher@meta(_out_s1474);
+                    _out = new Object@Object(__cid=_out_s1474, _cipher=self);
+                    return;
+                  }
+                  case Dofinalb_object:
+                  {
+                    int _out_s1476 = 0;
+                    Cipher@meta(_out_s1476);
+                    _out = new Object@Object(__cid=_out_s1476, _cipher=self);
+                    return;
+                  }
+                  case Dofinal_object:
+                  {
+                    Cipher@Cipher text_text_text_text_text = text_text_text_text.self;
+                    switch(text_text_text_text_text){/*Cipher.sk:102*/
+                      case Cipher_empty:
+                      {
+                        int _out_s1478 = 0;
+                        Cipher@meta(_out_s1478);
+                        _out = new Object@Object(__cid=_out_s1478, _cipher=self);
+                        return;
+                      }
+                      case Tostring_object:
+                      {
+                        int _out_s1480 = 0;
+                        Cipher@meta(_out_s1480);
+                        _out = new Object@Object(__cid=_out_s1480, _cipher=self);
+                        return;
+                      }
+                      case Readencoded_string:
+                      {
+                        int _out_s1482 = 0;
+                        Cipher@meta(_out_s1482);
+                        _out = new Object@Object(__cid=_out_s1482, _cipher=self);
+                        return;
+                      }
+                      case Cipher_string:
+                      {
+                        int _out_s1484 = 0;
+                        Cipher@meta(_out_s1484);
+                        _out = new Object@Object(__cid=_out_s1484, _cipher=self);
+                        return;
+                      }
+                      case Init_int_secretkeyspec:
+                      {
+                        int _out_s1486 = 0;
+                        Cipher@meta(_out_s1486);
+                        _out = new Object@Object(__cid=_out_s1486, _cipher=self);
+                        return;
+                      }
+                      case Initb_int_secretkeyspec:
+                      {
+                        Object@Object cond_s1488 = null;
+                        xform_equals_SecretKeySpec_Object@SecretKeySpec(self.s._secretkeyspec, text_text_text_text_text.s, cond_s1488);
+                        if(cond_s1488._bit)/*Cipher.sk:110*/
+                        {
+                          if(((self.mode._int) == 2) && ((text_text_text_text_text.mode._int) == 1))/*Cipher.sk:111*/
+                          {
+                            _out = text_text_text_text.text;
+                            return;
+                          }
+                          else
+                          {
+                            _out = null;
+                            return;
+                          }
+                        }
+                        else
+                        {
+                          _out = null;
+                          return;
+                        }
+                      }
+                      case Dofinalb_object:
+                      {
+                        int _out_s1490 = 0;
+                        Cipher@meta(_out_s1490);
+                        _out = new Object@Object(__cid=_out_s1490, _cipher=self);
+                        return;
+                      }
+                      case Dofinal_object:
+                      {
+                        int _out_s1492 = 0;
+                        Cipher@meta(_out_s1492);
+                        _out = new Object@Object(__cid=_out_s1492, _cipher=self);
+                        return;
+                      }
+                    }
+                  }
+                }
+              }
+              case Readencoded_string:
+              {
+                int _out_s1494 = 0;
+                Cipher@meta(_out_s1494);
+                _out = new Object@Object(__cid=_out_s1494, _cipher=self);
+                return;
+              }
+              case Cipher_string:
+              {
+                int _out_s1496 = 0;
+                Cipher@meta(_out_s1496);
+                _out = new Object@Object(__cid=_out_s1496, _cipher=self);
+                return;
+              }
+              case Init_int_secretkeyspec:
+              {
+                int _out_s1498 = 0;
+                Cipher@meta(_out_s1498);
+                _out = new Object@Object(__cid=_out_s1498, _cipher=self);
+                return;
+              }
+              case Initb_int_secretkeyspec:
+              {
+                int _out_s1500 = 0;
+                Cipher@meta(_out_s1500);
+                _out = new Object@Object(__cid=_out_s1500, _cipher=self);
+                return;
+              }
+              case Dofinalb_object:
+              {
+                int _out_s1502 = 0;
+                Cipher@meta(_out_s1502);
+                _out = new Object@Object(__cid=_out_s1502, _cipher=self);
+                return;
+              }
+              case Dofinal_object:
+              {
+                int _out_s1504 = 0;
+                Cipher@meta(_out_s1504);
+                _out = new Object@Object(__cid=_out_s1504, _cipher=self);
+                return;
+              }
+            }
+          }
+          case Cipher_string:
+          {
+            int _out_s1506 = 0;
+            Cipher@meta(_out_s1506);
+            _out = new Object@Object(__cid=_out_s1506, _cipher=self);
+            return;
+          }
+          case Init_int_secretkeyspec:
+          {
+            int _out_s1508 = 0;
+            Cipher@meta(_out_s1508);
+            _out = new Object@Object(__cid=_out_s1508, _cipher=self);
+            return;
+          }
+          case Initb_int_secretkeyspec:
+          {
+            int _out_s1510 = 0;
+            Cipher@meta(_out_s1510);
+            _out = new Object@Object(__cid=_out_s1510, _cipher=self);
+            return;
+          }
+          case Dofinalb_object:
+          {
+            int _out_s1512 = 0;
+            Cipher@meta(_out_s1512);
+            _out = new Object@Object(__cid=_out_s1512, _cipher=self);
+            return;
+          }
+          case Dofinal_object:
+          {
+            int _out_s1514 = 0;
+            Cipher@meta(_out_s1514);
+            _out = new Object@Object(__cid=_out_s1514, _cipher=self);
+            return;
+          }
+        }
+      }
+      case Dofinalb_object:
+      {
+        int _out_s1516 = 0;
+        Cipher@meta(_out_s1516);
+        _out = new Object@Object(__cid=_out_s1516, _cipher=self);
+        return;
+      }
+      case Dofinal_object:
+      {
+        int _out_s1518 = 0;
+        Cipher@meta(_out_s1518);
+        _out = new Object@Object(__cid=_out_s1518, _cipher=self);
+        return;
+      }
+    }
+    _out = null;
+    return;
+  }
+  /* END PACKAGE Cipher*/
+}
+/* BEGIN PACKAGE CipherFactoryTests*/
+package CipherFactoryTests{
+  /*CipherF..yTests.sk:7*/
+  
+void _main ()/*CipherF..yTests.sk:7*/
+  {
+    int self_s1664 = 0;
+    Object@meta(self_s1664);
+    Object@Object self_s1666 = null;
+    Object_Object@Object(new Object@Object(__cid=self_s1664), self_s1666)//{};
+    int cm_s1668 = 0;
+    CryptoManager@meta(cm_s1668);
+    Object@Object cm_s1670 = null;
+    CryptoManager_CryptoManager@CryptoManager(new Object@Object(__cid=cm_s1668), cm_s1670)//{};
+    for(int i = 9; i < 5000000; i = i * 9)
+    {
+      Object@Object x = new Object@Object(__cid=-2, _int=i);
+      Object@Object m_s1672 = null;
+      toString_int@Integer(x, m_s1672);
+      int d_s1674 = 0;
+      CryptoManager@meta(d_s1674);
+      Object@Object _pac_sc_s1675 = null;
+      if((cm_s1670.__cid) == (new Object@Object(__cid=-2, _int=d_s1674)._int))/*CipherF..yTests.sk:14*/
+      {
+        Object@Object d_s1677 = null;
+        encrypt_String@CryptoManager(cm_s1670, m_s1672, d_s1677);
+        _pac_sc_s1675 = d_s1677;
+      }
+      else
+      {
+        _pac_sc_s1675 = null;
+      }
+      int _out_s1679 = 0;
+      String@meta(_out_s1679);
+      Object@Object _pac_sc_s1680 = null;
+      if((m_s1672.__cid) == (new Object@Object(__cid=-2, _int=_out_s1679)._int))/*CipherF..yTests.sk:15*/
+      {
+        Object@Object _out_s1682 = null;
+        equals_Object@String(m_s1672, _pac_sc_s1675, _out_s1682);
+        _pac_sc_s1680 = _out_s1682;
+      }
+      else
+      {
+        _pac_sc_s1680 = null;
+      }
+      assert (!(_pac_sc_s1680._bit)); //Assert at CipherF..yTests.sk:15 (0)
+      int p_s1684 = 0;
+      CryptoManager@meta(p_s1684);
+      Object@Object _pac_sc_s1685 = null;
+      if((cm_s1670.__cid) == (new Object@Object(__cid=-2, _int=p_s1684)._int))/*CipherF..yTests.sk:16*/
+      {
+        Object@Object p_s1687 = null;
+        decrypt_String@CryptoManager(cm_s1670, _pac_sc_s1675, p_s1687);
+        _pac_sc_s1685 = p_s1687;
+      }
+      else
+      {
+        _pac_sc_s1685 = null;
+      }
+      int _out_s1689 = 0;
+      String@meta(_out_s1689);
+      Object@Object _pac_sc_s1690 = null;
+      if((_pac_sc_s1685.__cid) == (new Object@Object(__cid=-2, _int=_out_s1689)._int))/*CipherF..yTests.sk:17*/
+      {
+        Object@Object _out_s1692 = null;
+        equals_Object@String(_pac_sc_s1685, m_s1672, _out_s1692);
+        _pac_sc_s1690 = _out_s1692;
+      }
+      else
+      {
+        _pac_sc_s1690 = null;
+      }
+      assert (_pac_sc_s1690._bit); //Assert at CipherF..yTests.sk:17 (0)
+    }
+  }
+  /*CipherF..yTests.sk:7*/
+  
+void main__Wrapper ()  implements main__WrapperNospec/*CipherF..yTests.sk:7*/
+  {
+    _main();
+  }
+  /*CipherF..yTests.sk:7*/
+  
+void main__WrapperNospec ()/*CipherF..yTests.sk:7*/
+  { }
+  /* END PACKAGE CipherFactoryTests*/
+}
+/* BEGIN PACKAGE DefaultCipherFactory*/
+package DefaultCipherFactory{
+  /*Default..actory.sk:3*/
+  
+void DefaultCipherFactory_DefaultCipherFactory (Object self, ref Object _out)/*Default..actory.sk:3*/
+  {
+    int _out_s1715 = 0;
+    String@meta(_out_s1715);
+    Object@Object _out_s1717 = null;
+    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=4), A={'A','E','S','\0'}), _out_s1717);
+    Object@Object _out_s1719 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=_out_s1715), _out_s1717, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=3), _out_s1719)//{};
+    self.ALGORITHM_DefaultCipherFactory = _out_s1719;
+    int _out_s1721 = 0;
+    String@meta(_out_s1721);
+    Object@Object _out_s1723 = null;
+    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=8), A={'A','E','S','/','E','C','B','\0'}), _out_s1723);
+    Object@Object _out_s1725 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=_out_s1721), _out_s1723, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=7), _out_s1725)//{};
+    self.PADDING_DefaultCipherFactory = _out_s1725;
+    self.algorithm_DefaultCipherFactory = self.ALGORITHM_DefaultCipherFactory;
+    self.padding_DefaultCipherFactory = self.PADDING_DefaultCipherFactory;
+    _out = self;
+    return;
+  }
+  /*Default..actory.sk:16*/
+  
+void decryptionCipher (Object self, ref Object _out)/*Default..actory.sk:16*/
+  {
+    Object@Object _out_s1694 = null;
+    initCipher_int@DefaultCipherFactory(self, new Object@Object(__cid=-2, _int=2), _out_s1694);
+    _out = _out_s1694;
+    return;
+  }
+  /*Default..actory.sk:12*/
+  
+void encryptionCipher (Object self, ref Object _out)/*Default..actory.sk:12*/
+  {
+    Object@Object _out_s1713 = null;
+    initCipher_int@DefaultCipherFactory(self, new Object@Object(__cid=-2, _int=1), _out_s1713);
+    _out = _out_s1713;
+    return;
+  }
+  /*Default..actory.sk:43*/
+  
+void getPadding (Object self, ref Object _out)/*Default..actory.sk:43*/
+  {
+    _out = self.padding_DefaultCipherFactory;
+    return;
+  }
+  /*Default..actory.sk:20*/
+  
+void initCipher_int (Object self, Object mode, ref Object _out)/*Default..actory.sk:20*/
+  {
+    Object@Object cipher_s1696 = null;
+    obtainCipher_int@DefaultCipherFactory(self, mode, cipher_s1696);
+    _out = cipher_s1696;
+    return;
+  }
+  /*Default..actory.sk:26*/
+  
+void obtainCipher_int (Object self, Object mode, ref Object _out)/*Default..actory.sk:26*/
+  {
+    Object@Object secretKeySpec_s1698 = null;
+    SecretKeySpec_SecretKeySpec@SecretKeySpec(secretKeySpec_s1698);
+    Object@Object cipher_s1700 = null;
+    getPadding@DefaultCipherFactory(self, cipher_s1700);
+    Object@Object cipher_s1702 = null;
+    getInstance_String@Cipher(cipher_s1700, cipher_s1702)//{};
+    int _out_s1704 = 0;
+    Cipher@meta(_out_s1704);
+    if((cipher_s1702.__cid) == (new Object@Object(__cid=-2, _int=_out_s1704)._int))/*Default..actory.sk:29*/
+    {
+      Object@Object _out_s1706 = null;
+      init_Object_int_SecretKeySpec@Cipher(cipher_s1702, mode, secretKeySpec_s1698, _out_s1706);
+    }
+    int cipher_s1708 = 0;
+    Cipher@meta(cipher_s1708);
+    Object@Object _pac_sc_s1709 = null;
+    if((cipher_s1702.__cid) == (new Object@Object(__cid=-2, _int=cipher_s1708)._int))/*Default..actory.sk:30*/
+    {
+      Object@Object cipher_s1711 = null;
+      initb_Object_int_SecretKeySpec@Cipher(cipher_s1702, mode, secretKeySpec_s1698, cipher_s1711);
+      _pac_sc_s1709 = cipher_s1711;
+    }
+    else
+    {
+      _pac_sc_s1709 = null;
+    }
+    _out = _pac_sc_s1709;
+    return;
+  }
+  /* END PACKAGE DefaultCipherFactory*/
+}
+/* BEGIN PACKAGE Key*/
+package Key{
+  /* END PACKAGE Key*/
+}
+[SKETCH] DONE
+Total time = 28148

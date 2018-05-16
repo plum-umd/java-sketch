@@ -8,47 +8,47 @@ Object Object_Object(Object self) {
     return self;
 }
 
-bit equals_Object_Object(Object a, Object b) {
+Object equals_Object_Object(Object a, Object b) {
   if (a == null) {
     if (b == null) {
-      return true;
+      return (new Object(__cid=-4, _bit=true));
     }
-    return false;
+    return (new Object(__cid=-4, _bit=false));
   }
-  return (a.__cid == IvParameterSpec() ? equals_Object@Object(a, b) : a.__cid == ArrayList() ? equals_Object@Object(a, b) : a.__cid == KeyGenerator() ? equals_Object@Object(a, b) : a.__cid == Cipher() ? equals_Object@Object(a, b) : a.__cid == PrivateExample() ? equals_Object@Object(a, b) : a.__cid == SecretKeySpec() ? equals_Object@Object(a, b) : a.__cid == Assert() ? equals_Object@Object(a, b) : a.__cid == Character() ? equals_Object@Character(a, b) : a.__cid == Integer() ? equals_Object@Integer(a, b) : a.__cid == KerberosKey() ? equals_Object@Object(a, b) : a.__cid == String() ? equals_Object@String(a, b) : a.__cid == Number() ? equals_Object@Object(a, b) : a.__cid == Mac() ? equals_Object@Object(a, b) : a.__cid == Object() ? equals_Object@Object(a, b) : 0);
+  return (a.__cid == (new Object(__cid=-2, _int=Integer()))._int ? equals_Object@Integer(a, b) : a.__cid == (new Object(__cid=-2, _int=Number()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=IvParameterSpec()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Mac()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(a, b) : a.__cid == (new Object(__cid=-2, _int=Character()))._int ? equals_Object@Character(a, b) : a.__cid == (new Object(__cid=-2, _int=KerberosKey()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=SecretKeySpec()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Assert()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=KeyGenerator()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=PrivateExample()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? equals_Object@Object(a, b) : a.__cid == (new Object(__cid=-2, _int=Object()))._int ? equals_Object@Object(a, b) : null);
 }
 
-int hashCode_Object(Object o) {
-  return (o != null ? (o.__cid == IvParameterSpec() ? hashCode@Object(o) : o.__cid == ArrayList() ? hashCode@Object(o) : o.__cid == KeyGenerator() ? hashCode@Object(o) : o.__cid == Cipher() ? hashCode@Object(o) : o.__cid == PrivateExample() ? hashCode@Object(o) : o.__cid == SecretKeySpec() ? hashCode@Object(o) : o.__cid == Assert() ? hashCode@Object(o) : o.__cid == Character() ? hashCode@Object(o) : o.__cid == Integer() ? hashCode@Integer(o) : o.__cid == KerberosKey() ? hashCode@Object(o) : o.__cid == String() ? hashCode@String(o) : o.__cid == Number() ? hashCode@Object(o) : o.__cid == Mac() ? hashCode@Object(o) : o.__cid == Object() ? hashCode@Object(o) : 0) : 0);
+Object hashCode_Object(Object o) {
+  return (o != null ? (o.__cid == (new Object(__cid=-2, _int=Integer()))._int ? hashCode@Integer(o) : o.__cid == (new Object(__cid=-2, _int=Number()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=IvParameterSpec()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Mac()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=String()))._int ? hashCode@String(o) : o.__cid == (new Object(__cid=-2, _int=Character()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=KerberosKey()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=SecretKeySpec()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Assert()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=KeyGenerator()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=PrivateExample()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? hashCode@Object(o) : o.__cid == (new Object(__cid=-2, _int=Object()))._int ? hashCode@Object(o) : null) : (new Object(__cid=-2, _int=0)));
 }
 
-bit equals_Object(Object self, Object obj) {
-  return self == obj;
+Object equals_Object(Object self, Object obj) {
+  return (new Object(__cid=-4, _bit=self == obj));
 }
 
-int hashCode(Object self) {
-  return 0;
+Object hashCode(Object self) {
+  return (new Object(__cid=-2, _int=0));
 }
 
 struct Object {
   int           __cid;
-  Object        _value_String;
-  int           _count_String;
-  Object        key_KerberosKey;
-  int           KEYSIZE_KerberosKey;
-  int           value_Integer;
-  char          value_Character;
+  Object        elementData_ArrayList;
+  Object        DEFAULT_CAPACITY_ArrayList;
+  Object        capacity_ArrayList;
+  Object        size_ArrayList;
+  Object        mode_KeyGenerator;
   Object        key_SecretKeySpec;
+  Object        key_KerberosKey;
+  Object        KEYSIZE_KerberosKey;
+  Object        value_Character;
+  Object        _value_String;
+  Object        _count_String;
   Object        type_Cipher;
   Object        key_Cipher;
-  int           mode_Cipher;
-  int           ENCRYPT_MODE_Cipher;
-  int           DECRYPT_MODE_Cipher;
-  Object        mode_KeyGenerator;
-  Object        elementData_ArrayList;
-  int           DEFAULT_CAPACITY_ArrayList;
-  int           capacity_ArrayList;
-  int           size_ArrayList;
+  Object        mode_Cipher;
+  Object        ENCRYPT_MODE_Cipher;
+  Object        DECRYPT_MODE_Cipher;
+  Object        value_Integer;
   Array_bit     _array_bit;
   Array_char    _array_char;
   Array_int     _array_int;

@@ -97,20 +97,37 @@ void kasai(Object self) {
 
 Object lrs(Object self) {
   Object max_len = (new Object(__cid=-2, _int=??));
+  /* Object max_len = (new Object(__cid=-2, _int=0)); */
   Object lrss = TreeSet_TreeSet();
   Object tmp = Wrap_Array_char(new Array_char(length=self.T_SuffixArray._array_int.length));
-  Object g1 = {|(self.T_SuffixArray._array_int.length | self.N_SuffixArray | max_len)|};
-  for (Object i = (new Object(__cid=-2, _int=??)); i._int < g1._int; i = new Object(__cid=-2, _int=i._int + 1)) {
-    tmp._array_char.A[i._int] = (new Object(__cid=-3, _char=((char)self.T_SuffixArray._array_int.A[i._int])))._char;
+  /* Object g1 = {|(self.T_SuffixArray._array_int.length | self.N_SuffixArray | max_len)|};   */
+  /* for (Object i = (new Object(__cid=-2, _int=??)); i._int < g1._int; i = new Object(__cid=-2, _int=i._int + 1)) { */
+  Object g1_o = {|(self.T_SuffixArray._array_int.length | self.N_SuffixArray | max_len)|};  
+  int g1 = g1_o._int;
+  for (int i = ??; i < g1; i++) {
+  /* Object g1 = self.N_SuffixArray; */
+  /* for (Object i = (new Object(__cid=-2, _int=0)); i._int < g1._int; i = new Object(__cid=-2, _int=i._int + 1)) { */
+    /* tmp._array_char.A[i._int] = (new Object(__cid=-3, _char=((char)self.T_SuffixArray._array_int.A[i._int])))._char; */
+    tmp._array_char.A[i] = (new Object(__cid=-3, _char=((char)self.T_SuffixArray._array_int.A[i])))._char;
   }
-  Object g2 = {|(self.T_SuffixArray._array_int.length | self.N_SuffixArray | max_len)|};
-  for (Object i = (new Object(__cid=-2, _int=??)); i._int < g2._int; i = new Object(__cid=-2, _int=i._int + 1)) {
-    if (self.lcp_SuffixArray._array_int.A[i._int] > (new Object(__cid=-2, _int=??))._int && self.lcp_SuffixArray._array_int.A[i._int] >= max_len._int) {
-      if (self.lcp_SuffixArray._array_int.A[i._int] > max_len._int) {
+  /* Object g2 = {|(self.T_SuffixArray._array_int.length | self.N_SuffixArray | max_len)|}; */
+  /* for (Object i = (new Object(__cid=-2, _int=??)); i._int < g2._int; i = new Object(__cid=-2, _int=i._int + 1)) { */
+  Object g2_o = {|(self.T_SuffixArray._array_int.length | self.N_SuffixArray | max_len)|};
+  int g2 = g2_o._int;
+  for (int i = ??; i < g2; i++) {
+  /* Object g2 = self.N_SuffixArray; */
+  /* for (Object i = (new Object(__cid=-2, _int=0)); i._int < g2._int; i = new Object(__cid=-2, _int=i._int + 1)) { */
+    /* if (self.lcp_SuffixArray._array_int.A[i._int] > (new Object(__cid=-2, _int=??))._int && self.lcp_SuffixArray._array_int.A[i._int] >= max_len._int) { */
+    if (self.lcp_SuffixArray._array_int.A[i] > (new Object(__cid=-2, _int=??))._int && self.lcp_SuffixArray._array_int.A[i] >= max_len._int) {
+    /* if (self.lcp_SuffixArray._array_int.A[i._int] > (new Object(__cid=-2, _int=0))._int && self.lcp_SuffixArray._array_int.A[i._int] >= max_len._int) { */
+      /* if (self.lcp_SuffixArray._array_int.A[i._int] > max_len._int) { */
+      if (self.lcp_SuffixArray._array_int.A[i] > max_len._int) {
         (lrss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? clear_Object@TreeSet(lrss) : null); lrss = (lrss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? clearb_Object@TreeSet(lrss) : null);
       }
-      max_len = (new Object(__cid=-2, _int=self.lcp_SuffixArray._array_int.A[i._int]));
-      (lrss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? add_Object_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), tmp, (new Object(__cid=-2, _int=self.sa_SuffixArray._array_int.A[i._int])), max_len)) : null); lrss = (lrss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? addb_Object_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), tmp, (new Object(__cid=-2, _int=self.sa_SuffixArray._array_int.A[i._int])), max_len)) : null);
+      /* max_len = (new Object(__cid=-2, _int=self.lcp_SuffixArray._array_int.A[i._int])); */
+      max_len = (new Object(__cid=-2, _int=self.lcp_SuffixArray._array_int.A[i]));
+      /* (lrss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? add_Object_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), tmp, (new Object(__cid=-2, _int=self.sa_SuffixArray._array_int.A[i._int])), max_len)) : null); lrss = (lrss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? addb_Object_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), tmp, (new Object(__cid=-2, _int=self.sa_SuffixArray._array_int.A[i._int])), max_len)) : null); */
+      (lrss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? add_Object_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), tmp, (new Object(__cid=-2, _int=self.sa_SuffixArray._array_int.A[i])), max_len)) : null); lrss = (lrss.__cid == (new Object(__cid=-2, _int=TreeSet()))._int ? addb_Object_Object@TreeSet(lrss, String_String_char_int_int(new Object(__cid=String()), tmp, (new Object(__cid=-2, _int=self.sa_SuffixArray._array_int.A[i])), max_len)) : null);
     }
   }
   return lrss;

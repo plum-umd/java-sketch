@@ -23,6 +23,154 @@ Object parse_File_String(Object self, Object romlistFile, Object folderToSearch)
   return parse_File_String_boolean@RomlistParser(self, romlistFile, folderToSearch, (new Object(__cid=-4, _bit=true)));
 }
 
+generator void genRead_BufferedReader_File(Object self, Object br, Object romlistFile) {
+  Object line = null;
+  if ((new Object(__cid=-4, _bit=1))._bit) {
+    /* line = (br.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLine_Object@BufferedReader(br) : null); */
+    line = xform_readLine_BufferedReader(br._bufferedreader);
+    br = (br.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLineb_Object@BufferedReader(br) : null);
+    while (line != null) {
+	if (!(line.__cid == (new Object(__cid=-2, _int=String()))._int ? startsWith_String@String(line, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="#")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null)._bit) {
+	  Object data = (line.__cid == (new Object(__cid=-2, _int=String()))._int ? split_String_int@String(line, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A=";")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1)), (new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1))._int))) : null);
+	  /* if (data._array_object.length._int >= (new Object(__cid=-2, _int=10))._int) { */
+	  if (data._array_object.length._int >= (new Object(__cid=-2, _int=2))._int) {
+	    Object game = RomlistGame_RomlistGame(new Object(__cid=RomlistGame()));
+	    if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setRomlist_String@RomlistGame(game, (romlistFile.__cid == (new Object(__cid=-2, _int=File()))._int ? getName@File(romlistFile) : null)); }
+	    else { 0; };
+	    if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setName_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=0))._int]); }
+	    else { 0; };
+	    if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setTitle_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=1))._int]); }
+	    else { 0; };
+	    /* if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setEmulator_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=2))._int]); } */
+	    /* else { 0; }; */
+	    /* if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setCloneOf_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=3))._int]); } */
+	    /* else { 0; }; */
+	    /* if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setYear_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=4))._int]); } */
+	    /* else { 0; }; */
+	    /* if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setManufacturer_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=5))._int]); } */
+	    /* else { 0; }; */
+	    /* if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setCategory_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=6))._int]); } */
+	    /* else { 0; }; */
+	    /* if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setPlayers_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=7))._int]); } */
+	    /* else { 0; }; */
+	    /* if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setRotation_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=8))._int]); } */
+	    /* else { 0; }; */
+	    /* if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setControl_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=9))._int]); } */
+	    /* else { 0; }; */
+	    if (data._array_object.length._int > (new Object(__cid=-2, _int=10))._int) {
+	      if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setStatus_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=10))._int]); }
+	      else { 0; };
+	    }
+	    if (data._array_object.length._int > (new Object(__cid=-2, _int=11))._int) {
+	      if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setDisplayCount_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=11))._int]); }
+	      else { 0; };
+	    }
+	    if (data._array_object.length._int > (new Object(__cid=-2, _int=12))._int) {
+	      if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setDisplayType_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=12))._int]); }
+	      else { 0; };
+	    }
+	    if (data._array_object.length._int > (new Object(__cid=-2, _int=13))._int) {
+	      if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setAltRomname_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=13))._int]); }
+	      else { 0; };
+	    }
+	    if (data._array_object.length._int > (new Object(__cid=-2, _int=14))._int) {
+	      if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setAltTitle_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=14))._int]); }
+	      else { 0; };
+	    }
+	    if (data._array_object.length._int > (new Object(__cid=-2, _int=15))._int) {
+	      if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setExtra_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=15))._int]); }
+	      else { 0; };
+	    }
+	    if (data._array_object.length._int > (new Object(__cid=-2, _int=16))._int) {
+	      if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setButtons_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=16))._int]); }
+	      else { 0; };
+	    }
+	    if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setAvailable_boolean@RomlistGame(game, (new Object(__cid=-4, _bit=false))); }
+	    else { 0; };
+	    (self.games_RomlistParser.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? add_Object_Object@ArrayList(self.games_RomlistParser, game) : null); self.games_RomlistParser = (self.games_RomlistParser.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? addb_Object_Object@ArrayList(self.games_RomlistParser, game) : null);
+	  }
+	  /* line = (br.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLine_Object@BufferedReader(br) : null); */
+	  line = xform_readLine_BufferedReader(br._bufferedreader);
+	  br = (br.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLineb_Object@BufferedReader(br) : null);	  
+	}
+    }
+  }
+  /* if ((new Object(__cid=-4, _bit=??))._bit) { */
+  /*   /\* line = (br.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLine_Object@BufferedReader(br) : null); *\/ */
+  /*   line = xform_readLine_BufferedReader(br._bufferedreader); */
+  /*   br = (br.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLineb_Object@BufferedReader(br) : null); */
+  /* } */
+  /* if ((new Object(__cid=-4, _bit=??))._bit) { */
+  /*   while (line != null) { */
+  /*     genRead_BufferedReader_File@RomlistParser(self, br, romlistFile); */
+  /*   } */
+  /* } */
+  /* if ((new Object(__cid=-4, _bit=??))._bit) { */
+  /*   if (!(line.__cid == (new Object(__cid=-2, _int=String()))._int ? startsWith_String@String(line, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="#")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null)._bit) { */
+  /*     Object data = (line.__cid == (new Object(__cid=-2, _int=String()))._int ? split_String_int@String(line, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A=";")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1)), (new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1))._int))) : null); */
+  /*     if (data._array_object.length._int >= (new Object(__cid=-2, _int=10))._int) { */
+  /*       Object game = RomlistGame_RomlistGame(new Object(__cid=RomlistGame())); */
+  /*       if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setRomlist_String@RomlistGame(game, (romlistFile.__cid == (new Object(__cid=-2, _int=File()))._int ? getName@File(romlistFile) : null)); } */
+  /*       else { 0; }; */
+  /*       if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setName_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=0))._int]); } */
+  /*       else { 0; }; */
+  /*       if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setTitle_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=1))._int]); } */
+  /*       else { 0; }; */
+  /*       if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setEmulator_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=2))._int]); } */
+  /*       else { 0; }; */
+  /*       if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setCloneOf_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=3))._int]); } */
+  /*       else { 0; }; */
+  /*       if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setYear_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=4))._int]); } */
+  /*       else { 0; }; */
+  /*       if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setManufacturer_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=5))._int]); } */
+  /*       else { 0; }; */
+  /*       if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setCategory_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=6))._int]); } */
+  /*       else { 0; }; */
+  /*       if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setPlayers_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=7))._int]); } */
+  /*       else { 0; }; */
+  /*       if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setRotation_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=8))._int]); } */
+  /*       else { 0; }; */
+  /*       if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setControl_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=9))._int]); } */
+  /*       else { 0; }; */
+  /*       if (data._array_object.length._int > (new Object(__cid=-2, _int=10))._int) { */
+  /*         if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setStatus_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=10))._int]); } */
+  /*         else { 0; }; */
+  /*       } */
+  /*       if (data._array_object.length._int > (new Object(__cid=-2, _int=11))._int) { */
+  /*         if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setDisplayCount_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=11))._int]); } */
+  /*         else { 0; }; */
+  /*       } */
+  /*       if (data._array_object.length._int > (new Object(__cid=-2, _int=12))._int) { */
+  /*         if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setDisplayType_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=12))._int]); } */
+  /*         else { 0; }; */
+  /*       } */
+  /*       if (data._array_object.length._int > (new Object(__cid=-2, _int=13))._int) { */
+  /*         if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setAltRomname_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=13))._int]); } */
+  /*         else { 0; }; */
+  /*       } */
+  /*       if (data._array_object.length._int > (new Object(__cid=-2, _int=14))._int) { */
+  /*         if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setAltTitle_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=14))._int]); } */
+  /*         else { 0; }; */
+  /*       } */
+  /*       if (data._array_object.length._int > (new Object(__cid=-2, _int=15))._int) { */
+  /*         if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setExtra_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=15))._int]); } */
+  /*         else { 0; }; */
+  /*       } */
+  /*       if (data._array_object.length._int > (new Object(__cid=-2, _int=16))._int) { */
+  /*         if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setButtons_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=16))._int]); } */
+  /*         else { 0; }; */
+  /*       } */
+  /*       if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setAvailable_boolean@RomlistGame(game, (new Object(__cid=-4, _bit=false))); } */
+  /*       else { 0; }; */
+  /*       (self.games_RomlistParser.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? add_Object_Object@ArrayList(self.games_RomlistParser, game) : null); self.games_RomlistParser = (self.games_RomlistParser.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? addb_Object_Object@ArrayList(self.games_RomlistParser, game) : null); */
+  /*     } */
+  /*   } */
+  /* } */
+  /* if ((new Object(__cid=-4, _bit=??))._bit) { */
+  /*   genRead_BufferedReader_File@RomlistParser(self, br, romlistFile); */
+  /* } */
+}
+
 Object parse_File_String_boolean(Object self, Object romlistFile, Object folderToSearch, Object lookAvailable) {
   if (!(romlistFile.__cid == (new Object(__cid=-2, _int=File()))._int ? exists@File(romlistFile) : null)._bit) {
     return ArrayList_ArrayList();
@@ -33,78 +181,12 @@ Object parse_File_String_boolean(Object self, Object romlistFile, Object folderT
   Object gamesAvailable = (new Object(__cid=-2, _int=0));
   self.complete_RomlistParser = (new Object(__cid=-4, _bit=true));
   Object br = BufferedReader_Object_File(romlistFile);
-  /* line = (br.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLine_Object@BufferedReader(br) : null); br = (br.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLineb_Object@BufferedReader(br) : null); */
-  line = xform_readLine_BufferedReader(br._bufferedreader);
-  br = (br.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLineb_Object@BufferedReader(br) : null);  
-  while (line != null) {
-    if (!(line.__cid == (new Object(__cid=-2, _int=String()))._int ? startsWith_String@String(line, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A="#")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1))) : null)._bit) {
-      Object data = (line.__cid == (new Object(__cid=-2, _int=String()))._int ? split_String_int@String(line, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=1+1), A=";")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=1)), (new Object(__cid=-2, _int=-(new Object(__cid=-2, _int=1))._int))) : null);
-      if (data._array_object.length._int >= (new Object(__cid=-2, _int=10))._int) {
-        Object game = RomlistGame_RomlistGame(new Object(__cid=RomlistGame()));
-        if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setRomlist_String@RomlistGame(game, (romlistFile.__cid == (new Object(__cid=-2, _int=File()))._int ? getName@File(romlistFile) : null)); }
-        else { 0; };
-        if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setName_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=0))._int]); }
-        else { 0; };
-        if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setTitle_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=1))._int]); }
-        else { 0; };
-        if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setEmulator_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=2))._int]); }
-        else { 0; };
-        if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setCloneOf_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=3))._int]); }
-        else { 0; };
-        if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setYear_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=4))._int]); }
-        else { 0; };
-        if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setManufacturer_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=5))._int]); }
-        else { 0; };
-        if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setCategory_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=6))._int]); }
-        else { 0; };
-        if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setPlayers_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=7))._int]); }
-        else { 0; };
-        if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setRotation_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=8))._int]); }
-        else { 0; };
-        if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setControl_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=9))._int]); }
-        else { 0; };
-        if (data._array_object.length._int > (new Object(__cid=-2, _int=10))._int) {
-          if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setStatus_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=10))._int]); }
-          else { 0; };
-        }
-        if (data._array_object.length._int > (new Object(__cid=-2, _int=11))._int) {
-          if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setDisplayCount_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=11))._int]); }
-          else { 0; };
-        }
-        if (data._array_object.length._int > (new Object(__cid=-2, _int=12))._int) {
-          if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setDisplayType_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=12))._int]); }
-          else { 0; };
-        }
-        if (data._array_object.length._int > (new Object(__cid=-2, _int=13))._int) {
-          if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setAltRomname_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=13))._int]); }
-          else { 0; };
-        }
-        if (data._array_object.length._int > (new Object(__cid=-2, _int=14))._int) {
-          if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setAltTitle_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=14))._int]); }
-          else { 0; };
-        }
-        if (data._array_object.length._int > (new Object(__cid=-2, _int=15))._int) {
-          if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setExtra_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=15))._int]); }
-          else { 0; };
-        }
-        if (data._array_object.length._int > (new Object(__cid=-2, _int=16))._int) {
-          if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setButtons_String@RomlistGame(game, data._array_object.A[(new Object(__cid=-2, _int=16))._int]); }
-          else { 0; };
-        }
-        if (game.__cid == (new Object(__cid=-2, _int=RomlistGame()))._int) { setAvailable_boolean@RomlistGame(game, (new Object(__cid=-4, _bit=false))); }
-        else { 0; };
-        (self.games_RomlistParser.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? add_Object_Object@ArrayList(self.games_RomlistParser, game) : null); self.games_RomlistParser = (self.games_RomlistParser.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? addb_Object_Object@ArrayList(self.games_RomlistParser, game) : null);
-      }
-    }
-    line = xform_readLine_BufferedReader(br._bufferedreader);
-    br = (br.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLineb_Object@BufferedReader(br) : null);
-    /* line = (br.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLine_Object@BufferedReader(br) : null); br = (br.__cid == (new Object(__cid=-2, _int=BufferedReader()))._int ? readLineb_Object@BufferedReader(br) : null); */
-  }
-    self.totalGames_RomlistParser = xform_size_ArrayList(self.games_RomlistParser._arraylist);
+  genRead_BufferedReader_File@RomlistParser(self, br, romlistFile);
   /* self.totalGames_RomlistParser = (self.games_RomlistParser.__cid == (new Object(__cid=-2, _int=ArrayList()))._int ? size_Object@ArrayList(self.games_RomlistParser) : null); */
+  self.totalGames_RomlistParser = xform_size_ArrayList(self.games_RomlistParser._arraylist);
   self.totalGamesAvailable_RomlistParser = gamesAvailable;
   Object a1 = (romlistFile.__cid == (new Object(__cid=-2, _int=File()))._int ? getParent@File(romlistFile) : null);
-  Object a2 = (a1.__cid == (new Object(__cid=-2, _int=String()))._int ? concat_String@String(a1, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=10+1), A="/database/")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=10))) : null);
+  Object a2 = (a1.__cid == (new Object(__cid=-2, _int=String()))._int ? concat_String@String(a1, String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=4+1), A="/db/")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=4))) : null);
   Object a3 = (a2.__cid == (new Object(__cid=-2, _int=String()))._int ? concat_String@String(a2, (romlistFile.__cid == (new Object(__cid=-2, _int=File()))._int ? getName@File(romlistFile) : null)) : null);
   Object nf = File_File_String(new Object(__cid=File()), a3);
   return self.games_RomlistParser;

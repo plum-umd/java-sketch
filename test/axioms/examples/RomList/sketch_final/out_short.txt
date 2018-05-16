@@ -1,0 +1,3604 @@
+SKETCH version 1.7.5
+Benchmark = /Users/kathymariano/Research/java-sketch2/test/axioms/examples/RomList/sketch_final/sk_Tester/main.sk
+array.sk:5: Making final Array_bit@array.length
+array.sk:5: Making final Object._int
+array.sk:10: Making final Array_char@array.length
+array.sk:15: Making final Array_int@array.length
+array.sk:20: Making final Array_float@array.length
+array.sk:25: Making final Array_double@array.length
+array.sk:30: Making final Array_Object@array.length
+[SATBackend] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[SATBackend] MAX LOOP UNROLLING = 26
+[SATBackend] MAX FUNC INLINING  = 2
+estimated size of mn__Wrapper_Tester
+stmt cnt: 3
+callee mn_Tester : 1327
+
+[SATBackend] After prog.accept(partialEval)
+[SATBackend] OFILE = sk_Tester
+searching for file null
+searching for file /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-frontend/cegis/src/SketchSolver/cegis
+searching for file /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-frontend/cegis
+searching for file cegis/src/SketchSolver/cegis
+searching for file ../sketch-backend/src/SketchSolver/cegis
+searching for file ../sketch-backend/bindings/cegis
+searching for file /Users/kathymariano/Research/java-sketch2/test/axioms/examples/RomList/sketch_final/cegis-1.7.5
+searching for file /Users/kathymariano/Research/java-sketch2/test/axioms/examples/RomList/sketch_final/cegis
+searching for file /usr/bin/cegis
+searching for file /usr/bin/src/SketchSolver/cegis
+searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/bin/../sketch-backend/bindings/cegis
+searching for file /bin/cegis
+searching for file /bin/src/SketchSolver/cegis
+searching for file /bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /bin/../sketch-backend/bindings/cegis
+searching for file /usr/sbin/cegis
+searching for file /usr/sbin/src/SketchSolver/cegis
+searching for file /usr/sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/sbin/../sketch-backend/bindings/cegis
+searching for file /sbin/cegis
+searching for file /sbin/src/SketchSolver/cegis
+searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /sbin/../sketch-backend/bindings/cegis
+searching for file /usr/local/bin/cegis
+searching for file /usr/local/bin/src/SketchSolver/cegis
+searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/bin/../sketch-backend/bindings/cegis
+searching for file /Applications/Racket v6.10/bin/cegis
+searching for file /Applications/Racket v6.10/bin/src/SketchSolver/cegis
+searching for file /Applications/Racket v6.10/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /Applications/Racket v6.10/bin/../sketch-backend/bindings/cegis
+searching for file /Library/TeX/texbin/cegis
+searching for file /Library/TeX/texbin/src/SketchSolver/cegis
+searching for file /Library/TeX/texbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /Library/TeX/texbin/../sketch-backend/bindings/cegis
+searching for file /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-frontend/cegis
+searching for file /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-frontend/src/SketchSolver/cegis
+searching for file /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
+resolved cegis to path /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis
+[SATBackend] Launching: /Users/kathymariano/Research/sketch-from-zip/sketch-1.7.5/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 13 --print-version -simiters 4 -randassign --assumebcheck --bnd-inline-amnt 2 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /Users/kathymariano/Research/java-sketch2/test/axioms/examples/RomList/sketch_final/tmp/sk_Tester/solution0-0 /Users/kathymariano/Research/java-sketch2/test/axioms/examples/RomList/sketch_final/tmp/sk_Tester/input0.tmp 
+Overriding inputs with 5
+boundmode = CALLNAME
+assuming  bounds checks
+SOLVER RAND SEED = 1522351412
+ optimization level = 6
+Reading SKETCH Program in File /Users/kathymariano/Research/java-sketch2/test/axioms/examples/RomList/sketch_final/tmp/sk_Tester/input0.tmp
+CREATING mn__Wrapper_Tester
+size = 4
+after ba size = 4
+CREATING mn__WrapperNospec_Tester
+size = 0
+after ba size = 0
+CREATING mn_Tester
+Found Cycle of size 38; Breaking.
+size = 4892
+after ba size = 4892
+CREATING Object_meta
+size = 3
+after ba size = 3
+CREATING Object_Object_Object
+size = 83
+after ba size = 83
+CREATING File_meta
+size = 3
+after ba size = 3
+CREATING String_meta
+size = 3
+after ba size = 3
+CREATING Wrap_Array_char_array
+size = 93
+after ba size = 93
+CREATING String_String_char_int_int_String
+size = 1905
+after ba size = 1905
+CREATING File_File_String_File
+Found Cycle of size 5; Breaking.
+size = 502
+after ba size = 502
+CREATING RomlistParser_meta
+size = 3
+after ba size = 3
+CREATING RomlistParser_RomlistParser_RomlistParser
+size = 694
+after ba size = 694
+CREATING parse_File_RomlistParser
+size = 182
+after ba size = 182
+CREATING xform_get_ArrayList_int_ArrayList
+size = 828
+after ba size = 828
+CREATING RomlistGame_meta
+size = 3
+after ba size = 3
+CREATING getName_RomlistGame
+size = 90
+after ba size = 90
+CREATING getTitle_RomlistGame
+size = 90
+after ba size = 90
+CREATING getEmulator_RomlistGame
+size = 90
+after ba size = 90
+CREATING getCloneOf_RomlistGame
+size = 90
+after ba size = 90
+CREATING getYear_RomlistGame
+size = 90
+after ba size = 90
+CREATING getManufacturer_RomlistGame
+size = 90
+after ba size = 90
+CREATING getCategory_RomlistGame
+size = 90
+after ba size = 90
+CREATING getPlayers_RomlistGame
+size = 90
+after ba size = 90
+CREATING getRotation_RomlistGame
+size = 90
+after ba size = 90
+CREATING getControl_RomlistGame
+size = 90
+after ba size = 90
+CREATING equals_Object_String
+Found Cycle of size 5; Breaking.
+size = 2561
+after ba size = 2561
+CREATING Array_meta
+size = 3
+after ba size = 3
+CREATING split_String_String
+size = 187
+after ba size = 187
+CREATING ArrayList_ArrayList_ArrayList
+size = 93
+after ba size = 93
+CREATING parse_File_String_RomlistParser
+size = 187
+after ba size = 187
+CREATING xform_size_ArrayList_ArrayList
+size = 649
+after ba size = 649
+CREATING length_String
+size = 90
+after ba size = 90
+CREATING split_String_int_String
+Found Cycle of size 38; Breaking.
+Found Cycle of size 33; Breaking.
+size = 27792
+after ba size = 27792
+CREATING ArrayList_meta
+size = 3
+after ba size = 3
+CREATING parse_File_String_boolean_RomlistParser
+Found Cycle of size 174; Breaking.
+Found Cycle of size 169; Breaking.
+Found Cycle of size 669; Breaking.
+Found Cycle of size 147; Breaking.
+Found Cycle of size 101; Breaking.
+size = 163312
+after ba size = 163312
+CREATING charAt_int_String
+size = 161
+after ba size = 161
+CREATING indexOf_char_int_String
+Found Cycle of size 55; Breaking.
+size = 10440
+after ba size = 10440
+CREATING Wrap_Array_Object_array
+size = 93
+after ba size = 93
+CREATING substring_int_int_String
+size = 375
+after ba size = 375
+CREATING exists_File
+size = 89
+after ba size = 89
+CREATING BufferedReader_Object_File_BufferedReader
+size = 93
+after ba size = 93
+CREATING xform_readLine_BufferedReader_BufferedReader
+size = 394
+after ba size = 394
+CREATING BufferedReader_meta
+size = 3
+after ba size = 3
+CREATING readLineb_Object_BufferedReader
+size = 99
+after ba size = 99
+CREATING startsWith_String_String
+Found Cycle of size 146; Breaking.
+Found Cycle of size 147; Breaking.
+Found Cycle of size 56; Breaking.
+size = 15271
+after ba size = 15271
+CREATING RomlistGame_RomlistGame_RomlistGame
+size = 83
+after ba size = 83
+CREATING getName_File
+size = 90
+after ba size = 90
+CREATING setRomlist_String_RomlistGame
+size = 91
+after ba size = 91
+CREATING setName_String_RomlistGame
+size = 91
+after ba size = 91
+CREATING setTitle_String_RomlistGame
+size = 91
+after ba size = 91
+CREATING setEmulator_String_RomlistGame
+size = 91
+after ba size = 91
+CREATING setCloneOf_String_RomlistGame
+size = 91
+after ba size = 91
+CREATING setYear_String_RomlistGame
+size = 91
+after ba size = 91
+CREATING setManufacturer_String_RomlistGame
+size = 91
+after ba size = 91
+CREATING setCategory_String_RomlistGame
+size = 91
+after ba size = 91
+CREATING setPlayers_String_RomlistGame
+size = 91
+after ba size = 91
+CREATING setRotation_String_RomlistGame
+size = 91
+after ba size = 91
+CREATING setControl_String_RomlistGame
+size = 91
+after ba size = 91
+CREATING setStatus_String_RomlistGame
+size = 91
+after ba size = 91
+CREATING setDisplayCount_String_RomlistGame
+size = 91
+after ba size = 91
+CREATING setDisplayType_String_RomlistGame
+size = 91
+after ba size = 91
+CREATING setAltRomname_String_RomlistGame
+size = 91
+after ba size = 91
+CREATING setAltTitle_String_RomlistGame
+size = 91
+after ba size = 91
+CREATING setExtra_String_RomlistGame
+size = 91
+after ba size = 91
+CREATING setButtons_String_RomlistGame
+size = 91
+after ba size = 91
+CREATING setAvailable_boolean_RomlistGame
+size = 91
+after ba size = 91
+CREATING add_Object_Object_ArrayList
+size = 99
+after ba size = 99
+CREATING addb_Object_Object_ArrayList
+size = 100
+after ba size = 100
+CREATING getParent_File
+size = 306
+after ba size = 306
+CREATING concat_String_String
+Found Cycle of size 16; Breaking.
+size = 16669
+after ba size = 16669
+CREATING get_int_File
+size = 142
+after ba size = 142
+CREATING xform_readLineHelp_BufferedReader_int_BufferedReader
+size = 397
+after ba size = 397
+ATTEMPT 0
+* before  EVERYTHING: mn__WrapperNospec_Tester::SPEC nodes = 0	 mn__Wrapper_Tester::SKETCH nodes = 4
+ INBITS = 5
+ CBITS  = 5
+ input_ints = 0 	 input_bits = 0
+ Inlining amount = 2
+ Inlining functions in the sketch.
+inlined 1 new size =4469
+Found Cycle of size 97; Breaking.
+inlined 66 new size =46891
+Found Cycle of size 63; Breaking.
+inlined 51 new size =92038
+H__0_233 odds = 1/0.120482 0.999503 (83, 83)  try to replace
+H__0_233: replacing with value 1 bnd= 2 totsize= 0.693147
+H__1_233 odds = 1/0.117647 0.999593 (85, 85)  try to replace
+H__1_233: replacing with value 0 bnd= 2 totsize= 1.38629
+H__0_233_169 odds = 1/0.004662 1 (2145, 2145)  try to replace
+H__0_233_169: replacing with value 1 bnd= 2 totsize= 2.07944
+H__1_233_169 odds = 1/0.384615 0.861723 (26, 26)  try to replace
+H__1_233_169: replacing with value 0 bnd= 2 totsize= 2.77259
+H__2_233_169 odds = 1/0.00457875 1 (2184, 2184)  try to replace
+H__2_233_169: replacing with value 1 bnd= 2 totsize= 3.46574
+H__3_233_169_233_169 odds = 1/0.25641 0.960319 (39, 39)  try to replace
+H__3_233_169_233_169: replacing with value 1 bnd= 2 totsize= 4.15888
+H__2_233 odds = 1/0.119048 0.99955 (84, 84)  try to replace
+H__2_233: replacing with value 1 bnd= 2 totsize= 4.85203
+H__3_233 odds = 1/0.121951 0.999451 (82, 82)  try to replace
+H__3_233: replacing with value 0 bnd= 2 totsize= 5.54518
+H__0_233_226 odds = 1/0.121951 0.999451 (82, 82)  try to replace
+H__0_233_226: replacing with value 1 bnd= 2 totsize= 6.23832
+H__1_233_226 odds = 1/10  (1, 1)  not replacing
+H__2_233_226 odds = 1/0.121951 0.999451 (82, 82)  try to replace
+H__2_233_226: replacing with value 0 bnd= 2 totsize= 6.93147
+H__3_233_226_233_226 odds = 1/10  (1, 1)  not replacing
+Found Cycle of size 58; Breaking.
+inlined 175 new size =618063
+Got too big, trying harder to concretize before=12  after =10
+Found Cycle of size 66; Breaking.
+Found Cycle of size 43; Breaking.
+Found Cycle of size 11; Breaking.
+inlined 108 new size =124484
+inlined 78 new size =90912
+Found Cycle of size 361; Breaking.
+inlined 178 new size =608624
+Got too big, trying harder to concretize before=10  after =10
+Assertion FailureASSERTION CAN NOT BE SATISFIED: ArrayList.sk:78 Assert at ArrayList.sk:78 (1)
+**ROUND 0 : 6.93147 Round time:  5999.15 ms 
+RNDDEG = 10
+SUMMRY , 5, 6, 9, 10, 13, 15, 17, 18, 21, 24
+ charness = 0
+POST-SUMMRY , 5, 6, 9, 10, 13, 15, 17, 18, 21, 24
+TRAIL: 
+ALLOK
+ALLRESET
+ATTEMPT 1
+* before  EVERYTHING: mn__WrapperNospec_Tester::SPEC nodes = 0	 mn__Wrapper_Tester::SKETCH nodes = 4
+ INBITS = 5
+ CBITS  = 5
+ input_ints = 0 	 input_bits = 0
+ Inlining amount = 2
+ Inlining functions in the sketch.
+inlined 1 new size =4469
+Found Cycle of size 54; Breaking.
+inlined 66 new size =46891
+Found Cycle of size 42; Breaking.
+inlined 51 new size =92038
+H__0_233 odds = 1/0.060241 1 (83, 83)  try to replace
+H__0_233: replacing with value 0 bnd= 2 totsize= 0.693147
+H__1_233 odds = 1/0.0588235 1 (85, 85)  try to replace
+H__1_233: replacing with value 1 bnd= 2 totsize= 1.38629
+H__0_233_169 odds = 1/0.002331 1 (2145, 2145)  try to replace
+H__0_233_169: replacing with value 0 bnd= 2 totsize= 2.07944
+H__1_233_169 odds = 1/0.192308 0.989027 (26, 26)  try to replace
+H__1_233_169: replacing with value 1 bnd= 2 totsize= 2.77259
+H__2_233_169 odds = 1/0.00228938 1 (2184, 2184)  try to replace
+H__2_233_169: replacing with value 1 bnd= 2 totsize= 3.46574
+H__3_233_169_233_169 odds = 1/0.128205 0.999181 (39, 39)  try to replace
+H__3_233_169_233_169: replacing with value 0 bnd= 2 totsize= 4.15888
+H__2_233 odds = 1/0.0595238 1 (84, 84)  try to replace
+H__2_233: replacing with value 1 bnd= 2 totsize= 4.85203
+H__3_233 odds = 1/0.0609756 1 (82, 82)  try to replace
+H__3_233: replacing with value 1 bnd= 2 totsize= 5.54518
+H__0_233_226 odds = 1/0.0609756 1 (82, 82)  try to replace
+H__0_233_226: replacing with value 0 bnd= 2 totsize= 6.23832
+H__1_233_226 odds = 1/5  (1, 1)  not replacing
+H__2_233_226 odds = 1/0.0609756 1 (82, 82)  try to replace
+H__2_233_226: replacing with value 1 bnd= 2 totsize= 6.93147
+H__3_233_226_233_226 odds = 1/5  (1, 1)  not replacing
+Found Cycle of size 142; Breaking.
+inlined 175 new size =623073
+Got too big, trying harder to concretize before=12  after =10
+H__1_233_226 odds = 1/5  (1, 1)  not replacing
+H__3_233_226_233_226 odds = 1/5  (1, 1)  not replacing
+Assertion FailureAssert at RomlistParser.sk:40 (1)
+**ROUND 1 : 6.93147 Round time:  2000.86 ms 
+RNDDEG = 5
+SUMMRY , 4, 7, 8, 11, 13, 14, 17, 19, 20, 25
+ charness = 0
+POST-SUMMRY , 4, 7, 8, 11, 13, 14, 17, 19, 20, 25
+TRAIL: 
+ALLOK
+ALLRESET
+ATTEMPT 2
+* before  EVERYTHING: mn__WrapperNospec_Tester::SPEC nodes = 0	 mn__Wrapper_Tester::SKETCH nodes = 4
+ INBITS = 5
+ CBITS  = 5
+ input_ints = 0 	 input_bits = 0
+ Inlining amount = 2
+ Inlining functions in the sketch.
+inlined 1 new size =4469
+Found Cycle of size 86; Breaking.
+inlined 66 new size =46891
+Found Cycle of size 22; Breaking.
+inlined 51 new size =92038
+H__0_233 odds = 1/0.120482 0.999503 (83, 83)  try to replace
+H__0_233: replacing with value 0 bnd= 2 totsize= 0.693147
+H__1_233 odds = 1/0.117647 0.999593 (85, 85)  try to replace
+H__1_233: replacing with value 1 bnd= 2 totsize= 1.38629
+H__0_233_169 odds = 1/0.004662 1 (2145, 2145)  try to replace
+H__0_233_169: replacing with value 0 bnd= 2 totsize= 2.07944
+H__1_233_169 odds = 1/0.384615 0.861723 (26, 26)  try to replace
+H__1_233_169: replacing with value 0 bnd= 2 totsize= 2.77259
+H__2_233_169 odds = 1/0.00457875 1 (2184, 2184)  try to replace
+H__2_233_169: replacing with value 0 bnd= 2 totsize= 3.46574
+H__3_233_169_233_169 odds = 1/0.25641 0.960319 (39, 39)  try to replace
+H__3_233_169_233_169: replacing with value 1 bnd= 2 totsize= 4.15888
+H__2_233 odds = 1/0.119048 0.99955 (84, 84)  try to replace
+H__2_233: replacing with value 0 bnd= 2 totsize= 4.85203
+H__3_233 odds = 1/0.121951 0.999451 (82, 82)  try to replace
+H__3_233: replacing with value 1 bnd= 2 totsize= 5.54518
+H__0_233_226 odds = 1/0.121951 0.999451 (82, 82)  try to replace
+H__0_233_226: replacing with value 0 bnd= 2 totsize= 6.23832
+H__1_233_226 odds = 1/10  (1, 1)  not replacing
+H__2_233_226 odds = 1/0.121951 0.999451 (82, 82)  try to replace
+H__2_233_226: replacing with value 0 bnd= 2 totsize= 6.93147
+H__3_233_226_233_226 odds = 1/10  (1, 1)  not replacing
+Found Cycle of size 24; Breaking.
+inlined 175 new size =612561
+Got too big, trying harder to concretize before=12  after =10
+H__1_233_226 odds = 1/10  (1, 1)  not replacing
+H__3_233_226_233_226 odds = 1/10  (1, 1)  not replacing
+inlined 73 new size =76392
+inlined 64 new size =90853
+Found Cycle of size 543; Breaking.
+inlined 178 new size =608565
+Got too big, trying harder to concretize before=12  after =10
+H__3_233_226_233_226 odds = 1/10  (1, 1)  not replacing
+H__1_233_226 odds = 1/10  (1, 1)  not replacing
+Assertion FailureASSERTION CAN NOT BE SATISFIED: ArrayList.sk:78 Assert at ArrayList.sk:78 (1)
+**ROUND 2 : 6.93147 Round time:  5999.17 ms 
+RNDDEG = 10
+SUMMRY , 4, 7, 8, 10, 12, 15, 16, 19, 20, 24
+ charness = 0
+POST-SUMMRY , 4, 7, 8, 10, 12, 15, 16, 19, 20, 24
+TRAIL: 
+ALLOK
+ALLRESET
+ATTEMPT 3
+* before  EVERYTHING: mn__WrapperNospec_Tester::SPEC nodes = 0	 mn__Wrapper_Tester::SKETCH nodes = 4
+ INBITS = 5
+ CBITS  = 5
+ input_ints = 0 	 input_bits = 0
+ Inlining amount = 2
+ Inlining functions in the sketch.
+inlined 1 new size =4469
+Found Cycle of size 70; Breaking.
+inlined 66 new size =46891
+Found Cycle of size 86; Breaking.
+inlined 51 new size =92038
+H__0_233 odds = 1/0.060241 1 (83, 83)  try to replace
+H__0_233: replacing with value 0 bnd= 2 totsize= 0.693147
+H__1_233 odds = 1/0.0588235 1 (85, 85)  try to replace
+H__1_233: replacing with value 1 bnd= 2 totsize= 1.38629
+H__0_233_169 odds = 1/0.002331 1 (2145, 2145)  try to replace
+H__0_233_169: replacing with value 0 bnd= 2 totsize= 2.07944
+H__1_233_169 odds = 1/0.192308 0.989027 (26, 26)  try to replace
+H__1_233_169: replacing with value 1 bnd= 2 totsize= 2.77259
+H__2_233_169 odds = 1/0.00228938 1 (2184, 2184)  try to replace
+H__2_233_169: replacing with value 1 bnd= 2 totsize= 3.46574
+H__3_233_169_233_169 odds = 1/0.128205 0.999181 (39, 39)  try to replace
+H__3_233_169_233_169: replacing with value 0 bnd= 2 totsize= 4.15888
+H__2_233 odds = 1/0.0595238 1 (84, 84)  try to replace
+H__2_233: replacing with value 0 bnd= 2 totsize= 4.85203
+H__3_233 odds = 1/0.0609756 1 (82, 82)  try to replace
+H__3_233: replacing with value 1 bnd= 2 totsize= 5.54518
+H__0_233_226 odds = 1/0.0609756 1 (82, 82)  try to replace
+H__0_233_226: replacing with value 0 bnd= 2 totsize= 6.23832
+H__1_233_226 odds = 1/5 0.099668 (1, 1)  try to replace
+H__1_233_226: replacing with value 0 bnd= 2 totsize= 6.93147
+H__2_233_226 odds = 1/0.0609756 1 (82, 82)  try to replace
+H__2_233_226: replacing with value 1 bnd= 2 totsize= 7.62462
+H__3_233_226_233_226 odds = 1/5  (1, 1)  not replacing
+Found Cycle of size 298; Breaking.
+inlined 175 new size =617814
+Got too big, trying harder to concretize before=12  after =11
+H__3_233_226_233_226 odds = 1/5  (1, 1)  not replacing
+Assertion FailureAssert at RomlistParser.sk:40 (1)
+**ROUND 3 : 7.62462 Round time:  2000.88 ms 
+RNDDEG = 5
+SUMMRY , 4, 7, 8, 11, 13, 14, 16, 19, 20, 22, 25
+ charness = 0
+POST-SUMMRY , 4, 7, 8, 11, 13, 14, 16, 19, 20, 22, 25
+TRAIL: 
+ALLOK
+ALLRESET
+ATTEMPT 4
+Before readInfile
+Single: 
+Double: 
+Nothing read
+After readInfile
+Single: 
+Double: 
+cur=10 next=20 scorecur=15 scorenext=0
+Switch because next is better
+* before  EVERYTHING: mn__WrapperNospec_Tester::SPEC nodes = 0	 mn__Wrapper_Tester::SKETCH nodes = 4
+ INBITS = 5
+ CBITS  = 5
+ input_ints = 0 	 input_bits = 0
+ Inlining amount = 2
+ Inlining functions in the sketch.
+inlined 1 new size =4469
+Found Cycle of size 41; Breaking.
+inlined 66 new size =46891
+Found Cycle of size 116; Breaking.
+inlined 51 new size =92038
+H__0_233 odds = 1/0.240964 0.96896 (83, 83)  try to replace
+H__0_233: replacing with value 1 bnd= 2 totsize= 0.693147
+H__1_233 odds = 1/0.235294 0.971873 (85, 85)  try to replace
+H__1_233: replacing with value 0 bnd= 2 totsize= 1.38629
+H__0_233_169 odds = 1/0.00932401 1 (2145, 2145)  try to replace
+H__0_233_169: replacing with value 1 bnd= 2 totsize= 2.07944
+H__1_233_169 odds = 1/0.769231 0.57167 (26, 26)  try to replace
+H__1_233_169: replacing with value 0 bnd= 2 totsize= 2.77259
+H__2_233_169 odds = 1/0.00915751 1 (2184, 2184)  try to replace
+H__2_233_169: replacing with value 1 bnd= 2 totsize= 3.46574
+H__3_233_169_233_169 odds = 1/0.512821 0.750893 (39, 39)  try to replace
+H__3_233_169_233_169: replacing with value 1 bnd= 2 totsize= 4.15888
+H__2_233 odds = 1/0.238095 0.970452 (84, 84)  try to replace
+H__2_233: replacing with value 1 bnd= 2 totsize= 4.85203
+H__3_233 odds = 1/0.243902 0.967395 (82, 82)  try to replace
+H__3_233: replacing with value 0 bnd= 2 totsize= 5.54518
+H__0_233_226 odds = 1/0.243902 0.967395 (82, 82)  try to replace
+H__0_233_226: replacing with value 1 bnd= 2 totsize= 6.23832
+H__1_233_226 odds = 1/20  (1, 1)  not replacing
+H__2_233_226 odds = 1/0.243902 0.967395 (82, 82)  try to replace
+H__2_233_226: replacing with value 1 bnd= 2 totsize= 6.93147
+H__3_233_226_233_226 odds = 1/20  (1, 1)  not replacing
+Found Cycle of size 121; Breaking.
+inlined 175 new size =618063
+Got too big, trying harder to concretize before=12  after =10
+Found Cycle of size 134; Breaking.
+Found Cycle of size 77; Breaking.
+Found Cycle of size 11; Breaking.
+inlined 108 new size =124484
+inlined 78 new size =90912
+Found Cycle of size 26; Breaking.
+inlined 178 new size =608624
+Got too big, trying harder to concretize before=10  after =10
+Assertion FailureASSERTION CAN NOT BE SATISFIED: ArrayList.sk:78 Assert at ArrayList.sk:78 (1)
+**ROUND 4 : 6.93147 Round time:  5999.75 ms 
+RNDDEG = 20
+SUMMRY , 5, 6, 9, 10, 13, 15, 17, 18, 21
+ charness = 0
+POST-SUMMRY , 5, 6, 9, 10, 13, 15, 17, 18, 21
+TRAIL: 
+ALLOK
+ALLRESET
+ATTEMPT 5
+* before  EVERYTHING: mn__WrapperNospec_Tester::SPEC nodes = 0	 mn__Wrapper_Tester::SKETCH nodes = 4
+ INBITS = 5
+ CBITS  = 5
+ input_ints = 0 	 input_bits = 0
+ Inlining amount = 2
+ Inlining functions in the sketch.
+inlined 1 new size =4469
+Found Cycle of size 36; Breaking.
+inlined 66 new size =46891
+Found Cycle of size 89; Breaking.
+inlined 51 new size =92038
+H__0_233 odds = 1/0.120482 0.999503 (83, 83)  try to replace
+H__0_233: replacing with value 0 bnd= 2 totsize= 0.693147
+H__1_233 odds = 1/0.117647 0.999593 (85, 85)  try to replace
+H__1_233: replacing with value 0 bnd= 2 totsize= 1.38629
+H__0_233_169 odds = 1/0.004662 1 (2145, 2145)  try to replace
+H__0_233_169: replacing with value 1 bnd= 2 totsize= 2.07944
+H__1_233_169 odds = 1/0.384615 0.861723 (26, 26)  try to replace
+H__1_233_169: replacing with value 0 bnd= 2 totsize= 2.77259
+H__2_233_169 odds = 1/0.00457875 1 (2184, 2184)  try to replace
+H__2_233_169: replacing with value 1 bnd= 2 totsize= 3.46574
+H__3_233_169_233_169 odds = 1/0.25641 0.960319 (39, 39)  try to replace
+H__3_233_169_233_169: replacing with value 1 bnd= 2 totsize= 4.15888
+H__2_233 odds = 1/0.119048 0.99955 (84, 84)  try to replace
+H__2_233: replacing with value 0 bnd= 2 totsize= 4.85203
+H__3_233 odds = 1/0.121951 0.999451 (82, 82)  try to replace
+H__3_233: replacing with value 0 bnd= 2 totsize= 5.54518
+H__0_233_226 odds = 1/0.121951 0.999451 (82, 82)  try to replace
+H__0_233_226: replacing with value 1 bnd= 2 totsize= 6.23832
+H__1_233_226 odds = 1/10  (1, 1)  not replacing
+H__2_233_226 odds = 1/0.121951 0.999451 (82, 82)  try to replace
+H__2_233_226: replacing with value 1 bnd= 2 totsize= 6.93147
+H__3_233_226_233_226 odds = 1/10  (1, 1)  not replacing
+Found Cycle of size 92; Breaking.
+inlined 175 new size =612531
+Got too big, trying harder to concretize before=12  after =10
+inlined 73 new size =76376
+inlined 64 new size =90837
+Found Cycle of size 440; Breaking.
+inlined 178 new size =608549
+Got too big, trying harder to concretize before=10  after =10
+Assertion FailureASSERTION CAN NOT BE SATISFIED: ArrayList.sk:78 Assert at ArrayList.sk:78 (1)
+**ROUND 5 : 6.93147 Round time:  6999.5 ms 
+RNDDEG = 10
+SUMMRY , 4, 6, 9, 10, 13, 15, 16, 18, 21, 25
+ charness = 0
+POST-SUMMRY , 4, 6, 9, 10, 13, 15, 16, 18, 21, 25
+TRAIL: 
+ALLOK
+ALLRESET
+ATTEMPT 6
+* before  EVERYTHING: mn__WrapperNospec_Tester::SPEC nodes = 0	 mn__Wrapper_Tester::SKETCH nodes = 4
+ INBITS = 5
+ CBITS  = 5
+ input_ints = 0 	 input_bits = 0
+ Inlining amount = 2
+ Inlining functions in the sketch.
+inlined 1 new size =4469
+Found Cycle of size 70; Breaking.
+inlined 66 new size =46891
+Found Cycle of size 67; Breaking.
+inlined 51 new size =92038
+H__0_233 odds = 1/0.240964 0.96896 (83, 83)  try to replace
+H__0_233: replacing with value 1 bnd= 2 totsize= 0.693147
+H__1_233 odds = 1/0.235294  (85, 85)  not replacing
+H__0_233_169 odds = 1/0.00932401 1 (2145, 2145)  try to replace
+H__0_233_169: replacing with value 1 bnd= 2 totsize= 1.38629
+H__1_233_169 odds = 1/0.769231 0.57167 (26, 26)  try to replace
+H__1_233_169: replacing with value 0 bnd= 2 totsize= 2.07944
+H__2_233_169 odds = 1/0.00915751 1 (2184, 2184)  try to replace
+H__2_233_169: replacing with value 0 bnd= 2 totsize= 2.77259
+H__3_233_169_233_169 odds = 1/0.512821 0.750893 (39, 39)  try to replace
+H__3_233_169_233_169: replacing with value 1 bnd= 2 totsize= 3.46574
+H__2_233 odds = 1/0.238095 0.970452 (84, 84)  try to replace
+H__2_233: replacing with value 1 bnd= 2 totsize= 4.15888
+H__3_233 odds = 1/0.243902 0.967395 (82, 82)  try to replace
+H__3_233: replacing with value 1 bnd= 2 totsize= 4.85203
+H__0_233_226 odds = 1/0.243902 0.967395 (82, 82)  try to replace
+H__0_233_226: replacing with value 1 bnd= 2 totsize= 5.54518
+H__1_233_226 odds = 1/20  (1, 1)  not replacing
+H__2_233_226 odds = 1/0.243902 0.967395 (82, 82)  try to replace
+H__2_233_226: replacing with value 0 bnd= 2 totsize= 6.23832
+H__3_233_226_233_226 odds = 1/20  (1, 1)  not replacing
+Found Cycle of size 147; Breaking.
+inlined 175 new size =626064
+Got too big, trying harder to concretize before=12  after =9
+H__1_233 odds = 1/0.246914 0.965752 (81, 81)  try to replace
+H__1_233: replacing with value 1 bnd= 2 totsize= 6.93147
+H__1_233_226 odds = 1/20  (1, 1)  not replacing
+H__3_233_226_233_226 odds = 1/20  (1, 1)  not replacing
+Assertion FailureASSERTION CAN NOT BE SATISFIED: RomlistParser.sk:102 Function genRead_BufferedReader_File@RomlistParser was not inlined enough. Increase inlining with --inlineamnt flag.
+Found Cycle of size 92; Breaking.
+Found Cycle of size 85; Breaking.
+Found Cycle of size 89; Breaking.
+Found Cycle of size 91; Breaking.
+Found Cycle of size 95; Breaking.
+Found Cycle of size 109; Breaking.
+Found Cycle of size 113; Breaking.
+Found Cycle of size 157; Breaking.
+Found Cycle of size 97; Breaking.
+Found Cycle of size 93; Breaking.
+Found Cycle of size 87; Breaking.
+Found Cycle of size 73; Breaking.
+Found Cycle of size 11; Breaking.
+**ROUND 6 : 6.93147 Round time:  3000.04 ms 
+RNDDEG = 20
+SUMMRY , 5, 9, 10, 12, 15, 17, 19, 21, 24, 7
+ charness = 0
+POST-SUMMRY , 5, 7, 9, 10, 12, 15, 17, 19, 21, 24
+TRAIL: 
+ALLOK
+ALLRESET
+ATTEMPT 7
+* before  EVERYTHING: mn__WrapperNospec_Tester::SPEC nodes = 0	 mn__Wrapper_Tester::SKETCH nodes = 4
+ INBITS = 5
+ CBITS  = 5
+ input_ints = 0 	 input_bits = 0
+ Inlining amount = 2
+ Inlining functions in the sketch.
+inlined 1 new size =4469
+Found Cycle of size 44; Breaking.
+inlined 66 new size =46891
+Found Cycle of size 107; Breaking.
+inlined 51 new size =92038
+H__0_233 odds = 1/0.120482 0.999503 (83, 83)  try to replace
+H__0_233: replacing with value 1 bnd= 2 totsize= 0.693147
+H__1_233 odds = 1/0.117647 0.999593 (85, 85)  try to replace
+H__1_233: replacing with value 0 bnd= 2 totsize= 1.38629
+H__0_233_169 odds = 1/0.004662 1 (2145, 2145)  try to replace
+H__0_233_169: replacing with value 1 bnd= 2 totsize= 2.07944
+H__1_233_169 odds = 1/0.384615 0.861723 (26, 26)  try to replace
+H__1_233_169: replacing with value 0 bnd= 2 totsize= 2.77259
+H__2_233_169 odds = 1/0.00457875 1 (2184, 2184)  try to replace
+H__2_233_169: replacing with value 0 bnd= 2 totsize= 3.46574
+H__3_233_169_233_169 odds = 1/0.25641 0.960319 (39, 39)  try to replace
+H__3_233_169_233_169: replacing with value 0 bnd= 2 totsize= 4.15888
+H__2_233 odds = 1/0.119048 0.99955 (84, 84)  try to replace
+H__2_233: replacing with value 1 bnd= 2 totsize= 4.85203
+H__3_233 odds = 1/0.121951 0.999451 (82, 82)  try to replace
+H__3_233: replacing with value 0 bnd= 2 totsize= 5.54518
+H__0_233_226 odds = 1/0.121951 0.999451 (82, 82)  try to replace
+H__0_233_226: replacing with value 0 bnd= 2 totsize= 6.23832
+H__1_233_226 odds = 1/10  (1, 1)  not replacing
+H__2_233_226 odds = 1/0.121951 0.999451 (82, 82)  try to replace
+H__2_233_226: replacing with value 1 bnd= 2 totsize= 6.93147
+H__3_233_226_233_226 odds = 1/10  (1, 1)  not replacing
+Found Cycle of size 85; Breaking.
+inlined 175 new size =618063
+Got too big, trying harder to concretize before=12  after =10
+Found Cycle of size 111; Breaking.
+Found Cycle of size 88; Breaking.
+Found Cycle of size 11; Breaking.
+inlined 108 new size =124484
+inlined 78 new size =90912
+Found Cycle of size 412; Breaking.
+Found Cycle of size 409; Breaking.
+inlined 178 new size =608625
+Got too big, trying harder to concretize before=10  after =10
+Assertion FailureASSERTION CAN NOT BE SATISFIED: ArrayList.sk:78 Assert at ArrayList.sk:78 (1)
+**ROUND 7 : 6.93147 Round time:  5000.11 ms 
+RNDDEG = 10
+SUMMRY , 5, 6, 9, 10, 12, 14, 17, 18, 20, 25
+ charness = 0
+POST-SUMMRY , 5, 6, 9, 10, 12, 14, 17, 18, 20, 25
+TRAIL: 
+ALLOK
+ALLRESET
+ATTEMPT 8
+* before  EVERYTHING: mn__WrapperNospec_Tester::SPEC nodes = 0	 mn__Wrapper_Tester::SKETCH nodes = 4
+ INBITS = 5
+ CBITS  = 5
+ input_ints = 0 	 input_bits = 0
+ Inlining amount = 2
+ Inlining functions in the sketch.
+inlined 1 new size =4469
+Found Cycle of size 75; Breaking.
+inlined 66 new size =46891
+Found Cycle of size 66; Breaking.
+inlined 51 new size =92038
+H__0_233 odds = 1/0.240964 0.96896 (83, 83)  try to replace
+H__0_233: replacing with value 1 bnd= 2 totsize= 0.693147
+H__1_233 odds = 1/0.235294 0.971873 (85, 85)  try to replace
+H__1_233: replacing with value 1 bnd= 2 totsize= 1.38629
+H__0_233_169 odds = 1/0.00932401 1 (2145, 2145)  try to replace
+H__0_233_169: replacing with value 0 bnd= 2 totsize= 2.07944
+H__1_233_169 odds = 1/0.769231  (26, 26)  not replacing
+H__2_233_169 odds = 1/0.00915751 1 (2184, 2184)  try to replace
+H__2_233_169: replacing with value 1 bnd= 2 totsize= 2.77259
+H__3_233_169_233_169 odds = 1/0.512821  (39, 39)  not replacing
+H__2_233 odds = 1/0.238095 0.970452 (84, 84)  try to replace
+H__2_233: replacing with value 1 bnd= 2 totsize= 3.46574
+H__3_233 odds = 1/0.243902 0.967395 (82, 82)  try to replace
+H__3_233: replacing with value 1 bnd= 2 totsize= 4.15888
+H__0_233_226 odds = 1/0.243902 0.967395 (82, 82)  try to replace
+H__0_233_226: replacing with value 1 bnd= 2 totsize= 4.85203
+H__1_233_226 odds = 1/20  (1, 1)  not replacing
+H__2_233_226 odds = 1/0.243902 0.967395 (82, 82)  try to replace
+H__2_233_226: replacing with value 0 bnd= 2 totsize= 5.54518
+H__3_233_226_233_226 odds = 1/20  (1, 1)  not replacing
+Found Cycle of size 187; Breaking.
+inlined 175 new size =755941
+Got too big, trying harder to concretize before=12  after =8
+H__1_233_169 odds = 1/0.769231  (26, 26)  not replacing
+H__3_233_169_233_169 odds = 1/0.512821  (39, 39)  not replacing
+H__1_233_226 odds = 1/20  (1, 1)  not replacing
+H__3_233_226_233_226 odds = 1/20  (1, 1)  not replacing
+Assertion FailureAssert at RomlistParser.sk:40 (1)
+Found Cycle of size 83; Breaking.
+Found Cycle of size 69; Breaking.
+Found Cycle of size 11; Breaking.
+**ROUND 8 : 5.54518 Round time:  3000.12 ms 
+RNDDEG = 20
+SUMMRY , 5, 7, 8, 13, 17, 19, 21, 24
+ charness = 0
+POST-SUMMRY , 5, 7, 8, 13, 17, 19, 21, 24
+TRAIL: 
+ALLOK
+ALLRESET
+ATTEMPT 9
+Before readInfile
+Single: 
+Double: 
+Nothing read
+After readInfile
+Single: 
+Double: 
+cur=20 next=40 scorecur=14 scorenext=0
+Switch because next is better
+* before  EVERYTHING: mn__WrapperNospec_Tester::SPEC nodes = 0	 mn__Wrapper_Tester::SKETCH nodes = 4
+ INBITS = 5
+ CBITS  = 5
+ input_ints = 0 	 input_bits = 0
+ Inlining amount = 2
+ Inlining functions in the sketch.
+inlined 1 new size =4469
+Found Cycle of size 81; Breaking.
+inlined 66 new size =46891
+Found Cycle of size 26; Breaking.
+inlined 51 new size =92038
+H__0_233 odds = 1/0.240964 0.96896 (83, 83)  try to replace
+H__0_233: replacing with value 0 bnd= 2 totsize= 0.693147
+H__1_233 odds = 1/0.235294 0.971873 (85, 85)  try to replace
+H__1_233: replacing with value 0 bnd= 2 totsize= 1.38629
+H__0_233_169 odds = 1/0.00932401 1 (2145, 2145)  try to replace
+H__0_233_169: replacing with value 1 bnd= 2 totsize= 2.07944
+H__1_233_169 odds = 1/0.769231 0.57167 (26, 26)  try to replace
+H__1_233_169: replacing with value 1 bnd= 2 totsize= 2.77259
+H__2_233_169 odds = 1/0.00915751 1 (2184, 2184)  try to replace
+H__2_233_169: replacing with value 0 bnd= 2 totsize= 3.46574
+H__3_233_169_233_169 odds = 1/0.512821 0.750893 (39, 39)  try to replace
+H__3_233_169_233_169: replacing with value 1 bnd= 2 totsize= 4.15888
+H__2_233 odds = 1/0.238095 0.970452 (84, 84)  try to replace
+H__2_233: replacing with value 0 bnd= 2 totsize= 4.85203
+H__3_233 odds = 1/0.243902 0.967395 (82, 82)  try to replace
+H__3_233: replacing with value 1 bnd= 2 totsize= 5.54518
+H__0_233_226 odds = 1/0.243902 0.967395 (82, 82)  try to replace
+H__0_233_226: replacing with value 1 bnd= 2 totsize= 6.23832
+H__1_233_226 odds = 1/20  (1, 1)  not replacing
+H__2_233_226 odds = 1/0.243902 0.967395 (82, 82)  try to replace
+H__2_233_226: replacing with value 1 bnd= 2 totsize= 6.93147
+H__3_233_226_233_226 odds = 1/20  (1, 1)  not replacing
+Found Cycle of size 55; Breaking.
+inlined 175 new size =618085
+Got too big, trying harder to concretize before=12  after =10
+H__1_233_226 odds = 1/20  (1, 1)  not replacing
+H__3_233_226_233_226 odds = 1/20  (1, 1)  not replacing
+Found Cycle of size 120; Breaking.
+Found Cycle of size 46; Breaking.
+Found Cycle of size 82; Breaking.
+Found Cycle of size 11; Breaking.
+inlined 108 new size =124468
+inlined 79 new size =90928
+Found Cycle of size 277; Breaking.
+inlined 178 new size =608640
+Got too big, trying harder to concretize before=12  after =10
+H__3_233_226_233_226 odds = 1/20  (1, 1)  not replacing
+H__1_233_226 odds = 1/20  (1, 1)  not replacing
+Assertion FailureASSERTION CAN NOT BE SATISFIED: ArrayList.sk:78 Assert at ArrayList.sk:78 (1)
+**ROUND 9 : 6.93147 Round time:  5000.08 ms 
+RNDDEG = 20
+SUMMRY , 4, 6, 9, 11, 12, 15, 16, 19, 21, 25
+ charness = 0
+POST-SUMMRY , 4, 6, 9, 11, 12, 15, 16, 19, 21, 25
+TRAIL: 
+ALLOK
+ALLRESET
+ATTEMPT 10
+* before  EVERYTHING: mn__WrapperNospec_Tester::SPEC nodes = 0	 mn__Wrapper_Tester::SKETCH nodes = 4
+ INBITS = 5
+ CBITS  = 5
+ input_ints = 0 	 input_bits = 0
+ Inlining amount = 2
+ Inlining functions in the sketch.
+inlined 1 new size =4469
+Found Cycle of size 82; Breaking.
+inlined 66 new size =46891
+Found Cycle of size 91; Breaking.
+inlined 51 new size =92038
+H__0_233 odds = 1/0.481928 0.776899 (83, 83)  try to replace
+H__0_233: replacing with value 1 bnd= 2 totsize= 0.693147
+H__1_233 odds = 1/0.470588 0.786619 (85, 85)  try to replace
+H__1_233: replacing with value 0 bnd= 2 totsize= 1.38629
+H__0_233_169 odds = 1/0.018648 1 (2145, 2145)  try to replace
+H__0_233_169: replacing with value 1 bnd= 2 totsize= 2.07944
+H__1_233_169 odds = 1/1.53846 0.314021 (26, 26)  try to replace
+H__1_233_169: replacing with value 0 bnd= 2 totsize= 2.77259
+H__2_233_169 odds = 1/0.018315 1 (2184, 2184)  try to replace
+H__2_233_169: replacing with value 1 bnd= 2 totsize= 3.46574
+H__3_233_169_233_169 odds = 1/1.02564  (39, 39)  not replacing
+H__2_233 odds = 1/0.47619  (84, 84)  not replacing
+H__3_233 odds = 1/0.487805 0.771895 (82, 82)  try to replace
+H__3_233: replacing with value 1 bnd= 2 totsize= 4.15888
+H__0_233_226 odds = 1/0.487805  (82, 82)  not replacing
+H__1_233_226 odds = 1/40  (1, 1)  not replacing
+H__2_233_226 odds = 1/0.487805 0.771895 (82, 82)  try to replace
+H__2_233_226: replacing with value 1 bnd= 2 totsize= 4.85203
+H__3_233_226_233_226 odds = 1/40  (1, 1)  not replacing
+Found Cycle of size 171; Breaking.
+inlined 175 new size =623783
+Got too big, trying harder to concretize before=12  after =7
+H__0_233_226 odds = 1/0.487805 0.771895 (82, 82)  try to replace
+H__0_233_226: replacing with value 1 bnd= 2 totsize= 5.54518
+H__2_233 odds = 1/0.47619  (84, 84)  not replacing
+H__1_233_226 odds = 1/40  (1, 1)  not replacing
+H__3_233_226_233_226 odds = 1/40  (1, 1)  not replacing
+Found Cycle of size 119; Breaking.
+Found Cycle of size 198; Breaking.
+Found Cycle of size 79; Breaking.
+inlined 137 new size =172484
+H__2_233 odds = 1/0.39604 0.851752 (101, 101)  try to replace
+H__2_233: replacing with value 1 bnd= 2 totsize= 6.23832
+Found Cycle of size 71; Breaking.
+inlined 288 new size =648808
+Got too big, trying harder to concretize before=11  after =9
+H__1_233_226 odds = 1/40  (1, 1)  not replacing
+H__3_233_226_233_226 odds = 1/40  (1, 1)  not replacing
+inlined 98 new size =92496
+Found Cycle of size 281; Breaking.
+inlined 178 new size =610208
+Got too big, trying harder to concretize before=11  after =9
+H__3_233_226_233_226 odds = 1/40  (1, 1)  not replacing
+H__1_233_226 odds = 1/40  (1, 1)  not replacing
+inlined 48 new size =3
+inlined 0 new size =3
+END OF STEP 0
+ Inlining functions in the spec.
+inlined 0 new size =0
+END OF STEP 0
+Bailing out
+after Creating Miter: Problem nodes = 3
+* Final Problem size: Problem nodes = 3
+  # OF CONTROLS:    1
+ control_ints = 0 	 control_bits = 1
+inputSize = 0	ctrlSize = 1
+Random seeds = 1
+!+ 0
+!+ H__3_233_226_233_226:0
+
+BEG CHECK
+ * After optims it became = 0 was 3
+Simulation no cex:  0 ms 
+CONTROL: growing l=2 inputs to size 3
+Simulation no cex:  0 ms 
+CONTROL: growing l=2 inputs to size 4
+Simulation no cex:  0 ms 
+CONTROL: growing l=2 inputs to size 5
+Simulation no cex:  0 ms 
+END CHECK
+********  0	ftime= 0	ctime= 0
+ *GOT THE CORRECT ANSWER IN 1 iterations.
+ *FIND TIME 0 CHECK TIME 0 TOTAL TIME 0
+VALUES H__0_233: 1, H__0_233_169: 1, H__0_233_226: 1, H__1_233: 0, H__1_233_169: 0, H__2_233: 1, H__2_233_169: 1, H__2_233_226: 1, H__3_233: 1, H__3_233_226_233_226: 0, 
+RESULT = 2  
+**ROUND 10 : 6.23832 Round time:  7999.6 ms 
+RNDDEG = 40
+return 0
+
+----- Statistics -----
+Total elapsed time (ms):  59999.8
+Model building time (ms): 7000.38
+Solution time (ms):       52999.2
+Max virtual mem (bytes):  0
+Max resident mem (bytes): 0
+Max private mem (bytes):  0
+ALL CORRECT
+[SATBackend] Stats for last run:
+      [solution stats]
+      successful? ---------------------> true
+      elapsed time (s) ----------------> 59.996
+      model building time (s) ---------> 7.0
+      solution time (s) ---------------> 52.999
+      max memory usage (MiB) ----------> 0.0
+      [SAT-specific solution stats]
+      initial number of nodes ---------> -1
+      number of nodes after opts ------> 3
+      number of controls --------------> 1
+      total number of control bits ----> 1
+
+[SATBackend] Solver exit value: 0
+[SATBackend] Not Deleting
+/* BEGIN PACKAGE PrintStream*/
+package PrintStream{
+  struct PrintStream {
+      @Immutable()
+  }
+  struct Printstream extends PrintStream@PrintStream {
+      @Immutable()
+  }
+  struct Printstream_fileoutputstream extends PrintStream@PrintStream {
+      Object fos;
+      @Immutable()
+  }
+  struct Close extends PrintStream@PrintStream {
+      PrintStream self;
+      @Immutable()
+  }
+  struct Closeb extends PrintStream@PrintStream {
+      PrintStream self;
+      @Immutable()
+  }
+  struct Printb_string extends PrintStream@PrintStream {
+      PrintStream self;
+      Object s;
+      @Immutable()
+  }
+  struct Print_string extends PrintStream@PrintStream {
+      PrintStream self;
+      Object s;
+      @Immutable()
+  }
+  /* END PACKAGE PrintStream*/
+}
+/* BEGIN PACKAGE ANONYMOUS*/
+/* END PACKAGE ANONYMOUS*/
+/* BEGIN PACKAGE Tester*/
+package Tester{
+  /*Tester.sk:7*/
+  
+void mn ()/*Tester.sk:7*/
+  {
+    int self_s55 = 0;
+    Object@meta(self_s55);
+    Object@Object self_s57 = null;
+    Object_Object@Object(new Object@Object(__cid=self_s55), self_s57)//{};
+    int f_s59 = 0;
+    File@meta(f_s59);
+    int f_s61 = 0;
+    String@meta(f_s61);
+    Object@Object f_s63 = null;
+    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=23), A={'#','A','\n','a',';','b',';','c',';','d',';','e',';','f',';','g',';','h',';','i',';','j','\0'}), f_s63);
+    Object@Object f_s65 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=f_s61), f_s63, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=22), f_s65)//{};
+    Object@Object f_s67 = null;
+    File_File_String@File(new Object@Object(__cid=f_s59), f_s65, f_s67)//{};
+    int p_s69 = 0;
+    RomlistParser@meta(p_s69);
+    Object@Object p_s71 = null;
+    RomlistParser_RomlistParser@RomlistParser(new Object@Object(__cid=p_s69), p_s71)//{};
+    int games_s73 = 0;
+    RomlistParser@meta(games_s73);
+    Object@Object _pac_sc_s74 = null;
+    if((p_s71.__cid) == (new Object@Object(__cid=-2, _int=games_s73)._int))/*Tester.sk:11*/
+    {
+      Object@Object games_s76 = null;
+      parse_File@RomlistParser(p_s71, f_s67, games_s76);
+      _pac_sc_s74 = games_s76;
+    }
+    else
+    {
+      _pac_sc_s74 = null;
+    }
+    Object@Object g1_s78 = null;
+    xform_get_ArrayList_int@ArrayList(_pac_sc_s74._arraylist, new Object@Object(__cid=-2, _int=0), g1_s78);
+    int name1_s80 = 0;
+    RomlistGame@meta(name1_s80);
+    Object@Object _pac_sc_s81 = null;
+    if((g1_s78.__cid) == (new Object@Object(__cid=-2, _int=name1_s80)._int))/*Tester.sk:14*/
+    {
+      Object@Object name1_s83 = null;
+      getName@RomlistGame(g1_s78, name1_s83);
+      _pac_sc_s81 = name1_s83;
+    }
+    else
+    {
+      _pac_sc_s81 = null;
+    }
+    int title1_s85 = 0;
+    RomlistGame@meta(title1_s85);
+    Object@Object _pac_sc_s86 = null;
+    if((g1_s78.__cid) == (new Object@Object(__cid=-2, _int=title1_s85)._int))/*Tester.sk:15*/
+    {
+      Object@Object title1_s88 = null;
+      getTitle@RomlistGame(g1_s78, title1_s88);
+      _pac_sc_s86 = title1_s88;
+    }
+    else
+    {
+      _pac_sc_s86 = null;
+    }
+    int emul1_s90 = 0;
+    RomlistGame@meta(emul1_s90);
+    Object@Object _pac_sc_s91 = null;
+    if((g1_s78.__cid) == (new Object@Object(__cid=-2, _int=emul1_s90)._int))/*Tester.sk:16*/
+    {
+      Object@Object emul1_s93 = null;
+      getEmulator@RomlistGame(g1_s78, emul1_s93);
+      _pac_sc_s91 = emul1_s93;
+    }
+    else
+    {
+      _pac_sc_s91 = null;
+    }
+    int clone1_s95 = 0;
+    RomlistGame@meta(clone1_s95);
+    Object@Object _pac_sc_s96 = null;
+    if((g1_s78.__cid) == (new Object@Object(__cid=-2, _int=clone1_s95)._int))/*Tester.sk:17*/
+    {
+      Object@Object clone1_s98 = null;
+      getCloneOf@RomlistGame(g1_s78, clone1_s98);
+      _pac_sc_s96 = clone1_s98;
+    }
+    else
+    {
+      _pac_sc_s96 = null;
+    }
+    int year1_s100 = 0;
+    RomlistGame@meta(year1_s100);
+    Object@Object _pac_sc_s101 = null;
+    if((g1_s78.__cid) == (new Object@Object(__cid=-2, _int=year1_s100)._int))/*Tester.sk:18*/
+    {
+      Object@Object year1_s103 = null;
+      getYear@RomlistGame(g1_s78, year1_s103);
+      _pac_sc_s101 = year1_s103;
+    }
+    else
+    {
+      _pac_sc_s101 = null;
+    }
+    int man1_s105 = 0;
+    RomlistGame@meta(man1_s105);
+    Object@Object _pac_sc_s106 = null;
+    if((g1_s78.__cid) == (new Object@Object(__cid=-2, _int=man1_s105)._int))/*Tester.sk:19*/
+    {
+      Object@Object man1_s108 = null;
+      getManufacturer@RomlistGame(g1_s78, man1_s108);
+      _pac_sc_s106 = man1_s108;
+    }
+    else
+    {
+      _pac_sc_s106 = null;
+    }
+    int cat1_s110 = 0;
+    RomlistGame@meta(cat1_s110);
+    Object@Object _pac_sc_s111 = null;
+    if((g1_s78.__cid) == (new Object@Object(__cid=-2, _int=cat1_s110)._int))/*Tester.sk:20*/
+    {
+      Object@Object cat1_s113 = null;
+      getCategory@RomlistGame(g1_s78, cat1_s113);
+      _pac_sc_s111 = cat1_s113;
+    }
+    else
+    {
+      _pac_sc_s111 = null;
+    }
+    int plays1_s115 = 0;
+    RomlistGame@meta(plays1_s115);
+    Object@Object _pac_sc_s116 = null;
+    if((g1_s78.__cid) == (new Object@Object(__cid=-2, _int=plays1_s115)._int))/*Tester.sk:21*/
+    {
+      Object@Object plays1_s118 = null;
+      getPlayers@RomlistGame(g1_s78, plays1_s118);
+      _pac_sc_s116 = plays1_s118;
+    }
+    else
+    {
+      _pac_sc_s116 = null;
+    }
+    int rot1_s120 = 0;
+    RomlistGame@meta(rot1_s120);
+    Object@Object _pac_sc_s121 = null;
+    if((g1_s78.__cid) == (new Object@Object(__cid=-2, _int=rot1_s120)._int))/*Tester.sk:22*/
+    {
+      Object@Object rot1_s123 = null;
+      getRotation@RomlistGame(g1_s78, rot1_s123);
+      _pac_sc_s121 = rot1_s123;
+    }
+    else
+    {
+      _pac_sc_s121 = null;
+    }
+    int cont1_s125 = 0;
+    RomlistGame@meta(cont1_s125);
+    Object@Object _pac_sc_s126 = null;
+    if((g1_s78.__cid) == (new Object@Object(__cid=-2, _int=cont1_s125)._int))/*Tester.sk:23*/
+    {
+      Object@Object cont1_s128 = null;
+      getControl@RomlistGame(g1_s78, cont1_s128);
+      _pac_sc_s126 = cont1_s128;
+    }
+    else
+    {
+      _pac_sc_s126 = null;
+    }
+    int _out_s130 = 0;
+    String@meta(_out_s130);
+    Object@Object _pac_sc_s131 = null;
+    if((_pac_sc_s81.__cid) == (new Object@Object(__cid=-2, _int=_out_s130)._int))/*Tester.sk:24*/
+    {
+      int _out_s133 = 0;
+      String@meta(_out_s133);
+      Object@Object _out_s135 = null;
+      Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=2), A={'a','\0'}), _out_s135);
+      Object@Object _out_s137 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_out_s133), _out_s135, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=1), _out_s137)//{};
+      Object@Object _out_s139 = null;
+      equals_Object@String(_pac_sc_s81, _out_s137, _out_s139)//{};
+      _pac_sc_s131 = _out_s139;
+    }
+    else
+    {
+      _pac_sc_s131 = null;
+    }
+    assert (_pac_sc_s131._bit); //Assert at Tester.sk:24 (0)
+    int _out_s141 = 0;
+    String@meta(_out_s141);
+    Object@Object _pac_sc_s142 = null;
+    if((_pac_sc_s86.__cid) == (new Object@Object(__cid=-2, _int=_out_s141)._int))/*Tester.sk:25*/
+    {
+      int _out_s144 = 0;
+      String@meta(_out_s144);
+      Object@Object _out_s146 = null;
+      Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=2), A={'b','\0'}), _out_s146);
+      Object@Object _out_s148 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_out_s144), _out_s146, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=1), _out_s148)//{};
+      Object@Object _out_s150 = null;
+      equals_Object@String(_pac_sc_s86, _out_s148, _out_s150)//{};
+      _pac_sc_s142 = _out_s150;
+    }
+    else
+    {
+      _pac_sc_s142 = null;
+    }
+    assert (_pac_sc_s142._bit); //Assert at Tester.sk:25 (0)
+    int _out_s152 = 0;
+    String@meta(_out_s152);
+    Object@Object _pac_sc_s153 = null;
+    if((_pac_sc_s91.__cid) == (new Object@Object(__cid=-2, _int=_out_s152)._int))/*Tester.sk:26*/
+    {
+      int _out_s155 = 0;
+      String@meta(_out_s155);
+      Object@Object _out_s157 = null;
+      Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=2), A={'c','\0'}), _out_s157);
+      Object@Object _out_s159 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_out_s155), _out_s157, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=1), _out_s159)//{};
+      Object@Object _out_s161 = null;
+      equals_Object@String(_pac_sc_s91, _out_s159, _out_s161)//{};
+      _pac_sc_s153 = _out_s161;
+    }
+    else
+    {
+      _pac_sc_s153 = null;
+    }
+    assert (_pac_sc_s153._bit); //Assert at Tester.sk:26 (0)
+    int _out_s163 = 0;
+    String@meta(_out_s163);
+    Object@Object _pac_sc_s164 = null;
+    if((_pac_sc_s96.__cid) == (new Object@Object(__cid=-2, _int=_out_s163)._int))/*Tester.sk:27*/
+    {
+      int _out_s166 = 0;
+      String@meta(_out_s166);
+      Object@Object _out_s168 = null;
+      Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=2), A={'d','\0'}), _out_s168);
+      Object@Object _out_s170 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_out_s166), _out_s168, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=1), _out_s170)//{};
+      Object@Object _out_s172 = null;
+      equals_Object@String(_pac_sc_s96, _out_s170, _out_s172)//{};
+      _pac_sc_s164 = _out_s172;
+    }
+    else
+    {
+      _pac_sc_s164 = null;
+    }
+    assert (_pac_sc_s164._bit); //Assert at Tester.sk:27 (0)
+    int _out_s174 = 0;
+    String@meta(_out_s174);
+    Object@Object _pac_sc_s175 = null;
+    if((_pac_sc_s101.__cid) == (new Object@Object(__cid=-2, _int=_out_s174)._int))/*Tester.sk:28*/
+    {
+      int _out_s177 = 0;
+      String@meta(_out_s177);
+      Object@Object _out_s179 = null;
+      Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=2), A={'e','\0'}), _out_s179);
+      Object@Object _out_s181 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_out_s177), _out_s179, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=1), _out_s181)//{};
+      Object@Object _out_s183 = null;
+      equals_Object@String(_pac_sc_s101, _out_s181, _out_s183)//{};
+      _pac_sc_s175 = _out_s183;
+    }
+    else
+    {
+      _pac_sc_s175 = null;
+    }
+    assert (_pac_sc_s175._bit); //Assert at Tester.sk:28 (0)
+    int _out_s185 = 0;
+    String@meta(_out_s185);
+    Object@Object _pac_sc_s186 = null;
+    if((_pac_sc_s106.__cid) == (new Object@Object(__cid=-2, _int=_out_s185)._int))/*Tester.sk:29*/
+    {
+      int _out_s188 = 0;
+      String@meta(_out_s188);
+      Object@Object _out_s190 = null;
+      Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=2), A={'f','\0'}), _out_s190);
+      Object@Object _out_s192 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_out_s188), _out_s190, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=1), _out_s192)//{};
+      Object@Object _out_s194 = null;
+      equals_Object@String(_pac_sc_s106, _out_s192, _out_s194)//{};
+      _pac_sc_s186 = _out_s194;
+    }
+    else
+    {
+      _pac_sc_s186 = null;
+    }
+    assert (_pac_sc_s186._bit); //Assert at Tester.sk:29 (0)
+    int _out_s196 = 0;
+    String@meta(_out_s196);
+    Object@Object _pac_sc_s197 = null;
+    if((_pac_sc_s111.__cid) == (new Object@Object(__cid=-2, _int=_out_s196)._int))/*Tester.sk:30*/
+    {
+      int _out_s199 = 0;
+      String@meta(_out_s199);
+      Object@Object _out_s201 = null;
+      Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=2), A={'g','\0'}), _out_s201);
+      Object@Object _out_s203 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_out_s199), _out_s201, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=1), _out_s203)//{};
+      Object@Object _out_s205 = null;
+      equals_Object@String(_pac_sc_s111, _out_s203, _out_s205)//{};
+      _pac_sc_s197 = _out_s205;
+    }
+    else
+    {
+      _pac_sc_s197 = null;
+    }
+    assert (_pac_sc_s197._bit); //Assert at Tester.sk:30 (0)
+    int _out_s207 = 0;
+    String@meta(_out_s207);
+    Object@Object _pac_sc_s208 = null;
+    if((_pac_sc_s116.__cid) == (new Object@Object(__cid=-2, _int=_out_s207)._int))/*Tester.sk:31*/
+    {
+      int _out_s210 = 0;
+      String@meta(_out_s210);
+      Object@Object _out_s212 = null;
+      Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=2), A={'h','\0'}), _out_s212);
+      Object@Object _out_s214 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_out_s210), _out_s212, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=1), _out_s214)//{};
+      Object@Object _out_s216 = null;
+      equals_Object@String(_pac_sc_s116, _out_s214, _out_s216)//{};
+      _pac_sc_s208 = _out_s216;
+    }
+    else
+    {
+      _pac_sc_s208 = null;
+    }
+    assert (_pac_sc_s208._bit); //Assert at Tester.sk:31 (0)
+    int _out_s218 = 0;
+    String@meta(_out_s218);
+    Object@Object _pac_sc_s219 = null;
+    if((_pac_sc_s121.__cid) == (new Object@Object(__cid=-2, _int=_out_s218)._int))/*Tester.sk:32*/
+    {
+      int _out_s221 = 0;
+      String@meta(_out_s221);
+      Object@Object _out_s223 = null;
+      Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=2), A={'i','\0'}), _out_s223);
+      Object@Object _out_s225 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_out_s221), _out_s223, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=1), _out_s225)//{};
+      Object@Object _out_s227 = null;
+      equals_Object@String(_pac_sc_s121, _out_s225, _out_s227)//{};
+      _pac_sc_s219 = _out_s227;
+    }
+    else
+    {
+      _pac_sc_s219 = null;
+    }
+    assert (_pac_sc_s219._bit); //Assert at Tester.sk:32 (0)
+    int _out_s229 = 0;
+    String@meta(_out_s229);
+    Object@Object _pac_sc_s230 = null;
+    if((_pac_sc_s126.__cid) == (new Object@Object(__cid=-2, _int=_out_s229)._int))/*Tester.sk:33*/
+    {
+      int _out_s232 = 0;
+      String@meta(_out_s232);
+      Object@Object _out_s234 = null;
+      Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=2), A={'j','\0'}), _out_s234);
+      Object@Object _out_s236 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_out_s232), _out_s234, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=1), _out_s236)//{};
+      Object@Object _out_s238 = null;
+      equals_Object@String(_pac_sc_s126, _out_s236, _out_s238)//{};
+      _pac_sc_s230 = _out_s238;
+    }
+    else
+    {
+      _pac_sc_s230 = null;
+    }
+    assert (_pac_sc_s230._bit); //Assert at Tester.sk:33 (0)
+  }
+  /*Tester.sk:7*/
+  
+void mn__Wrapper ()  implements mn__WrapperNospec/*Tester.sk:7*/
+  {
+    mn();
+  }
+  /*Tester.sk:7*/
+  
+void mn__WrapperNospec ()/*Tester.sk:7*/
+  { }
+  /* END PACKAGE Tester*/
+}
+/* BEGIN PACKAGE StringBuilder*/
+package StringBuilder{
+  /* END PACKAGE StringBuilder*/
+}
+/* BEGIN PACKAGE Character*/
+package Character{
+  /* END PACKAGE Character*/
+}
+/* BEGIN PACKAGE ArrayList*/
+package ArrayList{
+  struct ArrayList {
+      @Immutable()
+  }
+  struct Arraylist extends ArrayList@ArrayList {
+      @Immutable()
+  }
+  struct Add_object extends ArrayList@ArrayList {
+      ArrayList self;
+      Object e;
+      @Immutable()
+  }
+  struct Addb_object extends ArrayList@ArrayList {
+      ArrayList self;
+      Object e;
+      @Immutable()
+  }
+  struct Get_int extends ArrayList@ArrayList {
+      ArrayList self;
+      Object i;
+      @Immutable()
+  }
+  struct Setb_int_object extends ArrayList@ArrayList {
+      ArrayList self;
+      Object i;
+      Object e;
+      @Immutable()
+  }
+  struct Set_int_object extends ArrayList@ArrayList {
+      ArrayList self;
+      Object i;
+      Object e;
+      @Immutable()
+  }
+  struct Ensurecapacity extends ArrayList@ArrayList {
+      ArrayList self;
+      @Immutable()
+  }
+  struct Size extends ArrayList@ArrayList {
+      ArrayList self;
+      @Immutable()
+  }
+  /*ArrayList.sk:14*/
+  
+void ArrayList_ArrayList (ref Object _out)/*ArrayList.sk:14*/
+  {
+    int _out_s288 = 0;
+    ArrayList@meta(_out_s288);
+    _out = new Object@Object(__cid=_out_s288, _arraylist=new Arraylist());
+    return;
+  }
+  /*ArrayList.sk:18*/
+  
+void add_Object_Object (Object self, Object e, ref Object _out)/*ArrayList.sk:18*/
+  {
+    int _out_s286 = 0;
+    ArrayList@meta(_out_s286);
+    _out = new Object@Object(__cid=_out_s286, _arraylist=new Add_object(self=self._arraylist, e=e));
+    return;
+  }
+  /*ArrayList.sk:22*/
+  
+void addb_Object_Object (Object self, Object e, ref Object _out)/*ArrayList.sk:22*/
+  {
+    int _out_s284 = 0;
+    ArrayList@meta(_out_s284);
+    _out = new Object@Object(__cid=_out_s284, _arraylist=new Addb_object(self=self._arraylist, e=e));
+    return;
+  }
+  /*ArrayList.sk:76*/
+  
+void xform_get_ArrayList_int (ArrayList self, Object i, ref Object _out)/*ArrayList.sk:76*/
+  {
+    switch(self){/*ArrayList.sk:77*/
+      case Arraylist:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:77 ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:78 Assert at ArrayList.sk:78 (1)
+      case Add_object:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:77 ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:79 Assert at ArrayList.sk:79 (1)
+      case Addb_object:
+      {
+        Object@Object sz_s272 = null;
+        xform_size_ArrayList(self.self, sz_s272);
+        Object@Object _pac_sc_s273 = null;
+        if((sz_s272._int) == (i._int))/*ArrayList.sk:82*/
+        {
+          _pac_sc_s273 = self.e;
+        }
+        else
+        {
+          Object@Object _out_s275 = null;
+          xform_get_ArrayList_int(self.self, i, _out_s275);
+          _pac_sc_s273 = _out_s275;
+        }
+        _out = _pac_sc_s273;
+        return;
+      }
+      case Get_int:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:77 ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:84 Assert at ArrayList.sk:84 (1)
+      case Setb_int_object:
+      {
+        Object@Object _pac_sc_s276 = null;
+        if((i._int) == (self.i._int))/*ArrayList.sk:86*/
+        {
+          _pac_sc_s276 = self.e;
+        }
+        else
+        {
+          Object@Object _out_s278 = null;
+          xform_get_ArrayList_int(self.self, i, _out_s278);
+          _pac_sc_s276 = _out_s278;
+        }
+        _out = _pac_sc_s276;
+        return;
+      }
+      case Set_int_object:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:77 ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:88 Assert at ArrayList.sk:88 (1)
+      case Ensurecapacity:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:77 ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:89 Assert at ArrayList.sk:89 (1)
+      case Size:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:77 ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:90 Assert at ArrayList.sk:90 (1)
+    }
+    _out = null;
+    return;
+  }
+  /*ArrayList.sk:123*/
+  
+void xform_size_ArrayList (ArrayList self, ref Object _out)/*ArrayList.sk:123*/
+  {
+    switch(self){/*ArrayList.sk:124*/
+      case Arraylist:
+      {
+        _out = new Object@Object(__cid=-2, _int=0);
+        return;
+      }
+      case Add_object:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:124 ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:128 Assert at ArrayList.sk:128 (1)
+      case Addb_object:
+      {
+        Object@Object _out_s280 = null;
+        xform_size_ArrayList(self.self, _out_s280);
+        _out = new Object@Object(__cid=-2, _int=(_out_s280._int) + (new Object@Object(__cid=-2, _int=1)._int));
+        return;
+      }
+      case Get_int:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:124 ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:132 Assert at ArrayList.sk:132 (1)
+      case Setb_int_object:
+      {
+        Object@Object _out_s282 = null;
+        xform_size_ArrayList(self.self, _out_s282);
+        _out = _out_s282;
+        return;
+      }
+      case Set_int_object:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:124 ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:136 Assert at ArrayList.sk:136 (1)
+      case Ensurecapacity:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:124 ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:137 Assert at ArrayList.sk:137 (1)
+      case Size:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:124 ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:138 Assert at ArrayList.sk:138 (1)
+    }
+    _out = null;
+    return;
+  }
+  /* END PACKAGE ArrayList*/
+}
+/* BEGIN PACKAGE CharSequence*/
+package CharSequence{
+  /* END PACKAGE CharSequence*/
+}
+/* BEGIN PACKAGE RomlistGame*/
+package RomlistGame{
+  /*RomlistGame.sk:3*/
+  
+void RomlistGame_RomlistGame (Object self, ref Object _out)/*RomlistGame.sk:3*/
+  {
+    _out = self;
+    return;
+  }
+  /*RomlistGame.sk:55*/
+  
+void getCategory (Object self, ref Object _out)/*RomlistGame.sk:55*/
+  {
+    _out = self.category_RomlistGame;
+    return;
+  }
+  /*RomlistGame.sk:31*/
+  
+void getCloneOf (Object self, ref Object _out)/*RomlistGame.sk:31*/
+  {
+    _out = self.cloneOf_RomlistGame;
+    return;
+  }
+  /*RomlistGame.sk:79*/
+  
+void getControl (Object self, ref Object _out)/*RomlistGame.sk:79*/
+  {
+    _out = self.control_RomlistGame;
+    return;
+  }
+  /*RomlistGame.sk:23*/
+  
+void getEmulator (Object self, ref Object _out)/*RomlistGame.sk:23*/
+  {
+    _out = self.emulator_RomlistGame;
+    return;
+  }
+  /*RomlistGame.sk:47*/
+  
+void getManufacturer (Object self, ref Object _out)/*RomlistGame.sk:47*/
+  {
+    _out = self.manufacturer_RomlistGame;
+    return;
+  }
+  /*RomlistGame.sk:7*/
+  
+void getName (Object self, ref Object _out)/*RomlistGame.sk:7*/
+  {
+    _out = self.name_RomlistGame;
+    return;
+  }
+  /*RomlistGame.sk:63*/
+  
+void getPlayers (Object self, ref Object _out)/*RomlistGame.sk:63*/
+  {
+    _out = self.players_RomlistGame;
+    return;
+  }
+  /*RomlistGame.sk:71*/
+  
+void getRotation (Object self, ref Object _out)/*RomlistGame.sk:71*/
+  {
+    _out = self.rotation_RomlistGame;
+    return;
+  }
+  /*RomlistGame.sk:15*/
+  
+void getTitle (Object self, ref Object _out)/*RomlistGame.sk:15*/
+  {
+    _out = self.title_RomlistGame;
+    return;
+  }
+  /*RomlistGame.sk:39*/
+  
+void getYear (Object self, ref Object _out)/*RomlistGame.sk:39*/
+  {
+    _out = self.year_RomlistGame;
+    return;
+  }
+  /*RomlistGame.sk:115*/
+  
+void setAltRomname_String (Object self, Object altRomname)/*RomlistGame.sk:115*/
+  {
+    self.altRomname_RomlistGame = altRomname;
+  }
+  /*RomlistGame.sk:123*/
+  
+void setAltTitle_String (Object self, Object altTitle)/*RomlistGame.sk:123*/
+  {
+    self.altTitle_RomlistGame = altTitle;
+  }
+  /*RomlistGame.sk:147*/
+  
+void setAvailable_boolean (Object self, Object isAvailable)/*RomlistGame.sk:147*/
+  {
+    self.isAvailable_RomlistGame = isAvailable;
+  }
+  /*RomlistGame.sk:139*/
+  
+void setButtons_String (Object self, Object buttons)/*RomlistGame.sk:139*/
+  {
+    self.buttons_RomlistGame = buttons;
+  }
+  /*RomlistGame.sk:59*/
+  
+void setCategory_String (Object self, Object category)/*RomlistGame.sk:59*/
+  {
+    self.category_RomlistGame = category;
+  }
+  /*RomlistGame.sk:35*/
+  
+void setCloneOf_String (Object self, Object cloneOf)/*RomlistGame.sk:35*/
+  {
+    self.cloneOf_RomlistGame = cloneOf;
+  }
+  /*RomlistGame.sk:83*/
+  
+void setControl_String (Object self, Object control)/*RomlistGame.sk:83*/
+  {
+    self.control_RomlistGame = control;
+  }
+  /*RomlistGame.sk:99*/
+  
+void setDisplayCount_String (Object self, Object displayCount)/*RomlistGame.sk:99*/
+  {
+    self.displayCount_RomlistGame = displayCount;
+  }
+  /*RomlistGame.sk:107*/
+  
+void setDisplayType_String (Object self, Object displayType)/*RomlistGame.sk:107*/
+  {
+    self.displayType_RomlistGame = displayType;
+  }
+  /*RomlistGame.sk:27*/
+  
+void setEmulator_String (Object self, Object emulator)/*RomlistGame.sk:27*/
+  {
+    self.emulator_RomlistGame = emulator;
+  }
+  /*RomlistGame.sk:131*/
+  
+void setExtra_String (Object self, Object extra)/*RomlistGame.sk:131*/
+  {
+    self.extra_RomlistGame = extra;
+  }
+  /*RomlistGame.sk:51*/
+  
+void setManufacturer_String (Object self, Object manufacturer)/*RomlistGame.sk:51*/
+  {
+    self.manufacturer_RomlistGame = manufacturer;
+  }
+  /*RomlistGame.sk:11*/
+  
+void setName_String (Object self, Object name)/*RomlistGame.sk:11*/
+  {
+    self.name_RomlistGame = name;
+  }
+  /*RomlistGame.sk:67*/
+  
+void setPlayers_String (Object self, Object players)/*RomlistGame.sk:67*/
+  {
+    self.players_RomlistGame = players;
+  }
+  /*RomlistGame.sk:179*/
+  
+void setRomlist_String (Object self, Object romlist)/*RomlistGame.sk:179*/
+  {
+    self.romlist_RomlistGame = romlist;
+  }
+  /*RomlistGame.sk:75*/
+  
+void setRotation_String (Object self, Object rotation)/*RomlistGame.sk:75*/
+  {
+    self.rotation_RomlistGame = rotation;
+  }
+  /*RomlistGame.sk:91*/
+  
+void setStatus_String (Object self, Object status)/*RomlistGame.sk:91*/
+  {
+    self.status_RomlistGame = status;
+  }
+  /*RomlistGame.sk:19*/
+  
+void setTitle_String (Object self, Object title)/*RomlistGame.sk:19*/
+  {
+    self.title_RomlistGame = title;
+  }
+  /*RomlistGame.sk:43*/
+  
+void setYear_String (Object self, Object year)/*RomlistGame.sk:43*/
+  {
+    self.year_RomlistGame = year;
+  }
+  /* END PACKAGE RomlistGame*/
+}
+/* BEGIN PACKAGE String*/
+package String{
+  /*String.sk:7*/
+  
+void String_String_char_int_int (Object self, Object ca, Object offset, Object count, ref Object _out)/*String.sk:7*/
+  {
+    if(((offset._int) > (new Object@Object(__cid=-2, _int=0)._int)) && ((offset._int) < (ca._array_char.length._int)))/*String.sk:8*/
+    {
+      Object@Object tmp_s316 = null;
+      Wrap_Array_char@array(new Array_char@array(length=count), tmp_s316);
+      Object@Object i;
+      i = new Object@Object(__cid=-2, _int=0);
+      bit __sa3 = (i._int) < (count._int);
+      while(__sa3)
+      {
+        tmp_s316._array_char.A[i._int] = ca._array_char.A[(i._int) + (offset._int)];
+        i = new Object@Object(__cid=-2, _int=(i._int) + 1);
+        __sa3 = (i._int) < (count._int);
+      }
+      self._value_String = tmp_s316;
+    }
+    else
+    {
+      self._value_String = ca;
+    }
+    self._count_String = count;
+    _out = self;
+    return;
+  }
+  /*String.sk:43*/
+  
+void charAt_int (Object self, Object index, ref Object _out)/*String.sk:43*/
+  {
+    if(((new Object@Object(__cid=-2, _int=0)._int) <= (index._int)) && ((index._int) < (self._count_String._int)))/*String.sk:44*/
+    {
+      _out = new Object@Object(__cid=-3, _char=self._value_String._array_char.A[index._int]);
+      return;
+    }
+    _out = new Object@Object(__cid=-3, _char='\0');
+    return;
+  }
+  /*String.sk:133*/
+  
+void concat_String (Object self, Object str, ref Object _out)/*String.sk:133*/
+  {
+    int otherLen_s389 = 0;
+    String@meta(otherLen_s389);
+    Object@Object _pac_sc_s390 = null;
+    if((str.__cid) == (new Object@Object(__cid=-2, _int=otherLen_s389)._int))/*String.sk:134*/
+    {
+      Object@Object otherLen_s392 = null;
+      length@String(str, otherLen_s392);
+      _pac_sc_s390 = otherLen_s392;
+    }
+    else
+    {
+      _pac_sc_s390 = null;
+    }
+    if((_pac_sc_s390._int) == (new Object@Object(__cid=-2, _int=0)._int))/*String.sk:135*/
+    {
+      _out = self;
+      return;
+    }
+    int thisLen_s394 = 0;
+    String@meta(thisLen_s394);
+    Object@Object _pac_sc_s395 = null;
+    if((self.__cid) == (new Object@Object(__cid=-2, _int=thisLen_s394)._int))/*String.sk:138*/
+    {
+      Object@Object thisLen_s397 = null;
+      length@String(self, thisLen_s397);
+      _pac_sc_s395 = thisLen_s397;
+    }
+    else
+    {
+      _pac_sc_s395 = null;
+    }
+    int totalLen_s399 = 0;
+    String@meta(totalLen_s399);
+    Object@Object _pac_sc_s400 = null;
+    if((self.__cid) == (new Object@Object(__cid=-2, _int=totalLen_s399)._int))/*String.sk:139*/
+    {
+      Object@Object totalLen_s402 = null;
+      length@String(self, totalLen_s402);
+      _pac_sc_s400 = totalLen_s402;
+    }
+    else
+    {
+      _pac_sc_s400 = null;
+    }
+    Object@Object totalLen = new Object@Object(__cid=-2, _int=(_pac_sc_s400._int) + (_pac_sc_s390._int));
+    Object@Object ret_s404 = null;
+    Wrap_Array_char@array(new Array_char@array(length=totalLen), ret_s404);
+    Object@Object i;
+    i = new Object@Object(__cid=-2, _int=0);
+    bit __sa9 = (i._int) < (_pac_sc_s395._int);
+    while(__sa9)
+    {
+      int _out_s406 = 0;
+      String@meta(_out_s406);
+      Object@Object _pac_sc_s407 = null;
+      if((self.__cid) == (new Object@Object(__cid=-2, _int=_out_s406)._int))/*String.sk:142*/
+      {
+        Object@Object _out_s409 = null;
+        charAt_int@String(self, i, _out_s409);
+        _pac_sc_s407 = _out_s409;
+      }
+      else
+      {
+        _pac_sc_s407 = null;
+      }
+      ret_s404._array_char.A[i._int] = _pac_sc_s407._char;
+      i = new Object@Object(__cid=-2, _int=(i._int) + 1);
+      __sa9 = (i._int) < (_pac_sc_s395._int);
+    }
+    Object@Object i_0 = _pac_sc_s395;
+    bit __sa10 = (_pac_sc_s395._int) < (totalLen._int);
+    while(__sa10)
+    {
+      int _out_s411 = 0;
+      String@meta(_out_s411);
+      Object@Object _pac_sc_s412 = null;
+      if((str.__cid) == (new Object@Object(__cid=-2, _int=_out_s411)._int))/*String.sk:145*/
+      {
+        Object@Object _out_s414 = null;
+        charAt_int@String(str, new Object@Object(__cid=-2, _int=(i_0._int) - (_pac_sc_s395._int)), _out_s414);
+        _pac_sc_s412 = _out_s414;
+      }
+      else
+      {
+        _pac_sc_s412 = null;
+      }
+      ret_s404._array_char.A[i_0._int] = _pac_sc_s412._char;
+      i_0 = new Object@Object(__cid=-2, _int=(i_0._int) + 1);
+      __sa10 = (i_0._int) < (totalLen._int);
+    }
+    int _out_s416 = 0;
+    String@meta(_out_s416);
+    Object@Object _out_s418 = null;
+    String_String_char_int_int(new Object@Object(__cid=_out_s416), ret_s404, new Object@Object(__cid=-2, _int=0), totalLen, _out_s418)//{};
+    _out = _out_s418;
+    return;
+  }
+  /*String.sk:154*/
+  
+void equals_Object (Object self, Object obj, ref Object _out)/*String.sk:154*/
+  {
+    _out = new Object@Object(__cid=-4, _bit=0);
+    int _out_s318 = 0;
+    String@meta(_out_s318);
+    if((obj.__cid) == _out_s318)/*String.sk:156*/
+    {
+      _out = new Object@Object(__cid=-4, _bit=1);
+      int sLen_s320 = 0;
+      String@meta(sLen_s320);
+      Object@Object _pac_sc_s321 = null;
+      if((obj.__cid) == (new Object@Object(__cid=-2, _int=sLen_s320)._int))/*String.sk:159*/
+      {
+        Object@Object sLen_s323 = null;
+        length@String(obj, sLen_s323);
+        _pac_sc_s321 = sLen_s323;
+      }
+      else
+      {
+        _pac_sc_s321 = null;
+      }
+      int tLen_s325 = 0;
+      String@meta(tLen_s325);
+      Object@Object _pac_sc_s326 = null;
+      if((self.__cid) == (new Object@Object(__cid=-2, _int=tLen_s325)._int))/*String.sk:160*/
+      {
+        Object@Object tLen_s328 = null;
+        length@String(self, tLen_s328);
+        _pac_sc_s326 = tLen_s328;
+      }
+      else
+      {
+        _pac_sc_s326 = null;
+      }
+      if((_pac_sc_s321._int) != (_pac_sc_s326._int))/*String.sk:161*/
+      {
+        _out = new Object@Object(__cid=-4, _bit=0);
+      }
+      Object@Object i;
+      i = new Object@Object(__cid=-2, _int=0);
+      bit __sa11 = ((i._int) < (_pac_sc_s321._int)) && ((_out._bit) == (new Object@Object(__cid=-4, _bit=1)._bit));
+      while(__sa11)
+      {
+        if((obj._value_String._array_char.A[i._int]) != (self._value_String._array_char.A[i._int]))/*String.sk:163*/
+        {
+          _out = new Object@Object(__cid=-4, _bit=0);
+        }
+        i = new Object@Object(__cid=-2, _int=(i._int) + 1);
+        __sa11 = ((i._int) < (_pac_sc_s321._int)) && ((_out._bit) == (new Object@Object(__cid=-4, _bit=1)._bit));
+      }
+    }
+    return;
+  }
+  /*String.sk:94*/
+  
+void indexOf_char_int (Object self, Object c, Object i, ref Object _out)/*String.sk:94*/
+  {
+    int len_s379 = 0;
+    String@meta(len_s379);
+    Object@Object _pac_sc_s380 = null;
+    if((self.__cid) == (new Object@Object(__cid=-2, _int=len_s379)._int))/*String.sk:95*/
+    {
+      Object@Object len_s382 = null;
+      length@String(self, len_s382);
+      _pac_sc_s380 = len_s382;
+    }
+    else
+    {
+      _pac_sc_s380 = null;
+    }
+    Object@Object index = new Object@Object(__cid=-2, _int=-(new Object@Object(__cid=-2, _int=1)._int));
+    if(((i._int) >= (_pac_sc_s380._int)) || ((i._int) < (new Object@Object(__cid=-2, _int=0)._int)))/*String.sk:97*/
+    {
+      _out = index;
+      return;
+    }
+    Object@Object j = i;
+    bit __sa7 = (i._int) < (_pac_sc_s380._int);
+    while(__sa7)
+    {
+      int _out_s384 = 0;
+      String@meta(_out_s384);
+      Object@Object _pac_sc_s385 = null;
+      if((self.__cid) == (new Object@Object(__cid=-2, _int=_out_s384)._int))/*String.sk:101*/
+      {
+        Object@Object _out_s387 = null;
+        charAt_int@String(self, j, _out_s387);
+        _pac_sc_s385 = _out_s387;
+      }
+      else
+      {
+        _pac_sc_s385 = null;
+      }
+      if((_pac_sc_s385._char) == (c._char))/*String.sk:101*/
+      {
+        _out = j;
+        return;
+      }
+      j = new Object@Object(__cid=-2, _int=(j._int) + 1);
+      __sa7 = (j._int) < (_pac_sc_s380._int);
+    }
+    _out = index;
+    return;
+  }
+  /*String.sk:48*/
+  
+void length (Object self, ref Object _out)/*String.sk:48*/
+  {
+    _out = self._count_String;
+    return;
+  }
+  /*String.sk:245*/
+  
+void split_String (Object self, Object regex, ref Object _out)/*String.sk:245*/
+  {
+    Object@Object _out_s330 = null;
+    split_String_int@String(self, regex, new Object@Object(__cid=-2, _int=0), _out_s330);
+    _out = _out_s330;
+    return;
+  }
+  /*String.sk:249*/
+  
+void split_String_int (Object self, Object regex, Object limit, ref Object _out)/*String.sk:249*/
+  {
+    Object@Object off = new Object@Object(__cid=-2, _int=0);
+    int ch_s332 = 0;
+    String@meta(ch_s332);
+    Object@Object _pac_sc_s333 = null;
+    if((regex.__cid) == (new Object@Object(__cid=-2, _int=ch_s332)._int))/*String.sk:251*/
+    {
+      Object@Object ch_s335 = null;
+      charAt_int@String(regex, new Object@Object(__cid=-2, _int=0), ch_s335);
+      _pac_sc_s333 = ch_s335;
+    }
+    else
+    {
+      _pac_sc_s333 = null;
+    }
+    Object@Object next_s337 = null;
+    indexOf_char_int@String(self, _pac_sc_s333, off, next_s337);
+    Object@Object next;
+    next = next_s337;
+    Object@Object limited = new Object@Object(__cid=-2, _int=(limit._int) > (new Object@Object(__cid=-2, _int=0)._int));
+    Object@Object size = new Object@Object(__cid=-2, _int=0);
+    bit __sa18 = (next_s337._int) != (-(new Object@Object(__cid=-2, _int=1)._int));
+    while(__sa18)
+    {
+      if((!(limited._bit)) || ((size._int) < ((limit._int) - (new Object@Object(__cid=-2, _int=1)._int))))/*String.sk:256*/
+      {
+        off = new Object@Object(__cid=-2, _int=(next._int) + (new Object@Object(__cid=-2, _int=1)._int));
+        Object@Object next_s339 = null;
+        indexOf_char_int@String(self, _pac_sc_s333, off, next_s339);
+        next = next_s339;
+      }
+      else
+      {
+        next = new Object@Object(__cid=-2, _int=-(new Object@Object(__cid=-2, _int=1)._int));
+      }
+      size = new Object@Object(__cid=-2, _int=(size._int) + 1);
+      __sa18 = (next._int) != (-(new Object@Object(__cid=-2, _int=1)._int));
+    }
+    if((!(limited._bit)) || ((size._int) < (limit._int)))/*String.sk:266*/
+    {
+      size = new Object@Object(__cid=-2, _int=(size._int) + 1);
+    }
+    off = new Object@Object(__cid=-2, _int=0);
+    int ch_s341 = 0;
+    String@meta(ch_s341);
+    Object@Object _pac_sc_s342 = null;
+    if((regex.__cid) == (new Object@Object(__cid=-2, _int=ch_s341)._int))/*String.sk:268*/
+    {
+      Object@Object ch_s344 = null;
+      charAt_int@String(regex, new Object@Object(__cid=-2, _int=0), ch_s344);
+      _pac_sc_s342 = ch_s344;
+    }
+    else
+    {
+      _pac_sc_s342 = null;
+    }
+    Object@Object next_s346 = null;
+    indexOf_char_int@String(self, _pac_sc_s342, off, next_s346);
+    next = next_s346;
+    limited = new Object@Object(__cid=-2, _int=(limit._int) > (new Object@Object(__cid=-2, _int=0)._int));
+    Object@Object list_s348 = null;
+    Wrap_Array_Object@array(new Array_Object@array(length=size), list_s348);
+    size = new Object@Object(__cid=-2, _int=0);
+    bit __sa19 = (next_s346._int) != (-(new Object@Object(__cid=-2, _int=1)._int));
+    while(__sa19)
+    {
+      if((!(limited._bit)) || ((size._int) < ((limit._int) - (new Object@Object(__cid=-2, _int=1)._int))))/*String.sk:274*/
+      {
+        Object@Object _out_s350 = null;
+        substring_int_int@String(self, off, next, _out_s350);
+        list_s348._array_object.A[size._int] = _out_s350;
+        off = new Object@Object(__cid=-2, _int=(next._int) + (new Object@Object(__cid=-2, _int=1)._int));
+        Object@Object next_s352 = null;
+        indexOf_char_int@String(self, _pac_sc_s342, off, next_s352);
+        next = next_s352;
+      }
+      else
+      {
+        Object@Object _out_s354 = null;
+        substring_int_int@String(self, off, self._count_String, _out_s354);
+        list_s348._array_object.A[size._int] = _out_s354;
+        off = self._value_String._array_char.length;
+        next = new Object@Object(__cid=-2, _int=-(new Object@Object(__cid=-2, _int=1)._int));
+      }
+      size = new Object@Object(__cid=-2, _int=(size._int) + 1);
+      __sa19 = (next._int) != (-(new Object@Object(__cid=-2, _int=1)._int));
+    }
+    if((off._int) == (new Object@Object(__cid=-2, _int=0)._int))/*String.sk:286*/
+    {
+      Object@Object res_s356 = null;
+      Wrap_Array_Object@array(new Array_Object@array(length=new Object@Object(__cid=-2, _int=1)), res_s356);
+      res_s356._array_object.A[0] = self;
+      _out = res_s356;
+      return;
+    }
+    if((!(limited._bit)) || ((size._int) < (limit._int)))/*String.sk:290*/
+    {
+      Object@Object _out_s358 = null;
+      substring_int_int@String(self, off, self._count_String, _out_s358);
+      list_s348._array_object.A[size._int] = _out_s358;
+    }
+    Object@Object resultSize = list_s348._array_object.length;
+    if((limit._int) == (new Object@Object(__cid=-2, _int=0)._int))/*String.sk:295*/
+    {
+      Object@Object tmp = list_s348._array_object.A[(resultSize._int) - (new Object@Object(__cid=-2, _int=1)._int)];
+      bit _pac_sc_s359 = (resultSize._int) > (new Object@Object(__cid=-2, _int=0)._int);
+      if(_pac_sc_s359)/*String.sk:297*/
+      {
+        int _pac_sc_s359_s361 = 0;
+        String@meta(_pac_sc_s359_s361);
+        Object@Object _pac_sc_s362 = null;
+        if((tmp.__cid) == (new Object@Object(__cid=-2, _int=_pac_sc_s359_s361)._int))/*String.sk:297*/
+        {
+          Object@Object _pac_sc_s359_s364 = null;
+          length@String(tmp, _pac_sc_s359_s364);
+          _pac_sc_s362 = _pac_sc_s359_s364;
+        }
+        else
+        {
+          _pac_sc_s362 = null;
+        }
+        _pac_sc_s359 = (_pac_sc_s362._int) == (new Object@Object(__cid=-2, _int=0)._int);
+      }
+      bit __sa20 = _pac_sc_s359;
+      while(__sa20)
+      {
+        resultSize = new Object@Object(__cid=-2, _int=(resultSize._int) - 1);
+        bit _pac_sc_s365 = (resultSize._int) > (new Object@Object(__cid=-2, _int=0)._int);
+        if(_pac_sc_s365)/*String.sk:297*/
+        {
+          int _pac_sc_s365_s367 = 0;
+          String@meta(_pac_sc_s365_s367);
+          Object@Object _pac_sc_s368 = null;
+          if((tmp.__cid) == (new Object@Object(__cid=-2, _int=_pac_sc_s365_s367)._int))/*String.sk:297*/
+          {
+            Object@Object _pac_sc_s365_s370 = null;
+            length@String(tmp, _pac_sc_s365_s370);
+            _pac_sc_s368 = _pac_sc_s365_s370;
+          }
+          else
+          {
+            _pac_sc_s368 = null;
+          }
+          _pac_sc_s365 = (_pac_sc_s368._int) == (new Object@Object(__cid=-2, _int=0)._int);
+        }
+        __sa20 = _pac_sc_s365;
+      }
+    }
+    Object@Object result_s372 = null;
+    Wrap_Array_Object@array(new Array_Object@array(length=resultSize), result_s372);
+    Object@Object i;
+    i = new Object@Object(__cid=-2, _int=0);
+    bit __sa21 = (i._int) < (resultSize._int);
+    while(__sa21)
+    {
+      result_s372._array_object.A[i._int] = list_s348._array_object.A[i._int];
+      i = new Object@Object(__cid=-2, _int=(i._int) + 1);
+      __sa21 = (i._int) < (resultSize._int);
+    }
+    _out = result_s372;
+    return;
+  }
+  /*String.sk:32*/
+  
+void startsWith_String (Object self, Object suffix, ref Object _out)/*String.sk:32*/
+  {
+    int len_s420 = 0;
+    String@meta(len_s420);
+    Object@Object _pac_sc_s421 = null;
+    if((suffix.__cid) == (new Object@Object(__cid=-2, _int=len_s420)._int))/*String.sk:33*/
+    {
+      Object@Object len_s423 = null;
+      length@String(suffix, len_s423);
+      _pac_sc_s421 = len_s423;
+    }
+    else
+    {
+      _pac_sc_s421 = null;
+    }
+    int _out_s425 = 0;
+    String@meta(_out_s425);
+    Object@Object _pac_sc_s426 = null;
+    if((self.__cid) == (new Object@Object(__cid=-2, _int=_out_s425)._int))/*String.sk:34*/
+    {
+      Object@Object _out_s428 = null;
+      length@String(self, _out_s428);
+      _pac_sc_s426 = _out_s428;
+    }
+    else
+    {
+      _pac_sc_s426 = null;
+    }
+    if((_pac_sc_s421._int) > (_pac_sc_s426._int))/*String.sk:34*/
+    {
+      _out = new Object@Object(__cid=-4, _bit=0);
+      return;
+    }
+    Object@Object i;
+    i = new Object@Object(__cid=-2, _int=0);
+    bit __sa5 = (i._int) < (_pac_sc_s421._int);
+    while(__sa5)
+    {
+      int _out_s430 = 0;
+      String@meta(_out_s430);
+      Object@Object _pac_sc_s431 = null;
+      if((self.__cid) == (new Object@Object(__cid=-2, _int=_out_s430)._int))/*String.sk:36*/
+      {
+        Object@Object _out_s433 = null;
+        charAt_int@String(self, i, _out_s433);
+        _pac_sc_s431 = _out_s433;
+      }
+      else
+      {
+        _pac_sc_s431 = null;
+      }
+      int _out_s435 = 0;
+      String@meta(_out_s435);
+      Object@Object _pac_sc_s436 = null;
+      if((suffix.__cid) == (new Object@Object(__cid=-2, _int=_out_s435)._int))/*String.sk:36*/
+      {
+        Object@Object _out_s438 = null;
+        charAt_int@String(suffix, i, _out_s438);
+        _pac_sc_s436 = _out_s438;
+      }
+      else
+      {
+        _pac_sc_s436 = null;
+      }
+      if((_pac_sc_s431._char) != (_pac_sc_s436._char))/*String.sk:36*/
+      {
+        _out = new Object@Object(__cid=-4, _bit=0);
+        return;
+      }
+      i = new Object@Object(__cid=-2, _int=(i._int) + 1);
+      __sa5 = (i._int) < (_pac_sc_s421._int);
+    }
+    _out = new Object@Object(__cid=-4, _bit=1);
+    return;
+  }
+  /*String.sk:233*/
+  
+void substring_int_int (Object self, Object beginIndex, Object endIndex, ref Object _out)/*String.sk:233*/
+  {
+    assert (((beginIndex._int) >= (new Object@Object(__cid=-2, _int=0)._int)) && ((endIndex._int) <= (self._value_String._array_char.length._int))); //Assert at String.sk:234 (0)
+    Object@Object subLen = new Object@Object(__cid=-2, _int=(endIndex._int) - (beginIndex._int));
+    assert ((subLen._int) > (new Object@Object(__cid=-2, _int=0)._int)); //Assert at String.sk:236 (0)
+    Object@Object _pac_sc_s373 = null;
+    if(((beginIndex._int) == (new Object@Object(__cid=-2, _int=0)._int)) && ((endIndex._int) == (self._count_String._int)))/*String.sk:237*/
+    {
+      _pac_sc_s373 = self;
+    }
+    else
+    {
+      int _out_s375 = 0;
+      String@meta(_out_s375);
+      Object@Object _out_s377 = null;
+      String_String_char_int_int(new Object@Object(__cid=_out_s375), self._value_String, beginIndex, subLen, _out_s377)//{};
+      _pac_sc_s373 = _out_s377;
+    }
+    _out = _pac_sc_s373;
+    return;
+  }
+  /* END PACKAGE String*/
+}
+/* BEGIN PACKAGE FileReaderr*/
+package FileReaderr{
+  /* END PACKAGE FileReaderr*/
+}
+/* BEGIN PACKAGE Integer*/
+package Integer{
+  /* END PACKAGE Integer*/
+}
+/* BEGIN PACKAGE StringBuffer*/
+package StringBuffer{
+  /* END PACKAGE StringBuffer*/
+}
+/* BEGIN PACKAGE Number*/
+package Number{
+  /* END PACKAGE Number*/
+}
+/* BEGIN PACKAGE array*/
+package array{
+  struct Array_bit {
+      Object length;
+      bit[length._int] A;
+  }
+  struct Array_char {
+      Object length;
+      char[length._int] A;
+  }
+  struct Array_int {
+      Object length;
+      int[length._int] A;
+  }
+  struct Array_float {
+      Object length;
+      float[length._int] A;
+  }
+  struct Array_double {
+      Object length;
+      double[length._int] A;
+  }
+  struct Array_Object {
+      Object length;
+      Object[length._int] A;
+  }
+  /*array.sk:53*/
+  
+void Wrap_Array_Object (Array_Object arr, ref Object _out)/*array.sk:53*/
+  {
+    int _out_s630 = 0;
+    Array@meta(_out_s630);
+    _out = new Object@Object(__cid=_out_s630, _array_object=arr);
+    return;
+  }
+  /*array.sk:37*/
+  
+void Wrap_Array_char (Array_char arr, ref Object _out)/*array.sk:37*/
+  {
+    int _out_s628 = 0;
+    Array@meta(_out_s628);
+    _out = new Object@Object(__cid=_out_s628, _array_char=arr);
+    return;
+  }
+  /* END PACKAGE array*/
+}
+/* BEGIN PACKAGE meta*/
+package meta{
+  /*meta.sk:22*/
+  
+void Array (ref int _out)/*meta.sk:22*/
+  {
+    _out = -1;
+    return;
+  }
+  /*meta.sk:4*/
+  
+void ArrayList (ref int _out)/*meta.sk:4*/
+  {
+    _out = 6;
+    return;
+  }
+  /*meta.sk:6*/
+  
+void BufferedReader (ref int _out)/*meta.sk:6*/
+  {
+    _out = 7;
+    return;
+  }
+  /*meta.sk:9*/
+  
+void File (ref int _out)/*meta.sk:9*/
+  {
+    _out = 5;
+    return;
+  }
+  /*meta.sk:14*/
+  
+void Object (ref int _out)/*meta.sk:14*/
+  {
+    _out = 1;
+    return;
+  }
+  /*meta.sk:16*/
+  
+void RomlistGame (ref int _out)/*meta.sk:16*/
+  {
+    _out = 3;
+    return;
+  }
+  /*meta.sk:17*/
+  
+void RomlistParser (ref int _out)/*meta.sk:17*/
+  {
+    _out = 4;
+    return;
+  }
+  /*meta.sk:18*/
+  
+void String (ref int _out)/*meta.sk:18*/
+  {
+    _out = 10;
+    return;
+  }
+  /* END PACKAGE meta*/
+}
+/* BEGIN PACKAGE FileOutputStream*/
+package FileOutputStream{
+  struct FileOutputStream {
+      @Immutable()
+  }
+  struct Fileoutputstream extends FileOutputStream@FileOutputStream {
+      @Immutable()
+  }
+  struct Fileoutputstream_string extends FileOutputStream@FileOutputStream {
+      Object s;
+      @Immutable()
+  }
+  /* END PACKAGE FileOutputStream*/
+}
+/* BEGIN PACKAGE BufferedReader*/
+package BufferedReader{
+  struct BufferedReader {
+      @Immutable()
+  }
+  struct Bufferedreader extends BufferedReader@BufferedReader {
+      @Immutable()
+  }
+  struct Bufferedreader_file extends BufferedReader@BufferedReader {
+      Object type;
+      @Immutable()
+  }
+  struct Readline extends BufferedReader@BufferedReader {
+      BufferedReader self;
+      @Immutable()
+  }
+  struct Readlineb extends BufferedReader@BufferedReader {
+      BufferedReader self;
+      @Immutable()
+  }
+  struct Readlinehelpb_int extends BufferedReader@BufferedReader {
+      BufferedReader self;
+      Object i;
+      @Immutable()
+  }
+  struct Readlinehelp_int extends BufferedReader@BufferedReader {
+      BufferedReader self;
+      Object i;
+      @Immutable()
+  }
+  /*BufferedReader.sk:16*/
+  
+void BufferedReader_Object_File (Object type, ref Object _out)/*BufferedReader.sk:16*/
+  {
+    int _out_s664 = 0;
+    BufferedReader@meta(_out_s664);
+    _out = new Object@Object(__cid=_out_s664, _bufferedreader=new Bufferedreader_file(type=type));
+    return;
+  }
+  /*BufferedReader.sk:24*/
+  
+void readLineb_Object (Object self, ref Object _out)/*BufferedReader.sk:24*/
+  {
+    int _out_s648 = 0;
+    BufferedReader@meta(_out_s648);
+    _out = new Object@Object(__cid=_out_s648, _bufferedreader=new Readlineb(self=self._bufferedreader));
+    return;
+  }
+  /*BufferedReader.sk:60*/
+  
+void xform_readLineHelp_BufferedReader_int (BufferedReader self, Object i, ref Object _out)/*BufferedReader.sk:60*/
+  {
+    switch(self){/*BufferedReader.sk:61*/
+      case Bufferedreader:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:61 ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:62 Assert at BufferedReader.sk:62 (1)
+      case Bufferedreader_file:
+      {
+        int _out_s657 = 0;
+        File@meta(_out_s657);
+        Object@Object _pac_sc_s658 = null;
+        if((self.type.__cid) == (new Object@Object(__cid=-2, _int=_out_s657)._int))/*BufferedReader.sk:64*/
+        {
+          Object@Object _out_s660 = null;
+          get_int@File(self.type, i, _out_s660);
+          _pac_sc_s658 = _out_s660;
+        }
+        else
+        {
+          _pac_sc_s658 = null;
+        }
+        _out = _pac_sc_s658;
+        return;
+      }
+      case Readline:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:61 ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:66 Assert at BufferedReader.sk:66 (1)
+      case Readlineb:
+      {
+        Object@Object _out_s662 = null;
+        xform_readLineHelp_BufferedReader_int(self.self, new Object@Object(__cid=-2, _int=(i._int) + (new Object@Object(__cid=-2, _int=1)._int)), _out_s662);
+        _out = _out_s662;
+        return;
+      }
+      case Readlinehelpb_int:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:61 ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:70 Assert at BufferedReader.sk:70 (1)
+      case Readlinehelp_int:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:61 ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:71 Assert at BufferedReader.sk:71 (1)
+    }
+    _out = null;
+    return;
+  }
+  /*BufferedReader.sk:124*/
+  
+void xform_readLine_BufferedReader (BufferedReader self, ref Object _out)/*BufferedReader.sk:124*/
+  {
+    switch(self){/*BufferedReader.sk:125*/
+      case Bufferedreader:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:125 ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:126 Assert at BufferedReader.sk:126 (1)
+      case Bufferedreader_file:
+      {
+        int _out_s650 = 0;
+        File@meta(_out_s650);
+        Object@Object _pac_sc_s651 = null;
+        if((self.type.__cid) == (new Object@Object(__cid=-2, _int=_out_s650)._int))/*BufferedReader.sk:128*/
+        {
+          Object@Object _out_s653 = null;
+          get_int@File(self.type, new Object@Object(__cid=-2, _int=0), _out_s653);
+          _pac_sc_s651 = _out_s653;
+        }
+        else
+        {
+          _pac_sc_s651 = null;
+        }
+        _out = _pac_sc_s651;
+        return;
+      }
+      case Readline:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:125 ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:130 Assert at BufferedReader.sk:130 (1)
+      case Readlineb:
+      {
+        Object@Object _out_s655 = null;
+        xform_readLineHelp_BufferedReader_int(self.self, new Object@Object(__cid=-2, _int=1), _out_s655);
+        _out = _out_s655;
+        return;
+      }
+      case Readlinehelpb_int:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:125 ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:134 Assert at BufferedReader.sk:134 (1)
+      case Readlinehelp_int:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:125 ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:135 Assert at BufferedReader.sk:135 (1)
+    }
+    _out = null;
+    return;
+  }
+  /* END PACKAGE BufferedReader*/
+}
+/* BEGIN PACKAGE Object*/
+package Object{
+  struct Object {
+      int __cid;
+      Object bool_Boolean;
+      Object _value_String;
+      Object _count_String;
+      Object name_RomlistGame;
+      Object title_RomlistGame;
+      Object emulator_RomlistGame;
+      Object cloneOf_RomlistGame;
+      Object year_RomlistGame;
+      Object manufacturer_RomlistGame;
+      Object category_RomlistGame;
+      Object players_RomlistGame;
+      Object rotation_RomlistGame;
+      Object control_RomlistGame;
+      Object status_RomlistGame;
+      Object displayCount_RomlistGame;
+      Object displayType_RomlistGame;
+      Object altRomname_RomlistGame;
+      Object altTitle_RomlistGame;
+      Object extra_RomlistGame;
+      Object buttons_RomlistGame;
+      Object isAvailable_RomlistGame;
+      Object hasWheel_RomlistGame;
+      Object hasVideo_RomlistGame;
+      Object hasSnap_RomlistGame;
+      Object hasBox_RomlistGame;
+      Object hasCart_RomlistGame;
+      Object hasDatabase_RomlistGame;
+      Object complete_RomlistGame;
+      Object romlist_RomlistGame;
+      Object fileName_RomlistGame;
+      Object wheelFileName_RomlistGame;
+      Object boxFileName_RomlistGame;
+      Object cartFileName_RomlistGame;
+      Object snapFileName_RomlistGame;
+      Object description_RomlistGame;
+      Object rating_RomlistGame;
+      Object releaseDate_RomlistGame;
+      Object developer_RomlistGame;
+      Object publisher_RomlistGame;
+      Object genre_RomlistGame;
+      Object pi3Status_RomlistGame;
+      Object pcStatus_RomlistGame;
+      Object size_RomlistGame;
+      Object totalGames_RomlistParser;
+      Object totalGamesAvailable_RomlistParser;
+      Object missingWheel_RomlistParser;
+      Object missingVideo_RomlistParser;
+      Object missingCart_RomlistParser;
+      Object missingBox_RomlistParser;
+      Object missingGames_RomlistParser;
+      Object games_RomlistParser;
+      Object complete_RomlistParser;
+      Object description_RomlistParser;
+      Object romPath_RomlistParser;
+      Object value_Character;
+      Object path_FileReaderr;
+      Object data_FileReaderr;
+      Object _value_StringBuffer;
+      Object _count_StringBuffer;
+      Object _value_StringBuilder;
+      Object _count_StringBuilder;
+      Object value_Integer;
+      Object path_File;
+      Object data_File;
+      FileOutputStream _fileoutputstream;
+      PrintStream _printstream;
+      BufferedReader _bufferedreader;
+      ArrayList _arraylist;
+      Array_bit _array_bit;
+      Array_char _array_char;
+      Array_int _array_int;
+      Array_float _array_float;
+      Array_double _array_double;
+      Array_Object _array_object;
+      bit _bit;
+      char _char;
+      int _int;
+      float _float;
+      double _double;
+  }
+  /*Object.sk:7*/
+  
+void Object_Object (Object self, ref Object _out)/*Object.sk:7*/
+  {
+    _out = self;
+    return;
+  }
+  /* END PACKAGE Object*/
+}
+/* BEGIN PACKAGE RomlistParser*/
+package RomlistParser{
+  /*RomlistParser.sk:3*/
+  
+void RomlistParser_RomlistParser (Object self, ref Object _out)/*RomlistParser.sk:3*/
+  {
+    self.totalGames_RomlistParser = new Object@Object(__cid=-2, _int=0);
+    self.totalGamesAvailable_RomlistParser = new Object@Object(__cid=-2, _int=0);
+    self.missingWheel_RomlistParser = new Object@Object(__cid=-2, _int=0);
+    self.missingVideo_RomlistParser = new Object@Object(__cid=-2, _int=0);
+    self.missingCart_RomlistParser = new Object@Object(__cid=-2, _int=0);
+    self.missingBox_RomlistParser = new Object@Object(__cid=-2, _int=0);
+    Object@Object _out_s992 = null;
+    ArrayList_ArrayList@ArrayList(_out_s992);
+    self.missingGames_RomlistParser = _out_s992;
+    Object@Object _out_s994 = null;
+    ArrayList_ArrayList@ArrayList(_out_s994);
+    self.games_RomlistParser = _out_s994;
+    self.complete_RomlistParser = new Object@Object(__cid=-4, _bit=0);
+    int _out_s996 = 0;
+    String@meta(_out_s996);
+    Object@Object _out_s998 = null;
+    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=1), A={'\0'}), _out_s998);
+    Object@Object _out_s1000 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=_out_s996), _out_s998, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=0), _out_s1000)//{};
+    self.description_RomlistParser = _out_s1000;
+    int _out_s1002 = 0;
+    String@meta(_out_s1002);
+    Object@Object _out_s1004 = null;
+    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=1), A={'\0'}), _out_s1004);
+    Object@Object _out_s1006 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=_out_s1002), _out_s1004, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=0), _out_s1006)//{};
+    self.romPath_RomlistParser = _out_s1006;
+    _out = self;
+    return;
+  }
+  /*RomlistParser.sk:18*/
+  
+void parse_File (Object self, Object romlistFile, ref Object _out)/*RomlistParser.sk:18*/
+  {
+    Object@Object _out_s857 = null;
+    parse_File_String@RomlistParser(self, romlistFile, null, _out_s857);
+    _out = _out_s857;
+    return;
+  }
+  /*RomlistParser.sk:22*/
+  
+void parse_File_String (Object self, Object romlistFile, Object folderToSearch, ref Object _out)/*RomlistParser.sk:22*/
+  {
+    Object@Object _out_s859 = null;
+    parse_File_String_boolean@RomlistParser(self, romlistFile, folderToSearch, new Object@Object(__cid=-4, _bit=1), _out_s859);
+    _out = _out_s859;
+    return;
+  }
+  /*RomlistParser.sk:186*/
+  
+void parse_File_String_boolean (Object self, Object romlistFile, Object folderToSearch, Object lookAvailable, ref Object _out)/*RomlistParser.sk:186*/
+  {
+    int _out_s861 = 0;
+    File@meta(_out_s861);
+    Object@Object _pac_sc_s862 = null;
+    if((romlistFile.__cid) == (new Object@Object(__cid=-2, _int=_out_s861)._int))/*RomlistParser.sk:187*/
+    {
+      Object@Object _out_s864 = null;
+      exists@File(romlistFile, _out_s864);
+      _pac_sc_s862 = _out_s864;
+    }
+    else
+    {
+      _pac_sc_s862 = null;
+    }
+    if(!(_pac_sc_s862._bit))/*RomlistParser.sk:187*/
+    {
+      Object@Object _out_s866 = null;
+      ArrayList_ArrayList@ArrayList(_out_s866);
+      _out = _out_s866;
+      return;
+    }
+    Object@Object _out_s868 = null;
+    ArrayList_ArrayList@ArrayList(_out_s868);
+    self.games_RomlistParser = _out_s868;
+    Object@Object _out_s870 = null;
+    ArrayList_ArrayList@ArrayList(_out_s870);
+    self.missingGames_RomlistParser = _out_s870;
+    Object@Object gamesAvailable = new Object@Object(__cid=-2, _int=0);
+    self.complete_RomlistParser = new Object@Object(__cid=-4, _bit=1);
+    Object@Object br_s872 = null;
+    BufferedReader_Object_File@BufferedReader(romlistFile, br_s872);
+    Object@Object br = br_s872;
+    Object@Object line = null;
+    if(new Object@Object(__cid=-4, _bit=1)._bit)/*RomlistParser.sk:29*/
+    {
+      Object@Object line_s906 = null;
+      xform_readLine_BufferedReader@BufferedReader(br_s872._bufferedreader, line_s906);
+      line = line_s906;
+      int br_s908 = 0;
+      BufferedReader@meta(br_s908);
+      Object@Object _pac_sc_s909 = null;
+      if((br_s872.__cid) == (new Object@Object(__cid=-2, _int=br_s908)._int))/*RomlistParser.sk:32*/
+      {
+        Object@Object br_s911 = null;
+        readLineb_Object@BufferedReader(br_s872, br_s911);
+        _pac_sc_s909 = br_s911;
+      }
+      else
+      {
+        _pac_sc_s909 = null;
+      }
+      br = _pac_sc_s909;
+    }
+    if(new Object@Object(__cid=-4, _bit=0)._bit)/*RomlistParser.sk:34*/
+    {
+      while((line != (null)) && 1)
+      {
+        Object@Object line_0 = null;
+        if(new Object@Object(__cid=-4, _bit=1)._bit)/*RomlistParser.sk:29*/
+        {
+          Object@Object line_s906_0 = null;
+          xform_readLine_BufferedReader@BufferedReader(br._bufferedreader, line_s906_0);
+          line_0 = line_s906_0;
+          int br_s908_0 = 0;
+          BufferedReader@meta(br_s908_0);
+          if((br.__cid) == (new Object@Object(__cid=-2, _int=br_s908_0)._int))/*RomlistParser.sk:32*/
+          {
+            Object@Object br_s911_0 = null;
+            readLineb_Object@BufferedReader(br, br_s911_0);
+          }
+        }
+        if(new Object@Object(__cid=-4, _bit=1)._bit)/*RomlistParser.sk:39*/
+        {
+          int _out_s913 = 0;
+          String@meta(_out_s913);
+          Object@Object _pac_sc_s914 = null;
+          if((line_0.__cid) == (new Object@Object(__cid=-2, _int=_out_s913)._int))/*RomlistParser.sk:40*/
+          {
+            int _out_s916 = 0;
+            String@meta(_out_s916);
+            Object@Object _out_s918 = null;
+            Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=2), A={'#','\0'}), _out_s918);
+            Object@Object _out_s920 = null;
+            String_String_char_int_int@String(new Object@Object(__cid=_out_s916), _out_s918, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=1), _out_s920)//{};
+            Object@Object _out_s922 = null;
+            startsWith_String@String(line_0, _out_s920, _out_s922)//{};
+            _pac_sc_s914 = _out_s922;
+          }
+          else
+          {
+            _pac_sc_s914 = null;
+          }
+          if(!(_pac_sc_s914._bit))/*RomlistParser.sk:40*/
+          {
+            int data_s924 = 0;
+            String@meta(data_s924);
+            Object@Object _pac_sc_s925 = null;
+            if((line_0.__cid) == (new Object@Object(__cid=-2, _int=data_s924)._int))/*RomlistParser.sk:41*/
+            {
+              int data_s927 = 0;
+              String@meta(data_s927);
+              Object@Object data_s929 = null;
+              Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=2), A={';','\0'}), data_s929);
+              Object@Object data_s931 = null;
+              String_String_char_int_int@String(new Object@Object(__cid=data_s927), data_s929, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=1), data_s931)//{};
+              Object@Object data_s933 = null;
+              split_String_int@String(line_0, data_s931, new Object@Object(__cid=-2, _int=-(new Object@Object(__cid=-2, _int=1)._int)), data_s933)//{};
+              _pac_sc_s925 = data_s933;
+            }
+            else
+            {
+              _pac_sc_s925 = null;
+            }
+            if((_pac_sc_s925._array_object.length._int) >= (new Object@Object(__cid=-2, _int=10)._int))/*RomlistParser.sk:42*/
+            {
+              int game_s935 = 0;
+              RomlistGame@meta(game_s935);
+              Object@Object game_s937 = null;
+              RomlistGame_RomlistGame@RomlistGame(new Object@Object(__cid=game_s935), game_s937)//{};
+              int _out_s939 = 0;
+              RomlistGame@meta(_out_s939);
+              if((game_s937.__cid) == (new Object@Object(__cid=-2, _int=_out_s939)._int))/*RomlistParser.sk:45*/
+              {
+                int _out_s941 = 0;
+                File@meta(_out_s941);
+                Object@Object _pac_sc_s942 = null;
+                if((romlistFile.__cid) == (new Object@Object(__cid=-2, _int=_out_s941)._int))/*RomlistParser.sk:45*/
+                {
+                  Object@Object _out_s944 = null;
+                  getName@File(romlistFile, _out_s944);
+                  _pac_sc_s942 = _out_s944;
+                }
+                else
+                {
+                  _pac_sc_s942 = null;
+                }
+                setRomlist_String@RomlistGame(game_s937, _pac_sc_s942)//{};
+              }
+              int _out_s946 = 0;
+              RomlistGame@meta(_out_s946);
+              if((game_s937.__cid) == (new Object@Object(__cid=-2, _int=_out_s946)._int))/*RomlistParser.sk:47*/
+              {
+                setName_String@RomlistGame(game_s937, _pac_sc_s925._array_object.A[new Object@Object(__cid=-2, _int=0)._int]);
+              }
+              int _out_s948 = 0;
+              RomlistGame@meta(_out_s948);
+              if((game_s937.__cid) == (new Object@Object(__cid=-2, _int=_out_s948)._int))/*RomlistParser.sk:49*/
+              {
+                setTitle_String@RomlistGame(game_s937, _pac_sc_s925._array_object.A[new Object@Object(__cid=-2, _int=1)._int]);
+              }
+              int _out_s950 = 0;
+              RomlistGame@meta(_out_s950);
+              if((game_s937.__cid) == (new Object@Object(__cid=-2, _int=_out_s950)._int))/*RomlistParser.sk:51*/
+              {
+                setEmulator_String@RomlistGame(game_s937, _pac_sc_s925._array_object.A[new Object@Object(__cid=-2, _int=2)._int]);
+              }
+              int _out_s952 = 0;
+              RomlistGame@meta(_out_s952);
+              if((game_s937.__cid) == (new Object@Object(__cid=-2, _int=_out_s952)._int))/*RomlistParser.sk:53*/
+              {
+                setCloneOf_String@RomlistGame(game_s937, _pac_sc_s925._array_object.A[new Object@Object(__cid=-2, _int=3)._int]);
+              }
+              int _out_s954 = 0;
+              RomlistGame@meta(_out_s954);
+              if((game_s937.__cid) == (new Object@Object(__cid=-2, _int=_out_s954)._int))/*RomlistParser.sk:55*/
+              {
+                setYear_String@RomlistGame(game_s937, _pac_sc_s925._array_object.A[new Object@Object(__cid=-2, _int=4)._int]);
+              }
+              int _out_s956 = 0;
+              RomlistGame@meta(_out_s956);
+              if((game_s937.__cid) == (new Object@Object(__cid=-2, _int=_out_s956)._int))/*RomlistParser.sk:57*/
+              {
+                setManufacturer_String@RomlistGame(game_s937, _pac_sc_s925._array_object.A[new Object@Object(__cid=-2, _int=5)._int]);
+              }
+              int _out_s958 = 0;
+              RomlistGame@meta(_out_s958);
+              if((game_s937.__cid) == (new Object@Object(__cid=-2, _int=_out_s958)._int))/*RomlistParser.sk:59*/
+              {
+                setCategory_String@RomlistGame(game_s937, _pac_sc_s925._array_object.A[new Object@Object(__cid=-2, _int=6)._int]);
+              }
+              int _out_s960 = 0;
+              RomlistGame@meta(_out_s960);
+              if((game_s937.__cid) == (new Object@Object(__cid=-2, _int=_out_s960)._int))/*RomlistParser.sk:61*/
+              {
+                setPlayers_String@RomlistGame(game_s937, _pac_sc_s925._array_object.A[new Object@Object(__cid=-2, _int=7)._int]);
+              }
+              int _out_s962 = 0;
+              RomlistGame@meta(_out_s962);
+              if((game_s937.__cid) == (new Object@Object(__cid=-2, _int=_out_s962)._int))/*RomlistParser.sk:63*/
+              {
+                setRotation_String@RomlistGame(game_s937, _pac_sc_s925._array_object.A[new Object@Object(__cid=-2, _int=8)._int]);
+              }
+              int _out_s964 = 0;
+              RomlistGame@meta(_out_s964);
+              if((game_s937.__cid) == (new Object@Object(__cid=-2, _int=_out_s964)._int))/*RomlistParser.sk:65*/
+              {
+                setControl_String@RomlistGame(game_s937, _pac_sc_s925._array_object.A[new Object@Object(__cid=-2, _int=9)._int]);
+              }
+              if((_pac_sc_s925._array_object.length._int) > (new Object@Object(__cid=-2, _int=10)._int))/*RomlistParser.sk:67*/
+              {
+                int _out_s966 = 0;
+                RomlistGame@meta(_out_s966);
+                if((game_s937.__cid) == (new Object@Object(__cid=-2, _int=_out_s966)._int))/*RomlistParser.sk:68*/
+                {
+                  setStatus_String@RomlistGame(game_s937, _pac_sc_s925._array_object.A[new Object@Object(__cid=-2, _int=10)._int]);
+                }
+              }
+              if((_pac_sc_s925._array_object.length._int) > (new Object@Object(__cid=-2, _int=11)._int))/*RomlistParser.sk:71*/
+              {
+                int _out_s968 = 0;
+                RomlistGame@meta(_out_s968);
+                if((game_s937.__cid) == (new Object@Object(__cid=-2, _int=_out_s968)._int))/*RomlistParser.sk:72*/
+                {
+                  setDisplayCount_String@RomlistGame(game_s937, _pac_sc_s925._array_object.A[new Object@Object(__cid=-2, _int=11)._int]);
+                }
+              }
+              if((_pac_sc_s925._array_object.length._int) > (new Object@Object(__cid=-2, _int=12)._int))/*RomlistParser.sk:75*/
+              {
+                int _out_s970 = 0;
+                RomlistGame@meta(_out_s970);
+                if((game_s937.__cid) == (new Object@Object(__cid=-2, _int=_out_s970)._int))/*RomlistParser.sk:76*/
+                {
+                  setDisplayType_String@RomlistGame(game_s937, _pac_sc_s925._array_object.A[new Object@Object(__cid=-2, _int=12)._int]);
+                }
+              }
+              if((_pac_sc_s925._array_object.length._int) > (new Object@Object(__cid=-2, _int=13)._int))/*RomlistParser.sk:79*/
+              {
+                int _out_s972 = 0;
+                RomlistGame@meta(_out_s972);
+                if((game_s937.__cid) == (new Object@Object(__cid=-2, _int=_out_s972)._int))/*RomlistParser.sk:80*/
+                {
+                  setAltRomname_String@RomlistGame(game_s937, _pac_sc_s925._array_object.A[new Object@Object(__cid=-2, _int=13)._int]);
+                }
+              }
+              if((_pac_sc_s925._array_object.length._int) > (new Object@Object(__cid=-2, _int=14)._int))/*RomlistParser.sk:83*/
+              {
+                int _out_s974 = 0;
+                RomlistGame@meta(_out_s974);
+                if((game_s937.__cid) == (new Object@Object(__cid=-2, _int=_out_s974)._int))/*RomlistParser.sk:84*/
+                {
+                  setAltTitle_String@RomlistGame(game_s937, _pac_sc_s925._array_object.A[new Object@Object(__cid=-2, _int=14)._int]);
+                }
+              }
+              if((_pac_sc_s925._array_object.length._int) > (new Object@Object(__cid=-2, _int=15)._int))/*RomlistParser.sk:87*/
+              {
+                int _out_s976 = 0;
+                RomlistGame@meta(_out_s976);
+                if((game_s937.__cid) == (new Object@Object(__cid=-2, _int=_out_s976)._int))/*RomlistParser.sk:88*/
+                {
+                  setExtra_String@RomlistGame(game_s937, _pac_sc_s925._array_object.A[new Object@Object(__cid=-2, _int=15)._int]);
+                }
+              }
+              if((_pac_sc_s925._array_object.length._int) > (new Object@Object(__cid=-2, _int=16)._int))/*RomlistParser.sk:91*/
+              {
+                int _out_s978 = 0;
+                RomlistGame@meta(_out_s978);
+                if((game_s937.__cid) == (new Object@Object(__cid=-2, _int=_out_s978)._int))/*RomlistParser.sk:92*/
+                {
+                  setButtons_String@RomlistGame(game_s937, _pac_sc_s925._array_object.A[new Object@Object(__cid=-2, _int=16)._int]);
+                }
+              }
+              int _out_s980 = 0;
+              RomlistGame@meta(_out_s980);
+              if((game_s937.__cid) == (new Object@Object(__cid=-2, _int=_out_s980)._int))/*RomlistParser.sk:95*/
+              {
+                setAvailable_boolean@RomlistGame(game_s937, new Object@Object(__cid=-4, _bit=0));
+              }
+              int _out_s982 = 0;
+              ArrayList@meta(_out_s982);
+              if((self.games_RomlistParser.__cid) == (new Object@Object(__cid=-2, _int=_out_s982)._int))/*RomlistParser.sk:97*/
+              {
+                Object@Object _out_s985 = null;
+                add_Object_Object@ArrayList(self.games_RomlistParser, game_s937, _out_s985);
+              }
+              int _out_s987 = 0;
+              ArrayList@meta(_out_s987);
+              Object@Object _pac_sc_s988 = null;
+              if((self.games_RomlistParser.__cid) == (new Object@Object(__cid=-2, _int=_out_s987)._int))/*RomlistParser.sk:97*/
+              {
+                Object@Object _out_s990 = null;
+                addb_Object_Object@ArrayList(self.games_RomlistParser, game_s937, _out_s990);
+                _pac_sc_s988 = _out_s990;
+              }
+              else
+              {
+                _pac_sc_s988 = null;
+              }
+              self.games_RomlistParser = _pac_sc_s988;
+            }
+          }
+        }
+        assert (!(new Object@Object(__cid=-4, _bit=0)._bit)); //ASSERTION CAN NOT BE SATISFIED: RomlistParser.sk:102 Function genRead_BufferedReader_File@RomlistParser was not inlined enough. Increase inlining with --inlineamnt flag.
+      }
+    }
+    if(new Object@Object(__cid=-4, _bit=1)._bit)/*RomlistParser.sk:39*/
+    {
+      int _out_s913_0 = 0;
+      String@meta(_out_s913_0);
+      Object@Object _pac_sc_s914_0 = null;
+      if((line.__cid) == (new Object@Object(__cid=-2, _int=_out_s913_0)._int))/*RomlistParser.sk:40*/
+      {
+        int _out_s916_0 = 0;
+        String@meta(_out_s916_0);
+        Object@Object _out_s918_0 = null;
+        Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=2), A={'#','\0'}), _out_s918_0);
+        Object@Object _out_s920_0 = null;
+        String_String_char_int_int@String(new Object@Object(__cid=_out_s916_0), _out_s918_0, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=1), _out_s920_0)//{};
+        Object@Object _out_s922_0 = null;
+        startsWith_String@String(line, _out_s920_0, _out_s922_0)//{};
+        _pac_sc_s914_0 = _out_s922_0;
+      }
+      else
+      {
+        _pac_sc_s914_0 = null;
+      }
+      if(!(_pac_sc_s914_0._bit))/*RomlistParser.sk:40*/
+      {
+        int data_s924_0 = 0;
+        String@meta(data_s924_0);
+        Object@Object _pac_sc_s925_0 = null;
+        if((line.__cid) == (new Object@Object(__cid=-2, _int=data_s924_0)._int))/*RomlistParser.sk:41*/
+        {
+          int data_s927_0 = 0;
+          String@meta(data_s927_0);
+          Object@Object data_s929_0 = null;
+          Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=2), A={';','\0'}), data_s929_0);
+          Object@Object data_s931_0 = null;
+          String_String_char_int_int@String(new Object@Object(__cid=data_s927_0), data_s929_0, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=1), data_s931_0)//{};
+          Object@Object data_s933_0 = null;
+          split_String_int@String(line, data_s931_0, new Object@Object(__cid=-2, _int=-(new Object@Object(__cid=-2, _int=1)._int)), data_s933_0)//{};
+          _pac_sc_s925_0 = data_s933_0;
+        }
+        else
+        {
+          _pac_sc_s925_0 = null;
+        }
+        if((_pac_sc_s925_0._array_object.length._int) >= (new Object@Object(__cid=-2, _int=10)._int))/*RomlistParser.sk:42*/
+        {
+          int game_s935_0 = 0;
+          RomlistGame@meta(game_s935_0);
+          Object@Object game_s937_0 = null;
+          RomlistGame_RomlistGame@RomlistGame(new Object@Object(__cid=game_s935_0), game_s937_0)//{};
+          int _out_s939_0 = 0;
+          RomlistGame@meta(_out_s939_0);
+          if((game_s937_0.__cid) == (new Object@Object(__cid=-2, _int=_out_s939_0)._int))/*RomlistParser.sk:45*/
+          {
+            int _out_s941_0 = 0;
+            File@meta(_out_s941_0);
+            Object@Object _pac_sc_s942_0 = null;
+            if((romlistFile.__cid) == (new Object@Object(__cid=-2, _int=_out_s941_0)._int))/*RomlistParser.sk:45*/
+            {
+              Object@Object _out_s944_0 = null;
+              getName@File(romlistFile, _out_s944_0);
+              _pac_sc_s942_0 = _out_s944_0;
+            }
+            else
+            {
+              _pac_sc_s942_0 = null;
+            }
+            setRomlist_String@RomlistGame(game_s937_0, _pac_sc_s942_0)//{};
+          }
+          int _out_s946_0 = 0;
+          RomlistGame@meta(_out_s946_0);
+          if((game_s937_0.__cid) == (new Object@Object(__cid=-2, _int=_out_s946_0)._int))/*RomlistParser.sk:47*/
+          {
+            setName_String@RomlistGame(game_s937_0, _pac_sc_s925_0._array_object.A[new Object@Object(__cid=-2, _int=0)._int]);
+          }
+          int _out_s948_0 = 0;
+          RomlistGame@meta(_out_s948_0);
+          if((game_s937_0.__cid) == (new Object@Object(__cid=-2, _int=_out_s948_0)._int))/*RomlistParser.sk:49*/
+          {
+            setTitle_String@RomlistGame(game_s937_0, _pac_sc_s925_0._array_object.A[new Object@Object(__cid=-2, _int=1)._int]);
+          }
+          int _out_s950_0 = 0;
+          RomlistGame@meta(_out_s950_0);
+          if((game_s937_0.__cid) == (new Object@Object(__cid=-2, _int=_out_s950_0)._int))/*RomlistParser.sk:51*/
+          {
+            setEmulator_String@RomlistGame(game_s937_0, _pac_sc_s925_0._array_object.A[new Object@Object(__cid=-2, _int=2)._int]);
+          }
+          int _out_s952_0 = 0;
+          RomlistGame@meta(_out_s952_0);
+          if((game_s937_0.__cid) == (new Object@Object(__cid=-2, _int=_out_s952_0)._int))/*RomlistParser.sk:53*/
+          {
+            setCloneOf_String@RomlistGame(game_s937_0, _pac_sc_s925_0._array_object.A[new Object@Object(__cid=-2, _int=3)._int]);
+          }
+          int _out_s954_0 = 0;
+          RomlistGame@meta(_out_s954_0);
+          if((game_s937_0.__cid) == (new Object@Object(__cid=-2, _int=_out_s954_0)._int))/*RomlistParser.sk:55*/
+          {
+            setYear_String@RomlistGame(game_s937_0, _pac_sc_s925_0._array_object.A[new Object@Object(__cid=-2, _int=4)._int]);
+          }
+          int _out_s956_0 = 0;
+          RomlistGame@meta(_out_s956_0);
+          if((game_s937_0.__cid) == (new Object@Object(__cid=-2, _int=_out_s956_0)._int))/*RomlistParser.sk:57*/
+          {
+            setManufacturer_String@RomlistGame(game_s937_0, _pac_sc_s925_0._array_object.A[new Object@Object(__cid=-2, _int=5)._int]);
+          }
+          int _out_s958_0 = 0;
+          RomlistGame@meta(_out_s958_0);
+          if((game_s937_0.__cid) == (new Object@Object(__cid=-2, _int=_out_s958_0)._int))/*RomlistParser.sk:59*/
+          {
+            setCategory_String@RomlistGame(game_s937_0, _pac_sc_s925_0._array_object.A[new Object@Object(__cid=-2, _int=6)._int]);
+          }
+          int _out_s960_0 = 0;
+          RomlistGame@meta(_out_s960_0);
+          if((game_s937_0.__cid) == (new Object@Object(__cid=-2, _int=_out_s960_0)._int))/*RomlistParser.sk:61*/
+          {
+            setPlayers_String@RomlistGame(game_s937_0, _pac_sc_s925_0._array_object.A[new Object@Object(__cid=-2, _int=7)._int]);
+          }
+          int _out_s962_0 = 0;
+          RomlistGame@meta(_out_s962_0);
+          if((game_s937_0.__cid) == (new Object@Object(__cid=-2, _int=_out_s962_0)._int))/*RomlistParser.sk:63*/
+          {
+            setRotation_String@RomlistGame(game_s937_0, _pac_sc_s925_0._array_object.A[new Object@Object(__cid=-2, _int=8)._int]);
+          }
+          int _out_s964_0 = 0;
+          RomlistGame@meta(_out_s964_0);
+          if((game_s937_0.__cid) == (new Object@Object(__cid=-2, _int=_out_s964_0)._int))/*RomlistParser.sk:65*/
+          {
+            setControl_String@RomlistGame(game_s937_0, _pac_sc_s925_0._array_object.A[new Object@Object(__cid=-2, _int=9)._int]);
+          }
+          if((_pac_sc_s925_0._array_object.length._int) > (new Object@Object(__cid=-2, _int=10)._int))/*RomlistParser.sk:67*/
+          {
+            int _out_s966_0 = 0;
+            RomlistGame@meta(_out_s966_0);
+            if((game_s937_0.__cid) == (new Object@Object(__cid=-2, _int=_out_s966_0)._int))/*RomlistParser.sk:68*/
+            {
+              setStatus_String@RomlistGame(game_s937_0, _pac_sc_s925_0._array_object.A[new Object@Object(__cid=-2, _int=10)._int]);
+            }
+          }
+          if((_pac_sc_s925_0._array_object.length._int) > (new Object@Object(__cid=-2, _int=11)._int))/*RomlistParser.sk:71*/
+          {
+            int _out_s968_0 = 0;
+            RomlistGame@meta(_out_s968_0);
+            if((game_s937_0.__cid) == (new Object@Object(__cid=-2, _int=_out_s968_0)._int))/*RomlistParser.sk:72*/
+            {
+              setDisplayCount_String@RomlistGame(game_s937_0, _pac_sc_s925_0._array_object.A[new Object@Object(__cid=-2, _int=11)._int]);
+            }
+          }
+          if((_pac_sc_s925_0._array_object.length._int) > (new Object@Object(__cid=-2, _int=12)._int))/*RomlistParser.sk:75*/
+          {
+            int _out_s970_0 = 0;
+            RomlistGame@meta(_out_s970_0);
+            if((game_s937_0.__cid) == (new Object@Object(__cid=-2, _int=_out_s970_0)._int))/*RomlistParser.sk:76*/
+            {
+              setDisplayType_String@RomlistGame(game_s937_0, _pac_sc_s925_0._array_object.A[new Object@Object(__cid=-2, _int=12)._int]);
+            }
+          }
+          if((_pac_sc_s925_0._array_object.length._int) > (new Object@Object(__cid=-2, _int=13)._int))/*RomlistParser.sk:79*/
+          {
+            int _out_s972_0 = 0;
+            RomlistGame@meta(_out_s972_0);
+            if((game_s937_0.__cid) == (new Object@Object(__cid=-2, _int=_out_s972_0)._int))/*RomlistParser.sk:80*/
+            {
+              setAltRomname_String@RomlistGame(game_s937_0, _pac_sc_s925_0._array_object.A[new Object@Object(__cid=-2, _int=13)._int]);
+            }
+          }
+          if((_pac_sc_s925_0._array_object.length._int) > (new Object@Object(__cid=-2, _int=14)._int))/*RomlistParser.sk:83*/
+          {
+            int _out_s974_0 = 0;
+            RomlistGame@meta(_out_s974_0);
+            if((game_s937_0.__cid) == (new Object@Object(__cid=-2, _int=_out_s974_0)._int))/*RomlistParser.sk:84*/
+            {
+              setAltTitle_String@RomlistGame(game_s937_0, _pac_sc_s925_0._array_object.A[new Object@Object(__cid=-2, _int=14)._int]);
+            }
+          }
+          if((_pac_sc_s925_0._array_object.length._int) > (new Object@Object(__cid=-2, _int=15)._int))/*RomlistParser.sk:87*/
+          {
+            int _out_s976_0 = 0;
+            RomlistGame@meta(_out_s976_0);
+            if((game_s937_0.__cid) == (new Object@Object(__cid=-2, _int=_out_s976_0)._int))/*RomlistParser.sk:88*/
+            {
+              setExtra_String@RomlistGame(game_s937_0, _pac_sc_s925_0._array_object.A[new Object@Object(__cid=-2, _int=15)._int]);
+            }
+          }
+          if((_pac_sc_s925_0._array_object.length._int) > (new Object@Object(__cid=-2, _int=16)._int))/*RomlistParser.sk:91*/
+          {
+            int _out_s978_0 = 0;
+            RomlistGame@meta(_out_s978_0);
+            if((game_s937_0.__cid) == (new Object@Object(__cid=-2, _int=_out_s978_0)._int))/*RomlistParser.sk:92*/
+            {
+              setButtons_String@RomlistGame(game_s937_0, _pac_sc_s925_0._array_object.A[new Object@Object(__cid=-2, _int=16)._int]);
+            }
+          }
+          int _out_s980_0 = 0;
+          RomlistGame@meta(_out_s980_0);
+          if((game_s937_0.__cid) == (new Object@Object(__cid=-2, _int=_out_s980_0)._int))/*RomlistParser.sk:95*/
+          {
+            setAvailable_boolean@RomlistGame(game_s937_0, new Object@Object(__cid=-4, _bit=0));
+          }
+          int _out_s982_0 = 0;
+          ArrayList@meta(_out_s982_0);
+          if((self.games_RomlistParser.__cid) == (new Object@Object(__cid=-2, _int=_out_s982_0)._int))/*RomlistParser.sk:97*/
+          {
+            Object@Object _out_s985_0 = null;
+            add_Object_Object@ArrayList(self.games_RomlistParser, game_s937_0, _out_s985_0);
+          }
+          int _out_s987_0 = 0;
+          ArrayList@meta(_out_s987_0);
+          Object@Object _pac_sc_s988_0 = null;
+          if((self.games_RomlistParser.__cid) == (new Object@Object(__cid=-2, _int=_out_s987_0)._int))/*RomlistParser.sk:97*/
+          {
+            Object@Object _out_s990_0 = null;
+            addb_Object_Object@ArrayList(self.games_RomlistParser, game_s937_0, _out_s990_0);
+            _pac_sc_s988_0 = _out_s990_0;
+          }
+          else
+          {
+            _pac_sc_s988_0 = null;
+          }
+          self.games_RomlistParser = _pac_sc_s988_0;
+        }
+      }
+    }
+    if(new Object@Object(__cid=-4, _bit=1)._bit)/*RomlistParser.sk:101*/
+    {
+      Object@Object line_1 = null;
+      if(new Object@Object(__cid=-4, _bit=1)._bit)/*RomlistParser.sk:29*/
+      {
+        Object@Object line_s906_1 = null;
+        xform_readLine_BufferedReader@BufferedReader(br._bufferedreader, line_s906_1);
+        line_1 = line_s906_1;
+        int br_s908_1 = 0;
+        BufferedReader@meta(br_s908_1);
+        if((br.__cid) == (new Object@Object(__cid=-2, _int=br_s908_1)._int))/*RomlistParser.sk:32*/
+        {
+          Object@Object br_s911_1 = null;
+          readLineb_Object@BufferedReader(br, br_s911_1);
+        }
+      }
+      if(new Object@Object(__cid=-4, _bit=1)._bit)/*RomlistParser.sk:39*/
+      {
+        int _out_s913_1 = 0;
+        String@meta(_out_s913_1);
+        Object@Object _pac_sc_s914_1 = null;
+        if((line_1.__cid) == (new Object@Object(__cid=-2, _int=_out_s913_1)._int))/*RomlistParser.sk:40*/
+        {
+          int _out_s916_1 = 0;
+          String@meta(_out_s916_1);
+          Object@Object _out_s918_1 = null;
+          Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=2), A={'#','\0'}), _out_s918_1);
+          Object@Object _out_s920_1 = null;
+          String_String_char_int_int@String(new Object@Object(__cid=_out_s916_1), _out_s918_1, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=1), _out_s920_1)//{};
+          Object@Object _out_s922_1 = null;
+          startsWith_String@String(line_1, _out_s920_1, _out_s922_1)//{};
+          _pac_sc_s914_1 = _out_s922_1;
+        }
+        else
+        {
+          _pac_sc_s914_1 = null;
+        }
+        if(!(_pac_sc_s914_1._bit))/*RomlistParser.sk:40*/
+        {
+          int data_s924_1 = 0;
+          String@meta(data_s924_1);
+          Object@Object _pac_sc_s925_1 = null;
+          if((line_1.__cid) == (new Object@Object(__cid=-2, _int=data_s924_1)._int))/*RomlistParser.sk:41*/
+          {
+            int data_s927_1 = 0;
+            String@meta(data_s927_1);
+            Object@Object data_s929_1 = null;
+            Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=2), A={';','\0'}), data_s929_1);
+            Object@Object data_s931_1 = null;
+            String_String_char_int_int@String(new Object@Object(__cid=data_s927_1), data_s929_1, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=1), data_s931_1)//{};
+            Object@Object data_s933_1 = null;
+            split_String_int@String(line_1, data_s931_1, new Object@Object(__cid=-2, _int=-(new Object@Object(__cid=-2, _int=1)._int)), data_s933_1)//{};
+            _pac_sc_s925_1 = data_s933_1;
+          }
+          else
+          {
+            _pac_sc_s925_1 = null;
+          }
+          if((_pac_sc_s925_1._array_object.length._int) >= (new Object@Object(__cid=-2, _int=10)._int))/*RomlistParser.sk:42*/
+          {
+            int game_s935_1 = 0;
+            RomlistGame@meta(game_s935_1);
+            Object@Object game_s937_1 = null;
+            RomlistGame_RomlistGame@RomlistGame(new Object@Object(__cid=game_s935_1), game_s937_1)//{};
+            int _out_s939_1 = 0;
+            RomlistGame@meta(_out_s939_1);
+            if((game_s937_1.__cid) == (new Object@Object(__cid=-2, _int=_out_s939_1)._int))/*RomlistParser.sk:45*/
+            {
+              int _out_s941_1 = 0;
+              File@meta(_out_s941_1);
+              Object@Object _pac_sc_s942_1 = null;
+              if((romlistFile.__cid) == (new Object@Object(__cid=-2, _int=_out_s941_1)._int))/*RomlistParser.sk:45*/
+              {
+                Object@Object _out_s944_1 = null;
+                getName@File(romlistFile, _out_s944_1);
+                _pac_sc_s942_1 = _out_s944_1;
+              }
+              else
+              {
+                _pac_sc_s942_1 = null;
+              }
+              setRomlist_String@RomlistGame(game_s937_1, _pac_sc_s942_1)//{};
+            }
+            int _out_s946_1 = 0;
+            RomlistGame@meta(_out_s946_1);
+            if((game_s937_1.__cid) == (new Object@Object(__cid=-2, _int=_out_s946_1)._int))/*RomlistParser.sk:47*/
+            {
+              setName_String@RomlistGame(game_s937_1, _pac_sc_s925_1._array_object.A[new Object@Object(__cid=-2, _int=0)._int]);
+            }
+            int _out_s948_1 = 0;
+            RomlistGame@meta(_out_s948_1);
+            if((game_s937_1.__cid) == (new Object@Object(__cid=-2, _int=_out_s948_1)._int))/*RomlistParser.sk:49*/
+            {
+              setTitle_String@RomlistGame(game_s937_1, _pac_sc_s925_1._array_object.A[new Object@Object(__cid=-2, _int=1)._int]);
+            }
+            int _out_s950_1 = 0;
+            RomlistGame@meta(_out_s950_1);
+            if((game_s937_1.__cid) == (new Object@Object(__cid=-2, _int=_out_s950_1)._int))/*RomlistParser.sk:51*/
+            {
+              setEmulator_String@RomlistGame(game_s937_1, _pac_sc_s925_1._array_object.A[new Object@Object(__cid=-2, _int=2)._int]);
+            }
+            int _out_s952_1 = 0;
+            RomlistGame@meta(_out_s952_1);
+            if((game_s937_1.__cid) == (new Object@Object(__cid=-2, _int=_out_s952_1)._int))/*RomlistParser.sk:53*/
+            {
+              setCloneOf_String@RomlistGame(game_s937_1, _pac_sc_s925_1._array_object.A[new Object@Object(__cid=-2, _int=3)._int]);
+            }
+            int _out_s954_1 = 0;
+            RomlistGame@meta(_out_s954_1);
+            if((game_s937_1.__cid) == (new Object@Object(__cid=-2, _int=_out_s954_1)._int))/*RomlistParser.sk:55*/
+            {
+              setYear_String@RomlistGame(game_s937_1, _pac_sc_s925_1._array_object.A[new Object@Object(__cid=-2, _int=4)._int]);
+            }
+            int _out_s956_1 = 0;
+            RomlistGame@meta(_out_s956_1);
+            if((game_s937_1.__cid) == (new Object@Object(__cid=-2, _int=_out_s956_1)._int))/*RomlistParser.sk:57*/
+            {
+              setManufacturer_String@RomlistGame(game_s937_1, _pac_sc_s925_1._array_object.A[new Object@Object(__cid=-2, _int=5)._int]);
+            }
+            int _out_s958_1 = 0;
+            RomlistGame@meta(_out_s958_1);
+            if((game_s937_1.__cid) == (new Object@Object(__cid=-2, _int=_out_s958_1)._int))/*RomlistParser.sk:59*/
+            {
+              setCategory_String@RomlistGame(game_s937_1, _pac_sc_s925_1._array_object.A[new Object@Object(__cid=-2, _int=6)._int]);
+            }
+            int _out_s960_1 = 0;
+            RomlistGame@meta(_out_s960_1);
+            if((game_s937_1.__cid) == (new Object@Object(__cid=-2, _int=_out_s960_1)._int))/*RomlistParser.sk:61*/
+            {
+              setPlayers_String@RomlistGame(game_s937_1, _pac_sc_s925_1._array_object.A[new Object@Object(__cid=-2, _int=7)._int]);
+            }
+            int _out_s962_1 = 0;
+            RomlistGame@meta(_out_s962_1);
+            if((game_s937_1.__cid) == (new Object@Object(__cid=-2, _int=_out_s962_1)._int))/*RomlistParser.sk:63*/
+            {
+              setRotation_String@RomlistGame(game_s937_1, _pac_sc_s925_1._array_object.A[new Object@Object(__cid=-2, _int=8)._int]);
+            }
+            int _out_s964_1 = 0;
+            RomlistGame@meta(_out_s964_1);
+            if((game_s937_1.__cid) == (new Object@Object(__cid=-2, _int=_out_s964_1)._int))/*RomlistParser.sk:65*/
+            {
+              setControl_String@RomlistGame(game_s937_1, _pac_sc_s925_1._array_object.A[new Object@Object(__cid=-2, _int=9)._int]);
+            }
+            if((_pac_sc_s925_1._array_object.length._int) > (new Object@Object(__cid=-2, _int=10)._int))/*RomlistParser.sk:67*/
+            {
+              int _out_s966_1 = 0;
+              RomlistGame@meta(_out_s966_1);
+              if((game_s937_1.__cid) == (new Object@Object(__cid=-2, _int=_out_s966_1)._int))/*RomlistParser.sk:68*/
+              {
+                setStatus_String@RomlistGame(game_s937_1, _pac_sc_s925_1._array_object.A[new Object@Object(__cid=-2, _int=10)._int]);
+              }
+            }
+            if((_pac_sc_s925_1._array_object.length._int) > (new Object@Object(__cid=-2, _int=11)._int))/*RomlistParser.sk:71*/
+            {
+              int _out_s968_1 = 0;
+              RomlistGame@meta(_out_s968_1);
+              if((game_s937_1.__cid) == (new Object@Object(__cid=-2, _int=_out_s968_1)._int))/*RomlistParser.sk:72*/
+              {
+                setDisplayCount_String@RomlistGame(game_s937_1, _pac_sc_s925_1._array_object.A[new Object@Object(__cid=-2, _int=11)._int]);
+              }
+            }
+            if((_pac_sc_s925_1._array_object.length._int) > (new Object@Object(__cid=-2, _int=12)._int))/*RomlistParser.sk:75*/
+            {
+              int _out_s970_1 = 0;
+              RomlistGame@meta(_out_s970_1);
+              if((game_s937_1.__cid) == (new Object@Object(__cid=-2, _int=_out_s970_1)._int))/*RomlistParser.sk:76*/
+              {
+                setDisplayType_String@RomlistGame(game_s937_1, _pac_sc_s925_1._array_object.A[new Object@Object(__cid=-2, _int=12)._int]);
+              }
+            }
+            if((_pac_sc_s925_1._array_object.length._int) > (new Object@Object(__cid=-2, _int=13)._int))/*RomlistParser.sk:79*/
+            {
+              int _out_s972_1 = 0;
+              RomlistGame@meta(_out_s972_1);
+              if((game_s937_1.__cid) == (new Object@Object(__cid=-2, _int=_out_s972_1)._int))/*RomlistParser.sk:80*/
+              {
+                setAltRomname_String@RomlistGame(game_s937_1, _pac_sc_s925_1._array_object.A[new Object@Object(__cid=-2, _int=13)._int]);
+              }
+            }
+            if((_pac_sc_s925_1._array_object.length._int) > (new Object@Object(__cid=-2, _int=14)._int))/*RomlistParser.sk:83*/
+            {
+              int _out_s974_1 = 0;
+              RomlistGame@meta(_out_s974_1);
+              if((game_s937_1.__cid) == (new Object@Object(__cid=-2, _int=_out_s974_1)._int))/*RomlistParser.sk:84*/
+              {
+                setAltTitle_String@RomlistGame(game_s937_1, _pac_sc_s925_1._array_object.A[new Object@Object(__cid=-2, _int=14)._int]);
+              }
+            }
+            if((_pac_sc_s925_1._array_object.length._int) > (new Object@Object(__cid=-2, _int=15)._int))/*RomlistParser.sk:87*/
+            {
+              int _out_s976_1 = 0;
+              RomlistGame@meta(_out_s976_1);
+              if((game_s937_1.__cid) == (new Object@Object(__cid=-2, _int=_out_s976_1)._int))/*RomlistParser.sk:88*/
+              {
+                setExtra_String@RomlistGame(game_s937_1, _pac_sc_s925_1._array_object.A[new Object@Object(__cid=-2, _int=15)._int]);
+              }
+            }
+            if((_pac_sc_s925_1._array_object.length._int) > (new Object@Object(__cid=-2, _int=16)._int))/*RomlistParser.sk:91*/
+            {
+              int _out_s978_1 = 0;
+              RomlistGame@meta(_out_s978_1);
+              if((game_s937_1.__cid) == (new Object@Object(__cid=-2, _int=_out_s978_1)._int))/*RomlistParser.sk:92*/
+              {
+                setButtons_String@RomlistGame(game_s937_1, _pac_sc_s925_1._array_object.A[new Object@Object(__cid=-2, _int=16)._int]);
+              }
+            }
+            int _out_s980_1 = 0;
+            RomlistGame@meta(_out_s980_1);
+            if((game_s937_1.__cid) == (new Object@Object(__cid=-2, _int=_out_s980_1)._int))/*RomlistParser.sk:95*/
+            {
+              setAvailable_boolean@RomlistGame(game_s937_1, new Object@Object(__cid=-4, _bit=0));
+            }
+            int _out_s982_1 = 0;
+            ArrayList@meta(_out_s982_1);
+            if((self.games_RomlistParser.__cid) == (new Object@Object(__cid=-2, _int=_out_s982_1)._int))/*RomlistParser.sk:97*/
+            {
+              Object@Object _out_s985_1 = null;
+              add_Object_Object@ArrayList(self.games_RomlistParser, game_s937_1, _out_s985_1);
+            }
+            int _out_s987_1 = 0;
+            ArrayList@meta(_out_s987_1);
+            Object@Object _pac_sc_s988_1 = null;
+            if((self.games_RomlistParser.__cid) == (new Object@Object(__cid=-2, _int=_out_s987_1)._int))/*RomlistParser.sk:97*/
+            {
+              Object@Object _out_s990_1 = null;
+              addb_Object_Object@ArrayList(self.games_RomlistParser, game_s937_1, _out_s990_1);
+              _pac_sc_s988_1 = _out_s990_1;
+            }
+            else
+            {
+              _pac_sc_s988_1 = null;
+            }
+            self.games_RomlistParser = _pac_sc_s988_1;
+          }
+        }
+      }
+      assert (!(new Object@Object(__cid=-4, _bit=0)._bit)); //ASSERTION CAN NOT BE SATISFIED: RomlistParser.sk:102 Function genRead_BufferedReader_File@RomlistParser was not inlined enough. Increase inlining with --inlineamnt flag.
+    }
+    Object@Object _out_s874 = null;
+    xform_size_ArrayList@ArrayList(self.games_RomlistParser._arraylist, _out_s874);
+    self.totalGames_RomlistParser = _out_s874;
+    self.totalGamesAvailable_RomlistParser = gamesAvailable;
+    int a1_s876 = 0;
+    File@meta(a1_s876);
+    Object@Object _pac_sc_s877 = null;
+    if((romlistFile.__cid) == (new Object@Object(__cid=-2, _int=a1_s876)._int))/*RomlistParser.sk:200*/
+    {
+      Object@Object a1_s879 = null;
+      getParent@File(romlistFile, a1_s879);
+      _pac_sc_s877 = a1_s879;
+    }
+    else
+    {
+      _pac_sc_s877 = null;
+    }
+    int a2_s881 = 0;
+    String@meta(a2_s881);
+    Object@Object _pac_sc_s882 = null;
+    if((_pac_sc_s877.__cid) == (new Object@Object(__cid=-2, _int=a2_s881)._int))/*RomlistParser.sk:201*/
+    {
+      int a2_s884 = 0;
+      String@meta(a2_s884);
+      Object@Object a2_s886 = null;
+      Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=5), A={'/','d','b','/','\0'}), a2_s886);
+      Object@Object a2_s888 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=a2_s884), a2_s886, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=4), a2_s888)//{};
+      Object@Object a2_s890 = null;
+      concat_String@String(_pac_sc_s877, a2_s888, a2_s890)//{};
+      _pac_sc_s882 = a2_s890;
+    }
+    else
+    {
+      _pac_sc_s882 = null;
+    }
+    int a3_s892 = 0;
+    String@meta(a3_s892);
+    Object@Object _pac_sc_s893 = null;
+    if((_pac_sc_s882.__cid) == (new Object@Object(__cid=-2, _int=a3_s892)._int))/*RomlistParser.sk:202*/
+    {
+      int a3_s895 = 0;
+      File@meta(a3_s895);
+      Object@Object _pac_sc_s896 = null;
+      if((romlistFile.__cid) == (new Object@Object(__cid=-2, _int=a3_s895)._int))/*RomlistParser.sk:202*/
+      {
+        Object@Object a3_s898 = null;
+        getName@File(romlistFile, a3_s898);
+        _pac_sc_s896 = a3_s898;
+      }
+      else
+      {
+        _pac_sc_s896 = null;
+      }
+      Object@Object a3_s900 = null;
+      concat_String@String(_pac_sc_s882, _pac_sc_s896, a3_s900)//{};
+      _pac_sc_s893 = a3_s900;
+    }
+    else
+    {
+      _pac_sc_s893 = null;
+    }
+    int nf_s902 = 0;
+    File@meta(nf_s902);
+    Object@Object nf_s904 = null;
+    File_File_String@File(new Object@Object(__cid=nf_s902), _pac_sc_s893, nf_s904)//{};
+    _out = self.games_RomlistParser;
+    return;
+  }
+  /* END PACKAGE RomlistParser*/
+}
+/* BEGIN PACKAGE Boolean*/
+package Boolean{
+  /* END PACKAGE Boolean*/
+}
+/* BEGIN PACKAGE File*/
+package File{
+  /*File.sk:7*/
+  
+void File_File_String (Object self, Object path, ref Object _out)/*File.sk:7*/
+  {
+    self.path_File = path;
+    int _out_s1022 = 0;
+    String@meta(_out_s1022);
+    Object@Object _pac_sc_s1023 = null;
+    if((path.__cid) == (new Object@Object(__cid=-2, _int=_out_s1022)._int))/*File.sk:9*/
+    {
+      int _out_s1025 = 0;
+      String@meta(_out_s1025);
+      Object@Object _out_s1027 = null;
+      Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=2), A={'\n','\0'}), _out_s1027);
+      Object@Object _out_s1029 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_out_s1025), _out_s1027, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=1), _out_s1029)//{};
+      Object@Object _out_s1031 = null;
+      split_String@String(path, _out_s1029, _out_s1031)//{};
+      _pac_sc_s1023 = _out_s1031;
+    }
+    else
+    {
+      _pac_sc_s1023 = null;
+    }
+    self.data_File = _pac_sc_s1023;
+    _out = self;
+    return;
+  }
+  /*File.sk:20*/
+  
+void exists (Object self, ref Object _out)/*File.sk:20*/
+  {
+    _out = new Object@Object(__cid=-4, _bit=1);
+    return;
+  }
+  /*File.sk:24*/
+  
+void getName (Object self, ref Object _out)/*File.sk:24*/
+  {
+    _out = self.path_File;
+    return;
+  }
+  /*File.sk:28*/
+  
+void getParent (Object self, ref Object _out)/*File.sk:28*/
+  {
+    int _out_s1033 = 0;
+    String@meta(_out_s1033);
+    Object@Object _out_s1035 = null;
+    Wrap_Array_char@array(new Array_char@array(length=new Object@Object(__cid=-2, _int=5), A={'P','A','T','H','\0'}), _out_s1035);
+    Object@Object _out_s1037 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=_out_s1033), _out_s1035, new Object@Object(__cid=-2, _int=0), new Object@Object(__cid=-2, _int=4), _out_s1037)//{};
+    _out = _out_s1037;
+    return;
+  }
+  /*File.sk:13*/
+  
+void get_int (Object self, Object i, ref Object _out)/*File.sk:13*/
+  {
+    if((i._int) < (self.data_File._array_object.length._int))/*File.sk:14*/
+    {
+      _out = self.data_File._array_object.A[i._int];
+      return;
+    }
+    _out = null;
+    return;
+  }
+  /* END PACKAGE File*/
+}
+[SKETCH] DONE
+Total time = 67292

@@ -44,7 +44,7 @@ Object doFinalb_Object_Object(Object self, Object text) {
 }
 
 Object doFinal_Object_Object(Object self, Object text) {
-    return new Object(__cid=Cipher(), _cipher=new Dofinal_object(self=self._cipher, text=text));
+    return xform_doFinal_Cipher_Object(self._cipher, text);
 }
 
 Object xform_Cipher(Cipher self) {

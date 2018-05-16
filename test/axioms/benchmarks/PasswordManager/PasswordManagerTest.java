@@ -108,7 +108,7 @@ public class PasswordManagerTest {
     // 	assert pasman.checkMasterPassword("1234");
     // 	// testAddGet();
 
-    // 	//pasman.modifyPassword("google", "5115");		
+    // 	// pasman.modifyPassword("google", "5115");		
     // 	// try{
 
     // 	// 	String s = pasman.getPass("google");
@@ -120,11 +120,11 @@ public class PasswordManagerTest {
     // }
     
     
-    // public void testAddGet() {
-    // 	pasman.addPassword("yahoo", "12345");
-    // 	pasman.addPassword("google", "5441944");
-    // 	String pass1 = pasman.getPass("google");
+    // harness public void testAddGet() {
+    // 	PasswordManager pasman = new PasswordManager("1234");	
+    // 	pasman.addPassword("1", "2");
+    // 	String pass1 = pasman.getPass("1");
 
-    // 	// assert pass1.equals("12345");
+    // 	assert pass1.equals("2");
     // }
 }

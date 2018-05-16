@@ -6,25 +6,25 @@ Object PrivateExample_PrivateExample(Object self) {
 
 harness void test_privateExample() {
   Object self = Object_Object(new Object(__cid=Object()));
-  Object plainText = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=15+1, A="Secret Message!")), 0, 15);
+  Object plainText = String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=15+1), A="Secret Message!")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=15));
   Object newPlainText = privateExample_String(plainText);
   Object plainText2 = String_String_byte(new Object(__cid=String()), newPlainText);
-  assert (plainText.__cid == String() ? equals_Object@String(plainText, plainText2) : 0);
+  assert (plainText.__cid == (new Object(__cid=-2, _int=String()))._int ? equals_Object@String(plainText, plainText2) : null)._bit;
 }
 
 Object privateExample_String(Object plainTextString) {
-  Object plainText = (plainTextString.__cid == String() ? getBytes@String(plainTextString) : null);
-  Object keyGen = getInstance_String@KeyGenerator(String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=3+1, A="DES")), 0, 3));
-  if (keyGen.__cid == KeyGenerator()) { init_int@KeyGenerator(keyGen, 56); }
+  Object plainText = (plainTextString.__cid == (new Object(__cid=-2, _int=String()))._int ? getBytes@String(plainTextString) : null);
+  Object keyGen = getInstance_String@KeyGenerator(String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=3+1), A="DES")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=3)));
+  if (keyGen.__cid == (new Object(__cid=-2, _int=KeyGenerator()))._int) { init_int@KeyGenerator(keyGen, (new Object(__cid=-2, _int=56))); }
   else { 0; };
-  Object key = (keyGen.__cid == KeyGenerator() ? generateKey@KeyGenerator(keyGen) : null);
-  Object cipher = getInstance_String@Cipher(String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=20+1, A="DES/ECB/PKCS5Padding")), 0, 20));
-  if (cipher.__cid == Cipher()) { init_int_Key@Cipher(cipher, 1, key); }
+  Object key = (keyGen.__cid == (new Object(__cid=-2, _int=KeyGenerator()))._int ? generateKey@KeyGenerator(keyGen) : null);
+  Object cipher = getInstance_String@Cipher(String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int=20+1), A="DES/ECB/PKCS5Padding")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int=20)));
+  if (cipher.__cid == (new Object(__cid=-2, _int=Cipher()))._int) { init_int_Key@Cipher(cipher, (new Object(__cid=-2, _int=1)), key); }
   else { 0; };
-  Object cipherText = (cipher.__cid == Cipher() ? doFinal_byte@Cipher(cipher, plainText) : null);
-  if (cipher.__cid == Cipher()) { init_int_Key@Cipher(cipher, 2, key); }
+  Object cipherText = (cipher.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? doFinal_byte@Cipher(cipher, plainText) : null);
+  if (cipher.__cid == (new Object(__cid=-2, _int=Cipher()))._int) { init_int_Key@Cipher(cipher, (new Object(__cid=-2, _int=2)), key); }
   else { 0; };
-  Object newPlainText = (cipher.__cid == Cipher() ? doFinal_byte@Cipher(cipher, cipherText) : null);
+  Object newPlainText = (cipher.__cid == (new Object(__cid=-2, _int=Cipher()))._int ? doFinal_byte@Cipher(cipher, cipherText) : null);
   return newPlainText;
 }
 

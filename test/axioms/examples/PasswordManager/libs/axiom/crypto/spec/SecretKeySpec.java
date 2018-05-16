@@ -1,6 +1,6 @@
-@axiomClass
+@rewriteClass
 public class SecretKeySpec implements Key {
-    @adt
+    @alg
     @pure
     byte[] getEncoded();
 }
