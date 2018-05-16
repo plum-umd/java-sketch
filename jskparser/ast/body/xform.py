@@ -14,6 +14,8 @@ from ..expr.conditionalexpr import ConditionalExpr
 from ..expr.binaryexpr import BinaryExpr
 from ..body.methoddeclaration import MethodDeclaration
 
+from ..type.referencetype import ReferenceType
+
 from ..utils import utils
 
 from axiomparameter import AxiomParameter
@@ -79,6 +81,10 @@ class Xform(BodyDeclaration):
         xform = {u'@t':u'Xform',u'stmt':switch,u'name':name,
                  u'type':{u'@t':u'ClassOrInterfaceType',u'name':str(cls),},}
         ret_none = {u'@t':u'ReturnStmt', u'expr': {u'@t':u'LiteralExpr', u'name':u'null',},}
+        ax_typ = str(ax.typee)
+        is_arr = False
+        if isinstance(ax.typee, ReferenceType) and ax.typee.arrayCount > 0:
+            is_arr = True
         if not is_ax_cls:
             if str(ax.typee) != u'void':
                 prim_bot = {
@@ -92,11 +98,18 @@ class Xform(BodyDeclaration):
                 ret_none = {u'@t':u'ReturnStmt', u'expr': {u'@t':u'LiteralExpr', u'name':typ,},}
             else:
                 ret_none = {u'@t':u'ReturnStmt',}
-            return MethodDeclaration({u'type':{u'@t':u'ClassOrInterfaceType',u'name':str(ax.typee),},
-                                      u'name':name,u'adtType':True, u'modifiers':Modifiers[u'AT'],
-                                      u'body':{u'@t':u'BlockStmt',
-                                               u'stmts':{u'@e':[dec_self_stmt, xform, ret_none],},},
-                                      u'parameters':{u'@e':params},},)
+            if is_arr:
+                return MethodDeclaration({u'type':{u'@t':u'ReferenceType', u'arrayCount': 1, u'type':{u'@t':u'ClassOrInterfaceType',u'name':str(ax_typ),}},
+                                          u'name':name,u'adtType':True, u'modifiers':Modifiers[u'AT'],
+                                          u'body':{u'@t':u'BlockStmt',
+                                                   u'stmts':{u'@e':[dec_self_stmt, xform, ret_none],},},
+                                          u'parameters':{u'@e':params},},)
+            else:
+                return MethodDeclaration({u'type':{u'@t':u'ClassOrInterfaceType',u'name':str(ax_typ),},
+                                          u'name':name,u'adtType':True, u'modifiers':Modifiers[u'AT'],
+                                          u'body':{u'@t':u'BlockStmt',
+                                                   u'stmts':{u'@e':[dec_self_stmt, xform, ret_none],},},
+                                          u'parameters':{u'@e':params},},)
         else:
             return MethodDeclaration({u'type':{u'@t':u'ClassOrInterfaceType',u'name':u'Object',},
                                       u'name':name,u'adtType':True, u'modifiers':Modifiers[u'AT'],

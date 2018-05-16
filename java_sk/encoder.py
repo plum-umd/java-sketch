@@ -434,6 +434,8 @@ class Encoder(object):
             if not is_ax_cls and mtd_name2.split('_')[0] in map(lambda x: x.name, ax_mtds):
                 # c = str(mtd.typee) + u' '
                 c = self.tltr.trans_ty(mtd.typee) + u' '
+            if isinstance(mtd.typee, ReferenceType) and mtd.typee.arrayCount > 0:
+                c = u'Array_'+self.tltr.trans_ty(mtd.typee) + u' '
                 
             if name == cname.lower():
                 mtd_name = cname + "_" + cname

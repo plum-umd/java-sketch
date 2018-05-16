@@ -2169,7 +2169,10 @@ class Translator(object):
         self.indented = False
 
     def printSepList(self, args, xform_name = "", **kwargs):
-        # if xform_name != "": print(map(lambda n: n, args))
+        if xform_name != "":
+            if len(args) > 0 and args[0].axparam:
+                if (args[0].axparam.split('.')[-1] != u'self'):
+                    args[0].axparam += u'._'+xform_name.lower()
         if args:
             lenn = len(args)
             for i in xrange(lenn):
