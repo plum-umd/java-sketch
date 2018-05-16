@@ -11,7 +11,8 @@ class ArrayList<E> {
 
     @alg
     @pure
-    Object getFirstI(int i, String[] es, int[] rs, int r);
+    // Object getFirstI(int i, String[] es, int[] rs, int r);
+    Object[] getFirstI(int i, String[] es, int[] rs, int r);
 
     @alg
     Object set(int i, String e);
@@ -48,7 +49,8 @@ class ArrayList<E> {
     }
 
     rewrite Object size(Object set!(ArrayList a, int i, String e)) {
-    	return size(a)+1;
+    	// return size(a)+1;
+    	return size(a);
     }
 
     rewrite Object size(Object remove!(ArrayList a, int i)) {
@@ -105,7 +107,8 @@ class ArrayList<E> {
 	    return e;
 	} else {
 	    if (i < j) {
-		return get(a, i+1);
+		// return get(a, i+1);
+		return get(a, i-1);
 	    } else {
 		return get(a, i);
 	    }
