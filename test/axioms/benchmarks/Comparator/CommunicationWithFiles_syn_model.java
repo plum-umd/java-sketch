@@ -40,7 +40,14 @@ public class CommunicationWithFiles {
 	//     }
 	//     value = bfr.readLine();
 	// }
-	
+
+	if (??) {
+	    if (value!=null && !isAList==true){
+		// values.add(value+"|"+filename);
+		String vbar = value.concat("|");
+		values.add(vbar.concat(filename));
+	    }
+	}	
 	if (??) {
 	    value = bfr.readLine();
 	}
@@ -49,16 +56,9 @@ public class CommunicationWithFiles {
 	        value = genRead(bfr, value, isAList, values, filename);
 	    }
 	}
-	if (??) {
-	    if (value!=null && !isAList==true){
-		// values.add(value+"|"+filename);
-		String vbar = value.concat("|");
-		values.add(vbar.concat(filename));
-	    }
-	}
-	if (??) {
-	    value = genRead(bfr, value, isAList, values, filename);
-	}
+	// if (??) {
+	//     value = genRead(bfr, value, isAList, values, filename);
+	// }
 	
 	// if (??) {
 	//     value = bfr.readLine();

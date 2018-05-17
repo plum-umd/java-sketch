@@ -24,8 +24,6 @@ public class CommunicationWithFiles {
 		value = bfr.readLine();		
 	    }
 	}
-	
-	return value;
     }
 
     // generator public String genRead(BufferedReader bfr, String value, boolean isAList, ArrayList<> values, String filename) {
@@ -110,7 +108,8 @@ public class CommunicationWithFiles {
         public ArrayList<String> ReadToArray(String filename,boolean isAList ) throws IOException{    
     
                 FileReaderr fr = null;
-                String value = "";
+                // String value = "";
+                String value = null;
                 
                 ArrayList<String> values = new ArrayList<String>();
                 // Collections.sort(values);

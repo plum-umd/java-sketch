@@ -42,14 +42,6 @@ public class CommunicationWithFiles {
 	// }
 	
 	if (??) {
-	    value = bfr.readLine();
-	}
-	if (??) {
-	    while(value != null){  
-	        value = genRead(bfr, value, isAList, values, filename);
-	    }
-	}
-	if (??) {
 	    if (value!=null && !isAList==true){
 		// values.add(value+"|"+filename);
 		String vbar = value.concat("|");
@@ -57,7 +49,12 @@ public class CommunicationWithFiles {
 	    }
 	}
 	if (??) {
-	    value = genRead(bfr, value, isAList, values, filename);
+	    value = bfr.readLine();	    
+	}
+	if (??) {	    
+	    while(value != null){  
+		value = genRead(bfr, value, isAList, values, filename);
+	    }
 	}
 	
 	// if (??) {
@@ -94,7 +91,8 @@ public class CommunicationWithFiles {
         public ArrayList<String> ReadToArray(String filename,boolean isAList ) throws IOException{    
     
                 FileReaderr fr = null;
-                String value = "";
+                // String value = "";
+                String value = null;
                 
                 ArrayList<String> values = new ArrayList<String>();
                 // Collections.sort(values);
