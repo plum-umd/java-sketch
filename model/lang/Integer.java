@@ -10,8 +10,8 @@ public class Integer extends Number {
     
     public Integer(int value) {
     	this.value = value;
-	this.MIN_VALUE = 0x80000000;
-	this.MAX_VALUE = 0x7fffffff;
+	// this.MIN_VALUE = 0x80000000;
+	// this.MAX_VALUE = 0x7fffffff;
     }
 
     public int intValue() {
@@ -79,6 +79,26 @@ public class Integer extends Number {
 
     public int hashCode() {
     	return value;
+    }
+
+    public static int parseInt(String s) {
+    	char [] nums = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+	int len = s.length();
+	int num = 0;
+	int mult = 1;
+	
+	for (int i = len-1; i >= 0; i--) {
+	    char c = s.charAt(i);
+	    for (int j = 0; j < 10; j++) {
+		if (c == nums[j]) {
+		    num += mult * nums[j];
+		}
+	    }
+	    if (i == 0 && c == '-') num *= -1;
+	    mult *= 10;	    
+	}
+
+	return num;
     }
 
 }

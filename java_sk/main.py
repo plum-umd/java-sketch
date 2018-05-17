@@ -63,7 +63,7 @@ def translate(**kwargs):
  
         logging.info('sk_dir: {}, output_path: {}'.format(encoder.sk_dir, output_path))
         _, r = sketch.run(encoder.sk_dir, output_path)
-
+        
         # if sketch fails, halt the process here
         if not r: return 1
     elif not prg:

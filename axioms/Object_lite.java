@@ -9,9 +9,9 @@ public class Object {
     // 	return a.equals(b);
     // }
 
-    public static int hashCode(Object o) {
-        return o != null ? o.hashCode() : 0;
-    }
+    // public static int hashCode(Object o) {
+    //     return o != null ? o.hashCode() : 0;
+    // }
 
     // public String toString() {
     // 	return "Object toString()";
@@ -21,8 +21,8 @@ public class Object {
     	return this == obj;
     }
 
-    // NOTE THAT THIS SHOULD BE OVERRIDDEN FOR ALL RELEVANT CLASSES
-    public int hashCode() {
-    	return 0;
-    }
+    // // NOTE THAT THIS SHOULD BE OVERRIDDEN FOR ALL RELEVANT CLASSES
+    // public int hashCode() {
+    // 	return 0;
+    // }
 }

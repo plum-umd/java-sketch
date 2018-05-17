@@ -1,5 +1,5 @@
-// public class HashMap<K,V> extends Map {
-public class HashMap<K,V> {
+public class HashMap<K,V> extends Map {
+// public class HashMap<K,V> {
     static final int DEFAULT_INITIAL_CAPACITY;// = 1 << 4; // aka 16
     Node[] elementData;
     int numPairs;

@@ -16,4 +16,8 @@ public class FileReaderr {
 	}
 	return -1;
     }
+
+    public void close() {
+
+    }
 }

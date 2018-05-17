@@ -1,39 +1,39 @@
-@axiomClass
-class ArrayList {
-    @adt
-    boolean add(Object e);
+@rewriteClass
+class ArrayList<E> {
+    @alg
+    boolean add(E e);
 
-    @adt
-    Object get(int i);
+    @alg
+    E get(int i);
 
-    @adt
-    Object set(int i, Object e);
+    @alg
+    E set(int i, E e);
 
-    @adt
+    @alg
     @pure
     void ensureCapacity();
     
-    @adt
+    @alg
     @pure
     int size();
 
-    axiom Object size(Object ArrayList()) {
+    rewrite int size(ArrayList ArrayList()) {
 	return 0;
     }
 
-    axiom Object size(Object add!(ArrayList a, Object e)) {
+    rewrite int size(ArrayList add!(ArrayList a, E e)) {
 	return size(a)+1;
     }
 
-    axiom Object size(Object set!(ArrayList a, int i, Object e)) {
+    rewrite int size(ArrayList set!(ArrayList a, int i, E e)) {
     	return size(a);
     }
 
-    axiom Object get(Object add!(ArrayList a, Object e1), int i) {
-	return size(a) == i-1 ? e1 : get(a, i);
+    rewrite E get(ArrayList add!(ArrayList a, E e), int i) {
+	return size(a) == i ? e : get(a, i);
     }
 
-    axiom Object get(Object set!(ArrayList a, int j, Object e), int i) {
+    rewrite E get(ArrayList set!(ArrayList a, int j, E e), int i) {
     	return i==j ? e : get(a, i);
     }
 }

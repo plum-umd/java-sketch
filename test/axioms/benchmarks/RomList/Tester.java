@@ -1,4 +1,4 @@
-public class Tester {
+public class RomListTester {
     harness public void mn() {
 	File f = new File("a;b;c;d;e;f;g;h;i;j");
 	// File f = new File("#A\na;b");

@@ -10,6 +10,10 @@ public class PrintStream {
 
     }
 
+    public void print(String s) {
+
+    }
+    
     public void close() {
 
     }

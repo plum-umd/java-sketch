@@ -31,6 +31,7 @@ public class Cipher {
     	this.mode = opmode;
     }
 
+    // Commented for PasswordManager Example
     // public void init(int opmode, SecretKey key, AlgorithmParameterSpec i) {
     // 	this.key = key;
     // 	this.mode = opmode;
