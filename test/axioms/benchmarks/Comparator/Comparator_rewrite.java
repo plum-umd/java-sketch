@@ -39,25 +39,25 @@ public class Comparator {
 	    ArrayList<String> comp = communication.RemoveDuplicates(inFile1);
 
 	    String c1 = comp.get(1);
-	    // String c2 = comp.get(2);
+	    String c2 = comp.get(2);
 
 	    assert c1.equals("1|1\n2");
-	    // assert c2.equals("3|2\n3");
-	    // // assert c1.equals("2|1\n2\n");
+	    assert c2.equals("3|2\n3");
+	    // assert c1.equals("2|1\n2\n");
 	    
-	    // assert comp.size() == 3;
-	    // // assert comp.size() == 2;
+	    assert comp.size() == 3;
+	    // assert comp.size() == 2;
 	    
-	    // // } catch (IOException e) {
-	    // //     // TODO Auto-generated catch block
-	    // //     e.printStackTrace();
-	    // // }
+	    // } catch (IOException e) {
+	    //     // TODO Auto-generated catch block
+	    //     e.printStackTrace();
+	    // }
 
 
 
-	    // // }else {
-	    // // 	// System.out.println("Incorrect number of attributes.");
-	    // // }
+	    // }else {
+	    // 	// System.out.println("Incorrect number of attributes.");
+	    // }
 	    
 	}
 

@@ -26,6 +26,7 @@ class ArrayList<E> {
     int size();
 
     @alg
+    @pure
     int maxSize();
     
     @alg
@@ -49,8 +50,8 @@ class ArrayList<E> {
     }
 
     rewrite Object size(Object set!(ArrayList a, int i, String e)) {
-    	// return size(a)+1;
-    	return size(a);
+    	return size(a)+1;
+    	// return size(a);
     }
 
     rewrite Object size(Object remove!(ArrayList a, int i)) {
@@ -131,9 +132,9 @@ class ArrayList<E> {
     	// I THINK I SHOULD ADD A REMOVE INDEX SO THAT WE DON'T NEED TO ITERATE EVERY TIME
     	// int sz = maxSize(a);
     	// int sz = i;
-	int j = maxSize(a);
+	int j = maxSize(a)+1;
     	String[] firstI = getFirstI(a, i+1, new String[j+1], new int[j+1], 0);	
-    	return firstI[i];
+    	return firstI[i-1];
     }
 
     rewrite Object getFirstI(Object remove!(ArrayList a, int i2), int i1, String[] es, int[] rs, int r) {
