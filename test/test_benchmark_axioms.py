@@ -39,12 +39,14 @@ class TestJava(TestCommon):
         modelResults = open('results_model.csv', 'w')
         with modelResults:
             writer = csv.writer(modelResults)
-            modelTests = [(self.run_SuffixArrayModel, 'SuffixArrayTest'),
-                          (self.run_HashMap1Model, 'HashTableTest'),
-                          (self.run_HashMap2Model, 'BucketingTest'),
-                          (self.run_EasyCSVModel, 'CSVTester'),
-                          (self.run_RomListModel, 'RomListTester'),
-                          (self.run_ComparatorModel, 'Comparator')]
+            modelTests = [
+                (self.run_SuffixArrayModel, 'SuffixArrayTest'),
+                (self.run_HashMap1Model, 'HashTableTest'),
+                (self.run_HashMap2Model, 'BucketingTest'),
+                (self.run_EasyCSVModel, 'CSVTester'),
+                (self.run_RomListModel, 'RomListTester'),
+                (self.run_ComparatorModel, 'Comparator')
+            ]
             results = map(lambda x: [x], reduce(lambda x,y: x + y, self.run_tests(modelTests, [])))
             writer.writerows(results)
 
