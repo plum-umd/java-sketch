@@ -36,9 +36,11 @@ class ClassOrInterfaceDeclaration(TypeDeclaration):
         self._subClasses = kwargs.get(u'subClasses', [])
 
         self._axiom = False
+        self._box = False        
         if self.annotations:
             # self._axiom = any(map(lambda a: str(a) == 'axiomClass', self.annotations))
             self._axiom = any(map(lambda a: str(a) == 'rewriteClass', self.annotations))
+            self._box = any(map(lambda a: str(a) == 'autoBox', self.annotations))
 
         self.add_as_parent(self.typeParameters+self.extendsList+self.implementsList+self.subClasses)
 
@@ -129,6 +131,11 @@ class ClassOrInterfaceDeclaration(TypeDeclaration):
     @axiom.setter
     def axiom(self, v): self._axiom = v
 
+    @property
+    def box(self): return self._box
+    @box.setter
+    def box(self, v): self._box = v
+    
     def isinner(self): return type(self.parentNode) == ClassOrInterfaceDeclaration
     def enclosing_types(self):
         def up(n):

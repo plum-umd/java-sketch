@@ -76,9 +76,9 @@ class Encoder(object):
 
         clss = utils.extract_nodes([ClassOrInterfaceDeclaration], self.prg)
         # is_ax_cls = any(map(lambda c: c._axiom, clss))
-        is_ax_cls = False
+        is_ax_cls = True if len(filter(lambda c: c.box, clss)) > 0 else False
         ax_clss = filter(lambda c: c.axiom, clss)        
-
+        
         self.is_ax_cls = is_ax_cls
         self.ax_clss = ax_clss
         
@@ -128,8 +128,8 @@ class Encoder(object):
         else: os.makedirs(self.sk_dir)
 
         clss = utils.extract_nodes([ClassOrInterfaceDeclaration], self.prg)
-        is_ax_cls = any(map(lambda c: c._axiom, clss))
-
+        is_ax_cls = any(map(lambda c: c._axiom, clss))        
+        
         # consist builds up some class hierarchies which happens in main.py
         # prg.consist()
         # type.sk
@@ -434,7 +434,7 @@ class Encoder(object):
             if not is_ax_cls and mtd_name2.split('_')[0] in map(lambda x: x.name, ax_mtds):
                 # c = str(mtd.typee) + u' '
                 c = self.tltr.trans_ty(mtd.typee) + u' '
-            if isinstance(mtd.typee, ReferenceType) and mtd.typee.arrayCount > 0:
+            if isinstance(mtd.typee, ReferenceType) and mtd.typee.arrayCount > 0 and not is_ax_cls:
                 c = u'Array_'+self.tltr.trans_ty(mtd.typee) + u' '
                 
             if name == cname.lower():
@@ -750,7 +750,7 @@ class Encoder(object):
                 casess.append(cases)
                 
             # add cases to body
-            body.add_body_nested(casess, a.body.stmts, adt_mtds, xf.parameters, cls, a)
+            body.add_body_nested(casess, a.body.stmts, adt_mtds, xf.parameters, cls, a, self.is_ax_cls)
 
         for v in xforms.values():
             buf.write(self.tltr.trans(v))        

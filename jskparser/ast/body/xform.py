@@ -116,7 +116,7 @@ class Xform(BodyDeclaration):
                                       u'body':{u'@t':u'BlockStmt',
                                                u'stmts':{u'@e':[dec_self_stmt, xform, ret_none],},},
                                       u'parameters':{u'@e':params},},)
-    def gen_switch(self, adt_mtds, depth, arg, cls, mtd, args):
+    def gen_switch(self, adt_mtds, depth, arg, cls, mtd, args, is_ax_cls):
         entries = []
         for a in adt_mtds:
             entries.append({u'@t':u'SwitchEntryStmt',
@@ -146,7 +146,6 @@ class Xform(BodyDeclaration):
             
         assn_self = {u'@t':u'AssignExpr',
                      u'target':{u'@t':u'LiteralExpr', u'name':u'selff._'+str(cls).lower(),},
-                     # u'value':{u'@t':u'LiteralExpr', u'name':u'new Dofinal_object(self=selff._'+str(cls).lower()+u', text=text)',},
                      u'value':{u'@t':u'LiteralExpr', u'name':ret_val,},
                      u'op':{u'name':u'ASSIGN',},}
 
@@ -155,10 +154,16 @@ class Xform(BodyDeclaration):
         
         ret_self = {u'@t': u'ReturnStmt',
                     u'expr': {u'@t':u'LiteralExpr', u'name':u'selff',},}
-        
+
         ret_block = {u'@t':u'BlockStmt',
                      u'stmts':{u'@e':[assn_self_stmt, ret_self],},}
 
+        if is_ax_cls:
+            ret_block = {u'@t': u'ReturnStmt',
+                         u'expr': {u'@t':u'LiteralExpr', u'name':
+                                   u'new Object(__cid='+str(cls)+u'(), _'+str(cls).lower()+u'='+ret_val+u')',},}
+        
+        
         if_stmt = {u'@t':u'IfStmt',
                    u'condition': check_null,
                    u'thenStmt': ret_block,}
@@ -194,7 +199,7 @@ class Xform(BodyDeclaration):
             
         return block
 
-    def build_switch(self, cases, body, adt_mtds, depth, arg_num, args, switch, cls, mtd):
+    def build_switch(self, cases, body, adt_mtds, depth, arg_num, args, switch, cls, mtd, is_ax_cls):
         new_switch = None
 
         if len(cases) > 0:
@@ -203,7 +208,7 @@ class Xform(BodyDeclaration):
                 depth = 1
 
         if not switch:
-            new_block = self.gen_switch(adt_mtds, depth, args[arg_num], cls, mtd, args)
+            new_block = self.gen_switch(adt_mtds, depth, args[arg_num], cls, mtd, args, is_ax_cls)
             new_switch = new_block.stmts[3]
         else:
             new_switch = switch
@@ -222,7 +227,7 @@ class Xform(BodyDeclaration):
                 else:
                     b = BlockStmt()
                     switch2 = s.stmts[0].stmts[0] if len(s.stmts) > 0 else None
-                    body2 = self.build_switch(cases[1:], body, adt_mtds, depth+1, arg_num, args, switch2, cls, mtd)
+                    body2 = self.build_switch(cases[1:], body, adt_mtds, depth+1, arg_num, args, switch2, cls, mtd, is_ax_cls)
                     body = [body2] if not isinstance(body2, list) else body2
                     b.stmts = body
                     s.stmts = [b]
@@ -249,7 +254,7 @@ class Xform(BodyDeclaration):
                     b.add_parent_post(s, True)
                     map(lambda s: s.add_parent_post(b), body)                       
 
-    def add_body_nested(self, casess, body, adt_mtds, args, cls, a):
+    def add_body_nested(self, casess, body, adt_mtds, args, cls, a, is_ax_cls):
         cases = []
         for i in range(0, len(casess)):
             for c in casess[i]:
@@ -274,7 +279,7 @@ class Xform(BodyDeclaration):
                 else:
                     b = BlockStmt()
                     switch = s.stmts[0].stmts[0] if len(s.stmts) > 0 else None
-                    body2 = self.build_switch(cases[1:], body, adt_mtds, 1, 0, args, switch, cls, a)
+                    body2 = self.build_switch(cases[1:], body, adt_mtds, 1, 0, args, switch, cls, a, is_ax_cls)
                     body = [body2] if not isinstance(body2, list) else body2
                     b.stmts = body
                     s.stmts = [b]
