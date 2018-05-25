@@ -664,7 +664,7 @@ class Encoder(object):
         #             param = param.method.parameters[0]
         #             depth += 1
                 
-        def set_param_names(a, xf, adt_mtds, depth, xf_sym, name):
+        def set_param_names(a, xf, adt_mtds, depth, xf_sym, name, xnames):
             xf_params = xf.parameters
             if len(xf_params) == len(a.parameters)-1:
                 first_param = LiteralExpr({u'name':u'selff',},)
@@ -681,13 +681,23 @@ class Encoder(object):
                                 xname = name+u'.'+xname
                             else:
                                 xname = ((name+u'_')*(depth))+name+u'.'+xname
+                                poss_names = filter(lambda n: len(n.split('_')) == depth+1, xnames)
+                                print("HERE: "+str(xname))
+                                if len(poss_names) > 0:
+                                    print("\tHERE: "+str(xname)+", "+str(poss_names[0]))
+                                    new_xname = poss_names[0].split('.')[0]
+                                    xname = new_xname+u'.'+xname.split('.')[-1]
                         xf_sym.symtab[old_name] = xname
+                        xnames.append(xname)
                 else:
                     xf2 = filter(lambda m: param.method.name == m.name.split('_')[0], adt_mtds)[0]
                     if depth == 0:
-                        set_param_names(param.method, xf2, adt_mtds, depth+1, xf_sym, xparam.name)
+                        set_param_names(param.method, xf2, adt_mtds, depth+1, xf_sym, xparam.name, xnames)
                     else:
-                        set_param_names(param.method, xf2, adt_mtds, depth+1, xf_sym, name)
+                        if xparam.name != u'selff':
+                            print("HERE: "+xparam.name+(u'_'+xparam.name)*depth)
+                            xnames.append(xparam.name+(u'_'+xparam.name)*(depth+1))
+                        set_param_names(param.method, xf2, adt_mtds, depth+1, xf_sym, name, xnames)
 
         for a in ax_mtds:
             a.name = a.name_no_nested(False, [])            
@@ -695,7 +705,7 @@ class Encoder(object):
             xf = xforms[xnm]
             xf.name = 'xform_{}'.format(a.name)
 
-            set_param_names(a, xf, adt_mtds, 0, xf, u'self')            
+            set_param_names(a, xf, adt_mtds, 0, xf, u'self', [])            
             # index = 0
             # for (param,xparam) in zip(a.parameters, xf.parameters):
             #     xf2 = []
