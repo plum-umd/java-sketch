@@ -10,9 +10,11 @@ public class SecretKeySpec implements Key {
 
     @alg
     @pure
-    boolean equals(Object o);
+    // boolean equals(Object o);
+    boolean equals(SecretKeySpec s);
 
-    rewrite Object equals(SecretKeySpec s, Object SecretKeySpec()) {
+    // rewrite Object equals(SecretKeySpec s, Object SecretKeySpec()) {
+    rewrite Object equals(SecretKeySpec s1, SecretKeySpec s2) {
     	return true;
     }
 }

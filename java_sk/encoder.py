@@ -625,53 +625,117 @@ class Encoder(object):
 
         # for a in adt_mtds:
         #     print("HERE22: "+str(a.name_no_nested(False)))
-            
+
+        # def set_param_names(self, xparams, params, mtd, xf, depth):
+        #     for (xp, ap) in zip(xparams, params):
+        #         name = mtd.name
+        #         if name == u'selff': name = u'self'
+        #         old_name = '#'+ap.name+"_axparam#"
+        #         if not old_name in xf.symtab: 
+        #             xf.symtab[old_name] = ((name+u'_')*(depth-1))+name+u'.'+xp.name
+
+        # def set_param_names2(self, param, xparam, depth, cls):            
+        #     if param.method and param.method.parameters:
+        #         name_with_args = param.method.name
+        #         if len(param.method.parameters) > 0:
+        #             nested_params = param.method.parameters
+        #             # Checking for constructor w/ no args
+        #             if name_with_args != cls.name:
+        #                 nested_params = nested_params[1:]
+        #             for param2 in nested_params:
+        #                 t = param2.typee
+        #                 typ = self.tltr.trans_ty(t)
+        #                 if typ == u'Object' or str(t) == u'byte': typ = str(t)
+        #                 name_with_args += '_'+typ
+        #         if name_with_args == cls.name and len(param.method.parameters) == 0:
+        #             name_with_args += '_Empty'
+
+        #         xf = filter(lambda m: name_with_args.startswith(m.name), adt_mtds)[0]
+        #             params2 = param.method.parameters[1:]
+        #             if xf2.constructor:
+        #                 params2 = param.method.parameters
+        #             for (xp, ap) in zip(xf2.parameters, params2):
+        #                 name = xparam.name
+        #                 if name == 'selff': name = u'self'
+        #             if not xf2.constructor:
+        #                 ap_name = param.method.parameters[0].name
+        #                 name = u'self' #ap_name
+        #                 xf.symtab['#'+ap_name+"_axparam#"] = ((name+u'_')*(depth-1))+name+u'.self'
+        #             param = param.method.parameters[0]
+        #             depth += 1
+                
+        def set_param_names(a, xf, adt_mtds, depth, xf_sym, name):
+            xf_params = xf.parameters
+            if len(xf_params) == len(a.parameters)-1:
+                first_param = LiteralExpr({u'name':u'selff',},)
+                xf_params = [first_param]+xf_params
+            for (param, xparam) in zip(a.parameters, xf_params):
+                if not param.method or not param.method.parameters:
+                    if name == 'selff': name = u'self'
+                    old_name = '#'+param.name+"_axparam#"
+                    if not old_name in xf_sym.symtab:
+                        xname = xparam.name
+                        if xname == u'selff': xname = u'self'
+                        if depth != 0:
+                            if depth == 1 and name == u'self':
+                                xname = name+u'.'+xname
+                            else:
+                                xname = ((name+u'_')*(depth))+name+u'.'+xname
+                        xf_sym.symtab[old_name] = xname
+                else:
+                    xf2 = filter(lambda m: param.method.name == m.name.split('_')[0], adt_mtds)[0]
+                    if depth == 0:
+                        set_param_names(param.method, xf2, adt_mtds, depth+1, xf_sym, xparam.name)
+                    else:
+                        set_param_names(param.method, xf2, adt_mtds, depth+1, xf_sym, name)
+
         for a in ax_mtds:
             a.name = a.name_no_nested(False, [])            
             xnm = 'xform_{}'.format(a.name)
             xf = xforms[xnm]
             xf.name = 'xform_{}'.format(a.name)
 
-            index = 0
-            for (param,xparam) in zip(a.parameters, xf.parameters):
-                xf2 = []
-                # if param.method:
-                #     if param.method.parameters:
-                depth = 1 if index == 0 else 2
-                index += 1
-                while param.method and param.method.parameters:
-                    name_with_args = param.method.name
-                    # name_with_args += '_Object_Object'
-                    if len(param.method.parameters) > 0:
-                        params2 = param.method.parameters
-                        if name_with_args != cls.name:
-                            params2 = params2[1:]
-                        for param2 in params2:
-                            # name_with_args += '_'+str(param2.typee)
-                            t = param2.typee
-                            typ = self.tltr.trans_ty(t)
-                            if typ == u'Object' or str(t) == u'byte': typ = str(t)
-                            name_with_args += '_'+typ
-                    if name_with_args == cls.name and len(param.method.parameters) == 0:
-                        name_with_args += '_Empty'
-                    # xf2 = filter(lambda m: m.name == name_with_args, adt_mtds)
-                    xf2 = filter(lambda m: name_with_args.startswith(m.name), adt_mtds)
-                    xf2 = xf2[0]
-                    params2 = param.method.parameters[1:]
-                    if xf2.constructor:
-                        params2 = param.method.parameters
-                    for (xp, ap) in zip(xf2.parameters, params2):
-                        name = xparam.name
-                        if name == 'selff': name = u'self'
-                        old_name = '#'+ap.name+"_axparam#"
-                        if not old_name in xf.symtab: 
-                            xf.symtab[old_name] = ((name+u'_')*(depth-1))+name+u'.'+xp.name
-                    if not xf2.constructor:
-                        ap_name = param.method.parameters[0].name
-                        name = u'self' #ap_name
-                        xf.symtab['#'+ap_name+"_axparam#"] = ((name+u'_')*(depth-1))+name+u'.self'
-                    param = param.method.parameters[0]
-                    depth += 1
+            set_param_names(a, xf, adt_mtds, 0, xf, u'self')            
+            # index = 0
+            # for (param,xparam) in zip(a.parameters, xf.parameters):
+            #     xf2 = []
+            #     # if param.method:
+            #     #     if param.method.parameters:
+            #     depth = 1 if index == 0 else 2
+            #     index += 1
+            #     while param.method and param.method.parameters:
+            #         name_with_args = param.method.name
+            #         # name_with_args += '_Object_Object'
+            #         if len(param.method.parameters) > 0:
+            #             params2 = param.method.parameters
+            #             if name_with_args != cls.name:
+            #                 params2 = params2[1:]
+            #             for param2 in params2:
+            #                 # name_with_args += '_'+str(param2.typee)
+            #                 t = param2.typee
+            #                 typ = self.tltr.trans_ty(t)
+            #                 if typ == u'Object' or str(t) == u'byte': typ = str(t)
+            #                 name_with_args += '_'+typ
+            #         if name_with_args == cls.name and len(param.method.parameters) == 0:
+            #             name_with_args += '_Empty'
+            #         # xf2 = filter(lambda m: m.name == name_with_args, adt_mtds)
+            #         xf2 = filter(lambda m: name_with_args.startswith(m.name), adt_mtds)
+            #         xf2 = xf2[0]
+            #         params2 = param.method.parameters[1:]
+            #         if xf2.constructor:
+            #             params2 = param.method.parameters
+            #         for (xp, ap) in zip(xf2.parameters, params2):
+            #             name = xparam.name
+            #             if name == 'selff': name = u'self'
+            #             old_name = '#'+ap.name+"_axparam#"
+            #             if not old_name in xf.symtab: 
+            #                 xf.symtab[old_name] = ((name+u'_')*(depth-1))+name+u'.'+xp.name
+            #         if not xf2.constructor:
+            #             ap_name = param.method.parameters[0].name
+            #             name = u'self' #ap_name
+            #             xf.symtab['#'+ap_name+"_axparam#"] = ((name+u'_')*(depth-1))+name+u'.self'
+            #         param = param.method.parameters[0]
+            #         depth += 1
                 
         # populate individual xforms with axioms
         #   
@@ -738,13 +802,16 @@ class Encoder(object):
                         # for p in params:
                         #     name += '_'+self.tltr.trans_ty(p.typee).lower()
                         name = a.parameters[i].method.name_no_nested(d.constructor, adt_mtds).capitalize()
-                        cases.append(name)
+                        # cases.append(name)
+                        cases.append((name, i))
                 else:
                     for d in decs:
                         if isinstance(d, AxiomDeclaration):
-                            cases.append(d.name_no_nested(False, adt_mtds).capitalize())
+                            # cases.append(d.name_no_nested(False, adt_mtds).capitalize())
+                            cases.append((d.name_no_nested(False, adt_mtds).capitalize(), i))
                         else:
-                            cases.append(d.name_no_nested(False).capitalize())
+                            # cases.append(d.name_no_nested(False).capitalize())
+                            cases.append((d.name_no_nested(False).capitalize(), i))
                     # cases = map(lambda d: d.name_no_nested(False, adt_mtds).capitalize(), decs)
                     
                 casess.append(cases)

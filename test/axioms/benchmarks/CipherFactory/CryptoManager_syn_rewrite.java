@@ -24,7 +24,7 @@ public class CryptoManager implements ICryptoManager {
     public CryptoManager() {
 	basicCharset = "US-ASCII";	
 	charset = "UTF-8";
-	byte b = 129;
+	byte b = 'a';
 	encryptedMark = b;
 	useEncryptionStrict = true;
 	cipherFactory = new DefaultCipherFactory();
@@ -104,7 +104,7 @@ public class CryptoManager implements ICryptoManager {
     }
 
     protected byte[] cutEncryptionMark(byte[] bytesArray) {
-        byte[] trimmedBytes = new byte[bytesArray.length - ??];
+        byte[] trimmedBytes = new byte[bytesArray.length - 1];
         // cut first element of array
         // System.arraycopy(bytesArray, 1, trimmedBytes, 0, bytesArray.length - 1);
 	for (int i = 1; i < bytesArray.length; i++) {
@@ -120,7 +120,7 @@ public class CryptoManager implements ICryptoManager {
 
     // protected boolean isEncrypted(byte[] data) {
     protected boolean isEncryptedByte(byte[] data) {	
-        return data[1] == getEncryptedMark();
+        return data[0] == getEncryptedMark();
     }
 
     /**
@@ -137,7 +137,8 @@ public class CryptoManager implements ICryptoManager {
         }
 	ICipherFactory cf = getCipherFactory();
         Cipher cipher = cf.decryptionCipher();
-        byte[] bytes = readEncoded(encryptedMessage);
+        // byte[] bytes = readEncoded(encryptedMessage);
+	byte[] bytes = cipher.readEncoded(encryptedMessage);	
         byte[] data = cryptInCipher(cipher, bytes);
         // cut encryption mark if required
         // if (isEncrypted(data)) {
@@ -178,7 +179,8 @@ public class CryptoManager implements ICryptoManager {
     }
 
     protected byte[] cryptInCipher(Cipher cipher, byte[] data) {
-    	return cipher.doFinal(data);	
+    	byte[] decrypt = cipher.doFinal(data);
+	return decrypt;
         // try {
         //     return cipher.doFinal(data);
         // } catch (Exception e) {

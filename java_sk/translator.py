@@ -279,6 +279,14 @@ class Translator(object):
     @v.when(Xform)
     def visit(self, n, **kwargs):
         # going to have to parse switch statements differently here
+        parent = n.parentNode
+        while not isinstance(parent, ClassOrInterfaceDeclaration):
+            parent = parent.parentNode
+        xf = n.parentNode
+        while not isinstance(xf, MethodDeclaration):
+            # print("HERE: "+str(xf)+", "+str(type(xf)))
+            xf = xf.parentNode
+        
         if n.stmt:
             self.printt('switch(')
             n.stmt.selector.accept(self, **kwargs)
@@ -288,7 +296,27 @@ class Translator(object):
                 e.label.accept(self, **kwargs)
                 self.printt(': ')
                 if not e.stmts:
-                    self.printt('{ assert false; }')
+                    names = (str(n)[6:].split('_'))                    
+                    names.insert(1, u'Object')
+                    name = names[0]
+                    for nam in names[1:]:
+                        name += u'_'+nam
+                    adt_mtd = filter(lambda m: str(m) == name or (str(m) == name.replace('_Object', '', 1)),e.adt_mtds)[0]
+                    ret_val = str(n)[6:].lower().capitalize()+u'('
+                    if not len(adt_mtd.parameters) == 0 and adt_mtd.parameters[0].name == u'self':
+                        ret_val += u'self=selff._'+str(parent).lower()          
+                    for ap,mp in zip(adt_mtd.parameters, xf.parameters[1:]):
+                        if ret_val[-1] != '(':
+                            ret_val += u', '
+                        ret_val += str(ap.name)+u'='+str(mp.name)
+
+                    ret_val += u')'
+                    if self._is_ax_cls:
+                        ret_val = u'Object(__cid={0}(), _{1}=new {2})'.format(parent, parent.name.lower(), ret_val)
+                        self.printt(u'return new '+ret_val+u';')
+                        # self.printt('{ assert false; }')
+                    else:
+                        self.printt('{ assert false; }')
                     self.printLn()
                 for s in e.stmts:
                     s.accept(self, **kwargs)

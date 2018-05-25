@@ -19,12 +19,19 @@ class SwitchEntryStmt(Statement):
                           s.get(u'@e', [])) if s else []
 
         self.add_as_parent([self.label]+self.stmts)
+
+        self._adt_mtds = kwargs.get(u'adt_mtds', [])
         
     @property
     def label(self): return self._label
     @label.setter
     def label(self, v): self._label = v
-  
+
+    @property
+    def adt_mtds(self): return self._adt_mtds
+    @adt_mtds.setter
+    def adt_mtds(self, v): self._adt_mtds = v
+    
     @property
     def stmts(self): return self._stmts
     @stmts.setter

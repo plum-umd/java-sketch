@@ -1,4 +1,5 @@
 @rewriteClass
+@autoBox
 class Cipher {
 
     public static Cipher getInstance(String type) {

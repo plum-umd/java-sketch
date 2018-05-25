@@ -27,6 +27,7 @@ public class DefaultCipherFactory implements ICipherFactory {
     public DefaultCipherFactory() {
 	ALGORITHM = "AES";
 	PADDING = "AES/ECB/PKCS5Padding";
+	// PADDING = "A/E/P";
         algorithm = ALGORITHM;
         padding = PADDING;
     }
