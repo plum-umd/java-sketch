@@ -425,10 +425,11 @@ class Encoder(object):
             #         typ_cls = p.symtab[p.typee.name]
             #         if isinstance(typ_cls, ClassOrInterfaceDeclaration) and typ_cls.axiom:
             #             ptyps[i] = u'Object'
-            for i in range(0,len(ptyps)):
-                if isinstance(mtd_param_typs[i], ReferenceType):
-                    if mtd_param_typs[i].arrayCount > 0:
-                        ptyps[i] = "Array_"+ptyps[i]
+            if not is_ax_cls:
+                for i in range(0,len(ptyps)):
+                    if isinstance(mtd_param_typs[i], ReferenceType):
+                        if mtd_param_typs[i].arrayCount > 0:
+                            ptyps[i] = "Array_"+ptyps[i]
             params = ', '.join(map(lambda p: ' '.join(p), zip(ptyps, pnms)))
             c = 'Object '
             if not is_ax_cls and mtd_name2.split('_')[0] in map(lambda x: x.name, ax_mtds):
@@ -680,11 +681,13 @@ class Encoder(object):
                             if depth == 1 and name == u'self':
                                 xname = name+u'.'+xname
                             else:
-                                xname = ((name+u'_')*(depth))+name+u'.'+xname
+                                if name == u'self':
+                                    xname = ((name+u'_')*(depth-1))+name+u'.'+xname
+                                else:
+                                    xname = ((name+u'_')*(depth))+name+u'.'+xname
+                                    
                                 poss_names = filter(lambda n: len(n.split('_')) == depth+1, xnames)
-                                print("HERE: "+str(xname))
                                 if len(poss_names) > 0:
-                                    print("\tHERE: "+str(xname)+", "+str(poss_names[0]))
                                     new_xname = poss_names[0].split('.')[0]
                                     xname = new_xname+u'.'+xname.split('.')[-1]
                         xf_sym.symtab[old_name] = xname
@@ -695,7 +698,6 @@ class Encoder(object):
                         set_param_names(param.method, xf2, adt_mtds, depth+1, xf_sym, xparam.name, xnames)
                     else:
                         if xparam.name != u'selff':
-                            print("HERE: "+xparam.name+(u'_'+xparam.name)*depth)
                             xnames.append(xparam.name+(u'_'+xparam.name)*(depth+1))
                         set_param_names(param.method, xf2, adt_mtds, depth+1, xf_sym, name, xnames)
 
@@ -704,7 +706,7 @@ class Encoder(object):
             xnm = 'xform_{}'.format(a.name)
             xf = xforms[xnm]
             xf.name = 'xform_{}'.format(a.name)
-
+            
             set_param_names(a, xf, adt_mtds, 0, xf, u'self', [])            
             # index = 0
             # for (param,xparam) in zip(a.parameters, xf.parameters):
@@ -776,16 +778,16 @@ class Encoder(object):
             #    function. not sure why...
             a.symtab = dict(xf.symtab.items() + a.symtab.items())
             map(partial(utils.walk, cpy_sym), a.childrenNodes)
-            
+
             # returns empty switch statement to be filled by axioms declarations
             #   of the axiom "a"
-            #   TODO: add depth argument here for nested structures
             body = xf.get_xform()
 
-            # iterate through body of axiom declarations of a, translate
-            #    them to appropriate IRs (i.e. JSON dicts)
-            a.body.stmts = self.tltr.trans_xform(a.name, body, a.body.stmts)
-
+            if any(map(lambda p: p.method, a.parameters)):                        
+                # iterate through body of axiom declarations of a, translate
+                #    them to appropriate IRs (i.e. JSON dicts)
+                a.body.stmts = self.tltr.trans_xform(a.name, body, a.body.stmts)
+                            
             casess = []
 
             for i in range(0, len(a.parameters)):
@@ -827,7 +829,10 @@ class Encoder(object):
                 casess.append(cases)
                 
             # add cases to body
-            body.add_body_nested(casess, a.body.stmts, adt_mtds, xf.parameters, cls, a, self.is_ax_cls)
+            if any(map(lambda p: p.method, a.parameters)):                            
+                body.add_body_nested(casess, a.body.stmts, adt_mtds, xf.parameters, cls, a, self.is_ax_cls)
+            else:
+                body.create_normal_body(a.body)
 
         for v in xforms.values():
             buf.write(self.tltr.trans(v))        

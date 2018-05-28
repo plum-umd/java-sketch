@@ -278,6 +278,9 @@ class Translator(object):
 
     @v.when(Xform)
     def visit(self, n, **kwargs):
+        if n.normal_body:
+            n.body.accept(self, **kwargs)
+            return
         # going to have to parse switch statements differently here
         parent = n.parentNode
         while not isinstance(parent, ClassOrInterfaceDeclaration):
@@ -1010,7 +1013,6 @@ class Translator(object):
                 typs.append(tname)
             nm = ''
             for c in cons:
-                # print("\tHERE23: "+str(c))
                 if nm == '':
                     if len(typs) == len(c.param_typs()) and \
                        self.match_loose(typs, c.param_typs(), tparam_nms):

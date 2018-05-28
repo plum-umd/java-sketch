@@ -36,6 +36,9 @@ class Xform(BodyDeclaration):
         self._type = locs[typdct[u'@t']](typdct) if typdct else None
         self.add_as_parent([self.stmt])
         self.prev_arg = []
+        self.prev_depth = 1
+        self.normal_body = False
+        self.body = None
 
     @property
     def stmt(self): return self._stmt
@@ -137,8 +140,11 @@ class Xform(BodyDeclaration):
         name = str(arg.name)
         if current_mtds != []:
             # name = current_mtds[0].parameters[arg_num-1].name
-            name = current_mtds[0].parameters[arg_num-1].name            
-            
+            if len(current_mtds[0].parameters) > arg_num-1:
+                name = current_mtds[0].parameters[arg_num-1].name            
+
+        if name == u'selff': name = u'self'
+                
         slf = name+((u'_'+name)*depth)
         
         # if (name != "self" and depth == 1):
@@ -150,8 +156,10 @@ class Xform(BodyDeclaration):
         # else:
         #     slf_dot = ((name+u'_')*(depth-1))+name+u'.self'
         if (name != "self" and depth == 1):
+        # if (depth == 1):
             if self.prev_arg != []:
-                slf_dot = self.prev_arg[-1]+u'._'+str(self.typee).lower()
+                # slf_dot = (self.prev_arg[-1]+u'_')*(self.prev_depth-1)+(self.prev_arg[-1])+u'._'+str(self.typee).lower()
+                slf_dot = name+u'._'+str(self.typee).lower()
             else:
                 slf_dot = name+u'._'+str(self.typee).lower()
         else:
@@ -170,14 +178,15 @@ class Xform(BodyDeclaration):
         #     slf_dot = ((self.prev_arg+u'_')*(depth-1))+self.prev_arg+u'.self'
 
         self.prev_arg.append(name)
-            
+        self.prev_depth = depth
             
         check_null = {u'@t':u'BinaryExpr',
                       u'left': {u'@t':u'LiteralExpr', u'name':slf_dot,},
                       u'right': {u'@t':u'NullLiteralExpr',},
                       u'op': {u'name': u'equals',},}
-
-        adt_mtd = filter(lambda m: m.adt and m.name == a.name, mtds)[0]        
+        
+        adt_mtd = filter(lambda m: str(m.name).lower() == str(self.name.split('_')[1]).lower() or str(m.name).lower() + u'b' == str(self.name.split('_')[1]).lower(), mtds)[0]        
+        # adt_mtd = filter(lambda m: m.adt and m.name == a.name, mtds)[0]        
         
         ret_val = u'new '+str(mtd.name).lower().capitalize()+u'(self=selff._'+str(cls).lower()
         for ap,mp in zip(adt_mtd.parameters, args[1:]):
@@ -295,6 +304,10 @@ class Xform(BodyDeclaration):
                     b.add_parent_post(s, True)
                     map(lambda s: s.add_parent_post(b), body)                       
 
+    def create_normal_body(self, body):
+        self.normal_body = True
+        self.body = body
+                    
     def add_body_nested(self, casess, body, adt_mtds, args, cls, a, is_ax_cls):
         # cases = []
         # for i in range(0, len(casess)):
@@ -302,7 +315,7 @@ class Xform(BodyDeclaration):
         #         cases.append((c,i))
 
         cases = [item for sublist in casess for item in sublist]        
-
+        
         # i dont think i know what this means yet...but it's probably not good
         if len(cases) == 0:
             raise Exception('Length of cases == 0')

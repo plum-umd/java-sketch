@@ -1,4 +1,5 @@
 @rewriteClass
+@autoBox
 class Cipher {
 
     public static Cipher getInstance(String type, String prov) {
@@ -46,7 +47,17 @@ class Cipher {
 	return l1;
     }
 
-    rewrite Object doFinal(Object doFinale!(Object update!(Object init!(Cipher c1, int m1, SecretKeySpec k1, AlgorithmParameterSpec i1), byte[] d1, int a1, int l1, byte[] o1, int b1), byte[] d2, int a2, int b2, byte[] o2, int c2), Object doFinal(Object doFinale!(Object update!(Object init!(Cipher c3, int m3, SecretKeySpec k3, AlgorithmParameterSpec i3), byte[] d3, int a3, int l3, byte[] o3, int b3), byte[] d4, int a4, int b4, byte[] o4, int c4), Object text)) {
+    rewrite Object doFinal(
+			   Object doFinale!(
+					    Object update!(
+							   Object init!(Cipher c1, int m1, SecretKeySpec k1, AlgorithmParameterSpec i1),
+							   byte[] d1, int a1,
+							   int l1, byte[] o1, int b1),
+					    byte[] d2, int a2, int b2, byte[] o2,
+					    int c2),
+			   Object doFinal(
+					  Object doFinale!(
+							   Object update!(Object init!(Cipher c3, int m3, SecretKeySpec k3, AlgorithmParameterSpec i3), byte[] d3, int a3, int l3, byte[] o3, int b3), byte[] d4, int a4, int b4, byte[] o4, int c4), Object text)) {
     	return k1.equals(k3) ? text : null;
     }
     

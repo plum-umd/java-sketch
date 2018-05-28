@@ -49,9 +49,9 @@ class ArrayDeque {
     	return size(d)==0 ? 0 : size(d)-1;
     }
 
-    rewrite Object isEmpty(ArrayDeque d) {
-    	return size(d)==0;
-    }
+    // rewrite Object isEmpty(ArrayDeque d) {
+    // 	return size(d)==0;
+    // }
 
     rewrite Object peekLast(Object ArrayDeque()) {
 	return null;
@@ -122,11 +122,11 @@ class ArrayDeque {
 	}
     }
 
-    rewrite Object removeLast(ArrayDeque d) {
-	return peekLast(d);
-    }
+    // rewrite Object removeLast(ArrayDeque d) {
+    // 	return peekLast(d);
+    // }
 
-    rewrite Object removeFirst(ArrayDeque d) {
-	return peekFirst(d);
-    }
+    // rewrite Object removeFirst(ArrayDeque d) {
+    // 	return peekFirst(d);
+    // }
 }

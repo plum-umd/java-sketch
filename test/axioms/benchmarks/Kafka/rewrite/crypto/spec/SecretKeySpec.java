@@ -4,25 +4,27 @@ public class SecretKeySpec implements Key {
     @pure
     byte[] getEncoded();
 
-    // @adt
+    // @alg
     // @constructor
     // SecretKeySpec SecretKeySpec(byte[] k, String alg);
 
     @alg
     @pure
-    boolean equals(Object o);
+    // boolean equals(Object o);
+    boolean equals(SecretKeySpec s);
 
-    rewrite Object equals(SecretKeySpec s, Object SecretKeySpec()) {
+    // rewrite Object equals(SecretKeySpec s, Object SecretKeySpec()) {
+    rewrite Object equals(SecretKeySpec s1, SecretKeySpec s2) {
     	return true;
     }
 }
 
 // public class SecretKeySpec implements Key {
-//     // @adt
+//     // @alg
 //     // @pure
 //     // byte[] getEncoded();
 
-//     // @adt
+//     // @alg
 //     // @constructor
 //     // SecretKeySpec SecretKeySpec(byte[] k, String alg);
 
