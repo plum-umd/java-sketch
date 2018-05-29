@@ -90,7 +90,8 @@ public class JCECipher implements ICipher {
 	if (??) {
 	    cipher = getCipher(isEncryption, key, IV);
 	}
-	if (??) { updateBytes = cipher.update(data, ??, cipherText.length, cipherText, ??); }
+	// if (??) { updateBytes = cipher.update(data, ??, cipherText.length, cipherText, ??); }
+	if (??) { updateBytes = cipher.update(data, ??, ??, cipherText, ??); }
 	if (??) { finalBytes = cipher.doFinale(data, ??, ??, cipherText, updateBytes); }
 	if (??) { cipherText = cipher.doFinal(data); }
 	if (??) {

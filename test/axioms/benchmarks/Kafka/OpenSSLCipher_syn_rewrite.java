@@ -113,7 +113,8 @@ public class OpenSSLCipher implements ICipher {
 	if (??) {
 	    cipher = getCipher(isEncryption, key, IV);
 	}
-	if (??) { updateBytes = cipher.update(data, ??, data.length, cipherText, ??); }
+	// if (??) { updateBytes = cipher.update(data, ??, data.length, cipherText, ??); }
+	if (??) { updateBytes = cipher.update(data, ??, ??, cipherText, ??); }
 	if (??) { finalBytes = cipher.doFinale(data, ??, ??, cipherText, updateBytes); }
 	if (??) { cipherText = cipher.doFinal(data); }
 	if (??) {
@@ -127,16 +128,19 @@ public class OpenSSLCipher implements ICipher {
 
     
     private byte[] translate(boolean isEncryption, byte[] data, SecretKeySpec key, byte[] IV) {
-        // byte[] output = new byte[2 * data.length];
+        // // byte[] output = new byte[2 * data.length];
+        // byte[] output;
 
 	// // CryptoCipher cipher = getCipher(isEncryption, key, IV);	
 	// Cipher cipher = getCipher(isEncryption, key, IV);	
-	// int updateBytes = cipher.update(data, 0, data.length, output, 0);
-	// int finalBytes = cipher.doFinal(data, 0, 0, output, updateBytes);
+	// // int updateBytes = cipher.update(data, 0, data.length, output, 0);
+	// int updateBytes = cipher.update(data, 0, 0, output, 0);
+	// int finalBytes = cipher.doFinale(data, 0, 0, output, updateBytes);
 
 	// output = cipher.doFinal(data);	
 	
-	// return Arrays.copyOf(output, updateBytes + finalBytes);
+	// // return Arrays.copyOf(output, updateBytes + finalBytes);
+	// return output;
 
 	return genCipherText(data, isEncryption, key, IV);
 	

@@ -411,7 +411,7 @@ class Encoder(object):
                 else:
                     typ = self.tltr.trans_ty(t)
                 ptyps.append(typ)
-                if typ == u'Object': typ = str(t)
+                if typ == u'Object' or str(t) == u'byte': typ = str(t)
                 ptyps_name.append(typ)
             pnms = map(str, mtd.param_names())
             # (ptyps, pnms) = (map(lambda t: self.tltr.trans_ty(t), mtd.param_typs()), map(str, mtd.param_names()))
