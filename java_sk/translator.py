@@ -705,7 +705,7 @@ class Translator(object):
         if typ and isinstance(typ, ClassOrInterfaceType) or isinstance(typ, ReferenceType):
             cls = typ.symtab.get(typ.name)
 
-        if (cls and isinstance(cls, ClassOrInterfaceDeclaration) and cls.axiom) or (n.annotations != [] and (u'isBoxed' in map(lambda a: str(a), n.annotations) or u'box' in map(lambda a: str(a), n.annotations))):
+        if (cls and isinstance(cls, ClassOrInterfaceDeclaration) and cls.axiom) or (n.annotations != [] and ((u'isBoxed' in map(lambda a: str(a), n.annotations) or u'box' in map(lambda a: str(a), n.annotations)))):
             self.printt('Object')
         else:
             n.typee.accept(self, **kwargs)
