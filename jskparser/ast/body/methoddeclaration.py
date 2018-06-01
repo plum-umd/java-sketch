@@ -52,12 +52,17 @@ class MethodDeclaration(BodyDeclaration):
         self._pure = False
         self._default = False
         self._constructor = False
+        self._boxedRet = False
+        self._boxedArgs = []
+        self._is_bang = False
         if self.annotations:
             # self._adt = any(map(lambda a: str(a) == 'adt', self.annotations))
             self._adt = any(map(lambda a: str(a) == 'alg', self.annotations))
             self._pure = any(map(lambda a: str(a) == 'pure', self.annotations))
             self._default = any(map(lambda a: str(a) == 'default', self.annotations))
-            self._constructor = any(map(lambda a: str(a) == 'constructor', self.annotations))            
+            self._constructor = any(map(lambda a: str(a) == 'constructor', self.annotations))
+            self._boxedRet = any(map(lambda a: str(a) == 'boxedRet', self.annotations))
+            self._boxedArgs = map(lambda m: int(m.memberValue.value), filter(lambda a: str(a) == 'boxedArgs', self.annotations))
 
         self._bang = kwargs.get(u'bang', False)
         self._adtType = kwargs.get(u'adtType', False)
@@ -72,6 +77,16 @@ class MethodDeclaration(BodyDeclaration):
     def add_bang(self): return self._add_bang
     @add_bang.setter
     def add_bang(self, v): self._add_bang = v
+
+    @property
+    def is_bang(self): return self._is_bang
+    @is_bang.setter
+    def is_bang(self, v): self._is_bang = v
+
+    @property
+    def boxedArgs(self): return self._boxedArgs
+    @boxedArgs.setter
+    def boxedArgs(self, v): self._boxedArgs = v
 
     @property
     def params(self): return self._params
@@ -127,6 +142,11 @@ class MethodDeclaration(BodyDeclaration):
     def constructor(self): return self._constructor
     @constructor.setter
     def constructor(self, v): self._constructor = v
+    
+    @property
+    def boxedRet(self): return self._boxedRet
+    @boxedRet.setter
+    def boxedRet(self, v): self._boxedRet = v
     
     @property
     def pure(self): return self._pure

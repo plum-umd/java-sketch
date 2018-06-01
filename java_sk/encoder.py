@@ -432,10 +432,10 @@ class Encoder(object):
                             ptyps[i] = "Array_"+ptyps[i]
             params = ', '.join(map(lambda p: ' '.join(p), zip(ptyps, pnms)))
             c = 'Object '
-            if not is_ax_cls and mtd_name2.split('_')[0] in map(lambda x: x.name, ax_mtds):
+            if (not is_ax_cls and mtd_name2.split('_')[0] in map(lambda x: x.name, ax_mtds)) and not mtd.boxedRet:
                 # c = str(mtd.typee) + u' '
                 c = self.tltr.trans_ty(mtd.typee) + u' '
-            if isinstance(mtd.typee, ReferenceType) and mtd.typee.arrayCount > 0 and not is_ax_cls:
+            if isinstance(mtd.typee, ReferenceType) and mtd.typee.arrayCount > 0 and (not is_ax_cls and not mtd.boxedRet and not mtd.is_bang):
                 c = u'Array_'+self.tltr.trans_ty(mtd.typee) + u' '
                 
             if name == cname.lower():
@@ -492,7 +492,7 @@ class Encoder(object):
                     c +='_{}'.format(ptypes)
                 # c += '(self._{}'.format(cls.name.lower())
                 c += '(self'
-                if not is_ax_cls:
+                if not is_ax_cls and not mtd.boxedRet:
                     c += u'._'+str(cls).lower()
                 if pnms != []:
                     c += ', {}'.format(','.join(pnms))
@@ -520,6 +520,7 @@ class Encoder(object):
                     mtd = cp.copy(m)
                     mtd.name = m.name + 'b'
                     mtd.pure = True
+                    mtd.is_bang = True
                     adt_mtds.insert(i+1, mtd)
                 # else:
                 #     m.name += 'b'
@@ -578,6 +579,7 @@ class Encoder(object):
                 
             x.adtName = str(a)
             x.add_parent_post(cls, True)
+            x.boxedRet = a.boxedRet
             xforms[xnm] = x
 
         # Applies cpy_sym to all children of this class and all children of those

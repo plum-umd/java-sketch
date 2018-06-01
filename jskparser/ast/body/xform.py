@@ -39,11 +39,17 @@ class Xform(BodyDeclaration):
         self.prev_depth = 1
         self.normal_body = False
         self.body = None
+        self._boxedRet = False
 
     @property
     def stmt(self): return self._stmt
     @stmt.setter
     def stmt(self, v): self._stmt = v
+
+    @property
+    def boxedRet(self): return self._boxedRet
+    @boxedRet.setter
+    def boxedRet(self, v): self._boxedRet = v
 
     @property
     def typee(self): return self._type
@@ -65,7 +71,7 @@ class Xform(BodyDeclaration):
                u'type': {u'@t': u'ClassOrInterfaceType', u'name': str(cls),},
                u'init': {u'@t':u'LiteralExpr', u'name':u'selff._'+str(cls).lower(),},}
 
-        if not is_ax_cls:
+        if not is_ax_cls and not ax.boxedRet:
             dec = {u'@t': u'VariableDeclarator',
                    u'id': {u'@t':u'VariableDeclaratorId', u'name': u'self',},
                    u'type': {u'@t': u'ClassOrInterfaceType', u'name': str(cls),},
@@ -89,7 +95,7 @@ class Xform(BodyDeclaration):
         is_arr = False
         if isinstance(ax.typee, ReferenceType) and ax.typee.arrayCount > 0:
             is_arr = True
-        if not is_ax_cls:
+        if not is_ax_cls and not ax.boxedRet:
             if str(ax.typee) != u'void':
                 prim_bot = {
                     u'boolean': u'0',
@@ -207,7 +213,7 @@ class Xform(BodyDeclaration):
         ret_block = {u'@t':u'BlockStmt',
                      u'stmts':{u'@e':[assn_self_stmt, ret_self],},}
 
-        if is_ax_cls:
+        if is_ax_cls or adt_mtd.boxedRet:
             ret_block = {u'@t': u'ReturnStmt',
                          u'expr': {u'@t':u'LiteralExpr', u'name':
                                    u'new Object(__cid='+str(cls)+u'(), _'+str(cls).lower()+u'='+ret_val+u')',},}

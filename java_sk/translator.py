@@ -201,9 +201,9 @@ class Translator(object):
                 s.append(u'fs_s@Object(HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash())));')
             n.body.stmts = s + n.body.stmts
 
-        
+        boxedRet = u'boxedRet' in map(lambda a: str(a), n.annotations) or n.boxedRet
             
-        if isinstance(n.typee, ReferenceType) and isinstance(n.typee.typee, ClassOrInterfaceType) and str(n.typee.typee) in map(lambda c: c.name, self._ax_clss) and not self._is_ax_cls:
+        if (isinstance(n.typee, ReferenceType) and isinstance(n.typee.typee, ClassOrInterfaceType) and str(n.typee.typee) in map(lambda c: c.name, self._ax_clss) and not self._is_ax_cls) or boxedRet:
             self.printt('Object')
         else:
             n.typee.accept(self, **kwargs)
@@ -234,7 +234,7 @@ class Translator(object):
             
             for i in range(0, len(params)):
                 param = params[i]
-                if isinstance(param.typee, ReferenceType) and isinstance(param.typee.typee, ClassOrInterfaceType) and str(param.typee.typee) in map(lambda c: c.name, self._ax_clss) and not self._is_ax_cls and not str(n).startswith('xform_'):
+                if ((isinstance(param.typee, ReferenceType) and isinstance(param.typee.typee, ClassOrInterfaceType) and str(param.typee.typee) in map(lambda c: c.name, self._ax_clss) and not self._is_ax_cls and not str(n).startswith('xform_')) or (i+1) in n.boxedArgs) or (i == 0 and n.boxedRet):
                     self.printt('Object')
                 else:
                     param.typee.accept(self, **kwargs)
@@ -273,7 +273,9 @@ class Translator(object):
                 kwargs['HasCurly'] = False
             else:
                 self.printt(' ')
+                kwargs[u'boxedRet'] = boxedRet
                 n.body.accept(self, **kwargs)
+                kwargs[u'boxedRet'] = False                
         self.printLn()
 
     @v.when(Xform)
@@ -287,9 +289,8 @@ class Translator(object):
             parent = parent.parentNode
         xf = n.parentNode
         while not isinstance(xf, MethodDeclaration):
-            # print("HERE: "+str(xf)+", "+str(type(xf)))
             xf = xf.parentNode
-        
+
         if n.stmt:
             self.printt('switch(')
             n.stmt.selector.accept(self, **kwargs)
@@ -314,7 +315,7 @@ class Translator(object):
                         ret_val += str(ap.name)+u'='+str(mp.name)
 
                     ret_val += u')'
-                    if self._is_ax_cls:
+                    if self._is_ax_cls or xf.boxedRet:
                         ret_val = u'Object(__cid={0}(), _{1}=new {2})'.format(parent, parent.name.lower(), ret_val)
                         self.printt(u'return new '+ret_val+u';')
                         # self.printt('{ assert false; }')
@@ -324,7 +325,7 @@ class Translator(object):
                 for s in e.stmts:
                     s.accept(self, **kwargs)
                     self.printLn()
-
+                    
         if not n.stmt: self.printLn()
         self.printLn('}')
 
@@ -379,6 +380,24 @@ class Translator(object):
                     self.printt('Array_{}'.format(typ))
                     self.printt('(')
                 n.init.accept(self, **kwargs)
+        elif n.init and (u'box' in kwargs and kwargs[u'box']):
+            self.printt(' ')
+            n.idd.accept(self, **kwargs)
+            self.printt(' = ')
+            if isinstance(n.typee, PrimitiveType):
+                typ = self.trans_ty(n.typee)
+                cid = self.primitiveIds[typ]
+                self.printt('(new Object(__cid={0}, _{1}='.format(cid, typ))   
+                n.init.accept(self, **kwargs)
+                self.printt('))')
+            elif isinstance(n.typee, ReferenceType) and n.typee.arrayCount > 0:
+                typ = self.trans_ty(n.typee)
+                cid = self.primitiveIds[typ]
+                self.printt('(new Object(__cid={0}, _array_{1}='.format(cid, typ))   
+                n.init.accept(self, **kwargs)
+                self.printt('))')                
+            else:
+                n.init.accept(self, **kwargs)            
         elif n.init and not self._is_ax_cls:
             self.printt(' ')
             n.idd.accept(self, **kwargs)
@@ -418,7 +437,7 @@ class Translator(object):
     def visit(self, n, **kwargs):
         if self._is_ax_cls: kwargs['Return'] = True
         self.printt('return')
-        if n.expr and self._is_ax_cls:
+        if (n.expr and self._is_ax_cls):
             self.printt(' ')
             typ = ''
             if isinstance(n.expr, BinaryExpr) or isinstance(n.expr, UnaryExpr):
@@ -440,6 +459,17 @@ class Translator(object):
                 self.printt('))')
             else:
                 n.expr.accept(self, **kwargs)
+        elif n.expr and kwargs[u'boxedRet']:
+            typ = self.trans_ty(n.expr.typee)
+            if typ == 'byte': typ = 'char'
+            if typ == u'Object':
+                self.printt(' ')
+                n.expr.accept(self, **kwargs)
+            else:
+                cid = self.primitiveIds[typ]
+                self.printt('(new Object(__cid={0}, _{1}='.format(cid, typ))       
+                n.expr.accept(self, **kwargs)
+                self.printt('))')            
         elif n.expr and not self._is_ax_cls:
             self.printt(' ')
             n.expr.accept(self, **kwargs)            
@@ -674,13 +704,20 @@ class Translator(object):
         cls = None
         if typ and isinstance(typ, ClassOrInterfaceType) or isinstance(typ, ReferenceType):
             cls = typ.symtab.get(typ.name)
-            
-        if cls and isinstance(cls, ClassOrInterfaceDeclaration) and cls.axiom:
+
+        if (cls and isinstance(cls, ClassOrInterfaceDeclaration) and cls.axiom) or (n.annotations != [] and (u'isBoxed' in map(lambda a: str(a), n.annotations) or u'box' in map(lambda a: str(a), n.annotations))):
             self.printt('Object')
         else:
             n.typee.accept(self, **kwargs)
         # self.printt(' ')
-        self.printSepList(n.varss)
+        kwargs[u'box'] = u'box' in map(lambda a: str(a), n.annotations)
+        kwargs[u'unbox'] = (u'unbox' in map(lambda a: str(a), n.annotations), n.typee)
+        self.printSepList(n.varss, **kwargs)
+        kwargs[u'box'] = False
+        kwargs[u'unbox'] = False                       
+        # if u'unbox' in map(lambda a: str(a), n.annotations):
+        #     self.printt('._')
+        #     n.typee.accept(self, **kwargs)
 
     @v.when(AssignExpr)
     def visit(self, n, **kwargs):
@@ -1362,7 +1399,10 @@ class Translator(object):
             self.printt('Object')
         else:
             if n.arrayCount:
-                self.printt('Array_{}'.format(self.trans_ty(n.typee)))
+                if u'lower' in kwargs and kwargs[u'lower']:
+                    self.printt('array_{}'.format(self.trans_ty(n.typee)))
+                else:
+                    self.printt('Array_{}'.format(self.trans_ty(n.typee)))
             else:
                 n.typee.accept(self, **kwargs)
 
@@ -1698,7 +1738,7 @@ class Translator(object):
             # self.printt(';')
         elif not callexpr.scope:
             self.printt('{}@{}'.format(str(mtd), str(cls)))
-            self.printArguments([NameExpr({u'name':u'self'})] + callexpr.args)
+            self.printArguments([NameExpr({u'name':u'self'})] + callexpr.args, "")
         else:
             if type(callexpr.scope) == SuperExpr:
                 self.printt('{}@{}'.format(str(mtd), str(cls)))
@@ -1741,10 +1781,16 @@ class Translator(object):
             conexprs = reduce(combine, reversed(conexprs))
             if type(mtd.typee) != VoidType: self.printt('(')
             # DIFFERENT ARGS HERE THEN FOR UNBOXED
-            self.print_dispatch(conexprs, is_adt, is_ax2, xform_name, **kwargs)
+            self.print_dispatch(conexprs, is_adt, is_ax2, xform_name, mtd, **kwargs)
             if type(mtd.typee) != VoidType: self.printt(')')                
             # if is_ax and self._is_ax_cls:
             if is_ax and self._ax_clss != []:
+                if u'unbox' in kwargs and kwargs[u'unbox'][0]:
+                    self.printt('._')
+                    kwargs[u'lower'] = True
+                    kwargs[u'unbox'][1].accept(self, **kwargs)
+                    kwargs[u'lower'] = False
+                    
                 self.printt('; ')
                 callexpr.scope.accept(self, **kwargs)
                 self.printt(' = ')
@@ -1857,7 +1903,7 @@ class Translator(object):
         elif s: return self.find_mtd(s[0], descriptor) # nope, check superclasses
         else: return (None, None) # doesn't exist
 
-    def print_dispatch(self, c, is_adt, is_ax, xform_name, **kwargs):
+    def print_dispatch(self, c, is_adt, is_ax, xform_name, mtd, **kwargs):
         # we need to do this b/c the elseExpr's are going to have MethodCallExpr which
         # get handled differently
         if isinstance(c, ConditionalExpr):
@@ -1868,7 +1914,7 @@ class Translator(object):
             self.printt(' : ')
             if isinstance(c.elseExpr, IntegerLiteralExpr): self.printt('0')
             elif isinstance(c.elseExpr, PrimitiveType):
-                if self._is_ax_cls:
+                if self._is_ax_cls or mtd.boxedRet:
                     self.printt('null')
                 else:
                     if not is_ax:
@@ -1880,7 +1926,7 @@ class Translator(object):
                     else:
                         self.printt('null')
             elif isinstance(c.elseExpr, (ClassOrInterfaceType, ReferenceType)): self.printt('null')
-            else: self.print_dispatch(c.elseExpr, is_adt, is_ax, xform_name)
+            else: self.print_dispatch(c.elseExpr, is_adt, is_ax, xform_name, mtd)
         elif isinstance(c, MethodCallExpr):
             self.printt('{}('.format(c.name))
             self.printArguments(c.args, xform_name)
@@ -1898,7 +1944,7 @@ class Translator(object):
                 else:
                     # self.printLn()
                     # self.printt('else ')
-                    self.print_dispatch(c.elseStmt, is_adt, is_ax, xform_name)
+                    self.print_dispatch(c.elseStmt, is_adt, is_ax, xform_name, mtd)
             else:
                 self.printt('if (')
                 c.condition.accept(self, **kwargs)
@@ -1913,7 +1959,7 @@ class Translator(object):
                 else:
                     self.printLn()
                     self.printt('else ')
-                    self.print_dispatch(c.elseStmt, is_adt, is_ax, xform_name)
+                    self.print_dispatch(c.elseStmt, is_adt, is_ax, xform_name, mtd)
 
     def make_dispatch(self, scope, S, mdec, args, **kwargs):
         d = {
@@ -2242,7 +2288,7 @@ class Translator(object):
             if args:
                 lenn = len(args)
                 for i in xrange(lenn):
-                    if isinstance(args[i], BinaryExpr) or isinstance(args[i], UnaryExpr) or isinstance(args[i], ArrayAccessExpr):
+                    if (isinstance(args[i], BinaryExpr) or isinstance(args[i], UnaryExpr) or isinstance(args[i], ArrayAccessExpr)):
                         if isinstance(args[i].typee, PrimitiveType) or str(args[i].typee) in [u'int', u'bit', u'float', u'double']:
                             typ = self.trans_ty(args[i].typee)
                             cid = self.primitiveIds[typ]
