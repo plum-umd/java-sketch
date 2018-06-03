@@ -10,7 +10,7 @@ from . import TestCommon
 pwd = os.path.dirname(__file__)
 tests = os.path.join(pwd, "axioms/benchmarks")
 
-numTests = 2
+numTests = 1
 
 class TestJava(TestCommon):
     def __test(self, fs, inline, unroll, adp_conc=False, arr=32):
@@ -30,49 +30,69 @@ class TestJava(TestCommon):
                 result = 1
                 while result != 0:
                     result = t()
-                with open('result/output/'+f+'.txt') as output:
-                    text = [line for line in output][-1]
-                    time = re.match(r'Total time = ([0-9]*)', text, re.M|re.I)
-                    results[k].append(time.group(1))
+                output = open('result/output/'+f+'.txt')
+                text = [line for line in output][-1]
+                time = re.match(r'Total time = ([0-9]*)', text, re.M|re.I)
+                results[k].append(time.group(1))
+                output.close()                
+                # with open('result/output/'+f+'.txt') as output:
+                #     text = [line for line in output][-1]
+                #     time = re.match(r'Total time = ([0-9]*)', text, re.M|re.I)
+                #     results[k].append(time.group(1))
             results[k].append('--'*8)
                     
         return results
-        
+
+    # def test_rand(self):
+    #     for i in range(0, 31*200):
+    #         output = open('result/output/'+str(i)+'.txt', 'w')
+    #         output.write(str(i))
+    #         output.close()
+    #     for i in range(0, 31*200):
+    #         output = open('result/output/'+str(i)+'.txt', 'r')
+    #         text = [line for line in output][-1]
+    #         time = re.match(r'Total time = ([0-9]*)', text, re.M|re.I)
+    #         if time:
+    #             print(time.group(1))
+    #         # output.close()                
+                
     def test_runModels(self):
         modelResults = open('results_model.csv', 'w')
-        with modelResults:
-            writer = csv.writer(modelResults)
-            modelTests = [
-                (self.run_SuffixArrayModel, 'SuffixArrayTest'),
-                (self.run_HashMap1Model, 'HashTableTest'),
-                (self.run_HashMap2Model, 'BucketingTest'),
-                (self.run_EasyCSVModel, 'CSVTester'),
-                (self.run_RomListModel, 'RomListTester'),
-                (self.run_ComparatorModel, 'Comparator'),
-                (self.run_PasswordManagerModel, 'PasswordManagerTest'),
-                (self.run_CipherFactoryModel, 'CipherFactoryTests'),
-                (self.run_KafkaModel, 'Kafka_Tester')                
-            ]
-            results = map(lambda x: [x], reduce(lambda x,y: x + y, self.run_tests(modelTests, [])))
-            writer.writerows(results)
+        # with modelResults:
+        writer = csv.writer(modelResults)
+        modelTests = [
+            (self.run_SuffixArrayModel, 'SuffixArrayTest'),
+            (self.run_HashMap1Model, 'HashTableTest'),
+            (self.run_HashMap2Model, 'BucketingTest'),
+            (self.run_EasyCSVModel, 'CSVTester'),
+            (self.run_RomListModel, 'RomListTester'),
+            (self.run_ComparatorModel, 'Comparator'),
+            (self.run_PasswordManagerModel, 'PasswordManagerTest'),
+            (self.run_CipherFactoryModel, 'CipherFactoryTests'),
+            (self.run_KafkaModel, 'Kafka_Tester')                
+        ]
+        results = map(lambda x: [x], reduce(lambda x,y: x + y, self.run_tests(modelTests, [])))
+        writer.writerows(results)
+        modelResults.close()
 
     def test_runRewrites(self):
         modelResults = open('results_rewrite.csv', 'w')
-        with modelResults:
-            writer = csv.writer(modelResults)
-            rewriteTests = [
-                (self.run_SuffixArrayRewrite, 'SuffixArrayTest'),
-                (self.run_HashMap1Rewrite, 'HashTableTest'),
-                (self.run_HashMap2Rewrite, 'BucketingTest'),
-                (self.run_EasyCSVRewrite, 'CSVTester'),
-                (self.run_RomListRewrite, 'RomListTester'),
-                (self.run_ComparatorRewrite, 'Comparator'),
-                (self.run_PasswordManagerRewrite, 'PasswordManagerTest'),
-                (self.run_CipherFactoryRewrite, 'CipherFactoryTests'),
-                (self.run_KafkaRewrite, 'Kafka_Tester')
-            ]
-            results = map(lambda x: [x], reduce(lambda x,y: x + y, self.run_tests(rewriteTests, [])))
-            writer.writerows(results)
+        # with modelResults:
+        writer = csv.writer(modelResults)
+        rewriteTests = [
+            (self.run_SuffixArrayRewrite, 'SuffixArrayTest'),
+            (self.run_HashMap1Rewrite, 'HashTableTest'),
+            (self.run_HashMap2Rewrite, 'BucketingTest'),
+            (self.run_EasyCSVRewrite, 'CSVTester'),
+            (self.run_RomListRewrite, 'RomListTester'),
+            (self.run_ComparatorRewrite, 'Comparator'),
+            (self.run_PasswordManagerRewrite, 'PasswordManagerTest'),
+            (self.run_CipherFactoryRewrite, 'CipherFactoryTests'),
+            (self.run_KafkaRewrite, 'Kafka_Tester')
+        ]
+        results = map(lambda x: [x], reduce(lambda x,y: x + y, self.run_tests(rewriteTests, [])))
+        writer.writerows(results)
+        modelResults.close()
             
     def run_SuffixArrayModel(self):
         files = ["SuffixArray_loops.java", "SuffixArrayTest.java", "model/"]        
