@@ -1,4 +1,4 @@
-public class Tester {
+public class Kafka_Tester {
     harness public void main() {
 	testOpenSSL();
 	testJCECipher();
@@ -19,8 +19,8 @@ public class Tester {
 	    byte[] IV = p2.getBytes();
 	    byte[] key = p3.getBytes();
 
-	    // Key sk = new SecretKeySpec(key, "AES");
-	    SecretKeySpec sk = new SecretKeySpec();
+	    Key sk = new SecretKeySpec(key, "AES");
+	    // SecretKeySpec sk = new SecretKeySpec();
 	    byte[] cipherText = oc.encrypt(plaintext, sk, IV);
 	    byte[] plaintext2 = oc.decrypt(cipherText, sk, IV);	
 	    assert Arrays.arraysEquals(plaintext, plaintext2);
@@ -42,8 +42,8 @@ public class Tester {
     	    byte[] IV = p2.getBytes();
     	    byte[] key = p3.getBytes();
 
-    	    // Key sk = new SecretKeySpec(key, "AES");
-    	    SecretKeySpec sk = new SecretKeySpec();
+    	    Key sk = new SecretKeySpec(key, "AES");
+    	    // SecretKeySpec sk = new SecretKeySpec();
     	    byte[] cipherText = oc.encrypt(plaintext, sk, IV);
     	    byte[] plaintext2 = oc.decrypt(cipherText, sk, IV);
 
