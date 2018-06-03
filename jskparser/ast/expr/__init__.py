@@ -31,7 +31,8 @@ def _import():
     from .longliteralexpr import LongLiteralExpr
     from .instanceofexpr import InstanceOfExpr
     from .annotationexpr import AnnotationExpr
-
+    from .markerannotationexpr import MarkerAnnotationExpr
+    
     from ..type.primitivetype import PrimitiveType
     from ..type.referencetype import ReferenceType
     from ..type.classorinterfacetype import ClassOrInterfaceType
