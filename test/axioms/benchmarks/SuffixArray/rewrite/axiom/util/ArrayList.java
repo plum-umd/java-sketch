@@ -19,6 +19,6 @@ class ArrayList {
     }
 
     rewrite Object get(Object add!(ArrayList a, Object e1), int i) {
-	return size(a) == i-1 ? e1 : get(a, i);
+	return size(a) == i ? e1 : get(a, i);
     }
 }

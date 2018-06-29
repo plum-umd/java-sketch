@@ -119,42 +119,63 @@ public class SuffixArrayTest {
     // // assertEquals("aab", list.get(0));
     // // list.clear();
 
-    s = "abcdefg";
-    sa = new SuffixArray(s);
-    lrss = sa.lrs();    
-    // list.addAll(lrss);
-    // CHANGE
-    assert lrss.size() == 0;
-    // assertEquals(0, list.size());
-    // list.clear();
+    // s = "abcdefg";
+    // sa = new SuffixArray(s);
+    // lrss = sa.lrs();    
+    // // list.addAll(lrss);
+    // // CHANGE
+    // assert lrss.size() == 0;
+    // // assertEquals(0, list.size());
+    // // list.clear();
 
-    s = "abca";
-    sa = new SuffixArray(s);
-    lrss = sa.lrs();
-    // list.addAll(lrss);
-    // CHANGE
-    assert lrss.size() == 1;
-    // assertEquals(1, lrss.size());
-    // CHANGE
-    cont1 = lrss.contains("a");
-    assert cont1;
-    // assertEquals("a", list.get(0));
-    // list.clear();
-
-    // s = "abcba";
+    // s = "abca";
     // sa = new SuffixArray(s);
     // lrss = sa.lrs();
     // // list.addAll(lrss);
     // // CHANGE
-    // assert lrss.size() == 2;
-    // // assertEquals(2, lrss.size() );
+    // assert lrss.size() == 1;
+    // // assertEquals(1, lrss.size());
     // // CHANGE
-    // assert lrss.contains("a");
-    // assert lrss.contains("b");
+    // cont1 = lrss.contains("a");
+    // assert cont1;
     // // assertEquals("a", list.get(0));
-    // // assertEquals("b", list.get(1));
     // // list.clear();
 
+    s = "abcba";
+    sa = new SuffixArray(s);
+    lrss = sa.lrs();
+    // list.addAll(lrss);
+    // CHANGE
+    assert lrss.size() == 2;
+    // assertEquals(2, lrss.size() );
+    // CHANGE
+    assert lrss.contains("a");
+    assert lrss.contains("b");
+    // assertEquals("a", list.get(0));
+    // assertEquals("b", list.get(1));
+    // list.clear();
+
+    s = "abccdd";
+    sa = new SuffixArray(s);
+    lrss = sa.lrs();
+    assert lrss.size() == 2;
+    assert lrss.contains("c");
+    assert lrss.contains("d");    
+
+    s = "aaab";
+    sa = new SuffixArray(s);
+    lrss = sa.lrs();
+    assert lrss.size() == 1;
+    assert lrss.contains("aa");
+
+    s = "ababa";	
+    sa = new SuffixArray(s);
+    lrss = sa.lrs();
+    assert lrss.size() == 1;
+    // assert lrss.contains("ab");
+    // assert lrss.contains("ba");    
+    assert lrss.contains("aba");    
+    
     // s = "aZZbZZcYYdYYe";
     // // s = "aZZbYY";
     // sa = new SuffixArray(s);

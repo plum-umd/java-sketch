@@ -8,6 +8,7 @@ class TreeSet {
     Object clear();
 
     @alg
+    @pure
     boolean contains(Object e);
 
     @alg
