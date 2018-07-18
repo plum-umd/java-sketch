@@ -64,6 +64,9 @@ public class CommunicationWithFiles {
 		value = genRead(bfr, value, isAList, values, filename);
 	    }
 	}
+	if (??) {
+	    value = genRead(bfr, value, isAList, values, filename);
+	}
 	
 	// if (??) {
 	//     value = bfr.readLine();
