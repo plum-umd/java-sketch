@@ -43,8 +43,12 @@ public class CommunicationWithFiles {
 
 	if (??) {
 	    if (value!=null && !isAList==true){
-		// values.add(value+"|"+filename);
+		// // values.add(value+"|"+filename);
+		// char[] c = new char[1];
+		// c[0] = ??;
+		// String bar = new String(c, 0, 1);
 		String vbar = value.concat("|");
+		// String vbar = value.concat(bar);
 		values.add(vbar.concat(filename));
 	    }
 	}	

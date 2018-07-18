@@ -42,10 +42,18 @@ public class CommunicationWithFiles {
 	// }
 	
 	if (??) {
-	    if (value!=null && !isAList==true){
-		// values.add(value+"|"+filename);
+	    if (value!=?? && !isAList==true){
+		// // values.add(value+"|"+filename);
+		// char[] c = new char[1];
+		// c[0] = ??;
+		// String bar = new String(c, 0, 1);
 		String vbar = value.concat("|");
+		// String vbar = value.concat(bar);
 		values.add(vbar.concat(filename));
+
+		// // values.add(value+"|"+filename);
+		// String vbar = value.concat("|");
+		// values.add(vbar.concat(filename));
 	    }
 	}
 	if (??) {
