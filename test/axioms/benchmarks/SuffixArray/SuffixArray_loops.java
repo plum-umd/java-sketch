@@ -264,14 +264,14 @@ class SuffixArray {
 
     // CHANGE
     char[] tmp = new char[T.length];      
-    int g1 = {| T.length, N, max_len |};
-    for (int i=??; i<g1; i++) {
+    int g1 = {| T.length, N, max_len, ?? |};
+    for (int i=??; i<g1; i=i+??) {
     // for (int i=0; i<T.length; i++) {
     	tmp[i] = (char) T[i];
     }
     
-    int g2 = {| T.length, N, max_len |};
-    for (int i = ??; i < g2; i++) {
+    int g2 = {| T.length, N, max_len, ?? |};
+    for (int i = ??; i < g2; i=i+??) {
     // for (int i = 0; i < N; i++) {
       if (lcp[i] > ?? && lcp[i] >= max_len) {
         
