@@ -79,8 +79,8 @@ public class ArrayList<E> implements List<E>{
     public <E> boolean add(E e) {
     // public <E> boolean add(E e) {
 	checkAdjustSize();
-	size++;
 	elementData[size] = e;
+	size++;	
 	return true;
     }
 
