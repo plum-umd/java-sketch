@@ -1359,7 +1359,7 @@ class Translator(object):
             if not allsubs: return
             self.printt(' || ')
             n.expr.accept(self, **kwargs)
-            self.printt('.__cd == {}()'.format(str(allsubs[0])))
+            self.printt('.__cid == {}()'.format(str(allsubs[0])))
             subclss(allsubs[1:])
 
         subclss(utils.all_subClasses(cls))
