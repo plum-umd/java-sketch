@@ -48,7 +48,12 @@ public class CommunicationWithFiles {
 		// cs[0] = ??;
 		// String bar = new String(cs, 0, 1);
 		// String vbar = value.concat(bar);
+
+		// char[] c = new char[1];
+		// c[0] = ??;
+		// String bar = new String(c, 0, 1);
 		String vbar = value.concat("|");
+		// String vbar = value.concat(bar);
 		values.add(vbar.concat(filename));
 	    }
 	}	

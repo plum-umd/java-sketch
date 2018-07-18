@@ -1,5 +1,3 @@
-// THIS LIBRARY IS UNTESTED???
-
 public class TreeSet<E> implements Set{
     E[] set;
     int capacity;

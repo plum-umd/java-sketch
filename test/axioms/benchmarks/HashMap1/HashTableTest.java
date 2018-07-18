@@ -23,21 +23,21 @@ public class HashTableTest {
 	// Integer vv = new Integer(v);
 	// Integer ww = new Integer(w);
 
-    // harness void mn(int x, int y, int z) {
-    // 	assume x != y && x != z && y != z;
-    harness void mn() {
-    	int x = 0;
-    	int y = 1;
-    	int z = 2;
+    harness void mn(int x, int y, int z) {
+    	assume x != y && x != z && y != z;
+    // harness void mn() {
+    // 	int x = 0;
+    // 	int y = 1;
+    // 	int z = 2;
 
 	Integer xx = new Integer(x);
 	Integer yy = new Integer(y);
 	Integer zz = new Integer(z);
 	setUp();
-	// testClear(xx, yy);
+	testClear(xx, yy);
 	testPutAndGet(xx, yy, zz);
-	// testGetEmpty();
-	// testReplacing(xx, yy, zz);
+	testGetEmpty();
+	testReplacing(xx, yy, zz);
 	// testKeys(xx, yy);
 	// testValues(xx, yy);
 	// testContainsValue(xx, yy);
@@ -64,10 +64,10 @@ public class HashTableTest {
         classUnderTest = new HashTable<>(INITIAL_SIZE);
     }
 
-    // public void testGetEmpty() {
-    //     classUnderTest.clear();
-    //     Assert.assertNull(classUnderTest.get(null));
-    // }
+    public void testGetEmpty() {
+        classUnderTest.clear();
+        Assert.assertNull(classUnderTest.get(null));
+    }
 
     public void testPutAndGet(Integer x, Integer y, Integer z) {
 	Integer[3] is = makeInts(x, y, z);
@@ -85,28 +85,28 @@ public class HashTableTest {
         Assert.assertEquals(classUnderTest.get(i), y);
     }
 
-    // public void testReplacing(Integer x, Integer y, Integer z) {
-    // 	Integer[3] is = makeInts(x, y, z);
-    //     classUnderTest.clear();
-    // 	Integer i0 = new Integer(x.intValue()+INITIAL_SIZE);
-    // 	Integer i1 = new Integer(x.intValue()+INITIAL_SIZE);
-    //     classUnderTest.put(i0, z);
-    //     Assert.assertEquals(classUnderTest.get(i1), is[2]);
+    public void testReplacing(Integer x, Integer y, Integer z) {
+    	Integer[3] is = makeInts(x, y, z);
+        classUnderTest.clear();
+    	Integer i0 = new Integer(x.intValue()+INITIAL_SIZE);
+    	Integer i1 = new Integer(x.intValue()+INITIAL_SIZE);
+        classUnderTest.put(i0, z);
+        Assert.assertEquals(classUnderTest.get(i1), is[2]);
 
-    //     classUnderTest.put(x, y);
-    //     Assert.assertEquals(classUnderTest.get(is[0]), is[1]);
+        classUnderTest.put(x, y);
+        Assert.assertEquals(classUnderTest.get(is[0]), is[1]);
 
-    //     int size = classUnderTest.size();
+        int size = classUnderTest.size();
 
-    //     classUnderTest.put(x, z);
-    //     Assert.assertEquals(classUnderTest.get(is[0]), is[2]);
+        classUnderTest.put(x, z);
+        Assert.assertEquals(classUnderTest.get(is[0]), is[2]);
 
-    // 	classUnderTest.put(i0, z);
-    //     Assert.assertEquals(classUnderTest.get(i1), is[2]);
+    	classUnderTest.put(i0, z);
+        Assert.assertEquals(classUnderTest.get(i1), is[2]);
 
-    //     Assert.assertEquals(classUnderTest.size(), size);
+        Assert.assertEquals(classUnderTest.size(), size);
 
-    // }
+    }
 
     // public void testKeys(Integer x, Integer y) {
     // 	Integer[2] is = makeInts(x, y);
@@ -155,16 +155,16 @@ public class HashTableTest {
     // 	Assert.assertTrue(classUnderTest.containsKey(is[0]));
     // }
 
-    // public void testSize(int x, int y) {
-    // 	assume x >= INITIAL_SIZE && x < 0;
-    //     classUnderTest.clear();
+    public void testSize(int x, int y) {
+    	assume x >= INITIAL_SIZE && x < 0;
+        classUnderTest.clear();
 
-    // 	// had to reduce loop size from original (2048)
-    // 	for (int i = 0; i < INITIAL_SIZE; i++) { classUnderTest.put(new Integer(i), null); }
-    //     Assert.assertEquals(classUnderTest.size(), INITIAL_SIZE);
-    //     classUnderTest.put(new Integer(x), new Integer(y));
-    //     Assert.assertEquals(classUnderTest.size(), INITIAL_SIZE+1);
-    // }
+    	// had to reduce loop size from original (2048)
+    	for (int i = 0; i < INITIAL_SIZE; i++) { classUnderTest.put(new Integer(i), null); }
+        Assert.assertEquals(classUnderTest.size(), INITIAL_SIZE);
+        classUnderTest.put(new Integer(x), new Integer(y));
+        Assert.assertEquals(classUnderTest.size(), INITIAL_SIZE+1);
+    }
 
     // public void testRemoveNonExistent(Integer x, Integer y) {
     // 	Integer[2] is = makeInts(x, y);
@@ -190,17 +190,17 @@ public class HashTableTest {
     //     Assert.assertNull(classUnderTest.get(is[0]));
     // }
 
-    // public void testClear(Integer x, Integer y) {
-    // 	classUnderTest.clear();
+    public void testClear(Integer x, Integer y) {
+    	classUnderTest.clear();
 
-    //     classUnderTest.put(x, y);
-    //     classUnderTest.put(y, x);
-    //     Assert.assertTrue(classUnderTest.size() > 0);
+        classUnderTest.put(x, y);
+        classUnderTest.put(y, x);
+        Assert.assertTrue(classUnderTest.size() > 0);
         
-    // 	classUnderTest.clear();
-    // 	Asset.assertNull(classUnderTest.buckets.get(classUnderTest.initialCapacity-1));
-    // 	Assert.assertFalse(classUnderTest.size() > 0);
-    // }
+    	classUnderTest.clear();
+    	Asset.assertNull(classUnderTest.buckets.get(classUnderTest.initialCapacity-1));
+    	Assert.assertFalse(classUnderTest.size() > 0);
+    }
 
     // public void testEnsureCapacity(Integer v, Integer w, Integer x, Integer y, Integer z) {
     // 	classUnderTest.clear();
