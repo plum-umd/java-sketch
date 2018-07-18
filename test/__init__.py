@@ -14,10 +14,10 @@ class TestCommon(unittest.TestCase):
   def clean(cls):
     cwd = os.getcwd()
     os.chdir(out_dir)
-    try:
-      subprocess.check_call(["./clean.sh"])
-    except subprocess.CalledProcessError:
-      pass # result folder might be already clean
+    # try:
+    #   subprocess.check_call(["./clean.sh"])
+    # except subprocess.CalledProcessError:
+    #   pass # result folder might be already clean
     os.chdir(cwd)
 
   def setUp(self):

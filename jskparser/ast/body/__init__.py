@@ -48,6 +48,8 @@ def _import():
     from ..expr.markerannotationexpr import MarkerAnnotationExpr
     from ..expr.singlememberannotationexpr import SingleMemberAnnotationExpr
     from ..expr.normalannotationexpr import NormalAnnotationExpr
-
+    from ..expr.thisexpr import ThisExpr
+    from ..expr.instanceofexpr import InstanceOfExpr
+    
     return locals()
 
