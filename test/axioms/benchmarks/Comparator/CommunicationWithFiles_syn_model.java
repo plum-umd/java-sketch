@@ -43,7 +43,11 @@ public class CommunicationWithFiles {
 
 	if (??) {
 	    if (value!=null && !isAList==true){
-		// values.add(value+"|"+filename);
+		// // values.add(value+"|"+filename);
+		// char[] cs = new char[1];
+		// cs[0] = ??;
+		// String bar = new String(cs, 0, 1);
+		// String vbar = value.concat(bar);
 		String vbar = value.concat("|");
 		values.add(vbar.concat(filename));
 	    }
@@ -56,9 +60,9 @@ public class CommunicationWithFiles {
 	        value = genRead(bfr, value, isAList, values, filename);
 	    }
 	}
-	// if (??) {
-	//     value = genRead(bfr, value, isAList, values, filename);
-	// }
+	if (??) {
+	    value = genRead(bfr, value, isAList, values, filename);
+	}
 	
 	// if (??) {
 	//     value = bfr.readLine();
