@@ -35,6 +35,23 @@ ArrayList (with add, get, set, size, remove, sort, and addAll)
 
 Note: these axioms are slightly simplified. the `add` and `sort` methods would need to performed using logic about arrays. On that note, more arguments are needed to keep track of the current index in l and r. Also, the l array must be instantiated to the size of the array, and r must be instantiated to be the size of all of the removes from the list (I wrote a new method and accompanying axioms to compute this size).
 
+HashMap (with put and get)
+======
+* `get(put!(h, k1, v), k2) --> k2==k1 ? v : get(h, k2)`
+* `get([], k) --> null`
+
+HashMap (with put, get, remove, containsKey, containsValue)
+======
+* `get(put!(h, k1, v), k2) --> k2==k1 ? v : get(h, k2)`
+* `get([], k) --> null`
+* `get(remove!(h, k1), k2) --> k2==k1 ? null : get(h, k2)`
+* `containsKey(h, k) --> get(h, k) != null`
+* `containsValue(put!(h, k, v1), v2) --> v2==v1 ? true : containsValue(h, v2)`
+* `containsValue([], v2) --> false`
+* `containsValue(remove!(h, k), v) --> containsRemove(h, v, [].add(k))`
+* `containsRemove(put!(h, k, v1), v2, rs) --> k in rs ? containsRemove(h, v2, rs) : (v2==v1 ? true : containsRemove(h, v2, rs))`
+* `containsRemove([], v, rs) --> false`
+
 File
 ======
 * `read(filereader(file(f, d, l, n), p)) == d[p]`
