@@ -1,11 +1,39 @@
-ArrayList
+ArrayList (with add, get, set, and size)
 =========
-* `get(list()) == ERROR //not sure how best to represent this but it is the base case for next 2`
-* `get(set!(a, i, e), j) == ITE(i == j, e, get(a, j))`
-* `get(add!(a, e), i) == ITE(size(a) == i-1, e, get(a, i))`
-* `size(list()) == 0`
-* `size(add!(a, e)) == size(a) + 1`
-* `size(set!(a, i, e)) == size(a)`
+* `size([]) --> 0`
+* `size(add!(a, e)) --> size(a)+1`
+* `size(set!(a, i, e)) --> size(a)`
+* `get(add!(a, e), i) --> size(a) == i ? e : get(a, i)`
+* `get(set!(a, j, e), i) --> i==j ? e : get(a, i)`
+
+ArrayList (with add, get, size, and remove)
+=========
+* `size([]) --> 0`
+* `size(remove!(a,i)) --> size(a)-1`
+* `size(add!(a,e)) --> size(a) + 1`
+* `size(set!(a,i,e)) --> size(a)`
+* `get(remove!(a, j), i) --> j<=i ? get(a, i+1) : get(a, i)`
+* `get(add!(a, e), i) --> size(a) == i ? e : get(a, i)`
+* `get(set!(a, j, e), i) --> i==j ? e : get(a, i)`
+
+ArrayList (with add, get, set, size, remove, sort, and addAll)
+=========
+* `size([]) --> 0`
+* `size(remove!(a,i)) --> size(a)-1`
+* `size(add!(a,e)) --> size(a) + 1`
+* `size(addAll!(a1, a2)) --> size(a1)+size(a2)`
+* `size(sort!(a)) --> size(a)`
+* `get(remove!(a, j), i) --> j<=i ? get(a, i+1) : get(a, i)`
+* `get(add!(a, e), i) --> size(a) == i ? e : get(a, i)`
+* `get(addAll!(a1, a2), i) --> i<size(a1) ? get(a1, i) : get(a2, i-size(a1))`
+* `get(sort!(a), i) --> getSorted(a, [], [])[i]` Note: `[]` here is an empty array, not an ArrayList, and getSorted returns the sorted array
+* `getSorted(add!(a,e), l, r) --> size(a) in r ? getSorted(a, l.add(e), r) : getSorted(a, l, r)`
+* `getSorted(remove!(a,j), l, r) --> getSorted(a, l, r.add(j))`
+* `getSorted(addAll!(a1, a2), l, r) --> getSorted(a1)+getSorted(a2)`
+* `getSorted(sort!(a), l, r) --> getSorted(a, l, r)`
+* `getSorted([], l, r) --> l.sort()`
+
+Note: these axioms are slightly simplified. the `add` and `sort` methods would need to performed using logic about arrays. On that note, more arguments are needed to keep track of the current index in l and r. Also, the l array must be instantiated to the size of the array, and r must be instantiated to be the size of all of the removes from the list (I wrote a new method and accompanying axioms to compute this size).
 
 File
 ======
