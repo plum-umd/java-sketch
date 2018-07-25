@@ -72,6 +72,26 @@ TreeSet
 * `contains(clear!(t), e) --> false`
 * `contains(add!(t, e1), e2) --> e2==e1 ? true : contains(t, e2)`
 
+ArrayDeque
+=========
+* `size([]) --> 0`
+* `size(addLast!(d, e)) --> size(d)+1`
+* `size(addFirst!(d, e)) --> size(d)+1`
+* `size(removeFirst!(d)) --> size(d)-1`
+* `size(removeLast!(d)) --> size(d)-1`
+* `peekLast([]) --> null`
+* `peekLast(addLast!(d, e)) --> e`
+* `peekLast(addFirst!(d, e)) --> size(d)==0 ? e : peekLast(d)`
+* `peekLast(removeLast!(d, e)) --> peekLastCount(d, 0, 1)`
+* `peekLast(removeFirst!(d, e)) --> peekLastCount(d, 1, 0)`
+* `peekLastCount([], i, j) --> null`
+* `peekLastCount(addLast!(d, e), i, j) --> j>0 ? peekLastCount(d, i, j-1) : (i>0 ? (size(d)==i ? null : e) : e)`
+* `peekLastCount(addFirst!(d, e), i, j) --> size(d)==0 && i==0 && j==0 ? e : (i>0 ? peekLastCount(d, i-1, j) : (size(d)==j ? null : peekLastCount(d, i, j))) 
+* `peekLastCount(removeFirst!(d), i , j) --> peekLastCount(d, i+1, j)`
+* `peekLastCount(removeLast!(d), i, j) --> peekLastCount(d, i, j+1)`
+
+Note: peekFirst would be very similar to peekLast
+
 File
 ======
 * `read(filereader(file(f, d, l, n), p)) == d[p]`
