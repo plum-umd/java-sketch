@@ -92,68 +92,21 @@ ArrayDeque
 
 Note: peekFirst would be very similar to peekLast
 
-File
-======
-* `read(filereader(file(f, d, l, n), p)) == d[p]`
-* `read!(filereader(file(f, d, l, n), p)) == filereader(file(f, d, l, n), p+1)`
-* `ready(filereader(file(f, d, l, n), p)) == ITE(p != l-1, True, False)`
+Cipher (with init and doFinal (one arg))
+=====
+* `doFinal(init!(c1, m1, k1), doFinal(init!(c2, m2, k2), t)) --> ` <br />
+  `m1==DEC && m2 == ENC && k1.equals(k2) ? t : GARBAGE`
 
-HashSet
-=======
+Note: The benchmarks we used with Cipher varied a bit in the versions of `doFinal` used (i.e. how many args passed), however, all of the axioms for Cipher were similar to this.
 
-* `add!(add!(s, e1), e2) == ITE(e2.equals(e1), add!(s, e1), add!(add!(s, e2), e1))`
-* `add(add!(s, e1), e2) == ITE(e2.equals(e1), False, add(s, e2))`
-* `add([], e) == True`
-* `remove!(add!(s, e1), e2) == ITE(e2.equals(e1), s, add!(remove!(s, e2), e1))`
-* `remove!([], e) == []`
-* `remove(add(s, e1), e2) == ITE(e2.equals(e1), True, remove(s, e2))`
-* `remove([], e) == False`
-* `size(add(s, _)) == size(s) + 1`
-* `size([]) == 0`
+Mac
+==
+* `doFinal(init!(m, s), t) --> t`
 
-TreeSet
-=======
+BufferedReader
+=============
+* `readLine([f]) --> f.getLine(0)`
+* `readLine(readLine!(b)) --> readLineCount(b, 1)`
+* `readLineCount([f], i) --> f.getLine(i)`
+* `readLineCount(readLine!(b), i) --> readLineCount(b, i+1)`
 
-* `add!(add!(s, e1), e2) == ITE(e2.equals(e1), add!(s, e1), add!(add!(s, e2), e1))`
-* `clear!(_) == []`
-* `add(add!(s, e1), e2) == ITE(e2.equals(e1), False, add(s, e2))`
-* `add([], e) == True`
-* `contains(add!(s, e1), e2) == ITE(e2.equals(e1), True, contains(s, e2))`
-
-ArrayDeque
-==========
-
-* `removeFirst!(addFirst!(d, e)) == d`
-* `removeFirst!(addLast!(d, e)) == ITE(size(d)==0, [], addLast!(removeFirst!(d), e))`
-* `removeFirst!([]) == []`
-* `removeFirst(addFirst!(d, e)) == e`
-* `removeFirst(addLast!(d, e)) == ITE(size(d)==0, e, removeFirst(d))`
-* `removeFirst([]) == null // Note: In Java this is an exception`
-* `removeLast!(addLast!(d, e)) == d`
-* `removeLast!(addFirst!(d, e)) == ITE(size(d)==0, [], addFirst!(removeLast!(d), e))`
-* `removeLast!([]) == []`
-* `removeLast(addLast!(d, e)) == e`
-* `removeLast(addFirst!(d, e)) == ITE(size(d)==0, e, removeLast(d))`
-* `removeLast([]) == null // Note: In Java this is an exception`
-* `peekFirst(addFirst!(d, e)) == e`
-* `peekFirst(addLast!(d, e)) == ITE(size(d)==0, e, peekFirst(d))`
-* `peekLast(addLast!(d, e)) == e`
-* `peekLast(addFirst!(d, e)) == ITE(size(d)==0, e, peekLast(d))`
-* `size(addFirst!(d, e)) == size(d) + 1`
-* `size(addLast!(d, e)) == size(d) + 1`
-* `size([]) == 0`
-* `isEmpty(s) == ITE(size(s)==0, True, False)`
-
-DES Example (private key -- symmetric crypto)
-===========
-
-* `let g = getInstance("DES/ECB/PKCS5Padding") in` <br />
-  ` let t = doFinal(init(g, "Cipher.ENCRYPT_MODE", k1), t1) in` <br /> 
-   `doFinal(init(g,"Cipher.DECRYPT_MODE", k2), t) == ITE(k2.equals(k1), t1, GARBAGE)`
-
-RSA Example (public key -- asymmetric crypto)
-=========== 
-
-* `let g = getInstance("RSA/ECB/PKCS1Padding") in` <br />
-  `let t = doFinal(init(g, "Cipher.ENCRYPT_MODE", getPublic(k1)), t1) in` <br />
-   `doFinal(init(g,"Cipher.DECRYPT_MODE", getPrivate(k2)), t) == ITE(k2.equals(k1), t1, GARBAGE)`
