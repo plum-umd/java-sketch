@@ -52,29 +52,31 @@ HashMap (with put, get, remove, containsKey, containsValue)
 * `containsRemove(put!(h, k, v1), v2, rs) --> k in rs ? containsRemove(h, v2, rs) : (v2==v1 ? true : containsRemove(h, v2, rs))`
 * `containsRemove([], v, rs) --> false`
 
+Note: similar to the ArrayList axioms, the size of the `rs` array would need to be determined by first calculating the number of removes (or the size) of the hashmap
+
+HashSet
+======
+* `size([]) --> 0`
+* `size(add!(s, e)) --> remove(s, e) ? size(s) : size(s)+1`
+* `size(remove!(s, e)) --> remove(s, e) ? size(s)-1 : size(s)`
+* `remove([], e) --> false`
+* `remove(add!(s, e1), e2) --> e1==e2 ? true : remove(s, e2)`
+* `remove(remove!(s, e1), e2) --> e2==e1 ? false: remove(s, e2)`
+
+TreeSet
+======
+* `size([]) --> 0`
+* `size(add!(t, e)) --> contains(t, e) ? size(t) : size(t)+1`
+* `size(clear!(t)) --> 0`
+* `contains([], e) --> false`
+* `contains(clear!(t), e) --> false`
+* `contains(add!(t, e1), e2) --> e2==e1 ? true : contains(t, e2)`
+
 File
 ======
 * `read(filereader(file(f, d, l, n), p)) == d[p]`
 * `read!(filereader(file(f, d, l, n), p)) == filereader(file(f, d, l, n), p+1)`
 * `ready(filereader(file(f, d, l, n), p)) == ITE(p != l-1, True, False)`
-
-HashMap
-=======
-
-* `put!(put!(h, k1, v1), k2, v2) == ITE(k2.equals(k1), put!(h, k2, v2), put!(put!(h, k2, v2), k1, v1))`
-* `put(put!(h, k1, v1), k2, v2) == ITE(k2.equals(k1), v1, put(h, k2, v2))`
-* `put([], k, v) == null`
-* `get(put!(h, k1, v), k2) == ITE(k2.equals(k1), v, get(h, k2))`
-* `get([], k2) == null`
-* `remove!(put!(h, k1, v), k2) == ITE(k2.equals(k1), h, put!(remove!(h, k2), k1, v))`
-* `remove!([], k) == []`
-* `remove(put!(h, k1, v), k2) == ITE(k2.equals(k1), v, remove(h, k2))`
-* `remove([], k) == null`
-* `containsKey(put!(h, k1, v), k2) == ITE(k2.equals(k1), True, containsKey(h, k2))`
-* `containsKey([], k) == False`
-* `containsValue(put!(h, k, v1), v2) == ITE(v2.equals(v1), True, containsValue(h, v2))`
-* `size(put!(h, _, _)) == size(h) + 1`
-* `size([]) == 0`
 
 HashSet
 =======
