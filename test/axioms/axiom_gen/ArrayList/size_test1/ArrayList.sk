@@ -1,0 +1,44 @@
+package ArrayList;
+
+adt ArrayList {
+    Arraylist  { }
+    Add_object        { ArrayList self; Object e; }
+    Addb_object       { ArrayList self; Object e; }
+    Size       { ArrayList self; }
+}
+
+Object ArrayList_ArrayList() {
+    return new Object(__cid=ArrayList(), _arraylist=new Arraylist());
+}
+
+Object add_Object_Object(Object self, Object e) {
+    return new Object(__cid=ArrayList(), _arraylist=new Add_object(self=self._arraylist, e=e));
+}
+
+Object addb_Object_Object(Object self, Object e) {
+    self._arraylist=new Addb_object(self=self._arraylist, e=e);
+return self;
+}
+
+int size_Object(Object self) {
+    return xform_size_ArrayList(self._arraylist);
+}
+
+int xform_size_ArrayList(ArrayList selff) {
+  ArrayList self = selff;
+  switch(self) {
+  case Arraylist: {
+    return ??;
+    /* return 0; */
+  }
+  case Add_object: { assert false; }
+  case Addb_object: {
+    int sz = xform_size_ArrayList(self.self);
+    return {| ?? | sz * ?? | sz + ?? |};
+    /* return xform_size_ArrayList(self.self) + 1; */
+  }
+  case Size: { assert false; }
+  }
+
+  return 0;
+}
