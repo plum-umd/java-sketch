@@ -4,32 +4,52 @@ Object ArrayListTester_ArrayListTester(Object self) {
     return self;
 }
 
-/* harness void mn_int_int_int_int(int l1, int l2, int l3, int i1) { */
-harness void mn_int_int_int_int(int i1) {
+/* harness void mn_int_int_int_int(int l1, int l2, int i1) { */
+harness void mn_int_int_int_int(int i1, int i2, int i3) {
+/* harness void mn_int_int_int_int(int i1) { */
   Object self = Object_Object(new Object(__cid=Object()));
   /* assume l1 >= 0 && l1 <= 10; */
   /* assume l2 <= l1; */
-  /* assume l3 <= l1 && l3 >= 0; */
-  /* assume i1 < l1 - l3 && i1 >= 0; */
-  int l1 = 6, l2 = 3;
+  int l1 = 6, l2 = 3; //, i2 = 2, i3 = 3;
   assume i1 >= 0 && i1 < l1;
+  assume i2 >= 0 && i2 < l1;
+  assume i3 >= 0 && i3 < l1;
   Object a = ArrayList_ArrayList();
   for (int i = 0; i < l1; i++) {
     Object j = Integer_Integer_int(new Object(__cid=Integer()), i);
     (a.__cid == ArrayList() ? add_Object_Object@ArrayList(a, j) : null); a = (a.__cid == ArrayList() ? addb_Object_Object@ArrayList(a, j) : null);
+    if (i == i2) {
+      j = Integer_Integer_int(new Object(__cid=Integer()), i+100);      
+      (a.__cid == ArrayList() ? set_Object_int_Object@ArrayList(a, i, j) : null); a = (a.__cid == ArrayList() ? setb_Object_int_Object@ArrayList(a, i, j) : null);
+    }
   }
   int sz = (a.__cid == ArrayList() ? size_Object@ArrayList(a) : 0);
   assert sz == l1;
-  for (int i = 0; i < l2; i++) {
-    Object j = Integer_Integer_int(new Object(__cid=Integer()), i + 100);
-    (a.__cid == ArrayList() ? set_Object_int_Object@ArrayList(a, i, j) : null); a = (a.__cid == ArrayList() ? setb_Object_int_Object@ArrayList(a, i, j) : null);
-  }
+
+  Object k = Integer_Integer_int(new Object(__cid=Integer()), i3+100);
+  (a.__cid == ArrayList() ? set_Object_int_Object@ArrayList(a, i3, k) : null); a = (a.__cid == ArrayList() ? setb_Object_int_Object@ArrayList(a, i3, k) : null);
+  
+  /* for (int i = 0; i < l2; i++) { */
+  /*   Object j = Integer_Integer_int(new Object(__cid=Integer()), i + 100); */
+  /*   (a.__cid == ArrayList() ? set_Object_int_Object@ArrayList(a, i, j) : null); a = (a.__cid == ArrayList() ? setb_Object_int_Object@ArrayList(a, i, j) : null); */
+  /* } */
+
   sz = (a.__cid == ArrayList() ? size_Object@ArrayList(a) : 0);
   assert sz == l1;
+  /* if (l1 > 0) { */
+  /*   Object j = (a.__cid == ArrayList() ? get_Object_int@ArrayList(a, i1) : null); */
+  /*   assert j != null; */
+  /*   if (i1 < l2) { */
+  /*     assert (j.__cid == Integer() ? intValue@Integer(j) : 0) == i1 + 100; */
+  /*   } */
+  /*   else { */
+  /*     assert (j.__cid == Integer() ? intValue@Integer(j) : 0) == i1; */
+  /*   } */
+  /* } */
   if (l1 > 0) {
     Object j = (a.__cid == ArrayList() ? get_Object_int@ArrayList(a, i1) : null);
     assert j != null;
-    if (i1 < l2) {
+    if (i1 == i2 || i1 == i3) {
       assert (j.__cid == Integer() ? intValue@Integer(j) : 0) == i1 + 100;
     }
     else {

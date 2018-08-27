@@ -54,6 +54,7 @@ Object xform_get_ArrayList_int(ArrayList selff, int i) {
     Object ret1 = {| null | self.e | xform_get_ArrayList_int(self.self, i) | xform_get_ArrayList_int(self.self, ??) |};
     Object ret2 = {| null | self.e | xform_get_ArrayList_int(self.self, i) | xform_get_ArrayList_int(self.self, ??) |};
     return cond ? ret1 : ret2;
+    /* return (i == sz ? self.e : xform_get_ArrayList_int(self.self, i)); */
   }
   case Get_int: { assert false; }
   case Setb_int_object: {

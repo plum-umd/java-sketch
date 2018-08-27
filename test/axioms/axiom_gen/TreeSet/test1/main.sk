@@ -1,0 +1,10 @@
+pragma options "--bnd-cbits 5";
+pragma options "--bnd-unroll-amnt 35";
+pragma options "--fe-fpencoding AS_FIXPOINT";
+include "meta.sk";
+include "Object.sk";
+include "array.sk";
+include "TreeSetTester.sk";
+include "Object.sk";
+include "Integer.sk";
+include "TreeSet.sk";

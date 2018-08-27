@@ -1,0 +1,48 @@
+package TreeSetTester;
+
+Object TreeSetTester_TreeSetTester(Object self) {
+    return self;
+}
+
+harness void mn_int_int_int_int_int_int(int l1, int l2, int i1, int i2, int i3, int i4) {
+/* harness void mn_int_int_int_int_int_int() { */
+  Object self = Object_Object(new Object(__cid=Object()));
+  assume l1 >= 0 && l1 <= 8;
+  assume l2 < l1;
+  assume i1 >= 0 && i1 < l1;
+  assume i2 >= 0 && i2 < l1;
+  assume i3 >= 0 && i3 < l1;
+  assume i4 >= 0 && i4 < l1;
+
+  /* int l1 = 5, l2 = 2; */
+  Object t = TreeSet_TreeSet();
+  
+  int sz = (t.__cid == TreeSet() ? size_Object@TreeSet(t) : 0);
+  assert sz == 0; 
+
+  Object m = Integer_Integer_int(new Object(__cid=Integer()), 0);
+  assert !(t.__cid == TreeSet() ? contains_Object_Object@TreeSet(t, m) : 0);  
+  
+  for (int i = 0; i < l1; i++) {
+    if (i == l2) {
+      (t.__cid == TreeSet() ? clear_Object@TreeSet(t) : null); t = (t.__cid == TreeSet() ? clearb_Object@TreeSet(t) : null);
+    }
+    Object j = Integer_Integer_int(new Object(__cid=Integer()), i);
+    (t.__cid == TreeSet() ? add_Object_Object@TreeSet(t, j) : null); t = (t.__cid == TreeSet() ? addb_Object_Object@TreeSet(t, j) : null);
+    /* if (i == 3) {   */
+    if (i == i2 || i == i3 || i == i4) {
+      (t.__cid == TreeSet() ? add_Object_Object@TreeSet(t, j) : null); t = (t.__cid == TreeSet() ? addb_Object_Object@TreeSet(t, j) : null);
+    }
+  }
+  sz = (t.__cid == TreeSet() ? size_Object@TreeSet(t) : 0);
+  assert sz == l1-l2; 
+  Object k = Integer_Integer_int(new Object(__cid=Integer()), i1);
+  bit b = (t.__cid == TreeSet() ? contains_Object_Object@TreeSet(t, k) : 0);
+  if (i1 >= l2) {
+    assert b;
+  }
+  else {
+    assert !b;
+  }
+}
+
