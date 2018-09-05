@@ -1,0 +1,35 @@
+package meta;
+
+// distinct class IDs
+int ArrayList()               { return 16; }
+int Boolean()                 { return 20; }
+int BufferedReader()          { return 13; }
+int CSVTester()               { return 11; }
+int CharSequence()            { return 21; }
+int Character()               { return 19; }
+int CodeAssertion()           { return 3; }
+int CsvColumn()               { return 4; }
+int CsvColumnTest()           { return 5; }
+int CsvConfiguration()        { return 6; }
+int CsvDocument()             { return 2; }
+int CsvDocumentTest()         { return 7; }
+int CsvDocumentTest_Person()  { return 8; }
+int CsvRow()                  { return 9; }
+int CsvRowTest()              { return 10; }
+int FileOutputStream()        { return 14; }
+int FileReaderr()             { return 15; }
+int Integer()                 { return 22; }
+int Number()                  { return 24; }
+int Object()                  { return 1; }
+int PrintStream()             { return 12; }
+int String()                  { return 23; }
+int StringBuffer()            { return 18; }
+int StringBuilder()           { return 17; }
+int Array()                   { return -1; }
+int _int()                    { return -2; }
+int _char()                   { return -3; }
+int _bit()                    { return -4; }
+int _float()                  { return -5; }
+int _double()                 { return -6; }
+
+// Uninterpreted functions

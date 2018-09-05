@@ -1,0 +1,1778 @@
+SKETCH version 1.7.5
+Benchmark = test1//main.sk
+/* BEGIN PACKAGE SuffixArrayTest*/
+package SuffixArrayTest{
+  /*SuffixA..ayTest.sk:7*/
+  
+void _main ()/*SuffixA..ayTest.sk:7*/
+  {
+    int self_s50 = 0;
+    Object@meta(self_s50);
+    Object@Object self_s52 = null;
+    Object_Object@Object(new Object@Object(__cid=self_s50), self_s52)//{};
+    testLRS@SuffixArrayTest(self_s52);
+  }
+  /*SuffixA..ayTest.sk:7*/
+  
+void main__Wrapper ()  implements main__WrapperNospec/*SuffixA..ayTest.sk:7*/
+  {
+    _main();
+  }
+  /*SuffixA..ayTest.sk:7*/
+  
+void main__WrapperNospec ()/*SuffixA..ayTest.sk:7*/
+  { }
+  /*SuffixA..ayTest.sk:15*/
+  
+void testLRS (Object self)/*SuffixA..ayTest.sk:15*/
+  {
+    int s_s54 = 0;
+    String@meta(s_s54);
+    Object@Object s_s56 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=s_s54), new Array_char@array(length=7, A={'a','a','b','a','a','b','\0'}), 0, 6, s_s56)//{};
+    int sa_s58 = 0;
+    SuffixArray@meta(sa_s58);
+    Object@Object sa_s60 = null;
+    SuffixArray_SuffixArray_String@SuffixArray(new Object@Object(__cid=sa_s58), s_s56, sa_s60)//{};
+    int lrss_s62 = 0;
+    SuffixArray@meta(lrss_s62);
+    Object@Object _pac_sc_s63 = null;
+    if((sa_s60.__cid) == lrss_s62)/*SuffixA..ayTest.sk:20*/
+    {
+      Object@Object lrss_s65 = null;
+      lrs@SuffixArray(sa_s60, lrss_s65);
+      _pac_sc_s63 = lrss_s65;
+    }
+    else
+    {
+      _pac_sc_s63 = null;
+    }
+    int _out_s67 = 0;
+    TreeSet@meta(_out_s67);
+    int _pac_sc_s68 = 0;
+    if((_pac_sc_s63.__cid) == _out_s67)/*SuffixA..ayTest.sk:21*/
+    {
+      int _out_s70 = 0;
+      size_Object@TreeSet(_pac_sc_s63, _out_s70);
+      _pac_sc_s68 = _out_s70;
+    }
+    else
+    {
+      _pac_sc_s68 = 0;
+    }
+    assert (1 == _pac_sc_s68); //Assert at SuffixA..ayTest.sk:21 (0)
+    int cont1_s72 = 0;
+    TreeSet@meta(cont1_s72);
+    bit _pac_sc_s73 = 0;
+    if((_pac_sc_s63.__cid) == cont1_s72)/*SuffixA..ayTest.sk:22*/
+    {
+      int cont1_s75 = 0;
+      String@meta(cont1_s75);
+      Object@Object cont1_s77 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=cont1_s75), new Array_char@array(length=4, A={'a','a','b','\0'}), 0, 3, cont1_s77)//{};
+      bit cont1_s79 = 0;
+      contains_Object_Object@TreeSet(_pac_sc_s63, cont1_s77, cont1_s79)//{};
+      _pac_sc_s73 = cont1_s79;
+    }
+    else
+    {
+      _pac_sc_s73 = 0;
+    }
+    assert (_pac_sc_s73); //Assert at SuffixA..ayTest.sk:23 (2)
+    int s_s81 = 0;
+    String@meta(s_s81);
+    Object@Object s_s83 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=s_s81), new Array_char@array(length=6, A={'a','b','c','b','a','\0'}), 0, 5, s_s83)//{};
+    int sa_s85 = 0;
+    SuffixArray@meta(sa_s85);
+    Object@Object sa_s87 = null;
+    SuffixArray_SuffixArray_String@SuffixArray(new Object@Object(__cid=sa_s85), s_s83, sa_s87)//{};
+    int lrss_s89 = 0;
+    SuffixArray@meta(lrss_s89);
+    Object@Object _pac_sc_s90 = null;
+    if((sa_s87.__cid) == lrss_s89)/*SuffixA..ayTest.sk:26*/
+    {
+      Object@Object lrss_s92 = null;
+      lrs@SuffixArray(sa_s87, lrss_s92);
+      _pac_sc_s90 = lrss_s92;
+    }
+    else
+    {
+      _pac_sc_s90 = null;
+    }
+    int _out_s94 = 0;
+    TreeSet@meta(_out_s94);
+    int _pac_sc_s95 = 0;
+    if((_pac_sc_s90.__cid) == _out_s94)/*SuffixA..ayTest.sk:27*/
+    {
+      int _out_s97 = 0;
+      size_Object@TreeSet(_pac_sc_s90, _out_s97);
+      _pac_sc_s95 = _out_s97;
+    }
+    else
+    {
+      _pac_sc_s95 = 0;
+    }
+    assert (_pac_sc_s95 == 2); //Assert at SuffixA..ayTest.sk:27 (0)
+    int _out_s99 = 0;
+    TreeSet@meta(_out_s99);
+    bit _pac_sc_s100 = 0;
+    if((_pac_sc_s90.__cid) == _out_s99)/*SuffixA..ayTest.sk:28*/
+    {
+      int _out_s102 = 0;
+      String@meta(_out_s102);
+      Object@Object _out_s104 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_out_s102), new Array_char@array(length=2, A={'a','\0'}), 0, 1, _out_s104)//{};
+      bit _out_s106 = 0;
+      contains_Object_Object@TreeSet(_pac_sc_s90, _out_s104, _out_s106)//{};
+      _pac_sc_s100 = _out_s106;
+    }
+    else
+    {
+      _pac_sc_s100 = 0;
+    }
+    assert (_pac_sc_s100); //Assert at SuffixA..ayTest.sk:28 (0)
+    int _out_s108 = 0;
+    TreeSet@meta(_out_s108);
+    bit _pac_sc_s109 = 0;
+    if((_pac_sc_s90.__cid) == _out_s108)/*SuffixA..ayTest.sk:29*/
+    {
+      int _out_s111 = 0;
+      String@meta(_out_s111);
+      Object@Object _out_s113 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_out_s111), new Array_char@array(length=2, A={'b','\0'}), 0, 1, _out_s113)//{};
+      bit _out_s115 = 0;
+      contains_Object_Object@TreeSet(_pac_sc_s90, _out_s113, _out_s115)//{};
+      _pac_sc_s109 = _out_s115;
+    }
+    else
+    {
+      _pac_sc_s109 = 0;
+    }
+    assert (_pac_sc_s109); //Assert at SuffixA..ayTest.sk:29 (0)
+    int s_s117 = 0;
+    String@meta(s_s117);
+    Object@Object s_s119 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=s_s117), new Array_char@array(length=7, A={'a','b','c','c','d','d','\0'}), 0, 6, s_s119)//{};
+    int sa_s121 = 0;
+    SuffixArray@meta(sa_s121);
+    Object@Object sa_s123 = null;
+    SuffixArray_SuffixArray_String@SuffixArray(new Object@Object(__cid=sa_s121), s_s119, sa_s123)//{};
+    int lrss_s125 = 0;
+    SuffixArray@meta(lrss_s125);
+    Object@Object _pac_sc_s126 = null;
+    if((sa_s123.__cid) == lrss_s125)/*SuffixA..ayTest.sk:32*/
+    {
+      Object@Object lrss_s128 = null;
+      lrs@SuffixArray(sa_s123, lrss_s128);
+      _pac_sc_s126 = lrss_s128;
+    }
+    else
+    {
+      _pac_sc_s126 = null;
+    }
+    int _out_s130 = 0;
+    TreeSet@meta(_out_s130);
+    int _pac_sc_s131 = 0;
+    if((_pac_sc_s126.__cid) == _out_s130)/*SuffixA..ayTest.sk:33*/
+    {
+      int _out_s133 = 0;
+      size_Object@TreeSet(_pac_sc_s126, _out_s133);
+      _pac_sc_s131 = _out_s133;
+    }
+    else
+    {
+      _pac_sc_s131 = 0;
+    }
+    assert (_pac_sc_s131 == 2); //Assert at SuffixA..ayTest.sk:33 (0)
+    int _out_s135 = 0;
+    TreeSet@meta(_out_s135);
+    bit _pac_sc_s136 = 0;
+    if((_pac_sc_s126.__cid) == _out_s135)/*SuffixA..ayTest.sk:34*/
+    {
+      int _out_s138 = 0;
+      String@meta(_out_s138);
+      Object@Object _out_s140 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_out_s138), new Array_char@array(length=2, A={'c','\0'}), 0, 1, _out_s140)//{};
+      bit _out_s142 = 0;
+      contains_Object_Object@TreeSet(_pac_sc_s126, _out_s140, _out_s142)//{};
+      _pac_sc_s136 = _out_s142;
+    }
+    else
+    {
+      _pac_sc_s136 = 0;
+    }
+    assert (_pac_sc_s136); //Assert at SuffixA..ayTest.sk:34 (0)
+    int _out_s144 = 0;
+    TreeSet@meta(_out_s144);
+    bit _pac_sc_s145 = 0;
+    if((_pac_sc_s126.__cid) == _out_s144)/*SuffixA..ayTest.sk:35*/
+    {
+      int _out_s147 = 0;
+      String@meta(_out_s147);
+      Object@Object _out_s149 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_out_s147), new Array_char@array(length=2, A={'d','\0'}), 0, 1, _out_s149)//{};
+      bit _out_s151 = 0;
+      contains_Object_Object@TreeSet(_pac_sc_s126, _out_s149, _out_s151)//{};
+      _pac_sc_s145 = _out_s151;
+    }
+    else
+    {
+      _pac_sc_s145 = 0;
+    }
+    assert (_pac_sc_s145); //Assert at SuffixA..ayTest.sk:35 (0)
+    int s_s153 = 0;
+    String@meta(s_s153);
+    Object@Object s_s155 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=s_s153), new Array_char@array(length=5, A={'a','a','a','b','\0'}), 0, 4, s_s155)//{};
+    int sa_s157 = 0;
+    SuffixArray@meta(sa_s157);
+    Object@Object sa_s159 = null;
+    SuffixArray_SuffixArray_String@SuffixArray(new Object@Object(__cid=sa_s157), s_s155, sa_s159)//{};
+    int lrss_s161 = 0;
+    SuffixArray@meta(lrss_s161);
+    Object@Object _pac_sc_s162 = null;
+    if((sa_s159.__cid) == lrss_s161)/*SuffixA..ayTest.sk:38*/
+    {
+      Object@Object lrss_s164 = null;
+      lrs@SuffixArray(sa_s159, lrss_s164);
+      _pac_sc_s162 = lrss_s164;
+    }
+    else
+    {
+      _pac_sc_s162 = null;
+    }
+    int _out_s166 = 0;
+    TreeSet@meta(_out_s166);
+    int _pac_sc_s167 = 0;
+    if((_pac_sc_s162.__cid) == _out_s166)/*SuffixA..ayTest.sk:39*/
+    {
+      int _out_s169 = 0;
+      size_Object@TreeSet(_pac_sc_s162, _out_s169);
+      _pac_sc_s167 = _out_s169;
+    }
+    else
+    {
+      _pac_sc_s167 = 0;
+    }
+    assert (_pac_sc_s167 == 1); //Assert at SuffixA..ayTest.sk:39 (0)
+    int _out_s171 = 0;
+    TreeSet@meta(_out_s171);
+    bit _pac_sc_s172 = 0;
+    if((_pac_sc_s162.__cid) == _out_s171)/*SuffixA..ayTest.sk:40*/
+    {
+      int _out_s174 = 0;
+      String@meta(_out_s174);
+      Object@Object _out_s176 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_out_s174), new Array_char@array(length=3, A={'a','a','\0'}), 0, 2, _out_s176)//{};
+      bit _out_s178 = 0;
+      contains_Object_Object@TreeSet(_pac_sc_s162, _out_s176, _out_s178)//{};
+      _pac_sc_s172 = _out_s178;
+    }
+    else
+    {
+      _pac_sc_s172 = 0;
+    }
+    assert (_pac_sc_s172); //Assert at SuffixA..ayTest.sk:40 (0)
+    int s_s180 = 0;
+    String@meta(s_s180);
+    Object@Object s_s182 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=s_s180), new Array_char@array(length=6, A={'a','b','a','b','a','\0'}), 0, 5, s_s182)//{};
+    int sa_s184 = 0;
+    SuffixArray@meta(sa_s184);
+    Object@Object sa_s186 = null;
+    SuffixArray_SuffixArray_String@SuffixArray(new Object@Object(__cid=sa_s184), s_s182, sa_s186)//{};
+    int lrss_s188 = 0;
+    SuffixArray@meta(lrss_s188);
+    Object@Object _pac_sc_s189 = null;
+    if((sa_s186.__cid) == lrss_s188)/*SuffixA..ayTest.sk:43*/
+    {
+      Object@Object lrss_s191 = null;
+      lrs@SuffixArray(sa_s186, lrss_s191);
+      _pac_sc_s189 = lrss_s191;
+    }
+    else
+    {
+      _pac_sc_s189 = null;
+    }
+    int _out_s193 = 0;
+    TreeSet@meta(_out_s193);
+    int _pac_sc_s194 = 0;
+    if((_pac_sc_s189.__cid) == _out_s193)/*SuffixA..ayTest.sk:44*/
+    {
+      int _out_s196 = 0;
+      size_Object@TreeSet(_pac_sc_s189, _out_s196);
+      _pac_sc_s194 = _out_s196;
+    }
+    else
+    {
+      _pac_sc_s194 = 0;
+    }
+    assert (_pac_sc_s194 == 1); //Assert at SuffixA..ayTest.sk:44 (0)
+    int _out_s198 = 0;
+    TreeSet@meta(_out_s198);
+    bit _pac_sc_s199 = 0;
+    if((_pac_sc_s189.__cid) == _out_s198)/*SuffixA..ayTest.sk:45*/
+    {
+      int _out_s201 = 0;
+      String@meta(_out_s201);
+      Object@Object _out_s203 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_out_s201), new Array_char@array(length=4, A={'a','b','a','\0'}), 0, 3, _out_s203)//{};
+      bit _out_s205 = 0;
+      contains_Object_Object@TreeSet(_pac_sc_s189, _out_s203, _out_s205)//{};
+      _pac_sc_s199 = _out_s205;
+    }
+    else
+    {
+      _pac_sc_s199 = 0;
+    }
+    assert (_pac_sc_s199); //Assert at SuffixA..ayTest.sk:45 (0)
+  }
+  /* END PACKAGE SuffixArrayTest*/
+}
+/* BEGIN PACKAGE ANONYMOUS*/
+/* END PACKAGE ANONYMOUS*/
+/* BEGIN PACKAGE Character*/
+package Character{
+  /*Character.sk:12*/
+  
+void charValue (Object self, ref char _out)/*Character.sk:12*/
+  {
+    _out = self.value_Character;
+    return;
+  }
+  /*Character.sk:16*/
+  
+void equals_Object (Object self, Object obj, ref bit _out)/*Character.sk:16*/
+  {
+    int _out_s207 = 0;
+    Character@meta(_out_s207);
+    if((obj.__cid) == _out_s207)/*Character.sk:17*/
+    {
+      int _out_s209 = 0;
+      Character@meta(_out_s209);
+      char _pac_sc_s210 = '\0';
+      if((obj.__cid) == _out_s209)/*Character.sk:18*/
+      {
+        char _out_s212 = '\0';
+        charValue@Character(obj, _out_s212);
+        _pac_sc_s210 = _out_s212;
+      }
+      else
+      {
+        _pac_sc_s210 = '\0';
+      }
+      _out = (self.value_Character) == _pac_sc_s210;
+      return;
+    }
+    _out = 0;
+    return;
+  }
+  /* END PACKAGE Character*/
+}
+/* BEGIN PACKAGE SuffixRankTuple*/
+package SuffixRankTuple{
+  /*SuffixR..kTuple.sk:3*/
+  
+void SuffixRankTuple_SuffixRankTuple (Object self, ref Object _out)/*SuffixR..kTuple.sk:3*/
+  {
+    _out = self;
+    return;
+  }
+  /*SuffixR..kTuple.sk:7*/
+  
+void compareTo_SuffixRankTuple (Object self, Object other, ref int _out)/*SuffixR..kTuple.sk:7*/
+  {
+    int cmp_s214 = 0;
+    compare_int_int@Integer(self.firstHalf_SuffixRankTuple, other.firstHalf_SuffixRankTuple, cmp_s214);
+    int cmp;
+    cmp = cmp_s214;
+    if(cmp_s214 == 0)/*SuffixR..kTuple.sk:9*/
+    {
+      int cmp_s216 = 0;
+      compare_int_int@Integer(self.secondHalf_SuffixRankTuple, other.secondHalf_SuffixRankTuple, cmp_s216);
+      cmp = cmp_s216;
+    }
+    if(cmp == 0)/*SuffixR..kTuple.sk:10*/
+    {
+      int _out_s218 = 0;
+      compare_int_int@Integer(self.originalIndex_SuffixRankTuple, other.originalIndex_SuffixRankTuple, _out_s218);
+      _out = _out_s218;
+      return;
+    }
+    _out = cmp;
+    return;
+  }
+  /* END PACKAGE SuffixRankTuple*/
+}
+/* BEGIN PACKAGE HashMap*/
+package HashMap{
+  struct HashMap {
+      @Immutable()
+  }
+  struct Hashmap extends HashMap@HashMap {
+      @Immutable()
+  }
+  struct Put_object_object extends HashMap@HashMap {
+      HashMap self;
+      Object k;
+      Object v;
+      @Immutable()
+  }
+  struct Putb_object_object extends HashMap@HashMap {
+      HashMap self;
+      Object k;
+      Object v;
+      @Immutable()
+  }
+  struct Get_object extends HashMap@HashMap {
+      HashMap self;
+      Object k;
+      @Immutable()
+  }
+  /* END PACKAGE HashMap*/
+}
+/* BEGIN PACKAGE TwoDArray*/
+package TwoDArray{
+  /*TwoDArray.sk:7*/
+  
+void TwoDArray_TwoDArray_int_int (Object self, int n, int m, ref Object _out)/*TwoDArray.sk:7*/
+  {
+    self.N_TwoDArray = n;
+    self.M_TwoDArray = m;
+    self.arr_TwoDArray = new Array_int@array(length=n * m);
+    _out = self;
+    return;
+  }
+  /*TwoDArray.sk:30*/
+  
+void getRow_int (Object self, int i, ref Array_int _out)/*TwoDArray.sk:30*/
+  {
+    _out = new Array_int@array(length=self.M_TwoDArray);
+    int j = i * (self.M_TwoDArray);
+    bit __sa1 = j < ((i * (self.M_TwoDArray)) + (self.M_TwoDArray));
+    int count = 0;
+    while(__sa1)
+    {
+      _out.A[count] = self.arr_TwoDArray.A[j];
+      count = count + 1;
+      j = j + 1;
+      __sa1 = j < ((i * (self.M_TwoDArray)) + (self.M_TwoDArray));
+    }
+    return;
+  }
+  /*TwoDArray.sk:18*/
+  
+void get_int_int (Object self, int i, int j, ref int _out)/*TwoDArray.sk:18*/
+  {
+    _out = self.arr_TwoDArray.A[(i * (self.M_TwoDArray)) + j];
+    return;
+  }
+  /*TwoDArray.sk:22*/
+  
+void setRow_int_int (Object self, int i, Array_int row)/*TwoDArray.sk:22*/
+  {
+    int j = i * (self.M_TwoDArray);
+    bit __sa0 = j < ((i * (self.M_TwoDArray)) + (self.M_TwoDArray));
+    int count = 0;
+    while(__sa0)
+    {
+      self.arr_TwoDArray.A[j] = row.A[count];
+      count = count + 1;
+      j = j + 1;
+      __sa0 = j < ((i * (self.M_TwoDArray)) + (self.M_TwoDArray));
+    }
+  }
+  /*TwoDArray.sk:14*/
+  
+void set_int_int_int (Object self, int i, int j, int val)/*TwoDArray.sk:14*/
+  {
+    self.arr_TwoDArray.A[(i * (self.M_TwoDArray)) + j] = val;
+  }
+  /* END PACKAGE TwoDArray*/
+}
+/* BEGIN PACKAGE CharSequence*/
+package CharSequence{
+  /* END PACKAGE CharSequence*/
+}
+/* BEGIN PACKAGE ArrayList*/
+package ArrayList{
+  struct ArrayList {
+      @Immutable()
+  }
+  struct Arraylist extends ArrayList@ArrayList {
+      @Immutable()
+  }
+  struct Add_object extends ArrayList@ArrayList {
+      ArrayList self;
+      Object e;
+      @Immutable()
+  }
+  struct Addb_object extends ArrayList@ArrayList {
+      ArrayList self;
+      Object e;
+      @Immutable()
+  }
+  struct Getb_int extends ArrayList@ArrayList {
+      ArrayList self;
+      int i;
+      @Immutable()
+  }
+  struct Get_int extends ArrayList@ArrayList {
+      ArrayList self;
+      int i;
+      @Immutable()
+  }
+  struct Size extends ArrayList@ArrayList {
+      ArrayList self;
+      @Immutable()
+  }
+  /* END PACKAGE ArrayList*/
+}
+/* BEGIN PACKAGE String*/
+package String{
+  /*String.sk:7*/
+  
+void String_String_char_int_int (Object self, Array_char ca, int offset, int count, ref Object _out)/*String.sk:7*/
+  {
+    if((offset > 0) && (offset < (ca.length)))/*String.sk:8*/
+    {
+      Array_char@array tmp = new Array_char@array(length=count);
+      for(int i = 0; i < count; i = i + 1)/*Canonical*/
+      {
+        tmp.A[i] = ca.A[i + offset];
+      }
+      self._value_String = tmp;
+    }
+    else
+    {
+      self._value_String = ca;
+    }
+    self._count_String = count;
+    _out = self;
+    return;
+  }
+  /*String.sk:43*/
+  
+void charAt_int (Object self, int index, ref char _out)/*String.sk:43*/
+  {
+    if((0 <= index) && (index < (self._count_String)))/*String.sk:44*/
+    {
+      _out = self._value_String.A[index];
+      return;
+    }
+    _out = '\0';
+    return;
+  }
+  /*String.sk:154*/
+  
+void equals_Object (Object self, Object obj, ref bit _out)/*String.sk:154*/
+  {
+    _out = 0;
+    int _out_s411 = 0;
+    String@meta(_out_s411);
+    if((obj.__cid) == _out_s411)/*String.sk:156*/
+    {
+      _out = 1;
+      int sLen_s413 = 0;
+      String@meta(sLen_s413);
+      int _pac_sc_s414 = 0;
+      if((obj.__cid) == sLen_s413)/*String.sk:159*/
+      {
+        int sLen_s416 = 0;
+        length@String(obj, sLen_s416);
+        _pac_sc_s414 = sLen_s416;
+      }
+      else
+      {
+        _pac_sc_s414 = 0;
+      }
+      int tLen_s418 = 0;
+      String@meta(tLen_s418);
+      int _pac_sc_s419 = 0;
+      if((self.__cid) == tLen_s418)/*String.sk:160*/
+      {
+        int tLen_s421 = 0;
+        length@String(self, tLen_s421);
+        _pac_sc_s419 = tLen_s421;
+      }
+      else
+      {
+        _pac_sc_s419 = 0;
+      }
+      if(_pac_sc_s414 != _pac_sc_s419)/*String.sk:161*/
+      {
+        _out = 0;
+      }
+      for(int i = 0; (i < _pac_sc_s414) && (_out == 1); i = i + 1)
+      {
+        if((obj._value_String.A[i]) != (self._value_String.A[i]))/*String.sk:163*/
+        {
+          _out = 0;
+        }
+      }
+    }
+    return;
+  }
+  /*String.sk:48*/
+  
+void length (Object self, ref int _out)/*String.sk:48*/
+  {
+    _out = self._count_String;
+    return;
+  }
+  /* END PACKAGE String*/
+}
+/* BEGIN PACKAGE ArrayDeque*/
+package ArrayDeque{
+  struct ArrayDeque {
+      @Immutable()
+  }
+  struct Arraydeque extends ArrayDeque@ArrayDeque {
+      @Immutable()
+  }
+  struct Peekfirst extends ArrayDeque@ArrayDeque {
+      ArrayDeque self;
+      @Immutable()
+  }
+  struct Peekfirsthelp_int_int extends ArrayDeque@ArrayDeque {
+      ArrayDeque self;
+      int i;
+      int j;
+      @Immutable()
+  }
+  struct Isempty extends ArrayDeque@ArrayDeque {
+      ArrayDeque self;
+      @Immutable()
+  }
+  struct Removefirst extends ArrayDeque@ArrayDeque {
+      ArrayDeque self;
+      @Immutable()
+  }
+  struct Removefirstb extends ArrayDeque@ArrayDeque {
+      ArrayDeque self;
+      @Immutable()
+  }
+  struct Peeklast extends ArrayDeque@ArrayDeque {
+      ArrayDeque self;
+      @Immutable()
+  }
+  struct Peeklasthelp_int_int extends ArrayDeque@ArrayDeque {
+      ArrayDeque self;
+      int i;
+      int j;
+      @Immutable()
+  }
+  struct Removelastb extends ArrayDeque@ArrayDeque {
+      ArrayDeque self;
+      @Immutable()
+  }
+  struct Addlastb_object extends ArrayDeque@ArrayDeque {
+      ArrayDeque self;
+      Object e;
+      @Immutable()
+  }
+  struct Removelast extends ArrayDeque@ArrayDeque {
+      ArrayDeque self;
+      @Immutable()
+  }
+  struct Addlast_object extends ArrayDeque@ArrayDeque {
+      ArrayDeque self;
+      Object e;
+      @Immutable()
+  }
+  struct Size extends ArrayDeque@ArrayDeque {
+      ArrayDeque self;
+      @Immutable()
+  }
+  /* END PACKAGE ArrayDeque*/
+}
+/* BEGIN PACKAGE Integer*/
+package Integer{
+  /*Integer.sk:20*/
+  
+void compare_int_int (int x, int y, ref int _out)/*Integer.sk:20*/
+  {
+    _out = (x < y ? -1 : (x == y ? 0 : 1));
+    return;
+  }
+  /*Integer.sk:24*/
+  
+void equals_Object (Object self, Object obj, ref bit _out)/*Integer.sk:24*/
+  {
+    int _out_s662 = 0;
+    Integer@meta(_out_s662);
+    if((obj.__cid) == _out_s662)/*Integer.sk:25*/
+    {
+      int _out_s664 = 0;
+      Integer@meta(_out_s664);
+      int _pac_sc_s665 = 0;
+      if((obj.__cid) == _out_s664)/*Integer.sk:26*/
+      {
+        int _out_s667 = 0;
+        intValue@Integer(obj, _out_s667);
+        _pac_sc_s665 = _out_s667;
+      }
+      else
+      {
+        _pac_sc_s665 = 0;
+      }
+      _out = (self.value_Integer) == _pac_sc_s665;
+      return;
+    }
+    _out = 0;
+    return;
+  }
+  /*Integer.sk:12*/
+  
+void intValue (Object self, ref int _out)/*Integer.sk:12*/
+  {
+    _out = self.value_Integer;
+    return;
+  }
+  /* END PACKAGE Integer*/
+}
+/* BEGIN PACKAGE Assert*/
+package Assert{
+  /* END PACKAGE Assert*/
+}
+/* BEGIN PACKAGE array*/
+package array{
+  struct Array_bit {
+      int length;
+      bit[length] A;
+  }
+  struct Array_char {
+      int length;
+      char[length] A;
+  }
+  struct Array_int {
+      int length;
+      int[length] A;
+  }
+  struct Array_float {
+      int length;
+      float[length] A;
+  }
+  struct Array_double {
+      int length;
+      double[length] A;
+  }
+  struct Array_Object {
+      int length;
+      Object[length] A;
+  }
+  /* END PACKAGE array*/
+}
+/* BEGIN PACKAGE meta*/
+package meta{
+  /*meta.sk:4*/
+  
+void ArrayDeque (ref int _out)/*meta.sk:4*/
+  {
+    _out = 9;
+    return;
+  }
+  /*meta.sk:5*/
+  
+void ArrayList (ref int _out)/*meta.sk:5*/
+  {
+    _out = 14;
+    return;
+  }
+  /*meta.sk:6*/
+  
+void Arrays (ref int _out)/*meta.sk:6*/
+  {
+    _out = 13;
+    return;
+  }
+  /*meta.sk:7*/
+  
+void Assert (ref int _out)/*meta.sk:7*/
+  {
+    _out = 16;
+    return;
+  }
+  /*meta.sk:8*/
+  
+void Boolean (ref int _out)/*meta.sk:8*/
+  {
+    _out = 4;
+    return;
+  }
+  /*meta.sk:10*/
+  
+void Character (ref int _out)/*meta.sk:10*/
+  {
+    _out = 6;
+    return;
+  }
+  /*meta.sk:11*/
+  
+void HashMap (ref int _out)/*meta.sk:11*/
+  {
+    _out = 12;
+    return;
+  }
+  /*meta.sk:12*/
+  
+void HashSet (ref int _out)/*meta.sk:12*/
+  {
+    _out = 15;
+    return;
+  }
+  /*meta.sk:13*/
+  
+void Integer (ref int _out)/*meta.sk:13*/
+  {
+    _out = 11;
+    return;
+  }
+  /*meta.sk:14*/
+  
+void Object (ref int _out)/*meta.sk:14*/
+  {
+    _out = 1;
+    return;
+  }
+  /*meta.sk:15*/
+  
+void String (ref int _out)/*meta.sk:15*/
+  {
+    _out = 17;
+    return;
+  }
+  /*meta.sk:16*/
+  
+void SuffixArray (ref int _out)/*meta.sk:16*/
+  {
+    _out = 2;
+    return;
+  }
+  /*meta.sk:17*/
+  
+void SuffixArrayTest (ref int _out)/*meta.sk:17*/
+  {
+    _out = 3;
+    return;
+  }
+  /*meta.sk:18*/
+  
+void SuffixRankTuple (ref int _out)/*meta.sk:18*/
+  {
+    _out = 7;
+    return;
+  }
+  /*meta.sk:19*/
+  
+void TreeSet (ref int _out)/*meta.sk:19*/
+  {
+    _out = 5;
+    return;
+  }
+  /*meta.sk:20*/
+  
+void TwoDArray (ref int _out)/*meta.sk:20*/
+  {
+    _out = 8;
+    return;
+  }
+  /* END PACKAGE meta*/
+}
+/* BEGIN PACKAGE TreeSet*/
+package TreeSet{
+  struct TreeSet {
+      @Immutable()
+  }
+  struct Treeset extends TreeSet@TreeSet {
+      @Immutable()
+  }
+  struct Add_object extends TreeSet@TreeSet {
+      TreeSet self;
+      Object e;
+      @Immutable()
+  }
+  struct Addb_object extends TreeSet@TreeSet {
+      TreeSet self;
+      Object e;
+      @Immutable()
+  }
+  struct Clearb extends TreeSet@TreeSet {
+      TreeSet self;
+      @Immutable()
+  }
+  struct Clear extends TreeSet@TreeSet {
+      TreeSet self;
+      @Immutable()
+  }
+  struct Contains_object extends TreeSet@TreeSet {
+      TreeSet self;
+      Object e;
+      @Immutable()
+  }
+  struct Size extends TreeSet@TreeSet {
+      TreeSet self;
+      @Immutable()
+  }
+  /*TreeSet.sk:13*/
+  
+void TreeSet_TreeSet (ref Object _out)/*TreeSet.sk:13*/
+  {
+    int _out_s957 = 0;
+    TreeSet@meta(_out_s957);
+    _out = new Object@Object(__cid=_out_s957, _treeset=new Treeset());
+    return;
+  }
+  /*TreeSet.sk:17*/
+  
+void add_Object_Object (Object self, Object e, ref Object _out)/*TreeSet.sk:17*/
+  {
+    int _out_s953 = 0;
+    TreeSet@meta(_out_s953);
+    _out = new Object@Object(__cid=_out_s953, _treeset=new Add_object(self=self._treeset, e=e));
+    return;
+  }
+  /*TreeSet.sk:21*/
+  
+void addb_Object_Object (Object self, Object e, ref Object _out)/*TreeSet.sk:21*/
+  {
+    self._treeset = new Addb_object(self=self._treeset, e=e);
+    _out = self;
+    return;
+  }
+  /*TreeSet.sk:31*/
+  
+void clear_Object (Object self, ref Object _out)/*TreeSet.sk:31*/
+  {
+    int _out_s955 = 0;
+    TreeSet@meta(_out_s955);
+    _out = new Object@Object(__cid=_out_s955, _treeset=new Clear(self=self._treeset));
+    return;
+  }
+  /*TreeSet.sk:26*/
+  
+void clearb_Object (Object self, ref Object _out)/*TreeSet.sk:26*/
+  {
+    self._treeset = new Clearb(self=self._treeset);
+    _out = self;
+    return;
+  }
+  /*TreeSet.sk:35*/
+  
+void contains_Object_Object (Object self, Object e, ref bit _out)/*TreeSet.sk:35*/
+  {
+    bit _out_s860 = 0;
+    xform_contains_TreeSet_Object(self._treeset, e, _out_s860);
+    _out = _out_s860;
+    return;
+  }
+  /*TreeSet.sk:39*/
+  
+void size_Object (Object self, ref int _out)/*TreeSet.sk:39*/
+  {
+    int _out_s951 = 0;
+    xform_size_TreeSet(self._treeset, _out_s951);
+    _out = _out_s951;
+    return;
+  }
+  /*TreeSet.sk:132*/
+  
+void xform_contains_TreeSet_Object (TreeSet selff, Object e, ref bit _out)/*TreeSet.sk:132*/
+  {
+    switch(selff){/*TreeSet.sk:134*/
+      case Treeset:
+      {
+        _out = 0;
+        return;
+      }
+      case Add_object:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: TreeSet.sk:134 ASSERTION CAN NOT BE SATISFIED: TreeSet.sk:139 Assert at TreeSet.sk:139 (1)
+      case Addb_object:
+      {
+        int eq_s862 = 0;
+        Integer@meta(eq_s862);
+        bit _pac_sc_s863 = 0;
+        if((selff.e.__cid) == eq_s862)/*TreeSet.sk:142*/
+        {
+          bit eq_s865 = 0;
+          equals_Object@Integer(selff.e, e, eq_s865);
+          _pac_sc_s863 = eq_s865;
+        }
+        else
+        {
+          int eq_s867 = 0;
+          SuffixRankTuple@meta(eq_s867);
+          bit _pac_sc_s868 = 0;
+          if((selff.e.__cid) == eq_s867)/*TreeSet.sk:142*/
+          {
+            bit eq_s870 = 0;
+            equals_Object@Object(selff.e, e, eq_s870);
+            _pac_sc_s868 = eq_s870;
+          }
+          else
+          {
+            int eq_s872 = 0;
+            Assert@meta(eq_s872);
+            bit _pac_sc_s873 = 0;
+            if((selff.e.__cid) == eq_s872)/*TreeSet.sk:142*/
+            {
+              bit eq_s875 = 0;
+              equals_Object@Object(selff.e, e, eq_s875);
+              _pac_sc_s873 = eq_s875;
+            }
+            else
+            {
+              int eq_s877 = 0;
+              TwoDArray@meta(eq_s877);
+              bit _pac_sc_s878 = 0;
+              if((selff.e.__cid) == eq_s877)/*TreeSet.sk:142*/
+              {
+                bit eq_s880 = 0;
+                equals_Object@Object(selff.e, e, eq_s880);
+                _pac_sc_s878 = eq_s880;
+              }
+              else
+              {
+                int eq_s882 = 0;
+                SuffixArrayTest@meta(eq_s882);
+                bit _pac_sc_s883 = 0;
+                if((selff.e.__cid) == eq_s882)/*TreeSet.sk:142*/
+                {
+                  bit eq_s885 = 0;
+                  equals_Object@Object(selff.e, e, eq_s885);
+                  _pac_sc_s883 = eq_s885;
+                }
+                else
+                {
+                  int eq_s887 = 0;
+                  TreeSet@meta(eq_s887);
+                  bit _pac_sc_s888 = 0;
+                  if((selff.e.__cid) == eq_s887)/*TreeSet.sk:142*/
+                  {
+                    bit eq_s890 = 0;
+                    equals_Object@Object(selff.e, e, eq_s890);
+                    _pac_sc_s888 = eq_s890;
+                  }
+                  else
+                  {
+                    int eq_s892 = 0;
+                    String@meta(eq_s892);
+                    bit _pac_sc_s893 = 0;
+                    if((selff.e.__cid) == eq_s892)/*TreeSet.sk:142*/
+                    {
+                      bit eq_s895 = 0;
+                      equals_Object@String(selff.e, e, eq_s895);
+                      _pac_sc_s893 = eq_s895;
+                    }
+                    else
+                    {
+                      int eq_s897 = 0;
+                      Character@meta(eq_s897);
+                      bit _pac_sc_s898 = 0;
+                      if((selff.e.__cid) == eq_s897)/*TreeSet.sk:142*/
+                      {
+                        bit eq_s900 = 0;
+                        equals_Object@Character(selff.e, e, eq_s900);
+                        _pac_sc_s898 = eq_s900;
+                      }
+                      else
+                      {
+                        int eq_s902 = 0;
+                        HashSet@meta(eq_s902);
+                        bit _pac_sc_s903 = 0;
+                        if((selff.e.__cid) == eq_s902)/*TreeSet.sk:142*/
+                        {
+                          bit eq_s905 = 0;
+                          equals_Object@Object(selff.e, e, eq_s905);
+                          _pac_sc_s903 = eq_s905;
+                        }
+                        else
+                        {
+                          int eq_s907 = 0;
+                          Boolean@meta(eq_s907);
+                          bit _pac_sc_s908 = 0;
+                          if((selff.e.__cid) == eq_s907)/*TreeSet.sk:142*/
+                          {
+                            bit eq_s910 = 0;
+                            equals_Object@Object(selff.e, e, eq_s910);
+                            _pac_sc_s908 = eq_s910;
+                          }
+                          else
+                          {
+                            int eq_s912 = 0;
+                            HashMap@meta(eq_s912);
+                            bit _pac_sc_s913 = 0;
+                            if((selff.e.__cid) == eq_s912)/*TreeSet.sk:142*/
+                            {
+                              bit eq_s915 = 0;
+                              equals_Object@Object(selff.e, e, eq_s915);
+                              _pac_sc_s913 = eq_s915;
+                            }
+                            else
+                            {
+                              int eq_s917 = 0;
+                              Arrays@meta(eq_s917);
+                              bit _pac_sc_s918 = 0;
+                              if((selff.e.__cid) == eq_s917)/*TreeSet.sk:142*/
+                              {
+                                bit eq_s920 = 0;
+                                equals_Object@Object(selff.e, e, eq_s920);
+                                _pac_sc_s918 = eq_s920;
+                              }
+                              else
+                              {
+                                int eq_s922 = 0;
+                                ArrayDeque@meta(eq_s922);
+                                bit _pac_sc_s923 = 0;
+                                if((selff.e.__cid) == eq_s922)/*TreeSet.sk:142*/
+                                {
+                                  bit eq_s925 = 0;
+                                  equals_Object@Object(selff.e, e, eq_s925);
+                                  _pac_sc_s923 = eq_s925;
+                                }
+                                else
+                                {
+                                  int eq_s927 = 0;
+                                  ArrayList@meta(eq_s927);
+                                  bit _pac_sc_s928 = 0;
+                                  if((selff.e.__cid) == eq_s927)/*TreeSet.sk:142*/
+                                  {
+                                    bit eq_s930 = 0;
+                                    equals_Object@Object(selff.e, e, eq_s930);
+                                    _pac_sc_s928 = eq_s930;
+                                  }
+                                  else
+                                  {
+                                    int eq_s932 = 0;
+                                    SuffixArray@meta(eq_s932);
+                                    bit _pac_sc_s933 = 0;
+                                    if((selff.e.__cid) == eq_s932)/*TreeSet.sk:142*/
+                                    {
+                                      bit eq_s935 = 0;
+                                      equals_Object@Object(selff.e, e, eq_s935);
+                                      _pac_sc_s933 = eq_s935;
+                                    }
+                                    else
+                                    {
+                                      int eq_s937 = 0;
+                                      Object@meta(eq_s937);
+                                      bit _pac_sc_s938 = 0;
+                                      if((selff.e.__cid) == eq_s937)/*TreeSet.sk:142*/
+                                      {
+                                        bit eq_s940 = 0;
+                                        equals_Object@Object(selff.e, e, eq_s940);
+                                        _pac_sc_s938 = eq_s940;
+                                      }
+                                      else
+                                      {
+                                        _pac_sc_s938 = 0;
+                                      }
+                                      _pac_sc_s933 = _pac_sc_s938;
+                                    }
+                                    _pac_sc_s928 = _pac_sc_s933;
+                                  }
+                                  _pac_sc_s923 = _pac_sc_s928;
+                                }
+                                _pac_sc_s918 = _pac_sc_s923;
+                              }
+                              _pac_sc_s913 = _pac_sc_s918;
+                            }
+                            _pac_sc_s908 = _pac_sc_s913;
+                          }
+                          _pac_sc_s903 = _pac_sc_s908;
+                        }
+                        _pac_sc_s898 = _pac_sc_s903;
+                      }
+                      _pac_sc_s893 = _pac_sc_s898;
+                    }
+                    _pac_sc_s888 = _pac_sc_s893;
+                  }
+                  _pac_sc_s883 = _pac_sc_s888;
+                }
+                _pac_sc_s878 = _pac_sc_s883;
+              }
+              _pac_sc_s873 = _pac_sc_s878;
+            }
+            _pac_sc_s868 = _pac_sc_s873;
+          }
+          _pac_sc_s863 = _pac_sc_s868;
+        }
+        int sz_s942 = 0;
+        xform_size_TreeSet(selff.self, sz_s942);
+        bit cont_s944 = 0;
+        xform_contains_TreeSet_Object(selff.self, e, cont_s944);
+        _out = (cont_s944 ? cont_s944 : _pac_sc_s863);
+        return;
+      }
+      case Clearb:
+      {
+        _out = 0;
+        return;
+      }
+      case Clear:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: TreeSet.sk:134 ASSERTION CAN NOT BE SATISFIED: TreeSet.sk:154 Assert at TreeSet.sk:154 (1)
+      case Contains_object:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: TreeSet.sk:134 ASSERTION CAN NOT BE SATISFIED: TreeSet.sk:155 Assert at TreeSet.sk:155 (1)
+      case Size:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: TreeSet.sk:134 ASSERTION CAN NOT BE SATISFIED: TreeSet.sk:156 Assert at TreeSet.sk:156 (1)
+    }
+    _out = 0;
+    return;
+  }
+  /*TreeSet.sk:71*/
+  
+void xform_size_TreeSet (TreeSet selff, ref int _out)/*TreeSet.sk:71*/
+  {
+    switch(selff){/*TreeSet.sk:73*/
+      case Treeset:
+      {
+        _out = 0;
+        return;
+      }
+      case Add_object:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: TreeSet.sk:73 ASSERTION CAN NOT BE SATISFIED: TreeSet.sk:78 Assert at TreeSet.sk:78 (1)
+      case Addb_object:
+      {
+        bit cond_s947 = 0;
+        xform_contains_TreeSet_Object(selff.self, selff.e, cond_s947);
+        int sz_s949 = 0;
+        xform_size_TreeSet(selff.self, sz_s949);
+        _out = (cond_s947 ? sz_s949 - 1 : sz_s949 + 1);
+        return;
+      }
+      case Clearb:
+      {
+        _out = 0;
+        return;
+      }
+      case Clear:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: TreeSet.sk:73 ASSERTION CAN NOT BE SATISFIED: TreeSet.sk:97 Assert at TreeSet.sk:97 (1)
+      case Contains_object:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: TreeSet.sk:73 ASSERTION CAN NOT BE SATISFIED: TreeSet.sk:98 Assert at TreeSet.sk:98 (1)
+      case Size:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: TreeSet.sk:73 ASSERTION CAN NOT BE SATISFIED: TreeSet.sk:99 Assert at TreeSet.sk:99 (1)
+    }
+    _out = 0;
+    return;
+  }
+  /* END PACKAGE TreeSet*/
+}
+/* BEGIN PACKAGE SuffixArray*/
+package SuffixArray{
+  /*SuffixArray.sk:7*/
+  
+void SuffixArray_SuffixArray_String (Object self, Object text, ref Object _out)/*SuffixArray.sk:7*/
+  {
+    Array_int@array _out_s989 = null;
+    toIntArray_String(text, _out_s989);
+    Object@Object _out_s991 = null;
+    SuffixArray_SuffixArray_int(self, _out_s989, _out_s991)//{};
+    _out = self;
+    return;
+  }
+  /*SuffixArray.sk:12*/
+  
+void SuffixArray_SuffixArray_int (Object self, Array_int text, ref Object _out)/*SuffixArray.sk:12*/
+  {
+    Array_int@array _out_s1013 = null;
+    clone_int@SuffixArray(self, text, _out_s1013);
+    self.T_SuffixArray = _out_s1013;
+    self.N_SuffixArray = text.length;
+    construct@SuffixArray(self);
+    kasai@SuffixArray(self);
+    _out = self;
+    return;
+  }
+  /*SuffixArray.sk:20*/
+  
+void clone_int (Object self, Array_int arr, ref Array_int _out)/*SuffixArray.sk:20*/
+  {
+    int l;
+    l = arr.length;
+    _out = new Array_int@array(length=l);
+    for(int i = 0; i < l; i = i + 1)/*Canonical*/
+    {
+      _out.A[i] = arr.A[i];
+    }
+    return;
+  }
+  /*SuffixArray.sk:43*/
+  
+void construct (Object self)/*SuffixArray.sk:43*/
+  {
+    self.sa_SuffixArray = new Array_int@array(length=self.N_SuffixArray);
+    int suffixRanks_s1015 = 0;
+    TwoDArray@meta(suffixRanks_s1015);
+    Object@Object suffixRanks_s1017 = null;
+    TwoDArray_TwoDArray_int_int@TwoDArray(new Object@Object(__cid=suffixRanks_s1015), 2, self.N_SuffixArray, suffixRanks_s1017)//{};
+    Array_Object@array ranks = new Array_Object@array(length=self.N_SuffixArray);
+    bit __sa5 = 0 < (self.N_SuffixArray);
+    int i = 0;
+    while(__sa5)
+    {
+      int _out_s1019 = 0;
+      TwoDArray@meta(_out_s1019);
+      if((suffixRanks_s1017.__cid) == _out_s1019)/*SuffixArray.sk:48*/
+      {
+        set_int_int_int@TwoDArray(suffixRanks_s1017, 0, i, self.T_SuffixArray.A[i]);
+      }
+      int _out_s1021 = 0;
+      SuffixRankTuple@meta(_out_s1021);
+      Object@Object _out_s1023 = null;
+      SuffixRankTuple_SuffixRankTuple@SuffixRankTuple(new Object@Object(__cid=_out_s1021), _out_s1023)//{};
+      ranks.A[i] = _out_s1023;
+      i = i + 1;
+      __sa5 = i < (self.N_SuffixArray);
+    }
+    bit __sa6 = 1 < (self.N_SuffixArray);
+    int pos = 1;
+    while(__sa6)
+    {
+      bit __sa7 = 0 < (self.N_SuffixArray);
+      int i_0 = 0;
+      while(__sa7)
+      {
+        Object@Object suffixRank = ranks.A[i_0];
+        int _out_s1025 = 0;
+        TwoDArray@meta(_out_s1025);
+        int _pac_sc_s1026 = 0;
+        if((suffixRanks_s1017.__cid) == _out_s1025)/*SuffixArray.sk:55*/
+        {
+          int _out_s1028 = 0;
+          get_int_int@TwoDArray(suffixRanks_s1017, 0, i_0, _out_s1028);
+          _pac_sc_s1026 = _out_s1028;
+        }
+        else
+        {
+          _pac_sc_s1026 = 0;
+        }
+        suffixRank.firstHalf_SuffixRankTuple = _pac_sc_s1026;
+        int _pac_sc_s1029 = 0;
+        if((i_0 + pos) < (self.N_SuffixArray))/*SuffixArray.sk:56*/
+        {
+          int _out_s1031 = 0;
+          TwoDArray@meta(_out_s1031);
+          int _pac_sc_s1032 = 0;
+          if((suffixRanks_s1017.__cid) == _out_s1031)/*SuffixArray.sk:56*/
+          {
+            int _out_s1034 = 0;
+            get_int_int@TwoDArray(suffixRanks_s1017, 0, i_0 + pos, _out_s1034);
+            _pac_sc_s1032 = _out_s1034;
+          }
+          else
+          {
+            _pac_sc_s1032 = 0;
+          }
+          _pac_sc_s1029 = _pac_sc_s1032;
+        }
+        else
+        {
+          _pac_sc_s1029 = -1;
+        }
+        suffixRank.secondHalf_SuffixRankTuple = _pac_sc_s1029;
+        suffixRank.originalIndex_SuffixRankTuple = i_0;
+        i_0 = i_0 + 1;
+        __sa7 = i_0 < (self.N_SuffixArray);
+      }
+      Array_Object@array ranks_s1036 = null;
+      sort_SuffixRankTuple_int@Arrays(ranks, ranks.length, ranks_s1036);
+      ranks = ranks_s1036;
+      int _out_s1038 = 0;
+      TwoDArray@meta(_out_s1038);
+      if((suffixRanks_s1017.__cid) == _out_s1038)/*SuffixArray.sk:61*/
+      {
+        set_int_int_int@TwoDArray(suffixRanks_s1017, 1, ranks_s1036.A[0].originalIndex_SuffixRankTuple, 0);
+      }
+      bit __sa8 = 1 < (self.N_SuffixArray);
+      int newRank = 0;
+      int i_1 = 1;
+      while(__sa8)
+      {
+        Object@Object lastSuffixRank = ranks_s1036.A[i_1 - 1];
+        Object@Object currSuffixRank = ranks_s1036.A[i_1];
+        if(((currSuffixRank.firstHalf_SuffixRankTuple) != (lastSuffixRank.firstHalf_SuffixRankTuple)) || ((currSuffixRank.secondHalf_SuffixRankTuple) != (lastSuffixRank.secondHalf_SuffixRankTuple)))/*SuffixArray.sk:66*/
+        {
+          newRank = newRank + 1;
+        }
+        int _out_s1040 = 0;
+        TwoDArray@meta(_out_s1040);
+        if((suffixRanks_s1017.__cid) == _out_s1040)/*SuffixArray.sk:67*/
+        {
+          set_int_int_int@TwoDArray(suffixRanks_s1017, 1, currSuffixRank.originalIndex_SuffixRankTuple, newRank);
+        }
+        i_1 = i_1 + 1;
+        __sa8 = i_1 < (self.N_SuffixArray);
+      }
+      int _out_s1042 = 0;
+      TwoDArray@meta(_out_s1042);
+      if((suffixRanks_s1017.__cid) == _out_s1042)/*SuffixArray.sk:70*/
+      {
+        int _out_s1044 = 0;
+        TwoDArray@meta(_out_s1044);
+        Array_int@array _pac_sc_s1045 = null;
+        if((suffixRanks_s1017.__cid) == _out_s1044)/*SuffixArray.sk:70*/
+        {
+          Array_int@array _out_s1047 = null;
+          getRow_int@TwoDArray(suffixRanks_s1017, 1, _out_s1047);
+          _pac_sc_s1045 = _out_s1047;
+        }
+        else
+        {
+          _pac_sc_s1045 = null;
+        }
+        setRow_int_int@TwoDArray(suffixRanks_s1017, 0, _pac_sc_s1045)//{};
+      }
+      if(newRank == ((self.N_SuffixArray) - 1))/*SuffixArray.sk:72*/
+      {
+        pos = self.N_SuffixArray;
+      }
+      pos = pos * 2;
+      __sa6 = pos < (self.N_SuffixArray);
+    }
+    bit __sa9 = 0 < (self.N_SuffixArray);
+    int i_2 = 0;
+    while(__sa9)
+    {
+      self.sa_SuffixArray.A[i_2] = ranks.A[i_2].originalIndex_SuffixRankTuple;
+      ranks.A[i_2] = null;
+      i_2 = i_2 + 1;
+      __sa9 = i_2 < (self.N_SuffixArray);
+    }
+  }
+  /*SuffixArray.sk:83*/
+  
+void kasai (Object self)/*SuffixArray.sk:83*/
+  {
+    self.lcp_SuffixArray = new Array_int@array(length=self.N_SuffixArray);
+    Array_int@array inv = new Array_int@array(length=self.N_SuffixArray);
+    bit __sa10 = 0 < (self.N_SuffixArray);
+    int i = 0;
+    while(__sa10)
+    {
+      inv.A[self.sa_SuffixArray.A[i]] = i;
+      i = i + 1;
+      __sa10 = i < (self.N_SuffixArray);
+    }
+    bit __sa11 = 0 < (self.N_SuffixArray);
+    int len = 0;
+    int i_0 = 0;
+    while(__sa11)
+    {
+      if((inv.A[i_0]) > 0)/*SuffixArray.sk:89*/
+      {
+        int k = self.sa_SuffixArray.A[(inv.A[i_0]) - 1];
+        bit __sa12 = (((i_0 + len) < (self.N_SuffixArray)) && ((k + len) < (self.N_SuffixArray))) && ((self.T_SuffixArray.A[i_0 + len]) == (self.T_SuffixArray.A[k + len]));
+        while(__sa12)
+        {
+          len = len + 1;
+          __sa12 = (((i_0 + len) < (self.N_SuffixArray)) && ((k + len) < (self.N_SuffixArray))) && ((self.T_SuffixArray.A[i_0 + len]) == (self.T_SuffixArray.A[k + len]));
+        }
+        self.lcp_SuffixArray.A[(inv.A[i_0]) - 1] = len;
+        if(len > 0)/*SuffixArray.sk:93*/
+        {
+          len = len - 1;
+        }
+      }
+      i_0 = i_0 + 1;
+      __sa11 = i_0 < (self.N_SuffixArray);
+    }
+  }
+  /*SuffixArray.sk:98*/
+  
+void lrs (Object self, ref Object _out)/*SuffixArray.sk:98*/
+  {
+    Object@Object lrss_s959 = null;
+    TreeSet_TreeSet@TreeSet(lrss_s959);
+    _out = lrss_s959;
+    Array_char@array tmp = new Array_char@array(length=self.T_SuffixArray.length);
+    bit __sa13 = 0 < (self.T_SuffixArray.length);
+    int i = 0;
+    while(__sa13)
+    {
+      tmp.A[i] = ((char)self.T_SuffixArray.A[i]);
+      i = i + 1;
+      __sa13 = i < (self.T_SuffixArray.length);
+    }
+    bit __sa14 = 0 < (self.N_SuffixArray);
+    int max_len = 0;
+    int i_0 = 0;
+    while(__sa14)
+    {
+      if(((self.lcp_SuffixArray.A[i_0]) > 0) && ((self.lcp_SuffixArray.A[i_0]) >= max_len))/*SuffixArray.sk:106*/
+      {
+        if((self.lcp_SuffixArray.A[i_0]) > max_len)/*SuffixArray.sk:107*/
+        {
+          int _out_s961 = 0;
+          TreeSet@meta(_out_s961);
+          if((_out.__cid) == _out_s961)/*SuffixArray.sk:108*/
+          {
+            Object@Object _out_s964 = null;
+            clear_Object@TreeSet(_out, _out_s964);
+          }
+          int lrss_s966 = 0;
+          TreeSet@meta(lrss_s966);
+          Object@Object _pac_sc_s967 = null;
+          if((_out.__cid) == lrss_s966)/*SuffixArray.sk:108*/
+          {
+            Object@Object lrss_s969 = null;
+            clearb_Object@TreeSet(_out, lrss_s969);
+            _pac_sc_s967 = lrss_s969;
+          }
+          else
+          {
+            _pac_sc_s967 = null;
+          }
+          _out = _pac_sc_s967;
+        }
+        max_len = self.lcp_SuffixArray.A[i_0];
+        int _out_s971 = 0;
+        TreeSet@meta(_out_s971);
+        if((_out.__cid) == _out_s971)/*SuffixArray.sk:111*/
+        {
+          int _out_s974 = 0;
+          String@meta(_out_s974);
+          Object@Object _out_s976 = null;
+          String_String_char_int_int@String(new Object@Object(__cid=_out_s974), tmp, self.sa_SuffixArray.A[i_0], max_len, _out_s976)//{};
+          Object@Object _out_s978 = null;
+          add_Object_Object@TreeSet(_out, _out_s976, _out_s978)//{};
+        }
+        int lrss_s980 = 0;
+        TreeSet@meta(lrss_s980);
+        Object@Object _pac_sc_s981 = null;
+        if((_out.__cid) == lrss_s980)/*SuffixArray.sk:111*/
+        {
+          int lrss_s983 = 0;
+          String@meta(lrss_s983);
+          Object@Object lrss_s985 = null;
+          String_String_char_int_int@String(new Object@Object(__cid=lrss_s983), tmp, self.sa_SuffixArray.A[i_0], max_len, lrss_s985)//{};
+          Object@Object lrss_s987 = null;
+          addb_Object_Object@TreeSet(_out, lrss_s985, lrss_s987)//{};
+          _pac_sc_s981 = lrss_s987;
+        }
+        else
+        {
+          _pac_sc_s981 = null;
+        }
+        _out = _pac_sc_s981;
+      }
+      i_0 = i_0 + 1;
+      __sa14 = i_0 < (self.N_SuffixArray);
+    }
+    return;
+  }
+  /*SuffixArray.sk:37*/
+  
+void toIntArray_String (Object s, ref Array_int _out)/*SuffixArray.sk:37*/
+  {
+    int text_s993 = 0;
+    String@meta(text_s993);
+    int _pac_sc_s994 = 0;
+    if((s.__cid) == text_s993)/*SuffixArray.sk:38*/
+    {
+      int text_s996 = 0;
+      length@String(s, text_s996);
+      _pac_sc_s994 = text_s996;
+    }
+    else
+    {
+      _pac_sc_s994 = 0;
+    }
+    _out = new Array_int@array(length=_pac_sc_s994);
+    int __sa4_s998 = 0;
+    String@meta(__sa4_s998);
+    int _pac_sc_s999 = 0;
+    if((s.__cid) == __sa4_s998)/*SuffixArray.sk:39*/
+    {
+      int __sa4_s1001 = 0;
+      length@String(s, __sa4_s1001);
+      _pac_sc_s999 = __sa4_s1001;
+    }
+    else
+    {
+      _pac_sc_s999 = 0;
+    }
+    bit __sa4 = 0 < _pac_sc_s999;
+    int i = 0;
+    while(__sa4)
+    {
+      int _out_s1003 = 0;
+      String@meta(_out_s1003);
+      char _pac_sc_s1004 = '\0';
+      if((s.__cid) == _out_s1003)/*SuffixArray.sk:39*/
+      {
+        char _out_s1006 = '\0';
+        charAt_int@String(s, i, _out_s1006);
+        _pac_sc_s1004 = _out_s1006;
+      }
+      else
+      {
+        _pac_sc_s1004 = '\0';
+      }
+      _out.A[i] = _pac_sc_s1004;
+      i = i + 1;
+      int __sa4_s1008 = 0;
+      String@meta(__sa4_s1008);
+      int _pac_sc_s1009 = 0;
+      if((s.__cid) == __sa4_s1008)/*SuffixArray.sk:39*/
+      {
+        int __sa4_s1011 = 0;
+        length@String(s, __sa4_s1011);
+        _pac_sc_s1009 = __sa4_s1011;
+      }
+      else
+      {
+        _pac_sc_s1009 = 0;
+      }
+      __sa4 = i < _pac_sc_s1009;
+    }
+    return;
+  }
+  /* END PACKAGE SuffixArray*/
+}
+/* BEGIN PACKAGE Object*/
+package Object{
+  struct Object {
+      int __cid;
+      int N_SuffixArray;
+      Array_int T_SuffixArray;
+      Array_int sa_SuffixArray;
+      Array_int lcp_SuffixArray;
+      bit bool_Boolean;
+      char value_Character;
+      Array_char _value_String;
+      int _count_String;
+      int M_TwoDArray;
+      Array_int arr_TwoDArray;
+      int N_TwoDArray;
+      int originalIndex_SuffixRankTuple;
+      int secondHalf_SuffixRankTuple;
+      int firstHalf_SuffixRankTuple;
+      int value_Integer;
+      ArrayList _arraylist;
+      ArrayDeque _arraydeque;
+      HashMap _hashmap;
+      HashSet _hashset;
+      TreeSet _treeset;
+      Array_bit _array_bit;
+      Array_char _array_char;
+      Array_int _array_int;
+      Array_float _array_float;
+      Array_double _array_double;
+      Array_Object _array_object;
+      bit _bit;
+      char _char;
+      int _int;
+      float _float;
+      double _double;
+  }
+  /*Object.sk:3*/
+  
+void Object_Object (Object self, ref Object _out)/*Object.sk:3*/
+  {
+    _out = self;
+    return;
+  }
+  /*Object.sk:17*/
+  
+void equals_Object (Object self, Object obj, ref bit _out)/*Object.sk:17*/
+  {
+    _out = self == obj;
+    return;
+  }
+  /* END PACKAGE Object*/
+}
+/* BEGIN PACKAGE Boolean*/
+package Boolean{
+  /* END PACKAGE Boolean*/
+}
+/* BEGIN PACKAGE Arrays*/
+package Arrays{
+  /*Arrays.sk:14*/
+  
+void sort_SuffixRankTuple_int (Array_Object a_0, int n, ref Array_Object _out)/*Arrays.sk:14*/
+  {
+    Array_Object@array a = a_0;
+    for(int j = 0; j < (n - 1); j = j + 1)/*Canonical*/
+    {
+      int iMin = j;
+      for(int i = j + 1; i < n; i = i + 1)/*Canonical*/
+      {
+        Object@Object a1 = a.A[i];
+        Object@Object a2 = a.A[iMin];
+        int cmp_s1133 = 0;
+        SuffixRankTuple@meta(cmp_s1133);
+        int _pac_sc_s1134 = 0;
+        if((a1.__cid) == cmp_s1133)/*Arrays.sk:20*/
+        {
+          int cmp_s1136 = 0;
+          compareTo_SuffixRankTuple@SuffixRankTuple(a1, a2, cmp_s1136);
+          _pac_sc_s1134 = cmp_s1136;
+        }
+        else
+        {
+          _pac_sc_s1134 = 0;
+        }
+        if(_pac_sc_s1134 < 0)/*Arrays.sk:21*/
+        {
+          iMin = i;
+        }
+      }
+      if(iMin != j)/*Arrays.sk:25*/
+      {
+        Array_Object@array a_s1138 = null;
+        swap_SuffixRankTuple_int_int(a, j, iMin, a_s1138);
+        a = a_s1138;
+      }
+    }
+    _out = a;
+    return;
+  }
+  /*Arrays.sk:7*/
+  
+void swap_SuffixRankTuple_int_int (Array_Object a, int i, int j, ref Array_Object _out)/*Arrays.sk:7*/
+  {
+    Object@Object tmp = a.A[i];
+    a.A[i] = a.A[j];
+    a.A[j] = tmp;
+    _out = a;
+    return;
+  }
+  /* END PACKAGE Arrays*/
+}
+/* BEGIN PACKAGE HashSet*/
+package HashSet{
+  struct HashSet {
+      @Immutable()
+  }
+  struct Hashset extends HashSet@HashSet {
+      @Immutable()
+  }
+  struct Add_object extends HashSet@HashSet {
+      HashSet self;
+      Object e2;
+      @Immutable()
+  }
+  struct Addb_object extends HashSet@HashSet {
+      HashSet self;
+      Object e2;
+      @Immutable()
+  }
+  struct Removeb_object extends HashSet@HashSet {
+      HashSet self;
+      Object e2;
+      @Immutable()
+  }
+  struct Remove_object extends HashSet@HashSet {
+      HashSet self;
+      Object e2;
+      @Immutable()
+  }
+  struct Size extends HashSet@HashSet {
+      HashSet self;
+      @Immutable()
+  }
+  /* END PACKAGE HashSet*/
+}
+[SKETCH] DONE
+Total time = 5911

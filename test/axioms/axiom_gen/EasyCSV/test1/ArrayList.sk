@@ -1,0 +1,197 @@
+package ArrayList;
+
+adt ArrayList {
+    Arraylist       { }
+    Add_object             { ArrayList self; Object e; }
+    Addb_object            { ArrayList self; Object e; }
+    Get_int             { ArrayList self; int i; }
+    Setb_int_object            { ArrayList self; int i; Object e; }
+    Set_int_object             { ArrayList self; int i; Object e; }
+    Ensurecapacity  { ArrayList self; }
+    Size            { ArrayList self; }
+}
+
+Object ArrayList_ArrayList() {
+    return new Object(__cid=ArrayList(), _arraylist=new Arraylist());
+}
+
+Object add_Object_Object(Object self, Object e) {
+    return new Object(__cid=ArrayList(), _arraylist=new Add_object(self=self._arraylist, e=e));
+}
+
+Object addb_Object_Object(Object self, Object e) {
+    self._arraylist=new Addb_object(self=self._arraylist, e=e);
+return self;
+}
+
+Object get_Object_int(Object self, int i) {
+    return xform_get_ArrayList_int(self._arraylist, i);
+}
+
+Object setb_Object_int_Object(Object self, int i, Object e) {
+    self._arraylist=new Setb_int_object(self=self._arraylist, i=i, e=e);
+return self;
+}
+
+Object set_Object_int_Object(Object self, int i, Object e) {
+    return new Object(__cid=ArrayList(), _arraylist=new Set_int_object(self=self._arraylist, i=i, e=e));
+}
+
+Object ensureCapacity_Object(Object self) {
+    return new Object(__cid=ArrayList(), _arraylist=new Ensurecapacity(self=self._arraylist));
+}
+
+int size_Object(Object self) {
+    return xform_size_ArrayList(self._arraylist);
+}
+
+Object xform_get_ArrayList_int(ArrayList selff, int i) {
+  ArrayList self = selff;
+  switch(self) {
+  case Arraylist: { return null; }
+  case Add_object: { assert false; }
+  case Addb_object: {
+    /* return ((sz == i) ? self.e : xform_get_ArrayList_int(self.self, i)); */
+    int sz = xform_size_ArrayList(self.self);
+    bit cond = {| true | sz == ?? | sz < ?? | sz <= ?? | sz > ?? | sz >= ?? | sz == i | sz < i | sz <= i | sz > i | sz >= i |};
+    Object get1 = xform_get_ArrayList_int(self.self, i);
+    Object ret1 = {| null | self.e | get1 |};
+    Object ret2 = {| null | self.e | get1 |};    
+    return cond ? ret1 : ret2;
+  }
+  case Get_int: { assert false; }
+  case Setb_int_object: {
+    /* return (i == self.i ? self.e : xform_get_ArrayList_int(self.self, i)); */
+    /* int sz = xform_size_ArrayList(self.self); */
+    /* bit cond = {| true | sz == ?? | sz < ?? | sz <= ?? | sz > ?? | sz >= ?? | sz == i | sz < i | sz <= i | sz > i | sz >= i | i == self.i | i < self.i | i > self.i |}; */
+    /* Object get1 = xform_get_ArrayList_int(self.self, i); */
+    /* Object get2 = xform_get_ArrayList_int(self.self, self.i);     */
+    /* Object ret1 = {| null | self.e | get1 | get2 |}; */
+    /* Object ret2 = {| null | self.e | get1 | get2 |};     */
+    /* return cond ? ret1 : ret2; */
+    assert false;
+  }
+  case Set_int_object: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}
+Object xform_addb_ArrayList_Object(ArrayList selff, Object e) {
+  ArrayList self = selff;
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_object: { assert false; }
+  case Addb_object: { assert false; }
+  case Get_int: { assert false; }
+  case Setb_int_object: { assert false; }
+  case Set_int_object: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}
+Object xform_set_ArrayList_int_Object(ArrayList selff, int i, Object e) {
+  ArrayList self = selff;
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_object: { assert false; }
+  case Addb_object: { assert false; }
+  case Get_int: { assert false; }
+  case Setb_int_object: { assert false; }
+  case Set_int_object: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}
+int xform_size_ArrayList(ArrayList selff) {
+  ArrayList self = selff;
+  switch(self) {
+  case Arraylist: {
+    /* return 0; */
+    return ??;
+  }
+  case Add_object: { assert false; }
+  case Addb_object: {
+    /* return xform_size_ArrayList(self.self) + 1; */
+    int sz = xform_size_ArrayList(self.self);
+    return {| ?? | sz * ?? | sz + ?? | sz - ?? | sz / ?? |};
+  }
+  case Get_int: { assert false; }
+  case Setb_int_object: {
+    /* return xform_size_ArrayList(self.self); */
+    /* int sz = xform_size_ArrayList(self.self); */
+    /* return {| ?? | sz * ?? | sz + ?? | sz - ?? | sz / ?? |}; */
+    assert false;
+  }
+  case Set_int_object: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return 0;
+}
+Object xform_setb_ArrayList_int_Object(ArrayList selff, int i, Object e) {
+  ArrayList self = selff;
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_object: { assert false; }
+  case Addb_object: { assert false; }
+  case Get_int: { assert false; }
+  case Setb_int_object: { assert false; }
+  case Set_int_object: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}
+Object xform_add_ArrayList_Object(ArrayList selff, Object e) {
+  ArrayList self = selff;
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_object: { assert false; }
+  case Addb_object: { assert false; }
+  case Get_int: { assert false; }
+  case Setb_int_object: { assert false; }
+  case Set_int_object: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}
+void xform_ensureCapacity_ArrayList(ArrayList selff) {
+  ArrayList self = selff;
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_object: { assert false; }
+  case Addb_object: { assert false; }
+  case Get_int: { assert false; }
+  case Setb_int_object: { assert false; }
+  case Set_int_object: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return;
+}
+Object xform_arraylist_ArrayList(ArrayList selff) {
+  ArrayList self = selff;
+  switch(self) {
+  case Arraylist: { assert false; }
+  case Add_object: { assert false; }
+  case Addb_object: { assert false; }
+  case Get_int: { assert false; }
+  case Setb_int_object: { assert false; }
+  case Set_int_object: { assert false; }
+  case Ensurecapacity: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}

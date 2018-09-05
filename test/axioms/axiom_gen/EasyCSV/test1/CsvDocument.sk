@@ -1,0 +1,100 @@
+package CsvDocument;
+
+Object CsvDocument_CsvDocument(Object self) {
+    return self;
+}
+
+Object CsvDocument_CsvDocument_ArrayList(Object self, Object csvRows) {
+  self.csvRows_CsvDocument = csvRows;
+  return self;
+}
+
+Object getCsvRows(Object self) {
+  return self.csvRows_CsvDocument;
+}
+
+bit isEmpty(Object self) {
+  return (self.csvRows_CsvDocument.__cid == ArrayList() ? size_Object@ArrayList(self.csvRows_CsvDocument) : 0) == 0;
+}
+
+Object toString(Object self) {
+  Object sb = StringBuilder_StringBuilder(new Object(__cid=StringBuilder()));
+  int size = (self.csvRows_CsvDocument.__cid == ArrayList() ? size_Object@ArrayList(self.csvRows_CsvDocument) : 0);
+  for (int i = 0; i < size; i++) {
+    Object row = (self.csvRows_CsvDocument.__cid == ArrayList() ? get_Object_int@ArrayList(self.csvRows_CsvDocument, i) : null);
+    if (sb.__cid == StringBuilder()) { append_String@StringBuilder(sb, (row.__cid == CsvRow() ? toString@CsvRow(row) : null)); }
+    else { 0; };
+  }
+  return (sb.__cid == StringBuilder() ? toString@StringBuilder(sb) : null);
+}
+
+Object read_String(Object filePath) {
+  Object defaultConfiguration = CsvConfiguration_CsvConfiguration(new Object(__cid=CsvConfiguration()));
+  return read_String_CsvConfiguration(filePath, defaultConfiguration);
+}
+
+generator Object genRead_BufferedReader_CsvConfiguration_ArrayList_String(Object bufferedReader, Object csvConfiguration, Object parsedCsvRows, Object csvLine) {
+  Object row = null;
+  Object parsedDocument = null;
+  int i = 1;
+  if (??) {
+    row = parseCsvRow_CsvConfiguration_String(csvConfiguration, csvLine);
+  }
+  if (??) {
+    (parsedCsvRows.__cid == ArrayList() ? add_Object_Object@ArrayList(parsedCsvRows, row) : null); parsedCsvRows = (parsedCsvRows.__cid == ArrayList() ? addb_Object_Object@ArrayList(parsedCsvRows, row) : null);
+  }
+  if (??) {
+    csvLine = (bufferedReader.__cid == BufferedReader() ? readLine_Object@BufferedReader(bufferedReader) : null); bufferedReader = (bufferedReader.__cid == BufferedReader() ? readLineb_Object@BufferedReader(bufferedReader) : null);
+  }
+  if (??) {
+    while (csvLine != null) {
+      csvLine = genRead_BufferedReader_CsvConfiguration_ArrayList_String(bufferedReader, csvConfiguration, parsedCsvRows, csvLine);
+    }
+  }
+  if (??) {
+    genRead_BufferedReader_CsvConfiguration_ArrayList_String(bufferedReader, csvConfiguration, parsedCsvRows, csvLine);
+  }
+  return csvLine;
+}
+
+Object read_String_CsvConfiguration(Object filePath, Object csvConfiguration) {
+  Object bufferedReader = BufferedReader_Object_FileReaderr(FileReaderr_FileReaderr_String(new Object(__cid=FileReaderr()), filePath));
+  Object parsedCsvRows = ArrayList_ArrayList();
+  Object csvLine = (bufferedReader.__cid == BufferedReader() ? readLine_Object@BufferedReader(bufferedReader) : null); bufferedReader = (bufferedReader.__cid == BufferedReader() ? readLineb_Object@BufferedReader(bufferedReader) : null);
+  while (csvLine != null) {
+    Object row = parseCsvRow_CsvConfiguration_String(csvConfiguration, csvLine);
+    (parsedCsvRows.__cid == ArrayList() ? add_Object_Object@ArrayList(parsedCsvRows, row) : null); parsedCsvRows = (parsedCsvRows.__cid == ArrayList() ? addb_Object_Object@ArrayList(parsedCsvRows, row) : null);
+    csvLine = (bufferedReader.__cid == BufferedReader() ? readLine_Object@BufferedReader(bufferedReader) : null); bufferedReader = (bufferedReader.__cid == BufferedReader() ? readLineb_Object@BufferedReader(bufferedReader) : null);
+  }
+  Object parsedDocument = CsvDocument_CsvDocument_ArrayList(new Object(__cid=CsvDocument()), parsedCsvRows);
+  return parsedDocument;
+}
+
+bit tryWriteToFile_CsvDocument_String(Object document, Object savePath) {
+  Object out = PrintStream_Object_FileOutputStream(FileOutputStream_Object_String(savePath));
+  (out.__cid == PrintStream() ? print_Object_String@PrintStream(out, (document.__cid == CsvDocument() ? toString@CsvDocument(document) : null)) : null); out = (out.__cid == PrintStream() ? printb_Object_String@PrintStream(out, (document.__cid == CsvDocument() ? toString@CsvDocument(document) : null)) : null);
+  (out.__cid == PrintStream() ? close_Object@PrintStream(out) : null); out = (out.__cid == PrintStream() ? closeb_Object@PrintStream(out) : null);
+  return true;
+}
+
+Object parseCsvRow_CsvConfiguration_String(Object csvConfiguration, Object csvLine) {
+  Object COMA_SEPARATOR = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A=","), 0, 1);
+  Array_Object columns = (csvLine.__cid == String() ? split_String@String(csvLine, COMA_SEPARATOR) : null);
+  Object csvColumns = ArrayList_ArrayList();
+  if ((csvConfiguration.__cid == CsvConfiguration() ? parseAllColumns@CsvConfiguration(csvConfiguration) : 0)) {
+    for (int i = 0; i < columns.length; i++) {
+      (csvColumns.__cid == ArrayList() ? add_Object_Object@ArrayList(csvColumns, CsvColumn_CsvColumn_String(new Object(__cid=CsvColumn()), columns.A[i])) : null); csvColumns = (csvColumns.__cid == ArrayList() ? addb_Object_Object@ArrayList(csvColumns, CsvColumn_CsvColumn_String(new Object(__cid=CsvColumn()), columns.A[i])) : null);
+    }
+  }
+  else {
+    Object colInds = (csvConfiguration.__cid == CsvConfiguration() ? getColumnIndexesToParse@CsvConfiguration(csvConfiguration) : null);
+    int size = (colInds.__cid == ArrayList() ? size_Object@ArrayList(colInds) : 0);
+    for (int i = 0; i < size; i++) {
+      Object columnIndexInt = (colInds.__cid == ArrayList() ? get_Object_int@ArrayList(colInds, i) : null);
+      int columnIndex = (columnIndexInt.__cid == Integer() ? intValue@Integer(columnIndexInt) : 0);
+      (csvColumns.__cid == ArrayList() ? add_Object_Object@ArrayList(csvColumns, CsvColumn_CsvColumn_String(new Object(__cid=CsvColumn()), columns.A[columnIndex])) : null); csvColumns = (csvColumns.__cid == ArrayList() ? addb_Object_Object@ArrayList(csvColumns, CsvColumn_CsvColumn_String(new Object(__cid=CsvColumn()), columns.A[columnIndex])) : null);
+    }
+  }
+  return CsvRow_CsvRow_ArrayList(new Object(__cid=CsvRow()), csvColumns);
+}
+

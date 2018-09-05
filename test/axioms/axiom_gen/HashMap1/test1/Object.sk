@@ -1,0 +1,54 @@
+package Object;
+
+Object Object_Object(Object self) {
+    return self;
+}
+
+bit equals_Object_Object(Object a, Object b) {
+  if (a == null) {
+    if (b == null) {
+      return true;
+    }
+    return false;
+  }
+  return (a.__cid == Boolean() ? equals_Object@Object(a, b) : a.__cid == Assert() ? equals_Object@Object(a, b) : a.__cid == ArrayList() ? equals_Object@Object(a, b) : a.__cid == HashTableTest() ? equals_Object@Object(a, b) : a.__cid == Integer() ? equals_Object@Integer(a, b) : a.__cid == String() ? equals_Object@String(a, b) : a.__cid == Character() ? equals_Object@Character(a, b) : a.__cid == HashTable() ? equals_Object@Object(a, b) : a.__cid == HashTableNode() ? equals_Object@Object(a, b) : a.__cid == Object() ? equals_Object@Object(a, b) : 0);
+}
+
+bit equals_Object(Object self, Object obj) {
+  return self == obj;
+}
+
+int hashCode(Object self) {
+  return 0;
+}
+
+struct Object {
+  int           __cid;
+  Object        key_HashTableNode;
+  Object        value_HashTableNode;
+  Object        next_HashTableNode;
+  double        maxLoadFactor_HashTable;
+  int           capacityGrowth_HashTable;
+  int           initialCapacity_HashTable;
+  int           size_HashTable;
+  int           currentCapacity_HashTable;
+  Object        buckets_HashTable;
+  char          value_Character;
+  Array_char    _value_String;
+  int           _count_String;
+  int           value_Integer;
+  Object        classUnderTest_HashTableTest;
+  bit           bool_Boolean;
+  ArrayList     _arraylist;
+  Array_bit     _array_bit;
+  Array_char    _array_char;
+  Array_int     _array_int;
+  Array_float   _array_float;
+  Array_double  _array_double;
+  Array_Object  _array_object;
+  bit           _bit;
+  char          _char;
+  int           _int;
+  float         _float;
+  double        _double;
+}

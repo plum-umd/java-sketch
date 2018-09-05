@@ -1,0 +1,78 @@
+package HashMap;
+
+adt HashMap {
+    Hashmap  { }
+    Put_object_object      { HashMap self; Object k; Object v; }
+    Putb_object_object     { HashMap self; Object k; Object v; }
+    Get_object      { HashMap self; Object k; }
+}
+
+Object HashMap_HashMap() {
+    return new Object(__cid=HashMap(), _hashmap=new Hashmap());
+}
+
+Object put_Object_Object_Object(Object self, Object k, Object v) {
+    return xform_put_HashMap_Object_Object(self._hashmap, k,v);
+}
+
+Object putb_Object_Object_Object(Object self, Object k, Object v) {
+    self._hashmap=new Putb_object_object(self=self._hashmap, k=k, v=v);
+return self;
+}
+
+Object get_Object_Object(Object self, Object k) {
+    return xform_get_HashMap_Object(self._hashmap, k);
+}
+
+Object xform_put_HashMap_Object_Object(HashMap selff, Object k, Object v) {
+  HashMap self = selff;
+  switch(self) {
+  case Hashmap: {
+    return null;
+  }
+  case Put_object_object: { assert false; }
+  case Putb_object_object: {
+    return ((k.__cid == Integer() ? equals_Object@Integer(k, self.k) : k.__cid == SuffixRankTuple() ? equals_Object@Object(k, self.k) : k.__cid == Assert() ? equals_Object@Object(k, self.k) : k.__cid == TwoDArray() ? equals_Object@Object(k, self.k) : k.__cid == SuffixArrayTest() ? equals_Object@Object(k, self.k) : k.__cid == TreeSet() ? equals_Object@Object(k, self.k) : k.__cid == String() ? equals_Object@String(k, self.k) : k.__cid == Character() ? equals_Object@Character(k, self.k) : k.__cid == HashSet() ? equals_Object@Object(k, self.k) : k.__cid == Boolean() ? equals_Object@Object(k, self.k) : k.__cid == HashMap() ? equals_Object@Object(k, self.k) : k.__cid == Arrays() ? equals_Object@Object(k, self.k) : k.__cid == ArrayDeque() ? equals_Object@Object(k, self.k) : k.__cid == ArrayList() ? equals_Object@Object(k, self.k) : k.__cid == SuffixArray() ? equals_Object@Object(k, self.k) : k.__cid == Object() ? equals_Object@Object(k, self.k) : 0) ? self.v : xform_put_HashMap_Object_Object(self.self, k, v));
+  }
+  case Get_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_hashmap_HashMap(HashMap selff) {
+  HashMap self = selff;
+  switch(self) {
+  case Hashmap: { assert false; }
+  case Put_object_object: { assert false; }
+  case Putb_object_object: { assert false; }
+  case Get_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_putb_HashMap_Object_Object(HashMap selff, Object k, Object v) {
+  HashMap self = selff;
+  switch(self) {
+  case Hashmap: { assert false; }
+  case Put_object_object: { assert false; }
+  case Putb_object_object: { assert false; }
+  case Get_object: { assert false; }
+  }
+
+  return null;
+}
+Object xform_get_HashMap_Object(HashMap selff, Object k) {
+  HashMap self = selff;
+  switch(self) {
+  case Hashmap: {
+    return null;
+  }
+  case Put_object_object: { assert false; }
+  case Putb_object_object: {
+    return ((k.__cid == Integer() ? equals_Object@Integer(k, self.k) : k.__cid == SuffixRankTuple() ? equals_Object@Object(k, self.k) : k.__cid == Assert() ? equals_Object@Object(k, self.k) : k.__cid == TwoDArray() ? equals_Object@Object(k, self.k) : k.__cid == SuffixArrayTest() ? equals_Object@Object(k, self.k) : k.__cid == TreeSet() ? equals_Object@Object(k, self.k) : k.__cid == String() ? equals_Object@String(k, self.k) : k.__cid == Character() ? equals_Object@Character(k, self.k) : k.__cid == HashSet() ? equals_Object@Object(k, self.k) : k.__cid == Boolean() ? equals_Object@Object(k, self.k) : k.__cid == HashMap() ? equals_Object@Object(k, self.k) : k.__cid == Arrays() ? equals_Object@Object(k, self.k) : k.__cid == ArrayDeque() ? equals_Object@Object(k, self.k) : k.__cid == ArrayList() ? equals_Object@Object(k, self.k) : k.__cid == SuffixArray() ? equals_Object@Object(k, self.k) : k.__cid == Object() ? equals_Object@Object(k, self.k) : 0) ? self.v : xform_get_HashMap_Object(self.self, k));
+  }
+  case Get_object: { assert false; }
+  }
+
+  return null;
+}

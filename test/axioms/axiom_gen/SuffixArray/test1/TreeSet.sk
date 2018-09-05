@@ -1,0 +1,174 @@
+package TreeSet;
+
+adt TreeSet {
+    Treeset   { }
+    Add_object       { TreeSet self; Object e; }
+    Addb_object      { TreeSet self; Object e; }
+    Clearb    { TreeSet self; }
+    Clear     { TreeSet self; }
+    Contains_object  { TreeSet self; Object e; }
+    Size      { TreeSet self; }
+}
+
+Object TreeSet_TreeSet() {
+    return new Object(__cid=TreeSet(), _treeset=new Treeset());
+}
+
+Object add_Object_Object(Object self, Object e) {
+    return new Object(__cid=TreeSet(), _treeset=new Add_object(self=self._treeset, e=e));
+}
+
+Object addb_Object_Object(Object self, Object e) {
+    self._treeset=new Addb_object(self=self._treeset, e=e);
+return self;
+}
+
+Object clearb_Object(Object self) {
+    self._treeset=new Clearb(self=self._treeset);
+return self;
+}
+
+Object clear_Object(Object self) {
+    return new Object(__cid=TreeSet(), _treeset=new Clear(self=self._treeset));
+}
+
+bit contains_Object_Object(Object self, Object e) {
+    return xform_contains_TreeSet_Object(self._treeset, e);
+}
+
+int size_Object(Object self) {
+    return xform_size_TreeSet(self._treeset);
+}
+
+Object xform_clearb_TreeSet(TreeSet selff) {
+  TreeSet self = selff;
+  switch(self) {
+  case Treeset: { assert false; }
+  case Add_object: { assert false; }
+  case Addb_object: { assert false; }
+  case Clearb: { assert false; }
+  case Clear: { assert false; }
+  case Contains_object: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}
+Object xform_addb_TreeSet_Object(TreeSet selff, Object e) {
+  TreeSet self = selff;
+  switch(self) {
+  case Treeset: { assert false; }
+  case Add_object: { assert false; }
+  case Addb_object: { assert false; }
+  case Clearb: { assert false; }
+  case Clear: { assert false; }
+  case Contains_object: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}
+int xform_size_TreeSet(TreeSet selff) {
+  TreeSet self = selff;
+  switch(self) {
+  case Treeset: {
+    /* return 0; */
+    return 0;
+  }
+  case Add_object: { assert false; }
+  case Addb_object: {
+    /* bit b = xform_contains_TreeSet_Object(self.self, self.e); */
+    /* if (b) { */
+    /*   return xform_size_TreeSet(self.self); */
+    /* } */
+    /* else { */
+    /*   return xform_size_TreeSet(self.self) + 1; */
+    /* } */
+    bit cond = {| true | xform_contains_TreeSet_Object(self.self, self.e) |};
+    int sz = xform_size_TreeSet(self.self);
+    int ret1 = {| ?? | sz * ?? | sz + ?? | sz - ?? | sz / ?? |};
+    int ret2 = {| ?? | sz * ?? | sz + ?? | sz - ?? | sz / ?? |};
+    return cond ? ret1 : ret2;
+  }
+  case Clearb: {
+    /* return 0; */
+    return ??;
+  }
+  case Clear: { assert false; }
+  case Contains_object: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return 0;
+}
+Object xform_clear_TreeSet(TreeSet selff) {
+  TreeSet self = selff;
+  switch(self) {
+  case Treeset: { assert false; }
+  case Add_object: { assert false; }
+  case Addb_object: { assert false; }
+  case Clearb: { assert false; }
+  case Clear: { assert false; }
+  case Contains_object: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}
+Object xform_add_TreeSet_Object(TreeSet selff, Object e) {
+  TreeSet self = selff;
+  switch(self) {
+  case Treeset: { assert false; }
+  case Add_object: { assert false; }
+  case Addb_object: { assert false; }
+  case Clearb: { assert false; }
+  case Clear: { assert false; }
+  case Contains_object: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}
+bit xform_contains_TreeSet_Object(TreeSet selff, Object e) {
+  TreeSet self = selff;
+  switch(self) {
+  case Treeset: {
+    /* return false; */
+    return ??;
+  }
+  case Add_object: { assert false; }
+  case Addb_object: {
+    /* return ((self.e.__cid == Integer() ? equals_Object@Integer(self.e, e) : self.e.__cid == SuffixRankTuple() ? equals_Object@Object(self.e, e) : self.e.__cid == Assert() ? equals_Object@Object(self.e, e) : self.e.__cid == TwoDArray() ? equals_Object@Object(self.e, e) : self.e.__cid == SuffixArrayTest() ? equals_Object@Object(self.e, e) : self.e.__cid == TreeSet() ? equals_Object@Object(self.e, e) : self.e.__cid == String() ? equals_Object@String(self.e, e) : self.e.__cid == Character() ? equals_Object@Character(self.e, e) : self.e.__cid == HashSet() ? equals_Object@Object(self.e, e) : self.e.__cid == Boolean() ? equals_Object@Object(self.e, e) : self.e.__cid == HashMap() ? equals_Object@Object(self.e, e) : self.e.__cid == Arrays() ? equals_Object@Object(self.e, e) : self.e.__cid == ArrayDeque() ? equals_Object@Object(self.e, e) : self.e.__cid == ArrayList() ? equals_Object@Object(self.e, e) : self.e.__cid == SuffixArray() ? equals_Object@Object(self.e, e) : self.e.__cid == Object() ? equals_Object@Object(self.e, e) : 0) ? true : xform_contains_TreeSet_Object(self.self, e)); */
+    bit eq = (self.e.__cid == Integer() ? equals_Object@Integer(self.e, e) : self.e.__cid == SuffixRankTuple() ? equals_Object@Object(self.e, e) : self.e.__cid == Assert() ? equals_Object@Object(self.e, e) : self.e.__cid == TwoDArray() ? equals_Object@Object(self.e, e) : self.e.__cid == SuffixArrayTest() ? equals_Object@Object(self.e, e) : self.e.__cid == TreeSet() ? equals_Object@Object(self.e, e) : self.e.__cid == String() ? equals_Object@String(self.e, e) : self.e.__cid == Character() ? equals_Object@Character(self.e, e) : self.e.__cid == HashSet() ? equals_Object@Object(self.e, e) : self.e.__cid == Boolean() ? equals_Object@Object(self.e, e) : self.e.__cid == HashMap() ? equals_Object@Object(self.e, e) : self.e.__cid == Arrays() ? equals_Object@Object(self.e, e) : self.e.__cid == ArrayDeque() ? equals_Object@Object(self.e, e) : self.e.__cid == ArrayList() ? equals_Object@Object(self.e, e) : self.e.__cid == SuffixArray() ? equals_Object@Object(self.e, e) : self.e.__cid == Object() ? equals_Object@Object(self.e, e) : 0);
+    int sz = xform_size_TreeSet(self.self);
+    bit cont = xform_contains_TreeSet_Object(self.self, e);
+    bit cond = {| true | sz < ?? | sz <= ?? | sz == ?? | sz > ?? | sz >= ?? | eq | cont |};
+    bit ret1 = {| ?? | sz < ?? | sz <= ?? | sz == ?? | sz > ?? | sz >= ?? | eq | cont |};
+    bit ret2 = {| ?? | sz < ?? | sz <= ?? | sz == ?? | sz > ?? | sz >= ?? | eq | cont |};
+    return cond ? ret1 : ret2;
+  }
+  case Clearb: {
+    /* return false; */
+    return ??;
+  }
+  case Clear: { assert false; }
+  case Contains_object: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return 0;
+}
+Object xform_treeset_TreeSet(TreeSet selff) {
+  TreeSet self = selff;
+  switch(self) {
+  case Treeset: { assert false; }
+  case Add_object: { assert false; }
+  case Addb_object: { assert false; }
+  case Clearb: { assert false; }
+  case Clear: { assert false; }
+  case Contains_object: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}

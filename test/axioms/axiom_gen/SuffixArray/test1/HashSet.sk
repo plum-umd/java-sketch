@@ -1,0 +1,137 @@
+package HashSet;
+
+adt HashSet {
+    Hashset  { }
+    Add_object      { HashSet self; Object e2; }
+    Addb_object     { HashSet self; Object e2; }
+    Removeb_object  { HashSet self; Object e2; }
+    Remove_object   { HashSet self; Object e2; }
+    Size     { HashSet self; }
+}
+
+Object HashSet_HashSet() {
+    return new Object(__cid=HashSet(), _hashset=new Hashset());
+}
+
+bit add_Object_Object(Object self, Object e2) {
+    return xform_add_HashSet_Object(self._hashset, e2);
+}
+
+Object addb_Object_Object(Object self, Object e2) {
+    self._hashset=new Addb_object(self=self._hashset, e2=e2);
+return self;
+}
+
+Object removeb_Object_Object(Object self, Object e2) {
+    self._hashset=new Removeb_object(self=self._hashset, e2=e2);
+return self;
+}
+
+bit remove_Object_Object(Object self, Object e2) {
+    return xform_remove_HashSet_Object(self._hashset, e2);
+}
+
+int size_Object(Object self) {
+    return xform_size_HashSet(self._hashset);
+}
+
+bit xform_addb_HashSet_Object(HashSet selff, Object e2) {
+  HashSet self = selff;
+  switch(self) {
+  case Hashset: { assert false; }
+  case Add_object: { assert false; }
+  case Addb_object: { assert false; }
+  case Removeb_object: { assert false; }
+  case Remove_object: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return 0;
+}
+Object xform_hashset_HashSet(HashSet selff) {
+  HashSet self = selff;
+  switch(self) {
+  case Hashset: { assert false; }
+  case Add_object: { assert false; }
+  case Addb_object: { assert false; }
+  case Removeb_object: { assert false; }
+  case Remove_object: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return null;
+}
+int xform_size_HashSet(HashSet selff) {
+  HashSet self = selff;
+  switch(self) {
+  case Hashset: {
+    return 0;
+  }
+  case Add_object: { assert false; }
+  case Addb_object: {
+    return xform_size_HashSet(self.self) + 1;
+  }
+  case Removeb_object: {
+    bit b = xform_remove_HashSet_Object(self.self, self.e2);
+    if (b) {
+      return xform_size_HashSet(self.self) - 1;
+    }
+    else {
+      return xform_size_HashSet(self.self);
+    }
+  }
+  case Remove_object: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return 0;
+}
+bit xform_remove_HashSet_Object(HashSet selff, Object e2) {
+  HashSet self = selff;
+  switch(self) {
+  case Hashset: {
+    return false;
+  }
+  case Add_object: { assert false; }
+  case Addb_object: {
+    return ((e2.__cid == Integer() ? equals_Object@Integer(e2, self.e2) : e2.__cid == SuffixRankTuple() ? equals_Object@Object(e2, self.e2) : e2.__cid == Assert() ? equals_Object@Object(e2, self.e2) : e2.__cid == TwoDArray() ? equals_Object@Object(e2, self.e2) : e2.__cid == SuffixArrayTest() ? equals_Object@Object(e2, self.e2) : e2.__cid == TreeSet() ? equals_Object@Object(e2, self.e2) : e2.__cid == String() ? equals_Object@String(e2, self.e2) : e2.__cid == Character() ? equals_Object@Character(e2, self.e2) : e2.__cid == HashSet() ? equals_Object@Object(e2, self.e2) : e2.__cid == Boolean() ? equals_Object@Object(e2, self.e2) : e2.__cid == HashMap() ? equals_Object@Object(e2, self.e2) : e2.__cid == Arrays() ? equals_Object@Object(e2, self.e2) : e2.__cid == ArrayDeque() ? equals_Object@Object(e2, self.e2) : e2.__cid == ArrayList() ? equals_Object@Object(e2, self.e2) : e2.__cid == SuffixArray() ? equals_Object@Object(e2, self.e2) : e2.__cid == Object() ? equals_Object@Object(e2, self.e2) : 0) ? true : xform_remove_HashSet_Object(self.self, e2));
+  }
+  case Removeb_object: {
+    return ((e2.__cid == Integer() ? equals_Object@Integer(e2, self.e2) : e2.__cid == SuffixRankTuple() ? equals_Object@Object(e2, self.e2) : e2.__cid == Assert() ? equals_Object@Object(e2, self.e2) : e2.__cid == TwoDArray() ? equals_Object@Object(e2, self.e2) : e2.__cid == SuffixArrayTest() ? equals_Object@Object(e2, self.e2) : e2.__cid == TreeSet() ? equals_Object@Object(e2, self.e2) : e2.__cid == String() ? equals_Object@String(e2, self.e2) : e2.__cid == Character() ? equals_Object@Character(e2, self.e2) : e2.__cid == HashSet() ? equals_Object@Object(e2, self.e2) : e2.__cid == Boolean() ? equals_Object@Object(e2, self.e2) : e2.__cid == HashMap() ? equals_Object@Object(e2, self.e2) : e2.__cid == Arrays() ? equals_Object@Object(e2, self.e2) : e2.__cid == ArrayDeque() ? equals_Object@Object(e2, self.e2) : e2.__cid == ArrayList() ? equals_Object@Object(e2, self.e2) : e2.__cid == SuffixArray() ? equals_Object@Object(e2, self.e2) : e2.__cid == Object() ? equals_Object@Object(e2, self.e2) : 0) ? false : xform_remove_HashSet_Object(self.self, e2));
+  }
+  case Remove_object: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return 0;
+}
+bit xform_add_HashSet_Object(HashSet selff, Object e2) {
+  HashSet self = selff;
+  switch(self) {
+  case Hashset: {
+    return true;
+  }
+  case Add_object: { assert false; }
+  case Addb_object: {
+    return ((e2.__cid == Integer() ? equals_Object@Integer(e2, self.e2) : e2.__cid == SuffixRankTuple() ? equals_Object@Object(e2, self.e2) : e2.__cid == Assert() ? equals_Object@Object(e2, self.e2) : e2.__cid == TwoDArray() ? equals_Object@Object(e2, self.e2) : e2.__cid == SuffixArrayTest() ? equals_Object@Object(e2, self.e2) : e2.__cid == TreeSet() ? equals_Object@Object(e2, self.e2) : e2.__cid == String() ? equals_Object@String(e2, self.e2) : e2.__cid == Character() ? equals_Object@Character(e2, self.e2) : e2.__cid == HashSet() ? equals_Object@Object(e2, self.e2) : e2.__cid == Boolean() ? equals_Object@Object(e2, self.e2) : e2.__cid == HashMap() ? equals_Object@Object(e2, self.e2) : e2.__cid == Arrays() ? equals_Object@Object(e2, self.e2) : e2.__cid == ArrayDeque() ? equals_Object@Object(e2, self.e2) : e2.__cid == ArrayList() ? equals_Object@Object(e2, self.e2) : e2.__cid == SuffixArray() ? equals_Object@Object(e2, self.e2) : e2.__cid == Object() ? equals_Object@Object(e2, self.e2) : 0) ? false : xform_add_HashSet_Object(self.self, e2));
+  }
+  case Removeb_object: { assert false; }
+  case Remove_object: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return 0;
+}
+bit xform_removeb_HashSet_Object(HashSet selff, Object e2) {
+  HashSet self = selff;
+  switch(self) {
+  case Hashset: { assert false; }
+  case Add_object: { assert false; }
+  case Addb_object: { assert false; }
+  case Removeb_object: { assert false; }
+  case Remove_object: { assert false; }
+  case Size: { assert false; }
+  }
+
+  return 0;
+}

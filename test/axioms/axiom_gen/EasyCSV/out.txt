@@ -1,0 +1,2683 @@
+SKETCH version 1.7.5
+Benchmark = test1//main.sk
+/* BEGIN PACKAGE StringBuilder*/
+package StringBuilder{
+  /*StringBuilder.sk:3*/
+  
+void StringBuilder_StringBuilder (Object self, ref Object _out)/*StringBuilder.sk:3*/
+  {
+    self._value_StringBuilder = new Array_char@array(length=1);
+    self._count_StringBuilder = 0;
+    _out = self;
+    return;
+  }
+  /*StringBuilder.sk:31*/
+  
+void append_String (Object self, Object s)/*StringBuilder.sk:31*/
+  {
+    int len_s36 = 0;
+    String@meta(len_s36);
+    int _pac_sc_s37 = 0;
+    if((s.__cid) == len_s36)/*StringBuilder.sk:32*/
+    {
+      int len_s39 = 0;
+      length@String(s, len_s39);
+      _pac_sc_s37 = len_s39;
+    }
+    else
+    {
+      _pac_sc_s37 = 0;
+    }
+    int new_value_len = (self._count_StringBuilder) + _pac_sc_s37;
+    Array_char@array new_value;
+    new_value = new Array_char@array(length=new_value_len);
+    bit __sa0 = 0 < (self._count_StringBuilder);
+    int i = 0;
+    while(__sa0)
+    {
+      new_value.A[i] = self._value_StringBuilder.A[i];
+      i = i + 1;
+      __sa0 = i < (self._count_StringBuilder);
+    }
+    for(int i_0 = 0; i_0 < _pac_sc_s37; i_0 = i_0 + 1)/*Canonical*/
+    {
+      int _out_s41 = 0;
+      String@meta(_out_s41);
+      char _pac_sc_s42 = '\0';
+      if((s.__cid) == _out_s41)/*StringBuilder.sk:39*/
+      {
+        char _out_s44 = '\0';
+        charAt_int@String(s, i_0, _out_s44);
+        _pac_sc_s42 = _out_s44;
+      }
+      else
+      {
+        _pac_sc_s42 = '\0';
+      }
+      new_value.A[(self._count_StringBuilder) + i_0] = _pac_sc_s42;
+    }
+    self._value_StringBuilder = new_value;
+    self._count_StringBuilder = new_value_len;
+  }
+  /*StringBuilder.sk:23*/
+  
+void toString (Object self, ref Object _out)/*StringBuilder.sk:23*/
+  {
+    int _out_s32 = 0;
+    String@meta(_out_s32);
+    Object@Object _out_s34 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=_out_s32), self._value_StringBuilder, 0, self._count_StringBuilder, _out_s34)//{};
+    _out = _out_s34;
+    return;
+  }
+  /* END PACKAGE StringBuilder*/
+}
+/* BEGIN PACKAGE ArrayList*/
+package ArrayList{
+  struct ArrayList {
+      @Immutable()
+  }
+  struct Arraylist extends ArrayList@ArrayList {
+      @Immutable()
+  }
+  struct Add_object extends ArrayList@ArrayList {
+      ArrayList self;
+      Object e;
+      @Immutable()
+  }
+  struct Addb_object extends ArrayList@ArrayList {
+      ArrayList self;
+      Object e;
+      @Immutable()
+  }
+  struct Get_int extends ArrayList@ArrayList {
+      ArrayList self;
+      int i;
+      @Immutable()
+  }
+  struct Setb_int_object extends ArrayList@ArrayList {
+      ArrayList self;
+      int i;
+      Object e;
+      @Immutable()
+  }
+  struct Set_int_object extends ArrayList@ArrayList {
+      ArrayList self;
+      int i;
+      Object e;
+      @Immutable()
+  }
+  struct Ensurecapacity extends ArrayList@ArrayList {
+      ArrayList self;
+      @Immutable()
+  }
+  struct Size extends ArrayList@ArrayList {
+      ArrayList self;
+      @Immutable()
+  }
+  /*ArrayList.sk:14*/
+  
+void ArrayList_ArrayList (ref Object _out)/*ArrayList.sk:14*/
+  {
+    int _out_s63 = 0;
+    ArrayList@meta(_out_s63);
+    _out = new Object@Object(__cid=_out_s63, _arraylist=new Arraylist());
+    return;
+  }
+  /*ArrayList.sk:18*/
+  
+void add_Object_Object (Object self, Object e, ref Object _out)/*ArrayList.sk:18*/
+  {
+    int _out_s61 = 0;
+    ArrayList@meta(_out_s61);
+    _out = new Object@Object(__cid=_out_s61, _arraylist=new Add_object(self=self._arraylist, e=e));
+    return;
+  }
+  /*ArrayList.sk:22*/
+  
+void addb_Object_Object (Object self, Object e, ref Object _out)/*ArrayList.sk:22*/
+  {
+    self._arraylist = new Addb_object(self=self._arraylist, e=e);
+    _out = self;
+    return;
+  }
+  /*ArrayList.sk:27*/
+  
+void get_Object_int (Object self, int i, ref Object _out)/*ArrayList.sk:27*/
+  {
+    Object@Object _out_s55 = null;
+    xform_get_ArrayList_int(self._arraylist, i, _out_s55);
+    _out = _out_s55;
+    return;
+  }
+  /*ArrayList.sk:44*/
+  
+void size_Object (Object self, ref int _out)/*ArrayList.sk:44*/
+  {
+    int _out_s51 = 0;
+    xform_size_ArrayList(self._arraylist, _out_s51);
+    _out = _out_s51;
+    return;
+  }
+  /*ArrayList.sk:48*/
+  
+void xform_get_ArrayList_int (ArrayList selff, int i, ref Object _out)/*ArrayList.sk:48*/
+  {
+    switch(selff){/*ArrayList.sk:50*/
+      case Arraylist:
+      {
+        _out = null;
+        return;
+      }
+      case Add_object:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:50 ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:52 Assert at ArrayList.sk:52 (1)
+      case Addb_object:
+      {
+        int sz_s57 = 0;
+        xform_size_ArrayList(selff.self, sz_s57);
+        Object@Object get1_s59 = null;
+        xform_get_ArrayList_int(selff.self, i, get1_s59);
+        Object@Object ret1 = selff.e;
+        _out = (sz_s57 <= i ? ret1 : get1_s59);
+        return;
+      }
+      case Get_int:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:50 ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:62 Assert at ArrayList.sk:62 (1)
+      case Setb_int_object:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:50 ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:72 Assert at ArrayList.sk:72 (1)
+      case Set_int_object:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:50 ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:74 Assert at ArrayList.sk:74 (1)
+      case Ensurecapacity:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:50 ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:75 Assert at ArrayList.sk:75 (1)
+      case Size:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:50 ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:76 Assert at ArrayList.sk:76 (1)
+    }
+    _out = null;
+    return;
+  }
+  /*ArrayList.sk:111*/
+  
+void xform_size_ArrayList (ArrayList selff, ref int _out)/*ArrayList.sk:111*/
+  {
+    switch(selff){/*ArrayList.sk:113*/
+      case Arraylist:
+      {
+        _out = 0;
+        return;
+      }
+      case Add_object:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:113 ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:118 Assert at ArrayList.sk:118 (1)
+      case Addb_object:
+      {
+        int sz_s53 = 0;
+        xform_size_ArrayList(selff.self, sz_s53);
+        _out = sz_s53 + 1;
+        return;
+      }
+      case Get_int:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:113 ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:124 Assert at ArrayList.sk:124 (1)
+      case Setb_int_object:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:113 ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:129 Assert at ArrayList.sk:129 (1)
+      case Set_int_object:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:113 ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:131 Assert at ArrayList.sk:131 (1)
+      case Ensurecapacity:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:113 ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:132 Assert at ArrayList.sk:132 (1)
+      case Size:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:113 ASSERTION CAN NOT BE SATISFIED: ArrayList.sk:133 Assert at ArrayList.sk:133 (1)
+    }
+    _out = 0;
+    return;
+  }
+  /* END PACKAGE ArrayList*/
+}
+/* BEGIN PACKAGE CsvDocumentTest_Person*/
+package CsvDocumentTest_Person{
+  /* END PACKAGE CsvDocumentTest_Person*/
+}
+/* BEGIN PACKAGE String*/
+package String{
+  /*String.sk:7*/
+  
+void String_String_char_int_int (Object self, Array_char ca, int offset, int count, ref Object _out)/*String.sk:7*/
+  {
+    if((offset > 0) && (offset < (ca.length)))/*String.sk:8*/
+    {
+      Array_char@array tmp = new Array_char@array(length=count);
+      for(int i = 0; i < count; i = i + 1)/*Canonical*/
+      {
+        tmp.A[i] = ca.A[i + offset];
+      }
+      self._value_String = tmp;
+    }
+    else
+    {
+      self._value_String = ca;
+    }
+    self._count_String = count;
+    _out = self;
+    return;
+  }
+  /*String.sk:43*/
+  
+void charAt_int (Object self, int index, ref char _out)/*String.sk:43*/
+  {
+    if((0 <= index) && (index < (self._count_String)))/*String.sk:44*/
+    {
+      _out = self._value_String.A[index];
+      return;
+    }
+    _out = '\0';
+    return;
+  }
+  /*String.sk:150*/
+  
+void equalsIgnoreCase_Object (Object self, Object obj, ref bit _out)/*String.sk:150*/
+  {
+    bit _out_s134 = 0;
+    equals_Object@String(self, obj, _out_s134);
+    _out = _out_s134;
+    return;
+  }
+  /*String.sk:154*/
+  
+void equals_Object (Object self, Object obj, ref bit _out)/*String.sk:154*/
+  {
+    _out = 0;
+    int _out_s69 = 0;
+    String@meta(_out_s69);
+    if((obj.__cid) == _out_s69)/*String.sk:156*/
+    {
+      _out = 1;
+      int sLen_s71 = 0;
+      String@meta(sLen_s71);
+      int _pac_sc_s72 = 0;
+      if((obj.__cid) == sLen_s71)/*String.sk:159*/
+      {
+        int sLen_s74 = 0;
+        length@String(obj, sLen_s74);
+        _pac_sc_s72 = sLen_s74;
+      }
+      else
+      {
+        _pac_sc_s72 = 0;
+      }
+      int tLen_s76 = 0;
+      String@meta(tLen_s76);
+      int _pac_sc_s77 = 0;
+      if((self.__cid) == tLen_s76)/*String.sk:160*/
+      {
+        int tLen_s79 = 0;
+        length@String(self, tLen_s79);
+        _pac_sc_s77 = tLen_s79;
+      }
+      else
+      {
+        _pac_sc_s77 = 0;
+      }
+      if(_pac_sc_s72 != _pac_sc_s77)/*String.sk:161*/
+      {
+        _out = 0;
+      }
+      for(int i = 0; (i < _pac_sc_s72) && (_out == 1); i = i + 1)
+      {
+        if((obj._value_String.A[i]) != (self._value_String.A[i]))/*String.sk:163*/
+        {
+          _out = 0;
+        }
+      }
+    }
+    return;
+  }
+  /*String.sk:94*/
+  
+void indexOf_char_int (Object self, char c, int i, ref int _out)/*String.sk:94*/
+  {
+    int len_s124 = 0;
+    String@meta(len_s124);
+    int _pac_sc_s125 = 0;
+    if((self.__cid) == len_s124)/*String.sk:95*/
+    {
+      int len_s127 = 0;
+      length@String(self, len_s127);
+      _pac_sc_s125 = len_s127;
+    }
+    else
+    {
+      _pac_sc_s125 = 0;
+    }
+    if((i >= _pac_sc_s125) || (i < 0))/*String.sk:97*/
+    {
+      _out = -1;
+      return;
+    }
+    for(int j = i; j < _pac_sc_s125; j = j + 1)/*Canonical*/
+    {
+      int _out_s129 = 0;
+      String@meta(_out_s129);
+      char _pac_sc_s130 = '\0';
+      if((self.__cid) == _out_s129)/*String.sk:101*/
+      {
+        char _out_s132 = '\0';
+        charAt_int@String(self, j, _out_s132);
+        _pac_sc_s130 = _out_s132;
+      }
+      else
+      {
+        _pac_sc_s130 = '\0';
+      }
+      if(_pac_sc_s130 == c)/*String.sk:101*/
+      {
+        _out = j;
+        return;
+      }
+    }
+    _out = -1;
+    return;
+  }
+  /*String.sk:48*/
+  
+void length (Object self, ref int _out)/*String.sk:48*/
+  {
+    _out = self._count_String;
+    return;
+  }
+  /*String.sk:245*/
+  
+void split_String (Object self, Object regex, ref Array_Object _out)/*String.sk:245*/
+  {
+    Array_Object@array _out_s81 = null;
+    split_String_int@String(self, regex, 0, _out_s81);
+    _out = _out_s81;
+    return;
+  }
+  /*String.sk:249*/
+  
+void split_String_int (Object self, Object regex, int limit, ref Array_Object _out)/*String.sk:249*/
+  {
+    int ch_s83 = 0;
+    String@meta(ch_s83);
+    char _pac_sc_s84 = '\0';
+    if((regex.__cid) == ch_s83)/*String.sk:251*/
+    {
+      char ch_s86 = '\0';
+      charAt_int@String(regex, 0, ch_s86);
+      _pac_sc_s84 = ch_s86;
+    }
+    else
+    {
+      _pac_sc_s84 = '\0';
+    }
+    int next_s88 = 0;
+    indexOf_char_int@String(self, _pac_sc_s84, 0, next_s88);
+    int next;
+    next = next_s88;
+    bit limited = limit > 0;
+    int off = 0;
+    int size = 0;
+    while(next != -1)
+    {
+      if((!(limited)) || (size < (limit - 1)))/*String.sk:256*/
+      {
+        off = next + 1;
+        int next_s90 = 0;
+        indexOf_char_int@String(self, _pac_sc_s84, off, next_s90);
+        next = next_s90;
+      }
+      else
+      {
+        next = -1;
+      }
+      size = size + 1;
+    }
+    if((!(limited)) || (size < limit))/*String.sk:266*/
+    {
+      size = size + 1;
+    }
+    off = 0;
+    int ch_s92 = 0;
+    String@meta(ch_s92);
+    char _pac_sc_s93 = '\0';
+    if((regex.__cid) == ch_s92)/*String.sk:268*/
+    {
+      char ch_s95 = '\0';
+      charAt_int@String(regex, 0, ch_s95);
+      _pac_sc_s93 = ch_s95;
+    }
+    else
+    {
+      _pac_sc_s93 = '\0';
+    }
+    int next_s97 = 0;
+    indexOf_char_int@String(self, _pac_sc_s93, 0, next_s97);
+    next = next_s97;
+    limited = limit > 0;
+    Array_Object@array list = new Array_Object@array(length=size);
+    size = 0;
+    while(next != -1)
+    {
+      if((!(limited)) || (size < (limit - 1)))/*String.sk:274*/
+      {
+        Object@Object _out_s99 = null;
+        substring_int_int@String(self, off, next, _out_s99);
+        list.A[size] = _out_s99;
+        off = next + 1;
+        int next_s101 = 0;
+        indexOf_char_int@String(self, _pac_sc_s93, off, next_s101);
+        next = next_s101;
+      }
+      else
+      {
+        Object@Object _out_s103 = null;
+        substring_int_int@String(self, off, self._count_String, _out_s103);
+        list.A[size] = _out_s103;
+        off = self._value_String.length;
+        next = -1;
+      }
+      size = size + 1;
+    }
+    if(off == 0)/*String.sk:286*/
+    {
+      Array_Object@array res = new Array_Object@array(length=1, A={self});
+      _out = res;
+      return;
+    }
+    if((!(limited)) || (size < limit))/*String.sk:290*/
+    {
+      Object@Object _out_s105 = null;
+      substring_int_int@String(self, off, self._count_String, _out_s105);
+      list.A[size] = _out_s105;
+    }
+    int resultSize = list.length;
+    if(limit == 0)/*String.sk:295*/
+    {
+      Object@Object tmp = list.A[resultSize - 1];
+      bit _pac_sc_s106 = resultSize > 0;
+      if(_pac_sc_s106)/*String.sk:297*/
+      {
+        int _pac_sc_s106_s108 = 0;
+        String@meta(_pac_sc_s106_s108);
+        int _pac_sc_s109 = 0;
+        if((tmp.__cid) == _pac_sc_s106_s108)/*String.sk:297*/
+        {
+          int _pac_sc_s106_s111 = 0;
+          length@String(tmp, _pac_sc_s106_s111);
+          _pac_sc_s109 = _pac_sc_s106_s111;
+        }
+        else
+        {
+          _pac_sc_s109 = 0;
+        }
+        _pac_sc_s106 = _pac_sc_s109 == 0;
+      }
+      bit __sa2 = _pac_sc_s106;
+      while(__sa2)
+      {
+        resultSize = resultSize - 1;
+        bit _pac_sc_s112 = resultSize > 0;
+        if(_pac_sc_s112)/*String.sk:297*/
+        {
+          int _pac_sc_s112_s114 = 0;
+          String@meta(_pac_sc_s112_s114);
+          int _pac_sc_s115 = 0;
+          if((tmp.__cid) == _pac_sc_s112_s114)/*String.sk:297*/
+          {
+            int _pac_sc_s112_s117 = 0;
+            length@String(tmp, _pac_sc_s112_s117);
+            _pac_sc_s115 = _pac_sc_s112_s117;
+          }
+          else
+          {
+            _pac_sc_s115 = 0;
+          }
+          _pac_sc_s112 = _pac_sc_s115 == 0;
+        }
+        __sa2 = _pac_sc_s112;
+      }
+    }
+    Array_Object@array result;
+    result = new Array_Object@array(length=resultSize);
+    for(int i = 0; i < resultSize; i = i + 1)/*Canonical*/
+    {
+      result.A[i] = list.A[i];
+    }
+    _out = result;
+    return;
+  }
+  /*String.sk:233*/
+  
+void substring_int_int (Object self, int beginIndex, int endIndex, ref Object _out)/*String.sk:233*/
+  {
+    assert ((beginIndex >= 0) && (endIndex <= (self._value_String.length))); //Assert at String.sk:234 (2)
+    int subLen = endIndex - beginIndex;
+    assert (subLen > 0); //Assert at String.sk:236 (2)
+    Object@Object _pac_sc_s118 = null;
+    if((beginIndex == 0) && (endIndex == (self._count_String)))/*String.sk:237*/
+    {
+      _pac_sc_s118 = self;
+    }
+    else
+    {
+      int _out_s120 = 0;
+      String@meta(_out_s120);
+      Object@Object _out_s122 = null;
+      String_String_char_int_int(new Object@Object(__cid=_out_s120), self._value_String, beginIndex, subLen, _out_s122)//{};
+      _pac_sc_s118 = _out_s122;
+    }
+    _out = _pac_sc_s118;
+    return;
+  }
+  /* END PACKAGE String*/
+}
+/* BEGIN PACKAGE CsvColumn*/
+package CsvColumn{
+  /*CsvColumn.sk:7*/
+  
+void CsvColumn_CsvColumn_String (Object self, Object value, ref Object _out)/*CsvColumn.sk:7*/
+  {
+    self.columnValue_CsvColumn = value;
+    _out = self;
+    return;
+  }
+  /*CsvColumn.sk:35*/
+  
+void getBoolean (Object self, ref bit _out)/*CsvColumn.sk:35*/
+  {
+    int _pac_sc_s297_s299 = 0;
+    String@meta(_pac_sc_s297_s299);
+    bit _pac_sc_s300 = 0;
+    if((self.columnValue_CsvColumn.__cid) == _pac_sc_s297_s299)/*CsvColumn.sk:36*/
+    {
+      int _pac_sc_s297_s302 = 0;
+      String@meta(_pac_sc_s297_s302);
+      Object@Object _pac_sc_s297_s304 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_pac_sc_s297_s302), new Array_char@array(length=5, A={'t','r','u','e','\0'}), 0, 4, _pac_sc_s297_s304)//{};
+      bit _pac_sc_s297_s306 = 0;
+      equalsIgnoreCase_Object@String(self.columnValue_CsvColumn, _pac_sc_s297_s304, _pac_sc_s297_s306)//{};
+      _pac_sc_s300 = _pac_sc_s297_s306;
+    }
+    else
+    {
+      _pac_sc_s300 = 0;
+    }
+    bit _pac_sc_s297 = _pac_sc_s300;
+    if(!(_pac_sc_s300))/*CsvColumn.sk:36*/
+    {
+      int _pac_sc_s297_s308 = 0;
+      String@meta(_pac_sc_s297_s308);
+      bit _pac_sc_s309 = 0;
+      if((self.columnValue_CsvColumn.__cid) == _pac_sc_s297_s308)/*CsvColumn.sk:36*/
+      {
+        int _pac_sc_s297_s311 = 0;
+        String@meta(_pac_sc_s297_s311);
+        Object@Object _pac_sc_s297_s313 = null;
+        String_String_char_int_int@String(new Object@Object(__cid=_pac_sc_s297_s311), new Array_char@array(length=2, A={'t','\0'}), 0, 1, _pac_sc_s297_s313)//{};
+        bit _pac_sc_s297_s315 = 0;
+        equalsIgnoreCase_Object@String(self.columnValue_CsvColumn, _pac_sc_s297_s313, _pac_sc_s297_s315)//{};
+        _pac_sc_s309 = _pac_sc_s297_s315;
+      }
+      else
+      {
+        _pac_sc_s309 = 0;
+      }
+      _pac_sc_s297 = _pac_sc_s309;
+    }
+    bit _pac_sc_s296 = _pac_sc_s297;
+    if(!(_pac_sc_s297))/*CsvColumn.sk:36*/
+    {
+      int _pac_sc_s296_s317 = 0;
+      String@meta(_pac_sc_s296_s317);
+      bit _pac_sc_s318 = 0;
+      if((self.columnValue_CsvColumn.__cid) == _pac_sc_s296_s317)/*CsvColumn.sk:36*/
+      {
+        int _pac_sc_s296_s320 = 0;
+        String@meta(_pac_sc_s296_s320);
+        Object@Object _pac_sc_s296_s322 = null;
+        String_String_char_int_int@String(new Object@Object(__cid=_pac_sc_s296_s320), new Array_char@array(length=4, A={'y','e','s','\0'}), 0, 3, _pac_sc_s296_s322)//{};
+        bit _pac_sc_s296_s324 = 0;
+        equalsIgnoreCase_Object@String(self.columnValue_CsvColumn, _pac_sc_s296_s322, _pac_sc_s296_s324)//{};
+        _pac_sc_s318 = _pac_sc_s296_s324;
+      }
+      else
+      {
+        _pac_sc_s318 = 0;
+      }
+      _pac_sc_s296 = _pac_sc_s318;
+    }
+    bit _pac_sc_s295 = _pac_sc_s296;
+    if(!(_pac_sc_s296))/*CsvColumn.sk:36*/
+    {
+      int _pac_sc_s295_s326 = 0;
+      String@meta(_pac_sc_s295_s326);
+      bit _pac_sc_s327 = 0;
+      if((self.columnValue_CsvColumn.__cid) == _pac_sc_s295_s326)/*CsvColumn.sk:36*/
+      {
+        int _pac_sc_s295_s329 = 0;
+        String@meta(_pac_sc_s295_s329);
+        Object@Object _pac_sc_s295_s331 = null;
+        String_String_char_int_int@String(new Object@Object(__cid=_pac_sc_s295_s329), new Array_char@array(length=2, A={'y','\0'}), 0, 1, _pac_sc_s295_s331)//{};
+        bit _pac_sc_s295_s333 = 0;
+        equalsIgnoreCase_Object@String(self.columnValue_CsvColumn, _pac_sc_s295_s331, _pac_sc_s295_s333)//{};
+        _pac_sc_s327 = _pac_sc_s295_s333;
+      }
+      else
+      {
+        _pac_sc_s327 = 0;
+      }
+      _pac_sc_s295 = _pac_sc_s327;
+    }
+    bit _pac_sc_s294 = _pac_sc_s295;
+    if(!(_pac_sc_s295))/*CsvColumn.sk:36*/
+    {
+      int _pac_sc_s294_s335 = 0;
+      String@meta(_pac_sc_s294_s335);
+      bit _pac_sc_s336 = 0;
+      if((self.columnValue_CsvColumn.__cid) == _pac_sc_s294_s335)/*CsvColumn.sk:36*/
+      {
+        int _pac_sc_s294_s338 = 0;
+        String@meta(_pac_sc_s294_s338);
+        Object@Object _pac_sc_s294_s340 = null;
+        String_String_char_int_int@String(new Object@Object(__cid=_pac_sc_s294_s338), new Array_char@array(length=2, A={'1','\0'}), 0, 1, _pac_sc_s294_s340)//{};
+        bit _pac_sc_s294_s342 = 0;
+        equals_Object@String(self.columnValue_CsvColumn, _pac_sc_s294_s340, _pac_sc_s294_s342)//{};
+        _pac_sc_s336 = _pac_sc_s294_s342;
+      }
+      else
+      {
+        _pac_sc_s336 = 0;
+      }
+      _pac_sc_s294 = _pac_sc_s336;
+    }
+    if(_pac_sc_s294)/*CsvColumn.sk:36*/
+    {
+      _out = 1;
+      return;
+    }
+    int _pac_sc_s346_s348 = 0;
+    String@meta(_pac_sc_s346_s348);
+    bit _pac_sc_s349 = 0;
+    if((self.columnValue_CsvColumn.__cid) == _pac_sc_s346_s348)/*CsvColumn.sk:39*/
+    {
+      int _pac_sc_s346_s351 = 0;
+      String@meta(_pac_sc_s346_s351);
+      Object@Object _pac_sc_s346_s353 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_pac_sc_s346_s351), new Array_char@array(length=6, A={'f','a','l','s','e','\0'}), 0, 5, _pac_sc_s346_s353)//{};
+      bit _pac_sc_s346_s355 = 0;
+      equalsIgnoreCase_Object@String(self.columnValue_CsvColumn, _pac_sc_s346_s353, _pac_sc_s346_s355)//{};
+      _pac_sc_s349 = _pac_sc_s346_s355;
+    }
+    else
+    {
+      _pac_sc_s349 = 0;
+    }
+    bit _pac_sc_s346 = _pac_sc_s349;
+    if(!(_pac_sc_s349))/*CsvColumn.sk:39*/
+    {
+      int _pac_sc_s346_s357 = 0;
+      String@meta(_pac_sc_s346_s357);
+      bit _pac_sc_s358 = 0;
+      if((self.columnValue_CsvColumn.__cid) == _pac_sc_s346_s357)/*CsvColumn.sk:39*/
+      {
+        int _pac_sc_s346_s360 = 0;
+        String@meta(_pac_sc_s346_s360);
+        Object@Object _pac_sc_s346_s362 = null;
+        String_String_char_int_int@String(new Object@Object(__cid=_pac_sc_s346_s360), new Array_char@array(length=2, A={'f','\0'}), 0, 1, _pac_sc_s346_s362)//{};
+        bit _pac_sc_s346_s364 = 0;
+        equalsIgnoreCase_Object@String(self.columnValue_CsvColumn, _pac_sc_s346_s362, _pac_sc_s346_s364)//{};
+        _pac_sc_s358 = _pac_sc_s346_s364;
+      }
+      else
+      {
+        _pac_sc_s358 = 0;
+      }
+      _pac_sc_s346 = _pac_sc_s358;
+    }
+    bit _pac_sc_s345 = _pac_sc_s346;
+    if(!(_pac_sc_s346))/*CsvColumn.sk:39*/
+    {
+      int _pac_sc_s345_s366 = 0;
+      String@meta(_pac_sc_s345_s366);
+      bit _pac_sc_s367 = 0;
+      if((self.columnValue_CsvColumn.__cid) == _pac_sc_s345_s366)/*CsvColumn.sk:39*/
+      {
+        int _pac_sc_s345_s369 = 0;
+        String@meta(_pac_sc_s345_s369);
+        Object@Object _pac_sc_s345_s371 = null;
+        String_String_char_int_int@String(new Object@Object(__cid=_pac_sc_s345_s369), new Array_char@array(length=3, A={'n','o','\0'}), 0, 2, _pac_sc_s345_s371)//{};
+        bit _pac_sc_s345_s373 = 0;
+        equalsIgnoreCase_Object@String(self.columnValue_CsvColumn, _pac_sc_s345_s371, _pac_sc_s345_s373)//{};
+        _pac_sc_s367 = _pac_sc_s345_s373;
+      }
+      else
+      {
+        _pac_sc_s367 = 0;
+      }
+      _pac_sc_s345 = _pac_sc_s367;
+    }
+    bit _pac_sc_s344 = _pac_sc_s345;
+    if(!(_pac_sc_s345))/*CsvColumn.sk:39*/
+    {
+      int _pac_sc_s344_s375 = 0;
+      String@meta(_pac_sc_s344_s375);
+      bit _pac_sc_s376 = 0;
+      if((self.columnValue_CsvColumn.__cid) == _pac_sc_s344_s375)/*CsvColumn.sk:39*/
+      {
+        int _pac_sc_s344_s378 = 0;
+        String@meta(_pac_sc_s344_s378);
+        Object@Object _pac_sc_s344_s380 = null;
+        String_String_char_int_int@String(new Object@Object(__cid=_pac_sc_s344_s378), new Array_char@array(length=2, A={'n','\0'}), 0, 1, _pac_sc_s344_s380)//{};
+        bit _pac_sc_s344_s382 = 0;
+        equalsIgnoreCase_Object@String(self.columnValue_CsvColumn, _pac_sc_s344_s380, _pac_sc_s344_s382)//{};
+        _pac_sc_s376 = _pac_sc_s344_s382;
+      }
+      else
+      {
+        _pac_sc_s376 = 0;
+      }
+      _pac_sc_s344 = _pac_sc_s376;
+    }
+    bit _pac_sc_s343 = _pac_sc_s344;
+    if(!(_pac_sc_s344))/*CsvColumn.sk:39*/
+    {
+      int _pac_sc_s343_s384 = 0;
+      String@meta(_pac_sc_s343_s384);
+      bit _pac_sc_s385 = 0;
+      if((self.columnValue_CsvColumn.__cid) == _pac_sc_s343_s384)/*CsvColumn.sk:39*/
+      {
+        int _pac_sc_s343_s387 = 0;
+        String@meta(_pac_sc_s343_s387);
+        Object@Object _pac_sc_s343_s389 = null;
+        String_String_char_int_int@String(new Object@Object(__cid=_pac_sc_s343_s387), new Array_char@array(length=2, A={'0','\0'}), 0, 1, _pac_sc_s343_s389)//{};
+        bit _pac_sc_s343_s391 = 0;
+        equals_Object@String(self.columnValue_CsvColumn, _pac_sc_s343_s389, _pac_sc_s343_s391)//{};
+        _pac_sc_s385 = _pac_sc_s343_s391;
+      }
+      else
+      {
+        _pac_sc_s385 = 0;
+      }
+      _pac_sc_s343 = _pac_sc_s385;
+    }
+    if(_pac_sc_s343)/*CsvColumn.sk:39*/
+    {
+      _out = 0;
+      return;
+    }
+    _out = 0;
+    return;
+  }
+  /*CsvColumn.sk:26*/
+  
+void getColumnValue (Object self, ref Object _out)/*CsvColumn.sk:26*/
+  {
+    _out = self.columnValue_CsvColumn;
+    return;
+  }
+  /*CsvColumn.sk:30*/
+  
+void getInteger (Object self, ref int _out)/*CsvColumn.sk:30*/
+  {
+    int parsedValue_s393 = 0;
+    parseInt_String@Integer(self.columnValue_CsvColumn, parsedValue_s393);
+    _out = parsedValue_s393;
+    return;
+  }
+  /* END PACKAGE CsvColumn*/
+}
+/* BEGIN PACKAGE Number*/
+package Number{
+  /* END PACKAGE Number*/
+}
+/* BEGIN PACKAGE array*/
+package array{
+  struct Array_bit {
+      int length;
+      bit[length] A;
+  }
+  struct Array_char {
+      int length;
+      char[length] A;
+  }
+  struct Array_int {
+      int length;
+      int[length] A;
+  }
+  struct Array_float {
+      int length;
+      float[length] A;
+  }
+  struct Array_double {
+      int length;
+      double[length] A;
+  }
+  struct Array_Object {
+      int length;
+      Object[length] A;
+  }
+  /* END PACKAGE array*/
+}
+/* BEGIN PACKAGE CsvRowTest*/
+package CsvRowTest{
+  /*CsvRowTest.sk:7*/
+  
+void runTests ()/*CsvRowTest.sk:7*/
+  {
+    the_constructor_with_column_values_argument_should_build_row();
+    the_constructor_with_variable_columns_argument_should_build_row();
+    the_constructor_with_column_list_argument_should_build_row();
+  }
+  /*CsvRowTest.sk:43*/
+  
+void the_constructor_with_column_list_argument_should_build_row ()/*CsvRowTest.sk:43*/
+  {
+    int someValue_s399 = 0;
+    String@meta(someValue_s399);
+    Object@Object someValue_s401 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=someValue_s399), new Array_char@array(length=2, A={'1','\0'}), 0, 1, someValue_s401)//{};
+    int anotherValue_s403 = 0;
+    String@meta(anotherValue_s403);
+    Object@Object anotherValue_s405 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=anotherValue_s403), new Array_char@array(length=6, A={'v','a','l','u','e','\0'}), 0, 5, anotherValue_s405)//{};
+    int someColumn_s407 = 0;
+    CsvColumn@meta(someColumn_s407);
+    Object@Object someColumn_s409 = null;
+    CsvColumn_CsvColumn_String@CsvColumn(new Object@Object(__cid=someColumn_s407), someValue_s401, someColumn_s409)//{};
+    int anotherColumn_s411 = 0;
+    CsvColumn@meta(anotherColumn_s411);
+    Object@Object anotherColumn_s413 = null;
+    CsvColumn_CsvColumn_String@CsvColumn(new Object@Object(__cid=anotherColumn_s411), anotherValue_s405, anotherColumn_s413)//{};
+    Object@Object rowColumns_s415 = null;
+    ArrayList_ArrayList@ArrayList(rowColumns_s415);
+    int _out_s417 = 0;
+    ArrayList@meta(_out_s417);
+    if((rowColumns_s415.__cid) == _out_s417)/*CsvRowTest.sk:49*/
+    {
+      Object@Object _out_s420 = null;
+      add_Object_Object@ArrayList(rowColumns_s415, someColumn_s409, _out_s420);
+    }
+    int rowColumns_s422 = 0;
+    ArrayList@meta(rowColumns_s422);
+    Object@Object _pac_sc_s423 = null;
+    if((rowColumns_s415.__cid) == rowColumns_s422)/*CsvRowTest.sk:49*/
+    {
+      Object@Object rowColumns_s425 = null;
+      addb_Object_Object@ArrayList(rowColumns_s415, someColumn_s409, rowColumns_s425);
+      _pac_sc_s423 = rowColumns_s425;
+    }
+    else
+    {
+      _pac_sc_s423 = null;
+    }
+    int _out_s427 = 0;
+    ArrayList@meta(_out_s427);
+    if((_pac_sc_s423.__cid) == _out_s427)/*CsvRowTest.sk:50*/
+    {
+      Object@Object _out_s430 = null;
+      add_Object_Object@ArrayList(_pac_sc_s423, anotherColumn_s413, _out_s430);
+    }
+    int rowColumns_s432 = 0;
+    ArrayList@meta(rowColumns_s432);
+    Object@Object _pac_sc_s433 = null;
+    if((_pac_sc_s423.__cid) == rowColumns_s432)/*CsvRowTest.sk:50*/
+    {
+      Object@Object rowColumns_s435 = null;
+      addb_Object_Object@ArrayList(_pac_sc_s423, anotherColumn_s413, rowColumns_s435);
+      _pac_sc_s433 = rowColumns_s435;
+    }
+    else
+    {
+      _pac_sc_s433 = null;
+    }
+    int someRow_s437 = 0;
+    CsvRow@meta(someRow_s437);
+    Object@Object someRow_s439 = null;
+    CsvRow_CsvRow_ArrayList@CsvRow(new Object@Object(__cid=someRow_s437), _pac_sc_s433, someRow_s439)//{};
+    int _out_s441 = 0;
+    CsvRow@meta(_out_s441);
+    int _pac_sc_s442 = 0;
+    if((someRow_s439.__cid) == _out_s441)/*CsvRowTest.sk:52*/
+    {
+      int _out_s444 = 0;
+      getNumberOfColumns@CsvRow(someRow_s439, _out_s444);
+      _pac_sc_s442 = _out_s444;
+    }
+    else
+    {
+      _pac_sc_s442 = 0;
+    }
+    assert (2 == _pac_sc_s442); //Assert at CsvRowTest.sk:52 (0)
+    int _out_s446 = 0;
+    CsvRow@meta(_out_s446);
+    bit _pac_sc_s447 = 0;
+    if((someRow_s439.__cid) == _out_s446)/*CsvRowTest.sk:53*/
+    {
+      bit _out_s449 = 0;
+      isEmpty@CsvRow(someRow_s439, _out_s449);
+      _pac_sc_s447 = _out_s449;
+    }
+    else
+    {
+      _pac_sc_s447 = 0;
+    }
+    assert (!(_pac_sc_s447)); //Assert at CsvRowTest.sk:53 (0)
+    int c1_s451 = 0;
+    CsvRow@meta(c1_s451);
+    Object@Object _pac_sc_s452 = null;
+    if((someRow_s439.__cid) == c1_s451)/*CsvRowTest.sk:54*/
+    {
+      Object@Object c1_s454 = null;
+      getColumnAtIndex_int@CsvRow(someRow_s439, 0, c1_s454);
+      _pac_sc_s452 = c1_s454;
+    }
+    else
+    {
+      _pac_sc_s452 = null;
+    }
+    int i1_s456 = 0;
+    CsvColumn@meta(i1_s456);
+    Object@Object _pac_sc_s457 = null;
+    if((_pac_sc_s452.__cid) == i1_s456)/*CsvRowTest.sk:55*/
+    {
+      Object@Object i1_s459 = null;
+      getColumnValue@CsvColumn(_pac_sc_s452, i1_s459);
+      _pac_sc_s457 = i1_s459;
+    }
+    else
+    {
+      _pac_sc_s457 = null;
+    }
+    int _out_s461 = 0;
+    String@meta(_out_s461);
+    bit _pac_sc_s462 = 0;
+    if((_pac_sc_s457.__cid) == _out_s461)/*CsvRowTest.sk:56*/
+    {
+      bit _out_s464 = 0;
+      equals_Object@String(_pac_sc_s457, someValue_s401, _out_s464);
+      _pac_sc_s462 = _out_s464;
+    }
+    else
+    {
+      _pac_sc_s462 = 0;
+    }
+    assert (_pac_sc_s462); //Assert at CsvRowTest.sk:56 (0)
+    int c2_s466 = 0;
+    CsvRow@meta(c2_s466);
+    Object@Object _pac_sc_s467 = null;
+    if((someRow_s439.__cid) == c2_s466)/*CsvRowTest.sk:57*/
+    {
+      Object@Object c2_s469 = null;
+      getColumnAtIndex_int@CsvRow(someRow_s439, 1, c2_s469);
+      _pac_sc_s467 = c2_s469;
+    }
+    else
+    {
+      _pac_sc_s467 = null;
+    }
+    int i2_s471 = 0;
+    CsvColumn@meta(i2_s471);
+    Object@Object _pac_sc_s472 = null;
+    if((_pac_sc_s467.__cid) == i2_s471)/*CsvRowTest.sk:58*/
+    {
+      Object@Object i2_s474 = null;
+      getColumnValue@CsvColumn(_pac_sc_s467, i2_s474);
+      _pac_sc_s472 = i2_s474;
+    }
+    else
+    {
+      _pac_sc_s472 = null;
+    }
+    int _out_s476 = 0;
+    String@meta(_out_s476);
+    bit _pac_sc_s477 = 0;
+    if((_pac_sc_s472.__cid) == _out_s476)/*CsvRowTest.sk:59*/
+    {
+      bit _out_s479 = 0;
+      equals_Object@String(_pac_sc_s472, anotherValue_s405, _out_s479);
+      _pac_sc_s477 = _out_s479;
+    }
+    else
+    {
+      _pac_sc_s477 = 0;
+    }
+    assert (_pac_sc_s477); //Assert at CsvRowTest.sk:59 (0)
+  }
+  /*CsvRowTest.sk:13*/
+  
+void the_constructor_with_column_values_argument_should_build_row ()/*CsvRowTest.sk:13*/
+  {
+    int someValue_s541 = 0;
+    String@meta(someValue_s541);
+    Object@Object someValue_s543 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=someValue_s541), new Array_char@array(length=2, A={'1','\0'}), 0, 1, someValue_s543)//{};
+    int anotherValue_s545 = 0;
+    String@meta(anotherValue_s545);
+    Object@Object anotherValue_s547 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=anotherValue_s545), new Array_char@array(length=6, A={'v','a','l','u','e','\0'}), 0, 5, anotherValue_s547)//{};
+    int someRow_s549 = 0;
+    CsvRow@meta(someRow_s549);
+    Object@Object someRow_s551 = null;
+    CsvRow_CsvRow_String_String@CsvRow(new Object@Object(__cid=someRow_s549), someValue_s543, anotherValue_s547, someRow_s551)//{};
+    int _out_s553 = 0;
+    CsvRow@meta(_out_s553);
+    int _pac_sc_s554 = 0;
+    if((someRow_s551.__cid) == _out_s553)/*CsvRowTest.sk:17*/
+    {
+      int _out_s556 = 0;
+      getNumberOfColumns@CsvRow(someRow_s551, _out_s556);
+      _pac_sc_s554 = _out_s556;
+    }
+    else
+    {
+      _pac_sc_s554 = 0;
+    }
+    assert (2 == _pac_sc_s554); //Assert at CsvRowTest.sk:17 (0)
+    int _out_s558 = 0;
+    CsvRow@meta(_out_s558);
+    bit _pac_sc_s559 = 0;
+    if((someRow_s551.__cid) == _out_s558)/*CsvRowTest.sk:18*/
+    {
+      bit _out_s561 = 0;
+      isEmpty@CsvRow(someRow_s551, _out_s561);
+      _pac_sc_s559 = _out_s561;
+    }
+    else
+    {
+      _pac_sc_s559 = 0;
+    }
+    assert (!(_pac_sc_s559)); //Assert at CsvRowTest.sk:18 (0)
+    int c1_s563 = 0;
+    CsvRow@meta(c1_s563);
+    Object@Object _pac_sc_s564 = null;
+    if((someRow_s551.__cid) == c1_s563)/*CsvRowTest.sk:19*/
+    {
+      Object@Object c1_s566 = null;
+      getColumnAtIndex_int@CsvRow(someRow_s551, 0, c1_s566);
+      _pac_sc_s564 = c1_s566;
+    }
+    else
+    {
+      _pac_sc_s564 = null;
+    }
+    int i1_s568 = 0;
+    CsvColumn@meta(i1_s568);
+    Object@Object _pac_sc_s569 = null;
+    if((_pac_sc_s564.__cid) == i1_s568)/*CsvRowTest.sk:20*/
+    {
+      Object@Object i1_s571 = null;
+      getColumnValue@CsvColumn(_pac_sc_s564, i1_s571);
+      _pac_sc_s569 = i1_s571;
+    }
+    else
+    {
+      _pac_sc_s569 = null;
+    }
+    int _out_s573 = 0;
+    String@meta(_out_s573);
+    bit _pac_sc_s574 = 0;
+    if((_pac_sc_s569.__cid) == _out_s573)/*CsvRowTest.sk:21*/
+    {
+      bit _out_s576 = 0;
+      equals_Object@String(_pac_sc_s569, someValue_s543, _out_s576);
+      _pac_sc_s574 = _out_s576;
+    }
+    else
+    {
+      _pac_sc_s574 = 0;
+    }
+    assert (_pac_sc_s574); //Assert at CsvRowTest.sk:21 (0)
+    int c2_s578 = 0;
+    CsvRow@meta(c2_s578);
+    Object@Object _pac_sc_s579 = null;
+    if((someRow_s551.__cid) == c2_s578)/*CsvRowTest.sk:22*/
+    {
+      Object@Object c2_s581 = null;
+      getColumnAtIndex_int@CsvRow(someRow_s551, 1, c2_s581);
+      _pac_sc_s579 = c2_s581;
+    }
+    else
+    {
+      _pac_sc_s579 = null;
+    }
+    int i2_s583 = 0;
+    CsvColumn@meta(i2_s583);
+    Object@Object _pac_sc_s584 = null;
+    if((_pac_sc_s579.__cid) == i2_s583)/*CsvRowTest.sk:23*/
+    {
+      Object@Object i2_s586 = null;
+      getColumnValue@CsvColumn(_pac_sc_s579, i2_s586);
+      _pac_sc_s584 = i2_s586;
+    }
+    else
+    {
+      _pac_sc_s584 = null;
+    }
+    int _out_s588 = 0;
+    String@meta(_out_s588);
+    bit _pac_sc_s589 = 0;
+    if((_pac_sc_s584.__cid) == _out_s588)/*CsvRowTest.sk:24*/
+    {
+      bit _out_s591 = 0;
+      equals_Object@String(_pac_sc_s584, anotherValue_s547, _out_s591);
+      _pac_sc_s589 = _out_s591;
+    }
+    else
+    {
+      _pac_sc_s589 = 0;
+    }
+    assert (_pac_sc_s589); //Assert at CsvRowTest.sk:24 (0)
+  }
+  /*CsvRowTest.sk:27*/
+  
+void the_constructor_with_variable_columns_argument_should_build_row ()/*CsvRowTest.sk:27*/
+  {
+    int someValue_s481 = 0;
+    String@meta(someValue_s481);
+    Object@Object someValue_s483 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=someValue_s481), new Array_char@array(length=2, A={'1','\0'}), 0, 1, someValue_s483)//{};
+    int anotherValue_s485 = 0;
+    String@meta(anotherValue_s485);
+    Object@Object anotherValue_s487 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=anotherValue_s485), new Array_char@array(length=6, A={'v','a','l','u','e','\0'}), 0, 5, anotherValue_s487)//{};
+    int someColumn_s489 = 0;
+    CsvColumn@meta(someColumn_s489);
+    Object@Object someColumn_s491 = null;
+    CsvColumn_CsvColumn_String@CsvColumn(new Object@Object(__cid=someColumn_s489), someValue_s483, someColumn_s491)//{};
+    int anotherColumn_s493 = 0;
+    CsvColumn@meta(anotherColumn_s493);
+    Object@Object anotherColumn_s495 = null;
+    CsvColumn_CsvColumn_String@CsvColumn(new Object@Object(__cid=anotherColumn_s493), anotherValue_s487, anotherColumn_s495)//{};
+    int someRow_s497 = 0;
+    CsvRow@meta(someRow_s497);
+    Object@Object someRow_s499 = null;
+    CsvRow_CsvRow_CsvColumn_CsvColumn@CsvRow(new Object@Object(__cid=someRow_s497), someColumn_s491, anotherColumn_s495, someRow_s499)//{};
+    int _out_s501 = 0;
+    CsvRow@meta(_out_s501);
+    int _pac_sc_s502 = 0;
+    if((someRow_s499.__cid) == _out_s501)/*CsvRowTest.sk:33*/
+    {
+      int _out_s504 = 0;
+      getNumberOfColumns@CsvRow(someRow_s499, _out_s504);
+      _pac_sc_s502 = _out_s504;
+    }
+    else
+    {
+      _pac_sc_s502 = 0;
+    }
+    assert (2 == _pac_sc_s502); //Assert at CsvRowTest.sk:33 (0)
+    int _out_s506 = 0;
+    CsvRow@meta(_out_s506);
+    bit _pac_sc_s507 = 0;
+    if((someRow_s499.__cid) == _out_s506)/*CsvRowTest.sk:34*/
+    {
+      bit _out_s509 = 0;
+      isEmpty@CsvRow(someRow_s499, _out_s509);
+      _pac_sc_s507 = _out_s509;
+    }
+    else
+    {
+      _pac_sc_s507 = 0;
+    }
+    assert (!(_pac_sc_s507)); //Assert at CsvRowTest.sk:34 (0)
+    int c1_s511 = 0;
+    CsvRow@meta(c1_s511);
+    Object@Object _pac_sc_s512 = null;
+    if((someRow_s499.__cid) == c1_s511)/*CsvRowTest.sk:35*/
+    {
+      Object@Object c1_s514 = null;
+      getColumnAtIndex_int@CsvRow(someRow_s499, 0, c1_s514);
+      _pac_sc_s512 = c1_s514;
+    }
+    else
+    {
+      _pac_sc_s512 = null;
+    }
+    int i1_s516 = 0;
+    CsvColumn@meta(i1_s516);
+    Object@Object _pac_sc_s517 = null;
+    if((_pac_sc_s512.__cid) == i1_s516)/*CsvRowTest.sk:36*/
+    {
+      Object@Object i1_s519 = null;
+      getColumnValue@CsvColumn(_pac_sc_s512, i1_s519);
+      _pac_sc_s517 = i1_s519;
+    }
+    else
+    {
+      _pac_sc_s517 = null;
+    }
+    int _out_s521 = 0;
+    String@meta(_out_s521);
+    bit _pac_sc_s522 = 0;
+    if((_pac_sc_s517.__cid) == _out_s521)/*CsvRowTest.sk:37*/
+    {
+      bit _out_s524 = 0;
+      equals_Object@String(_pac_sc_s517, someValue_s483, _out_s524);
+      _pac_sc_s522 = _out_s524;
+    }
+    else
+    {
+      _pac_sc_s522 = 0;
+    }
+    assert (_pac_sc_s522); //Assert at CsvRowTest.sk:37 (0)
+    int c2_s526 = 0;
+    CsvRow@meta(c2_s526);
+    Object@Object _pac_sc_s527 = null;
+    if((someRow_s499.__cid) == c2_s526)/*CsvRowTest.sk:38*/
+    {
+      Object@Object c2_s529 = null;
+      getColumnAtIndex_int@CsvRow(someRow_s499, 1, c2_s529);
+      _pac_sc_s527 = c2_s529;
+    }
+    else
+    {
+      _pac_sc_s527 = null;
+    }
+    int i2_s531 = 0;
+    CsvColumn@meta(i2_s531);
+    Object@Object _pac_sc_s532 = null;
+    if((_pac_sc_s527.__cid) == i2_s531)/*CsvRowTest.sk:39*/
+    {
+      Object@Object i2_s534 = null;
+      getColumnValue@CsvColumn(_pac_sc_s527, i2_s534);
+      _pac_sc_s532 = i2_s534;
+    }
+    else
+    {
+      _pac_sc_s532 = null;
+    }
+    int _out_s536 = 0;
+    String@meta(_out_s536);
+    bit _pac_sc_s537 = 0;
+    if((_pac_sc_s532.__cid) == _out_s536)/*CsvRowTest.sk:40*/
+    {
+      bit _out_s539 = 0;
+      equals_Object@String(_pac_sc_s532, anotherValue_s487, _out_s539);
+      _pac_sc_s537 = _out_s539;
+    }
+    else
+    {
+      _pac_sc_s537 = 0;
+    }
+    assert (_pac_sc_s537); //Assert at CsvRowTest.sk:40 (0)
+  }
+  /* END PACKAGE CsvRowTest*/
+}
+/* BEGIN PACKAGE CsvColumnTest*/
+package CsvColumnTest{
+  /*CsvColumnTest.sk:7*/
+  
+void runTests ()/*CsvColumnTest.sk:7*/
+  {
+    the_getIntValue_method_when_column_is_integer_should_return_correct_result();
+    the_getBooleanValue_method_when_column_can_be_converted_to_boolean_should_return_correct_result();
+  }
+  /*CsvColumnTest.sk:19*/
+  
+void the_getBooleanValue_method_when_column_can_be_converted_to_boolean_should_return_correct_result ()/*CsvColumnTest.sk:19*/
+  {
+    int trueValue_s593 = 0;
+    String@meta(trueValue_s593);
+    Object@Object trueValue_s595 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=trueValue_s593), new Array_char@array(length=5, A={'t','r','u','e','\0'}), 0, 4, trueValue_s595)//{};
+    int falseValue_s597 = 0;
+    String@meta(falseValue_s597);
+    Object@Object falseValue_s599 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=falseValue_s597), new Array_char@array(length=6, A={'f','a','l','s','e','\0'}), 0, 5, falseValue_s599)//{};
+    int columnWithTrueResult_s601 = 0;
+    CsvColumn@meta(columnWithTrueResult_s601);
+    Object@Object columnWithTrueResult_s603 = null;
+    CsvColumn_CsvColumn_String@CsvColumn(new Object@Object(__cid=columnWithTrueResult_s601), trueValue_s595, columnWithTrueResult_s603)//{};
+    int columnWithFalseResult_s605 = 0;
+    CsvColumn@meta(columnWithFalseResult_s605);
+    Object@Object columnWithFalseResult_s607 = null;
+    CsvColumn_CsvColumn_String@CsvColumn(new Object@Object(__cid=columnWithFalseResult_s605), falseValue_s599, columnWithFalseResult_s607)//{};
+    int resultThatShouldBeTrue_s609 = 0;
+    CsvColumn@meta(resultThatShouldBeTrue_s609);
+    bit _pac_sc_s610 = 0;
+    if((columnWithTrueResult_s603.__cid) == resultThatShouldBeTrue_s609)/*CsvColumnTest.sk:24*/
+    {
+      bit resultThatShouldBeTrue_s612 = 0;
+      getBoolean@CsvColumn(columnWithTrueResult_s603, resultThatShouldBeTrue_s612);
+      _pac_sc_s610 = resultThatShouldBeTrue_s612;
+    }
+    else
+    {
+      _pac_sc_s610 = 0;
+    }
+    int resultThatShouldBeFalse_s614 = 0;
+    CsvColumn@meta(resultThatShouldBeFalse_s614);
+    bit _pac_sc_s615 = 0;
+    if((columnWithFalseResult_s607.__cid) == resultThatShouldBeFalse_s614)/*CsvColumnTest.sk:25*/
+    {
+      bit resultThatShouldBeFalse_s617 = 0;
+      getBoolean@CsvColumn(columnWithFalseResult_s607, resultThatShouldBeFalse_s617);
+      _pac_sc_s615 = resultThatShouldBeFalse_s617;
+    }
+    else
+    {
+      _pac_sc_s615 = 0;
+    }
+    assert (_pac_sc_s610); //Assert at CsvColumnTest.sk:26 (2)
+    assert (!(_pac_sc_s615)); //Assert at CsvColumnTest.sk:27 (2)
+  }
+  /*CsvColumnTest.sk:12*/
+  
+void the_getIntValue_method_when_column_is_integer_should_return_correct_result ()/*CsvColumnTest.sk:12*/
+  {
+    int someIntValue_s619 = 0;
+    String@meta(someIntValue_s619);
+    Object@Object someIntValue_s621 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=someIntValue_s619), new Array_char@array(length=3, A={'2','0','\0'}), 0, 2, someIntValue_s621)//{};
+    int someIntCsvColumn_s623 = 0;
+    CsvColumn@meta(someIntCsvColumn_s623);
+    Object@Object someIntCsvColumn_s625 = null;
+    CsvColumn_CsvColumn_String@CsvColumn(new Object@Object(__cid=someIntCsvColumn_s623), someIntValue_s621, someIntCsvColumn_s625)//{};
+    int result_s627 = 0;
+    CsvColumn@meta(result_s627);
+    int _pac_sc_s628 = 0;
+    if((someIntCsvColumn_s625.__cid) == result_s627)/*CsvColumnTest.sk:15*/
+    {
+      int result_s630 = 0;
+      getInteger@CsvColumn(someIntCsvColumn_s625, result_s630);
+      _pac_sc_s628 = result_s630;
+    }
+    else
+    {
+      _pac_sc_s628 = 0;
+    }
+    assert (20 == _pac_sc_s628); //Assert at CsvColumnTest.sk:16 (2)
+  }
+  /* END PACKAGE CsvColumnTest*/
+}
+/* BEGIN PACKAGE CSVTester*/
+package CSVTester{
+  /*CSVTester.sk:7*/
+  
+void mn ()/*CSVTester.sk:7*/
+  {
+    int self_s632 = 0;
+    Object@meta(self_s632);
+    Object@Object self_s634 = null;
+    Object_Object@Object(new Object@Object(__cid=self_s632), self_s634)//{};
+    runTests@CsvRowTest();
+    runTests@CsvColumnTest();
+    runTests@CsvDocumentTest();
+  }
+  /*CSVTester.sk:7*/
+  
+void mn__Wrapper ()  implements mn__WrapperNospec/*CSVTester.sk:7*/
+  {
+    mn();
+  }
+  /*CSVTester.sk:7*/
+  
+void mn__WrapperNospec ()/*CSVTester.sk:7*/
+  { }
+  /* END PACKAGE CSVTester*/
+}
+/* BEGIN PACKAGE Boolean*/
+package Boolean{
+  /* END PACKAGE Boolean*/
+}
+/* BEGIN PACKAGE CodeAssertion*/
+package CodeAssertion{
+  /* END PACKAGE CodeAssertion*/
+}
+/* BEGIN PACKAGE PrintStream*/
+package PrintStream{
+  struct PrintStream {
+      @Immutable()
+  }
+  struct Printstream extends PrintStream@PrintStream {
+      @Immutable()
+  }
+  struct Printstream_fileoutputstream extends PrintStream@PrintStream {
+      Object fos;
+      @Immutable()
+  }
+  struct Close extends PrintStream@PrintStream {
+      PrintStream self;
+      @Immutable()
+  }
+  struct Closeb extends PrintStream@PrintStream {
+      PrintStream self;
+      @Immutable()
+  }
+  struct Printb_string extends PrintStream@PrintStream {
+      PrintStream self;
+      Object s;
+      @Immutable()
+  }
+  struct Print_string extends PrintStream@PrintStream {
+      PrintStream self;
+      Object s;
+      @Immutable()
+  }
+  /* END PACKAGE PrintStream*/
+}
+/* BEGIN PACKAGE ANONYMOUS*/
+/* END PACKAGE ANONYMOUS*/
+/* BEGIN PACKAGE Character*/
+package Character{
+  /* END PACKAGE Character*/
+}
+/* BEGIN PACKAGE CharSequence*/
+package CharSequence{
+  /* END PACKAGE CharSequence*/
+}
+/* BEGIN PACKAGE FileReaderr*/
+package FileReaderr{
+  /*FileReaderr.sk:7*/
+  
+void FileReaderr_FileReaderr_String (Object self, Object path, ref Object _out)/*FileReaderr.sk:7*/
+  {
+    self.path_FileReaderr = path;
+    int _out_s661 = 0;
+    String@meta(_out_s661);
+    Array_Object@array _pac_sc_s662 = null;
+    if((path.__cid) == _out_s661)/*FileReaderr.sk:9*/
+    {
+      int _out_s664 = 0;
+      String@meta(_out_s664);
+      Object@Object _out_s666 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_out_s664), new Array_char@array(length=2, A={'\n','\0'}), 0, 1, _out_s666)//{};
+      Array_Object@array _out_s668 = null;
+      split_String@String(path, _out_s666, _out_s668)//{};
+      _pac_sc_s662 = _out_s668;
+    }
+    else
+    {
+      _pac_sc_s662 = null;
+    }
+    self.data_FileReaderr = _pac_sc_s662;
+    _out = self;
+    return;
+  }
+  /*FileReaderr.sk:17*/
+  
+void get_int (Object self, int i, ref Object _out)/*FileReaderr.sk:17*/
+  {
+    if(i < (self.data_FileReaderr.length))/*FileReaderr.sk:18*/
+    {
+      _out = self.data_FileReaderr.A[i];
+      return;
+    }
+    _out = null;
+    return;
+  }
+  /* END PACKAGE FileReaderr*/
+}
+/* BEGIN PACKAGE Integer*/
+package Integer{
+  /*Integer.sk:22*/
+  
+void intValue (Object self, ref int _out)/*Integer.sk:22*/
+  {
+    _out = self.value_Integer;
+    return;
+  }
+  /*Integer.sk:77*/
+  
+void parseInt_String (Object s, ref int _out)/*Integer.sk:77*/
+  {
+    Array_char@array nums = new Array_char@array(length=10, A={'0','1','2','3','4','5','6','7','8','9'});
+    int len_s670 = 0;
+    String@meta(len_s670);
+    int _pac_sc_s671 = 0;
+    if((s.__cid) == len_s670)/*Integer.sk:79*/
+    {
+      int len_s673 = 0;
+      length@String(s, len_s673);
+      _pac_sc_s671 = len_s673;
+    }
+    else
+    {
+      _pac_sc_s671 = 0;
+    }
+    _out = 0;
+    int mult = 1;
+    for(int i = _pac_sc_s671 - 1; i >= 0; i = i - 1)
+    {
+      int c_s675 = 0;
+      String@meta(c_s675);
+      char _pac_sc_s676 = '\0';
+      if((s.__cid) == c_s675)/*Integer.sk:83*/
+      {
+        char c_s678 = '\0';
+        charAt_int@String(s, i, c_s678);
+        _pac_sc_s676 = c_s678;
+      }
+      else
+      {
+        _pac_sc_s676 = '\0';
+      }
+      for(int j = 0; j < 10; j = j + 1)/*Canonical*/
+      {
+        if(_pac_sc_s676 == (nums.A[j]))/*Integer.sk:85*/
+        {
+          _out = _out + (mult * j);
+        }
+      }
+      if((i == 0) && (_pac_sc_s676 == ('-')))/*Integer.sk:89*/
+      {
+        _out = _out * -1;
+      }
+      mult = mult * 10;
+    }
+    return;
+  }
+  /* END PACKAGE Integer*/
+}
+/* BEGIN PACKAGE StringBuffer*/
+package StringBuffer{
+  /* END PACKAGE StringBuffer*/
+}
+/* BEGIN PACKAGE CsvRow*/
+package CsvRow{
+  /*CsvRow.sk:22*/
+  
+void CsvRow_CsvRow_ArrayList (Object self, Object rowColumns, ref Object _out)/*CsvRow.sk:22*/
+  {
+    Object@Object _out_s755 = null;
+    ArrayList_ArrayList@ArrayList(_out_s755);
+    self.columns_CsvRow = _out_s755;
+    self.columns_CsvRow = rowColumns;
+    _out = self;
+    return;
+  }
+  /*CsvRow.sk:15*/
+  
+void CsvRow_CsvRow_CsvColumn_CsvColumn (Object self, Object v1, Object v2, ref Object _out)/*CsvRow.sk:15*/
+  {
+    Object@Object _out_s772 = null;
+    ArrayList_ArrayList@ArrayList(_out_s772);
+    self.columns_CsvRow = _out_s772;
+    int _out_s774 = 0;
+    ArrayList@meta(_out_s774);
+    if((self.columns_CsvRow.__cid) == _out_s774)/*CsvRow.sk:17*/
+    {
+      Object@Object _out_s777 = null;
+      add_Object_Object@ArrayList(self.columns_CsvRow, v1, _out_s777);
+    }
+    int _out_s779 = 0;
+    ArrayList@meta(_out_s779);
+    Object@Object _pac_sc_s780 = null;
+    if((self.columns_CsvRow.__cid) == _out_s779)/*CsvRow.sk:17*/
+    {
+      Object@Object _out_s782 = null;
+      addb_Object_Object@ArrayList(self.columns_CsvRow, v1, _out_s782);
+      _pac_sc_s780 = _out_s782;
+    }
+    else
+    {
+      _pac_sc_s780 = null;
+    }
+    self.columns_CsvRow = _pac_sc_s780;
+    int _out_s784 = 0;
+    ArrayList@meta(_out_s784);
+    if((self.columns_CsvRow.__cid) == _out_s784)/*CsvRow.sk:18*/
+    {
+      Object@Object _out_s787 = null;
+      add_Object_Object@ArrayList(self.columns_CsvRow, v2, _out_s787);
+    }
+    int _out_s789 = 0;
+    ArrayList@meta(_out_s789);
+    Object@Object _pac_sc_s790 = null;
+    if((self.columns_CsvRow.__cid) == _out_s789)/*CsvRow.sk:18*/
+    {
+      Object@Object _out_s792 = null;
+      addb_Object_Object@ArrayList(self.columns_CsvRow, v2, _out_s792);
+      _pac_sc_s790 = _out_s792;
+    }
+    else
+    {
+      _pac_sc_s790 = null;
+    }
+    self.columns_CsvRow = _pac_sc_s790;
+    _out = self;
+    return;
+  }
+  /*CsvRow.sk:8*/
+  
+void CsvRow_CsvRow_String_String (Object self, Object v1, Object v2, ref Object _out)/*CsvRow.sk:8*/
+  {
+    Object@Object _out_s794 = null;
+    ArrayList_ArrayList@ArrayList(_out_s794);
+    self.columns_CsvRow = _out_s794;
+    int _out_s796 = 0;
+    ArrayList@meta(_out_s796);
+    if((self.columns_CsvRow.__cid) == _out_s796)/*CsvRow.sk:10*/
+    {
+      int _out_s799 = 0;
+      CsvColumn@meta(_out_s799);
+      Object@Object _out_s801 = null;
+      CsvColumn_CsvColumn_String@CsvColumn(new Object@Object(__cid=_out_s799), v1, _out_s801)//{};
+      Object@Object _out_s803 = null;
+      add_Object_Object@ArrayList(self.columns_CsvRow, _out_s801, _out_s803)//{};
+    }
+    int _out_s805 = 0;
+    ArrayList@meta(_out_s805);
+    Object@Object _pac_sc_s806 = null;
+    if((self.columns_CsvRow.__cid) == _out_s805)/*CsvRow.sk:10*/
+    {
+      int _out_s808 = 0;
+      CsvColumn@meta(_out_s808);
+      Object@Object _out_s810 = null;
+      CsvColumn_CsvColumn_String@CsvColumn(new Object@Object(__cid=_out_s808), v1, _out_s810)//{};
+      Object@Object _out_s812 = null;
+      addb_Object_Object@ArrayList(self.columns_CsvRow, _out_s810, _out_s812)//{};
+      _pac_sc_s806 = _out_s812;
+    }
+    else
+    {
+      _pac_sc_s806 = null;
+    }
+    self.columns_CsvRow = _pac_sc_s806;
+    int _out_s814 = 0;
+    ArrayList@meta(_out_s814);
+    if((self.columns_CsvRow.__cid) == _out_s814)/*CsvRow.sk:11*/
+    {
+      int _out_s817 = 0;
+      CsvColumn@meta(_out_s817);
+      Object@Object _out_s819 = null;
+      CsvColumn_CsvColumn_String@CsvColumn(new Object@Object(__cid=_out_s817), v2, _out_s819)//{};
+      Object@Object _out_s821 = null;
+      add_Object_Object@ArrayList(self.columns_CsvRow, _out_s819, _out_s821)//{};
+    }
+    int _out_s823 = 0;
+    ArrayList@meta(_out_s823);
+    Object@Object _pac_sc_s824 = null;
+    if((self.columns_CsvRow.__cid) == _out_s823)/*CsvRow.sk:11*/
+    {
+      int _out_s826 = 0;
+      CsvColumn@meta(_out_s826);
+      Object@Object _out_s828 = null;
+      CsvColumn_CsvColumn_String@CsvColumn(new Object@Object(__cid=_out_s826), v2, _out_s828)//{};
+      Object@Object _out_s830 = null;
+      addb_Object_Object@ArrayList(self.columns_CsvRow, _out_s828, _out_s830)//{};
+      _pac_sc_s824 = _out_s830;
+    }
+    else
+    {
+      _pac_sc_s824 = null;
+    }
+    self.columns_CsvRow = _pac_sc_s824;
+    _out = self;
+    return;
+  }
+  /*CsvRow.sk:28*/
+  
+void getColumnAtIndex_int (Object self, int index, ref Object _out)/*CsvRow.sk:28*/
+  {
+    int _out_s757 = 0;
+    ArrayList@meta(_out_s757);
+    Object@Object _pac_sc_s758 = null;
+    if((self.columns_CsvRow.__cid) == _out_s757)/*CsvRow.sk:29*/
+    {
+      Object@Object _out_s760 = null;
+      get_Object_int@ArrayList(self.columns_CsvRow, index, _out_s760);
+      _pac_sc_s758 = _out_s760;
+    }
+    else
+    {
+      _pac_sc_s758 = null;
+    }
+    _out = _pac_sc_s758;
+    return;
+  }
+  /*CsvRow.sk:32*/
+  
+void getNumberOfColumns (Object self, ref int _out)/*CsvRow.sk:32*/
+  {
+    int _out_s767 = 0;
+    ArrayList@meta(_out_s767);
+    int _pac_sc_s768 = 0;
+    if((self.columns_CsvRow.__cid) == _out_s767)/*CsvRow.sk:33*/
+    {
+      int _out_s770 = 0;
+      size_Object@ArrayList(self.columns_CsvRow, _out_s770);
+      _pac_sc_s768 = _out_s770;
+    }
+    else
+    {
+      _pac_sc_s768 = 0;
+    }
+    _out = _pac_sc_s768;
+    return;
+  }
+  /*CsvRow.sk:36*/
+  
+void isEmpty (Object self, ref bit _out)/*CsvRow.sk:36*/
+  {
+    int _out_s762 = 0;
+    ArrayList@meta(_out_s762);
+    int _pac_sc_s763 = 0;
+    if((self.columns_CsvRow.__cid) == _out_s762)/*CsvRow.sk:37*/
+    {
+      int _out_s765 = 0;
+      size_Object@ArrayList(self.columns_CsvRow, _out_s765);
+      _pac_sc_s763 = _out_s765;
+    }
+    else
+    {
+      _pac_sc_s763 = 0;
+    }
+    _out = _pac_sc_s763 == 0;
+    return;
+  }
+  /*CsvRow.sk:40*/
+  
+void toString (Object self, ref Object _out)/*CsvRow.sk:40*/
+  {
+    int sb_s713 = 0;
+    StringBuilder@meta(sb_s713);
+    Object@Object sb_s715 = null;
+    StringBuilder_StringBuilder@StringBuilder(new Object@Object(__cid=sb_s713), sb_s715)//{};
+    int __sa4_s717 = 0;
+    ArrayList@meta(__sa4_s717);
+    int _pac_sc_s718 = 0;
+    if((self.columns_CsvRow.__cid) == __sa4_s717)/*CsvRow.sk:42*/
+    {
+      int __sa4_s720 = 0;
+      size_Object@ArrayList(self.columns_CsvRow, __sa4_s720);
+      _pac_sc_s718 = __sa4_s720;
+    }
+    else
+    {
+      _pac_sc_s718 = 0;
+    }
+    bit __sa4 = 0 < _pac_sc_s718;
+    int i = 0;
+    while(__sa4)
+    {
+      int c_s722 = 0;
+      ArrayList@meta(c_s722);
+      Object@Object _pac_sc_s723 = null;
+      if((self.columns_CsvRow.__cid) == c_s722)/*CsvRow.sk:43*/
+      {
+        Object@Object c_s725 = null;
+        get_Object_int@ArrayList(self.columns_CsvRow, i, c_s725);
+        _pac_sc_s723 = c_s725;
+      }
+      else
+      {
+        _pac_sc_s723 = null;
+      }
+      int _out_s727 = 0;
+      StringBuilder@meta(_out_s727);
+      if((sb_s715.__cid) == _out_s727)/*CsvRow.sk:44*/
+      {
+        int _out_s729 = 0;
+        CsvColumn@meta(_out_s729);
+        Object@Object _pac_sc_s730 = null;
+        if((_pac_sc_s723.__cid) == _out_s729)/*CsvRow.sk:44*/
+        {
+          Object@Object _out_s732 = null;
+          getColumnValue@CsvColumn(_pac_sc_s723, _out_s732);
+          _pac_sc_s730 = _out_s732;
+        }
+        else
+        {
+          _pac_sc_s730 = null;
+        }
+        append_String@StringBuilder(sb_s715, _pac_sc_s730)//{};
+      }
+      int _out_s734 = 0;
+      ArrayList@meta(_out_s734);
+      int _pac_sc_s735 = 0;
+      if((self.columns_CsvRow.__cid) == _out_s734)/*CsvRow.sk:46*/
+      {
+        int _out_s737 = 0;
+        size_Object@ArrayList(self.columns_CsvRow, _out_s737);
+        _pac_sc_s735 = _out_s737;
+      }
+      else
+      {
+        _pac_sc_s735 = 0;
+      }
+      if(i < (_pac_sc_s735 - 1))/*CsvRow.sk:46*/
+      {
+        int _out_s739 = 0;
+        StringBuilder@meta(_out_s739);
+        if((sb_s715.__cid) == _out_s739)/*CsvRow.sk:47*/
+        {
+          int _out_s741 = 0;
+          String@meta(_out_s741);
+          Object@Object _out_s743 = null;
+          String_String_char_int_int@String(new Object@Object(__cid=_out_s741), new Array_char@array(length=2, A={',','\0'}), 0, 1, _out_s743)//{};
+          append_String@StringBuilder(sb_s715, _out_s743)//{};
+        }
+      }
+      i = i + 1;
+      int __sa4_s745 = 0;
+      ArrayList@meta(__sa4_s745);
+      int _pac_sc_s746 = 0;
+      if((self.columns_CsvRow.__cid) == __sa4_s745)/*CsvRow.sk:42*/
+      {
+        int __sa4_s748 = 0;
+        size_Object@ArrayList(self.columns_CsvRow, __sa4_s748);
+        _pac_sc_s746 = __sa4_s748;
+      }
+      else
+      {
+        _pac_sc_s746 = 0;
+      }
+      __sa4 = i < _pac_sc_s746;
+    }
+    int _out_s750 = 0;
+    StringBuilder@meta(_out_s750);
+    Object@Object _pac_sc_s751 = null;
+    if((sb_s715.__cid) == _out_s750)/*CsvRow.sk:51*/
+    {
+      Object@Object _out_s753 = null;
+      toString@StringBuilder(sb_s715, _out_s753);
+      _pac_sc_s751 = _out_s753;
+    }
+    else
+    {
+      _pac_sc_s751 = null;
+    }
+    _out = _pac_sc_s751;
+    return;
+  }
+  /* END PACKAGE CsvRow*/
+}
+/* BEGIN PACKAGE meta*/
+package meta{
+  /*meta.sk:4*/
+  
+void ArrayList (ref int _out)/*meta.sk:4*/
+  {
+    _out = 16;
+    return;
+  }
+  /*meta.sk:6*/
+  
+void BufferedReader (ref int _out)/*meta.sk:6*/
+  {
+    _out = 13;
+    return;
+  }
+  /*meta.sk:11*/
+  
+void CsvColumn (ref int _out)/*meta.sk:11*/
+  {
+    _out = 4;
+    return;
+  }
+  /*meta.sk:13*/
+  
+void CsvConfiguration (ref int _out)/*meta.sk:13*/
+  {
+    _out = 6;
+    return;
+  }
+  /*meta.sk:14*/
+  
+void CsvDocument (ref int _out)/*meta.sk:14*/
+  {
+    _out = 2;
+    return;
+  }
+  /*meta.sk:17*/
+  
+void CsvRow (ref int _out)/*meta.sk:17*/
+  {
+    _out = 9;
+    return;
+  }
+  /*meta.sk:20*/
+  
+void FileReaderr (ref int _out)/*meta.sk:20*/
+  {
+    _out = 15;
+    return;
+  }
+  /*meta.sk:21*/
+  
+void Integer (ref int _out)/*meta.sk:21*/
+  {
+    _out = 22;
+    return;
+  }
+  /*meta.sk:23*/
+  
+void Object (ref int _out)/*meta.sk:23*/
+  {
+    _out = 1;
+    return;
+  }
+  /*meta.sk:25*/
+  
+void String (ref int _out)/*meta.sk:25*/
+  {
+    _out = 23;
+    return;
+  }
+  /*meta.sk:27*/
+  
+void StringBuilder (ref int _out)/*meta.sk:27*/
+  {
+    _out = 17;
+    return;
+  }
+  /* END PACKAGE meta*/
+}
+/* BEGIN PACKAGE FileOutputStream*/
+package FileOutputStream{
+  struct FileOutputStream {
+      @Immutable()
+  }
+  struct Fileoutputstream extends FileOutputStream@FileOutputStream {
+      @Immutable()
+  }
+  struct Fileoutputstream_string extends FileOutputStream@FileOutputStream {
+      Object s;
+      @Immutable()
+  }
+  /* END PACKAGE FileOutputStream*/
+}
+/* BEGIN PACKAGE BufferedReader*/
+package BufferedReader{
+  struct BufferedReader {
+      @Immutable()
+  }
+  struct Bufferedreader extends BufferedReader@BufferedReader {
+      @Immutable()
+  }
+  struct Bufferedreader_filereaderr extends BufferedReader@BufferedReader {
+      Object type;
+      @Immutable()
+  }
+  struct Readline extends BufferedReader@BufferedReader {
+      BufferedReader self;
+      @Immutable()
+  }
+  struct Readlineb extends BufferedReader@BufferedReader {
+      BufferedReader self;
+      @Immutable()
+  }
+  struct Readlinehelpb_int extends BufferedReader@BufferedReader {
+      BufferedReader self;
+      int i;
+      @Immutable()
+  }
+  struct Readlinehelp_int extends BufferedReader@BufferedReader {
+      BufferedReader self;
+      int i;
+      @Immutable()
+  }
+  /*BufferedReader.sk:16*/
+  
+void BufferedReader_Object_FileReaderr (Object type, ref Object _out)/*BufferedReader.sk:16*/
+  {
+    int _out_s854 = 0;
+    BufferedReader@meta(_out_s854);
+    _out = new Object@Object(__cid=_out_s854, _bufferedreader=new Bufferedreader_filereaderr(type=type));
+    return;
+  }
+  /*BufferedReader.sk:20*/
+  
+void readLine_Object (Object self, ref Object _out)/*BufferedReader.sk:20*/
+  {
+    Object@Object _out_s838 = null;
+    xform_readLine_BufferedReader(self._bufferedreader, _out_s838);
+    _out = _out_s838;
+    return;
+  }
+  /*BufferedReader.sk:24*/
+  
+void readLineb_Object (Object self, ref Object _out)/*BufferedReader.sk:24*/
+  {
+    self._bufferedreader = new Readlineb(self=self._bufferedreader);
+    _out = self;
+    return;
+  }
+  /*BufferedReader.sk:38*/
+  
+void xform_readLineHelp_BufferedReader_int (BufferedReader selff, int i, ref Object _out)/*BufferedReader.sk:38*/
+  {
+    switch(selff){/*BufferedReader.sk:40*/
+      case Bufferedreader:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:40 ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:41 Assert at BufferedReader.sk:41 (1)
+      case Bufferedreader_filereaderr:
+      {
+        int _out_s847 = 0;
+        FileReaderr@meta(_out_s847);
+        Object@Object _pac_sc_s848 = null;
+        if((selff.type.__cid) == _out_s847)/*BufferedReader.sk:43*/
+        {
+          Object@Object _out_s850 = null;
+          get_int@FileReaderr(selff.type, i, _out_s850);
+          _pac_sc_s848 = _out_s850;
+        }
+        else
+        {
+          _pac_sc_s848 = null;
+        }
+        _out = _pac_sc_s848;
+        return;
+      }
+      case Readline:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:40 ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:45 Assert at BufferedReader.sk:45 (1)
+      case Readlineb:
+      {
+        Object@Object _out_s852 = null;
+        xform_readLineHelp_BufferedReader_int(selff.self, i + 1, _out_s852);
+        _out = _out_s852;
+        return;
+      }
+      case Readlinehelpb_int:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:40 ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:49 Assert at BufferedReader.sk:49 (1)
+      case Readlinehelp_int:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:40 ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:50 Assert at BufferedReader.sk:50 (1)
+    }
+    _out = null;
+    return;
+  }
+  /*BufferedReader.sk:94*/
+  
+void xform_readLine_BufferedReader (BufferedReader selff, ref Object _out)/*BufferedReader.sk:94*/
+  {
+    switch(selff){/*BufferedReader.sk:96*/
+      case Bufferedreader:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:96 ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:97 Assert at BufferedReader.sk:97 (1)
+      case Bufferedreader_filereaderr:
+      {
+        int _out_s840 = 0;
+        FileReaderr@meta(_out_s840);
+        Object@Object _pac_sc_s841 = null;
+        if((selff.type.__cid) == _out_s840)/*BufferedReader.sk:99*/
+        {
+          Object@Object _out_s843 = null;
+          get_int@FileReaderr(selff.type, 0, _out_s843);
+          _pac_sc_s841 = _out_s843;
+        }
+        else
+        {
+          _pac_sc_s841 = null;
+        }
+        _out = _pac_sc_s841;
+        return;
+      }
+      case Readline:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:96 ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:101 Assert at BufferedReader.sk:101 (1)
+      case Readlineb:
+      {
+        Object@Object _out_s845 = null;
+        xform_readLineHelp_BufferedReader_int(selff.self, 1, _out_s845);
+        _out = _out_s845;
+        return;
+      }
+      case Readlinehelpb_int:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:96 ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:105 Assert at BufferedReader.sk:105 (1)
+      case Readlinehelp_int:
+        assert (0); //ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:96 ASSERTION CAN NOT BE SATISFIED: BufferedReader.sk:106 Assert at BufferedReader.sk:106 (1)
+    }
+    _out = null;
+    return;
+  }
+  /* END PACKAGE BufferedReader*/
+}
+/* BEGIN PACKAGE Object*/
+package Object{
+  struct Object {
+      int __cid;
+      Object columnValue_CsvColumn;
+      Array_char _value_StringBuilder;
+      int _count_StringBuilder;
+      Object path_FileReaderr;
+      Array_Object data_FileReaderr;
+      int value_Integer;
+      Array_char _value_StringBuffer;
+      int _count_StringBuffer;
+      Object name_CsvDocumentTest_Person;
+      int age_CsvDocumentTest_Person;
+      bit isEmployed_CsvDocumentTest_Person;
+      bit skipHeader_CsvConfiguration;
+      Object columnIndexesToParse_CsvConfiguration;
+      Object csvRows_CsvDocument;
+      Object columns_CsvRow;
+      char value_Character;
+      Array_char _value_String;
+      int _count_String;
+      bit bool_Boolean;
+      PrintStream _printstream;
+      ArrayList _arraylist;
+      FileOutputStream _fileoutputstream;
+      BufferedReader _bufferedreader;
+      Array_bit _array_bit;
+      Array_char _array_char;
+      Array_int _array_int;
+      Array_float _array_float;
+      Array_double _array_double;
+      Array_Object _array_object;
+      bit _bit;
+      char _char;
+      int _int;
+      float _float;
+      double _double;
+  }
+  /*Object.sk:7*/
+  
+void Object_Object (Object self, ref Object _out)/*Object.sk:7*/
+  {
+    _out = self;
+    return;
+  }
+  /* END PACKAGE Object*/
+}
+/* BEGIN PACKAGE CsvDocument*/
+package CsvDocument{
+  /*CsvDocument.sk:7*/
+  
+void CsvDocument_CsvDocument_ArrayList (Object self, Object csvRows, ref Object _out)/*CsvDocument.sk:7*/
+  {
+    self.csvRows_CsvDocument = csvRows;
+    _out = self;
+    return;
+  }
+  /*CsvDocument.sk:12*/
+  
+void getCsvRows (Object self, ref Object _out)/*CsvDocument.sk:12*/
+  {
+    _out = self.csvRows_CsvDocument;
+    return;
+  }
+  /*CsvDocument.sk:80*/
+  
+void parseCsvRow_CsvConfiguration_String (Object csvConfiguration, Object csvLine, ref Object _out)/*CsvDocument.sk:80*/
+  {
+    int COMA_SEPARATOR_s1141 = 0;
+    String@meta(COMA_SEPARATOR_s1141);
+    Object@Object COMA_SEPARATOR_s1143 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=COMA_SEPARATOR_s1141), new Array_char@array(length=2, A={',','\0'}), 0, 1, COMA_SEPARATOR_s1143)//{};
+    int columns_s1145 = 0;
+    String@meta(columns_s1145);
+    Array_Object@array _pac_sc_s1146 = null;
+    if((csvLine.__cid) == columns_s1145)/*CsvDocument.sk:82*/
+    {
+      Array_Object@array columns_s1148 = null;
+      split_String@String(csvLine, COMA_SEPARATOR_s1143, columns_s1148);
+      _pac_sc_s1146 = columns_s1148;
+    }
+    else
+    {
+      _pac_sc_s1146 = null;
+    }
+    Object@Object csvColumns_s1150 = null;
+    ArrayList_ArrayList@ArrayList(csvColumns_s1150);
+    Object@Object csvColumns;
+    csvColumns = csvColumns_s1150;
+    int _out_s1152 = 0;
+    CsvConfiguration@meta(_out_s1152);
+    bit _pac_sc_s1153 = 0;
+    if((csvConfiguration.__cid) == _out_s1152)/*CsvDocument.sk:84*/
+    {
+      bit _out_s1155 = 0;
+      parseAllColumns@CsvConfiguration(csvConfiguration, _out_s1155);
+      _pac_sc_s1153 = _out_s1155;
+    }
+    else
+    {
+      _pac_sc_s1153 = 0;
+    }
+    if(_pac_sc_s1153)/*CsvDocument.sk:84*/
+    {
+      bit __sa5 = 0 < (_pac_sc_s1146.length);
+      int i = 0;
+      while(__sa5)
+      {
+        int _out_s1157 = 0;
+        ArrayList@meta(_out_s1157);
+        if((csvColumns.__cid) == _out_s1157)/*CsvDocument.sk:86*/
+        {
+          int _out_s1160 = 0;
+          CsvColumn@meta(_out_s1160);
+          Object@Object _out_s1162 = null;
+          CsvColumn_CsvColumn_String@CsvColumn(new Object@Object(__cid=_out_s1160), _pac_sc_s1146.A[i], _out_s1162)//{};
+          Object@Object _out_s1164 = null;
+          add_Object_Object@ArrayList(csvColumns, _out_s1162, _out_s1164)//{};
+        }
+        int csvColumns_s1166 = 0;
+        ArrayList@meta(csvColumns_s1166);
+        Object@Object _pac_sc_s1167 = null;
+        if((csvColumns.__cid) == csvColumns_s1166)/*CsvDocument.sk:86*/
+        {
+          int csvColumns_s1169 = 0;
+          CsvColumn@meta(csvColumns_s1169);
+          Object@Object csvColumns_s1171 = null;
+          CsvColumn_CsvColumn_String@CsvColumn(new Object@Object(__cid=csvColumns_s1169), _pac_sc_s1146.A[i], csvColumns_s1171)//{};
+          Object@Object csvColumns_s1173 = null;
+          addb_Object_Object@ArrayList(csvColumns, csvColumns_s1171, csvColumns_s1173)//{};
+          _pac_sc_s1167 = csvColumns_s1173;
+        }
+        else
+        {
+          _pac_sc_s1167 = null;
+        }
+        csvColumns = _pac_sc_s1167;
+        i = i + 1;
+        __sa5 = i < (_pac_sc_s1146.length);
+      }
+    }
+    else
+    {
+      int colInds_s1175 = 0;
+      CsvConfiguration@meta(colInds_s1175);
+      Object@Object _pac_sc_s1176 = null;
+      if((csvConfiguration.__cid) == colInds_s1175)/*CsvDocument.sk:90*/
+      {
+        Object@Object colInds_s1178 = null;
+        getColumnIndexesToParse@CsvConfiguration(csvConfiguration, colInds_s1178);
+        _pac_sc_s1176 = colInds_s1178;
+      }
+      else
+      {
+        _pac_sc_s1176 = null;
+      }
+      int size_s1180 = 0;
+      ArrayList@meta(size_s1180);
+      int _pac_sc_s1181 = 0;
+      if((_pac_sc_s1176.__cid) == size_s1180)/*CsvDocument.sk:91*/
+      {
+        int size_s1183 = 0;
+        size_Object@ArrayList(_pac_sc_s1176, size_s1183);
+        _pac_sc_s1181 = size_s1183;
+      }
+      else
+      {
+        _pac_sc_s1181 = 0;
+      }
+      for(int i_0 = 0; i_0 < _pac_sc_s1181; i_0 = i_0 + 1)/*Canonical*/
+      {
+        int columnIndexInt_s1185 = 0;
+        ArrayList@meta(columnIndexInt_s1185);
+        Object@Object _pac_sc_s1186 = null;
+        if((_pac_sc_s1176.__cid) == columnIndexInt_s1185)/*CsvDocument.sk:93*/
+        {
+          Object@Object columnIndexInt_s1188 = null;
+          get_Object_int@ArrayList(_pac_sc_s1176, i_0, columnIndexInt_s1188);
+          _pac_sc_s1186 = columnIndexInt_s1188;
+        }
+        else
+        {
+          _pac_sc_s1186 = null;
+        }
+        int columnIndex_s1190 = 0;
+        Integer@meta(columnIndex_s1190);
+        int _pac_sc_s1191 = 0;
+        if((_pac_sc_s1186.__cid) == columnIndex_s1190)/*CsvDocument.sk:94*/
+        {
+          int columnIndex_s1193 = 0;
+          intValue@Integer(_pac_sc_s1186, columnIndex_s1193);
+          _pac_sc_s1191 = columnIndex_s1193;
+        }
+        else
+        {
+          _pac_sc_s1191 = 0;
+        }
+        int _out_s1195 = 0;
+        ArrayList@meta(_out_s1195);
+        if((csvColumns.__cid) == _out_s1195)/*CsvDocument.sk:95*/
+        {
+          int _out_s1198 = 0;
+          CsvColumn@meta(_out_s1198);
+          Object@Object _out_s1200 = null;
+          CsvColumn_CsvColumn_String@CsvColumn(new Object@Object(__cid=_out_s1198), _pac_sc_s1146.A[_pac_sc_s1191], _out_s1200)//{};
+          Object@Object _out_s1202 = null;
+          add_Object_Object@ArrayList(csvColumns, _out_s1200, _out_s1202)//{};
+        }
+        int csvColumns_s1204 = 0;
+        ArrayList@meta(csvColumns_s1204);
+        Object@Object _pac_sc_s1205 = null;
+        if((csvColumns.__cid) == csvColumns_s1204)/*CsvDocument.sk:95*/
+        {
+          int csvColumns_s1207 = 0;
+          CsvColumn@meta(csvColumns_s1207);
+          Object@Object csvColumns_s1209 = null;
+          CsvColumn_CsvColumn_String@CsvColumn(new Object@Object(__cid=csvColumns_s1207), _pac_sc_s1146.A[_pac_sc_s1191], csvColumns_s1209)//{};
+          Object@Object csvColumns_s1211 = null;
+          addb_Object_Object@ArrayList(csvColumns, csvColumns_s1209, csvColumns_s1211)//{};
+          _pac_sc_s1205 = csvColumns_s1211;
+        }
+        else
+        {
+          _pac_sc_s1205 = null;
+        }
+        csvColumns = _pac_sc_s1205;
+      }
+    }
+    int _out_s1213 = 0;
+    CsvRow@meta(_out_s1213);
+    Object@Object _out_s1215 = null;
+    CsvRow_CsvRow_ArrayList@CsvRow(new Object@Object(__cid=_out_s1213), csvColumns, _out_s1215)//{};
+    _out = _out_s1215;
+    return;
+  }
+  /*CsvDocument.sk:31*/
+  
+void read_String (Object filePath, ref Object _out)/*CsvDocument.sk:31*/
+  {
+    int defaultConfiguration_s1091 = 0;
+    CsvConfiguration@meta(defaultConfiguration_s1091);
+    Object@Object defaultConfiguration_s1093 = null;
+    CsvConfiguration_CsvConfiguration@CsvConfiguration(new Object@Object(__cid=defaultConfiguration_s1091), defaultConfiguration_s1093)//{};
+    Object@Object _out_s1095 = null;
+    read_String_CsvConfiguration(filePath, defaultConfiguration_s1093, _out_s1095);
+    _out = _out_s1095;
+    return;
+  }
+  /*CsvDocument.sk:60*/
+  
+void read_String_CsvConfiguration (Object filePath, Object csvConfiguration, ref Object _out)/*CsvDocument.sk:60*/
+  {
+    int bufferedReader_s1097 = 0;
+    FileReaderr@meta(bufferedReader_s1097);
+    Object@Object bufferedReader_s1099 = null;
+    FileReaderr_FileReaderr_String@FileReaderr(new Object@Object(__cid=bufferedReader_s1097), filePath, bufferedReader_s1099)//{};
+    Object@Object bufferedReader_s1101 = null;
+    BufferedReader_Object_FileReaderr@BufferedReader(bufferedReader_s1099, bufferedReader_s1101)//{};
+    Object@Object parsedCsvRows_s1103 = null;
+    ArrayList_ArrayList@ArrayList(parsedCsvRows_s1103);
+    Object@Object parsedCsvRows;
+    parsedCsvRows = parsedCsvRows_s1103;
+    int csvLine_s1105 = 0;
+    BufferedReader@meta(csvLine_s1105);
+    Object@Object _pac_sc_s1106 = null;
+    if((bufferedReader_s1101.__cid) == csvLine_s1105)/*CsvDocument.sk:63*/
+    {
+      Object@Object csvLine_s1108 = null;
+      readLine_Object@BufferedReader(bufferedReader_s1101, csvLine_s1108);
+      _pac_sc_s1106 = csvLine_s1108;
+    }
+    else
+    {
+      _pac_sc_s1106 = null;
+    }
+    Object@Object csvLine = _pac_sc_s1106;
+    int bufferedReader_s1110 = 0;
+    BufferedReader@meta(bufferedReader_s1110);
+    Object@Object _pac_sc_s1111 = null;
+    if((bufferedReader_s1101.__cid) == bufferedReader_s1110)/*CsvDocument.sk:63*/
+    {
+      Object@Object bufferedReader_s1113 = null;
+      readLineb_Object@BufferedReader(bufferedReader_s1101, bufferedReader_s1113);
+      _pac_sc_s1111 = bufferedReader_s1113;
+    }
+    else
+    {
+      _pac_sc_s1111 = null;
+    }
+    Object@Object bufferedReader = _pac_sc_s1111;
+    while(csvLine != (null))
+    {
+      Object@Object row_s1115 = null;
+      parseCsvRow_CsvConfiguration_String(csvConfiguration, csvLine, row_s1115);
+      int _out_s1117 = 0;
+      ArrayList@meta(_out_s1117);
+      if((parsedCsvRows.__cid) == _out_s1117)/*CsvDocument.sk:66*/
+      {
+        Object@Object _out_s1120 = null;
+        add_Object_Object@ArrayList(parsedCsvRows, row_s1115, _out_s1120);
+      }
+      int parsedCsvRows_s1122 = 0;
+      ArrayList@meta(parsedCsvRows_s1122);
+      Object@Object _pac_sc_s1123 = null;
+      if((parsedCsvRows.__cid) == parsedCsvRows_s1122)/*CsvDocument.sk:66*/
+      {
+        Object@Object parsedCsvRows_s1125 = null;
+        addb_Object_Object@ArrayList(parsedCsvRows, row_s1115, parsedCsvRows_s1125);
+        _pac_sc_s1123 = parsedCsvRows_s1125;
+      }
+      else
+      {
+        _pac_sc_s1123 = null;
+      }
+      parsedCsvRows = _pac_sc_s1123;
+      int csvLine_s1127 = 0;
+      BufferedReader@meta(csvLine_s1127);
+      Object@Object _pac_sc_s1128 = null;
+      if((bufferedReader.__cid) == csvLine_s1127)/*CsvDocument.sk:67*/
+      {
+        Object@Object csvLine_s1130 = null;
+        readLine_Object@BufferedReader(bufferedReader, csvLine_s1130);
+        _pac_sc_s1128 = csvLine_s1130;
+      }
+      else
+      {
+        _pac_sc_s1128 = null;
+      }
+      csvLine = _pac_sc_s1128;
+      int bufferedReader_s1132 = 0;
+      BufferedReader@meta(bufferedReader_s1132);
+      Object@Object _pac_sc_s1133 = null;
+      if((bufferedReader.__cid) == bufferedReader_s1132)/*CsvDocument.sk:67*/
+      {
+        Object@Object bufferedReader_s1135 = null;
+        readLineb_Object@BufferedReader(bufferedReader, bufferedReader_s1135);
+        _pac_sc_s1133 = bufferedReader_s1135;
+      }
+      else
+      {
+        _pac_sc_s1133 = null;
+      }
+      bufferedReader = _pac_sc_s1133;
+    }
+    int parsedDocument_s1137 = 0;
+    CsvDocument@meta(parsedDocument_s1137);
+    Object@Object parsedDocument_s1139 = null;
+    CsvDocument_CsvDocument_ArrayList(new Object@Object(__cid=parsedDocument_s1137), parsedCsvRows, parsedDocument_s1139)//{};
+    _out = parsedDocument_s1139;
+    return;
+  }
+  /* END PACKAGE CsvDocument*/
+}
+/* BEGIN PACKAGE CsvConfiguration*/
+package CsvConfiguration{
+  /*CsvConf..ration.sk:3*/
+  
+void CsvConfiguration_CsvConfiguration (Object self, ref Object _out)/*CsvConf..ration.sk:3*/
+  {
+    self.skipHeader_CsvConfiguration = 0;
+    Object@Object _out_s1313 = null;
+    ArrayList_ArrayList@ArrayList(_out_s1313);
+    self.columnIndexesToParse_CsvConfiguration = _out_s1313;
+    _out = self;
+    return;
+  }
+  /*CsvConf..ration.sk:17*/
+  
+void getColumnIndexesToParse (Object self, ref Object _out)/*CsvConf..ration.sk:17*/
+  {
+    _out = self.columnIndexesToParse_CsvConfiguration;
+    return;
+  }
+  /*CsvConf..ration.sk:33*/
+  
+void parseAllColumns (Object self, ref bit _out)/*CsvConf..ration.sk:33*/
+  {
+    int _out_s1308 = 0;
+    ArrayList@meta(_out_s1308);
+    int _pac_sc_s1309 = 0;
+    if((self.columnIndexesToParse_CsvConfiguration.__cid) == _out_s1308)/*CsvConf..ration.sk:34*/
+    {
+      int _out_s1311 = 0;
+      size_Object@ArrayList(self.columnIndexesToParse_CsvConfiguration, _out_s1311);
+      _pac_sc_s1309 = _out_s1311;
+    }
+    else
+    {
+      _pac_sc_s1309 = 0;
+    }
+    _out = _pac_sc_s1309 == 0;
+    return;
+  }
+  /* END PACKAGE CsvConfiguration*/
+}
+/* BEGIN PACKAGE CsvDocumentTest*/
+package CsvDocumentTest{
+  /*CsvDocu..ntTest.sk:7*/
+  
+void runTests ()/*CsvDocu..ntTest.sk:7*/
+  {
+    with_no_config_options_should_parse_csv_file_and_create_csv_document();
+  }
+  /*CsvDocu..ntTest.sk:26*/
+  
+void with_no_config_options_should_parse_csv_file_and_create_csv_document ()/*CsvDocu..ntTest.sk:26*/
+  {
+    int csvPath_s1333 = 0;
+    String@meta(csvPath_s1333);
+    Object@Object csvPath_s1335 = null;
+    String_String_char_int_int@String(new Object@Object(__cid=csvPath_s1333), new Array_char@array(length=12, A={'A',',','B','\n','1',',','T','\n','2',',','F','\0'}), 0, 11, csvPath_s1335)//{};
+    Object@Object document_s1337 = null;
+    read_String@CsvDocument(csvPath_s1335, document_s1337);
+    int rs_s1339 = 0;
+    CsvDocument@meta(rs_s1339);
+    Object@Object _pac_sc_s1340 = null;
+    if((document_s1337.__cid) == rs_s1339)/*CsvDocu..ntTest.sk:29*/
+    {
+      Object@Object rs_s1342 = null;
+      getCsvRows@CsvDocument(document_s1337, rs_s1342);
+      _pac_sc_s1340 = rs_s1342;
+    }
+    else
+    {
+      _pac_sc_s1340 = null;
+    }
+    int headers_s1344 = 0;
+    ArrayList@meta(headers_s1344);
+    Object@Object _pac_sc_s1345 = null;
+    if((_pac_sc_s1340.__cid) == headers_s1344)/*CsvDocu..ntTest.sk:30*/
+    {
+      Object@Object headers_s1347 = null;
+      get_Object_int@ArrayList(_pac_sc_s1340, 0, headers_s1347);
+      _pac_sc_s1345 = headers_s1347;
+    }
+    else
+    {
+      _pac_sc_s1345 = null;
+    }
+    int r1_s1349 = 0;
+    ArrayList@meta(r1_s1349);
+    Object@Object _pac_sc_s1350 = null;
+    if((_pac_sc_s1340.__cid) == r1_s1349)/*CsvDocu..ntTest.sk:31*/
+    {
+      Object@Object r1_s1352 = null;
+      get_Object_int@ArrayList(_pac_sc_s1340, 1, r1_s1352);
+      _pac_sc_s1350 = r1_s1352;
+    }
+    else
+    {
+      _pac_sc_s1350 = null;
+    }
+    int r2_s1354 = 0;
+    ArrayList@meta(r2_s1354);
+    Object@Object _pac_sc_s1355 = null;
+    if((_pac_sc_s1340.__cid) == r2_s1354)/*CsvDocu..ntTest.sk:32*/
+    {
+      Object@Object r2_s1357 = null;
+      get_Object_int@ArrayList(_pac_sc_s1340, 2, r2_s1357);
+      _pac_sc_s1355 = r2_s1357;
+    }
+    else
+    {
+      _pac_sc_s1355 = null;
+    }
+    int hstr_s1359 = 0;
+    CsvRow@meta(hstr_s1359);
+    Object@Object _pac_sc_s1360 = null;
+    if((_pac_sc_s1345.__cid) == hstr_s1359)/*CsvDocu..ntTest.sk:33*/
+    {
+      Object@Object hstr_s1362 = null;
+      toString@CsvRow(_pac_sc_s1345, hstr_s1362);
+      _pac_sc_s1360 = hstr_s1362;
+    }
+    else
+    {
+      _pac_sc_s1360 = null;
+    }
+    int r1str_s1364 = 0;
+    CsvRow@meta(r1str_s1364);
+    Object@Object _pac_sc_s1365 = null;
+    if((_pac_sc_s1350.__cid) == r1str_s1364)/*CsvDocu..ntTest.sk:34*/
+    {
+      Object@Object r1str_s1367 = null;
+      toString@CsvRow(_pac_sc_s1350, r1str_s1367);
+      _pac_sc_s1365 = r1str_s1367;
+    }
+    else
+    {
+      _pac_sc_s1365 = null;
+    }
+    int r2str_s1369 = 0;
+    CsvRow@meta(r2str_s1369);
+    Object@Object _pac_sc_s1370 = null;
+    if((_pac_sc_s1355.__cid) == r2str_s1369)/*CsvDocu..ntTest.sk:35*/
+    {
+      Object@Object r2str_s1372 = null;
+      toString@CsvRow(_pac_sc_s1355, r2str_s1372);
+      _pac_sc_s1370 = r2str_s1372;
+    }
+    else
+    {
+      _pac_sc_s1370 = null;
+    }
+    int _out_s1374 = 0;
+    String@meta(_out_s1374);
+    bit _pac_sc_s1375 = 0;
+    if((_pac_sc_s1360.__cid) == _out_s1374)/*CsvDocu..ntTest.sk:36*/
+    {
+      int _out_s1377 = 0;
+      String@meta(_out_s1377);
+      Object@Object _out_s1379 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_out_s1377), new Array_char@array(length=4, A={'A',',','B','\0'}), 0, 3, _out_s1379)//{};
+      bit _out_s1381 = 0;
+      equals_Object@String(_pac_sc_s1360, _out_s1379, _out_s1381)//{};
+      _pac_sc_s1375 = _out_s1381;
+    }
+    else
+    {
+      _pac_sc_s1375 = 0;
+    }
+    assert (_pac_sc_s1375); //Assert at CsvDocu..ntTest.sk:36 (0)
+    int _out_s1383 = 0;
+    String@meta(_out_s1383);
+    bit _pac_sc_s1384 = 0;
+    if((_pac_sc_s1365.__cid) == _out_s1383)/*CsvDocu..ntTest.sk:37*/
+    {
+      int _out_s1386 = 0;
+      String@meta(_out_s1386);
+      Object@Object _out_s1388 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_out_s1386), new Array_char@array(length=4, A={'1',',','T','\0'}), 0, 3, _out_s1388)//{};
+      bit _out_s1390 = 0;
+      equals_Object@String(_pac_sc_s1365, _out_s1388, _out_s1390)//{};
+      _pac_sc_s1384 = _out_s1390;
+    }
+    else
+    {
+      _pac_sc_s1384 = 0;
+    }
+    assert (_pac_sc_s1384); //Assert at CsvDocu..ntTest.sk:37 (0)
+    int _out_s1392 = 0;
+    String@meta(_out_s1392);
+    bit _pac_sc_s1393 = 0;
+    if((_pac_sc_s1370.__cid) == _out_s1392)/*CsvDocu..ntTest.sk:38*/
+    {
+      int _out_s1395 = 0;
+      String@meta(_out_s1395);
+      Object@Object _out_s1397 = null;
+      String_String_char_int_int@String(new Object@Object(__cid=_out_s1395), new Array_char@array(length=4, A={'2',',','F','\0'}), 0, 3, _out_s1397)//{};
+      bit _out_s1399 = 0;
+      equals_Object@String(_pac_sc_s1370, _out_s1397, _out_s1399)//{};
+      _pac_sc_s1393 = _out_s1399;
+    }
+    else
+    {
+      _pac_sc_s1393 = 0;
+    }
+    assert (_pac_sc_s1393); //Assert at CsvDocu..ntTest.sk:38 (0)
+  }
+  /* END PACKAGE CsvDocumentTest*/
+}
+[SKETCH] DONE
+Total time = 84167

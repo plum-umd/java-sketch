@@ -1,0 +1,123 @@
+package BufferedReader;
+
+adt BufferedReader {
+    Bufferedreader  { }
+    Bufferedreader_filereaderr  { Object type; }
+    Readline        { BufferedReader self; }
+    Readlineb       { BufferedReader self; }
+    Readlinehelpb_int   { BufferedReader self; int i; }
+    Readlinehelp_int    { BufferedReader self; int i; }
+}
+
+Object BufferedReader_BufferedReader() {
+    return new Object(__cid=BufferedReader(), _bufferedreader=new Bufferedreader());
+}
+
+Object BufferedReader_Object_FileReaderr(Object type) {
+    return new Object(__cid=BufferedReader(), _bufferedreader=new Bufferedreader_filereaderr(type=type));
+}
+
+Object readLine_Object(Object self) {
+    return xform_readLine_BufferedReader(self._bufferedreader);
+}
+
+Object readLineb_Object(Object self) {
+    self._bufferedreader=new Readlineb(self=self._bufferedreader);
+return self;
+}
+
+Object readLineHelpb_Object_int(Object self, int i) {
+    self._bufferedreader=new Readlinehelpb_int(self=self._bufferedreader, i=i);
+return self;
+}
+
+Object readLineHelp_Object_int(Object self, int i) {
+    return xform_readLineHelp_BufferedReader_int(self._bufferedreader, i);
+}
+
+Object xform_readLineHelp_BufferedReader_int(BufferedReader selff, int i) {
+  BufferedReader self = selff;
+  switch(self) {
+  case Bufferedreader: { assert false; }
+  case Bufferedreader_filereaderr: {
+    return (self.type.__cid == FileReaderr() ? get_int@FileReaderr(self.type, i) : null);
+  }
+  case Readline: { assert false; }
+  case Readlineb: {
+    return xform_readLineHelp_BufferedReader_int(self.self, i + 1);
+  }
+  case Readlinehelpb_int: { assert false; }
+  case Readlinehelp_int: { assert false; }
+  }
+
+  return null;
+}
+Object xform_readLineb_BufferedReader(BufferedReader selff) {
+  BufferedReader self = selff;
+  switch(self) {
+  case Bufferedreader: { assert false; }
+  case Bufferedreader_filereaderr: { assert false; }
+  case Readline: { assert false; }
+  case Readlineb: { assert false; }
+  case Readlinehelpb_int: { assert false; }
+  case Readlinehelp_int: { assert false; }
+  }
+
+  return null;
+}
+Object xform_readLineHelpb_BufferedReader_int(BufferedReader selff, int i) {
+  BufferedReader self = selff;
+  switch(self) {
+  case Bufferedreader: { assert false; }
+  case Bufferedreader_filereaderr: { assert false; }
+  case Readline: { assert false; }
+  case Readlineb: { assert false; }
+  case Readlinehelpb_int: { assert false; }
+  case Readlinehelp_int: { assert false; }
+  }
+
+  return null;
+}
+Object xform_bufferedreader_BufferedReader(BufferedReader selff) {
+  BufferedReader self = selff;
+  switch(self) {
+  case Bufferedreader: { assert false; }
+  case Bufferedreader_filereaderr: { assert false; }
+  case Readline: { assert false; }
+  case Readlineb: { assert false; }
+  case Readlinehelpb_int: { assert false; }
+  case Readlinehelp_int: { assert false; }
+  }
+
+  return null;
+}
+Object xform_readLine_BufferedReader(BufferedReader selff) {
+  BufferedReader self = selff;
+  switch(self) {
+  case Bufferedreader: { assert false; }
+  case Bufferedreader_filereaderr: {
+    return (self.type.__cid == FileReaderr() ? get_int@FileReaderr(self.type, 0) : null);
+  }
+  case Readline: { assert false; }
+  case Readlineb: {
+    return xform_readLineHelp_BufferedReader_int(self.self, 1);
+  }
+  case Readlinehelpb_int: { assert false; }
+  case Readlinehelp_int: { assert false; }
+  }
+
+  return null;
+}
+BufferedReader xform_BufferedReader_BufferedReader_FileReaderr(BufferedReader selff, Object type) {
+  BufferedReader self = selff;
+  switch(self) {
+  case Bufferedreader: { assert false; }
+  case Bufferedreader_filereaderr: { assert false; }
+  case Readline: { assert false; }
+  case Readlineb: { assert false; }
+  case Readlinehelpb_int: { assert false; }
+  case Readlinehelp_int: { assert false; }
+  }
+
+  return null;
+}

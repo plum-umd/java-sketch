@@ -1,0 +1,29 @@
+package CsvColumnTest;
+
+Object CsvColumnTest_CsvColumnTest(Object self) {
+    return self;
+}
+
+void runTests() {
+  the_getIntValue_method_when_column_is_integer_should_return_correct_result();
+  the_getBooleanValue_method_when_column_can_be_converted_to_boolean_should_return_correct_result();
+}
+
+void the_getIntValue_method_when_column_is_integer_should_return_correct_result() {
+  Object someIntValue = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=2+1, A="20"), 0, 2);
+  Object someIntCsvColumn = CsvColumn_CsvColumn_String(new Object(__cid=CsvColumn()), someIntValue);
+  int result = (someIntCsvColumn.__cid == CsvColumn() ? getInteger@CsvColumn(someIntCsvColumn) : 0);
+  assert 20 == result;
+}
+
+void the_getBooleanValue_method_when_column_can_be_converted_to_boolean_should_return_correct_result() {
+  Object trueValue = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=4+1, A="true"), 0, 4);
+  Object falseValue = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=5+1, A="false"), 0, 5);
+  Object columnWithTrueResult = CsvColumn_CsvColumn_String(new Object(__cid=CsvColumn()), trueValue);
+  Object columnWithFalseResult = CsvColumn_CsvColumn_String(new Object(__cid=CsvColumn()), falseValue);
+  bit resultThatShouldBeTrue = (columnWithTrueResult.__cid == CsvColumn() ? getBoolean@CsvColumn(columnWithTrueResult) : 0);
+  bit resultThatShouldBeFalse = (columnWithFalseResult.__cid == CsvColumn() ? getBoolean@CsvColumn(columnWithFalseResult) : 0);
+  assert resultThatShouldBeTrue;
+  assert !resultThatShouldBeFalse;
+}
+

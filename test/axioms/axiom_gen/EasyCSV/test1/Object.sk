@@ -1,0 +1,69 @@
+package Object;
+
+Object fs;
+Object fs_g() { return fs; }
+void fs_s(Object fs_s) { fs = fs_s; }
+
+Object Object_Object(Object self) {
+    return self;
+}
+
+bit equals_Object_Object(Object a, Object b) {
+  if (a == null) {
+    if (b == null) {
+      return true;
+    }
+    return false;
+  }
+  return (a.__cid == Boolean() ? equals_Object@Object(a, b) : a.__cid == CsvDocumentTest() ? equals_Object@Object(a, b) : a.__cid == String() ? equals_Object@String(a, b) : a.__cid == Character() ? equals_Object@Character(a, b) : a.__cid == CsvRow() ? equals_Object@Object(a, b) : a.__cid == CodeAssertion() ? equals_Object@Object(a, b) : a.__cid == CsvDocument() ? equals_Object@Object(a, b) : a.__cid == CSVTester() ? equals_Object@Object(a, b) : a.__cid == BufferedReader() ? equals_Object@Object(a, b) : a.__cid == CsvConfiguration() ? equals_Object@Object(a, b) : a.__cid == FileOutputStream() ? equals_Object@Object(a, b) : a.__cid == CsvDocumentTest_Person() ? equals_Object@Object(a, b) : a.__cid == StringBuffer() ? equals_Object@Object(a, b) : a.__cid == ArrayList() ? equals_Object@Object(a, b) : a.__cid == Integer() ? equals_Object@Integer(a, b) : a.__cid == Number() ? equals_Object@Object(a, b) : a.__cid == FileReaderr() ? equals_Object@Object(a, b) : a.__cid == PrintStream() ? equals_Object@Object(a, b) : a.__cid == StringBuilder() ? equals_Object@Object(a, b) : a.__cid == CsvColumn() ? equals_Object@Object(a, b) : a.__cid == CsvColumnTest() ? equals_Object@Object(a, b) : a.__cid == CsvRowTest() ? equals_Object@Object(a, b) : a.__cid == Object() ? equals_Object@Object(a, b) : 0);
+}
+
+int hashCode_Object(Object o) {
+  return (o != null ? (o.__cid == Boolean() ? hashCode@Object(o) : o.__cid == CsvDocumentTest() ? hashCode@Object(o) : o.__cid == String() ? hashCode@String(o) : o.__cid == Character() ? hashCode@Object(o) : o.__cid == CsvRow() ? hashCode@Object(o) : o.__cid == CodeAssertion() ? hashCode@Object(o) : o.__cid == CsvDocument() ? hashCode@Object(o) : o.__cid == CSVTester() ? hashCode@Object(o) : o.__cid == BufferedReader() ? hashCode@Object(o) : o.__cid == CsvConfiguration() ? hashCode@Object(o) : o.__cid == FileOutputStream() ? hashCode@Object(o) : o.__cid == CsvDocumentTest_Person() ? hashCode@Object(o) : o.__cid == StringBuffer() ? hashCode@Object(o) : o.__cid == ArrayList() ? hashCode@Object(o) : o.__cid == Integer() ? hashCode@Integer(o) : o.__cid == Number() ? hashCode@Object(o) : o.__cid == FileReaderr() ? hashCode@Object(o) : o.__cid == PrintStream() ? hashCode@Object(o) : o.__cid == StringBuilder() ? hashCode@Object(o) : o.__cid == CsvColumn() ? hashCode@Object(o) : o.__cid == CsvColumnTest() ? hashCode@Object(o) : o.__cid == CsvRowTest() ? hashCode@Object(o) : o.__cid == Object() ? hashCode@Object(o) : 0) : 0);
+}
+
+bit equals_Object(Object self, Object obj) {
+  return self == obj;
+}
+
+int hashCode(Object self) {
+  return 0;
+}
+
+struct Object {
+  int               __cid;
+  Object            columnValue_CsvColumn;
+  Array_char        _value_StringBuilder;
+  int               _count_StringBuilder;
+  Object            path_FileReaderr;
+  Array_Object      data_FileReaderr;
+  int               value_Integer;
+  Array_char        _value_StringBuffer;
+  int               _count_StringBuffer;
+  Object            name_CsvDocumentTest_Person;
+  int               age_CsvDocumentTest_Person;
+  bit               isEmployed_CsvDocumentTest_Person;
+  bit               skipHeader_CsvConfiguration;
+  Object            columnIndexesToParse_CsvConfiguration;
+  Object            csvRows_CsvDocument;
+  Object            columns_CsvRow;
+  char              value_Character;
+  Array_char        _value_String;
+  int               _count_String;
+  bit               bool_Boolean;
+  PrintStream       _printstream;
+  ArrayList         _arraylist;
+  FileOutputStream  _fileoutputstream;
+  BufferedReader    _bufferedreader;
+  Array_bit         _array_bit;
+  Array_char        _array_char;
+  Array_int         _array_int;
+  Array_float       _array_float;
+  Array_double      _array_double;
+  Array_Object      _array_object;
+  bit               _bit;
+  char              _char;
+  int               _int;
+  float             _float;
+  double            _double;
+}

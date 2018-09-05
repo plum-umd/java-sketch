@@ -1,0 +1,58 @@
+package Integer;
+
+Object Integer_Integer(Object self) {
+    return self;
+}
+
+Object Integer_Integer_int(Object self, int value) {
+  self.value_Integer = value;
+  return self;
+}
+
+int intValue(Object self) {
+  return self.value_Integer;
+}
+
+int compareTo_Integer(Object self, Object anotherInteger) {
+  return compare_int_int(self.value_Integer, (anotherInteger.__cid == Integer() ? intValue@Integer(anotherInteger) : 0));
+}
+
+int compare_int_int(int x, int y) {
+  return ((x < y) ? -1 : (((x == y) ? 0 : 1)));
+}
+
+bit equals_Object(Object self, Object obj) {
+  if (obj.__cid == Integer()) {
+    return self.value_Integer == ((obj).__cid == Integer() ? intValue@Integer((obj)) : 0);
+  }
+  return false;
+}
+
+Object toString_int(int i) {
+  if (i == 0) {
+    return String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="0"), 0, 1);
+  }
+  int index = 0,  temp = i,  j;
+  Array_char ret = new Array_char(length=32);
+  Array_char ret2 = new Array_char(length=32);
+  Array_char nums = new Array_char(length=10, A={'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'});
+  if (temp < 0) {
+    temp = temp * -1;
+  }
+  while (temp > 0) {
+    ret.A[index] = nums.A[temp % 10];
+    temp = temp / 10;
+    index++;
+  }
+  if (i < 0) {
+    ret.A[index] = '-';
+    index++;
+  }
+  int size = index;
+  for (j = 0; j < size; j++) {
+    ret2.A[j] = ret.A[index - 1];
+    index--;
+  }
+  return String_String_char_int_int(new Object(__cid=String()), ret2, 0, size);
+}
+

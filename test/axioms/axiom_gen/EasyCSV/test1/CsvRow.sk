@@ -1,0 +1,53 @@
+package CsvRow;
+
+Object CsvRow_CsvRow(Object self) {
+  self.columns_CsvRow = ArrayList_ArrayList();
+  return self;
+}
+
+Object CsvRow_CsvRow_String_String(Object self, Object v1, Object v2) {
+  self.columns_CsvRow = ArrayList_ArrayList();
+  (self.columns_CsvRow.__cid == ArrayList() ? add_Object_Object@ArrayList(self.columns_CsvRow, CsvColumn_CsvColumn_String(new Object(__cid=CsvColumn()), v1)) : null); self.columns_CsvRow = (self.columns_CsvRow.__cid == ArrayList() ? addb_Object_Object@ArrayList(self.columns_CsvRow, CsvColumn_CsvColumn_String(new Object(__cid=CsvColumn()), v1)) : null);
+  (self.columns_CsvRow.__cid == ArrayList() ? add_Object_Object@ArrayList(self.columns_CsvRow, CsvColumn_CsvColumn_String(new Object(__cid=CsvColumn()), v2)) : null); self.columns_CsvRow = (self.columns_CsvRow.__cid == ArrayList() ? addb_Object_Object@ArrayList(self.columns_CsvRow, CsvColumn_CsvColumn_String(new Object(__cid=CsvColumn()), v2)) : null);
+  return self;
+}
+
+Object CsvRow_CsvRow_CsvColumn_CsvColumn(Object self, Object v1, Object v2) {
+  self.columns_CsvRow = ArrayList_ArrayList();
+  (self.columns_CsvRow.__cid == ArrayList() ? add_Object_Object@ArrayList(self.columns_CsvRow, v1) : null); self.columns_CsvRow = (self.columns_CsvRow.__cid == ArrayList() ? addb_Object_Object@ArrayList(self.columns_CsvRow, v1) : null);
+  (self.columns_CsvRow.__cid == ArrayList() ? add_Object_Object@ArrayList(self.columns_CsvRow, v2) : null); self.columns_CsvRow = (self.columns_CsvRow.__cid == ArrayList() ? addb_Object_Object@ArrayList(self.columns_CsvRow, v2) : null);
+  return self;
+}
+
+Object CsvRow_CsvRow_ArrayList(Object self, Object rowColumns) {
+  self.columns_CsvRow = ArrayList_ArrayList();
+  self.columns_CsvRow = rowColumns;
+  return self;
+}
+
+Object getColumnAtIndex_int(Object self, int index) {
+  return (self.columns_CsvRow.__cid == ArrayList() ? get_Object_int@ArrayList(self.columns_CsvRow, index) : null);
+}
+
+int getNumberOfColumns(Object self) {
+  return (self.columns_CsvRow.__cid == ArrayList() ? size_Object@ArrayList(self.columns_CsvRow) : 0);
+}
+
+bit isEmpty(Object self) {
+  return (self.columns_CsvRow.__cid == ArrayList() ? size_Object@ArrayList(self.columns_CsvRow) : 0) == 0;
+}
+
+Object toString(Object self) {
+  Object sb = StringBuilder_StringBuilder(new Object(__cid=StringBuilder()));
+  for (int i = 0; i < (self.columns_CsvRow.__cid == ArrayList() ? size_Object@ArrayList(self.columns_CsvRow) : 0); i++) {
+    Object c = (self.columns_CsvRow.__cid == ArrayList() ? get_Object_int@ArrayList(self.columns_CsvRow, i) : null);
+    if (sb.__cid == StringBuilder()) { append_String@StringBuilder(sb, (c.__cid == CsvColumn() ? getColumnValue@CsvColumn(c) : null)); }
+    else { 0; };
+    if (i < (self.columns_CsvRow.__cid == ArrayList() ? size_Object@ArrayList(self.columns_CsvRow) : 0) - 1) {
+      if (sb.__cid == StringBuilder()) { append_String@StringBuilder(sb, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A=","), 0, 1)); }
+      else { 0; };
+    }
+  }
+  return (sb.__cid == StringBuilder() ? toString@StringBuilder(sb) : null);
+}
+

@@ -1,0 +1,22 @@
+package Character;
+
+Object Character_Character(Object self) {
+    return self;
+}
+
+Object Character_Character_char(Object self, char value) {
+  self.value_Character = value;
+  return self;
+}
+
+char charValue(Object self) {
+  return self.value_Character;
+}
+
+bit equals_Object(Object self, Object obj) {
+  if (obj.__cid == Character()) {
+    return self.value_Character == ((obj).__cid == Character() ? charValue@Character((obj)) : '\0');
+  }
+  return false;
+}
+

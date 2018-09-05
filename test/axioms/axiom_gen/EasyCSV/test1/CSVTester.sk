@@ -1,0 +1,13 @@
+package CSVTester;
+
+Object CSVTester_CSVTester(Object self) {
+    return self;
+}
+
+harness void mn() {
+  Object self = Object_Object(new Object(__cid=Object()));
+  runTests@CsvRowTest();
+  runTests@CsvColumnTest();
+  runTests@CsvDocumentTest();
+}
+

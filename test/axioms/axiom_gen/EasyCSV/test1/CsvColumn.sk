@@ -1,0 +1,44 @@
+package CsvColumn;
+
+Object CsvColumn_CsvColumn(Object self) {
+  return self;
+}
+
+Object CsvColumn_CsvColumn_String(Object self, Object value) {
+  self.columnValue_CsvColumn = value;
+  return self;
+}
+
+Object CsvColumn_CsvColumn_int(Object self, int intValue) {
+  self.columnValue_CsvColumn = toString_int@Integer(intValue);
+  return self;
+}
+
+Object CsvColumn_CsvColumn_boolean(Object self, bit booleanValue) {
+  self.columnValue_CsvColumn = toString_boolean@Boolean(booleanValue);
+  return self;
+}
+
+bit hasValue(Object self) {
+  return self.columnValue_CsvColumn == null;
+}
+
+Object getColumnValue(Object self) {
+  return self.columnValue_CsvColumn;
+}
+
+int getInteger(Object self) {
+  int parsedValue = parseInt_String@Integer(self.columnValue_CsvColumn);
+  return parsedValue;
+}
+
+bit getBoolean(Object self) {
+  if ((self.columnValue_CsvColumn.__cid == String() ? equalsIgnoreCase_Object@String(self.columnValue_CsvColumn, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=4+1, A="true"), 0, 4)) : 0) || (self.columnValue_CsvColumn.__cid == String() ? equalsIgnoreCase_Object@String(self.columnValue_CsvColumn, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="t"), 0, 1)) : 0) || (self.columnValue_CsvColumn.__cid == String() ? equalsIgnoreCase_Object@String(self.columnValue_CsvColumn, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=3+1, A="yes"), 0, 3)) : 0) || (self.columnValue_CsvColumn.__cid == String() ? equalsIgnoreCase_Object@String(self.columnValue_CsvColumn, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="y"), 0, 1)) : 0) || (self.columnValue_CsvColumn.__cid == String() ? equals_Object@String(self.columnValue_CsvColumn, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="1"), 0, 1)) : 0)) {
+    return true;
+  }
+  if ((self.columnValue_CsvColumn.__cid == String() ? equalsIgnoreCase_Object@String(self.columnValue_CsvColumn, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=5+1, A="false"), 0, 5)) : 0) || (self.columnValue_CsvColumn.__cid == String() ? equalsIgnoreCase_Object@String(self.columnValue_CsvColumn, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="f"), 0, 1)) : 0) || (self.columnValue_CsvColumn.__cid == String() ? equalsIgnoreCase_Object@String(self.columnValue_CsvColumn, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=2+1, A="no"), 0, 2)) : 0) || (self.columnValue_CsvColumn.__cid == String() ? equalsIgnoreCase_Object@String(self.columnValue_CsvColumn, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="n"), 0, 1)) : 0) || (self.columnValue_CsvColumn.__cid == String() ? equals_Object@String(self.columnValue_CsvColumn, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="0"), 0, 1)) : 0)) {
+    return false;
+  }
+  return false;
+}
+

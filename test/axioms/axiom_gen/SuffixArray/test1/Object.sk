@@ -1,0 +1,54 @@
+package Object;
+
+Object Object_Object(Object self) {
+    return self;
+}
+
+bit equals_Object_Object(Object a, Object b) {
+  if (a == null) {
+    if (b == null) {
+      return true;
+    }
+    return false;
+  }
+  return (a.__cid == Integer() ? equals_Object@Integer(a, b) : a.__cid == SuffixRankTuple() ? equals_Object@Object(a, b) : a.__cid == Assert() ? equals_Object@Object(a, b) : a.__cid == TwoDArray() ? equals_Object@Object(a, b) : a.__cid == SuffixArrayTest() ? equals_Object@Object(a, b) : a.__cid == TreeSet() ? equals_Object@Object(a, b) : a.__cid == String() ? equals_Object@String(a, b) : a.__cid == Character() ? equals_Object@Character(a, b) : a.__cid == HashSet() ? equals_Object@Object(a, b) : a.__cid == Boolean() ? equals_Object@Object(a, b) : a.__cid == HashMap() ? equals_Object@Object(a, b) : a.__cid == Arrays() ? equals_Object@Object(a, b) : a.__cid == ArrayDeque() ? equals_Object@Object(a, b) : a.__cid == ArrayList() ? equals_Object@Object(a, b) : a.__cid == SuffixArray() ? equals_Object@Object(a, b) : a.__cid == Object() ? equals_Object@Object(a, b) : 0);
+}
+
+bit equals_Object(Object self, Object obj) {
+  return self == obj;
+}
+
+struct Object {
+  int           __cid;
+  int           N_SuffixArray;
+  Array_int     T_SuffixArray;
+  Array_int     sa_SuffixArray;
+  Array_int     lcp_SuffixArray;
+  bit           bool_Boolean;
+  char          value_Character;
+  Array_char    _value_String;
+  int           _count_String;
+  int           M_TwoDArray;
+  Array_int     arr_TwoDArray;
+  int           N_TwoDArray;
+  int           originalIndex_SuffixRankTuple;
+  int           secondHalf_SuffixRankTuple;
+  int           firstHalf_SuffixRankTuple;
+  int           value_Integer;
+  ArrayList     _arraylist;
+  ArrayDeque    _arraydeque;
+  HashMap       _hashmap;
+  HashSet       _hashset;
+  TreeSet       _treeset;
+  Array_bit     _array_bit;
+  Array_char    _array_char;
+  Array_int     _array_int;
+  Array_float   _array_float;
+  Array_double  _array_double;
+  Array_Object  _array_object;
+  bit           _bit;
+  char          _char;
+  int           _int;
+  float         _float;
+  double        _double;
+}

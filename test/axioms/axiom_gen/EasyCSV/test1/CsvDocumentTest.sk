@@ -1,0 +1,40 @@
+package CsvDocumentTest;
+
+Object CsvDocumentTest_CsvDocumentTest(Object self) {
+    return self;
+}
+
+void runTests() {
+  with_no_config_options_should_parse_csv_file_and_create_csv_document();
+}
+
+void ben_test() {
+  Object csvPath = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=5+1, A="A\n1\n2"), 0, 5);
+  Object document = read_String@CsvDocument(csvPath);
+  Object rs = (document.__cid == CsvDocument() ? getCsvRows@CsvDocument(document) : null);
+  Object headers = (rs.__cid == ArrayList() ? get_Object_int@ArrayList(rs, 0) : null);
+  Object r1 = (rs.__cid == ArrayList() ? get_Object_int@ArrayList(rs, 1) : null);
+  Object r2 = (rs.__cid == ArrayList() ? get_Object_int@ArrayList(rs, 2) : null);
+  Object hstr = (headers.__cid == CsvRow() ? toString@CsvRow(headers) : null);
+  Object r1str = (r1.__cid == CsvRow() ? toString@CsvRow(r1) : null);
+  Object r2str = (r2.__cid == CsvRow() ? toString@CsvRow(r2) : null);
+  assert (hstr.__cid == String() ? equals_Object@String(hstr, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="A"), 0, 1)) : 0);
+  assert (r1str.__cid == String() ? equals_Object@String(r1str, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="1"), 0, 1)) : 0);
+  assert (r2str.__cid == String() ? equals_Object@String(r2str, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=1+1, A="2"), 0, 1)) : 0);
+}
+
+void with_no_config_options_should_parse_csv_file_and_create_csv_document() {
+  Object csvPath = String_String_char_int_int(new Object(__cid=String()), new Array_char(length=11+1, A="A,B\n1,T\n2,F"), 0, 11);
+  Object document = read_String@CsvDocument(csvPath);
+  Object rs = (document.__cid == CsvDocument() ? getCsvRows@CsvDocument(document) : null);
+  Object headers = (rs.__cid == ArrayList() ? get_Object_int@ArrayList(rs, 0) : null);
+  Object r1 = (rs.__cid == ArrayList() ? get_Object_int@ArrayList(rs, 1) : null);
+  Object r2 = (rs.__cid == ArrayList() ? get_Object_int@ArrayList(rs, 2) : null);
+  Object hstr = (headers.__cid == CsvRow() ? toString@CsvRow(headers) : null);
+  Object r1str = (r1.__cid == CsvRow() ? toString@CsvRow(r1) : null);
+  Object r2str = (r2.__cid == CsvRow() ? toString@CsvRow(r2) : null);
+  assert (hstr.__cid == String() ? equals_Object@String(hstr, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=3+1, A="A,B"), 0, 3)) : 0);
+  assert (r1str.__cid == String() ? equals_Object@String(r1str, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=3+1, A="1,T"), 0, 3)) : 0);
+  assert (r2str.__cid == String() ? equals_Object@String(r2str, String_String_char_int_int(new Object(__cid=String()), new Array_char(length=3+1, A="2,F"), 0, 3)) : 0);
+}
+
