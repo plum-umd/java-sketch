@@ -1,0 +1,730 @@
+/**
+ *
+ * Generally speaking, suffix arrays are used to do multiple queries 
+ * efficiently on one piece of data rather than to do one operation 
+ * then move on to another piece of text.
+ *
+ * Good suffix array read: http://www.cs.yale.edu/homes/aspnes/pinewiki/SuffixArrays.html
+ *
+ * @author William Fiset, william.alexandre.fiset@gmail.com
+ **/
+
+// MODEL SYNTHESIS
+// clone: 338318 (using testLRS, default params)
+// lrs:
+
+// AXIOM SYNTHESIS
+// clone: 32605 (using testLRS, default params) 
+// lrs: 
+
+import java.util.*;
+
+class SuffixArray {
+
+  // Size of the suffix array
+  int N; 
+
+  // T is the text
+  int[] T;
+
+  // Suffix array. Contains the indexes of sorted suffixes.
+  int[] sa;
+
+  // Contains Longest Common Prefix (LCP) count between adjacent suffixes.
+  // lcp[i] = longestCommonPrefixLength( suffixes[i], suffixes[i+1] ).
+  // Also, LCP[len-1] = 0
+  int [] lcp;
+
+    // CHANGE
+    public int[] clone(int[] arr) {
+	// int l = {| arr.length, N |};
+  	int l = arr.length;
+  	int[] arr_cp = new int[l];
+	// for(int i=??; i<l; i++) {	
+  	for(int i=0; i<l; i++) {
+  	    arr_cp[i] = arr[i];
+  	}
+  	return arr_cp;
+    }
+
+  public SuffixArray(String text) {
+    this(toIntArray(text));
+  }
+
+    //CHANGE
+    private static String intArrToString(int [] text) {
+  	char[] tmp = new char[text.length];
+  	for (int i=0; i<text.length; i++) {
+  	    tmp[i] = (char) text[i];
+  	}
+	
+  	// Extract part of the suffix we need to compare
+        return new String(tmp, 0, text.length);
+    }
+    
+  private static int[] toIntArray(String s) {
+    int[] text = new int[s.length()];
+    for(int i=0;i<s.length();i++)text[i] = s.charAt(i);
+    return text;
+  }
+
+  public SuffixArray(int[] text) {
+      // CHANGE
+    // if (text == null) throw new IllegalArgumentException();
+    // T = text.clone();
+    T = clone(text);
+    N = text.length;    
+    construct();
+    kasai();
+  }
+
+  // Construct a suffix array in O(nlog^2(n))
+  public void construct() {
+
+    sa = new int[N];
+
+    // Maintain suffix ranks in both a matrix with two rows containing the
+    // current and last rank information as well as some sortable rank objects
+    // CHANGE
+    // int[][] suffixRanks = new int[2][N];
+    TwoDArray suffixRanks = new TwoDArray(2, N);
+    SuffixRankTuple[] ranks = new SuffixRankTuple[N];
+
+    // Assign a numerical value to each character in the text
+    for (int i = 0; i < N; i++) {
+  	// CHANGE
+  	// suffixRanks[0][i] = T[i];
+  	suffixRanks.set(0, i, T[i]);
+  	ranks[i] = new SuffixRankTuple();
+    }
+
+    // O(logn)
+    for(int pos = 1; pos < N; pos *= 2) {
+
+      for(int i = 0; i < N; i++) {
+        SuffixRankTuple suffixRank = ranks[i];
+        suffixRank.firstHalf  = suffixRanks.get(0, i);
+  	// CHANGE
+        // suffixRank.firstHalf  = suffixRanks[0][i];
+        suffixRank.secondHalf = i+pos < N ? suffixRanks.get(0, i+pos) : -1;
+  	// CHANGE
+        // suffixRank.secondHalf = i+pos < N ? suffixRanks[0][i+pos] : -1;	
+        suffixRank.originalIndex = i;
+      }
+
+      // O(nlogn)
+      // CHANGE
+      // java.util.Arrays.sort(ranks);
+      ranks = Arrays.sort(ranks, ranks.length);
+
+
+      int newRank = 0;
+      suffixRanks.set(1, ranks[0].originalIndex, 0);
+      // CHANGE
+      // suffixRanks[1][ranks[0].originalIndex] = 0;
+
+      for (int i = 1; i < N; i++ ) {
+        
+        SuffixRankTuple lastSuffixRank = ranks[i-1];
+        SuffixRankTuple currSuffixRank = ranks[i];
+  
+        // If the first half differs from the second half
+        if (currSuffixRank.firstHalf  != lastSuffixRank.firstHalf ||
+            currSuffixRank.secondHalf != lastSuffixRank.secondHalf)
+          newRank++;
+
+        suffixRanks.set(1, currSuffixRank.originalIndex, newRank);
+
+  	// CHANGE
+        // suffixRanks[1][currSuffixRank.originalIndex] = newRank;
+
+      }
+      
+      // Place top row (current row) to be the last row
+      suffixRanks.setRow(0, suffixRanks.getRow(1));
+
+      // CHANGE
+      // suffixRanks[0] = suffixRanks[1];      
+      // Optimization to stop early 
+      // CHANGE
+      // if (newRank == N-1) break;
+      if (newRank == N-1) pos = N;      
+
+    }
+
+    // Fill suffix array
+    for (int i = 0; i < N; i++) {
+      sa[i] = ranks[i].originalIndex;
+      ranks[i] = null;
+    }
+
+    // Cleanup
+    suffixRanks = null;
+    // CHANGE
+    // suffixRanks[0] = suffixRanks[1] = null;
+    suffixRanks = null;
+    ranks = null;
+
+  }
+
+  // Constructs the LCP (longest common prefix) array in linear time - O(n)
+  // http://www.mi.fu-berlin.de/wiki/pub/ABI/RnaSeqP4/suffix-array.pdf
+  private void kasai() {
+
+    lcp = new int[N];
+    
+    // Compute inverse index values
+    int [] inv = new int[N];
+    for (int i = 0; i < N; i++)
+      inv[sa[i]] = i;
+
+    // Current lcp length
+    int len = 0;
+
+    for (int i = 0; i < N; i++) {
+      if (inv[i] > 0) {
+
+        // Get the index of where the suffix below is
+        int k = sa[inv[i]-1];
+        // Compute lcp length. For most loops this is O(1)
+        while( (i + len < N) && (k + len < N) && T[i+len] == T[k+len] )
+          len++;
+
+        lcp[inv[i]-1] = len;
+        if (len > 0) len--;
+
+      }
+    }
+
+  }
+
+  // // Runs on O(mlog(n)) where m is the length of the substring
+  // // and n is the length of the text.
+  // // NOTE: This is the naive implementation. There exists an
+  // // implementation which runs in O(m + log(n)) time
+  // public boolean contains(String substr) {
+
+  //   if (substr == null) return false;
+  //   if (substr.equals("")) return true;
+
+  //   String suffix_str;
+  //   int lo = 0, hi = N - 1;
+  //   int substr_len = substr.length();
+
+  //   while( lo <= hi ) {
+	
+  //     int mid = (lo + hi) / 2;
+  //     int suffix_index = sa[mid];
+  //     int suffix_len = N - suffix_index;
+      
+  //     // CHANGE
+  //     char[] tmp = new char[T.length];      
+  //     for (int i=0; i<T.length; i++) {
+  // 	  tmp[i] = (char) T[i];
+  //     }
+
+  //     // Extract part of the suffix we need to compare
+  //     if (suffix_len <= substr_len) suffix_str = new String(tmp, suffix_index, suffix_len);
+  //     else suffix_str = new String(tmp, suffix_index, substr_len);
+  //     // CHANGE
+  //     // if (suffix_len <= substr_len) suffix_str = new String(T, suffix_index, suffix_len);
+  //     // else suffix_str = new String(T, suffix_index, substr_len);
+      
+  //     int cmp = suffix_str.compareTo(substr);
+
+  //     // Found a match
+  //     if ( cmp == 0 ) {
+  //       // To find the first occurrence linear scan up/down
+  //       // from here or keep doing binary search
+  //       return true;
+      
+  //     // Substring is found above
+  //     } else if (cmp < 0) {
+  //       lo = mid + 1;
+
+  //     // Substring is found below
+  //     } else {
+  //       hi = mid - 1;
+  //     }
+
+  //   }
+
+  //   return false;
+
+  // }
+
+//   generator public void forLoop() {
+    
+//       // for (int i = 0; i < blah; i++)
+//     int t = ??;
+//     int i = ??;
+//     boolean b1 = i < ??;
+	
+//     for (int i = ??; i {| |} blah; i=i+??){
+
+// }
+//   }
+
+    public TreeSet <String> lrs() {
+	int[] localInts = new int[10];
+	Object[] localObjs = new Object[10];
+	return lrsGen(localInts, localObjs);
+    }
+    
+    public void initVars(int[] localInts, int numLocalInts, Object[] localObjs, int numLocalObjs) {
+	// int t = ??;
+	if (numLocalInts < 10) {
+	    if (??) {
+		localInts[numLocalInts] = ??;
+		numLocalInts++;
+	    }
+	}
+	if (numLocalObjs < 10 && ??) {
+	    localObjs[numLocalObjs] = new TreeSet<>();
+	    numLocalObjs++;
+	}
+	if (numLocalObjs < 10 && ??) {
+	    localObjs[numLocalObjs] = new Object();
+	    numLocalObjs++;
+	}
+	if (numLocalObjs < 10 && ??) {
+	    localObjs[numLocalObjs] = new String();
+	    numLocalObjs++;
+	}
+    }
+
+    generator public TreeSet<String> lrsGen(int[] localInts, Object[] localObjs) {
+	char[] tmp;
+	if (??) {
+	    tmp = new char[T.length];
+	}
+	if (??) {
+	    initVars(localInts, 0, localObjs, 0);
+	}
+	if (??) {
+	    int local = localInts[??];
+	    int g1 = {| ??, T.length, N, local|};
+	    for (int i=0; {| i == g1 | i < g1 | i <= g1 | i > g1 | i >= g1 |}; i++) {
+		// tmp[i] = (char) T[i];
+		local = localInts[??];
+		int i1 = lcp[??]; int i2 = lcp[i]; int i3 = lcp[local]; int i4 = T[??]; int i5 = T[local]; int i6 = T[i];
+		int blah = {| local, i1, i2, i3, i4, i5, i6 |};
+		char r = {| ??, blah|};
+		if (??) {
+		    tmp[??] = r;
+		}
+		if (??) {
+		    tmp[i] = r;
+		}
+	    }
+	}
+	if (??) {
+	    // TreeSet<String> lrss = (TreeSet<String>) localObjs[0];
+	    // int max_len = localInts[0];
+	    int local = localInts[??];
+	    int g1 = {| ??, T.length, N, local|};
+	    for (int i=0; {| i == g1 | i < g1 | i <= g1 | i > g1 | i >= g1 |}; i++) {
+	    	// if (lcp[i] > 0 && lcp[i] >= max_len) {
+	    	//     if ( lcp[i] > max_len ) {
+	    	// 	lrss.clear();
+	    	//     }
+	    	//     max_len = lcp[i];
+	    	//     lrss.add( new String(tmp, sa[i], max_len) );
+	    	// }
+		forBody(localInts, localObjs, i, tmp);
+		// if (lcp[i] > 0 && lcp[i] >= localInts[0]) {
+		//     // forBody(localInts, localObjs, i, tmp);
+		//     if (lcp[i] > localInts[0]) {
+		// 	TreeSet<String> lrss = (TreeSet<String>) localObjs[0];
+		// 	lrss.clear();
+		//     }
+		//     localInts[0] = lcp[i];
+		//     TreeSet<String> lrss = (TreeSet<String>) localObjs[0];		    
+		//     lrss.add(new String(tmp, sa[i], localInts[0]));		
+		// }
+	    }
+	}
+	if (??) {
+	    return (TreeSet<String>) localObjs[??];
+	}
+	return null;
+    }
+
+    generator public void forBody(int[] localInts, Object[] localObjs, int i, char[] tmp) {
+	if (??) {
+	    int local = localInts[??];
+	    int i1 = lcp[??]; int i2 = lcp[i]; int i3 = lcp[local]; int i4 = T[??]; int i5 = T[local]; int i6 = T[i];
+	    int i7 = sa[??]; int i8 = sa[i]; int i9 = sa[local];
+	    int p1 = {| i, i1, i2, i3, i4, i5, i6, i7, i8, i9, local |};
+	    int p2 = {| i, i1, i2, i3, i4, i5, i6, i7, i8, i9, local |};
+	    boolean comp1 = {| p1 == p2, p1 < p2, p1 <= p2|};
+
+	    int local2 = localInts[??];
+	    int i12 = lcp[??]; int i22 = lcp[i]; int i32 = lcp[local2]; int i42 = T[??]; int i52 = T[local2]; int i62 = T[i];
+	    int i72 = sa[??]; int i82 = sa[i]; int i92 = sa[local2];
+	    int p12 = {| i, i12, i22, i32, i42, i52, i62, i72, i82, i92, local2 |};
+	    int p22 = {| i, i12, i22, i32, i42, i52, i62, i72, i82, i92, local2 |};
+	    boolean comp2 = {| p12 == p22, p12 < p22, p12 <= p22|};
+	    
+	    // int local3 = localInts[??];
+	    // int i13 = lcp[??]; int i23 = lcp[i]; int i33 = lcp[local3]; int i43 = T[??]; int i53 = T[local3]; int i63 = T[i];
+	    // int i73 = sa[??]; int i83 = sa[i]; int i93 = sa[local3];
+	    // int p13 = {| i, i13, i23, i33, i43, i53, i63, i73, i83, i93, local3 |};
+	    // int p23 = {| i, i13, i23, i33, i43, i53, i63, i73, i83, i93, local3 |};
+	    // boolean comp3 = {| p13 == p23, p13 < p23, p13 <= p23|};
+	    
+	    if (comp1) {
+	    // if (lcp[i] > 0 && lcp[i] >= localInts[0]) {
+		// forBody(localInts, localObjs, i, tmp);
+		// if (lcp[i] > localInts[0]) {
+		if (comp2) {
+		    TreeSet<String> lrss = (TreeSet<String>) localObjs[0];
+		    // TreeSet<String> lrss = (TreeSet<String>) localObjs[??];
+		    lrss.clear();
+		}
+
+		// int local3 = localInts[??];
+		// int i13 = lcp[??]; int i23 = lcp[i]; int i33 = lcp[local3]; int i43 = T[??]; int i53 = T[local3]; int i63 = T[i];
+		// int i73 = sa[??]; int i83 = sa[i]; int i93 = sa[local3];
+		// int p13 = {| i, i13, i23, i33, i43, i53, i63, i73, i83, i93, local3 |};
+		// localInts[??] = p13;
+		
+		// TreeSet<String> lrss = (TreeSet<String>) localObjs[??];
+		// int local4 = localInts[??];
+		// int i14 = lcp[??]; int i24 = lcp[i]; int i34 = lcp[local4]; int i44 = T[??]; int i54 = T[local4]; int i64 = T[i];
+		// int i74 = sa[??]; int i84 = sa[i]; int i94 = sa[local4];
+		// int index1 = {| i, i14, i24, i34, i44, i54, i64, i74, i84, i94, local4 |};
+		// int index2 = {| i, i14, i24, i34, i44, i54, i64, i74, i84, i94, local4 |};
+		// lrss.add(new String(tmp, index1, index2));
+		
+		TreeSet<String> lrss = (TreeSet<String>) localObjs[0];				
+		localInts[0] = i2;
+		lrss.add(new String(tmp, sa[i], localInts[0]));		
+	    }
+	}
+	// if (??) {
+	//     TreeSet<String> lrss = (TreeSet<String>) localObjs[??];
+	//     lrss.clear();
+	// }
+	// if (??) {
+	//     int local = localInts[??];
+	//     int i1 = lcp[??]; int i2 = lcp[i]; int i3 = lcp[local]; int i4 = T[??]; int i5 = T[local]; int i6 = T[i];
+	//     int i7 = sa[??]; int i8 = sa[i]; int i9 = sa[local];
+	//     int p1 = {| i, i1, i2, i3, i4, i5, i6, i7, i8, i9, local |};
+	//     localInts[??] = p1;
+	// }
+	// if (??) {
+	//     TreeSet<String> lrss = (TreeSet<String>) localObjs[??];
+	//     int local = localInts[??];
+	//     int i1 = lcp[??]; int i2 = lcp[i]; int i3 = lcp[local]; int i4 = T[??]; int i5 = T[local]; int i6 = T[i];
+	//     int i7 = sa[??]; int i8 = sa[i]; int i9 = sa[local];
+	//     int index1 = {| i, i1, i2, i3, i4, i5, i6, i7, i8, i9, local |};
+	//     int index2 = {| i, i1, i2, i3, i4, i5, i6, i7, i8, i9, local |};
+	//     lrss.add(new String(tmp, index1, index2));
+	// }
+	// if (??) {
+	//     forBody(localInts, localObjs, i, tmp);
+	// }
+    }
+    
+  // Finds the LRS(s) (Longest Repeated Substring) that occurs in a string.
+  // Traditionally we are only interested in substrings that appear at
+  // least twice, so this method returns an empty set if this is the case.
+  // @return an ordered set of longest repeated substrings
+  public TreeSet <String> lrs2() {
+
+    int[] localInts = new int[10];
+    Object[] localObjs = new Object[10];
+    
+    initVars(localInts, 0, localObjs, 0);
+    
+    // int max_len = 0;
+    // TreeSet <String> lrss = new TreeSet<>();
+    int max_len = localInts[??];
+    TreeSet <String> lrss = localObjs[??];
+    char[] tmp = new char[T.length];      
+    
+    // CHANGE
+    // int g1 = {| T.length, N, max_len, ?? |};
+    // for (int i=??; i<g1; i=i+??) {
+    for (int i=0; i<T.length; i++) {
+    	tmp[i] = (char) T[i];
+    }
+    
+    // int g2 = {| T.length, N, max_len, ?? |};
+    // for (int i = ??; i < g2; i=i+??) {
+    for (int i = 0; i < N; i++) {
+      // if (lcp[i] > ?? && lcp[i] >= max_len) {
+      if (lcp[i] > 0 && lcp[i] >= max_len) {
+        
+        // We found a longer LRS
+	  if ( lcp[i] > max_len ) {
+	      lrss.clear();
+	  }
+        
+        // Append substring to the list and update max
+        max_len = lcp[i];
+    	// CHANGE
+        lrss.add( new String(tmp, sa[i], max_len) );
+    	// lrss.add( new String(T, sa[i], max_len) );
+      }
+    }
+
+    return lrss;
+
+  }
+
+  // // /**
+  // //  * Finds the Longest Common Substring (LCS) between a group of strings.
+  // //  * The current implementation takes O(nlog(n)) bounded by the suffix array construction.
+  // //  * @param strs - The strings you wish to find the longest common substring between
+  // //  * @param K - The minimum number of strings to find the LCS between. K must be at least 2.
+  // //  **/
+  // public static TreeSet<String> lcs(String [] strs, int K) {
+
+  //     // CHANGE
+  //     // if (K <= 1) throw new IllegalArgumentException("K must be greater than or equal to 2!");
+      
+  //   if (K <= 1) {
+  //   	return null;
+  //   }
+
+  //   TreeSet<String> lcss = new TreeSet();
+    
+  //   if (strs == null || strs.length <= 1) return lcss;
+    
+  //   // L is the concatenated length of all the strings and the sentinels
+  //   int L = 0;
+    
+  //   final int NUM_SENTINELS = strs.length, N = strs.length;
+  //   for(int i = 0; i < N; i++) L += strs[i].length() + 1;
+
+  //   int[] indexMap = new int[L];
+  //   // CHANGE
+  //   int LOWEST_ASCII = 1000;
+  //   // int LOWEST_ASCII = Integer.MAX_VALUE;
+  //   int k = 0;
+    
+  //   // Find the lowest ASCII value within the strings.
+  //   // Also construct the index map to know which original 
+  //   // string a given suffix belongs to.
+  //   for (int i = 0; i < strs.length; i++) {
+      
+  //     String str = strs[i];
+      
+  //     for (int j = 0; j < str.length(); j++) {
+  //       int asciiVal = str.charAt(j);
+  //       if (asciiVal < LOWEST_ASCII) LOWEST_ASCII = asciiVal;
+  //       indexMap[k] = i;
+  // 	k++;
+  //     }
+
+  //     // Record that the sentinel belongs to string i
+  //     indexMap[k] = i;
+  //     k++;
+  //   }
+
+  //   final int SHIFT = LOWEST_ASCII + NUM_SENTINELS + 1;
+    
+  //   int sentinel = 0;
+  //   int[] T = new int[L];
+
+  //   // CHANGE
+  //   k = 0;
+  //   // Construct the new text with the shifted values and the sentinels
+  //   for(int i = 0; i < N; i++) {
+  //   // for(int i = 0, k = 0; i < N; i++) {
+  //     String str = strs[i];
+  //     for (int j = 0; j < str.length(); j++) {
+  //       T[k] = ((int)str.charAt(j)) + SHIFT;
+  // 	k++;
+  //     }
+  //     T[k] = sentinel;
+  //     sentinel++;
+  //     k++;
+  //   }
+
+  //   // CHANGE
+  //   String tmp = intArrToString(T);
+  //   SuffixArray sa = new SuffixArray(tmp);
+  //   // // SuffixArray sa = new SuffixArray(T);
+  //   ArrayDeque <Integer> deque = new ArrayDeque<>();
+  //   HashMap <Integer, Integer> windowColorCount = new HashMap<>();
+  //   HashSet <Integer> windowColors = new HashSet<>();
+    
+  //   // Start the sliding window at the number of sentinels because those
+  //   // all get sorted first and we want to ignore them
+  //   int lo = NUM_SENTINELS, hi = NUM_SENTINELS, bestLCSLength = 0;
+
+  //   // Add the first color
+  //   int firstColor = indexMap[sa.sa[hi]];
+  //   windowColors.add(new Integer(firstColor));
+  //   windowColorCount.put(new Integer(firstColor), new Integer(1));
+
+  //   int count = 0;
+    
+  //   // Maintain a sliding window between lo and hi
+  //   while(hi < L) {
+
+  //     int uniqueColors = windowColors.size();
+      
+  //     // Attempt to update the LCS
+  //     if (uniqueColors >= K) {
+	
+  //       // CHANGE
+  //   	Integer deqPeekFirst = deque.peekFirst();
+  //   	int deqPeekFirst_int = deqPeekFirst.intValue();	
+  //   	int windowLCP = sa.lcp[deqPeekFirst_int];
+  //   	// int windowLCP = sa.lcp[deque.peekFirst()];
+
+  //       if (windowLCP > 0 && bestLCSLength < windowLCP) {
+  //         bestLCSLength = windowLCP;
+  //         lcss.clear();
+  //       }
+
+  //       if (windowLCP > 0 && bestLCSLength == windowLCP) {
+
+  //         // Construct the current LCS within the window interval
+  //         int pos = sa.sa[lo];
+  //         char[] lcs = new char[windowLCP];
+  //         for (int i = 0; i < windowLCP; i++) lcs[i] = (char)(T[pos+i] - SHIFT);
+
+  //   	  // CHANGE
+  //         lcss.add(new String(lcs, 0, lcs.length));
+  //         // lcss.add(new String(lcs));
+
+  //         // If you wish to find the original strings to which this longest 
+  //         // common substring belongs to the indexes of those strings can be
+  //         // found in the windowColors set, so just use those indexes on the 'strs' array
+
+  //       }
+
+  //       // Update the colors in our window
+  //       int lastColor = indexMap[sa.sa[lo]];
+  //   	// CHANGE
+  //       Integer colorCount = windowColorCount.get(new Integer(lastColor));
+  //       // Integer colorCount = windowColorCount.get(lastColor);
+  //   	int check = colorCount.intValue();
+  //   	// CHANGE
+  //   	boolean removed = false;
+  //       if (colorCount.intValue() == 1) {
+  //   	    windowColors.remove(new Integer(lastColor));
+  //   	    removed = true;
+  //   	} 
+  //   	// if (colorCount == 1) windowColors.remove(lastColor);
+  //   	// CHANGE
+  //       windowColorCount.put(new Integer(lastColor), new Integer(colorCount.intValue() - 1));
+  //       // windowColorCount.put(lastColor, colorCount - 1);
+	
+  //   	// CHANGE
+  //   	if (!deque.isEmpty()) {
+  //   	    // CHANGE
+  //   	    deqPeekFirst = deque.peekFirst();
+  //   	    boolean deqPeekLessThanLo = deqPeekFirst.intValue() <= lo;
+	    	    
+  //   	    // Remove the head if it's outside the new range: [lo+1, hi)
+  //   	    while (!deque.isEmpty() && deqPeekLessThanLo) {
+  //   		deque.removeFirst();
+  //   		deqPeekFirst = deque.peekFirst();
+  //   		if (deqPeekFirst != null) {
+  //   		    deqPeekLessThanLo = deqPeekFirst.intValue() <= lo;
+  //   		} else {
+  //   		    deqPeekLessThanLo = false;
+  //   		}
+  //   	    }
+
+  //   	}
+		
+  //       // Decrease the window size
+  //       lo++;
+
+  //     // Increase the window size because we don't have enough colors
+  //     } else if(hi+1 < L) {
+  // 	  hi++;
+  //   	int nextColor = indexMap[sa.sa[hi]];
+  //   	// CHANGE 
+  //   	Integer nextColor_Int = new Integer(nextColor);
+	
+  //       // Update the colors in our window
+  //   	// CHANGE
+  //       windowColors.add(nextColor_Int);
+  //       // windowColors.add(nextColor);
+  //   	// CHANGE
+  //       Integer colorCount = windowColorCount.get(nextColor_Int);
+  //       // Integer colorCount = windowColorCount.get(nextColor);
+  //   	// CHANGE
+  //       if (colorCount == null) colorCount = new Integer(0);
+  //       // if (colorCount == null) colorCount = 0;
+  //   	// CHANGE
+  //       windowColorCount.put(nextColor_Int, new Integer(colorCount.intValue() + 1));
+  //       // windowColorCount.put(nextColor, colorCount + 1);
+
+  //   	// CHANGE
+  //   	if (!deque.isEmpty()) {	
+  //   	    // CHANGE
+  //   	    Integer deqPeekLast = deque.peekLast();
+  //   	    int deqPeekLast_int = deqPeekLast.intValue();	    
+	    
+  //   	    // CHANGE
+  //   	    // Remove all the worse values in the back of the deque
+  //   	    while(!deque.isEmpty() && sa.lcp[deqPeekLast_int] > sa.lcp[hi-1]) {
+  //   		// while(!deque.isEmpty() && sa.lcp[deque.peekLast()] > sa.lcp[hi-1])
+  //   		deque.removeLast();
+  //   		// CHANGE
+  //   		if (!deque.isEmpty()) {
+  //   		    deqPeekLast = deque.peekLast();
+  //   		    deqPeekLast_int = deqPeekLast.intValue();
+  //   		}
+  //   	    }
+  //   	}
+
+  //   	// CHANGE
+  //       deque.addLast(new Integer(hi-1));
+  //       // deque.addLast(hi-1);
+
+  //     }
+  //     count++;
+  //   }
+
+  //   return lcss;
+
+  // }
+
+  // // public void display() {
+  // //   System.out.printf("-----i-----SA-----LCP---Suffix\n");
+  // //   for(int i = 0; i < N; i++) {
+  // //     int suffixLen = N - sa[i];
+  // //     String suffix = new String(T, sa[i], suffixLen);
+  // //     System.out.printf("% 7d % 7d % 7d %s\n", i, sa[i],lcp[i], suffix );
+  // //   }
+  // // }
+
+  //   // CHANGE
+  // //   // public static void main(String[] args){
+  // //   harness public static void main() {      
+        	
+  // //   // String[] strs = { "GAGL", "RGAG", "TGAGE" };
+    
+  // //   String[] strs = { "AAGAAGC", "AGAAGT", "CGAAGC" };
+  // //   // String[] strs = { "abca", "bcad", "daca" };
+  // //   // String[] strs = { "abca", "bcad", "daca" };
+  // //   // String[] strs = { "AABC", "BCDC", "BCDE", "CDED" };
+  // //   // String[] strs = { "abcdefg", "bcdefgh", "cdefghi" };
+  // //   // String[] strs = { "xxx", "yyy", "zzz" };
+  // //   TreeSet <String> lcss = SuffixArray.lcs(strs, 2);
+  // //   // System.out.println(lcss);
+
+  // //   // SuffixArray sa = new SuffixArray("abracadabra");
+  // //   // System.out.println(sa);
+  // //   // System.out.println(java.util.Arrays.toString(sa.sa));
+  // //   // System.out.println(java.util.Arrays.toString(sa.lcp));
+
+  // //   // SuffixArray sa = new SuffixArray("ababcabaa");
+  // //   // sa.display();
+    
+  
+
+  // // }
+
+}
+
