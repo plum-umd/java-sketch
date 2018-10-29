@@ -375,13 +375,13 @@ class SuffixArray {
 	    
 	    if (comp1) {
 	    // if (lcp[i] > 0 && lcp[i] >= localInts[0]) {
-		// forBody(localInts, localObjs, i, tmp);
+		forBody(localInts, localObjs, i, tmp);
 		// if (lcp[i] > localInts[0]) {
-		if (comp2) {
-		    TreeSet<String> lrss = (TreeSet<String>) localObjs[0];
-		    // TreeSet<String> lrss = (TreeSet<String>) localObjs[??];
-		    lrss.clear();
-		}
+		// if (comp2) {
+		//     // TreeSet<String> lrss = (TreeSet<String>) localObjs[0];
+		//     TreeSet<String> lrss = (TreeSet<String>) localObjs[??];
+		//     lrss.clear();
+		// }
 
 		// int local3 = localInts[??];
 		// int i13 = lcp[??]; int i23 = lcp[i]; int i33 = lcp[local3]; int i43 = T[??]; int i53 = T[local3]; int i63 = T[i];
@@ -397,34 +397,37 @@ class SuffixArray {
 		// int index2 = {| i, i14, i24, i34, i44, i54, i64, i74, i84, i94, local4 |};
 		// lrss.add(new String(tmp, index1, index2));
 		
-		TreeSet<String> lrss = (TreeSet<String>) localObjs[0];				
-		localInts[0] = i2;
-		lrss.add(new String(tmp, sa[i], localInts[0]));		
+		// // TreeSet<String> lrss = (TreeSet<String>) localObjs[0];				
+		// // localInts[0] = i2;
+		// // lrss.add(new String(tmp, sa[i], localInts[0]));		
 	    }
 	}
-	// if (??) {
-	//     TreeSet<String> lrss = (TreeSet<String>) localObjs[??];
-	//     lrss.clear();
-	// }
-	// if (??) {
-	//     int local = localInts[??];
-	//     int i1 = lcp[??]; int i2 = lcp[i]; int i3 = lcp[local]; int i4 = T[??]; int i5 = T[local]; int i6 = T[i];
-	//     int i7 = sa[??]; int i8 = sa[i]; int i9 = sa[local];
-	//     int p1 = {| i, i1, i2, i3, i4, i5, i6, i7, i8, i9, local |};
-	//     localInts[??] = p1;
-	// }
-	// if (??) {
-	//     TreeSet<String> lrss = (TreeSet<String>) localObjs[??];
-	//     int local = localInts[??];
-	//     int i1 = lcp[??]; int i2 = lcp[i]; int i3 = lcp[local]; int i4 = T[??]; int i5 = T[local]; int i6 = T[i];
-	//     int i7 = sa[??]; int i8 = sa[i]; int i9 = sa[local];
-	//     int index1 = {| i, i1, i2, i3, i4, i5, i6, i7, i8, i9, local |};
-	//     int index2 = {| i, i1, i2, i3, i4, i5, i6, i7, i8, i9, local |};
-	//     lrss.add(new String(tmp, index1, index2));
-	// }
-	// if (??) {
-	//     forBody(localInts, localObjs, i, tmp);
-	// }
+	if (??) {
+	    TreeSet<String> lrss = (TreeSet<String>) localObjs[??];
+	    lrss.clear();
+	}
+	if (??) {
+	    int local = localInts[??];
+	    int i1 = lcp[??]; int i2 = lcp[i]; int i3 = lcp[local]; int i4 = T[??]; int i5 = T[local]; int i6 = T[i];
+	    int i7 = sa[??]; int i8 = sa[i]; int i9 = sa[local];
+	    int p1 = {| i, i1, i2, i3, i4, i5, i6, i7, i8, i9, local |};
+	    // localInts[??] = p1;
+	    localInts[0] = i2;
+	}
+	if (??) {
+	    // TreeSet<String> lrss = (TreeSet<String>) localObjs[??];
+	    TreeSet<String> lrss = (TreeSet<String>) localObjs[0];
+	    int local = localInts[??];
+	    int i1 = lcp[??]; int i2 = lcp[i]; int i3 = lcp[local]; int i4 = T[??]; int i5 = T[local]; int i6 = T[i];
+	    int i7 = sa[??]; int i8 = sa[i]; int i9 = sa[local];
+	    int index1 = {| i, i1, i2, i3, i4, i5, i6, i7, i8, i9, local |};
+	    int index2 = {| i, i1, i2, i3, i4, i5, i6, i7, i8, i9, local |};
+	    // lrss.add(new String(tmp, index1, index2));
+	    lrss.add(new String(tmp, sa[i], localInts[0]));			    
+	}
+	if (??) {
+	    forBody(localInts, localObjs, i, tmp);
+	}
     }
     
   // Finds the LRS(s) (Longest Repeated Substring) that occurs in a string.
