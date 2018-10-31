@@ -272,33 +272,40 @@ class SuffixArray {
     }
 
     generator public int genInt(int[] localInts, Object[] localObjs, int i) {
-	int local = localInts[??];
+	int local = localInts[0];
 	int i1 = lcp[??]; int i2 = lcp[i]; int i3 = lcp[local]; int i4 = T[??]; int i5 = T[local]; int i6 = T[i];
 	int i7 = sa[??]; int i8 = sa[i]; int i9 = sa[local];
-	int p = {| i, i1, i2, i3, i4, i5, i6, i7, i8, i9, local, ??, T.length, N|};
+	int sz = 0;
+	if (??) {
+	    TreeSet<String> lrss = (TreeSet<String>) localObjs[0];
+	    sz = lrss.size();
+	}
+	int p = {| i, i1, i2, i3, i4, i5, i6, i7, i8, i9, local, ??, T.length, N, sz |};
 	return p;
     }
     
     public void initVars(int[] localInts, int numLocalInts, Object[] localObjs, int numLocalObjs) {
 	// int t = ??;
-	if (numLocalInts < 10) {
-	    if (??) {
-		localInts[numLocalInts] = ??;
-		numLocalInts++;
-	    }
-	}
-	if (numLocalObjs < 10 && ??) {
-	    localObjs[numLocalObjs] = new TreeSet<>();
-	    numLocalObjs++;
-	}
-	if (numLocalObjs < 10 && ??) {
-	    localObjs[numLocalObjs] = new Object();
-	    numLocalObjs++;
-	}
-	if (numLocalObjs < 10 && ??) {
-	    localObjs[numLocalObjs] = new String();
-	    numLocalObjs++;
-	}
+	// if (numLocalInts < 10) {
+	//     if (??) {
+	// 	localInts[numLocalInts] = ??;
+	// 	numLocalInts++;
+	//     }
+	// }
+	// if (numLocalObjs < 10 && ??) {
+	//     localObjs[numLocalObjs] = new TreeSet<>();
+	//     numLocalObjs++;
+	// }
+	// if (numLocalObjs < 10 && ??) {
+	//     localObjs[numLocalObjs] = new Object();
+	//     numLocalObjs++;
+	// }
+	// if (numLocalObjs < 10 && ??) {
+	//     localObjs[numLocalObjs] = new String();
+	//     numLocalObjs++;
+	// }
+	localInts[0] = 0;
+	localObjs[0] = new TreeSet<>();
     }
 
     public TreeSet<String> lrsGen(int[] localInts, Object[] localObjs) {
@@ -322,46 +329,56 @@ class SuffixArray {
 	if (??) {
 	    int g1 = genInt(localInts, localObjs, 0);
 	    for (int i=0; {| i == g1 | i < g1 | i <= g1 | i > g1 | i >= g1 |}; i++) {
-		boolean comp1 = genGuard(localInts, localObjs, i);
-		boolean comp2 = genGuard(localInts, localObjs, i);
+		boolean comp1 = genGuard(localInts, localObjs, i, tmp);
+		boolean comp2 = genGuard(localInts, localObjs, i, tmp);
 
 		if (comp1) {
 		    if (comp2) {
-			genStmt(localInts, localObjs, i, tmp);
+			// genStmt(localInts, localObjs, i, tmp);
 			// TreeSet<String> lrss = (TreeSet<String>) localObjs[0];
 			// lrss.clear();
-			// genStmts(localInts, localObjs, i, tmp);
+			genStmts(localInts, localObjs, i, tmp);
 		    }
-		    // genStmts(localInts, localObjs, i, tmp);
-		    TreeSet<String> lrss = (TreeSet<String>) localObjs[0];				
-		    localInts[0] = lcp[i];
-		    lrss.add(new String(tmp, sa[i], localInts[0]));				    
+		    genStmts(localInts, localObjs, i, tmp);
+		    // genStmt(localInts, localObjs, i, tmp);
+		    // genStmt(localInts, localObjs, i, tmp);
+		    // genStmt(localInts, localObjs, i, tmp);		    
+		    // TreeSet<String> lrss = (TreeSet<String>) localObjs[0];				
+		    // localInts[0] = lcp[i];
+		    // lrss.add(new String(tmp, sa[i], localInts[0]));				    
 		}
 	    }
 	}
 	if (??) {
-	    return (TreeSet<String>) localObjs[??];
+	    return (TreeSet<String>) localObjs[0];
 	}
 	return null;
     }
 
-    generator public boolean genGuard(int[] localInts, Object[] localObjs, int i) {
+    generator public boolean genGuard(int[] localInts, Object[] localObjs, int i, char[] tmp) {
 	int i1 = genInt(localInts, localObjs, i);
 	int i2 = genInt(localInts, localObjs, i);
-	return {| i1 == i2, i1 < i2, i1 <= i2 |};
+	boolean contains = true;
+	if (??) {
+	    TreeSet<String> lrss = (TreeSet<String>) localObjs[0];
+	    int index1 = genInt(localInts, localObjs, i);
+	    int index2 = genInt(localInts, localObjs, i);
+	    contains = lrss.contains(new String(tmp, index1, index2));
+	}
+	return {| i1 == i2, i1 < i2, i1 <= i2, contains |};
     }
 
     generator public void genStmt(int[] localInts, Object[] localObjs, int i, char[] tmp) {
 	if (??) {
-	    TreeSet<String> lrss = (TreeSet<String>) localObjs[??];
+	    TreeSet<String> lrss = (TreeSet<String>) localObjs[0];
 	    lrss.clear();
 	}
 	if (??) {
 	    int i1 = genInt(localInts, localObjs, i);
-	    localInts[??] = i1;	    
+	    localInts[0] = i1;	    
 	}
 	if (??) {
-	    TreeSet<String> lrss = (TreeSet<String>) localObjs[??];
+	    TreeSet<String> lrss = (TreeSet<String>) localObjs[0];
 	    int index1 = genInt(localInts, localObjs, i);
 	    int index2 = genInt(localInts, localObjs, i);
 	    lrss.add(new String(tmp, index1, index2));
@@ -374,68 +391,6 @@ class SuffixArray {
 	}
 	if (??) {
 	    genStmts(localInts, localObjs, i, tmp);
-	}
-    }
-    
-    generator public void forBody(int[] localInts, Object[] localObjs, int i, char[] tmp) {
-	if (??) {
-	    boolean comp1 = genGuard(localInts, localObjs, i);
-	    boolean comp2 = genGuard(localInts, localObjs, i);
-	    
-	    if (comp1) {
-	    // if (lcp[i] > 0 && lcp[i] >= localInts[0]) {
-		// forBody(localInts, localObjs, i, tmp);
-		// if (lcp[i] > localInts[0]) {
-		if (comp2) {
-		    // TreeSet<String> lrss = (TreeSet<String>) localObjs[0];
-		    TreeSet<String> lrss = (TreeSet<String>) localObjs[??];
-		    lrss.clear();
-		}
-
-		int local3 = localInts[??];
-		int i13 = lcp[??]; int i23 = lcp[i]; int i33 = lcp[local3]; int i43 = T[??]; int i53 = T[local3]; int i63 = T[i];
-		int i73 = sa[??]; int i83 = sa[i]; int i93 = sa[local3];
-		int p13 = {| i, i13, i23, i33, i43, i53, i63, i73, i83, i93, local3 |};
-		localInts[??] = p13;
-		
-		TreeSet<String> lrss = (TreeSet<String>) localObjs[??];
-		int local4 = localInts[??];
-		int i14 = lcp[??]; int i24 = lcp[i]; int i34 = lcp[local4]; int i44 = T[??]; int i54 = T[local4]; int i64 = T[i];
-		int i74 = sa[??]; int i84 = sa[i]; int i94 = sa[local4];
-		int index1 = {| i, i14, i24, i34, i44, i54, i64, i74, i84, i94, local4 |};
-		int index2 = {| i, i14, i24, i34, i44, i54, i64, i74, i84, i94, local4 |};
-		lrss.add(new String(tmp, index1, index2));
-		
-		// TreeSet<String> lrss = (TreeSet<String>) localObjs[0];				
-		// localInts[0] = i2;
-		// lrss.add(new String(tmp, sa[i], localInts[0]));		
-	    }
-	}
-	if (??) {
-	    TreeSet<String> lrss = (TreeSet<String>) localObjs[??];
-	    lrss.clear();
-	}
-	if (??) {
-	    int local = localInts[??];
-	    int i1 = lcp[??]; int i2 = lcp[i]; int i3 = lcp[local]; int i4 = T[??]; int i5 = T[local]; int i6 = T[i];
-	    int i7 = sa[??]; int i8 = sa[i]; int i9 = sa[local];
-	    int p1 = {| i, i1, i2, i3, i4, i5, i6, i7, i8, i9, local |};
-	    // localInts[??] = p1;
-	    localInts[0] = i2;
-	}
-	if (??) {
-	    // TreeSet<String> lrss = (TreeSet<String>) localObjs[??];
-	    TreeSet<String> lrss = (TreeSet<String>) localObjs[0];
-	    int local = localInts[??];
-	    int i1 = lcp[??]; int i2 = lcp[i]; int i3 = lcp[local]; int i4 = T[??]; int i5 = T[local]; int i6 = T[i];
-	    int i7 = sa[??]; int i8 = sa[i]; int i9 = sa[local];
-	    int index1 = {| i, i1, i2, i3, i4, i5, i6, i7, i8, i9, local |};
-	    int index2 = {| i, i1, i2, i3, i4, i5, i6, i7, i8, i9, local |};
-	    // lrss.add(new String(tmp, index1, index2));
-	    lrss.add(new String(tmp, sa[i], localInts[0]));			    
-	}
-	if (??) {
-	    forBody(localInts, localObjs, i, tmp);
 	}
     }
     
@@ -452,8 +407,8 @@ class SuffixArray {
     
     // int max_len = 0;
     // TreeSet <String> lrss = new TreeSet<>();
-    int max_len = localInts[??];
-    TreeSet <String> lrss = localObjs[??];
+    int max_len = localInts[0];
+    TreeSet <String> lrss = localObjs[0];
     char[] tmp = new char[T.length];      
     
     // CHANGE
