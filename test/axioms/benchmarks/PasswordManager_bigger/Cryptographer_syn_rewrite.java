@@ -104,6 +104,12 @@ public class Cryptographer {
 	return cipherText;
     }
 
+    generator Mac genMac(int[] localInts, Object[] localObjs) {
+	if (??) { return localObjs[5]; }
+	if (??) { return new Mac(); }
+	return null;
+    }
+    
     generator SecretKeySpec genSecretKeySpec(int[] localInts, Object[] localObjs) {
 	if (??) { return localObjs[2]; }
 	if (??) {
@@ -190,11 +196,12 @@ public class Cryptographer {
 
 	int[] localInts = new int[1];
 	localInts[0] = MAX_LENGTH_PASSWORD;
-	Object[] localObjs = new Object[5];
+	Object[] localObjs = new Object[6];
 	localObjs[0] = myCypherOut;
 	localObjs[2] = GCMSecretKey;
 	localObjs[3] = ivParameterSpec;
 	localObjs[4] = plainText;
+	localObjs[5] = sha256_HMAC;
 	stmts(localInts, localObjs);
 	myCypherOut = localObjs[0];
 	GCMSecretKey = localObjs[2];
