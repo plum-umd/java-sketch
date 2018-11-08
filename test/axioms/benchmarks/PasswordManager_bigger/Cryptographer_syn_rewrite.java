@@ -39,37 +39,42 @@ public class Cryptographer {
 	// final int MAX_LENGTH_PASSWORD = 16;    
 	private int MAX_LENGTH_PASSWORD;
     
-        public Cryptographer() // throws NoSuchAlgorithmException,
-			// NoSuchPaddingException, NoSuchProviderException,
-			// InvalidKeyException, InvalidAlgorithmParameterException
-        {
-		// Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
-		SecureRandom random = new SecureRandom();
+        public Cryptographer() {
+	    int[] localInts = new int[1];
+	    Object[] localObjs = new Object[6];
 
-		byte[] randomKey = new byte[16];
-		random.nextBytes(randomKey);
-		
-		// GCMSecretKey = new SecretKeySpec(randomKey, "AES");
-		GCMSecretKey = new SecretKeySpec();
-		
-		randomIv = new byte[16];
-		random.nextBytes(randomIv);
-		ivParameterSpec = new IvParameterSpec(randomIv);
-				
-		// myCypherOut = Cipher.getInstance("AES/GCM/NoPadding", "BC");
-		myCypherOut = new Cipher();
-		// // myCypherOut.init(Cipher.DECRYPT_MODE, GCMSecretKey,ivParameterSpec);
-		myCypherOut.init(2, GCMSecretKey,ivParameterSpec);
-		
-		// init HMAC
-		String secret = "secret";
-		// sha256_HMAC = Mac.getInstance("HmacSHA256");
-		sha256_HMAC = new Mac();
-		// Hash_secret_key = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
-		Hash_secret_key = new SecretKeySpec();
-		sha256_HMAC.init(Hash_secret_key);
+	    stmts(localInts, localObjs);
 
-		MAX_LENGTH_PASSWORD = 16;
+	    MAX_LENGTH_PASSWORD = localInts[0];
+	    myCypherOut = localObjs[0];
+	    GCMSecretKey = localObjs[2];
+	    ivParameterSpec = localObjs[3];
+	    sha256_HMAC = localObjs[5];
+	    
+	    // SecureRandom random = new SecureRandom();
+
+	    // byte[] randomKey = new byte[16];
+	    // random.nextBytes(randomKey);
+
+	    // // GCMSecretKey = new SecretKeySpec(randomKey, "AES");
+	    // GCMSecretKey = new SecretKeySpec();
+
+	    // randomIv = new byte[16];
+	    // random.nextBytes(randomIv);
+	    // ivParameterSpec = new IvParameterSpec(randomIv);
+
+	    // // myCypherOut = Cipher.getInstance("AES/GCM/NoPadding", "BC");
+	    // myCypherOut = new Cipher();
+	    // // // myCypherOut.init(Cipher.DECRYPT_MODE, GCMSecretKey,ivParameterSpec);
+	    // myCypherOut.init(2, GCMSecretKey,ivParameterSpec);
+
+	    // String secret = "secret";
+	    // // sha256_HMAC = Mac.getInstance("HmacSHA256");
+	    // sha256_HMAC = new Mac();
+	    // // Hash_secret_key = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
+	    // Hash_secret_key = new SecretKeySpec();
+	    // sha256_HMAC.init(Hash_secret_key);
+	    // MAX_LENGTH_PASSWORD = 16;	    
 	}
 
     	public String hash(String plainTxt) {
@@ -78,32 +83,6 @@ public class Cryptographer {
     	    return sha256_HMAC.doFinal(plainTxt);
     	}
     
-    generator public Object genCipherText(String plainText) {
-	@isBoxed
-	byte[] cipherText = null;
-	if (??) { myCypherOut.init(??, GCMSecretKey, ivParameterSpec); }
-	if (??) {
-	    @box
-	    byte[] plainText_bytes = plainText.getBytes();
-	    
-	    cipherText = myCypherOut.doFinal(plainText_bytes);
-	}
-	if (??) { cipherText = genCipherText(plainText); }
-	return cipherText;
-    }
-
-    generator public byte[] genCipherText2(String plainText) {
-	byte[] cipherText;
-	if (??) { myCypherOut.init(??, GCMSecretKey, ivParameterSpec); }
-	if (??) {
-	    @unbox
-	    byte[] answer = myCypherOut.doFinal(plainText);
-	    cipherText = answer;
-	}
-	if (??) { cipherText = genCipherText2(plainText); }
-	return cipherText;
-    }
-
     generator Mac genMac(int[] localInts, Object[] localObjs) {
 	if (??) { return localObjs[5]; }
 	if (??) { return new Mac(); }
@@ -144,6 +123,7 @@ public class Cryptographer {
 
     generator Cipher genCipher(int[] localInts, Object[] localObjs) {
 	if (??) { return (Cipher) localObjs[0]; }
+	if (??) { return new Cipher(); }
 	return null;
     }
     
@@ -179,10 +159,20 @@ public class Cryptographer {
 	    IvParameterSpec iv = genIvParameterSpec(localInts, localObjs);
 	    c.init(i, k, iv);
 	}
+	if (??) {
+	    Mac m = genMac(localInts, localObjs);
+	    SecretKeySpec s = genSecretKeySpec(localInts, localObjs);
+	    m.init(s);
+	}
     }
     
     generator void stmts(int[] localInts, Object[] localObjs) {
-	if (??) { localObjs[??] = genString(localInts, localObjs); }
+	if (??) { localObjs[4] = genString(localInts, localObjs); }
+	if (??) { localObjs[0] = genCipher(localInts, localObjs); }
+	if (??) { localObjs[2] = genSecretKeySpec(localInts, localObjs); }
+	if (??) { localObjs[3] = genIvParameterSpec(localInts, localObjs); }
+	if (??) { localObjs[5] = genMac(localInts, localObjs); }
+	if (??) { localInts[0] = genInt(localInts, localObjs); }
 	if (??) { voidFuncs(localInts, localObjs); }
 	if (??) { stmts(localInts, localObjs); }
     }
