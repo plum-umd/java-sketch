@@ -23,12 +23,12 @@ public class HashTableTest {
 	// Integer vv = new Integer(v);
 	// Integer ww = new Integer(w);
 
-    // harness void mn(int x, int y, int z) {
-    // 	assume x != y && x != z && y != z;
-    harness void mn() {
-    	int x = 0;
-    	int y = 22;
-    	int z = 5468;
+    harness void mn(int x, int y, int z) {
+    	assume x != y && x != z && y != z;
+    // harness void mn() {
+    // 	int x = 2;
+    // 	int y = 44;
+    // 	int z = 5678;
 
 	Integer xx = new Integer(x);
 	Integer yy = new Integer(y);
@@ -64,13 +64,6 @@ public class HashTableTest {
     public void setUp() {
         classUnderTest = new HashTable<>(INITIAL_SIZE);
     }
-
-    // public void recPut(int x) {
-    // 	if (x > 0) {
-    // 	    classUnderTest.put(new Integer(x), new Integer(x*3));
-    // 	    recPut(x-2);
-    // 	}
-    // }
     
     public void testGetEmpty() {
         classUnderTest.clear();
@@ -78,25 +71,24 @@ public class HashTableTest {
     }
 
     public void testPutAndGet(Integer x, Integer y, Integer z) {
-	// recPut(6);
-	for (int i = 6; i <= 8; i=i+2) {
-	    classUnderTest.put(new Integer(i), new Integer(i*3)); 
-	}
-	Assert.assertEquals(classUnderTest.get(new Integer(6)), new Integer(18));
+	// for (int i = 6; i <= 8; i=i+2) {
+	//     classUnderTest.put(new Integer(i), new Integer(i*3)); 
+	// }
+	// Assert.assertEquals(classUnderTest.get(new Integer(6)), new Integer(18));
 	    
-	// Integer[3] is = makeInts(x, y, z);
-        // classUnderTest.clear();
+	Integer[3] is = makeInts(x, y, z);
+        classUnderTest.clear();
 
-        // classUnderTest.put(x, y);
-	// classUnderTest.put(y, x);
-        // classUnderTest.put(z, x);
-        // Assert.assertEquals(classUnderTest.get(is[0]), is[1]);
-        // Assert.assertEquals(classUnderTest.get(is[1]), is[0]);
-        // Assert.assertEquals(classUnderTest.get(is[2]), is[0]);
+        classUnderTest.put(x, y);
+	classUnderTest.put(y, x);
+        classUnderTest.put(z, x);
+        Assert.assertEquals(classUnderTest.get(is[0]), is[1]);
+        Assert.assertEquals(classUnderTest.get(is[1]), is[0]);
+        Assert.assertEquals(classUnderTest.get(is[2]), is[0]);
 
-    	// // Integer i = new Integer(x.intValue()+INITIAL_SIZE);
-        // // classUnderTest.put(i, y);
-        // // Assert.assertEquals(classUnderTest.get(i), y);
+    	// Integer i = new Integer(x.intValue()+INITIAL_SIZE);
+        // classUnderTest.put(i, y);
+        // Assert.assertEquals(classUnderTest.get(i), y);
     }
 
     public void testReplacing(Integer x, Integer y, Integer z) {

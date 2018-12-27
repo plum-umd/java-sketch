@@ -31,11 +31,11 @@ public class HashTable<K, V> {
         resetHashTable();
     }
 
-    generator boolean guard(int[] localInts, Object[] localObjs) {
+    generator boolean guard(Object[] localObjs) {
 	boolean comp = false;
 	if (??) {
-	    int i1 = genInt(localInts, localObjs);
-	    int i2 = genInt(localInts, localObjs);
+	    int i1 = genInt(localObjs);
+	    int i2 = genInt(localObjs);
 	    comp = {| i1 < i2, i1 <= i2, i1 == i2 |};
 	}
 	if (??) {
@@ -44,59 +44,62 @@ public class HashTable<K, V> {
 	return {| comp, !comp |};
     }
     
-    generator int genInt(int[] localInts, Object[] localObjs) {
-	if (??) {
-	    int i1 = localInts[??];
-	    return {| i1, ?? |};
+    generator int genInt(Object[] localObjs) {
+	if (??) {	    
+	    return {| capacityGrowth, initialCapacity, size, currentCapacity, ?? |};
 	}
 	if (??) {
-	    ArrayList<HashTableNode<K,V>> bs = (ArrayList<HashTableNode<K,V>>) localObjs[0];
-	    return bs.size();
+	    return buckets.size();
 	}
 	return 0;
     }
  
-    generator HashTableNode<K,V> genHashTableNode(int[] localInts, Object[] localObjs) {
+    generator HashTableNode<K,V> genHashTableNode(Object[] localObjs) {
 	if (??) {
-	    K k = (K) localObjs[1];
-	    localObjs[2] = getNodeWithKey(k);
+	    K k = (K) localObjs[0];
+	    return getNodeWithKey(k);
 	}
 	return null;
     }
 
-    generator V genV(int[] localInts, Object[] localObjs) {
+    generator V genV(Object[] localObjs) {
 	if (??) {
-	    return ((V) localObjs[??]);
+	    HashTableNode<K, V> result = (HashTableNode<K, V>) localObjs[1];
+	    return result.getValue();
 	}
+	// if (??) {
+	//     return ((V) localObjs[??]);
+	// }
 	return null;
     }
     
-    generator void voidFuncs(int[] localInts, Object[] localObjs) {
+    generator void voidFuncs(Object[] localObjs) {
 	if (??) {
-	    ArrayList<HashTableNode<K,V>> bs = (ArrayList<HashTableNode<K,V>>) localObjs[0];
-	    V v = genV(localInts, localObjs);	    
-	    bs.add(v);
+	    V v = genV(localObjs);	    
+	    buckets.add(v);
 	}
 	if (??) {
-	    ArrayList<HashTableNode<K,V>> bs = (ArrayList<HashTableNode<K,V>>) localObjs[0];
-	    V v = genV(localInts, localObjs);
-	    int i = genInt(localInts, localObjs);
-	    bs.set(i, v);
+	    V v = genV(localObjs);
+	    int i = genInt(localObjs);
+	    buckets.set(i, v);
 	}
 
     }
     
-    generator void stmts(int[] localInts, Object[] localObjs) {
-	if (??) { localInts[??] = genInt(localInts, localObjs); }
-	if (??) { localObjs[??] = genHashTableNode(localInts, localObjs); }
-	if (??) { voidFuncs(localInts, localObjs); }
-	if (??) { stmts(localInts, localObjs); }	
+    generator void stmts(Object[] localObjs) {
+	if (??) { capacityGrowth = genInt(localObjs); }
+	if (??) { initialCapacity = genInt(localObjs); }
+	if (??) { size = genInt(localObjs); }
+	if (??) { currentCapacity = genInt(localObjs); }		
+	if (??) { localObjs[1] = genHashTableNode(localObjs); }
+	if (??) { voidFuncs(localObjs); }
+	if (??) { stmts(localObjs); }	
     }
 
-    generator V stmtsRetV(int[] localInts, Object[] localObjs) {
-	if (??) { stmts(localInts, localObjs); }
+    generator V stmtsRetV(Object[] localObjs) {
+	if (??) { stmts(localObjs); }
 	if (??) {
-	    HashTableNode<K, V> result = (HashTableNode<K, V>) localObjs[2];
+	    HashTableNode<K, V> result = (HashTableNode<K, V>) localObjs[1];
 	    return result.getValue();
 	}
 	return null;
@@ -113,27 +116,21 @@ public class HashTable<K, V> {
 
     // Returns the value stored under the given key, if found
     public V get(K key) {
-	int[] localInts = new int[4];
-	localInts[0] = capacityGrowth;
-	localInts[1] = initialCapacity;
-	localInts[2] = size;
-	localInts[3] = currentCapacity;
 	Object[] localObjs = new Object[3];
-	localObjs[0] = buckets;
-	localObjs[1] = key;
+	localObjs[0] = key;
 	
-	stmts(localInts, localObjs);
-	// K k = (K) localObjs[1];
-	// localObjs[2] = getNodeWithKey(k);
+	stmts(localObjs);
+	// K k = (K) localObjs[0];
+	// localObjs[1] = getNodeWithKey(k);
 
-	if (guard(localInts, localObjs)) {
-	// if (localObjs[2] != null) {
-	    return stmtsRetV(localInts, localObjs);	    
-	    // HashTableNode<K, V> result = (HashTableNode<K, V>) localObjs[2];
+	if (guard(localObjs)) {
+	// if (localObjs[1] != null) {
+	    return stmtsRetV(localObjs);	    
+	    // HashTableNode<K, V> result = (HashTableNode<K, V>) localObjs[1];
 	    // return result.getValue();
 	}
 	
-	return stmtsRetV(localInts, localObjs);
+	return stmtsRetV(localObjs);
 	// return null;
 	
         // HashTableNode<K, V> result = getNodeWithKey(key);
