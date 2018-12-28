@@ -34,17 +34,25 @@ class TestJava(TestCommon):
             tmp_output.flush()            
             for i in range(0, numTests):                
                 result = 1
-                while result != 0:
+                times = 5
+                while result != 0 and times > 0:
                     result = t()
                     if result != 0:
-                        print("ERROR!")
-                output = open('result/output/'+f+'.txt')
-                text = [line for line in output][-1]
-                time = re.match(r'Total time = ([0-9]*)', text, re.M|re.I)
-                results[k].append(time.group(1))
-                output.close()
-                tmp_output.write(str(time.group(1))+"\n")
-                tmp_output.flush()
+                        tmp_output.write("ERROR!")
+                        tmp_output.flush()
+                        times -= 1;
+                            
+                if times != 0:
+                    output = open('result/output/'+f+'.txt')
+                    text = [line for line in output][-1]
+                    time = re.match(r'Total time = ([0-9]*)', text, re.M|re.I)
+                    results[k].append(time.group(1))
+                    output.close()
+                    tmp_output.write(str(time.group(1))+"\n")
+                    tmp_output.flush()
+                else:
+                    results[k].append("ERROR!")
+                    output.close()
                 # with open('result/output/'+f+'.txt') as output:
                 #     text = [line for line in output][-1]
                 #     time = re.match(r'Total time = ([0-9]*)', text, re.M|re.I)
@@ -72,7 +80,7 @@ class TestJava(TestCommon):
         # with modelResults:
         writer = csv.writer(modelResults)
         modelTests = [
-            (self.run_SuffixArrayModel, 'SuffixArrayTest'),
+            # (self.run_SuffixArrayModel, 'SuffixArrayTest'),
             (self.run_HashMap1Model, 'HashTableTest'),
             (self.run_HashMap2Model, 'BucketingTest'),
             (self.run_EasyCSVModel, 'CSVTester'),
