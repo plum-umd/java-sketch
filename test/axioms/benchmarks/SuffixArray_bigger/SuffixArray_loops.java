@@ -334,16 +334,12 @@ class SuffixArray {
 
 		if (comp1) {
 		    if (comp2) {
-			// genStmt(localInts, localObjs, i, tmp);
 			// TreeSet<String> lrss = (TreeSet<String>) localObjs[0];
 			// lrss.clear();
 			genStmts(localInts, localObjs, i, tmp);
 		    }
 		    genStmts(localInts, localObjs, i, tmp);
-		    // genStmt(localInts, localObjs, i, tmp);
-		    // genStmt(localInts, localObjs, i, tmp);
-		    // genStmt(localInts, localObjs, i, tmp);		    
-		    // TreeSet<String> lrss = (TreeSet<String>) localObjs[0];				
+		    // TreeSet<String> lrss = (TreeSet<String>) localObjs[0];	
 		    // localInts[0] = lcp[i];
 		    // lrss.add(new String(tmp, sa[i], localInts[0]));				    
 		}
