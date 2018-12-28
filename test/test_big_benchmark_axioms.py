@@ -26,8 +26,7 @@ class TestJava(TestCommon):
         # self.assertEqual(ret, 0)
         return ret
         
-    def run_tests(self, tests, results):
-        tmp_output = open('out.txt', 'w')
+    def run_tests(self, tests, results, tmp_output):
         for k in range(0, len(tests)):
             (t, f) = tests[k]
             results.append([f])
@@ -51,8 +50,7 @@ class TestJava(TestCommon):
                 #     time = re.match(r'Total time = ([0-9]*)', text, re.M|re.I)
                 #     results[k].append(time.group(1))
             results[k].append('--'*8)
-
-        tmp_output.close()
+            
         return results
 
     # def test_rand(self):
@@ -69,6 +67,7 @@ class TestJava(TestCommon):
     #         # output.close()                
                 
     def test_runModels(self):
+        tmp_output = open('out_model.txt', 'w')        
         modelResults = open('results_model.csv', 'w')
         # with modelResults:
         writer = csv.writer(modelResults)
@@ -83,11 +82,12 @@ class TestJava(TestCommon):
             (self.run_CipherFactoryModel, 'CipherFactoryTests')
             # (self.run_KafkaModel, 'Kafka_Tester')                
         ]
-        results = map(lambda x: [x], reduce(lambda x,y: x + y, self.run_tests(modelTests, [])))
+        results = map(lambda x: [x], reduce(lambda x,y: x + y, self.run_tests(modelTests, [], tmp_output)))
         writer.writerows(results)
         modelResults.close()
 
     def test_runRewrites(self):
+        tmp_output = open('out_rewrite.txt', 'w')                
         modelResults = open('results_rewrite.csv', 'w')
         # with modelResults:
         writer = csv.writer(modelResults)
@@ -102,8 +102,9 @@ class TestJava(TestCommon):
             (self.run_CipherFactoryRewrite, 'CipherFactoryTests')
             # (self.run_KafkaRewrite, 'Kafka_Tester')
         ]
-        results = map(lambda x: [x], reduce(lambda x,y: x + y, self.run_tests(rewriteTests, [])))
+        results = map(lambda x: [x], reduce(lambda x,y: x + y, self.run_tests(rewriteTests, [], tmp_output)))
         writer.writerows(results)
+        tmp_output.close()
         modelResults.close()
             
     def run_SuffixArrayModel(self):
