@@ -40,16 +40,9 @@ public class Cryptographer {
 	private int MAX_LENGTH_PASSWORD;
     
         public Cryptographer() {
-	    int[] localInts = new int[1];
-	    Object[] localObjs = new Object[6];
+	    Object[] localObjs = new Object[2];
 
-	    stmts(localInts, localObjs);
-
-	    MAX_LENGTH_PASSWORD = localInts[0];
-	    myCypherOut = localObjs[0];
-	    GCMSecretKey = localObjs[2];
-	    ivParameterSpec = localObjs[3];
-	    sha256_HMAC = localObjs[5];
+	    stmts(localObjs);
 	    
 	    // SecureRandom random = new SecureRandom();
 
@@ -83,98 +76,108 @@ public class Cryptographer {
     	    return sha256_HMAC.doFinal(plainTxt);
     	}
     
-    generator Mac genMac(int[] localInts, Object[] localObjs) {
-	if (??) { return localObjs[5]; }
+    generator Mac genMac(Object[] localObjs) {
+	if (??) { return sha256_HMAC; }
 	if (??) { return new Mac(); }
 	return null;
     }
     
-    generator SecretKeySpec genSecretKeySpec(int[] localInts, Object[] localObjs) {
-	if (??) { return localObjs[2]; }
+    generator SecretKeySpec genSecretKeySpec(Object[] localObjs) {
+	if (??) { return GCMSecretKey; }
 	if (??) {
-	    return new SecretKeySpec();
+	    byte[] bs2 = genBytes(localObjs);
+	    Bytes bs = new Bytes(bs2);
+	    return new SecretKeySpec(bs);
+	    // return new SecretKeySpec();
 	}
 	return null;
     }
 
-    generator IvParameterSpec genIvParameterSpec(int[] localInts, Object[] localObjs) {
-	if (??) { return localObjs[3]; }
+    generator IvParameterSpec genIvParameterSpec(Object[] localObjs) {
+	if (??) { return ivParameterSpec; }
 	if (??) {
-	    byte[] bs = genBytes(localInts, localObjs);
+	    byte[] bs = genBytes(localObjs);
 	    return new IvParameterSpec(bs);
 	}
 	return null;
     }
     
-    generator byte[] genBytes(int[] localInts, Object[] localObjs) {
+    generator byte[] genBytes(Object[] localObjs) {
 	if (??) {
 	    Bytes bytes = (Bytes) localObjs[1];
 	    return bytes.toArray();
 	}
 	if (??) {
-	    String plainText = genString(localInts, localObjs);
-	    Cipher c = genCipher(localInts, localObjs);
+	    String plainText = genString(localObjs);
+	    Cipher c = genCipher(localObjs);
 	    @unbox
 	    byte[] answer = c.doFinal(plainText);
 	    return answer;		
+	} if (??) {
+	    SecureRandom random = new SecureRandom();
+	    byte[] randomKey = new byte[16];
+	    random.nextBytes(randomKey);
+	    return randomKey;
 	}
-	return new byte[1];
+	return new byte[16];
     }
 
-    generator Cipher genCipher(int[] localInts, Object[] localObjs) {
-	if (??) { return (Cipher) localObjs[0]; }
+    generator Cipher genCipher(Object[] localObjs) {
+	if (??) { return myCypherOut; }
 	if (??) { return new Cipher(); }
 	return null;
     }
     
-    generator String genString(int[] localInts, Object[] localObjs) {
-	if (??) { return (String) localObjs[2]; }
-	if (??) { return (String) localObjs[4]; }
+    generator String genString(Object[] localObjs) {
+	if (??) { return (String) localObjs[0]; }
 	if (??) {
-	    String plainText = genString(localInts, localObjs);
+	    String plainText = genString(localObjs);
 	    @box
 	    byte[] plainText_bytes = plainText.getBytes();
-	    Cipher c = genCipher(localInts, localObjs);
+	    Cipher c = genCipher(localObjs);
 	    @isBoxed
 	    byte[] cipherText = c.doFinal(plainText_bytes);
 	    return cipherText;
 	}
 	if (??) {
-	    byte[] bs = genBytes(localInts, localObjs);
+	    byte[] bs = genBytes(localObjs);
 	    return new String(bs);
 	}
 	return null;
     }
     
-    generator int genInt(int[] localInts, Object[] localObjs) {
-	int i1 = localInts[0];
-	return {| i1, ?? |};
+    generator int genInt(Object[] localObjs) {
+	return {| MAX_LENGTH_PASSWORD, ?? |};
     }
     
-    generator void voidFuncs(int[] localInts, Object[] localObjs) {
+    generator void voidFuncs(Object[] localObjs) {
 	if (??) {
-	    Cipher c = genCipher(localInts, localObjs);
-	    int i = genInt(localInts, localObjs);
-	    SecretKeySpec k = genSecretKeySpec(localInts, localObjs);
-	    IvParameterSpec iv = genIvParameterSpec(localInts, localObjs);
+	    Cipher c = genCipher(localObjs);
+	    int i = genInt(localObjs);
+	    SecretKeySpec k = genSecretKeySpec(localObjs);
+	    IvParameterSpec iv = genIvParameterSpec(localObjs);
 	    c.init(i, k, iv);
 	}
 	if (??) {
-	    Mac m = genMac(localInts, localObjs);
-	    SecretKeySpec s = genSecretKeySpec(localInts, localObjs);
+	    Mac m = genMac(localObjs);
+	    SecretKeySpec s = genSecretKeySpec(localObjs);
 	    m.init(s);
 	}
     }
     
-    generator void stmts(int[] localInts, Object[] localObjs) {
-	if (??) { localObjs[4] = genString(localInts, localObjs); }
-	if (??) { localObjs[0] = genCipher(localInts, localObjs); }
-	if (??) { localObjs[2] = genSecretKeySpec(localInts, localObjs); }
-	if (??) { localObjs[3] = genIvParameterSpec(localInts, localObjs); }
-	if (??) { localObjs[5] = genMac(localInts, localObjs); }
-	if (??) { localInts[0] = genInt(localInts, localObjs); }
-	if (??) { voidFuncs(localInts, localObjs); }
-	if (??) { stmts(localInts, localObjs); }
+    generator void stmts(Object[] localObjs) {
+	if (??) { voidFuncs(localObjs); }
+	if (??) { localObjs[0] = genString(localObjs); }
+	if (??) {
+	    byte[] bs = genBytes(localObjs);
+	    localObjs[1] = new Bytes(bs);
+	}	
+	if (??) { myCypherOut = genCipher(localObjs); }
+	if (??) { GCMSecretKey = genSecretKeySpec(localObjs); }
+	if (??) { ivParameterSpec = genIvParameterSpec(localObjs); }
+	if (??) { sha256_HMAC = genMac(localObjs); }
+	if (??) { MAX_LENGTH_PASSWORD = genInt(localObjs); }
+	if (??) { stmts(localObjs); }
     }
     
     public String encrypt(String plainText) {
@@ -184,19 +187,12 @@ public class Cryptographer {
 	// // return myCypherOut.toString();
 	// return cipherText;
 
-	int[] localInts = new int[1];
-	localInts[0] = MAX_LENGTH_PASSWORD;
-	Object[] localObjs = new Object[6];
-	localObjs[0] = myCypherOut;
-	localObjs[2] = GCMSecretKey;
-	localObjs[3] = ivParameterSpec;
-	localObjs[4] = plainText;
-	localObjs[5] = sha256_HMAC;
-	stmts(localInts, localObjs);
-	myCypherOut = localObjs[0];
-	GCMSecretKey = localObjs[2];
-	ivParameterSpec = localObjs[3];
-	return genString(localInts, localObjs);
+	Object[] localObjs = new Object[2];
+	localObjs[0] = plainText;
+
+	stmts(localObjs);
+	    
+	return genString(localObjs);
     }
     
     // // throws InvalidKeyException,
@@ -219,18 +215,12 @@ public class Cryptographer {
     // 	}
 
     public String decrypt(String plainText) {
-	int[] localInts = new int[1];
-	localInts[0] = MAX_LENGTH_PASSWORD;
-	Object[] localObjs = new Object[5];
-	localObjs[0] = myCypherOut;
-	localObjs[2] = GCMSecretKey;
-	localObjs[3] = ivParameterSpec;
-	localObjs[4] = plainText;
-	stmts(localInts, localObjs);
-	myCypherOut = localObjs[0];
-	GCMSecretKey = localObjs[2];
-	ivParameterSpec = localObjs[3];
-	return genString(localInts, localObjs);
+	Object[] localObjs = new Object[2];
+	localObjs[0] = plainText;
+
+	stmts(localObjs);
+	
+	return genString(localObjs);
 	// byte[] cipherText = genCipherText2(plainText);
 	// return new String(cipherText);
     }    

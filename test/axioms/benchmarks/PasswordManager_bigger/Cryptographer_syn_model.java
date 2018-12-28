@@ -127,7 +127,7 @@ public class Cryptographer {
     }
     
     generator int genInt(Object[] localObjs) {
-	return ??;
+	return {| MAX_LENGTH_PASSWORD, ?? |};
     }
     
     generator void voidFuncs(Object[] localObjs) {
