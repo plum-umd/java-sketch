@@ -18,7 +18,7 @@ public class Bucketing<K, V> implements HashTable<K, V> {
     // mod 10
     // 10 bucket
     public Bucketing() {
-	size = 4; // 100
+	size = 5; // 100
 	mod = 2; 
 	numberOfSlots = 2; // 10
 	bucketHash = new Pair[size];
@@ -184,7 +184,7 @@ public class Bucketing<K, V> implements HashTable<K, V> {
 	stmts(localInts, localObjs);
 	// localInts[3] = localInts[2] * localInts[0];
 	for (int i = localInts[3]; i < localInts[3]+sizeBucket[localInts[0]]; i++) {
-	    localInts[4] = i;
+	    // localInts[4] = i;
 	    stmts(localInts, localObjs);
 	    if (guard(localInts, localObjs)) {
 	    	return genV(localInts, localObjs);
@@ -196,35 +196,35 @@ public class Bucketing<K, V> implements HashTable<K, V> {
 	    // // if(guard(localInts, localObjs)) {
 	    // K keyy2 = (K) localObjs[0]; 
 	    // if(tmp_key.equals(keyy2)) {
-	    // 	// return genV();
 	    // 	Pair<K,V> tmp2 = (Pair<K,V>) localObjs[1];
 	    // 	return tmp2.value;
 	    // }
 	}
-	// if (guard(localInts, localObjs)) {
-	if (sizeBucket[localInts[0]] == localInts[2]) {
+	if (guard(localInts, localObjs)) {
+	// if (sizeBucket[localInts[0]] == localInts[2]) {
 	    ArrayList<Pair<K,V>> os = (ArrayList<Pair<K,V>>) localObjs[3];
 	    for (int i = 0; i < os.size(); i++) {
 	    	localInts[4] = i;
-	    	// stmts(localInts, localObjs);	    
-	    	localObjs[1] = os.get(i);
-	    	Pair<K,V> tmp = (Pair<K,V>) localObjs[1];
-	    	localObjs[2] = tmp.key;
-	    	K tmp_key = (K) localObjs[2];
-	    	// if(guard(localInts, localObjs)) {
-	    	if(tmp_key.equals(localObjs[0])) {
-	    	    // return genV();
-	    	    Pair<K,V> tmp2 = (Pair<K,V>) localObjs[1];
-	    	    return tmp2.value;
-	    	}		
+	    	stmts(localInts, localObjs);
+	    	if(guard(localInts, localObjs)) {
+		    return genV(localInts, localObjs);
+		}
+	    	// localObjs[1] = os.get(i);
+	    	// Pair<K,V> tmp = (Pair<K,V>) localObjs[1];
+	    	// localObjs[2] = tmp.key;
+	    	// K tmp_key = (K) localObjs[2];
+	    	// if(tmp_key.equals(localObjs[0])) {
+	    	//     Pair<K,V> tmp2 = (Pair<K,V>) localObjs[1];
+	    	//     return tmp2.value;
+	    	// }		
 	    }
 	}
-	// stmts(localInts, localObjs);
-	// return genV();
-	return null;
+	stmts(localInts, localObjs);
+	return genV(localInts, localObjs);
+	// return null;
     }
     
-    public void delete(K key) {
+    public void delete(K key) {	
     	integerKey = key.hashCode() % mod;
 	if (integerKey < 0) { integerKey *= -1; }
 

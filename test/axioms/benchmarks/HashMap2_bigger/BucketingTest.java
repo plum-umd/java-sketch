@@ -33,8 +33,8 @@ public class BucketingTest {
 	Integer zz = new Integer(z);
 
 	setUp();
-	testClear(xx, yy);
-	testGetEmpty();
+	// testClear(xx, yy);
+	// testGetEmpty();
 	testPutAndGet(xx, yy, zz);
 	
 	// testReplacing(xx, yy, zz);
