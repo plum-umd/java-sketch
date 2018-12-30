@@ -390,54 +390,55 @@ public class RomlistParser {
 	    	//     Strings blah = (Strings) localObjs[4];
 	    	//     String[] data = blah.toArray();
 		if(guard(localInts, localObjs)) {
-		    stmts(localInts, localObjs);
+		    // stmts(localInts, localObjs);
 	    	    Strings blah = (Strings) localObjs[4];
 	    	    String[] data = blah.toArray();
-	    	    // 	if (data.length >= 10) {
+		    // if (data.length >= 10) {
 		    if (guard(localInts, localObjs)) {
-			    // localObjs[5] = new RomlistGame();			    
-	    		    // RomlistGame game = (RomlistGame) localObjs[5];
-	    		    // f = (File) localObjs[0];
-	    		    // game.setRomlist(f.getName());
-	    		    // game.setName(data[0]);
-	    		    // game.setTitle(data[1]);
-	    		    // game.setEmulator(data[2]);
-	    		    // game.setCloneOf(data[3]);
-	    		    // game.setYear(data[4]);
-	    		    // game.setManufacturer(data[5]);
-	    		    // game.setCategory(data[6]);
-	    		    // game.setPlayers(data[7]);
-	    		    // game.setRotation(data[8]);
-	    		    // game.setControl(data[9]);
-	    		    // // if (data.length > 10) {
-	    		    // // 	game.setStatus(data[10]);
-	    		    // // }
-	    		    // // if (data.length > 11) {
-	    		    // // 	game.setDisplayCount(data[11]);
-	    		    // // }
-	    		    // // if (data.length > 12) {
-	    		    // // 	game.setDisplayType(data[12]);
-	    		    // // }
-	    		    // // if (data.length > 13) {
-	    		    // // 	game.setAltRomname(data[13]);
-	    		    // // }
-	    		    // // if (data.length > 14) {
-	    		    // // 	game.setAltTitle(data[14]);
-	    		    // // }
-	    		    // // if (data.length > 15) {
-	    		    // // 	game.setExtra(data[15]);
-	    		    // // }
-	    		    // // if (data.length > 16) {
-	    		    // // 	game.setButtons(data[16]);
-	    		    // // }
+			    localObjs[5] = new RomlistGame();			    
+	    		    RomlistGame game = (RomlistGame) localObjs[5];
+	    		    f = (File) localObjs[0];
+	    		    game.setRomlist(f.getName());
+	    		    game.setName(data[0]);
+	    		    game.setTitle(data[1]);
+	    		    game.setEmulator(data[2]);
+	    		    game.setCloneOf(data[3]);
+	    		    game.setYear(data[4]);
+	    		    game.setManufacturer(data[5]);
+	    		    game.setCategory(data[6]);
+	    		    game.setPlayers(data[7]);
+	    		    game.setRotation(data[8]);
+	    		    game.setControl(data[9]);
+	    		    // if (data.length > 10) {
+	    		    // 	game.setStatus(data[10]);
+	    		    // }
+	    		    // if (data.length > 11) {
+	    		    // 	game.setDisplayCount(data[11]);
+	    		    // }
+	    		    // if (data.length > 12) {
+	    		    // 	game.setDisplayType(data[12]);
+	    		    // }
+	    		    // if (data.length > 13) {
+	    		    // 	game.setAltRomname(data[13]);
+	    		    // }
+	    		    // if (data.length > 14) {
+	    		    // 	game.setAltTitle(data[14]);
+	    		    // }
+	    		    // if (data.length > 15) {
+	    		    // 	game.setExtra(data[15]);
+	    		    // }
+	    		    // if (data.length > 16) {
+	    		    // 	game.setButtons(data[16]);
+	    		    // }
 
-	    		    // game.setAvailable(false);
-	    		    // this.games.add(game);
-			stmts(localInts, localObjs);
+	    		    game.setAvailable(false);
+	    		    this.games.add(game);
+			// stmts(localInts, localObjs);
 		    }
 	    	}
-	    	br = (BufferedReader) localObjs[2];
-	    	localObjs[3] = br.readLine();		
+	    	// br = (BufferedReader) localObjs[2];
+	    	// localObjs[3] = br.readLine();
+		stmts(localInts, localObjs);
 	    }
 
 	    this.totalGames = this.games.size();

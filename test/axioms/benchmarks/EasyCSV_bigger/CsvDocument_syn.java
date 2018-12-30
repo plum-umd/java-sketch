@@ -55,81 +55,81 @@ public class CsvDocument {
     }
 
     generator public static int genInt(Object[] localObjs) {
-	if (??) {
-	    String filepath = (String) localObjs[0];
-	    return filepath.length();
-	}
-	if (??) {
-	    String csvLine = (String) localObjs[0];
-	    return csvLine.length();
-	}
-	if (??) {
-	    BufferedReader br = (BufferedReader) localObjs[6];
-	    String brLine = br.readLine();
-	    return brLine.length();
-	}
-	if (??) {
-	    ArrayList<CsvRow> parsedCsvRows = (ArrayList<CsvRow>) localObjs[2];
-	    return parsedCsvRows.size();	
-	}
-	return ??;
+    	if (??) {
+    	    String filepath = (String) localObjs[0];
+    	    return filepath.length();
+    	}
+    	if (??) {
+    	    String csvLine = (String) localObjs[0];
+    	    return csvLine.length();
+    	}
+    	if (??) {
+    	    BufferedReader br = (BufferedReader) localObjs[6];
+    	    String brLine = br.readLine();
+    	    return brLine.length();
+    	}
+    	if (??) {
+    	    ArrayList<CsvRow> parsedCsvRows = (ArrayList<CsvRow>) localObjs[2];
+    	    return parsedCsvRows.size();	
+    	}
+    	return ??;
     }
     
     generator public static boolean genGuard(Object[] localObjs) {
     	// int i1 = genInt(localObjs);
     	// int i2 = genInt(localObjs);
     	// boolean cond1 = {| i1 < i2, i1 <= i2, i1 == i2 |};
-	// Object local = localObjs[??];
-	// boolean cond2 = local == null;
+    	// Object local = localObjs[??];
+    	// boolean cond2 = local == null;
 					 
     	// return {| cond1, cond2, !cond1, !cond2 |};
-	// return !cond2;
-	return (localObjs[3] != null);
+    	// return !cond2;
+    	return (localObjs[3] != null);
     }
     
     generator public static CsvRow setRow(Object[] localObjs) {
     	if (??) { return new CsvRow(); }
     	if (??) {
-	    CsvConfiguration conf = (CsvConfiguration) localObjs[1];
-	    String filepath = (String) localObjs[0];
-	    return parseCsvRow(conf, filepath);
-	}
+    	    CsvConfiguration conf = (CsvConfiguration) localObjs[1];
+    	    String filepath = (String) localObjs[0];
+    	    return parseCsvRow(conf, filepath);
+    	}
     	if (??) {
-	    CsvConfiguration conf = (CsvConfiguration) localObjs[1];
-	    String csvLine = (String) localObjs[3];
-	    return parseCsvRow(conf, csvLine);
-	}
+    	    CsvConfiguration conf = (CsvConfiguration) localObjs[1];
+    	    String csvLine = (String) localObjs[3];
+    	    return parseCsvRow(conf, csvLine);
+    	}
     	if (??) {
-	    CsvConfiguration conf = (CsvConfiguration) localObjs[1];
-	    BufferedReader br = (BufferedReader) localObjs[6];
-	    String brLine = br.readLine();
-	    return parseCsvRow(conf, brLine);
-	}
+    	    CsvConfiguration conf = (CsvConfiguration) localObjs[1];
+    	    BufferedReader br = (BufferedReader) localObjs[6];
+    	    String brLine = br.readLine();
+    	    return parseCsvRow(conf, brLine);
+    	}
     	return null;
     }
     
     generator public static CsvDocument setParsedDocument(Object[] localObjs) {
     	if (??) {
-	    ArrayList<CsvRow> parsedRows = (ArrayList<CsvRow>) localObjs[2];
-	    return new CsvDocument(parsedRows);
-	}
+    	    ArrayList<CsvRow> parsedRows = (ArrayList<CsvRow>) localObjs[2];
+    	    return new CsvDocument(parsedRows);
+    	}
     	return null;
     }
     
     generator public static String setCsvLine(Object[] localObjs) {
     	if (??) {
-	    String filepath = (String) localObjs[0];
-	    return filepath;
-	}
+    	    String filepath = (String) localObjs[0];
+    	    return filepath;
+    	}
     	if (??) {
-	    String csvLine = (String) localObjs[3];
-	    return csvLine;
-	}
+    	    String csvLine = (String) localObjs[3];
+    	    return csvLine;
+    	}
     	if (??) {
-	    BufferedReader br = (BufferedReader) localObjs[6];
-	    String brLine = br.readLine();
-	    return brLine;
-	}
+    	    BufferedReader br = (BufferedReader) localObjs[6];
+    	    String brLine = br.readLine();
+    	    return brLine;
+    	}
     	return null;
     }
     
@@ -140,27 +140,27 @@ public class CsvDocument {
     
     generator public static BufferedReader setBufferedReader(Object[] localObjs) {
     	if (??) {
-	    String filepath = (String) localObjs[0];
-	    return new BufferedReader(new FileReaderr(filepath));
-	}
+    	    String filepath = (String) localObjs[0];
+    	    return new BufferedReader(new FileReaderr(filepath));
+    	}
     	if (??) {
-	    String csvLine = (String) localObjs[3];
-	    return new BufferedReader(new FileReaderr(csvLine));
-	}
+    	    String csvLine = (String) localObjs[3];
+    	    return new BufferedReader(new FileReaderr(csvLine));
+    	}
     	if (??) {
-	    BufferedReader br = (BufferedReader) localObjs[6];
-	    String brLine = br.readLine();
-	    return new BufferedReader(new FileReaderr(brLine));
-	}
+    	    BufferedReader br = (BufferedReader) localObjs[6];
+    	    String brLine = br.readLine();
+    	    return new BufferedReader(new FileReaderr(brLine));
+    	}
     	return null;
     }
 
     generator public static void otherFuncs(Object[] localObjs) {
-	if (??) {
-	    ArrayList<CsvRow> parsedRows = (ArrayList<CsvRow>) localObjs[2];
-	    CsvRow row = (CsvRow) localObjs[5];
-	    parsedRows.add(row);
-	}
+    	if (??) {
+    	    ArrayList<CsvRow> parsedRows = (ArrayList<CsvRow>) localObjs[2];
+    	    CsvRow row = (CsvRow) localObjs[5];
+    	    parsedRows.add(row);
+    	}
     }
     
     generator public static void genStmts(Object[] localObjs[]) {
@@ -169,7 +169,7 @@ public class CsvDocument {
     	if (??) { localObjs[4] = setParsedDocument(localObjs); }
     	if (??) { localObjs[5] = setRow(localObjs); }
     	if (??) { localObjs[6] = setBufferedReader(localObjs); }
-	if (??) { otherFuncs(localObjs); }
+    	if (??) { otherFuncs(localObjs); }
     	if (??) { genStmts(localObjs); }
     }
     
@@ -179,7 +179,7 @@ public class CsvDocument {
     	if (??) { localObjs[4] = setParsedDocument(localObjs); }
     	if (??) { localObjs[5] = setRow(localObjs); }
     	if (??) { localObjs[6] = setBufferedReader(localObjs); }
-	if (??) { otherFuncs(localObjs); }	
+    	if (??) { otherFuncs(localObjs); }	
     	if (??) { genStmts(localObjs); }
     	return (CsvDocument) localObjs[4];
     }
@@ -194,16 +194,16 @@ public class CsvDocument {
 	Object[] localObjs = new Object[7];
 	localObjs[0] = filePath;
 	localObjs[1] = csvConfiguration;
+	
+	// genStmts(localObjs);
+	localObjs[6] = new BufferedReader(new FileReaderr(filePath));
+	localObjs[2] = new ArrayList<>();
+	BufferedReader br2 = (BufferedReader) localObjs[6];
+	localObjs[3] = br2.readLine();
 
-	genStmts(localObjs);
-	// localObjs[6] = new BufferedReader(new FileReaderr(filePath));
-	// localObjs[2] = new ArrayList<>();
-	// BufferedReader br2 = (BufferedReader) localObjs[6];
-	// localObjs[3] = br2.readLine();
-
-	boolean cond = genGuard(localObjs);	
-	// while (localObjs[3] != null) {
-	while (cond) {
+	// boolean cond = genGuard(localObjs);	
+	while (localObjs[3] != null) {
+	// while (cond) {
 	    genStmts(localObjs);
 	    // CsvConfiguration conf = (CsvConfiguration) localObjs[1];
 	    // String csvLine = (String) localObjs[3];
