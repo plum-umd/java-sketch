@@ -40,7 +40,7 @@ public class JCECipher implements ICipher {
 
     private Cipher getCipher(boolean isEncryption, SecretKeySpec key, byte[] IV) {
         Cipher cipher;
-	cipher = Cipher.getInstance(transformation, provider);
+    	cipher = Cipher.getInstance(transformation, provider);
         // try {
         //     cipher = Cipher.getInstance(transformation, provider);
         // } catch (NoSuchAlgorithmException | NoSuchProviderException | NoSuchPaddingException ex) {
@@ -55,13 +55,13 @@ public class JCECipher implements ICipher {
         SecretKeySpec keyValue = new SecretKeySpec();
         AlgorithmParameterSpec IVspec = new IvParameterSpec(IV);
 
-	// cipher.init(isEncryption ? Cipher.ENCRYPT_MODE : Cipher.DECRYPT_MODE,
+    	// cipher.init(isEncryption ? Cipher.ENCRYPT_MODE : Cipher.DECRYPT_MODE,
         //             keyValue, IVspec);
-	if (isEncryption) {
-	    cipher.init(??, keyValue, IVspec);
-	} else {
-	    cipher.init(??, keyValue, IVspec);	    
-	}
+    	if (isEncryption) {
+    	    cipher.init(??, keyValue, IVspec);
+    	} else {
+    	    cipher.init(??, keyValue, IVspec);	    
+    	}
 	
         // try {
         //     cipher.init(isEncryption ? Cipher.ENCRYPT_MODE : Cipher.DECRYPT_MODE,
@@ -89,12 +89,12 @@ public class JCECipher implements ICipher {
         // Cipher cipher = getCipher(isEncryption, key, IV);
         // byte[] output = new byte[cipher.getOutputSize(data.length)];
 
-	// int updateBytes = cipher.update(data, 0, data.length, output, 0);
-	// int finalBytes = cipher.doFinal(data, 0, 0, output, updateBytes);
-	// output = cipher.doFinal(data);
-	// if (updateBytes + finalBytes < output.length) {
-	//     output = Arrays.copyOf(output, updateBytes + finalBytes);
-	// }	
+    	// int updateBytes = cipher.update(data, 0, data.length, output, 0);
+    	// int finalBytes = cipher.doFinal(data, 0, 0, output, updateBytes);
+    	// output = cipher.doFinal(data);
+    	// if (updateBytes + finalBytes < output.length) {
+    	//     output = Arrays.copyOf(output, updateBytes + finalBytes);
+    	// }	
 	
         // // try {
         // //     int updateBytes = cipher.update(data, 0, data.length, output, 0);
@@ -106,10 +106,10 @@ public class JCECipher implements ICipher {
         // //     throw new CommonException(e);
         // // }
         // return output;
-	// @box
-	// byte[] blah = data;
-	// return genCipherText1(blah, isEncryption, key, IV);
-	return null;
+    	// @box
+    	// byte[] blah = data;
+    	// return genCipherText1(blah, isEncryption, key, IV);
+    	return null;
     }
 
     @boxedArgs(2)
@@ -117,12 +117,12 @@ public class JCECipher implements ICipher {
         // Cipher cipher = getCipher(isEncryption, key, IV);
         // byte[] output = new byte[cipher.getOutputSize(data.length)];
 
-	// int updateBytes = cipher.update(data, 0, data.length, output, 0);
-	// int finalBytes = cipher.doFinal(data, 0, 0, output, updateBytes);
-	// output = cipher.doFinal(data);
-	// if (updateBytes + finalBytes < output.length) {
-	//     output = Arrays.copyOf(output, updateBytes + finalBytes);
-	// }	
+    	// int updateBytes = cipher.update(data, 0, data.length, output, 0);
+    	// int finalBytes = cipher.doFinal(data, 0, 0, output, updateBytes);
+    	// output = cipher.doFinal(data);
+    	// if (updateBytes + finalBytes < output.length) {
+    	//     output = Arrays.copyOf(output, updateBytes + finalBytes);
+    	// }	
 	
         // // try {
         // //     int updateBytes = cipher.update(data, 0, data.length, output, 0);
@@ -134,8 +134,8 @@ public class JCECipher implements ICipher {
         // //     throw new CommonException(e);
         // // }
         // return output;
-	// return genCipherText2(data, isEncryption, key, IV);
-	return null;
+    	// return genCipherText2(data, isEncryption, key, IV);
+    	return null;
     }
     
 }
