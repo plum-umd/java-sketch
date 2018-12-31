@@ -21,15 +21,22 @@ class TestJava(TestCommon):
 ## MOCK TESTS
 #################################################################
 
-    def test_KafkaRewrite(self):
-        # files = ["JCECipher_syn_rewrite.java", "OpenSSLCipher_syn_rewrite.java", "CipherFactory.java", "ICipher_rewrite.java", "Tester_rewrite.java", "rewrite/", "shared/"]
-        files = ["JCECipher_syn.java", "OpenSSLCipher_syn.java", "CipherFactory.java", "ICipher_model.java", "Tester_model.java", "model/", "shared/"]
-        files = map(lambda s: "Kafka_biggest/" + s, files)
-        inline = 2
-        unroll = 35
-        # inline = 1
-        # unroll = 15
-        return self.__test(files, inline, unroll)        
+    def test_SuffixArrayRewrite(self):
+        files = ["SuffixArray_loops2.java", "SuffixArrayTest.java", "rewrite/"]        
+        files = map(lambda s: "SuffixArray_bigger/" + s, files)
+        inline = 3
+        unroll = 8
+        self.__test(files, inline, unroll)        
+
+    # def test_KafkaRewrite(self):
+    #     # files = ["JCECipher_syn_rewrite.java", "OpenSSLCipher_syn_rewrite.java", "CipherFactory.java", "ICipher_rewrite.java", "Tester_rewrite.java", "rewrite/", "shared/"]
+    #     files = ["JCECipher_syn.java", "OpenSSLCipher_syn.java", "CipherFactory.java", "ICipher_model.java", "Tester_model.java", "model/", "shared/"]
+    #     files = map(lambda s: "Kafka_biggest/" + s, files)
+    #     inline = 2
+    #     unroll = 35
+    #     # inline = 1
+    #     # unroll = 15
+    #     return self.__test(files, inline, unroll)        
 
     # def test_SimpleArrayListZ3(self):
     #     files = ["SimpleExample.java", "ArrayList.java", "Object.java"]
