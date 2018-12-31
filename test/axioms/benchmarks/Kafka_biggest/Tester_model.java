@@ -19,10 +19,10 @@ public class Kafka_Tester {
 	    byte[] IV = p2.getBytes();
 	    byte[] key = p3.getBytes();
 
-	    // Key sk = new SecretKeySpec(key, "AES");
-	    SecretKeySpec sk = new SecretKeySpec();
-	    @isBoxed
+	    Key sk = new SecretKeySpec(key, "AES");
+	    // SecretKeySpec sk = new SecretKeySpec();
 	    byte[] cipherText = oc.encrypt(plaintext, sk, IV);
+	    assert !Arrays.arraysEquals(cipherText, plaintext);
 	    byte[] plaintext2 = oc.decrypt(cipherText, sk, IV);	
 	    assert Arrays.arraysEquals(plaintext, plaintext2);
 	}

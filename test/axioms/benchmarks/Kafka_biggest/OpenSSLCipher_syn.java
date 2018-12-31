@@ -130,6 +130,123 @@ public class OpenSSLCipher implements ICipher {
 	return cipherText;
     }
 
+    generator boolean genBoolean(int[] localInts, boolean[] localBools, Object[] localObjs) {
+	if (??) {
+	    return localBools[0];
+	}
+	return false;
+    }
+    
+    generator SecretKeySpec genSecretKeySpec(int[] localInts, boolean[] localBools, Object[] localObjs) {
+	if (??) {
+	    return localObjs[1];	    
+	}
+	return null;
+    }
+    
+    generator byte[] genBytes(int[] localInts, boolean[] localBools, Object[] localObjs) {
+	if (??) {
+	    byte[] b1 = genBytes(localInts, localBools, localObjs);
+	    int i1 = genInt(localInts, localBools, localObjs);
+	    return Arrays.copyOf(b1, i1);
+	}
+	if (??) {
+	    Cipher c = genCipher(localInts, localBools, localObjs);
+	    byte[] bytes = genBytes(localInts, localBools, localObjs);
+	    byte[] result = c.doFinal(bytes);
+	    return result;
+	}
+	if (??) {
+	    Bytes bs = localObjs[0];
+	    return bs.toArray();
+	}
+	if (??) {
+	    Bytes bs = localObjs[2];
+	    return bs.toArray();
+	}
+	if (??) {
+	    Bytes bs = localObjs[3];
+	    return bs.toArray();
+	}
+	// if (??) {
+	//     byte[] bytes = genBytes(localInts, localBools, localObjs);	    
+	//     Cipher c = genCipher(localInts, localBools, localObjs);
+	//     return c.doFinal(bytes);
+	// }	
+	return new byte[1];
+    }
+
+    generator Cipher genCipher(int[] localInts, boolean[] localBools, Object[] localObjs) {
+	if (??) {
+	    boolean b = genBoolean(localInts, localBools, localObjs);
+	    SecretKeySpec k = genSecretKeySpec(localInts, localBools, localObjs);
+	    byte[] i = genBytes(localInts, localBools, localObjs);
+	    return getCipher(b, k, i);
+	}
+	if (??) {
+	    return localObjs[4];
+	}
+	return null;
+    }
+    
+    generator int genInt(int[] localInts, boolean[] localBools, Object[] localObjs) {
+	if (??) {
+	    return ??;
+	}
+	if (??) {
+	    Cipher c = (Cipher) localObjs[4];
+	    byte[] data = genBytes(localInts, localBools, localObjs);
+	    int i1 = genInt(localInts, localBools, localObjs);
+	    int i2 = genInt(localInts, localBools, localObjs);
+	    int i3 = genInt(localInts, localBools, localObjs);
+	    byte[] output = genBytes(localInts, localBools, localObjs);
+	    int r = c.update(data, i1, i2, output, i3);
+	    return r;
+	}
+	if (??) {
+	    Cipher c = (Cipher) localObjs[4];
+	    byte[] data = genBytes(localInts, localBools, localObjs);
+	    int i1 = genInt(localInts, localBools, localObjs);
+	    int i2 = genInt(localInts, localBools, localObjs);
+	    int i3 = genInt(localInts, localBools, localObjs);
+	    byte[] output = genBytes(localInts, localBools, localObjs);
+	    int r = c.doFinal(data, i1, i2, output, i3);
+	    return r;	    
+	}
+	if (??) {
+	    return localInts[0];
+	}
+	if (??) {
+	    return localInts[1];
+	}
+	return 0;
+    }
+    
+    generator void voidFuncs(int[] localInts, boolean[] localBools, Object[] localObjs) {
+
+    }
+
+    generator byte[] genRet(int[] localInts, boolean[] localBools, Object[] localObjs) {
+	return genBytes(localInts, localBools, localObjs);
+    }
+    generator void stmts(int[] localInts, boolean[] localBools, Object[] localObjs) {
+	if (??) {
+	    localInts[0] = genInt(localInts, localBools, localObjs);
+	}
+	if (??) {
+	    localInts[1] = genInt(localInts, localBools, localObjs);
+	}
+	if (??) {
+	    localObjs[4] = genCipher(localInts, localBools, localObjs);
+	}
+	if (??) {
+	    byte[] bytes = genBytes(localInts, localBools, localObjs);
+	    localObjs[0] = new Bytes(bytes);
+	}
+	if (??) {
+	    stmts(localInts, localBools, localObjs);
+	}
+    }    
     
     private byte[] translate(boolean isEncryption, byte[] data, Key key, byte[] IV) {
         // byte[] output = new byte[2 * data.length];
@@ -143,7 +260,28 @@ public class OpenSSLCipher implements ICipher {
 	
 	// return Arrays.copyOf(output, updateBytes + finalBytes);
 
-	return genCipherText(data, isEncryption, key, IV);
+	int[] localInts = new int[2];
+	boolean[] localBools = new boolean[1];
+	localBools[0] = isEncryption;
+	Object[] localObjs = new Object[5];
+	localObjs[0] = new Bytes(data);
+	localObjs[1] = key;
+	localObjs[2] = new Bytes(IV);
+	localObjs[3] = new Bytes(new byte[1]);
+
+	stmts(localInts, localBools, localObjs);	
+
+	// localObjs[4] = getCipher(isEncryption, key, IV);
+	// Cipher cipher = (Cipher) localObjs[4];
+	// Bytes blah = localObjs[3];
+	// byte[] output = blah.toArray();
+	// localInts[0] = cipher.update(data, 0, 1, output, 0);
+	// localInts[1] = cipher.doFinal(data, 0, 0, output, localInts[0]);
+	// Cipher c = (Cipher) localObjs[4];
+	// byte[] blah2 = c.doFinal(data);
+	// return Arrays.copyOf(blah2, localInts[0]+localInts[1]);
+
+	return genRet(localInts, localBools, localObjs);
 	
         // try (CryptoCipher cipher = getCipher(isEncryption, key, IV)) {
         //     int updateBytes = cipher.update(data, 0, data.length, output, 0);
