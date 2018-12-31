@@ -266,14 +266,15 @@ class SuffixArray {
 //   }
 
     public TreeSet <String> lrs() {
-	int[] localInts = new int[10];
-	Object[] localObjs = new Object[10];
+	int[] localInts = new int[1];
+	Object[] localObjs = new Object[1];
 	localInts[0] = 0;
 	localObjs[0] = new TreeSet<>();
 	char[] tmp = new char[T.length];	    
 
-	int g1 = genInt(localInts, localObjs, 0);
-	for (int i=0; {| i == g1 | i < g1 | i <= g1 | i > g1 | i >= g1 |}; i++) {
+	// int g1 = genInt(localInts, localObjs, 0);
+	// for (int i=0; {| i == g1 | i < g1 | i <= g1 | i > g1 | i >= g1 |}; i++) {
+	for (int i=0; i<T.length; i++) {	    
 	    // char r = (char) genInt(localInts, localObjs, i);
 	    // if (??) {
 	    // 	tmp[??] = r;
@@ -281,24 +282,31 @@ class SuffixArray {
 	    // if (??) {
 	    // 	tmp[i] = r;
 	    // }
-	    stmts(localInts, localObjs, i, tmp);
+	    // tmp[i] = (char) T[i];
+	    int j = genInt(localInts, localObjs, i);
+	    char c = (char) genInt(localInts, localObjs, i);
+	    tmp[j] = c;
+	    // stmts(localInts, localObjs, i, tmp);
 	}
 
-	g1 = genInt(localInts, localObjs, 0);
-	for (int i=0; {| i == g1 | i < g1 | i <= g1 | i > g1 | i >= g1 |}; i++) {
+	// g1 = genInt(localInts, localObjs, 0);
+	// for (int i=0; {| i == g1 | i < g1 | i <= g1 | i > g1 | i >= g1 |}; i++) {
+	for (int i=0; i<T.length; i++) {	    	    
 	    boolean comp1 = genGuard(localInts, localObjs, i, tmp);
 	    boolean comp2 = genGuard(localInts, localObjs, i, tmp);
 
 	    if (comp1) {
+	    // if (lcp[i] > 0 && lcp[i] >= localInts[0]) {	    
 		if (comp2) {
+		// if ( lcp[i] > localInts[0] ) {		
 		    // TreeSet<String> lrss = (TreeSet<String>) localObjs[0];
 		    // lrss.clear();
 		    stmts(localInts, localObjs, i, tmp);
 		}
-		stmts(localInts, localObjs, i, tmp);
 		// TreeSet<String> lrss = (TreeSet<String>) localObjs[0];	
 		// localInts[0] = lcp[i];
-		// lrss.add(new String(tmp, sa[i], localInts[0]));				    
+		// lrss.add(new String(tmp, sa[i], localInts[0]));
+		stmts(localInts, localObjs, i, tmp);
 	    }
 	}
 
@@ -354,11 +362,11 @@ class SuffixArray {
 	if (??) {
 	    localInts[0] = genInt(localInts, localObjs, i);
 	}
-	if (??) {
-	    int j = genInt(localInts, localObjs, i);
-	    char c = (char) genInt(localInts, localObjs, i);
-	    tmp[j] = c;
-	}
+	// if (??) {
+	//     int j = genInt(localInts, localObjs, i);
+	//     char c = (char) genInt(localInts, localObjs, i);
+	//     tmp[j] = c;
+	// }
 	if (??) {
 	    voidFuncs(localInts, localObjs, i, tmp);
 	}
