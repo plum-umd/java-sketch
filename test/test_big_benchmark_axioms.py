@@ -41,7 +41,7 @@ class TestJava(TestCommon):
                     text = [line for line in output][-1]
                     time = re.match(r'Total time = ([0-9]*)', text, re.M|re.I)
                     time = time.group(1)
-                    if int(time) > timeout:
+                    if int(time) > timeout*60*1000:
                         time_outs += 1                        
                     if result != 0:
                         time += " (ERROR!)"
