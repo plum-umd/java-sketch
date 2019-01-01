@@ -10,12 +10,13 @@ from . import TestCommon
 pwd = os.path.dirname(__file__)
 tests = os.path.join(pwd, "axioms/benchmarks")
 
-numTests = 1
+numTests = 31
+timeout = 240
 
 class TestJava(TestCommon):
     def __test(self, fs, inline, unroll, adp_conc=False, arr=32, cbits=-1, irange=-1):
         _fs = map(lambda f: os.path.join(tests, f), fs)
-        options = ["--bnd-inline-amnt", str(inline), "--bnd-unroll-amnt", str(unroll), "--bnd-arr-size", str(arr), "--slv-timeout",  "120"] 
+        options = ["--bnd-inline-amnt", str(inline), "--bnd-unroll-amnt", str(unroll), "--bnd-arr-size", str(arr), "--slv-timeout", str(timeout)] 
         if adp_conc:
             options += ["--slv-randassign", "--slv-simple-inputs"]
         if cbits != -1:
@@ -31,26 +32,26 @@ class TestJava(TestCommon):
             (t, f) = tests[k]
             results.append([f])
             tmp_output.write(f+"\n")
-            tmp_output.flush()            
-            for i in range(0, numTests):                
-                result = 1
-                times = 5
-                while result != 0 and times > 0:
-                    result = t()
-                    if result != 0:
-                        tmp_output.write("ERROR!")
-                        tmp_output.flush()
-                        times -= 1;
-                            
-                if times != 0:
-                    output = open('result/output/'+f+'.txt')
+            tmp_output.flush()
+            time_outs = 0
+            for i in range(0, numTests):            
+                result = t()
+                try:
+                    output = open('result/output/'+f+'.txt')                    
                     text = [line for line in output][-1]
                     time = re.match(r'Total time = ([0-9]*)', text, re.M|re.I)
-                    results[k].append(time.group(1))
+                    time = time.group(1)
+                    if int(time) > timeout:
+                        time_outs += 1                        
+                    if result != 0:
+                        time += " (ERROR!)"
+                    results[k].append(time)
                     output.close()
-                    tmp_output.write(str(time.group(1))+"\n")
+                    tmp_output.write(time+"\n")
                     tmp_output.flush()
-                else:
+                    if time_outs >= 5:
+                        break
+                except:
                     results[k].append("ERROR!")
                     output.close()
                 # with open('result/output/'+f+'.txt') as output:
@@ -80,41 +81,41 @@ class TestJava(TestCommon):
         # with modelResults:
         writer = csv.writer(modelResults)
         modelTests = [
-            # (self.run_SuffixArrayModel, 'SuffixArrayTest'),
-            (self.run_HashMap1Model, 'HashTableTest'),
-            (self.run_HashMap2Model, 'BucketingTest'),
+            (self.run_CipherFactoryModel, 'CipherFactoryTests'),   
+            (self.run_SuffixArrayModel, 'SuffixArrayTest'),
+            # (self.run_HashMap1Model, 'HashTableTest'),
+            # (self.run_HashMap2Model, 'BucketingTest'),
             (self.run_EasyCSVModel, 'CSVTester'),
             (self.run_RomListModel, 'RomListTester'),
             # (self.run_ComparatorModel, 'Comparator'),
-            (self.run_PasswordManagerModel, 'PasswordManagerTest'),
-            (self.run_CipherFactoryModel, 'CipherFactoryTests')
+            # (self.run_PasswordManagerModel, 'PasswordManagerTest'),
             # (self.run_KafkaModel, 'Kafka_Tester')                
         ]
         results = map(lambda x: [x], reduce(lambda x,y: x + y, self.run_tests(modelTests, [], tmp_output)))
         writer.writerows(results)
         modelResults.close()
 
-    def test_runRewrites(self):
+    def test_runRewritesTest(self):
         tmp_output = open('out_rewrite.txt', 'w')                
         modelResults = open('results_rewrite.csv', 'w')
         # with modelResults:
         writer = csv.writer(modelResults)
         rewriteTests = [
+            (self.run_CipherFactoryRewrite, 'CipherFactoryTests'),
             (self.run_SuffixArrayRewrite, 'SuffixArrayTest'),
-            (self.run_HashMap1Rewrite, 'HashTableTest'),
-            (self.run_HashMap2Rewrite, 'BucketingTest'),
+            # (self.run_HashMap1Rewrite, 'HashTableTest'),
+            # (self.run_HashMap2Rewrite, 'BucketingTest'),
             (self.run_EasyCSVRewrite, 'CSVTester'),
             (self.run_RomListRewrite, 'RomListTester'),
             # (self.run_ComparatorRewrite, 'Comparator'),
             (self.run_PasswordManagerRewrite, 'PasswordManagerTest'),
-            (self.run_CipherFactoryRewrite, 'CipherFactoryTests')
-            # (self.run_KafkaRewrite, 'Kafka_Tester')
+            (self.run_KafkaRewrite, 'Kafka_Tester')
         ]
         results = map(lambda x: [x], reduce(lambda x,y: x + y, self.run_tests(rewriteTests, [], tmp_output)))
         writer.writerows(results)
         tmp_output.close()
         modelResults.close()
-            
+        
     def run_SuffixArrayModel(self):
         files = ["SuffixArray_loops.java", "SuffixArrayTest.java", "model/"]        
         files = map(lambda s: "SuffixArray_bigger/" + s, files)
@@ -227,10 +228,9 @@ class TestJava(TestCommon):
         inline = 3
         unroll = 9
         return self.__test(files, inline, unroll)
-        
+    
     def run_CipherFactoryRewrite(self):
         files = ["CryptoManager_syn_rewrite.java", "CipherFactoryTester.java", "ConfigurableCipherFactory.java", "DefaultCipherFactory_rewrite.java", "ICipherFactory.java", "ICryptoManager.java", "rewrite/", "shared/"]
-        # files = ["CryptoManager_rewrite.java", "CipherFactoryTester.java", "ConfigurableCipherFactory.java", "DefaultCipherFactory_rewrite.java", "ICipherFactory.java", "ICryptoManager.java", "rewrite/", "shared/"]
         files = map(lambda s: "CipherFactory_bigger/" + s, files)
         inline = 3
         unroll = 9
@@ -238,14 +238,14 @@ class TestJava(TestCommon):
 
     def run_KafkaModel(self):
         files = ["JCECipher_syn.java", "OpenSSLCipher_syn.java", "CipherFactory.java", "ICipher_model.java", "Tester.java", "model/", "shared/"]
-        files = map(lambda s: "Kafka_bigger/" + s, files)
+        files = map(lambda s: "Kafka_biggest/" + s, files)
         inline = 2
         unroll = 35
         return self.__test(files, inline, unroll)
 
     def run_KafkaRewrite(self):
         files = ["JCECipher_syn_rewrite.java", "OpenSSLCipher_syn_rewrite.java", "CipherFactory.java", "ICipher_rewrite.java", "Tester.java", "rewrite/", "shared/"]
-        files = map(lambda s: "Kafka_bigger/" + s, files)
+        files = map(lambda s: "Kafka_biggest/" + s, files)
         inline = 2
         unroll = 35
         # inline = 1
