@@ -95,7 +95,7 @@ class TestJava(TestCommon):
         writer.writerows(results)
         modelResults.close()
 
-    def test_runRewritesTest(self):
+    def test_runRewrites(self):
         tmp_output = open('out_rewrite.txt', 'w')                
         modelResults = open('results_rewrite.csv', 'w')
         # with modelResults:
