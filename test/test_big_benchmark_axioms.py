@@ -237,14 +237,14 @@ class TestJava(TestCommon):
         return self.__test(files, inline, unroll)
 
     def run_KafkaModel(self):
-        files = ["JCECipher_syn.java", "OpenSSLCipher_syn.java", "CipherFactory.java", "ICipher_model.java", "Tester.java", "model/", "shared/"]
+        files = ["JCECipher_syn.java", "OpenSSLCipher_syn.java", "CipherFactory.java", "ICipher_model.java", "Tester_model.java", "model/", "shared/"]
         files = map(lambda s: "Kafka_biggest/" + s, files)
         inline = 2
         unroll = 35
         return self.__test(files, inline, unroll)
 
     def run_KafkaRewrite(self):
-        files = ["JCECipher_syn_rewrite.java", "OpenSSLCipher_syn_rewrite.java", "CipherFactory.java", "ICipher_rewrite.java", "Tester.java", "rewrite/", "shared/"]
+        files = ["JCECipher_syn_rewrite.java", "OpenSSLCipher_syn_rewrite.java", "CipherFactory.java", "ICipher_rewrite.java", "Tester_rewrite.java", "rewrite/", "shared/"]
         files = map(lambda s: "Kafka_biggest/" + s, files)
         inline = 2
         unroll = 35
