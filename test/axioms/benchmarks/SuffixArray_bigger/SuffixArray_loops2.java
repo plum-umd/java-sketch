@@ -292,16 +292,20 @@ class SuffixArray {
 	// g1 = genInt(localInts, localObjs, 0);
 	// for (int i=0; {| i == g1 | i < g1 | i <= g1 | i > g1 | i >= g1 |}; i++) {
 	for (int i=0; i<T.length; i++) {	    	    
-	    boolean comp1 = genGuard(localInts, localObjs, i, tmp);
-	    boolean comp2 = genGuard(localInts, localObjs, i, tmp);
+	    // boolean comp1 = genGuard(localInts, localObjs, i, tmp);
+	    // boolean comp2 = genGuard(localInts, localObjs, i, tmp);
+	    int i1 = genInt(localInts, localObjs, i);
+	    int i2 = genInt(localInts, localObjs, i);
 
-	    if (comp1) {
-	    // if (lcp[i] > 0 && lcp[i] >= localInts[0]) {	    
-		if (comp2) {
+	    if (lcp[i] > i1) {
+	    // if (comp1) {
+	    // if (lcp[i] > 0 && lcp[i] >= localInts[0]) {
+		if (lcp[i] > i2) {
+		// if (comp2) {
 		// if ( lcp[i] > localInts[0] ) {		
-		    // TreeSet<String> lrss = (TreeSet<String>) localObjs[0];
-		    // lrss.clear();
-		    stmts(localInts, localObjs, i, tmp);
+		    TreeSet<String> lrss = (TreeSet<String>) localObjs[0];
+		    lrss.clear();
+		    // stmts(localInts, localObjs, i, tmp);
 		}
 		// TreeSet<String> lrss = (TreeSet<String>) localObjs[0];	
 		// localInts[0] = lcp[i];
