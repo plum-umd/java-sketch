@@ -409,6 +409,7 @@ public class RomlistParser {
 	    		    game.setPlayers(data[7]);
 	    		    game.setRotation(data[8]);
 	    		    game.setControl(data[9]);
+
 	    		    // if (data.length > 10) {
 	    		    // 	game.setStatus(data[10]);
 	    		    // }
@@ -431,9 +432,9 @@ public class RomlistParser {
 	    		    // 	game.setButtons(data[16]);
 	    		    // }
 
-	    		    game.setAvailable(false);
-	    		    this.games.add(game);
-			// stmts(localInts, localObjs);
+	    		    // game.setAvailable(false);
+	    		    // this.games.add(game);
+			    stmts(localInts, localObjs);
 		    }
 	    	}
 	    	// br = (BufferedReader) localObjs[2];
