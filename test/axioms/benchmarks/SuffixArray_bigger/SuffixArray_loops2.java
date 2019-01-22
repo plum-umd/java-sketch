@@ -303,9 +303,9 @@ class SuffixArray {
 		if (lcp[i] > i2) {
 		// if (comp2) {
 		// if ( lcp[i] > localInts[0] ) {		
-		    TreeSet<String> lrss = (TreeSet<String>) localObjs[0];
-		    lrss.clear();
-		    // stmts(localInts, localObjs, i, tmp);
+		    // TreeSet<String> lrss = (TreeSet<String>) localObjs[0];
+		    // lrss.clear();
+		    stmts(localInts, localObjs, i, tmp);
 		}
 		// TreeSet<String> lrss = (TreeSet<String>) localObjs[0];	
 		// localInts[0] = lcp[i];
