@@ -75,25 +75,25 @@ class TestJava(TestCommon):
     #             print(time.group(1))
     #         # output.close()                
                 
-    def test_runModels(self):
-        tmp_output = open('out_model.txt', 'w')        
-        modelResults = open('results_model.csv', 'w')
-        # with modelResults:
-        writer = csv.writer(modelResults)
-        modelTests = [
-            (self.run_CipherFactoryModel, 'CipherFactoryTests'),   
-            (self.run_SuffixArrayModel, 'SuffixArrayTest'),
-            # (self.run_HashMap1Model, 'HashTableTest'),
-            # (self.run_HashMap2Model, 'BucketingTest'),
-            (self.run_EasyCSVModel, 'CSVTester'),
-            (self.run_RomListModel, 'RomListTester'),
-            # (self.run_ComparatorModel, 'Comparator'),
-            # (self.run_PasswordManagerModel, 'PasswordManagerTest'),
-            # (self.run_KafkaModel, 'Kafka_Tester')                
-        ]
-        results = map(lambda x: [x], reduce(lambda x,y: x + y, self.run_tests(modelTests, [], tmp_output)))
-        writer.writerows(results)
-        modelResults.close()
+    # def test_runModels(self):
+    #     tmp_output = open('out_model.txt', 'w')        
+    #     modelResults = open('results_model.csv', 'w')
+    #     # with modelResults:
+    #     writer = csv.writer(modelResults)
+    #     modelTests = [
+    #         (self.run_CipherFactoryModel, 'CipherFactoryTests'),   
+    #         (self.run_SuffixArrayModel, 'SuffixArrayTest'),
+    #         # (self.run_HashMap1Model, 'HashTableTest'),
+    #         # (self.run_HashMap2Model, 'BucketingTest'),
+    #         (self.run_EasyCSVModel, 'CSVTester'),
+    #         (self.run_RomListModel, 'RomListTester'),
+    #         # (self.run_ComparatorModel, 'Comparator'),
+    #         # (self.run_PasswordManagerModel, 'PasswordManagerTest'),
+    #         # (self.run_KafkaModel, 'Kafka_Tester')                
+    #     ]
+    #     results = map(lambda x: [x], reduce(lambda x,y: x + y, self.run_tests(modelTests, [], tmp_output)))
+    #     writer.writerows(results)
+    #     modelResults.close()
 
     def test_runRewrites(self):
         tmp_output = open('out_rewrite.txt', 'w')                
@@ -101,15 +101,15 @@ class TestJava(TestCommon):
         # with modelResults:
         writer = csv.writer(modelResults)
         rewriteTests = [
-            (self.run_CipherFactoryRewrite, 'CipherFactoryTests'),
+            # (self.run_CipherFactoryRewrite, 'CipherFactoryTests'),
             (self.run_SuffixArrayRewrite, 'SuffixArrayTest'),
             # (self.run_HashMap1Rewrite, 'HashTableTest'),
             # (self.run_HashMap2Rewrite, 'BucketingTest'),
-            (self.run_EasyCSVRewrite, 'CSVTester'),
-            (self.run_RomListRewrite, 'RomListTester'),
+            # (self.run_EasyCSVRewrite, 'CSVTester'),
+            # (self.run_RomListRewrite, 'RomListTester'),
             # (self.run_ComparatorRewrite, 'Comparator'),
-            (self.run_PasswordManagerRewrite, 'PasswordManagerTest'),
-            (self.run_KafkaRewrite, 'Kafka_Tester')
+            # (self.run_PasswordManagerRewrite, 'PasswordManagerTest'),
+            # (self.run_KafkaRewrite, 'Kafka_Tester')
         ]
         results = map(lambda x: [x], reduce(lambda x,y: x + y, self.run_tests(rewriteTests, [], tmp_output)))
         writer.writerows(results)
@@ -117,14 +117,14 @@ class TestJava(TestCommon):
         modelResults.close()
         
     def run_SuffixArrayModel(self):
-        files = ["SuffixArray_loops.java", "SuffixArrayTest.java", "model/"]        
+        files = ["SuffixArray_loops2.java", "SuffixArrayTest.java", "model/"]        
         files = map(lambda s: "SuffixArray_bigger/" + s, files)
         inline = 3
         unroll = 8
         return self.__test(files, inline, unroll)
         
     def run_SuffixArrayRewrite(self):
-        files = ["SuffixArray_loops.java", "SuffixArrayTest.java", "rewrite/"]        
+        files = ["SuffixArray_loops2.java", "SuffixArrayTest.java", "rewrite/"]        
         files = map(lambda s: "SuffixArray_bigger/" + s, files)
         inline = 3
         unroll = 8
