@@ -25,7 +25,7 @@ public class HashTable<K, V> {
     public HashTable(int initialCapacity) {
         this.initialCapacity = initialCapacity;
 	this.capacityGrowth = 2;
-	this.maxLoadFactor = 0.9;
+	this.maxLoadFactor = 0.99;
 	this.buckets = new ArrayList<>();
 	// this.initialCapacity = nearestPowerOfTwo(initialCapacity);
         resetHashTable();

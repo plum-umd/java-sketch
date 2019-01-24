@@ -11,7 +11,7 @@ import org.junit.Assert;
 
 public class HashTableTest {
      // static so it will be initialised when translated
-    public static final int INITIAL_SIZE = 2;
+    public static final int INITIAL_SIZE = 4;
 
     private HashTable<Object, Object> classUnderTest;
 
@@ -25,18 +25,21 @@ public class HashTableTest {
 
     harness void mn(int x, int y, int z) {
     	assume x != y && x != z && y != z;
-    // harness void mn() {
+    	// assume x > 0 && x < 10;
+    	// assume y > 0 && y < 10;
+    	// assume z > 0 && z < 10;	
+    // harness void mn() {	
     // 	int x = 2;
-    // 	int y = 44;
-    // 	int z = 5678;
+    // 	int y = 8;
+    // 	int z = 5;
 
 	Integer xx = new Integer(x);
 	Integer yy = new Integer(y);
 	Integer zz = new Integer(z);
 	setUp();
 	// testClear(xx, yy);
+	testGetEmpty();
 	testPutAndGet(xx, yy, zz);
-	// testGetEmpty();
 	// testReplacing(xx, yy, zz);
 
 	// testKeys(xx, yy);
@@ -82,9 +85,9 @@ public class HashTableTest {
         classUnderTest.put(x, y);
 	classUnderTest.put(y, x);
         classUnderTest.put(z, x);
-        Assert.assertEquals(classUnderTest.get(is[0]), is[1]);
-        Assert.assertEquals(classUnderTest.get(is[1]), is[0]);
-        Assert.assertEquals(classUnderTest.get(is[2]), is[0]);
+        Assert.assertEquals(classUnderTest.get(x), y);
+        Assert.assertEquals(classUnderTest.get(y), x);
+        Assert.assertEquals(classUnderTest.get(z), x);
 
     	// Integer i = new Integer(x.intValue()+INITIAL_SIZE);
         // classUnderTest.put(i, y);
