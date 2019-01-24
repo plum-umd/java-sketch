@@ -5,23 +5,26 @@ import org.junit.Assert;
 public class BucketingTest {
     private Bucketing<Object, Object> classUnderTest;
 
-    harness void mn() {
-    // harness void mn(int x, int y, int z) {      
-    // 	assume x != y && x != z && y != z;
+    // harness void mn() {
+    harness void mn(int x, int y, int z) {      
+    	assume x != y && x != z && y != z;
+	assume x > -3 && x < 3;
+	assume y > -3 && y < 3;
+	assume z > -3 && z < 3;	
 
-	int x = 1;
-	int y = 2;
-	int z = 3;
+	// int x = 1;       
+	// int y = 2;
+	// int z = 3;
 
-	// for (x = 0; x < 3; x++) {
-	//     for (y = 0; y < 3; y++) {
-	// 	for (z = 0; z < 3; z++) {
+	// for (x = 0; x < 1; x++) {
+	//     for (y = 0; y < 2; y++) {
+	// 	for (z = 0; z < 2; z++) {
 	// 	    Integer xx = new Integer(x);
 	// 	    Integer yy = new Integer(y);
 	// 	    Integer zz = new Integer(z);
 
 	// 	    setUp();
-	// 	    testClear(xx, yy);
+	// 	    // testClear(xx, yy);
 	// 	    testGetEmpty();
 	// 	    testPutAndGet(xx, yy, zz);
 	// 	}
@@ -34,7 +37,7 @@ public class BucketingTest {
 
 	setUp();
 	// testClear(xx, yy);
-	// testGetEmpty();
+	testGetEmpty();
 	testPutAndGet(xx, yy, zz);
 	
 	// testReplacing(xx, yy, zz);
@@ -71,7 +74,7 @@ public class BucketingTest {
 
     public void testPutAndGet(Integer x, Integer y, Integer z) {
         classUnderTest.clear();
-
+	
         classUnderTest.put(x, y);
         classUnderTest.put(y, x);
         classUnderTest.put(z, x);
@@ -79,10 +82,10 @@ public class BucketingTest {
         Assert.assertEquals(classUnderTest.get(y), x);
         Assert.assertEquals(classUnderTest.get(z), x);
 
-	int i2 = x.intValue()+1;
-    	Integer i = new Integer(i2);
-        classUnderTest.put(i, y);
-        Assert.assertEquals(classUnderTest.get(i), y);
+	// int i2 = x.intValue()+1;
+    	// Integer i = new Integer(i2);
+        // classUnderTest.put(i, y);
+        // Assert.assertEquals(classUnderTest.get(i), y);
     }
 
     public void testReplacing(Integer x, Integer y, Integer z) {

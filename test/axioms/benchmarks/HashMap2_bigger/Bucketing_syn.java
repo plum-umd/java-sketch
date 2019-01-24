@@ -184,7 +184,7 @@ public class Bucketing<K, V> implements HashTable<K, V> {
 	stmts(localInts, localObjs);
 	// localInts[3] = localInts[2] * localInts[0];
 	for (int i = localInts[3]; i < localInts[3]+sizeBucket[localInts[0]]; i++) {
-	    // localInts[4] = i;
+	    localInts[4] = i;
 	    stmts(localInts, localObjs);
 	    if (guard(localInts, localObjs)) {
 	    	return genV(localInts, localObjs);
@@ -219,9 +219,9 @@ public class Bucketing<K, V> implements HashTable<K, V> {
 	    	// }		
 	    }
 	}
-	stmts(localInts, localObjs);
-	return genV(localInts, localObjs);
-	// return null;
+	// stmts(localInts, localObjs);
+	// return genV(localInts, localObjs);
+	return null;
     }
     
     public void delete(K key) {	
