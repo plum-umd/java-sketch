@@ -156,7 +156,7 @@ class TestJava(TestCommon):
         files = map(lambda s: "HashMap2_bigger/" + s, files)
         inline = 1
         unroll = 2
-        return self.__test(files, inline, unroll)
+        return self.__test(files, inline, unroll, cbits=2, irange=8)
 
     def run_EasyCSVModel(self):
         files = ["CsvDocument_syn.java", "CodeAssertion.java", "CsvColumn.java", "CsvColumnTest.java", "CsvConfiguration.java", "CsvDocumentTest.java", "CsvRow.java", "CsvRowTest.java", "Tester.java", "model/", "shared/"]
