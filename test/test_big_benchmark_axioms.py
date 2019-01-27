@@ -83,8 +83,8 @@ class TestJava(TestCommon):
         modelTests = [
             # (self.run_CipherFactoryModel, 'CipherFactoryTests'),   
             # (self.run_SuffixArrayModel, 'SuffixArrayTest'),
-            # (self.run_HashMap1Model, 'HashTableTest'),
-            (self.run_HashMap2Model, 'BucketingTest'),
+            (self.run_HashMap1Model, 'HashTableTest'),
+            # (self.run_HashMap2Model, 'BucketingTest'),
             # (self.run_EasyCSVModel, 'CSVTester'),
             # (self.run_RomListModel, 'RomListTester'),
             # (self.run_ComparatorModel, 'Comparator'),
@@ -103,8 +103,8 @@ class TestJava(TestCommon):
         rewriteTests = [
             # (self.run_CipherFactoryRewrite, 'CipherFactoryTests'),
             # (self.run_SuffixArrayRewrite, 'SuffixArrayTest'),
-            # (self.run_HashMap1Rewrite, 'HashTableTest'),
-            (self.run_HashMap2Rewrite, 'BucketingTest'),
+            (self.run_HashMap1Rewrite, 'HashTableTest'),
+            # (self.run_HashMap2Rewrite, 'BucketingTest'),
             # (self.run_EasyCSVRewrite, 'CSVTester'),
             # (self.run_RomListRewrite, 'RomListTester'),
             # (self.run_ComparatorRewrite, 'Comparator'),
@@ -135,14 +135,14 @@ class TestJava(TestCommon):
         files = map(lambda s: "HashMap1_bigger/" + s, files)
         inline = 1
         unroll = 5
-        return self.__test(files, inline, unroll)
+        return self.__test(files, inline, unroll, irange=43)
         
     def run_HashMap1Rewrite(self):
         files = ["HashTable_loops.java", "HashTableNode.java", "HashTableTest.java", "rewrite/", "shared/"]
         files = map(lambda s: "HashMap1_bigger/" + s, files)
-        inline = 5
+        inline = 1
         unroll = 5
-        return self.__test(files, inline, unroll, cbits=2, irange=8)
+        return self.__test(files, inline, unroll, irange=43)
 
     def run_HashMap2Model(self):
         files = ["Bucketing_syn.java", "BucketingTest.java", "HashTable.java", "Pair.java", "model/", "shared/"]
