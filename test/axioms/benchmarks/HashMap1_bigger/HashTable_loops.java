@@ -118,12 +118,15 @@ public class HashTable<K, V> {
     public V get(K key) {
 	Object[] localObjs = new Object[3];
 	localObjs[0] = key;
+	int[] localInts = new int[1];
 	
-	stmts(localObjs);
+	// stmts(localObjs);
+	stmts2(localObjs, localInts);
 	// K k = (K) localObjs[0];
 	// localObjs[1] = getNodeWithKey(k);
 
-	if (guard(localObjs)) {
+	// if (guard(localObjs)) {
+	if (guard2(localObjs, localInts)) {
 	// if (localObjs[1] != null) {
 	    return stmtsRetV(localObjs);	    
 	    // HashTableNode<K, V> result = (HashTableNode<K, V>) localObjs[1];
@@ -137,36 +140,187 @@ public class HashTable<K, V> {
         // return result != null ? result.getValue() : null;
     }
 
+    generator boolean guard2(Object[] localObjs, int[] localInts) {
+    	boolean comp = false;
+    	if (??) {
+    	    int i1 = genInt(localObjs);
+    	    int i2 = genInt(localObjs);
+    	    comp = {| i1 < i2, i1 <= i2, i1 == i2 |};
+    	}
+    	if (??) {
+    	    comp = localObjs[??] == null;			     
+    	}
+    	if (??) {
+    	    K k1 = genK2(localObjs, localInts);
+    	    K k2 = genK2(localObjs, localInts);
+    	    comp = k1.equals(k2);
+    	}
+    	if (??) {
+    	    HashTableNode<> current = genHashTableNode2(localObjs, localInts);
+    	    comp = current.getNext() == null;
+    	}
+    	return {| comp, !comp |};
+    }
+    
+    generator int genInt2(Object[] localObjs, int[] localInts) {
+    	if (??) {	    
+    	    return {| capacityGrowth, initialCapacity, size, currentCapacity, ?? |};
+    	}
+    	if (??) {
+    	    return buckets.size();
+    	}
+    	if (??) {
+    	    return size()+??;
+    	}
+    	if (??) {
+    	    return localInts[0];
+    	}
+    	if (??) {
+    	    K k1 = genK2(localObjs, localInts);
+    	    return getBucketIndex(k1);
+    	}
+    	return 0;
+    }
+ 
+    generator HashTableNode<K,V> genHashTableNode2(Object[] localObjs, int[] localInts) {
+    	if (??) {
+    	    K k2 = genK2(localObjs, localInts);
+    	    V v2 = genV2(localObjs, localInts);
+	    
+    	    return new HashTableNode<>(k2, v2); 
+    	}
+    	if (??) {
+    	    K k = (K) genK2(localObjs, localInts);	    
+    	    return getNodeWithKey(k);
+    	}
+    	if (??) {
+    	    int i = genInt2(localObjs, localInts);
+    	    return buckets.get(i);
+    	}
+    	if (??) {
+    	    return localObjs[2];
+    	}
+    	if (??) {
+    	    return localObjs[3];
+    	}
+    	if (??) {
+    	    HashTableNode<> current = genHashTableNode2(localObjs, localInts);
+    	    return current.getNext();
+    	}
+    	return null;
+    }
+
+    generator K genK2(Object[] localObjs, int[] localInts) {
+    	if (??) {	    
+    	    HashTableNode<> current = genHashTableNode2(localObjs, localInts);
+    	    return current.getKey();
+    	}
+    	if (??) {
+    	    return (K) localObjs[0];
+    	}
+    	return null;
+    }
+    
+    generator V genV2(Object[] localObjs, int[] localInts) {
+    	if (??) {
+    	    HashTableNode<K, V> result = genHashTableNode2(localObjs, localInts);
+    	    return result.getValue();
+    	}
+    	if (??) {
+    	    return ((V) localObjs[1]);
+    	}
+    	return null;
+    }
+    
+    generator void voidFuncs2(Object[] localObjs, int[] localInts) {
+    	// if (??) {
+    	//     V v = genV(localObjs);	    
+    	//     buckets.add(v);
+    	// }
+    	// if (??) {
+    	//     V v = genV(localObjs);
+    	//     int i = genInt(localObjs);
+    	//     buckets.set(i, v);
+    	// }
+    	if (??) {
+    	    int i = genInt2(localObjs, localInts);
+    	    ensureCapacity(i);	    
+    	}
+    	if (??) {
+    	    HashTableNode<> n = genHashTableNode2(localObjs, localInts);
+    	    int i = genInt2(localObjs, localInts);
+            buckets.set(i, n);
+    	}
+    	if (??) {
+    	    HashTableNode<> current = genHashTableNode2(localObjs, localInts);
+    	    V v = genV2(localObjs, localInts);
+    	    current.setValue(v);
+    	}
+    	if (??) {
+    	    HashTableNode<> current = genHashTableNode2(localObjs, localInts);	    
+    	    HashTableNode<> newNode = genHashTableNode2(localObjs, localInts);
+    	    current.setNext(newNode);
+    	}
+
+    }
+    
+    generator void stmts2(Object[] localObjs, int[] localInts) {
+    	// if (??) { capacityGrowth = genInt2(localObjs, localInts); }
+    	// if (??) { initialCapacity = genInt2(localObjs, localInts); }
+    	// if (??) { currentCapacity = genInt2(localObjs, localInts); }		
+    	if (??) { size = genInt2(localObjs, localInts); }
+    	if (??) { localInts[0] = genInt2(localObjs, localInts); }
+    	if (??) { localObjs[2] = genHashTableNode2(localObjs, localInts); }
+    	if (??) { localObjs[3] = genHashTableNode2(localObjs, localInts); }
+    	if (??) { voidFuncs2(localObjs, localInts); }
+    	if (??) { stmts2(localObjs, localInts); }	
+    }
+
     // inserts a Key, Value pair into the table
     public void put(K key, V value) throws IllegalArgumentException {
-        ensureCapacity(size() + 1);
+	int[] localInts = new int[2];
+	Object[] localObjs = new Object[5];
+	localObjs[0] = key;
+	localObjs[1] = value;
 
-        // Hash the key and get the bucket index
-    	int bucketIndex = getBucketIndex(key);
-        HashTableNode<K, V> newNode = new HashTableNode<>(key, value);
-        HashTableNode<K, V> current = buckets.get(bucketIndex);
+	ensureCapacity(size() + 1);
 
-        // If bucket is empty, set as first node and we're done
-        if (current == null) {
-            buckets.set(bucketIndex, newNode);
+	K k1 = (K) localObjs[0];
+	localInts[0] = getBucketIndex(k1);
+	
+	K k2 = (K) localObjs[0];
+	V v2 = (V) localObjs[1];
+	
+	localObjs[2] = new HashTableNode<>(k2, v2); 
+	localObjs[3] = buckets.get(localInts[0]);
+
+	// stmts2(localObjs, localInts);
+	
+        if (localObjs[3] == null) {
+        // if (guard2(localObjs, localInts)) {	    
+	    HashTableNode<> n = localObjs[2];
+            buckets.set(localInts[0], n);
             this.size++;
+	    // stmts2(localObjs, localInts);
             return;
         }
-        // Traverse the list within the bucket until match or end found
-    	while (current != null) {
-            // When a key match is found, replace the value it stores and break
+
+    	while (localObjs[3] != null) {
+	    HashTableNode<> current = localObjs[3];
     	    K k = current.getKey();
-            if (k.equals(key)) {
-                current.setValue(value);
+	    K k3 = (K) localObjs[0];
+            if (k.equals(k3)) {
+		V v3 = (V) localObjs[1];
+                current.setValue(v3);
     		return;
             }
-            // When the last node of the list is reached, append new node here and break
             else if (current.getNext() == null) {
+		HashTableNode<> newNode = localObjs[2];
                 current.setNext(newNode);
                 this.size++;
     		return;
             }
-            current = current.getNext();
+	    localObjs[3] = current.getNext();
         }
     }
 

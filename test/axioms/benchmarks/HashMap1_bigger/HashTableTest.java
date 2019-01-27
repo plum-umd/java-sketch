@@ -25,9 +25,9 @@ public class HashTableTest {
 
     harness void mn(int x, int y, int z) {
     	assume x != y && x != z && y != z;
-    	// assume x > 0 && x < 10;
-    	// assume y > 0 && y < 10;
-    	// assume z > 0 && z < 10;	
+    	assume x > 0 && x < 10;
+    	assume y > 0 && y < 10;
+    	assume z > 0 && z < 10;	
     // harness void mn() {	
     // 	int x = 2;
     // 	int y = 8;
