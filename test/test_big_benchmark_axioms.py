@@ -83,11 +83,11 @@ class TestJava(TestCommon):
         modelTests = [
             # (self.run_CipherFactoryModel, 'CipherFactoryTests'),   
             # (self.run_SuffixArrayModel, 'SuffixArrayTest'),
-            (self.run_HashMap1Model, 'HashTableTest'),
+            # (self.run_HashMap1Model, 'HashTableTest'),
             # (self.run_HashMap2Model, 'BucketingTest'),
             # (self.run_EasyCSVModel, 'CSVTester'),
             # (self.run_RomListModel, 'RomListTester'),
-            # (self.run_ComparatorModel, 'Comparator'),
+            (self.run_ComparatorModel, 'Comparator'),
             # (self.run_PasswordManagerModel, 'PasswordManagerTest'),
             # (self.run_KafkaModel, 'Kafka_Tester')                
         ]
@@ -95,26 +95,26 @@ class TestJava(TestCommon):
         writer.writerows(results)
         modelResults.close()
 
-    def test_runRewrites(self):
-        tmp_output = open('out_rewrite.txt', 'w')                
-        modelResults = open('results_rewrite.csv', 'w')
-        # with modelResults:
-        writer = csv.writer(modelResults)
-        rewriteTests = [
-            # (self.run_CipherFactoryRewrite, 'CipherFactoryTests'),
-            # (self.run_SuffixArrayRewrite, 'SuffixArrayTest'),
-            (self.run_HashMap1Rewrite, 'HashTableTest'),
-            # (self.run_HashMap2Rewrite, 'BucketingTest'),
-            # (self.run_EasyCSVRewrite, 'CSVTester'),
-            # (self.run_RomListRewrite, 'RomListTester'),
-            # (self.run_ComparatorRewrite, 'Comparator'),
-            # (self.run_PasswordManagerRewrite, 'PasswordManagerTest'),
-            # (self.run_KafkaRewrite, 'Kafka_Tester')
-        ]
-        results = map(lambda x: [x], reduce(lambda x,y: x + y, self.run_tests(rewriteTests, [], tmp_output)))
-        writer.writerows(results)
-        tmp_output.close()
-        modelResults.close()
+    # def test_runRewrites(self):
+    #     tmp_output = open('out_rewrite.txt', 'w')                
+    #     modelResults = open('results_rewrite.csv', 'w')
+    #     # with modelResults:
+    #     writer = csv.writer(modelResults)
+    #     rewriteTests = [
+    #         # (self.run_CipherFactoryRewrite, 'CipherFactoryTests'),
+    #         # (self.run_SuffixArrayRewrite, 'SuffixArrayTest'),
+    #         (self.run_HashMap1Rewrite, 'HashTableTest'),
+    #         # (self.run_HashMap2Rewrite, 'BucketingTest'),
+    #         # (self.run_EasyCSVRewrite, 'CSVTester'),
+    #         # (self.run_RomListRewrite, 'RomListTester'),
+    #         # (self.run_ComparatorRewrite, 'Comparator'),
+    #         # (self.run_PasswordManagerRewrite, 'PasswordManagerTest'),
+    #         # (self.run_KafkaRewrite, 'Kafka_Tester')
+    #     ]
+    #     results = map(lambda x: [x], reduce(lambda x,y: x + y, self.run_tests(rewriteTests, [], tmp_output)))
+    #     writer.writerows(results)
+    #     tmp_output.close()
+    #     modelResults.close()
         
     def run_SuffixArrayModel(self):
         files = ["SuffixArray_loops2.java", "SuffixArrayTest.java", "model/"]        
@@ -191,11 +191,12 @@ class TestJava(TestCommon):
         # return self.__test(files, inline, unroll)
 
     def run_ComparatorModel(self):
-        files = ["CommunicationWithFiles_syn_model.java", "Comparator_model.java", "Tester.java", "model/", "shared/"]
+        files = ["CommunicationWithFiles_syn_rewrite.java", "Comparator_rewrite.java", "Tester.java", "model/", "shared/"] 
+        # files = ["CommunicationWithFiles_syn_model.java", "Comparator_model.java", "Tester.java", "model/", "shared/"]
         files = map(lambda s: "Comparator_bigger/" + s, files)
         inline = 2
         unroll = 10
-        return self.__test(files, inline, unroll, True, 50)
+        return self.__test(files, inline, unroll, True)
         # return self.__test(files, inline, unroll, True)
 
     def run_ComparatorRewrite(self):
