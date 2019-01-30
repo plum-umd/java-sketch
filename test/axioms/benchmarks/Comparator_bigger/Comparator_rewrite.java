@@ -46,19 +46,7 @@ public class Comparator {
 	    // assert c1.equals("2|1\n2\n");
 	    
 	    assert comp.size() == 3;
-	    // assert comp.size() == 2;
-	    
-	    // } catch (IOException e) {
-	    //     // TODO Auto-generated catch block
-	    //     e.printStackTrace();
-	    // }
-
-
-
-	    // }else {
-	    // 	// System.out.println("Incorrect number of attributes.");
-	    // }
-	    
+	    // // assert comp.size() == 2;	    	    
 	}
 
 }

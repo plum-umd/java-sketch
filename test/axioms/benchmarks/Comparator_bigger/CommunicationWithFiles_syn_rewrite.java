@@ -9,143 +9,200 @@ import java.util.Collections;
 
 public class CommunicationWithFiles {
 
+    FileReaderr fr;
+    String value;
+    ArrayList<String> values;
+    boolean isAList;
+    String filename;
+    BufferedReader bfr;
     
     public CommunicationWithFiles(){};
 
-    generator public String genRead(BufferedReader bfr, String value, boolean isAList, ArrayList<> values, String filename) {
-	// String vbar = null;
-	// if (??) {
-	//     value = bfr.readLine();
-	//     while(value != null){  
-	// 	if (value!=null && !isAList==true){
-	// 	    // values.add(value+"|"+filename);
-	// 	    String vbar = value.concat("|");
-	// 	    values.add(vbar.concat(filename));
-	// 	}
-	// 	value = bfr.readLine();
-	//     }
-	// }
-
-	// if (??) {
-	//     value = bfr.readLine();
-	//     while(value != null){  
-	//         value = genRead(bfr, value, isAList, values, filename);		
-	//     }
-	// }
-	// if (??) {
-	//     if (value!=null && !isAList==true){
-	// 	// values.add(value+"|"+filename);
-	// 	String vbar = value.concat("|");
-	// 	values.add(vbar.concat(filename));
-	//     }
-	//     value = bfr.readLine();
-	// }
-	
+    // generator public boolean guard() {
+    // 	boolean cond = false;
+    // 	if (??) {
+    // 	    cond = isAList;
+    // 	}
+    // 	return {| cond | !cond |};
+    // }
+    
+    generator public void stmts() {
 	if (??) {
-	    if (value!=?? && !isAList==true){
-		// // values.add(value+"|"+filename);
-		// char[] c = new char[1];
-		// c[0] = ??;
-		// String bar = new String(c, 0, 1);
-		String vbar = value.concat("|");
-		// String vbar = value.concat(bar);
-		values.add(vbar.concat(filename));
-
-		// // values.add(value+"|"+filename);
-		// String vbar = value.concat("|");
-		// values.add(vbar.concat(filename));
+	    String vbar = value.concat("|");
+	    values.add(vbar.concat(filename));
+	}
+	if (??) {
+	    if (!isAList==true) {
+	    // if (guard()) {
+		stmts();
 	    }
 	}
 	if (??) {
 	    value = bfr.readLine();	    
 	}
-	if (??) {	    
-	    while(value != null){  
-		value = genRead(bfr, value, isAList, values, filename);
-	    }
+	if (??) {
+	    values.sort(null);
+	    fr = new FileReaderr(filename);
+	    // BufferedReader bfr = new BufferedReader(fr);
+	    bfr = new BufferedReader(fr);
 	}
 	if (??) {
-	    value = genRead(bfr, value, isAList, values, filename);
+	    stmts();
 	}
-	
-	// if (??) {
-	//     value = bfr.readLine();
-	// }
-	// // if (??) {
-	// //     while(value != null) {
-	// // 	genRead(bfr, value, isAList, values, filename);
-	// //     }
-	// // }
-	// // if (??) {
-	// //     if (value != null && !isAList == true) {
-	// // 	genRead(bfr, value, isAList, values, filename);
-	// //     }
-	// // }
-	// if (??) {
-	//     vbar = value.concat("|");
-	//     vbar = vbar.concat(filename);
-	// }
-	// if (??) {
-	//     if (value != null && !isAList == true) {	    
-	// 	values.add(vbar);
-	//     }
-	// }
-
-	return value;
     }
+    
+    // generator public String genRead(BufferedReader bfr, String value, boolean isAList, ArrayList<> values, String filename) {
+    // 	// String vbar = null;
+    // 	// if (??) {
+    // 	//     value = bfr.readLine();
+    // 	//     while(value != null){  
+    // 	// 	if (value!=null && !isAList==true){
+    // 	// 	    // values.add(value+"|"+filename);
+    // 	// 	    String vbar = value.concat("|");
+    // 	// 	    values.add(vbar.concat(filename));
+    // 	// 	}
+    // 	// 	value = bfr.readLine();
+    // 	//     }
+    // 	// }
+
+    // 	// if (??) {
+    // 	//     value = bfr.readLine();
+    // 	//     while(value != null){  
+    // 	//         value = genRead(bfr, value, isAList, values, filename);		
+    // 	//     }
+    // 	// }
+    // 	// if (??) {
+    // 	//     if (value!=null && !isAList==true){
+    // 	// 	// values.add(value+"|"+filename);
+    // 	// 	String vbar = value.concat("|");
+    // 	// 	values.add(vbar.concat(filename));
+    // 	//     }
+    // 	//     value = bfr.readLine();
+    // 	// }
+	
+    // 	if (??) {
+    // 	    if (value!=?? && !isAList==true){
+    // 		// // values.add(value+"|"+filename);
+    // 		// char[] c = new char[1];
+    // 		// c[0] = ??;
+    // 		// String bar = new String(c, 0, 1);
+    // 		String vbar = value.concat("|");
+    // 		// String vbar = value.concat(bar);
+    // 		values.add(vbar.concat(filename));
+
+    // 		// // values.add(value+"|"+filename);
+    // 		// String vbar = value.concat("|");
+    // 		// values.add(vbar.concat(filename));
+    // 	    }
+    // 	}
+    // 	if (??) {
+    // 	    value = bfr.readLine();	    
+    // 	}
+    // 	if (??) {	    
+    // 	    while(value != null){  
+    // 		value = genRead(bfr, value, isAList, values, filename);
+    // 	    }
+    // 	}
+    // 	if (??) {
+    // 	    value = genRead(bfr, value, isAList, values, filename);
+    // 	}
+	
+    // 	// if (??) {
+    // 	//     value = bfr.readLine();
+    // 	// }
+    // 	// // if (??) {
+    // 	// //     while(value != null) {
+    // 	// // 	genRead(bfr, value, isAList, values, filename);
+    // 	// //     }
+    // 	// // }
+    // 	// // if (??) {
+    // 	// //     if (value != null && !isAList == true) {
+    // 	// // 	genRead(bfr, value, isAList, values, filename);
+    // 	// //     }
+    // 	// // }
+    // 	// if (??) {
+    // 	//     vbar = value.concat("|");
+    // 	//     vbar = vbar.concat(filename);
+    // 	// }
+    // 	// if (??) {
+    // 	//     if (value != null && !isAList == true) {	    
+    // 	// 	values.add(vbar);
+    // 	//     }
+    // 	// }
+
+    // 	return value;
+    // }
 
         /**
          * Function is creating diff.txt file
          * @param  arg filename name of the file to be loaded
          * @param  arg true for list of values
          */
-        public ArrayList<String> ReadToArray(String filename,boolean isAList ) throws IOException{    
+        public ArrayList<String> ReadToArray(String filename2,boolean isAList2 ) throws IOException{    
     
-	    // FileReaderr fr = null;
-	    // String value = null;
-	    boolean[] localBools = new boolean[1];
-	    localBools[0] = isAList;
-	    Object[] localObjs = new Object[6];
-	    localObjs[0] = filename;
+                // FileReaderr fr = null;
+                // // String value = "";
+                // String value = null;
+                
+                // ArrayList<String> values = new ArrayList<String>();
 
-	    localObjs[1] = null;
-	    localObjs[2] = new ArrayList<String>();
-
-	    ArrayList<String> values = (ArrayList<String>) localObjs[2];
-	    values.sort(null);
-	    String fname = (String) localObjs[0];
-	    localObjs[3] = new FileReaderr(fname);
-	    FileReaderr fr = (FileReaderr) localObjs[3];
-	    localObjs[4] = new BufferedReader(fr);
+	        fr = null;
+                value = null;
+                values = new ArrayList<String>();
+		isAList = isAList2;
+		filename = filename2;
 		
-	    // ArrayList<String> values = new ArrayList<String>();
-	    // values.sort(null);
-	    // fr = new FileReaderr(filename);
-	    // BufferedReader bfr = new BufferedReader(fr);
+		values.sort(null);
+		fr = new FileReaderr(filename);
+		// BufferedReader bfr = new BufferedReader(fr);
+		bfr = new BufferedReader(fr);
 
-	    BufferedReader br = (BufferedReader) localObjs[4];
-	    localObjs[1] = br.readLine();
+		// genRead(bfr, value, isAList, values, filename);
 
-	    while(localObjs[1] != null) {		
-		if (localObjs[1] != null && !localBools[0] == true){
-		    String value = (String) localObjs[1];
-		    localObjs[5] = value.concat("|");
-		    String vbar = (String) localObjs[5];
-		    ArrayList<String> values2 = (ArrayList<String>) localObjs[2];
-		    String fname2 = (String) localObjs[0];
-		    values2.add(vbar.concat(fname2));
+		stmts();
+		// value = bfr.readLine();		
+		while(value != null) {
+		    // if (!isAList == true) {
+		    // 	// String vbar = value.concat("|");
+		    // 	// values.add(vbar.concat(filename));
+		    // 	stmts();
+		    // }
+		    // // value = bfr.readLine();
+		    // stmts();
+		    stmts();
 		}
-		BufferedReader br2 = (BufferedReader) localObjs[4];
-		localObjs[1] = br2.readLine();		
-	    }	    
+		
+		// value = bfr.readLine();
+		// // while(value != null){  
+		// //     if (value!=null && !isAList==true){
+		// // 	// values.add(value+"|"+filename);
+		// // 	String vbar = value.concat("|");
+		// // 	values.add(vbar.concat(filename));
+		// //     }
+		// //     value = bfr.readLine();
+		// // }
+		// while(value != null){  
+		//     // if (value!=null && !isAList==true){
+		//     // 	// values.add(value+"|"+filename);
+		//     // 	String vbar = value.concat("|");
+		//     // 	values.add(vbar.concat(filename));
+		//     // }
+		//     // value = bfr.readLine();
+		//     genRead(bfr, value, isAList, values, filename);
+		// }
+                                // } catch (IOException e) {
+                                //         System.out.println("Error reading the file");
+                                //             System.exit(2);
+                                //     }
 
-	    FileReaderr fr2 = (FileReaderr) localObjs[3];
-	    fr2.close();
-	    ArrayList<String> values3 = (ArrayList<String>) localObjs[2];
-	    return values3;
-	    // fr.close();
-	    // return values;    
-	} 
+                                // try {
+		fr.close();
+                                    // } catch (IOException e11) {
+                                    //     System.out.println("Error closing the file");
+                                    //     System.exit(3);
+                                    //     }
+		return values;    
+                } 
                                
         /**
          * Function is removing duplicated lines from ArrayList<String>
