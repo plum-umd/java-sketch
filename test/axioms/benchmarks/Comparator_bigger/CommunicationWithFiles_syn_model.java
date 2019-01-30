@@ -9,114 +9,166 @@ import java.util.Collections;
 
 public class CommunicationWithFiles {
 
+    FileReaderr fr;
+    String value;
+    ArrayList<String> values;
+    boolean isAList;
+    String filename;
+    BufferedReader bfr;
     
     public CommunicationWithFiles(){};
 
-    generator public String genRead(BufferedReader bfr, String value, boolean isAList, ArrayList<> values, String filename) {
-	// String vbar = null;
-	// if (??) {
-	//     value = bfr.readLine();
-	//     while(value != null){  
-	// 	if (value!=null && !isAList==true){
-	// 	    // values.add(value+"|"+filename);
-	// 	    String vbar = value.concat("|");
-	// 	    values.add(vbar.concat(filename));
-	// 	}
-	// 	value = bfr.readLine();
-	//     }
-	// }
-
-	// if (??) {
-	//     value = bfr.readLine();
-	//     while(value != null){  
-	//         value = genRead(bfr, value, isAList, values, filename);		
-	//     }
-	// }
-	// if (??) {
-	//     if (value!=null && !isAList==true){
-	// 	// values.add(value+"|"+filename);
-	// 	String vbar = value.concat("|");
-	// 	values.add(vbar.concat(filename));
-	//     }
-	//     value = bfr.readLine();
-	// }
-
+    // generator public boolean guard() {
+    // 	boolean cond = false;
+    // 	if (??) {
+    // 	    cond = isAList;
+    // 	}
+    // 	return {| cond | !cond |};
+    // }
+    
+    generator public void stmts() {
 	if (??) {
-	    if (value!=null && !isAList==true){
-		// // values.add(value+"|"+filename);
-		// char[] cs = new char[1];
-		// cs[0] = ??;
-		// String bar = new String(cs, 0, 1);
-		// String vbar = value.concat(bar);
-
-		// char[] c = new char[1];
-		// c[0] = ??;
-		// String bar = new String(c, 0, 1);
-		String vbar = value.concat("|");
-		// String vbar = value.concat(bar);
-		values.add(vbar.concat(filename));
-	    }
-	}	
-	if (??) {
-	    value = bfr.readLine();
+	    String vbar = value.concat("|");
+	    values.add(vbar.concat(filename));
 	}
 	if (??) {
-	    while(value != null){  
-	        value = genRead(bfr, value, isAList, values, filename);
+	    if (!isAList==true) {
+	    // if (guard()) {
+		stmts();
 	    }
 	}
 	if (??) {
-	    value = genRead(bfr, value, isAList, values, filename);
+	    value = bfr.readLine();	    
 	}
-	
 	// if (??) {
-	//     value = bfr.readLine();
+	//     values.sort(null);
+	//     fr = new FileReaderr(filename);
+	//     // BufferedReader bfr = new BufferedReader(fr);
+	//     bfr = new BufferedReader(fr);
 	// }
-	// // if (??) {
-	// //     while(value != null) {
-	// // 	genRead(bfr, value, isAList, values, filename);
-	// //     }
-	// // }
-	// // if (??) {
-	// //     if (value != null && !isAList == true) {
-	// // 	genRead(bfr, value, isAList, values, filename);
-	// //     }
-	// // }
-	// if (??) {
-	//     vbar = value.concat("|");
-	//     vbar = vbar.concat(filename);
-	// }
-	// if (??) {
-	//     if (value != null && !isAList == true) {	    
-	// 	values.add(vbar);
-	//     }
-	// }
-
-	return value;
+	if (??) {
+	    stmts();
+	}
     }
+    
+    // generator public String genRead(BufferedReader bfr, String value, boolean isAList, ArrayList<> values, String filename) {
+    // 	// String vbar = null;
+    // 	// if (??) {
+    // 	//     value = bfr.readLine();
+    // 	//     while(value != null){  
+    // 	// 	if (value!=null && !isAList==true){
+    // 	// 	    // values.add(value+"|"+filename);
+    // 	// 	    String vbar = value.concat("|");
+    // 	// 	    values.add(vbar.concat(filename));
+    // 	// 	}
+    // 	// 	value = bfr.readLine();
+    // 	//     }
+    // 	// }
+
+    // 	// if (??) {
+    // 	//     value = bfr.readLine();
+    // 	//     while(value != null){  
+    // 	//         value = genRead(bfr, value, isAList, values, filename);		
+    // 	//     }
+    // 	// }
+    // 	// if (??) {
+    // 	//     if (value!=null && !isAList==true){
+    // 	// 	// values.add(value+"|"+filename);
+    // 	// 	String vbar = value.concat("|");
+    // 	// 	values.add(vbar.concat(filename));
+    // 	//     }
+    // 	//     value = bfr.readLine();
+    // 	// }
+	
+    // 	if (??) {
+    // 	    if (value!=?? && !isAList==true){
+    // 		// // values.add(value+"|"+filename);
+    // 		// char[] c = new char[1];
+    // 		// c[0] = ??;
+    // 		// String bar = new String(c, 0, 1);
+    // 		String vbar = value.concat("|");
+    // 		// String vbar = value.concat(bar);
+    // 		values.add(vbar.concat(filename));
+
+    // 		// // values.add(value+"|"+filename);
+    // 		// String vbar = value.concat("|");
+    // 		// values.add(vbar.concat(filename));
+    // 	    }
+    // 	}
+    // 	if (??) {
+    // 	    value = bfr.readLine();	    
+    // 	}
+    // 	if (??) {	    
+    // 	    while(value != null){  
+    // 		value = genRead(bfr, value, isAList, values, filename);
+    // 	    }
+    // 	}
+    // 	if (??) {
+    // 	    value = genRead(bfr, value, isAList, values, filename);
+    // 	}
+	
+    // 	// if (??) {
+    // 	//     value = bfr.readLine();
+    // 	// }
+    // 	// // if (??) {
+    // 	// //     while(value != null) {
+    // 	// // 	genRead(bfr, value, isAList, values, filename);
+    // 	// //     }
+    // 	// // }
+    // 	// // if (??) {
+    // 	// //     if (value != null && !isAList == true) {
+    // 	// // 	genRead(bfr, value, isAList, values, filename);
+    // 	// //     }
+    // 	// // }
+    // 	// if (??) {
+    // 	//     vbar = value.concat("|");
+    // 	//     vbar = vbar.concat(filename);
+    // 	// }
+    // 	// if (??) {
+    // 	//     if (value != null && !isAList == true) {	    
+    // 	// 	values.add(vbar);
+    // 	//     }
+    // 	// }
+
+    // 	return value;
+    // }
 
         /**
          * Function is creating diff.txt file
          * @param  arg filename name of the file to be loaded
          * @param  arg true for list of values
          */
-        public ArrayList<String> ReadToArray(String filename,boolean isAList ) throws IOException{    
+        public ArrayList<String> ReadToArray(String filename2,boolean isAList2 ) throws IOException{    
     
-                FileReaderr fr = null;
-                String value = "";
+                // FileReaderr fr = null;
+                // // String value = "";
+                // String value = null;
                 
-                ArrayList<String> values = new ArrayList<String>();
-                Collections.sort(values);
-                    // try {
-		fr = new FileReaderr(filename);
-                        // } catch (FileNotFoundException e1) {
-                        //         System.out.println("Error opening the file (file not found)");
-                        //         //     System.exit(1);
-                        //     }
-		BufferedReader bfr = new BufferedReader(fr);
-                            // try {
+                // ArrayList<String> values = new ArrayList<String>();
 
-		genRead(bfr, value, isAList, values, filename);
+	        fr = null;
+                value = null;
+                values = new ArrayList<String>();
+		isAList = isAList2;
+		filename = filename2;
+		
+		values.sort(null);
+		fr = new FileReaderr(filename);
+		// BufferedReader bfr = new BufferedReader(fr);
+		bfr = new BufferedReader(fr);
+
+		// genRead(bfr, value, isAList, values, filename);
+
+		stmts();
+		// value = bfr.readLine();		
+		while(value != null) {
+		    // if (!isAList == true) {
+		    // 	String vbar = value.concat("|");
+		    // 	values.add(vbar.concat(filename));
+		    // }
+		    // value = bfr.readLine();
+		    stmts();
+		}
 		
 		// value = bfr.readLine();
 		// // while(value != null){  
@@ -159,7 +211,7 @@ public class CommunicationWithFiles {
             int j=1;
 
             toBeSorted.sort(null);
-
+	    
 	    while(j+1<toBeSorted.size()){
 		String get_j = toBeSorted.get(j);
 		String sstr = get_j.substring(0, get_j.indexOf("|"));
@@ -170,8 +222,9 @@ public class CommunicationWithFiles {
                 	toBeSorted.remove(j+1);
                         toBeSorted.remove(j);
                 }else{j++; 	}
-            }   
-            toBeSorted.add(0, "Values present in only one file|File name");
+            }
+            // toBeSorted.add(0, "Values present in only one file|File name");
+            toBeSorted.add(0, "V|F");
             return toBeSorted;
         }   
 
