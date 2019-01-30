@@ -40,12 +40,12 @@ public class CommunicationWithFiles {
 	if (??) {
 	    value = bfr.readLine();	    
 	}
-	if (??) {
-	    values.sort(null);
-	    fr = new FileReaderr(filename);
-	    // BufferedReader bfr = new BufferedReader(fr);
-	    bfr = new BufferedReader(fr);
-	}
+	// if (??) {
+	//     values.sort(null);
+	//     fr = new FileReaderr(filename);
+	//     // BufferedReader bfr = new BufferedReader(fr);
+	//     bfr = new BufferedReader(fr);
+	// }
 	if (??) {
 	    stmts();
 	}
