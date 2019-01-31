@@ -218,66 +218,66 @@ public class RomlistParser {
     }
     
     generator void voidFuncs(int[] localInts, Object[] localObjs) {
-	if (??) {
-	    String s = genString(localInts, localObjs);
-	    RomlistGame game = genRomListGame(localInts, localObjs);
-	    game.setRomlist(s);	    
-	}
-	if (??) {
-	    String s = genString(localInts, localObjs);
-	    RomlistGame game = genRomListGame(localInts, localObjs);
-	    game.setName(s);	    
-	}
-	if (??) {
-	    String s = genString(localInts, localObjs);
-	    RomlistGame game = genRomListGame(localInts, localObjs);
-	    game.setTitle(s);	    
-	}
-	if (??) {
-	    String s = genString(localInts, localObjs);
-	    RomlistGame game = genRomListGame(localInts, localObjs);
-	    game.setEmulator(s);	    
-	}
-	if (??) {
-	    String s = genString(localInts, localObjs);
-	    RomlistGame game = genRomListGame(localInts, localObjs);
-	    game.setCloneOf(s);	    
-	}
-	if (??) {
-	    String s = genString(localInts, localObjs);
-	    RomlistGame game = genRomListGame(localInts, localObjs);
-	    game.setYear(s);	    
-	}
-	if (??) {
-	    String s = genString(localInts, localObjs);
-	    RomlistGame game = genRomListGame(localInts, localObjs);
-	    game.setManufacturer(s);	    
-	}
-	if (??) {
-	    String s = genString(localInts, localObjs);
-	    RomlistGame game = genRomListGame(localInts, localObjs);
-	    game.setCategory(s);	    
-	}
-	if (??) {
-	    String s = genString(localInts, localObjs);
-	    RomlistGame game = genRomListGame(localInts, localObjs);
-	    game.setPlayers(s);	    
-	}
-	if (??) {
-	    String s = genString(localInts, localObjs);
-	    RomlistGame game = genRomListGame(localInts, localObjs);
-	    game.setRotation(s);	    
-	}
-	if (??) {
-	    String s = genString(localInts, localObjs);
-	    RomlistGame game = genRomListGame(localInts, localObjs);
-	    game.setControl(s);	    
-	}
-	if (??) {
-	    boolean b = guard(localInts, localObjs);
-	    RomlistGame game = genRomListGame(localInts, localObjs);
-	    game.setAvailable(b);	    	    
-	}
+	// if (??) {
+	//     String s = genString(localInts, localObjs);
+	//     RomlistGame game = genRomListGame(localInts, localObjs);
+	//     game.setRomlist(s);	    
+	// }
+	// if (??) {
+	//     String s = genString(localInts, localObjs);
+	//     RomlistGame game = genRomListGame(localInts, localObjs);
+	//     game.setName(s);	    
+	// }
+	// if (??) {
+	//     String s = genString(localInts, localObjs);
+	//     RomlistGame game = genRomListGame(localInts, localObjs);
+	//     game.setTitle(s);	    
+	// }
+	// if (??) {
+	//     String s = genString(localInts, localObjs);
+	//     RomlistGame game = genRomListGame(localInts, localObjs);
+	//     game.setEmulator(s);	    
+	// }
+	// if (??) {
+	//     String s = genString(localInts, localObjs);
+	//     RomlistGame game = genRomListGame(localInts, localObjs);
+	//     game.setCloneOf(s);	    
+	// }
+	// if (??) {
+	//     String s = genString(localInts, localObjs);
+	//     RomlistGame game = genRomListGame(localInts, localObjs);
+	//     game.setYear(s);	    
+	// }
+	// if (??) {
+	//     String s = genString(localInts, localObjs);
+	//     RomlistGame game = genRomListGame(localInts, localObjs);
+	//     game.setManufacturer(s);	    
+	// }
+	// if (??) {
+	//     String s = genString(localInts, localObjs);
+	//     RomlistGame game = genRomListGame(localInts, localObjs);
+	//     game.setCategory(s);	    
+	// }
+	// if (??) {
+	//     String s = genString(localInts, localObjs);
+	//     RomlistGame game = genRomListGame(localInts, localObjs);
+	//     game.setPlayers(s);	    
+	// }
+	// if (??) {
+	//     String s = genString(localInts, localObjs);
+	//     RomlistGame game = genRomListGame(localInts, localObjs);
+	//     game.setRotation(s);	    
+	// }
+	// if (??) {
+	//     String s = genString(localInts, localObjs);
+	//     RomlistGame game = genRomListGame(localInts, localObjs);
+	//     game.setControl(s);	    
+	// }
+	// if (??) {
+	//     boolean b = guard(localInts, localObjs);
+	//     RomlistGame game = genRomListGame(localInts, localObjs);
+	//     game.setAvailable(b);	    	    
+	// }
 	if (??) {
 	    RomlistGame game = genRomListGame(localInts, localObjs);
 	    this.games.add(game);
@@ -390,7 +390,7 @@ public class RomlistParser {
 	    	//     Strings blah = (Strings) localObjs[4];
 	    	//     String[] data = blah.toArray();
 		if(guard(localInts, localObjs)) {
-		    // stmts(localInts, localObjs);
+		    stmts(localInts, localObjs);
 	    	    Strings blah = (Strings) localObjs[4];
 	    	    String[] data = blah.toArray();
 		    // if (data.length >= 10) {
@@ -432,14 +432,14 @@ public class RomlistParser {
 	    		    // 	game.setButtons(data[16]);
 	    		    // }
 
-	    		    // game.setAvailable(false);
+	    		    game.setAvailable(false);
 	    		    // this.games.add(game);
 			    stmts(localInts, localObjs);
 		    }
 	    	}
-	    	// br = (BufferedReader) localObjs[2];
-	    	// localObjs[3] = br.readLine();
-		stmts(localInts, localObjs);
+	    	br = (BufferedReader) localObjs[2];
+	    	localObjs[3] = br.readLine();
+		// stmts(localInts, localObjs);
 	    }
 
 	    this.totalGames = this.games.size();
