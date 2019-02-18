@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+from __future__ import absolute_import
+from __future__ import print_function
 from ..utils import utils
 
 from ..body.methoddeclaration import MethodDeclaration
@@ -61,14 +63,14 @@ class DataFlow(object):
                     return None, None
         if verbose:
             def f1(node):
-                print 'node:', type(node), 'name:', node.name, \
+                print('node:', type(node), 'name:', node.name, \
                     '\n\tin:', node.in_set, \
                     '\n\tout:', node.out_set, \
                     '\n\tinputs:', node.inputs, \
-                    '\n\toutputs:', node.outputs
-                print
+                    '\n\toutputs:', node.outputs)
+                print()
             self._walk(f1, self._program)
-            if inputs: print ins, outs
+            if inputs: print(ins, outs)
         return ins, outs
 
     def _doreach(self, program=None):
@@ -138,9 +140,9 @@ class DataFlow(object):
 
         t = n.gen().union((self._minus(n.in_set, n.kill())))
         if self._debug:
-            print 'n:', n, 'in:', n.in_set, 'gen:', n.gen(), 'kill:', n.kill(), \
+            print('n:', n, 'in:', n.in_set, 'gen:', n.gen(), 'kill:', n.kill(), \
                 'in-kill', self._minus(n.in_set, n.kill()), 't:', t, \
-                'out_set:', n.out_set
+                'out_set:', n.out_set)
 
         if type(n.parentNode) == ForStmt:
             inits = set(utils.flatten([e.out_set for e in n.parentNode.init])) \
@@ -180,9 +182,9 @@ class DataFlow(object):
             reach_x = filter(lambda x: x[0] == ch.lbl[0], ch.in_set)
             ins = self._rm_dups(filter(lambda x: x in c_defs, reach_x))
             if self._debug:
-                print 'ch:', ch, 'ch.in_set:', ch.in_set, \
+                print('ch:', ch, 'ch.in_set:', ch.in_set, \
                     'reach_x:', reach_x, \
-                    'c_defs:', c_defs, 'ins:', ins
+                    'c_defs:', c_defs, 'ins:', ins)
             if ins: ch.inputs = list(ins)
             # all this crap is to remove duplicate var defs from in/out sets
             if ch.inputs:
@@ -198,7 +200,7 @@ class DataFlow(object):
         ctx.childrenNodes = body[:self._estart]
         e = BlockStmt()
         e.childrenNodes = body[self._estart:self._estop + 1]
-        if self._debug: print '*******inputs*******'
+        if self._debug: print('*******inputs*******')
 
         # need to add this to the initial context if it is at the start of method
         params = map(lambda x: x.lbl, method.parameters)
@@ -211,7 +213,7 @@ class DataFlow(object):
         # inputs to context, which are outputs from e
         ctx.childrenNodes = body[self._estop + 1:]
         if ctx.childrenNodes:
-            if self._debug: print '*******outputs******'
+            if self._debug: print('*******outputs******')
 
             c_defs = e.childrenNodes[-1].out_set.difference(e.childrenNodes[0].in_set)
             self._inputs(ctx, c_defs)

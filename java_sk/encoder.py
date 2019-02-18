@@ -1,12 +1,13 @@
 from __future__ import print_function
 
+from __future__ import absolute_import
 import cStringIO
 import math
 import os
 import copy as cp
 import logging
 
-import util
+from . import util
 
 from functools import partial
 

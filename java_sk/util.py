@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import os
 
 from itertools import ifilter, ifilterfalse
@@ -5,7 +6,7 @@ from itertools import ifilter, ifilterfalse
 from ast.utils import utils
 from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 
-import glob2
+from . import glob2
 
 """
 regarding paths and files

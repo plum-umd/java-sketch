@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import os
 import logging
 
@@ -7,11 +8,11 @@ import lib.const as C
 from .. import util
 from ..meta.program import Program
 
-from finder import HFinder, EGFinder
-from replacer import HReplacer, EGReplacer, MGReplacer
+from .finder import HFinder, EGFinder
+from .replacer import HReplacer, EGReplacer, MGReplacer
 
-from collection import Collection
-from semantic_checker import SemanticChecker
+from .collection import Collection
+from .semantic_checker import SemanticChecker
 
 
 # white-list checking

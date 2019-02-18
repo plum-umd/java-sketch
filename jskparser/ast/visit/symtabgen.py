@@ -1,4 +1,5 @@
-import visit as v
+from __future__ import absolute_import
+from . import visit as v
 
 from .. import JAVA_LANG
 from .. import PRIMITIVES

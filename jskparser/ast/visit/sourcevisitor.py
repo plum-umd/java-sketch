@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 
+from __future__ import absolute_import
+from __future__ import print_function
 import cStringIO
-import visit as v
+from . import visit as v
 
 from .. import Operators as op
 from .. import AssignOperators as assignop
@@ -99,7 +101,7 @@ class SourcePrinter(object):
 
     @v.when(Node)
     def visit(self, n):
-        print "Unimplemented node:", n
+        print("Unimplemented node:", n)
 
     @v.when(CompilationUnit)
     def visit(self, n):
@@ -619,7 +621,7 @@ class SourcePrinter(object):
             self.printLn(' {')
             self.indent()
             for m in n.anonymousClassBody:
-                print 'm:', m, m.name, type(m)
+                print('m:', m, m.name, type(m))
             self.printMembers(n.anonymousClassBody)
             self.unindent()
             self.printt('}')

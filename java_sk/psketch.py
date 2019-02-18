@@ -1,5 +1,6 @@
 #! /usr/bin/env python
 
+from __future__ import absolute_import
 import multiprocessing
 import os
 import logging
@@ -44,7 +45,8 @@ def p_run(cmd, argv):
   n_cpu = multiprocessing.cpu_count()
   pool = multiprocessing.Pool(max(1, int(n_cpu * 0.75)))
 
-  def found( (fname, r) ):
+  def found(cegis_result):
+    (fname, r) = cegis_result
     if r: # found, copy that output file
       shutil.copyfile(fname, output_path)
       pool.close()

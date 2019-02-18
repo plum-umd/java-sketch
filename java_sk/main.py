@@ -1,12 +1,13 @@
 #! /usr/bin/env python
+from __future__ import absolute_import
 import os
 import sys
 import logging
 import logging.config
 
-import sketch
-import util
-from encoder import Encoder
+from . import sketch
+from . import util
+from .encoder import Encoder
 
 from jskparser.jskparser import parse
 

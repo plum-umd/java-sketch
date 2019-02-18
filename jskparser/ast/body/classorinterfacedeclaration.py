@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+from __future__ import absolute_import
+from __future__ import print_function
 from . import _import
 
 from .typedeclaration import TypeDeclaration
@@ -68,7 +70,7 @@ class ClassOrInterfaceDeclaration(TypeDeclaration):
                         # logging.warning('class {} extends unknown type {}'.format(n.name, e.name))
                     else: sups.append(sc)
                 else:
-                    print 'ERROR: class {} not in symbol table of {}'.format(e.name, n.name) # library?
+                    print('ERROR: class {} not in symbol table of {}'.format(e.name, n.name)) # library?
                     return
             for i in n.implementsList:
                 ic = n.symtab.get(i.name)
@@ -78,7 +80,7 @@ class ClassOrInterfaceDeclaration(TypeDeclaration):
                         # logging.warning('class {} implements type (no class def) {}'.format(str(self), i.name))
                     else: sups.append(ic)
                 else:
-                    print 'ERROR: class {} not in symbol table of {}'.format(e.name, n.name) # library?
+                    print('ERROR: class {} not in symbol table of {}'.format(e.name, n.name)) # library?
                     continue
             lst.extend(sups)
             map(get_sups, sups)

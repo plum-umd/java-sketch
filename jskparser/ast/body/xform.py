@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from __future__ import absolute_import
 from . import _import
 
 from .. import Modifiers
@@ -17,7 +18,7 @@ from ..type.referencetype import ReferenceType
 
 from ..utils import utils
 
-from axiomparameter import AxiomParameter
+from .axiomparameter import AxiomParameter
 
 # This is just going to be a child of MethodDeclaration and allow for special handling of
 # the switch statements

@@ -1,6 +1,8 @@
 #!/usr/bin/env python
+from __future__ import absolute_import
 from __future__ import print_function
 
+from functools import reduce
 import sys
 import cStringIO
 import logging
@@ -12,7 +14,7 @@ from . import util
 from . import convert
 from . import builtins
 
-import visit as v
+from . import visit as v
 
 from ast import Operators as op
 from ast import AssignOperators as assignop
@@ -1057,7 +1059,7 @@ class Translator(object):
                         # break
                 else:
                     if len(typs) == len(c.param_typs()) and \
-                       all(map(lambda (a,b): (str(a) == str(b)), zip(typs, c.param_typs()))):
+                       all([(str(a) == str(b)) for (a, b) in zip(typs, c.param_typs())]):
                         nm = str(c)
                         break            
             self.printt(nm)
@@ -1518,7 +1520,8 @@ class Translator(object):
                 ty = 'Array_{}'.format(ty)                            
         return (ty, nm, init)
 
-    def trans_params(self, (ty, nm)):
+    def trans_params(self, ty_nm):
+        (ty, nm) = ty_nm
         return ' '.join([self.trans_ty(ty), nm])
 
     def trans_call(self, callexpr, **kwargs):
