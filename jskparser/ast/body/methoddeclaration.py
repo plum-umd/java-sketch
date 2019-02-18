@@ -25,29 +25,26 @@ class MethodDeclaration(BodyDeclaration):
         # List<Parameter> parameters
         params = kwargs.get(u'parameters', [])
         self._params = params
-        self._parameters = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
-                               params.get(u'@e', [])) if params else []
+        self._parameters = [locs[x[u'@t']](x) if u'@t' in x else [] for x in params.get(u'@e', [])] if params else []
 
         # List<TypeParameter>
         typeParameters = kwargs.get(u'typeParameters', [])
-        self._typeParameters = map(lambda x: TypeParameter(x) if u'@t' in x else [],
-                                   typeParameters.get(u'@e', [])) if typeParameters else []
+        self._typeParameters = [TypeParameter(x) if u'@t' in x else [] for x in typeParameters.get(u'@e', [])] if typeParameters else []
 
         # int arrayCount;
         self._arrayCount = kwargs.get(u'arrayCount', 0)
 
         # List<ReferenceType> throws_;
         throws = kwargs.get(u'throws_', [])
-        self._throws = map(lambda x: locs[u'ReferenceType'](x) if u'@t' in x else [],
-                           throws.get(u'@e', [])) if throws else []
+        self._throws = [locs[u'ReferenceType'](x) if u'@t' in x else [] for x in throws.get(u'@e', [])] if throws else []
 
         # BlockStmt body;
         body = kwargs.get(u'body')
         self._body = locs[u'BlockStmt'](body) if body else None
 
         if self._body and self._body.childrenNodes:
-            chs = filter(lambda c: not isinstance(c, Comment), self._body.childrenNodes)
-            if chs: chs[0].in_set = set(map(lambda x: x.lbl, self._parameters))
+            chs = [c for c in self._body.childrenNodes if not isinstance(c, Comment)]
+            if chs: chs[0].in_set = set([x.lbl for x in self._parameters])
 
         self._adt = False
         self._pure = False
@@ -57,13 +54,13 @@ class MethodDeclaration(BodyDeclaration):
         self._boxedArgs = []
         self._is_bang = False
         if self.annotations:
-            # self._adt = any(map(lambda a: str(a) == 'adt', self.annotations))
-            self._adt = any(map(lambda a: str(a) == 'alg', self.annotations))
-            self._pure = any(map(lambda a: str(a) == 'pure', self.annotations))
-            self._default = any(map(lambda a: str(a) == 'default', self.annotations))
-            self._constructor = any(map(lambda a: str(a) == 'constructor', self.annotations))
-            self._boxedRet = any(map(lambda a: str(a) == 'boxedRet', self.annotations))
-            self._boxedArgs = map(lambda m: int(m.memberValue.value), filter(lambda a: str(a) == 'boxedArgs', self.annotations))
+            # self._adt = any([str(a) == 'adt' for a in self.annotations])
+            self._adt = any([str(a) == 'alg' for a in self.annotations])
+            self._pure = any([str(a) == 'pure' for a in self.annotations])
+            self._default = any([str(a) == 'default' for a in self.annotations])
+            self._constructor = any([str(a) == 'constructor' for a in self.annotations])
+            self._boxedRet = any([str(a) == 'boxedRet' for a in self.annotations])
+            self._boxedArgs = [int(m.memberValue.value) for m in [a for a in self.annotations if str(a) == 'boxedArgs']]
 
         self._bang = kwargs.get(u'bang', False)
         self._adtType = kwargs.get(u'adtType', False)
@@ -169,8 +166,8 @@ class MethodDeclaration(BodyDeclaration):
     @adtName.setter
     def adtName(self, v): self._adtName = v
 
-    def param_typs(self): return map(lambda p: p.typee, self.parameters)
-    def param_names(self): return map(lambda p: p.name, self.parameters)
+    def param_typs(self): return [p.typee for p in self.parameters]
+    def param_names(self): return [p.name for p in self.parameters]
 
     def get_xform(self):
         from .xform import Xform
@@ -209,7 +206,7 @@ class MethodDeclaration(BodyDeclaration):
                 typ = ''
                 if p.idd: typ = str(p.typee.name)
                 else: typ = str(p.method.typee)
-                # if typ.capitalize() in map(str, self.parentNode.typeParameters):
+                # if typ.capitalize() in list(map(str, self.parentNode.typeParameters)):
                 #     print("\t\tHERE43: "+str(typ.capitalize()))
                 #     typ = u'Object'
                 params.append(typ)
@@ -222,7 +219,7 @@ class MethodDeclaration(BodyDeclaration):
             name = '_'.join(name.split('_')[:2])
             # return self.name_no_nested(False)
         
-        params = map(self.sanitize_ty, map(lambda p: p.typee.name, self.parameters))
+        params = [self.sanitize_ty(p.typee.name) for p in self.parameters]
         if self.adt:
             params = ["Object"]+params
 

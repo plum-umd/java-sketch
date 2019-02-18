@@ -17,7 +17,7 @@ timeout = 240
 
 class TestJava(TestCommon):
     def __test(self, fs, inline, unroll, adp_conc=False, arr=32, cbits=-1, irange=-1):
-        _fs = map(lambda f: os.path.join(tests, f), fs)
+        _fs = [os.path.join(tests, f) for f in fs]
         options = ["--bnd-inline-amnt", str(inline), "--bnd-unroll-amnt", str(unroll), "--bnd-arr-size", str(arr), "--slv-timeout", str(timeout)] 
         if adp_conc:
             options += ["--slv-randassign", "--slv-simple-inputs"]
@@ -93,7 +93,7 @@ class TestJava(TestCommon):
             # (self.run_PasswordManagerModel, 'PasswordManagerTest'),
             # (self.run_KafkaModel, 'Kafka_Tester')                
         ]
-        results = map(lambda x: [x], reduce(lambda x,y: x + y, self.run_tests(modelTests, [], tmp_output)))
+        results = [[x] for x in reduce(lambda x,y: x + y, self.run_tests(modelTests, [], tmp_output))]
         writer.writerows(results)
         modelResults.close()
 
@@ -113,63 +113,63 @@ class TestJava(TestCommon):
             # (self.run_PasswordManagerRewrite, 'PasswordManagerTest'),
             # (self.run_KafkaRewrite, 'Kafka_Tester')
         ]
-        results = map(lambda x: [x], reduce(lambda x,y: x + y, self.run_tests(rewriteTests, [], tmp_output)))
+        results = [[x] for x in reduce(lambda x,y: x + y, self.run_tests(rewriteTests, [], tmp_output))]
         writer.writerows(results)
         tmp_output.close()
         modelResults.close()
         
     def run_SuffixArrayModel(self):
         files = ["SuffixArray_loops2.java", "SuffixArrayTest.java", "model/"]        
-        files = map(lambda s: "SuffixArray_bigger/" + s, files)
+        files = ["SuffixArray_bigger/" + s for s in files]
         inline = 3
         unroll = 8
         return self.__test(files, inline, unroll)
         
     def run_SuffixArrayRewrite(self):
         files = ["SuffixArray_loops2.java", "SuffixArrayTest.java", "rewrite/"]        
-        files = map(lambda s: "SuffixArray_bigger/" + s, files)
+        files = ["SuffixArray_bigger/" + s for s in files]
         inline = 3
         unroll = 8
         return self.__test(files, inline, unroll)
         
     def run_HashMap1Model(self):
         files = ["HashTable_loops.java", "HashTableNode.java", "HashTableTest.java", "model/", "shared/"]
-        files = map(lambda s: "HashMap1_bigger/" + s, files)
+        files = ["HashMap1_bigger/" + s for s in files]
         inline = 1
         unroll = 5
         return self.__test(files, inline, unroll, irange=43)
         
     def run_HashMap1Rewrite(self):
         files = ["HashTable_loops.java", "HashTableNode.java", "HashTableTest.java", "rewrite/", "shared/"]
-        files = map(lambda s: "HashMap1_bigger/" + s, files)
+        files = ["HashMap1_bigger/" + s for s in files]
         inline = 1
         unroll = 5
         return self.__test(files, inline, unroll, irange=43)
 
     def run_HashMap2Model(self):
         files = ["Bucketing_syn.java", "BucketingTest.java", "HashTable.java", "Pair.java", "model/", "shared/"]
-        files = map(lambda s: "HashMap2_bigger/" + s, files)
+        files = ["HashMap2_bigger/" + s for s in files]
         inline = 1
         unroll = 2
         return self.__test(files, inline, unroll, cbits=2, irange=8)
         
     def run_HashMap2Rewrite(self):
         files = ["Bucketing_syn.java", "BucketingTest.java", "HashTable.java", "Pair.java", "rewrite/", "shared/"]
-        files = map(lambda s: "HashMap2_bigger/" + s, files)
+        files = ["HashMap2_bigger/" + s for s in files]
         inline = 1
         unroll = 2
         return self.__test(files, inline, unroll, cbits=2, irange=8)
 
     def run_EasyCSVModel(self):
         files = ["CsvDocument_syn.java", "CodeAssertion.java", "CsvColumn.java", "CsvColumnTest.java", "CsvConfiguration.java", "CsvDocumentTest.java", "CsvRow.java", "CsvRowTest.java", "Tester.java", "model/", "shared/"]
-        files = map(lambda s: "EasyCSV_bigger/" + s, files)
+        files = ["EasyCSV_bigger/" + s for s in files]
         inline = 3
         unroll = 5
         return self.__test(files, inline, unroll)
 
     def run_EasyCSVRewrite(self):
         files = ["CsvDocument_syn.java", "CodeAssertion.java", "CsvColumn.java", "CsvColumnTest.java", "CsvConfiguration.java", "CsvDocumentTest.java", "CsvRow.java", "CsvRowTest.java", "Tester.java", "rewrite/", "shared/"]
-        files = map(lambda s: "EasyCSV_bigger/" + s, files)
+        files = ["EasyCSV_bigger/" + s for s in files]
         inline = 3
         unroll = 5
         # return self.__test(files, inline, unroll, True)
@@ -177,7 +177,7 @@ class TestJava(TestCommon):
 
     def run_RomListModel(self):
         files = ["RomlistParser_syn_rewrite.java", "RomlistGame.java", "Tester.java", "model/", "shared/"]
-        files = map(lambda s: "RomList_bigger/" + s, files)
+        files = ["RomList_bigger/" + s for s in files]
         inline = 2
         unroll = 26
         return self.__test(files, inline, unroll, True)
@@ -185,7 +185,7 @@ class TestJava(TestCommon):
     def run_RomListRewrite(self):
         files = ["RomlistParser_syn_rewrite.java", "RomlistGame.java", "Tester.java", "rewrite/", "shared/"]
         # files = ["RomlistParser_rewrite.java", "RomlistGame.java", "Tester.java", "rewrite_bigger/", "shared/"]
-        files = map(lambda s: "RomList_bigger/" + s, files)
+        files = ["RomList_bigger/" + s for s in files]
         inline = 2
         unroll = 26
         # unroll = 19
@@ -195,7 +195,7 @@ class TestJava(TestCommon):
     def run_ComparatorModel(self):
         files = ["CommunicationWithFiles_syn_rewrite.java", "Comparator_rewrite.java", "Tester.java", "model/", "shared/"] 
         # files = ["CommunicationWithFiles_syn_model.java", "Comparator_model.java", "Tester.java", "model/", "shared/"]
-        files = map(lambda s: "Comparator_bigger/" + s, files)
+        files = ["Comparator_bigger/" + s for s in files]
         inline = 2
         unroll = 10
         return self.__test(files, inline, unroll, True)
@@ -204,7 +204,7 @@ class TestJava(TestCommon):
     def run_ComparatorRewrite(self):
         files = ["CommunicationWithFiles_syn_rewrite.java", "Comparator_rewrite.java", "Tester.java", "rewrite/", "shared/"] 
         # files = ["CommunicationWithFiles_rewrite.java", "Comparator_rewrite.java", "Tester.java", "rewrite/", "shared_bigger/"] 
-        files = map(lambda s: "Comparator_bigger/" + s, files)
+        files = ["Comparator_bigger/" + s for s in files]
         inline = 2 #2
         unroll = 10 #10
         return self.__test(files, inline, unroll, True)
@@ -212,7 +212,7 @@ class TestJava(TestCommon):
 
     def run_PasswordManagerModel(self):
         files = ["Cryptographer_syn_model.java", "PasswordManager_syn.java", "PasswordMap.java", "PasswordManagerTest.java", "model/", "shared/"]
-        files = map(lambda s: "PasswordManager_bigger/" + s, files)
+        files = ["PasswordManager_bigger/" + s for s in files]
         inline = 2
         unroll = 16
         return self.__test(files, inline, unroll)
@@ -220,35 +220,35 @@ class TestJava(TestCommon):
     def run_PasswordManagerRewrite(self):
         files = ["Cryptographer_syn_rewrite.java", "PasswordManager_syn.java", "PasswordMap.java", "PasswordManagerTest.java", "rewrite/", "shared/"]
         # files = ["Cryptographer_rewrite.java", "PasswordManager_syn.java", "PasswordMap.java", "PasswordManagerTest.java", "rewrite/", "shared/"]
-        files = map(lambda s: "PasswordManager_bigger/" + s, files)
+        files = ["PasswordManager_bigger/" + s for s in files]
         inline = 2
         unroll = 16
         return self.__test(files, inline, unroll)
         
     def run_CipherFactoryModel(self):
         files = ["CryptoManager_syn_model.java", "CipherFactoryTester.java", "ConfigurableCipherFactory.java", "DefaultCipherFactory_model.java", "ICipherFactory.java", "ICryptoManager.java", "model/", "shared/"]
-        files = map(lambda s: "CipherFactory_bigger/" + s, files)
+        files = ["CipherFactory_bigger/" + s for s in files]
         inline = 3
         unroll = 9
         return self.__test(files, inline, unroll)
     
     def run_CipherFactoryRewrite(self):
         files = ["CryptoManager_syn_rewrite.java", "CipherFactoryTester.java", "ConfigurableCipherFactory.java", "DefaultCipherFactory_rewrite.java", "ICipherFactory.java", "ICryptoManager.java", "rewrite/", "shared/"]
-        files = map(lambda s: "CipherFactory_bigger/" + s, files)
+        files = ["CipherFactory_bigger/" + s for s in files]
         inline = 3
         unroll = 9
         return self.__test(files, inline, unroll)
 
     def run_KafkaModel(self):
         files = ["JCECipher_syn.java", "OpenSSLCipher_syn.java", "CipherFactory.java", "ICipher_model.java", "Tester_model.java", "model/", "shared/"]
-        files = map(lambda s: "Kafka_biggest/" + s, files)
+        files = ["Kafka_biggest/" + s for s in files]
         inline = 2
         unroll = 35
         return self.__test(files, inline, unroll)
 
     def run_KafkaRewrite(self):
         files = ["JCECipher_syn_rewrite.java", "OpenSSLCipher_syn_rewrite.java", "CipherFactory.java", "ICipher_rewrite.java", "Tester_rewrite.java", "rewrite/", "shared/"]
-        files = map(lambda s: "Kafka_biggest/" + s, files)
+        files = ["Kafka_biggest/" + s for s in files]
         inline = 2
         unroll = 35
         # inline = 1

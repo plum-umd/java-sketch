@@ -16,8 +16,8 @@ class SwitchEntryStmt(Statement):
     
         # List<Statement> stmts;
         s = kwargs.get(u'stmts', {})
-        self._stmts = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
-                          s.get(u'@e', [])) if s else []
+        self._stmts = [locs[x[u'@t']](x) if u'@t' in x else [] for x in
+                          s.get(u'@e', [])] if s else []
 
         self.add_as_parent([self.label]+self.stmts)
 

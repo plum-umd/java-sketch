@@ -41,17 +41,18 @@ def clean_dir(path):
   
 def add_object(ast):
     clss = utils.extract_nodes([ClassOrInterfaceDeclaration], ast)
-    clss = filter(lambda c: c.name != u'Object', clss)
+    clss = [c for c in clss if c.name != u'Object']
     obj = ast.symtab.get(u'Object')
     def obj_subs(n):
       if not n.extendsList:
           n.extendsList = [obj]
           obj.subClasses.append(n)
-    map(obj_subs, clss)
+    for c in clss:
+        obj_subs(c)
     ast.types.append(obj)
   
 def rm_subs(clss):
-    return filter(lambda c: not c.extendsList and not c.implementsList, clss)
+    return [c for c in clss if not c.extendsList and not c.implementsList]
 
 def sanitize_mname(mname):
     return mname.replace("[]",'s')

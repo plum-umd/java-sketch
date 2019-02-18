@@ -105,7 +105,7 @@ if __name__ == "__main__":
         if OPT.symtab:
             def f(n):
                 if type(n) not in SymtabGen.NONSYM:
-                    print(type(n).__name__, n.name, map(lambda nn: (nn[0], nn[1]), n.symtab.items()))
+                    print(type(n).__name__, n.name, [(nn[0], nn[1]) for nn in n.symtab.items()])
             g = GenericVisitor(f)
             g.visit(program)
         else:

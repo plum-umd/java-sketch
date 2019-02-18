@@ -19,13 +19,11 @@ class AxiomDeclaration(BodyDeclaration):
 
         # List<AxiomParameter> parameters
         params = kwargs.get(u'parameters', [])
-        self._parameters = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
-                               params.get(u'@e', [])) if params else []
+        self._parameters = [locs[x[u'@t']](x) if u'@t' in x else [] for x in params.get(u'@e', [])] if params else []
 
         # List<TypeParameter>
         typeParameters = kwargs.get(u'typeParameters', [])
-        self._typeParameters = map(lambda x: TypeParameter(x) if u'@t' in x else [],
-                                   typeParameters.get(u'@e', [])) if typeParameters else []
+        self._typeParameters = [TypeParameter(x) if u'@t' in x else [] for x in typeParameters.get(u'@e', [])] if typeParameters else []
         
         # BlockStmt body;
         body = kwargs.get(u'body')
@@ -36,8 +34,8 @@ class AxiomDeclaration(BodyDeclaration):
 
         self.add_as_parent(self.parameters+[self.typee]+[self.body])
         # if self._body and self._body.childrenNodes:
-        #     chs = filter(lambda c: not isinstance(c, Comment), self._body.childrenNodes)
-        #     if chs: chs[0].in_set = set(map(lambda x: x.lbl, self._parameters))
+        #     chs = [c for c in self._body.childrenNodes if not isinstance(c, Comment)]
+        #     if chs: chs[0].in_set = set([x.lbl for x in self._parameters])
 
     @property
     def typeParameters(self): return self._typeParameters
@@ -76,13 +74,13 @@ class AxiomDeclaration(BodyDeclaration):
 
     def adtName(self):
         typs = self.iddTypes()
-        return '_'.join([self.name] + map(str, typs))
+        return '_'.join([self.name] + [str(t) for t in typs])
         
     def iddTypes(self):
-        return map(lambda i: i.idd.typee, filter(lambda p: p.idd, self.parameters))
+        return [i.idd.typee for i in [p for p in self.parameters if p.idd]]
 
-    def param_typs(self): return map(lambda p: p.typee, self.parameters)
-    def param_names(self): return map(lambda p: p.name, self.parameters)
+    def param_typs(self): return [p.typee for p in self.parameters]
+    def param_names(self): return [p.name for p in self.parameters]
 
     def sig(self):
         return 'a{}'.format(str(self))
@@ -107,7 +105,7 @@ class AxiomDeclaration(BodyDeclaration):
                 else: params.append(str(p.method.typee))
             return params
 
-        pots = filter(lambda m: m.name == self.name and len(m.parameters) == len(self.parameters)-1, adt_mtds)
+        pots = [m for m in adt_mtds if m.name == self.name and len(m.parameters) == len(self.parameters)-1]
 
         name1 = u'_'.join([self.name] + ptypes())
         name2 = pots[0].name_no_nested(False) if len(pots) > 0 else ''

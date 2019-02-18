@@ -26,8 +26,8 @@ class ExplicitConstructorInvocationStmt(Statement):
         
         # List<Expression> args;
         args = kwargs.get(u'args', {})
-        self._args = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
-                         args.get(u'@e', [])) if args else []
+        self._args = [locs[x[u'@t']](x) if u'@t' in x else [] for x in
+                         args.get(u'@e', [])] if args else []
 
         self.add_as_parent([self.expr]+self.args)
         

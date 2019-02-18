@@ -13,8 +13,7 @@ class BodyDeclaration(Node):
 
         # List<AnnotationExpr> annotations;
         annotations = kwargs.get(u'annotations', [])
-        self._annotations = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
-                                annotations.get(u'@e', [])) if annotations else []
+        self._annotations = [locs[x[u'@t']](x) if u'@t' in x else [] for x in annotations.get(u'@e', [])] if annotations else []
         
     @property
     def annotations(self): return self._annotations

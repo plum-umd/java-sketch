@@ -1,7 +1,6 @@
 from __future__ import absolute_import
 try: unicode
 except: unicode = u"".__class__
-import operator as op
 import re
 import logging
 
@@ -32,7 +31,7 @@ class HReplacer(object):
 
     ## hole assignments for roles
     ## glblInit_fid__cid_????,StmtAssign,accessor_???? = n
-    names = map(op.attrgetter("name"), self._holes)
+    names = [hole.name for hole in self._holes]
     regex_role = r"({})__(\S+)_\S+ = (\d+)$".format('|'.join(names))
 
     # interpret the synthesis result
@@ -211,12 +210,11 @@ class MGReplacer(object):
       rty = node.typ if node.typ != C.J.v else C.J.OBJ
       node.body = to_statements(node, u"{} _out;".format(rty))
 
-      op_strip = op.methodcaller("strip")
       _assigns = self._assigns[mname]
       for _assign in _assigns:
-        lhs, rhs = map(op_strip, _assign.split('='))
+        lhs, rhs = [a.strip() for a in _assign.split('=')]
         if len(lhs.split(' ')) > 1: # i.e., var decl
-          ty, v = map(op_strip, lhs.split(' '))
+          ty, v = [l.strip() for l in lhs.split(' ')]
           ty = ty.split('@')[0] # TODO: cleaner way to retrieve/sanitize type
           node.body += to_statements(node, u"{} {} = {};".format(ty, v, rhs))
         else: # stmt assign

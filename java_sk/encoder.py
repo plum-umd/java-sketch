@@ -79,9 +79,9 @@ class Encoder(object):
         self.main_cls()
 
         clss = utils.extract_nodes([ClassOrInterfaceDeclaration], self.prg)
-        # is_ax_cls = any(map(lambda c: c._axiom, clss))
-        is_ax_cls = True if len(filter(lambda c: c.box, clss)) > 0 else False
-        ax_clss = filter(lambda c: c.axiom, clss)        
+        # is_ax_cls = [c._axiom for c in clss]
+        is_ax_cls = True if len([c for c in clss if c.box]) > 0 else False
+        ax_clss = [c for c in clss if c.axiom]
         
         self.is_ax_cls = is_ax_cls
         self.ax_clss = ax_clss
@@ -100,17 +100,17 @@ class Encoder(object):
         mtds = []
         for c in self.clss:
             m = utils.extract_nodes([MethodDeclaration], c)
-            mtds.extend(filter(lambda m: m.name == u'main', m))
+            mtds.extend([m for m in m if m.name == u'main'])
             # do we care if main is static?
             # mtds.extend(filter(lambda m: td.isStatic(m) and m.name == u'main', m))
         lenn = len(mtds)
         if lenn > 1:
-            raise Exception("multiple main()s", map(lambda m: str(utils.get_coid(m)), mtds))
+            raise Exception("multiple main()s", [str(utils.get_coid(m)) for m in mtds])
         return mtds[0] if lenn == 1 else None
 
     def find_harness(self):
         # TODO: these can also be specified with annotations -- we don't support those yet
-        mtds = filter(td.isHarness, self.mtds)
+        mtds = [m for m in self.mtds if td.isHarness(m)]
         return mtds[0] if mtds else None
 
     def main_cls(self):
@@ -132,7 +132,7 @@ class Encoder(object):
         else: os.makedirs(self.sk_dir)
 
         clss = utils.extract_nodes([ClassOrInterfaceDeclaration], self.prg)
-        is_ax_cls = any(map(lambda c: c._axiom, clss))        
+        is_ax_cls = any([c._axiom for c in clss])
         
         # consist builds up some class hierarchies which happens in main.py
         # prg.consist()
@@ -181,9 +181,9 @@ class Encoder(object):
 
         if self.tltr.obj_struct:            
             # pretty print
-            i_flds = filter(lambda m: type(m) == FieldDeclaration, self.tltr.obj_struct.members) 
-            flds = map(self.tltr.trans_fld, i_flds)
-            lens = map(lambda f: len(f[0]), flds)
+            i_flds = [m for m in self.tltr.obj_struct.members if type(m) == FieldDeclaration]
+            flds = [self.tltr.trans_fld(m) for m in i_flds]
+            lens = [len(f[0]) for f in flds]
             m = max(lens) + 1
             buf.write("struct " + str(self.tltr.obj_struct) + " {\n")
             if is_ax_cls:
@@ -202,7 +202,7 @@ class Encoder(object):
                     if isinstance(i_f.typee, ReferenceType):
                         if isinstance(i_f.typee.typee, ClassOrInterfaceType):
                             clss = utils.extract_nodes([ClassOrInterfaceDeclaration], self.prg)
-                            clss = map(lambda a: a.name, filter(lambda c: c._axiom, clss))  
+                            clss = [a.name for a in [c for c in clss if c._axiom]]
                             
                             if i_f.typee.typee.name in clss:
                                 typ = u'Object'
@@ -263,7 +263,7 @@ class Encoder(object):
 
         buf.write("// distinct class IDs\n")
         items = sorted(self.CLASS_NUMS.items())
-        lens = map(lambda i: len(i[0]), items)
+        lens = [len(i[0]) for i in items]
         m = max(lens)
         for k,v in items:
             if k not in utils.narrow:
@@ -286,7 +286,8 @@ class Encoder(object):
         buf.write("package Object;\n\n")
 
         self.bases = util.rm_subs(self.clss)
-        filter(None, map(partial(self.to_struct, is_ax_cls), self.bases))
+        for b in self.bases:
+            self.to_struct(is_ax_cls, b)
         buf.write('Object Object_Object(Object self){\n return self;\n}\n\n')
         with open(os.path.join(self.sk_dir, "Object.sk"), 'w') as f:
             f.write(util.get_and_close(buf))
@@ -299,7 +300,7 @@ class Encoder(object):
         mtds = utils.extract_nodes([MethodDeclaration], cls, recurse=False)
         cons = utils.extract_nodes([ConstructorDeclaration], cls, recurse=False)
         flds = utils.extract_nodes([FieldDeclaration], cls, recurse=False)
-        s_flds = filter(td.isStatic, flds)
+        s_flds = [f for f in flds if td.isStatic(f)]
 
         cname = str(cls)
         buf = cStringIO.StringIO()
@@ -327,7 +328,7 @@ class Encoder(object):
         if etypes: buf.write('Object self{};\n\n'.format(len(etypes)-1))
         # not a base class, not the harness class, and doesn't override the base constructor
         # if cls not in self.bases and str(cls) != str(self.mcls) and \
-        if not filter(lambda c: len(c.parameters) == 0, cons):
+        if not [c for c in cons if len(c.parameters) == 0]:
             # these represent this$N (inner classes)
             if etypes:
                 i = len(etypes)-1
@@ -381,7 +382,7 @@ class Encoder(object):
                     typ = self.tltr.trans_ty(t)
                     if isinstance(t, ReferenceType) and t.arrayCount > 0:
                         typ = "Array_"+typ
-                    if isinstance(t, ReferenceType) and isinstance(t.typee, ClassOrInterfaceType) and str(t.typee) in map(lambda c: c.name, self.ax_clss) and not self.is_ax_cls:
+                    if isinstance(t, ReferenceType) and isinstance(t.typee, ClassOrInterfaceType) and str(t.typee) in [c.name for c in self.ax_clss] and not self.is_ax_cls:
                         typ = u'Object'
                         
                 # if p.typee.name in p.symtab:
@@ -410,14 +411,14 @@ class Encoder(object):
             ptyps = []
             ptyps_name = []
             for t in mtd_param_typs:
-                if isinstance(t, ReferenceType) and isinstance(t.typee, ClassOrInterfaceType) and str(t.typee) in map(lambda c: c.name, self.ax_clss) and not self.is_ax_cls:
+                if isinstance(t, ReferenceType) and isinstance(t.typee, ClassOrInterfaceType) and str(t.typee) in [c.name for c in self.ax_clss] and not self.is_ax_cls:
                     typ = u'Object'
                 else:
                     typ = self.tltr.trans_ty(t)
                 ptyps.append(typ)
                 if typ == u'Object' or str(t) == u'byte': typ = str(t)
                 ptyps_name.append(typ)
-            pnms = map(str, mtd.param_names())
+            pnms = [str(p) for p in mtd.param_names()]
             # (ptyps, pnms) = (map(lambda t: self.tltr.trans_ty(t), mtd.param_typs()), map(str, mtd.param_names()))
             # ptyps_name = cp.deepcopy(ptyps)
             if is_ax_cls:
@@ -434,9 +435,9 @@ class Encoder(object):
                     if isinstance(mtd_param_typs[i], ReferenceType):
                         if mtd_param_typs[i].arrayCount > 0:
                             ptyps[i] = "Array_"+ptyps[i]
-            params = ', '.join(map(lambda p: ' '.join(p), zip(ptyps, pnms)))
+            params = ', '.join([' '.join(p) for p in zip(ptyps, pnms)])
             c = 'Object '
-            if (not is_ax_cls and mtd_name2.split('_')[0] in map(lambda x: x.name, ax_mtds)) and not mtd.boxedRet:
+            if (not is_ax_cls and mtd_name2.split('_')[0] in [x.name for x in ax_mtds]) and not mtd.boxedRet:
                 # c = str(mtd.typee) + u' '
                 c = self.tltr.trans_ty(mtd.typee) + u' '
             if isinstance(mtd.typee, ReferenceType) and mtd.typee.arrayCount > 0 and (not is_ax_cls and not mtd.boxedRet and not mtd.is_bang):
@@ -463,7 +464,7 @@ class Encoder(object):
                 c += '{}) {{\n    '.format(params)
             else:
                 c += ') {\n    '
-            if mtd_name2.split('_')[0] not in map(lambda x: x.name, ax_mtds):
+            if mtd_name2.split('_')[0] not in [x.name for x in ax_mtds]:
                 # THERE MUST BE A BETTER WAY TO DETECT BANG TYPE METHODS
                 if mtd_name2.split('_')[0].endswith('b'):
                     c += 'self._{0}=new {1}('.format(cls.name.lower(), mtd_name2.capitalize())
@@ -510,8 +511,8 @@ class Encoder(object):
         # Creates list of adt "functions" (i.e. constructors from top of java file)
         #   including bang functions
         mtds = utils.extract_nodes([MethodDeclaration], cls, recurse=False)
-        adt_mtds = filter(lambda m: m.adt, mtds)
-        non_adt_mtds = filter(lambda m: not m.adt, mtds)
+        adt_mtds = [m for m in mtds if m.adt]
+        non_adt_mtds = [m for m in mtds if not m.adt]
 
         # Write all non axiom / adt functions to file (like static functions)
         for m in non_adt_mtds:
@@ -548,12 +549,12 @@ class Encoder(object):
             adt_mtds = [m] + adt_mtds                                
 
         # I like to format
-        max_len = max(map(lambda m: len(m.name), adt_mtds))
+        max_len = max([len(m.name) for m in adt_mtds])
         
         # Create ADT constructors for all methods and wraps them in ADT struct
         #  Also create a dictionary for object constructors for symbol table reference
-        cons = map(gen_obj_constructor, adt_mtds)
-        adt_cons = map(gen_adt_constructor, adt_mtds)
+        cons = [gen_obj_constructor(m) for m in adt_mtds]
+        adt_cons = [gen_adt_constructor(m) for m in adt_mtds]
         adt = 'adt {} {{\n{}}}\n\n{}'.format(cname, ''.join(adt_cons), ''.join(cons))
         buf.write(adt)
 
@@ -579,7 +580,7 @@ class Encoder(object):
             _self = Parameter({u'id':{u'name':u'selff'},
                                    u'type':{u'@t': u'ReferenceType', u'type': {u'@t':u'ClassOrInterfaceType', u'name':cname},},},)
             x.childrenNodes.append(_self)
-            x.parameters = [_self] + map(cp.copy, a.parameters)
+            x.parameters = [_self] + [cp.copy(p) for p in a.parameters]
                 
             x.adtName = str(a)
             x.add_parent_post(cls, True)
@@ -589,7 +590,8 @@ class Encoder(object):
         # Applies cpy_sym to all children of this class and all children of those
         #    Updates symbol table of each of these children to include parent's
         #    symbol table
-        map(partial(utils.walk, cpy_sym), cls.childrenNodes)
+        for c in cls.childrenNodes:
+           utils.walk(cpy_sym, c)
             
         # # create xform dispatch method
         # #    i.e. calls the right xform depending on type of ADT
@@ -692,14 +694,14 @@ class Encoder(object):
                                 else:
                                     xname = ((name+u'_')*(depth))+name+u'.'+xname
                                     
-                                poss_names = filter(lambda n: len(n.split('_')) == depth+1, xnames)
+                                poss_names = [n for n in xnames if len(n.split('_')) == depth+1]
                                 if len(poss_names) > 0:
                                     new_xname = poss_names[0].split('.')[0]
                                     xname = new_xname+u'.'+xname.split('.')[-1]
                         xf_sym.symtab[old_name] = xname
                         xnames.append(xname)
                 else:
-                    xf2 = filter(lambda m: param.method.name == m.name.split('_')[0], adt_mtds)[0]
+                    xf2 = [m for m in adt_mtds if param.method.name == m.name.split('_')[0]][0]
                     if depth == 0:
                         set_param_names(param.method, xf2, adt_mtds, depth+1, xf_sym, xparam.name, xnames)
                     else:
@@ -777,19 +779,21 @@ class Encoder(object):
             #   this will give it access to the argument names of a
             #   then updates xf children with 
             xf.symtab = dict(a.symtab.items() + xf.symtab.items())
-            map(partial(utils.walk, cpy_sym), xf.childrenNodes)
+            for c in xf.childrenNodes:
+                utils.walk(cpy_sym, c)
 
             # NOT SURE WHY THIS IS NEEDED
             #    without this it isn't able to resolve the string type of the
             #    function. not sure why...
             a.symtab = dict(xf.symtab.items() + a.symtab.items())
-            map(partial(utils.walk, cpy_sym), a.childrenNodes)
+            for c in a.childrenNodes:
+                utils.walk(cpy_sym, c)
 
             # returns empty switch statement to be filled by axioms declarations
             #   of the axiom "a"
             body = xf.get_xform()
 
-            if any(map(lambda p: p.method, a.parameters)):                        
+            if any([p.method for p in a.parameters]):
                 # iterate through body of axiom declarations of a, translate
                 #    them to appropriate IRs (i.e. JSON dicts)
                 a.body.stmts = self.tltr.trans_xform(a.name, body, a.body.stmts)
@@ -805,7 +809,7 @@ class Encoder(object):
                                 
                 # cases = map(lambda d: d.name_no_nested().capitalize(), decs)
                 
-                decs2 = filter(lambda m: m.name.split('_')[0] == a.parameters[i].name and a.parameters[i].name == cls.name, adt_mtds)
+                decs2 = [m for m in adt_mtds if m.name.split('_')[0] == a.parameters[i].name and a.parameters[i].name == cls.name]
                 
                 # Add the empty constructor to the declarations if needed
                 if not a.parameters[0].method:
@@ -835,7 +839,7 @@ class Encoder(object):
                 casess.append(cases)
                 
             # add cases to body
-            if any(map(lambda p: p.method, a.parameters)):                            
+            if any([p.method for p in a.parameters]):
                 body.add_body_nested(casess, a.body.stmts, adt_mtds, xf.parameters, cls, a, self.is_ax_cls)
             else:
                 body.create_normal_body(a.body)
@@ -875,17 +879,20 @@ class Encoder(object):
             cname = str(cls)
             if cname != str(cls_v):
                 self.tltr.ty[str(cls)] = str(cls_v) if not cls.axiom else str(cls)  
-            flds = filter(lambda m: type(m) == FieldDeclaration, cls.members)
+            flds = [m for m in cls.members if type(m) == FieldDeclaration]
             def cp_fld(fld):
                 fld_v = cp.copy(fld)
                 fld_v.parentNode = cls
                 cls_v.members.append(fld_v)
                 cls_v.childrenNodes.append(fld_v)
-            map(cp_fld, filter(lambda f: not td.isStatic(f), flds))
-        map(per_cls, utils.all_subClasses(cls))
+            for f in flds:
+                if not td.isStatic(f):
+                    cp_fld(f)
+        for c in utils.all_subClasses(cls):
+            per_cls(c)
 
         # add ADT fields
-        axiom_clss = filter(lambda c: c.axiom, utils.all_subClasses(cls))
+        axiom_clss = [c for c in utils.all_subClasses(cls) if c.axiom]
         for a in axiom_clss:
             fd = FieldDeclaration(
                 {u'variables':{u'@e': [{u'@t': u'VariableDeclarator',

@@ -82,7 +82,8 @@ def to_java(java_dir, pgr, output_path):
   # replace collections of interface types with actual classes, if any
   _visitors.append(Collection())
   _visitors.append(SemanticChecker())
-  map(lambda vis: pgr.accept(vis), _visitors)
+  for vis in _visitors:
+    pgr.accept(vis)
 
   ## trimming of the program
   trim(pgr)

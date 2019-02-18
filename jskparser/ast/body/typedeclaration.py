@@ -16,8 +16,7 @@ class TypeDeclaration(BodyDeclaration):
     
         # List<BodyDeclaration>
         self._members = []
-        self._members.extend(map(lambda x: locs[x[u'@t']](x),
-                            kwargs.get(u'members', {}).get(u'@e', [])))
+        self._members.extend([locs[x[u'@t']](x) for x in kwargs.get(u'members', {}).get(u'@e', [])])
     
         self.add_as_parent(self.members)
     

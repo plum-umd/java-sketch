@@ -17,7 +17,7 @@ class TestJava(TestCommon):
 
   def __test(self, fs, using_model=False):
     append_b = lambda f: os.path.join(benchmarks, f)
-    _fs = map(append_b, fs)
+    _fs = [append_b(f) for f in fs]
     if using_model:
       _fs.extend(java_sk.util.get_files_from_path(model_dir, "java"))
     print(fs)

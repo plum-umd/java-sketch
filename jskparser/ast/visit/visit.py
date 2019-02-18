@@ -46,7 +46,7 @@ class Dispatcher(object):
     else:
       issub = issubclass
       t = self.targets
-      ks = t.iterkeys()
+      ks = iter(t.keys())
       return [t[k](*args, **kw) for k in ks if issub(typ, k)]
 
   def add_target(self, typ, target):
