@@ -360,8 +360,8 @@ def unpack_class_file(nm):
             cmd = ['/usr/libexec/java_home']
             try:
                 JAVA_HOME = subprocess.check_output(cmd).strip(' \n')
-            except subprocess.CalledProcessError as e:
-                logging.error('Unable to extract "{}" from RT_JAR "{}": {}'.format(nm, RT_JAR, e.output))
+            except (OSError, subprocess.CalledProcessError) as e:
+                logging.error('Unable to set JAVA_HOME: {} {}'.format(e, getattr(e, 'output', '')))
                 raise Exception('Unable to set JAVA_HOME')
         RT_JAR = os.path.join(JAVA_HOME, 'jre','lib', 'rt.jar')
 
