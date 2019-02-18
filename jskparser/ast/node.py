@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 from __future__ import absolute_import
+try: unicode
+except: unicode = u"".__class__
 import json
 
 from . import _import

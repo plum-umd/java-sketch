@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 from __future__ import absolute_import
+try: unicode
+except: unicode = u"".__class__
 from .node import Node
 
 from . import _import

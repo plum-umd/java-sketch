@@ -2,6 +2,8 @@
 
 from __future__ import absolute_import
 from __future__ import print_function
+try: unicode
+except: unicode = u"".__class__
 from ..utils import utils
 
 from ..body.methoddeclaration import MethodDeclaration
