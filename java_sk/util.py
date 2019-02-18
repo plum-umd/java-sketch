@@ -1,7 +1,11 @@
 from __future__ import absolute_import
 import os
 
-from itertools import ifilter, ifilterfalse
+try:
+    from itertools import ifilter, ifilterfalse
+except:
+    ifilter = filter
+    from itertools import filterfalse as ifilterfalse
 
 from ast.utils import utils
 from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration

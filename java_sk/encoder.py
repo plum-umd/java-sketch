@@ -1,7 +1,10 @@
 from __future__ import print_function
 
 from __future__ import absolute_import
-import cStringIO
+try:
+    import cStringIO
+except: # so sue me.
+    import io as cStringIO
 import math
 import os
 import copy as cp

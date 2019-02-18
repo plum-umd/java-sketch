@@ -2,7 +2,10 @@
 
 from __future__ import absolute_import
 from __future__ import print_function
-import cStringIO
+try:
+    import cStringIO
+except: # so sue me.
+    import io as cStringIO
 from . import visit as v
 
 from .. import Operators as op

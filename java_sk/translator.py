@@ -6,7 +6,10 @@ except: unicode = u"".__class__
 
 from functools import reduce
 import sys
-import cStringIO
+try:
+    import cStringIO
+except: # so sue me.
+    import io as cStringIO
 import logging
 import copy
 import os
