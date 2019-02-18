@@ -28,7 +28,7 @@ class TestErroneous(TestCommon):
 
   def __test(self, fs):
     append_b = lambda f: os.path.join(benchmarks, f)
-    _fs = map(append_b, fs)
+    _fs = [append_b(f) for f in fs]
     ret = java_sk.main.main(_fs)
     self.assertNotEqual(ret, 0)
 

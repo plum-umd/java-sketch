@@ -24,8 +24,8 @@ class ArrayCreationExpr(Expression):
     
         # List<Expression> dimensions;
         dim = kwargs.get(u'dimensions', {})
-        self._dimensions = map(lambda e: locs[e[u'@t']](e) if u'@t' in e else [],
-                               dim.get(u'@e', [])) if dim else []
+        self._dimensions = [locs[e[u'@t']](e) if u'@t' in e else [] for e in
+                               dim.get(u'@e', [])] if dim else []
     
         # List<List<AnnotationExpr>> arraysAnnotations;
         self._arraysAnnotations = []

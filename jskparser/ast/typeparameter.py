@@ -16,13 +16,13 @@ class TypeParameter(Node):
 
         # List<AnnotationExpr> annotations;
         annotations = kwargs.get(u'annotations', [])
-        self._annotations = map(lambda x: AnnotationExpr(x) if u'@t' in x else [],
-                                annotations.get(u'@e', [])) if annotations else []
+        self._annotations = [AnnotationExpr(x) if u'@t' in x else [] for x in
+                                annotations.get(u'@e', [])] if annotations else []
         
         # List<ClassOrInterfaceType> typeBound;
         typeBound = kwargs.get(u'typeBound', [])
-        self._typeBound = map(lambda x: ClassOrInterfaceType(x) if u'@t' in x else [],
-                              typeBound.get(u'@e', [])) if typeBound else []
+        self._typeBound = [ClassOrInterfaceType(x) if u'@t' in x else [] for x in
+                              typeBound.get(u'@e', [])] if typeBound else []
 
         self.add_as_parent(typeBound)
 

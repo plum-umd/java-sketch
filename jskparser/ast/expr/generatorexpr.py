@@ -18,8 +18,8 @@ class GeneratorExpr(Expression):
 
         # List Expression
         exprs = kwargs.get(u'exprs', {})
-        self._exprs = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
-                          exprs.get(u'@e', [])) if exprs else []
+        self._exprs = [locs[x[u'@t']](x) if u'@t' in x else [] for x in
+                          exprs.get(u'@e', [])] if exprs else []
 
         self.add_as_parent(self.exprs)
 

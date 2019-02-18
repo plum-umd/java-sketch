@@ -21,8 +21,8 @@ class ReferenceType(Type):
         if type(v) == list:
             self._values = v
         else:
-            self._values = map(lambda e: locs[e[u'@t']](e) if u'@t' in e else [],
-                               v.get(u'@e', [])) if v else []
+            self._values = [locs[e[u'@t']](e) if u'@t' in e else [] for e in
+                               v.get(u'@e', [])] if v else []
 
         # List<List<AnnotationExpr>> arraysAnnotations;
         self._arraysAnnotations = []

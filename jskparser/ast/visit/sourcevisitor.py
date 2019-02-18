@@ -149,7 +149,7 @@ class SourcePrinter(object):
 
         # don't print extends Object
         if n.extendsList and \
-           (u'Object' not in map(lambda e: e.name, n.extendsList) and len(n.extendsList) == 1):
+           (u'Object' not in [e.name for e in n.extendsList] and len(n.extendsList) == 1):
             self.printt(' extends ')
             self.printSepList(n.extendsList)
 

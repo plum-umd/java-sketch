@@ -54,8 +54,8 @@ class Node(object):
         
         # List<Comment> orphanComments
         orphanComments = kwargs.get(u'orphanComments', [])
-        self._orphanComments = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
-                                   orphanComments.get(u'@e', [])) if orphanComments else []
+        self._orphanComments = [locs[x[u'@t']](x) if u'@t' in x else [] for x in
+                                   orphanComments.get(u'@e', [])] if orphanComments else []
         # JavadocComment javadocComment;
         jdc = kwargs.get(u'javadoccomment', {})
         self._javadocComment = locs[u'JavadocComment'](jdc) if jdc else {}

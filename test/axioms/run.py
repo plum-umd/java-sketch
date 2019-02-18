@@ -45,11 +45,11 @@ def combine():
         else: return nums[int(math.floor(mid))]
     
     with open('results/impl.csv','r') as impl_fd:
-        impl_txt = map(lambda v: v.strip('\n\t'), impl_fd.readlines())
+        impl_txt = [v.strip('\n\t') for v in impl_fd.readlines()]
     with open('results/adt.csv','r') as adt_fd:
-        adt_txt = map(lambda v: v.strip('\n\t'), adt_fd.readlines())
+        adt_txt = [v.strip('\n\t') for v in adt_fd.readlines()]
     with open('results/Object.csv','r') as obj_fd:
-        Object_txt = map(lambda v: v.strip('\n\t'), obj_fd.readlines())
+        Object_txt = [v.strip('\n\t') for v in obj_fd.readlines()]
     
     impl_fd = open('results/impl_s.csv','w')
     adt_fd = open('results/adt_s.csv','w')
@@ -60,9 +60,9 @@ def combine():
         strs_a = a.split('\t') if a.split('\t') != [''] else [0]
         strs_o = o.split('\t') if o.split('\t') != [''] else [0]
 
-        mi = median(map(float, strs_i))
-        ma = median(map(float, strs_a))
-        mo = median(map(float, strs_o))
+        mi = median([float(s) for s in strs_i])
+        ma = median([float(s) for s in strs_a])
+        mo = median([float(s) for s in strs_o])
         vals.append((mi, ma, mo))
 
         # rewrite these in sorted order b/c Numbers on OS X is a POS
@@ -71,7 +71,8 @@ def combine():
         obj_fd.write('{}\n'.format('\t'.join(map(str,(sorted(map(float, strs_o)))))))
 
     with open('results/all.csv', 'w') as f:
-        map(lambda v: f.write('{}\t{}\t{}\n'.format(v[0], v[1], v[2])), vals)
+        for v in vals:
+            f.write('{}\t{}\t{}\n'.format(v[0], v[1], v[2]))
 
 if __name__ == '__main__':
     from optparse import OptionParser

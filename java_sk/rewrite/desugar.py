@@ -39,7 +39,7 @@ class Desugar(object):
   @v.when(Statement)
   def visit(self, node):
     if node.kind == C.S.MINREPEAT:
-      b = '\n'.join(map(str, node.b))
+      b = '\n'.join([str(b) for b in node.b])
       body = u""
       for i in xrange(9): # TODO: parameterize
         body += u"""

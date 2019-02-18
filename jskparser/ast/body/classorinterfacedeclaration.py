@@ -20,8 +20,7 @@ class ClassOrInterfaceDeclaration(TypeDeclaration):
 
         # List<TypeParameters>
         typeParameters = kwargs.get(u'typeParameters', [])
-        self._typeParameters = map(lambda x: TypeParameter(x) if u'@t' in x else [],
-                                  typeParameters.get(u'@e', [])) if typeParameters else []
+        self._typeParameters = [TypeParameter(x) if u'@t' in x else [] for x in typeParameters.get(u'@e', [])] if typeParameters else []
 
         # Can contain more than one item if this is an interface
         # List<ClassOrInterfaceType>
@@ -40,9 +39,9 @@ class ClassOrInterfaceDeclaration(TypeDeclaration):
         self._axiom = False
         self._box = False        
         if self.annotations:
-            # self._axiom = any(map(lambda a: str(a) == 'axiomClass', self.annotations))
-            self._axiom = any(map(lambda a: str(a) == 'rewriteClass', self.annotations))
-            self._box = any(map(lambda a: str(a) == 'autoBox', self.annotations))
+            # self._axiom = any([str(a) == 'axiomClass' for a in self.annotations])
+            self._axiom = any([str(a) == 'rewriteClass' for a in self.annotations])
+            self._box = any([str(a) == 'autoBox' for a in self.annotations])
 
         self.add_as_parent(self.typeParameters+self.extendsList+self.implementsList+self.subClasses)
 
@@ -83,7 +82,8 @@ class ClassOrInterfaceDeclaration(TypeDeclaration):
                     print('ERROR: class {} not in symbol table of {}'.format(e.name, n.name)) # library?
                     continue
             lst.extend(sups)
-            map(get_sups, sups)
+            for sup in sups:
+                get_sups(sup)
         get_sups(self)
         return lst
 
@@ -114,7 +114,7 @@ class ClassOrInterfaceDeclaration(TypeDeclaration):
 
     @property
     def fullname(self):
-        return '_'.join(map(lambda c: c.name, self.enclosing_types()) + [self.name])
+        return '_'.join([c.name for c in self.enclosing_types()] + [self.name])
     @fullname.setter
     def fullname(self, v): self._fullname = v
 

@@ -175,7 +175,7 @@ class Translator(object):
         # self.printSepList(n.parameters)
         for i in range(0, len(n.parameters)):
             param = n.parameters[i]
-            if isinstance(param.typee, ReferenceType) and isinstance(param.typee.typee, ClassOrInterfaceType) and str(param.typee.typee) in map(lambda c: c.name, self._ax_clss) and not self._is_ax_cls:
+            if isinstance(param.typee, ReferenceType) and isinstance(param.typee.typee, ClassOrInterfaceType) and str(param.typee.typee) in [c.name for c in self._ax_clss] and not self._is_ax_cls:
                 self.printt('Object')
             else:
                 param.typee.accept(self, **kwargs)
@@ -208,9 +208,9 @@ class Translator(object):
                 s.append(u'fs_s@Object(HashMap_NoHash_HashMap_NoHash(new Object(__cid=HashMap_NoHash())));')
             n.body.stmts = s + n.body.stmts
 
-        boxedRet = u'boxedRet' in map(lambda a: str(a), n.annotations) or n.boxedRet
+        boxedRet = u'boxedRet' in [str(a) for a in n.annotations] or n.boxedRet
             
-        if (isinstance(n.typee, ReferenceType) and isinstance(n.typee.typee, ClassOrInterfaceType) and str(n.typee.typee) in map(lambda c: c.name, self._ax_clss) and not self._is_ax_cls) or boxedRet:
+        if (isinstance(n.typee, ReferenceType) and isinstance(n.typee.typee, ClassOrInterfaceType) and str(n.typee.typee) in [c.name for c in self._ax_clss] and not self._is_ax_cls) or boxedRet:
             self.printt('Object')
         else:
             n.typee.accept(self, **kwargs)
@@ -235,13 +235,13 @@ class Translator(object):
             # print("HERE: "+str(n))
             # for i in range(0, len(params)):
             #     p = params[i]
-            #     if isinstance(p.typee, ReferenceType) and isinstance(p.typee.typee, ClassOrInterfaceType) and str(p.typee.typee) in map(lambda c: c.name, self._ax_clss) and not self._is_ax_cls:
+            #     if isinstance(p.typee, ReferenceType) and isinstance(p.typee.typee, ClassOrInterfaceType) and str(p.typee.typee) in [c.name for c in self._ax_clss] and not self._is_ax_cls:
             #         params[i] = Parameter({u'id':{u'name':p.name},
             #                                u'type':{u'@t': u'ReferenceType', u'type': {u'@t':u'ClassOrInterfaceType', u'name':u'Object'},},},)
             
             for i in range(0, len(params)):
                 param = params[i]
-                if ((isinstance(param.typee, ReferenceType) and isinstance(param.typee.typee, ClassOrInterfaceType) and str(param.typee.typee) in map(lambda c: c.name, self._ax_clss) and not self._is_ax_cls and not str(n).startswith('xform_')) or (i+1) in n.boxedArgs) or (i == 0 and n.boxedRet):
+                if ((isinstance(param.typee, ReferenceType) and isinstance(param.typee.typee, ClassOrInterfaceType) and str(param.typee.typee) in [c.name for c in self._ax_clss] and not self._is_ax_cls and not str(n).startswith('xform_')) or (i+1) in n.boxedArgs) or (i == 0 and n.boxedRet):
                     self.printt('Object')
                 else:
                     param.typee.accept(self, **kwargs)
@@ -312,7 +312,7 @@ class Translator(object):
                     name = names[0]
                     for nam in names[1:]:
                         name += u'_'+nam
-                    adt_mtd = filter(lambda m: str(m) == name or (str(m) == name.replace('_Object', '', 1)),e.adt_mtds)[0]
+                    adt_mtd = [m for m in e.adt_mtds if str(m) == name or (str(m) == name.replace('_Object', '', 1))][0]
                     ret_val = str(n)[6:].lower().capitalize()+u'('
                     if not len(adt_mtd.parameters) == 0 and adt_mtd.parameters[0].name == u'self':
                         ret_val += u'self=selff._'+str(parent).lower()          
@@ -629,7 +629,7 @@ class Translator(object):
     @v.when(ExplicitConstructorInvocationStmt)
     def visit(self, n, **kwargs):
         if n.isThis:
-            self.printt('_'.join([str(n.get_coid()), str(n.get_coid())] + map(str, n.arg_typs())))
+            self.printt('_'.join([str(n.get_coid()), str(n.get_coid())] + [str(t) for t in n.arg_typs()]))
         else:
             if n.expr:
                 n.expr.accept(self, **kwargs)
@@ -639,7 +639,7 @@ class Translator(object):
             if not sups: exit('Calling super with  with no super class: {}'.format(str(cls)))
             def ty(a):
                 return a.typee.name if type(a) != NameExpr else n.symtab[a.name].typee.name
-            self.printt('_'.join([str(sups[0]), str(sups[0])] + map(ty, n.args)))
+            self.printt('_'.join([str(sups[0]), str(sups[0])] + [ty(a) for a in n.args]))
             self.printt('@{}'.format(str(sups[0])))
         self.printt(u'(self')
         if n.args: self.printt(', ')
@@ -712,13 +712,13 @@ class Translator(object):
         if typ and isinstance(typ, ClassOrInterfaceType) or isinstance(typ, ReferenceType):
             cls = typ.symtab.get(typ.name)
 
-        if (cls and isinstance(cls, ClassOrInterfaceDeclaration) and cls.axiom) or (n.annotations != [] and ((u'isBoxed' in map(lambda a: str(a), n.annotations) or u'box' in map(lambda a: str(a), n.annotations)))):
+        if (cls and isinstance(cls, ClassOrInterfaceDeclaration) and cls.axiom) or (n.annotations != [] and ((u'isBoxed' in [str(a) for a in n.annotations] or u'box' in [str(a) for a in n.annotations]))):
             self.printt('Object')
         else:
             n.typee.accept(self, **kwargs)
         # self.printt(' ')
-        kwargs[u'box'] = u'box' in map(lambda a: str(a), n.annotations)
-        kwargs[u'unbox'] = (u'unbox' in map(lambda a: str(a), n.annotations), n.typee)
+        kwargs[u'box'] = u'box' in [str(a) for a in n.annotations]
+        kwargs[u'unbox'] = (u'unbox' in [str(a) for a in n.annotations], n.typee)
         self.printSepList(n.varss, **kwargs)
         kwargs[u'box'] = False
         kwargs[u'unbox'] = False                       
@@ -1038,10 +1038,10 @@ class Translator(object):
             self.printt('.')
         if n.args:
             typs = []
-            tparam_nms = map(lambda t: t.name, cls.typeParameters)
+            tparam_nms = [t.name for t in cls.typeParameters]
             cons = utils.extract_nodes([ConstructorDeclaration], cls)
             if cls.axiom:
-                cons += filter(lambda m: m.constructor, utils.extract_nodes([MethodDeclaration], cls))
+                cons += [m for m in utils.extract_nodes([MethodDeclaration], cls) if m.constructor]
             for a in n.args:
                 if type(a) == FieldAccessExpr:
                     tname = utils.find_fld(a, self.obj_struct).typee
@@ -1081,12 +1081,13 @@ class Translator(object):
             anon_cls.childrenNodes.extend(anon_cls.members)
             anon_cls.symtab = {}
             anon_cls.symtab.update({anon_cls.name:anon_cls})
-            map(lambda m: anon_cls.symtab.update({str(m):m}), n.anonymousClassBody)
+            for m in n.anonymousClassBody:
+                anon_cls.symtab.update({str(m):m})
             target.symtab.update({nm:anon_cls})
 
             tltr = copy.copy(self)
             tltr.indentation = ''
-            anon = map(tltr.trans, anon_cls.members)
+            anon = [tltr.trans(m) for m in anon_cls.members]
 
             anon.append('int {}() {{ return {}; }}\n'.format(anon_cls.name, self.anon_ids))
             self.anon_ids -= 1
@@ -1590,9 +1591,9 @@ class Translator(object):
                         if not cls:
                             pmdec = utils.get_parent(callexpr, MethodDeclaration)
                             pcls = callexpr.get_coid()
-                            tparams = map(lambda p: p, pcls.typeParameters) + \
-                                      map(lambda p: p, pmdec.typeParameters) if pmdec else []
-                            tparam = filter(lambda p: p.name == scope.typee.name, tparams)
+                            tparams = [p for p in pcls.typeParameters] + \
+                                      [p for p in pmdec.typeParameters] if pmdec else []
+                            tparam = [p for p in tparams if p.name == scope.typee.name]
                             if tparam:
                                 tparam = tparam[0]
                                 cls = scope.symtab.get(tparam.typeBound[0].name)
@@ -1613,7 +1614,7 @@ class Translator(object):
             # write uninterpreted function signature
             # add fun declaration as uninterpreted
             with open(os.path.join(self.sk_dir, 'meta.sk'), 'a') as f:
-                trans_ftypes = set([tuple(map(self.trans_ty, map(convert, c))) for c in ftypes])
+                trans_ftypes = set([tuple([self.trans_ty(convert(t)) for t in c]) for c in ftypes])
                 for fun in [list(d) for d in trans_ftypes]:
                     if len(fun) > 1:
                         sig = '{}.{}.{}'.format(fun[0], fun[1], callexpr.name)
@@ -1687,18 +1688,18 @@ class Translator(object):
         # Compile-Time Step 2: Determine Method Signature
         # 15.12.2.1. Identify Potentially Applicable Methods
         pots = self.identify_potentials(callexpr, cls)
-        logging.debug('potentitals: {}'.format(map(lambda m: str(m), pots)))
+        logging.debug('potentitals: {}'.format([str(m) for m in pots]))
         if not pots:
             uninterpreted()
             return
 
         # 15.12.2.2. Phase 1: Identify Matching Arity Methods Applicable by Strict Invocation
         strict_mtds = self.identify_strict(callexpr, pots)
-        logging.debug('strict_applicable: {}'.format(map(lambda m: str(m), strict_mtds)))
+        logging.debug('strict_applicable: {}'.format([str(m) for m in strict_mtds]))
 
         # 15.12.2.3. Phase 2: Identify Matching Arity Methods Applicable by Loose Invocation
         loose_mtds = self.identify_loose(callexpr, pots)
-        logging.debug('loose_applicable: {}'.format(map(lambda m: str(m), loose_mtds)))
+        logging.debug('loose_applicable: {}'.format([str(m) for m in loose_mtds]))
 
         # 15.12.2.4. Phase 3: Identify Methods Applicable by Variable Arity Invocation
         # TODO: this
@@ -1755,8 +1756,8 @@ class Translator(object):
                 return            
             clss = [cls] + utils.all_subClasses(cls) if invocation_mode != 'uninterpreted' else \
                    utils.all_subClasses(cls)
-            clss = filter(lambda c: not c.interface, clss)
-            logging.debug('subclasses: {}'.format(map(lambda c: str(c), clss)))
+            clss = [c for c in clss if not c.interface]
+            logging.debug('subclasses: {}'.format([str(c) for c in clss]))
 
             scp = tltr.trans(callexpr.scope)
             args = [NameExpr({u'name':scp})] + callexpr.args
@@ -1811,20 +1812,20 @@ class Translator(object):
         call_arg_typs = callexpr.arg_typs()
         for key,val in cls.symtab.items():
             if type(val) != MethodDeclaration: continue
-            tparam_names = map(lambda t: t.name, val.typeParameters)
-            tparam_names.extend(map(lambda t: t.name, val.get_coid().typeParameters))
+            tparam_names = [t.name for t in val.typeParameters]
+            tparam_names.extend([t.name for t in val.get_coid().typeParameters])
             if self._is_ax_cls or callexpr.name.startswith('xform'):
                 name = callexpr.name
                 if val.adtType and callexpr.name != val.name and len(call_arg_typs) > 1:
                     name += '_'+'_'.join(map(str, call_arg_typs[1:]))
                 if name == val.name and len(callexpr.args) == len(val.parameters):
-                    if all(map(lambda t: t[1].name in tparam_names or utils.is_subtype(t[0], t[1]),
-                               zip(call_arg_typs, val.param_typs()))):
+                    if all([t[1].name in tparam_names or utils.is_subtype(t[0], t[1]) for t in
+                               zip(call_arg_typs, val.param_typs())]):
                         mtds.append(val)
             else:
                 if callexpr.name == val.name and len(callexpr.args) == len(val.parameters):
-                    if all(map(lambda t: t[1].name in tparam_names or utils.is_subtype(t[0], t[1]),
-                               zip(call_arg_typs, val.param_typs()))):
+                    if all([t[1].name in tparam_names or utils.is_subtype(t[0], t[1]) for t in
+                               zip(call_arg_typs, val.param_typs())]):
                         mtds.append(val)                
         return mtds
 
@@ -1839,7 +1840,7 @@ class Translator(object):
 
     def match_strict(self, arg_typs, param_typs, **kwargs):
         for atyp,ptyp in zip(arg_typs, param_typs):
-            if ptyp.name in map(lambda p: p.name, param_typs): continue
+            if ptyp.name in [p.name for p in param_typs]: continue
             if not (self.identity_conversion(atyp,ptyp) or \
                     self.primitive_widening(atyp,ptyp) or \
                     self.reference_widening(atyp,ptyp)):
@@ -1858,8 +1859,8 @@ class Translator(object):
     def match_loose(self, arg_typs, param_typs, typeParameters):
         # TODO: Spec says if the result is a raw type, do an unchecked conversion. Does this already happen?
         for atyp,ptyp in zip(arg_typs, param_typs):
-            if ptyp.name in map(lambda p: p.name, param_typs): continue
-            if ptyp.name in map(lambda p: p.name, typeParameters) and not isinstance(atyp, PrimitiveType): continue
+            if ptyp.name in [p.name for p in param_typs]: continue
+            if ptyp.name in [p.name for p in typeParameters] and not isinstance(atyp, PrimitiveType): continue
             # going to ignore, identity and widenings b/c they should be caught with strict
             if not (self.boxing_conversion(atyp, ptyp) or \
                     (self.unboxing_conversion(atyp, ptyp) and \
@@ -1871,8 +1872,8 @@ class Translator(object):
             ctypes = candidate.param_typs()
             for i in range(len(others)):
                 # if the parameters of the candidate aren't less specific than all the parameters of other
-                if not all(map(lambda t: utils.is_subtype(t[0], t[1]), \
-                               zip(ctypes, others[i].param_typs()))):
+                if not all([utils.is_subtype(t[0], t[1]) for t in
+                            zip(ctypes, others[i].param_typs())]):
                     return False
             return True
         for mi in xrange(len(mtds)):
@@ -2139,7 +2140,8 @@ class Translator(object):
                         
         # apply change_call to every statement, and every statement's children
         #    note that stmt is changed first, followed by it's children
-        map(lambda s: utils.walk(change_call, s), stmts)
+        for s in stmts:
+            utils.walk(change_call, s)
 
         # alter stmts to wrap and unwrap primitives appropriately
         new_stmts = []

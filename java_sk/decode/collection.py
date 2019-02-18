@@ -34,7 +34,7 @@ class Collection(object):
   def repl_itf(tname, init=True):
     if not util.is_collection(tname): return tname
     _ids = util.of_collection(tname)
-    ids = map(util.autoboxing, _ids)
+    ids = [util.autoboxing(i) for i in _ids]
     collection = ids[0]
     if init: collection = Collection.__impl[collection]
     generics = ids[1:] # don't be recursive, like map(repl_itf, ids[1:])

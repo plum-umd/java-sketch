@@ -115,9 +115,9 @@ def extract_nodes(typ, ast, istance=False, recurse=True):
     lst = []
     def f1(n, *args):
         if istance:
-          if any(map(partial(isinstance, n),typ)): lst.append(n)
+          if any([isinstance(n, t) for t in typ]): lst.append(n)
         elif type(n) in typ: lst.append(n)
-    walk(f1, ast) if recurse else map(f1, [ast] + ast.childrenNodes)
+    walk(f1, ast) if recurse else [f1(c) for c in [ast] + ast.childrenNodes]
     return lst
 
 # check whether node is in AST
@@ -182,7 +182,7 @@ def is_subtype(t1, t2):
         raise Exception('Cant dereference {} or {}'.format(t1.name, t2.name))
     if cls1 in cls2.subClasses or cls1 == cls2: return True
     elif cls2.subClasses:
-        return any(map(partial(is_subtype, cls1), cls2.subClasses))
+        return any([is_subtype(cls1, c) for c in cls2.subClasses])
     else: return False
 
 def all_subClasses(n):
@@ -350,7 +350,7 @@ def anon_nm(a):
     else: return anon_nm(a.parentNode)
 
 def rm_comments(node):
-    node.childrenNodes = filter(lambda n: not isinstance(n, Comment), node.childrenNodes)
+    node.childrenNodes = [n for n in node.childrenNodes if not isinstance(n, Comment)]
 
 def unpack_class_file(nm):
     global JAVA_HOME, RT_JAR
@@ -391,7 +391,7 @@ def get_descriptors(nm):
 
     # this is a cool bit of sorcery to pair names with their descriptors
     cls = zip(*[iter(cls)]*2)
-    flds = filter(lambda d: '(' not in d[0] and 'static {};' not in d[0], cls)
+    flds = [d for d in cls if '(' not in d[0] and 'static {};' not in d[0]]
     # print 'flds:', flds
 
     cls_nm_full = nm.replace('/', '.') # [nm.rfind('/')+1:]
@@ -420,7 +420,7 @@ def get_fld_descriptors(path):
     # print 'fld_descriptors', flds
     descriptors = []
     for d in flds:
-        nm = filter(lambda n: n not in ACCESS_MODS, d[0].split(' '))[1].strip(';')
+        nm = [n for n in d[0].split(' ') if n not in ACCESS_MODS][1].strip(';')
         typ = d[1].split(' ')[1].strip('[L;')
         if typ[0] == '[': typ = typ[1:]
         if '/' in typ: typ = typ[typ.rfind('/')+1:]
@@ -460,9 +460,9 @@ def get_mtd_types(path, name, num_params):
             ptypes.append(list(typs + [c[-1]]))
             return True
         return False
-    filter(filter_by_params, candidates)
-    # print 'filtered:', filter(filter_by_params, candidates)
-    # print 'ptypes:', ptypes
+    filtered = [filter_by_params(c) for c in candidates]
+    # print('filtered:', filtered)
+    # print('ptypes:', ptypes)
     return ptypes
 
 def mtd_type_from_callexpr(callexpr):
