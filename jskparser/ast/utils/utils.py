@@ -3,6 +3,8 @@
 
 from __future__ import absolute_import
 from __future__ import print_function
+try: unicode
+except: unicode = u"".__class__
 import os
 import logging
 import subprocess

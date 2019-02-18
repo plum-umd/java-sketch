@@ -1,4 +1,6 @@
 from __future__ import absolute_import
+try: unicode
+except: unicode = u"".__class__
 from lib.typecheck import *
 import lib.visit as v
 import lib.const as C

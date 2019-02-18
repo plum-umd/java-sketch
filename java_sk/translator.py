@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 from __future__ import absolute_import
 from __future__ import print_function
+try: unicode
+except: unicode = u"".__class__
 
 from functools import reduce
 import sys

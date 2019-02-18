@@ -1,6 +1,8 @@
 """Filename globbing utility."""
 
 from __future__ import absolute_import
+try: unicode
+except: unicode = u"".__class__
 
 import sys
 import os
