@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
-from bodydeclaration import BodyDeclaration
+from __future__ import absolute_import
+from .bodydeclaration import BodyDeclaration
 
 IMPORTS = vars()
 

@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
+from __future__ import absolute_import
 from . import _import
 from .. import Modifiers
 
-from bodydeclaration import BodyDeclaration
+from .bodydeclaration import BodyDeclaration
 
 class TypeDeclaration(BodyDeclaration):
     def __init__(self, kwargs={}):

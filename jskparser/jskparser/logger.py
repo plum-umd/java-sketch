@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import os
 import re
 import sys
@@ -6,7 +7,7 @@ import lib.const as C
 from lib.enum import enum
 from lib.rlock import FLockFileHandler
 
-import util
+from . import util
 
 C.log_caller = enum(JAVASK="jsk", PSKETCH="psketch")
 

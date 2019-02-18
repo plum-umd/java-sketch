@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from __future__ import absolute_import
 from ..body.variabledeclarator import VariableDeclarator
 from .expression import Expression
 from . import _import

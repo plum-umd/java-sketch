@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
-import visit as v
+from __future__ import absolute_import
+from . import visit as v
 
 from ..node import Node
 

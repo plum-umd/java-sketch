@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from __future__ import absolute_import
 from .bodydeclaration import BodyDeclaration
 
 from ..type.classorinterfacetype import ClassOrInterfaceType

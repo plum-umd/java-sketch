@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+from __future__ import print_function
 import os
 import unittest
 
@@ -18,7 +20,7 @@ class TestJava(TestCommon):
     _fs = map(append_b, fs)
     if using_model:
       _fs.extend(java_sk.util.get_files_from_path(model_dir, "java"))
-    print fs
+    print(fs)
     ret = java_sk.main.main(_fs, '30')
     self.assertEqual(ret, 0)
 

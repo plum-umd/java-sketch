@@ -1,6 +1,8 @@
 # This is a bit silly having utils/utils.py but it's the only way I could
 # make this an importable package.
 
+from __future__ import absolute_import
+from __future__ import print_function
 import os
 import logging
 import subprocess
@@ -229,7 +231,7 @@ def node_to_obj(n):
     else: o = find_obj(n)
 
     if not o:
-        print 'node_to_obj() -- Cant find {}.{}:{}'.format(str(n.name), n.get_coid(),n.beginLine)
+        print('node_to_obj() -- Cant find {}.{}:{}'.format(str(n.name), n.get_coid(),n.beginLine))
         # n might be a static reference to an imported class
         for k, v in n.symtab.get(u'_cu_').symtab.items():
             nm = k.split('.')[-1]
@@ -289,7 +291,7 @@ def find_fld(n, obj_struct):
     if isinstance(scope, Parameter): scope = scope.idd
     
     if not scope:
-        print 'Cant find {}.{}:{}'.format(n.scope.name, n.name, n.beginLine)
+        print('Cant find {}.{}:{}'.format(n.scope.name, n.name, n.beginLine))
         return None
 
     # n's scope might be a class (if static field)
