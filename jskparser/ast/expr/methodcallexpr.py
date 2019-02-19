@@ -3,6 +3,8 @@
 from __future__ import absolute_import
 try: unicode
 except: unicode = u"".__class__
+try: xrange
+except: xrange = range
 import itertools
 
 from . import _import

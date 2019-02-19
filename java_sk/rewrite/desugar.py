@@ -1,4 +1,6 @@
 from __future__ import absolute_import
+try: xrange
+except: xrange = range
 import logging
 
 import lib.const as C

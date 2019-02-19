@@ -1,4 +1,6 @@
 from __future__ import absolute_import
+try: xrange
+except: xrange = range
 from . import visit as v
 
 from .. import JAVA_LANG

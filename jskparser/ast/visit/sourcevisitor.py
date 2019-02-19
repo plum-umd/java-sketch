@@ -6,6 +6,8 @@ try:
     import cStringIO
 except: # so sue me.
     import io as cStringIO
+try: xrange
+except: xrange = range
 from . import visit as v
 
 from .. import Operators as op

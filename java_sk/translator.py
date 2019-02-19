@@ -3,6 +3,8 @@ from __future__ import absolute_import
 from __future__ import print_function
 try: unicode
 except: unicode = u"".__class__
+try: xrange
+except: xrange = range
 
 from functools import reduce
 import sys

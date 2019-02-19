@@ -5,6 +5,8 @@ try:
     import cStringIO
 except: # so sue me.
     import io as cStringIO
+try: xrange
+except: xrange = range
 import math
 import os
 import copy as cp
