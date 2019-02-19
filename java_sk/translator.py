@@ -1518,7 +1518,7 @@ class Translator(object):
                 if isinstance(typ_cls, ClassOrInterfaceDeclaration) and typ_cls.axiom:
                     ty = u'Object'
                 
-        if isinstance(fld.typee, ReferenceType) and fld.typee.arrayCount > 0:
+        if isinstance(fld.typee, ReferenceType) and int(fld.typee.arrayCount) > 0:
             if self._is_ax_cls:
                 if len(fld.name) > 7 and fld.name[0:7]=='_array_':
                     ty = 'Array_{}'.format(self.trans_ty(fld.typee))                    
