@@ -1,6 +1,8 @@
 #! /usr/bin/env python
 
 from __future__ import absolute_import
+try: xrange
+except: xrange = range
 import multiprocessing
 import os
 import logging
