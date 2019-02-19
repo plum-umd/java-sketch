@@ -249,7 +249,7 @@ class Node(object):
         if self not in p.childrenNodes: p.childrenNodes.append(self)
         self.parentNode = p
         if p.symtab and self.symtab:
-            self.symtab = dict(p.symtab.items() + self.symtab.items())
+            self.symtab = dict(list(p.symtab.items()) + list(self.symtab.items()))
         elif p.symtab:
             self.symtab = copy.copy(p.symtab)
 
