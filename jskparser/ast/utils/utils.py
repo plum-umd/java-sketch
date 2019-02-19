@@ -361,7 +361,7 @@ def unpack_class_file(nm):
         except:
             cmd = ['/usr/libexec/java_home']
             try:
-                JAVA_HOME = subprocess.check_output(cmd).strip(' \n')
+                JAVA_HOME = subprocess.check_output(cmd, universal_newlines=True).strip(' \n')
             except (OSError, subprocess.CalledProcessError) as e:
                 logging.error('Unable to set JAVA_HOME: {} {}'.format(e, getattr(e, 'output', '')))
                 raise Exception('Unable to set JAVA_HOME')
@@ -371,7 +371,7 @@ def unpack_class_file(nm):
     cmd = ['jar', 'xf', RT_JAR, nm]
     logging.debug(' '.join(cmd))
     try:
-        subprocess.check_output(cmd)
+        subprocess.check_output(cmd, universal_newlines=True)
     except subprocess.CalledProcessError as e:
         logging.error('Unable to extract "{}" from RT_JAR "{}": {}'.format(nm, RT_JAR, e.output))
 
@@ -381,7 +381,7 @@ def get_descriptors(nm):
     cmd = ['javap', '-s', nm]
     logging.debug(' '.join(cmd))
     try:
-        cls = subprocess.check_output(cmd)
+        cls = subprocess.check_output(cmd, universal_newlines=True)
     except subprocess.CalledProcessError as e:
         logging.error('Unable to dissassemble "{}": {}'.format(nm, e.output))
 
@@ -390,7 +390,7 @@ def get_descriptors(nm):
     cls = [x.strip() for x in cls.split('\n') if x]
 
     # this is a cool bit of sorcery to pair names with their descriptors
-    cls = zip(*[iter(cls)]*2)
+    cls = list(zip(*[iter(cls)]*2))
     flds = [d for d in cls if '(' not in d[0] and 'static {};' not in d[0]]
     # print 'flds:', flds
 
