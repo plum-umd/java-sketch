@@ -109,7 +109,7 @@ such as `repeat` and `minrepeat`.
 To read JSketch, again, you should generate our parser first:
 
 ```sh
-cd parser
+cd jskparser
 make
 ```
 
