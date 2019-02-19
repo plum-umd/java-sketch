@@ -163,7 +163,7 @@ class SymtabGen(object):
             # Catch args that are actually Axiom Declarations
             if p.method:
                 p.method.symtab.update(node.symtab)
-                node.symtab = dict(p.method.symtab.items() + node.symtab.items())
+                node.symtab = dict(list(p.method.symtab.items()) + list(node.symtab.items()))
         if node.body:
             node.body.accept(self)
         # print node.symtab

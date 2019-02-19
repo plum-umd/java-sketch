@@ -104,7 +104,7 @@ class Encoder(object):
         mtds = []
         for c in self.clss:
             m = utils.extract_nodes([MethodDeclaration], c)
-            mtds.extend([m for m in m if m.name == u'main'])
+            mtds.extend([md for md in m if md.name == u'main'])
             # do we care if main is static?
             # mtds.extend(filter(lambda m: td.isStatic(m) and m.name == u'main', m))
         lenn = len(mtds)
@@ -417,7 +417,7 @@ class Encoder(object):
                     typ = self.tltr.trans_ty(t)
                     if isinstance(t, ReferenceType) and t.arrayCount > 0:
                         typ = "Array_"+typ
-                    if isinstance(t, ReferenceType) and isinstance(t.typee, ClassOrInterfaceType) and str(t.typee) in [c.name for c in self.ax_clss] and not self.is_ax_cls:
+                    if isinstance(t, ReferenceType) and isinstance(t.typee, ClassOrInterfaceType) and str(t.typee) in [axc.name for axc in self.ax_clss] and not self.is_ax_cls:
                         typ = u'Object'
                         
                 # if p.typee.name in p.symtab:
@@ -446,7 +446,7 @@ class Encoder(object):
             ptyps = []
             ptyps_name = []
             for t in mtd_param_typs:
-                if isinstance(t, ReferenceType) and isinstance(t.typee, ClassOrInterfaceType) and str(t.typee) in [c.name for c in self.ax_clss] and not self.is_ax_cls:
+                if isinstance(t, ReferenceType) and isinstance(t.typee, ClassOrInterfaceType) and str(t.typee) in [axc.name for axc in self.ax_clss] and not self.is_ax_cls:
                     typ = u'Object'
                 else:
                     typ = self.tltr.trans_ty(t)
@@ -554,7 +554,7 @@ class Encoder(object):
             buf.write(self.to_func(m) + os.linesep)        
         
         # add bang functions for non-pure methods
-        for (m,i) in zip(adt_mtds, xrange(len(adt_mtds))):
+        for (m,i) in list(zip(adt_mtds, xrange(len(adt_mtds)))):
             if not m.pure:
                 if not m.constructor:
                     mtd = cp.copy(m)
@@ -595,8 +595,8 @@ class Encoder(object):
 
         # updates n's symbol table to include parents symbol table items
         def cpy_sym(n, *args):
-            if n.parentNode: n.symtab = dict(n.parentNode.symtab.items() +
-                                             n.symtab.items())
+            if n.parentNode: n.symtab = dict(list(n.parentNode.symtab.items()) +
+                                             list(n.symtab.items()))
         
         # Iterates through ADT constructors
         #   Creates a dictionary of xforms using constructor names
@@ -813,14 +813,14 @@ class Encoder(object):
             # add a symbol table items to xf
             #   this will give it access to the argument names of a
             #   then updates xf children with 
-            xf.symtab = dict(a.symtab.items() + xf.symtab.items())
+            xf.symtab = dict(list(a.symtab.items()) + list(xf.symtab.items()))
             for c in xf.childrenNodes:
                 utils.walk(cpy_sym, c)
 
             # NOT SURE WHY THIS IS NEEDED
             #    without this it isn't able to resolve the string type of the
             #    function. not sure why...
-            a.symtab = dict(xf.symtab.items() + a.symtab.items())
+            a.symtab = dict(list(xf.symtab.items()) + list(a.symtab.items()))
             for c in a.childrenNodes:
                 utils.walk(cpy_sym, c)
 
