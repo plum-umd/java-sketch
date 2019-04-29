@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from __future__ import absolute_import
 from .statement import Statement
 from . import _import
 
@@ -10,8 +11,8 @@ class ForStmt(Statement):
     
         # List<Expression> init;
         init = kwargs.get(u'init', {})
-        self._init = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
-                         init.get(u'@e', [])) if init else []
+        self._init = [locs[x[u'@t']](x) if u'@t' in x else [] for x in
+                         init.get(u'@e', [])] if init else []
         
         # Expression compare;
         compare = kwargs.get(u'compare', {})
@@ -19,8 +20,8 @@ class ForStmt(Statement):
         
         # List<Expression> update;
         update = kwargs.get(u'update', {})
-        self._update = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
-                         update.get(u'@e', [])) if update else []
+        self._update = [locs[x[u'@t']](x) if u'@t' in x else [] for x in
+                         update.get(u'@e', [])] if update else []
         
         # Statement body;
         body = kwargs.get(u'body', {})

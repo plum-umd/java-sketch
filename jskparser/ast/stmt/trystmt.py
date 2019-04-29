@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from __future__ import absolute_import
 from .statement import Statement
 from . import _import
 
@@ -10,8 +11,8 @@ class TryStmt(Statement):
     
         # List<VariableDeclarationExpr> resources;
         resources = kwargs.get(u'resources', {})
-        self._resources = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
-                              resources.get(u'@e', [])) if resources else []
+        self._resources = [locs[x[u'@t']](x) if u'@t' in x else [] for x in
+                              resources.get(u'@e', [])] if resources else []
     
         # BlockStmt tryBlock;
         tryBlock = kwargs.get(u'tryBlock', {})
@@ -19,8 +20,8 @@ class TryStmt(Statement):
         
         # List<CatchClause> catchs;
         catchs = kwargs.get(u'catchs', [])
-        self._catchs = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
-                           catchs.get(u'@e', [])) if catchs else []
+        self._catchs = [locs[x[u'@t']](x) if u'@t' in x else [] for x in
+                           catchs.get(u'@e', [])] if catchs else []
     
         # BlockStmt finallyBlock;
         finallyBlock = kwargs.get(u'finallyBlock', {})

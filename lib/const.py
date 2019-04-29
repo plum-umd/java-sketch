@@ -1,10 +1,11 @@
 # http://code.activestate.com/recipes/65207
 
+from __future__ import absolute_import
 class _const:
   class ConstError(TypeError): pass
   def __setattr__(self, name, v):
-    if self.__dict__.has_key(name):
-      raise self.ConstError, "Can't rebind const(%s)" % name
+    if name in self.__dict__:
+      raise self.ConstError("Can't rebind const(%s)" % name)
     self.__dict__[name] = v
 
 import sys

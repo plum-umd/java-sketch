@@ -1,5 +1,9 @@
 #! /usr/bin/env python
 
+from __future__ import absolute_import
+from __future__ import print_function
+try: xrange
+except: xrange = range
 import multiprocessing
 import os
 import logging
@@ -48,7 +52,8 @@ def p_run(sk_dir, output_path):
     n_cpu = multiprocessing.cpu_count()
     pool = multiprocessing.Pool(max(1, int(n_cpu * 0.75)))
   
-    def found( (fname, r) ):
+    def found(sketch_result):
+        (fname, r) = sketch_result
         if r: # found, copy that output file
             shutil.copyfile(fname, output_path)
             pool.close()

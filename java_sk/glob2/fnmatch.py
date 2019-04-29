@@ -9,6 +9,7 @@ expression.  They cache the compiled regular expressions for speed.
 The function translate(PATTERN) returns a regular expression
 corresponding to PATTERN.  (It does not compile it.)
 """
+from __future__ import absolute_import
 import os
 import posixpath
 import re
@@ -111,4 +112,4 @@ def translate(pat):
                 res = '%s([%s])' % (res, stuff)
         else:
             res = res + re.escape(c)
-    return res + '\Z(?ms)'
+    return '(?ms)' + res + '\Z'

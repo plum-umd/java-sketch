@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+from __future__ import absolute_import
+from __future__ import print_function
 from .expression import Expression
 
 from . import _import
@@ -22,15 +24,15 @@ class ArrayCreationExpr(Expression):
     
         # List<Expression> dimensions;
         dim = kwargs.get(u'dimensions', {})
-        self._dimensions = map(lambda e: locs[e[u'@t']](e) if u'@t' in e else [],
-                               dim.get(u'@e', [])) if dim else []
+        self._dimensions = [locs[e[u'@t']](e) if u'@t' in e else [] for e in
+                               dim.get(u'@e', [])] if dim else []
     
         # List<List<AnnotationExpr>> arraysAnnotations;
         self._arraysAnnotations = []
         aa = kwargs.get(u'arraysAnnotations', {})
         ad = [None] if not aa else aa.get(u'@e')
         if ad[0]:
-            print 'ReferenceType annotations not implemented'
+            print('ReferenceType annotations not implemented')
             for a in aa:
                 self._arraysAnnotations.append(locs[u'AnnotationExpr'](a) if a else None)
                 

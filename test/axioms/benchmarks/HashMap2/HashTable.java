@@ -1,7 +1,7 @@
 package Interfaing;
 
 public interface HashTable<K, V> {
-	// put key­value pair into the table
+	// put keyÂ­value pair into the table
 	public void put(K key, V value);
 
 	// get value paired with key, return null if

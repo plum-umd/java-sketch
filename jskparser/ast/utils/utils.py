@@ -1,6 +1,10 @@
 # This is a bit silly having utils/utils.py but it's the only way I could
 # make this an importable package.
 
+from __future__ import absolute_import
+from __future__ import print_function
+try: unicode
+except: unicode = u"".__class__
 import os
 import logging
 import subprocess
@@ -111,9 +115,9 @@ def extract_nodes(typ, ast, istance=False, recurse=True):
     lst = []
     def f1(n, *args):
         if istance:
-          if any(map(partial(isinstance, n),typ)): lst.append(n)
+          if any([isinstance(n, t) for t in typ]): lst.append(n)
         elif type(n) in typ: lst.append(n)
-    walk(f1, ast) if recurse else map(f1, [ast] + ast.childrenNodes)
+    walk(f1, ast) if recurse else [f1(c) for c in [ast] + ast.childrenNodes]
     return lst
 
 # check whether node is in AST
@@ -178,7 +182,7 @@ def is_subtype(t1, t2):
         raise Exception('Cant dereference {} or {}'.format(t1.name, t2.name))
     if cls1 in cls2.subClasses or cls1 == cls2: return True
     elif cls2.subClasses:
-        return any(map(partial(is_subtype, cls1), cls2.subClasses))
+        return any([is_subtype(cls1, c) for c in cls2.subClasses])
     else: return False
 
 def all_subClasses(n):
@@ -229,7 +233,7 @@ def node_to_obj(n):
     else: o = find_obj(n)
 
     if not o:
-        print 'node_to_obj() -- Cant find {}.{}:{}'.format(str(n.name), n.get_coid(),n.beginLine)
+        print('node_to_obj() -- Cant find {}.{}:{}'.format(str(n.name), n.get_coid(),n.beginLine))
         # n might be a static reference to an imported class
         for k, v in n.symtab.get(u'_cu_').symtab.items():
             nm = k.split('.')[-1]
@@ -289,7 +293,7 @@ def find_fld(n, obj_struct):
     if isinstance(scope, Parameter): scope = scope.idd
     
     if not scope:
-        print 'Cant find {}.{}:{}'.format(n.scope.name, n.name, n.beginLine)
+        print('Cant find {}.{}:{}'.format(n.scope.name, n.name, n.beginLine))
         return None
 
     # n's scope might be a class (if static field)
@@ -346,7 +350,7 @@ def anon_nm(a):
     else: return anon_nm(a.parentNode)
 
 def rm_comments(node):
-    node.childrenNodes = filter(lambda n: not isinstance(n, Comment), node.childrenNodes)
+    node.childrenNodes = [n for n in node.childrenNodes if not isinstance(n, Comment)]
 
 def unpack_class_file(nm):
     global JAVA_HOME, RT_JAR
@@ -357,9 +361,9 @@ def unpack_class_file(nm):
         except:
             cmd = ['/usr/libexec/java_home']
             try:
-                JAVA_HOME = subprocess.check_output(cmd).strip(' \n')
-            except subprocess.CalledProcessError as e:
-                logging.error('Unable to extract "{}" from RT_JAR "{}": {}'.format(nm, RT_JAR, e.output))
+                JAVA_HOME = subprocess.check_output(cmd, universal_newlines=True).strip(' \n')
+            except (OSError, subprocess.CalledProcessError) as e:
+                logging.error('Unable to set JAVA_HOME: {} {}'.format(e, getattr(e, 'output', '')))
                 raise Exception('Unable to set JAVA_HOME')
         RT_JAR = os.path.join(JAVA_HOME, 'jre','lib', 'rt.jar')
 
@@ -367,7 +371,7 @@ def unpack_class_file(nm):
     cmd = ['jar', 'xf', RT_JAR, nm]
     logging.debug(' '.join(cmd))
     try:
-        subprocess.check_output(cmd)
+        subprocess.check_output(cmd, universal_newlines=True)
     except subprocess.CalledProcessError as e:
         logging.error('Unable to extract "{}" from RT_JAR "{}": {}'.format(nm, RT_JAR, e.output))
 
@@ -377,7 +381,7 @@ def get_descriptors(nm):
     cmd = ['javap', '-s', nm]
     logging.debug(' '.join(cmd))
     try:
-        cls = subprocess.check_output(cmd)
+        cls = subprocess.check_output(cmd, universal_newlines=True)
     except subprocess.CalledProcessError as e:
         logging.error('Unable to dissassemble "{}": {}'.format(nm, e.output))
 
@@ -386,8 +390,8 @@ def get_descriptors(nm):
     cls = [x.strip() for x in cls.split('\n') if x]
 
     # this is a cool bit of sorcery to pair names with their descriptors
-    cls = zip(*[iter(cls)]*2)
-    flds = filter(lambda d: '(' not in d[0] and 'static {};' not in d[0], cls)
+    cls = list(zip(*[iter(cls)]*2))
+    flds = [d for d in cls if '(' not in d[0] and 'static {};' not in d[0]]
     # print 'flds:', flds
 
     cls_nm_full = nm.replace('/', '.') # [nm.rfind('/')+1:]
@@ -416,7 +420,7 @@ def get_fld_descriptors(path):
     # print 'fld_descriptors', flds
     descriptors = []
     for d in flds:
-        nm = filter(lambda n: n not in ACCESS_MODS, d[0].split(' '))[1].strip(';')
+        nm = [n for n in d[0].split(' ') if n not in ACCESS_MODS][1].strip(';')
         typ = d[1].split(' ')[1].strip('[L;')
         if typ[0] == '[': typ = typ[1:]
         if '/' in typ: typ = typ[typ.rfind('/')+1:]
@@ -456,9 +460,9 @@ def get_mtd_types(path, name, num_params):
             ptypes.append(list(typs + [c[-1]]))
             return True
         return False
-    filter(filter_by_params, candidates)
-    # print 'filtered:', filter(filter_by_params, candidates)
-    # print 'ptypes:', ptypes
+    filtered = [filter_by_params(c) for c in candidates]
+    # print('filtered:', filtered)
+    # print('ptypes:', ptypes)
     return ptypes
 
 def mtd_type_from_callexpr(callexpr):

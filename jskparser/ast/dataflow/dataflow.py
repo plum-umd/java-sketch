@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 
+from __future__ import absolute_import
+from __future__ import print_function
+try: unicode
+except: unicode = u"".__class__
+try: xrange
+except: xrange = range
 from ..utils import utils
 
 from ..body.methoddeclaration import MethodDeclaration
@@ -61,14 +67,14 @@ class DataFlow(object):
                     return None, None
         if verbose:
             def f1(node):
-                print 'node:', type(node), 'name:', node.name, \
+                print('node:', type(node), 'name:', node.name, \
                     '\n\tin:', node.in_set, \
                     '\n\tout:', node.out_set, \
                     '\n\tinputs:', node.inputs, \
-                    '\n\toutputs:', node.outputs
-                print
+                    '\n\toutputs:', node.outputs)
+                print()
             self._walk(f1, self._program)
-            if inputs: print ins, outs
+            if inputs: print(ins, outs)
         return ins, outs
 
     def _doreach(self, program=None):
@@ -138,9 +144,9 @@ class DataFlow(object):
 
         t = n.gen().union((self._minus(n.in_set, n.kill())))
         if self._debug:
-            print 'n:', n, 'in:', n.in_set, 'gen:', n.gen(), 'kill:', n.kill(), \
+            print('n:', n, 'in:', n.in_set, 'gen:', n.gen(), 'kill:', n.kill(), \
                 'in-kill', self._minus(n.in_set, n.kill()), 't:', t, \
-                'out_set:', n.out_set
+                'out_set:', n.out_set)
 
         if type(n.parentNode) == ForStmt:
             inits = set(utils.flatten([e.out_set for e in n.parentNode.init])) \
@@ -161,7 +167,7 @@ class DataFlow(object):
             names = utils.extract_nodes([NameExpr], n)
             names = [nm.name for nm in names]
             # TODO: can return more than one name, don't know if that makes sense
-            n.out_set = set(filter(lambda x: x[0] in names, n.in_set))
+            n.out_set = set([x for x in n.in_set if x[0] in names])
 
         # out_set has changed. out_set of these are handled above
         elif t != n.out_set and type(n) not in NO_OUT:
@@ -177,12 +183,12 @@ class DataFlow(object):
     def _inputs(self, n, c_defs):
         for ch in n.childrenNodes:
             self._inputs(ch, c_defs)
-            reach_x = filter(lambda x: x[0] == ch.lbl[0], ch.in_set)
-            ins = self._rm_dups(filter(lambda x: x in c_defs, reach_x))
+            reach_x = [x for x in ch.in_set if x[0] == ch.lbl[0]]
+            ins = self._rm_dups([x for x in reach_x if x in c_defs])
             if self._debug:
-                print 'ch:', ch, 'ch.in_set:', ch.in_set, \
+                print('ch:', ch, 'ch.in_set:', ch.in_set, \
                     'reach_x:', reach_x, \
-                    'c_defs:', c_defs, 'ins:', ins
+                    'c_defs:', c_defs, 'ins:', ins)
             if ins: ch.inputs = list(ins)
             # all this crap is to remove duplicate var defs from in/out sets
             if ch.inputs:
@@ -198,10 +204,10 @@ class DataFlow(object):
         ctx.childrenNodes = body[:self._estart]
         e = BlockStmt()
         e.childrenNodes = body[self._estart:self._estop + 1]
-        if self._debug: print '*******inputs*******'
+        if self._debug: print('*******inputs*******')
 
         # need to add this to the initial context if it is at the start of method
-        params = map(lambda x: x.lbl, method.parameters)
+        params = [x.lbl for x in method.parameters]
         # c_defs are all the defs leaving the context. defs in e will have to
         # be part of this set to be valid inputs
         c_defs = ctx.childrenNodes[-1].out_set.union(set(params)) if ctx.childrenNodes else set(params)
@@ -211,16 +217,17 @@ class DataFlow(object):
         # inputs to context, which are outputs from e
         ctx.childrenNodes = body[self._estop + 1:]
         if ctx.childrenNodes:
-            if self._debug: print '*******outputs******'
+            if self._debug: print('*******outputs******')
 
             c_defs = e.childrenNodes[-1].out_set.difference(e.childrenNodes[0].in_set)
             self._inputs(ctx, c_defs)
 
             e.childrenNodes[-1].outputs = []
             ins = set([])
-            map(lambda x: ins.update(x.inputs), ctx.childrenNodes)
+            for x in ctx.childrenNodes:
+                ins.update(x.inputs)
             if ins:
-                e.childrenNodes[-1].outputs = [map(lambda t: t.name, map(self.get_typ, list(self._rm_dups(ins))))[0]]
+                e.childrenNodes[-1].outputs = [[self.get_typ(i).name for i in list(self._rm_dups(ins))][0]]
         else:
             if utils.extract_nodes([ReturnStmt], e):
                 e.childrenNodes[-1].outputs = [unicode(method.typee)]
@@ -228,11 +235,12 @@ class DataFlow(object):
         # we need all the inputs for all the childrenNodes of e
         # TODO: can we assume we can just smash all the inputs together?
         ins = set([])
-        map(lambda x: ins.update(x.inputs), e.childrenNodes)
+        for x in e.childrenNodes:
+            ins.update(x.inputs)
         def to_nm(n):
-            n.inputs = map(lambda t: t.name, map(self.get_typ, n.inputs))
+            n.inputs = [self.get_typ(i).name for i in n.inputs]
         self._walk(to_nm, e)
-        e.childrenNodes[0].inputs = map(lambda t: t.name, map(self.get_typ, ins))
+        e.childrenNodes[0].inputs = [self.get_typ(i).name for i in ins]
         return e.childrenNodes[0].inputs, e.childrenNodes[-1].outputs
         
     def get_typ(self, lbl):
@@ -257,12 +265,12 @@ class DataFlow(object):
         elif not kill: return set(inn)
         s = cp.copy(inn)
         for k in kill:
-            s = filter(lambda x: x[0] != k[0], s)
+            s = [x for x in s if x[0] != k[0]]
         return s
 
     def _intersection(self, s0, s1):
-        names = map(lambda x: x[0], list(s0))
-        return set(filter(lambda x: x[0] in names, list(s1)))
+        names = [x[0] for x in list(s0)]
+        return set([x for x in list(s1) if x[0] in names])
 
     def _wappend(self, n, *args):
         self._worklist.append(n)

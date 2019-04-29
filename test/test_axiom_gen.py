@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import os
 import unittest
 
@@ -10,7 +11,7 @@ tests = os.path.join(pwd, "axioms/axiom_gen/")
 
 class TestJava(TestCommon):
     def __test(self, fs, inline, unroll, adp_conc=False, arr=32):
-        _fs = map(lambda f: os.path.join(tests, f), fs)
+        _fs = [os.path.join(tests, f) for f in fs]
         if adp_conc:
             ret = java_sk.main.translate(prg=_fs, log_lvl='30', lib=False, opts=["--bnd-inline-amnt", str(inline), "--bnd-unroll-amnt", str(unroll), "--bnd-arr-size", str(arr), "--slv-timeout",  "10", "--slv-randassign", "--slv-simple-inputs"])
         else:
@@ -160,7 +161,7 @@ class TestJava(TestCommon):
 
     def test_EasyCSVRewrite(self):
         files = ["CsvDocument.java", "CodeAssertion.java", "CsvColumn.java", "CsvColumnTest.java", "CsvConfiguration.java", "CsvDocumentTest.java", "CsvRow.java", "CsvRowTest.java", "Tester.java", "rewrite/", "shared/"]
-        files = map(lambda s: "EasyCSV/" + s, files)
+        files = ["EasyCSV/" + s for s in files]
         inline = 3
         unroll = 5
         # self.__test(files, inline, unroll, True)

@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import os
 import unittest
 
@@ -10,7 +11,7 @@ tests = os.path.join(pwd, "new_ast")
 
 class TestJava(TestCommon):
     def __test(self, fs):
-        _fs = map(lambda f: os.path.join(tests, f), fs + ['../../model/'])
+        _fs = [os.path.join(tests, f) for f in fs + ['../../model/']]
         ret = java_sk.main.main(_fs, '30')
         self.assertEqual(ret, 0)
 

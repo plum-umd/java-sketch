@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from __future__ import absolute_import
 from . import _import
 
 from .. import Modifiers
@@ -17,7 +18,7 @@ from ..type.referencetype import ReferenceType
 
 from ..utils import utils
 
-from axiomparameter import AxiomParameter
+from .axiomparameter import AxiomParameter
 
 # This is just going to be a child of MethodDeclaration and allow for special handling of
 # the switch statements
@@ -140,7 +141,7 @@ class Xform(BodyDeclaration):
         # print("HERE: "+str(mtd_name).lower())
         # for a in adt_mtds:
         #     print("\t: "+str(a.name).lower())
-        current_mtds = filter(lambda m: m.adt and str(m.name).lower() == str(mtd_name).lower(), mtds)
+        current_mtds = [m for m in mtds if m.adt and str(m.name).lower() == str(mtd_name).lower()]
 
         # name = u'selff'
         name = str(arg.name)
@@ -191,8 +192,8 @@ class Xform(BodyDeclaration):
                       u'right': {u'@t':u'NullLiteralExpr',},
                       u'op': {u'name': u'equals',},}
         
-        adt_mtd = filter(lambda m: str(m.name).lower() == str(self.name.split('_')[1]).lower() or str(m.name).lower() + u'b' == str(self.name.split('_')[1]).lower(), mtds)[0]        
-        # adt_mtd = filter(lambda m: m.adt and m.name == a.name, mtds)[0]        
+        adt_mtd = [m for m in mtds if str(m.name).lower() == str(self.name.split('_')[1]).lower() or str(m.name).lower() + u'b' == str(self.name.split('_')[1]).lower()][0]
+        # adt_mtd = [m for m in mtds if m.adt and m.name == a.name][0]
         
         ret_val = u'new '+str(mtd.name).lower().capitalize()+u'(self=selff._'+str(cls).lower()
         for ap,mp in zip(adt_mtd.parameters, args[1:]):
@@ -279,7 +280,8 @@ class Xform(BodyDeclaration):
                     b.stmts = body
                     s.stmts = [b]
                     b.add_parent_post(s, True)
-                    map(lambda s: s.add_parent_post(b), body)                       
+                    for s in body:
+                        s.add_parent_post(b)
                 else:
                     b = BlockStmt()
                     switch2 = s.stmts[0].stmts[0] if len(s.stmts) > 0 else None
@@ -288,7 +290,8 @@ class Xform(BodyDeclaration):
                     b.stmts = body
                     s.stmts = [b]
                     b.add_parent_post(s, True)
-                    map(lambda s: s.add_parent_post(b), body)                         
+                    for s in body:
+                        s.add_parent_post(b)
         
         return new_block
         
@@ -308,7 +311,8 @@ class Xform(BodyDeclaration):
                     b.stmts = body
                     s.stmts = [b]
                     b.add_parent_post(s, True)
-                    map(lambda s: s.add_parent_post(b), body)                       
+                    for s in body:
+                        s.add_parent_post(b)
 
     def create_normal_body(self, body):
         self.normal_body = True
@@ -337,7 +341,8 @@ class Xform(BodyDeclaration):
                     b.stmts = body
                     s.stmts = [b]
                     b.add_parent_post(s, True)
-                    map(lambda s: s.add_parent_post(b), body)                       
+                    for s in body:
+                        s.add_parent_post(b)
                 else:
                     b = BlockStmt()
                     switch = s.stmts[0].stmts[0] if len(s.stmts) > 0 else None
@@ -346,7 +351,8 @@ class Xform(BodyDeclaration):
                     b.stmts = body
                     s.stmts = [b]
                     b.add_parent_post(s, True)
-                    map(lambda s: s.add_parent_post(b), body)                       
+                    for s in body:
+                        s.add_parent_post(b)
 
     # def areNamesEqual(self, 
                     

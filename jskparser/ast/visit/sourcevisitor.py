@@ -1,7 +1,14 @@
 #!/usr/bin/env python
 
-import cStringIO
-import visit as v
+from __future__ import absolute_import
+from __future__ import print_function
+try:
+    import cStringIO
+except: # so sue me.
+    import io as cStringIO
+try: xrange
+except: xrange = range
+from . import visit as v
 
 from .. import Operators as op
 from .. import AssignOperators as assignop
@@ -99,7 +106,7 @@ class SourcePrinter(object):
 
     @v.when(Node)
     def visit(self, n):
-        print "Unimplemented node:", n
+        print("Unimplemented node:", n)
 
     @v.when(CompilationUnit)
     def visit(self, n):
@@ -144,7 +151,7 @@ class SourcePrinter(object):
 
         # don't print extends Object
         if n.extendsList and \
-           (u'Object' not in map(lambda e: e.name, n.extendsList) and len(n.extendsList) == 1):
+           (u'Object' not in [e.name for e in n.extendsList] and len(n.extendsList) == 1):
             self.printt(' extends ')
             self.printSepList(n.extendsList)
 
@@ -619,7 +626,7 @@ class SourcePrinter(object):
             self.printLn(' {')
             self.indent()
             for m in n.anonymousClassBody:
-                print 'm:', m, m.name, type(m)
+                print('m:', m, m.name, type(m))
             self.printMembers(n.anonymousClassBody)
             self.unindent()
             self.printt('}')

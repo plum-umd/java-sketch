@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from __future__ import absolute_import
 from .statement import Statement
 from ..expr.nameexpr import NameExpr
 from ..expr.literalexpr import LiteralExpr

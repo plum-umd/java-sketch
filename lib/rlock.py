@@ -21,6 +21,7 @@ The module contains:
 Tested under Debian GNU/Linux, with Python 2.4, 2.5, 2.6 and 3.1.
 """
 
+from __future__ import absolute_import
 import logging
 import os
 import sys

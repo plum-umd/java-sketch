@@ -1,3 +1,7 @@
+from __future__ import absolute_import
+from __future__ import print_function
+try: xrange
+except: xrange = range
 import subprocess
 import re
 
@@ -12,7 +16,7 @@ def main(num_trials, test, first_test, last_test):
     log = open(log_file, 'w')
     if last_test == 0: last_test = int(re.findall(r't[0-9]+', text)[-1][1:])
     for i in xrange(first_test + 1 if first_test == -1 else first_test, last_test+1):
-        print 'Running test {}'.format(i)
+        print('Running test {}'.format(i))
         times = []
         for j in range(num_trials):
             cmd = ['sketch', '--fe-def', 'TID={}'.format(i), '--fe-inc', input_dir, '{}/main.sk'.format(input_dir)]
@@ -23,11 +27,11 @@ def main(num_trials, test, first_test, last_test):
                 start = t.rfind('Total time = ') + len('Total time = ')
                 times.append(float(t[start:t.find('\n', start)]))
             except:
-                print 'ERROR: {}'.format(' '.join(cmd))
+                print('ERROR: {}'.format(' '.join(cmd)))
                 with open(error_file, 'a') as f: f.write('{}\n'.format(' '.join(cmd)))
                 times.extend([0.0]*num_trials)
                 break
-        if first_test != -1: print 'Test: {}, times: {}'.format(i, times)
+        if first_test != -1: print('Test: {}, times: {}'.format(i, times))
         with open(result_file, 'a') as f:
             [f.write('{:.2f}\t'.format(n)) for n in times]
             f.write('\n')
@@ -59,23 +63,23 @@ if __name__ == '__main__':
     jskparser.add_option('-l', action='store', type='int', dest='last_test', default=0,
                       help='Last test to run.')
     (options, args) = jskparser.parse_args()
-    print 'Number of trials: {}'.format(options.trials)
+    print('Number of trials: {}'.format(options.trials))
     if options.impl:
-        print 'Testing implementation'
+        print('Testing implementation')
         main(options.trials, 'impl', options.first_test, options.last_test)
-        print
+        print()
     if options.adt:
-        print 'Testing adt'
+        print('Testing adt')
         main(options.trials, 'adt', options.first_test, options.last_test)
-        print
+        print()
     if options.obj:
-        print 'Testing Object'
+        print('Testing Object')
         main(options.trials, 'Object', options.first_test, options.last_test)
-        print
+        print()
     if (not options.impl) and (not options.adt) and (not options.obj):
-        print 'Testing implementation'
+        print('Testing implementation')
         main(options.trials, 'impl', options.first_test, options.last_test)
-        print 'Testing adt'
+        print('Testing adt')
         main(options.trials, 'adt', options.first_test, options.last_test)
-        print 'Testing Object'
+        print('Testing Object')
         main(options.trials, 'Object', options.first_test, options.last_test)

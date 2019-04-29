@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from __future__ import absolute_import
 from ..body.variabledeclarator import VariableDeclarator
 from .expression import Expression
 from . import _import
@@ -18,14 +19,14 @@ class VariableDeclarationExpr(Expression):
 
         # List<VariableDeclarator> vars
         var = kwargs.get(u'vars', {}).get(u'@e')
-        self._varss = map(lambda v: VariableDeclarator(v), var)
+        self._varss = [VariableDeclarator(v) for v in var]
 
         self._arrayCount = kwargs.get(u'arrayCount', 0)
 
         # List<AnnotationExpr> annotations
         annotations = kwargs.get(u'annotations', [])
-        self._annotations = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
-                                annotations.get(u'@e', [])) if annotations else []
+        self._annotations = [locs[x[u'@t']](x) if u'@t' in x else [] for x in
+                                annotations.get(u'@e', [])] if annotations else []
         
         self.add_as_parent([self.typee]+self.varss)
 

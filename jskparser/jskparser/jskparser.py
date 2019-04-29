@@ -1,6 +1,8 @@
 #! /usr/bin/env python
 
-import util
+from __future__ import absolute_import
+from __future__ import print_function
+from . import util
 import json
 import logging
 import logging.config
@@ -103,10 +105,10 @@ if __name__ == "__main__":
         if OPT.symtab:
             def f(n):
                 if type(n) not in SymtabGen.NONSYM:
-                    print type(n).__name__, n.name, map(lambda nn: (nn[0], nn[1]), n.symtab.items())
+                    print(type(n).__name__, n.name, [(nn[0], nn[1]) for nn in n.symtab.items()])
             g = GenericVisitor(f)
             g.visit(program)
         else:
             p = SourcePrinter()
-            print p.visit(program)
+            print(p.visit(program))
     exit(0)

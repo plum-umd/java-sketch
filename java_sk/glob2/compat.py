@@ -1,6 +1,7 @@
 # Back-port functools.lru_cache to Python 2 (and <= 3.2)
 # {{{ http://code.activestate.com/recipes/578078/ (r6)
 
+from __future__ import absolute_import
 from collections import namedtuple
 from functools import update_wrapper
 from threading import RLock

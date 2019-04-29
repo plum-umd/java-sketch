@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from __future__ import absolute_import
 from . import _import
 
 class TypeArguments(object):
@@ -8,8 +9,8 @@ class TypeArguments(object):
         
         # List<Type> typeArguments;
         typeArguments = kwargs.get(u'typeArguments', [])
-        self._typeArguments = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
-                                  typeArguments.get(u'@e', [])) if typeArguments else []
+        self._typeArguments = [locs[x[u'@t']](x) if u'@t' in x else [] for x in
+                                  typeArguments.get(u'@e', [])] if typeArguments else []
 
         # boolean usesDiamondOperator;
         self._usesDiamondOperator = kwargs.get(u'usesDiamondOperator', False)

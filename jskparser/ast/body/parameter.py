@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from __future__ import absolute_import
 from ..node import Node
 
 from . import _import
@@ -27,8 +28,7 @@ class Parameter(Node):
 
         # List<AnnotationExpr> annotations;
         annotations = kwargs.get(u'annotations', [])
-        self._annotations = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
-                                annotations.get(u'@e', [])) if annotations else []
+        self._annotations = [locs[x[u'@t']](x) if u'@t' in x else [] for x in annotations.get(u'@e', [])] if annotations else []
 
         self.add_as_parent([self.idd])
 

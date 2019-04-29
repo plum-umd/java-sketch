@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from __future__ import absolute_import
 from .bodydeclaration import BodyDeclaration
 
 from ..type.classorinterfacetype import ClassOrInterfaceType
@@ -20,21 +21,18 @@ class ConstructorDeclaration(BodyDeclaration):
     
         # List<Parameter>
         params = kwargs.get(u'parameters', {})
-        self._parameters = map(lambda x: locs[x[u'@t']](x),
-                               params.get(u'@e', [])) if params else []
+        self._parameters = [locs[x[u'@t']](x) for x in params.get(u'@e', [])] if params else []
 
         # List<TypeParameter>
         typeParameters = kwargs.get(u'typeParameters', {})
-        self._typeParameters = map(lambda x: TypeParameter(x) if u'@t' in x else [],
-                                   typeParameters.get(u'@e', [])) if typeParameters else []
+        self._typeParameters = [TypeParameter(x) if u'@t' in x else [] for x in typeParameters.get(u'@e', [])] if typeParameters else []
 
         # Type (just the class name wrapped in a Type)
         self._type = ClassOrInterfaceType(kwargs.get(u'name',{}))
     
         # List<NameExpr> throws_;
         throws = kwargs.get(u'throws_', {})
-        self._throws = map(lambda x: locs[u'NameExpr'](x) if u'@t' in x else [],
-                           throws.get(u'@e', [])) if throws else []
+        self._throws = [locs[u'NameExpr'](x) if u'@t' in x else [] for x in throws.get(u'@e', [])] if throws else []
     
         # BlockStmt block;
         body = kwargs.get(u'block')
@@ -80,8 +78,8 @@ class ConstructorDeclaration(BodyDeclaration):
     @typeParameters.setter
     def typeParameters(self, v): self._typeParameters = v
   
-    def param_typs(self): return map(lambda p: p.typee, self.parameters)
-    def param_names(self): return map(lambda p: p.name, self.parameters)
+    def param_typs(self): return [p.typee for p in self.parameters]
+    def param_names(self): return [p.name for p in self.parameters]
 
     def sig(self):
         return 'm{}'.format(str(self))
@@ -90,5 +88,5 @@ class ConstructorDeclaration(BodyDeclaration):
         cls = self.get_coid()
         nm = '{0}_{0}'.format(str(cls))
         if cls.isinner(): nm += '_{}'.format(str(cls.get_coid()))
-        params = map(self.sanitize_ty, map(lambda p: p.typee.name, self.parameters))
+        params = [self.sanitize_ty(p.typee.name) for p in self.parameters]
         return u'_'.join([nm] + params)

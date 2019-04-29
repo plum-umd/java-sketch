@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+from __future__ import absolute_import
+try: unicode
+except: unicode = u"".__class__
 import json
 
 from . import _import
@@ -51,8 +54,8 @@ class Node(object):
         
         # List<Comment> orphanComments
         orphanComments = kwargs.get(u'orphanComments', [])
-        self._orphanComments = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
-                                   orphanComments.get(u'@e', [])) if orphanComments else []
+        self._orphanComments = [locs[x[u'@t']](x) if u'@t' in x else [] for x in
+                                   orphanComments.get(u'@e', [])] if orphanComments else []
         # JavadocComment javadocComment;
         jdc = kwargs.get(u'javadoccomment', {})
         self._javadocComment = locs[u'JavadocComment'](jdc) if jdc else {}
@@ -246,7 +249,7 @@ class Node(object):
         if self not in p.childrenNodes: p.childrenNodes.append(self)
         self.parentNode = p
         if p.symtab and self.symtab:
-            self.symtab = dict(p.symtab.items() + self.symtab.items())
+            self.symtab = dict(list(p.symtab.items()) + list(self.symtab.items()))
         elif p.symtab:
             self.symtab = copy.copy(p.symtab)
 

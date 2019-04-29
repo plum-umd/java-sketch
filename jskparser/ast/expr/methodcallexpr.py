@@ -1,5 +1,10 @@
 #!/usr/bin/env python
 
+from __future__ import absolute_import
+try: unicode
+except: unicode = u"".__class__
+try: xrange
+except: xrange = range
 import itertools
 
 from . import _import
@@ -30,8 +35,8 @@ class MethodCallExpr(Expression):
 
         # List<Expression> args;
         args = kwargs.get(u'args', {})
-        self._args = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
-                         args.get(u'@e', [])) if args else []
+        self._args = [locs[x[u'@t']](x) if u'@t' in x else [] for x in
+                         args.get(u'@e', [])] if args else []
 
         self.add_as_parent([self.scope]+self.args)
 
@@ -121,12 +126,12 @@ class MethodCallExpr(Expression):
                     nm = self.sig().split('_')
                     args = nm[1:]
                     nm = nm[0]
-                    tps = map(str, cls.typeParameters)
+                    tps = [str(p) for p in cls.typeParameters]
                     if len(args) == 1:
-                        nms = map(lambda n: '_'.join([nm, n]), tps)
+                        nms = ['_'.join([nm, n]) for n in tps]
                     else:
-                        nms = map(lambda n: '_'.join([nm]+list(n)), list(itertools.chain(itertools.product(tps,args), itertools.product(args,tps))))
-                        nms.extend(map(lambda n: '_'.join([nm]+list(n)), list(itertools.chain(itertools.product(tps, tps)))))
+                        nms = ['_'.join([nm]+list(n)) for n in list(itertools.chain(itertools.product(tps,args), itertools.product(args,tps)))]
+                        nms.extend(['_'.join([nm]+list(n)) for n in list(itertools.chain(itertools.product(tps, tps)))])
                     for n in nms:
                         if cls.symtab.get(n): return cls.symtab.get(n).typee
 
@@ -157,12 +162,12 @@ class MethodCallExpr(Expression):
         call_arg_typs = callexpr.arg_typs()
         for key,val in cls.symtab.items():
             if type(val) != MethodDeclaration: continue
-            tparam_names = map(lambda t: t.name, val.typeParameters)
-            tparam_names.extend(map(lambda t: t.name, val.get_coid().typeParameters))
+            tparam_names = [t.name for t in val.typeParameters]
+            tparam_names.extend([t.name for t in val.get_coid().typeParameters])
 
             if callexpr.name == val.name and len(callexpr.args) == len(val.parameters):
-                if all(map(lambda t: t[1].name in tparam_names or utils.is_subtype(t[0], t[1]),
-                           zip(call_arg_typs, val.param_typs()))):
+                if all([t[1].name in tparam_names or utils.is_subtype(t[0], t[1]) for t in
+                           zip(call_arg_typs, val.param_typs())]):
                     mtds.append(val)
         return mtds
 
@@ -177,7 +182,7 @@ class MethodCallExpr(Expression):
 
     def match_strict(self, arg_typs, param_typs, **kwargs):
         for atyp,ptyp in zip(arg_typs, param_typs):
-            if ptyp.name in map(lambda p: p.name, param_typs): continue
+            if ptyp.name in [p.name for p in param_typs]: continue
             if not (self.identity_conversion(atyp,ptyp) or \
                     self.primitive_widening(atyp,ptyp) or \
                     self.reference_widening(atyp,ptyp)):
@@ -196,8 +201,8 @@ class MethodCallExpr(Expression):
     def match_loose(self, arg_typs, param_typs, typeParameters):
         # TODO: Spec says if the result is a raw type, do an unchecked conversion. Does this already happen?
         for atyp,ptyp in zip(arg_typs, param_typs):
-            if ptyp.name in map(lambda p: p.name, param_typs): continue
-            if ptyp.name in map(lambda p: p.name, typeParameters) and not isinstance(atyp, PrimitiveType): continue
+            if ptyp.name in [p.name for p in param_typs]: continue
+            if ptyp.name in [p.name for p in typeParameters] and not isinstance(atyp, PrimitiveType): continue
             # going to ignore, identity and widenings b/c they should be caught with strict
             if not (self.boxing_conversion(atyp, ptyp) or \
                     (self.unboxing_conversion(atyp, ptyp) and \
@@ -209,8 +214,8 @@ class MethodCallExpr(Expression):
             ctypes = candidate.param_typs()
             for i in range(len(others)):
                 # if the parameters of the candidate aren't less specific than all the parameters of other
-                if not all(map(lambda t: utils.is_subtype(t[0], t[1]), \
-                               zip(ctypes, others[i].param_typs()))):
+                if not all([utils.is_subtype(t[0], t[1]) for t in
+                            zip(ctypes, others[i].param_typs())]):
                     return False
             return True
         for mi in xrange(len(mtds)):
@@ -244,7 +249,7 @@ class MethodCallExpr(Expression):
 
     def sig(self):
         return 'm{}'.format(str(self))
-        # atyps = ','.join(map(str, self.arg_typs())) if self.args else ''
+        # atyps = ','.join([str(t) for t in self.arg_typs()]) if self.args else ''
         # return '{} {}({});'.format(str(self.typee), str(self), atyps)
         
     def arg_typs(self):
@@ -291,6 +296,6 @@ class MethodCallExpr(Expression):
         name = self.name+'b' if self._add_bang else self.name
         if a:
             return '_'.join([self.sanitize_ty(name)] + \
-                            map(lambda a: self.sanitize_ty(a.name), a))
+                            [self.sanitize_ty(a.name) for a in a])
         else:
             return self.name        

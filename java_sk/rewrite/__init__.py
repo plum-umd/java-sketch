@@ -1,13 +1,14 @@
+from __future__ import absolute_import
 import logging
 
 from lib.typecheck import *
 
 from ..meta.program import Program
 
-from desugar import Desugar
-from generator import CGenerator, MGenerator
-from hole import EHole
-from semantic_checker import SemanticChecker
+from .desugar import Desugar
+from .generator import CGenerator, MGenerator
+from .hole import EHole
+from .semantic_checker import SemanticChecker
 
 @takes(Program)
 @returns(nothing)

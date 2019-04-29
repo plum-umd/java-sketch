@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from __future__ import absolute_import
 from .statement import Statement
 from .switchentrystmt import SwitchEntryStmt
 
@@ -16,7 +17,7 @@ class SwitchStmt(Statement):
     
         # List<SwitchEntryStmt> entries;
         en = kwargs.get(u'entries', {}).get(u'@e')
-        self._entries = map(lambda e: SwitchEntryStmt(e), en) if en else []
+        self._entries = [SwitchEntryStmt(e) for e in en] if en else []
 
         self.add_as_parent([self.selector]+self.entries)
     

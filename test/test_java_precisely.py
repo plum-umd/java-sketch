@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import os
 import unittest
 
@@ -12,7 +13,7 @@ class TestMini(TestCommon):
 
   def __test(self, fs):
     append_b = lambda f: os.path.join(jp, f)
-    _fs = map(append_b, fs)
+    _fs = [append_b(f) for f in fs]
     ret = java_sk.main.main(_fs)
     self.assertEqual(ret, 0)
 

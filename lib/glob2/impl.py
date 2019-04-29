@@ -1,6 +1,8 @@
 """Filename globbing utility."""
 
 from __future__ import absolute_import
+try: unicode
+except: unicode = u"".__class__
 
 import sys
 import os
@@ -67,7 +69,7 @@ class Globber(object):
         result = self._iglob(pathname)
         if with_matches:
             return result
-        return map(lambda s: s[0], result)
+        return [s[0] for s in result]
 
     def _iglob(self, pathname, rootcall=True):
         """Internal implementation that backs :meth:`iglob`.
@@ -150,7 +152,7 @@ class Globber(object):
                 names = [''] if globstar_with_root else []
                 for top, entries in self.walk(dirname):
                     _mkabs = lambda s: os.path.join(top[len(dirname)+1:], s)
-                    names.extend(map(_mkabs, entries))
+                    names.extend([_mkabs(e) for e in entries])
                 # Reset pattern so that fnmatch(), which does not understand
                 # ** specifically, will only return a single group match.
                 pattern = '*'
@@ -163,7 +165,7 @@ class Globber(object):
             # Remove hidden files by default, but take care to ensure
             # that the empty string we may have added earlier remains.
             # Do not filter out the '' that we might have added earlier
-            names = filter(lambda x: not x or not _ishidden(x), names)
+            names = [x for x in names if not x or not _ishidden(x)]
         return fnmatch.filter(names, pattern)
 
 

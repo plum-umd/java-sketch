@@ -4,6 +4,7 @@
 # visit.py
 # Updated 2013-06-20 to fix bug on line 41
 
+from __future__ import absolute_import
 import inspect
 
 __all__ = ['on', 'when']
@@ -18,7 +19,7 @@ def on(param_name):
 def when(param_type):
   def f(fn):
     frame = inspect.currentframe().f_back
-    dispatcher = frame.f_locals[fn.func_name]
+    dispatcher = frame.f_locals[fn.__name__]
     if not isinstance(dispatcher, Dispatcher):
       dispatcher = dispatcher.dispatcher
     dispatcher.add_target(param_type, fn)

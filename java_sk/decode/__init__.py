@@ -1,3 +1,6 @@
+from __future__ import absolute_import
+try: unicode
+except: unicode = u"".__class__
 import os
 import logging
 
@@ -7,11 +10,11 @@ import lib.const as C
 from .. import util
 from ..meta.program import Program
 
-from finder import HFinder, EGFinder
-from replacer import HReplacer, EGReplacer, MGReplacer
+from .finder import HFinder, EGFinder
+from .replacer import HReplacer, EGReplacer, MGReplacer
 
-from collection import Collection
-from semantic_checker import SemanticChecker
+from .collection import Collection
+from .semantic_checker import SemanticChecker
 
 
 # white-list checking
@@ -79,7 +82,8 @@ def to_java(java_dir, pgr, output_path):
   # replace collections of interface types with actual classes, if any
   _visitors.append(Collection())
   _visitors.append(SemanticChecker())
-  map(lambda vis: pgr.accept(vis), _visitors)
+  for vis in _visitors:
+    pgr.accept(vis)
 
   ## trimming of the program
   trim(pgr)

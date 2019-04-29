@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+from __future__ import absolute_import
+from __future__ import print_function
 from .type import Type
 
 from . import _import
@@ -19,8 +21,8 @@ class ReferenceType(Type):
         if type(v) == list:
             self._values = v
         else:
-            self._values = map(lambda e: locs[e[u'@t']](e) if u'@t' in e else [],
-                               v.get(u'@e', [])) if v else []
+            self._values = [locs[e[u'@t']](e) if u'@t' in e else [] for e in
+                               v.get(u'@e', [])] if v else []
 
         # List<List<AnnotationExpr>> arraysAnnotations;
         self._arraysAnnotations = []
@@ -30,7 +32,7 @@ class ReferenceType(Type):
 
         if ad:
             if ad[0]:
-                print 'ReferenceType annotations not implemented'
+                print('ReferenceType annotations not implemented')
                 for a in aa:
                     self._arraysAnnotations.append(locs[u'AnnotationExpr'](a) if a else None)
 

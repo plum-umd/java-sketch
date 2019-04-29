@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
+from __future__ import absolute_import
 from . import _import
 from .. import Modifiers
 
-from bodydeclaration import BodyDeclaration
+from .bodydeclaration import BodyDeclaration
 
 class TypeDeclaration(BodyDeclaration):
     def __init__(self, kwargs={}):
@@ -15,8 +16,7 @@ class TypeDeclaration(BodyDeclaration):
     
         # List<BodyDeclaration>
         self._members = []
-        self._members.extend(map(lambda x: locs[x[u'@t']](x),
-                            kwargs.get(u'members', {}).get(u'@e', [])))
+        self._members.extend([locs[x[u'@t']](x) for x in kwargs.get(u'members', {}).get(u'@e', [])])
     
         self.add_as_parent(self.members)
     

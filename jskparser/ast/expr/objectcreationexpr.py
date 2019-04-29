@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from __future__ import absolute_import
 from .expression import Expression
 from ..type.classorinterfacetype import ClassOrInterfaceType
 from ..body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
@@ -24,20 +25,20 @@ class ObjectCreationExpr(Expression):
 
         # List<Type> typeArgs;
         typeArgs = kwargs.get(u'typeArgs', {})
-        self._typeArgs = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
-                             typeArgs.get(u'@e', [])) if typeArgs else []
+        self._typeArgs = [locs[x[u'@t']](x) if u'@t' in x else [] for x in
+                             typeArgs.get(u'@e', [])] if typeArgs else []
 
         # List<Expression> args;
         args = kwargs.get(u'args', {})
         self._tmpargs = args
-        self._args = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
-                         args.get(u'@e', [])) if args else []
+        self._args = [locs[x[u'@t']](x) if u'@t' in x else [] for x in
+                         args.get(u'@e', [])] if args else []
 
         # This can be null, to indicate there is no body
         # List<BodyDeclaration> anonymousClassBody;
         anon = kwargs.get(u'anonymousClassBody', {})
-        self._anonymousClassBody = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
-                                       anon.get(u'@e', [])) if anon else []
+        self._anonymousClassBody = [locs[x[u'@t']](x) if u'@t' in x else [] for x in
+                                       anon.get(u'@e', [])] if anon else []
 
         box = kwargs.get(u'box', {})
         self._box = box if box else False

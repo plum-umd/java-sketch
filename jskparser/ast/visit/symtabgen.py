@@ -1,4 +1,7 @@
-import visit as v
+from __future__ import absolute_import
+try: xrange
+except: xrange = range
+from . import visit as v
 
 from .. import JAVA_LANG
 from .. import PRIMITIVES
@@ -57,7 +60,8 @@ class SymtabGen(object):
     def visit(self, node):
         if type(node) in self.NONSYM: return
         self.new_symtab(node)
-        map(lambda n: n.accept(self), node.childrenNodes)
+        for n in node.childrenNodes:
+            n.accept(self)
         # print "Unimplemented node:", node
 
     @v.when(CompilationUnit)
@@ -78,7 +82,7 @@ class SymtabGen(object):
                 }
             node.imports.append(ImportDeclaration({u'@t':u'ImportDeclaration',u'name':qn, u'implicit': True}))
             for i in node.imports: node.symtab.update({str(i):i})
-        d = dict([v for v in map(lambda t: (t.name,t), node.types)])
+        d = dict([v for v in [(t.name,t) for t in node.types]])
         for ty in node.types:
             ty.symtab.update({u'_cu_':node})
             if self.lib:
@@ -99,11 +103,13 @@ class SymtabGen(object):
         [node.symtab.update({n.name:n}) for n in node.extendsList if n.name not in node.symtab]
         [node.symtab.update({n.name:n}) for n in node.implementsList if n.name not in node.symtab]
         [node.symtab.update({n.name:n}) for n in node.typeParameters if n.name not in node.symtab]
-        node.members = filter(lambda n: not isinstance(n, EmptyMemberDeclaration), node.members)
-        map(lambda n: node.symtab.update({n.name:n} if isinstance(n, FieldDeclaration) or \
+        node.members = [n for n in node.members if not isinstance(n, EmptyMemberDeclaration)]
+        for n in node.members:
+            node.symtab.update({n.name:n} if isinstance(n, FieldDeclaration) or \
                                          isinstance(n, ClassOrInterfaceDeclaration) else \
-                                         {n.sig():n}), node.members)
-        map(lambda n: n.accept(self), node.members)
+                                         {n.sig():n})
+        for n in node.members:
+            n.accept(self)
         
     @v.when(MethodDeclaration)
     def visit(self, node):
@@ -116,11 +122,16 @@ class SymtabGen(object):
         if str(node.typee) not in PRIMITIVES and str(node.typee) not in node.symtab:
             node.symtab.update({str(node.typee):node.typee})
         # somethign is weird here. shouldnt have to visit idd and parameters
-        map(lambda p: p.idd.accept(self), node.parameters)
-        map(lambda p: p.accept(self), node.parameters)
-        map(lambda t: node.symtab.update({t.name:t}), node.typeParameters)
-        map(lambda p: p.idd.symtab.update(node.symtab), node.parameters)
-        # map(lambda c: c.accept(self), node.childrenNodes)
+        for p in node.parameters:
+            p.idd.accept(self)
+        for p in node.parameters:
+            p.accept(self)
+        for t in node.typeParameters:
+            node.symtab.update({t.name:t})
+        for p in node.parameters:
+            p.idd.symtab.update(node.symtab)
+        # for c in node.childrenNodes:
+        #     c.accept(self)
         if node.body: node.body.accept(self)
 
         if type(node.parentNode) == ObjectCreationExpr:
@@ -143,7 +154,8 @@ class SymtabGen(object):
         # for p in node.parameters:
         #     if p.idd: p.idd.accept(self)
         #     if p.method: p.method.accept(self)
-        map(lambda p: p.accept(self), node.parameters)
+        for p in node.parameters:
+            p.accept(self)
         for p in node.parameters:
             if p.idd:
                 p.idd.symtab.update(node.symtab)
@@ -151,7 +163,7 @@ class SymtabGen(object):
             # Catch args that are actually Axiom Declarations
             if p.method:
                 p.method.symtab.update(node.symtab)
-                node.symtab = dict(p.method.symtab.items() + node.symtab.items())
+                node.symtab = dict(list(p.method.symtab.items()) + list(node.symtab.items()))
         if node.body:
             node.body.accept(self)
         # print node.symtab
@@ -179,9 +191,12 @@ class SymtabGen(object):
         self.new_symtab(node, cp=True)
         node.parentNode.symtab.update({str(node):node})
         node.symtab.update({str(node):node})
-        map(lambda p: p.idd.accept(self), node.parameters)
-        map(lambda p: p.accept(self), node.parameters)
-        map(lambda p: p.idd.symtab.update(node.symtab), node.parameters)
+        for p in node.parameters:
+            p.idd.accept(self)
+        for p in node.parameters:
+            p.accept(self)
+        for p in node.parameters:
+            p.idd.symtab.update(node.symtab)
         if node.body: node.body.accept(self)
 
     @v.when(FieldDeclaration)
@@ -236,29 +251,35 @@ class SymtabGen(object):
     @v.when(ExpressionStmt)
     def visit(self, node):
         self.new_symtab(node)
-        map(lambda n: n.accept(self), node.childrenNodes)
+        for n in node.childrenNodes:
+            n.accept(self)
 
     # expr/
     @v.when(FieldAccessExpr)
     def visit(self, node):
         self.new_symtab(node, cp=True)
-        map(lambda n: n.accept(self), node.childrenNodes)
+        for n in node.childrenNodes:
+            n.accept(self)
 
     @v.when(MethodCallExpr)
     def visit(self, node):
         self.new_symtab(node, cp=True)
-        map(lambda n: n.accept(self), node.childrenNodes)
+        for n in node.childrenNodes:
+            n.accept(self)
 
     @v.when(VariableDeclarationExpr)
     def visit(self, node):
         self.new_symtab(node)
-        map(lambda v: v.accept(self), node.childrenNodes)
-        # map(lambda v: v.accept(self), node.varss)
+        for v in node.childrenNodes:
+            v.accept(self)
+        # for v in node.varss:
+        #     v.accept(self)
 
     @v.when(BinaryExpr)
     def visit(self, node):
         self.new_symtab(node)
-        map(lambda n: n.accept(self), node.childrenNodes)
+        for n in node.childrenNodes:
+            n.accept(self)
 
     @v.when(NameExpr)
     def visit(self, node):
