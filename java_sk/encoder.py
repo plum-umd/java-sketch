@@ -28,6 +28,7 @@ from ast.body.variabledeclarator import VariableDeclarator
 from ast.body.axiomparameter import AxiomParameter
 
 from ast.stmt.returnstmt import ReturnStmt
+from ast.stmt.expressionstmt import ExpressionStmt
 
 from ast.expr.generatorexpr import GeneratorExpr
 from ast.expr.methodcallexpr import MethodCallExpr
@@ -35,6 +36,7 @@ from ast.expr.literalexpr import LiteralExpr
 from ast.expr.nameexpr import NameExpr
 from ast.expr.conditionalexpr import ConditionalExpr
 from ast.expr.binaryexpr import BinaryExpr
+from ast.expr.assignexpr import AssignExpr
 
 from ast.type.referencetype import ReferenceType
 from ast.type.primitivetype import PrimitiveType
@@ -297,6 +299,26 @@ class Encoder(object):
         flds = utils.extract_nodes([FieldDeclaration], cls, recurse=False)
         s_flds = filter(td.isStatic, flds)
 
+        # filter out non-static fields with initial values
+        ns_flds = filter(lambda f: not td.isStatic(f) and f.variable.init, flds)
+        # add initializer to all constructors for non-static fields defined
+        #   in global space
+        for fld in ns_flds:
+            f = self.tltr.trans_fld(fld)
+            for con in cons:
+                tar = NameExpr()
+                tar.name = 'self.{}'.format(f[1])
+                expr = AssignExpr()
+                expr.target = tar
+                expr.value = fld.variable.init
+                expr.op = u'assign'
+                assignExpr = ExpressionStmt()
+                assignExpr.expr = expr
+                if con.body == None:
+                    con.body = BlockStmt({u'stmts': [assignExpr]})
+                else:
+                    con.body.stmts.insert(0,assignExpr)        
+        
         cname = str(cls)
         buf = cStringIO.StringIO()
         buf.write("package {};\n\n".format(cname))
@@ -333,9 +355,20 @@ class Encoder(object):
                           "    return self;\n"
                           "}}\n\n".format(str(cls), str(etypes[-1]), i, init))
             else:
-                buf.write("Object {0}_{0}(Object self) {{\n"
-                          "    return self;\n"
-                          "}}\n\n".format(str(cls)))
+                if not ns_flds:
+                    buf.write("Object {0}_{0}(Object self) {{\n"
+                              "    return self;\n"
+                              "}}\n\n".format(str(cls)))
+                else:
+                    fld_vals = list(map(lambda f: self.tltr.trans(f.variable.init), ns_flds))
+                    trans_ns_flds = list(map(self.tltr.trans_fld, ns_flds))
+                    trans_ns_flds = zip(trans_ns_flds, fld_vals)
+                    stmts = list(map(lambda f: "    self.{0}={1};\n".format(f[0][1],f[1]), trans_ns_flds))
+                    stmts = "".join(stmts)
+                    buf.write("Object {0}_{0}(Object self) {{\n{1}"
+                              "    return self;\n"
+                              "}}\n\n".format(str(cls), stmts))
+                    
 
         for m in cons + mtds:
             if hasattr(m, 'interface') and m.parentNode.interface: continue
