@@ -30,6 +30,8 @@ def translate(**kwargs):
     cntr = kwargs.get('cntr', False)
     skv = kwargs.get('skv', 0)
     lib = kwargs.get('lib', True)
+    inline = kwargs.get('inline', None)
+    unroll = kwargs.get('unroll', None)        
     
     codegen_jar = os.path.join(root_dir, "codegen", "lib", "codegen.jar")
     
@@ -43,6 +45,11 @@ def translate(**kwargs):
     
     # Sketch options
     opts = kwargs.get('opts', [])
+
+    # Sketch inlining and unrolling
+    print("HERE: {0},{1}".format(inline, unroll))
+    if inline: opts.extend(['--bnd-inline-amnt', inline])
+    if unroll: opts.extend(['--bnd-unroll-amnt', unroll])
 
     # print counter examples
     if cntr: opts.extend(['-V3', '--debug-cex'])
@@ -119,6 +126,12 @@ if __name__ == "__main__":
     jskparser.add_option("--no-lib",
                          action="store_false", dest="lib", default=True,
                          help="compile without linking default Java libraries")
+    jskparser.add_option("--inline",
+                         action="store", dest="inline", default=None,
+                         help="change inlining amount for Sketch")
+    jskparser.add_option("--unroll",
+                         action="store", dest="unroll", default=None,
+                         help="change unrolling amount for Sketch")
     (OPT, argv) = jskparser.parse_args()
     OPT.prg = argv
   
