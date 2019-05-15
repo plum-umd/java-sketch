@@ -11,7 +11,7 @@ public class LinkedList<E> implements List<E>{
     private static final int MAX_ARRAY_SIZE = 1000000; // other value causing weird problem in Sketch
     // private static final int MAX_ARRAY_SIZE = 0x7fffffff - 8;
 
-    public ArrayList() {
+    public LinkedList() {
 	this.DEFAULT_CAPACITY = 10;
 	this.elementData = new Object[this.DEFAULT_CAPACITY];
 	this.capacity = this.DEFAULT_CAPACITY;
@@ -19,7 +19,7 @@ public class LinkedList<E> implements List<E>{
 	this.EMPTY_ELEMENTDATA = new Object[0];	
     }
 
-    public ArrayList(int initialCapacity) {
+    public LinkedList(int initialCapacity) {
 	this.DEFAULT_CAPACITY = 10;
 	this.elementData = new Object[initialCapacity];
 	this.capacity = initialCapacity;	
@@ -27,7 +27,11 @@ public class LinkedList<E> implements List<E>{
 	this.EMPTY_ELEMENTDATA = new Object[0];	
     }
 
-    public void addAll(ArrayList<E> a2) {
+    public LinkedList(List<E> es) {
+        this.addAll(es);
+    }
+
+    public void addAll(LinkedList<E> a2) {
 	int len = a2.size();
 	for (int i = 0; i < len; i++) {
 	    this.add(a2.get(i));
@@ -209,7 +213,7 @@ public class LinkedList<E> implements List<E>{
 
     public List<E> subList(int fromIndex, int toIndex) {
         subListRangeCheck(fromIndex, toIndex, size);
-    	ArrayList a = new ArrayList();
+        LinkedList a = new LinkedList();
 	for (int i = 0; i < toIndex-fromIndex; i++ )
 	    a.add(elementData[i]); 
     	return a;

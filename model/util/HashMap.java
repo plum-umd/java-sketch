@@ -94,11 +94,12 @@ public class HashMap<K,V> {
     }
 
     
-    // public K[] keySet(K key) {
-    // 	K[] keys = new K[size()];
-    // 	for (int i = 0; i < size(); i++) keys[i] = elementData[i].key;
-    // 	return keys;
-    // }
+    public K[] keySet(K key) {
+        K[] keys = new K[size()];
+        for (int i = 0; i < size(); i++) keys[i] = elementData[i].key;
+        return keys;
+    }
+
 
     public void clear() {
     	elementData = new Node[DEFAULT_INITIAL_CAPACITY];
