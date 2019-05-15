@@ -31,7 +31,7 @@ public class LinkedList<E> implements List<E>{
         this.addAll(es);
     }
 
-    public void addAll(LinkedList<E> a2) {
+    public void addAll(List<E> a2) {
 	int len = a2.size();
 	for (int i = 0; i < len; i++) {
 	    this.add(a2.get(i));
