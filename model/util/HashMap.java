@@ -94,9 +94,14 @@ public class HashMap<K,V> {
     }
 
     
-    public K[] keySet(K key) {
+    public K[] keySet() {
         K[] keys = new K[size()];
-        for (int i = 0; i < size(); i++) keys[i] = elementData[i].key;
+        int j = 0;
+        for (int i = 0; i < capacity; i++) {
+            if (elementData[i] != null) {
+                keys[j++] = elementData[i].key;
+            }
+        }
         return keys;
     }
 
@@ -150,27 +155,23 @@ public class HashMap<K,V> {
     	    hashMod += capacity;
     	}
     	Node<K,V> node = elementData[hashMod];
-	
-    	if (node != null) {
-    	    if (node.hash != hash || !key.equals(node.key)) {
-    		resize(hash+1);
-    		hashMod = hash % capacity;
-    		if (hashMod < 0) {
-    		    hashMod += capacity;
-    		}
-    		node = elementData[hashMod];
-    		numPairs ++;
-    	    } 
-    	    elementData[hashMod] = new Node<K,V>(key, value, hash);
-    	    if (node != null) {
-    		return node.value;
-    	    } else {
-    		return null;
-    	    }
-    	}
-    	elementData[hashMod] = new Node<K,V>(key, value, hash);
-    	numPairs ++;
-    	return null;
+
+        while (node != null && (node.hash != hash || !key.equals(node.key))) {
+            resize(capacity + 4);
+            hashMod = hash % capacity;
+            if (hashMod < 0) {
+                hashMod += capacity;
+            }
+            node = elementData[hashMod];
+        }
+
+        elementData[hashMod] = new Node<K,V>(key, value, hash);
+        if (node != null) {
+            return node.value;
+        } else {
+            numPairs ++;
+            return null;
+        }
     }
 
     private void putValNoResize(int hash, K key, V value) {
