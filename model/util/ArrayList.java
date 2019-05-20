@@ -1,5 +1,33 @@
 package java.util;
 
+private class ArrayListIterator<E> implements Iterator<E> {
+    private ArrayList<E> es = null;
+    private int index = -1;
+    private boolean removed = false;
+    public ArrayListIterator(ArrayList<E> es) {
+        this.es = es;
+    }
+    public boolean hasNext() {
+        return (this.index + 1) < es.size();
+    }
+    public E next() {
+        if(hasNext()) {
+            this.index++;
+        } else {
+            throw new NoSuchElementException();
+            return null;
+        }
+        this.removed = false;
+        return this.es.get(this.index);
+    }
+    public void remove() {
+        if(!this.removed) {
+            this.es.remove(this.index);
+            this.removed = true;
+        }
+    }
+}
+
 public class ArrayList<E> implements List<E>{
 
     Object[] elementData;
@@ -27,13 +55,12 @@ public class ArrayList<E> implements List<E>{
 	this.EMPTY_ELEMENTDATA = new Object[0];	
     }
 
-    public void addAll(ArrayList<E> a2) {
-	int len = a2.size();
-	for (int i = 0; i < len; i++) {
-	    this.add(a2.get(i));
-	}
+    public void addAll(List<E> a2) {
+        for(Iterator<E> it = a2.iterator(); it.hasNext();) {
+            this.add(it.next());
+        }
     }
-    
+
     public void sort(Object c) {
 
     }
@@ -214,6 +241,11 @@ public class ArrayList<E> implements List<E>{
 	    a.add(elementData[i]); 
     	return a;
         // return new SubList(this, 0, fromIndex, toIndex);
+    }
+
+    public Iterator<E> iterator() {
+        ArrayList<E> arg = this;
+        return new ArrayListIterator<E>(arg);
     }
 
     static void subListRangeCheck(int fromIndex, int toIndex, int size) {

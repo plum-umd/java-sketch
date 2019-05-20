@@ -1,5 +1,29 @@
 package java.util;
 
+private class ArrayAsListIterator<E> implements Iterator<E> {
+    private E[] es = null;
+    private int index = -1;
+    public ArrayAsListIterator(E[] es) {
+        this.es = es;
+    }
+    public boolean hasNext() {
+        Object[] es = this.es;
+        return (this.index + 1) < es.length;
+    }
+    public E next() {
+        if(hasNext()) {
+            this.index++;
+        } else {
+            throw new NoSuchElementException();
+            return null;
+        }
+        return this.es[this.index];
+    }
+    public void remove() {
+        throw new UnsupportedOperationException();
+    }
+}
+
 private class ArrayAsList<E> implements List<E> {
     private E[] es = null;
     public AsList(E[] es) {
@@ -31,6 +55,9 @@ private class ArrayAsList<E> implements List<E> {
     public int size() {
         Object[] es = this.es;
         return es.length;
+    }
+    public Iterator<E> iterator() {
+        return new ArrayAsListIterator<E>(es);
     }
 }
 

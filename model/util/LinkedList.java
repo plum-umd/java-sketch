@@ -6,6 +6,34 @@ private class LLNode<E>{
     public LLNode<E> next = null;
 }
 
+private class LinkedListIterator<E> implements Iterator<E> {
+    private LinkedList<E> es = null; // only used for removal
+    private LLNode<E> cur = null;
+    private LLNode<E> next = null;
+    public LinkedListIterator(LinkedList<E> es, LLNode<E> n) {
+        this.es = es;
+        this.next = n;
+    }
+    public boolean hasNext() {
+        return this.next != null;
+    }
+    public E next() {
+        if(hasNext()) {
+            LLNode<E> cur = this.next;
+            this.cur = cur;
+            this.next = cur.next;
+            return cur.value;
+        }
+        throw new NoSuchElementException();
+        return null;
+    }
+    public void remove() {
+        if(this.cur != null) {
+            this.es.removeNode(cur);
+            this.cur = null;
+        }
+    }
+}
 
 public class LinkedList<E> implements List<E>{
     private LLNode<E> head = null;
@@ -20,10 +48,9 @@ public class LinkedList<E> implements List<E>{
     }
 
     public void addAll(List<E> a2) {
-	int len = a2.size();
-	for (int i = 0; i < len; i++) {
-	    this.add(a2.get(i));
-	}
+        for(Iterator<E> it = a2.iterator(); it.hasNext();) {
+            this.add(it.next());
+        }
     }
     
     public void sort(Object c) {
@@ -96,6 +123,17 @@ public class LinkedList<E> implements List<E>{
             cur = cur.next;
         }
         return -1;
+    }
+
+    public E remove() {
+        if (head == null) {
+            throw new NoSuchElementException();
+            return null;
+        }
+
+        LLNode<E> node = head;
+        removeNode(head);
+        return node.value;
     }
 
     public E remove(int index) {
@@ -181,6 +219,11 @@ public class LinkedList<E> implements List<E>{
         assert fromIndex < toIndex;
     }
 
+    public Iterator<E> iterator() {
+        LinkedList<E> arg = this;
+        return new LinkedListIterator<E>(arg, this.head);
+    }
+
     private LLNode<E> getNode(int n) {
         LLNode<E> cur = head;
         int i = 0;
@@ -190,7 +233,7 @@ public class LinkedList<E> implements List<E>{
         return cur;
     }
 
-    private void removeNode(LLNode<E> node) {
+    public void removeNode(LLNode<E> node) {
         if(node.prev != null) {
             node.prev.next = node.next;
         } else {
@@ -204,4 +247,3 @@ public class LinkedList<E> implements List<E>{
         this.size--;
     }
 }
-

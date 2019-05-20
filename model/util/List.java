@@ -1,6 +1,8 @@
 package java.util;
 
-public interface List <E> {
+import java.lang.Iterable;
+
+public interface List <E> extends Iterable<E> {
   public <E> boolean add(E e);
   public boolean isEmpty();
   public E get(int index);
