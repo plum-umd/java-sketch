@@ -1,3 +1,39 @@
+package java.util;
+
+private class ArrayAsList<E> implements List<E> {
+    private E[] es = null;
+    public AsList(E[] es) {
+        this.es = es;
+    }
+    public <E> boolean add(E e) {
+        throw new UnsupportedOperationException();
+        return false;
+    }
+    public boolean isEmpty() {
+        return size() == 0;
+    }
+    public E get(int index) {
+        return this.es[index];
+    }
+    public E remove(int index) {
+        throw new UnsupportedOperationException();
+        return null;
+    }
+    public boolean remove(Object e) {
+        throw new UnsupportedOperationException();
+        return false;
+    }
+    public <E> E set (int index, E element) {
+        E old = this.es[index];
+        this.es[index] = element;
+        return old;
+    }
+    public int size() {
+        Object[] es = this.es;
+        return es.length;
+    }
+}
+
 public class Arrays {
 
     public static byte[] copyOf(byte[] in, int len) {
@@ -23,5 +59,9 @@ public class Arrays {
 	    return false;
 	}
 	return true;
+    }
+
+    public static <E> List<E> asList(E[] es) {
+        return new ArrayAsList<E>(es);
     }
 }
