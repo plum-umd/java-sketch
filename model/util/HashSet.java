@@ -1,86 +1,102 @@
-// THIS CLASS IS UNTESTED
+package java.util;
 
-public class HashSet<E> implements Set{
+public class HashSet<E> implements Set<E> {
     E[] set;
     int capacity;
     int size;
 
-    static int INITIAL_CAPACITY;
-    static int RESIZE_FACTOR;
-    
+    static final int INITIAL_CAPACITY;
+
     public HashSet() {
-	set = new E[INITIAL_CAPACITY];
-	size = 0;
-	capacity = INITIAL_CAPACITY;
-	this.INITIAL_CAPACITY = 16;
-	this.RESIZE_FACTOR = 2;
+        this.INITIAL_CAPACITY = 16;
+        set = new E[INITIAL_CAPACITY];
+        size = 0;
+        capacity = INITIAL_CAPACITY;
     }
 
-    private void resize() {
-    	int new_size = capacity * RESIZE_FACTOR;
-    	E[] new_set = new E[new_size];
-    	for (int i=0; i<capacity; i++) {
-    	    new_set[i] = set[i];
-    	}
-    	set = new_set;
-    	capacity = capacity * RESIZE_FACTOR;
+    public HashSet(List<E> es) {
+        this.INITIAL_CAPACITY = 16;
+        set = new E[INITIAL_CAPACITY];
+        size = 0;
+        capacity = INITIAL_CAPACITY;
+        for(Iterator<E> it = es.iterator(); it.hasNext();) {
+            this.add(it.next());
+        }
     }
 
-    private void check_size() {
-    	if (size >= capacity) {
-    	    resize();
-    	}
+    private void resize(int newSize) {
+        E[] oldSet = set;
+        E[] newSet = new E[newSize];
+
+        for (int i = 0; i < capacity; i++) {
+            if (oldSet[i] != null) {
+                int oldHash = hashMod(oldSet[i], capacity);
+                int newHash = hashMod(oldSet[i], newSize);
+                newSet[newHash] = oldSet[oldHash];
+            }
+        }
+
+        this.set = newSet;
+        this.capacity = newSize;
     }
-    
-    private int get_Index(Object o) {
-    	for (int i=0; i<size; i++) {
-    	    if (o.equals(set[i])) {
-    		return i;
-    	    }
-    	}
-    	return -1;
+
+    private int hashMod(Object o, int mod) {
+        int hash = o.hashCode() % mod;
+        if (hash < 0) {
+            hash += mod;
+        }
+        return hash;
     }
-    
+
     public boolean contains(Object o) {
-    	return get_Index(o) >= 0;
+        int hash = hashMod(o, capacity);
+        E entry = set[hash];
+
+        return entry != null && o.equals(entry);
     }
-    
+
     public boolean add(E e) {
-    	if (contains(e) || e == null) {
-    	    return false;
-    	} else {
-    	    set[size] = e;
-    	    size ++;
-    	    check_size();
-    	    return true;
-    	}
+        int hash = hashMod(e, capacity);
+        E entry = set[hash];
+
+        while (entry != null && !e.equals(entry)) {
+            resize(capacity + 4);
+            hash = hashMod(e, capacity);
+            entry = set[hash];
+        }
+
+        if (entry != null) {
+            return false;
+        } else {
+            set[hash] = e;
+            size++;
+            return true;
+        }
     }
 
     public boolean remove(Object o) {
-    	int index = get_Index(o);
-    	if (index >= 0) {
-    	    for (int j=index; j<size-1; j++) {
-    		set[j] = set[j+1];
-    	    }
-    	    set[size-1] = null;
-    	    size --;
-    	    return true;
-    	} else {
-    	    return false;
-    	}
+        int hash = hashMod(o, capacity);
+
+        if (set[hash] != null) {
+            set[hash] = null;
+            size--;
+            return true;
+        }
+
+        return false;
     }
-    
+
     public void clear() {
-    	set = new E[INITIAL_CAPACITY];
-    	size = 0;
-    	capacity = INITIAL_CAPACITY;
+        set = new E[INITIAL_CAPACITY];
+        size = 0;
+        capacity = INITIAL_CAPACITY;
     }
 
     public int size() {
-    	return size;
+        return size;
     }
 
     public boolean isEmpty() {
-    	return size == 0;
+        return size == 0;
     }
 }

@@ -35,6 +35,7 @@ def toAST(files, ext, add_libs):
         alist_path = os.path.abspath(os.path.join(pwd, '../../model/util/ArrayList.java'))
         llist_path = os.path.abspath(os.path.join(pwd, '../../model/util/LinkedList.java'))
         hmap_path = os.path.abspath(os.path.join(pwd, '../../model/util/HashMap.java'))
+        hset_path = os.path.abspath(os.path.join(pwd, '../../model/util/HashSet.java'))
         if obj_path not in prg_files: prg_files.append(obj_path)
         if str_path not in prg_files: prg_files.append(str_path)
         if num_path not in prg_files: prg_files.append(num_path)
@@ -47,6 +48,7 @@ def toAST(files, ext, add_libs):
         if alist_path not in prg_files: prg_files.append(alist_path)
         if llist_path not in prg_files: prg_files.append(llist_path)
         if hmap_path not in prg_files: prg_files.append(hmap_path)
+        if hset_path not in prg_files: prg_files.append(hset_path)
     api = ""
     for fname in prg_files:
         with open(fname, 'r') as fd:

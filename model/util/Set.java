@@ -1,3 +1,5 @@
+package java.util;
+
 public interface Set <E> {
     public boolean add(E e);
     public void clear();
