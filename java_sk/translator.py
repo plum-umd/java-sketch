@@ -225,7 +225,6 @@ class Translator(object):
             #                        u'type':{u'@t': u'ReferenceType', u'type': {u'@t':u'ClassOrInterfaceType', u'name':u'Object'},},},)
             #     params[0] = _self                
 
-            # print("HERE: "+str(n))
             # for i in range(0, len(params)):
             #     p = params[i]
             #     if isinstance(p.typee, ReferenceType) and isinstance(p.typee.typee, ClassOrInterfaceType) and str(p.typee.typee) in map(lambda c: c.name, self._ax_clss) and not self._is_auto_box:
@@ -912,8 +911,6 @@ class Translator(object):
                 typ = n.ax_typ
             else:                
                 # scp = n.scope if n.scope else n
-                # if utils.node_to_obj(scp):
-                #     print("\t\tHERE33: "+str(n.name))                    
                 if isinstance(n.typee, PrimitiveType):
                     self.printt('._'+self.trans_ty(n.typee))
                     typ = self.trans_ty(n.typee)
@@ -1524,7 +1521,7 @@ class Translator(object):
     def trans_call(self, callexpr, **kwargs):
         semi = kwargs.get('semi', True)
         tltr = copy.copy(self)
-        tltr.indentation = ''        
+        tltr.indentation = ''
         
         def write_call():
             tltr.buf = cStringIO.StringIO()
@@ -1593,7 +1590,7 @@ class Translator(object):
                     else:
                         cls = None
             # TODO: more possibilities
-
+            
         def uninterpreted():
             (ftypes, scope) = utils.mtd_type_from_callexpr(callexpr)
             meta = ClassOrInterfaceDeclaration({u'@t':u'ClassOrInterfaceDeclaration',
@@ -1670,6 +1667,7 @@ class Translator(object):
                     meta.childrenNodes.append(mtd)
                     meta.symtab.update({mtd.name:mtd})
             return meta
+
         
         if not cls or isinstance(cls, ImportDeclaration): cls = uninterpreted()
         logging.debug('searching in class: {}'.format(cls))
@@ -1683,7 +1681,7 @@ class Translator(object):
         if not pots:
             uninterpreted()
             return
-
+        
         # 15.12.2.2. Phase 1: Identify Matching Arity Methods Applicable by Strict Invocation
         strict_mtds = self.identify_strict(callexpr, pots)
         logging.debug('strict_applicable: {}'.format(map(lambda m: str(m), strict_mtds)))
@@ -1801,17 +1799,24 @@ class Translator(object):
     def identify_potentials(self, callexpr, cls):
         mtds = []
         call_arg_typs = callexpr.arg_typs()
-        print("HERE: {0} {1}".format(callexpr.name, self._is_auto_box))        
         for key,val in cls.symtab.items():
             if type(val) != MethodDeclaration: continue
             tparam_names = map(lambda t: t.name, val.typeParameters)
             tparam_names.extend(map(lambda t: t.name, val.get_coid().typeParameters))
+            # Add in wildcard check for axiom classes
+            clsTyps = map(lambda p: p.name, cls.typeParameters)            
+            if cls.axiom and clsTyps != []:
+                tparam_names = [u'Object' if t in clsTyps else t for t in tparam_names]
             if self._is_auto_box or callexpr.name.startswith('xform'):
                 name = callexpr.name
                 if val.adtType and callexpr.name != val.name and len(call_arg_typs) > 1:
                     name += '_'+'_'.join(map(str, call_arg_typs[1:]))
-                if name == val.name and len(callexpr.args) == len(val.parameters):
-                    if all(map(lambda t: t[1].name in tparam_names or utils.is_subtype(t[0], t[1]),
+                vname = val.name
+                # change name to check by replacing wildcards with "Object"
+                if clsTyps != []:
+                    vname = '_'.join([u'Object' if t in clsTyps else t for t in vname.split('_')])
+                if name == vname and len(callexpr.args) == len(val.parameters):
+                    if all(map(lambda t: (t[1].name in tparam_names or t[1].name in clsTyps and u'Object' in tparam_names) or utils.is_subtype(t[0], t[1]),
                                zip(call_arg_typs, val.param_typs()))):
                         mtds.append(val)
             else:
@@ -2018,7 +2023,7 @@ class Translator(object):
     # xform = body of xform (I believe this starts as an empty switch statement)
     #         it's what returned by get_xform() from method_declaration
     # stmts = body of axiom declaration (i.e. return add!(t, e1))
-    def trans_xform(self, xname, xform, stmts, **kwargs):
+    def trans_xform(self, xname, xform, stmts, cls, **kwargs):
         # SEEMS TO ALWAYS BE "self"???
         #    It seems like maybe this is for each selector in the switch
         #    They aren't actually initialized to not "self" until later
@@ -2108,12 +2113,21 @@ class Translator(object):
             #    could be call to outside function
             if isinstance(s, MethodCallExpr):
                 # checks if there is an xform version of the function call
-                name = 'xform_{}'.format(str(s))
-                mdec = s.symtab.get('m'+name)
+                snames = [str(s)]
+                # TODO: Add all possible permutations of Object and Wildcard
+                #       (Currently, it just replaces all and tries that)
+                if cls.typeParameters != []:
+                    for c in map(lambda p: p.name, cls.typeParameters):
+                        sname = '_'.join([c if x == u'Object' else x for x in str(s).split('_')])
+                        snames.append(sname)
+                for sn in snames:
+                    name = 'xform_{}'.format(sn)
+                    mdec = s.symtab.get('m'+name)
+                    if mdec: break
                 if mdec or not s.pure:                 
-                    # alter method call name to be xform call                   
+                    # alter method call name to be xform call
                     s.name = 'xform_{}'.format(s.name)
-
+                    
                     if not s.pure:
                         s.name += "b"                                        
                         

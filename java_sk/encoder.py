@@ -789,8 +789,9 @@ class Encoder(object):
         for a in ax_mtds:
             xnm = 'xform_{}'.format(a.name)
             xf = xforms[xnm]
-            xf.name = 'xform_{}'.format(a.name)
-                
+            # xf.name = 'xform_{}'.format(a.name)
+            xf.name = xnm
+            
             # rename xf parameters to correspond to axiom declaration, not adt
             #    (i.e. parameters representing xforms must access their fields through
             #    correct names, some parameters must be renamed
@@ -821,7 +822,7 @@ class Encoder(object):
             if any(map(lambda p: p.method, a.parameters)):                        
                 # iterate through body of axiom declarations of a, translate
                 #    them to appropriate IRs (i.e. JSON dicts)
-                a.body.stmts = self.tltr.trans_xform(a.name, body, a.body.stmts)
+                a.body.stmts = self.tltr.trans_xform(a.name, body, a.body.stmts, cls)
                             
             casess = []
 
