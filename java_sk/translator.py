@@ -2114,12 +2114,30 @@ class Translator(object):
             if isinstance(s, MethodCallExpr):
                 # checks if there is an xform version of the function call
                 snames = [str(s)]
-                # TODO: Add all possible permutations of Object and Wildcard
-                #       (Currently, it just replaces all and tries that)
                 if cls.typeParameters != []:
-                    for c in map(lambda p: p.name, cls.typeParameters):
-                        sname = '_'.join([c if x == u'Object' else x for x in str(s).split('_')])
-                        snames.append(sname)
+                    def replaceObjectWithWildCard(l):
+                        if l == []: return []
+                        elif len(l) == 1:
+                            if l[0] == u'Object':
+                                ret = []
+                                for c in map(lambda p: p.name, cls.typeParameters):
+                                    ret.append(c)
+                                return ret
+                            else:
+                                return l                                    
+                        else:
+                            if l[0] == u'Object':
+                                ret = []
+                                for c in map(lambda p: p.name, cls.typeParameters):
+                                    for tl in replaceObjectWithWildCard(l[1:]):
+                                        ret.append(c+"_"+tl)
+                                return ret
+                            else:
+                                ret = []
+                                for tl in replaceObjectWithWildCard(l[1:]):
+                                    ret.append(l[0]+"_"+tl)
+                                return ret
+                    snames += replaceObjectWithWildCard(str(s).split('_'))
                 for sn in snames:
                     name = 'xform_{}'.format(sn)
                     mdec = s.symtab.get('m'+name)
