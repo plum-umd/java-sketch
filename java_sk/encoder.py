@@ -85,7 +85,7 @@ class Encoder(object):
         self.ax_clss = ax_clss
         
         # create a translator object, this will do the JSketch -> Sketch
-        self._tltr = Translator(cnums=self._CLASS_NUMS, mnums=self._MTD_NUMS, sk_dir=self._sk_dir, fs=self._fs, is_ax_cls=is_ax_cls, ax_clss=ax_clss)
+        self._tltr = Translator(cnums=self._CLASS_NUMS, mnums=self._MTD_NUMS, sk_dir=self._sk_dir, fs=self._fs, is_auto_box=is_ax_cls, ax_clss=ax_clss)
         
         # if is_ax_cls:
         #     # create a translator object, this will do the JSketch -> Sketch

@@ -101,7 +101,7 @@ class Translator(object):
         self._mnums = kwargs.get('mnums')
         self._sk_dir = kwargs.get('sk_dir')
         self._fs = kwargs.get('fs')
-        self._is_ax_cls = kwargs.get('is_ax_cls')
+        self._is_auto_box = kwargs.get('is_auto_box')
         self._ax_clss = kwargs.get('ax_clss')            
         
         self._buf = None
@@ -168,7 +168,7 @@ class Translator(object):
         # self.printSepList(n.parameters)
         for i in range(0, len(n.parameters)):
             param = n.parameters[i]
-            if isinstance(param.typee, ReferenceType) and isinstance(param.typee.typee, ClassOrInterfaceType) and str(param.typee.typee) in map(lambda c: c.name, self._ax_clss) and not self._is_ax_cls:
+            if isinstance(param.typee, ReferenceType) and isinstance(param.typee.typee, ClassOrInterfaceType) and str(param.typee.typee) in map(lambda c: c.name, self._ax_clss) and not self._is_auto_box:
                 self.printt('Object')
             else:
                 param.typee.accept(self, **kwargs)
@@ -203,7 +203,7 @@ class Translator(object):
 
         boxedRet = u'boxedRet' in map(lambda a: str(a), n.annotations) or n.boxedRet
             
-        if (isinstance(n.typee, ReferenceType) and isinstance(n.typee.typee, ClassOrInterfaceType) and str(n.typee.typee) in map(lambda c: c.name, self._ax_clss) and not self._is_ax_cls) or boxedRet:
+        if (isinstance(n.typee, ReferenceType) and isinstance(n.typee.typee, ClassOrInterfaceType) and str(n.typee.typee) in map(lambda c: c.name, self._ax_clss) and not self._is_auto_box) or boxedRet:
             self.printt('Object')
         else:
             n.typee.accept(self, **kwargs)
@@ -218,7 +218,7 @@ class Translator(object):
             self.printt('{} self'.format(ty))
             if n.parameters: self.printt(', ')
 
-        if not td.isHarness(n) or not self._is_ax_cls:
+        if not td.isHarness(n) or not self._is_auto_box:
             params = cp.copy(n.parameters)
             # if str(n).startswith('xform_'):
             #     _self = Parameter({u'id':{u'name':u'selff'},
@@ -228,13 +228,13 @@ class Translator(object):
             # print("HERE: "+str(n))
             # for i in range(0, len(params)):
             #     p = params[i]
-            #     if isinstance(p.typee, ReferenceType) and isinstance(p.typee.typee, ClassOrInterfaceType) and str(p.typee.typee) in map(lambda c: c.name, self._ax_clss) and not self._is_ax_cls:
+            #     if isinstance(p.typee, ReferenceType) and isinstance(p.typee.typee, ClassOrInterfaceType) and str(p.typee.typee) in map(lambda c: c.name, self._ax_clss) and not self._is_auto_box:
             #         params[i] = Parameter({u'id':{u'name':p.name},
             #                                u'type':{u'@t': u'ReferenceType', u'type': {u'@t':u'ClassOrInterfaceType', u'name':u'Object'},},},)
             
             for i in range(0, len(params)):
                 param = params[i]
-                if ((isinstance(param.typee, ReferenceType) and isinstance(param.typee.typee, ClassOrInterfaceType) and str(param.typee.typee) in map(lambda c: c.name, self._ax_clss) and not self._is_ax_cls and not str(n).startswith('xform_')) or (i+1) in n.boxedArgs) or (i == 0 and n.boxedRet):
+                if ((isinstance(param.typee, ReferenceType) and isinstance(param.typee.typee, ClassOrInterfaceType) and str(param.typee.typee) in map(lambda c: c.name, self._ax_clss) and not self._is_auto_box and not str(n).startswith('xform_')) or (i+1) in n.boxedArgs) or (i == 0 and n.boxedRet):
                     self.printt('Object')
                 else:
                     param.typee.accept(self, **kwargs)
@@ -258,7 +258,7 @@ class Translator(object):
 
         if not n.body: self.printt(';')
         else:
-            if self._is_ax_cls:
+            if self._is_auto_box:
                 self.printt(' ')            
                 if td.isHarness(n):
                     for p in n.parameters:
@@ -315,7 +315,7 @@ class Translator(object):
                         ret_val += str(ap.name)+u'='+str(mp.name)
 
                     ret_val += u')'
-                    if self._is_ax_cls or xf.boxedRet:
+                    if self._is_auto_box or xf.boxedRet:
                         ret_val = u'Object(__cid={0}(), _{1}=new {2})'.format(parent, parent.name.lower(), ret_val)
                         self.printt(u'return new '+ret_val+u';')
                         # self.printt('{ assert false; }')
@@ -341,8 +341,8 @@ class Translator(object):
         
     @v.when(VariableDeclarator)
     def visit(self, n, **kwargs):
-        if self._is_ax_cls: kwargs['ArrayName'] = n.idd
-        if n.init and self._is_ax_cls:
+        if self._is_auto_box: kwargs['ArrayName'] = n.idd
+        if n.init and self._is_auto_box:
             self.printt(' ')
             n.idd.accept(self, **kwargs)
             self.printt(' = ')
@@ -398,7 +398,7 @@ class Translator(object):
                 self.printt('))')                
             else:
                 n.init.accept(self, **kwargs)            
-        elif n.init and not self._is_ax_cls:
+        elif n.init and not self._is_auto_box:
             self.printt(' ')
             n.idd.accept(self, **kwargs)
             self.printt(' = ')
@@ -418,7 +418,7 @@ class Translator(object):
     # stmt
     @v.when(BlockStmt)
     def visit(self, n, **kwargs):
-        if 'HasCurly' not in kwargs or not kwargs['HasCurly'] or not self._is_ax_cls:
+        if 'HasCurly' not in kwargs or not kwargs['HasCurly'] or not self._is_auto_box:
             self.printLn('{')
         else:
             kwargs['HasCurly'] = False            
@@ -435,9 +435,9 @@ class Translator(object):
 
     @v.when(ReturnStmt)
     def visit(self, n, **kwargs):
-        if self._is_ax_cls: kwargs['Return'] = True
+        if self._is_auto_box: kwargs['Return'] = True
         self.printt('return')
-        if (n.expr and self._is_ax_cls):
+        if (n.expr and self._is_auto_box):
             self.printt(' ')
             typ = ''
             if isinstance(n.expr, BinaryExpr) or isinstance(n.expr, UnaryExpr):
@@ -470,19 +470,19 @@ class Translator(object):
                 self.printt('(new Object(__cid={0}, _{1}='.format(cid, typ))       
                 n.expr.accept(self, **kwargs)
                 self.printt('))')            
-        elif n.expr and not self._is_ax_cls:
+        elif n.expr and not self._is_auto_box:
             self.printt(' ')
             n.expr.accept(self, **kwargs)            
-        if self._is_ax_cls: kwargs['Return'] = True        
+        if self._is_auto_box: kwargs['Return'] = True        
         self.printt(';')
 
     @v.when(IfStmt)
     def visit(self, n, **kwargs):
         self.printt('if (')
-        if isinstance(n.condition, GeneratorExpr) and self._is_ax_cls:
+        if isinstance(n.condition, GeneratorExpr) and self._is_auto_box:
             n.condition.my_typ = PrimitiveType({u'type': {u'name': u'bit'}})
         n.condition.accept(self, **kwargs)
-        if self._is_ax_cls:
+        if self._is_auto_box:
             if isinstance(n.condition, NameExpr) or isinstance(n.condition, FieldAccessExpr):
                 if isinstance(n.condition.typee, PrimitiveType):
                     self.printt('._'+self.trans_ty(n.condition.typee))     
@@ -539,7 +539,7 @@ class Translator(object):
         self.printt('while (')
         if n.condition:
             n.condition.accept(self, **kwargs)
-            if self._is_ax_cls: self.unboxPrimitive(n.condition)
+            if self._is_auto_box: self.unboxPrimitive(n.condition)
         self.printt(') ')
         n.body.accept(self, **kwargs)
 
@@ -557,7 +557,7 @@ class Translator(object):
     def visit(self, n, **kwargs):
         self.printt('assert ')
         n.check.accept(self, **kwargs)
-        if not isinstance(n.check, BinaryExpr) and not isinstance(n.check, UnaryExpr) and self._is_ax_cls:
+        if not isinstance(n.check, BinaryExpr) and not isinstance(n.check, UnaryExpr) and self._is_auto_box:
             self.printt('._bit')
         # There are no messages in Sketch, I think
         # if n.msg:
@@ -583,12 +583,12 @@ class Translator(object):
 
         self.printt('if (')
         n.selector.accept(self, **kwargs)
-        if self._is_ax_cls: self.unboxPrimitive(n.selector)
+        if self._is_auto_box: self.unboxPrimitive(n.selector)
         # take care of the first case
         if n.entries:
             self.printt(' == ')
             n.entries[0].label.accept(self, **kwargs)
-            if self._is_ax_cls: self.unboxPrimitive(n.entries[0].label)
+            if self._is_auto_box: self.unboxPrimitive(n.entries[0].label)
             self.printLn(') {')
             if n.entries[0].stmts: print_stmts(n.entries[0].stmts)
             if len(n.entries) > 0: self.printt('else if (')
@@ -598,18 +598,18 @@ class Translator(object):
                 if e > 1 and n.entries[e-1].stmts: self.printt('else if (')
                 if n.entries[e].stmts:
                     n.selector.accept(self, **kwargs)
-                    if self._is_ax_cls: self.unboxPrimitive(n.selector)
+                    if self._is_auto_box: self.unboxPrimitive(n.selector)
                     self.printt(' == ')
                     n.entries[e].label.accept(self, **kwargs)
-                    if self._is_ax_cls: self.unboxPrimitive(n.entries[e].label)
+                    if self._is_auto_box: self.unboxPrimitive(n.entries[e].label)
                     self.printLn(') {')
                     print_stmts(n.entries[e].stmts)
                 else:
                     n.selector.accept(self, **kwargs)
-                    if self._is_ax_cls: self.unboxPrimitive(n.selector)
+                    if self._is_auto_box: self.unboxPrimitive(n.selector)
                     self.printt(' == ')
                     n.entries[e].label.accept(self, **kwargs)
-                    if self._is_ax_cls: self.unboxPrimitive(n.entries[e].label)
+                    if self._is_auto_box: self.unboxPrimitive(n.entries[e].label)
                     self.printt(' || ')
             else:
                 self.printLn('else {')
@@ -699,7 +699,7 @@ class Translator(object):
 
     @v.when(VariableDeclarationExpr)
     def visit(self, n, **kwargs):
-        if self._is_ax_cls: kwargs['VariableDeclarationExpr'] = True        
+        if self._is_auto_box: kwargs['VariableDeclarationExpr'] = True        
         typ = n.varss[0].typee if len(n.varss) > 0 else None
         cls = None
         if typ and isinstance(typ, ClassOrInterfaceType) or isinstance(typ, ReferenceType):
@@ -727,7 +727,7 @@ class Translator(object):
             not_ass = False
             if o == u'ASSIGN': self.printt(assignop[o])
             else:
-                if self._is_ax_cls:
+                if self._is_auto_box:
                     self.printt('=')
                     self.printt(' ')
                     typ = self.getUnboxPrimitiveType(n.target)
@@ -746,7 +746,7 @@ class Translator(object):
                     self.printt(assignop['_{}'.format(o)])                    
             self.printt(' ')
             return not_ass
-        if self._is_ax_cls:
+        if self._is_auto_box:
             # print 'AssignExpr'
             already_unboxed = False
             if type(n.target) == FieldAccessExpr:
@@ -978,7 +978,7 @@ class Translator(object):
 
     @v.when(UnaryExpr)
     def visit(self, n, **kwargs):
-        if self._is_ax_cls:
+        if self._is_auto_box:
             op_after = UnaryExpr.POST_OPS.get(n.op, '')
             op_before = UnaryExpr.PRE_OPS.get(n.op, '')
 
@@ -1007,14 +1007,14 @@ class Translator(object):
     @v.when(BinaryExpr)
     def visit(self, n, **kwargs):
         n.left.accept(self, **kwargs)
-        if self._is_ax_cls:
+        if self._is_auto_box:
             kwargs['BinOp'] = op[n.op.upper()]
             self.unboxPrimitive(n.left, **kwargs)
         self.printt(' ')
         self.printt(op[n.op.upper()])
         self.printt(' ')
         n.right.accept(self, **kwargs)
-        if self._is_ax_cls:
+        if self._is_auto_box:
             self.unboxPrimitive(n.right, **kwargs)
             kwargs['BinOp'] = None                       
 
@@ -1091,7 +1091,7 @@ class Translator(object):
             self.printt('new Object(__cid={}())'.format(str(obj_cls)))
             if cls.isinner(): self.printt(', self')
             if n.args: self.printt(', ')
-        if self._is_ax_cls:
+        if self._is_auto_box:
             self.printSepListObjectCreationExpr(n.args)
         else:
             self.printSepList(n.args)
@@ -1100,7 +1100,7 @@ class Translator(object):
     @v.when(ArrayCreationExpr)
     def visit(self, n, **kwargs):
         # print 'arraycreationexpr'
-        if self._is_ax_cls:
+        if self._is_auto_box:
             typ = self.trans_ty(n.typee)
             self.printt('Wrap_Array_{0}(new Array_{0}('.format(typ))
             if n.dimensions:
@@ -1137,7 +1137,7 @@ class Translator(object):
     @v.when(ArrayInitializerExpr)
     def visit(self, n, **kwargs):
         # print 'arrayinitializerexpr'
-        if self._is_ax_cls:
+        if self._is_auto_box:
             name = kwargs['ArrayName']
             typ = kwargs['ArrayType']
             self.printt('length=new Object(__cid=-2, _int={})))'.format(len(n.values)))
@@ -1164,7 +1164,7 @@ class Translator(object):
     @v.when(ArrayAccessExpr)
     def visit(self, n, **kwargs):
         # print 'arrayaccessexpr'
-        if self._is_ax_cls:
+        if self._is_auto_box:
             typ = self.trans_ty(n.nameExpr.typee)
             if isinstance(n.nameExpr, FieldAccessExpr):
                 fld = utils.find_fld(n.nameExpr, self.obj_struct)
@@ -1175,11 +1175,11 @@ class Translator(object):
                 typ = self.trans_ty(utils.find_fld(n.nameExpr, self.obj_struct).typee) 
             if typ == 'byte': typ = 'char'
         n.nameExpr.accept(self, **kwargs)
-        if self._is_ax_cls: self.printt('._array_{}'.format(typ.lower()))
+        if self._is_auto_box: self.printt('._array_{}'.format(typ.lower()))
         # self.printt('._array.A[')
         self.printt('.A[')
         n.index.accept(self, **kwargs)
-        if self._is_ax_cls: self.unboxPrimitive(n.index)        
+        if self._is_auto_box: self.unboxPrimitive(n.index)        
         self.printt(']')
 
     @v.when(MethodCallExpr)
@@ -1194,11 +1194,11 @@ class Translator(object):
 
     @v.when(GeneratorExpr)
     def visit(self, n, **kwargs):
-        if n.isHole and self._is_ax_cls:
+        if n.isHole and self._is_auto_box:
             typ = self.trans_ty(n.typee)
             cid = self.primitiveIds[typ]
             self.printt('(new Object(__cid={0}, _{1}=??))'.format(cid, typ))
-        elif n.isHole and not self._is_ax_cls:
+        elif n.isHole and not self._is_auto_box:
             self.printt('??')            
         else:
             self.printt('{|')            
@@ -1206,7 +1206,7 @@ class Translator(object):
             #     self.printArguments(n.exprs, sep=' |')
             # else:
             #     self.printSepList(n.exprs, sep=' |')
-            if self._is_ax_cls:
+            if self._is_auto_box:
                 self.printArguments(n.exprs, sep=' |')
             else:
                 self.printSepList(n.exprs, sep=' |')
@@ -1226,16 +1226,16 @@ class Translator(object):
     def visit(self, n, **kwargs):
         self.printt('(')
         n.condition.accept(self, **kwargs)
-        if (isinstance(n.condition, NameExpr) or isinstance(n.condition, MethodCallExpr)) and self._is_ax_cls:
+        if (isinstance(n.condition, NameExpr) or isinstance(n.condition, MethodCallExpr)) and self._is_auto_box:
             if isinstance(n.condition.typee, PrimitiveType):
                 self.printt('._'+self.trans_ty(n.condition.typee))        
         self.printt(' ? ')
-        if self._is_ax_cls:
+        if self._is_auto_box:
             self.boxPrimitiveType(n.thenExpr, **kwargs)
         else:
             n.thenExpr.accept(self, **kwargs)
         self.printt(' : ')
-        if self._is_ax_cls:
+        if self._is_auto_box:
             self.boxPrimitiveType(n.elseExpr, **kwargs)
         else:
             n.elseExpr.accept(self, **kwargs)
@@ -1257,7 +1257,7 @@ class Translator(object):
 
     @v.when(CastExpr)
     def visit(self, n, **kwargs):
-        if self._is_ax_cls:
+        if self._is_auto_box:
             typ = str(n.typee)        
             if isinstance(n.typee, PrimitiveType):
                 self.printt('(')
@@ -1294,9 +1294,9 @@ class Translator(object):
     def visit(self, n, **kwargs):
         # self.printt(n.value)
         # if 'VariableDeclarationExpr' in kwargs or 'AssignExpr' in kwargs or 'MethodCallExpr' in kwargs:        
-        if self._is_ax_cls: self.printt('(new Object(__cid=-4, _bit=')
+        if self._is_auto_box: self.printt('(new Object(__cid=-4, _bit=')
         self.printt(n.value)
-        if self._is_ax_cls: self.printt('))')
+        if self._is_auto_box: self.printt('))')
         # else:
         #     self.printt(n.value)
         
@@ -1304,9 +1304,9 @@ class Translator(object):
     def visit(self, n, **kwargs):
         # self.printt(n.value)
         # if 'VariableDeclarationExpr' in kwargs or 'AssignExpr' in kwargs:        
-        if self._is_ax_cls: self.printt('(new Object(__cid=-2, _int=')
+        if self._is_auto_box: self.printt('(new Object(__cid=-2, _int=')
         self.printt(n.value)
-        if self._is_ax_cls: self.printt('))')
+        if self._is_auto_box: self.printt('))')
         # else:
         #     self.printt(n.value)
 
@@ -1314,9 +1314,9 @@ class Translator(object):
     def visit(self, n, **kwargs):
         # self.printt(n.value)
         # if 'VariableDeclarationExpr' in kwargs or 'AssignExpr' in kwargs:  
-        if self._is_ax_cls: self.printt('(new Object(__cid=-6, _double=')
+        if self._is_auto_box: self.printt('(new Object(__cid=-6, _double=')
         self.printt(n.value)
-        if self._is_ax_cls: self.printt('))')
+        if self._is_auto_box: self.printt('))')
         # else:
         #     self.printt(n.value)
         
@@ -1327,7 +1327,7 @@ class Translator(object):
     @v.when(StringLiteralExpr)
     def visit(self, n, **kwargs):
         length = len(n.value) - n.value.count("\\n")
-        if self._is_ax_cls:
+        if self._is_auto_box:
             # self.printt('String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length={1}+1, A="{0}")), 0, {1})'.format(n.value, len(n.value)))
             self.printt('String_String_char_int_int(new Object(__cid=String()), Wrap_Array_char(new Array_char(length=new Object(__cid=-2, _int={1}+1), A="{0}")), new Object(__cid=-2, _int=0), new Object(__cid=-2, _int={1}))'.format(n.value, length))
         else:
@@ -1339,11 +1339,11 @@ class Translator(object):
         # self.printt(n.value)
         # self.printt("'")
         # if 'VariableDeclarationExpr' in kwargs or 'AssignExpr' in kwargs:  
-        if self._is_ax_cls: self.printt('(new Object(__cid=-3, _char=')        
+        if self._is_auto_box: self.printt('(new Object(__cid=-3, _char=')        
         self.printt("'")
         self.printt(n.value)
         self.printt("'")
-        if self._is_ax_cls: self.printt('))')
+        if self._is_auto_box: self.printt('))')
         # else:
         #     self.printt("'")
         #     self.printt(n.value)
@@ -1383,7 +1383,7 @@ class Translator(object):
 
     @v.when(PrimitiveType)
     def visit(self, n, **kwargs):
-        if self._is_ax_cls:
+        if self._is_auto_box:
             self.printt('Object')
         else:
             self.printt(self.trans_ty(n))            
@@ -1395,7 +1395,7 @@ class Translator(object):
     @v.when(ReferenceType)
     def visit(self, n, **kwargs):
         # print 'ReferenceType -- type: {} arrayCount: {}'.format(n, n.arrayCount)
-        if self._is_ax_cls:
+        if self._is_auto_box:
             self.printt('Object')
         else:
             if n.arrayCount:
@@ -1434,7 +1434,7 @@ class Translator(object):
         logging.debug('accessing {}.{}:{}'.format(n.scope.name, n.field.name, n.beginLine))
         
         arr_access = False
-        if isinstance(n, FieldAccessExpr) and self._is_ax_cls:
+        if isinstance(n, FieldAccessExpr) and self._is_auto_box:
             if isinstance(n.scope.typee, ReferenceType) and n.scope.typee.arrayCount > 0 and n.field.name == 'length':
                 arr_access = True
                 # self.printt('._array_{}'.format(n.typee))
@@ -1455,7 +1455,7 @@ class Translator(object):
         else:            
             logging.debug('non-static field - type(n.scope): {}'.format(type(n.scope)))
             n.scope.accept(self, **kwargs)
-            if arr_access and self._is_ax_cls:
+            if arr_access and self._is_auto_box:
                 # typ = self.trans_ty(n.scope.typee)
                 typ = str(n.scope.typee)
                 # typ = str(n.typee)
@@ -1492,7 +1492,7 @@ class Translator(object):
                 kwargs = {}
                 if isinstance(fld.variable.init, ArrayInitializerExpr):
                     # init += 'Wrap_Array_{0}(new Array_{0}('.format(self.trans_ty(fld.typee))
-                    if self._is_ax_cls:
+                    if self._is_auto_box:
                         kwargs['ArrayName'] = nm
                         kwargs['ArrayType'] = self.trans_ty(fld.typee)
                         init += 'new Object(__cid=-1, _array_{0}=new Array_{0}('.format(self.trans_ty(fld.typee))
@@ -1500,16 +1500,16 @@ class Translator(object):
                         init += 'new Array_{}('.format(self.trans_ty(fld.typee))                        
                 init += self.trans(fld.variable.init, **kwargs)
                 
-                if isinstance(fld.variable.init, ArrayInitializerExpr) and self._is_ax_cls: init += ')'
+                if isinstance(fld.variable.init, ArrayInitializerExpr) and self._is_auto_box: init += ')'
         ty = self.trans_ty(fld.typee)
-        if self._is_ax_cls:
+        if self._is_auto_box:
             if fld.typee.name in fld.symtab:
                 typ_cls = fld.symtab[fld.typee.name]
                 if isinstance(typ_cls, ClassOrInterfaceDeclaration) and typ_cls.axiom:
                     ty = u'Object'
                 
         if isinstance(fld.typee, ReferenceType) and fld.typee.arrayCount > 0:
-            if self._is_ax_cls:
+            if self._is_auto_box:
                 if len(fld.name) > 7 and fld.name[0:7]=='_array_':
                     ty = 'Array_{}'.format(self.trans_ty(fld.typee))                    
                 else:
@@ -1614,7 +1614,7 @@ class Translator(object):
                     if sig in self.unfuns: continue
                     self.unfuns.append(sig)
                     rtyp = self.trans_ty(fun.pop())                    
-                    if self._is_ax_cls:
+                    if self._is_auto_box:
                         f.write('{} {}('.format(rtyp, str(callexpr)+'__uninterp'))
                     else:
                         f.write('{} {}('.format(rtyp, str(callexpr)))                        
@@ -1628,7 +1628,7 @@ class Translator(object):
                     f.write(';')
                     f.write('\n')
 
-                    if self._is_ax_cls:
+                    if self._is_auto_box:
                          args = []
 
                          f.write('Object {}('.format(str(callexpr)))
@@ -1721,7 +1721,7 @@ class Translator(object):
         
         if str(mtd).startswith("xform_"):
             xform_name = str(mtd).split('_')[2]
-            # if not self._is_ax_cls:
+            # if not self._is_auto_box:
             # _self = Parameter({u'id':{u'name':u'selff'},
             #                            u'type':{u'@t': u'ReferenceType', u'type': {u'@t':u'ClassOrInterfaceType', u'name':u'Object'},},},)
             # mtd.parameters[0] = _self
@@ -1783,7 +1783,7 @@ class Translator(object):
             # DIFFERENT ARGS HERE THEN FOR UNBOXED
             self.print_dispatch(conexprs, is_adt, is_ax2, xform_name, mtd, **kwargs)
             if type(mtd.typee) != VoidType: self.printt(')')                
-            # if is_ax and self._is_ax_cls:
+            # if is_ax and self._is_auto_box:
             if is_ax and self._ax_clss != []:
                 if u'unbox' in kwargs and kwargs[u'unbox'][0]:
                     self.printt('._')
@@ -1801,11 +1801,12 @@ class Translator(object):
     def identify_potentials(self, callexpr, cls):
         mtds = []
         call_arg_typs = callexpr.arg_typs()
+        print("HERE: {0} {1}".format(callexpr.name, self._is_auto_box))        
         for key,val in cls.symtab.items():
             if type(val) != MethodDeclaration: continue
             tparam_names = map(lambda t: t.name, val.typeParameters)
             tparam_names.extend(map(lambda t: t.name, val.get_coid().typeParameters))
-            if self._is_ax_cls or callexpr.name.startswith('xform'):
+            if self._is_auto_box or callexpr.name.startswith('xform'):
                 name = callexpr.name
                 if val.adtType and callexpr.name != val.name and len(call_arg_typs) > 1:
                     name += '_'+'_'.join(map(str, call_arg_typs[1:]))
@@ -1914,7 +1915,7 @@ class Translator(object):
             self.printt(' : ')
             if isinstance(c.elseExpr, IntegerLiteralExpr): self.printt('0')
             elif isinstance(c.elseExpr, PrimitiveType):
-                if self._is_ax_cls or mtd.boxedRet:
+                if self._is_auto_box or mtd.boxedRet:
                     self.printt('null')
                 else:
                     if not is_ax:
@@ -1932,7 +1933,7 @@ class Translator(object):
             self.printArguments(c.args, xform_name)
             self.printt(')')
         else:
-            if is_ax and self._is_ax_cls:
+            if is_ax and self._is_auto_box:
                 self.printt('(')
                 c.condition.accept(self, **kwargs)
                 self.printt(' ? ')
@@ -2284,7 +2285,7 @@ class Translator(object):
                 
     def printArguments(self, args, xform_name = "", **kwargs):
         self.printt('(')
-        if self._is_ax_cls:
+        if self._is_auto_box:
             if args:
                 lenn = len(args)
                 for i in xrange(lenn):
