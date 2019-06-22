@@ -1806,7 +1806,13 @@ class Translator(object):
             # Add in wildcard check for axiom classes
             clsTyps = map(lambda p: p.name, cls.typeParameters)            
             if cls.axiom and clsTyps != []:
-                tparam_names = [u'Object' if t in clsTyps else t for t in tparam_names]
+                tparam_names2 = []
+                for t in tparam_names:
+                    if t in clsTyps: tparam_names2.append(u'Object')
+                    tparam_names2.append(t)
+                tparam_names = tparam_names2
+                # tparam_names = [u'Object' if t in clsTyps else t for t in tparam_names]
+                
             if self._is_auto_box or callexpr.name.startswith('xform'):
                 name = callexpr.name
                 if val.adtType and callexpr.name != val.name and len(call_arg_typs) > 1:
@@ -2115,6 +2121,7 @@ class Translator(object):
                 # checks if there is an xform version of the function call
                 snames = [str(s)]
                 if cls.typeParameters != []:
+                    # replaces instances of "Object" with all permutations of wildcards
                     def replaceObjectWithWildCard(l):
                         if l == []: return []
                         elif len(l) == 1:
