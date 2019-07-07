@@ -48,7 +48,6 @@ def translate(**kwargs):
     opts = kwargs.get('opts', [])
 
     # Sketch inlining and unrolling
-    print("HERE: {0},{1}".format(inline, unroll))
     if inline: opts.extend(['--bnd-inline-amnt', inline])
     if unroll: opts.extend(['--bnd-unroll-amnt', unroll])
     if parallel: opts.append("--slv-parallel")

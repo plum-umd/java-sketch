@@ -532,7 +532,7 @@ class Encoder(object):
                 c += ');\n}\n\n'
                 
             return c
-
+        
         buf = cStringIO.StringIO()
         buf.write("package {};\n\n".format(cname))
 
