@@ -23,7 +23,7 @@
     </licenses>
 
     <properties>
-        <junit.version>4.11</junit.version>
+        <junit.version>4.13.1</junit.version>
         <jbehave.version>3.9.3</jbehave.version>
     </properties>
     <build>
