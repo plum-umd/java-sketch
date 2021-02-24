@@ -5,7 +5,7 @@ from . import _import
 from ..node import Node
 
 class VariableDeclarator(Node):
-    def __init__(self, kwargs={}):
+    def __init__(self, kwargs={}, id_str=""):
         if kwargs.get(u'id', ''):
             super(VariableDeclarator, self).__init__(kwargs)
             locs = _import()

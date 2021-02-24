@@ -14,8 +14,8 @@
 
   <property environment="env"/>
 
-  <property name="sketch.dir" location="${env.SKETCH_HOME}/.."/>
-  <property name="sketch.jar" value="${sketch.dir}/sketch-1.6.7-noarch.jar"/>
+  <!-- <property name="sketch.dir" location="${env.SKETCH_HOME}/.."/> -->
+  <property name="sketch.jar" value="${env.SKETCH_JAR}"/>
 
   <!-- <property name="sketch.dir" location="${env.SKETCH_HOME}"/> -->
   <!-- <property name="sketch.classes" location="${sketch.dir}/target/classes"/> -->

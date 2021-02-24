@@ -1,14 +1,12 @@
 import logging
 
-import lib.const as C
-import lib.visit as v
-
-from ..meta.program import Program
-from ..meta.clazz import Clazz
-from ..meta.method import Method
-from ..meta.field import Field
-from ..meta.statement import Statement
-from ..meta.expression import Expression, to_expression
+from ast.visit import visit as v
+from ast.node import Node
+from ast.body.fielddeclaration import FieldDeclaration
+from ast.body.methoddeclaration import MethodDeclaration
+from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
+from ast.body.typedeclaration import TypeDeclaration
+from ast.expr.generatorexpr import GeneratorExpr
 
 """
 class A {
@@ -29,62 +27,72 @@ class A {
     }
 }
 """
+
+
 class EHole(object):
 
-  # to avoid name conflict, use fresh counter as suffix
-  __cnt = 0
-  @classmethod
-  def fresh_cnt(cls):
-    cls.__cnt = cls.__cnt + 1
-    return cls.__cnt
+    # to avoid name conflict, use fresh counter as suffix
+    __cnt = 0
 
-  def __init__(self):
-    self._cur_mtd = None
-    self._visiting_s = False
+    @classmethod
+    def fresh_cnt(cls):
+        cls.__cnt = cls.__cnt + 1
+        return cls.__cnt
 
-  @v.on("node")
-  def visit(self, node):
-    """
-    This is the generic method to initialize the dynamic dispatcher
-    """
+    def __init__(self):
+        self._cur_mtd = None
+        self._cur_cls = None
+        self._visiting_s = False
 
-  @v.when(Program)
-  def visit(self, node): pass
+    @v.on("node")
+    def visit(self, node):
+        """
+        This is the generic method to initialize the dynamic dispatcher
+        """
 
-  @v.when(Clazz)
-  def visit(self, node): pass
+    @v.when(Node)
+    def visit(self, node):
+        for c in node.childrenNodes: c.accept(self)
 
-  @v.when(Field)
-  def visit(self, node):
-    # to avoid introducing another hole variable
-    # reset the context statement
-    self._visiting_s = False
+    @v.when(FieldDeclaration)
+    def visit(self, node):
+        # to avoid introducing another hole variable
+        # reset the context statement
+        self._visiting_s = False
+        for c in node.childrenNodes: c.accept(self)
 
-  @v.when(Method)
-  def visit(self, node):
-    self._cur_mtd = node
-    if node.body:
-      self._visiting_s = True
+    @v.when(ClassOrInterfaceDeclaration)
+    def visit(self, node):
+        self._cur_cls = node
+        for c in node.childrenNodes: c.accept(self)
+        self._cur_cls = None
 
-  @v.when(Statement)
-  def visit(self, node): return [node]
+    @v.when(MethodDeclaration)
+    def visit(self, node):
+        self._cur_mtd = node
+        if node.body:
+            self._visiting_s = True
+        for c in node.childrenNodes: c.accept(self)
+        self._cur_mtd = None
 
-  @v.when(Expression)
-  def visit(self, node):
-    # avoid editing field initializing Expression
-    if not self._visiting_s: return node
-    # avoid editing hole(s) in a method-level generator
-    if self._cur_mtd.is_generator: return node
+    @v.when(GeneratorExpr)
+    def visit(self, node):
+        # avoid editing field initializing Expression
+        if not self._visiting_s:
+            return node
+        # avoid editing hole(s) in a method-level generator
+        if TypeDeclaration.isGenerator(self._cur_mtd):
+            return node
 
-    if node.kind == C.E.HOLE:
-      cls = self._cur_mtd.clazz
-      hname = u"e_h{}".format(EHole.fresh_cnt())
-      hole = Field(clazz=cls, mods=[C.mod.ST], typ=C.J.i, name=hname, init=node)
-      cls.add_fld(hole)
-      logging.debug("introducing e_hole {} @ {}".format(hname, self._cur_mtd.signature))
-      return to_expression(hname)
+        cls = self._cur_mtd.clazz
+        hname = u"e_h{}".format(EHole.fresh_cnt())
+        hole = Field(clazz=cls, mods=[C.mod.ST],
+                        typ=C.J.i, name=hname, init=node)
+        cls.add_fld(hole)
+        logging.debug(
+            "introducing e_hole {} @ {}".format(hname, self._cur_mtd.signature))
+        return to_expression(hname)
 
-    return node
 
 
 """
@@ -120,34 +128,21 @@ class B {
     }
 }
 """
+
+
 class FHole(object):
 
-  def __init__(self): pass
+    def __init__(self): pass
 
-  @v.on("node")
-  def visit(self, node):
-    """
-    This is the generic method to initialize the dynamic dispatcher
-    """
+    @v.on("node")
+    def visit(self, node):
+        """
+        This is the generic method to initialize the dynamic dispatcher
+        """
 
-  @v.when(Program)
-  def visit(self, node): pass
-
-  @v.when(Clazz)
-  def visit(self, node): pass
-
-  @v.when(Field)
-  def visit(self, node): pass
-
-  @v.when(Method)
-  def visit(self, node): pass
-
-  @v.when(Statement)
-  def visit(self, node): return [node]
-
-  @v.when(Expression)
-  def visit(self, node): return node
-
+    @v.when(Node)
+    def visit(self, node):
+        for c in node.childrenNodes: c.accept(self)
 
 """
 class A {
@@ -192,31 +187,18 @@ class Test {
     }
 }
 """
+
+
 class MHole(object):
 
-  def __init__(self): pass
+    def __init__(self): pass
 
-  @v.on("node")
-  def visit(self, node):
-    """
-    This is the generic method to initialize the dynamic dispatcher
-    """
+    @v.on("node")
+    def visit(self, node):
+        """
+        This is the generic method to initialize the dynamic dispatcher
+        """
 
-  @v.when(Program)
-  def visit(self, node): pass
-
-  @v.when(Clazz)
-  def visit(self, node): pass
-
-  @v.when(Field)
-  def visit(self, node): pass
-
-  @v.when(Method)
-  def visit(self, node): pass
-
-  @v.when(Statement)
-  def visit(self, node): return [node]
-
-  @v.when(Expression)
-  def visit(self, node): return node
-
+    @v.when(Node)
+    def visit(self, node):
+        for c in node.childrenNodes: c.accept(self)

@@ -1,54 +1,48 @@
-import logging
+# import logging
 
-import lib.const as C
-import lib.visit as v
 
-from .. import util
-from ..meta.program import Program
-from ..meta.clazz import Clazz
-from ..meta.method import Method
-from ..meta.field import Field
-from ..meta.statement import Statement, to_statements
-from ..meta.expression import Expression
+from ast.visit import visit as v
+from ast.node import Node
+from ast.body.methoddeclaration import MethodDeclaration
+from ast.stmt.minrepeatstmt import MinrepeatStmt
+
 
 class Desugar(object):
 
-  def __init__(self):
-    self._cur_mtd = None
+    def __init__(self):
+        self._cur_mtd = None
 
-  @v.on("node")
-  def visit(self, node):
-    """
-    This is the generic method to initialize the dynamic dispatcher
-    """
+    @v.on("node")
+    def visit(self, node):
+        """
+        This is the generic method to initialize the dynamic dispatcher
+        """
 
-  @v.when(Program)
-  def visit(self, node): pass
+    @v.when(Node)
+    def visit(self, node):
+        for c in node.childrenNodes: c.accept(self)
 
-  @v.when(Clazz)
-  def visit(self, node): pass
+    @v.when(MethodDeclaration)
+    def visit(self, node):
+        self._cur_mtd = node
+        for c in node.childrenNodes: c.accept(self)
+    
+    @v.when(MinrepeatStmt)
+    def visit(self, node):
+        raise NotImplementedError
 
-  @v.when(Field)
-  def visit(self, node): pass
+    # Old impl
+    # @v.when(Statement)
+    # def visit(self, node):
+    #     if node.kind == C.S.MINREPEAT:
+    #         b = '\n'.join(map(str, node.b))
+    #         body = u""
+    #         for i in xrange(9):  # TODO: parameterize
+    #             body += u"""
+    #       if (??) {{ {} }}
+    #     """.format(b)
+    #         logging.debug(
+    #             "desugaring minrepeat @ {}".format(self._cur_mtd.name))
+    #         return to_statements(self._cur_mtd, body)
 
-  @v.when(Method)
-  def visit(self, node):
-    self._cur_mtd = node
-
-  @v.when(Statement)
-  def visit(self, node):
-    if node.kind == C.S.MINREPEAT:
-      b = '\n'.join(map(str, node.b))
-      body = u""
-      for i in xrange(9): # TODO: parameterize
-        body += u"""
-          if (??) {{ {} }}
-        """.format(b)
-      logging.debug("desugaring minrepeat @ {}".format(self._cur_mtd.name))
-      return to_statements(self._cur_mtd, body)
-
-    return [node]
-
-  @v.when(Expression)
-  def visit(self, node): return node
-
+    #     return [node]
