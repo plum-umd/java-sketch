@@ -1,134 +1,64 @@
+
+from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
+from ast.visit.generic import GenericVisitor
+
 import os
-import logging
-
-from lib.typecheck import *
-import lib.const as C
-
 from .. import util
-from ..meta.program import Program
-
 from finder import HFinder, EGFinder
-from replacer import HReplacer, EGReplacer, MGReplacer
 
-from collection import Collection
-from semantic_checker import SemanticChecker
+def to_java(java_output_dir, output_class_names, pgr, sk_output_path):
+    ## clean up result directory
+    if os.path.isdir(java_output_dir): util.clean_dir(java_output_dir)
+    else: os.makedirs(java_output_dir)
 
+    ## find holes
+    hfinder = HFinder()
+    pgr.accept(hfinder)
+    holes = hfinder.holes
 
-# white-list checking
-@takes(unicode, list_of(unicode))
-@returns(bool)
-def check_pkg(pname, lst):
-  return util.exists(lambda pkg: pname.startswith(pkg), lst)
+    ## replace holes with resolved answers
+    #logging.info("replacing holes")
+    #hreplacer = HReplacer(output_path, holes)
+    #pgr.accept(hreplacer)
 
-
-# trimming
-@takes(Program)
-@returns(nothing)
-def trim(pgr):
-  pkgs_java = [u"java.lang", u"java.util"]
-
-  for cls in pgr.classes[:]:
-    if cls.pkg and check_pkg(cls.pkg, pkgs_java):
-      logging.debug("trimming: {}".format(cls.name))
-      pgr.classes.remove(cls)
+    ## find generators
+    gfinder = EGFinder()
+    pgr.accept(gfinder)
+    egens = gfinder.egens
 
 
-# find appropriate import statements, generally
-@takes(str, unicode, list_of(unicode))
-@returns(list_of(unicode))
-def find_imports(body, pkg, clss):
-  def appear(cls): return cls in body
-  return [ '.'.join([pkg, cls]) for cls in filter(appear, clss) ]
+    ### replace regex generators with resolved answers
+    #logging.info("replacing regex generators")
+    #egreplacer = EGReplacer(output_path, egens)
+    #pgr.accept(egreplacer)
+
+    ## replace method generators with resolved body
+    #logging.info("replace method generators")
+    #mgreplacer = MGReplacer(output_path)
+    #pgr.accept(mgreplacer)
+
+    ## final semantic checking
+    #logging.info("semantics checking")
+    #_visitors = []
+    ## replace collections of interface types with actual classes, if any
+    #_visitors.append(Collection())
+    #_visitors.append(SemanticChecker())
+    #map(lambda vis: pgr.accept(vis), _visitors)
+
+    ### trimming of the program
+    classes = get_classes(pgr, output_class_names)
+    return (holes, egens, classes)
+
+    #dump(java_dir, pgr, "decoding")
+
+def get_classes(comp_unit, output_class_names):
+    classes = {}
+    def find_classes(node):
+        if type(node) == ClassOrInterfaceDeclaration:
+            classes[node.fullname] = node
+    class_finder = GenericVisitor(find_classes)
+    comp_unit.accept(class_finder)
+    return list(map(lambda name: classes[name], output_class_names))
 
 
-@takes(str, Program, str, str)
-@returns(nothing)
-def to_java(java_dir, pgr, output_path):
-  ## clean up result directory
-  if os.path.isdir(java_dir): util.clean_dir(java_dir)
-  else: os.makedirs(java_dir)
-
-  ## find holes
-  hfinder = HFinder()
-  pgr.accept(hfinder)
-  holes = hfinder.holes
-
-  ## replace holes with resolved answers
-  logging.info("replacing holes")
-  hreplacer = HReplacer(output_path, holes)
-  pgr.accept(hreplacer)
-
-  ## find generators
-  gfinder = EGFinder()
-  pgr.accept(gfinder)
-  egens = gfinder.egens
-
-  ## replace regex generators with resolved answers
-  logging.info("replacing regex generators")
-  egreplacer = EGReplacer(output_path, egens)
-  pgr.accept(egreplacer)
-
-  # replace method generators with resolved body
-  logging.info("replace method generators")
-  mgreplacer = MGReplacer(output_path)
-  pgr.accept(mgreplacer)
-
-  # final semantic checking
-  logging.info("semantics checking")
-  _visitors = []
-  # replace collections of interface types with actual classes, if any
-  _visitors.append(Collection())
-  _visitors.append(SemanticChecker())
-  map(lambda vis: pgr.accept(vis), _visitors)
-
-  ## trimming of the program
-  trim(pgr)
-
-  dump(java_dir, pgr, "decoding")
-
-
-# dump out the given program, which might be
-# either an intermediate AST or the final result
-@takes(str, Program, optional(str))
-@returns(nothing)
-def dump(dst_dir, pgr, msg=None):
-  def write_imports(imports):
-    def write_import(i): return "import {};".format(i)
-    return '\n'.join(map(write_import, imports)) + '\n'
-
-  ios = [u"File", u"InputStream", u"FileInputStream", \
-      u"InputStreamReader", u"BufferedReader", \
-      u"FileNotFoundException", u"IOException"]
-
-  decl_pkgs = set([])
-  for cls in pgr.classes:
-    if not cls.pkg: continue
-    decl_pkgs.add(cls.pkg)
-
-  for cls in pgr.classes:
-    ## generate folders according to package hierarchy
-    fname = cls.name + ".java"
-    if cls.pkg:
-      util.build_pkg_folders(dst_dir, cls.pkg)
-      folders = [dst_dir] + cls.pkg.split('.') + [fname]
-      java_path = os.path.join(*folders)
-    else: java_path = os.path.join(dst_dir, fname)
-
-    ## figure out import statements
-    imports = []
-
-    cls_body = str(cls)
-    imports.extend(find_imports(cls_body, u"java.util", C.collections))
-    imports.extend(find_imports(cls_body, u"java.io", ios))
-
-    for pkg in decl_pkgs:
-      if not cls.pkg or cls.pkg != pkg: imports.append(pkg+".*")
-
-    ## generate Java files
-    with open(java_path, 'w') as f:
-      if cls.pkg: f.write(C.T.PKG + ' ' + cls.pkg + ";\n")
-      f.write(write_imports(imports))
-      f.write(cls_body)
-      if msg: logging.info(" ".join([msg, f.name]))
-      else: logging.debug("dumping " + f.name)
 

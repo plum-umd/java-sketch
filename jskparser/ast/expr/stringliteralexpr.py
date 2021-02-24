@@ -5,11 +5,11 @@ from .literalexpr import LiteralExpr
 from ..type.referencetype import ReferenceType
 
 class StringLiteralExpr(LiteralExpr):
-  def __init__(self, kwargs={}):
+  def __init__(self, kwargs={}, lit_value=''):
     super(StringLiteralExpr, self).__init__(kwargs)
 
     # Expression value
-    self._value = kwargs.get(u'value', '')
+    self._value = kwargs.get(u'value', lit_value)
 
     self.add_as_parent([self.typee])
     

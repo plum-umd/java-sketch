@@ -1,14 +1,11 @@
 import logging
 
-import lib.visit as v
-import lib.const as C
+from ast.visit import visit as v
 
-from ..meta.program import Program
-from ..meta.clazz import Clazz
-from ..meta.method import Method
-from ..meta.field import Field
-from ..meta.statement import Statement
-from ..meta.expression import Expression
+from ast.node import Node
+from ast.expr.generatorexpr import GeneratorExpr
+from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
+from ast.body.methoddeclaration import MethodDeclaration
 
 
 """
@@ -16,39 +13,39 @@ Finding hole declarations
 """
 class HFinder(object):
 
-  def __init__(self):
-    self._holes = []
+    def __init__(self):
+        self._holes = []
+        self._cur_class = None
+        self._cur_method = None 
+    @property
+    def holes(self):
+        return self._holes
 
-  @property
-  def holes(self):
-    return self._holes
+    @v.on("node")
+    def visit(self, node):
+        """
+        This is the generic method to initialize the dynamic dispatcher
+        """
 
-  @v.on("node")
-  def visit(self, node):
-    """
-    This is the generic method to initialize the dynamic dispatcher
-    """
+    @v.when(Node)
+    def visit(self, node):
+        for c in node.childrenNodes: c.accept(self)
 
-  @v.when(Program)
-  def visit(self, node): pass
+    @v.when(ClassOrInterfaceDeclaration)
+    def visit(self, node):
+        self._cur_class = node.name
+        for c in node.childrenNodes: c.accept(self)
 
-  @v.when(Clazz)
-  def visit(self, node): pass
+    @v.when(MethodDeclaration)
+    def visit(self, node):
+        self._cur_method = node.name
+        for c in node.childrenNodes: c.accept(self)
 
-  @v.when(Field)
-  def visit(self, node):
-    if node.init and node.init.kind == C.E.HOLE:
-      logging.debug("hole: {}.{}".format(node.clazz.name, node.name))
-      self._holes.append(node)
-
-  @v.when(Method)
-  def visit(self, node): pass
-
-  @v.when(Statement)
-  def visit(self, node): return [node]
-
-  @v.when(Expression)
-  def visit(self, node): return node
+    @v.when(GeneratorExpr)
+    def visit(self, node):
+        if node.isHole:
+            logging.debug("hole@: {}.{}".format(self._cur_class, self._cur_method))
+            self._holes.append(node)
 
 
 """
@@ -56,42 +53,37 @@ Finding regex generators {| e* |}
 """
 class EGFinder(object):
 
-  def __init__(self):
-    self._egens = []
+    def __init__(self):
+        self._egens = []
+        self._cur_class = None
+        self._cur_method = None
 
-    self._cur_mtd = None
+    @property
+    def egens(self):
+        return self._egens
 
-  @property
-  def egens(self):
-    return self._egens
+    @v.on("node")
+    def visit(self, node):
+        """
+        This is the generic method to initialize the dynamic dispatcher
+        """
 
-  @v.on("node")
-  def visit(self, node):
-    """
-    This is the generic method to initialize the dynamic dispatcher
-    """
+    @v.when(Node)
+    def visit(self, node):
+        for c in node.childrenNodes: c.accept(self)
 
-  @v.when(Program)
-  def visit(self, node): pass
+    @v.when(ClassOrInterfaceDeclaration)
+    def visit(self, node):
+        self._cur_class = node.name
+        for c in node.childrenNodes: c.accept(self)
 
-  @v.when(Clazz)
-  def visit(self, node): pass
+    @v.when(MethodDeclaration)
+    def visit(self, node):
+        self._cur_method = node.name
+        for c in node.childrenNodes: c.accept(self)
 
-  @v.when(Field)
-  def visit(self, node): pass
-
-  @v.when(Method)
-  def visit(self, node):
-    self._cur_mtd = node
-
-  @v.when(Statement)
-  def visit(self, node): return [node]
-
-  @v.when(Expression)
-  def visit(self, node):
-    if node.kind == C.E.GEN:
-      logging.debug("generator@{}: {}".format(self._cur_mtd.name, str(node)))
-      self._egens.append(node)
-
-    return node
-
+    @v.when(GeneratorExpr)
+    def visit(self, node):
+        if node.isHole:
+            logging.debug("generator@: {}.{}".format(self._cur_class, self._cur_method))
+            self._egens.append(node)

@@ -4,7 +4,7 @@ from .stringliteralexpr import StringLiteralExpr
 from ..type.primitivetype import PrimitiveType
 
 class IntegerLiteralExpr(StringLiteralExpr):
-    def __init__(self, kwargs={}):
+    def __init__(self, kwargs={}, lit_value=None):
         super(IntegerLiteralExpr, self).__init__(kwargs)
         #  String UNSIGNED_MIN_VALUE = "2147483648";
         self._UNSIGNED_MIN_VALUE = "2147483648"
@@ -12,7 +12,7 @@ class IntegerLiteralExpr(StringLiteralExpr):
         #  String MIN_VALUE = "-" + self._UNSIGNED_MIN_VALUE;
         self._MIN_VALUE = "-" + self._UNSIGNED_MIN_VALUE
 
-        self._value = kwargs.get(u'value')
+        self._value = kwargs.get(u'value', lit_value)
 
         self.add_as_parent([self.typee])
                 

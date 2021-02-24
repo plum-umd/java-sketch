@@ -1,6 +1,8 @@
 import java.io.PrintWriter;
 
 import sketch.compiler.ast.core.FEReplacer;
+import sketch.compiler.ast.core.FENode;
+import sketch.compiler.ast.core.FEContext;
 //import sketch.compiler.ast.core.Package;
 import sketch.compiler.ast.core.Function;
 import sketch.compiler.ast.core.exprs.*;
@@ -31,13 +33,19 @@ public class CSV extends FEReplacer {
   @Override
   public Object visitFunction(Function func) {
     cur_func = func.getName();
+    if (func.getBody().isBlock()) {
+      for (Statement stmt: ((StmtBlock)func.getBody()).getStmts()){
+        printInfo(stmt);
+      }
+    }
     return super.visitFunction(func);
   }
 
   void printInfo(Object obj) {
     String typ = obj.getClass().getSimpleName();
+    FEContext ctx = ((FENode)obj).getCx();
     //out.println(cur_pkg + "," + cur_func + "," + typ + "," + obj.toString());
-    out.println(cur_func + "," + typ + "," + obj.toString());
+    out.println(cur_func + "," + typ + "," + ctx.getFileName() + ":" + Integer.toString(ctx.getLineNumber()) + ":" + Integer.toString(ctx.getColumnNumber()) + "," + obj.toString());
     out.flush();
   }
 
@@ -51,11 +59,11 @@ public class CSV extends FEReplacer {
   }
 */
 
-  @Override
-  public Object visitExprBinary(ExprBinary exp) {
-    printInfo(exp);
-    return super.visitExprBinary(exp);
-  }
+  // @Override
+  // public Object visitExprBinary(ExprBinary exp) {
+  //   printInfo(exp);
+  //   return super.visitExprBinary(exp);
+  // }
 
 // seems never visited because all holes are already resolved and replaced
 /* 
@@ -67,16 +75,16 @@ public class CSV extends FEReplacer {
   }
 */
 
-  @Override
-  public Object visitStmtAssign(StmtAssign stmt) {
-    printInfo(stmt);
-    return super.visitStmtAssign(stmt);
-  }
+  // @Override
+  // public Object visitStmtAssign(StmtAssign stmt) {
+  //   printInfo(stmt);
+  //   return super.visitStmtAssign(stmt);
+  // }
 
-  @Override
-  public Object visitStmtVarDecl(StmtVarDecl stmt) {
-    printInfo(stmt);
-    return super.visitStmtVarDecl(stmt);
-  }
+  // @Override
+  // public Object visitStmtVarDecl(StmtVarDecl stmt) {
+  //   printInfo(stmt);
+  //   return super.visitStmtVarDecl(stmt);
+  // }
 
 }
