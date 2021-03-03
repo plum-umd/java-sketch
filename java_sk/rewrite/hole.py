@@ -13,6 +13,8 @@ from ast.type.primitivetype import PrimitiveType
 from ast.body.variabledeclarator import VariableDeclarator
 from ast.expr.nameexpr import NameExpr
 
+from ast.utils.utils import replace_node
+
 """
 class A {
     ... foo() {
@@ -101,8 +103,7 @@ class EHole(object):
         cls.prepend_member(hole)
         logging.debug(
             "introducing e_hole {} @ {}".format(hname, self._cur_mtd.sig()))
-        return NameExpr(name=hname)
-
+        replace_node(node, NameExpr(name=hname))
 
 
 """
