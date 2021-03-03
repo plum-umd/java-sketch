@@ -483,4 +483,24 @@ def mtd_type_from_callexpr(callexpr):
 # this is also in ast.node...
 def sanitize_ty(tname):
     return tname.replace('$','_').replace('.','_').replace('?', u'Object')
+
+from ast.stmt.ifstmt import IfStmt
+
+node_fields = {
+    "IfStmt": ["condition", "thenStmt", "elseStmt"],
+    "BinaryExpr": ["left", "right"],
+}
+
+# Replace a child node in its parent AST
+def replace_node(old, new):
+    parent = old.parentNode
+    child_idx = parent.childrenNodes.index(old)
+    parent.childrenNodes[child_idx] = new
+
+    # Change fields by type
+    for cls_name in node_fields:
+        if isinstance(parent, globals()[cls_name]):
+            for fld_name in node_fields[cls_name]:
+                if getattr(parent, fld_name) is old:
+                    setattr(parent, fld_name, new)
     
