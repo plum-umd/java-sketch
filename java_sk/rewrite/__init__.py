@@ -2,7 +2,7 @@ import logging
 
 from desugar import Desugar
 from generator import CGenerator, MGenerator
-# from hole import EHole
+from hole import EHole
 # from semantic_checker import SemanticChecker
 
 

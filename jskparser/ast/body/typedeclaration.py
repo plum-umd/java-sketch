@@ -25,6 +25,7 @@ class TypeDeclaration(BodyDeclaration):
     @members.setter
     def members(self, v): self._members = v
     def add_member(self, v): self.members.append(v)
+    def prepend_member(self, v): self.members.insert(0, v)
   
     @property
     def modifiers(self): return self._modifiers

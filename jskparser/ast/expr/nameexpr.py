@@ -5,12 +5,12 @@ from . import _import
 from .expression import Expression
 
 class NameExpr(Expression):
-    def __init__(self, kwargs={}):
+    def __init__(self, kwargs={}, name=None):
         super(NameExpr, self).__init__(kwargs)
         locs = _import()
   
         # String name;
-        self._name = kwargs.get(u'name')
+        self._name = kwargs.get(u'name', name)
 
         typdct = kwargs.get(u'type')
         self._type = locs[typdct[u'@t']](typdct) if typdct else None

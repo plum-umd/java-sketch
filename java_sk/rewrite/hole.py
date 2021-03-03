@@ -1,12 +1,17 @@
 import logging
 
 from ast.visit import visit as v
+from ast import Modifiers
 from ast.node import Node
 from ast.body.fielddeclaration import FieldDeclaration
 from ast.body.methoddeclaration import MethodDeclaration
 from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 from ast.body.typedeclaration import TypeDeclaration
 from ast.expr.generatorexpr import GeneratorExpr
+
+from ast.type.primitivetype import PrimitiveType
+from ast.body.variabledeclarator import VariableDeclarator
+from ast.expr.nameexpr import NameExpr
 
 """
 class A {
@@ -84,14 +89,19 @@ class EHole(object):
         if TypeDeclaration.isGenerator(self._cur_mtd):
             return node
 
-        cls = self._cur_mtd.clazz
+        cls = self._cur_cls
         hname = u"e_h{}".format(EHole.fresh_cnt())
-        hole = Field(clazz=cls, mods=[C.mod.ST],
-                        typ=C.J.i, name=hname, init=node)
-        cls.add_fld(hole)
+        hole = FieldDeclaration(type_obj=PrimitiveType(type_name="int"),
+                modifier_bits=Modifiers['ST'],
+                var_decl_obj=VariableDeclarator(
+                    id_str=hname,
+                    type_obj=PrimitiveType(type_name="int"),
+                    init_obj=node
+                ))
+        cls.prepend_member(hole)
         logging.debug(
-            "introducing e_hole {} @ {}".format(hname, self._cur_mtd.signature))
-        return to_expression(hname)
+            "introducing e_hole {} @ {}".format(hname, self._cur_mtd.sig()))
+        return NameExpr(name=hname)
 
 
 
