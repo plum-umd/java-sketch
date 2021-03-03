@@ -5,22 +5,31 @@ from . import _import
 from ..node import Node
 
 class VariableDeclarator(Node):
-    def __init__(self, kwargs={}, id_str=""):
-        if kwargs.get(u'id', ''):
+    def __init__(self, kwargs={}, id_str="", type_obj=None, init_obj=None):
+        if kwargs.get(u'id', id_str):
             super(VariableDeclarator, self).__init__(kwargs)
             locs = _import()
 
             # VariableDeclaratorId
-            self._id = locs[u'VariableDeclaratorId'](kwargs.get(u'id', ''))
+            if id_str:
+                self._id = locs[u'VariableDeclaratorId'](name_str=id_str)
+            else:
+                self._id = locs[u'VariableDeclaratorId'](kwargs.get(u'id'))
 
             # Type type
-            typ = kwargs.get(u'type')
-            self._typ = locs[typ[u'@t']](typ) if typ else None
+            if type_obj:
+                self._typ = type_obj
+            else:
+                typ = kwargs.get(u'type')
+                self._typ = locs[typ[u'@t']](typ) if typ else None
 
             # Expression
-            i = kwargs.get('init', None)
+            if init_obj:
+                self._init = init_obj
+            else:
+                i = kwargs.get('init')
 
-            self._init = locs[i[u'@t']](i) if i else None
+                self._init = locs[i[u'@t']](i) if i else None
             # if self._init and self.parentNode and not self._typ:
             #     self._init.typee = self.parentNode.typee
 

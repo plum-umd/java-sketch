@@ -3,11 +3,14 @@
 from ..node import Node
 
 class VariableDeclaratorId(Node):
-    def __init__(self, kwargs={}):
+    def __init__(self, kwargs={}, name_str=""):
         super(VariableDeclaratorId, self).__init__(kwargs)
       
         # int arrayCount
         self._arrayCount = kwargs.get(u'arrayCount', 0)
+
+        if name_str:
+            self.name = name_str
   
     @property
     def arrayCount(self): return self._arrayCount
