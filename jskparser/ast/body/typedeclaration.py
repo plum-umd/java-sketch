@@ -24,8 +24,12 @@ class TypeDeclaration(BodyDeclaration):
     def members(self): return self._members
     @members.setter
     def members(self, v): self._members = v
-    def add_member(self, v): self.members.append(v)
-    def prepend_member(self, v): self.members.insert(0, v)
+    def add_member(self, v):
+        self.members.append(v)
+        self.childrenNodes.append(v)
+    def prepend_member(self, v):
+        self.members.insert(0, v)
+        self.childrenNodes.insert(0, v)
   
     @property
     def modifiers(self): return self._modifiers

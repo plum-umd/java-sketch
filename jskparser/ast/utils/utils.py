@@ -495,8 +495,6 @@ node_fields = {
 # Replace a child node in its parent AST
 def replace_node(old, new):
     parent = old.parentNode
-    child_idx = parent.childrenNodes.index(old)
-    parent.childrenNodes[child_idx] = new
 
     # Change fields by type
     for cls_name in node_fields:
@@ -504,6 +502,9 @@ def replace_node(old, new):
             for fld_name in node_fields[cls_name]:
                 if getattr(parent, fld_name) is old:
                     setattr(parent, fld_name, new)
+                    child_idx = parent.childrenNodes.index(old)
+                    parent.childrenNodes[child_idx] = new
+                    old.parentNode = None
                     return
     logging.warn(
         "Unsupported parent node type {} for replace_node()".format(type(parent)))
