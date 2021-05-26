@@ -9,6 +9,7 @@ from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 from ast.body.typedeclaration import TypeDeclaration
 from ast.expr.generatorexpr import GeneratorExpr
 
+from ast.stmt.ifstmt import IfStmt
 from ast.type.primitivetype import PrimitiveType
 from ast.body.variabledeclarator import VariableDeclarator
 from ast.expr.nameexpr import NameExpr
@@ -90,19 +91,32 @@ class EHole(object):
         # avoid editing hole(s) in a method-level generator
         if TypeDeclaration.isGenerator(self._cur_mtd):
             return node
+        
+
+        # Determine hole type by context
+        # On if statement conditions, always use boolean
+        if type(node.parentNode) == IfStmt and \
+            node.parentNode.condition == node:
+            type_name = "boolean"
+        # On variable declearators, carry decleared type
+        if type(node.parentNode) == VariableDeclarator:
+            type_name = node.parentNode.typee.name
+        # Default is int
+        else:
+            type_name = "int"
 
         cls = self._cur_cls
         hname = u"e_h{}".format(EHole.fresh_cnt())
-        hole = FieldDeclaration(type_obj=PrimitiveType(type_name="int"),
+        hole = FieldDeclaration(type_obj=PrimitiveType(type_name=type_name),
                 modifier_bits=Modifiers['ST'],
                 var_decl_obj=VariableDeclarator(
                     id_str=hname,
-                    type_obj=PrimitiveType(type_name="int"),
+                    type_obj=PrimitiveType(type_name=type_name),
                     init_obj=node
                 ))
         cls.prepend_member(hole)
         logging.debug(
-            "introducing e_hole {} @ {}".format(hname, self._cur_mtd.sig()))
+            "introducing e_hole type {} {} @ {}".format(type_name, hname, self._cur_mtd.sig()))
         replace_node(node, NameExpr(name=hname))
 
 
