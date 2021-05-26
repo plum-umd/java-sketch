@@ -11,9 +11,9 @@ def visit(pgr):
     # Desugaring is for minrepeat
     # Not implemented currently
     # desugar'ing syntax sugar
-    logging.info("rewriting syntax sugar")
-    desugar = Desugar()
-    pgr.accept(desugar)
+    # logging.info("rewriting syntax sugar")
+    # desugar = Desugar()
+    # pgr.accept(desugar)
 
     # # specializing class-level generator
     # logging.info("specializing class-level generator")
@@ -25,16 +25,10 @@ def visit(pgr):
     # mgen = MGenerator()
     # pgr.accept(mgen)
 
-    # # rewriters
-    # rws = {}
-
-    # # expression hole
-    # eh = EHole()
-    # rws["exp hole"] = eh
-
-    # for rw in rws:
-    #     logging.info("rewriting {}".format(rw))
-    #     pgr.accept(rws[rw])
+    # Handling expression holes
+    logging.info("rewriting expression holes")
+    eh = EHole()
+    pgr.accept(eh)
 
     # # final semantic checking
     # logging.info("semantics checking")
