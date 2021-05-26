@@ -489,6 +489,7 @@ from ast.stmt.ifstmt import IfStmt
 node_fields = {
     "IfStmt": ["condition", "thenStmt", "elseStmt"],
     "BinaryExpr": ["left", "right"],
+    "VariableDeclarator": ["init"]
 }
 
 # Replace a child node in its parent AST
@@ -503,4 +504,7 @@ def replace_node(old, new):
             for fld_name in node_fields[cls_name]:
                 if getattr(parent, fld_name) is old:
                     setattr(parent, fld_name, new)
+                    return
+    logging.warn(
+        "Unsupported parent node type {} for replace_node()".format(type(parent)))
     
