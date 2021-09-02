@@ -1,5 +1,6 @@
 package java.util;
 
+@JSketchStdLib
 public class HashSet<E> implements Set<E> {
     E[] set;
     int capacity;

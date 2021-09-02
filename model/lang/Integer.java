@@ -1,5 +1,6 @@
 package java.lang;
 
+@JSketchStdLib
 public class Integer extends Number {
     public static final int   MIN_VALUE;
 

@@ -6,6 +6,7 @@ package java.lang;
 
 // }
 
+@JSketchStdLib
 public class Number {
 
 }

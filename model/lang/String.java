@@ -1,5 +1,6 @@
 package java.lang;
 
+@JSketchStdLib
 public class String implements CharSequence{
     char[] _value;
     int _count;

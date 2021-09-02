@@ -1,5 +1,6 @@
 package java.util;
 
+@JSketchStdLib
 private class ArrayAsListIterator<E> implements Iterator<E> {
     private E[] es = null;
     private int index = -1;
@@ -24,6 +25,7 @@ private class ArrayAsListIterator<E> implements Iterator<E> {
     }
 }
 
+@JSketchStdLib
 private class ArrayAsList<E> implements List<E> {
     private E[] es = null;
     public AsList(E[] es) {
@@ -61,6 +63,7 @@ private class ArrayAsList<E> implements List<E> {
     }
 }
 
+@JSketchStdLib
 public class Arrays {
 
     public static byte[] copyOf(byte[] in, int len) {

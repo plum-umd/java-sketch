@@ -1,11 +1,13 @@
 package java.util;
 
+@JSketchStdLib
 private class LLNode<E>{
     public E value = null;
     public LLNode<E> prev = null;
     public LLNode<E> next = null;
 }
 
+@JSketchStdLib
 private class LinkedListIterator<E> implements Iterator<E> {
     private LinkedList<E> es = null; // only used for removal
     private LLNode<E> cur = null;
@@ -35,6 +37,7 @@ private class LinkedListIterator<E> implements Iterator<E> {
     }
 }
 
+@JSketchStdLib
 public class LinkedList<E> implements List<E>{
     private LLNode<E> head = null;
     private LLNode<E> last = null;

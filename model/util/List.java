@@ -2,6 +2,7 @@ package java.util;
 
 import java.lang.Iterable;
 
+@JSketchStdLib
 public interface List <E> extends Iterable<E> {
   public <E> boolean add(E e);
   public boolean isEmpty();

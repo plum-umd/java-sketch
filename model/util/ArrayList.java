@@ -1,5 +1,6 @@
 package java.util;
 
+@JSketchStdLib
 private class ArrayListIterator<E> implements Iterator<E> {
     private ArrayList<E> es = null;
     private int index = -1;
@@ -28,6 +29,7 @@ private class ArrayListIterator<E> implements Iterator<E> {
     }
 }
 
+@JSketchStdLib
 public class ArrayList<E> implements List<E>{
 
     Object[] elementData;

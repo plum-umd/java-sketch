@@ -1,5 +1,6 @@
 package java.lang;
 
+@JSketchStdLib
 public class Character {
     // public static final int MIN_RADIX = 2;
     // public static final int MAX_RADIX = 36;

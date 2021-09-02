@@ -7,6 +7,7 @@ import logging.config
 import os
 
 from ast.compilationunit import CompilationUnit
+from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 from ast.utils import utils
 from ast.dataflow.dataflow import DataFlow
 from ast.visit.sourcevisitor import SourcePrinter
@@ -31,6 +32,17 @@ def parse(path, **kwargs):
         d.update({u'GSYMTAB':'RESET'})
         logging.info('parsing file...')
         program = CompilationUnit(d)
+        top_class_names = []
+        def find_classes(node):
+            if type(node) == ClassOrInterfaceDeclaration and \
+                not node.isinner():
+                for annotation in node.annotations:
+                    if annotation.name.name == u"JSketchStdLib":
+                        return
+                top_class_names.append(node.name)
+        class_finder = GenericVisitor(find_classes)
+        program.accept(class_finder)
+        program.src_class_names = top_class_names
         
         s = SymtabGen(lib=lib)
         logging.info('generating symbol table...')
