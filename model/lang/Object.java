@@ -1,3 +1,4 @@
+@JSketchStdLib
 public class Object {
     // public static boolean equals(Object a, Object b) {
     // 	if (a == null) {
