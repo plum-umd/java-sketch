@@ -1,4 +1,7 @@
 import copy
+from ast.stmt.returnstmt import ReturnStmt
+from ast.stmt.expressionstmt import ExpressionStmt
+from ast.expr.methodcallexpr import MethodCallExpr
 import logging
 
 from ast.visit import visit as v
@@ -6,15 +9,9 @@ from ast.node import Node
 from ast.body.typedeclaration import TypeDeclaration
 from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 from ast.body.methoddeclaration import MethodDeclaration
-
-# from .. import util
-# from ..meta import class_nonce, register_class, class_lookup
-# from ..meta.program import Program
-# from ..meta.clazz import Clazz
-# from ..meta.method import Method
-# from ..meta.field import Field
-# from ..meta.statement import Statement, to_statements
-# from ..meta.expression import Expression, to_expression
+from ast.stmt.blockstmt import BlockStmt
+from ast import Modifiers
+from ast.utils.utils import replace_node, replace_child
 
 """
 generator class Automaton { body_of_Automaton }
@@ -54,17 +51,18 @@ class CGenerator(object):
         """
         This is the generic method to initialize the dynamic dispatcher
         """
-    
+
     @v.when(Node)
     def visit(self, node):
-        for c in node.childrenNodes: c.accept(self)
+        for c in node.childrenNodes:
+            c.accept(self)
 
     @v.when(ClassOrInterfaceDeclaration)
     def visit(self, node):
         if TypeDeclaration.isGenerator(node):
             raise NotImplementedError
-        for c in node.childrenNodes: c.accept(self)
-
+        for c in node.childrenNodes:
+            c.accept(self)
 
     # @v.when(Program)
     # def visit(self, node):
@@ -148,8 +146,10 @@ class MGenerator(object):
 
     def __init__(self):
         # { mname: mtd } for easier lookup
-        self._mgens = {}
+        self._mgens = None
         self._cur_mtd = None
+        self._cur_cls = None
+        self._added_mtds = set()
 
     @v.on("node")
     def visit(self, node):
@@ -159,67 +159,84 @@ class MGenerator(object):
 
     @v.when(Node)
     def visit(self, node):
-        for c in node.childrenNodes: c.accept(self)
+        for c in node.childrenNodes:
+            c.accept(self)
+
+    @v.when(ClassOrInterfaceDeclaration)
+    def visit(self, node):
+        self._cur_cls = node
+        # Generators should be local to each class, for now
+        self._mgens = {}
+        for m in node.members:
+            if isinstance(m, MethodDeclaration) and TypeDeclaration.isGenerator(m):
+                self._mgens[m.name] = m
+        for c in node.childrenNodes:
+            c.accept(self)
 
     @v.when(MethodDeclaration)
     def visit(self, node):
-        if TypeDeclaration.isGenerator(node):
-            raise NotImplementedError
-        for c in node.childrenNodes: c.accept(self)
+        self._cur_mtd = node
+        for c in node.childrenNodes:
+            c.accept(self)
+    
+    @v.when(MethodCallExpr)
+    def visit(self, node):
+        callee = node.name
+        if not callee in self._mgens:
+            for c in node.childrenNodes:
+                c.accept(self)
+            return
+        # Avoid calls inside a specialized method
+        if self._cur_mtd.name in self._added_mtds:
+            return
+        # Avoid calls inside a generator
+        if TypeDeclaration.isGenerator(self._cur_mtd):
+            return
+        
+        mgen = self._mgens[callee]
+        specialized_mtd_name = u"{}{}".format(callee, MGenerator.fresh_cnt())
+        self._added_mtds.add(specialized_mtd_name)
+        new_modifiers = mgen.modifiers & (~ Modifiers['GN'])
+        specialized_mtd = mgen.clone({
+            u'name': specialized_mtd_name,
+            u'modifiers': new_modifiers,
+        })
 
-    # @v.when(Program)
-    # def visit(self, node):
-    #     # collect method-level generators
-    #     for cls in util.flatten_classes(node.classes, "inners"):
-    #         for mtd in cls.mtds:
-    #             if mtd.is_generator:
-    #                 logging.debug(
-    #                     "found method generator: {}.{}".format(cls.name, mtd.name))
-    #                 self._mgens[mtd.name] = mtd
 
-    # @v.when(Method)
-    # def visit(self, node):
-    #     self._cur_mtd = node
+        # TODO: Below are code to generate delegated calls to the real generator
+        # in the specialized functions. To handle recursive generators, these
+        # delegations are needed, and reconstruction of the generated function
+        # from sketch output is required in the decode module.
+        # Currently due to the lack of such reconstruction techniques, we are
+        # taking a different approach of inlining the real generator into
+        # specialized functions, this way the holes in them would be rewritten
+        # into named holes seperately and then populated by the decode module
+        # later after synthesis. But this approach would lack the ability to
+        # handle recursive and more complex generators
 
-    # @v.when(Expression)
-    # def visit(self, node):
-    #     if node.kind != C.E.CALL:
-    #         return node
 
-    #     l_callee = unicode(node.f).split('.')
-    #     u_callee = l_callee[-1]
-    #     if u_callee not in self._mgens:
-    #         return node
-    #     # avoid recursive calls inside a method generator
-    #     if u_callee == self._cur_mtd.name:
-    #         return node
-    #     # avoid calls inside a specialized method
-    #     if hasattr(self._cur_mtd, "generator"):
-    #         return node
+        # delegated_call = node.clone()
+        # new_args = [p.idd.to_name_expr() for p in specialized_mtd.parameters]
+        # for old_arg, new_arg in zip(delegated_call.args, new_args):
+        #     replace_child(old_arg, new_arg)
+        # delegated_call.args = new_args
 
-    #     mgen_mtd = self._mgens[u_callee]
-    #     # specialize the method generator
-    #     specialized_mtd_name = u"{}{}".format(u_callee, MGenerator.fresh_cnt())
+        # body = BlockStmt()
+        # if mgen.typee.name == u'void':
+        #     stmt = ExpressionStmt()
+        # else:
+        #     stmt = ReturnStmt()
+        # stmt.childrenNodes.append(delegated_call)
+        # stmt.expr = delegated_call
+        # body.childrenNodes.append(stmt)
+        # body.stmts.append(stmt)
 
-    #     _mods = list(set(mgen_mtd.mods) - set([C.mod.GN]))
-    #     specialized_mtd = Method(clazz=mgen_mtd.clazz, name=specialized_mtd_name,
-    #                              mods=_mods, typ=mgen_mtd.typ, params=mgen_mtd.params)
-    #     # associate the method generator, for easier decoding
-    #     setattr(specialized_mtd, "generator", mgen_mtd)
+        # replace_child(specialized_mtd.body, body)
+        # specialized_mtd.body = body
 
-    #     # delegate the call
-    #     args = u", ".join(mgen_mtd.param_vars)
-    #     delegation = u"{}({});".format(u_callee, args)
-    #     if mgen_mtd.typ != C.J.v:  # i.e., has a return value
-    #         delegation = u"return {}".format(delegation)
-    #     specialized_mtd.body = to_statements(specialized_mtd, delegation)
+        new_call = node.clone({
+            u"name": specialized_mtd_name
+        })
+        replace_node(node, new_call)
 
-    #     mgen_mtd.clazz.add_mtd(specialized_mtd)
-
-    #     # replace the callee, e.g., foo -> foo1
-    #     logging.debug("specializing {} to {}".format(
-    #         u_callee, specialized_mtd_name))
-    #     n_callee = u'.'.join(l_callee[:-1] + [specialized_mtd_name])
-    #     node.f = to_expression(n_callee)
-
-    #     return node
+        self._cur_cls.add_member(specialized_mtd)
