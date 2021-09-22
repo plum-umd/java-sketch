@@ -14,7 +14,6 @@ class MethodDeclaration(BodyDeclaration):
         super(MethodDeclaration, self).__init__(kwargs)
         locs = _import()
         
-        self._kwargs = kwargs # kwargs for re-init
         # int modifiers
         self._modifiers = kwargs.get(u'modifiers', 0)
 
@@ -74,13 +73,6 @@ class MethodDeclaration(BodyDeclaration):
         
         self.add_as_parent(self.parameters+self.typeParameters+[self.typee]+self.throws+[self.body])
     
-    def re_init_with(self, overriding_args = {}, purge_parent = True):
-        new_kwargs = self._kwargs.copy()
-        new_kwargs.update(overriding_args)
-        if purge_parent:
-            new_kwargs["parentNode"] = None
-        return MethodDeclaration(new_kwargs)
-
     @property
     def add_bang(self): return self._add_bang
     @add_bang.setter

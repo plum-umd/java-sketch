@@ -3,12 +3,22 @@ import json
 
 from . import _import
 
-from copy import copy
+from copy import copy, deepcopy
+
+def dict_traversal(obj, func):
+    func(obj)
+    if isinstance(obj, dict):
+        for value in obj.values():
+            dict_traversal(value, func)
+    if isinstance(obj, list):
+        for item in obj:
+            dict_traversal(item, func)
 
 class Node(object):
     GSYMTAB = {}
     def __init__(self, kwargs={}):
         locs = _import()
+        self._kwargs = kwargs # Store kwargs for cloning
         if kwargs.get(u'GSYMTAB'): self.GSYMTAB.clear()
         self._locs = _import()
         self._symtab = {}
@@ -69,6 +79,33 @@ class Node(object):
         self._inputs = []
 
         self._outputs = []
+
+    # Clone the node by trying to replace every id in kwargs with newer ids
+    # kwargs provide a way to override anything in the cloning process
+    def clone(self, kwargs={}, drop_parent=True):
+        new_kwargs = deepcopy(self._kwargs)
+        new_kwargs.update(kwargs)
+        if drop_parent:
+            new_kwargs[u'parentNode'] = None
+        id_mapping = {"offset": max(self.GSYMTAB.keys())}
+
+        def collect_id_mapping(obj):
+            if isinstance(obj, dict) and u'@i' in obj and obj.get('@i') not in id_mapping:
+                id_src = obj.get('@i')
+                id_mapping[id_src] = id_mapping["offset"] + 1
+                id_mapping["offset"] += 1
+        dict_traversal(new_kwargs, collect_id_mapping)
+
+        def map_id(obj):
+            if isinstance(obj, dict):
+                if obj.get('@i') in id_mapping:
+                    obj['@i'] = id_mapping[obj['@i']]
+                if obj.get('@r') in id_mapping:
+                    obj['@r'] = id_mapping[obj['@r']]
+        dict_traversal(new_kwargs, map_id)
+
+        cur_cls = type(self)
+        return cur_cls(new_kwargs)
 
     @property
     def beginLine(self): return self._beginLine
