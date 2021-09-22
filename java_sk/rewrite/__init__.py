@@ -21,9 +21,9 @@ def visit(pgr):
     # pgr.accept(cgen)
 
     # # specializing method-level generator
-    # logging.info("specializing method-level generator")
-    # mgen = MGenerator()
-    # pgr.accept(mgen)
+    logging.info("specializing method-level generator")
+    mgen = MGenerator()
+    pgr.accept(mgen)
 
     # Handling expression holes
     logging.info("rewriting expression holes")
