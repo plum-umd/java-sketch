@@ -498,14 +498,14 @@ def replace_node(old, new):
             setattr(parent, field_name, new)
     
         # Replace node presence in any list properties of parent
+        # This should handle childrenNodes list as well, so we do not need to call
+        # replace_child exclusively again in this function
         if isinstance(field, list):
             try:
                 idx = field.index(old)
             except ValueError:
                 continue
             field[idx] = new
-
-    replace_child(old, new)
     
 # Replace a child node in children list
 def replace_child(old, new):
