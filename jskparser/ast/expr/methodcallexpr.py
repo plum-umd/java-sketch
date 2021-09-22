@@ -22,7 +22,6 @@ class MethodCallExpr(Expression):
         super(MethodCallExpr, self).__init__(kwargs)
         locs = _import()
 
-        self._kwargs = kwargs # kwargs for re-init
         # Expression scope
         scope = kwargs.get(u'scope', {})
         self._scope = locs[scope[u'@t']](scope) if scope else None
@@ -43,13 +42,6 @@ class MethodCallExpr(Expression):
         self._add_bang = False
 
         self._ax_typ = ''
-
-    def re_init_with(self, overriding_args = {}, purge_parent = True):
-        new_kwargs = self._kwargs.copy()
-        new_kwargs.update(overriding_args)
-        if purge_parent:
-            new_kwargs["parentNode"] = None
-        return MethodCallExpr(new_kwargs)
 
     @property
     def ax_typ(self): return self._ax_typ
