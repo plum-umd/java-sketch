@@ -906,6 +906,7 @@ class SourcePrinter(object):
         if TypeDeclaration.isStatic(mods): self.printt('static ')
         if TypeDeclaration.isFinal(mods): self.printt('final ')
         if TypeDeclaration.isOptional(mods): self.printt('optional ')
+        if TypeDeclaration.isGenerator(mods): self.printt('generator ')
 
     def printTypeArgs(self, args):
         self.printTypeParameters(args)
