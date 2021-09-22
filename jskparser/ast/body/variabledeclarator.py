@@ -3,6 +3,7 @@
 from . import _import
 
 from ..node import Node
+from ..expr.nameexpr import NameExpr
 
 class VariableDeclarator(Node):
     def __init__(self, kwargs={}, id_str="", type_obj=None, init_obj=None):
@@ -34,6 +35,11 @@ class VariableDeclarator(Node):
             #     self._init.typee = self.parentNode.typee
 
             self.add_as_parent([self.idd, self.init])
+    
+    def to_name_expr(self):
+        expr = NameExpr()
+        expr.name = self.name
+        return expr
 
     @property
     def idd(self): return self._id
