@@ -484,28 +484,36 @@ def mtd_type_from_callexpr(callexpr):
 def sanitize_ty(tname):
     return tname.replace('$','_').replace('.','_').replace('?', u'Object')
 
-from ast.stmt.ifstmt import IfStmt
-
-node_fields = {
-    "IfStmt": ["condition", "thenStmt", "elseStmt"],
-    "BinaryExpr": ["left", "right"],
-    "VariableDeclarator": ["init"]
-}
-
-# Replace a child node in its parent AST
+# Replace a child node in its parent AST, in all possible properties and children list
 def replace_node(old, new):
     parent = old.parentNode
 
-    # Change fields by type
-    for cls_name in node_fields:
-        if isinstance(parent, globals()[cls_name]):
-            for fld_name in node_fields[cls_name]:
-                if getattr(parent, fld_name) is old:
-                    setattr(parent, fld_name, new)
-                    child_idx = parent.childrenNodes.index(old)
-                    parent.childrenNodes[child_idx] = new
-                    old.parentNode = None
-                    return
-    logging.warn(
-        "Unsupported parent node type {} for replace_node()".format(type(parent)))
+    for field_name in dir(parent):
+        try:
+            field = getattr(parent, field_name)
+        except:
+            continue
+        # Replace node presence in any properties of parent
+        if field is old:
+            setattr(parent, field_name, new)
     
+        # Replace node presence in any list properties of parent
+        if isinstance(field, list):
+            try:
+                idx = field.index(old)
+            except ValueError:
+                continue
+            field[idx] = new
+
+    replace_child(old, new)
+    
+# Replace a child node in children list
+def replace_child(old, new):
+    parent = old.parentNode
+    try:
+        child_idx = parent.childrenNodes.index(old)
+    except ValueError:
+        logging.warn("Child not found in replace_child()")
+        return
+    parent.childrenNodes[child_idx] = new
+    old.parentNode = None
