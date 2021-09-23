@@ -505,8 +505,17 @@ def replace_node(old, new):
                 idx = field.index(old)
             except ValueError:
                 continue
-            field[idx] = new
+            if new:
+                field[idx] = new
+            else:
+                del field[idx]
+    if new:
+        new.add_parent_post(parent)
     old.parentNode = None
+
+# Drop a node from the AST
+def drop_node(old):
+    replace_node(old, None)
     
 # Replace a child node in children list
 def replace_child(old, new):
@@ -516,5 +525,9 @@ def replace_child(old, new):
     except ValueError:
         logging.warn("Child not found in replace_child()")
         return
-    parent.childrenNodes[child_idx] = new
+    if new:
+        parent.childrenNodes[child_idx] = new
+        new.add_parent_post(parent)
+    else:
+        del parent.childrenNodes[child_idx]
     old.parentNode = None

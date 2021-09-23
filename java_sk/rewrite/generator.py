@@ -240,3 +240,4 @@ class MGenerator(object):
         replace_node(node, new_call)
 
         self._cur_cls.add_member(specialized_mtd)
+        specialized_mtd.add_parent_post(self._cur_cls)
