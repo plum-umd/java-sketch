@@ -80,6 +80,12 @@ def translate(**kwargs):
         
         if jgen:
             java_output_dir = os.path.join(out_dir, "java")
+
+            # Due to Encoder changing the AST, we have to re-parse here
+            # TODO: Find another way to preserve the AST
+            prg_ast = parse(prg,lib=lib)
+            rewrite.visit(prg_ast)
+
             decode.to_java(java_output_dir, prg_ast, output_path)
             
         # if sketch fails, halt the process here
