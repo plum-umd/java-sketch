@@ -9,6 +9,7 @@ import util
 from encoder import Encoder
 
 from jskparser.jskparser import parse
+import rewrite, decode
 
 pwd = os.path.dirname(__file__)
 root_dir = os.path.join(pwd, "..")
@@ -33,11 +34,16 @@ def translate(**kwargs):
     inline = kwargs.get('inline', None)
     unroll = kwargs.get('unroll', None)
     parallel = kwargs.get('parallel', None)
+    jgen = kwargs.get('jgen', False)
+    cgen = True if jgen else cgen
     
     codegen_jar = os.path.join(root_dir, "codegen", "lib", "codegen.jar")
     
     logging.info('parsing {}'.format(prg))
     prg_ast = parse(prg,lib=lib)
+    if jgen:
+        logging.info('rewriting {}'.format(prg))
+        rewrite.visit(prg_ast)
     util.add_object(prg_ast)
  
     encoder = Encoder(prg_ast, out_dir, fs)
@@ -72,6 +78,10 @@ def translate(**kwargs):
         logging.info('sk_dir: {}, output_path: {}'.format(encoder.sk_dir, output_path))
         _, r = sketch.run(encoder.sk_dir, output_path)
         
+        if jgen:
+            java_output_dir = os.path.join(out_dir, "java")
+            decode.to_java(java_output_dir, prg_ast, output_path)
+            
         # if sketch fails, halt the process here
         if not r: return 1
     elif not prg:
@@ -136,6 +146,9 @@ if __name__ == "__main__":
     jskparser.add_option("--parallel",
                          action="store_true", dest="parallel", default=None,
                          help="run Sketch in parallel mode")
+    jskparser.add_option("--java_codegen",
+                         action="store_true", dest="jgen", default=False,
+                         help="Enable rewrite-based Java code generation")
     (OPT, argv) = jskparser.parse_args()
     OPT.prg = argv
   

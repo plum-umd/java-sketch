@@ -1,15 +1,20 @@
 
 from ast.body.classorinterfacedeclaration import ClassOrInterfaceDeclaration
 from ast.visit.generic import GenericVisitor
+from ast.visit.sourcevisitor import SourcePrinter
 
-import os
+import os, logging
 from .. import util
 from finder import HFinder, EGFinder
+from replacer import HReplacer
+from cleaner import Cleaner
 
-def to_java(java_output_dir, output_class_names, pgr, sk_output_path):
+def to_java(java_output_dir, pgr, sk_output_path):
     ## clean up result directory
-    if os.path.isdir(java_output_dir): util.clean_dir(java_output_dir)
-    else: os.makedirs(java_output_dir)
+    if os.path.isdir(java_output_dir):
+        util.clean_dir(java_output_dir)
+    else:
+        os.makedirs(java_output_dir)
 
     ## find holes
     hfinder = HFinder()
@@ -17,14 +22,14 @@ def to_java(java_output_dir, output_class_names, pgr, sk_output_path):
     holes = hfinder.holes
 
     ## replace holes with resolved answers
-    #logging.info("replacing holes")
-    #hreplacer = HReplacer(output_path, holes)
-    #pgr.accept(hreplacer)
+    logging.info("replacing holes")
+    hreplacer = HReplacer(sk_output_path, holes)
+    pgr.accept(hreplacer)
 
     ## find generators
-    gfinder = EGFinder()
-    pgr.accept(gfinder)
-    egens = gfinder.egens
+    # gfinder = EGFinder()
+    # pgr.accept(gfinder)
+    # egens = gfinder.egens
 
 
     ### replace regex generators with resolved answers
@@ -37,28 +42,34 @@ def to_java(java_output_dir, output_class_names, pgr, sk_output_path):
     #mgreplacer = MGReplacer(output_path)
     #pgr.accept(mgreplacer)
 
-    ## final semantic checking
-    #logging.info("semantics checking")
-    #_visitors = []
-    ## replace collections of interface types with actual classes, if any
-    #_visitors.append(Collection())
-    #_visitors.append(SemanticChecker())
-    #map(lambda vis: pgr.accept(vis), _visitors)
+    ### get output classes
+    classes = get_output_classes(pgr)
 
-    ### trimming of the program
-    classes = get_classes(pgr, output_class_names)
-    return (holes, egens, classes)
+    ## final cleanup
+    logging.info("clean up output Java code")
+    cleaner = Cleaner()
+    pgr.accept(cleaner)
 
-    #dump(java_dir, pgr, "decoding")
 
-def get_classes(comp_unit, output_class_names):
-    classes = {}
-    def find_classes(node):
+    for cls in classes:
+        logging.info("writing generated Java output for class {}".format(cls.fullname.encode()))
+        printer = SourcePrinter()
+        cls.accept(printer)
+        with open(os.path.join(java_output_dir, "{}.java".format(cls.fullname.encode())), "w") as f:
+            f.write(printer.buf.getvalue())
+
+# Finding the class for output by looking for @JavaCodeGen annotations
+# TODO: Alternatively, we could output all classes that does not have @JSketchStdLib
+def get_output_classes(comp_unit):
+    input_classes = []
+    def find_output_classes(node):
         if type(node) == ClassOrInterfaceDeclaration:
-            classes[node.fullname] = node
-    class_finder = GenericVisitor(find_classes)
+            for anno in node.annotations:
+                if anno.name.name == u'JavaCodeGen':
+                    input_classes.append(node)
+    class_finder = GenericVisitor(find_output_classes)
     comp_unit.accept(class_finder)
-    return list(map(lambda name: classes[name], output_class_names))
+    return input_classes
 
 
 
