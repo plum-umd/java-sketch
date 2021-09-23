@@ -177,15 +177,28 @@ back-ported from the old framework.
 To use Java code generation, the custom code generator must be compiled, you can use the pre-compiled
 version as well.
 
-Use `--java_codegen` to enable the generation:
+Then you need to annotate the class you wish to output with `@JavaCodeGen`, so that the codegen would
+add it to the output list:
+```java
+@JavaCodeGen
+class TestCase {
+    // method with holes
+    public void testFunc() {
+        int x = ??;
+        // ...
+    }
+}
+```
+
+Next, when running, use `--java_codegen` to enable the generation:
 ```sh
 $ ./jsk.sh --java_codegen [input files]
 ```
 The generated Java code would be put in `result/java/`
 
 Note that currently the Java code generator is not fully complete and thus unstable, enable it may cause
-the synthesis to fail, since the codegen would need to rewrite the input code to allow easier hole extraction
-later, and the `rewrite` module is not supporting the full JSketch language yet, leading to undefined
+the synthesis to fail, since the codegen would need to rewrite the input code to allow easier hole extraction,
+and the `rewrite` module is not supporting the full JSketch language yet, leading to undefined
 behavior when these language features are present.
 
 Unsupported language features include:
@@ -193,7 +206,7 @@ Unsupported language features include:
 * Recursive generators
 * Regex generators (e.g. `{| ( 0 | 1 ) |}`)
 
-There might be other language features that may provoke undefined behavior, use this feature with care.
+There might be other language features that may provoke undefined behavior, use this feature with care. 
 
 This feature is currently under development, and may improve to support these features in the future.
 
