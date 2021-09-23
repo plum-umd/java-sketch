@@ -1,6 +1,4 @@
-import operator as op
 import re
-import logging
 
 from ast.visit import visit as v
 

@@ -107,7 +107,9 @@ class EHole(object):
 
         cls = self._cur_cls
         hname = u"e_h{}".format(EHole.fresh_cnt())
+
         replace_node(node, NameExpr(name=hname))
+
         hole = FieldDeclaration(type_obj=PrimitiveType(type_name=type_name),
                 modifier_bits=Modifiers['ST'],
                 var_decl_obj=VariableDeclarator(
@@ -116,6 +118,8 @@ class EHole(object):
                     init_obj=node
                 ))
         cls.prepend_member(hole)
+        hole.add_parent_post(cls)
+
         logging.debug(
             "introducing e_hole type {} {} @ {}".format(type_name, hname, self._cur_mtd.sig()))
 
