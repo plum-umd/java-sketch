@@ -35,16 +35,13 @@ class DBConnection {
 
 class CGenerator(object):
 
-    # to avoid name conflict, use fresh counter as suffix
-    __cnt = 0
-
-    @classmethod
-    def fresh_cnt(cls):
-        cls.__cnt = cls.__cnt + 1
-        return cls.__cnt
+    def fresh_cnt(self):
+        self.__cnt = self.__cnt + 1
+        return self.__cnt
 
     def __init__(self):
         self._cgens = []
+        self.__cnt = 0
 
     @v.on("node")
     def visit(self, node):
@@ -136,13 +133,9 @@ class X {
 
 class MGenerator(object):
 
-    # to avoid name conflict, use fresh counter as suffix
-    __cnt = 0
-
-    @classmethod
-    def fresh_cnt(cls):
-        cls.__cnt = cls.__cnt + 1
-        return cls.__cnt
+    def fresh_cnt(self):
+        self.__cnt = self.__cnt + 1
+        return self.__cnt
 
     def __init__(self):
         # { mname: mtd } for easier lookup
@@ -150,6 +143,7 @@ class MGenerator(object):
         self._cur_mtd = None
         self._cur_cls = None
         self._added_mtds = set()
+        self.__cnt = 0
 
     @v.on("node")
     def visit(self, node):
@@ -194,7 +188,7 @@ class MGenerator(object):
             return
         
         mgen = self._mgens[callee]
-        specialized_mtd_name = u"{}{}".format(callee, MGenerator.fresh_cnt())
+        specialized_mtd_name = u"{}{}".format(callee, self.fresh_cnt())
         self._added_mtds.add(specialized_mtd_name)
         new_modifiers = mgen.modifiers & (~ Modifiers['GN'])
         specialized_mtd = mgen.clone({

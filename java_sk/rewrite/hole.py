@@ -40,17 +40,15 @@ class A {
 class EHole(object):
 
     # to avoid name conflict, use fresh counter as suffix
-    __cnt = 0
-
-    @classmethod
-    def fresh_cnt(cls):
-        cls.__cnt = cls.__cnt + 1
-        return cls.__cnt
+    def fresh_cnt(self):
+        self.__cnt = self.__cnt + 1
+        return self.__cnt
 
     def __init__(self):
         self._cur_mtd = None
         self._cur_cls = None
         self._visiting_s = False
+        self.__cnt = 0
 
     @v.on("node")
     def visit(self, node):
@@ -106,7 +104,7 @@ class EHole(object):
             type_name = "int"
 
         cls = self._cur_cls
-        hname = u"e_h{}".format(EHole.fresh_cnt())
+        hname = u"e_h{}".format(self.fresh_cnt())
 
         replace_node(node, NameExpr(name=hname))
 
