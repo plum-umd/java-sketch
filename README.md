@@ -168,6 +168,35 @@ $ python -m java_sk.sketch -p demo_name [option]*
 $ ./java_sk/sketch.py -p demo_name [option]*
 ```
 
+## Java Code Generation
+
+Java code generation (i.e. output of runnable Java code form the synthesis) was implemented in
+an old version of JSketch, and was dropped later due to a rework in JSketch framework. Now it is
+back-ported from the old framework.
+
+To use Java code generation, the custom code generator must be compiled, you can use the pre-compiled
+version as well.
+
+Use `--java_codegen` to enable the generation:
+```sh
+$ ./jsk.sh --java_codegen [input files]
+```
+The generated Java code would be put in `result/java/`
+
+Note that currently the Java code generator is not fully complete and thus unstable, enable it may cause
+the synthesis to fail, since the codegen would need to rewrite the input code to allow easier hole extraction
+later, and the `rewrite` module is not supporting the full JSketch language yet, leading to undefined
+behavior when these language features are present.
+
+Unsupported language features include:
+
+* Recursive generators
+* Regex generators (e.g. `{| ( 0 | 1 ) |}`)
+
+There might be other language features that may provoke undefined behavior, use this feature with care.
+
+This feature is currently under development, and may improve to support these features in the future.
+
 ## Regression testing
 To run regression tests:
 ```sh
