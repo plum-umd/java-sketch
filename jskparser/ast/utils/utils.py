@@ -506,6 +506,7 @@ def replace_node(old, new):
             except ValueError:
                 continue
             field[idx] = new
+    old.parentNode = None
     
 # Replace a child node in children list
 def replace_child(old, new):
