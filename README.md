@@ -206,7 +206,9 @@ Unsupported language features include:
 * Recursive generators
 * Regex generators (e.g. `{| ( 0 | 1 ) |}`)
 
-There might be other language features that may provoke undefined behavior, use this feature with care. 
+There might be other language features that may provoke undefined behavior, use this feature with care.
+In general, benchmarks with non-recursive generators together with plain holes in them are most likely to
+work without any issues, see `test/benchmarks/java-codegen.java` for an example.
 
 This feature is currently under development, and may improve to support these features in the future.
 
