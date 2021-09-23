@@ -45,7 +45,10 @@ public class CSV extends FEReplacer {
     String typ = obj.getClass().getSimpleName();
     FEContext ctx = ((FENode)obj).getCx();
     //out.println(cur_pkg + "," + cur_func + "," + typ + "," + obj.toString());
-    out.println(cur_func + "," + typ + "," + ctx.getFileName() + ":" + Integer.toString(ctx.getLineNumber()) + ":" + Integer.toString(ctx.getColumnNumber()) + "," + obj.toString());
+    out.println("\"" + cur_func + "\"," 
+                + "\"" + typ + "\","
+                + "\"" + ctx.getFileName() + ":" + Integer.toString(ctx.getLineNumber()) + ":" + Integer.toString(ctx.getColumnNumber()) + "\","
+                + "\"" + obj.toString() + "\"");
     out.flush();
   }
 
