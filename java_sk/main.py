@@ -33,6 +33,8 @@ def translate(**kwargs):
     lib = kwargs.get('lib', True)
     inline = kwargs.get('inline', None)
     unroll = kwargs.get('unroll', None)
+    inbits = kwargs.get('inbits', None)
+    cbits = kwargs.get('cbits', None)
     parallel = kwargs.get('parallel', None)
     jgen = kwargs.get('jgen', False)
     cgen = True if jgen else cgen
@@ -56,6 +58,8 @@ def translate(**kwargs):
     # Sketch inlining and unrolling
     if inline: opts.extend(['--bnd-inline-amnt', inline])
     if unroll: opts.extend(['--bnd-unroll-amnt', unroll])
+    if inbits: opts.extend(['--bnd-inbits', inbits])
+    if cbits: opts.extend(['--bnd-cbits', cbits])
     if parallel: opts.append("--slv-parallel")
 
     # print counter examples
@@ -124,7 +128,7 @@ if __name__ == "__main__":
                          help="use models of Java libraries")
     jskparser.add_option("-o", "--out_dir",
                          dest="out_dir", default=None,
-                         help="use models of Java libraries")
+                         help="output directory for sketches, templates and codegen")
     jskparser.add_option("-f", "--file-system",
                          action="store_true", dest="fs", default=False,
                          help="model filesytem with HashMap")
@@ -149,6 +153,15 @@ if __name__ == "__main__":
     jskparser.add_option("--unroll",
                          action="store", dest="unroll", default=None,
                          help="change unrolling amount for Sketch")
+    jskparser.add_option("--inbits",
+                         action="store", dest="inbits", default=None,
+                         help="change input integer bits for Sketch")
+    jskparser.add_option("--cbits",
+                         action="store", dest="cbits", default=None,
+                         help="change control integer bits for Sketch")
+    jskparser.add_option("--sk_opts",
+                         action="append", dest="opts", default=[],
+                         help="extra sketch options")
     jskparser.add_option("--parallel",
                          action="store_true", dest="parallel", default=None,
                          help="run Sketch in parallel mode")
