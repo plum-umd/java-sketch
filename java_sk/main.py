@@ -74,6 +74,8 @@ def translate(**kwargs):
     if cgen: opts.extend(["--fe-custom-codegen", codegen_jar])
 
     # run Sketch
+    if not os.path.exists(os.path.join(out_dir, "output")):
+        os.makedirs(os.path.join(out_dir, "output"))
     output_path = os.path.join(out_dir, "output", "{}.txt".format(encoder.demo_name))
     if sk:
         if os.path.exists(output_path): os.remove(output_path)
