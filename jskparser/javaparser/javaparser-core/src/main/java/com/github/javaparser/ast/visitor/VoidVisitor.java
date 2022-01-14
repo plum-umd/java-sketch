@@ -152,6 +152,8 @@ public interface VoidVisitor<A> {
 
 	void visit(ArrayAccessExpr n, A arg);
 
+	void visit(ArrayRangeAccessExpr n, A arg);
+
 	void visit(ArrayCreationExpr n, A arg);
 
 	void visit(ArrayInitializerExpr n, A arg);

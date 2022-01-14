@@ -144,6 +144,14 @@ public abstract class JsonVisitorAdapter<A> implements VoidVisitor<A> {
         n.getIndex().accept(this, arg);
     }
 
+    @Override public void visit(final ArrayRangeAccessExpr n, final A arg) {
+        jw.write(n); 
+        visitComment(n.getComment(), arg);
+        n.getName().accept(this, arg);
+        n.getIndexStart().accept(this, arg);
+        n.getSubLen().accept(this, arg);
+    }
+
     @Override public void visit(final ArrayCreationExpr n, final A arg) {
         jw.write(n); 
         visitComment(n.getComment(), arg);

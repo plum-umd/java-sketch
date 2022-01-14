@@ -767,6 +767,24 @@ public class EqualsVisitor implements GenericVisitor<Boolean, Node> {
 		return Boolean.TRUE;
 	}
 
+	@Override public Boolean visit(final ArrayRangeAccessExpr n1, final Node arg) {
+		final ArrayRangeAccessExpr n2 = (ArrayRangeAccessExpr) arg;
+
+		if (!nodeEquals(n1.getName(), n2.getName())) {
+			return Boolean.FALSE;
+		}
+
+		if (!nodeEquals(n1.getIndexStart(), n2.getIndexStart())) {
+			return Boolean.FALSE;
+		}
+
+		if (!nodeEquals(n1.getSubLen(), n2.getSubLen())) {
+			return Boolean.FALSE;
+		}
+
+		return Boolean.TRUE;
+	}
+
 	@Override public Boolean visit(final ArrayCreationExpr n1, final Node arg) {
 		final ArrayCreationExpr n2 = (ArrayCreationExpr) arg;
 

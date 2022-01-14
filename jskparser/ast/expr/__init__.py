@@ -17,6 +17,7 @@ def _import():
     from .arraycreationexpr import ArrayCreationExpr
     from .arrayinitializerexpr import ArrayInitializerExpr
     from .arrayaccessexpr import ArrayAccessExpr
+    from .arrayrangeaccessexpr import ArrayRangeAccessExpr
     from .objectcreationexpr import ObjectCreationExpr
     from .conditionalexpr import ConditionalExpr
     from .superexpr import SuperExpr

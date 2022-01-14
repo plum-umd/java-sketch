@@ -485,6 +485,21 @@ public class CloneVisitor implements GenericVisitor<Node, Object> {
 	}
 
 	@Override
+	public Node visit(ArrayRangeAccessExpr _n, Object _arg) {
+		Expression name = cloneNodes(_n.getName(), _arg);
+		Expression indexStart = cloneNodes(_n.getIndexStart(), _arg);
+		Expression subLen = cloneNodes(_n.getSubLen(), _arg);
+		Comment comment = cloneNodes(_n.getComment(), _arg);
+
+		ArrayRangeAccessExpr r = new ArrayRangeAccessExpr(
+				_n.getBeginLine(), _n.getBeginColumn(), _n.getEndLine(), _n.getEndColumn(),
+				name, indexStart, subLen
+		);
+		r.setComment(comment);
+		return r;
+	}
+
+	@Override
 	public Node visit(ArrayCreationExpr _n, Object _arg) {
 		Type type_ = cloneNodes(_n.getType(), _arg);
 		List<Expression> dimensions = visit(_n.getDimensions(), _arg);

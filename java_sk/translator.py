@@ -64,6 +64,7 @@ from ast.expr.fieldaccessexpr import FieldAccessExpr
 from ast.expr.arraycreationexpr import ArrayCreationExpr
 from ast.expr.arrayinitializerexpr import ArrayInitializerExpr
 from ast.expr.arrayaccessexpr import ArrayAccessExpr
+from ast.expr.arrayrangeaccessexpr import ArrayRangeAccessExpr
 from ast.expr.enclosedexpr import EnclosedExpr
 from ast.expr.conditionalexpr import ConditionalExpr
 from ast.expr.thisexpr import ThisExpr
@@ -370,7 +371,7 @@ class Translator(object):
                 n.init.my_typ = n.typee
                 n.init.accept(self, **kwargs)                
             else:
-                if isinstance(n.init, ArrayInitializerExpr):
+                if isinstance(n.init, ArrayInitializerExpr) or isinstance(n.init, ArrayRangeAccessExpr):
                     typ = self.trans_ty(n.typee)
                     kwargs['ArrayType'] = typ
                     self.printt('Wrap_Array_{}('.format(typ))
@@ -378,7 +379,10 @@ class Translator(object):
                     # n.typee.accept(self, **kwargs)
                     self.printt('Array_{}'.format(typ))
                     self.printt('(')
-                n.init.accept(self, **kwargs)
+                if isinstance(n.init, ArrayRangeAccessExpr):
+                    self.new_array_from_range(n.init, **kwargs)
+                else:
+                    n.init.accept(self, **kwargs)
         elif n.init and (u'box' in kwargs and kwargs[u'box']):
             self.printt(' ')
             n.idd.accept(self, **kwargs)
@@ -401,11 +405,14 @@ class Translator(object):
             self.printt(' ')
             n.idd.accept(self, **kwargs)
             self.printt(' = ')
-            if isinstance(n.init, ArrayInitializerExpr):
+            if isinstance(n.init, ArrayInitializerExpr) or isinstance(n.init, ArrayRangeAccessExpr):
                 self.printt('new ')
                 n.typee.accept(self, **kwargs)
                 self.printt('(')
-            n.init.accept(self, **kwargs)
+            if isinstance(n.init, ArrayRangeAccessExpr):
+                self.new_array_from_range(n.init, **kwargs)
+            else:
+                n.init.accept(self, **kwargs)
         else:
             self.printt(' ')
             n.idd.accept(self, **kwargs)
@@ -783,22 +790,28 @@ class Translator(object):
                             else:
                                 n.value.accept(self, **kwargs)
                         else:                    
-                            if isinstance(n.value, ArrayInitializerExpr) or isinstance(n.value, ArrayCreationExpr):
+                            if isinstance(n.value, ArrayInitializerExpr) or isinstance(n.value, ArrayCreationExpr) or isinstance(n.value, ArrayRangeAccessExpr):
                                 kwargs['ArrayName'] = self.trans_faccess_no_print(n.target)
                                 kwargs['ArrayType'] = self.trans_ty(self.getUnboxPrimitiveType(n.value))
-                            n.value.accept(self, **kwargs)
-                            if isinstance(n.value, ArrayInitializerExpr) or isinstance(n.value, ArrayCreationExpr):
+                            if isinstance(n.value, ArrayRangeAccessExpr):
+                                self.new_array_from_range(n.value, **kwargs)
+                            else:
+                                n.value.accept(self, **kwargs)
+                            if isinstance(n.value, ArrayInitializerExpr) or isinstance(n.value, ArrayCreationExpr) or isinstance(n.value, ArrayRangeAccessExpr):
                                 kwargs['ArrayType'] = None
                                 kwargs['ArrayName'] = None
                     else:
-                        if isinstance(n.value, ArrayInitializerExpr) or isinstance(n.value, ArrayCreationExpr):
+                        if isinstance(n.value, ArrayInitializerExpr) or isinstance(n.value, ArrayCreationExpr) or isinstance(n.value, ArrayRangeAccessExpr):
                             kwargs['ArrayName'] = n.target.name                        
                             kwargs['ArrayType'] = self.trans_ty(self.getUnboxPrimitiveType(n.value))
-                        n.value.accept(self, **kwargs)
+                        if isinstance(n.value, ArrayRangeAccessExpr):
+                            self.new_array_from_range(n.value, **kwargs)
+                        else:
+                            n.value.accept(self, **kwargs)
                         self.unboxPrimitive(n.value)                    
                         self.printt('))')
                         already_unboxed = True
-                        if isinstance(n.value, ArrayInitializerExpr) or isinstance(n.value, ArrayCreationExpr):
+                        if isinstance(n.value, ArrayInitializerExpr) or isinstance(n.value, ArrayCreationExpr) or isinstance(n.value, ArrayRangeAccessExpr):
                             kwargs['ArrayType'] = None
                             kwargs['ArrayName'] = None                                                
             else:
@@ -835,19 +848,25 @@ class Translator(object):
                         else:
                             n.value.accept(self, **kwargs)
                     else:
-                        if isinstance(n.value, ArrayInitializerExpr) or isinstance(n.value, ArrayCreationExpr):
+                        if isinstance(n.value, ArrayInitializerExpr) or isinstance(n.value, ArrayCreationExpr) or isinstance(n.value, ArrayRangeAccessExpr):
                             kwargs['ArrayName'] = n.target.name                        
                             kwargs['ArrayType'] = self.trans_ty(self.getUnboxPrimitiveType(n.value))
-                        n.value.accept(self, **kwargs)
-                        if isinstance(n.value, ArrayInitializerExpr) or isinstance(n.value, ArrayCreationExpr):
+                        if isinstance(n.value, ArrayRangeAccessExpr):
+                            self.new_array_from_range(n.value, **kwargs)
+                        else:
+                            n.value.accept(self, **kwargs)
+                        if isinstance(n.value, ArrayInitializerExpr) or isinstance(n.value, ArrayCreationExpr) or isinstance(n.value, ArrayRangeAccessExpr):
                             kwargs['ArrayType'] = None
                             kwargs['ArrayName'] = None
                 else:
-                    if isinstance(n.value, ArrayInitializerExpr) or isinstance(n.value, ArrayCreationExpr):                
+                    if isinstance(n.value, ArrayInitializerExpr) or isinstance(n.value, ArrayCreationExpr) or isinstance(n.value, ArrayRangeAccessExpr):                
                         kwargs['ArrayName'] = n.target.name
                         kwargs['ArrayType'] = self.trans_ty(self.getUnboxPrimitiveType(n.value))
-                    n.value.accept(self, **kwargs)
-                    if isinstance(n.value, ArrayInitializerExpr) or isinstance(n.value, ArrayCreationExpr):                
+                    if isinstance(n.value, ArrayRangeAccessExpr):
+                        self.new_array_from_range(n.value, **kwargs)
+                    else:
+                        n.value.accept(self, **kwargs)
+                    if isinstance(n.value, ArrayInitializerExpr) or isinstance(n.value, ArrayCreationExpr) or isinstance(n.value, ArrayRangeAccessExpr):                
                         kwargs['ArrayType'] = None
                         kwargs['ArrayName'] = None
                     if not isinstance(n.value, CastExpr):
@@ -1129,7 +1148,31 @@ class Translator(object):
                 #     self.printt('[]')
             else:
                 n.initializer.accept(self, **kwargs)
+    
+    def trans_new_array_from_range(self, range_expr, **kwargs):
+        self.buf = cStringIO.StringIO()
+        self.new_array_from_range(range_expr, **kwargs)
+        return util.get_and_close(self.buf)
             
+    def new_array_from_range(self, range_expr, **kwargs):
+        if self._is_auto_box:
+            name = kwargs['ArrayName']
+            typ = kwargs['ArrayType']
+            self.printt('length=new Object(__cid=-2, _int=')
+            range_expr.subLen.accept(self, **kwargs)
+            self.printt(')))')
+            self.printt('; {0}._array_{1}.A[0::').format(name, typ.lower())
+            range_expr.subLen.accept(self, **kwargs)
+            self.printt('] = ')
+            range_expr.accept(self, **kwargs)
+            self.printt(';')
+        else:
+            self.printt('length=')
+            range_expr.subLen.accept(self, **kwargs)
+            self.printt(", A=")
+            range_expr.accept(self, **kwargs)
+            self.printt(")")
+
 
     @v.when(ArrayInitializerExpr)
     def visit(self, n, **kwargs):
@@ -1177,6 +1220,30 @@ class Translator(object):
         self.printt('.A[')
         n.index.accept(self, **kwargs)
         if self._is_auto_box: self.unboxPrimitive(n.index)        
+        self.printt(']')
+    
+    @v.when(ArrayRangeAccessExpr)
+    def visit(self, n, **kwargs):
+        # print 'arrayaccessexpr'
+        if self._is_auto_box:
+            typ = self.trans_ty(n.nameExpr.typee)
+            if isinstance(n.nameExpr, FieldAccessExpr):
+                fld = utils.find_fld(n.nameExpr, self.obj_struct)
+                typ = self.trans_ty(fld.typee)
+            elif n.nameExpr.name in n.nameExpr.symtab:
+                typ = self.trans_ty(n.nameExpr.symtab[n.nameExpr.name].typee)
+            elif not isinstance(n.nameExpr, MethodCallExpr):
+                typ = self.trans_ty(utils.find_fld(n.nameExpr, self.obj_struct).typee) 
+            if typ == 'byte': typ = 'char'
+        n.nameExpr.accept(self, **kwargs)
+        if self._is_auto_box: self.printt('._array_{}'.format(typ.lower()))
+        # self.printt('._array.A[')
+        self.printt('.A[')
+        n.indexStart.accept(self, **kwargs)
+        if self._is_auto_box: self.unboxPrimitive(n.indexStart)
+        self.printt('::')
+        n.subLen.accept(self, **kwargs)
+        if self._is_auto_box: self.unboxPrimitive(n.subLen)
         self.printt(']')
 
     @v.when(MethodCallExpr)
@@ -1487,7 +1554,7 @@ class Translator(object):
             if fld.variable.init:
                 init = ' = '
                 kwargs = {}
-                if isinstance(fld.variable.init, ArrayInitializerExpr):
+                if isinstance(fld.variable.init, ArrayInitializerExpr) or isinstance(fld.variable.init, ArrayRangeAccessExpr):
                     # init += 'Wrap_Array_{0}(new Array_{0}('.format(self.trans_ty(fld.typee))
                     if self._is_auto_box:
                         kwargs['ArrayName'] = nm
@@ -1495,9 +1562,12 @@ class Translator(object):
                         init += 'new Object(__cid=-1, _array_{0}=new Array_{0}('.format(self.trans_ty(fld.typee))
                     else:
                         init += 'new Array_{}('.format(self.trans_ty(fld.typee))                        
-                init += self.trans(fld.variable.init, **kwargs)
+                if isinstance(fld.variable.init, ArrayRangeAccessExpr):
+                    init += self.trans_new_array_from_range(fld.variable.init, **kwargs)
+                else:
+                    init += self.trans(fld.variable.init, **kwargs)
                 
-                if isinstance(fld.variable.init, ArrayInitializerExpr) and self._is_auto_box: init += ')'
+                if isinstance(fld.variable.init, ArrayInitializerExpr) or isinstance(fld.variable.init, ArrayRangeAccessExpr) and self._is_auto_box: init += ')'
         ty = self.trans_ty(fld.typee)
         if self._is_auto_box:
             if fld.typee.name in fld.symtab:

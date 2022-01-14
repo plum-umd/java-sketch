@@ -40,6 +40,7 @@ def _import():
     from ..expr.arraycreationexpr import ArrayCreationExpr
     from ..expr.arrayinitializerexpr import ArrayInitializerExpr
     from ..expr.arrayaccessexpr import ArrayAccessExpr
+    from ..expr.arrayrangeaccessexpr import ArrayRangeAccessExpr
     from ..expr.enclosedexpr import EnclosedExpr
     from ..expr.conditionalexpr import ConditionalExpr
     from ..expr.castexpr import CastExpr

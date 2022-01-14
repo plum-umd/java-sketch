@@ -105,6 +105,7 @@ public class Jsonify {
         typeRewrites.put("com.github.javaparser.ast.expr.ArrayCreationExpr","ArrayCreationExpr");
         typeRewrites.put("com.github.javaparser.ast.expr.ArrayInitializerExpr","ArrayInitializerExpr");
         typeRewrites.put("com.github.javaparser.ast.expr.ArrayAccessExpr","ArrayAccessExpr");
+        typeRewrites.put("com.github.javaparser.ast.expr.ArrayRangeAccessExpr","ArrayRangeAccessExpr");
         typeRewrites.put("com.github.javaparser.ast.expr.StringLiteralExpr","StringLiteralExpr");
         typeRewrites.put("com.github.javaparser.ast.expr.NullLiteralExpr","NullLiteralExpr");
         typeRewrites.put("com.github.javaparser.ast.expr.DoubleLiteralExpr","DoubleLiteralExpr");

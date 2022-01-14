@@ -167,6 +167,29 @@ public abstract class GenericVisitorAdapter<R, A> implements GenericVisitor<R, A
 	}
 
 	@Override
+	public R visit(final ArrayRangeAccessExpr n, final A arg) {
+		{
+			R result = n.getName().accept(this, arg);
+			if (result != null) {
+				return result;
+			}
+		}
+		{
+			R result = n.getIndexStart().accept(this, arg);
+			if (result != null) {
+				return result;
+			}
+		}
+		{
+			R result = n.getSubLen().accept(this, arg);
+			if (result != null) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	@Override
 	public R visit(final ArrayCreationExpr n, final A arg) {
 		{
 			R result = n.getType().accept(this, arg);

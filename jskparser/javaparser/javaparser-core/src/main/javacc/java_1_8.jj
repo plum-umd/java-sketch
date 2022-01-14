@@ -2614,6 +2614,7 @@ Expression PrimarySuffix(Expression scope):
 Expression PrimarySuffixWithoutSuper(Expression scope):
 {
 	Expression ret;
+  Expression other;
 	List typeArgs = null;
 	List args = null;
 	boolean hasArgs = false;
@@ -2645,6 +2646,8 @@ Expression PrimarySuffixWithoutSuper(Expression scope):
 	)
 	|
 	  "["ret = Expression() "]" { ret = new ArrayAccessExpr(scope.getBeginLine(), scope.getBeginColumn(), token.endLine, token.endColumn, scope, ret); }
+  |
+    "[](" ret = Expression() "," other = Expression() ")" { ret = new ArrayRangeAccessExpr(scope.getBeginLine(), scope.getBeginColumn(), token.endLine, token.endColumn, scope, ret, other); }
   )
   { return ret; }
 }

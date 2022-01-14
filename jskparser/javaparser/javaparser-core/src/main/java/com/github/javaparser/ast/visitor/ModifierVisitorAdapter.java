@@ -49,6 +49,7 @@ import com.github.javaparser.ast.body.VariableDeclarator;
 import com.github.javaparser.ast.body.VariableDeclaratorId;
 import com.github.javaparser.ast.expr.AnnotationExpr;
 import com.github.javaparser.ast.expr.ArrayAccessExpr;
+import com.github.javaparser.ast.expr.ArrayRangeAccessExpr;
 import com.github.javaparser.ast.expr.ArrayCreationExpr;
 import com.github.javaparser.ast.expr.ArrayInitializerExpr;
 import com.github.javaparser.ast.expr.AssignExpr;
@@ -173,6 +174,13 @@ public abstract class ModifierVisitorAdapter<A> implements GenericVisitor<Node, 
 	@Override public Node visit(final ArrayAccessExpr n, final A arg) {
 		n.setName((Expression) n.getName().accept(this, arg));
 		n.setIndex((Expression) n.getIndex().accept(this, arg));
+		return n;
+	}
+
+	@Override public Node visit(final ArrayRangeAccessExpr n, final A arg) {
+		n.setName((Expression) n.getName().accept(this, arg));
+		n.setIndexStart((Expression) n.getIndexStart().accept(this, arg));
+		n.setSubLen((Expression) n.getSubLen().accept(this, arg));
 		return n;
 	}
 

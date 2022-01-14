@@ -152,6 +152,8 @@ public interface GenericVisitor<R, A> {
 
 	public R visit(ArrayAccessExpr n, A arg);
 
+	public R visit(ArrayRangeAccessExpr n, A arg);
+
 	public R visit(ArrayCreationExpr n, A arg);
 
 	public R visit(ArrayInitializerExpr n, A arg);

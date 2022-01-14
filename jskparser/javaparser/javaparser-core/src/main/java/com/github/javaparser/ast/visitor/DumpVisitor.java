@@ -638,6 +638,16 @@ public class DumpVisitor implements VoidVisitor<Object> {
 	printer.print("]");
     }
 
+    @Override public void visit(final ArrayRangeAccessExpr n, final Object arg) {
+	printJavaComment(n.getComment(), arg);
+	n.getName().accept(this, arg);
+	printer.print("[[");
+	n.getIndexStart().accept(this, arg);
+	printer.print("[::]");
+	n.getSubLen().accept(this, arg);
+	printer.print("]]");
+    }
+
     @Override public void visit(final ArrayCreationExpr n, final Object arg) {
 	printJavaComment(n.getComment(), arg);
 	printer.print("new ");
