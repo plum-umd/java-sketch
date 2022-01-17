@@ -2421,6 +2421,7 @@ class Translator(object):
         
     def printMods(self, mods, **kwargs):
         if td.isGenerator(mods): self.printt('generator ')
+        if td.isModel(mods): self.printt('model ')
 
     def printTypeArgs(self, args, **kwargs):
         self.printTypeParameters(args)

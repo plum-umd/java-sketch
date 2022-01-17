@@ -267,6 +267,7 @@ TOKEN :
 /* Added for JSketch */
 | < OPTIONAL: "optional" >
 | < HARNESS: "harness" >
+| < MODEL: "model" >
 | < HOLE: "??" >
 | < ASSUME: "assume" >
 | < MINREPEAT: "minrepeat" >
@@ -1257,6 +1258,8 @@ Modifier Modifiers():
    "harness" { modifiers = addModifier(modifiers, ModifierSet.HARNESS, token);  if(beginLine==-1) {beginLine=token.beginLine; beginColumn=token.beginColumn;} }
   |
    "generator" { modifiers = addModifier(modifiers, ModifierSet.GENERATOR, token);  if(beginLine==-1) {beginLine=token.beginLine; beginColumn=token.beginColumn;} }
+  |
+   "model" { modifiers = addModifier(modifiers, ModifierSet.MODEL, token);  if(beginLine==-1) {beginLine=token.beginLine; beginColumn=token.beginColumn;} }
   )
  )*
 

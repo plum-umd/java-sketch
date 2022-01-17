@@ -56,3 +56,5 @@ class TypeDeclaration(BodyDeclaration):
     def isGenerator(mod): return (mod.modifiers & Modifiers['GN']) != 0
     @staticmethod
     def isADT(mod):       return (mod.modifiers & Modifiers['AT']) != 0
+    @staticmethod
+    def isModel(mod):     return (mod.modifiers & Modifiers['MD']) != 0

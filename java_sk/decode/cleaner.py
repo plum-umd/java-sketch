@@ -27,7 +27,7 @@ class Cleaner(object):
 
     @v.when(MethodDeclaration)
     def visit(self, node):
-        if TypeDeclaration.isGenerator(node):
+        if TypeDeclaration.isGenerator(node) or TypeDeclaration.isModel(node):
             drop_node(node)
             return
         for c in node.childrenNodes:

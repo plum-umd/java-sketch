@@ -89,6 +89,9 @@ class EHole(object):
         # avoid editing hole(s) in a method-level generator
         if TypeDeclaration.isGenerator(self._cur_mtd):
             return node
+        # avoid editing hole(s) in a model function
+        if TypeDeclaration.isModel(self._cur_mtd):
+            return node
         
 
         # Determine hole type by context

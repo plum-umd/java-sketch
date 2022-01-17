@@ -11,6 +11,7 @@ Modifiers = {
     u'HN':0x10000,   # harness
     u'GN':0x20000,   # generator
     u'AT':0x40000,   # adt
+    u'MD':0x80000,   # model
 }
 
 Operators = {

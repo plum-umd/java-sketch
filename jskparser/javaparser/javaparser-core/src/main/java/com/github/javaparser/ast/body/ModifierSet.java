@@ -99,6 +99,8 @@ public final class ModifierSet {
     public static final int OPTIONAL = 0x08000;
     public static final int HARNESS =  0x10000;
     public static final int GENERATOR =  0x20000;
+    // 0x40000 is taken by adt modifier in python part
+    public static final int MODEL = 0x80000;
 
     public static AccessSpecifier getAccessSpecifier(int modifiers) {
         if (isPublic(modifiers)){
@@ -150,6 +152,10 @@ public final class ModifierSet {
 
     public static boolean isGenerator(int modifiers) {
         return (modifiers & GENERATOR) != 0;
+    }
+
+    public static boolean isModel(int modifiers) {
+        return (modifiers & MODEL) != 0;
     }
     
     /**
