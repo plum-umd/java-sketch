@@ -3,6 +3,7 @@
 from . import _import
 
 from .expression import Expression
+from .integerliteralexpr import IntegerLiteralExpr
 
 from ..type.primitivetype import PrimitiveType
 
@@ -19,6 +20,12 @@ class GeneratorExpr(Expression):
         exprs = kwargs.get(u'exprs', {})
         self._exprs = map(lambda x: locs[x[u'@t']](x) if u'@t' in x else [],
                           exprs.get(u'@e', [])) if exprs else []
+        
+        width = kwargs.get(u'width')
+        if width:
+            self._width = IntegerLiteralExpr(width)
+        else:
+            self._width = None
 
         self.add_as_parent(self.exprs)
 
@@ -38,6 +45,11 @@ class GeneratorExpr(Expression):
     def exprs(self): return self._exprs
     @exprs.setter
     def exprs(self, v): self._exprs = v
+
+    @property
+    def width(self): return self._width
+    @width.setter
+    def width(self, v): self._width = v
 
     @property
     def typee(self):

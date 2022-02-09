@@ -598,7 +598,13 @@ class SourcePrinter(object):
     @v.when(GeneratorExpr)
     def visit(self, n):
         self.printJavaComment(n.comment)
-        if n.isHole: self.printt('??')
+        if n.isHole:
+            if n.width:
+                self.printt('??(')
+                self.printt(n.width.value)
+                self.printt(')')
+            else:
+                self.printt('??')
         else:
             self.printt('{| ')
             self.printSepList(n.exprs)

@@ -741,7 +741,7 @@ public class CloneVisitor implements GenericVisitor<Node, Object> {
 		Comment comment = cloneNodes(_n.getComment(), _arg);
 
 		GeneratorExpr r = new GeneratorExpr(
-						    _n.getBeginLine(), _n.getBeginColumn(), _n.getEndLine(), _n.getEndColumn(), _n.getIsHole(), _n.getExprs());
+						    _n.getBeginLine(), _n.getBeginColumn(), _n.getEndLine(), _n.getEndColumn(), _n.getIsHole(), _n.getExprs(), _n.getWidth());
 		r.setComment(comment);
 		return r;
 	}

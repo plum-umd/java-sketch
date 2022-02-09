@@ -2695,14 +2695,16 @@ Expression Generator():
 	Expression expr;
 	List exprs = null;
 	boolean isHole = false;
+  IntegerLiteralExpr width = null;
 }
 {
   (
 	  "??" { isHole = true; }
         | "{|" [  expr = Expression() { exprs = add(exprs, expr); } ( "," expr = Expression() { exprs = add(exprs, expr); } )* ] "|}"
+        | "??(" <INTEGER_LITERAL> { isHole = true; width = new IntegerLiteralExpr(token.beginLine, token.beginColumn, token.endLine, token.endColumn, token.image); } ")"
 
   )
-  { return new GeneratorExpr(token.beginLine, token.beginColumn, token.endLine, token.endColumn, isHole, exprs); }
+  { return new GeneratorExpr(token.beginLine, token.beginColumn, token.endLine, token.endColumn, isHole, exprs, width); }
 }
 
 Expression BooleanLiteral():

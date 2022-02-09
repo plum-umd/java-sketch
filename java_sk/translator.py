@@ -1258,12 +1258,16 @@ class Translator(object):
 
     @v.when(GeneratorExpr)
     def visit(self, n, **kwargs):
+        if n.width is None:
+            hole_text = '??'
+        else:
+            hole_text = '??({})'.format(n.width.value)
         if n.isHole and self._is_auto_box:
             typ = self.trans_ty(n.typee)
             cid = self.primitiveIds[typ]
-            self.printt('(new Object(__cid={0}, _{1}=??))'.format(cid, typ))
+            self.printt('(new Object(__cid={0}, _{1}={2}))'.format(cid, typ, hole_text))
         elif n.isHole and not self._is_auto_box:
-            self.printt('??')            
+            self.printt(hole_text)            
         else:
             self.printt('{|')            
             # if 'Return' in kwargs:

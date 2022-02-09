@@ -33,13 +33,16 @@ public final class GeneratorExpr extends Expression {
 
     private List<Expression> exprs;
 
+    private IntegerLiteralExpr width;
+
     public GeneratorExpr() {
     }
 
-    public GeneratorExpr(int beginLine, int beginColumn, int endLine, int endColumn, boolean ishole, List<Expression> exprs) {
+    public GeneratorExpr(int beginLine, int beginColumn, int endLine, int endColumn, boolean ishole, List<Expression> exprs, IntegerLiteralExpr width) {
         super(beginLine, beginColumn, endLine, endColumn);
 	this.isHole = ishole;
 	this.exprs = exprs;
+    this.width = width;
     }
 
     @Override
@@ -86,5 +89,13 @@ public final class GeneratorExpr extends Expression {
      */
     public void setExprs(List<Expression> exprs) {
         this.exprs = exprs;
+    }
+
+    public void setWidth(IntegerLiteralExpr width) {
+        this.width = width;
+    }
+
+    public IntegerLiteralExpr getWidth() {
+        return width;
     }
 }
