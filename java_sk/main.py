@@ -38,6 +38,7 @@ def translate(**kwargs):
     cbits = kwargs.get('cbits', None)
     parallel = kwargs.get('parallel', None)
     jgen = kwargs.get('jgen', False)
+    jgen_debug = kwargs.get('jgen_debug', False)
     cgen = True if jgen else cgen
     
     codegen_jar = os.path.join(root_dir, "codegen", "lib", "codegen.jar")
@@ -48,11 +49,12 @@ def translate(**kwargs):
         logging.info('rewriting {}'.format(prg))
         rewrite.visit(prg_ast)
         # Save rewritten ast for debugging
-        printer = SourcePrinter()
-        prg_ast.accept(printer)
-        rewrite_output_file = os.path.join(out_dir, "Rewrite.java")
-        with open(rewrite_output_file, "w") as f:
-            f.write(printer.buf.getvalue())
+        if jgen_debug:
+            printer = SourcePrinter()
+            prg_ast.accept(printer)
+            rewrite_output_file = os.path.join(out_dir, "Rewrite.java")
+            with open(rewrite_output_file, "w") as f:
+                f.write(printer.buf.getvalue())
 
     util.add_object(prg_ast)
  
@@ -178,6 +180,9 @@ if __name__ == "__main__":
     jskparser.add_option("--java_codegen",
                          action="store_true", dest="jgen", default=False,
                          help="Enable rewrite-based Java code generation")
+    jskparser.add_option("--java_codegen_debug",
+                         action="store_true", dest="jgen_debug", default=False,
+                         help="Write rewritten Java code to <output_dir>/Rewrite.java for debugging")
     (OPT, argv) = jskparser.parse_args()
     OPT.prg = argv
   
