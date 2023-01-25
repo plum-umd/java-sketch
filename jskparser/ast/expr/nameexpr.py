@@ -16,6 +16,9 @@ class NameExpr(Expression):
         self._type = locs[typdct[u'@t']](typdct) if typdct else None
 
         self._axparam = kwargs.get(u'axparam')
+        t = self.symtab.get(self.name)
+        if self == t:
+            raise Exception("Circular")
 
     @property
     def axparam(self) : return self._axparam

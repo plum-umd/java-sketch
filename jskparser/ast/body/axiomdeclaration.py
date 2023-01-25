@@ -32,6 +32,8 @@ class AxiomDeclaration(BodyDeclaration):
         # self._body = locs[u'BlockStmt'](body) if body else locs[u'EmptyMemberDeclaration'](kwargs)
 
         self._bang = kwargs.get(u'bang', False)
+        if self._bang:
+            self._name = self._name + 'b'
 
         self.add_as_parent(self.parameters+[self.typee]+[self.body])
         # if self._body and self._body.childrenNodes:
@@ -69,7 +71,7 @@ class AxiomDeclaration(BodyDeclaration):
     def bang(self, v): self._bang = v
 
     @property
-    def name(self): return self._name if not self._bang else self._name + 'b'
+    def name(self): return self._name
     @name.setter
     def name(self, v): self._name = v
 
