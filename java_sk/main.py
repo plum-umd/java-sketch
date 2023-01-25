@@ -10,6 +10,7 @@ from encoder import Encoder
 
 from jskparser.jskparser import parse
 import rewrite, decode
+from ast.visit.sourcevisitor import SourcePrinter
 
 pwd = os.path.dirname(__file__)
 root_dir = os.path.join(pwd, "..")
@@ -46,6 +47,13 @@ def translate(**kwargs):
     if jgen:
         logging.info('rewriting {}'.format(prg))
         rewrite.visit(prg_ast)
+        # Save rewritten ast for debugging
+        printer = SourcePrinter()
+        prg_ast.accept(printer)
+        rewrite_output_file = os.path.join(out_dir, "Rewrite.java")
+        with open(rewrite_output_file, "w") as f:
+            f.write(printer.buf.getvalue())
+
     util.add_object(prg_ast)
  
     encoder = Encoder(prg_ast, out_dir, fs)
