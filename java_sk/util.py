@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os
 
 from itertools import ifilter, ifilterfalse
@@ -74,3 +75,7 @@ def get_files_from_path(path, ext):
     return sorted(files) # to guarantee the order of files read
     
 def flatten(lst): return [j for i in lst for j in i]
+
+
+def log(*args):
+    print(*args, file=open("debug.log", "a"))
