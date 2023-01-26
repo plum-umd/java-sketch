@@ -493,8 +493,8 @@ class Encoder(object):
             else:
                 c += ') {\n    '
             if mtd_name2.split('_')[0] not in map(lambda x: x.name, ax_mtds):
-                # THERE MUST BE A BETTER WAY TO DETECT BANG TYPE METHODS
-                if mtd_name2.split('_')[0].endswith('b'):
+                # Better way to detect bang functions
+                if mtd.is_bang:
                     c += 'self._{0}=new {1}('.format(cls.name.lower(), mtd_name2.capitalize())
                     if not mtd.default and not mtd.constructor:
                         c += 'self=self._{}'.format(cls.name.lower())
@@ -518,19 +518,36 @@ class Encoder(object):
                             c += ', {0}={0}'.format(n)
                     c += '));\n}\n\n'
             else:
-                mname = mtd_name2.split('_')[0]
-                ptypes = '_'.join(mtd_name2.split('_')[1:])
-                c += 'return xform_{}_{}'.format(mname, cls.name)
-                if ptypes != '':
-                    c +='_{}'.format(ptypes)
-                # c += '(self._{}'.format(cls.name.lower())
-                c += '(self'
-                if not is_ax_cls and not mtd.boxedRet:
-                    c += u'._'+str(cls).lower()
-                if pnms != []:
-                    c += ', {}'.format(','.join(pnms))
-                c += ');\n}\n\n'
-                
+                # If xform is on bang function, do xform on self adt and return self
+                if mtd.is_bang:
+                    mname = mtd_name2.split('_')[0]
+                    ptypes = '_'.join(mtd_name2.split('_')[1:])
+                    c += 'self._{0}=xform_{1}_{2}'.format(cls.name.lower(), mname, cls.name)
+                    if ptypes != '':
+                        c +='_{}'.format(ptypes)
+                    # c += '(self._{}'.format(cls.name.lower())
+                    c += '(self'
+                    if not is_ax_cls and not mtd.boxedRet:
+                        c += u'._'+str(cls).lower()
+                    if pnms != []:
+                        c += ', {}'.format(','.join(pnms))
+                    c += ');\n'
+                    c +='return self;\n}\n\n'
+                # else, directly return xform result
+                else:
+                    mname = mtd_name2.split('_')[0]
+                    ptypes = '_'.join(mtd_name2.split('_')[1:])
+                    c += 'return xform_{}_{}'.format(mname, cls.name)
+                    if ptypes != '':
+                        c +='_{}'.format(ptypes)
+                    # c += '(self._{}'.format(cls.name.lower())
+                    c += '(self'
+                    if not is_ax_cls and not mtd.boxedRet:
+                        c += u'._'+str(cls).lower()
+                    if pnms != []:
+                        c += ', {}'.format(','.join(pnms))
+                    c += ');\n}\n\n'
+
             return c
         
         buf = cStringIO.StringIO()

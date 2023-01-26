@@ -91,7 +91,12 @@ class Xform(BodyDeclaration):
         xform = {u'@t':u'Xform',u'stmt':switch,u'name':name,
                  u'type':{u'@t':u'ClassOrInterfaceType',u'name':str(cls),},}
         ret_none = {u'@t':u'ReturnStmt', u'expr': {u'@t':u'LiteralExpr', u'name':u'null',},}
-        ax_typ = str(ax.typee)
+        # For xfrom on bang functions
+        # Return ADT types
+        if ax.is_bang:
+            ax_typ = str(cls)
+        else:
+            ax_typ = str(ax.typee)
         is_arr = False
         if isinstance(ax.typee, ReferenceType) and ax.typee.arrayCount > 0:
             is_arr = True

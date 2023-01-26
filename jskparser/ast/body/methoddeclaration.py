@@ -99,7 +99,12 @@ class MethodDeclaration(BodyDeclaration):
     def modifiers(self, v): self._modifiers = v
 
     @property
-    def typee(self): return self._type
+    def typee(self):
+        # If this is a bang function, return type should always be viewed as Object
+        if self.is_bang:
+            return self.symtab.get("Object").typee
+        else:
+            return self._type
     @typee.setter
     def typee(self, v): self._type = v
 
