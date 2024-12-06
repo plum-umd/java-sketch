@@ -2,7 +2,7 @@
     <parent>
         <artifactId>javaparser-parent</artifactId>
         <groupId>com.github.javaparser</groupId>
-        <version>2.3.1-SNAPSHOT</version>
+        <version>3.26.2</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -24,7 +24,7 @@
     </licenses>
 
     <properties>
-        <java.version>1.6</java.version>
+        <java.version>8</java.version>
     </properties>
 
     <build>
@@ -40,7 +40,7 @@
                         </goals>
                         <configuration>
                             <grammarEncoding>${project.build.sourceEncoding}</grammarEncoding>
-                            <jdkVersion>${java.version}</jdkVersion>
+                            <jdkVersion>1.6</jdkVersion>
                         </configuration>
                     </execution>
                 </executions>
@@ -48,7 +48,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>animal-sniffer-maven-plugin</artifactId>
-                <version>1.11</version>
+                <version>1.24</version>
                 <configuration>
                     <signature>
                         <!-- Make sure only the API of this JDK is used -->
@@ -86,7 +86,7 @@
                                 </requireJavaVersion>
                                 <enforceBytecodeVersion>
                                     <!-- Make sure the dependencies are compiled for our Java version -->
-                                    <maxJdkVersion>${java.version}</maxJdkVersion>
+                                    <maxJdkVersion>1.6</maxJdkVersion>
                                 </enforceBytecodeVersion>
                             </rules>
                         </configuration>

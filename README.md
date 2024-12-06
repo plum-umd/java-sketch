@@ -21,18 +21,18 @@ you need to install [Sketch][sk] and set up the environment.
 * Tar ball
 
 One way to build Sketch is to use an easy-to-install tar ball:
-[sketch-1.7.0.tgz][sk-170].
+[sketch-1.7.6.tar][sk-176].
 Inside the tar ball, all Java files in sketch-frontend are already compiled,
 so all you need to do is building sketch-backend.
 Make sure that you have `gcc`, `g++`, `bison`, and `flex`.
 (You may need to install `autoconf`, `automake`, and `libtool`, too.)
 Then, build the beck-end as follows:
 ```sh
-.../ $ tar xvfz sketch-1.7.0.tgz
-.../ $ cd sketch-1.7.0/sketch-backend
-.../sketch-1.7.0/sketch-backend $ chmod +x ./configure
-.../sketch-1.7.0/sketch-backend $ ./configure
-.../sketch-1.7.0/sketch-backend $ make clean; make
+.../ $ tar xvfz sketch-1.7.6.tgz
+.../ $ cd sketch-1.7.6/sketch-backend
+.../sketch-1.7.6/sketch-backend $ chmod +x ./configure
+.../sketch-1.7.6/sketch-backend $ ./configure
+.../sketch-1.7.6/sketch-backend $ make clean; make
 ```
 You can run a simple test case to make sure the build is correct:
 ```sh
@@ -233,5 +233,6 @@ meaning the standard parts of the program are type correct, holes
 are used either as integers or booleans, and expression generators
 are type correct.
 
-[sk]: https://bitbucket.org/gatoatigrado/sketch-frontend/
+[sk]: https://github.com/asolarlez/sketch-frontend
 [sk-170]: http://people.csail.mit.edu/jsjeon/adaptive-concretization/sketch-1.7.0.tgz
+[sk-176]: https://people.csail.mit.edu/asolar/sketch-1.7.6.tar.gz
