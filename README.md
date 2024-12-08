@@ -81,13 +81,13 @@ To use `sketch` from anywhere,
 we recommend you to set up your environment accordingly.
 For the tar ball users:
 ```sh
-export SKETCH_HOME=/path/to/sketch-1.7.0/sketch-frontend/runtime
+export SKETCH_HOME=/path/to/sketch-1.7.6/sketch-frontend/runtime
 export PATH=$PATH:$SKETCH_HOME/..
 ```
 For the source users:
 ```sh
 export SKETCH_HOME=/path/to/sketch-frontend
-export PATH=$PATH:$SKETCH_HOME/target/sketch-1.7.0-noarch-launchers
+export PATH=$PATH:$SKETCH_HOME/target/sketch-1.7.6-noarch-launchers
 ```
 
 ## Usage
@@ -109,7 +109,7 @@ such as `repeat` and `minrepeat`.
 To read JSketch, again, you should generate our parser first:
 
 ```sh
-cd parser
+cd jskparser
 make
 ```
 
@@ -125,7 +125,7 @@ Again, make sure your environment is set up properly.
 If you are using Sketch from source:
 ```
 export SKETCH_HOME=/path/to/sketch-frontend
-export PATH=$PATH:$SKETCH_HOME/target/sketch-1.7.0-noarch-launchers
+export PATH=$PATH:$SKETCH_HOME/target/sketch-1.7.6-noarch-launchers
 ```
 If you are using Sketch tar ball:
 ```
