@@ -44,11 +44,11 @@ You can run a simple test case to make sure the build is correct:
 
 In case you are interested, here is a harder way to build Sketch.
 ```sh
-.../ $ hg clone https://bitbucket.org/gatoatigrado/sketch-frontend
-.../ $ hg clone https://bitbucket.org/gatoatigrado/sketch-backend
+.../ $ git clone https://github.com/asolarlez/sketch-frontend
+.../ $ git clone https://github.com/asolarlez/sketch-backend
 ```
 Make sure that you have `java`, `javac`, and `mvn` for sketch-frontend;
-`gcc`, `g++`, `bison`, and `flex` for sketch-backend.
+`gcc`, `g++`, `bison`, and `flex` for sketch-backend, and `python` Python 2 command for `jsk.sh`.
 (You may need to install `autoconf`, `automake`, and `libtool`, too.)
 Then, build Sketch as follows:
 ```sh
@@ -121,16 +121,16 @@ at code generation time.  Under `codegen/lib/`,
 pre-built `codegen.jar` is provided.
 
 You can build it by yourself if you want to.
-Again, make sure your environment is set up properly.
+To build `codegen.jar`, you need first set `SKETCH_JAR` to the compiled `sketch-1.7.6-noarch.jar` file.
 If you are using Sketch from source:
 ```
 export SKETCH_HOME=/path/to/sketch-frontend
-export PATH=$PATH:$SKETCH_HOME/target/sketch-1.7.6-noarch-launchers
+export SKETCH_JAR=$SKETCH_HOME/target/sketch-1.7.6-noarch.jar
 ```
 If you are using Sketch tar ball:
 ```
 export SKETCH_HOME=/path/to/sketch-frontend/runtime
-export PATH=$PATH:$SKETCH_HOME/..
+export SKETCH_JAR=$SKETCH_HOME/../sketch-1.7.6-noarch.jar
 ```
 
 Then,
