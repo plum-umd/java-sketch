@@ -33,7 +33,7 @@ class Dispatcher(object):
   def __init__(self, param_name, fn):
     frame = inspect.currentframe().f_back.f_back
     top_level = frame.f_locals == frame.f_globals
-    self.param_index = inspect.getargspec(fn).args.index(param_name)
+    self.param_index = inspect.getfullargspec(fn).args.index(param_name)
     self.param_name = param_name
     self.targets = {}
 
